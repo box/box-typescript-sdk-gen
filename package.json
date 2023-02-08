@@ -1,0 +1,14 @@
+{
+  "name": "OpenAPILibrary",
+  "version": "1.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "immutable": "*",
+    "node-fetch": "*"
+  }
+}
