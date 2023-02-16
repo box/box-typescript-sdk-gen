@@ -1,0 +1,17 @@
+{
+  "name": "OpenAPILibrary",
+  "version": "1.0",
+  "main": "dist/index.generated.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "echo \"Error: no start specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  },
+  "devDependencies": {
+    "@types/node": "*"
+  }
+}
