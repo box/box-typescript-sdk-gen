@@ -16,6 +16,7 @@ export interface GetFilesIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
+    readonly xRepHints?: string;
 }
 export interface PostFilesIdRequestBodyArgParentField {
     readonly id?: string;
@@ -91,8 +92,8 @@ export class FilesManager {
     constructor(fields: Omit<FilesManager, "getFilesId" | "postFilesId" | "putFilesId" | "deleteFilesId" | "postFilesIdCopy" | "getFilesIdThumbnailId">) {
         Object.assign(this, fields);
     }
-    async getFilesId(fileId: string, xRepHints: string, options: GetFilesIdOptionsArg = {} satisfies GetFilesIdOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi, ["x-rep-hints"]: xRepHints }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
+    async getFilesId(fileId: string, options: GetFilesIdOptionsArg = {} satisfies GetFilesIdOptionsArg): Promise<any> {
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi, ["x-rep-hints"]: options.xRepHints }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
     async postFilesId(fileId: string, requestBody: PostFilesIdRequestBodyArg, options: PostFilesIdOptionsArg = {} satisfies PostFilesIdOptionsArg): Promise<any> {
