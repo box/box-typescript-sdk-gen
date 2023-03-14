@@ -1,7 +1,7 @@
 {
   "name": "BoxSDK",
   "version": "1.0",
-  "main": "dist/index.generated.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "start": "echo \"Error: no start specified\" && exit 1",
