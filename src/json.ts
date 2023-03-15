@@ -1,30 +1,30 @@
-export type JSON =
-  | readonly JSON[]
+export type Json =
+  | readonly Json[]
   | boolean
   | null
   | number
-  | { readonly [key: string]: JSON | void }
+  | { readonly [key: string]: Json | void }
   | string;
 
-export function serializeJSON(value: JSON): string {
+export function serializeJson(value: Json): string {
   return JSON.stringify(value);
 }
 
-export function deserializeJSON(text: string): JSON {
+export function deserializeJson(text: string): Json {
   return JSON.parse(text);
 }
 
-export function isJSON(value: JSON | void, type: 'array'): value is JSON[];
-export function isJSON(value: JSON | void, type: 'boolean'): value is boolean;
-export function isJSON(value: JSON | void, type: 'null'): value is null;
-export function isJSON(value: JSON | void, type: 'number'): value is number;
-export function isJSON(
-  value: JSON | void,
+export function isJson(value: Json | void, type: 'array'): value is Json[];
+export function isJson(value: Json | void, type: 'boolean'): value is boolean;
+export function isJson(value: Json | void, type: 'null'): value is null;
+export function isJson(value: Json | void, type: 'number'): value is number;
+export function isJson(
+  value: Json | void,
   type: 'object'
-): value is { [key: string]: JSON | void };
-export function isJSON(value: JSON | void, type: 'string'): value is string;
-export function isJSON(
-  value: JSON | void,
+): value is { [key: string]: Json | void };
+export function isJson(value: Json | void, type: 'string'): value is string;
+export function isJson(
+  value: Json | void,
   type: 'array' | 'boolean' | 'null' | 'number' | 'object' | 'string'
 ) {
   if (typeof value === 'undefined') {

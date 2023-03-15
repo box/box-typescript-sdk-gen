@@ -5,10 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-import { deserializeJSON, JSON } from "../json.js";
-export type ClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
+export type ClassificationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgScopeField = "enterprise";
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgDisplayNameField = "Classification";
@@ -48,7 +51,7 @@ export class ClassificationsManager {
     }
     async getMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
+        return await deserializeClassificationTemplate(await deserializeJson(response.text));
     }
     async deleteMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -56,6 +59,6 @@ export class ClassificationsManager {
     }
     async postMetadataTemplatesSchemaClassifications(requestBody: PostMetadataTemplatesSchemaClassificationsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
+        return await deserializeClassificationTemplate(await deserializeJson(response.text));
     }
 }

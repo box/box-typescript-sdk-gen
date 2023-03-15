@@ -1,21 +1,21 @@
 import { fetch, FetchOptions, FetchResponse } from './fetch.js';
 
-export type CCGConfig = {
+export type CcgConfig = {
   clientId: string;
   clientSecret: string;
   enterpriseId?: string;
   userId?: string;
 };
 
-export class CCGAuth {
-  ccgConfig: CCGConfig;
+export class CcgAuth {
+  config: CcgConfig;
   token?: string;
 
-  constructor({ ccgConfig }: Pick<CCGAuth, 'ccgConfig'>) {
-    if (!ccgConfig.enterpriseId && !ccgConfig.userId) {
+  constructor({ config }: Pick<CcgAuth, 'config'>) {
+    if (!config.enterpriseId && !config.userId) {
       throw new Error('Enterprise ID or User ID is needed');
     }
-    this.ccgConfig = ccgConfig;
+    this.config = config;
   }
 
   async retrieveToken() {
@@ -28,18 +28,18 @@ export class CCGAuth {
   async refreshToken() {
     let subjectId, subjectType;
 
-    if (!this.ccgConfig.userId) {
-      subjectId = this.ccgConfig.enterpriseId;
+    if (!this.config.userId) {
+      subjectId = this.config.enterpriseId;
       subjectType = 'enterprise' as TokenRequestBoxSubjectType;
     } else {
-      subjectId = this.ccgConfig.userId;
+      subjectId = this.config.userId;
       subjectType = 'user' as TokenRequestBoxSubjectType;
     }
 
     const requestBody = {
       grant_type: 'client_credentials' as TokenRequestGrantType,
-      client_id: this.ccgConfig.clientId,
-      client_secret: this.ccgConfig.clientSecret,
+      client_id: this.config.clientId,
+      client_secret: this.config.clientSecret,
       box_subject_id: subjectId,
       box_subject_type: subjectType,
     } as TokenRequest;

@@ -5,9 +5,11 @@ import { UserAvatar } from "../schemas.generated.js";
 import { deserializeUserAvatar } from "../schemas.generated.js";
 import { serializeUserAvatar } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-export type AvatarsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+export type AvatarsManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export class AvatarsManager {
     readonly auth!: AvatarsManagerAuthField;
     constructor(fields: Omit<AvatarsManager, "getUsersIdAvatar" | "deleteUsersIdAvatar">) {

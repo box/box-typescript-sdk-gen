@@ -11,10 +11,13 @@ import { TrackingCode } from "../schemas.generated.js";
 import { deserializeTrackingCode } from "../schemas.generated.js";
 import { serializeTrackingCode } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-import { deserializeJSON, JSON } from "../json.js";
-export type UsersManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
+export type UsersManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export type GetUsersOptionsArgUserTypeField = "all" | "managed" | "external";
 export interface GetUsersOptionsArg {
     readonly filterTerm?: string;
@@ -99,23 +102,23 @@ export class UsersManager {
     }
     async getUsers(options: GetUsersOptionsArg = {} satisfies GetUsersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: { ["filter_term"]: options.filterTerm, ["user_type"]: options.userType, ["external_app_user_id"]: options.externalAppUserId, ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit, ["usemarker"]: options.usemarker, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUsers(deserializeJSON(response.text) as JSON);
+        return await deserializeUsers(await deserializeJson(response.text));
     }
     async postUsers(requestBody: PostUsersRequestBodyArg, options: PostUsersOptionsArg = {} satisfies PostUsersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUser(deserializeJSON(response.text) as JSON);
+        return await deserializeUser(await deserializeJson(response.text));
     }
     async getUsersMe(options: GetUsersMeOptionsArg = {} satisfies GetUsersMeOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUser(deserializeJSON(response.text) as JSON);
+        return await deserializeUser(await deserializeJson(response.text));
     }
     async getUsersId(userId: string, options: GetUsersIdOptionsArg = {} satisfies GetUsersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUser(deserializeJSON(response.text) as JSON);
+        return await deserializeUser(await deserializeJson(response.text));
     }
     async putUsersId(userId: string, requestBody: PutUsersIdRequestBodyArg, options: PutUsersIdOptionsArg = {} satisfies PutUsersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUser(deserializeJSON(response.text) as JSON);
+        return await deserializeUser(await deserializeJson(response.text));
     }
     async deleteUsersId(userId: string, options: DeleteUsersIdOptionsArg = {} satisfies DeleteUsersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: { ["notify"]: options.notify, ["force"]: options.force }, auth: this.auth } satisfies FetchOptions) as FetchResponse;

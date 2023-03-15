@@ -1,12 +1,12 @@
 {
-  "name": "OpenAPILibrary",
+  "name": "BoxSDK",
   "version": "2.0.0",
   "description": "[Box Platform](https://box.dev) provides functionality to provide access to content stored within [Box](https://box.com). It provides endpoints for basic manipulation of files and folders, management of users within an enterprise, as well as more complex topics such as legal holds and retention policies.",
   "main": "dist/index.generated.js",
   "scripts": {
     "build": "tsc",
     "start": "echo \"Error: no start specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "Apache-2.0, http://www.apache.org/licenses/LICENSE-2.0",
@@ -14,6 +14,11 @@
     "node-fetch": "^2.6.9"
   },
   "devDependencies": {
-    "@types/node": "*"
+    "@types/jest": "^27.4.0",
+    "@types/node-fetch": "*",
+    "@types/node": "*",
+    "ts-jest": "^27.1.3",
+    "jest": "^27.4.7",
+    "typescript": "*"
   }
 }

@@ -8,10 +8,13 @@ import { GroupMembership } from "../schemas.generated.js";
 import { deserializeGroupMembership } from "../schemas.generated.js";
 import { serializeGroupMembership } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-import { deserializeJSON, JSON } from "../json.js";
-export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
+export type MembershipsManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export interface GetUsersIdMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
@@ -58,23 +61,23 @@ export class MembershipsManager {
     }
     async getUsersIdMemberships(userId: string, options: GetUsersIdMembershipsOptionsArg = {} satisfies GetUsersIdMembershipsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/memberships") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeGroupMemberships(deserializeJSON(response.text) as JSON);
+        return await deserializeGroupMemberships(await deserializeJson(response.text));
     }
     async getGroupsIdMemberships(groupId: string, options: GetGroupsIdMembershipsOptionsArg = {} satisfies GetGroupsIdMembershipsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/memberships") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeGroupMemberships(deserializeJSON(response.text) as JSON);
+        return await deserializeGroupMemberships(await deserializeJson(response.text));
     }
     async postGroupMemberships(requestBody: PostGroupMembershipsRequestBodyArg, options: PostGroupMembershipsOptionsArg = {} satisfies PostGroupMembershipsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeGroupMembership(deserializeJSON(response.text) as JSON);
+        return await deserializeGroupMembership(await deserializeJson(response.text));
     }
     async getGroupMembershipsId(groupMembershipId: string, options: GetGroupMembershipsIdOptionsArg = {} satisfies GetGroupMembershipsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeGroupMembership(deserializeJSON(response.text) as JSON);
+        return await deserializeGroupMembership(await deserializeJson(response.text));
     }
     async putGroupMembershipsId(groupMembershipId: string, requestBody: PutGroupMembershipsIdRequestBodyArg, options: PutGroupMembershipsIdOptionsArg = {} satisfies PutGroupMembershipsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeGroupMembership(deserializeJSON(response.text) as JSON);
+        return await deserializeGroupMembership(await deserializeJson(response.text));
     }
     async deleteGroupMembershipsId(groupMembershipId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

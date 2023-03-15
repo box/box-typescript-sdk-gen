@@ -11,10 +11,13 @@ import { Items } from "../schemas.generated.js";
 import { deserializeItems } from "../schemas.generated.js";
 import { serializeItems } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-import { deserializeJSON, JSON } from "../json.js";
-export type FoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
+export type FoldersManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export interface GetFoldersIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
@@ -120,15 +123,15 @@ export class FoldersManager {
     }
     async getFoldersId(folderId: string, options: GetFoldersIdOptionsArg = {} satisfies GetFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return await deserializeFolder(await deserializeJson(response.text));
     }
     async postFoldersId(folderId: string, requestBody: PostFoldersIdRequestBodyArg, options: PostFoldersIdOptionsArg = {} satisfies PostFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashFolderRestored(deserializeJSON(response.text) as JSON);
+        return await deserializeTrashFolderRestored(await deserializeJson(response.text));
     }
     async putFoldersId(folderId: string, requestBody: PutFoldersIdRequestBodyArg, options: PutFoldersIdOptionsArg = {} satisfies PutFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: { ["fields"]: options.fields }, headers: { ["if-match"]: options.ifMatch }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return await deserializeFolder(await deserializeJson(response.text));
     }
     async deleteFoldersId(folderId: string, options: DeleteFoldersIdOptionsArg = {} satisfies DeleteFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: { ["recursive"]: options.recursive }, headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -136,14 +139,14 @@ export class FoldersManager {
     }
     async getFoldersIdItems(folderId: string, options: GetFoldersIdItemsOptionsArg = {} satisfies GetFoldersIdItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["usemarker"]: options.usemarker, ["marker"]: options.marker, ["offset"]: options.offset, ["limit"]: options.limit, ["sort"]: options.sort, ["direction"]: options.direction }, headers: { ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeItems(deserializeJSON(response.text) as JSON);
+        return await deserializeItems(await deserializeJson(response.text));
     }
     async postFolders(requestBody: PostFoldersRequestBodyArg, options: PostFoldersOptionsArg = {} satisfies PostFoldersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return await deserializeFolder(await deserializeJson(response.text));
     }
     async postFoldersIdCopy(folderId: string, requestBody: PostFoldersIdCopyRequestBodyArg, options: PostFoldersIdCopyOptionsArg = {} satisfies PostFoldersIdCopyOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return await deserializeFolder(await deserializeJson(response.text));
     }
 }

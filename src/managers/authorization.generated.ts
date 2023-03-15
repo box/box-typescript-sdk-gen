@@ -5,9 +5,11 @@ import { OAuth2Error } from "../schemas.generated.js";
 import { deserializeOAuth2Error } from "../schemas.generated.js";
 import { serializeOAuth2Error } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { fetch, FetchOptions, FetchResponse } from "../fetch.js";
-export type AuthorizationManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { fetch } from "../fetch.js";
+import { FetchOptions } from "../fetch.js";
+import { FetchResponse } from "../fetch.js";
+export type AuthorizationManagerAuthField = DeveloperTokenAuth | CcgAuth;
 export type GetAuthorizeResponseTypeArg = "code";
 export interface GetAuthorizeOptionsArg {
     readonly redirectUri?: string;
