@@ -1,13 +1,13 @@
-export type CCGConfig = {
+export type CcgConfig = {
     clientId: string;
     clientSecret: string;
     enterpriseId?: string;
     userId?: string;
 };
-export declare class CCGAuth {
-    ccgConfig: CCGConfig;
+export declare class CcgAuth {
+    config: CcgConfig;
     token?: string;
-    constructor({ ccgConfig }: Pick<CCGAuth, 'ccgConfig'>);
+    constructor({ config }: Pick<CcgAuth, 'config'>);
     retrieveToken(): Promise<string>;
     refreshToken(): Promise<string | undefined>;
 }

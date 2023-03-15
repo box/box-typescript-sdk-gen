@@ -1,5 +1,5 @@
 import nodeFetch from 'node-fetch';
-import { CCGAuth } from './ccgAuth.js';
+import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
 
 export interface FetchOptions {
@@ -27,7 +27,7 @@ export interface FetchOptions {
   /**
    * Auth object
    */
-  readonly auth?: CCGAuth | DeveloperTokenAuth;
+  readonly auth?: CcgAuth | DeveloperTokenAuth;
 }
 
 export interface FetchResponse {
