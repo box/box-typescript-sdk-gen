@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface OptionsFilesContentRequestBodyArgParentField {
     readonly id?: string;
 }

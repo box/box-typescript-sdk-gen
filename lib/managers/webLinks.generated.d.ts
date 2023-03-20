@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type WebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type WebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostWebLinksRequestBodyArgParentField {
     readonly id: string;
 }

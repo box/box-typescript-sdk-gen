@@ -5,11 +5,11 @@ import { Files } from "../schemas.generated.js";
 import { deserializeFiles } from "../schemas.generated.js";
 import { serializeFiles } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-export type DownloadsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+export type DownloadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFilesIdContentOptionsArg {
     readonly range?: string;
     readonly boxapi?: string;

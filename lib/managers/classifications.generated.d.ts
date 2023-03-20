@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type ClassificationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type ClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgScopeField = "enterprise";
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
 export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgDisplayNameField = "Classification";

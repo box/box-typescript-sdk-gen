@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type EmailAliasesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type EmailAliasesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostUsersIdEmailAliasesRequestBodyArg {
     readonly email: string;
 }

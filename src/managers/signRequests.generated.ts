@@ -11,14 +11,14 @@ import { SignRequestCreateRequest } from "../schemas.generated.js";
 import { deserializeSignRequestCreateRequest } from "../schemas.generated.js";
 import { serializeSignRequestCreateRequest } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
+import { JSON } from "../json.js";
 import { serializeJson } from "../json.js";
-export type SignRequestsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+export type SignRequestsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetSignRequestsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
@@ -30,7 +30,7 @@ export class SignRequestsManager {
     }
     async postSignRequestsIdCancel(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/cancel") as string, { method: "POST", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSignRequest(await deserializeJson(response.text));
+        return await deserializeSignRequest(deserializeJSON(response.text) as JSON);
     }
     async postSignRequestsIdResend(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/resend") as string, { method: "POST", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -38,14 +38,14 @@ export class SignRequestsManager {
     }
     async getSignRequestsId(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSignRequest(await deserializeJson(response.text));
+        return await deserializeSignRequest(deserializeJSON(response.text) as JSON);
     }
     async getSignRequests(options: GetSignRequestsOptionsArg = {} satisfies GetSignRequestsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSignRequests(await deserializeJson(response.text));
+        return await deserializeSignRequests(deserializeJSON(response.text) as JSON);
     }
     async postSignRequests(requestBody: SignRequestCreateRequest): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "POST", body: await serializeSignRequestCreateRequest(await serializeJson(requestBody)), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSignRequest(await deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "POST", body: await serializeSignRequestCreateRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return await deserializeSignRequest(deserializeJSON(response.text) as JSON);
     }
 }

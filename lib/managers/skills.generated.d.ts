@@ -4,8 +4,8 @@ import { TimelineSkillCard } from "../schemas.generated.js";
 import { TranscriptSkillCard } from "../schemas.generated.js";
 import { StatusSkillCard } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type SkillsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type SkillsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArgCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArg {
     readonly cards: readonly PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArgCardsField[];

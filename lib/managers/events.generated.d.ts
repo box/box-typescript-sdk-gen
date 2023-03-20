@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type EventsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type EventsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetEventsOptionsArgStreamTypeField = "all" | "changes" | "sync" | "admin_logs" | "admin_logs_streaming";
 export interface GetEventsOptionsArg {
     readonly streamType?: GetEventsOptionsArgStreamTypeField;

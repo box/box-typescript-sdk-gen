@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FolderMetadataManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FolderMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetFoldersIdMetadataIdIdScopeArg = "global" | "enterprise";
 export type PostFoldersIdMetadataIdIdScopeArg = "global" | "enterprise";
 export interface PostFoldersIdMetadataIdIdRequestBodyArg {

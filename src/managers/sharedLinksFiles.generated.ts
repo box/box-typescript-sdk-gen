@@ -5,13 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type SharedLinksFilesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type SharedLinksFilesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetSharedItemsOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
@@ -60,22 +60,22 @@ export class SharedLinksFilesManager {
     }
     async getSharedItems(boxapi: string, options: GetSharedItemsOptionsArg = {} satisfies GetSharedItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shared_items") as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFile(await deserializeJson(response.text));
+        return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
     async getFilesIdGetSharedLink(fileId: string, fields: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#get_shared_link") as string, { method: "GET", params: { ["fields"]: fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFile(await deserializeJson(response.text));
+        return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
     async putFilesIdAddSharedLink(fileId: string, fields: string, requestBody: PutFilesIdAddSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#add_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFile(await deserializeJson(response.text));
+        return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
     async putFilesIdUpdateSharedLink(fileId: string, fields: string, requestBody: PutFilesIdUpdateSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#update_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFile(await deserializeJson(response.text));
+        return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
     async putFilesIdRemoveSharedLink(fileId: string, fields: string, requestBody: PutFilesIdRemoveSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#remove_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFile(await deserializeJson(response.text));
+        return await deserializeFile(deserializeJSON(response.text) as JSON);
     }
 }

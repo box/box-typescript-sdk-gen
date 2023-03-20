@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
 export type DeleteMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
 export interface GetMetadataTemplatesGlobalOptionsArg {

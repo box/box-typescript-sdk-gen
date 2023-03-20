@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetStoragePoliciesOptionsArg {
     readonly fields?: string;
     readonly marker?: string;

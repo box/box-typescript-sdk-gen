@@ -1,8 +1,8 @@
 import { FileRequestUpdateRequest } from "../schemas.generated.js";
 import { FileRequestCopyRequest } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FileRequestsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FileRequestsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PutFileRequestsIdOptionsArg {
     readonly ifMatch?: string;
 }

@@ -8,13 +8,13 @@ import { Metadata } from "../schemas.generated.js";
 import { deserializeMetadata } from "../schemas.generated.js";
 import { serializeMetadata } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type FileMetadataManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type FileMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetFilesIdMetadataIdIdScopeArg = "global" | "enterprise";
 export type PostFilesIdMetadataIdIdScopeArg = "global" | "enterprise";
 export interface PostFilesIdMetadataIdIdRequestBodyArg {
@@ -27,15 +27,15 @@ export class FileMetadataManager {
     }
     async getFilesIdMetadata(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadatas(await deserializeJson(response.text));
+        return await deserializeMetadatas(deserializeJSON(response.text) as JSON);
     }
     async getFilesIdMetadataIdId(fileId: string, scope: GetFilesIdMetadataIdIdScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadata(await deserializeJson(response.text));
+        return await deserializeMetadata(deserializeJSON(response.text) as JSON);
     }
     async postFilesIdMetadataIdId(fileId: string, scope: PostFilesIdMetadataIdIdScopeArg, templateKey: string, requestBody: PostFilesIdMetadataIdIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadata(await deserializeJson(response.text));
+        return await deserializeMetadata(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdMetadataIdId(fileId: string, scope: DeleteFilesIdMetadataIdIdScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type CollaborationAllowlistEntriesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type CollaborationAllowlistEntriesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetCollaborationWhitelistEntriesOptionsArg {
     readonly marker?: string;
     readonly limit?: number;

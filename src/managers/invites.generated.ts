@@ -5,13 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type InvitesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostInvitesRequestBodyArgEnterpriseField {
     readonly id: string;
 }
@@ -35,10 +35,10 @@ export class InvitesManager {
     }
     async postInvites(requestBody: PostInvitesRequestBodyArg, options: PostInvitesOptionsArg = {} satisfies PostInvitesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeInvite(await deserializeJson(response.text));
+        return await deserializeInvite(deserializeJSON(response.text) as JSON);
     }
     async getInvitesId(inviteId: string, options: GetInvitesIdOptionsArg = {} satisfies GetInvitesIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeInvite(await deserializeJson(response.text));
+        return await deserializeInvite(deserializeJSON(response.text) as JSON);
     }
 }

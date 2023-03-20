@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TrashedItemsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TrashedItemsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetFoldersTrashItemsOptionsArgDirectionField = "ASC" | "DESC";
 export type GetFoldersTrashItemsOptionsArgSortField = "id" | "name" | "date" | "size";
 export interface GetFoldersTrashItemsOptionsArg {

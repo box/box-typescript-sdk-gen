@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type AvatarsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type AvatarsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export declare class AvatarsManager {
     readonly auth: AvatarsManagerAuthField;
     constructor(fields: Omit<AvatarsManager, "getUsersIdAvatar" | "deleteUsersIdAvatar">);

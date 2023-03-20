@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FileVersionsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FileVersionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFilesIdVersionsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

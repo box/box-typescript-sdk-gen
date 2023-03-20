@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetFileVersionRetentionsOptionsArgDispositionActionField = "permanently_delete" | "remove_retention";
 export interface GetFileVersionRetentionsOptionsArg {
     readonly fileId?: string;

@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type SharedLinksFoldersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type SharedLinksFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetSharedItemsFoldersOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;

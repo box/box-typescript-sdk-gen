@@ -20,13 +20,13 @@ import { StatusSkillCard } from "../schemas.generated.js";
 import { deserializeStatusSkillCard } from "../schemas.generated.js";
 import { serializeStatusSkillCard } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type SkillsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type SkillsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArgCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArg {
     readonly cards: readonly PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArgCardsField[];
@@ -64,11 +64,11 @@ export class SkillsManager {
     }
     async getFilesIdMetadataGlobalBoxSkillsCards(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSkillCardsMetadata(await deserializeJson(response.text));
+        return await deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
     }
     async postFilesIdMetadataGlobalBoxSkillsCards(fileId: string, requestBody: PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSkillCardsMetadata(await deserializeJson(response.text));
+        return await deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdMetadataGlobalBoxSkillsCards(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type InvitesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostInvitesRequestBodyArgEnterpriseField {
     readonly id: string;
 }

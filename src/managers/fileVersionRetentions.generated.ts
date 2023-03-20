@@ -8,13 +8,13 @@ import { FileVersionRetention } from "../schemas.generated.js";
 import { deserializeFileVersionRetention } from "../schemas.generated.js";
 import { serializeFileVersionRetention } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetFileVersionRetentionsOptionsArgDispositionActionField = "permanently_delete" | "remove_retention";
 export interface GetFileVersionRetentionsOptionsArg {
     readonly fileId?: string;
@@ -33,10 +33,10 @@ export class FileVersionRetentionsManager {
     }
     async getFileVersionRetentions(options: GetFileVersionRetentionsOptionsArg = {} satisfies GetFileVersionRetentionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: { ["file_id"]: options.fileId, ["file_version_id"]: options.fileVersionId, ["policy_id"]: options.policyId, ["disposition_action"]: options.dispositionAction, ["disposition_before"]: options.dispositionBefore, ["disposition_after"]: options.dispositionAfter, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionRetentions(await deserializeJson(response.text));
+        return await deserializeFileVersionRetentions(deserializeJSON(response.text) as JSON);
     }
     async getFileVersionRetentionsId(fileVersionRetentionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions/", fileVersionRetentionId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionRetention(await deserializeJson(response.text));
+        return await deserializeFileVersionRetention(deserializeJSON(response.text) as JSON);
     }
 }

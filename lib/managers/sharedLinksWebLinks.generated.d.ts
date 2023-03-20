@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type SharedLinksWebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type SharedLinksWebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetSharedItemsWebLinksOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;

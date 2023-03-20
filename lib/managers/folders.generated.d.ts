@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FoldersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFoldersIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;

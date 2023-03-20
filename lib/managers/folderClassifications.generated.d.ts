@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FolderClassificationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FolderClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostFoldersIdMetadataEnterpriseSecurityClassification6VmVochwUWoRequestBodyArg {
     readonly boxSecurityClassificationKey?: string;
 }

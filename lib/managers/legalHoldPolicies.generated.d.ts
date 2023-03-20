@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type LegalHoldPoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type LegalHoldPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetLegalHoldPoliciesOptionsArg {
     readonly policyName?: string;
     readonly fields?: string;

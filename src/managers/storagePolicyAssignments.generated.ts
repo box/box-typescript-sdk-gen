@@ -8,13 +8,13 @@ import { StoragePolicyAssignment } from "../schemas.generated.js";
 import { deserializeStoragePolicyAssignment } from "../schemas.generated.js";
 import { serializeStoragePolicyAssignment } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetStoragePolicyAssignmentsResolvedForTypeArg = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsOptionsArg {
     readonly marker?: string;
@@ -48,19 +48,19 @@ export class StoragePolicyAssignmentsManager {
     }
     async getStoragePolicyAssignments(resolvedForType: GetStoragePolicyAssignmentsResolvedForTypeArg, resolvedForId: string, options: GetStoragePolicyAssignmentsOptionsArg = {} satisfies GetStoragePolicyAssignmentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "GET", params: { ["marker"]: options.marker, ["resolved_for_type"]: resolvedForType, ["resolved_for_id"]: resolvedForId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignments(await deserializeJson(response.text));
+        return await deserializeStoragePolicyAssignments(deserializeJSON(response.text) as JSON);
     }
     async postStoragePolicyAssignments(requestBody: PostStoragePolicyAssignmentsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(await deserializeJson(response.text));
+        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async getStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(await deserializeJson(response.text));
+        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async putStoragePolicyAssignmentsId(storagePolicyAssignmentId: string, requestBody: PutStoragePolicyAssignmentsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(await deserializeJson(response.text));
+        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async deleteStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

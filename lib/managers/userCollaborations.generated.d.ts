@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetCollaborationsIdOptionsArg {
     readonly fields?: string;
 }
