@@ -22,11 +22,11 @@ export class FolderClassificationsManager {
     }
     async getFoldersIdMetadataEnterpriseSecurityClassification6VmVochwUWo(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassification(deserializeJSON(response.text) as JSON);
+        return deserializeClassification(deserializeJSON(response.text) as JSON);
     }
     async postFoldersIdMetadataEnterpriseSecurityClassification6VmVochwUWo(folderId: string, requestBody: PostFoldersIdMetadataEnterpriseSecurityClassification6VmVochwUWoRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassification(deserializeJSON(response.text) as JSON);
+        return deserializeClassification(deserializeJSON(response.text) as JSON);
     }
     async deleteFoldersIdMetadataEnterpriseSecurityClassification6VmVochwUWo(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

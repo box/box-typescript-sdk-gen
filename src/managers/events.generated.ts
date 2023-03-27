@@ -31,10 +31,10 @@ export class EventsManager {
     }
     async getEvents(options: GetEventsOptionsArg = {} satisfies GetEventsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: { ["stream_type"]: options.streamType, ["stream_position"]: options.streamPosition, ["limit"]: options.limit, ["event_type"]: options.eventType, ["created_after"]: options.createdAfter, ["created_before"]: options.createdBefore }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeEvents(deserializeJSON(response.text) as JSON);
+        return deserializeEvents(deserializeJSON(response.text) as JSON);
     }
     async optionsEvents(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "OPTIONS", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRealtimeServers(deserializeJSON(response.text) as JSON);
+        return deserializeRealtimeServers(deserializeJSON(response.text) as JSON);
     }
 }

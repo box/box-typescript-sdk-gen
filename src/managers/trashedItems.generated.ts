@@ -30,6 +30,6 @@ export class TrashedItemsManager {
     }
     async getFoldersTrashItems(options: GetFoldersTrashItemsOptionsArg = {} satisfies GetFoldersTrashItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/trash/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset, ["usemarker"]: options.usemarker, ["marker"]: options.marker, ["direction"]: options.direction, ["sort"]: options.sort }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeItems(deserializeJSON(response.text) as JSON);
+        return deserializeItems(deserializeJSON(response.text) as JSON);
     }
 }

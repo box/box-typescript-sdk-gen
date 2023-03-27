@@ -32,10 +32,10 @@ export class CollectionsManager {
     }
     async getCollections(options: GetCollectionsOptionsArg = {} satisfies GetCollectionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollections(deserializeJSON(response.text) as JSON);
+        return deserializeCollections(deserializeJSON(response.text) as JSON);
     }
     async getCollectionsIdItems(collectionId: string, options: GetCollectionsIdItemsOptionsArg = {} satisfies GetCollectionsIdItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeItems(deserializeJSON(response.text) as JSON);
+        return deserializeItems(deserializeJSON(response.text) as JSON);
     }
 }

@@ -61,12 +61,12 @@ export class SearchManager {
         Object.assign(this, fields);
     }
     async postMetadataQueriesExecuteRead(requestBody: MetadataQuery): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_queries/execute_read") as string, { method: "POST", body: await serializeMetadataQuery(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataQueryResults(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_queries/execute_read") as string, { method: "POST", body: serializeMetadataQuery(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeMetadataQueryResults(deserializeJSON(response.text) as JSON);
     }
     async getMetadataQueryIndices(scope: GetMetadataQueryIndicesScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_query_indices") as string, { method: "GET", params: { ["scope"]: scope, ["template_key"]: templateKey }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataQueryIndices(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataQueryIndices(deserializeJSON(response.text) as JSON);
     }
     async getSearch(options: GetSearchOptionsArg = {} satisfies GetSearchOptionsArg): Promise<undefined> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/search") as string, { method: "GET", params: { ["query"]: options.query, ["scope"]: options.scope, ["file_extensions"]: options.fileExtensions, ["created_at_range"]: options.createdAtRange, ["updated_at_range"]: options.updatedAtRange, ["size_range"]: options.sizeRange, ["owner_user_ids"]: options.ownerUserIds, ["recent_updater_user_ids"]: options.recentUpdaterUserIds, ["ancestor_folder_ids"]: options.ancestorFolderIds, ["content_types"]: options.contentTypes, ["type"]: options.type, ["trash_content"]: options.trashContent, ["mdfilters"]: options.mdfilters, ["sort"]: options.sort, ["direction"]: options.direction, ["limit"]: options.limit, ["include_recent_shared_links"]: options.includeRecentSharedLinks, ["fields"]: options.fields, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;

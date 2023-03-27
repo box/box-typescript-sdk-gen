@@ -25,8 +25,8 @@ export class ZipDownloadsManager {
         Object.assign(this, fields);
     }
     async postZipDownloads(requestBody: ZipDownloadRequest): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/zip_downloads") as string, { method: "POST", body: await serializeZipDownloadRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeZipDownload(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/zip_downloads") as string, { method: "POST", body: serializeZipDownloadRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeZipDownload(deserializeJSON(response.text) as JSON);
     }
     async getZipDownloadsIdContent(zipDownloadId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/zip_downloads/", zipDownloadId, "/content") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -34,6 +34,6 @@ export class ZipDownloadsManager {
     }
     async getZipDownloadsIdStatus(zipDownloadId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/zip_downloads/", zipDownloadId, "/status") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeZipDownloadStatus(deserializeJSON(response.text) as JSON);
+        return deserializeZipDownloadStatus(deserializeJSON(response.text) as JSON);
     }
 }

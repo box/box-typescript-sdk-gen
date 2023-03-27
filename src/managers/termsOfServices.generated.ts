@@ -41,18 +41,18 @@ export class TermsOfServicesManager {
     }
     async getTermsOfServices(options: GetTermsOfServicesOptionsArg = {} satisfies GetTermsOfServicesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "GET", params: { ["tos_type"]: options.tosType }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfServices(deserializeJSON(response.text) as JSON);
+        return deserializeTermsOfServices(deserializeJSON(response.text) as JSON);
     }
     async postTermsOfServices(requestBody: PostTermsOfServicesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTask(deserializeJSON(response.text) as JSON);
+        return deserializeTask(deserializeJSON(response.text) as JSON);
     }
     async getTermsOfServicesId(termsOfServiceId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services/", termsOfServiceId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfService(deserializeJSON(response.text) as JSON);
+        return deserializeTermsOfService(deserializeJSON(response.text) as JSON);
     }
     async putTermsOfServicesId(termsOfServiceId: string, requestBody: PutTermsOfServicesIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services/", termsOfServiceId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfService(deserializeJSON(response.text) as JSON);
+        return deserializeTermsOfService(deserializeJSON(response.text) as JSON);
     }
 }

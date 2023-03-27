@@ -32,15 +32,15 @@ export class CollaborationAllowlistExemptTargetsManager {
     }
     async getCollaborationWhitelistExemptTargets(options: GetCollaborationWhitelistExemptTargetsOptionsArg = {} satisfies GetCollaborationWhitelistExemptTargetsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_exempt_targets") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistExemptTargets(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistExemptTargets(deserializeJSON(response.text) as JSON);
     }
     async postCollaborationWhitelistExemptTargets(requestBody: PostCollaborationWhitelistExemptTargetsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_exempt_targets") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistExemptTarget(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistExemptTarget(deserializeJSON(response.text) as JSON);
     }
     async getCollaborationWhitelistExemptTargetsId(collaborationWhitelistExemptTargetId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_exempt_targets/", collaborationWhitelistExemptTargetId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistExemptTarget(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistExemptTarget(deserializeJSON(response.text) as JSON);
     }
     async deleteCollaborationWhitelistExemptTargetsId(collaborationWhitelistExemptTargetId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_exempt_targets/", collaborationWhitelistExemptTargetId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -27,10 +27,10 @@ export class StoragePoliciesManager {
     }
     async getStoragePolicies(options: GetStoragePoliciesOptionsArg = {} satisfies GetStoragePoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: { ["fields"]: options.fields, ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicies(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicies(deserializeJSON(response.text) as JSON);
     }
     async getStoragePoliciesId(storagePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies/", storagePolicyId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicy(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicy(deserializeJSON(response.text) as JSON);
     }
 }

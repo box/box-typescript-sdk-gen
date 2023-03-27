@@ -31,15 +31,15 @@ export class CollaborationAllowlistEntriesManager {
     }
     async getCollaborationWhitelistEntries(options: GetCollaborationWhitelistEntriesOptionsArg = {} satisfies GetCollaborationWhitelistEntriesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistEntries(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistEntries(deserializeJSON(response.text) as JSON);
     }
     async postCollaborationWhitelistEntries(requestBody: PostCollaborationWhitelistEntriesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistEntry(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistEntry(deserializeJSON(response.text) as JSON);
     }
     async getCollaborationWhitelistEntriesId(collaborationWhitelistEntryId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries/", collaborationWhitelistEntryId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborationAllowlistEntry(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborationAllowlistEntry(deserializeJSON(response.text) as JSON);
     }
     async deleteCollaborationWhitelistEntriesId(collaborationWhitelistEntryId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries/", collaborationWhitelistEntryId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

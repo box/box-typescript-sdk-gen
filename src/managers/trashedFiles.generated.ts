@@ -22,7 +22,7 @@ export class TrashedFilesManager {
     }
     async getFilesIdTrash(fileId: string, options: GetFilesIdTrashOptionsArg = {} satisfies GetFilesIdTrashOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashFile(deserializeJSON(response.text) as JSON);
+        return deserializeTrashFile(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdTrash(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

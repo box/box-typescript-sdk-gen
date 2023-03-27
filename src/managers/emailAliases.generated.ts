@@ -25,11 +25,11 @@ export class EmailAliasesManager {
     }
     async getUsersIdEmailAliases(userId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeEmailAliases(deserializeJSON(response.text) as JSON);
+        return deserializeEmailAliases(deserializeJSON(response.text) as JSON);
     }
     async postUsersIdEmailAliases(userId: string, requestBody: PostUsersIdEmailAliasesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeEmailAlias(deserializeJSON(response.text) as JSON);
+        return deserializeEmailAlias(deserializeJSON(response.text) as JSON);
     }
     async deleteUsersIdEmailAliasesId(userId: string, emailAliasId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases/", emailAliasId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

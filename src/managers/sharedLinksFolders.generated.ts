@@ -60,22 +60,22 @@ export class SharedLinksFoldersManager {
     }
     async getSharedItemsFolders(boxapi: string, options: GetSharedItemsFoldersOptionsArg = {} satisfies GetSharedItemsFoldersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shared_items#folders") as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async getFoldersIdGetSharedLink(folderId: string, fields: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#get_shared_link") as string, { method: "GET", params: { ["fields"]: fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async putFoldersIdAddSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdAddSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#add_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async putFoldersIdUpdateSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdUpdateSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#update_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async putFoldersIdRemoveSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdRemoveSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#remove_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
 }

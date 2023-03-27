@@ -29,18 +29,18 @@ export class ShieldInformationBarriersManager {
     }
     async getShieldInformationBarriersId(shieldInformationBarrierId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/", shieldInformationBarrierId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
     }
     async postShieldInformationBarriersChangeStatus(requestBody: PostShieldInformationBarriersChangeStatusRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/change_status") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
     }
     async getShieldInformationBarriers(options: GetShieldInformationBarriersOptionsArg = {} satisfies GetShieldInformationBarriersOptionsArg): Promise<undefined> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
     async postShieldInformationBarriers(requestBody: ShieldInformationBarrier): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "POST", body: await serializeShieldInformationBarrier(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "POST", body: serializeShieldInformationBarrier(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeShieldInformationBarrier(deserializeJSON(response.text) as JSON);
     }
 }

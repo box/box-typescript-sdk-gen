@@ -29,6 +29,6 @@ export class TransferManager {
     }
     async putUsersIdFolders0(userId: string, requestBody: PutUsersIdFolders0RequestBodyArg, options: PutUsersIdFolders0OptionsArg = {} satisfies PutUsersIdFolders0OptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
 }

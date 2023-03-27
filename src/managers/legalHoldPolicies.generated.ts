@@ -40,19 +40,19 @@ export class LegalHoldPoliciesManager {
     }
     async getLegalHoldPolicies(options: GetLegalHoldPoliciesOptionsArg = {} satisfies GetLegalHoldPoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies") as string, { method: "GET", params: { ["policy_name"]: options.policyName, ["fields"]: options.fields, ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeLegalHoldPolicies(deserializeJSON(response.text) as JSON);
+        return deserializeLegalHoldPolicies(deserializeJSON(response.text) as JSON);
     }
     async postLegalHoldPolicies(requestBody: PostLegalHoldPoliciesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
+        return deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
     }
     async getLegalHoldPoliciesId(legalHoldPolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
+        return deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
     }
     async putLegalHoldPoliciesId(legalHoldPolicyId: string, requestBody: PutLegalHoldPoliciesIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
+        return deserializeLegalHoldPolicy(deserializeJSON(response.text) as JSON);
     }
     async deleteLegalHoldPoliciesId(legalHoldPolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

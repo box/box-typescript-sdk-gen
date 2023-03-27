@@ -24,6 +24,6 @@ export class RecentItemsManager {
     }
     async getRecentItems(options: GetRecentItemsOptionsArg = {} satisfies GetRecentItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRecentItems(deserializeJSON(response.text) as JSON);
+        return deserializeRecentItems(deserializeJSON(response.text) as JSON);
     }
 }

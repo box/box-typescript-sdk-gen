@@ -35,11 +35,11 @@ export class ShieldInformationBarrierSegmentsManager {
     }
     async getShieldInformationBarrierSegmentsId(shieldInformationBarrierSegmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segments/", shieldInformationBarrierSegmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
     }
     async putShieldInformationBarrierSegmentsId(shieldInformationBarrierSegmentId: string, requestBody: PutShieldInformationBarrierSegmentsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segments/", shieldInformationBarrierSegmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
     }
     async deleteShieldInformationBarrierSegmentsId(shieldInformationBarrierSegmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segments/", shieldInformationBarrierSegmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -51,6 +51,6 @@ export class ShieldInformationBarrierSegmentsManager {
     }
     async postShieldInformationBarrierSegments(requestBody: PostShieldInformationBarrierSegmentsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrierSegment(deserializeJSON(response.text) as JSON);
     }
 }

@@ -34,11 +34,11 @@ export class FolderLocksManager {
     }
     async getFolderLocks(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: { ["folder_id"]: folderId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolderLocks(deserializeJSON(response.text) as JSON);
+        return deserializeFolderLocks(deserializeJSON(response.text) as JSON);
     }
     async postFolderLocks(requestBody: PostFolderLocksRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolderLock(deserializeJSON(response.text) as JSON);
+        return deserializeFolderLock(deserializeJSON(response.text) as JSON);
     }
     async deleteFolderLocksId(folderLockId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks/", folderLockId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

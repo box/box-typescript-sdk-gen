@@ -123,15 +123,15 @@ export class FoldersManager {
     }
     async getFoldersId(folderId: string, options: GetFoldersIdOptionsArg = {} satisfies GetFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async postFoldersId(folderId: string, requestBody: PostFoldersIdRequestBodyArg, options: PostFoldersIdOptionsArg = {} satisfies PostFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashFolderRestored(deserializeJSON(response.text) as JSON);
+        return deserializeTrashFolderRestored(deserializeJSON(response.text) as JSON);
     }
     async putFoldersId(folderId: string, requestBody: PutFoldersIdRequestBodyArg, options: PutFoldersIdOptionsArg = {} satisfies PutFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: { ["fields"]: options.fields }, headers: { ["if-match"]: options.ifMatch }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async deleteFoldersId(folderId: string, options: DeleteFoldersIdOptionsArg = {} satisfies DeleteFoldersIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: { ["recursive"]: options.recursive }, headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -139,14 +139,14 @@ export class FoldersManager {
     }
     async getFoldersIdItems(folderId: string, options: GetFoldersIdItemsOptionsArg = {} satisfies GetFoldersIdItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["usemarker"]: options.usemarker, ["marker"]: options.marker, ["offset"]: options.offset, ["limit"]: options.limit, ["sort"]: options.sort, ["direction"]: options.direction }, headers: { ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeItems(deserializeJSON(response.text) as JSON);
+        return deserializeItems(deserializeJSON(response.text) as JSON);
     }
     async postFolders(requestBody: PostFoldersRequestBodyArg, options: PostFoldersOptionsArg = {} satisfies PostFoldersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
     async postFoldersIdCopy(folderId: string, requestBody: PostFoldersIdCopyRequestBodyArg, options: PostFoldersIdCopyOptionsArg = {} satisfies PostFoldersIdCopyOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolder(deserializeJSON(response.text) as JSON);
     }
 }

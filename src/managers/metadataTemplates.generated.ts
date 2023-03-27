@@ -52,11 +52,11 @@ export class MetadataTemplatesManager {
     }
     async getMetadataTemplates(metadataInstanceId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates") as string, { method: "GET", params: { ["metadata_instance_id"]: metadataInstanceId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
     async getMetadataTemplatesIdIdSchema(scope: GetMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }
     async deleteMetadataTemplatesIdIdSchema(scope: DeleteMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -64,18 +64,18 @@ export class MetadataTemplatesManager {
     }
     async getMetadataTemplatesId(templateId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", templateId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }
     async getMetadataTemplatesGlobal(options: GetMetadataTemplatesGlobalOptionsArg = {} satisfies GetMetadataTemplatesGlobalOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/global") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
     async getMetadataTemplatesEnterprise(options: GetMetadataTemplatesEnterpriseOptionsArg = {} satisfies GetMetadataTemplatesEnterpriseOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
     async postMetadataTemplatesSchema(requestBody: PostMetadataTemplatesSchemaRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }
 }

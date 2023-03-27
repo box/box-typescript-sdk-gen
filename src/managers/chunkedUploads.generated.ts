@@ -51,15 +51,15 @@ export class ChunkedUploadsManager {
     }
     async postFilesUploadSessions(requestBody: PostFilesUploadSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(deserializeJSON(response.text) as JSON);
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async postFilesIdUploadSessions(fileId: string, requestBody: PostFilesIdUploadSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(deserializeJSON(response.text) as JSON);
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async getFilesUploadSessionsId(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(deserializeJSON(response.text) as JSON);
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesUploadSessionsId(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -67,10 +67,10 @@ export class ChunkedUploadsManager {
     }
     async getFilesUploadSessionsIdParts(uploadSessionId: string, options: GetFilesUploadSessionsIdPartsOptionsArg = {} satisfies GetFilesUploadSessionsIdPartsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: { ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadParts(deserializeJSON(response.text) as JSON);
+        return deserializeUploadParts(deserializeJSON(response.text) as JSON);
     }
     async postFilesUploadSessionsIdCommit(uploadSessionId: string, digest: string, requestBody: PostFilesUploadSessionsIdCommitRequestBodyArg, options: PostFilesUploadSessionsIdCommitOptionsArg = {} satisfies PostFilesUploadSessionsIdCommitOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: { ["digest"]: digest, ["if-match"]: options.ifMatch, ["if-none-match"]: options.ifNoneMatch }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFiles(deserializeJSON(response.text) as JSON);
+        return deserializeFiles(deserializeJSON(response.text) as JSON);
     }
 }

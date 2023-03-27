@@ -26,10 +26,10 @@ export class SessionTerminationManager {
     }
     async postUsersTerminateSessions(requestBody: PostUsersTerminateSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/terminate_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSessionTerminationMessage(deserializeJSON(response.text) as JSON);
+        return deserializeSessionTerminationMessage(deserializeJSON(response.text) as JSON);
     }
     async postGroupsTerminateSessions(requestBody: PostGroupsTerminateSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/terminate_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSessionTerminationMessage(deserializeJSON(response.text) as JSON);
+        return deserializeSessionTerminationMessage(deserializeJSON(response.text) as JSON);
     }
 }

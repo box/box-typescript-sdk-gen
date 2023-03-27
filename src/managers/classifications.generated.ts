@@ -51,7 +51,7 @@ export class ClassificationsManager {
     }
     async getMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
+        return deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
     }
     async deleteMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -59,6 +59,6 @@ export class ClassificationsManager {
     }
     async postMetadataTemplatesSchemaClassifications(requestBody: PostMetadataTemplatesSchemaClassificationsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
+        return deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
     }
 }

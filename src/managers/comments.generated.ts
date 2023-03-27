@@ -49,15 +49,15 @@ export class CommentsManager {
     }
     async getFilesIdComments(fileId: string, options: GetFilesIdCommentsOptionsArg = {} satisfies GetFilesIdCommentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeComments(deserializeJSON(response.text) as JSON);
+        return deserializeComments(deserializeJSON(response.text) as JSON);
     }
     async getCommentsId(commentId: string, options: GetCommentsIdOptionsArg = {} satisfies GetCommentsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeComment(deserializeJSON(response.text) as JSON);
     }
     async putCommentsId(commentId: string, requestBody: PutCommentsIdRequestBodyArg, options: PutCommentsIdOptionsArg = {} satisfies PutCommentsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeComment(deserializeJSON(response.text) as JSON);
     }
     async deleteCommentsId(commentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -65,6 +65,6 @@ export class CommentsManager {
     }
     async postComments(requestBody: PostCommentsRequestBodyArg, options: PostCommentsOptionsArg = {} satisfies PostCommentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeComment(deserializeJSON(response.text) as JSON);
     }
 }

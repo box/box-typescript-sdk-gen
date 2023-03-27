@@ -30,11 +30,11 @@ export class UserCollaborationsManager {
     }
     async getCollaborationsId(collaborationId: string, options: GetCollaborationsIdOptionsArg = {} satisfies GetCollaborationsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(deserializeJSON(response.text) as JSON);
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async putCollaborationsId(collaborationId: string, requestBody: PutCollaborationsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(deserializeJSON(response.text) as JSON);
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async deleteCollaborationsId(collaborationId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

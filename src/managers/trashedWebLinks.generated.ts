@@ -22,7 +22,7 @@ export class TrashedWebLinksManager {
     }
     async getWebLinksIdTrash(webLinkId: string, options: GetWebLinksIdTrashOptionsArg = {} satisfies GetWebLinksIdTrashOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "/trash") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeTrashWebLink(deserializeJSON(response.text) as JSON);
     }
     async deleteWebLinksIdTrash(webLinkId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "/trash") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

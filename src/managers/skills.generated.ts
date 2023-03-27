@@ -64,11 +64,11 @@ export class SkillsManager {
     }
     async getFilesIdMetadataGlobalBoxSkillsCards(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
+        return deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
     }
     async postFilesIdMetadataGlobalBoxSkillsCards(fileId: string, requestBody: PostFilesIdMetadataGlobalBoxSkillsCardsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
+        return deserializeSkillCardsMetadata(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdMetadataGlobalBoxSkillsCards(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

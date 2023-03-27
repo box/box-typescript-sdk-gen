@@ -44,15 +44,15 @@ export class FileVersionsManager {
     }
     async getFilesIdVersions(fileId: string, options: GetFilesIdVersionsOptionsArg = {} satisfies GetFilesIdVersionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersions(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersions(deserializeJSON(response.text) as JSON);
     }
     async getFilesIdVersionsId(fileId: string, fileVersionId: string, options: GetFilesIdVersionsIdOptionsArg = {} satisfies GetFilesIdVersionsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
     }
     async putFilesIdVersionsId(fileId: string, fileVersionId: string, requestBody: PutFilesIdVersionsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdVersionsId(fileId: string, fileVersionId: string, options: DeleteFilesIdVersionsIdOptionsArg = {} satisfies DeleteFilesIdVersionsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -60,6 +60,6 @@ export class FileVersionsManager {
     }
     async postFilesIdVersionsCurrent(fileId: string, requestBody: PostFilesIdVersionsCurrentRequestBodyArg, options: PostFilesIdVersionsCurrentOptionsArg = {} satisfies PostFilesIdVersionsCurrentOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
     }
 }

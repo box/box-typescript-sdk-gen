@@ -44,19 +44,19 @@ export class TasksManager {
     }
     async getFilesIdTasks(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/tasks") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTasks(deserializeJSON(response.text) as JSON);
+        return deserializeTasks(deserializeJSON(response.text) as JSON);
     }
     async postTasks(requestBody: PostTasksRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTask(deserializeJSON(response.text) as JSON);
+        return deserializeTask(deserializeJSON(response.text) as JSON);
     }
     async getTasksId(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTask(deserializeJSON(response.text) as JSON);
+        return deserializeTask(deserializeJSON(response.text) as JSON);
     }
     async putTasksId(taskId: string, requestBody: PutTasksIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTask(deserializeJSON(response.text) as JSON);
+        return deserializeTask(deserializeJSON(response.text) as JSON);
     }
     async deleteTasksId(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -33,10 +33,10 @@ export class FileVersionRetentionsManager {
     }
     async getFileVersionRetentions(options: GetFileVersionRetentionsOptionsArg = {} satisfies GetFileVersionRetentionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: { ["file_id"]: options.fileId, ["file_version_id"]: options.fileVersionId, ["policy_id"]: options.policyId, ["disposition_action"]: options.dispositionAction, ["disposition_before"]: options.dispositionBefore, ["disposition_after"]: options.dispositionAfter, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionRetentions(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionRetentions(deserializeJSON(response.text) as JSON);
     }
     async getFileVersionRetentionsId(fileVersionRetentionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions/", fileVersionRetentionId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionRetention(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionRetention(deserializeJSON(response.text) as JSON);
     }
 }

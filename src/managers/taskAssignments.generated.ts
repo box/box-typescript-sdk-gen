@@ -40,19 +40,19 @@ export class TaskAssignmentsManager {
     }
     async getTasksIdAssignments(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId, "/assignments") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignments(deserializeJSON(response.text) as JSON);
+        return deserializeTaskAssignments(deserializeJSON(response.text) as JSON);
     }
     async postTaskAssignments(requestBody: PostTaskAssignmentsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async getTaskAssignmentsId(taskAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async putTaskAssignmentsId(taskAssignmentId: string, requestBody: PutTaskAssignmentsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async deleteTaskAssignmentsId(taskAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

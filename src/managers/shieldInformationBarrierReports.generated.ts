@@ -30,11 +30,11 @@ export class ShieldInformationBarrierReportsManager {
         return void 0;
     }
     async postShieldInformationBarrierReports(requestBody: ShieldInformationBarrierReference): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_reports") as string, { method: "POST", body: await serializeShieldInformationBarrierReference(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrierReport(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_reports") as string, { method: "POST", body: serializeShieldInformationBarrierReference(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeShieldInformationBarrierReport(deserializeJSON(response.text) as JSON);
     }
     async getShieldInformationBarrierReportsId(shieldInformationBarrierReportId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_reports/", shieldInformationBarrierReportId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeShieldInformationBarrierReport(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrierReport(deserializeJSON(response.text) as JSON);
     }
 }

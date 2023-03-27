@@ -63,22 +63,22 @@ export class ListCollaborationsManager {
     }
     async getFilesIdCollaborations(fileId: string, options: GetFilesIdCollaborationsOptionsArg = {} satisfies GetFilesIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async getFoldersIdCollaborations(folderId: string, options: GetFoldersIdCollaborationsOptionsArg = {} satisfies GetFoldersIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async getCollaborations(status: GetCollaborationsStatusArg, options: GetCollaborationsOptionsArg = {} satisfies GetCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: { ["status"]: status, ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async postCollaborations(requestBody: PostCollaborationsRequestBodyArg, options: PostCollaborationsOptionsArg = {} satisfies PostCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(deserializeJSON(response.text) as JSON);
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async getGroupsIdCollaborations(groupId: string, options: GetGroupsIdCollaborationsOptionsArg = {} satisfies GetGroupsIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/collaborations") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(deserializeJSON(response.text) as JSON);
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
 }

@@ -69,19 +69,19 @@ export class WebLinksManager {
     }
     async postWebLinks(requestBody: PostWebLinksRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async getWebLinksId(webLinkId: string, options: GetWebLinksIdOptionsArg = {} satisfies GetWebLinksIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: { ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async postWebLinksId(webLinkId: string, requestBody: PostWebLinksIdRequestBodyArg, options: PostWebLinksIdOptionsArg = {} satisfies PostWebLinksIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashWebLinkRestored(deserializeJSON(response.text) as JSON);
+        return deserializeTrashWebLinkRestored(deserializeJSON(response.text) as JSON);
     }
     async putWebLinksId(webLinkId: string, requestBody: PutWebLinksIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async deleteWebLinksId(webLinkId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

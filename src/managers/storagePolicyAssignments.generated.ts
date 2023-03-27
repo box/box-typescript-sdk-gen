@@ -48,19 +48,19 @@ export class StoragePolicyAssignmentsManager {
     }
     async getStoragePolicyAssignments(resolvedForType: GetStoragePolicyAssignmentsResolvedForTypeArg, resolvedForId: string, options: GetStoragePolicyAssignmentsOptionsArg = {} satisfies GetStoragePolicyAssignmentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "GET", params: { ["marker"]: options.marker, ["resolved_for_type"]: resolvedForType, ["resolved_for_id"]: resolvedForId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignments(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicyAssignments(deserializeJSON(response.text) as JSON);
     }
     async postStoragePolicyAssignments(requestBody: PostStoragePolicyAssignmentsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async getStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async putStoragePolicyAssignmentsId(storagePolicyAssignmentId: string, requestBody: PutStoragePolicyAssignmentsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
+        return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
     async deleteStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

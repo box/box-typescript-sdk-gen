@@ -60,22 +60,22 @@ export class SharedLinksWebLinksManager {
     }
     async getSharedItemsWebLinks(boxapi: string, options: GetSharedItemsWebLinksOptionsArg = {} satisfies GetSharedItemsWebLinksOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shared_items#web_links") as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async getWebLinksIdGetSharedLink(webLinkId: string, fields: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "#get_shared_link") as string, { method: "GET", params: { ["fields"]: fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async putWebLinksIdAddSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdAddSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "#add_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async putWebLinksIdUpdateSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdUpdateSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "#update_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
     async putWebLinksIdRemoveSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdRemoveSharedLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "#remove_shared_link") as string, { method: "PUT", params: { ["fields"]: fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebLink(deserializeJSON(response.text) as JSON);
+        return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
 }

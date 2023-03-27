@@ -26,11 +26,11 @@ export class FileWatermarksManager {
     }
     async getFilesIdWatermark(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWatermark(deserializeJSON(response.text) as JSON);
+        return deserializeWatermark(deserializeJSON(response.text) as JSON);
     }
     async putFilesIdWatermark(fileId: string, requestBody: PutFilesIdWatermarkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWatermark(deserializeJSON(response.text) as JSON);
+        return deserializeWatermark(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesIdWatermark(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

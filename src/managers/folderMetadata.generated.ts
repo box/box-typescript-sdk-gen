@@ -27,15 +27,15 @@ export class FolderMetadataManager {
     }
     async getFoldersIdMetadata(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadatas(deserializeJSON(response.text) as JSON);
+        return deserializeMetadatas(deserializeJSON(response.text) as JSON);
     }
     async getFoldersIdMetadataIdId(folderId: string, scope: GetFoldersIdMetadataIdIdScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadata(deserializeJSON(response.text) as JSON);
+        return deserializeMetadata(deserializeJSON(response.text) as JSON);
     }
     async postFoldersIdMetadataIdId(folderId: string, scope: PostFoldersIdMetadataIdIdScopeArg, templateKey: string, requestBody: PostFoldersIdMetadataIdIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadata(deserializeJSON(response.text) as JSON);
+        return deserializeMetadata(deserializeJSON(response.text) as JSON);
     }
     async deleteFoldersIdMetadataIdId(folderId: string, scope: DeleteFoldersIdMetadataIdIdScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

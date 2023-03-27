@@ -35,10 +35,10 @@ export class InvitesManager {
     }
     async postInvites(requestBody: PostInvitesRequestBodyArg, options: PostInvitesOptionsArg = {} satisfies PostInvitesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeInvite(deserializeJSON(response.text) as JSON);
+        return deserializeInvite(deserializeJSON(response.text) as JSON);
     }
     async getInvitesId(inviteId: string, options: GetInvitesIdOptionsArg = {} satisfies GetInvitesIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeInvite(deserializeJSON(response.text) as JSON);
+        return deserializeInvite(deserializeJSON(response.text) as JSON);
     }
 }

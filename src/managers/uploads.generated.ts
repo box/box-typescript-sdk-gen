@@ -33,6 +33,6 @@ export class UploadsManager {
     }
     async optionsFilesContent(requestBody: OptionsFilesContentRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/content") as string, { method: "OPTIONS", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadUrl(deserializeJSON(response.text) as JSON);
+        return deserializeUploadUrl(deserializeJSON(response.text) as JSON);
     }
 }

@@ -40,15 +40,15 @@ export class MetadataCascadePoliciesManager {
     }
     async getMetadataCascadePolicies(folderId: string, options: GetMetadataCascadePoliciesOptionsArg = {} satisfies GetMetadataCascadePoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: { ["folder_id"]: folderId, ["owner_enterprise_id"]: options.ownerEnterpriseId, ["marker"]: options.marker, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataCascadePolicies(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataCascadePolicies(deserializeJSON(response.text) as JSON);
     }
     async postMetadataCascadePolicies(requestBody: PostMetadataCascadePoliciesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
     }
     async getMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
+        return deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
     }
     async deleteMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

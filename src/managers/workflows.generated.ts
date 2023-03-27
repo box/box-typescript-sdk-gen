@@ -52,7 +52,7 @@ export class WorkflowsManager {
     }
     async getWorkflows(folderId: string, options: GetWorkflowsOptionsArg = {} satisfies GetWorkflowsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows") as string, { method: "GET", params: { ["folder_id"]: folderId, ["trigger_type"]: options.triggerType, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWorkflows(deserializeJSON(response.text) as JSON);
+        return deserializeWorkflows(deserializeJSON(response.text) as JSON);
     }
     async postWorkflowsIdStart(workflowId: string, requestBody: PostWorkflowsIdStartRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows/", workflowId, "/start") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -48,19 +48,19 @@ export class WebhooksManager {
     }
     async getWebhooks(options: GetWebhooksOptionsArg = {} satisfies GetWebhooksOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebhooks(deserializeJSON(response.text) as JSON);
+        return deserializeWebhooks(deserializeJSON(response.text) as JSON);
     }
     async postWebhooks(requestBody: PostWebhooksRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebhook(deserializeJSON(response.text) as JSON);
+        return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
     async getWebhooksId(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebhook(deserializeJSON(response.text) as JSON);
+        return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
     async putWebhooksId(webhookId: string, requestBody: PutWebhooksIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWebhook(deserializeJSON(response.text) as JSON);
+        return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
     async deleteWebhooksId(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -29,18 +29,18 @@ export class FileRequestsManager {
     }
     async getFileRequestsId(fileRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileRequest(deserializeJSON(response.text) as JSON);
+        return deserializeFileRequest(deserializeJSON(response.text) as JSON);
     }
     async putFileRequestsId(fileRequestId: string, requestBody: FileRequestUpdateRequest, options: PutFileRequestsIdOptionsArg = {} satisfies PutFileRequestsIdOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: { ["if-match"]: options.ifMatch }, body: await serializeFileRequestUpdateRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileRequest(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: { ["if-match"]: options.ifMatch }, body: serializeFileRequestUpdateRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeFileRequest(deserializeJSON(response.text) as JSON);
     }
     async deleteFileRequestsId(fileRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async postFileRequestsIdCopy(fileRequestId: string, requestBody: FileRequestCopyRequest): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId, "/copy") as string, { method: "POST", body: await serializeFileRequestCopyRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileRequest(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId, "/copy") as string, { method: "POST", body: serializeFileRequestCopyRequest(serializeJSON(requestBody) as string), auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeFileRequest(deserializeJSON(response.text) as JSON);
     }
 }

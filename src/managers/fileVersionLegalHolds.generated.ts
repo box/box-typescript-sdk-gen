@@ -26,10 +26,10 @@ export class FileVersionLegalHoldsManager {
     }
     async getFileVersionLegalHoldsId(fileVersionLegalHoldId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_legal_holds/", fileVersionLegalHoldId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionLegalHold(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionLegalHold(deserializeJSON(response.text) as JSON);
     }
     async getFileVersionLegalHolds(policyId: string, options: GetFileVersionLegalHoldsOptionsArg = {} satisfies GetFileVersionLegalHoldsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_legal_holds") as string, { method: "GET", params: { ["policy_id"]: policyId, ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFileVersionLegalHolds(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionLegalHolds(deserializeJSON(response.text) as JSON);
     }
 }
