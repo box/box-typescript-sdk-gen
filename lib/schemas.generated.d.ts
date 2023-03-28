@@ -1765,6 +1765,16 @@ export interface UserBase {
 }
 export declare function deserializeUserBase(val: JSON): UserBase;
 export declare function serializeUserBase(val: UserBase): JSON;
+export type UserCollaborations = UserBase & {
+    /**
+     * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
+    readonly name: string;
+    /**
+     * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
+    readonly login: string;
+};
+export declare function deserializeUserCollaborations(val: JSON): UserCollaborations;
+export declare function serializeUserCollaborations(val: UserCollaborations): JSON;
 export type UserMini = UserBase & {
     /**
      * The display name of this user */
@@ -2837,13 +2847,13 @@ export interface Collaboration {
     readonly id?: string;
     readonly type?: CollaborationTypeField;
     readonly item?: CollaborationItemField;
-    readonly accessibleBy?: UserMini;
+    readonly accessibleBy?: UserCollaborations;
     readonly inviteEmail?: string;
     readonly role?: CollaborationRoleField;
     readonly expiresAt?: string;
     readonly status?: CollaborationStatusField;
     readonly acknowledgedAt?: string;
-    readonly createdBy?: UserMini;
+    readonly createdBy?: UserCollaborations;
     readonly createdAt?: string;
     readonly modifiedAt?: string;
     readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;

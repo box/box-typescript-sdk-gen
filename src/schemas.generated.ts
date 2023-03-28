@@ -7790,6 +7790,49 @@ export function deserializeUserBase(val: JSON): UserBase {
 export function serializeUserBase(val: UserBase): JSON {
     return { ["id"]: val.id, ["type"]: serializeUserBaseTypeField(val.type) };
 }
+export type UserCollaborations = UserBase & {
+    /**
+     * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
+    readonly name: string;
+    /**
+     * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
+    readonly login: string;
+};
+export function deserializeUserCollaborations(val: JSON): UserCollaborations {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"UserCollaborations\"";
+    }
+    if (val.name === void 0) {
+        throw "Expecting \"name\" of type \"UserCollaborations\" to be defined";
+    }
+    if (!isJson(val.name, "string")) {
+        throw "Expecting string for \"name\" of type \"UserCollaborations\"";
+    }
+    const name: string = val.name;
+    if (val.login === void 0) {
+        throw "Expecting \"login\" of type \"UserCollaborations\" to be defined";
+    }
+    if (!isJson(val.login, "string")) {
+        throw "Expecting string for \"login\" of type \"UserCollaborations\"";
+    }
+    const login: string = val.login;
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"UserCollaborations\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    if (val.type === void 0) {
+        throw "Expecting \"type\" of type \"UserCollaborations\" to be defined";
+    }
+    const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
+    return { name: name, login: login, id: id, type: type } satisfies UserCollaborations;
+}
+export function serializeUserCollaborations(val: UserCollaborations): JSON {
+    const base: any = serializeUserBase(val);
+    if (!isJson(base, "object")) {
+        throw "Expecting an object for \"UserCollaborations\"";
+    }
+    return { ...base, ...{ ["name"]: val.name, ["login"]: val.login } };
+}
 export type UserMini = UserBase & {
     /**
      * The display name of this user */
@@ -11917,13 +11960,13 @@ export interface Collaboration {
     readonly id?: string;
     readonly type?: CollaborationTypeField;
     readonly item?: CollaborationItemField;
-    readonly accessibleBy?: UserMini;
+    readonly accessibleBy?: UserCollaborations;
     readonly inviteEmail?: string;
     readonly role?: CollaborationRoleField;
     readonly expiresAt?: string;
     readonly status?: CollaborationStatusField;
     readonly acknowledgedAt?: string;
-    readonly createdBy?: UserMini;
+    readonly createdBy?: UserCollaborations;
     readonly createdAt?: string;
     readonly modifiedAt?: string;
     readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
@@ -11938,7 +11981,7 @@ export function deserializeCollaboration(val: JSON): Collaboration {
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     const type: undefined | CollaborationTypeField = val.type === void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
     const item: undefined | CollaborationItemField = val.item === void 0 ? void 0 : deserializeCollaborationItemField(val.item);
-    const accessibleBy: undefined | UserMini = val.accessible_by === void 0 ? void 0 : deserializeUserMini(val.accessible_by);
+    const accessibleBy: undefined | UserCollaborations = val.accessible_by === void 0 ? void 0 : deserializeUserCollaborations(val.accessible_by);
     if (!(val.invite_email === void 0) && !isJson(val.invite_email, "string")) {
         throw "Expecting string for \"invite_email\" of type \"Collaboration\"";
     }
@@ -11953,7 +11996,7 @@ export function deserializeCollaboration(val: JSON): Collaboration {
         throw "Expecting string for \"acknowledged_at\" of type \"Collaboration\"";
     }
     const acknowledgedAt: undefined | string = isJson(val.acknowledged_at, "string") ? val.acknowledged_at : void 0;
-    const createdBy: undefined | UserMini = val.created_by === void 0 ? void 0 : deserializeUserMini(val.created_by);
+    const createdBy: undefined | UserCollaborations = val.created_by === void 0 ? void 0 : deserializeUserCollaborations(val.created_by);
     if (!(val.created_at === void 0) && !isJson(val.created_at, "string")) {
         throw "Expecting string for \"created_at\" of type \"Collaboration\"";
     }
@@ -11966,7 +12009,7 @@ export function deserializeCollaboration(val: JSON): Collaboration {
     return { id: id, type: type, item: item, accessibleBy: accessibleBy, inviteEmail: inviteEmail, role: role, expiresAt: expiresAt, status: status, acknowledgedAt: acknowledgedAt, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, acceptanceRequirementsStatus: acceptanceRequirementsStatus } satisfies Collaboration;
 }
 export function serializeCollaboration(val: Collaboration): JSON {
-    return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationTypeField(val.type), ["item"]: val.item === void 0 ? void 0 : serializeCollaborationItemField(val.item), ["accessible_by"]: val.accessibleBy === void 0 ? void 0 : serializeUserMini(val.accessibleBy), ["invite_email"]: val.inviteEmail, ["role"]: val.role === void 0 ? void 0 : serializeCollaborationRoleField(val.role), ["expires_at"]: val.expiresAt, ["status"]: val.status === void 0 ? void 0 : serializeCollaborationStatusField(val.status), ["acknowledged_at"]: val.acknowledgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["acceptance_requirements_status"]: val.acceptanceRequirementsStatus === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusField(val.acceptanceRequirementsStatus) };
+    return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationTypeField(val.type), ["item"]: val.item === void 0 ? void 0 : serializeCollaborationItemField(val.item), ["accessible_by"]: val.accessibleBy === void 0 ? void 0 : serializeUserCollaborations(val.accessibleBy), ["invite_email"]: val.inviteEmail, ["role"]: val.role === void 0 ? void 0 : serializeCollaborationRoleField(val.role), ["expires_at"]: val.expiresAt, ["status"]: val.status === void 0 ? void 0 : serializeCollaborationStatusField(val.status), ["acknowledged_at"]: val.acknowledgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserCollaborations(val.createdBy), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["acceptance_requirements_status"]: val.acceptanceRequirementsStatus === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusField(val.acceptanceRequirementsStatus) };
 }
 export interface Collaborations {
     readonly totalCount?: number;
