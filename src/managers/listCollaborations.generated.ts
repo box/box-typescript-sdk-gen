@@ -8,13 +8,13 @@ import { Collaboration } from "../schemas.generated.js";
 import { deserializeCollaboration } from "../schemas.generated.js";
 import { serializeCollaboration } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFilesIdCollaborationsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -63,22 +63,22 @@ export class ListCollaborationsManager {
     }
     async getFilesIdCollaborations(fileId: string, options: GetFilesIdCollaborationsOptionsArg = {} satisfies GetFilesIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(await deserializeJson(response.text));
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async getFoldersIdCollaborations(folderId: string, options: GetFoldersIdCollaborationsOptionsArg = {} satisfies GetFoldersIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(await deserializeJson(response.text));
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async getCollaborations(status: GetCollaborationsStatusArg, options: GetCollaborationsOptionsArg = {} satisfies GetCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: { ["status"]: status, ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(await deserializeJson(response.text));
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
     async postCollaborations(requestBody: PostCollaborationsRequestBodyArg, options: PostCollaborationsOptionsArg = {} satisfies PostCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(await deserializeJson(response.text));
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async getGroupsIdCollaborations(groupId: string, options: GetGroupsIdCollaborationsOptionsArg = {} satisfies GetGroupsIdCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/collaborations") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaborations(await deserializeJson(response.text));
+        return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
 }

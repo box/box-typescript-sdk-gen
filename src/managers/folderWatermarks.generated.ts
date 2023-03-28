@@ -5,13 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
 export interface PutFoldersIdWatermarkRequestBodyArgWatermarkField {
     readonly imprint: PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField;
@@ -26,11 +26,11 @@ export class FolderWatermarksManager {
     }
     async getFoldersIdWatermark(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWatermark(await deserializeJson(response.text));
+        return deserializeWatermark(deserializeJSON(response.text) as JSON);
     }
     async putFoldersIdWatermark(folderId: string, requestBody: PutFoldersIdWatermarkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeWatermark(await deserializeJson(response.text));
+        return deserializeWatermark(deserializeJSON(response.text) as JSON);
     }
     async deleteFoldersIdWatermark(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -8,13 +8,13 @@ import { TaskAssignment } from "../schemas.generated.js";
 import { deserializeTaskAssignment } from "../schemas.generated.js";
 import { serializeTaskAssignment } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type TaskAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type TaskAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostTaskAssignmentsRequestBodyArgTaskFieldTypeField = "task";
 export interface PostTaskAssignmentsRequestBodyArgTaskField {
     readonly id: string;
@@ -40,19 +40,19 @@ export class TaskAssignmentsManager {
     }
     async getTasksIdAssignments(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId, "/assignments") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignments(await deserializeJson(response.text));
+        return deserializeTaskAssignments(deserializeJSON(response.text) as JSON);
     }
     async postTaskAssignments(requestBody: PostTaskAssignmentsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(await deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async getTaskAssignmentsId(taskAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(await deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async putTaskAssignmentsId(taskAssignmentId: string, requestBody: PutTaskAssignmentsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTaskAssignment(await deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJSON(response.text) as JSON);
     }
     async deleteTaskAssignmentsId(taskAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

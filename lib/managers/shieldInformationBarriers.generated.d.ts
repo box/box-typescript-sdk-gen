@@ -1,7 +1,7 @@
 import { ShieldInformationBarrier } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostShieldInformationBarriersChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
 export interface PostShieldInformationBarriersChangeStatusRequestBodyArg {
     readonly id: string;

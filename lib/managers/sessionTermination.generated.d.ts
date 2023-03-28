@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type SessionTerminationManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type SessionTerminationManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostUsersTerminateSessionsRequestBodyArg {
     readonly userIds: readonly string[];
     readonly userLogins: readonly string[];

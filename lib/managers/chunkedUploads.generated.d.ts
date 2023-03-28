@@ -1,7 +1,7 @@
 import { UploadPart } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostFilesUploadSessionsRequestBodyArg {
     readonly folderId: string;
     readonly fileSize: number;

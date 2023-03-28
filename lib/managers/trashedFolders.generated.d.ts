@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFoldersIdTrashOptionsArg {
     readonly fields?: string;
 }

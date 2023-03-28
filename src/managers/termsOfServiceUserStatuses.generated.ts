@@ -8,13 +8,13 @@ import { TermsOfServiceUserStatus } from "../schemas.generated.js";
 import { deserializeTermsOfServiceUserStatus } from "../schemas.generated.js";
 import { serializeTermsOfServiceUserStatus } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetTermsOfServiceUserStatusesOptionsArg {
     readonly userId?: string;
 }
@@ -43,14 +43,14 @@ export class TermsOfServiceUserStatusesManager {
     }
     async getTermsOfServiceUserStatuses(tosId: string, options: GetTermsOfServiceUserStatusesOptionsArg = {} satisfies GetTermsOfServiceUserStatusesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "GET", params: { ["tos_id"]: tosId, ["user_id"]: options.userId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfServiceUserStatuses(await deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatuses(deserializeJSON(response.text) as JSON);
     }
     async postTermsOfServiceUserStatuses(requestBody: PostTermsOfServiceUserStatusesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfServiceUserStatus(await deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatus(deserializeJSON(response.text) as JSON);
     }
     async putTermsOfServiceUserStatusesId(termsOfServiceUserStatusId: string, requestBody: PutTermsOfServiceUserStatusesIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses/", termsOfServiceUserStatusId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTermsOfServiceUserStatus(await deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatus(deserializeJSON(response.text) as JSON);
     }
 }

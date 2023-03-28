@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type RetentionPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type RetentionPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetRetentionPoliciesIdAssignmentsOptionsArgTypeField = "folder" | "enterprise" | "metadata_template";
 export interface GetRetentionPoliciesIdAssignmentsOptionsArg {
     readonly type?: GetRetentionPoliciesIdAssignmentsOptionsArgTypeField;

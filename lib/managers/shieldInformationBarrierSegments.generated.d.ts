@@ -1,7 +1,7 @@
 import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type ShieldInformationBarrierSegmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type ShieldInformationBarrierSegmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PutShieldInformationBarrierSegmentsIdRequestBodyArg {
     readonly name?: string;
     readonly description?: string;

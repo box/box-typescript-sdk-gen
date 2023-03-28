@@ -5,13 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetCollaborationsIdOptionsArg {
     readonly fields?: string;
 }
@@ -30,11 +30,11 @@ export class UserCollaborationsManager {
     }
     async getCollaborationsId(collaborationId: string, options: GetCollaborationsIdOptionsArg = {} satisfies GetCollaborationsIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(await deserializeJson(response.text));
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async putCollaborationsId(collaborationId: string, requestBody: PutCollaborationsIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeCollaboration(await deserializeJson(response.text));
+        return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
     async deleteCollaborationsId(collaborationId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

@@ -8,13 +8,13 @@ import { StoragePolicy } from "../schemas.generated.js";
 import { deserializeStoragePolicy } from "../schemas.generated.js";
 import { serializeStoragePolicy } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetStoragePoliciesOptionsArg {
     readonly fields?: string;
     readonly marker?: string;
@@ -27,10 +27,10 @@ export class StoragePoliciesManager {
     }
     async getStoragePolicies(options: GetStoragePoliciesOptionsArg = {} satisfies GetStoragePoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: { ["fields"]: options.fields, ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicies(await deserializeJson(response.text));
+        return deserializeStoragePolicies(deserializeJSON(response.text) as JSON);
     }
     async getStoragePoliciesId(storagePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies/", storagePolicyId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeStoragePolicy(await deserializeJson(response.text));
+        return deserializeStoragePolicy(deserializeJSON(response.text) as JSON);
     }
 }

@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TransferManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TransferManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PutUsersIdFolders0RequestBodyArgOwnedByField {
     readonly id: string;
 }

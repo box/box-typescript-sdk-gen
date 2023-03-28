@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type CollectionsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetCollectionsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;

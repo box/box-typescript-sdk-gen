@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type MembershipsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetUsersIdMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;

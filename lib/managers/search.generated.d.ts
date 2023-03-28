@@ -1,7 +1,7 @@
 import { MetadataQuery } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type SearchManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type SearchManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetMetadataQueryIndicesScopeArg = "global" | "enterprise";
 export type GetSearchOptionsArgScopeField = "user_content" | "enterprise_content";
 export type GetSearchOptionsArgTypeField = "file" | "folder" | "web_link";

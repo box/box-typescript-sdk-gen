@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetMetadataCascadePoliciesOptionsArg {
     readonly ownerEnterpriseId?: string;
     readonly marker?: string;

@@ -17,13 +17,13 @@ import { UploadPart } from "../schemas.generated.js";
 import { deserializeUploadPart } from "../schemas.generated.js";
 import { serializeUploadPart } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface PostFilesUploadSessionsRequestBodyArg {
     readonly folderId: string;
     readonly fileSize: number;
@@ -51,15 +51,15 @@ export class ChunkedUploadsManager {
     }
     async postFilesUploadSessions(requestBody: PostFilesUploadSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(await deserializeJson(response.text));
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async postFilesIdUploadSessions(fileId: string, requestBody: PostFilesIdUploadSessionsRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(await deserializeJson(response.text));
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async getFilesUploadSessionsId(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadSession(await deserializeJson(response.text));
+        return deserializeUploadSession(deserializeJSON(response.text) as JSON);
     }
     async deleteFilesUploadSessionsId(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -67,10 +67,10 @@ export class ChunkedUploadsManager {
     }
     async getFilesUploadSessionsIdParts(uploadSessionId: string, options: GetFilesUploadSessionsIdPartsOptionsArg = {} satisfies GetFilesUploadSessionsIdPartsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: { ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeUploadParts(await deserializeJson(response.text));
+        return deserializeUploadParts(deserializeJSON(response.text) as JSON);
     }
     async postFilesUploadSessionsIdCommit(uploadSessionId: string, digest: string, requestBody: PostFilesUploadSessionsIdCommitRequestBodyArg, options: PostFilesUploadSessionsIdCommitOptionsArg = {} satisfies PostFilesUploadSessionsIdCommitOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: { ["digest"]: digest, ["if-match"]: options.ifMatch, ["if-none-match"]: options.ifNoneMatch }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeFiles(await deserializeJson(response.text));
+        return deserializeFiles(deserializeJSON(response.text) as JSON);
     }
 }

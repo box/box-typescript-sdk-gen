@@ -65,8 +65,8 @@ import { ZipDownloadsManager } from "./managers/zipDownloads.generated.js";
 import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
 import { DeveloperTokenAuth } from "./developerTokenAuth.js";
-import { CcgAuth } from "./ccgAuth.js";
-export type ClientAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "./ccgAuth.js";
+export type ClientAuthField = DeveloperTokenAuth | CCGAuth;
 export declare class Client {
     readonly auth: ClientAuthField;
     readonly authorization: AuthorizationManager;

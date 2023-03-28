@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField = "file" | "file_version" | "folder" | "user";
 export interface GetLegalHoldPolicyAssignmentsOptionsArg {
     readonly assignToType?: GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField;

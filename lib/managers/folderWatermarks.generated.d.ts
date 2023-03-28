@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
 export interface PutFoldersIdWatermarkRequestBodyArgWatermarkField {
     readonly imprint: PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField;

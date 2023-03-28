@@ -1,7 +1,7 @@
 import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type ShieldInformationBarrierSegmentRestrictionsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type ShieldInformationBarrierSegmentRestrictionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetShieldInformationBarrierSegmentRestrictionsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;

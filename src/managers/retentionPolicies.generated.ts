@@ -11,13 +11,13 @@ import { UserMini } from "../schemas.generated.js";
 import { deserializeUserMini } from "../schemas.generated.js";
 import { serializeUserMini } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
 export interface GetRetentionPoliciesOptionsArg {
     readonly policyName?: string;
@@ -63,19 +63,19 @@ export class RetentionPoliciesManager {
     }
     async getRetentionPolicies(options: GetRetentionPoliciesOptionsArg = {} satisfies GetRetentionPoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies") as string, { method: "GET", params: { ["policy_name"]: options.policyName, ["policy_type"]: options.policyType, ["created_by_user_id"]: options.createdByUserId, ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRetentionPolicies(await deserializeJson(response.text));
+        return deserializeRetentionPolicies(deserializeJSON(response.text) as JSON);
     }
     async postRetentionPolicies(requestBody: PostRetentionPoliciesRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRetentionPolicy(await deserializeJson(response.text));
+        return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
     async getRetentionPoliciesId(retentionPolicyId: string, options: GetRetentionPoliciesIdOptionsArg = {} satisfies GetRetentionPoliciesIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRetentionPolicy(await deserializeJson(response.text));
+        return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
     async putRetentionPoliciesId(retentionPolicyId: string, requestBody: PutRetentionPoliciesIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeRetentionPolicy(await deserializeJson(response.text));
+        return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
     async deleteRetentionPoliciesId(retentionPolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

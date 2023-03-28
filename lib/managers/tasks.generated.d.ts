@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TasksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TasksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type PostTasksRequestBodyArgItemFieldTypeField = "file";
 export interface PostTasksRequestBodyArgItemField {
     readonly id: string;

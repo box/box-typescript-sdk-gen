@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetTermsOfServiceUserStatusesOptionsArg {
     readonly userId?: string;
 }

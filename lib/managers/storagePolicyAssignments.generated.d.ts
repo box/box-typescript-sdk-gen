@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetStoragePolicyAssignmentsResolvedForTypeArg = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsOptionsArg {
     readonly marker?: string;

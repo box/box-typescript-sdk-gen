@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type CommentsManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type CommentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFilesIdCommentsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

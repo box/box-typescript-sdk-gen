@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type TrashedWebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type TrashedWebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetWebLinksIdTrashOptionsArg {
     readonly fields?: string;
 }

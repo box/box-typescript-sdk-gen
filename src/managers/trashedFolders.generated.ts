@@ -5,13 +5,13 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
+import { CCGAuth } from "../ccgAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { Json } from "../json.js";
-export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { JSON } from "../json.js";
+export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export interface GetFoldersIdTrashOptionsArg {
     readonly fields?: string;
 }
@@ -22,7 +22,7 @@ export class TrashedFoldersManager {
     }
     async getFoldersIdTrash(folderId: string, options: GetFoldersIdTrashOptionsArg = {} satisfies GetFoldersIdTrashOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return await deserializeTrashFolder(await deserializeJson(response.text));
+        return deserializeTrashFolder(deserializeJSON(response.text) as JSON);
     }
     async deleteFoldersIdTrash(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

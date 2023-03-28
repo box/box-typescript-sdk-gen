@@ -1,6 +1,6 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CcgAuth;
+import { CCGAuth } from "../ccgAuth.js";
+export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CCGAuth;
 export type GetEnterprisesIdDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
 export interface GetEnterprisesIdDevicePinnersOptionsArg {
     readonly marker?: string;
