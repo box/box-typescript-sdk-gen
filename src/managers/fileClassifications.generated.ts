@@ -13,23 +13,23 @@ import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
 export type FileClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
-export interface CreateFileMetadataEnterpriseSecurityClassification6VmVochwUWoRequestBodyArg {
+export interface CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
     readonly boxSecurityClassificationKey?: string;
 }
 export class FileClassificationsManager {
     readonly auth!: FileClassificationsManagerAuthField;
-    constructor(fields: Omit<FileClassificationsManager, "getFileMetadataEnterpriseSecurityClassification6VmVochwUWo" | "createFileMetadataEnterpriseSecurityClassification6VmVochwUWo" | "deleteFileMetadataEnterpriseSecurityClassification6VmVochwUWo">) {
+    constructor(fields: Omit<FileClassificationsManager, "getFileMetadataEnterpriseSecurityClassification6VmVochwUWo" | "createFileMetadataEnterpriseSecurityClassification" | "deleteFileMetadataEnterpriseSecurityClassification">) {
         Object.assign(this, fields);
     }
     async getFileMetadataEnterpriseSecurityClassification6VmVochwUWo(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeClassification(deserializeJSON(response.text) as JSON);
     }
-    async createFileMetadataEnterpriseSecurityClassification6VmVochwUWo(fileId: string, requestBody: CreateFileMetadataEnterpriseSecurityClassification6VmVochwUWoRequestBodyArg): Promise<any> {
+    async createFileMetadataEnterpriseSecurityClassification(fileId: string, requestBody: CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeClassification(deserializeJSON(response.text) as JSON);
     }
-    async deleteFileMetadataEnterpriseSecurityClassification6VmVochwUWo(fileId: string): Promise<any> {
+    async deleteFileMetadataEnterpriseSecurityClassification(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

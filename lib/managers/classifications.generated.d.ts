@@ -36,8 +36,8 @@ export interface CreateMetadataTemplateSchemaClassificationRequestBodyArg {
 }
 export declare class ClassificationsManager {
     readonly auth: ClassificationsManagerAuthField;
-    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "createMetadataTemplateSchemaClassification">);
-    getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
-    deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
+    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "createMetadataTemplateSchemaClassification">);
+    getMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any>;
+    deleteMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any>;
     createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Promise<any>;
 }

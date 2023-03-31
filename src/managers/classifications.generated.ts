@@ -47,14 +47,14 @@ export interface CreateMetadataTemplateSchemaClassificationRequestBodyArg {
 }
 export class ClassificationsManager {
     readonly auth!: ClassificationsManagerAuthField;
-    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "createMetadataTemplateSchemaClassification">) {
+    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "createMetadataTemplateSchemaClassification">) {
         Object.assign(this, fields);
     }
-    async getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
+    async getMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeClassificationTemplate(deserializeJSON(response.text) as JSON);
     }
-    async deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any> {
+    async deleteMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
