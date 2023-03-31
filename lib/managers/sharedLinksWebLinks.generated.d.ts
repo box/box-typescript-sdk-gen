@@ -1,53 +1,54 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type SharedLinksWebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetSharedItemsWebLinksOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type SharedLinksWebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetSharedItemWebLinksOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
 }
-export type PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutWebLinksIdAddSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutWebLinksIdAddSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateWebLinkAddSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField;
 }
-export type PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutWebLinksIdUpdateSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutWebLinksIdUpdateSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateWebLinkUpdateSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField;
 }
-export interface PutWebLinksIdRemoveSharedLinkRequestBodyArgSharedLinkField {
+export interface UpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField {
 }
-export interface PutWebLinksIdRemoveSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutWebLinksIdRemoveSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateWebLinkRemoveSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField;
 }
 export declare class SharedLinksWebLinksManager {
     readonly auth: SharedLinksWebLinksManagerAuthField;
-    constructor(fields: Omit<SharedLinksWebLinksManager, "getSharedItemsWebLinks" | "getWebLinksIdGetSharedLink" | "putWebLinksIdAddSharedLink" | "putWebLinksIdUpdateSharedLink" | "putWebLinksIdRemoveSharedLink">);
-    getSharedItemsWebLinks(boxapi: string, options?: GetSharedItemsWebLinksOptionsArg): Promise<any>;
-    getWebLinksIdGetSharedLink(webLinkId: string, fields: string): Promise<any>;
-    putWebLinksIdAddSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdAddSharedLinkRequestBodyArg): Promise<any>;
-    putWebLinksIdUpdateSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdUpdateSharedLinkRequestBodyArg): Promise<any>;
-    putWebLinksIdRemoveSharedLink(webLinkId: string, fields: string, requestBody: PutWebLinksIdRemoveSharedLinkRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<SharedLinksWebLinksManager, "getSharedItemWebLinks" | "getWebLinkGetSharedLink" | "updateWebLinkAddSharedLink" | "updateWebLinkUpdateSharedLink" | "updateWebLinkRemoveSharedLink">);
+    getSharedItemWebLinks(boxapi: string, options?: GetSharedItemWebLinksOptionsArg): Promise<any>;
+    getWebLinkGetSharedLink(webLinkId: string, fields: string): Promise<any>;
+    updateWebLinkAddSharedLink(webLinkId: string, fields: string, requestBody: UpdateWebLinkAddSharedLinkRequestBodyArg): Promise<any>;
+    updateWebLinkUpdateSharedLink(webLinkId: string, fields: string, requestBody: UpdateWebLinkUpdateSharedLinkRequestBodyArg): Promise<any>;
+    updateWebLinkRemoveSharedLink(webLinkId: string, fields: string, requestBody: UpdateWebLinkRemoveSharedLinkRequestBodyArg): Promise<any>;
 }

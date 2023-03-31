@@ -1,27 +1,28 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type TermsOfServicesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetTermsOfServicesOptionsArgTosTypeField = "external" | "managed";
-export interface GetTermsOfServicesOptionsArg {
-    readonly tosType?: GetTermsOfServicesOptionsArgTosTypeField;
+import { JWTAuth } from "../jwtAuth.js";
+export type TermsOfServicesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetTermOfServicesOptionsArgTosTypeField = "external" | "managed";
+export interface GetTermOfServicesOptionsArg {
+    readonly tosType?: GetTermOfServicesOptionsArgTosTypeField;
 }
-export type PostTermsOfServicesRequestBodyArgStatusField = "enabled" | "disabled";
-export type PostTermsOfServicesRequestBodyArgTosTypeField = "external" | "managed";
-export interface PostTermsOfServicesRequestBodyArg {
-    readonly status: PostTermsOfServicesRequestBodyArgStatusField;
-    readonly tosType?: PostTermsOfServicesRequestBodyArgTosTypeField;
+export type CreateTermOfServiceRequestBodyArgStatusField = "enabled" | "disabled";
+export type CreateTermOfServiceRequestBodyArgTosTypeField = "external" | "managed";
+export interface CreateTermOfServiceRequestBodyArg {
+    readonly status: CreateTermOfServiceRequestBodyArgStatusField;
+    readonly tosType?: CreateTermOfServiceRequestBodyArgTosTypeField;
     readonly text: string;
 }
-export type PutTermsOfServicesIdRequestBodyArgStatusField = "enabled" | "disabled";
-export interface PutTermsOfServicesIdRequestBodyArg {
-    readonly status: PutTermsOfServicesIdRequestBodyArgStatusField;
+export type UpdateTermOfServiceByIdRequestBodyArgStatusField = "enabled" | "disabled";
+export interface UpdateTermOfServiceByIdRequestBodyArg {
+    readonly status: UpdateTermOfServiceByIdRequestBodyArgStatusField;
     readonly text: string;
 }
 export declare class TermsOfServicesManager {
     readonly auth: TermsOfServicesManagerAuthField;
-    constructor(fields: Omit<TermsOfServicesManager, "getTermsOfServices" | "postTermsOfServices" | "getTermsOfServicesId" | "putTermsOfServicesId">);
-    getTermsOfServices(options?: GetTermsOfServicesOptionsArg): Promise<any>;
-    postTermsOfServices(requestBody: PostTermsOfServicesRequestBodyArg): Promise<any>;
-    getTermsOfServicesId(termsOfServiceId: string): Promise<any>;
-    putTermsOfServicesId(termsOfServiceId: string, requestBody: PutTermsOfServicesIdRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<TermsOfServicesManager, "getTermOfServices" | "createTermOfService" | "getTermOfServiceById" | "updateTermOfServiceById">);
+    getTermOfServices(options?: GetTermOfServicesOptionsArg): Promise<any>;
+    createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<any>;
+    getTermOfServiceById(termsOfServiceId: string): Promise<any>;
+    updateTermOfServiceById(termsOfServiceId: string, requestBody: UpdateTermOfServiceByIdRequestBodyArg): Promise<any>;
 }

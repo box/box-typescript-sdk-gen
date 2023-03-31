@@ -1,31 +1,32 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetTermsOfServiceUserStatusesOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetTermOfServiceUserStatusesOptionsArg {
     readonly userId?: string;
 }
-export type PostTermsOfServiceUserStatusesRequestBodyArgTosFieldTypeField = "terms_of_service";
-export interface PostTermsOfServiceUserStatusesRequestBodyArgTosField {
-    readonly type: PostTermsOfServiceUserStatusesRequestBodyArgTosFieldTypeField;
+export type CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField = "terms_of_service";
+export interface CreateTermOfServiceUserStatusRequestBodyArgTosField {
+    readonly type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField;
     readonly id: string;
 }
-export type PostTermsOfServiceUserStatusesRequestBodyArgUserFieldTypeField = "user";
-export interface PostTermsOfServiceUserStatusesRequestBodyArgUserField {
-    readonly type: PostTermsOfServiceUserStatusesRequestBodyArgUserFieldTypeField;
+export type CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField = "user";
+export interface CreateTermOfServiceUserStatusRequestBodyArgUserField {
+    readonly type: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField;
     readonly id: string;
 }
-export interface PostTermsOfServiceUserStatusesRequestBodyArg {
-    readonly tos: PostTermsOfServiceUserStatusesRequestBodyArgTosField;
-    readonly user: PostTermsOfServiceUserStatusesRequestBodyArgUserField;
+export interface CreateTermOfServiceUserStatusRequestBodyArg {
+    readonly tos: CreateTermOfServiceUserStatusRequestBodyArgTosField;
+    readonly user: CreateTermOfServiceUserStatusRequestBodyArgUserField;
     readonly isAccepted: boolean;
 }
-export interface PutTermsOfServiceUserStatusesIdRequestBodyArg {
+export interface UpdateTermOfServiceUserStatusByIdRequestBodyArg {
     readonly isAccepted: boolean;
 }
 export declare class TermsOfServiceUserStatusesManager {
     readonly auth: TermsOfServiceUserStatusesManagerAuthField;
-    constructor(fields: Omit<TermsOfServiceUserStatusesManager, "getTermsOfServiceUserStatuses" | "postTermsOfServiceUserStatuses" | "putTermsOfServiceUserStatusesId">);
-    getTermsOfServiceUserStatuses(tosId: string, options?: GetTermsOfServiceUserStatusesOptionsArg): Promise<any>;
-    postTermsOfServiceUserStatuses(requestBody: PostTermsOfServiceUserStatusesRequestBodyArg): Promise<any>;
-    putTermsOfServiceUserStatusesId(termsOfServiceUserStatusId: string, requestBody: PutTermsOfServiceUserStatusesIdRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<TermsOfServiceUserStatusesManager, "getTermOfServiceUserStatuses" | "createTermOfServiceUserStatus" | "updateTermOfServiceUserStatusById">);
+    getTermOfServiceUserStatuses(tosId: string, options?: GetTermOfServiceUserStatusesOptionsArg): Promise<any>;
+    createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg): Promise<any>;
+    updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Promise<any>;
 }

@@ -1,20 +1,21 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type CollaborationAllowlistEntriesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type CollaborationAllowlistEntriesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetCollaborationWhitelistEntriesOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostCollaborationWhitelistEntriesRequestBodyArgDirectionField = "inbound" | "outbound" | "both";
-export interface PostCollaborationWhitelistEntriesRequestBodyArg {
+export type CreateCollaborationWhitelistEntryRequestBodyArgDirectionField = "inbound" | "outbound" | "both";
+export interface CreateCollaborationWhitelistEntryRequestBodyArg {
     readonly domain: string;
-    readonly direction: PostCollaborationWhitelistEntriesRequestBodyArgDirectionField;
+    readonly direction: CreateCollaborationWhitelistEntryRequestBodyArgDirectionField;
 }
 export declare class CollaborationAllowlistEntriesManager {
     readonly auth: CollaborationAllowlistEntriesManagerAuthField;
-    constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "postCollaborationWhitelistEntries" | "getCollaborationWhitelistEntriesId" | "deleteCollaborationWhitelistEntriesId">);
+    constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "createCollaborationWhitelistEntry" | "getCollaborationWhitelistEntryById" | "deleteCollaborationWhitelistEntryById">);
     getCollaborationWhitelistEntries(options?: GetCollaborationWhitelistEntriesOptionsArg): Promise<any>;
-    postCollaborationWhitelistEntries(requestBody: PostCollaborationWhitelistEntriesRequestBodyArg): Promise<any>;
-    getCollaborationWhitelistEntriesId(collaborationWhitelistEntryId: string): Promise<any>;
-    deleteCollaborationWhitelistEntriesId(collaborationWhitelistEntryId: string): Promise<any>;
+    createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<any>;
+    getCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<any>;
+    deleteCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<any>;
 }

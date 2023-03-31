@@ -1,7 +1,8 @@
 import { TrackingCode } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type UsersManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type UsersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetUsersOptionsArgUserTypeField = "all" | "managed" | "external";
 export interface GetUsersOptionsArg {
     readonly filterTerm?: string;
@@ -13,13 +14,13 @@ export interface GetUsersOptionsArg {
     readonly usemarker?: boolean;
     readonly marker?: string;
 }
-export type PostUsersRequestBodyArgRoleField = "coadmin" | "user";
-export type PostUsersRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
-export interface PostUsersRequestBodyArg {
+export type CreateUserRequestBodyArgRoleField = "coadmin" | "user";
+export type CreateUserRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
+export interface CreateUserRequestBodyArg {
     readonly name: string;
     readonly login?: string;
     readonly isPlatformAccessOnly?: boolean;
-    readonly role?: PostUsersRequestBodyArgRoleField;
+    readonly role?: CreateUserRequestBodyArgRoleField;
     readonly language?: string;
     readonly isSyncEnabled?: boolean;
     readonly jobTitle?: string;
@@ -32,29 +33,29 @@ export interface PostUsersRequestBodyArg {
     readonly isExternalCollabRestricted?: boolean;
     readonly isExemptFromDeviceLimits?: boolean;
     readonly isExemptFromLoginVerification?: boolean;
-    readonly status?: PostUsersRequestBodyArgStatusField;
+    readonly status?: CreateUserRequestBodyArgStatusField;
     readonly externalAppUserId?: string;
 }
-export interface PostUsersOptionsArg {
+export interface CreateUserOptionsArg {
     readonly fields?: string;
 }
-export interface GetUsersMeOptionsArg {
+export interface GetUserMeOptionsArg {
     readonly fields?: string;
 }
-export interface GetUsersIdOptionsArg {
+export interface GetUserByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutUsersIdRequestBodyArgRoleField = "coadmin" | "user";
-export type PutUsersIdRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
-export interface PutUsersIdRequestBodyArgNotificationEmailField {
+export type UpdateUserByIdRequestBodyArgRoleField = "coadmin" | "user";
+export type UpdateUserByIdRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
+export interface UpdateUserByIdRequestBodyArgNotificationEmailField {
     readonly email?: string;
 }
-export interface PutUsersIdRequestBodyArg {
+export interface UpdateUserByIdRequestBodyArg {
     readonly enterprise?: string;
     readonly notify?: boolean;
     readonly name?: string;
     readonly login?: string;
-    readonly role?: PutUsersIdRequestBodyArgRoleField;
+    readonly role?: UpdateUserByIdRequestBodyArgRoleField;
     readonly language?: string;
     readonly isSyncEnabled?: boolean;
     readonly jobTitle?: string;
@@ -67,25 +68,25 @@ export interface PutUsersIdRequestBodyArg {
     readonly isExemptFromDeviceLimits?: boolean;
     readonly isExemptFromLoginVerification?: boolean;
     readonly isPasswordResetRequired?: boolean;
-    readonly status?: PutUsersIdRequestBodyArgStatusField;
+    readonly status?: UpdateUserByIdRequestBodyArgStatusField;
     readonly spaceAmount?: number;
-    readonly notificationEmail?: PutUsersIdRequestBodyArgNotificationEmailField;
+    readonly notificationEmail?: UpdateUserByIdRequestBodyArgNotificationEmailField;
     readonly externalAppUserId?: string;
 }
-export interface PutUsersIdOptionsArg {
+export interface UpdateUserByIdOptionsArg {
     readonly fields?: string;
 }
-export interface DeleteUsersIdOptionsArg {
+export interface DeleteUserByIdOptionsArg {
     readonly notify?: boolean;
     readonly force?: boolean;
 }
 export declare class UsersManager {
     readonly auth: UsersManagerAuthField;
-    constructor(fields: Omit<UsersManager, "getUsers" | "postUsers" | "getUsersMe" | "getUsersId" | "putUsersId" | "deleteUsersId">);
+    constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">);
     getUsers(options?: GetUsersOptionsArg): Promise<any>;
-    postUsers(requestBody: PostUsersRequestBodyArg, options?: PostUsersOptionsArg): Promise<any>;
-    getUsersMe(options?: GetUsersMeOptionsArg): Promise<any>;
-    getUsersId(userId: string, options?: GetUsersIdOptionsArg): Promise<any>;
-    putUsersId(userId: string, requestBody: PutUsersIdRequestBodyArg, options?: PutUsersIdOptionsArg): Promise<any>;
-    deleteUsersId(userId: string, options?: DeleteUsersIdOptionsArg): Promise<any>;
+    createUser(requestBody: CreateUserRequestBodyArg, options?: CreateUserOptionsArg): Promise<any>;
+    getUserMe(options?: GetUserMeOptionsArg): Promise<any>;
+    getUserById(userId: string, options?: GetUserByIdOptionsArg): Promise<any>;
+    updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, options?: UpdateUserByIdOptionsArg): Promise<any>;
+    deleteUserById(userId: string, options?: DeleteUserByIdOptionsArg): Promise<any>;
 }

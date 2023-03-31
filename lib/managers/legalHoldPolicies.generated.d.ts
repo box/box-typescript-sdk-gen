@@ -1,30 +1,31 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type LegalHoldPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type LegalHoldPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetLegalHoldPoliciesOptionsArg {
     readonly policyName?: string;
     readonly fields?: string;
     readonly marker?: string;
     readonly limit?: number;
 }
-export interface PostLegalHoldPoliciesRequestBodyArg {
+export interface CreateLegalHoldPolicyRequestBodyArg {
     readonly policyName: string;
     readonly description?: string;
     readonly filterStartedAt?: string;
     readonly filterEndedAt?: string;
     readonly isOngoing?: boolean;
 }
-export interface PutLegalHoldPoliciesIdRequestBodyArg {
+export interface UpdateLegalHoldPolicyByIdRequestBodyArg {
     readonly policyName?: string;
     readonly description?: string;
     readonly releaseNotes?: string;
 }
 export declare class LegalHoldPoliciesManager {
     readonly auth: LegalHoldPoliciesManagerAuthField;
-    constructor(fields: Omit<LegalHoldPoliciesManager, "getLegalHoldPolicies" | "postLegalHoldPolicies" | "getLegalHoldPoliciesId" | "putLegalHoldPoliciesId" | "deleteLegalHoldPoliciesId">);
+    constructor(fields: Omit<LegalHoldPoliciesManager, "getLegalHoldPolicies" | "createLegalHoldPolicy" | "getLegalHoldPolicyById" | "updateLegalHoldPolicyById" | "deleteLegalHoldPolicyById">);
     getLegalHoldPolicies(options?: GetLegalHoldPoliciesOptionsArg): Promise<any>;
-    postLegalHoldPolicies(requestBody: PostLegalHoldPoliciesRequestBodyArg): Promise<any>;
-    getLegalHoldPoliciesId(legalHoldPolicyId: string): Promise<any>;
-    putLegalHoldPoliciesId(legalHoldPolicyId: string, requestBody: PutLegalHoldPoliciesIdRequestBodyArg): Promise<any>;
-    deleteLegalHoldPoliciesId(legalHoldPolicyId: string): Promise<any>;
+    createLegalHoldPolicy(requestBody: CreateLegalHoldPolicyRequestBodyArg): Promise<any>;
+    getLegalHoldPolicyById(legalHoldPolicyId: string): Promise<any>;
+    updateLegalHoldPolicyById(legalHoldPolicyId: string, requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg): Promise<any>;
+    deleteLegalHoldPolicyById(legalHoldPolicyId: string): Promise<any>;
 }

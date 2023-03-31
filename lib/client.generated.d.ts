@@ -66,7 +66,8 @@ import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
 import { DeveloperTokenAuth } from "./developerTokenAuth.js";
 import { CCGAuth } from "./ccgAuth.js";
-export type ClientAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "./jwtAuth.js";
+export type ClientAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export declare class Client {
     readonly auth: ClientAuthField;
     readonly authorization: AuthorizationManager;

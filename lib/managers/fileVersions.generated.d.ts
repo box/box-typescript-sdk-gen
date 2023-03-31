@@ -1,34 +1,35 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FileVersionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdVersionsOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type FileVersionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileVersionsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface GetFilesIdVersionsIdOptionsArg {
+export interface GetFileVersionByIdOptionsArg {
     readonly fields?: string;
 }
-export interface PutFilesIdVersionsIdRequestBodyArg {
+export interface UpdateFileVersionByIdRequestBodyArg {
     readonly trashedAt?: string;
 }
-export interface DeleteFilesIdVersionsIdOptionsArg {
+export interface DeleteFileVersionByIdOptionsArg {
     readonly ifMatch?: string;
 }
-export type PostFilesIdVersionsCurrentRequestBodyArgTypeField = "file_version";
-export interface PostFilesIdVersionsCurrentRequestBodyArg {
+export type PromoteFileVersionRequestBodyArgTypeField = "file_version";
+export interface PromoteFileVersionRequestBodyArg {
     readonly id?: string;
-    readonly type?: PostFilesIdVersionsCurrentRequestBodyArgTypeField;
+    readonly type?: PromoteFileVersionRequestBodyArgTypeField;
 }
-export interface PostFilesIdVersionsCurrentOptionsArg {
+export interface PromoteFileVersionOptionsArg {
     readonly fields?: string;
 }
 export declare class FileVersionsManager {
     readonly auth: FileVersionsManagerAuthField;
-    constructor(fields: Omit<FileVersionsManager, "getFilesIdVersions" | "getFilesIdVersionsId" | "putFilesIdVersionsId" | "deleteFilesIdVersionsId" | "postFilesIdVersionsCurrent">);
-    getFilesIdVersions(fileId: string, options?: GetFilesIdVersionsOptionsArg): Promise<any>;
-    getFilesIdVersionsId(fileId: string, fileVersionId: string, options?: GetFilesIdVersionsIdOptionsArg): Promise<any>;
-    putFilesIdVersionsId(fileId: string, fileVersionId: string, requestBody: PutFilesIdVersionsIdRequestBodyArg): Promise<any>;
-    deleteFilesIdVersionsId(fileId: string, fileVersionId: string, options?: DeleteFilesIdVersionsIdOptionsArg): Promise<any>;
-    postFilesIdVersionsCurrent(fileId: string, requestBody: PostFilesIdVersionsCurrentRequestBodyArg, options?: PostFilesIdVersionsCurrentOptionsArg): Promise<any>;
+    constructor(fields: Omit<FileVersionsManager, "getFileVersions" | "getFileVersionById" | "updateFileVersionById" | "deleteFileVersionById" | "promoteFileVersion">);
+    getFileVersions(fileId: string, options?: GetFileVersionsOptionsArg): Promise<any>;
+    getFileVersionById(fileId: string, fileVersionId: string, options?: GetFileVersionByIdOptionsArg): Promise<any>;
+    updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg): Promise<any>;
+    deleteFileVersionById(fileId: string, fileVersionId: string, options?: DeleteFileVersionByIdOptionsArg): Promise<any>;
+    promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, options?: PromoteFileVersionOptionsArg): Promise<any>;
 }

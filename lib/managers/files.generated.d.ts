@@ -1,76 +1,77 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FilesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type FilesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileByIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
     readonly xRepHints?: string;
 }
-export interface PostFilesIdRequestBodyArgParentField {
+export interface RestoreFileFromTrashRequestBodyArgParentField {
     readonly id?: string;
 }
-export interface PostFilesIdRequestBodyArg {
+export interface RestoreFileFromTrashRequestBodyArg {
     readonly name?: string;
-    readonly parent?: PostFilesIdRequestBodyArgParentField;
+    readonly parent?: RestoreFileFromTrashRequestBodyArgParentField;
 }
-export interface PostFilesIdOptionsArg {
+export interface RestoreFileFromTrashOptionsArg {
     readonly fields?: string;
 }
-export interface PutFilesIdRequestBodyArgParentField {
+export interface UpdateFileByIdRequestBodyArgParentField {
     readonly id?: string;
 }
-export type PutFilesIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutFilesIdRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
 }
-export interface PutFilesIdRequestBodyArgSharedLinkField {
-    readonly access?: PutFilesIdRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFileByIdRequestBodyArgSharedLinkField {
+    readonly access?: UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutFilesIdRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export type PutFilesIdRequestBodyArgLockFieldAccessField = "lock";
-export interface PutFilesIdRequestBodyArgLockField {
-    readonly access?: PutFilesIdRequestBodyArgLockFieldAccessField;
+export type UpdateFileByIdRequestBodyArgLockFieldAccessField = "lock";
+export interface UpdateFileByIdRequestBodyArgLockField {
+    readonly access?: UpdateFileByIdRequestBodyArgLockFieldAccessField;
     readonly expiresAt?: string;
     readonly isDownloadPrevented?: boolean;
 }
-export type PutFilesIdRequestBodyArgPermissionsFieldCanDownloadField = "open" | "company";
-export interface PutFilesIdRequestBodyArgPermissionsField {
-    readonly canDownload?: PutFilesIdRequestBodyArgPermissionsFieldCanDownloadField;
+export type UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = "open" | "company";
+export interface UpdateFileByIdRequestBodyArgPermissionsField {
+    readonly canDownload?: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField;
 }
-export interface PutFilesIdRequestBodyArg {
+export interface UpdateFileByIdRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
-    readonly parent?: PutFilesIdRequestBodyArgParentField;
-    readonly sharedLink?: PutFilesIdRequestBodyArgSharedLinkField;
-    readonly lock?: PutFilesIdRequestBodyArgLockField;
+    readonly parent?: UpdateFileByIdRequestBodyArgParentField;
+    readonly sharedLink?: UpdateFileByIdRequestBodyArgSharedLinkField;
+    readonly lock?: UpdateFileByIdRequestBodyArgLockField;
     readonly dispositionAt?: string;
-    readonly permissions?: PutFilesIdRequestBodyArgPermissionsField;
+    readonly permissions?: UpdateFileByIdRequestBodyArgPermissionsField;
     readonly tags?: readonly string[];
 }
-export interface PutFilesIdOptionsArg {
+export interface UpdateFileByIdOptionsArg {
     readonly fields?: string;
     readonly ifMatch?: string;
 }
-export interface DeleteFilesIdOptionsArg {
+export interface DeleteFileByIdOptionsArg {
     readonly ifMatch?: string;
 }
-export interface PostFilesIdCopyRequestBodyArgParentField {
+export interface CopyFileRequestBodyArgParentField {
     readonly id: string;
 }
-export interface PostFilesIdCopyRequestBodyArg {
+export interface CopyFileRequestBodyArg {
     readonly name?: string;
     readonly version?: string;
-    readonly parent: PostFilesIdCopyRequestBodyArgParentField;
+    readonly parent: CopyFileRequestBodyArgParentField;
 }
-export interface PostFilesIdCopyOptionsArg {
+export interface CopyFileOptionsArg {
     readonly fields?: string;
 }
-export type GetFilesIdThumbnailIdExtensionArg = "png" | "jpg";
-export interface GetFilesIdThumbnailIdOptionsArg {
+export type GetFileThumbnailByIdExtensionArg = "png" | "jpg";
+export interface GetFileThumbnailByIdOptionsArg {
     readonly minHeight?: number;
     readonly minWidth?: number;
     readonly maxHeight?: number;
@@ -78,11 +79,11 @@ export interface GetFilesIdThumbnailIdOptionsArg {
 }
 export declare class FilesManager {
     readonly auth: FilesManagerAuthField;
-    constructor(fields: Omit<FilesManager, "getFilesId" | "postFilesId" | "putFilesId" | "deleteFilesId" | "postFilesIdCopy" | "getFilesIdThumbnailId">);
-    getFilesId(fileId: string, options?: GetFilesIdOptionsArg): Promise<any>;
-    postFilesId(fileId: string, requestBody: PostFilesIdRequestBodyArg, options?: PostFilesIdOptionsArg): Promise<any>;
-    putFilesId(fileId: string, requestBody: PutFilesIdRequestBodyArg, options?: PutFilesIdOptionsArg): Promise<any>;
-    deleteFilesId(fileId: string, options?: DeleteFilesIdOptionsArg): Promise<any>;
-    postFilesIdCopy(fileId: string, requestBody: PostFilesIdCopyRequestBodyArg, options?: PostFilesIdCopyOptionsArg): Promise<any>;
-    getFilesIdThumbnailId(fileId: string, extension: GetFilesIdThumbnailIdExtensionArg, options?: GetFilesIdThumbnailIdOptionsArg): Promise<any>;
+    constructor(fields: Omit<FilesManager, "getFileById" | "restoreFileFromTrash" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
+    getFileById(fileId: string, options?: GetFileByIdOptionsArg): Promise<any>;
+    restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, options?: RestoreFileFromTrashOptionsArg): Promise<any>;
+    updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, options?: UpdateFileByIdOptionsArg): Promise<any>;
+    deleteFileById(fileId: string, options?: DeleteFileByIdOptionsArg): Promise<any>;
+    copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, options?: CopyFileOptionsArg): Promise<any>;
+    getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, options?: GetFileThumbnailByIdOptionsArg): Promise<any>;
 }

@@ -12,49 +12,50 @@ import { deserializeConflictError } from "../schemas.generated.js";
 import { serializeConflictError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetMetadataCascadePoliciesOptionsArg {
     readonly ownerEnterpriseId?: string;
     readonly marker?: string;
     readonly offset?: number;
 }
-export type PostMetadataCascadePoliciesRequestBodyArgScopeField = "global" | "enterprise";
-export interface PostMetadataCascadePoliciesRequestBodyArg {
+export type CreateMetadataCascadePolicyRequestBodyArgScopeField = "global" | "enterprise";
+export interface CreateMetadataCascadePolicyRequestBodyArg {
     readonly folderId: string;
-    readonly scope: PostMetadataCascadePoliciesRequestBodyArgScopeField;
+    readonly scope: CreateMetadataCascadePolicyRequestBodyArgScopeField;
     readonly templateKey: string;
 }
-export type PostMetadataCascadePoliciesIdApplyRequestBodyArgConflictResolutionField = "none" | "overwrite";
-export interface PostMetadataCascadePoliciesIdApplyRequestBodyArg {
-    readonly conflictResolution: PostMetadataCascadePoliciesIdApplyRequestBodyArgConflictResolutionField;
+export type CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField = "none" | "overwrite";
+export interface CreateMetadataCascadePolicyApplyRequestBodyArg {
+    readonly conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField;
 }
 export class MetadataCascadePoliciesManager {
     readonly auth!: MetadataCascadePoliciesManagerAuthField;
-    constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "postMetadataCascadePolicies" | "getMetadataCascadePoliciesId" | "deleteMetadataCascadePoliciesId" | "postMetadataCascadePoliciesIdApply">) {
+    constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "createMetadataCascadePolicy" | "getMetadataCascadePolicyById" | "deleteMetadataCascadePolicyById" | "createMetadataCascadePolicyApply">) {
         Object.assign(this, fields);
     }
     async getMetadataCascadePolicies(folderId: string, options: GetMetadataCascadePoliciesOptionsArg = {} satisfies GetMetadataCascadePoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: { ["folder_id"]: folderId, ["owner_enterprise_id"]: options.ownerEnterpriseId, ["marker"]: options.marker, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicies(deserializeJSON(response.text) as JSON);
     }
-    async postMetadataCascadePolicies(requestBody: PostMetadataCascadePoliciesRequestBodyArg): Promise<any> {
+    async createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
     }
-    async getMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any> {
+    async getMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicy(deserializeJSON(response.text) as JSON);
     }
-    async deleteMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any> {
+    async deleteMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async postMetadataCascadePoliciesIdApply(metadataCascadePolicyId: string, requestBody: PostMetadataCascadePoliciesIdApplyRequestBodyArg): Promise<any> {
+    async createMetadataCascadePolicyApply(metadataCascadePolicyId: string, requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId, "/apply") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

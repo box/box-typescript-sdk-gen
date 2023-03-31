@@ -1,42 +1,43 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type ClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgScopeField = "enterprise";
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgDisplayNameField = "Classification";
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldTypeField = "enum";
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldKeyField = "Box__Security__Classification__Key";
-export type PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldDisplayNameField = "Classification";
-export interface PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
+import { JWTAuth } from "../jwtAuth.js";
+export type ClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = "enterprise";
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField = "Classification";
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField = "enum";
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField = "Box__Security__Classification__Key";
+export type CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField = "Classification";
+export interface CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
     readonly classificationDefinition?: string;
     readonly colorId?: number;
 }
-export interface PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsFieldStaticConfigField {
-    readonly classification?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
+export interface CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField {
+    readonly classification?: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
-export interface PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsField {
+export interface CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField {
     readonly key?: string;
-    readonly staticConfig?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsFieldStaticConfigField;
+    readonly staticConfig?: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField;
 }
-export interface PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsField {
-    readonly type?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldTypeField;
-    readonly key?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldKeyField;
-    readonly displayName?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldDisplayNameField;
+export interface CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField {
+    readonly type?: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField;
+    readonly key?: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField;
+    readonly displayName?: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField;
     readonly hidden?: boolean;
-    readonly options?: readonly PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsFieldOptionsField[];
+    readonly options?: readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField[];
 }
-export interface PostMetadataTemplatesSchemaClassificationsRequestBodyArg {
-    readonly scope: PostMetadataTemplatesSchemaClassificationsRequestBodyArgScopeField;
-    readonly templateKey?: PostMetadataTemplatesSchemaClassificationsRequestBodyArgTemplateKeyField;
-    readonly displayName: PostMetadataTemplatesSchemaClassificationsRequestBodyArgDisplayNameField;
+export interface CreateMetadataTemplateSchemaClassificationRequestBodyArg {
+    readonly scope: CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField;
+    readonly templateKey?: CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField;
+    readonly displayName: CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField;
     readonly hidden?: boolean;
     readonly copyInstanceOnItemCopy?: boolean;
-    readonly fields?: readonly PostMetadataTemplatesSchemaClassificationsRequestBodyArgFieldsField[];
+    readonly fields?: readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[];
 }
 export declare class ClassificationsManager {
     readonly auth: ClassificationsManagerAuthField;
-    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema" | "deleteMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema" | "postMetadataTemplatesSchemaClassifications">);
-    getMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
-    deleteMetadataTemplatesEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
-    postMetadataTemplatesSchemaClassifications(requestBody: PostMetadataTemplatesSchemaClassificationsRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema" | "createMetadataTemplateSchemaClassification">);
+    getMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
+    deleteMetadataTemplateEnterpriseSecurityClassification6VmVochwUWoSchema(): Promise<any>;
+    createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Promise<any>;
 }

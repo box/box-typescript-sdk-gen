@@ -1,59 +1,60 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type WebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostWebLinksRequestBodyArgParentField {
+import { JWTAuth } from "../jwtAuth.js";
+export type WebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateWebLinkRequestBodyArgParentField {
     readonly id: string;
 }
-export type PostWebLinksRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PostWebLinksRequestBodyArgSharedLinkField {
-    readonly access?: PostWebLinksRequestBodyArgSharedLinkFieldAccessField;
+export type CreateWebLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface CreateWebLinkRequestBodyArgSharedLinkField {
+    readonly access?: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
 }
-export interface PostWebLinksRequestBodyArg {
+export interface CreateWebLinkRequestBodyArg {
     readonly url: string;
-    readonly parent: PostWebLinksRequestBodyArgParentField;
+    readonly parent: CreateWebLinkRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: PostWebLinksRequestBodyArgSharedLinkField;
+    readonly sharedLink?: CreateWebLinkRequestBodyArgSharedLinkField;
 }
-export interface GetWebLinksIdOptionsArg {
+export interface GetWebLinkByIdOptionsArg {
     readonly boxapi?: string;
 }
-export interface PostWebLinksIdRequestBodyArgParentField {
+export interface CreateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
-export interface PostWebLinksIdRequestBodyArg {
+export interface CreateWebLinkByIdRequestBodyArg {
     readonly name?: string;
-    readonly parent?: PostWebLinksIdRequestBodyArgParentField;
+    readonly parent?: CreateWebLinkByIdRequestBodyArgParentField;
 }
-export interface PostWebLinksIdOptionsArg {
+export interface CreateWebLinkByIdOptionsArg {
     readonly fields?: string;
 }
-export interface PutWebLinksIdRequestBodyArgParentField {
+export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
-export type PutWebLinksIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutWebLinksIdRequestBodyArgSharedLinkField {
-    readonly access?: PutWebLinksIdRequestBodyArgSharedLinkFieldAccessField;
+export type UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateWebLinkByIdRequestBodyArgSharedLinkField {
+    readonly access?: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
 }
-export interface PutWebLinksIdRequestBodyArg {
+export interface UpdateWebLinkByIdRequestBodyArg {
     readonly url?: string;
-    readonly parent?: PutWebLinksIdRequestBodyArgParentField;
+    readonly parent?: UpdateWebLinkByIdRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: PutWebLinksIdRequestBodyArgSharedLinkField;
+    readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
 }
 export declare class WebLinksManager {
     readonly auth: WebLinksManagerAuthField;
-    constructor(fields: Omit<WebLinksManager, "postWebLinks" | "getWebLinksId" | "postWebLinksId" | "putWebLinksId" | "deleteWebLinksId">);
-    postWebLinks(requestBody: PostWebLinksRequestBodyArg): Promise<any>;
-    getWebLinksId(webLinkId: string, options?: GetWebLinksIdOptionsArg): Promise<any>;
-    postWebLinksId(webLinkId: string, requestBody: PostWebLinksIdRequestBodyArg, options?: PostWebLinksIdOptionsArg): Promise<any>;
-    putWebLinksId(webLinkId: string, requestBody: PutWebLinksIdRequestBodyArg): Promise<any>;
-    deleteWebLinksId(webLinkId: string): Promise<any>;
+    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "createWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
+    createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<any>;
+    getWebLinkById(webLinkId: string, options?: GetWebLinkByIdOptionsArg): Promise<any>;
+    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, options?: CreateWebLinkByIdOptionsArg): Promise<any>;
+    updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<any>;
+    deleteWebLinkById(webLinkId: string): Promise<any>;
 }

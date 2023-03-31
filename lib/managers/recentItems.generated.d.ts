@@ -1,6 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type RecentItemsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type RecentItemsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetRecentItemsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

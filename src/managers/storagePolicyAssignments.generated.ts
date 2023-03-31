@@ -9,60 +9,61 @@ import { deserializeStoragePolicyAssignment } from "../schemas.generated.js";
 import { serializeStoragePolicyAssignment } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetStoragePolicyAssignmentsResolvedForTypeArg = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsOptionsArg {
     readonly marker?: string;
 }
-export type PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
-export interface PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyField {
-    readonly type: PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyFieldTypeField;
+export type CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
+export interface CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField {
+    readonly type: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField;
     readonly id: string;
 }
-export type PostStoragePolicyAssignmentsRequestBodyArgAssignedToFieldTypeField = "user" | "enterprise";
-export interface PostStoragePolicyAssignmentsRequestBodyArgAssignedToField {
-    readonly type: PostStoragePolicyAssignmentsRequestBodyArgAssignedToFieldTypeField;
+export type CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField = "user" | "enterprise";
+export interface CreateStoragePolicyAssignmentRequestBodyArgAssignedToField {
+    readonly type: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField;
     readonly id: string;
 }
-export interface PostStoragePolicyAssignmentsRequestBodyArg {
-    readonly storagePolicy: PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyField;
-    readonly assignedTo: PostStoragePolicyAssignmentsRequestBodyArgAssignedToField;
+export interface CreateStoragePolicyAssignmentRequestBodyArg {
+    readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField;
+    readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
 }
-export type PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
-export interface PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyField {
-    readonly type: PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyFieldTypeField;
+export type UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField {
+    readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField;
     readonly id: string;
 }
-export interface PutStoragePolicyAssignmentsIdRequestBodyArg {
-    readonly storagePolicy: PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyField;
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyArg {
+    readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
 }
 export class StoragePolicyAssignmentsManager {
     readonly auth!: StoragePolicyAssignmentsManagerAuthField;
-    constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "postStoragePolicyAssignments" | "getStoragePolicyAssignmentsId" | "putStoragePolicyAssignmentsId" | "deleteStoragePolicyAssignmentsId">) {
+    constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "createStoragePolicyAssignment" | "getStoragePolicyAssignmentById" | "updateStoragePolicyAssignmentById" | "deleteStoragePolicyAssignmentById">) {
         Object.assign(this, fields);
     }
     async getStoragePolicyAssignments(resolvedForType: GetStoragePolicyAssignmentsResolvedForTypeArg, resolvedForId: string, options: GetStoragePolicyAssignmentsOptionsArg = {} satisfies GetStoragePolicyAssignmentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "GET", params: { ["marker"]: options.marker, ["resolved_for_type"]: resolvedForType, ["resolved_for_id"]: resolvedForId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignments(deserializeJSON(response.text) as JSON);
     }
-    async postStoragePolicyAssignments(requestBody: PostStoragePolicyAssignmentsRequestBodyArg): Promise<any> {
+    async createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
-    async getStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
+    async getStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
-    async putStoragePolicyAssignmentsId(storagePolicyAssignmentId: string, requestBody: PutStoragePolicyAssignmentsIdRequestBodyArg): Promise<any> {
+    async updateStoragePolicyAssignmentById(storagePolicyAssignmentId: string, requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignment(deserializeJSON(response.text) as JSON);
     }
-    async deleteStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any> {
+    async deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

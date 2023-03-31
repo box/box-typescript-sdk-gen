@@ -1,46 +1,47 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type RetentionPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetRetentionPoliciesIdAssignmentsOptionsArgTypeField = "folder" | "enterprise" | "metadata_template";
-export interface GetRetentionPoliciesIdAssignmentsOptionsArg {
-    readonly type?: GetRetentionPoliciesIdAssignmentsOptionsArgTypeField;
+import { JWTAuth } from "../jwtAuth.js";
+export type RetentionPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetRetentionPolicyAssignmentsOptionsArgTypeField = "folder" | "enterprise" | "metadata_template";
+export interface GetRetentionPolicyAssignmentsOptionsArg {
+    readonly type?: GetRetentionPolicyAssignmentsOptionsArgTypeField;
     readonly fields?: string;
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostRetentionPolicyAssignmentsRequestBodyArgAssignToFieldTypeField = "enterprise" | "folder" | "metadata_template";
-export interface PostRetentionPolicyAssignmentsRequestBodyArgAssignToField {
-    readonly type: PostRetentionPolicyAssignmentsRequestBodyArgAssignToFieldTypeField;
+export type CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField = "enterprise" | "folder" | "metadata_template";
+export interface CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
+    readonly type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
     readonly id: string;
 }
-export interface PostRetentionPolicyAssignmentsRequestBodyArgFilterFieldsField {
+export interface CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
     readonly field?: string;
     readonly value?: string;
 }
-export interface PostRetentionPolicyAssignmentsRequestBodyArg {
+export interface CreateRetentionPolicyAssignmentRequestBodyArg {
     readonly policyId: string;
-    readonly assignTo: PostRetentionPolicyAssignmentsRequestBodyArgAssignToField;
-    readonly filterFields?: readonly PostRetentionPolicyAssignmentsRequestBodyArgFilterFieldsField[];
+    readonly assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField;
+    readonly filterFields?: readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[];
     readonly startDateField?: string;
 }
-export interface GetRetentionPolicyAssignmentsIdOptionsArg {
+export interface GetRetentionPolicyAssignmentByIdOptionsArg {
     readonly fields?: string;
 }
-export interface GetRetentionPolicyAssignmentsIdFilesUnderRetentionOptionsArg {
+export interface GetRetentionPolicyAssignmentFileUnderRetentionOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export interface GetRetentionPolicyAssignmentsIdFileVersionsUnderRetentionOptionsArg {
+export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
 export declare class RetentionPolicyAssignmentsManager {
     readonly auth: RetentionPolicyAssignmentsManagerAuthField;
-    constructor(fields: Omit<RetentionPolicyAssignmentsManager, "getRetentionPoliciesIdAssignments" | "postRetentionPolicyAssignments" | "getRetentionPolicyAssignmentsId" | "deleteRetentionPolicyAssignmentsId" | "getRetentionPolicyAssignmentsIdFilesUnderRetention" | "getRetentionPolicyAssignmentsIdFileVersionsUnderRetention">);
-    getRetentionPoliciesIdAssignments(retentionPolicyId: string, options?: GetRetentionPoliciesIdAssignmentsOptionsArg): Promise<any>;
-    postRetentionPolicyAssignments(requestBody: PostRetentionPolicyAssignmentsRequestBodyArg): Promise<any>;
-    getRetentionPolicyAssignmentsId(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentsIdOptionsArg): Promise<any>;
-    deleteRetentionPolicyAssignmentsId(retentionPolicyAssignmentId: string): Promise<any>;
-    getRetentionPolicyAssignmentsIdFilesUnderRetention(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentsIdFilesUnderRetentionOptionsArg): Promise<any>;
-    getRetentionPolicyAssignmentsIdFileVersionsUnderRetention(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentsIdFileVersionsUnderRetentionOptionsArg): Promise<any>;
+    constructor(fields: Omit<RetentionPolicyAssignmentsManager, "getRetentionPolicyAssignments" | "createRetentionPolicyAssignment" | "getRetentionPolicyAssignmentById" | "deleteRetentionPolicyAssignmentById" | "getRetentionPolicyAssignmentFileUnderRetention" | "getRetentionPolicyAssignmentFileVersionUnderRetention">);
+    getRetentionPolicyAssignments(retentionPolicyId: string, options?: GetRetentionPolicyAssignmentsOptionsArg): Promise<any>;
+    createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg): Promise<any>;
+    getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentByIdOptionsArg): Promise<any>;
+    deleteRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string): Promise<any>;
+    getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentFileUnderRetentionOptionsArg): Promise<any>;
+    getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, options?: GetRetentionPolicyAssignmentFileVersionUnderRetentionOptionsArg): Promise<any>;
 }

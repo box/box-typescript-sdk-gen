@@ -9,18 +9,19 @@ import { deserializeCollaboration } from "../schemas.generated.js";
 import { serializeCollaboration } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdCollaborationsOptionsArg {
+export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileCollaborationsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly marker?: string;
 }
-export interface GetFoldersIdCollaborationsOptionsArg {
+export interface GetFolderCollaborationsOptionsArg {
     readonly fields?: string;
 }
 export type GetCollaborationsStatusArg = "pending";
@@ -29,43 +30,43 @@ export interface GetCollaborationsOptionsArg {
     readonly offset?: number;
     readonly limit?: number;
 }
-export type PostCollaborationsRequestBodyArgItemFieldTypeField = "file" | "folder";
-export interface PostCollaborationsRequestBodyArgItemField {
-    readonly type: PostCollaborationsRequestBodyArgItemFieldTypeField;
+export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
+export interface CreateCollaborationRequestBodyArgItemField {
+    readonly type: CreateCollaborationRequestBodyArgItemFieldTypeField;
     readonly id: string;
 }
-export type PostCollaborationsRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
-export interface PostCollaborationsRequestBodyArgAccessibleByField {
-    readonly type: PostCollaborationsRequestBodyArgAccessibleByFieldTypeField;
+export type CreateCollaborationRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
+export interface CreateCollaborationRequestBodyArgAccessibleByField {
+    readonly type: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField;
     readonly id?: string;
     readonly login?: string;
 }
-export type PostCollaborationsRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export interface PostCollaborationsRequestBodyArg {
-    readonly item: PostCollaborationsRequestBodyArgItemField;
-    readonly accessibleBy: PostCollaborationsRequestBodyArgAccessibleByField;
-    readonly role: PostCollaborationsRequestBodyArgRoleField;
+export type CreateCollaborationRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
+export interface CreateCollaborationRequestBodyArg {
+    readonly item: CreateCollaborationRequestBodyArgItemField;
+    readonly accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField;
+    readonly role: CreateCollaborationRequestBodyArgRoleField;
     readonly canViewPath?: boolean;
     readonly expiresAt?: string;
 }
-export interface PostCollaborationsOptionsArg {
+export interface CreateCollaborationOptionsArg {
     readonly fields?: string;
     readonly notify?: boolean;
 }
-export interface GetGroupsIdCollaborationsOptionsArg {
+export interface GetGroupCollaborationsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
 export class ListCollaborationsManager {
     readonly auth!: ListCollaborationsManagerAuthField;
-    constructor(fields: Omit<ListCollaborationsManager, "getFilesIdCollaborations" | "getFoldersIdCollaborations" | "getCollaborations" | "postCollaborations" | "getGroupsIdCollaborations">) {
+    constructor(fields: Omit<ListCollaborationsManager, "getFileCollaborations" | "getFolderCollaborations" | "getCollaborations" | "createCollaboration" | "getGroupCollaborations">) {
         Object.assign(this, fields);
     }
-    async getFilesIdCollaborations(fileId: string, options: GetFilesIdCollaborationsOptionsArg = {} satisfies GetFilesIdCollaborationsOptionsArg): Promise<any> {
+    async getFileCollaborations(fileId: string, options: GetFileCollaborationsOptionsArg = {} satisfies GetFileCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
-    async getFoldersIdCollaborations(folderId: string, options: GetFoldersIdCollaborationsOptionsArg = {} satisfies GetFoldersIdCollaborationsOptionsArg): Promise<any> {
+    async getFolderCollaborations(folderId: string, options: GetFolderCollaborationsOptionsArg = {} satisfies GetFolderCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/collaborations") as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
@@ -73,11 +74,11 @@ export class ListCollaborationsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: { ["status"]: status, ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }
-    async postCollaborations(requestBody: PostCollaborationsRequestBodyArg, options: PostCollaborationsOptionsArg = {} satisfies PostCollaborationsOptionsArg): Promise<any> {
+    async createCollaboration(requestBody: CreateCollaborationRequestBodyArg, options: CreateCollaborationOptionsArg = {} satisfies CreateCollaborationOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
-    async getGroupsIdCollaborations(groupId: string, options: GetGroupsIdCollaborationsOptionsArg = {} satisfies GetGroupsIdCollaborationsOptionsArg): Promise<any> {
+    async getGroupCollaborations(groupId: string, options: GetGroupCollaborationsOptionsArg = {} satisfies GetGroupCollaborationsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/collaborations") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJSON(response.text) as JSON);
     }

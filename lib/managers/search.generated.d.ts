@@ -1,7 +1,8 @@
 import { MetadataQuery } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type SearchManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type SearchManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetMetadataQueryIndicesScopeArg = "global" | "enterprise";
 export type GetSearchOptionsArgScopeField = "user_content" | "enterprise_content";
 export type GetSearchOptionsArgTypeField = "file" | "folder" | "web_link";
@@ -31,8 +32,8 @@ export interface GetSearchOptionsArg {
 }
 export declare class SearchManager {
     readonly auth: SearchManagerAuthField;
-    constructor(fields: Omit<SearchManager, "postMetadataQueriesExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
-    postMetadataQueriesExecuteRead(requestBody: MetadataQuery): Promise<any>;
+    constructor(fields: Omit<SearchManager, "createMetadataQueryExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
+    createMetadataQueryExecuteRead(requestBody: MetadataQuery): Promise<any>;
     getMetadataQueryIndices(scope: GetMetadataQueryIndicesScopeArg, templateKey: string): Promise<any>;
     getSearch(options?: GetSearchOptionsArg): Promise<undefined>;
 }

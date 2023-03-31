@@ -9,69 +9,70 @@ import { deserializeGroup } from "../schemas.generated.js";
 import { serializeGroup } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type GroupsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type GroupsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetGroupsOptionsArg {
     readonly filterTerm?: string;
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
 }
-export type PostGroupsRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export type PostGroupsRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export interface PostGroupsRequestBodyArg {
+export type CreateGroupRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export type CreateGroupRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export interface CreateGroupRequestBodyArg {
     readonly name: string;
     readonly provenance?: string;
     readonly externalSyncIdentifier?: string;
     readonly description?: string;
-    readonly invitabilityLevel?: PostGroupsRequestBodyArgInvitabilityLevelField;
-    readonly memberViewabilityLevel?: PostGroupsRequestBodyArgMemberViewabilityLevelField;
+    readonly invitabilityLevel?: CreateGroupRequestBodyArgInvitabilityLevelField;
+    readonly memberViewabilityLevel?: CreateGroupRequestBodyArgMemberViewabilityLevelField;
 }
-export interface PostGroupsOptionsArg {
+export interface CreateGroupOptionsArg {
     readonly fields?: string;
 }
-export interface GetGroupsIdOptionsArg {
+export interface GetGroupByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutGroupsIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export type PutGroupsIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export interface PutGroupsIdRequestBodyArg {
+export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export type UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export interface UpdateGroupByIdRequestBodyArg {
     readonly name?: string;
     readonly provenance?: string;
     readonly externalSyncIdentifier?: string;
     readonly description?: string;
-    readonly invitabilityLevel?: PutGroupsIdRequestBodyArgInvitabilityLevelField;
-    readonly memberViewabilityLevel?: PutGroupsIdRequestBodyArgMemberViewabilityLevelField;
+    readonly invitabilityLevel?: UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
+    readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
 }
-export interface PutGroupsIdOptionsArg {
+export interface UpdateGroupByIdOptionsArg {
     readonly fields?: string;
 }
 export class GroupsManager {
     readonly auth!: GroupsManagerAuthField;
-    constructor(fields: Omit<GroupsManager, "getGroups" | "postGroups" | "getGroupsId" | "putGroupsId" | "deleteGroupsId">) {
+    constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">) {
         Object.assign(this, fields);
     }
     async getGroups(options: GetGroupsOptionsArg = {} satisfies GetGroupsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: { ["filter_term"]: options.filterTerm, ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroups(deserializeJSON(response.text) as JSON);
     }
-    async postGroups(requestBody: PostGroupsRequestBodyArg, options: PostGroupsOptionsArg = {} satisfies PostGroupsOptionsArg): Promise<any> {
+    async createGroup(requestBody: CreateGroupRequestBodyArg, options: CreateGroupOptionsArg = {} satisfies CreateGroupOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJSON(response.text) as JSON);
     }
-    async getGroupsId(groupId: string, options: GetGroupsIdOptionsArg = {} satisfies GetGroupsIdOptionsArg): Promise<any> {
+    async getGroupById(groupId: string, options: GetGroupByIdOptionsArg = {} satisfies GetGroupByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJSON(response.text) as JSON);
     }
-    async putGroupsId(groupId: string, requestBody: PutGroupsIdRequestBodyArg, options: PutGroupsIdOptionsArg = {} satisfies PutGroupsIdOptionsArg): Promise<any> {
+    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, options: UpdateGroupByIdOptionsArg = {} satisfies UpdateGroupByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJSON(response.text) as JSON);
     }
-    async deleteGroupsId(groupId: string): Promise<any> {
+    async deleteGroupById(groupId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

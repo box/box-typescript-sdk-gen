@@ -1,19 +1,20 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetCollectionsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
 }
-export interface GetCollectionsIdItemsOptionsArg {
+export interface GetCollectionItemsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
 }
 export declare class CollectionsManager {
     readonly auth: CollectionsManagerAuthField;
-    constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionsIdItems">);
+    constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionItems">);
     getCollections(options?: GetCollectionsOptionsArg): Promise<any>;
-    getCollectionsIdItems(collectionId: string, options?: GetCollectionsIdItemsOptionsArg): Promise<any>;
+    getCollectionItems(collectionId: string, options?: GetCollectionItemsOptionsArg): Promise<any>;
 }

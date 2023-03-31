@@ -9,81 +9,82 @@ import { deserializeTrashWebLinkRestored } from "../schemas.generated.js";
 import { serializeTrashWebLinkRestored } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type WebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostWebLinksRequestBodyArgParentField {
+export type WebLinksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateWebLinkRequestBodyArgParentField {
     readonly id: string;
 }
-export type PostWebLinksRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PostWebLinksRequestBodyArgSharedLinkField {
-    readonly access?: PostWebLinksRequestBodyArgSharedLinkFieldAccessField;
+export type CreateWebLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface CreateWebLinkRequestBodyArgSharedLinkField {
+    readonly access?: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
 }
-export interface PostWebLinksRequestBodyArg {
+export interface CreateWebLinkRequestBodyArg {
     readonly url: string;
-    readonly parent: PostWebLinksRequestBodyArgParentField;
+    readonly parent: CreateWebLinkRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: PostWebLinksRequestBodyArgSharedLinkField;
+    readonly sharedLink?: CreateWebLinkRequestBodyArgSharedLinkField;
 }
-export interface GetWebLinksIdOptionsArg {
+export interface GetWebLinkByIdOptionsArg {
     readonly boxapi?: string;
 }
-export interface PostWebLinksIdRequestBodyArgParentField {
+export interface CreateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
-export interface PostWebLinksIdRequestBodyArg {
+export interface CreateWebLinkByIdRequestBodyArg {
     readonly name?: string;
-    readonly parent?: PostWebLinksIdRequestBodyArgParentField;
+    readonly parent?: CreateWebLinkByIdRequestBodyArgParentField;
 }
-export interface PostWebLinksIdOptionsArg {
+export interface CreateWebLinkByIdOptionsArg {
     readonly fields?: string;
 }
-export interface PutWebLinksIdRequestBodyArgParentField {
+export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
-export type PutWebLinksIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutWebLinksIdRequestBodyArgSharedLinkField {
-    readonly access?: PutWebLinksIdRequestBodyArgSharedLinkFieldAccessField;
+export type UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateWebLinkByIdRequestBodyArgSharedLinkField {
+    readonly access?: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
 }
-export interface PutWebLinksIdRequestBodyArg {
+export interface UpdateWebLinkByIdRequestBodyArg {
     readonly url?: string;
-    readonly parent?: PutWebLinksIdRequestBodyArgParentField;
+    readonly parent?: UpdateWebLinkByIdRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: PutWebLinksIdRequestBodyArgSharedLinkField;
+    readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
 }
 export class WebLinksManager {
     readonly auth!: WebLinksManagerAuthField;
-    constructor(fields: Omit<WebLinksManager, "postWebLinks" | "getWebLinksId" | "postWebLinksId" | "putWebLinksId" | "deleteWebLinksId">) {
+    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "createWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">) {
         Object.assign(this, fields);
     }
-    async postWebLinks(requestBody: PostWebLinksRequestBodyArg): Promise<any> {
+    async createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
-    async getWebLinksId(webLinkId: string, options: GetWebLinksIdOptionsArg = {} satisfies GetWebLinksIdOptionsArg): Promise<any> {
+    async getWebLinkById(webLinkId: string, options: GetWebLinkByIdOptionsArg = {} satisfies GetWebLinkByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: { ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
-    async postWebLinksId(webLinkId: string, requestBody: PostWebLinksIdRequestBodyArg, options: PostWebLinksIdOptionsArg = {} satisfies PostWebLinksIdOptionsArg): Promise<any> {
+    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, options: CreateWebLinkByIdOptionsArg = {} satisfies CreateWebLinkByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashWebLinkRestored(deserializeJSON(response.text) as JSON);
     }
-    async putWebLinksId(webLinkId: string, requestBody: PutWebLinksIdRequestBodyArg): Promise<any> {
+    async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJSON(response.text) as JSON);
     }
-    async deleteWebLinksId(webLinkId: string): Promise<any> {
+    async deleteWebLinkById(webLinkId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

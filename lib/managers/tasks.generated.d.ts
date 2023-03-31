@@ -1,34 +1,35 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type TasksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type PostTasksRequestBodyArgItemFieldTypeField = "file";
-export interface PostTasksRequestBodyArgItemField {
+import { JWTAuth } from "../jwtAuth.js";
+export type TasksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
+export interface CreateTaskRequestBodyArgItemField {
     readonly id: string;
-    readonly type: PostTasksRequestBodyArgItemFieldTypeField;
+    readonly type: CreateTaskRequestBodyArgItemFieldTypeField;
 }
-export type PostTasksRequestBodyArgActionField = "review" | "complete";
-export type PostTasksRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
-export interface PostTasksRequestBodyArg {
-    readonly item: PostTasksRequestBodyArgItemField;
-    readonly action?: PostTasksRequestBodyArgActionField;
+export type CreateTaskRequestBodyArgActionField = "review" | "complete";
+export type CreateTaskRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
+export interface CreateTaskRequestBodyArg {
+    readonly item: CreateTaskRequestBodyArgItemField;
+    readonly action?: CreateTaskRequestBodyArgActionField;
     readonly message?: string;
     readonly dueAt?: string;
-    readonly completionRule?: PostTasksRequestBodyArgCompletionRuleField;
+    readonly completionRule?: CreateTaskRequestBodyArgCompletionRuleField;
 }
-export type PutTasksIdRequestBodyArgActionField = "review" | "complete";
-export type PutTasksIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
-export interface PutTasksIdRequestBodyArg {
-    readonly action?: PutTasksIdRequestBodyArgActionField;
+export type UpdateTaskByIdRequestBodyArgActionField = "review" | "complete";
+export type UpdateTaskByIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
+export interface UpdateTaskByIdRequestBodyArg {
+    readonly action?: UpdateTaskByIdRequestBodyArgActionField;
     readonly message?: string;
     readonly dueAt?: string;
-    readonly completionRule?: PutTasksIdRequestBodyArgCompletionRuleField;
+    readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
 }
 export declare class TasksManager {
     readonly auth: TasksManagerAuthField;
-    constructor(fields: Omit<TasksManager, "getFilesIdTasks" | "postTasks" | "getTasksId" | "putTasksId" | "deleteTasksId">);
-    getFilesIdTasks(fileId: string): Promise<any>;
-    postTasks(requestBody: PostTasksRequestBodyArg): Promise<any>;
-    getTasksId(taskId: string): Promise<any>;
-    putTasksId(taskId: string, requestBody: PutTasksIdRequestBodyArg): Promise<any>;
-    deleteTasksId(taskId: string): Promise<any>;
+    constructor(fields: Omit<TasksManager, "getFileTasks" | "createTask" | "getTaskById" | "updateTaskById" | "deleteTaskById">);
+    getFileTasks(fileId: string): Promise<any>;
+    createTask(requestBody: CreateTaskRequestBodyArg): Promise<any>;
+    getTaskById(taskId: string): Promise<any>;
+    updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg): Promise<any>;
+    deleteTaskById(taskId: string): Promise<any>;
 }

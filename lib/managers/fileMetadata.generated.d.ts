@@ -1,16 +1,17 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FileMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetFilesIdMetadataIdIdScopeArg = "global" | "enterprise";
-export type PostFilesIdMetadataIdIdScopeArg = "global" | "enterprise";
-export interface PostFilesIdMetadataIdIdRequestBodyArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type FileMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetFileMetadataByIdScopeArg = "global" | "enterprise";
+export type CreateFileMetadataByIdScopeArg = "global" | "enterprise";
+export interface CreateFileMetadataByIdRequestBodyArg {
 }
-export type DeleteFilesIdMetadataIdIdScopeArg = "global" | "enterprise";
+export type DeleteFileMetadataByIdScopeArg = "global" | "enterprise";
 export declare class FileMetadataManager {
     readonly auth: FileMetadataManagerAuthField;
-    constructor(fields: Omit<FileMetadataManager, "getFilesIdMetadata" | "getFilesIdMetadataIdId" | "postFilesIdMetadataIdId" | "deleteFilesIdMetadataIdId">);
-    getFilesIdMetadata(fileId: string): Promise<any>;
-    getFilesIdMetadataIdId(fileId: string, scope: GetFilesIdMetadataIdIdScopeArg, templateKey: string): Promise<any>;
-    postFilesIdMetadataIdId(fileId: string, scope: PostFilesIdMetadataIdIdScopeArg, templateKey: string, requestBody: PostFilesIdMetadataIdIdRequestBodyArg): Promise<any>;
-    deleteFilesIdMetadataIdId(fileId: string, scope: DeleteFilesIdMetadataIdIdScopeArg, templateKey: string): Promise<any>;
+    constructor(fields: Omit<FileMetadataManager, "getFileMetadata" | "getFileMetadataById" | "createFileMetadataById" | "deleteFileMetadataById">);
+    getFileMetadata(fileId: string): Promise<any>;
+    getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string): Promise<any>;
+    createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg): Promise<any>;
+    deleteFileMetadataById(fileId: string, scope: DeleteFileMetadataByIdScopeArg, templateKey: string): Promise<any>;
 }

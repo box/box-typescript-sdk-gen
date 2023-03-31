@@ -1,16 +1,17 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetEnterprisesIdDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
-export interface GetEnterprisesIdDevicePinnersOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetEnterpriseDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
+export interface GetEnterpriseDevicePinnersOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
-    readonly direction?: GetEnterprisesIdDevicePinnersOptionsArgDirectionField;
+    readonly direction?: GetEnterpriseDevicePinnersOptionsArgDirectionField;
 }
 export declare class DevicePinnersManager {
     readonly auth: DevicePinnersManagerAuthField;
-    constructor(fields: Omit<DevicePinnersManager, "getDevicePinnersId" | "deleteDevicePinnersId" | "getEnterprisesIdDevicePinners">);
-    getDevicePinnersId(devicePinnerId: string): Promise<any>;
-    deleteDevicePinnersId(devicePinnerId: string): Promise<any>;
-    getEnterprisesIdDevicePinners(enterpriseId: string, options?: GetEnterprisesIdDevicePinnersOptionsArg): Promise<any>;
+    constructor(fields: Omit<DevicePinnersManager, "getDevicePinnerById" | "deleteDevicePinnerById" | "getEnterpriseDevicePinners">);
+    getDevicePinnerById(devicePinnerId: string): Promise<any>;
+    deleteDevicePinnerById(devicePinnerId: string): Promise<any>;
+    getEnterpriseDevicePinners(enterpriseId: string, options?: GetEnterpriseDevicePinnersOptionsArg): Promise<any>;
 }

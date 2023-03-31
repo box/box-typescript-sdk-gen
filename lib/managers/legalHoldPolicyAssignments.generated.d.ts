@@ -1,6 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField = "file" | "file_version" | "folder" | "user";
 export interface GetLegalHoldPolicyAssignmentsOptionsArg {
     readonly assignToType?: GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField;
@@ -9,32 +10,32 @@ export interface GetLegalHoldPolicyAssignmentsOptionsArg {
     readonly limit?: number;
     readonly fields?: string;
 }
-export type PostLegalHoldPolicyAssignmentsRequestBodyArgAssignToFieldTypeField = "file" | "file_version" | "folder" | "user";
-export interface PostLegalHoldPolicyAssignmentsRequestBodyArgAssignToField {
-    readonly type: PostLegalHoldPolicyAssignmentsRequestBodyArgAssignToFieldTypeField;
+export type CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField = "file" | "file_version" | "folder" | "user";
+export interface CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField {
+    readonly type: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
     readonly id: string;
 }
-export interface PostLegalHoldPolicyAssignmentsRequestBodyArg {
+export interface CreateLegalHoldPolicyAssignmentRequestBodyArg {
     readonly policyId: string;
-    readonly assignTo: PostLegalHoldPolicyAssignmentsRequestBodyArgAssignToField;
+    readonly assignTo: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField;
 }
-export interface GetLegalHoldPolicyAssignmentsIdFilesOnHoldOptionsArg {
+export interface GetLegalHoldPolicyAssignmentFileOnHoldOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
 }
-export interface GetLegalHoldPolicyAssignmentsIdFileVersionsOnHoldOptionsArg {
+export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
 }
 export declare class LegalHoldPolicyAssignmentsManager {
     readonly auth: LegalHoldPolicyAssignmentsManagerAuthField;
-    constructor(fields: Omit<LegalHoldPolicyAssignmentsManager, "getLegalHoldPolicyAssignments" | "postLegalHoldPolicyAssignments" | "getLegalHoldPolicyAssignmentsId" | "deleteLegalHoldPolicyAssignmentsId" | "getLegalHoldPolicyAssignmentsIdFilesOnHold" | "getLegalHoldPolicyAssignmentsIdFileVersionsOnHold">);
+    constructor(fields: Omit<LegalHoldPolicyAssignmentsManager, "getLegalHoldPolicyAssignments" | "createLegalHoldPolicyAssignment" | "getLegalHoldPolicyAssignmentById" | "deleteLegalHoldPolicyAssignmentById" | "getLegalHoldPolicyAssignmentFileOnHold" | "getLegalHoldPolicyAssignmentFileVersionOnHold">);
     getLegalHoldPolicyAssignments(policyId: string, options?: GetLegalHoldPolicyAssignmentsOptionsArg): Promise<any>;
-    postLegalHoldPolicyAssignments(requestBody: PostLegalHoldPolicyAssignmentsRequestBodyArg): Promise<any>;
-    getLegalHoldPolicyAssignmentsId(legalHoldPolicyAssignmentId: string): Promise<any>;
-    deleteLegalHoldPolicyAssignmentsId(legalHoldPolicyAssignmentId: string): Promise<any>;
-    getLegalHoldPolicyAssignmentsIdFilesOnHold(legalHoldPolicyAssignmentId: string, options?: GetLegalHoldPolicyAssignmentsIdFilesOnHoldOptionsArg): Promise<any>;
-    getLegalHoldPolicyAssignmentsIdFileVersionsOnHold(legalHoldPolicyAssignmentId: string, options?: GetLegalHoldPolicyAssignmentsIdFileVersionsOnHoldOptionsArg): Promise<any>;
+    createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg): Promise<any>;
+    getLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<any>;
+    deleteLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<any>;
+    getLegalHoldPolicyAssignmentFileOnHold(legalHoldPolicyAssignmentId: string, options?: GetLegalHoldPolicyAssignmentFileOnHoldOptionsArg): Promise<any>;
+    getLegalHoldPolicyAssignmentFileVersionOnHold(legalHoldPolicyAssignmentId: string, options?: GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionsArg): Promise<any>;
 }

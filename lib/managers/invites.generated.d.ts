@@ -1,25 +1,26 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostInvitesRequestBodyArgEnterpriseField {
+import { JWTAuth } from "../jwtAuth.js";
+export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateInviteRequestBodyArgEnterpriseField {
     readonly id: string;
 }
-export interface PostInvitesRequestBodyArgActionableByField {
+export interface CreateInviteRequestBodyArgActionableByField {
     readonly login?: string;
 }
-export interface PostInvitesRequestBodyArg {
-    readonly enterprise: PostInvitesRequestBodyArgEnterpriseField;
-    readonly actionableBy: PostInvitesRequestBodyArgActionableByField;
+export interface CreateInviteRequestBodyArg {
+    readonly enterprise: CreateInviteRequestBodyArgEnterpriseField;
+    readonly actionableBy: CreateInviteRequestBodyArgActionableByField;
 }
-export interface PostInvitesOptionsArg {
+export interface CreateInviteOptionsArg {
     readonly fields?: string;
 }
-export interface GetInvitesIdOptionsArg {
+export interface GetInviteByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class InvitesManager {
     readonly auth: InvitesManagerAuthField;
-    constructor(fields: Omit<InvitesManager, "postInvites" | "getInvitesId">);
-    postInvites(requestBody: PostInvitesRequestBodyArg, options?: PostInvitesOptionsArg): Promise<any>;
-    getInvitesId(inviteId: string, options?: GetInvitesIdOptionsArg): Promise<any>;
+    constructor(fields: Omit<InvitesManager, "createInvite" | "getInviteById">);
+    createInvite(requestBody: CreateInviteRequestBodyArg, options?: CreateInviteOptionsArg): Promise<any>;
+    getInviteById(inviteId: string, options?: GetInviteByIdOptionsArg): Promise<any>;
 }

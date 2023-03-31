@@ -6,11 +6,12 @@ import { deserializeFiles } from "../schemas.generated.js";
 import { serializeFiles } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-export type DownloadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdContentOptionsArg {
+export type DownloadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface DownloadFileOptionsArg {
     readonly range?: string;
     readonly boxapi?: string;
     readonly version?: string;
@@ -18,10 +19,10 @@ export interface GetFilesIdContentOptionsArg {
 }
 export class DownloadsManager {
     readonly auth!: DownloadsManagerAuthField;
-    constructor(fields: Omit<DownloadsManager, "getFilesIdContent">) {
+    constructor(fields: Omit<DownloadsManager, "downloadFile">) {
         Object.assign(this, fields);
     }
-    async getFilesIdContent(fileId: string, options: GetFilesIdContentOptionsArg = {} satisfies GetFilesIdContentOptionsArg): Promise<any> {
+    async downloadFile(fileId: string, options: DownloadFileOptionsArg = {} satisfies DownloadFileOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: { ["version"]: options.version, ["access_token"]: options.accessToken }, headers: { ["range"]: options.range, ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

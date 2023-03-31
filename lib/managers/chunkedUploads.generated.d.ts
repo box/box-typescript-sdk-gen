@@ -1,34 +1,35 @@
 import { UploadPart } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostFilesUploadSessionsRequestBodyArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type ChunkedUploadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateFileUploadSessionRequestBodyArg {
     readonly folderId: string;
     readonly fileSize: number;
     readonly fileName: string;
 }
-export interface PostFilesIdUploadSessionsRequestBodyArg {
+export interface CreateFileUploadSessionForExistingFileRequestBodyArg {
     readonly fileSize: number;
     readonly fileName?: string;
 }
-export interface GetFilesUploadSessionsIdPartsOptionsArg {
+export interface GetFileUploadSessionPartsOptionsArg {
     readonly offset?: number;
     readonly limit?: number;
 }
-export interface PostFilesUploadSessionsIdCommitRequestBodyArg {
+export interface CreateFileUploadSessionCommitRequestBodyArg {
     readonly parts: readonly UploadPart[];
 }
-export interface PostFilesUploadSessionsIdCommitOptionsArg {
+export interface CreateFileUploadSessionCommitOptionsArg {
     readonly ifMatch?: string;
     readonly ifNoneMatch?: string;
 }
 export declare class ChunkedUploadsManager {
     readonly auth: ChunkedUploadsManagerAuthField;
-    constructor(fields: Omit<ChunkedUploadsManager, "postFilesUploadSessions" | "postFilesIdUploadSessions" | "getFilesUploadSessionsId" | "deleteFilesUploadSessionsId" | "getFilesUploadSessionsIdParts" | "postFilesUploadSessionsIdCommit">);
-    postFilesUploadSessions(requestBody: PostFilesUploadSessionsRequestBodyArg): Promise<any>;
-    postFilesIdUploadSessions(fileId: string, requestBody: PostFilesIdUploadSessionsRequestBodyArg): Promise<any>;
-    getFilesUploadSessionsId(uploadSessionId: string): Promise<any>;
-    deleteFilesUploadSessionsId(uploadSessionId: string): Promise<any>;
-    getFilesUploadSessionsIdParts(uploadSessionId: string, options?: GetFilesUploadSessionsIdPartsOptionsArg): Promise<any>;
-    postFilesUploadSessionsIdCommit(uploadSessionId: string, digest: string, requestBody: PostFilesUploadSessionsIdCommitRequestBodyArg, options?: PostFilesUploadSessionsIdCommitOptionsArg): Promise<any>;
+    constructor(fields: Omit<ChunkedUploadsManager, "createFileUploadSession" | "createFileUploadSessionForExistingFile" | "getFileUploadSessionById" | "deleteFileUploadSessionById" | "getFileUploadSessionParts" | "createFileUploadSessionCommit">);
+    createFileUploadSession(requestBody: CreateFileUploadSessionRequestBodyArg): Promise<any>;
+    createFileUploadSessionForExistingFile(fileId: string, requestBody: CreateFileUploadSessionForExistingFileRequestBodyArg): Promise<any>;
+    getFileUploadSessionById(uploadSessionId: string): Promise<any>;
+    deleteFileUploadSessionById(uploadSessionId: string): Promise<any>;
+    getFileUploadSessionParts(uploadSessionId: string, options?: GetFileUploadSessionPartsOptionsArg): Promise<any>;
+    createFileUploadSessionCommit(uploadSessionId: string, digest: string, requestBody: CreateFileUploadSessionCommitRequestBodyArg, options?: CreateFileUploadSessionCommitOptionsArg): Promise<any>;
 }

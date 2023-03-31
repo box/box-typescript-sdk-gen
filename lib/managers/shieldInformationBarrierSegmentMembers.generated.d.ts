@@ -2,28 +2,29 @@ import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { UserBase } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type ShieldInformationBarrierSegmentMembersManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type ShieldInformationBarrierSegmentMembersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetShieldInformationBarrierSegmentMembersOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostShieldInformationBarrierSegmentMembersRequestBodyArgTypeField = "shield_information_barrier_segment_member";
-export type PostShieldInformationBarrierSegmentMembersRequestBodyArgShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
-export interface PostShieldInformationBarrierSegmentMembersRequestBodyArgShieldInformationBarrierSegmentField {
+export type CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField = "shield_information_barrier_segment_member";
+export type CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
+export interface CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField {
     readonly id?: string;
-    readonly type?: PostShieldInformationBarrierSegmentMembersRequestBodyArgShieldInformationBarrierSegmentFieldTypeField;
+    readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField;
 }
-export interface PostShieldInformationBarrierSegmentMembersRequestBodyArg {
-    readonly type?: PostShieldInformationBarrierSegmentMembersRequestBodyArgTypeField;
+export interface CreateShieldInformationBarrierSegmentMemberRequestBodyArg {
+    readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField;
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-    readonly shieldInformationBarrierSegment: PostShieldInformationBarrierSegmentMembersRequestBodyArgShieldInformationBarrierSegmentField;
+    readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
     readonly user: UserBase;
 }
 export declare class ShieldInformationBarrierSegmentMembersManager {
     readonly auth: ShieldInformationBarrierSegmentMembersManagerAuthField;
-    constructor(fields: Omit<ShieldInformationBarrierSegmentMembersManager, "getShieldInformationBarrierSegmentMembersId" | "deleteShieldInformationBarrierSegmentMembersId" | "getShieldInformationBarrierSegmentMembers" | "postShieldInformationBarrierSegmentMembers">);
-    getShieldInformationBarrierSegmentMembersId(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
-    deleteShieldInformationBarrierSegmentMembersId(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
+    constructor(fields: Omit<ShieldInformationBarrierSegmentMembersManager, "getShieldInformationBarrierSegmentMemberById" | "deleteShieldInformationBarrierSegmentMemberById" | "getShieldInformationBarrierSegmentMembers" | "createShieldInformationBarrierSegmentMember">);
+    getShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
+    deleteShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
     getShieldInformationBarrierSegmentMembers(shieldInformationBarrierSegmentId: string, options?: GetShieldInformationBarrierSegmentMembersOptionsArg): Promise<undefined>;
-    postShieldInformationBarrierSegmentMembers(requestBody: PostShieldInformationBarrierSegmentMembersRequestBodyArg): Promise<any>;
+    createShieldInformationBarrierSegmentMember(requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Promise<any>;
 }

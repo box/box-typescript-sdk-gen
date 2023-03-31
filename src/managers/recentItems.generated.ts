@@ -6,12 +6,13 @@ import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type RecentItemsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type RecentItemsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetRecentItemsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

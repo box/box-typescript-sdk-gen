@@ -12,26 +12,27 @@ import { deserializeConflictError } from "../schemas.generated.js";
 import { serializeConflictError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface OptionsFilesContentRequestBodyArgParentField {
+export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface PreflightFileUploadRequestBodyArgParentField {
     readonly id?: string;
 }
-export interface OptionsFilesContentRequestBodyArg {
+export interface PreflightFileUploadRequestBodyArg {
     readonly name?: string;
     readonly size?: number;
-    readonly parent?: OptionsFilesContentRequestBodyArgParentField;
+    readonly parent?: PreflightFileUploadRequestBodyArgParentField;
 }
 export class UploadsManager {
     readonly auth!: UploadsManagerAuthField;
-    constructor(fields: Omit<UploadsManager, "optionsFilesContent">) {
+    constructor(fields: Omit<UploadsManager, "preflightFileUpload">) {
         Object.assign(this, fields);
     }
-    async optionsFilesContent(requestBody: OptionsFilesContentRequestBodyArg): Promise<any> {
+    async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/content") as string, { method: "OPTIONS", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadUrl(deserializeJSON(response.text) as JSON);
     }

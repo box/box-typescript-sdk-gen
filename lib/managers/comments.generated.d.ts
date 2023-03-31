@@ -1,39 +1,40 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type CommentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdCommentsOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type CommentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileCommentsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface GetCommentsIdOptionsArg {
+export interface GetCommentByIdOptionsArg {
     readonly fields?: string;
 }
-export interface PutCommentsIdRequestBodyArg {
+export interface UpdateCommentByIdRequestBodyArg {
     readonly message?: string;
 }
-export interface PutCommentsIdOptionsArg {
+export interface UpdateCommentByIdOptionsArg {
     readonly fields?: string;
 }
-export type PostCommentsRequestBodyArgItemFieldTypeField = "file" | "comment";
-export interface PostCommentsRequestBodyArgItemField {
+export type CreateCommentRequestBodyArgItemFieldTypeField = "file" | "comment";
+export interface CreateCommentRequestBodyArgItemField {
     readonly id: string;
-    readonly type: PostCommentsRequestBodyArgItemFieldTypeField;
+    readonly type: CreateCommentRequestBodyArgItemFieldTypeField;
 }
-export interface PostCommentsRequestBodyArg {
+export interface CreateCommentRequestBodyArg {
     readonly message: string;
     readonly taggedMessage?: string;
-    readonly item?: PostCommentsRequestBodyArgItemField;
+    readonly item?: CreateCommentRequestBodyArgItemField;
 }
-export interface PostCommentsOptionsArg {
+export interface CreateCommentOptionsArg {
     readonly fields?: string;
 }
 export declare class CommentsManager {
     readonly auth: CommentsManagerAuthField;
-    constructor(fields: Omit<CommentsManager, "getFilesIdComments" | "getCommentsId" | "putCommentsId" | "deleteCommentsId" | "postComments">);
-    getFilesIdComments(fileId: string, options?: GetFilesIdCommentsOptionsArg): Promise<any>;
-    getCommentsId(commentId: string, options?: GetCommentsIdOptionsArg): Promise<any>;
-    putCommentsId(commentId: string, requestBody: PutCommentsIdRequestBodyArg, options?: PutCommentsIdOptionsArg): Promise<any>;
-    deleteCommentsId(commentId: string): Promise<any>;
-    postComments(requestBody: PostCommentsRequestBodyArg, options?: PostCommentsOptionsArg): Promise<any>;
+    constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">);
+    getFileComments(fileId: string, options?: GetFileCommentsOptionsArg): Promise<any>;
+    getCommentById(commentId: string, options?: GetCommentByIdOptionsArg): Promise<any>;
+    updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, options?: UpdateCommentByIdOptionsArg): Promise<any>;
+    deleteCommentById(commentId: string): Promise<any>;
+    createComment(requestBody: CreateCommentRequestBodyArg, options?: CreateCommentOptionsArg): Promise<any>;
 }
