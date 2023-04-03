@@ -29,6 +29,8 @@ export interface GetSearchOptionsArg {
     readonly includeRecentSharedLinks?: boolean;
     readonly fields?: string;
     readonly offset?: number;
+    readonly deletedUserIds?: readonly string[];
+    readonly deletedAtRange?: readonly string[];
 }
 export declare class SearchManager {
     readonly auth: SearchManagerAuthField;
