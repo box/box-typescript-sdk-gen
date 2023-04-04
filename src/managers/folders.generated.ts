@@ -1,6 +1,6 @@
-import { Folder } from "../schemas.generated.js";
-import { deserializeFolder } from "../schemas.generated.js";
-import { serializeFolder } from "../schemas.generated.js";
+import { FolderFull } from "../schemas.generated.js";
+import { deserializeFolderFull } from "../schemas.generated.js";
+import { serializeFolderFull } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
@@ -124,7 +124,7 @@ export class FoldersManager {
     }
     async getFolderById(folderId: string, options: GetFolderByIdOptionsArg = {} satisfies GetFolderByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
     }
     async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, options: RestoreFolderFromTrashOptionsArg = {} satisfies RestoreFolderFromTrashOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -132,7 +132,7 @@ export class FoldersManager {
     }
     async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, options: UpdateFolderByIdOptionsArg = {} satisfies UpdateFolderByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: { ["fields"]: options.fields }, headers: { ["if-match"]: options.ifMatch }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
     }
     async deleteFolderById(folderId: string, options: DeleteFolderByIdOptionsArg = {} satisfies DeleteFolderByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: { ["recursive"]: options.recursive }, headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -144,10 +144,10 @@ export class FoldersManager {
     }
     async createFolder(requestBody: CreateFolderRequestBodyArg, options: CreateFolderOptionsArg = {} satisfies CreateFolderOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
     }
     async copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, options: CopyFolderOptionsArg = {} satisfies CopyFolderOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
     }
 }

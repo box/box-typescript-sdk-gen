@@ -1,6 +1,6 @@
-import { Folder } from "../schemas.generated.js";
-import { deserializeFolder } from "../schemas.generated.js";
-import { serializeFolder } from "../schemas.generated.js";
+import { FolderFull } from "../schemas.generated.js";
+import { deserializeFolderFull } from "../schemas.generated.js";
+import { serializeFolderFull } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
@@ -30,6 +30,6 @@ export class TransferManager {
     }
     async transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, options: TransferOwnedFolderOptionsArg = {} satisfies TransferOwnedFolderOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolder(deserializeJSON(response.text) as JSON);
+        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
     }
 }

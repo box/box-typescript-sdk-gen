@@ -4,6 +4,9 @@ import { serializeComments } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
+import { CommentFull } from "../schemas.generated.js";
+import { deserializeCommentFull } from "../schemas.generated.js";
+import { serializeCommentFull } from "../schemas.generated.js";
 import { Comment } from "../schemas.generated.js";
 import { deserializeComment } from "../schemas.generated.js";
 import { serializeComment } from "../schemas.generated.js";
@@ -54,11 +57,11 @@ export class CommentsManager {
     }
     async getCommentById(commentId: string, options: GetCommentByIdOptionsArg = {} satisfies GetCommentByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeCommentFull(deserializeJSON(response.text) as JSON);
     }
     async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, options: UpdateCommentByIdOptionsArg = {} satisfies UpdateCommentByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeCommentFull(deserializeJSON(response.text) as JSON);
     }
     async deleteCommentById(commentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

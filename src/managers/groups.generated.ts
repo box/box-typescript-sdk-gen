@@ -7,6 +7,9 @@ import { serializeClientError } from "../schemas.generated.js";
 import { Group } from "../schemas.generated.js";
 import { deserializeGroup } from "../schemas.generated.js";
 import { serializeGroup } from "../schemas.generated.js";
+import { GroupFull } from "../schemas.generated.js";
+import { deserializeGroupFull } from "../schemas.generated.js";
+import { serializeGroupFull } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
 import { JWTAuth } from "../jwtAuth.js";
@@ -66,11 +69,11 @@ export class GroupsManager {
     }
     async getGroupById(groupId: string, options: GetGroupByIdOptionsArg = {} satisfies GetGroupByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroup(deserializeJSON(response.text) as JSON);
+        return deserializeGroupFull(deserializeJSON(response.text) as JSON);
     }
     async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, options: UpdateGroupByIdOptionsArg = {} satisfies UpdateGroupByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroup(deserializeJSON(response.text) as JSON);
+        return deserializeGroupFull(deserializeJSON(response.text) as JSON);
     }
     async deleteGroupById(groupId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

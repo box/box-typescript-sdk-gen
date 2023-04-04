@@ -4,9 +4,9 @@ import { serializeFileVersions } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { FileVersion } from "../schemas.generated.js";
-import { deserializeFileVersion } from "../schemas.generated.js";
-import { serializeFileVersion } from "../schemas.generated.js";
+import { FileVersionFull } from "../schemas.generated.js";
+import { deserializeFileVersionFull } from "../schemas.generated.js";
+import { serializeFileVersionFull } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
 import { JWTAuth } from "../jwtAuth.js";
@@ -49,11 +49,11 @@ export class FileVersionsManager {
     }
     async getFileVersionById(fileId: string, fileVersionId: string, options: GetFileVersionByIdOptionsArg = {} satisfies GetFileVersionByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
     }
     async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
     }
     async deleteFileVersionById(fileId: string, fileVersionId: string, options: DeleteFileVersionByIdOptionsArg = {} satisfies DeleteFileVersionByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -61,6 +61,6 @@ export class FileVersionsManager {
     }
     async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, options: PromoteFileVersionOptionsArg = {} satisfies PromoteFileVersionOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersion(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
     }
 }
