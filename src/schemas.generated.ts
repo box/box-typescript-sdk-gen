@@ -11713,28 +11713,28 @@ export type FolderFull = Folder & {
     readonly syncState?: FolderFullSyncStateField;
     /**
      * Specifies if this folder has any other collaborators. */
-    readonly hasCollaborations: boolean;
-    readonly permissions: FolderFullPermissionsField;
-    readonly tags: readonly string[];
-    readonly canNonOwnersInvite: boolean;
+    readonly hasCollaborations?: boolean;
+    readonly permissions?: FolderFullPermissionsField;
+    readonly tags?: readonly string[];
+    readonly canNonOwnersInvite?: boolean;
     /**
      * Specifies if this folder is owned by a user outside of the
      * authenticated enterprise. */
-    readonly isExternallyOwned: boolean;
+    readonly isExternallyOwned?: boolean;
     readonly metadata?: FolderFullMetadataField;
-    readonly isCollaborationRestrictedToEnterprise: boolean;
+    readonly isCollaborationRestrictedToEnterprise?: boolean;
     /**
      * A list of access levels that are available
      * for this folder.
      * 
      * For some folders, like the root folder, this will always
      * be an empty list as sharing is not allowed at that level. */
-    readonly allowedSharedLinkAccessLevels: readonly FolderFullAllowedSharedLinkAccessLevelsField[];
+    readonly allowedSharedLinkAccessLevels?: readonly FolderFullAllowedSharedLinkAccessLevelsField[];
     /**
      * A list of the types of roles that user can be invited at
      * when sharing this folder. */
-    readonly allowedInviteeRoles: readonly FolderFullAllowedInviteeRolesField[];
-    readonly watermarkInfo: FolderFullWatermarkInfoField;
+    readonly allowedInviteeRoles?: readonly FolderFullAllowedInviteeRolesField[];
+    readonly watermarkInfo?: FolderFullWatermarkInfoField;
     /**
      * Specifies if the folder can be accessed
      * with the direct shared link or a shared link
@@ -11755,70 +11755,43 @@ export function deserializeFolderFull(val: JSON): FolderFull {
         throw "Expecting an object for \"FolderFull\"";
     }
     const syncState: undefined | FolderFullSyncStateField = val.sync_state === void 0 ? void 0 : deserializeFolderFullSyncStateField(val.sync_state);
-    if (val.has_collaborations === void 0) {
-        throw "Expecting \"has_collaborations\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.has_collaborations, "boolean")) {
+    if (!(val.has_collaborations === void 0) && !isJson(val.has_collaborations, "boolean")) {
         throw "Expecting boolean for \"has_collaborations\" of type \"FolderFull\"";
     }
-    const hasCollaborations: boolean = val.has_collaborations;
-    if (val.permissions === void 0) {
-        throw "Expecting \"permissions\" of type \"FolderFull\" to be defined";
-    }
-    const permissions: FolderFullPermissionsField = deserializeFolderFullPermissionsField(val.permissions);
-    if (val.tags === void 0) {
-        throw "Expecting \"tags\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.tags, "array")) {
+    const hasCollaborations: undefined | boolean = isJson(val.has_collaborations, "boolean") ? val.has_collaborations : void 0;
+    const permissions: undefined | FolderFullPermissionsField = val.permissions === void 0 ? void 0 : deserializeFolderFullPermissionsField(val.permissions);
+    if (!(val.tags === void 0) && !isJson(val.tags, "array")) {
         throw "Expecting array for \"tags\" of type \"FolderFull\"";
     }
-    const tags: readonly string[] = val.tags.map(function (itm: JSON): undefined {
+    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: JSON): undefined {
         return void 0;
-    }) as readonly any[];
-    if (val.can_non_owners_invite === void 0) {
-        throw "Expecting \"can_non_owners_invite\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.can_non_owners_invite, "boolean")) {
+    }) as readonly any[] : void 0;
+    if (!(val.can_non_owners_invite === void 0) && !isJson(val.can_non_owners_invite, "boolean")) {
         throw "Expecting boolean for \"can_non_owners_invite\" of type \"FolderFull\"";
     }
-    const canNonOwnersInvite: boolean = val.can_non_owners_invite;
-    if (val.is_externally_owned === void 0) {
-        throw "Expecting \"is_externally_owned\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.is_externally_owned, "boolean")) {
+    const canNonOwnersInvite: undefined | boolean = isJson(val.can_non_owners_invite, "boolean") ? val.can_non_owners_invite : void 0;
+    if (!(val.is_externally_owned === void 0) && !isJson(val.is_externally_owned, "boolean")) {
         throw "Expecting boolean for \"is_externally_owned\" of type \"FolderFull\"";
     }
-    const isExternallyOwned: boolean = val.is_externally_owned;
+    const isExternallyOwned: undefined | boolean = isJson(val.is_externally_owned, "boolean") ? val.is_externally_owned : void 0;
     const metadata: undefined | FolderFullMetadataField = val.metadata === void 0 ? void 0 : deserializeFolderFullMetadataField(val.metadata);
-    if (val.is_collaboration_restricted_to_enterprise === void 0) {
-        throw "Expecting \"is_collaboration_restricted_to_enterprise\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.is_collaboration_restricted_to_enterprise, "boolean")) {
+    if (!(val.is_collaboration_restricted_to_enterprise === void 0) && !isJson(val.is_collaboration_restricted_to_enterprise, "boolean")) {
         throw "Expecting boolean for \"is_collaboration_restricted_to_enterprise\" of type \"FolderFull\"";
     }
-    const isCollaborationRestrictedToEnterprise: boolean = val.is_collaboration_restricted_to_enterprise;
-    if (val.allowed_shared_link_access_levels === void 0) {
-        throw "Expecting \"allowed_shared_link_access_levels\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.allowed_shared_link_access_levels, "array")) {
+    const isCollaborationRestrictedToEnterprise: undefined | boolean = isJson(val.is_collaboration_restricted_to_enterprise, "boolean") ? val.is_collaboration_restricted_to_enterprise : void 0;
+    if (!(val.allowed_shared_link_access_levels === void 0) && !isJson(val.allowed_shared_link_access_levels, "array")) {
         throw "Expecting array for \"allowed_shared_link_access_levels\" of type \"FolderFull\"";
     }
-    const allowedSharedLinkAccessLevels: readonly FolderFullAllowedSharedLinkAccessLevelsField[] = val.allowed_shared_link_access_levels.map(function (itm: JSON): any {
+    const allowedSharedLinkAccessLevels: undefined | readonly FolderFullAllowedSharedLinkAccessLevelsField[] = isJson(val.allowed_shared_link_access_levels, "array") ? val.allowed_shared_link_access_levels.map(function (itm: JSON): any {
         return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
-    }) as readonly any[];
-    if (val.allowed_invitee_roles === void 0) {
-        throw "Expecting \"allowed_invitee_roles\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.allowed_invitee_roles, "array")) {
+    }) as readonly any[] : void 0;
+    if (!(val.allowed_invitee_roles === void 0) && !isJson(val.allowed_invitee_roles, "array")) {
         throw "Expecting array for \"allowed_invitee_roles\" of type \"FolderFull\"";
     }
-    const allowedInviteeRoles: readonly FolderFullAllowedInviteeRolesField[] = val.allowed_invitee_roles.map(function (itm: JSON): any {
+    const allowedInviteeRoles: undefined | readonly FolderFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: JSON): any {
         return deserializeFolderFullAllowedInviteeRolesField(itm);
-    }) as readonly any[];
-    if (val.watermark_info === void 0) {
-        throw "Expecting \"watermark_info\" of type \"FolderFull\" to be defined";
-    }
-    const watermarkInfo: FolderFullWatermarkInfoField = deserializeFolderFullWatermarkInfoField(val.watermark_info);
+    }) as readonly any[] : void 0;
+    const watermarkInfo: undefined | FolderFullWatermarkInfoField = val.watermark_info === void 0 ? void 0 : deserializeFolderFullWatermarkInfoField(val.watermark_info);
     if (!(val.is_accessible_via_shared_link === void 0) && !isJson(val.is_accessible_via_shared_link, "boolean")) {
         throw "Expecting boolean for \"is_accessible_via_shared_link\" of type \"FolderFull\"";
     }
@@ -11920,13 +11893,13 @@ export function serializeFolderFull(val: FolderFull): JSON {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderFull\"";
     }
-    return { ...base, ...{ ["sync_state"]: val.syncState === void 0 ? void 0 : serializeFolderFullSyncStateField(val.syncState), ["has_collaborations"]: val.hasCollaborations, ["permissions"]: serializeFolderFullPermissionsField(val.permissions), ["tags"]: val.tags.map(function (item: string): undefined {
+    return { ...base, ...{ ["sync_state"]: val.syncState === void 0 ? void 0 : serializeFolderFullSyncStateField(val.syncState), ["has_collaborations"]: val.hasCollaborations, ["permissions"]: val.permissions === void 0 ? void 0 : serializeFolderFullPermissionsField(val.permissions), ["tags"]: val.tags === void 0 ? void 0 : val.tags.map(function (item: string): undefined {
                 return void 0;
-            }) as readonly any[], ["can_non_owners_invite"]: val.canNonOwnersInvite, ["is_externally_owned"]: val.isExternallyOwned, ["metadata"]: val.metadata === void 0 ? void 0 : serializeFolderFullMetadataField(val.metadata), ["is_collaboration_restricted_to_enterprise"]: val.isCollaborationRestrictedToEnterprise, ["allowed_shared_link_access_levels"]: val.allowedSharedLinkAccessLevels.map(function (item: FolderFullAllowedSharedLinkAccessLevelsField): any {
+            }) as readonly any[], ["can_non_owners_invite"]: val.canNonOwnersInvite, ["is_externally_owned"]: val.isExternallyOwned, ["metadata"]: val.metadata === void 0 ? void 0 : serializeFolderFullMetadataField(val.metadata), ["is_collaboration_restricted_to_enterprise"]: val.isCollaborationRestrictedToEnterprise, ["allowed_shared_link_access_levels"]: val.allowedSharedLinkAccessLevels === void 0 ? void 0 : val.allowedSharedLinkAccessLevels.map(function (item: FolderFullAllowedSharedLinkAccessLevelsField): any {
                 return serializeFolderFullAllowedSharedLinkAccessLevelsField(item);
-            }) as readonly any[], ["allowed_invitee_roles"]: val.allowedInviteeRoles.map(function (item: FolderFullAllowedInviteeRolesField): any {
+            }) as readonly any[], ["allowed_invitee_roles"]: val.allowedInviteeRoles === void 0 ? void 0 : val.allowedInviteeRoles.map(function (item: FolderFullAllowedInviteeRolesField): any {
                 return serializeFolderFullAllowedInviteeRolesField(item);
-            }) as readonly any[], ["watermark_info"]: serializeFolderFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink, ["can_non_owners_view_collaborators"]: val.canNonOwnersViewCollaborators, ["classification"]: val.classification === void 0 ? void 0 : serializeFolderFullClassificationField(val.classification) } };
+            }) as readonly any[], ["watermark_info"]: val.watermarkInfo === void 0 ? void 0 : serializeFolderFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink, ["can_non_owners_view_collaborators"]: val.canNonOwnersViewCollaborators, ["classification"]: val.classification === void 0 ? void 0 : serializeFolderFullClassificationField(val.classification) } };
 }
 export type CollaborationItemField = File | Folder | WebLink;
 export function deserializeCollaborationItemField(val: JSON): CollaborationItemField {
@@ -13003,8 +12976,8 @@ export type FileFull = File & {
     /**
      * The number of comments on this file */
     readonly commentCount?: number;
-    readonly permissions: FileFullPermissionsField;
-    readonly tags: readonly string[];
+    readonly permissions?: FileFullPermissionsField;
+    readonly tags?: readonly string[];
     readonly lock?: FileFullLockField;
     /**
      * Indicates the (optional) file extension for this file. By default,
@@ -13024,14 +12997,14 @@ export type FileFull = File & {
     /**
      * A list of the types of roles that user can be invited at
      * when sharing this file. */
-    readonly allowedInviteeRoles: readonly FileFullAllowedInviteeRolesField[];
+    readonly allowedInviteeRoles?: readonly FileFullAllowedInviteeRolesField[];
     /**
      * Specifies if this file is owned by a user outside of the
      * authenticated enterprise. */
-    readonly isExternallyOwned: boolean;
+    readonly isExternallyOwned?: boolean;
     /**
      * Specifies if this file has any other collaborators. */
-    readonly hasCollaborations: boolean;
+    readonly hasCollaborations?: boolean;
     readonly metadata?: FileFullMetadataField;
     /**
      * When the file will automatically be deleted */
@@ -13059,19 +13032,13 @@ export function deserializeFileFull(val: JSON): FileFull {
         throw "Expecting number for \"comment_count\" of type \"FileFull\"";
     }
     const commentCount: undefined | number = isJson(val.comment_count, "number") ? val.comment_count : void 0;
-    if (val.permissions === void 0) {
-        throw "Expecting \"permissions\" of type \"FileFull\" to be defined";
-    }
-    const permissions: FileFullPermissionsField = deserializeFileFullPermissionsField(val.permissions);
-    if (val.tags === void 0) {
-        throw "Expecting \"tags\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.tags, "array")) {
+    const permissions: undefined | FileFullPermissionsField = val.permissions === void 0 ? void 0 : deserializeFileFullPermissionsField(val.permissions);
+    if (!(val.tags === void 0) && !isJson(val.tags, "array")) {
         throw "Expecting array for \"tags\" of type \"FileFull\"";
     }
-    const tags: readonly string[] = val.tags.map(function (itm: JSON): undefined {
+    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: JSON): undefined {
         return void 0;
-    }) as readonly any[];
+    }) as readonly any[] : void 0;
     const lock: undefined | FileFullLockField = val.lock === void 0 ? void 0 : deserializeFileFullLockField(val.lock);
     if (!(val.extension === void 0) && !isJson(val.extension, "string")) {
         throw "Expecting string for \"extension\" of type \"FileFull\"";
@@ -13087,29 +13054,20 @@ export function deserializeFileFull(val: JSON): FileFull {
         throw "Expecting boolean for \"is_accessible_via_shared_link\" of type \"FileFull\"";
     }
     const isAccessibleViaSharedLink: undefined | boolean = isJson(val.is_accessible_via_shared_link, "boolean") ? val.is_accessible_via_shared_link : void 0;
-    if (val.allowed_invitee_roles === void 0) {
-        throw "Expecting \"allowed_invitee_roles\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.allowed_invitee_roles, "array")) {
+    if (!(val.allowed_invitee_roles === void 0) && !isJson(val.allowed_invitee_roles, "array")) {
         throw "Expecting array for \"allowed_invitee_roles\" of type \"FileFull\"";
     }
-    const allowedInviteeRoles: readonly FileFullAllowedInviteeRolesField[] = val.allowed_invitee_roles.map(function (itm: JSON): any {
+    const allowedInviteeRoles: undefined | readonly FileFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: JSON): any {
         return deserializeFileFullAllowedInviteeRolesField(itm);
-    }) as readonly any[];
-    if (val.is_externally_owned === void 0) {
-        throw "Expecting \"is_externally_owned\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.is_externally_owned, "boolean")) {
+    }) as readonly any[] : void 0;
+    if (!(val.is_externally_owned === void 0) && !isJson(val.is_externally_owned, "boolean")) {
         throw "Expecting boolean for \"is_externally_owned\" of type \"FileFull\"";
     }
-    const isExternallyOwned: boolean = val.is_externally_owned;
-    if (val.has_collaborations === void 0) {
-        throw "Expecting \"has_collaborations\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.has_collaborations, "boolean")) {
+    const isExternallyOwned: undefined | boolean = isJson(val.is_externally_owned, "boolean") ? val.is_externally_owned : void 0;
+    if (!(val.has_collaborations === void 0) && !isJson(val.has_collaborations, "boolean")) {
         throw "Expecting boolean for \"has_collaborations\" of type \"FileFull\"";
     }
-    const hasCollaborations: boolean = val.has_collaborations;
+    const hasCollaborations: undefined | boolean = isJson(val.has_collaborations, "boolean") ? val.has_collaborations : void 0;
     const metadata: undefined | FileFullMetadataField = val.metadata === void 0 ? void 0 : deserializeFileFullMetadataField(val.metadata);
     if (!(val.expires_at === void 0) && !isJson(val.expires_at, "string")) {
         throw "Expecting string for \"expires_at\" of type \"FileFull\"";
@@ -13235,9 +13193,9 @@ export function serializeFileFull(val: FileFull): JSON {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileFull\"";
     }
-    return { ...base, ...{ ["version_number"]: val.versionNumber, ["comment_count"]: val.commentCount, ["permissions"]: serializeFileFullPermissionsField(val.permissions), ["tags"]: val.tags.map(function (item: string): undefined {
+    return { ...base, ...{ ["version_number"]: val.versionNumber, ["comment_count"]: val.commentCount, ["permissions"]: val.permissions === void 0 ? void 0 : serializeFileFullPermissionsField(val.permissions), ["tags"]: val.tags === void 0 ? void 0 : val.tags.map(function (item: string): undefined {
                 return void 0;
-            }) as readonly any[], ["lock"]: val.lock === void 0 ? void 0 : serializeFileFullLockField(val.lock), ["extension"]: val.extension, ["is_package"]: val.isPackage, ["expiring_embed_link"]: val.expiringEmbedLink === void 0 ? void 0 : serializeFileFullExpiringEmbedLinkField(val.expiringEmbedLink), ["watermark_info"]: val.watermarkInfo === void 0 ? void 0 : serializeFileFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink, ["allowed_invitee_roles"]: val.allowedInviteeRoles.map(function (item: FileFullAllowedInviteeRolesField): any {
+            }) as readonly any[], ["lock"]: val.lock === void 0 ? void 0 : serializeFileFullLockField(val.lock), ["extension"]: val.extension, ["is_package"]: val.isPackage, ["expiring_embed_link"]: val.expiringEmbedLink === void 0 ? void 0 : serializeFileFullExpiringEmbedLinkField(val.expiringEmbedLink), ["watermark_info"]: val.watermarkInfo === void 0 ? void 0 : serializeFileFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink, ["allowed_invitee_roles"]: val.allowedInviteeRoles === void 0 ? void 0 : val.allowedInviteeRoles.map(function (item: FileFullAllowedInviteeRolesField): any {
                 return serializeFileFullAllowedInviteeRolesField(item);
             }) as readonly any[], ["is_externally_owned"]: val.isExternallyOwned, ["has_collaborations"]: val.hasCollaborations, ["metadata"]: val.metadata === void 0 ? void 0 : serializeFileFullMetadataField(val.metadata), ["expires_at"]: val.expiresAt, ["representations"]: val.representations === void 0 ? void 0 : serializeFileFullRepresentationsField(val.representations), ["classification"]: val.classification === void 0 ? void 0 : serializeFileFullClassificationField(val.classification), ["uploader_display_name"]: val.uploaderDisplayName, ["disposition_at"]: val.dispositionAt, ["shared_link_permission_options"]: val.sharedLinkPermissionOptions === void 0 ? void 0 : val.sharedLinkPermissionOptions.map(function (item: FileFullSharedLinkPermissionOptionsField): any {
                 return serializeFileFullSharedLinkPermissionOptionsField(item);

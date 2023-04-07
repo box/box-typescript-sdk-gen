@@ -2801,28 +2801,28 @@ export type FolderFull = Folder & {
     readonly syncState?: FolderFullSyncStateField;
     /**
      * Specifies if this folder has any other collaborators. */
-    readonly hasCollaborations: boolean;
-    readonly permissions: FolderFullPermissionsField;
-    readonly tags: readonly string[];
-    readonly canNonOwnersInvite: boolean;
+    readonly hasCollaborations?: boolean;
+    readonly permissions?: FolderFullPermissionsField;
+    readonly tags?: readonly string[];
+    readonly canNonOwnersInvite?: boolean;
     /**
      * Specifies if this folder is owned by a user outside of the
      * authenticated enterprise. */
-    readonly isExternallyOwned: boolean;
+    readonly isExternallyOwned?: boolean;
     readonly metadata?: FolderFullMetadataField;
-    readonly isCollaborationRestrictedToEnterprise: boolean;
+    readonly isCollaborationRestrictedToEnterprise?: boolean;
     /**
      * A list of access levels that are available
      * for this folder.
      *
      * For some folders, like the root folder, this will always
      * be an empty list as sharing is not allowed at that level. */
-    readonly allowedSharedLinkAccessLevels: readonly FolderFullAllowedSharedLinkAccessLevelsField[];
+    readonly allowedSharedLinkAccessLevels?: readonly FolderFullAllowedSharedLinkAccessLevelsField[];
     /**
      * A list of the types of roles that user can be invited at
      * when sharing this folder. */
-    readonly allowedInviteeRoles: readonly FolderFullAllowedInviteeRolesField[];
-    readonly watermarkInfo: FolderFullWatermarkInfoField;
+    readonly allowedInviteeRoles?: readonly FolderFullAllowedInviteeRolesField[];
+    readonly watermarkInfo?: FolderFullWatermarkInfoField;
     /**
      * Specifies if the folder can be accessed
      * with the direct shared link or a shared link
@@ -3064,8 +3064,8 @@ export type FileFull = File & {
     /**
      * The number of comments on this file */
     readonly commentCount?: number;
-    readonly permissions: FileFullPermissionsField;
-    readonly tags: readonly string[];
+    readonly permissions?: FileFullPermissionsField;
+    readonly tags?: readonly string[];
     readonly lock?: FileFullLockField;
     /**
      * Indicates the (optional) file extension for this file. By default,
@@ -3085,14 +3085,14 @@ export type FileFull = File & {
     /**
      * A list of the types of roles that user can be invited at
      * when sharing this file. */
-    readonly allowedInviteeRoles: readonly FileFullAllowedInviteeRolesField[];
+    readonly allowedInviteeRoles?: readonly FileFullAllowedInviteeRolesField[];
     /**
      * Specifies if this file is owned by a user outside of the
      * authenticated enterprise. */
-    readonly isExternallyOwned: boolean;
+    readonly isExternallyOwned?: boolean;
     /**
      * Specifies if this file has any other collaborators. */
-    readonly hasCollaborations: boolean;
+    readonly hasCollaborations?: boolean;
     readonly metadata?: FileFullMetadataField;
     /**
      * When the file will automatically be deleted */
