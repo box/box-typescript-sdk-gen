@@ -3175,71 +3175,6 @@ export interface SkillInvocation {
 }
 export declare function deserializeSkillInvocation(val: JSON): SkillInvocation;
 export declare function serializeSkillInvocation(val: SkillInvocation): JSON;
-export type SkillCardTypeField = "skill_card";
-export declare function deserializeSkillCardTypeField(val: JSON): SkillCardTypeField;
-export declare function serializeSkillCardTypeField(val: SkillCardTypeField): JSON;
-export type SkillCardSkillCardTypeField = "transcript" | "keyword" | "timeline" | "status";
-export declare function deserializeSkillCardSkillCardTypeField(val: JSON): SkillCardSkillCardTypeField;
-export declare function serializeSkillCardSkillCardTypeField(val: SkillCardSkillCardTypeField): JSON;
-export interface SkillCardSkillCardTitleField {
-    readonly code?: string;
-    readonly message: string;
-}
-export declare function deserializeSkillCardSkillCardTitleField(val: JSON): SkillCardSkillCardTitleField;
-export declare function serializeSkillCardSkillCardTitleField(val: SkillCardSkillCardTitleField): JSON;
-export type SkillCardStatusFieldCodeField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export declare function deserializeSkillCardStatusFieldCodeField(val: JSON): SkillCardStatusFieldCodeField;
-export declare function serializeSkillCardStatusFieldCodeField(val: SkillCardStatusFieldCodeField): JSON;
-export interface SkillCardStatusField {
-    readonly code: SkillCardStatusFieldCodeField;
-    readonly message?: string;
-}
-export declare function deserializeSkillCardStatusField(val: JSON): SkillCardStatusField;
-export declare function serializeSkillCardStatusField(val: SkillCardStatusField): JSON;
-export type SkillCardSkillFieldTypeField = "service";
-export declare function deserializeSkillCardSkillFieldTypeField(val: JSON): SkillCardSkillFieldTypeField;
-export declare function serializeSkillCardSkillFieldTypeField(val: SkillCardSkillFieldTypeField): JSON;
-export interface SkillCardSkillField {
-    readonly type: SkillCardSkillFieldTypeField;
-    readonly id: string;
-}
-export declare function deserializeSkillCardSkillField(val: JSON): SkillCardSkillField;
-export declare function serializeSkillCardSkillField(val: SkillCardSkillField): JSON;
-export type SkillCardInvocationFieldTypeField = "skill_invocation";
-export declare function deserializeSkillCardInvocationFieldTypeField(val: JSON): SkillCardInvocationFieldTypeField;
-export declare function serializeSkillCardInvocationFieldTypeField(val: SkillCardInvocationFieldTypeField): JSON;
-export interface SkillCardInvocationField {
-    readonly type: SkillCardInvocationFieldTypeField;
-    readonly id: string;
-}
-export declare function deserializeSkillCardInvocationField(val: JSON): SkillCardInvocationField;
-export declare function serializeSkillCardInvocationField(val: SkillCardInvocationField): JSON;
-export interface SkillCardEntriesFieldAppearsField {
-    readonly start?: number;
-    readonly end?: number;
-}
-export declare function deserializeSkillCardEntriesFieldAppearsField(val: JSON): SkillCardEntriesFieldAppearsField;
-export declare function serializeSkillCardEntriesFieldAppearsField(val: SkillCardEntriesFieldAppearsField): JSON;
-export interface SkillCardEntriesField {
-    readonly text?: string;
-    readonly appears?: readonly SkillCardEntriesFieldAppearsField[];
-    readonly imageUrl?: string;
-}
-export declare function deserializeSkillCardEntriesField(val: JSON): SkillCardEntriesField;
-export declare function serializeSkillCardEntriesField(val: SkillCardEntriesField): JSON;
-export interface SkillCard {
-    readonly createdAt?: string;
-    readonly type: SkillCardTypeField;
-    readonly skillCardType: SkillCardSkillCardTypeField;
-    readonly skillCardTitle?: SkillCardSkillCardTitleField;
-    readonly status?: SkillCardStatusField;
-    readonly skill: SkillCardSkillField;
-    readonly invocation: SkillCardInvocationField;
-    readonly duration?: number;
-    readonly entries?: readonly SkillCardEntriesField[];
-}
-export declare function deserializeSkillCard(val: JSON): SkillCard;
-export declare function serializeSkillCard(val: SkillCard): JSON;
 export type KeywordSkillCardTypeField = "skill_card";
 export declare function deserializeKeywordSkillCardTypeField(val: JSON): KeywordSkillCardTypeField;
 export declare function serializeKeywordSkillCardTypeField(val: KeywordSkillCardTypeField): JSON;
@@ -3444,7 +3379,7 @@ export interface StatusSkillCard {
 }
 export declare function deserializeStatusSkillCard(val: JSON): StatusSkillCard;
 export declare function serializeStatusSkillCard(val: StatusSkillCard): JSON;
-export type SkillCardsMetadataCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
+export type SkillCardsMetadataCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export declare function deserializeSkillCardsMetadataCardsField(val: JSON): SkillCardsMetadataCardsField;
 export declare function serializeSkillCardsMetadataCardsField(val: SkillCardsMetadataCardsField): JSON;
 export interface SkillCardsMetadata {

@@ -1,4 +1,3 @@
-import { SkillCard } from "../schemas.generated.js";
 import { KeywordSkillCard } from "../schemas.generated.js";
 import { TimelineSkillCard } from "../schemas.generated.js";
 import { TranscriptSkillCard } from "../schemas.generated.js";
@@ -7,12 +6,12 @@ import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
 import { JWTAuth } from "../jwtAuth.js";
 export type SkillsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
-export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
+export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField[];
 }
 export type UpdateSkillInvocationByIdRequestBodyArgStatusField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export type UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
+export type UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface UpdateSkillInvocationByIdRequestBodyArgMetadataField {
     readonly cards?: readonly UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField[];
 }

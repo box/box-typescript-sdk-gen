@@ -4,9 +4,6 @@ import { serializeSkillCardsMetadata } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { SkillCard } from "../schemas.generated.js";
-import { deserializeSkillCard } from "../schemas.generated.js";
-import { serializeSkillCard } from "../schemas.generated.js";
 import { KeywordSkillCard } from "../schemas.generated.js";
 import { deserializeKeywordSkillCard } from "../schemas.generated.js";
 import { serializeKeywordSkillCard } from "../schemas.generated.js";
@@ -28,12 +25,12 @@ import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
 export type SkillsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
-export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
+export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField[];
 }
 export type UpdateSkillInvocationByIdRequestBodyArgStatusField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export type UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField = SkillCard | KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
+export type UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface UpdateSkillInvocationByIdRequestBodyArgMetadataField {
     readonly cards?: readonly UpdateSkillInvocationByIdRequestBodyArgMetadataFieldCardsField[];
 }
