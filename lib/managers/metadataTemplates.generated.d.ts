@@ -1,44 +1,45 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
-export type DeleteMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
-export interface GetMetadataTemplatesGlobalOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export type DeleteMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export interface GetMetadataTemplateGlobalOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export interface GetMetadataTemplatesEnterpriseOptionsArg {
+export interface GetMetadataTemplateEnterpriseOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
-export interface PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldOptionsField {
+export type CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
+export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField {
     readonly key: string;
 }
-export interface PostMetadataTemplatesSchemaRequestBodyArgFieldsField {
-    readonly type: PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldTypeField;
+export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsField {
+    readonly type: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField;
     readonly key: string;
     readonly displayName: string;
     readonly description?: string;
     readonly hidden?: boolean;
-    readonly options?: readonly PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldOptionsField[];
+    readonly options?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField[];
 }
-export interface PostMetadataTemplatesSchemaRequestBodyArg {
+export interface CreateMetadataTemplateSchemaRequestBodyArg {
     readonly scope: string;
     readonly templateKey?: string;
     readonly displayName: string;
     readonly hidden?: boolean;
-    readonly fields?: readonly PostMetadataTemplatesSchemaRequestBodyArgFieldsField[];
+    readonly fields?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsField[];
     readonly copyInstanceOnItemCopy?: boolean;
 }
 export declare class MetadataTemplatesManager {
     readonly auth: MetadataTemplatesManagerAuthField;
-    constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplatesIdIdSchema" | "deleteMetadataTemplatesIdIdSchema" | "getMetadataTemplatesId" | "getMetadataTemplatesGlobal" | "getMetadataTemplatesEnterprise" | "postMetadataTemplatesSchema">);
+    constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplateSchema" | "deleteMetadataTemplateSchema" | "getMetadataTemplateById" | "getMetadataTemplateGlobal" | "getMetadataTemplateEnterprise" | "createMetadataTemplateSchema">);
     getMetadataTemplates(metadataInstanceId: string): Promise<any>;
-    getMetadataTemplatesIdIdSchema(scope: GetMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any>;
-    deleteMetadataTemplatesIdIdSchema(scope: DeleteMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any>;
-    getMetadataTemplatesId(templateId: string): Promise<any>;
-    getMetadataTemplatesGlobal(options?: GetMetadataTemplatesGlobalOptionsArg): Promise<any>;
-    getMetadataTemplatesEnterprise(options?: GetMetadataTemplatesEnterpriseOptionsArg): Promise<any>;
-    postMetadataTemplatesSchema(requestBody: PostMetadataTemplatesSchemaRequestBodyArg): Promise<any>;
+    getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any>;
+    deleteMetadataTemplateSchema(scope: DeleteMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any>;
+    getMetadataTemplateById(templateId: string): Promise<any>;
+    getMetadataTemplateGlobal(options?: GetMetadataTemplateGlobalOptionsArg): Promise<any>;
+    getMetadataTemplateEnterprise(options?: GetMetadataTemplateEnterpriseOptionsArg): Promise<any>;
+    createMetadataTemplateSchema(requestBody: CreateMetadataTemplateSchemaRequestBodyArg): Promise<any>;
 }

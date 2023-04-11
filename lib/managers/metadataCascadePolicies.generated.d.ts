@@ -1,27 +1,28 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetMetadataCascadePoliciesOptionsArg {
     readonly ownerEnterpriseId?: string;
     readonly marker?: string;
     readonly offset?: number;
 }
-export type PostMetadataCascadePoliciesRequestBodyArgScopeField = "global" | "enterprise";
-export interface PostMetadataCascadePoliciesRequestBodyArg {
+export type CreateMetadataCascadePolicyRequestBodyArgScopeField = "global" | "enterprise";
+export interface CreateMetadataCascadePolicyRequestBodyArg {
     readonly folderId: string;
-    readonly scope: PostMetadataCascadePoliciesRequestBodyArgScopeField;
+    readonly scope: CreateMetadataCascadePolicyRequestBodyArgScopeField;
     readonly templateKey: string;
 }
-export type PostMetadataCascadePoliciesIdApplyRequestBodyArgConflictResolutionField = "none" | "overwrite";
-export interface PostMetadataCascadePoliciesIdApplyRequestBodyArg {
-    readonly conflictResolution: PostMetadataCascadePoliciesIdApplyRequestBodyArgConflictResolutionField;
+export type CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField = "none" | "overwrite";
+export interface CreateMetadataCascadePolicyApplyRequestBodyArg {
+    readonly conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField;
 }
 export declare class MetadataCascadePoliciesManager {
     readonly auth: MetadataCascadePoliciesManagerAuthField;
-    constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "postMetadataCascadePolicies" | "getMetadataCascadePoliciesId" | "deleteMetadataCascadePoliciesId" | "postMetadataCascadePoliciesIdApply">);
+    constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "createMetadataCascadePolicy" | "getMetadataCascadePolicyById" | "deleteMetadataCascadePolicyById" | "createMetadataCascadePolicyApply">);
     getMetadataCascadePolicies(folderId: string, options?: GetMetadataCascadePoliciesOptionsArg): Promise<any>;
-    postMetadataCascadePolicies(requestBody: PostMetadataCascadePoliciesRequestBodyArg): Promise<any>;
-    getMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any>;
-    deleteMetadataCascadePoliciesId(metadataCascadePolicyId: string): Promise<any>;
-    postMetadataCascadePoliciesIdApply(metadataCascadePolicyId: string, requestBody: PostMetadataCascadePoliciesIdApplyRequestBodyArg): Promise<any>;
+    createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg): Promise<any>;
+    getMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<any>;
+    deleteMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<any>;
+    createMetadataCascadePolicyApply(metadataCascadePolicyId: string, requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg): Promise<any>;
 }

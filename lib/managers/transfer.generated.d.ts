@@ -1,18 +1,19 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type TransferManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PutUsersIdFolders0RequestBodyArgOwnedByField {
+import { JWTAuth } from "../jwtAuth.js";
+export type TransferManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface TransferOwnedFolderRequestBodyArgOwnedByField {
     readonly id: string;
 }
-export interface PutUsersIdFolders0RequestBodyArg {
-    readonly ownedBy: PutUsersIdFolders0RequestBodyArgOwnedByField;
+export interface TransferOwnedFolderRequestBodyArg {
+    readonly ownedBy: TransferOwnedFolderRequestBodyArgOwnedByField;
 }
-export interface PutUsersIdFolders0OptionsArg {
+export interface TransferOwnedFolderOptionsArg {
     readonly fields?: string;
     readonly notify?: boolean;
 }
 export declare class TransferManager {
     readonly auth: TransferManagerAuthField;
-    constructor(fields: Omit<TransferManager, "putUsersIdFolders0">);
-    putUsersIdFolders0(userId: string, requestBody: PutUsersIdFolders0RequestBodyArg, options?: PutUsersIdFolders0OptionsArg): Promise<any>;
+    constructor(fields: Omit<TransferManager, "transferOwnedFolder">);
+    transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, options?: TransferOwnedFolderOptionsArg): Promise<any>;
 }

@@ -9,56 +9,57 @@ import { deserializeTask } from "../schemas.generated.js";
 import { serializeTask } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type TasksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type PostTasksRequestBodyArgItemFieldTypeField = "file";
-export interface PostTasksRequestBodyArgItemField {
+export type TasksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
+export interface CreateTaskRequestBodyArgItemField {
     readonly id: string;
-    readonly type: PostTasksRequestBodyArgItemFieldTypeField;
+    readonly type: CreateTaskRequestBodyArgItemFieldTypeField;
 }
-export type PostTasksRequestBodyArgActionField = "review" | "complete";
-export type PostTasksRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
-export interface PostTasksRequestBodyArg {
-    readonly item: PostTasksRequestBodyArgItemField;
-    readonly action?: PostTasksRequestBodyArgActionField;
+export type CreateTaskRequestBodyArgActionField = "review" | "complete";
+export type CreateTaskRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
+export interface CreateTaskRequestBodyArg {
+    readonly item: CreateTaskRequestBodyArgItemField;
+    readonly action?: CreateTaskRequestBodyArgActionField;
     readonly message?: string;
     readonly dueAt?: string;
-    readonly completionRule?: PostTasksRequestBodyArgCompletionRuleField;
+    readonly completionRule?: CreateTaskRequestBodyArgCompletionRuleField;
 }
-export type PutTasksIdRequestBodyArgActionField = "review" | "complete";
-export type PutTasksIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
-export interface PutTasksIdRequestBodyArg {
-    readonly action?: PutTasksIdRequestBodyArgActionField;
+export type UpdateTaskByIdRequestBodyArgActionField = "review" | "complete";
+export type UpdateTaskByIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
+export interface UpdateTaskByIdRequestBodyArg {
+    readonly action?: UpdateTaskByIdRequestBodyArgActionField;
     readonly message?: string;
     readonly dueAt?: string;
-    readonly completionRule?: PutTasksIdRequestBodyArgCompletionRuleField;
+    readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
 }
 export class TasksManager {
     readonly auth!: TasksManagerAuthField;
-    constructor(fields: Omit<TasksManager, "getFilesIdTasks" | "postTasks" | "getTasksId" | "putTasksId" | "deleteTasksId">) {
+    constructor(fields: Omit<TasksManager, "getFileTasks" | "createTask" | "getTaskById" | "updateTaskById" | "deleteTaskById">) {
         Object.assign(this, fields);
     }
-    async getFilesIdTasks(fileId: string): Promise<any> {
+    async getFileTasks(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/tasks") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeTasks(deserializeJSON(response.text) as JSON);
     }
-    async postTasks(requestBody: PostTasksRequestBodyArg): Promise<any> {
+    async createTask(requestBody: CreateTaskRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJSON(response.text) as JSON);
     }
-    async getTasksId(taskId: string): Promise<any> {
+    async getTaskById(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJSON(response.text) as JSON);
     }
-    async putTasksId(taskId: string, requestBody: PutTasksIdRequestBodyArg): Promise<any> {
+    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJSON(response.text) as JSON);
     }
-    async deleteTasksId(taskId: string): Promise<any> {
+    async deleteTaskById(taskId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

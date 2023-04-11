@@ -1,7 +1,8 @@
 import { UserMini } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
 export interface GetRetentionPoliciesOptionsArg {
     readonly policyName?: string;
@@ -11,28 +12,28 @@ export interface GetRetentionPoliciesOptionsArg {
     readonly limit?: number;
     readonly marker?: string;
 }
-export type PostRetentionPoliciesRequestBodyArgPolicyTypeField = "finite" | "indefinite";
-export type PostRetentionPoliciesRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
-export type PostRetentionPoliciesRequestBodyArgRetentionTypeField = "modifiable" | "non-modifiable";
-export interface PostRetentionPoliciesRequestBodyArg {
+export type CreateRetentionPolicyRequestBodyArgPolicyTypeField = "finite" | "indefinite";
+export type CreateRetentionPolicyRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
+export type CreateRetentionPolicyRequestBodyArgRetentionTypeField = "modifiable" | "non-modifiable";
+export interface CreateRetentionPolicyRequestBodyArg {
     readonly policyName: string;
     readonly description?: string;
-    readonly policyType: PostRetentionPoliciesRequestBodyArgPolicyTypeField;
-    readonly dispositionAction: PostRetentionPoliciesRequestBodyArgDispositionActionField;
+    readonly policyType: CreateRetentionPolicyRequestBodyArgPolicyTypeField;
+    readonly dispositionAction: CreateRetentionPolicyRequestBodyArgDispositionActionField;
     readonly retentionLength?: string;
-    readonly retentionType?: PostRetentionPoliciesRequestBodyArgRetentionTypeField;
+    readonly retentionType?: CreateRetentionPolicyRequestBodyArgRetentionTypeField;
     readonly canOwnerExtendRetention?: boolean;
     readonly areOwnersNotified?: boolean;
     readonly customNotificationRecipients?: readonly UserMini[];
 }
-export interface GetRetentionPoliciesIdOptionsArg {
+export interface GetRetentionPolicyByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutRetentionPoliciesIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
-export interface PutRetentionPoliciesIdRequestBodyArg {
+export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
+export interface UpdateRetentionPolicyByIdRequestBodyArg {
     readonly policyName?: string;
     readonly description?: string;
-    readonly dispositionAction?: PutRetentionPoliciesIdRequestBodyArgDispositionActionField;
+    readonly dispositionAction?: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
     readonly retentionType?: string;
     readonly retentionLength?: string;
     readonly status?: string;
@@ -42,10 +43,10 @@ export interface PutRetentionPoliciesIdRequestBodyArg {
 }
 export declare class RetentionPoliciesManager {
     readonly auth: RetentionPoliciesManagerAuthField;
-    constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "postRetentionPolicies" | "getRetentionPoliciesId" | "putRetentionPoliciesId" | "deleteRetentionPoliciesId">);
+    constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">);
     getRetentionPolicies(options?: GetRetentionPoliciesOptionsArg): Promise<any>;
-    postRetentionPolicies(requestBody: PostRetentionPoliciesRequestBodyArg): Promise<any>;
-    getRetentionPoliciesId(retentionPolicyId: string, options?: GetRetentionPoliciesIdOptionsArg): Promise<any>;
-    putRetentionPoliciesId(retentionPolicyId: string, requestBody: PutRetentionPoliciesIdRequestBodyArg): Promise<any>;
-    deleteRetentionPoliciesId(retentionPolicyId: string): Promise<any>;
+    createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<any>;
+    getRetentionPolicyById(retentionPolicyId: string, options?: GetRetentionPolicyByIdOptionsArg): Promise<any>;
+    updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<any>;
+    deleteRetentionPolicyById(retentionPolicyId: string): Promise<any>;
 }

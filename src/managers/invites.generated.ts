@@ -6,38 +6,39 @@ import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostInvitesRequestBodyArgEnterpriseField {
+export type InvitesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateInviteRequestBodyArgEnterpriseField {
     readonly id: string;
 }
-export interface PostInvitesRequestBodyArgActionableByField {
+export interface CreateInviteRequestBodyArgActionableByField {
     readonly login?: string;
 }
-export interface PostInvitesRequestBodyArg {
-    readonly enterprise: PostInvitesRequestBodyArgEnterpriseField;
-    readonly actionableBy: PostInvitesRequestBodyArgActionableByField;
+export interface CreateInviteRequestBodyArg {
+    readonly enterprise: CreateInviteRequestBodyArgEnterpriseField;
+    readonly actionableBy: CreateInviteRequestBodyArgActionableByField;
 }
-export interface PostInvitesOptionsArg {
+export interface CreateInviteOptionsArg {
     readonly fields?: string;
 }
-export interface GetInvitesIdOptionsArg {
+export interface GetInviteByIdOptionsArg {
     readonly fields?: string;
 }
 export class InvitesManager {
     readonly auth!: InvitesManagerAuthField;
-    constructor(fields: Omit<InvitesManager, "postInvites" | "getInvitesId">) {
+    constructor(fields: Omit<InvitesManager, "createInvite" | "getInviteById">) {
         Object.assign(this, fields);
     }
-    async postInvites(requestBody: PostInvitesRequestBodyArg, options: PostInvitesOptionsArg = {} satisfies PostInvitesOptionsArg): Promise<any> {
+    async createInvite(requestBody: CreateInviteRequestBodyArg, options: CreateInviteOptionsArg = {} satisfies CreateInviteOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJSON(response.text) as JSON);
     }
-    async getInvitesId(inviteId: string, options: GetInvitesIdOptionsArg = {} satisfies GetInvitesIdOptionsArg): Promise<any> {
+    async getInviteById(inviteId: string, options: GetInviteByIdOptionsArg = {} satisfies GetInviteByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJSON(response.text) as JSON);
     }

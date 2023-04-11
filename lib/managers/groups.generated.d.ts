@@ -1,47 +1,48 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type GroupsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type GroupsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetGroupsOptionsArg {
     readonly filterTerm?: string;
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
 }
-export type PostGroupsRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export type PostGroupsRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export interface PostGroupsRequestBodyArg {
+export type CreateGroupRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export type CreateGroupRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export interface CreateGroupRequestBodyArg {
     readonly name: string;
     readonly provenance?: string;
     readonly externalSyncIdentifier?: string;
     readonly description?: string;
-    readonly invitabilityLevel?: PostGroupsRequestBodyArgInvitabilityLevelField;
-    readonly memberViewabilityLevel?: PostGroupsRequestBodyArgMemberViewabilityLevelField;
+    readonly invitabilityLevel?: CreateGroupRequestBodyArgInvitabilityLevelField;
+    readonly memberViewabilityLevel?: CreateGroupRequestBodyArgMemberViewabilityLevelField;
 }
-export interface PostGroupsOptionsArg {
+export interface CreateGroupOptionsArg {
     readonly fields?: string;
 }
-export interface GetGroupsIdOptionsArg {
+export interface GetGroupByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutGroupsIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export type PutGroupsIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export interface PutGroupsIdRequestBodyArg {
+export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export type UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
+export interface UpdateGroupByIdRequestBodyArg {
     readonly name?: string;
     readonly provenance?: string;
     readonly externalSyncIdentifier?: string;
     readonly description?: string;
-    readonly invitabilityLevel?: PutGroupsIdRequestBodyArgInvitabilityLevelField;
-    readonly memberViewabilityLevel?: PutGroupsIdRequestBodyArgMemberViewabilityLevelField;
+    readonly invitabilityLevel?: UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
+    readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
 }
-export interface PutGroupsIdOptionsArg {
+export interface UpdateGroupByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class GroupsManager {
     readonly auth: GroupsManagerAuthField;
-    constructor(fields: Omit<GroupsManager, "getGroups" | "postGroups" | "getGroupsId" | "putGroupsId" | "deleteGroupsId">);
+    constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">);
     getGroups(options?: GetGroupsOptionsArg): Promise<any>;
-    postGroups(requestBody: PostGroupsRequestBodyArg, options?: PostGroupsOptionsArg): Promise<any>;
-    getGroupsId(groupId: string, options?: GetGroupsIdOptionsArg): Promise<any>;
-    putGroupsId(groupId: string, requestBody: PutGroupsIdRequestBodyArg, options?: PutGroupsIdOptionsArg): Promise<any>;
-    deleteGroupsId(groupId: string): Promise<any>;
+    createGroup(requestBody: CreateGroupRequestBodyArg, options?: CreateGroupOptionsArg): Promise<any>;
+    getGroupById(groupId: string, options?: GetGroupByIdOptionsArg): Promise<any>;
+    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, options?: UpdateGroupByIdOptionsArg): Promise<any>;
+    deleteGroupById(groupId: string): Promise<any>;
 }

@@ -1,16 +1,17 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FolderMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetFoldersIdMetadataIdIdScopeArg = "global" | "enterprise";
-export type PostFoldersIdMetadataIdIdScopeArg = "global" | "enterprise";
-export interface PostFoldersIdMetadataIdIdRequestBodyArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type FolderMetadataManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetFolderMetadataByIdScopeArg = "global" | "enterprise";
+export type CreateFolderMetadataByIdScopeArg = "global" | "enterprise";
+export interface CreateFolderMetadataByIdRequestBodyArg {
 }
-export type DeleteFoldersIdMetadataIdIdScopeArg = "global" | "enterprise";
+export type DeleteFolderMetadataByIdScopeArg = "global" | "enterprise";
 export declare class FolderMetadataManager {
     readonly auth: FolderMetadataManagerAuthField;
-    constructor(fields: Omit<FolderMetadataManager, "getFoldersIdMetadata" | "getFoldersIdMetadataIdId" | "postFoldersIdMetadataIdId" | "deleteFoldersIdMetadataIdId">);
-    getFoldersIdMetadata(folderId: string): Promise<any>;
-    getFoldersIdMetadataIdId(folderId: string, scope: GetFoldersIdMetadataIdIdScopeArg, templateKey: string): Promise<any>;
-    postFoldersIdMetadataIdId(folderId: string, scope: PostFoldersIdMetadataIdIdScopeArg, templateKey: string, requestBody: PostFoldersIdMetadataIdIdRequestBodyArg): Promise<any>;
-    deleteFoldersIdMetadataIdId(folderId: string, scope: DeleteFoldersIdMetadataIdIdScopeArg, templateKey: string): Promise<any>;
+    constructor(fields: Omit<FolderMetadataManager, "getFolderMetadata" | "getFolderMetadataById" | "createFolderMetadataById" | "deleteFolderMetadataById">);
+    getFolderMetadata(folderId: string): Promise<any>;
+    getFolderMetadataById(folderId: string, scope: GetFolderMetadataByIdScopeArg, templateKey: string): Promise<any>;
+    createFolderMetadataById(folderId: string, scope: CreateFolderMetadataByIdScopeArg, templateKey: string, requestBody: CreateFolderMetadataByIdRequestBodyArg): Promise<any>;
+    deleteFolderMetadataById(folderId: string, scope: DeleteFolderMetadataByIdScopeArg, templateKey: string): Promise<any>;
 }

@@ -1,12 +1,13 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdCollaborationsOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileCollaborationsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly marker?: string;
 }
-export interface GetFoldersIdCollaborationsOptionsArg {
+export interface GetFolderCollaborationsOptionsArg {
     readonly fields?: string;
 }
 export type GetCollaborationsStatusArg = "pending";
@@ -15,39 +16,39 @@ export interface GetCollaborationsOptionsArg {
     readonly offset?: number;
     readonly limit?: number;
 }
-export type PostCollaborationsRequestBodyArgItemFieldTypeField = "file" | "folder";
-export interface PostCollaborationsRequestBodyArgItemField {
-    readonly type: PostCollaborationsRequestBodyArgItemFieldTypeField;
+export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
+export interface CreateCollaborationRequestBodyArgItemField {
+    readonly type: CreateCollaborationRequestBodyArgItemFieldTypeField;
     readonly id: string;
 }
-export type PostCollaborationsRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
-export interface PostCollaborationsRequestBodyArgAccessibleByField {
-    readonly type: PostCollaborationsRequestBodyArgAccessibleByFieldTypeField;
+export type CreateCollaborationRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
+export interface CreateCollaborationRequestBodyArgAccessibleByField {
+    readonly type: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField;
     readonly id?: string;
     readonly login?: string;
 }
-export type PostCollaborationsRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export interface PostCollaborationsRequestBodyArg {
-    readonly item: PostCollaborationsRequestBodyArgItemField;
-    readonly accessibleBy: PostCollaborationsRequestBodyArgAccessibleByField;
-    readonly role: PostCollaborationsRequestBodyArgRoleField;
+export type CreateCollaborationRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
+export interface CreateCollaborationRequestBodyArg {
+    readonly item: CreateCollaborationRequestBodyArgItemField;
+    readonly accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField;
+    readonly role: CreateCollaborationRequestBodyArgRoleField;
     readonly canViewPath?: boolean;
     readonly expiresAt?: string;
 }
-export interface PostCollaborationsOptionsArg {
+export interface CreateCollaborationOptionsArg {
     readonly fields?: string;
     readonly notify?: boolean;
 }
-export interface GetGroupsIdCollaborationsOptionsArg {
+export interface GetGroupCollaborationsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
 export declare class ListCollaborationsManager {
     readonly auth: ListCollaborationsManagerAuthField;
-    constructor(fields: Omit<ListCollaborationsManager, "getFilesIdCollaborations" | "getFoldersIdCollaborations" | "getCollaborations" | "postCollaborations" | "getGroupsIdCollaborations">);
-    getFilesIdCollaborations(fileId: string, options?: GetFilesIdCollaborationsOptionsArg): Promise<any>;
-    getFoldersIdCollaborations(folderId: string, options?: GetFoldersIdCollaborationsOptionsArg): Promise<any>;
+    constructor(fields: Omit<ListCollaborationsManager, "getFileCollaborations" | "getFolderCollaborations" | "getCollaborations" | "createCollaboration" | "getGroupCollaborations">);
+    getFileCollaborations(fileId: string, options?: GetFileCollaborationsOptionsArg): Promise<any>;
+    getFolderCollaborations(folderId: string, options?: GetFolderCollaborationsOptionsArg): Promise<any>;
     getCollaborations(status: GetCollaborationsStatusArg, options?: GetCollaborationsOptionsArg): Promise<any>;
-    postCollaborations(requestBody: PostCollaborationsRequestBodyArg, options?: PostCollaborationsOptionsArg): Promise<any>;
-    getGroupsIdCollaborations(groupId: string, options?: GetGroupsIdCollaborationsOptionsArg): Promise<any>;
+    createCollaboration(requestBody: CreateCollaborationRequestBodyArg, options?: CreateCollaborationOptionsArg): Promise<any>;
+    getGroupCollaborations(groupId: string, options?: GetGroupCollaborationsOptionsArg): Promise<any>;
 }

@@ -9,32 +9,33 @@ import { deserializeDevicePinners } from "../schemas.generated.js";
 import { serializeDevicePinners } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetEnterprisesIdDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
-export interface GetEnterprisesIdDevicePinnersOptionsArg {
+export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetEnterpriseDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
+export interface GetEnterpriseDevicePinnersOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
-    readonly direction?: GetEnterprisesIdDevicePinnersOptionsArgDirectionField;
+    readonly direction?: GetEnterpriseDevicePinnersOptionsArgDirectionField;
 }
 export class DevicePinnersManager {
     readonly auth!: DevicePinnersManagerAuthField;
-    constructor(fields: Omit<DevicePinnersManager, "getDevicePinnersId" | "deleteDevicePinnersId" | "getEnterprisesIdDevicePinners">) {
+    constructor(fields: Omit<DevicePinnersManager, "getDevicePinnerById" | "deleteDevicePinnerById" | "getEnterpriseDevicePinners">) {
         Object.assign(this, fields);
     }
-    async getDevicePinnersId(devicePinnerId: string): Promise<any> {
+    async getDevicePinnerById(devicePinnerId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeDevicePinner(deserializeJSON(response.text) as JSON);
     }
-    async deleteDevicePinnersId(devicePinnerId: string): Promise<any> {
+    async deleteDevicePinnerById(devicePinnerId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async getEnterprisesIdDevicePinners(enterpriseId: string, options: GetEnterprisesIdDevicePinnersOptionsArg = {} satisfies GetEnterprisesIdDevicePinnersOptionsArg): Promise<any> {
+    async getEnterpriseDevicePinners(enterpriseId: string, options: GetEnterpriseDevicePinnersOptionsArg = {} satisfies GetEnterpriseDevicePinnersOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/enterprises/", enterpriseId, "/device_pinners") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit, ["direction"]: options.direction }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeDevicePinners(deserializeJSON(response.text) as JSON);
     }

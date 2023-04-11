@@ -1,6 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type AuthorizationManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type AuthorizationManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetAuthorizeResponseTypeArg = "code";
 export interface GetAuthorizeOptionsArg {
     readonly redirectUri?: string;

@@ -1,38 +1,39 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type WebhooksManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type WebhooksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetWebhooksOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostWebhooksRequestBodyArgTargetFieldTypeField = "file" | "folder";
-export interface PostWebhooksRequestBodyArgTargetField {
+export type CreateWebhookRequestBodyArgTargetFieldTypeField = "file" | "folder";
+export interface CreateWebhookRequestBodyArgTargetField {
     readonly id?: string;
-    readonly type?: PostWebhooksRequestBodyArgTargetFieldTypeField;
+    readonly type?: CreateWebhookRequestBodyArgTargetFieldTypeField;
 }
-export type PostWebhooksRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export interface PostWebhooksRequestBodyArg {
-    readonly target: PostWebhooksRequestBodyArgTargetField;
+export type CreateWebhookRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
+export interface CreateWebhookRequestBodyArg {
+    readonly target: CreateWebhookRequestBodyArgTargetField;
     readonly address: string;
-    readonly triggers: readonly PostWebhooksRequestBodyArgTriggersField[];
+    readonly triggers: readonly CreateWebhookRequestBodyArgTriggersField[];
 }
-export type PutWebhooksIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
-export interface PutWebhooksIdRequestBodyArgTargetField {
+export type UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
+export interface UpdateWebhookByIdRequestBodyArgTargetField {
     readonly id?: string;
-    readonly type?: PutWebhooksIdRequestBodyArgTargetFieldTypeField;
+    readonly type?: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField;
 }
-export type PutWebhooksIdRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export interface PutWebhooksIdRequestBodyArg {
-    readonly target?: PutWebhooksIdRequestBodyArgTargetField;
+export type UpdateWebhookByIdRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
+export interface UpdateWebhookByIdRequestBodyArg {
+    readonly target?: UpdateWebhookByIdRequestBodyArgTargetField;
     readonly address?: string;
-    readonly triggers?: readonly PutWebhooksIdRequestBodyArgTriggersField[];
+    readonly triggers?: readonly UpdateWebhookByIdRequestBodyArgTriggersField[];
 }
 export declare class WebhooksManager {
     readonly auth: WebhooksManagerAuthField;
-    constructor(fields: Omit<WebhooksManager, "getWebhooks" | "postWebhooks" | "getWebhooksId" | "putWebhooksId" | "deleteWebhooksId">);
+    constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">);
     getWebhooks(options?: GetWebhooksOptionsArg): Promise<any>;
-    postWebhooks(requestBody: PostWebhooksRequestBodyArg): Promise<any>;
-    getWebhooksId(webhookId: string): Promise<any>;
-    putWebhooksId(webhookId: string, requestBody: PutWebhooksIdRequestBodyArg): Promise<any>;
-    deleteWebhooksId(webhookId: string): Promise<any>;
+    createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<any>;
+    getWebhookById(webhookId: string): Promise<any>;
+    updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<any>;
+    deleteWebhookById(webhookId: string): Promise<any>;
 }

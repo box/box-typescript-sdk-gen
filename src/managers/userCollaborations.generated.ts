@@ -6,37 +6,38 @@ import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetCollaborationsIdOptionsArg {
+export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetCollaborationByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutCollaborationsIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
-export type PutCollaborationsIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
-export interface PutCollaborationsIdRequestBodyArg {
-    readonly role: PutCollaborationsIdRequestBodyArgRoleField;
-    readonly status?: PutCollaborationsIdRequestBodyArgStatusField;
+export type UpdateCollaborationByIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
+export type UpdateCollaborationByIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
+export interface UpdateCollaborationByIdRequestBodyArg {
+    readonly role: UpdateCollaborationByIdRequestBodyArgRoleField;
+    readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
 }
 export class UserCollaborationsManager {
     readonly auth!: UserCollaborationsManagerAuthField;
-    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationsId" | "putCollaborationsId" | "deleteCollaborationsId">) {
+    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById">) {
         Object.assign(this, fields);
     }
-    async getCollaborationsId(collaborationId: string, options: GetCollaborationsIdOptionsArg = {} satisfies GetCollaborationsIdOptionsArg): Promise<any> {
+    async getCollaborationById(collaborationId: string, options: GetCollaborationByIdOptionsArg = {} satisfies GetCollaborationByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
-    async putCollaborationsId(collaborationId: string, requestBody: PutCollaborationsIdRequestBodyArg): Promise<any> {
+    async updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJSON(response.text) as JSON);
     }
-    async deleteCollaborationsId(collaborationId: string): Promise<any> {
+    async deleteCollaborationById(collaborationId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

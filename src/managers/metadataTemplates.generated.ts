@@ -9,72 +9,73 @@ import { deserializeMetadataTemplate } from "../schemas.generated.js";
 import { serializeMetadataTemplate } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type GetMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
-export type DeleteMetadataTemplatesIdIdSchemaScopeArg = "global" | "enterprise";
-export interface GetMetadataTemplatesGlobalOptionsArg {
+export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type GetMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export type DeleteMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export interface GetMetadataTemplateGlobalOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export interface GetMetadataTemplatesEnterpriseOptionsArg {
+export interface GetMetadataTemplateEnterpriseOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
-export interface PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldOptionsField {
+export type CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
+export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField {
     readonly key: string;
 }
-export interface PostMetadataTemplatesSchemaRequestBodyArgFieldsField {
-    readonly type: PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldTypeField;
+export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsField {
+    readonly type: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField;
     readonly key: string;
     readonly displayName: string;
     readonly description?: string;
     readonly hidden?: boolean;
-    readonly options?: readonly PostMetadataTemplatesSchemaRequestBodyArgFieldsFieldOptionsField[];
+    readonly options?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField[];
 }
-export interface PostMetadataTemplatesSchemaRequestBodyArg {
+export interface CreateMetadataTemplateSchemaRequestBodyArg {
     readonly scope: string;
     readonly templateKey?: string;
     readonly displayName: string;
     readonly hidden?: boolean;
-    readonly fields?: readonly PostMetadataTemplatesSchemaRequestBodyArgFieldsField[];
+    readonly fields?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsField[];
     readonly copyInstanceOnItemCopy?: boolean;
 }
 export class MetadataTemplatesManager {
     readonly auth!: MetadataTemplatesManagerAuthField;
-    constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplatesIdIdSchema" | "deleteMetadataTemplatesIdIdSchema" | "getMetadataTemplatesId" | "getMetadataTemplatesGlobal" | "getMetadataTemplatesEnterprise" | "postMetadataTemplatesSchema">) {
+    constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplateSchema" | "deleteMetadataTemplateSchema" | "getMetadataTemplateById" | "getMetadataTemplateGlobal" | "getMetadataTemplateEnterprise" | "createMetadataTemplateSchema">) {
         Object.assign(this, fields);
     }
     async getMetadataTemplates(metadataInstanceId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates") as string, { method: "GET", params: { ["metadata_instance_id"]: metadataInstanceId }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
-    async getMetadataTemplatesIdIdSchema(scope: GetMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any> {
+    async getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }
-    async deleteMetadataTemplatesIdIdSchema(scope: DeleteMetadataTemplatesIdIdSchemaScopeArg, templateKey: string): Promise<any> {
+    async deleteMetadataTemplateSchema(scope: DeleteMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async getMetadataTemplatesId(templateId: string): Promise<any> {
+    async getMetadataTemplateById(templateId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", templateId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }
-    async getMetadataTemplatesGlobal(options: GetMetadataTemplatesGlobalOptionsArg = {} satisfies GetMetadataTemplatesGlobalOptionsArg): Promise<any> {
+    async getMetadataTemplateGlobal(options: GetMetadataTemplateGlobalOptionsArg = {} satisfies GetMetadataTemplateGlobalOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/global") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
-    async getMetadataTemplatesEnterprise(options: GetMetadataTemplatesEnterpriseOptionsArg = {} satisfies GetMetadataTemplatesEnterpriseOptionsArg): Promise<any> {
+    async getMetadataTemplateEnterprise(options: GetMetadataTemplateEnterpriseOptionsArg = {} satisfies GetMetadataTemplateEnterpriseOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJSON(response.text) as JSON);
     }
-    async postMetadataTemplatesSchema(requestBody: PostMetadataTemplatesSchemaRequestBodyArg): Promise<any> {
+    async createMetadataTemplateSchema(requestBody: CreateMetadataTemplateSchemaRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJSON(response.text) as JSON);
     }

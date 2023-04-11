@@ -1,53 +1,54 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type SharedLinksFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetSharedItemsFoldersOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type SharedLinksFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetSharedItemFoldersOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
 }
-export type PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutFoldersIdAddSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFoldersIdAddSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFolderAddSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField;
 }
-export type PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutFoldersIdUpdateSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFoldersIdUpdateSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFolderUpdateSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField;
 }
-export interface PutFoldersIdRemoveSharedLinkRequestBodyArgSharedLinkField {
+export interface UpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField {
 }
-export interface PutFoldersIdRemoveSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFoldersIdRemoveSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFolderRemoveSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField;
 }
 export declare class SharedLinksFoldersManager {
     readonly auth: SharedLinksFoldersManagerAuthField;
-    constructor(fields: Omit<SharedLinksFoldersManager, "getSharedItemsFolders" | "getFoldersIdGetSharedLink" | "putFoldersIdAddSharedLink" | "putFoldersIdUpdateSharedLink" | "putFoldersIdRemoveSharedLink">);
-    getSharedItemsFolders(boxapi: string, options?: GetSharedItemsFoldersOptionsArg): Promise<any>;
-    getFoldersIdGetSharedLink(folderId: string, fields: string): Promise<any>;
-    putFoldersIdAddSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdAddSharedLinkRequestBodyArg): Promise<any>;
-    putFoldersIdUpdateSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdUpdateSharedLinkRequestBodyArg): Promise<any>;
-    putFoldersIdRemoveSharedLink(folderId: string, fields: string, requestBody: PutFoldersIdRemoveSharedLinkRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<SharedLinksFoldersManager, "getSharedItemFolders" | "getFolderGetSharedLink" | "updateFolderAddSharedLink" | "updateFolderUpdateSharedLink" | "updateFolderRemoveSharedLink">);
+    getSharedItemFolders(boxapi: string, options?: GetSharedItemFoldersOptionsArg): Promise<any>;
+    getFolderGetSharedLink(folderId: string, fields: string): Promise<any>;
+    updateFolderAddSharedLink(folderId: string, fields: string, requestBody: UpdateFolderAddSharedLinkRequestBodyArg): Promise<any>;
+    updateFolderUpdateSharedLink(folderId: string, fields: string, requestBody: UpdateFolderUpdateSharedLinkRequestBodyArg): Promise<any>;
+    updateFolderRemoveSharedLink(folderId: string, fields: string, requestBody: UpdateFolderRemoveSharedLinkRequestBodyArg): Promise<any>;
 }

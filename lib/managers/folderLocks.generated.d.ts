@@ -1,22 +1,23 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FolderLocksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface PostFolderLocksRequestBodyArgLockedOperationsField {
+import { JWTAuth } from "../jwtAuth.js";
+export type FolderLocksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface CreateFolderLockRequestBodyArgLockedOperationsField {
     readonly move: boolean;
     readonly delete: boolean;
 }
-export interface PostFolderLocksRequestBodyArgFolderField {
+export interface CreateFolderLockRequestBodyArgFolderField {
     readonly type: string;
     readonly id: string;
 }
-export interface PostFolderLocksRequestBodyArg {
-    readonly lockedOperations?: PostFolderLocksRequestBodyArgLockedOperationsField;
-    readonly folder: PostFolderLocksRequestBodyArgFolderField;
+export interface CreateFolderLockRequestBodyArg {
+    readonly lockedOperations?: CreateFolderLockRequestBodyArgLockedOperationsField;
+    readonly folder: CreateFolderLockRequestBodyArgFolderField;
 }
 export declare class FolderLocksManager {
     readonly auth: FolderLocksManagerAuthField;
-    constructor(fields: Omit<FolderLocksManager, "getFolderLocks" | "postFolderLocks" | "deleteFolderLocksId">);
+    constructor(fields: Omit<FolderLocksManager, "getFolderLocks" | "createFolderLock" | "deleteFolderLockById">);
     getFolderLocks(folderId: string): Promise<any>;
-    postFolderLocks(requestBody: PostFolderLocksRequestBodyArg): Promise<any>;
-    deleteFolderLocksId(folderLockId: string): Promise<any>;
+    createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<any>;
+    deleteFolderLockById(folderLockId: string): Promise<any>;
 }

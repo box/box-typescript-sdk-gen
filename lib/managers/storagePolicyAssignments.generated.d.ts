@@ -1,38 +1,39 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetStoragePolicyAssignmentsResolvedForTypeArg = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsOptionsArg {
     readonly marker?: string;
 }
-export type PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
-export interface PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyField {
-    readonly type: PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyFieldTypeField;
+export type CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
+export interface CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField {
+    readonly type: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField;
     readonly id: string;
 }
-export type PostStoragePolicyAssignmentsRequestBodyArgAssignedToFieldTypeField = "user" | "enterprise";
-export interface PostStoragePolicyAssignmentsRequestBodyArgAssignedToField {
-    readonly type: PostStoragePolicyAssignmentsRequestBodyArgAssignedToFieldTypeField;
+export type CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField = "user" | "enterprise";
+export interface CreateStoragePolicyAssignmentRequestBodyArgAssignedToField {
+    readonly type: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField;
     readonly id: string;
 }
-export interface PostStoragePolicyAssignmentsRequestBodyArg {
-    readonly storagePolicy: PostStoragePolicyAssignmentsRequestBodyArgStoragePolicyField;
-    readonly assignedTo: PostStoragePolicyAssignmentsRequestBodyArgAssignedToField;
+export interface CreateStoragePolicyAssignmentRequestBodyArg {
+    readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField;
+    readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
 }
-export type PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
-export interface PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyField {
-    readonly type: PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyFieldTypeField;
+export type UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField {
+    readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField;
     readonly id: string;
 }
-export interface PutStoragePolicyAssignmentsIdRequestBodyArg {
-    readonly storagePolicy: PutStoragePolicyAssignmentsIdRequestBodyArgStoragePolicyField;
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyArg {
+    readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
 }
 export declare class StoragePolicyAssignmentsManager {
     readonly auth: StoragePolicyAssignmentsManagerAuthField;
-    constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "postStoragePolicyAssignments" | "getStoragePolicyAssignmentsId" | "putStoragePolicyAssignmentsId" | "deleteStoragePolicyAssignmentsId">);
+    constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "createStoragePolicyAssignment" | "getStoragePolicyAssignmentById" | "updateStoragePolicyAssignmentById" | "deleteStoragePolicyAssignmentById">);
     getStoragePolicyAssignments(resolvedForType: GetStoragePolicyAssignmentsResolvedForTypeArg, resolvedForId: string, options?: GetStoragePolicyAssignmentsOptionsArg): Promise<any>;
-    postStoragePolicyAssignments(requestBody: PostStoragePolicyAssignmentsRequestBodyArg): Promise<any>;
-    getStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any>;
-    putStoragePolicyAssignmentsId(storagePolicyAssignmentId: string, requestBody: PutStoragePolicyAssignmentsIdRequestBodyArg): Promise<any>;
-    deleteStoragePolicyAssignmentsId(storagePolicyAssignmentId: string): Promise<any>;
+    createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg): Promise<any>;
+    getStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any>;
+    updateStoragePolicyAssignmentById(storagePolicyAssignmentId: string, requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg): Promise<any>;
+    deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any>;
 }

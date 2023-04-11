@@ -9,60 +9,61 @@ import { deserializeWebhook } from "../schemas.generated.js";
 import { serializeWebhook } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type WebhooksManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type WebhooksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetWebhooksOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export type PostWebhooksRequestBodyArgTargetFieldTypeField = "file" | "folder";
-export interface PostWebhooksRequestBodyArgTargetField {
+export type CreateWebhookRequestBodyArgTargetFieldTypeField = "file" | "folder";
+export interface CreateWebhookRequestBodyArgTargetField {
     readonly id?: string;
-    readonly type?: PostWebhooksRequestBodyArgTargetFieldTypeField;
+    readonly type?: CreateWebhookRequestBodyArgTargetFieldTypeField;
 }
-export type PostWebhooksRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export interface PostWebhooksRequestBodyArg {
-    readonly target: PostWebhooksRequestBodyArgTargetField;
+export type CreateWebhookRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
+export interface CreateWebhookRequestBodyArg {
+    readonly target: CreateWebhookRequestBodyArgTargetField;
     readonly address: string;
-    readonly triggers: readonly PostWebhooksRequestBodyArgTriggersField[];
+    readonly triggers: readonly CreateWebhookRequestBodyArgTriggersField[];
 }
-export type PutWebhooksIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
-export interface PutWebhooksIdRequestBodyArgTargetField {
+export type UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
+export interface UpdateWebhookByIdRequestBodyArgTargetField {
     readonly id?: string;
-    readonly type?: PutWebhooksIdRequestBodyArgTargetFieldTypeField;
+    readonly type?: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField;
 }
-export type PutWebhooksIdRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export interface PutWebhooksIdRequestBodyArg {
-    readonly target?: PutWebhooksIdRequestBodyArgTargetField;
+export type UpdateWebhookByIdRequestBodyArgTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
+export interface UpdateWebhookByIdRequestBodyArg {
+    readonly target?: UpdateWebhookByIdRequestBodyArgTargetField;
     readonly address?: string;
-    readonly triggers?: readonly PutWebhooksIdRequestBodyArgTriggersField[];
+    readonly triggers?: readonly UpdateWebhookByIdRequestBodyArgTriggersField[];
 }
 export class WebhooksManager {
     readonly auth!: WebhooksManagerAuthField;
-    constructor(fields: Omit<WebhooksManager, "getWebhooks" | "postWebhooks" | "getWebhooksId" | "putWebhooksId" | "deleteWebhooksId">) {
+    constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">) {
         Object.assign(this, fields);
     }
     async getWebhooks(options: GetWebhooksOptionsArg = {} satisfies GetWebhooksOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhooks(deserializeJSON(response.text) as JSON);
     }
-    async postWebhooks(requestBody: PostWebhooksRequestBodyArg): Promise<any> {
+    async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
-    async getWebhooksId(webhookId: string): Promise<any> {
+    async getWebhookById(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
-    async putWebhooksId(webhookId: string, requestBody: PutWebhooksIdRequestBodyArg): Promise<any> {
+    async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJSON(response.text) as JSON);
     }
-    async deleteWebhooksId(webhookId: string): Promise<any> {
+    async deleteWebhookById(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

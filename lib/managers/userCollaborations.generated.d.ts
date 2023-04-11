@@ -1,21 +1,22 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetCollaborationsIdOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetCollaborationByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutCollaborationsIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
-export type PutCollaborationsIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
-export interface PutCollaborationsIdRequestBodyArg {
-    readonly role: PutCollaborationsIdRequestBodyArgRoleField;
-    readonly status?: PutCollaborationsIdRequestBodyArgStatusField;
+export type UpdateCollaborationByIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
+export type UpdateCollaborationByIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
+export interface UpdateCollaborationByIdRequestBodyArg {
+    readonly role: UpdateCollaborationByIdRequestBodyArgRoleField;
+    readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
 }
 export declare class UserCollaborationsManager {
     readonly auth: UserCollaborationsManagerAuthField;
-    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationsId" | "putCollaborationsId" | "deleteCollaborationsId">);
-    getCollaborationsId(collaborationId: string, options?: GetCollaborationsIdOptionsArg): Promise<any>;
-    putCollaborationsId(collaborationId: string, requestBody: PutCollaborationsIdRequestBodyArg): Promise<any>;
-    deleteCollaborationsId(collaborationId: string): Promise<any>;
+    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById">);
+    getCollaborationById(collaborationId: string, options?: GetCollaborationByIdOptionsArg): Promise<any>;
+    updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<any>;
+    deleteCollaborationById(collaborationId: string): Promise<any>;
 }

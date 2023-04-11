@@ -1,16 +1,17 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface OptionsFilesContentRequestBodyArgParentField {
+import { JWTAuth } from "../jwtAuth.js";
+export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface PreflightFileUploadRequestBodyArgParentField {
     readonly id?: string;
 }
-export interface OptionsFilesContentRequestBodyArg {
+export interface PreflightFileUploadRequestBodyArg {
     readonly name?: string;
     readonly size?: number;
-    readonly parent?: OptionsFilesContentRequestBodyArgParentField;
+    readonly parent?: PreflightFileUploadRequestBodyArgParentField;
 }
 export declare class UploadsManager {
     readonly auth: UploadsManagerAuthField;
-    constructor(fields: Omit<UploadsManager, "optionsFilesContent">);
-    optionsFilesContent(requestBody: OptionsFilesContentRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<UploadsManager, "preflightFileUpload">);
+    preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<any>;
 }

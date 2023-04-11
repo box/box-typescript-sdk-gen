@@ -9,77 +9,78 @@ import { deserializeGroupMembership } from "../schemas.generated.js";
 import { serializeGroupMembership } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetUsersIdMembershipsOptionsArg {
+export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetUserMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface GetGroupsIdMembershipsOptionsArg {
+export interface GetGroupMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface PostGroupMembershipsRequestBodyArgUserField {
+export interface CreateGroupMembershipRequestBodyArgUserField {
     readonly id: string;
 }
-export interface PostGroupMembershipsRequestBodyArgGroupField {
+export interface CreateGroupMembershipRequestBodyArgGroupField {
     readonly id: string;
 }
-export type PostGroupMembershipsRequestBodyArgRoleField = "member" | "admin";
-export interface PostGroupMembershipsRequestBodyArgConfigurablePermissionsField {
+export type CreateGroupMembershipRequestBodyArgRoleField = "member" | "admin";
+export interface CreateGroupMembershipRequestBodyArgConfigurablePermissionsField {
 }
-export interface PostGroupMembershipsRequestBodyArg {
-    readonly user: PostGroupMembershipsRequestBodyArgUserField;
-    readonly group: PostGroupMembershipsRequestBodyArgGroupField;
-    readonly role?: PostGroupMembershipsRequestBodyArgRoleField;
-    readonly configurablePermissions?: PostGroupMembershipsRequestBodyArgConfigurablePermissionsField;
+export interface CreateGroupMembershipRequestBodyArg {
+    readonly user: CreateGroupMembershipRequestBodyArgUserField;
+    readonly group: CreateGroupMembershipRequestBodyArgGroupField;
+    readonly role?: CreateGroupMembershipRequestBodyArgRoleField;
+    readonly configurablePermissions?: CreateGroupMembershipRequestBodyArgConfigurablePermissionsField;
 }
-export interface PostGroupMembershipsOptionsArg {
+export interface CreateGroupMembershipOptionsArg {
     readonly fields?: string;
 }
-export interface GetGroupMembershipsIdOptionsArg {
+export interface GetGroupMembershipByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutGroupMembershipsIdRequestBodyArgRoleField = "member" | "admin";
-export interface PutGroupMembershipsIdRequestBodyArgConfigurablePermissionsField {
+export type UpdateGroupMembershipByIdRequestBodyArgRoleField = "member" | "admin";
+export interface UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField {
 }
-export interface PutGroupMembershipsIdRequestBodyArg {
-    readonly role?: PutGroupMembershipsIdRequestBodyArgRoleField;
-    readonly configurablePermissions?: PutGroupMembershipsIdRequestBodyArgConfigurablePermissionsField;
+export interface UpdateGroupMembershipByIdRequestBodyArg {
+    readonly role?: UpdateGroupMembershipByIdRequestBodyArgRoleField;
+    readonly configurablePermissions?: UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField;
 }
-export interface PutGroupMembershipsIdOptionsArg {
+export interface UpdateGroupMembershipByIdOptionsArg {
     readonly fields?: string;
 }
 export class MembershipsManager {
     readonly auth!: MembershipsManagerAuthField;
-    constructor(fields: Omit<MembershipsManager, "getUsersIdMemberships" | "getGroupsIdMemberships" | "postGroupMemberships" | "getGroupMembershipsId" | "putGroupMembershipsId" | "deleteGroupMembershipsId">) {
+    constructor(fields: Omit<MembershipsManager, "getUserMemberships" | "getGroupMemberships" | "createGroupMembership" | "getGroupMembershipById" | "updateGroupMembershipById" | "deleteGroupMembershipById">) {
         Object.assign(this, fields);
     }
-    async getUsersIdMemberships(userId: string, options: GetUsersIdMembershipsOptionsArg = {} satisfies GetUsersIdMembershipsOptionsArg): Promise<any> {
+    async getUserMemberships(userId: string, options: GetUserMembershipsOptionsArg = {} satisfies GetUserMembershipsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/memberships") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMemberships(deserializeJSON(response.text) as JSON);
     }
-    async getGroupsIdMemberships(groupId: string, options: GetGroupsIdMembershipsOptionsArg = {} satisfies GetGroupsIdMembershipsOptionsArg): Promise<any> {
+    async getGroupMemberships(groupId: string, options: GetGroupMembershipsOptionsArg = {} satisfies GetGroupMembershipsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/memberships") as string, { method: "GET", params: { ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMemberships(deserializeJSON(response.text) as JSON);
     }
-    async postGroupMemberships(requestBody: PostGroupMembershipsRequestBodyArg, options: PostGroupMembershipsOptionsArg = {} satisfies PostGroupMembershipsOptionsArg): Promise<any> {
+    async createGroupMembership(requestBody: CreateGroupMembershipRequestBodyArg, options: CreateGroupMembershipOptionsArg = {} satisfies CreateGroupMembershipOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMembership(deserializeJSON(response.text) as JSON);
     }
-    async getGroupMembershipsId(groupMembershipId: string, options: GetGroupMembershipsIdOptionsArg = {} satisfies GetGroupMembershipsIdOptionsArg): Promise<any> {
+    async getGroupMembershipById(groupMembershipId: string, options: GetGroupMembershipByIdOptionsArg = {} satisfies GetGroupMembershipByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMembership(deserializeJSON(response.text) as JSON);
     }
-    async putGroupMembershipsId(groupMembershipId: string, requestBody: PutGroupMembershipsIdRequestBodyArg, options: PutGroupMembershipsIdOptionsArg = {} satisfies PutGroupMembershipsIdOptionsArg): Promise<any> {
+    async updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg, options: UpdateGroupMembershipByIdOptionsArg = {} satisfies UpdateGroupMembershipByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMembership(deserializeJSON(response.text) as JSON);
     }
-    async deleteGroupMembershipsId(groupMembershipId: string): Promise<any> {
+    async deleteGroupMembershipById(groupMembershipId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

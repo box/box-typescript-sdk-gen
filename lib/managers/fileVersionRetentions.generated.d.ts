@@ -1,6 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type FileVersionRetentionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetFileVersionRetentionsOptionsArgDispositionActionField = "permanently_delete" | "remove_retention";
 export interface GetFileVersionRetentionsOptionsArg {
     readonly fileId?: string;
@@ -14,7 +15,7 @@ export interface GetFileVersionRetentionsOptionsArg {
 }
 export declare class FileVersionRetentionsManager {
     readonly auth: FileVersionRetentionsManagerAuthField;
-    constructor(fields: Omit<FileVersionRetentionsManager, "getFileVersionRetentions" | "getFileVersionRetentionsId">);
+    constructor(fields: Omit<FileVersionRetentionsManager, "getFileVersionRetentions" | "getFileVersionRetentionById">);
     getFileVersionRetentions(options?: GetFileVersionRetentionsOptionsArg): Promise<any>;
-    getFileVersionRetentionsId(fileVersionRetentionId: string): Promise<any>;
+    getFileVersionRetentionById(fileVersionRetentionId: string): Promise<any>;
 }

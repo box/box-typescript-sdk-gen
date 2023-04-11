@@ -1,17 +1,18 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
-export interface PutFoldersIdWatermarkRequestBodyArgWatermarkField {
-    readonly imprint: PutFoldersIdWatermarkRequestBodyArgWatermarkFieldImprintField;
+import { JWTAuth } from "../jwtAuth.js";
+export type FolderWatermarksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
+export interface UpdateFolderWatermarkRequestBodyArgWatermarkField {
+    readonly imprint: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField;
 }
-export interface PutFoldersIdWatermarkRequestBodyArg {
-    readonly watermark: PutFoldersIdWatermarkRequestBodyArgWatermarkField;
+export interface UpdateFolderWatermarkRequestBodyArg {
+    readonly watermark: UpdateFolderWatermarkRequestBodyArgWatermarkField;
 }
 export declare class FolderWatermarksManager {
     readonly auth: FolderWatermarksManagerAuthField;
-    constructor(fields: Omit<FolderWatermarksManager, "getFoldersIdWatermark" | "putFoldersIdWatermark" | "deleteFoldersIdWatermark">);
-    getFoldersIdWatermark(folderId: string): Promise<any>;
-    putFoldersIdWatermark(folderId: string, requestBody: PutFoldersIdWatermarkRequestBodyArg): Promise<any>;
-    deleteFoldersIdWatermark(folderId: string): Promise<any>;
+    constructor(fields: Omit<FolderWatermarksManager, "getFolderWatermark" | "updateFolderWatermark" | "deleteFolderWatermark">);
+    getFolderWatermark(folderId: string): Promise<any>;
+    updateFolderWatermark(folderId: string, requestBody: UpdateFolderWatermarkRequestBodyArg): Promise<any>;
+    deleteFolderWatermark(folderId: string): Promise<any>;
 }

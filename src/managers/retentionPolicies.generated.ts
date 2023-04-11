@@ -12,12 +12,13 @@ import { deserializeUserMini } from "../schemas.generated.js";
 import { serializeUserMini } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
 export interface GetRetentionPoliciesOptionsArg {
     readonly policyName?: string;
@@ -27,28 +28,28 @@ export interface GetRetentionPoliciesOptionsArg {
     readonly limit?: number;
     readonly marker?: string;
 }
-export type PostRetentionPoliciesRequestBodyArgPolicyTypeField = "finite" | "indefinite";
-export type PostRetentionPoliciesRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
-export type PostRetentionPoliciesRequestBodyArgRetentionTypeField = "modifiable" | "non-modifiable";
-export interface PostRetentionPoliciesRequestBodyArg {
+export type CreateRetentionPolicyRequestBodyArgPolicyTypeField = "finite" | "indefinite";
+export type CreateRetentionPolicyRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
+export type CreateRetentionPolicyRequestBodyArgRetentionTypeField = "modifiable" | "non-modifiable";
+export interface CreateRetentionPolicyRequestBodyArg {
     readonly policyName: string;
     readonly description?: string;
-    readonly policyType: PostRetentionPoliciesRequestBodyArgPolicyTypeField;
-    readonly dispositionAction: PostRetentionPoliciesRequestBodyArgDispositionActionField;
+    readonly policyType: CreateRetentionPolicyRequestBodyArgPolicyTypeField;
+    readonly dispositionAction: CreateRetentionPolicyRequestBodyArgDispositionActionField;
     readonly retentionLength?: string;
-    readonly retentionType?: PostRetentionPoliciesRequestBodyArgRetentionTypeField;
+    readonly retentionType?: CreateRetentionPolicyRequestBodyArgRetentionTypeField;
     readonly canOwnerExtendRetention?: boolean;
     readonly areOwnersNotified?: boolean;
     readonly customNotificationRecipients?: readonly UserMini[];
 }
-export interface GetRetentionPoliciesIdOptionsArg {
+export interface GetRetentionPolicyByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutRetentionPoliciesIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
-export interface PutRetentionPoliciesIdRequestBodyArg {
+export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
+export interface UpdateRetentionPolicyByIdRequestBodyArg {
     readonly policyName?: string;
     readonly description?: string;
-    readonly dispositionAction?: PutRetentionPoliciesIdRequestBodyArgDispositionActionField;
+    readonly dispositionAction?: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
     readonly retentionType?: string;
     readonly retentionLength?: string;
     readonly status?: string;
@@ -58,26 +59,26 @@ export interface PutRetentionPoliciesIdRequestBodyArg {
 }
 export class RetentionPoliciesManager {
     readonly auth!: RetentionPoliciesManagerAuthField;
-    constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "postRetentionPolicies" | "getRetentionPoliciesId" | "putRetentionPoliciesId" | "deleteRetentionPoliciesId">) {
+    constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">) {
         Object.assign(this, fields);
     }
     async getRetentionPolicies(options: GetRetentionPoliciesOptionsArg = {} satisfies GetRetentionPoliciesOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies") as string, { method: "GET", params: { ["policy_name"]: options.policyName, ["policy_type"]: options.policyType, ["created_by_user_id"]: options.createdByUserId, ["fields"]: options.fields, ["limit"]: options.limit, ["marker"]: options.marker }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicies(deserializeJSON(response.text) as JSON);
     }
-    async postRetentionPolicies(requestBody: PostRetentionPoliciesRequestBodyArg): Promise<any> {
+    async createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
-    async getRetentionPoliciesId(retentionPolicyId: string, options: GetRetentionPoliciesIdOptionsArg = {} satisfies GetRetentionPoliciesIdOptionsArg): Promise<any> {
+    async getRetentionPolicyById(retentionPolicyId: string, options: GetRetentionPolicyByIdOptionsArg = {} satisfies GetRetentionPolicyByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
-    async putRetentionPoliciesId(retentionPolicyId: string, requestBody: PutRetentionPoliciesIdRequestBodyArg): Promise<any> {
+    async updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicy(deserializeJSON(response.text) as JSON);
     }
-    async deleteRetentionPoliciesId(retentionPolicyId: string): Promise<any> {
+    async deleteRetentionPolicyById(retentionPolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

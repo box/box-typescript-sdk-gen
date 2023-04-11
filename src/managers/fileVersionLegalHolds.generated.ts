@@ -9,22 +9,23 @@ import { deserializeFileVersionLegalHolds } from "../schemas.generated.js";
 import { serializeFileVersionLegalHolds } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type FileVersionLegalHoldsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type FileVersionLegalHoldsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetFileVersionLegalHoldsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
 export class FileVersionLegalHoldsManager {
     readonly auth!: FileVersionLegalHoldsManagerAuthField;
-    constructor(fields: Omit<FileVersionLegalHoldsManager, "getFileVersionLegalHoldsId" | "getFileVersionLegalHolds">) {
+    constructor(fields: Omit<FileVersionLegalHoldsManager, "getFileVersionLegalHoldById" | "getFileVersionLegalHolds">) {
         Object.assign(this, fields);
     }
-    async getFileVersionLegalHoldsId(fileVersionLegalHoldId: string): Promise<any> {
+    async getFileVersionLegalHoldById(fileVersionLegalHoldId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_legal_holds/", fileVersionLegalHoldId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionLegalHold(deserializeJSON(response.text) as JSON);
     }

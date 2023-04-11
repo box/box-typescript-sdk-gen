@@ -1,11 +1,12 @@
 import { ShieldInformationBarrier } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export type PostShieldInformationBarriersChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
-export interface PostShieldInformationBarriersChangeStatusRequestBodyArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
+export interface CreateShieldInformationBarrierChangeStatusRequestBodyArg {
     readonly id: string;
-    readonly status: PostShieldInformationBarriersChangeStatusRequestBodyArgStatusField;
+    readonly status: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField;
 }
 export interface GetShieldInformationBarriersOptionsArg {
     readonly marker?: string;
@@ -13,9 +14,9 @@ export interface GetShieldInformationBarriersOptionsArg {
 }
 export declare class ShieldInformationBarriersManager {
     readonly auth: ShieldInformationBarriersManagerAuthField;
-    constructor(fields: Omit<ShieldInformationBarriersManager, "getShieldInformationBarriersId" | "postShieldInformationBarriersChangeStatus" | "getShieldInformationBarriers" | "postShieldInformationBarriers">);
-    getShieldInformationBarriersId(shieldInformationBarrierId: string): Promise<any>;
-    postShieldInformationBarriersChangeStatus(requestBody: PostShieldInformationBarriersChangeStatusRequestBodyArg): Promise<any>;
+    constructor(fields: Omit<ShieldInformationBarriersManager, "getShieldInformationBarrierById" | "createShieldInformationBarrierChangeStatus" | "getShieldInformationBarriers" | "createShieldInformationBarrier">);
+    getShieldInformationBarrierById(shieldInformationBarrierId: string): Promise<any>;
+    createShieldInformationBarrierChangeStatus(requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg): Promise<any>;
     getShieldInformationBarriers(options?: GetShieldInformationBarriersOptionsArg): Promise<undefined>;
-    postShieldInformationBarriers(requestBody: ShieldInformationBarrier): Promise<any>;
+    createShieldInformationBarrier(requestBody: ShieldInformationBarrier): Promise<any>;
 }

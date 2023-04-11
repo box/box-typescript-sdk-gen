@@ -4,66 +4,70 @@ import { serializeComments } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
+import { CommentFull } from "../schemas.generated.js";
+import { deserializeCommentFull } from "../schemas.generated.js";
+import { serializeCommentFull } from "../schemas.generated.js";
 import { Comment } from "../schemas.generated.js";
 import { deserializeComment } from "../schemas.generated.js";
 import { serializeComment } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type CommentsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFilesIdCommentsOptionsArg {
+export type CommentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFileCommentsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface GetCommentsIdOptionsArg {
+export interface GetCommentByIdOptionsArg {
     readonly fields?: string;
 }
-export interface PutCommentsIdRequestBodyArg {
+export interface UpdateCommentByIdRequestBodyArg {
     readonly message?: string;
 }
-export interface PutCommentsIdOptionsArg {
+export interface UpdateCommentByIdOptionsArg {
     readonly fields?: string;
 }
-export type PostCommentsRequestBodyArgItemFieldTypeField = "file" | "comment";
-export interface PostCommentsRequestBodyArgItemField {
+export type CreateCommentRequestBodyArgItemFieldTypeField = "file" | "comment";
+export interface CreateCommentRequestBodyArgItemField {
     readonly id: string;
-    readonly type: PostCommentsRequestBodyArgItemFieldTypeField;
+    readonly type: CreateCommentRequestBodyArgItemFieldTypeField;
 }
-export interface PostCommentsRequestBodyArg {
+export interface CreateCommentRequestBodyArg {
     readonly message: string;
     readonly taggedMessage?: string;
-    readonly item?: PostCommentsRequestBodyArgItemField;
+    readonly item?: CreateCommentRequestBodyArgItemField;
 }
-export interface PostCommentsOptionsArg {
+export interface CreateCommentOptionsArg {
     readonly fields?: string;
 }
 export class CommentsManager {
     readonly auth!: CommentsManagerAuthField;
-    constructor(fields: Omit<CommentsManager, "getFilesIdComments" | "getCommentsId" | "putCommentsId" | "deleteCommentsId" | "postComments">) {
+    constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">) {
         Object.assign(this, fields);
     }
-    async getFilesIdComments(fileId: string, options: GetFilesIdCommentsOptionsArg = {} satisfies GetFilesIdCommentsOptionsArg): Promise<any> {
+    async getFileComments(fileId: string, options: GetFileCommentsOptionsArg = {} satisfies GetFileCommentsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeComments(deserializeJSON(response.text) as JSON);
     }
-    async getCommentsId(commentId: string, options: GetCommentsIdOptionsArg = {} satisfies GetCommentsIdOptionsArg): Promise<any> {
+    async getCommentById(commentId: string, options: GetCommentByIdOptionsArg = {} satisfies GetCommentByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeCommentFull(deserializeJSON(response.text) as JSON);
     }
-    async putCommentsId(commentId: string, requestBody: PutCommentsIdRequestBodyArg, options: PutCommentsIdOptionsArg = {} satisfies PutCommentsIdOptionsArg): Promise<any> {
+    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, options: UpdateCommentByIdOptionsArg = {} satisfies UpdateCommentByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeComment(deserializeJSON(response.text) as JSON);
+        return deserializeCommentFull(deserializeJSON(response.text) as JSON);
     }
-    async deleteCommentsId(commentId: string): Promise<any> {
+    async deleteCommentById(commentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async postComments(requestBody: PostCommentsRequestBodyArg, options: PostCommentsOptionsArg = {} satisfies PostCommentsOptionsArg): Promise<any> {
+    async createComment(requestBody: CreateCommentRequestBodyArg, options: CreateCommentOptionsArg = {} satisfies CreateCommentOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeComment(deserializeJSON(response.text) as JSON);
     }

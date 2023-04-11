@@ -1,21 +1,22 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type CollaborationAllowlistExemptTargetsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type CollaborationAllowlistExemptTargetsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetCollaborationWhitelistExemptTargetsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
-export interface PostCollaborationWhitelistExemptTargetsRequestBodyArgUserField {
+export interface CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField {
     readonly id: string;
 }
-export interface PostCollaborationWhitelistExemptTargetsRequestBodyArg {
-    readonly user: PostCollaborationWhitelistExemptTargetsRequestBodyArgUserField;
+export interface CreateCollaborationWhitelistExemptTargetRequestBodyArg {
+    readonly user: CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField;
 }
 export declare class CollaborationAllowlistExemptTargetsManager {
     readonly auth: CollaborationAllowlistExemptTargetsManagerAuthField;
-    constructor(fields: Omit<CollaborationAllowlistExemptTargetsManager, "getCollaborationWhitelistExemptTargets" | "postCollaborationWhitelistExemptTargets" | "getCollaborationWhitelistExemptTargetsId" | "deleteCollaborationWhitelistExemptTargetsId">);
+    constructor(fields: Omit<CollaborationAllowlistExemptTargetsManager, "getCollaborationWhitelistExemptTargets" | "createCollaborationWhitelistExemptTarget" | "getCollaborationWhitelistExemptTargetById" | "deleteCollaborationWhitelistExemptTargetById">);
     getCollaborationWhitelistExemptTargets(options?: GetCollaborationWhitelistExemptTargetsOptionsArg): Promise<any>;
-    postCollaborationWhitelistExemptTargets(requestBody: PostCollaborationWhitelistExemptTargetsRequestBodyArg): Promise<any>;
-    getCollaborationWhitelistExemptTargetsId(collaborationWhitelistExemptTargetId: string): Promise<any>;
-    deleteCollaborationWhitelistExemptTargetsId(collaborationWhitelistExemptTargetId: string): Promise<any>;
+    createCollaborationWhitelistExemptTarget(requestBody: CreateCollaborationWhitelistExemptTargetRequestBodyArg): Promise<any>;
+    getCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string): Promise<any>;
+    deleteCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string): Promise<any>;
 }

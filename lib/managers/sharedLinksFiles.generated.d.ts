@@ -1,53 +1,54 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type SharedLinksFilesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type SharedLinksFilesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetSharedItemsOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
 }
-export type PutFilesIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutFilesIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutFilesIdAddSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutFilesIdAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFileAddSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutFilesIdAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutFilesIdAddSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFilesIdAddSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFileAddSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFileAddSharedLinkRequestBodyArgSharedLinkField;
 }
-export type PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
+export type UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
+export interface UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
     readonly canPreview?: boolean;
     readonly canEdit?: boolean;
 }
-export interface PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkField {
-    readonly access?: PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField {
+    readonly access?: UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField;
     readonly password?: string;
     readonly vanityName?: string;
     readonly unsharedAt?: string;
-    readonly permissions?: PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
+    readonly permissions?: UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
-export interface PutFilesIdUpdateSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFilesIdUpdateSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFileUpdateSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField;
 }
-export interface PutFilesIdRemoveSharedLinkRequestBodyArgSharedLinkField {
+export interface UpdateFileRemoveSharedLinkRequestBodyArgSharedLinkField {
 }
-export interface PutFilesIdRemoveSharedLinkRequestBodyArg {
-    readonly sharedLink?: PutFilesIdRemoveSharedLinkRequestBodyArgSharedLinkField;
+export interface UpdateFileRemoveSharedLinkRequestBodyArg {
+    readonly sharedLink?: UpdateFileRemoveSharedLinkRequestBodyArgSharedLinkField;
 }
 export declare class SharedLinksFilesManager {
     readonly auth: SharedLinksFilesManagerAuthField;
-    constructor(fields: Omit<SharedLinksFilesManager, "getSharedItems" | "getFilesIdGetSharedLink" | "putFilesIdAddSharedLink" | "putFilesIdUpdateSharedLink" | "putFilesIdRemoveSharedLink">);
+    constructor(fields: Omit<SharedLinksFilesManager, "getSharedItems" | "getFileGetSharedLink" | "updateFileAddSharedLink" | "updateFileUpdateSharedLink" | "updateFileRemoveSharedLink">);
     getSharedItems(boxapi: string, options?: GetSharedItemsOptionsArg): Promise<any>;
-    getFilesIdGetSharedLink(fileId: string, fields: string): Promise<any>;
-    putFilesIdAddSharedLink(fileId: string, fields: string, requestBody: PutFilesIdAddSharedLinkRequestBodyArg): Promise<any>;
-    putFilesIdUpdateSharedLink(fileId: string, fields: string, requestBody: PutFilesIdUpdateSharedLinkRequestBodyArg): Promise<any>;
-    putFilesIdRemoveSharedLink(fileId: string, fields: string, requestBody: PutFilesIdRemoveSharedLinkRequestBodyArg): Promise<any>;
+    getFileGetSharedLink(fileId: string, fields: string): Promise<any>;
+    updateFileAddSharedLink(fileId: string, fields: string, requestBody: UpdateFileAddSharedLinkRequestBodyArg): Promise<any>;
+    updateFileUpdateSharedLink(fileId: string, fields: string, requestBody: UpdateFileUpdateSharedLinkRequestBodyArg): Promise<any>;
+    updateFileRemoveSharedLink(fileId: string, fields: string, requestBody: UpdateFileRemoveSharedLinkRequestBodyArg): Promise<any>;
 }

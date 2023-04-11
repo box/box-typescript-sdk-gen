@@ -1,6 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type StoragePoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetStoragePoliciesOptionsArg {
     readonly fields?: string;
     readonly marker?: string;
@@ -8,7 +9,7 @@ export interface GetStoragePoliciesOptionsArg {
 }
 export declare class StoragePoliciesManager {
     readonly auth: StoragePoliciesManagerAuthField;
-    constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePoliciesId">);
+    constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePolicyById">);
     getStoragePolicies(options?: GetStoragePoliciesOptionsArg): Promise<any>;
-    getStoragePoliciesId(storagePolicyId: string): Promise<any>;
+    getStoragePolicyById(storagePolicyId: string): Promise<any>;
 }

@@ -13,7 +13,6 @@ import { FileClassificationsManager } from "./managers/fileClassifications.gener
 import { SkillsManager } from "./managers/skills.generated.js";
 import { FileWatermarksManager } from "./managers/fileWatermarks.generated.js";
 import { FileRequestsManager } from "./managers/fileRequests.generated.js";
-import { FoldersManager } from "./managers/folders.generated.js";
 import { TrashedFoldersManager } from "./managers/trashedFolders.generated.js";
 import { FolderMetadataManager } from "./managers/folderMetadata.generated.js";
 import { FolderClassificationsManager } from "./managers/folderClassifications.generated.js";
@@ -66,7 +65,8 @@ import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
 import { DeveloperTokenAuth } from "./developerTokenAuth.js";
 import { CCGAuth } from "./ccgAuth.js";
-export type ClientAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "./jwtAuth.js";
+export type ClientAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export declare class Client {
     readonly auth: ClientAuthField;
     readonly authorization: AuthorizationManager;
@@ -84,7 +84,6 @@ export declare class Client {
     readonly skills: SkillsManager;
     readonly fileWatermarks: FileWatermarksManager;
     readonly fileRequests: FileRequestsManager;
-    readonly folders: FoldersManager;
     readonly trashedFolders: TrashedFoldersManager;
     readonly folderMetadata: FolderMetadataManager;
     readonly folderClassifications: FolderClassificationsManager;
@@ -135,5 +134,5 @@ export declare class Client {
     readonly zipDownloads: ZipDownloadsManager;
     readonly signRequests: SignRequestsManager;
     readonly workflows: WorkflowsManager;
-    constructor(fields: Omit<Client, "authorization" | "files" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "trashedFiles" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "folders" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows">);
+    constructor(fields: Omit<Client, "authorization" | "files" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "trashedFiles" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows">);
 }

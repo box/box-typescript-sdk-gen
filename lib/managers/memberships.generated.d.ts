@@ -1,52 +1,53 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetUsersIdMembershipsOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type MembershipsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetUserMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface GetGroupsIdMembershipsOptionsArg {
+export interface GetGroupMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
-export interface PostGroupMembershipsRequestBodyArgUserField {
+export interface CreateGroupMembershipRequestBodyArgUserField {
     readonly id: string;
 }
-export interface PostGroupMembershipsRequestBodyArgGroupField {
+export interface CreateGroupMembershipRequestBodyArgGroupField {
     readonly id: string;
 }
-export type PostGroupMembershipsRequestBodyArgRoleField = "member" | "admin";
-export interface PostGroupMembershipsRequestBodyArgConfigurablePermissionsField {
+export type CreateGroupMembershipRequestBodyArgRoleField = "member" | "admin";
+export interface CreateGroupMembershipRequestBodyArgConfigurablePermissionsField {
 }
-export interface PostGroupMembershipsRequestBodyArg {
-    readonly user: PostGroupMembershipsRequestBodyArgUserField;
-    readonly group: PostGroupMembershipsRequestBodyArgGroupField;
-    readonly role?: PostGroupMembershipsRequestBodyArgRoleField;
-    readonly configurablePermissions?: PostGroupMembershipsRequestBodyArgConfigurablePermissionsField;
+export interface CreateGroupMembershipRequestBodyArg {
+    readonly user: CreateGroupMembershipRequestBodyArgUserField;
+    readonly group: CreateGroupMembershipRequestBodyArgGroupField;
+    readonly role?: CreateGroupMembershipRequestBodyArgRoleField;
+    readonly configurablePermissions?: CreateGroupMembershipRequestBodyArgConfigurablePermissionsField;
 }
-export interface PostGroupMembershipsOptionsArg {
+export interface CreateGroupMembershipOptionsArg {
     readonly fields?: string;
 }
-export interface GetGroupMembershipsIdOptionsArg {
+export interface GetGroupMembershipByIdOptionsArg {
     readonly fields?: string;
 }
-export type PutGroupMembershipsIdRequestBodyArgRoleField = "member" | "admin";
-export interface PutGroupMembershipsIdRequestBodyArgConfigurablePermissionsField {
+export type UpdateGroupMembershipByIdRequestBodyArgRoleField = "member" | "admin";
+export interface UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField {
 }
-export interface PutGroupMembershipsIdRequestBodyArg {
-    readonly role?: PutGroupMembershipsIdRequestBodyArgRoleField;
-    readonly configurablePermissions?: PutGroupMembershipsIdRequestBodyArgConfigurablePermissionsField;
+export interface UpdateGroupMembershipByIdRequestBodyArg {
+    readonly role?: UpdateGroupMembershipByIdRequestBodyArgRoleField;
+    readonly configurablePermissions?: UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField;
 }
-export interface PutGroupMembershipsIdOptionsArg {
+export interface UpdateGroupMembershipByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class MembershipsManager {
     readonly auth: MembershipsManagerAuthField;
-    constructor(fields: Omit<MembershipsManager, "getUsersIdMemberships" | "getGroupsIdMemberships" | "postGroupMemberships" | "getGroupMembershipsId" | "putGroupMembershipsId" | "deleteGroupMembershipsId">);
-    getUsersIdMemberships(userId: string, options?: GetUsersIdMembershipsOptionsArg): Promise<any>;
-    getGroupsIdMemberships(groupId: string, options?: GetGroupsIdMembershipsOptionsArg): Promise<any>;
-    postGroupMemberships(requestBody: PostGroupMembershipsRequestBodyArg, options?: PostGroupMembershipsOptionsArg): Promise<any>;
-    getGroupMembershipsId(groupMembershipId: string, options?: GetGroupMembershipsIdOptionsArg): Promise<any>;
-    putGroupMembershipsId(groupMembershipId: string, requestBody: PutGroupMembershipsIdRequestBodyArg, options?: PutGroupMembershipsIdOptionsArg): Promise<any>;
-    deleteGroupMembershipsId(groupMembershipId: string): Promise<any>;
+    constructor(fields: Omit<MembershipsManager, "getUserMemberships" | "getGroupMemberships" | "createGroupMembership" | "getGroupMembershipById" | "updateGroupMembershipById" | "deleteGroupMembershipById">);
+    getUserMemberships(userId: string, options?: GetUserMembershipsOptionsArg): Promise<any>;
+    getGroupMemberships(groupId: string, options?: GetGroupMembershipsOptionsArg): Promise<any>;
+    createGroupMembership(requestBody: CreateGroupMembershipRequestBodyArg, options?: CreateGroupMembershipOptionsArg): Promise<any>;
+    getGroupMembershipById(groupMembershipId: string, options?: GetGroupMembershipByIdOptionsArg): Promise<any>;
+    updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg, options?: UpdateGroupMembershipByIdOptionsArg): Promise<any>;
+    deleteGroupMembershipById(groupMembershipId: string): Promise<any>;
 }

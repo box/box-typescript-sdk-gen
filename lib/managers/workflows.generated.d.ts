@@ -1,42 +1,43 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type WorkflowsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+import { JWTAuth } from "../jwtAuth.js";
+export type WorkflowsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetWorkflowsOptionsArg {
     readonly triggerType?: string;
     readonly limit?: number;
     readonly marker?: string;
 }
-export type PostWorkflowsIdStartRequestBodyArgTypeField = "workflow_parameters";
-export interface PostWorkflowsIdStartRequestBodyArgFlowField {
+export type CreateWorkflowStartRequestBodyArgTypeField = "workflow_parameters";
+export interface CreateWorkflowStartRequestBodyArgFlowField {
     readonly type?: string;
     readonly id?: string;
 }
-export type PostWorkflowsIdStartRequestBodyArgFilesFieldTypeField = "file";
-export interface PostWorkflowsIdStartRequestBodyArgFilesField {
-    readonly type?: PostWorkflowsIdStartRequestBodyArgFilesFieldTypeField;
+export type CreateWorkflowStartRequestBodyArgFilesFieldTypeField = "file";
+export interface CreateWorkflowStartRequestBodyArgFilesField {
+    readonly type?: CreateWorkflowStartRequestBodyArgFilesFieldTypeField;
     readonly id?: string;
 }
-export type PostWorkflowsIdStartRequestBodyArgFolderFieldTypeField = "folder";
-export interface PostWorkflowsIdStartRequestBodyArgFolderField {
-    readonly type?: PostWorkflowsIdStartRequestBodyArgFolderFieldTypeField;
+export type CreateWorkflowStartRequestBodyArgFolderFieldTypeField = "folder";
+export interface CreateWorkflowStartRequestBodyArgFolderField {
+    readonly type?: CreateWorkflowStartRequestBodyArgFolderFieldTypeField;
     readonly id?: string;
 }
-export type PostWorkflowsIdStartRequestBodyArgOutcomesFieldTypeField = "outcome";
-export interface PostWorkflowsIdStartRequestBodyArgOutcomesField {
+export type CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField = "outcome";
+export interface CreateWorkflowStartRequestBodyArgOutcomesField {
     readonly id?: string;
-    readonly type?: PostWorkflowsIdStartRequestBodyArgOutcomesFieldTypeField;
+    readonly type?: CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField;
     readonly parameter?: string;
 }
-export interface PostWorkflowsIdStartRequestBodyArg {
-    readonly type?: PostWorkflowsIdStartRequestBodyArgTypeField;
-    readonly flow: PostWorkflowsIdStartRequestBodyArgFlowField;
-    readonly files: readonly PostWorkflowsIdStartRequestBodyArgFilesField[];
-    readonly folder: PostWorkflowsIdStartRequestBodyArgFolderField;
-    readonly outcomes?: readonly PostWorkflowsIdStartRequestBodyArgOutcomesField[];
+export interface CreateWorkflowStartRequestBodyArg {
+    readonly type?: CreateWorkflowStartRequestBodyArgTypeField;
+    readonly flow: CreateWorkflowStartRequestBodyArgFlowField;
+    readonly files: readonly CreateWorkflowStartRequestBodyArgFilesField[];
+    readonly folder: CreateWorkflowStartRequestBodyArgFolderField;
+    readonly outcomes?: readonly CreateWorkflowStartRequestBodyArgOutcomesField[];
 }
 export declare class WorkflowsManager {
     readonly auth: WorkflowsManagerAuthField;
-    constructor(fields: Omit<WorkflowsManager, "getWorkflows" | "postWorkflowsIdStart">);
+    constructor(fields: Omit<WorkflowsManager, "getWorkflows" | "createWorkflowStart">);
     getWorkflows(folderId: string, options?: GetWorkflowsOptionsArg): Promise<any>;
-    postWorkflowsIdStart(workflowId: string, requestBody: PostWorkflowsIdStartRequestBodyArg): Promise<any>;
+    createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg): Promise<any>;
 }

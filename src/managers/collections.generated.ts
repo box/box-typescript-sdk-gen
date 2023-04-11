@@ -9,32 +9,33 @@ import { deserializeItems } from "../schemas.generated.js";
 import { serializeItems } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
+import { JWTAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { JSON } from "../json.js";
-export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth;
+export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
 export interface GetCollectionsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
 }
-export interface GetCollectionsIdItemsOptionsArg {
+export interface GetCollectionItemsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
 }
 export class CollectionsManager {
     readonly auth!: CollectionsManagerAuthField;
-    constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionsIdItems">) {
+    constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionItems">) {
         Object.assign(this, fields);
     }
     async getCollections(options: GetCollectionsOptionsArg = {} satisfies GetCollectionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeCollections(deserializeJSON(response.text) as JSON);
     }
-    async getCollectionsIdItems(collectionId: string, options: GetCollectionsIdItemsOptionsArg = {} satisfies GetCollectionsIdItemsOptionsArg): Promise<any> {
+    async getCollectionItems(collectionId: string, options: GetCollectionItemsOptionsArg = {} satisfies GetCollectionItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJSON(response.text) as JSON);
     }

@@ -1,12 +1,13 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CCGAuth } from "../ccgAuth.js";
-export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth;
-export interface GetFoldersIdTrashOptionsArg {
+import { JWTAuth } from "../jwtAuth.js";
+export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export interface GetFolderTrashOptionsArg {
     readonly fields?: string;
 }
 export declare class TrashedFoldersManager {
     readonly auth: TrashedFoldersManagerAuthField;
-    constructor(fields: Omit<TrashedFoldersManager, "getFoldersIdTrash" | "deleteFoldersIdTrash">);
-    getFoldersIdTrash(folderId: string, options?: GetFoldersIdTrashOptionsArg): Promise<any>;
-    deleteFoldersIdTrash(folderId: string): Promise<any>;
+    constructor(fields: Omit<TrashedFoldersManager, "getFolderTrash" | "deleteFolderTrash">);
+    getFolderTrash(folderId: string, options?: GetFolderTrashOptionsArg): Promise<any>;
+    deleteFolderTrash(folderId: string): Promise<any>;
 }
