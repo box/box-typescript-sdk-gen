@@ -8,14 +8,14 @@ import { Webhook } from "../schemas.generated.js";
 import { deserializeWebhook } from "../schemas.generated.js";
 import { serializeWebhook } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type WebhooksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type WebhooksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetWebhooksOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
@@ -49,19 +49,19 @@ export class WebhooksManager {
     }
     async getWebhooks(options: GetWebhooksOptionsArg = {} satisfies GetWebhooksOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeWebhooks(deserializeJSON(response.text) as JSON);
+        return deserializeWebhooks(deserializeJson(response.text));
     }
     async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeWebhook(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async getWebhookById(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeWebhook(deserializeJSON(response.text) as JSON);
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeWebhook(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async deleteWebhookById(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

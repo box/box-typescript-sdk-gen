@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type FileClassificationsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type FileClassificationsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
     readonly boxSecurityClassificationKey?: string;
 }

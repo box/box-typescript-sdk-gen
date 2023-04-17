@@ -8,14 +8,14 @@ import { FileVersionFull } from "../schemas.generated.js";
 import { deserializeFileVersionFull } from "../schemas.generated.js";
 import { serializeFileVersionFull } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type FileVersionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type FileVersionsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetFileVersionsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -45,22 +45,22 @@ export class FileVersionsManager {
     }
     async getFileVersions(fileId: string, options: GetFileVersionsOptionsArg = {} satisfies GetFileVersionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions") as string, { method: "GET", params: { ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersions(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersions(deserializeJson(response.text));
     }
     async getFileVersionById(fileId: string, fileVersionId: string, options: GetFileVersionByIdOptionsArg = {} satisfies GetFileVersionByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
+        return deserializeFileVersionFull(deserializeJson(response.text));
     }
     async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeFileVersionFull(deserializeJson(response.text));
     }
     async deleteFileVersionById(fileId: string, fileVersionId: string, options: DeleteFileVersionByIdOptionsArg = {} satisfies DeleteFileVersionByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: { ["if-match"]: options.ifMatch }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, options: PromoteFileVersionOptionsArg = {} satisfies PromoteFileVersionOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFileVersionFull(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeFileVersionFull(deserializeJson(response.text));
     }
 }

@@ -5,14 +5,14 @@ import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type TransferManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type TransferManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface TransferOwnedFolderRequestBodyArgOwnedByField {
     readonly id: string;
 }
@@ -29,7 +29,7 @@ export class TransferManager {
         Object.assign(this, fields);
     }
     async transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, options: TransferOwnedFolderOptionsArg = {} satisfies TransferOwnedFolderOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeFolderFull(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeFolderFull(deserializeJson(response.text));
     }
 }

@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type SessionTerminationManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type SessionTerminationManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface CreateUserTerminateSessionRequestBodyArg {
     readonly userIds: readonly string[];
     readonly userLogins: readonly string[];

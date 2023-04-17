@@ -3,9 +3,9 @@ import { TimelineSkillCard } from "../schemas.generated.js";
 import { TranscriptSkillCard } from "../schemas.generated.js";
 import { StatusSkillCard } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type SkillsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type SkillsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField[];

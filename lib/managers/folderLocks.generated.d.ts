@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type FolderLocksManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type FolderLocksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface CreateFolderLockRequestBodyArgLockedOperationsField {
     readonly move: boolean;
     readonly delete: boolean;

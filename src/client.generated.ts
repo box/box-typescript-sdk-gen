@@ -1,12 +1,12 @@
 import { AuthorizationManager } from "./managers/authorization.generated.js";
 import { FilesManager } from "./managers/files.generated.js";
+import { TrashedFilesManager } from "./managers/trashedFiles.generated.js";
 import { DownloadsManager } from "./managers/downloads.generated.js";
 import { UploadsManager } from "./managers/uploads.generated.js";
 import { ChunkedUploadsManager } from "./managers/chunkedUploads.generated.js";
 import { ListCollaborationsManager } from "./managers/listCollaborations.generated.js";
 import { CommentsManager } from "./managers/comments.generated.js";
 import { TasksManager } from "./managers/tasks.generated.js";
-import { TrashedFilesManager } from "./managers/trashedFiles.generated.js";
 import { FileVersionsManager } from "./managers/fileVersions.generated.js";
 import { FileMetadataManager } from "./managers/fileMetadata.generated.js";
 import { FileClassificationsManager } from "./managers/fileClassifications.generated.js";
@@ -65,20 +65,20 @@ import { ZipDownloadsManager } from "./managers/zipDownloads.generated.js";
 import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
 import { DeveloperTokenAuth } from "./developerTokenAuth.js";
-import { CCGAuth } from "./ccgAuth.js";
-import { JWTAuth } from "./jwtAuth.js";
-export type ClientAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "./ccgAuth.js";
+import { JwtAuth } from "./jwtAuth.js";
+export type ClientAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export class Client {
     readonly auth!: ClientAuthField;
     readonly authorization: AuthorizationManager;
     readonly files: FilesManager;
+    readonly trashedFiles: TrashedFilesManager;
     readonly downloads: DownloadsManager;
     readonly uploads: UploadsManager;
     readonly chunkedUploads: ChunkedUploadsManager;
     readonly listCollaborations: ListCollaborationsManager;
     readonly comments: CommentsManager;
     readonly tasks: TasksManager;
-    readonly trashedFiles: TrashedFilesManager;
     readonly fileVersions: FileVersionsManager;
     readonly fileMetadata: FileMetadataManager;
     readonly fileClassifications: FileClassificationsManager;
@@ -136,17 +136,17 @@ export class Client {
     readonly zipDownloads: ZipDownloadsManager;
     readonly signRequests: SignRequestsManager;
     readonly workflows: WorkflowsManager;
-    constructor(fields: Omit<Client, "authorization" | "files" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "trashedFiles" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "folders" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows">) {
+    constructor(fields: Omit<Client, "authorization" | "files" | "trashedFiles" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "folders" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows">) {
         Object.assign(this, fields);
         this.authorization = new AuthorizationManager({ auth: this.auth });
         this.files = new FilesManager({ auth: this.auth });
+        this.trashedFiles = new TrashedFilesManager({ auth: this.auth });
         this.downloads = new DownloadsManager({ auth: this.auth });
         this.uploads = new UploadsManager({ auth: this.auth });
         this.chunkedUploads = new ChunkedUploadsManager({ auth: this.auth });
         this.listCollaborations = new ListCollaborationsManager({ auth: this.auth });
         this.comments = new CommentsManager({ auth: this.auth });
         this.tasks = new TasksManager({ auth: this.auth });
-        this.trashedFiles = new TrashedFilesManager({ auth: this.auth });
         this.fileVersions = new FileVersionsManager({ auth: this.auth });
         this.fileMetadata = new FileMetadataManager({ auth: this.auth });
         this.fileClassifications = new FileClassificationsManager({ auth: this.auth });

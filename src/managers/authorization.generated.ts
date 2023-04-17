@@ -5,12 +5,12 @@ import { OAuth2Error } from "../schemas.generated.js";
 import { deserializeOAuth2Error } from "../schemas.generated.js";
 import { serializeOAuth2Error } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-export type AuthorizationManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+export type AuthorizationManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetAuthorizeResponseTypeArg = "code";
 export interface GetAuthorizeOptionsArg {
     readonly redirectUri?: string;
@@ -23,7 +23,7 @@ export class AuthorizationManager {
         Object.assign(this, fields);
     }
     async getAuthorize(responseType: GetAuthorizeResponseTypeArg, clientId: string, options: GetAuthorizeOptionsArg = {} satisfies GetAuthorizeOptionsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/authorize") as string, { method: "GET", params: { ["response_type"]: responseType, ["client_id"]: clientId, ["redirect_uri"]: options.redirectUri, ["state"]: options.state, ["scope"]: options.scope }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: { ["response_type"]: responseType, ["client_id"]: clientId, ["redirect_uri"]: options.redirectUri, ["state"]: options.state, ["scope"]: options.scope }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
 }

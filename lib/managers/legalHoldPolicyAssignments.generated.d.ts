@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField = "file" | "file_version" | "folder" | "user";
 export interface GetLegalHoldPolicyAssignmentsOptionsArg {
     readonly assignToType?: GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField;

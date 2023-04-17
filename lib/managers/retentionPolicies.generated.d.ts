@@ -1,8 +1,8 @@
 import { UserMini } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
 export interface GetRetentionPoliciesOptionsArg {
     readonly policyName?: string;

@@ -11,14 +11,14 @@ import { UserBase } from "../schemas.generated.js";
 import { deserializeUserBase } from "../schemas.generated.js";
 import { serializeUserBase } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type ShieldInformationBarrierSegmentMembersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type ShieldInformationBarrierSegmentMembersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetShieldInformationBarrierSegmentMembersOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
@@ -42,7 +42,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     }
     async getShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members/", shieldInformationBarrierSegmentMemberId) as string, { method: "GET", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeShieldInformationBarrierSegmentMember(deserializeJSON(response.text) as JSON);
+        return deserializeShieldInformationBarrierSegmentMember(deserializeJson(response.text));
     }
     async deleteShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members/", shieldInformationBarrierSegmentMemberId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
@@ -53,7 +53,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         return void 0;
     }
     async createShieldInformationBarrierSegmentMember(requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "POST", body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeShieldInformationBarrierSegmentMember(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeShieldInformationBarrierSegmentMember(deserializeJson(response.text));
     }
 }

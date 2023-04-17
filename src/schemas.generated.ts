@@ -1,7 +1,7 @@
 import { isJson } from "./json.js";
-import { JSON } from "./json.js";
+import { Json } from "./json.js";
 export type PostOAuth2TokenGrantTypeField = "authorization_code" | "refresh_token" | "client_credentials" | "urn:ietf:params:oauth:grant-type:jwt-bearer" | "urn:ietf:params:oauth:grant-type:token-exchange";
-export function deserializePostOAuth2TokenGrantTypeField(val: JSON): PostOAuth2TokenGrantTypeField {
+export function deserializePostOAuth2TokenGrantTypeField(val: Json): PostOAuth2TokenGrantTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"PostOAuth2TokenGrantTypeField\"";
     }
@@ -22,11 +22,11 @@ export function deserializePostOAuth2TokenGrantTypeField(val: JSON): PostOAuth2T
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializePostOAuth2TokenGrantTypeField(val: PostOAuth2TokenGrantTypeField): JSON {
+export function serializePostOAuth2TokenGrantTypeField(val: PostOAuth2TokenGrantTypeField): Json {
     return val;
 }
 export type PostOAuth2TokenSubjectTokenTypeField = "urn:ietf:params:oauth:token-type:access_token";
-export function deserializePostOAuth2TokenSubjectTokenTypeField(val: JSON): PostOAuth2TokenSubjectTokenTypeField {
+export function deserializePostOAuth2TokenSubjectTokenTypeField(val: Json): PostOAuth2TokenSubjectTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"PostOAuth2TokenSubjectTokenTypeField\"";
     }
@@ -35,11 +35,11 @@ export function deserializePostOAuth2TokenSubjectTokenTypeField(val: JSON): Post
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializePostOAuth2TokenSubjectTokenTypeField(val: PostOAuth2TokenSubjectTokenTypeField): JSON {
+export function serializePostOAuth2TokenSubjectTokenTypeField(val: PostOAuth2TokenSubjectTokenTypeField): Json {
     return val;
 }
 export type PostOAuth2TokenActorTokenTypeField = "urn:ietf:params:oauth:token-type:id_token";
-export function deserializePostOAuth2TokenActorTokenTypeField(val: JSON): PostOAuth2TokenActorTokenTypeField {
+export function deserializePostOAuth2TokenActorTokenTypeField(val: Json): PostOAuth2TokenActorTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"PostOAuth2TokenActorTokenTypeField\"";
     }
@@ -48,11 +48,11 @@ export function deserializePostOAuth2TokenActorTokenTypeField(val: JSON): PostOA
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializePostOAuth2TokenActorTokenTypeField(val: PostOAuth2TokenActorTokenTypeField): JSON {
+export function serializePostOAuth2TokenActorTokenTypeField(val: PostOAuth2TokenActorTokenTypeField): Json {
     return val;
 }
 export type PostOAuth2TokenBoxSubjectTypeField = "enterprise" | "user";
-export function deserializePostOAuth2TokenBoxSubjectTypeField(val: JSON): PostOAuth2TokenBoxSubjectTypeField {
+export function deserializePostOAuth2TokenBoxSubjectTypeField(val: Json): PostOAuth2TokenBoxSubjectTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"PostOAuth2TokenBoxSubjectTypeField\"";
     }
@@ -64,7 +64,7 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(val: JSON): PostOA
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializePostOAuth2TokenBoxSubjectTypeField(val: PostOAuth2TokenBoxSubjectTypeField): JSON {
+export function serializePostOAuth2TokenBoxSubjectTypeField(val: PostOAuth2TokenBoxSubjectTypeField): Json {
     return val;
 }
 export interface PostOAuth2Token {
@@ -84,7 +84,7 @@ export interface PostOAuth2Token {
     readonly boxSubjectId?: string;
     readonly boxSharedLink?: string;
 }
-export function deserializePostOAuth2Token(val: JSON): PostOAuth2Token {
+export function deserializePostOAuth2Token(val: Json): PostOAuth2Token {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"PostOAuth2Token\"";
     }
@@ -141,11 +141,11 @@ export function deserializePostOAuth2Token(val: JSON): PostOAuth2Token {
     const boxSharedLink: undefined | string = isJson(val.box_shared_link, "string") ? val.box_shared_link : void 0;
     return { grantType: grantType, clientId: clientId, clientSecret: clientSecret, code: code, refreshToken: refreshToken, assertion: assertion, subjectToken: subjectToken, subjectTokenType: subjectTokenType, actorToken: actorToken, actorTokenType: actorTokenType, scope: scope, resource: resource, boxSubjectType: boxSubjectType, boxSubjectId: boxSubjectId, boxSharedLink: boxSharedLink } satisfies PostOAuth2Token;
 }
-export function serializePostOAuth2Token(val: PostOAuth2Token): JSON {
+export function serializePostOAuth2Token(val: PostOAuth2Token): Json {
     return { ["grant_type"]: serializePostOAuth2TokenGrantTypeField(val.grantType), ["client_id"]: val.clientId, ["client_secret"]: val.clientSecret, ["code"]: val.code, ["refresh_token"]: val.refreshToken, ["assertion"]: val.assertion, ["subject_token"]: val.subjectToken, ["subject_token_type"]: val.subjectTokenType === void 0 ? void 0 : serializePostOAuth2TokenSubjectTokenTypeField(val.subjectTokenType), ["actor_token"]: val.actorToken, ["actor_token_type"]: val.actorTokenType === void 0 ? void 0 : serializePostOAuth2TokenActorTokenTypeField(val.actorTokenType), ["scope"]: val.scope, ["resource"]: val.resource, ["box_subject_type"]: val.boxSubjectType === void 0 ? void 0 : serializePostOAuth2TokenBoxSubjectTypeField(val.boxSubjectType), ["box_subject_id"]: val.boxSubjectId, ["box_shared_link"]: val.boxSharedLink };
 }
 export type PostOAuth2TokenRefreshAccessTokenGrantTypeField = "refresh_token";
-export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: JSON): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
+export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: Json): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"PostOAuth2TokenRefreshAccessTokenGrantTypeField\"";
     }
@@ -154,7 +154,7 @@ export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: PostOAuth2TokenRefreshAccessTokenGrantTypeField): JSON {
+export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: PostOAuth2TokenRefreshAccessTokenGrantTypeField): Json {
     return val;
 }
 export interface PostOAuth2TokenRefreshAccessToken {
@@ -163,7 +163,7 @@ export interface PostOAuth2TokenRefreshAccessToken {
     readonly clientSecret: string;
     readonly refreshToken: string;
 }
-export function deserializePostOAuth2TokenRefreshAccessToken(val: JSON): PostOAuth2TokenRefreshAccessToken {
+export function deserializePostOAuth2TokenRefreshAccessToken(val: Json): PostOAuth2TokenRefreshAccessToken {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"PostOAuth2TokenRefreshAccessToken\"";
     }
@@ -194,7 +194,7 @@ export function deserializePostOAuth2TokenRefreshAccessToken(val: JSON): PostOAu
     const refreshToken: string = val.refresh_token;
     return { grantType: grantType, clientId: clientId, clientSecret: clientSecret, refreshToken: refreshToken } satisfies PostOAuth2TokenRefreshAccessToken;
 }
-export function serializePostOAuth2TokenRefreshAccessToken(val: PostOAuth2TokenRefreshAccessToken): JSON {
+export function serializePostOAuth2TokenRefreshAccessToken(val: PostOAuth2TokenRefreshAccessToken): Json {
     return { ["grant_type"]: serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val.grantType), ["client_id"]: val.clientId, ["client_secret"]: val.clientSecret, ["refresh_token"]: val.refreshToken };
 }
 export interface PostOAuth2Revoke {
@@ -202,7 +202,7 @@ export interface PostOAuth2Revoke {
     readonly clientSecret?: string;
     readonly token?: string;
 }
-export function deserializePostOAuth2Revoke(val: JSON): PostOAuth2Revoke {
+export function deserializePostOAuth2Revoke(val: Json): PostOAuth2Revoke {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"PostOAuth2Revoke\"";
     }
@@ -220,11 +220,11 @@ export function deserializePostOAuth2Revoke(val: JSON): PostOAuth2Revoke {
     const token: undefined | string = isJson(val.token, "string") ? val.token : void 0;
     return { clientId: clientId, clientSecret: clientSecret, token: token } satisfies PostOAuth2Revoke;
 }
-export function serializePostOAuth2Revoke(val: PostOAuth2Revoke): JSON {
+export function serializePostOAuth2Revoke(val: PostOAuth2Revoke): Json {
     return { ["client_id"]: val.clientId, ["client_secret"]: val.clientSecret, ["token"]: val.token };
 }
 export type ZipDownloadRequestItemsFieldTypeField = "file" | "folder.";
-export function deserializeZipDownloadRequestItemsFieldTypeField(val: JSON): ZipDownloadRequestItemsFieldTypeField {
+export function deserializeZipDownloadRequestItemsFieldTypeField(val: Json): ZipDownloadRequestItemsFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ZipDownloadRequestItemsFieldTypeField\"";
     }
@@ -236,14 +236,14 @@ export function deserializeZipDownloadRequestItemsFieldTypeField(val: JSON): Zip
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeZipDownloadRequestItemsFieldTypeField(val: ZipDownloadRequestItemsFieldTypeField): JSON {
+export function serializeZipDownloadRequestItemsFieldTypeField(val: ZipDownloadRequestItemsFieldTypeField): Json {
     return val;
 }
 export interface ZipDownloadRequestItemsField {
     readonly type: ZipDownloadRequestItemsFieldTypeField;
     readonly id: string;
 }
-export function deserializeZipDownloadRequestItemsField(val: JSON): ZipDownloadRequestItemsField {
+export function deserializeZipDownloadRequestItemsField(val: Json): ZipDownloadRequestItemsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ZipDownloadRequestItemsField\"";
     }
@@ -260,14 +260,14 @@ export function deserializeZipDownloadRequestItemsField(val: JSON): ZipDownloadR
     const id: string = val.id;
     return { type: type, id: id } satisfies ZipDownloadRequestItemsField;
 }
-export function serializeZipDownloadRequestItemsField(val: ZipDownloadRequestItemsField): JSON {
+export function serializeZipDownloadRequestItemsField(val: ZipDownloadRequestItemsField): Json {
     return { ["type"]: serializeZipDownloadRequestItemsFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface ZipDownloadRequest {
     readonly items: readonly ZipDownloadRequestItemsField[];
     readonly downloadFileName?: string;
 }
-export function deserializeZipDownloadRequest(val: JSON): ZipDownloadRequest {
+export function deserializeZipDownloadRequest(val: Json): ZipDownloadRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ZipDownloadRequest\"";
     }
@@ -277,7 +277,7 @@ export function deserializeZipDownloadRequest(val: JSON): ZipDownloadRequest {
     if (!isJson(val.items, "array")) {
         throw "Expecting array for \"items\" of type \"ZipDownloadRequest\"";
     }
-    const items: readonly ZipDownloadRequestItemsField[] = val.items.map(function (itm: JSON): any {
+    const items: readonly ZipDownloadRequestItemsField[] = val.items.map(function (itm: Json): any {
         return deserializeZipDownloadRequestItemsField(itm);
     }) as readonly any[];
     if (!(val.download_file_name === void 0) && !isJson(val.download_file_name, "string")) {
@@ -286,24 +286,24 @@ export function deserializeZipDownloadRequest(val: JSON): ZipDownloadRequest {
     const downloadFileName: undefined | string = isJson(val.download_file_name, "string") ? val.download_file_name : void 0;
     return { items: items, downloadFileName: downloadFileName } satisfies ZipDownloadRequest;
 }
-export function serializeZipDownloadRequest(val: ZipDownloadRequest): JSON {
+export function serializeZipDownloadRequest(val: ZipDownloadRequest): Json {
     return { ["items"]: val.items.map(function (item: ZipDownloadRequestItemsField): any {
             return serializeZipDownloadRequestItemsField(item);
         }) as readonly any[], ["download_file_name"]: val.downloadFileName };
 }
 export interface MetadataQueryQueryParamsField {
 }
-export function deserializeMetadataQueryQueryParamsField(val: JSON): MetadataQueryQueryParamsField {
+export function deserializeMetadataQueryQueryParamsField(val: Json): MetadataQueryQueryParamsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryQueryParamsField\"";
     }
     return {} satisfies MetadataQueryQueryParamsField;
 }
-export function serializeMetadataQueryQueryParamsField(val: MetadataQueryQueryParamsField): JSON {
+export function serializeMetadataQueryQueryParamsField(val: MetadataQueryQueryParamsField): Json {
     return {};
 }
 export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC" | "asc" | "desc";
-export function deserializeMetadataQueryOrderByFieldDirectionField(val: JSON): MetadataQueryOrderByFieldDirectionField {
+export function deserializeMetadataQueryOrderByFieldDirectionField(val: Json): MetadataQueryOrderByFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataQueryOrderByFieldDirectionField\"";
     }
@@ -321,14 +321,14 @@ export function deserializeMetadataQueryOrderByFieldDirectionField(val: JSON): M
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataQueryOrderByFieldDirectionField(val: MetadataQueryOrderByFieldDirectionField): JSON {
+export function serializeMetadataQueryOrderByFieldDirectionField(val: MetadataQueryOrderByFieldDirectionField): Json {
     return val;
 }
 export interface MetadataQueryOrderByField {
     readonly fieldKey?: string;
     readonly direction?: MetadataQueryOrderByFieldDirectionField;
 }
-export function deserializeMetadataQueryOrderByField(val: JSON): MetadataQueryOrderByField {
+export function deserializeMetadataQueryOrderByField(val: Json): MetadataQueryOrderByField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryOrderByField\"";
     }
@@ -339,7 +339,7 @@ export function deserializeMetadataQueryOrderByField(val: JSON): MetadataQueryOr
     const direction: undefined | MetadataQueryOrderByFieldDirectionField = val.direction === void 0 ? void 0 : deserializeMetadataQueryOrderByFieldDirectionField(val.direction);
     return { fieldKey: fieldKey, direction: direction } satisfies MetadataQueryOrderByField;
 }
-export function serializeMetadataQueryOrderByField(val: MetadataQueryOrderByField): JSON {
+export function serializeMetadataQueryOrderByField(val: MetadataQueryOrderByField): Json {
     return { ["field_key"]: val.fieldKey, ["direction"]: val.direction === void 0 ? void 0 : serializeMetadataQueryOrderByFieldDirectionField(val.direction) };
 }
 export interface MetadataQuery {
@@ -352,7 +352,7 @@ export interface MetadataQuery {
     readonly marker?: string;
     readonly fields?: readonly string[];
 }
-export function deserializeMetadataQuery(val: JSON): MetadataQuery {
+export function deserializeMetadataQuery(val: Json): MetadataQuery {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQuery\"";
     }
@@ -378,7 +378,7 @@ export function deserializeMetadataQuery(val: JSON): MetadataQuery {
     if (!(val.order_by === void 0) && !isJson(val.order_by, "array")) {
         throw "Expecting array for \"order_by\" of type \"MetadataQuery\"";
     }
-    const orderBy: undefined | readonly MetadataQueryOrderByField[] = isJson(val.order_by, "array") ? val.order_by.map(function (itm: JSON): any {
+    const orderBy: undefined | readonly MetadataQueryOrderByField[] = isJson(val.order_by, "array") ? val.order_by.map(function (itm: Json): any {
         return deserializeMetadataQueryOrderByField(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -392,12 +392,12 @@ export function deserializeMetadataQuery(val: JSON): MetadataQuery {
     if (!(val.fields === void 0) && !isJson(val.fields, "array")) {
         throw "Expecting array for \"fields\" of type \"MetadataQuery\"";
     }
-    const fields: undefined | readonly string[] = isJson(val.fields, "array") ? val.fields.map(function (itm: JSON): undefined {
+    const fields: undefined | readonly string[] = isJson(val.fields, "array") ? val.fields.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     return { from: from, query: query, queryParams: queryParams, ancestorFolderId: ancestorFolderId, orderBy: orderBy, limit: limit, marker: marker, fields: fields } satisfies MetadataQuery;
 }
-export function serializeMetadataQuery(val: MetadataQuery): JSON {
+export function serializeMetadataQuery(val: MetadataQuery): Json {
     return { ["from"]: val.from, ["query"]: val.query, ["query_params"]: val.queryParams === void 0 ? void 0 : serializeMetadataQueryQueryParamsField(val.queryParams), ["ancestor_folder_id"]: val.ancestorFolderId, ["order_by"]: val.orderBy === void 0 ? void 0 : val.orderBy.map(function (item: MetadataQueryOrderByField): any {
             return serializeMetadataQueryOrderByField(item);
         }) as readonly any[], ["limit"]: val.limit, ["marker"]: val.marker, ["fields"]: val.fields === void 0 ? void 0 : val.fields.map(function (item: string): undefined {
@@ -405,7 +405,7 @@ export function serializeMetadataQuery(val: MetadataQuery): JSON {
         }) as readonly any[] };
 }
 export type FileRequestUpdateRequestStatusField = "active" | "inactive";
-export function deserializeFileRequestUpdateRequestStatusField(val: JSON): FileRequestUpdateRequestStatusField {
+export function deserializeFileRequestUpdateRequestStatusField(val: Json): FileRequestUpdateRequestStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileRequestUpdateRequestStatusField\"";
     }
@@ -417,7 +417,7 @@ export function deserializeFileRequestUpdateRequestStatusField(val: JSON): FileR
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileRequestUpdateRequestStatusField(val: FileRequestUpdateRequestStatusField): JSON {
+export function serializeFileRequestUpdateRequestStatusField(val: FileRequestUpdateRequestStatusField): Json {
     return val;
 }
 export interface FileRequestUpdateRequest {
@@ -428,7 +428,7 @@ export interface FileRequestUpdateRequest {
     readonly isDescriptionRequired?: boolean;
     readonly expiresAt?: string;
 }
-export function deserializeFileRequestUpdateRequest(val: JSON): FileRequestUpdateRequest {
+export function deserializeFileRequestUpdateRequest(val: Json): FileRequestUpdateRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileRequestUpdateRequest\"";
     }
@@ -455,11 +455,11 @@ export function deserializeFileRequestUpdateRequest(val: JSON): FileRequestUpdat
     const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
     return { title: title, description: description, status: status, isEmailRequired: isEmailRequired, isDescriptionRequired: isDescriptionRequired, expiresAt: expiresAt } satisfies FileRequestUpdateRequest;
 }
-export function serializeFileRequestUpdateRequest(val: FileRequestUpdateRequest): JSON {
+export function serializeFileRequestUpdateRequest(val: FileRequestUpdateRequest): Json {
     return { ["title"]: val.title, ["description"]: val.description, ["status"]: val.status === void 0 ? void 0 : serializeFileRequestUpdateRequestStatusField(val.status), ["is_email_required"]: val.isEmailRequired, ["is_description_required"]: val.isDescriptionRequired, ["expires_at"]: val.expiresAt };
 }
 export type FileRequestCopyRequestFolderFieldTypeField = "folder";
-export function deserializeFileRequestCopyRequestFolderFieldTypeField(val: JSON): FileRequestCopyRequestFolderFieldTypeField {
+export function deserializeFileRequestCopyRequestFolderFieldTypeField(val: Json): FileRequestCopyRequestFolderFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileRequestCopyRequestFolderFieldTypeField\"";
     }
@@ -468,14 +468,14 @@ export function deserializeFileRequestCopyRequestFolderFieldTypeField(val: JSON)
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileRequestCopyRequestFolderFieldTypeField(val: FileRequestCopyRequestFolderFieldTypeField): JSON {
+export function serializeFileRequestCopyRequestFolderFieldTypeField(val: FileRequestCopyRequestFolderFieldTypeField): Json {
     return val;
 }
 export interface FileRequestCopyRequestFolderField {
     readonly type?: FileRequestCopyRequestFolderFieldTypeField;
     readonly id: string;
 }
-export function deserializeFileRequestCopyRequestFolderField(val: JSON): FileRequestCopyRequestFolderField {
+export function deserializeFileRequestCopyRequestFolderField(val: Json): FileRequestCopyRequestFolderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileRequestCopyRequestFolderField\"";
     }
@@ -489,7 +489,7 @@ export function deserializeFileRequestCopyRequestFolderField(val: JSON): FileReq
     const id: string = val.id;
     return { type: type, id: id } satisfies FileRequestCopyRequestFolderField;
 }
-export function serializeFileRequestCopyRequestFolderField(val: FileRequestCopyRequestFolderField): JSON {
+export function serializeFileRequestCopyRequestFolderField(val: FileRequestCopyRequestFolderField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeFileRequestCopyRequestFolderFieldTypeField(val.type), ["id"]: val.id };
 }
 export type FileRequestCopyRequest = FileRequestUpdateRequest & {
@@ -497,7 +497,7 @@ export type FileRequestCopyRequest = FileRequestUpdateRequest & {
      * The folder to associate the new file request to. */
     readonly folder: FileRequestCopyRequestFolderField;
 };
-export function deserializeFileRequestCopyRequest(val: JSON): FileRequestCopyRequest {
+export function deserializeFileRequestCopyRequest(val: Json): FileRequestCopyRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileRequestCopyRequest\"";
     }
@@ -528,7 +528,7 @@ export function deserializeFileRequestCopyRequest(val: JSON): FileRequestCopyReq
     const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
     return { folder: folder, title: title, description: description, status: status, isEmailRequired: isEmailRequired, isDescriptionRequired: isDescriptionRequired, expiresAt: expiresAt } satisfies FileRequestCopyRequest;
 }
-export function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): JSON {
+export function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Json {
     const base: any = serializeFileRequestUpdateRequest(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileRequestCopyRequest\"";
@@ -536,7 +536,7 @@ export function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): JS
     return { ...base, ...{ ["folder"]: serializeFileRequestCopyRequestFolderField(val.folder) } };
 }
 export type SignRequestCreateRequestSignatureColorField = "blue" | "black" | "red";
-export function deserializeSignRequestCreateRequestSignatureColorField(val: JSON): SignRequestCreateRequestSignatureColorField {
+export function deserializeSignRequestCreateRequestSignatureColorField(val: Json): SignRequestCreateRequestSignatureColorField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestCreateRequestSignatureColorField\"";
     }
@@ -551,11 +551,11 @@ export function deserializeSignRequestCreateRequestSignatureColorField(val: JSON
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestCreateRequestSignatureColorField(val: SignRequestCreateRequestSignatureColorField): JSON {
+export function serializeSignRequestCreateRequestSignatureColorField(val: SignRequestCreateRequestSignatureColorField): Json {
     return val;
 }
 export type ClientErrorTypeField = "error";
-export function deserializeClientErrorTypeField(val: JSON): ClientErrorTypeField {
+export function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClientErrorTypeField\"";
     }
@@ -564,11 +564,11 @@ export function deserializeClientErrorTypeField(val: JSON): ClientErrorTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClientErrorTypeField(val: ClientErrorTypeField): JSON {
+export function serializeClientErrorTypeField(val: ClientErrorTypeField): Json {
     return val;
 }
 export type ClientErrorCodeField = "created" | "accepted" | "no_content" | "redirect" | "not_modified" | "bad_request" | "unauthorized" | "forbidden" | "not_found" | "method_not_allowed" | "conflict" | "precondition_failed" | "too_many_requests" | "internal_server_error" | "unavailable" | "item_name_invalid" | "insufficient_scope";
-export function deserializeClientErrorCodeField(val: JSON): ClientErrorCodeField {
+export function deserializeClientErrorCodeField(val: Json): ClientErrorCodeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClientErrorCodeField\"";
     }
@@ -625,13 +625,13 @@ export function deserializeClientErrorCodeField(val: JSON): ClientErrorCodeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClientErrorCodeField(val: ClientErrorCodeField): JSON {
+export function serializeClientErrorCodeField(val: ClientErrorCodeField): Json {
     return val;
 }
 export interface ClientErrorContextInfoField {
     readonly message?: string;
 }
-export function deserializeClientErrorContextInfoField(val: JSON): ClientErrorContextInfoField {
+export function deserializeClientErrorContextInfoField(val: Json): ClientErrorContextInfoField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClientErrorContextInfoField\"";
     }
@@ -641,7 +641,7 @@ export function deserializeClientErrorContextInfoField(val: JSON): ClientErrorCo
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
     return { message: message } satisfies ClientErrorContextInfoField;
 }
-export function serializeClientErrorContextInfoField(val: ClientErrorContextInfoField): JSON {
+export function serializeClientErrorContextInfoField(val: ClientErrorContextInfoField): Json {
     return { ["message"]: val.message };
 }
 export interface ClientError {
@@ -653,7 +653,7 @@ export interface ClientError {
     readonly helpUrl?: string;
     readonly requestId?: string;
 }
-export function deserializeClientError(val: JSON): ClientError {
+export function deserializeClientError(val: Json): ClientError {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClientError\"";
     }
@@ -678,14 +678,14 @@ export function deserializeClientError(val: JSON): ClientError {
     const requestId: undefined | string = isJson(val.request_id, "string") ? val.request_id : void 0;
     return { type: type, status: status, code: code, message: message, contextInfo: contextInfo, helpUrl: helpUrl, requestId: requestId } satisfies ClientError;
 }
-export function serializeClientError(val: ClientError): JSON {
+export function serializeClientError(val: ClientError): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeClientErrorTypeField(val.type), ["status"]: val.status, ["code"]: val.code === void 0 ? void 0 : serializeClientErrorCodeField(val.code), ["message"]: val.message, ["context_info"]: val.contextInfo === void 0 ? void 0 : serializeClientErrorContextInfoField(val.contextInfo), ["help_url"]: val.helpUrl, ["request_id"]: val.requestId };
 }
 export interface OAuth2Error {
     readonly error?: string;
     readonly errorDescription?: string;
 }
-export function deserializeOAuth2Error(val: JSON): OAuth2Error {
+export function deserializeOAuth2Error(val: Json): OAuth2Error {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"OAuth2Error\"";
     }
@@ -699,11 +699,11 @@ export function deserializeOAuth2Error(val: JSON): OAuth2Error {
     const errorDescription: undefined | string = isJson(val.error_description, "string") ? val.error_description : void 0;
     return { error: error, errorDescription: errorDescription } satisfies OAuth2Error;
 }
-export function serializeOAuth2Error(val: OAuth2Error): JSON {
+export function serializeOAuth2Error(val: OAuth2Error): Json {
     return { ["error"]: val.error, ["error_description"]: val.errorDescription };
 }
 export type SkillInvocationTypeField = "skill_invocation";
-export function deserializeSkillInvocationTypeField(val: JSON): SkillInvocationTypeField {
+export function deserializeSkillInvocationTypeField(val: Json): SkillInvocationTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationTypeField\"";
     }
@@ -712,11 +712,11 @@ export function deserializeSkillInvocationTypeField(val: JSON): SkillInvocationT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationTypeField(val: SkillInvocationTypeField): JSON {
+export function serializeSkillInvocationTypeField(val: SkillInvocationTypeField): Json {
     return val;
 }
 export type SkillInvocationSkillFieldTypeField = "skill";
-export function deserializeSkillInvocationSkillFieldTypeField(val: JSON): SkillInvocationSkillFieldTypeField {
+export function deserializeSkillInvocationSkillFieldTypeField(val: Json): SkillInvocationSkillFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationSkillFieldTypeField\"";
     }
@@ -725,7 +725,7 @@ export function deserializeSkillInvocationSkillFieldTypeField(val: JSON): SkillI
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationSkillFieldTypeField(val: SkillInvocationSkillFieldTypeField): JSON {
+export function serializeSkillInvocationSkillFieldTypeField(val: SkillInvocationSkillFieldTypeField): Json {
     return val;
 }
 export interface SkillInvocationSkillField {
@@ -734,7 +734,7 @@ export interface SkillInvocationSkillField {
     readonly name?: string;
     readonly apiKey?: string;
 }
-export function deserializeSkillInvocationSkillField(val: JSON): SkillInvocationSkillField {
+export function deserializeSkillInvocationSkillField(val: Json): SkillInvocationSkillField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationSkillField\"";
     }
@@ -753,11 +753,11 @@ export function deserializeSkillInvocationSkillField(val: JSON): SkillInvocation
     const apiKey: undefined | string = isJson(val.api_key, "string") ? val.api_key : void 0;
     return { id: id, type: type, name: name, apiKey: apiKey } satisfies SkillInvocationSkillField;
 }
-export function serializeSkillInvocationSkillField(val: SkillInvocationSkillField): JSON {
+export function serializeSkillInvocationSkillField(val: SkillInvocationSkillField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeSkillInvocationSkillFieldTypeField(val.type), ["name"]: val.name, ["api_key"]: val.apiKey };
 }
 export type SkillInvocationTokenFieldReadFieldTokenTypeField = "bearer";
-export function deserializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: JSON): SkillInvocationTokenFieldReadFieldTokenTypeField {
+export function deserializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: Json): SkillInvocationTokenFieldReadFieldTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationTokenFieldReadFieldTokenTypeField\"";
     }
@@ -766,7 +766,7 @@ export function deserializeSkillInvocationTokenFieldReadFieldTokenTypeField(val:
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: SkillInvocationTokenFieldReadFieldTokenTypeField): JSON {
+export function serializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: SkillInvocationTokenFieldReadFieldTokenTypeField): Json {
     return val;
 }
 export interface SkillInvocationTokenFieldReadField {
@@ -775,7 +775,7 @@ export interface SkillInvocationTokenFieldReadField {
     readonly tokenType?: SkillInvocationTokenFieldReadFieldTokenTypeField;
     readonly restrictedTo?: string;
 }
-export function deserializeSkillInvocationTokenFieldReadField(val: JSON): SkillInvocationTokenFieldReadField {
+export function deserializeSkillInvocationTokenFieldReadField(val: Json): SkillInvocationTokenFieldReadField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationTokenFieldReadField\"";
     }
@@ -794,11 +794,11 @@ export function deserializeSkillInvocationTokenFieldReadField(val: JSON): SkillI
     const restrictedTo: undefined | string = isJson(val.restricted_to, "string") ? val.restricted_to : void 0;
     return { accessToken: accessToken, expiresIn: expiresIn, tokenType: tokenType, restrictedTo: restrictedTo } satisfies SkillInvocationTokenFieldReadField;
 }
-export function serializeSkillInvocationTokenFieldReadField(val: SkillInvocationTokenFieldReadField): JSON {
+export function serializeSkillInvocationTokenFieldReadField(val: SkillInvocationTokenFieldReadField): Json {
     return { ["access_token"]: val.accessToken, ["expires_in"]: val.expiresIn, ["token_type"]: val.tokenType === void 0 ? void 0 : serializeSkillInvocationTokenFieldReadFieldTokenTypeField(val.tokenType), ["restricted_to"]: val.restrictedTo };
 }
 export type SkillInvocationTokenFieldWriteFieldTokenTypeField = "bearer";
-export function deserializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: JSON): SkillInvocationTokenFieldWriteFieldTokenTypeField {
+export function deserializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: Json): SkillInvocationTokenFieldWriteFieldTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationTokenFieldWriteFieldTokenTypeField\"";
     }
@@ -807,7 +807,7 @@ export function deserializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: SkillInvocationTokenFieldWriteFieldTokenTypeField): JSON {
+export function serializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: SkillInvocationTokenFieldWriteFieldTokenTypeField): Json {
     return val;
 }
 export interface SkillInvocationTokenFieldWriteField {
@@ -816,7 +816,7 @@ export interface SkillInvocationTokenFieldWriteField {
     readonly tokenType?: SkillInvocationTokenFieldWriteFieldTokenTypeField;
     readonly restrictedTo?: string;
 }
-export function deserializeSkillInvocationTokenFieldWriteField(val: JSON): SkillInvocationTokenFieldWriteField {
+export function deserializeSkillInvocationTokenFieldWriteField(val: Json): SkillInvocationTokenFieldWriteField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationTokenFieldWriteField\"";
     }
@@ -835,14 +835,14 @@ export function deserializeSkillInvocationTokenFieldWriteField(val: JSON): Skill
     const restrictedTo: undefined | string = isJson(val.restricted_to, "string") ? val.restricted_to : void 0;
     return { accessToken: accessToken, expiresIn: expiresIn, tokenType: tokenType, restrictedTo: restrictedTo } satisfies SkillInvocationTokenFieldWriteField;
 }
-export function serializeSkillInvocationTokenFieldWriteField(val: SkillInvocationTokenFieldWriteField): JSON {
+export function serializeSkillInvocationTokenFieldWriteField(val: SkillInvocationTokenFieldWriteField): Json {
     return { ["access_token"]: val.accessToken, ["expires_in"]: val.expiresIn, ["token_type"]: val.tokenType === void 0 ? void 0 : serializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val.tokenType), ["restricted_to"]: val.restrictedTo };
 }
 export interface SkillInvocationTokenField {
     readonly read?: SkillInvocationTokenFieldReadField;
     readonly write?: SkillInvocationTokenFieldWriteField;
 }
-export function deserializeSkillInvocationTokenField(val: JSON): SkillInvocationTokenField {
+export function deserializeSkillInvocationTokenField(val: Json): SkillInvocationTokenField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationTokenField\"";
     }
@@ -850,11 +850,11 @@ export function deserializeSkillInvocationTokenField(val: JSON): SkillInvocation
     const write: undefined | SkillInvocationTokenFieldWriteField = val.write === void 0 ? void 0 : deserializeSkillInvocationTokenFieldWriteField(val.write);
     return { read: read, write: write } satisfies SkillInvocationTokenField;
 }
-export function serializeSkillInvocationTokenField(val: SkillInvocationTokenField): JSON {
+export function serializeSkillInvocationTokenField(val: SkillInvocationTokenField): Json {
     return { ["read"]: val.read === void 0 ? void 0 : serializeSkillInvocationTokenFieldReadField(val.read), ["write"]: val.write === void 0 ? void 0 : serializeSkillInvocationTokenFieldWriteField(val.write) };
 }
 export type SkillInvocationStatusFieldStateField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export function deserializeSkillInvocationStatusFieldStateField(val: JSON): SkillInvocationStatusFieldStateField {
+export function deserializeSkillInvocationStatusFieldStateField(val: Json): SkillInvocationStatusFieldStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationStatusFieldStateField\"";
     }
@@ -875,7 +875,7 @@ export function deserializeSkillInvocationStatusFieldStateField(val: JSON): Skil
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationStatusFieldStateField(val: SkillInvocationStatusFieldStateField): JSON {
+export function serializeSkillInvocationStatusFieldStateField(val: SkillInvocationStatusFieldStateField): Json {
     return val;
 }
 export interface SkillInvocationStatusField {
@@ -884,7 +884,7 @@ export interface SkillInvocationStatusField {
     readonly errorCode?: string;
     readonly additionalInfo?: string;
 }
-export function deserializeSkillInvocationStatusField(val: JSON): SkillInvocationStatusField {
+export function deserializeSkillInvocationStatusField(val: Json): SkillInvocationStatusField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationStatusField\"";
     }
@@ -903,11 +903,11 @@ export function deserializeSkillInvocationStatusField(val: JSON): SkillInvocatio
     const additionalInfo: undefined | string = isJson(val.additional_info, "string") ? val.additional_info : void 0;
     return { state: state, message: message, errorCode: errorCode, additionalInfo: additionalInfo } satisfies SkillInvocationStatusField;
 }
-export function serializeSkillInvocationStatusField(val: SkillInvocationStatusField): JSON {
+export function serializeSkillInvocationStatusField(val: SkillInvocationStatusField): Json {
     return { ["state"]: val.state === void 0 ? void 0 : serializeSkillInvocationStatusFieldStateField(val.state), ["message"]: val.message, ["error_code"]: val.errorCode, ["additional_info"]: val.additionalInfo };
 }
 export type SkillInvocationEnterpriseFieldTypeField = "enterprise";
-export function deserializeSkillInvocationEnterpriseFieldTypeField(val: JSON): SkillInvocationEnterpriseFieldTypeField {
+export function deserializeSkillInvocationEnterpriseFieldTypeField(val: Json): SkillInvocationEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SkillInvocationEnterpriseFieldTypeField\"";
     }
@@ -916,7 +916,7 @@ export function deserializeSkillInvocationEnterpriseFieldTypeField(val: JSON): S
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSkillInvocationEnterpriseFieldTypeField(val: SkillInvocationEnterpriseFieldTypeField): JSON {
+export function serializeSkillInvocationEnterpriseFieldTypeField(val: SkillInvocationEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface SkillInvocationEnterpriseField {
@@ -924,7 +924,7 @@ export interface SkillInvocationEnterpriseField {
     readonly type?: SkillInvocationEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export function deserializeSkillInvocationEnterpriseField(val: JSON): SkillInvocationEnterpriseField {
+export function deserializeSkillInvocationEnterpriseField(val: Json): SkillInvocationEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationEnterpriseField\"";
     }
@@ -939,11 +939,11 @@ export function deserializeSkillInvocationEnterpriseField(val: JSON): SkillInvoc
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies SkillInvocationEnterpriseField;
 }
-export function serializeSkillInvocationEnterpriseField(val: SkillInvocationEnterpriseField): JSON {
+export function serializeSkillInvocationEnterpriseField(val: SkillInvocationEnterpriseField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeSkillInvocationEnterpriseFieldTypeField(val.type), ["name"]: val.name };
 }
 export type WebhookInvocationTypeField = "webhook_event";
-export function deserializeWebhookInvocationTypeField(val: JSON): WebhookInvocationTypeField {
+export function deserializeWebhookInvocationTypeField(val: Json): WebhookInvocationTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebhookInvocationTypeField\"";
     }
@@ -952,11 +952,11 @@ export function deserializeWebhookInvocationTypeField(val: JSON): WebhookInvocat
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebhookInvocationTypeField(val: WebhookInvocationTypeField): JSON {
+export function serializeWebhookInvocationTypeField(val: WebhookInvocationTypeField): Json {
     return val;
 }
 export type WebhookInvocationTriggerField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export function deserializeWebhookInvocationTriggerField(val: JSON): WebhookInvocationTriggerField {
+export function deserializeWebhookInvocationTriggerField(val: Json): WebhookInvocationTriggerField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebhookInvocationTriggerField\"";
     }
@@ -1079,11 +1079,11 @@ export function deserializeWebhookInvocationTriggerField(val: JSON): WebhookInvo
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebhookInvocationTriggerField(val: WebhookInvocationTriggerField): JSON {
+export function serializeWebhookInvocationTriggerField(val: WebhookInvocationTriggerField): Json {
     return val;
 }
 export type AccessTokenTokenTypeField = "bearer";
-export function deserializeAccessTokenTokenTypeField(val: JSON): AccessTokenTokenTypeField {
+export function deserializeAccessTokenTokenTypeField(val: Json): AccessTokenTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"AccessTokenTokenTypeField\"";
     }
@@ -1092,11 +1092,11 @@ export function deserializeAccessTokenTokenTypeField(val: JSON): AccessTokenToke
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeAccessTokenTokenTypeField(val: AccessTokenTokenTypeField): JSON {
+export function serializeAccessTokenTokenTypeField(val: AccessTokenTokenTypeField): Json {
     return val;
 }
 export type AccessTokenIssuedTokenTypeField = "urn:ietf:params:oauth:token-type:access_token";
-export function deserializeAccessTokenIssuedTokenTypeField(val: JSON): AccessTokenIssuedTokenTypeField {
+export function deserializeAccessTokenIssuedTokenTypeField(val: Json): AccessTokenIssuedTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"AccessTokenIssuedTokenTypeField\"";
     }
@@ -1105,11 +1105,11 @@ export function deserializeAccessTokenIssuedTokenTypeField(val: JSON): AccessTok
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeAccessTokenIssuedTokenTypeField(val: AccessTokenIssuedTokenTypeField): JSON {
+export function serializeAccessTokenIssuedTokenTypeField(val: AccessTokenIssuedTokenTypeField): Json {
     return val;
 }
 export type ClassificationTemplateField = "securityClassification-6VMVochwUWo";
-export function deserializeClassificationTemplateField(val: JSON): ClassificationTemplateField {
+export function deserializeClassificationTemplateField(val: Json): ClassificationTemplateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateField\"";
     }
@@ -1118,7 +1118,7 @@ export function deserializeClassificationTemplateField(val: JSON): Classificatio
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateField(val: ClassificationTemplateField): JSON {
+export function serializeClassificationTemplateField(val: ClassificationTemplateField): Json {
     return val;
 }
 export interface Classification {
@@ -1131,7 +1131,7 @@ export interface Classification {
     readonly typeVersion?: number;
     readonly canEdit?: boolean;
 }
-export function deserializeClassification(val: JSON): Classification {
+export function deserializeClassification(val: Json): Classification {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Classification\"";
     }
@@ -1166,11 +1166,11 @@ export function deserializeClassification(val: JSON): Classification {
     const canEdit: undefined | boolean = isJson(val.$canEdit, "boolean") ? val.$canEdit : void 0;
     return { boxSecurityClassificationKey: boxSecurityClassificationKey, parent: parent, template: template, scope: scope, version: version, type: type, typeVersion: typeVersion, canEdit: canEdit } satisfies Classification;
 }
-export function serializeClassification(val: Classification): JSON {
+export function serializeClassification(val: Classification): Json {
     return { ["Box__Security__Classification__Key"]: val.boxSecurityClassificationKey, ["$parent"]: val.parent, ["$template"]: val.template === void 0 ? void 0 : serializeClassificationTemplateField(val.template), ["$scope"]: val.scope, ["$version"]: val.version, ["$type"]: val.type, ["$typeVersion"]: val.typeVersion, ["$canEdit"]: val.canEdit };
 }
 export type ClassificationTemplateTypeField = "metadata_template";
-export function deserializeClassificationTemplateTypeField(val: JSON): ClassificationTemplateTypeField {
+export function deserializeClassificationTemplateTypeField(val: Json): ClassificationTemplateTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateTypeField\"";
     }
@@ -1179,11 +1179,11 @@ export function deserializeClassificationTemplateTypeField(val: JSON): Classific
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateTypeField(val: ClassificationTemplateTypeField): JSON {
+export function serializeClassificationTemplateTypeField(val: ClassificationTemplateTypeField): Json {
     return val;
 }
 export type ClassificationTemplateTemplateKeyField = "securityClassification-6VMVochwUWo";
-export function deserializeClassificationTemplateTemplateKeyField(val: JSON): ClassificationTemplateTemplateKeyField {
+export function deserializeClassificationTemplateTemplateKeyField(val: Json): ClassificationTemplateTemplateKeyField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateTemplateKeyField\"";
     }
@@ -1192,11 +1192,11 @@ export function deserializeClassificationTemplateTemplateKeyField(val: JSON): Cl
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateTemplateKeyField(val: ClassificationTemplateTemplateKeyField): JSON {
+export function serializeClassificationTemplateTemplateKeyField(val: ClassificationTemplateTemplateKeyField): Json {
     return val;
 }
 export type ClassificationTemplateDisplayNameField = "Classification";
-export function deserializeClassificationTemplateDisplayNameField(val: JSON): ClassificationTemplateDisplayNameField {
+export function deserializeClassificationTemplateDisplayNameField(val: Json): ClassificationTemplateDisplayNameField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateDisplayNameField\"";
     }
@@ -1205,11 +1205,11 @@ export function deserializeClassificationTemplateDisplayNameField(val: JSON): Cl
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateDisplayNameField(val: ClassificationTemplateDisplayNameField): JSON {
+export function serializeClassificationTemplateDisplayNameField(val: ClassificationTemplateDisplayNameField): Json {
     return val;
 }
 export type ClassificationTemplateFieldsFieldTypeField = "enum";
-export function deserializeClassificationTemplateFieldsFieldTypeField(val: JSON): ClassificationTemplateFieldsFieldTypeField {
+export function deserializeClassificationTemplateFieldsFieldTypeField(val: Json): ClassificationTemplateFieldsFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateFieldsFieldTypeField\"";
     }
@@ -1218,11 +1218,11 @@ export function deserializeClassificationTemplateFieldsFieldTypeField(val: JSON)
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateFieldsFieldTypeField(val: ClassificationTemplateFieldsFieldTypeField): JSON {
+export function serializeClassificationTemplateFieldsFieldTypeField(val: ClassificationTemplateFieldsFieldTypeField): Json {
     return val;
 }
 export type ClassificationTemplateFieldsFieldKeyField = "Box__Security__Classification__Key";
-export function deserializeClassificationTemplateFieldsFieldKeyField(val: JSON): ClassificationTemplateFieldsFieldKeyField {
+export function deserializeClassificationTemplateFieldsFieldKeyField(val: Json): ClassificationTemplateFieldsFieldKeyField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateFieldsFieldKeyField\"";
     }
@@ -1231,11 +1231,11 @@ export function deserializeClassificationTemplateFieldsFieldKeyField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateFieldsFieldKeyField(val: ClassificationTemplateFieldsFieldKeyField): JSON {
+export function serializeClassificationTemplateFieldsFieldKeyField(val: ClassificationTemplateFieldsFieldKeyField): Json {
     return val;
 }
 export type ClassificationTemplateFieldsFieldDisplayNameField = "Classification";
-export function deserializeClassificationTemplateFieldsFieldDisplayNameField(val: JSON): ClassificationTemplateFieldsFieldDisplayNameField {
+export function deserializeClassificationTemplateFieldsFieldDisplayNameField(val: Json): ClassificationTemplateFieldsFieldDisplayNameField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ClassificationTemplateFieldsFieldDisplayNameField\"";
     }
@@ -1244,14 +1244,14 @@ export function deserializeClassificationTemplateFieldsFieldDisplayNameField(val
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeClassificationTemplateFieldsFieldDisplayNameField(val: ClassificationTemplateFieldsFieldDisplayNameField): JSON {
+export function serializeClassificationTemplateFieldsFieldDisplayNameField(val: ClassificationTemplateFieldsFieldDisplayNameField): Json {
     return val;
 }
 export interface ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
     readonly classificationDefinition?: string;
     readonly colorId?: number;
 }
-export function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: JSON): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
+export function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: Json): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField\"";
     }
@@ -1265,20 +1265,20 @@ export function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticCo
     const colorId: undefined | number = isJson(val.colorID, "number") ? val.colorID : void 0;
     return { classificationDefinition: classificationDefinition, colorId: colorId } satisfies ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
-export function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField): JSON {
+export function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField): Json {
     return { ["classificationDefinition"]: val.classificationDefinition, ["colorID"]: val.colorId };
 }
 export interface ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField {
     readonly classification?: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
-export function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: JSON): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField {
+export function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: Json): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField\"";
     }
     const classification: undefined | ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField = val.classification === void 0 ? void 0 : deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val.classification);
     return { classification: classification } satisfies ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField;
 }
-export function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField): JSON {
+export function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField): Json {
     return { ["classification"]: val.classification === void 0 ? void 0 : serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val.classification) };
 }
 export interface ClassificationTemplateFieldsFieldOptionsField {
@@ -1286,7 +1286,7 @@ export interface ClassificationTemplateFieldsFieldOptionsField {
     readonly key?: string;
     readonly staticConfig?: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField;
 }
-export function deserializeClassificationTemplateFieldsFieldOptionsField(val: JSON): ClassificationTemplateFieldsFieldOptionsField {
+export function deserializeClassificationTemplateFieldsFieldOptionsField(val: Json): ClassificationTemplateFieldsFieldOptionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClassificationTemplateFieldsFieldOptionsField\"";
     }
@@ -1301,7 +1301,7 @@ export function deserializeClassificationTemplateFieldsFieldOptionsField(val: JS
     const staticConfig: undefined | ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField = val.staticConfig === void 0 ? void 0 : deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val.staticConfig);
     return { id: id, key: key, staticConfig: staticConfig } satisfies ClassificationTemplateFieldsFieldOptionsField;
 }
-export function serializeClassificationTemplateFieldsFieldOptionsField(val: ClassificationTemplateFieldsFieldOptionsField): JSON {
+export function serializeClassificationTemplateFieldsFieldOptionsField(val: ClassificationTemplateFieldsFieldOptionsField): Json {
     return { ["id"]: val.id, ["key"]: val.key, ["staticConfig"]: val.staticConfig === void 0 ? void 0 : serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val.staticConfig) };
 }
 export interface ClassificationTemplateFieldsField {
@@ -1312,7 +1312,7 @@ export interface ClassificationTemplateFieldsField {
     readonly hidden?: boolean;
     readonly options?: readonly ClassificationTemplateFieldsFieldOptionsField[];
 }
-export function deserializeClassificationTemplateFieldsField(val: JSON): ClassificationTemplateFieldsField {
+export function deserializeClassificationTemplateFieldsField(val: Json): ClassificationTemplateFieldsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClassificationTemplateFieldsField\"";
     }
@@ -1330,12 +1330,12 @@ export function deserializeClassificationTemplateFieldsField(val: JSON): Classif
     if (!(val.options === void 0) && !isJson(val.options, "array")) {
         throw "Expecting array for \"options\" of type \"ClassificationTemplateFieldsField\"";
     }
-    const options: undefined | readonly ClassificationTemplateFieldsFieldOptionsField[] = isJson(val.options, "array") ? val.options.map(function (itm: JSON): any {
+    const options: undefined | readonly ClassificationTemplateFieldsFieldOptionsField[] = isJson(val.options, "array") ? val.options.map(function (itm: Json): any {
         return deserializeClassificationTemplateFieldsFieldOptionsField(itm);
     }) as readonly any[] : void 0;
     return { id: id, type: type, key: key, displayName: displayName, hidden: hidden, options: options } satisfies ClassificationTemplateFieldsField;
 }
-export function serializeClassificationTemplateFieldsField(val: ClassificationTemplateFieldsField): JSON {
+export function serializeClassificationTemplateFieldsField(val: ClassificationTemplateFieldsField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeClassificationTemplateFieldsFieldTypeField(val.type), ["key"]: val.key === void 0 ? void 0 : serializeClassificationTemplateFieldsFieldKeyField(val.key), ["displayName"]: val.displayName === void 0 ? void 0 : serializeClassificationTemplateFieldsFieldDisplayNameField(val.displayName), ["hidden"]: val.hidden, ["options"]: val.options === void 0 ? void 0 : val.options.map(function (item: ClassificationTemplateFieldsFieldOptionsField): any {
             return serializeClassificationTemplateFieldsFieldOptionsField(item);
         }) as readonly any[] };
@@ -1350,7 +1350,7 @@ export interface ClassificationTemplate {
     readonly copyInstanceOnItemCopy?: boolean;
     readonly fields?: readonly ClassificationTemplateFieldsField[];
 }
-export function deserializeClassificationTemplate(val: JSON): ClassificationTemplate {
+export function deserializeClassificationTemplate(val: Json): ClassificationTemplate {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ClassificationTemplate\"";
     }
@@ -1379,18 +1379,18 @@ export function deserializeClassificationTemplate(val: JSON): ClassificationTemp
     if (!(val.fields === void 0) && !isJson(val.fields, "array")) {
         throw "Expecting array for \"fields\" of type \"ClassificationTemplate\"";
     }
-    const fields: undefined | readonly ClassificationTemplateFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: JSON): any {
+    const fields: undefined | readonly ClassificationTemplateFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
         return deserializeClassificationTemplateFieldsField(itm);
     }) as readonly any[] : void 0;
     return { id: id, type: type, scope: scope, templateKey: templateKey, displayName: displayName, hidden: hidden, copyInstanceOnItemCopy: copyInstanceOnItemCopy, fields: fields } satisfies ClassificationTemplate;
 }
-export function serializeClassificationTemplate(val: ClassificationTemplate): JSON {
+export function serializeClassificationTemplate(val: ClassificationTemplate): Json {
     return { ["id"]: val.id, ["type"]: serializeClassificationTemplateTypeField(val.type), ["scope"]: val.scope, ["templateKey"]: val.templateKey === void 0 ? void 0 : serializeClassificationTemplateTemplateKeyField(val.templateKey), ["displayName"]: val.displayName === void 0 ? void 0 : serializeClassificationTemplateDisplayNameField(val.displayName), ["hidden"]: val.hidden, ["copyInstanceOnItemCopy"]: val.copyInstanceOnItemCopy, ["fields"]: val.fields === void 0 ? void 0 : val.fields.map(function (item: ClassificationTemplateFieldsField): any {
             return serializeClassificationTemplateFieldsField(item);
         }) as readonly any[] };
 }
 export type CollaborationTypeField = "collaboration";
-export function deserializeCollaborationTypeField(val: JSON): CollaborationTypeField {
+export function deserializeCollaborationTypeField(val: Json): CollaborationTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationTypeField\"";
     }
@@ -1399,11 +1399,11 @@ export function deserializeCollaborationTypeField(val: JSON): CollaborationTypeF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationTypeField(val: CollaborationTypeField): JSON {
+export function serializeCollaborationTypeField(val: CollaborationTypeField): Json {
     return val;
 }
 export type CollaborationRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
-export function deserializeCollaborationRoleField(val: JSON): CollaborationRoleField {
+export function deserializeCollaborationRoleField(val: Json): CollaborationRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationRoleField\"";
     }
@@ -1433,11 +1433,11 @@ export function deserializeCollaborationRoleField(val: JSON): CollaborationRoleF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationRoleField(val: CollaborationRoleField): JSON {
+export function serializeCollaborationRoleField(val: CollaborationRoleField): Json {
     return val;
 }
 export type CollaborationStatusField = "accepted" | "pending" | "rejected";
-export function deserializeCollaborationStatusField(val: JSON): CollaborationStatusField {
+export function deserializeCollaborationStatusField(val: Json): CollaborationStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationStatusField\"";
     }
@@ -1452,14 +1452,14 @@ export function deserializeCollaborationStatusField(val: JSON): CollaborationSta
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationStatusField(val: CollaborationStatusField): JSON {
+export function serializeCollaborationStatusField(val: CollaborationStatusField): Json {
     return val;
 }
 export interface CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField {
     readonly enterpriseHasStrongPasswordRequiredForExternalUsers?: boolean;
     readonly userHasStrongPassword?: boolean;
 }
-export function deserializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: JSON): CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField {
+export function deserializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField\"";
     }
@@ -1473,14 +1473,14 @@ export function deserializeCollaborationAcceptanceRequirementsStatusFieldStrongP
     const userHasStrongPassword: undefined | boolean = isJson(val.user_has_strong_password, "boolean") ? val.user_has_strong_password : void 0;
     return { enterpriseHasStrongPasswordRequiredForExternalUsers: enterpriseHasStrongPasswordRequiredForExternalUsers, userHasStrongPassword: userHasStrongPassword } satisfies CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField;
 }
-export function serializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField): JSON {
+export function serializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField): Json {
     return { ["enterprise_has_strong_password_required_for_external_users"]: val.enterpriseHasStrongPasswordRequiredForExternalUsers, ["user_has_strong_password"]: val.userHasStrongPassword };
 }
 export interface CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField {
     readonly enterpriseHasTwoFactorAuthEnabled?: boolean;
     readonly userHasTwoFactorAuthenticationEnabled?: boolean;
 }
-export function deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: JSON): CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField {
+export function deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField\"";
     }
@@ -1494,11 +1494,11 @@ export function deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFact
     const userHasTwoFactorAuthenticationEnabled: undefined | boolean = isJson(val.user_has_two_factor_authentication_enabled, "boolean") ? val.user_has_two_factor_authentication_enabled : void 0;
     return { enterpriseHasTwoFactorAuthEnabled: enterpriseHasTwoFactorAuthEnabled, userHasTwoFactorAuthenticationEnabled: userHasTwoFactorAuthenticationEnabled } satisfies CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
 }
-export function serializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField): JSON {
+export function serializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField): Json {
     return { ["enterprise_has_two_factor_auth_enabled"]: val.enterpriseHasTwoFactorAuthEnabled, ["user_has_two_factor_authentication_enabled"]: val.userHasTwoFactorAuthenticationEnabled };
 }
 export type CollaborationsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeCollaborationsOrderFieldDirectionField(val: JSON): CollaborationsOrderFieldDirectionField {
+export function deserializeCollaborationsOrderFieldDirectionField(val: Json): CollaborationsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationsOrderFieldDirectionField\"";
     }
@@ -1510,14 +1510,14 @@ export function deserializeCollaborationsOrderFieldDirectionField(val: JSON): Co
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationsOrderFieldDirectionField(val: CollaborationsOrderFieldDirectionField): JSON {
+export function serializeCollaborationsOrderFieldDirectionField(val: CollaborationsOrderFieldDirectionField): Json {
     return val;
 }
 export interface CollaborationsOrderField {
     readonly by?: string;
     readonly direction?: CollaborationsOrderFieldDirectionField;
 }
-export function deserializeCollaborationsOrderField(val: JSON): CollaborationsOrderField {
+export function deserializeCollaborationsOrderField(val: Json): CollaborationsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationsOrderField\"";
     }
@@ -1528,11 +1528,11 @@ export function deserializeCollaborationsOrderField(val: JSON): CollaborationsOr
     const direction: undefined | CollaborationsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeCollaborationsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies CollaborationsOrderField;
 }
-export function serializeCollaborationsOrderField(val: CollaborationsOrderField): JSON {
+export function serializeCollaborationsOrderField(val: CollaborationsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeCollaborationsOrderFieldDirectionField(val.direction) };
 }
 export type CollaborationAllowlistEntryTypeField = "collaboration_whitelist_entry";
-export function deserializeCollaborationAllowlistEntryTypeField(val: JSON): CollaborationAllowlistEntryTypeField {
+export function deserializeCollaborationAllowlistEntryTypeField(val: Json): CollaborationAllowlistEntryTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistEntryTypeField\"";
     }
@@ -1541,11 +1541,11 @@ export function deserializeCollaborationAllowlistEntryTypeField(val: JSON): Coll
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistEntryTypeField(val: CollaborationAllowlistEntryTypeField): JSON {
+export function serializeCollaborationAllowlistEntryTypeField(val: CollaborationAllowlistEntryTypeField): Json {
     return val;
 }
 export type CollaborationAllowlistEntryDirectionField = "inbound" | "outbound" | "both";
-export function deserializeCollaborationAllowlistEntryDirectionField(val: JSON): CollaborationAllowlistEntryDirectionField {
+export function deserializeCollaborationAllowlistEntryDirectionField(val: Json): CollaborationAllowlistEntryDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistEntryDirectionField\"";
     }
@@ -1560,11 +1560,11 @@ export function deserializeCollaborationAllowlistEntryDirectionField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistEntryDirectionField(val: CollaborationAllowlistEntryDirectionField): JSON {
+export function serializeCollaborationAllowlistEntryDirectionField(val: CollaborationAllowlistEntryDirectionField): Json {
     return val;
 }
 export type CollaborationAllowlistEntryEnterpriseFieldTypeField = "enterprise";
-export function deserializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: JSON): CollaborationAllowlistEntryEnterpriseFieldTypeField {
+export function deserializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: Json): CollaborationAllowlistEntryEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistEntryEnterpriseFieldTypeField\"";
     }
@@ -1573,7 +1573,7 @@ export function deserializeCollaborationAllowlistEntryEnterpriseFieldTypeField(v
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: CollaborationAllowlistEntryEnterpriseFieldTypeField): JSON {
+export function serializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: CollaborationAllowlistEntryEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface CollaborationAllowlistEntryEnterpriseField {
@@ -1581,7 +1581,7 @@ export interface CollaborationAllowlistEntryEnterpriseField {
     readonly type?: CollaborationAllowlistEntryEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export function deserializeCollaborationAllowlistEntryEnterpriseField(val: JSON): CollaborationAllowlistEntryEnterpriseField {
+export function deserializeCollaborationAllowlistEntryEnterpriseField(val: Json): CollaborationAllowlistEntryEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistEntryEnterpriseField\"";
     }
@@ -1596,7 +1596,7 @@ export function deserializeCollaborationAllowlistEntryEnterpriseField(val: JSON)
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies CollaborationAllowlistEntryEnterpriseField;
 }
-export function serializeCollaborationAllowlistEntryEnterpriseField(val: CollaborationAllowlistEntryEnterpriseField): JSON {
+export function serializeCollaborationAllowlistEntryEnterpriseField(val: CollaborationAllowlistEntryEnterpriseField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val.type), ["name"]: val.name };
 }
 export interface CollaborationAllowlistEntry {
@@ -1607,7 +1607,7 @@ export interface CollaborationAllowlistEntry {
     readonly enterprise?: CollaborationAllowlistEntryEnterpriseField;
     readonly createdAt?: string;
 }
-export function deserializeCollaborationAllowlistEntry(val: JSON): CollaborationAllowlistEntry {
+export function deserializeCollaborationAllowlistEntry(val: Json): CollaborationAllowlistEntry {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistEntry\"";
     }
@@ -1628,7 +1628,7 @@ export function deserializeCollaborationAllowlistEntry(val: JSON): Collaboration
     const createdAt: undefined | string = isJson(val.created_at, "string") ? val.created_at : void 0;
     return { id: id, type: type, domain: domain, direction: direction, enterprise: enterprise, createdAt: createdAt } satisfies CollaborationAllowlistEntry;
 }
-export function serializeCollaborationAllowlistEntry(val: CollaborationAllowlistEntry): JSON {
+export function serializeCollaborationAllowlistEntry(val: CollaborationAllowlistEntry): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationAllowlistEntryTypeField(val.type), ["domain"]: val.domain, ["direction"]: val.direction === void 0 ? void 0 : serializeCollaborationAllowlistEntryDirectionField(val.direction), ["enterprise"]: val.enterprise === void 0 ? void 0 : serializeCollaborationAllowlistEntryEnterpriseField(val.enterprise), ["created_at"]: val.createdAt };
 }
 export interface CollaborationAllowlistEntries {
@@ -1637,7 +1637,7 @@ export interface CollaborationAllowlistEntries {
     readonly prevMarker?: number;
     readonly entries?: readonly CollaborationAllowlistEntry[];
 }
-export function deserializeCollaborationAllowlistEntries(val: JSON): CollaborationAllowlistEntries {
+export function deserializeCollaborationAllowlistEntries(val: Json): CollaborationAllowlistEntries {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistEntries\"";
     }
@@ -1656,18 +1656,18 @@ export function deserializeCollaborationAllowlistEntries(val: JSON): Collaborati
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"CollaborationAllowlistEntries\"";
     }
-    const entries: undefined | readonly CollaborationAllowlistEntry[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly CollaborationAllowlistEntry[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeCollaborationAllowlistEntry(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies CollaborationAllowlistEntries;
 }
-export function serializeCollaborationAllowlistEntries(val: CollaborationAllowlistEntries): JSON {
+export function serializeCollaborationAllowlistEntries(val: CollaborationAllowlistEntries): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: CollaborationAllowlistEntry): any {
             return serializeCollaborationAllowlistEntry(item);
         }) as readonly any[] };
 }
 export type CollaborationAllowlistExemptTargetTypeField = "collaboration_whitelist";
-export function deserializeCollaborationAllowlistExemptTargetTypeField(val: JSON): CollaborationAllowlistExemptTargetTypeField {
+export function deserializeCollaborationAllowlistExemptTargetTypeField(val: Json): CollaborationAllowlistExemptTargetTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistExemptTargetTypeField\"";
     }
@@ -1676,11 +1676,11 @@ export function deserializeCollaborationAllowlistExemptTargetTypeField(val: JSON
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistExemptTargetTypeField(val: CollaborationAllowlistExemptTargetTypeField): JSON {
+export function serializeCollaborationAllowlistExemptTargetTypeField(val: CollaborationAllowlistExemptTargetTypeField): Json {
     return val;
 }
 export type CollaborationAllowlistExemptTargetEnterpriseFieldTypeField = "enterprise";
-export function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: JSON): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField {
+export function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: Json): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistExemptTargetEnterpriseFieldTypeField\"";
     }
@@ -1689,7 +1689,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldType
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField): JSON {
+export function serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface CollaborationAllowlistExemptTargetEnterpriseField {
@@ -1697,7 +1697,7 @@ export interface CollaborationAllowlistExemptTargetEnterpriseField {
     readonly type?: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(val: JSON): CollaborationAllowlistExemptTargetEnterpriseField {
+export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(val: Json): CollaborationAllowlistExemptTargetEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistExemptTargetEnterpriseField\"";
     }
@@ -1712,11 +1712,11 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(val
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies CollaborationAllowlistExemptTargetEnterpriseField;
 }
-export function serializeCollaborationAllowlistExemptTargetEnterpriseField(val: CollaborationAllowlistExemptTargetEnterpriseField): JSON {
+export function serializeCollaborationAllowlistExemptTargetEnterpriseField(val: CollaborationAllowlistExemptTargetEnterpriseField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val.type), ["name"]: val.name };
 }
 export type CollaborationAllowlistExemptTargetUserFieldTypeField = "enterprise";
-export function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: JSON): CollaborationAllowlistExemptTargetUserFieldTypeField {
+export function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: Json): CollaborationAllowlistExemptTargetUserFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollaborationAllowlistExemptTargetUserFieldTypeField\"";
     }
@@ -1725,7 +1725,7 @@ export function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: CollaborationAllowlistExemptTargetUserFieldTypeField): JSON {
+export function serializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: CollaborationAllowlistExemptTargetUserFieldTypeField): Json {
     return val;
 }
 export interface CollaborationAllowlistExemptTargetUserField {
@@ -1733,7 +1733,7 @@ export interface CollaborationAllowlistExemptTargetUserField {
     readonly type?: CollaborationAllowlistExemptTargetUserFieldTypeField;
     readonly name?: string;
 }
-export function deserializeCollaborationAllowlistExemptTargetUserField(val: JSON): CollaborationAllowlistExemptTargetUserField {
+export function deserializeCollaborationAllowlistExemptTargetUserField(val: Json): CollaborationAllowlistExemptTargetUserField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistExemptTargetUserField\"";
     }
@@ -1748,7 +1748,7 @@ export function deserializeCollaborationAllowlistExemptTargetUserField(val: JSON
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies CollaborationAllowlistExemptTargetUserField;
 }
-export function serializeCollaborationAllowlistExemptTargetUserField(val: CollaborationAllowlistExemptTargetUserField): JSON {
+export function serializeCollaborationAllowlistExemptTargetUserField(val: CollaborationAllowlistExemptTargetUserField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationAllowlistExemptTargetUserFieldTypeField(val.type), ["name"]: val.name };
 }
 export interface CollaborationAllowlistExemptTarget {
@@ -1759,7 +1759,7 @@ export interface CollaborationAllowlistExemptTarget {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export function deserializeCollaborationAllowlistExemptTarget(val: JSON): CollaborationAllowlistExemptTarget {
+export function deserializeCollaborationAllowlistExemptTarget(val: Json): CollaborationAllowlistExemptTarget {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistExemptTarget\"";
     }
@@ -1780,7 +1780,7 @@ export function deserializeCollaborationAllowlistExemptTarget(val: JSON): Collab
     const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     return { id: id, type: type, enterprise: enterprise, user: user, createdAt: createdAt, modifiedAt: modifiedAt } satisfies CollaborationAllowlistExemptTarget;
 }
-export function serializeCollaborationAllowlistExemptTarget(val: CollaborationAllowlistExemptTarget): JSON {
+export function serializeCollaborationAllowlistExemptTarget(val: CollaborationAllowlistExemptTarget): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationAllowlistExemptTargetTypeField(val.type), ["enterprise"]: val.enterprise === void 0 ? void 0 : serializeCollaborationAllowlistExemptTargetEnterpriseField(val.enterprise), ["user"]: val.user === void 0 ? void 0 : serializeCollaborationAllowlistExemptTargetUserField(val.user), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt };
 }
 export interface CollaborationAllowlistExemptTargets {
@@ -1789,7 +1789,7 @@ export interface CollaborationAllowlistExemptTargets {
     readonly prevMarker?: number;
     readonly entries?: readonly CollaborationAllowlistExemptTarget[];
 }
-export function deserializeCollaborationAllowlistExemptTargets(val: JSON): CollaborationAllowlistExemptTargets {
+export function deserializeCollaborationAllowlistExemptTargets(val: Json): CollaborationAllowlistExemptTargets {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAllowlistExemptTargets\"";
     }
@@ -1808,18 +1808,18 @@ export function deserializeCollaborationAllowlistExemptTargets(val: JSON): Colla
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"CollaborationAllowlistExemptTargets\"";
     }
-    const entries: undefined | readonly CollaborationAllowlistExemptTarget[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly CollaborationAllowlistExemptTarget[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeCollaborationAllowlistExemptTarget(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies CollaborationAllowlistExemptTargets;
 }
-export function serializeCollaborationAllowlistExemptTargets(val: CollaborationAllowlistExemptTargets): JSON {
+export function serializeCollaborationAllowlistExemptTargets(val: CollaborationAllowlistExemptTargets): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: CollaborationAllowlistExemptTarget): any {
             return serializeCollaborationAllowlistExemptTarget(item);
         }) as readonly any[] };
 }
 export type CollectionTypeField = "collection";
-export function deserializeCollectionTypeField(val: JSON): CollectionTypeField {
+export function deserializeCollectionTypeField(val: Json): CollectionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollectionTypeField\"";
     }
@@ -1828,11 +1828,11 @@ export function deserializeCollectionTypeField(val: JSON): CollectionTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollectionTypeField(val: CollectionTypeField): JSON {
+export function serializeCollectionTypeField(val: CollectionTypeField): Json {
     return val;
 }
 export type CollectionNameField = "Favorites";
-export function deserializeCollectionNameField(val: JSON): CollectionNameField {
+export function deserializeCollectionNameField(val: Json): CollectionNameField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollectionNameField\"";
     }
@@ -1841,11 +1841,11 @@ export function deserializeCollectionNameField(val: JSON): CollectionNameField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollectionNameField(val: CollectionNameField): JSON {
+export function serializeCollectionNameField(val: CollectionNameField): Json {
     return val;
 }
 export type CollectionCollectionTypeField = "favorites";
-export function deserializeCollectionCollectionTypeField(val: JSON): CollectionCollectionTypeField {
+export function deserializeCollectionCollectionTypeField(val: Json): CollectionCollectionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollectionCollectionTypeField\"";
     }
@@ -1854,7 +1854,7 @@ export function deserializeCollectionCollectionTypeField(val: JSON): CollectionC
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollectionCollectionTypeField(val: CollectionCollectionTypeField): JSON {
+export function serializeCollectionCollectionTypeField(val: CollectionCollectionTypeField): Json {
     return val;
 }
 export interface Collection {
@@ -1863,7 +1863,7 @@ export interface Collection {
     readonly name?: CollectionNameField;
     readonly collectionType?: CollectionCollectionTypeField;
 }
-export function deserializeCollection(val: JSON): Collection {
+export function deserializeCollection(val: Json): Collection {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Collection\"";
     }
@@ -1876,11 +1876,11 @@ export function deserializeCollection(val: JSON): Collection {
     const collectionType: undefined | CollectionCollectionTypeField = val.collection_type === void 0 ? void 0 : deserializeCollectionCollectionTypeField(val.collection_type);
     return { id: id, type: type, name: name, collectionType: collectionType } satisfies Collection;
 }
-export function serializeCollection(val: Collection): JSON {
+export function serializeCollection(val: Collection): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollectionTypeField(val.type), ["name"]: val.name === void 0 ? void 0 : serializeCollectionNameField(val.name), ["collection_type"]: val.collectionType === void 0 ? void 0 : serializeCollectionCollectionTypeField(val.collectionType) };
 }
 export type CollectionsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeCollectionsOrderFieldDirectionField(val: JSON): CollectionsOrderFieldDirectionField {
+export function deserializeCollectionsOrderFieldDirectionField(val: Json): CollectionsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CollectionsOrderFieldDirectionField\"";
     }
@@ -1892,14 +1892,14 @@ export function deserializeCollectionsOrderFieldDirectionField(val: JSON): Colle
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCollectionsOrderFieldDirectionField(val: CollectionsOrderFieldDirectionField): JSON {
+export function serializeCollectionsOrderFieldDirectionField(val: CollectionsOrderFieldDirectionField): Json {
     return val;
 }
 export interface CollectionsOrderField {
     readonly by?: string;
     readonly direction?: CollectionsOrderFieldDirectionField;
 }
-export function deserializeCollectionsOrderField(val: JSON): CollectionsOrderField {
+export function deserializeCollectionsOrderField(val: Json): CollectionsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollectionsOrderField\"";
     }
@@ -1910,7 +1910,7 @@ export function deserializeCollectionsOrderField(val: JSON): CollectionsOrderFie
     const direction: undefined | CollectionsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeCollectionsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies CollectionsOrderField;
 }
-export function serializeCollectionsOrderField(val: CollectionsOrderField): JSON {
+export function serializeCollectionsOrderField(val: CollectionsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeCollectionsOrderFieldDirectionField(val.direction) };
 }
 export interface Collections {
@@ -1920,7 +1920,7 @@ export interface Collections {
     readonly order?: readonly CollectionsOrderField[];
     readonly entries?: readonly Collection[];
 }
-export function deserializeCollections(val: JSON): Collections {
+export function deserializeCollections(val: Json): Collections {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Collections\"";
     }
@@ -1939,18 +1939,18 @@ export function deserializeCollections(val: JSON): Collections {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Collections\"";
     }
-    const order: undefined | readonly CollectionsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly CollectionsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeCollectionsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Collections\"";
     }
-    const entries: undefined | readonly Collection[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Collection[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeCollection(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Collections;
 }
-export function serializeCollections(val: Collections): JSON {
+export function serializeCollections(val: Collections): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: CollectionsOrderField): any {
             return serializeCollectionsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Collection): any {
@@ -1961,7 +1961,7 @@ export interface CommentItemField {
     readonly id?: string;
     readonly type?: string;
 }
-export function deserializeCommentItemField(val: JSON): CommentItemField {
+export function deserializeCommentItemField(val: Json): CommentItemField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CommentItemField\"";
     }
@@ -1975,11 +1975,11 @@ export function deserializeCommentItemField(val: JSON): CommentItemField {
     const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
     return { id: id, type: type } satisfies CommentItemField;
 }
-export function serializeCommentItemField(val: CommentItemField): JSON {
+export function serializeCommentItemField(val: CommentItemField): Json {
     return { ["id"]: val.id, ["type"]: val.type };
 }
 export type CommentsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeCommentsOrderFieldDirectionField(val: JSON): CommentsOrderFieldDirectionField {
+export function deserializeCommentsOrderFieldDirectionField(val: Json): CommentsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CommentsOrderFieldDirectionField\"";
     }
@@ -1991,14 +1991,14 @@ export function deserializeCommentsOrderFieldDirectionField(val: JSON): Comments
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCommentsOrderFieldDirectionField(val: CommentsOrderFieldDirectionField): JSON {
+export function serializeCommentsOrderFieldDirectionField(val: CommentsOrderFieldDirectionField): Json {
     return val;
 }
 export interface CommentsOrderField {
     readonly by?: string;
     readonly direction?: CommentsOrderFieldDirectionField;
 }
-export function deserializeCommentsOrderField(val: JSON): CommentsOrderField {
+export function deserializeCommentsOrderField(val: Json): CommentsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CommentsOrderField\"";
     }
@@ -2009,11 +2009,11 @@ export function deserializeCommentsOrderField(val: JSON): CommentsOrderField {
     const direction: undefined | CommentsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeCommentsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies CommentsOrderField;
 }
-export function serializeCommentsOrderField(val: CommentsOrderField): JSON {
+export function serializeCommentsOrderField(val: CommentsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeCommentsOrderFieldDirectionField(val.direction) };
 }
 export type CommentBaseTypeField = "comment";
-export function deserializeCommentBaseTypeField(val: JSON): CommentBaseTypeField {
+export function deserializeCommentBaseTypeField(val: Json): CommentBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CommentBaseTypeField\"";
     }
@@ -2022,14 +2022,14 @@ export function deserializeCommentBaseTypeField(val: JSON): CommentBaseTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCommentBaseTypeField(val: CommentBaseTypeField): JSON {
+export function serializeCommentBaseTypeField(val: CommentBaseTypeField): Json {
     return val;
 }
 export interface CommentBase {
     readonly id?: string;
     readonly type?: CommentBaseTypeField;
 }
-export function deserializeCommentBase(val: JSON): CommentBase {
+export function deserializeCommentBase(val: Json): CommentBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CommentBase\"";
     }
@@ -2040,11 +2040,11 @@ export function deserializeCommentBase(val: JSON): CommentBase {
     const type: undefined | CommentBaseTypeField = val.type === void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);
     return { id: id, type: type } satisfies CommentBase;
 }
-export function serializeCommentBase(val: CommentBase): JSON {
+export function serializeCommentBase(val: CommentBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCommentBaseTypeField(val.type) };
 }
 export type DevicePinnerTypeField = "device_pinner";
-export function deserializeDevicePinnerTypeField(val: JSON): DevicePinnerTypeField {
+export function deserializeDevicePinnerTypeField(val: Json): DevicePinnerTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"DevicePinnerTypeField\"";
     }
@@ -2053,11 +2053,11 @@ export function deserializeDevicePinnerTypeField(val: JSON): DevicePinnerTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeDevicePinnerTypeField(val: DevicePinnerTypeField): JSON {
+export function serializeDevicePinnerTypeField(val: DevicePinnerTypeField): Json {
     return val;
 }
 export type DevicePinnersOrderFieldByField = "id";
-export function deserializeDevicePinnersOrderFieldByField(val: JSON): DevicePinnersOrderFieldByField {
+export function deserializeDevicePinnersOrderFieldByField(val: Json): DevicePinnersOrderFieldByField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"DevicePinnersOrderFieldByField\"";
     }
@@ -2066,11 +2066,11 @@ export function deserializeDevicePinnersOrderFieldByField(val: JSON): DevicePinn
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeDevicePinnersOrderFieldByField(val: DevicePinnersOrderFieldByField): JSON {
+export function serializeDevicePinnersOrderFieldByField(val: DevicePinnersOrderFieldByField): Json {
     return val;
 }
 export type DevicePinnersOrderFieldDirectionField = "asc" | "desc";
-export function deserializeDevicePinnersOrderFieldDirectionField(val: JSON): DevicePinnersOrderFieldDirectionField {
+export function deserializeDevicePinnersOrderFieldDirectionField(val: Json): DevicePinnersOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"DevicePinnersOrderFieldDirectionField\"";
     }
@@ -2082,14 +2082,14 @@ export function deserializeDevicePinnersOrderFieldDirectionField(val: JSON): Dev
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeDevicePinnersOrderFieldDirectionField(val: DevicePinnersOrderFieldDirectionField): JSON {
+export function serializeDevicePinnersOrderFieldDirectionField(val: DevicePinnersOrderFieldDirectionField): Json {
     return val;
 }
 export interface DevicePinnersOrderField {
     readonly by?: DevicePinnersOrderFieldByField;
     readonly direction?: DevicePinnersOrderFieldDirectionField;
 }
-export function deserializeDevicePinnersOrderField(val: JSON): DevicePinnersOrderField {
+export function deserializeDevicePinnersOrderField(val: Json): DevicePinnersOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"DevicePinnersOrderField\"";
     }
@@ -2097,11 +2097,11 @@ export function deserializeDevicePinnersOrderField(val: JSON): DevicePinnersOrde
     const direction: undefined | DevicePinnersOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeDevicePinnersOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies DevicePinnersOrderField;
 }
-export function serializeDevicePinnersOrderField(val: DevicePinnersOrderField): JSON {
+export function serializeDevicePinnersOrderField(val: DevicePinnersOrderField): Json {
     return { ["by"]: val.by === void 0 ? void 0 : serializeDevicePinnersOrderFieldByField(val.by), ["direction"]: val.direction === void 0 ? void 0 : serializeDevicePinnersOrderFieldDirectionField(val.direction) };
 }
 export type EmailAliasTypeField = "email_alias";
-export function deserializeEmailAliasTypeField(val: JSON): EmailAliasTypeField {
+export function deserializeEmailAliasTypeField(val: Json): EmailAliasTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"EmailAliasTypeField\"";
     }
@@ -2110,7 +2110,7 @@ export function deserializeEmailAliasTypeField(val: JSON): EmailAliasTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeEmailAliasTypeField(val: EmailAliasTypeField): JSON {
+export function serializeEmailAliasTypeField(val: EmailAliasTypeField): Json {
     return val;
 }
 export interface EmailAlias {
@@ -2119,7 +2119,7 @@ export interface EmailAlias {
     readonly email?: string;
     readonly isConfirmed?: boolean;
 }
-export function deserializeEmailAlias(val: JSON): EmailAlias {
+export function deserializeEmailAlias(val: Json): EmailAlias {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EmailAlias\"";
     }
@@ -2138,14 +2138,14 @@ export function deserializeEmailAlias(val: JSON): EmailAlias {
     const isConfirmed: undefined | boolean = isJson(val.is_confirmed, "boolean") ? val.is_confirmed : void 0;
     return { id: id, type: type, email: email, isConfirmed: isConfirmed } satisfies EmailAlias;
 }
-export function serializeEmailAlias(val: EmailAlias): JSON {
+export function serializeEmailAlias(val: EmailAlias): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeEmailAliasTypeField(val.type), ["email"]: val.email, ["is_confirmed"]: val.isConfirmed };
 }
 export interface EmailAliases {
     readonly totalCount?: number;
     readonly entries?: readonly EmailAlias[];
 }
-export function deserializeEmailAliases(val: JSON): EmailAliases {
+export function deserializeEmailAliases(val: Json): EmailAliases {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EmailAliases\"";
     }
@@ -2156,18 +2156,18 @@ export function deserializeEmailAliases(val: JSON): EmailAliases {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"EmailAliases\"";
     }
-    const entries: undefined | readonly EmailAlias[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly EmailAlias[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeEmailAlias(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies EmailAliases;
 }
-export function serializeEmailAliases(val: EmailAliases): JSON {
+export function serializeEmailAliases(val: EmailAliases): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: EmailAlias): any {
             return serializeEmailAlias(item);
         }) as readonly any[] };
 }
 export type EnterpriseBaseTypeField = "enterprise";
-export function deserializeEnterpriseBaseTypeField(val: JSON): EnterpriseBaseTypeField {
+export function deserializeEnterpriseBaseTypeField(val: Json): EnterpriseBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"EnterpriseBaseTypeField\"";
     }
@@ -2176,14 +2176,14 @@ export function deserializeEnterpriseBaseTypeField(val: JSON): EnterpriseBaseTyp
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeEnterpriseBaseTypeField(val: EnterpriseBaseTypeField): JSON {
+export function serializeEnterpriseBaseTypeField(val: EnterpriseBaseTypeField): Json {
     return val;
 }
 export interface EnterpriseBase {
     readonly id?: string;
     readonly type?: EnterpriseBaseTypeField;
 }
-export function deserializeEnterpriseBase(val: JSON): EnterpriseBase {
+export function deserializeEnterpriseBase(val: Json): EnterpriseBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EnterpriseBase\"";
     }
@@ -2194,11 +2194,11 @@ export function deserializeEnterpriseBase(val: JSON): EnterpriseBase {
     const type: undefined | EnterpriseBaseTypeField = val.type === void 0 ? void 0 : deserializeEnterpriseBaseTypeField(val.type);
     return { id: id, type: type } satisfies EnterpriseBase;
 }
-export function serializeEnterpriseBase(val: EnterpriseBase): JSON {
+export function serializeEnterpriseBase(val: EnterpriseBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeEnterpriseBaseTypeField(val.type) };
 }
 export type EventEventTypeField = "ACCESS_GRANTED" | "ACCESS_REVOKED" | "ADD_DEVICE_ASSOCIATION" | "ADD_LOGIN_ACTIVITY_DEVICE" | "ADMIN_LOGIN" | "APPLICATION_CREATED" | "APPLICATION_PUBLIC_KEY_ADDED" | "APPLICATION_PUBLIC_KEY_DELETED" | "CHANGE_ADMIN_ROLE" | "CHANGE_FOLDER_PERMISSION" | "COLLABORATION_ACCEPT" | "COLLABORATION_EXPIRATION" | "COLLABORATION_INVITE" | "COLLABORATION_REMOVE" | "COLLABORATION_ROLE_CHANGE" | "COLLAB_ADD_COLLABORATOR" | "COLLAB_INVITE_COLLABORATOR" | "COLLAB_REMOVE_COLLABORATOR" | "COLLAB_ROLE_CHANGE" | "COMMENT_CREATE" | "COMMENT_DELETE" | "CONTENT_ACCESS" | "CONTENT_WORKFLOW_ABNORMAL_DOWNLOAD_ACTIVITY" | "CONTENT_WORKFLOW_AUTOMATION_ADD" | "CONTENT_WORKFLOW_AUTOMATION_DELETE" | "CONTENT_WORKFLOW_POLICY_ADD" | "CONTENT_WORKFLOW_SHARING_POLICY_VIOLATION" | "CONTENT_WORKFLOW_UPLOAD_POLICY_VIOLATION" | "COPY" | "DATA_RETENTION_CREATE_RETENTION" | "DATA_RETENTION_REMOVE_RETENTION" | "DELETE" | "DELETE_USER" | "DEVICE_TRUST_CHECK_FAILED" | "DOWNLOAD" | "EDIT" | "EDIT_USER" | "EMAIL_ALIAS_CONFIRM" | "EMAIL_ALIAS_REMOVE" | "ENABLE_TWO_FACTOR_AUTH" | "ENTERPRISE_APP_AUTHORIZATION_UPDATE" | "FAILED_LOGIN" | "FILE_MARKED_MALICIOUS" | "FILE_WATERMARKED_DOWNLOAD" | "GROUP_ADD_ITEM" | "GROUP_ADD_USER" | "GROUP_CREATION" | "GROUP_DELETION" | "GROUP_EDITED" | "GROUP_REMOVE_ITEM" | "GROUP_REMOVE_USER" | "ITEM_COPY" | "ITEM_CREATE" | "ITEM_DOWNLOAD" | "ITEM_MAKE_CURRENT_VERSION" | "ITEM_MODIFY" | "ITEM_MOVE" | "ITEM_OPEN" | "ITEM_PREVIEW" | "ITEM_RENAME" | "ITEM_SHARED" | "ITEM_SHARED_CREATE" | "ITEM_SHARED_UNSHARE" | "ITEM_SHARED_UPDATE" | "ITEM_SYNC" | "ITEM_TRASH" | "ITEM_UNDELETE_VIA_TRASH" | "ITEM_UNSYNC" | "ITEM_UPLOAD" | "LEGAL_HOLD_ASSIGNMENT_CREATE" | "LEGAL_HOLD_ASSIGNMENT_DELETE" | "LEGAL_HOLD_POLICY_CREATE" | "LEGAL_HOLD_POLICY_DELETE" | "LEGAL_HOLD_POLICY_UPDATE" | "LOCK" | "LOCK_CREATE" | "LOCK_DESTROY" | "LOGIN" | "MASTER_INVITE_ACCEPT" | "MASTER_INVITE_REJECT" | "METADATA_INSTANCE_CREATE" | "METADATA_INSTANCE_DELETE" | "METADATA_INSTANCE_UPDATE" | "METADATA_TEMPLATE_CREATE" | "METADATA_TEMPLATE_DELETE" | "METADATA_TEMPLATE_UPDATE" | "MOVE" | "NEW_USER" | "PREVIEW" | "REMOVE_DEVICE_ASSOCIATION" | "REMOVE_LOGIN_ACTIVITY_DEVICE" | "RENAME" | "RETENTION_POLICY_ASSIGNMENT_ADD" | "SHARE" | "SHARE_EXPIRATION" | "SHIELD_ALERT" | "SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED" | "SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION" | "SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED" | "SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION" | "SHIELD_JUSTIFICATION_APPROVAL" | "SIGN_DOCUMENT_ASSIGNED" | "SIGN_DOCUMENT_CANCELLED" | "SIGN_DOCUMENT_COMPLETED" | "SIGN_DOCUMENT_CONVERTED" | "SIGN_DOCUMENT_CREATED" | "SIGN_DOCUMENT_DECLINED" | "SIGN_DOCUMENT_EXPIRED" | "SIGN_DOCUMENT_SIGNED" | "SIGN_DOCUMENT_VIEWED_BY_SIGNED" | "SIGNER_DOWNLOADED" | "SIGNER_FORWARDED" | "STORAGE_EXPIRATION" | "TAG_ITEM_CREATE" | "TASK_ASSIGNMENT_CREATE" | "TASK_ASSIGNMENT_DELETE" | "TASK_ASSIGNMENT_UPDATE" | "TASK_CREATE" | "TASK_UPDATE" | "TERMS_OF_SERVICE_ACCEPT" | "TERMS_OF_SERVICE_REJECT" | "UNDELETE" | "UNLOCK" | "UNSHARE" | "UPDATE_COLLABORATION_EXPIRATION" | "UPDATE_SHARE_EXPIRATION" | "UPLOAD" | "USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE" | "WATERMARK_LABEL_CREATE" | "WATERMARK_LABEL_DELETE";
-export function deserializeEventEventTypeField(val: JSON): EventEventTypeField {
+export function deserializeEventEventTypeField(val: Json): EventEventTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"EventEventTypeField\"";
     }
@@ -2594,22 +2594,22 @@ export function deserializeEventEventTypeField(val: JSON): EventEventTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeEventEventTypeField(val: EventEventTypeField): JSON {
+export function serializeEventEventTypeField(val: EventEventTypeField): Json {
     return val;
 }
 export interface EventAdditionalDetailsField {
 }
-export function deserializeEventAdditionalDetailsField(val: JSON): EventAdditionalDetailsField {
+export function deserializeEventAdditionalDetailsField(val: Json): EventAdditionalDetailsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EventAdditionalDetailsField\"";
     }
     return {} satisfies EventAdditionalDetailsField;
 }
-export function serializeEventAdditionalDetailsField(val: EventAdditionalDetailsField): JSON {
+export function serializeEventAdditionalDetailsField(val: EventAdditionalDetailsField): Json {
     return {};
 }
 export type FileSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export function deserializeFileSharedLinkFieldAccessField(val: JSON): FileSharedLinkFieldAccessField {
+export function deserializeFileSharedLinkFieldAccessField(val: Json): FileSharedLinkFieldAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileSharedLinkFieldAccessField\"";
     }
@@ -2624,11 +2624,11 @@ export function deserializeFileSharedLinkFieldAccessField(val: JSON): FileShared
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileSharedLinkFieldAccessField(val: FileSharedLinkFieldAccessField): JSON {
+export function serializeFileSharedLinkFieldAccessField(val: FileSharedLinkFieldAccessField): Json {
     return val;
 }
 export type FileSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export function deserializeFileSharedLinkFieldEffectiveAccessField(val: JSON): FileSharedLinkFieldEffectiveAccessField {
+export function deserializeFileSharedLinkFieldEffectiveAccessField(val: Json): FileSharedLinkFieldEffectiveAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileSharedLinkFieldEffectiveAccessField\"";
     }
@@ -2643,11 +2643,11 @@ export function deserializeFileSharedLinkFieldEffectiveAccessField(val: JSON): F
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileSharedLinkFieldEffectiveAccessField(val: FileSharedLinkFieldEffectiveAccessField): JSON {
+export function serializeFileSharedLinkFieldEffectiveAccessField(val: FileSharedLinkFieldEffectiveAccessField): Json {
     return val;
 }
 export type FileSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export function deserializeFileSharedLinkFieldEffectivePermissionField(val: JSON): FileSharedLinkFieldEffectivePermissionField {
+export function deserializeFileSharedLinkFieldEffectivePermissionField(val: Json): FileSharedLinkFieldEffectivePermissionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileSharedLinkFieldEffectivePermissionField\"";
     }
@@ -2665,7 +2665,7 @@ export function deserializeFileSharedLinkFieldEffectivePermissionField(val: JSON
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileSharedLinkFieldEffectivePermissionField(val: FileSharedLinkFieldEffectivePermissionField): JSON {
+export function serializeFileSharedLinkFieldEffectivePermissionField(val: FileSharedLinkFieldEffectivePermissionField): Json {
     return val;
 }
 export interface FileSharedLinkFieldPermissionsField {
@@ -2673,7 +2673,7 @@ export interface FileSharedLinkFieldPermissionsField {
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export function deserializeFileSharedLinkFieldPermissionsField(val: JSON): FileSharedLinkFieldPermissionsField {
+export function deserializeFileSharedLinkFieldPermissionsField(val: Json): FileSharedLinkFieldPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileSharedLinkFieldPermissionsField\"";
     }
@@ -2700,7 +2700,7 @@ export function deserializeFileSharedLinkFieldPermissionsField(val: JSON): FileS
     const canEdit: boolean = val.can_edit;
     return { canDownload: canDownload, canPreview: canPreview, canEdit: canEdit } satisfies FileSharedLinkFieldPermissionsField;
 }
-export function serializeFileSharedLinkFieldPermissionsField(val: FileSharedLinkFieldPermissionsField): JSON {
+export function serializeFileSharedLinkFieldPermissionsField(val: FileSharedLinkFieldPermissionsField): Json {
     return { ["can_download"]: val.canDownload, ["can_preview"]: val.canPreview, ["can_edit"]: val.canEdit };
 }
 export interface FileSharedLinkField {
@@ -2717,7 +2717,7 @@ export interface FileSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export function deserializeFileSharedLinkField(val: JSON): FileSharedLinkField {
+export function deserializeFileSharedLinkField(val: Json): FileSharedLinkField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileSharedLinkField\"";
     }
@@ -2777,11 +2777,11 @@ export function deserializeFileSharedLinkField(val: JSON): FileSharedLinkField {
     const previewCount: number = val.preview_count;
     return { url: url, downloadUrl: downloadUrl, vanityUrl: vanityUrl, vanityName: vanityName, access: access, effectiveAccess: effectiveAccess, effectivePermission: effectivePermission, unsharedAt: unsharedAt, isPasswordEnabled: isPasswordEnabled, permissions: permissions, downloadCount: downloadCount, previewCount: previewCount } satisfies FileSharedLinkField;
 }
-export function serializeFileSharedLinkField(val: FileSharedLinkField): JSON {
+export function serializeFileSharedLinkField(val: FileSharedLinkField): Json {
     return { ["url"]: val.url, ["download_url"]: val.downloadUrl, ["vanity_url"]: val.vanityUrl, ["vanity_name"]: val.vanityName, ["access"]: val.access === void 0 ? void 0 : serializeFileSharedLinkFieldAccessField(val.access), ["effective_access"]: serializeFileSharedLinkFieldEffectiveAccessField(val.effectiveAccess), ["effective_permission"]: serializeFileSharedLinkFieldEffectivePermissionField(val.effectivePermission), ["unshared_at"]: val.unsharedAt, ["is_password_enabled"]: val.isPasswordEnabled, ["permissions"]: val.permissions === void 0 ? void 0 : serializeFileSharedLinkFieldPermissionsField(val.permissions), ["download_count"]: val.downloadCount, ["preview_count"]: val.previewCount };
 }
 export type FileItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeFileItemStatusField(val: JSON): FileItemStatusField {
+export function deserializeFileItemStatusField(val: Json): FileItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileItemStatusField\"";
     }
@@ -2796,7 +2796,7 @@ export function deserializeFileItemStatusField(val: JSON): FileItemStatusField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileItemStatusField(val: FileItemStatusField): JSON {
+export function serializeFileItemStatusField(val: FileItemStatusField): Json {
     return val;
 }
 export interface FileFullPermissionsField {
@@ -2813,7 +2813,7 @@ export interface FileFullPermissionsField {
     readonly canViewAnnotationsAll?: boolean;
     readonly canViewAnnotationsSelf?: boolean;
 }
-export function deserializeFileFullPermissionsField(val: JSON): FileFullPermissionsField {
+export function deserializeFileFullPermissionsField(val: Json): FileFullPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullPermissionsField\"";
     }
@@ -2885,11 +2885,11 @@ export function deserializeFileFullPermissionsField(val: JSON): FileFullPermissi
     const canViewAnnotationsSelf: undefined | boolean = isJson(val.can_view_annotations_self, "boolean") ? val.can_view_annotations_self : void 0;
     return { canDelete: canDelete, canDownload: canDownload, canInviteCollaborator: canInviteCollaborator, canRename: canRename, canSetShareAccess: canSetShareAccess, canShare: canShare, canAnnotate: canAnnotate, canComment: canComment, canPreview: canPreview, canUpload: canUpload, canViewAnnotationsAll: canViewAnnotationsAll, canViewAnnotationsSelf: canViewAnnotationsSelf } satisfies FileFullPermissionsField;
 }
-export function serializeFileFullPermissionsField(val: FileFullPermissionsField): JSON {
+export function serializeFileFullPermissionsField(val: FileFullPermissionsField): Json {
     return { ["can_delete"]: val.canDelete, ["can_download"]: val.canDownload, ["can_invite_collaborator"]: val.canInviteCollaborator, ["can_rename"]: val.canRename, ["can_set_share_access"]: val.canSetShareAccess, ["can_share"]: val.canShare, ["can_annotate"]: val.canAnnotate, ["can_comment"]: val.canComment, ["can_preview"]: val.canPreview, ["can_upload"]: val.canUpload, ["can_view_annotations_all"]: val.canViewAnnotationsAll, ["can_view_annotations_self"]: val.canViewAnnotationsSelf };
 }
 export type FileFullLockFieldTypeField = "lock";
-export function deserializeFileFullLockFieldTypeField(val: JSON): FileFullLockFieldTypeField {
+export function deserializeFileFullLockFieldTypeField(val: Json): FileFullLockFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullLockFieldTypeField\"";
     }
@@ -2898,11 +2898,11 @@ export function deserializeFileFullLockFieldTypeField(val: JSON): FileFullLockFi
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullLockFieldTypeField(val: FileFullLockFieldTypeField): JSON {
+export function serializeFileFullLockFieldTypeField(val: FileFullLockFieldTypeField): Json {
     return val;
 }
 export type FileFullLockFieldAppTypeField = "gsuite" | "office_wopi" | "office_wopiplus" | "other";
-export function deserializeFileFullLockFieldAppTypeField(val: JSON): FileFullLockFieldAppTypeField {
+export function deserializeFileFullLockFieldAppTypeField(val: Json): FileFullLockFieldAppTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullLockFieldAppTypeField\"";
     }
@@ -2920,11 +2920,11 @@ export function deserializeFileFullLockFieldAppTypeField(val: JSON): FileFullLoc
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullLockFieldAppTypeField(val: FileFullLockFieldAppTypeField): JSON {
+export function serializeFileFullLockFieldAppTypeField(val: FileFullLockFieldAppTypeField): Json {
     return val;
 }
 export type FileFullExpiringEmbedLinkFieldTokenTypeField = "bearer";
-export function deserializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: JSON): FileFullExpiringEmbedLinkFieldTokenTypeField {
+export function deserializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: Json): FileFullExpiringEmbedLinkFieldTokenTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullExpiringEmbedLinkFieldTokenTypeField\"";
     }
@@ -2933,13 +2933,13 @@ export function deserializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: JSO
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: FileFullExpiringEmbedLinkFieldTokenTypeField): JSON {
+export function serializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: FileFullExpiringEmbedLinkFieldTokenTypeField): Json {
     return val;
 }
 export interface FileFullWatermarkInfoField {
     readonly isWatermarked?: boolean;
 }
-export function deserializeFileFullWatermarkInfoField(val: JSON): FileFullWatermarkInfoField {
+export function deserializeFileFullWatermarkInfoField(val: Json): FileFullWatermarkInfoField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullWatermarkInfoField\"";
     }
@@ -2949,11 +2949,11 @@ export function deserializeFileFullWatermarkInfoField(val: JSON): FileFullWaterm
     const isWatermarked: undefined | boolean = isJson(val.is_watermarked, "boolean") ? val.is_watermarked : void 0;
     return { isWatermarked: isWatermarked } satisfies FileFullWatermarkInfoField;
 }
-export function serializeFileFullWatermarkInfoField(val: FileFullWatermarkInfoField): JSON {
+export function serializeFileFullWatermarkInfoField(val: FileFullWatermarkInfoField): Json {
     return { ["is_watermarked"]: val.isWatermarked };
 }
 export type FileFullAllowedInviteeRolesField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export function deserializeFileFullAllowedInviteeRolesField(val: JSON): FileFullAllowedInviteeRolesField {
+export function deserializeFileFullAllowedInviteeRolesField(val: Json): FileFullAllowedInviteeRolesField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullAllowedInviteeRolesField\"";
     }
@@ -2980,24 +2980,24 @@ export function deserializeFileFullAllowedInviteeRolesField(val: JSON): FileFull
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullAllowedInviteeRolesField(val: FileFullAllowedInviteeRolesField): JSON {
+export function serializeFileFullAllowedInviteeRolesField(val: FileFullAllowedInviteeRolesField): Json {
     return val;
 }
 export interface FileFullMetadataField {
 }
-export function deserializeFileFullMetadataField(val: JSON): FileFullMetadataField {
+export function deserializeFileFullMetadataField(val: Json): FileFullMetadataField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullMetadataField\"";
     }
     return {} satisfies FileFullMetadataField;
 }
-export function serializeFileFullMetadataField(val: FileFullMetadataField): JSON {
+export function serializeFileFullMetadataField(val: FileFullMetadataField): Json {
     return {};
 }
 export interface FileFullRepresentationsFieldEntriesFieldContentField {
     readonly urlTemplate?: string;
 }
-export function deserializeFileFullRepresentationsFieldEntriesFieldContentField(val: JSON): FileFullRepresentationsFieldEntriesFieldContentField {
+export function deserializeFileFullRepresentationsFieldEntriesFieldContentField(val: Json): FileFullRepresentationsFieldEntriesFieldContentField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsFieldEntriesFieldContentField\"";
     }
@@ -3007,13 +3007,13 @@ export function deserializeFileFullRepresentationsFieldEntriesFieldContentField(
     const urlTemplate: undefined | string = isJson(val.url_template, "string") ? val.url_template : void 0;
     return { urlTemplate: urlTemplate } satisfies FileFullRepresentationsFieldEntriesFieldContentField;
 }
-export function serializeFileFullRepresentationsFieldEntriesFieldContentField(val: FileFullRepresentationsFieldEntriesFieldContentField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesFieldContentField(val: FileFullRepresentationsFieldEntriesFieldContentField): Json {
     return { ["url_template"]: val.urlTemplate };
 }
 export interface FileFullRepresentationsFieldEntriesFieldInfoField {
     readonly url?: string;
 }
-export function deserializeFileFullRepresentationsFieldEntriesFieldInfoField(val: JSON): FileFullRepresentationsFieldEntriesFieldInfoField {
+export function deserializeFileFullRepresentationsFieldEntriesFieldInfoField(val: Json): FileFullRepresentationsFieldEntriesFieldInfoField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsFieldEntriesFieldInfoField\"";
     }
@@ -3023,7 +3023,7 @@ export function deserializeFileFullRepresentationsFieldEntriesFieldInfoField(val
     const url: undefined | string = isJson(val.url, "string") ? val.url : void 0;
     return { url: url } satisfies FileFullRepresentationsFieldEntriesFieldInfoField;
 }
-export function serializeFileFullRepresentationsFieldEntriesFieldInfoField(val: FileFullRepresentationsFieldEntriesFieldInfoField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesFieldInfoField(val: FileFullRepresentationsFieldEntriesFieldInfoField): Json {
     return { ["url"]: val.url };
 }
 export interface FileFullRepresentationsFieldEntriesFieldPropertiesField {
@@ -3031,7 +3031,7 @@ export interface FileFullRepresentationsFieldEntriesFieldPropertiesField {
     readonly paged?: boolean;
     readonly thumb?: boolean;
 }
-export function deserializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: JSON): FileFullRepresentationsFieldEntriesFieldPropertiesField {
+export function deserializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: Json): FileFullRepresentationsFieldEntriesFieldPropertiesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsFieldEntriesFieldPropertiesField\"";
     }
@@ -3049,11 +3049,11 @@ export function deserializeFileFullRepresentationsFieldEntriesFieldPropertiesFie
     const thumb: undefined | boolean = isJson(val.thumb, "boolean") ? val.thumb : void 0;
     return { dimensions: dimensions, paged: paged, thumb: thumb } satisfies FileFullRepresentationsFieldEntriesFieldPropertiesField;
 }
-export function serializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: FileFullRepresentationsFieldEntriesFieldPropertiesField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: FileFullRepresentationsFieldEntriesFieldPropertiesField): Json {
     return { ["dimensions"]: val.dimensions, ["paged"]: val.paged, ["thumb"]: val.thumb };
 }
 export type FileFullRepresentationsFieldEntriesFieldStatusFieldStateField = "success" | "viewable" | "pending" | "none";
-export function deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: JSON): FileFullRepresentationsFieldEntriesFieldStatusFieldStateField {
+export function deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: Json): FileFullRepresentationsFieldEntriesFieldStatusFieldStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullRepresentationsFieldEntriesFieldStatusFieldStateField\"";
     }
@@ -3071,20 +3071,20 @@ export function deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldSt
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: FileFullRepresentationsFieldEntriesFieldStatusFieldStateField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: FileFullRepresentationsFieldEntriesFieldStatusFieldStateField): Json {
     return val;
 }
 export interface FileFullRepresentationsFieldEntriesFieldStatusField {
     readonly state?: FileFullRepresentationsFieldEntriesFieldStatusFieldStateField;
 }
-export function deserializeFileFullRepresentationsFieldEntriesFieldStatusField(val: JSON): FileFullRepresentationsFieldEntriesFieldStatusField {
+export function deserializeFileFullRepresentationsFieldEntriesFieldStatusField(val: Json): FileFullRepresentationsFieldEntriesFieldStatusField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsFieldEntriesFieldStatusField\"";
     }
     const state: undefined | FileFullRepresentationsFieldEntriesFieldStatusFieldStateField = val.state === void 0 ? void 0 : deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val.state);
     return { state: state } satisfies FileFullRepresentationsFieldEntriesFieldStatusField;
 }
-export function serializeFileFullRepresentationsFieldEntriesFieldStatusField(val: FileFullRepresentationsFieldEntriesFieldStatusField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesFieldStatusField(val: FileFullRepresentationsFieldEntriesFieldStatusField): Json {
     return { ["state"]: val.state === void 0 ? void 0 : serializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val.state) };
 }
 export interface FileFullRepresentationsFieldEntriesField {
@@ -3094,7 +3094,7 @@ export interface FileFullRepresentationsFieldEntriesField {
     readonly representation?: string;
     readonly status?: FileFullRepresentationsFieldEntriesFieldStatusField;
 }
-export function deserializeFileFullRepresentationsFieldEntriesField(val: JSON): FileFullRepresentationsFieldEntriesField {
+export function deserializeFileFullRepresentationsFieldEntriesField(val: Json): FileFullRepresentationsFieldEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsFieldEntriesField\"";
     }
@@ -3108,25 +3108,25 @@ export function deserializeFileFullRepresentationsFieldEntriesField(val: JSON): 
     const status: undefined | FileFullRepresentationsFieldEntriesFieldStatusField = val.status === void 0 ? void 0 : deserializeFileFullRepresentationsFieldEntriesFieldStatusField(val.status);
     return { content: content, info: info, properties: properties, representation: representation, status: status } satisfies FileFullRepresentationsFieldEntriesField;
 }
-export function serializeFileFullRepresentationsFieldEntriesField(val: FileFullRepresentationsFieldEntriesField): JSON {
+export function serializeFileFullRepresentationsFieldEntriesField(val: FileFullRepresentationsFieldEntriesField): Json {
     return { ["content"]: val.content === void 0 ? void 0 : serializeFileFullRepresentationsFieldEntriesFieldContentField(val.content), ["info"]: val.info === void 0 ? void 0 : serializeFileFullRepresentationsFieldEntriesFieldInfoField(val.info), ["properties"]: val.properties === void 0 ? void 0 : serializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val.properties), ["representation"]: val.representation, ["status"]: val.status === void 0 ? void 0 : serializeFileFullRepresentationsFieldEntriesFieldStatusField(val.status) };
 }
 export interface FileFullRepresentationsField {
     readonly entries?: readonly FileFullRepresentationsFieldEntriesField[];
 }
-export function deserializeFileFullRepresentationsField(val: JSON): FileFullRepresentationsField {
+export function deserializeFileFullRepresentationsField(val: Json): FileFullRepresentationsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullRepresentationsField\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FileFullRepresentationsField\"";
     }
-    const entries: undefined | readonly FileFullRepresentationsFieldEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FileFullRepresentationsFieldEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileFullRepresentationsFieldEntriesField(itm);
     }) as readonly any[] : void 0;
     return { entries: entries } satisfies FileFullRepresentationsField;
 }
-export function serializeFileFullRepresentationsField(val: FileFullRepresentationsField): JSON {
+export function serializeFileFullRepresentationsField(val: FileFullRepresentationsField): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FileFullRepresentationsFieldEntriesField): any {
             return serializeFileFullRepresentationsFieldEntriesField(item);
         }) as readonly any[] };
@@ -3136,7 +3136,7 @@ export interface FileFullClassificationField {
     readonly definition?: string;
     readonly color?: string;
 }
-export function deserializeFileFullClassificationField(val: JSON): FileFullClassificationField {
+export function deserializeFileFullClassificationField(val: Json): FileFullClassificationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullClassificationField\"";
     }
@@ -3154,11 +3154,11 @@ export function deserializeFileFullClassificationField(val: JSON): FileFullClass
     const color: undefined | string = isJson(val.color, "string") ? val.color : void 0;
     return { name: name, definition: definition, color: color } satisfies FileFullClassificationField;
 }
-export function serializeFileFullClassificationField(val: FileFullClassificationField): JSON {
+export function serializeFileFullClassificationField(val: FileFullClassificationField): Json {
     return { ["name"]: val.name, ["definition"]: val.definition, ["color"]: val.color };
 }
 export type FileFullSharedLinkPermissionOptionsField = "can_preview" | "can_download" | "can_edit";
-export function deserializeFileFullSharedLinkPermissionOptionsField(val: JSON): FileFullSharedLinkPermissionOptionsField {
+export function deserializeFileFullSharedLinkPermissionOptionsField(val: Json): FileFullSharedLinkPermissionOptionsField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileFullSharedLinkPermissionOptionsField\"";
     }
@@ -3173,11 +3173,11 @@ export function deserializeFileFullSharedLinkPermissionOptionsField(val: JSON): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileFullSharedLinkPermissionOptionsField(val: FileFullSharedLinkPermissionOptionsField): JSON {
+export function serializeFileFullSharedLinkPermissionOptionsField(val: FileFullSharedLinkPermissionOptionsField): Json {
     return val;
 }
 export type FileBaseTypeField = "file";
-export function deserializeFileBaseTypeField(val: JSON): FileBaseTypeField {
+export function deserializeFileBaseTypeField(val: Json): FileBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileBaseTypeField\"";
     }
@@ -3186,7 +3186,7 @@ export function deserializeFileBaseTypeField(val: JSON): FileBaseTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileBaseTypeField(val: FileBaseTypeField): JSON {
+export function serializeFileBaseTypeField(val: FileBaseTypeField): Json {
     return val;
 }
 export interface FileBase {
@@ -3194,7 +3194,7 @@ export interface FileBase {
     readonly etag?: string;
     readonly type: FileBaseTypeField;
 }
-export function deserializeFileBase(val: JSON): FileBase {
+export function deserializeFileBase(val: Json): FileBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileBase\"";
     }
@@ -3215,11 +3215,11 @@ export function deserializeFileBase(val: JSON): FileBase {
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
     return { id: id, etag: etag, type: type } satisfies FileBase;
 }
-export function serializeFileBase(val: FileBase): JSON {
+export function serializeFileBase(val: FileBase): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeFileBaseTypeField(val.type) };
 }
 export type FileRequestTypeField = "file_request";
-export function deserializeFileRequestTypeField(val: JSON): FileRequestTypeField {
+export function deserializeFileRequestTypeField(val: Json): FileRequestTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileRequestTypeField\"";
     }
@@ -3228,11 +3228,11 @@ export function deserializeFileRequestTypeField(val: JSON): FileRequestTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileRequestTypeField(val: FileRequestTypeField): JSON {
+export function serializeFileRequestTypeField(val: FileRequestTypeField): Json {
     return val;
 }
 export type FileRequestStatusField = "active" | "inactive";
-export function deserializeFileRequestStatusField(val: JSON): FileRequestStatusField {
+export function deserializeFileRequestStatusField(val: Json): FileRequestStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileRequestStatusField\"";
     }
@@ -3244,11 +3244,11 @@ export function deserializeFileRequestStatusField(val: JSON): FileRequestStatusF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileRequestStatusField(val: FileRequestStatusField): JSON {
+export function serializeFileRequestStatusField(val: FileRequestStatusField): Json {
     return val;
 }
 export type FileVersionBaseTypeField = "file_version";
-export function deserializeFileVersionBaseTypeField(val: JSON): FileVersionBaseTypeField {
+export function deserializeFileVersionBaseTypeField(val: Json): FileVersionBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileVersionBaseTypeField\"";
     }
@@ -3257,14 +3257,14 @@ export function deserializeFileVersionBaseTypeField(val: JSON): FileVersionBaseT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileVersionBaseTypeField(val: FileVersionBaseTypeField): JSON {
+export function serializeFileVersionBaseTypeField(val: FileVersionBaseTypeField): Json {
     return val;
 }
 export interface FileVersionBase {
     readonly id: string;
     readonly type: FileVersionBaseTypeField;
 }
-export function deserializeFileVersionBase(val: JSON): FileVersionBase {
+export function deserializeFileVersionBase(val: Json): FileVersionBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionBase\"";
     }
@@ -3281,7 +3281,7 @@ export function deserializeFileVersionBase(val: JSON): FileVersionBase {
     const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(val.type);
     return { id: id, type: type } satisfies FileVersionBase;
 }
-export function serializeFileVersionBase(val: FileVersionBase): JSON {
+export function serializeFileVersionBase(val: FileVersionBase): Json {
     return { ["id"]: val.id, ["type"]: serializeFileVersionBaseTypeField(val.type) };
 }
 export type FileVersionMini = FileVersionBase & {
@@ -3289,7 +3289,7 @@ export type FileVersionMini = FileVersionBase & {
      * The SHA1 hash of this version of the file. */
     readonly sha1?: string;
 };
-export function deserializeFileVersionMini(val: JSON): FileVersionMini {
+export function deserializeFileVersionMini(val: Json): FileVersionMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionMini\"";
     }
@@ -3310,7 +3310,7 @@ export function deserializeFileVersionMini(val: JSON): FileVersionMini {
     const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(val.type);
     return { sha1: sha1, id: id, type: type } satisfies FileVersionMini;
 }
-export function serializeFileVersionMini(val: FileVersionMini): JSON {
+export function serializeFileVersionMini(val: FileVersionMini): Json {
     const base: any = serializeFileVersionBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileVersionMini\"";
@@ -3328,7 +3328,7 @@ export type FileMini = FileBase & {
     readonly sha1: string;
     readonly fileVersion?: FileVersionMini;
 };
-export function deserializeFileMini(val: JSON): FileMini {
+export function deserializeFileMini(val: Json): FileMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileMini\"";
     }
@@ -3368,7 +3368,7 @@ export function deserializeFileMini(val: JSON): FileMini {
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
     return { sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, id: id, etag: etag, type: type } satisfies FileMini;
 }
-export function serializeFileMini(val: FileMini): JSON {
+export function serializeFileMini(val: FileMini): Json {
     const base: any = serializeFileBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileMini\"";
@@ -3379,14 +3379,14 @@ export interface SignRequestSignFilesField {
     readonly files?: readonly FileMini[];
     readonly isReadyForDownload?: boolean;
 }
-export function deserializeSignRequestSignFilesField(val: JSON): SignRequestSignFilesField {
+export function deserializeSignRequestSignFilesField(val: Json): SignRequestSignFilesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestSignFilesField\"";
     }
     if (!(val.files === void 0) && !isJson(val.files, "array")) {
         throw "Expecting array for \"files\" of type \"SignRequestSignFilesField\"";
     }
-    const files: undefined | readonly FileMini[] = isJson(val.files, "array") ? val.files.map(function (itm: JSON): any {
+    const files: undefined | readonly FileMini[] = isJson(val.files, "array") ? val.files.map(function (itm: Json): any {
         return deserializeFileMini(itm);
     }) as readonly any[] : void 0;
     if (!(val.is_ready_for_download === void 0) && !isJson(val.is_ready_for_download, "boolean")) {
@@ -3395,7 +3395,7 @@ export function deserializeSignRequestSignFilesField(val: JSON): SignRequestSign
     const isReadyForDownload: undefined | boolean = isJson(val.is_ready_for_download, "boolean") ? val.is_ready_for_download : void 0;
     return { files: files, isReadyForDownload: isReadyForDownload } satisfies SignRequestSignFilesField;
 }
-export function serializeSignRequestSignFilesField(val: SignRequestSignFilesField): JSON {
+export function serializeSignRequestSignFilesField(val: SignRequestSignFilesField): Json {
     return { ["files"]: val.files === void 0 ? void 0 : val.files.map(function (item: FileMini): any {
             return serializeFileMini(item);
         }) as readonly any[], ["is_ready_for_download"]: val.isReadyForDownload };
@@ -3406,7 +3406,7 @@ export interface FilesUnderRetention {
     readonly prevMarker?: number;
     readonly entries?: readonly FileMini[];
 }
-export function deserializeFilesUnderRetention(val: JSON): FilesUnderRetention {
+export function deserializeFilesUnderRetention(val: Json): FilesUnderRetention {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FilesUnderRetention\"";
     }
@@ -3425,12 +3425,12 @@ export function deserializeFilesUnderRetention(val: JSON): FilesUnderRetention {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FilesUnderRetention\"";
     }
-    const entries: undefined | readonly FileMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FileMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileMini(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies FilesUnderRetention;
 }
-export function serializeFilesUnderRetention(val: FilesUnderRetention): JSON {
+export function serializeFilesUnderRetention(val: FilesUnderRetention): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FileMini): any {
             return serializeFileMini(item);
         }) as readonly any[] };
@@ -3441,7 +3441,7 @@ export type FileConflict = FileMini & {
     readonly sha1?: string;
     readonly fileVersion?: FileVersionMini;
 };
-export function deserializeFileConflict(val: JSON): FileConflict {
+export function deserializeFileConflict(val: Json): FileConflict {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileConflict\"";
     }
@@ -3481,7 +3481,7 @@ export function deserializeFileConflict(val: JSON): FileConflict {
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
     return { sha1: sha1, fileVersion: fileVersion, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FileConflict;
 }
-export function serializeFileConflict(val: FileConflict): JSON {
+export function serializeFileConflict(val: FileConflict): Json {
     const base: any = serializeFileMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileConflict\"";
@@ -3491,19 +3491,19 @@ export function serializeFileConflict(val: FileConflict): JSON {
 export interface ConflictErrorContextInfoField {
     readonly conflicts?: readonly FileConflict[];
 }
-export function deserializeConflictErrorContextInfoField(val: JSON): ConflictErrorContextInfoField {
+export function deserializeConflictErrorContextInfoField(val: Json): ConflictErrorContextInfoField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ConflictErrorContextInfoField\"";
     }
     if (!(val.conflicts === void 0) && !isJson(val.conflicts, "array")) {
         throw "Expecting array for \"conflicts\" of type \"ConflictErrorContextInfoField\"";
     }
-    const conflicts: undefined | readonly FileConflict[] = isJson(val.conflicts, "array") ? val.conflicts.map(function (itm: JSON): any {
+    const conflicts: undefined | readonly FileConflict[] = isJson(val.conflicts, "array") ? val.conflicts.map(function (itm: Json): any {
         return deserializeFileConflict(itm);
     }) as readonly any[] : void 0;
     return { conflicts: conflicts } satisfies ConflictErrorContextInfoField;
 }
-export function serializeConflictErrorContextInfoField(val: ConflictErrorContextInfoField): JSON {
+export function serializeConflictErrorContextInfoField(val: ConflictErrorContextInfoField): Json {
     return { ["conflicts"]: val.conflicts === void 0 ? void 0 : val.conflicts.map(function (item: FileConflict): any {
             return serializeFileConflict(item);
         }) as readonly any[] };
@@ -3511,7 +3511,7 @@ export function serializeConflictErrorContextInfoField(val: ConflictErrorContext
 export type ConflictError = ClientError & {
     readonly contextInfo?: ConflictErrorContextInfoField;
 };
-export function deserializeConflictError(val: JSON): ConflictError {
+export function deserializeConflictError(val: Json): ConflictError {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ConflictError\"";
     }
@@ -3536,7 +3536,7 @@ export function deserializeConflictError(val: JSON): ConflictError {
     const requestId: undefined | string = isJson(val.request_id, "string") ? val.request_id : void 0;
     return { contextInfo: contextInfo, type: type, status: status, code: code, message: message, helpUrl: helpUrl, requestId: requestId } satisfies ConflictError;
 }
-export function serializeConflictError(val: ConflictError): JSON {
+export function serializeConflictError(val: ConflictError): Json {
     const base: any = serializeClientError(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ConflictError\"";
@@ -3544,7 +3544,7 @@ export function serializeConflictError(val: ConflictError): JSON {
     return { ...base, ...{ ["context_info"]: val.contextInfo === void 0 ? void 0 : serializeConflictErrorContextInfoField(val.contextInfo) } };
 }
 export type FileVersionsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeFileVersionsOrderFieldDirectionField(val: JSON): FileVersionsOrderFieldDirectionField {
+export function deserializeFileVersionsOrderFieldDirectionField(val: Json): FileVersionsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileVersionsOrderFieldDirectionField\"";
     }
@@ -3556,14 +3556,14 @@ export function deserializeFileVersionsOrderFieldDirectionField(val: JSON): File
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileVersionsOrderFieldDirectionField(val: FileVersionsOrderFieldDirectionField): JSON {
+export function serializeFileVersionsOrderFieldDirectionField(val: FileVersionsOrderFieldDirectionField): Json {
     return val;
 }
 export interface FileVersionsOrderField {
     readonly by?: string;
     readonly direction?: FileVersionsOrderFieldDirectionField;
 }
-export function deserializeFileVersionsOrderField(val: JSON): FileVersionsOrderField {
+export function deserializeFileVersionsOrderField(val: Json): FileVersionsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionsOrderField\"";
     }
@@ -3574,11 +3574,11 @@ export function deserializeFileVersionsOrderField(val: JSON): FileVersionsOrderF
     const direction: undefined | FileVersionsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeFileVersionsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies FileVersionsOrderField;
 }
-export function serializeFileVersionsOrderField(val: FileVersionsOrderField): JSON {
+export function serializeFileVersionsOrderField(val: FileVersionsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeFileVersionsOrderFieldDirectionField(val.direction) };
 }
 export type FileVersionLegalHoldTypeField = "file_version_legal_hold";
-export function deserializeFileVersionLegalHoldTypeField(val: JSON): FileVersionLegalHoldTypeField {
+export function deserializeFileVersionLegalHoldTypeField(val: Json): FileVersionLegalHoldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileVersionLegalHoldTypeField\"";
     }
@@ -3587,11 +3587,11 @@ export function deserializeFileVersionLegalHoldTypeField(val: JSON): FileVersion
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileVersionLegalHoldTypeField(val: FileVersionLegalHoldTypeField): JSON {
+export function serializeFileVersionLegalHoldTypeField(val: FileVersionLegalHoldTypeField): Json {
     return val;
 }
 export type FileVersionRetentionTypeField = "file_version_retention";
-export function deserializeFileVersionRetentionTypeField(val: JSON): FileVersionRetentionTypeField {
+export function deserializeFileVersionRetentionTypeField(val: Json): FileVersionRetentionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileVersionRetentionTypeField\"";
     }
@@ -3600,11 +3600,11 @@ export function deserializeFileVersionRetentionTypeField(val: JSON): FileVersion
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileVersionRetentionTypeField(val: FileVersionRetentionTypeField): JSON {
+export function serializeFileVersionRetentionTypeField(val: FileVersionRetentionTypeField): Json {
     return val;
 }
 export type FolderSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export function deserializeFolderSharedLinkFieldAccessField(val: JSON): FolderSharedLinkFieldAccessField {
+export function deserializeFolderSharedLinkFieldAccessField(val: Json): FolderSharedLinkFieldAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderSharedLinkFieldAccessField\"";
     }
@@ -3619,11 +3619,11 @@ export function deserializeFolderSharedLinkFieldAccessField(val: JSON): FolderSh
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderSharedLinkFieldAccessField(val: FolderSharedLinkFieldAccessField): JSON {
+export function serializeFolderSharedLinkFieldAccessField(val: FolderSharedLinkFieldAccessField): Json {
     return val;
 }
 export type FolderSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export function deserializeFolderSharedLinkFieldEffectiveAccessField(val: JSON): FolderSharedLinkFieldEffectiveAccessField {
+export function deserializeFolderSharedLinkFieldEffectiveAccessField(val: Json): FolderSharedLinkFieldEffectiveAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderSharedLinkFieldEffectiveAccessField\"";
     }
@@ -3638,11 +3638,11 @@ export function deserializeFolderSharedLinkFieldEffectiveAccessField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderSharedLinkFieldEffectiveAccessField(val: FolderSharedLinkFieldEffectiveAccessField): JSON {
+export function serializeFolderSharedLinkFieldEffectiveAccessField(val: FolderSharedLinkFieldEffectiveAccessField): Json {
     return val;
 }
 export type FolderSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export function deserializeFolderSharedLinkFieldEffectivePermissionField(val: JSON): FolderSharedLinkFieldEffectivePermissionField {
+export function deserializeFolderSharedLinkFieldEffectivePermissionField(val: Json): FolderSharedLinkFieldEffectivePermissionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderSharedLinkFieldEffectivePermissionField\"";
     }
@@ -3660,7 +3660,7 @@ export function deserializeFolderSharedLinkFieldEffectivePermissionField(val: JS
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderSharedLinkFieldEffectivePermissionField(val: FolderSharedLinkFieldEffectivePermissionField): JSON {
+export function serializeFolderSharedLinkFieldEffectivePermissionField(val: FolderSharedLinkFieldEffectivePermissionField): Json {
     return val;
 }
 export interface FolderSharedLinkFieldPermissionsField {
@@ -3668,7 +3668,7 @@ export interface FolderSharedLinkFieldPermissionsField {
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export function deserializeFolderSharedLinkFieldPermissionsField(val: JSON): FolderSharedLinkFieldPermissionsField {
+export function deserializeFolderSharedLinkFieldPermissionsField(val: Json): FolderSharedLinkFieldPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderSharedLinkFieldPermissionsField\"";
     }
@@ -3695,7 +3695,7 @@ export function deserializeFolderSharedLinkFieldPermissionsField(val: JSON): Fol
     const canEdit: boolean = val.can_edit;
     return { canDownload: canDownload, canPreview: canPreview, canEdit: canEdit } satisfies FolderSharedLinkFieldPermissionsField;
 }
-export function serializeFolderSharedLinkFieldPermissionsField(val: FolderSharedLinkFieldPermissionsField): JSON {
+export function serializeFolderSharedLinkFieldPermissionsField(val: FolderSharedLinkFieldPermissionsField): Json {
     return { ["can_download"]: val.canDownload, ["can_preview"]: val.canPreview, ["can_edit"]: val.canEdit };
 }
 export interface FolderSharedLinkField {
@@ -3712,7 +3712,7 @@ export interface FolderSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export function deserializeFolderSharedLinkField(val: JSON): FolderSharedLinkField {
+export function deserializeFolderSharedLinkField(val: Json): FolderSharedLinkField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderSharedLinkField\"";
     }
@@ -3772,11 +3772,11 @@ export function deserializeFolderSharedLinkField(val: JSON): FolderSharedLinkFie
     const previewCount: number = val.preview_count;
     return { url: url, downloadUrl: downloadUrl, vanityUrl: vanityUrl, vanityName: vanityName, access: access, effectiveAccess: effectiveAccess, effectivePermission: effectivePermission, unsharedAt: unsharedAt, isPasswordEnabled: isPasswordEnabled, permissions: permissions, downloadCount: downloadCount, previewCount: previewCount } satisfies FolderSharedLinkField;
 }
-export function serializeFolderSharedLinkField(val: FolderSharedLinkField): JSON {
+export function serializeFolderSharedLinkField(val: FolderSharedLinkField): Json {
     return { ["url"]: val.url, ["download_url"]: val.downloadUrl, ["vanity_url"]: val.vanityUrl, ["vanity_name"]: val.vanityName, ["access"]: val.access === void 0 ? void 0 : serializeFolderSharedLinkFieldAccessField(val.access), ["effective_access"]: serializeFolderSharedLinkFieldEffectiveAccessField(val.effectiveAccess), ["effective_permission"]: serializeFolderSharedLinkFieldEffectivePermissionField(val.effectivePermission), ["unshared_at"]: val.unsharedAt, ["is_password_enabled"]: val.isPasswordEnabled, ["permissions"]: val.permissions === void 0 ? void 0 : serializeFolderSharedLinkFieldPermissionsField(val.permissions), ["download_count"]: val.downloadCount, ["preview_count"]: val.previewCount };
 }
 export type FolderFolderUploadEmailFieldAccessField = "open" | "collaborators";
-export function deserializeFolderFolderUploadEmailFieldAccessField(val: JSON): FolderFolderUploadEmailFieldAccessField {
+export function deserializeFolderFolderUploadEmailFieldAccessField(val: Json): FolderFolderUploadEmailFieldAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderFolderUploadEmailFieldAccessField\"";
     }
@@ -3788,14 +3788,14 @@ export function deserializeFolderFolderUploadEmailFieldAccessField(val: JSON): F
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderFolderUploadEmailFieldAccessField(val: FolderFolderUploadEmailFieldAccessField): JSON {
+export function serializeFolderFolderUploadEmailFieldAccessField(val: FolderFolderUploadEmailFieldAccessField): Json {
     return val;
 }
 export interface FolderFolderUploadEmailField {
     readonly access?: FolderFolderUploadEmailFieldAccessField;
     readonly email?: string;
 }
-export function deserializeFolderFolderUploadEmailField(val: JSON): FolderFolderUploadEmailField {
+export function deserializeFolderFolderUploadEmailField(val: Json): FolderFolderUploadEmailField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFolderUploadEmailField\"";
     }
@@ -3806,11 +3806,11 @@ export function deserializeFolderFolderUploadEmailField(val: JSON): FolderFolder
     const email: undefined | string = isJson(val.email, "string") ? val.email : void 0;
     return { access: access, email: email } satisfies FolderFolderUploadEmailField;
 }
-export function serializeFolderFolderUploadEmailField(val: FolderFolderUploadEmailField): JSON {
+export function serializeFolderFolderUploadEmailField(val: FolderFolderUploadEmailField): Json {
     return { ["access"]: val.access === void 0 ? void 0 : serializeFolderFolderUploadEmailFieldAccessField(val.access), ["email"]: val.email };
 }
 export type FolderItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeFolderItemStatusField(val: JSON): FolderItemStatusField {
+export function deserializeFolderItemStatusField(val: Json): FolderItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderItemStatusField\"";
     }
@@ -3825,11 +3825,11 @@ export function deserializeFolderItemStatusField(val: JSON): FolderItemStatusFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderItemStatusField(val: FolderItemStatusField): JSON {
+export function serializeFolderItemStatusField(val: FolderItemStatusField): Json {
     return val;
 }
 export type FolderFullSyncStateField = "synced" | "not_synced" | "partially_synced";
-export function deserializeFolderFullSyncStateField(val: JSON): FolderFullSyncStateField {
+export function deserializeFolderFullSyncStateField(val: Json): FolderFullSyncStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderFullSyncStateField\"";
     }
@@ -3844,7 +3844,7 @@ export function deserializeFolderFullSyncStateField(val: JSON): FolderFullSyncSt
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderFullSyncStateField(val: FolderFullSyncStateField): JSON {
+export function serializeFolderFullSyncStateField(val: FolderFullSyncStateField): Json {
     return val;
 }
 export interface FolderFullPermissionsField {
@@ -3856,7 +3856,7 @@ export interface FolderFullPermissionsField {
     readonly canShare: boolean;
     readonly canUpload?: boolean;
 }
-export function deserializeFolderFullPermissionsField(val: JSON): FolderFullPermissionsField {
+export function deserializeFolderFullPermissionsField(val: Json): FolderFullPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFullPermissionsField\"";
     }
@@ -3908,22 +3908,22 @@ export function deserializeFolderFullPermissionsField(val: JSON): FolderFullPerm
     const canUpload: undefined | boolean = isJson(val.can_upload, "boolean") ? val.can_upload : void 0;
     return { canDelete: canDelete, canDownload: canDownload, canInviteCollaborator: canInviteCollaborator, canRename: canRename, canSetShareAccess: canSetShareAccess, canShare: canShare, canUpload: canUpload } satisfies FolderFullPermissionsField;
 }
-export function serializeFolderFullPermissionsField(val: FolderFullPermissionsField): JSON {
+export function serializeFolderFullPermissionsField(val: FolderFullPermissionsField): Json {
     return { ["can_delete"]: val.canDelete, ["can_download"]: val.canDownload, ["can_invite_collaborator"]: val.canInviteCollaborator, ["can_rename"]: val.canRename, ["can_set_share_access"]: val.canSetShareAccess, ["can_share"]: val.canShare, ["can_upload"]: val.canUpload };
 }
 export interface FolderFullMetadataField {
 }
-export function deserializeFolderFullMetadataField(val: JSON): FolderFullMetadataField {
+export function deserializeFolderFullMetadataField(val: Json): FolderFullMetadataField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFullMetadataField\"";
     }
     return {} satisfies FolderFullMetadataField;
 }
-export function serializeFolderFullMetadataField(val: FolderFullMetadataField): JSON {
+export function serializeFolderFullMetadataField(val: FolderFullMetadataField): Json {
     return {};
 }
 export type FolderFullAllowedSharedLinkAccessLevelsField = "open" | "company" | "collaborators";
-export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(val: JSON): FolderFullAllowedSharedLinkAccessLevelsField {
+export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(val: Json): FolderFullAllowedSharedLinkAccessLevelsField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderFullAllowedSharedLinkAccessLevelsField\"";
     }
@@ -3938,11 +3938,11 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(val: JSO
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderFullAllowedSharedLinkAccessLevelsField(val: FolderFullAllowedSharedLinkAccessLevelsField): JSON {
+export function serializeFolderFullAllowedSharedLinkAccessLevelsField(val: FolderFullAllowedSharedLinkAccessLevelsField): Json {
     return val;
 }
 export type FolderFullAllowedInviteeRolesField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export function deserializeFolderFullAllowedInviteeRolesField(val: JSON): FolderFullAllowedInviteeRolesField {
+export function deserializeFolderFullAllowedInviteeRolesField(val: Json): FolderFullAllowedInviteeRolesField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderFullAllowedInviteeRolesField\"";
     }
@@ -3969,13 +3969,13 @@ export function deserializeFolderFullAllowedInviteeRolesField(val: JSON): Folder
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderFullAllowedInviteeRolesField(val: FolderFullAllowedInviteeRolesField): JSON {
+export function serializeFolderFullAllowedInviteeRolesField(val: FolderFullAllowedInviteeRolesField): Json {
     return val;
 }
 export interface FolderFullWatermarkInfoField {
     readonly isWatermarked?: boolean;
 }
-export function deserializeFolderFullWatermarkInfoField(val: JSON): FolderFullWatermarkInfoField {
+export function deserializeFolderFullWatermarkInfoField(val: Json): FolderFullWatermarkInfoField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFullWatermarkInfoField\"";
     }
@@ -3985,7 +3985,7 @@ export function deserializeFolderFullWatermarkInfoField(val: JSON): FolderFullWa
     const isWatermarked: undefined | boolean = isJson(val.is_watermarked, "boolean") ? val.is_watermarked : void 0;
     return { isWatermarked: isWatermarked } satisfies FolderFullWatermarkInfoField;
 }
-export function serializeFolderFullWatermarkInfoField(val: FolderFullWatermarkInfoField): JSON {
+export function serializeFolderFullWatermarkInfoField(val: FolderFullWatermarkInfoField): Json {
     return { ["is_watermarked"]: val.isWatermarked };
 }
 export interface FolderFullClassificationField {
@@ -3993,7 +3993,7 @@ export interface FolderFullClassificationField {
     readonly definition?: string;
     readonly color?: string;
 }
-export function deserializeFolderFullClassificationField(val: JSON): FolderFullClassificationField {
+export function deserializeFolderFullClassificationField(val: Json): FolderFullClassificationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFullClassificationField\"";
     }
@@ -4011,11 +4011,11 @@ export function deserializeFolderFullClassificationField(val: JSON): FolderFullC
     const color: undefined | string = isJson(val.color, "string") ? val.color : void 0;
     return { name: name, definition: definition, color: color } satisfies FolderFullClassificationField;
 }
-export function serializeFolderFullClassificationField(val: FolderFullClassificationField): JSON {
+export function serializeFolderFullClassificationField(val: FolderFullClassificationField): Json {
     return { ["name"]: val.name, ["definition"]: val.definition, ["color"]: val.color };
 }
 export type FolderBaseTypeField = "folder";
-export function deserializeFolderBaseTypeField(val: JSON): FolderBaseTypeField {
+export function deserializeFolderBaseTypeField(val: Json): FolderBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FolderBaseTypeField\"";
     }
@@ -4024,7 +4024,7 @@ export function deserializeFolderBaseTypeField(val: JSON): FolderBaseTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFolderBaseTypeField(val: FolderBaseTypeField): JSON {
+export function serializeFolderBaseTypeField(val: FolderBaseTypeField): Json {
     return val;
 }
 export interface FolderBase {
@@ -4032,7 +4032,7 @@ export interface FolderBase {
     readonly etag?: string;
     readonly type: FolderBaseTypeField;
 }
-export function deserializeFolderBase(val: JSON): FolderBase {
+export function deserializeFolderBase(val: Json): FolderBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderBase\"";
     }
@@ -4053,7 +4053,7 @@ export function deserializeFolderBase(val: JSON): FolderBase {
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
     return { id: id, etag: etag, type: type } satisfies FolderBase;
 }
-export function serializeFolderBase(val: FolderBase): JSON {
+export function serializeFolderBase(val: FolderBase): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeFolderBaseTypeField(val.type) };
 }
 export type FolderMini = FolderBase & {
@@ -4062,7 +4062,7 @@ export type FolderMini = FolderBase & {
      * The name of the folder. */
     readonly name?: string;
 };
-export function deserializeFolderMini(val: JSON): FolderMini {
+export function deserializeFolderMini(val: Json): FolderMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderMini\"";
     }
@@ -4091,7 +4091,7 @@ export function deserializeFolderMini(val: JSON): FolderMini {
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
     return { sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderMini;
 }
-export function serializeFolderMini(val: FolderMini): JSON {
+export function serializeFolderMini(val: FolderMini): Json {
     const base: any = serializeFolderBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderMini\"";
@@ -4102,7 +4102,7 @@ export interface WebLinkPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeWebLinkPathCollectionField(val: JSON): WebLinkPathCollectionField {
+export function deserializeWebLinkPathCollectionField(val: Json): WebLinkPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLinkPathCollectionField\"";
     }
@@ -4119,12 +4119,12 @@ export function deserializeWebLinkPathCollectionField(val: JSON): WebLinkPathCol
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"WebLinkPathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies WebLinkPathCollectionField;
 }
-export function serializeWebLinkPathCollectionField(val: WebLinkPathCollectionField): JSON {
+export function serializeWebLinkPathCollectionField(val: WebLinkPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4133,7 +4133,7 @@ export interface TrashWebLinkRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeTrashWebLinkRestoredPathCollectionField(val: JSON): TrashWebLinkRestoredPathCollectionField {
+export function deserializeTrashWebLinkRestoredPathCollectionField(val: Json): TrashWebLinkRestoredPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashWebLinkRestoredPathCollectionField\"";
     }
@@ -4150,12 +4150,12 @@ export function deserializeTrashWebLinkRestoredPathCollectionField(val: JSON): T
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashWebLinkRestoredPathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashWebLinkRestoredPathCollectionField;
 }
-export function serializeTrashWebLinkRestoredPathCollectionField(val: TrashWebLinkRestoredPathCollectionField): JSON {
+export function serializeTrashWebLinkRestoredPathCollectionField(val: TrashWebLinkRestoredPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4164,7 +4164,7 @@ export interface TrashFolderRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeTrashFolderRestoredPathCollectionField(val: JSON): TrashFolderRestoredPathCollectionField {
+export function deserializeTrashFolderRestoredPathCollectionField(val: Json): TrashFolderRestoredPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFolderRestoredPathCollectionField\"";
     }
@@ -4181,12 +4181,12 @@ export function deserializeTrashFolderRestoredPathCollectionField(val: JSON): Tr
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashFolderRestoredPathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashFolderRestoredPathCollectionField;
 }
-export function serializeTrashFolderRestoredPathCollectionField(val: TrashFolderRestoredPathCollectionField): JSON {
+export function serializeTrashFolderRestoredPathCollectionField(val: TrashFolderRestoredPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4195,7 +4195,7 @@ export interface TrashFileRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeTrashFileRestoredPathCollectionField(val: JSON): TrashFileRestoredPathCollectionField {
+export function deserializeTrashFileRestoredPathCollectionField(val: Json): TrashFileRestoredPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFileRestoredPathCollectionField\"";
     }
@@ -4212,12 +4212,12 @@ export function deserializeTrashFileRestoredPathCollectionField(val: JSON): Tras
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashFileRestoredPathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashFileRestoredPathCollectionField;
 }
-export function serializeTrashFileRestoredPathCollectionField(val: TrashFileRestoredPathCollectionField): JSON {
+export function serializeTrashFileRestoredPathCollectionField(val: TrashFileRestoredPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4226,7 +4226,7 @@ export interface FolderPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeFolderPathCollectionField(val: JSON): FolderPathCollectionField {
+export function deserializeFolderPathCollectionField(val: Json): FolderPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderPathCollectionField\"";
     }
@@ -4243,12 +4243,12 @@ export function deserializeFolderPathCollectionField(val: JSON): FolderPathColle
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FolderPathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies FolderPathCollectionField;
 }
-export function serializeFolderPathCollectionField(val: FolderPathCollectionField): JSON {
+export function serializeFolderPathCollectionField(val: FolderPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4257,7 +4257,7 @@ export interface FilePathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export function deserializeFilePathCollectionField(val: JSON): FilePathCollectionField {
+export function deserializeFilePathCollectionField(val: Json): FilePathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FilePathCollectionField\"";
     }
@@ -4274,12 +4274,12 @@ export function deserializeFilePathCollectionField(val: JSON): FilePathCollectio
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FilePathCollectionField\"";
     }
-    const entries: readonly FolderMini[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly FolderMini[] = val.entries.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies FilePathCollectionField;
 }
-export function serializeFilePathCollectionField(val: FilePathCollectionField): JSON {
+export function serializeFilePathCollectionField(val: FilePathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: FolderMini): any {
             return serializeFolderMini(item);
         }) as readonly any[] };
@@ -4288,7 +4288,7 @@ export interface FolderLockLockedOperationsField {
     readonly move: boolean;
     readonly delete: boolean;
 }
-export function deserializeFolderLockLockedOperationsField(val: JSON): FolderLockLockedOperationsField {
+export function deserializeFolderLockLockedOperationsField(val: Json): FolderLockLockedOperationsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderLockLockedOperationsField\"";
     }
@@ -4308,11 +4308,11 @@ export function deserializeFolderLockLockedOperationsField(val: JSON): FolderLoc
     const _delete: boolean = val.delete;
     return { move: move, delete: _delete } satisfies FolderLockLockedOperationsField;
 }
-export function serializeFolderLockLockedOperationsField(val: FolderLockLockedOperationsField): JSON {
+export function serializeFolderLockLockedOperationsField(val: FolderLockLockedOperationsField): Json {
     return { ["move"]: val.move, ["delete"]: val.delete };
 }
 export type GroupsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeGroupsOrderFieldDirectionField(val: JSON): GroupsOrderFieldDirectionField {
+export function deserializeGroupsOrderFieldDirectionField(val: Json): GroupsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupsOrderFieldDirectionField\"";
     }
@@ -4324,14 +4324,14 @@ export function deserializeGroupsOrderFieldDirectionField(val: JSON): GroupsOrde
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupsOrderFieldDirectionField(val: GroupsOrderFieldDirectionField): JSON {
+export function serializeGroupsOrderFieldDirectionField(val: GroupsOrderFieldDirectionField): Json {
     return val;
 }
 export interface GroupsOrderField {
     readonly by?: string;
     readonly direction?: GroupsOrderFieldDirectionField;
 }
-export function deserializeGroupsOrderField(val: JSON): GroupsOrderField {
+export function deserializeGroupsOrderField(val: Json): GroupsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupsOrderField\"";
     }
@@ -4342,11 +4342,11 @@ export function deserializeGroupsOrderField(val: JSON): GroupsOrderField {
     const direction: undefined | GroupsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeGroupsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies GroupsOrderField;
 }
-export function serializeGroupsOrderField(val: GroupsOrderField): JSON {
+export function serializeGroupsOrderField(val: GroupsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeGroupsOrderFieldDirectionField(val.direction) };
 }
 export type GroupBaseTypeField = "group";
-export function deserializeGroupBaseTypeField(val: JSON): GroupBaseTypeField {
+export function deserializeGroupBaseTypeField(val: Json): GroupBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupBaseTypeField\"";
     }
@@ -4355,14 +4355,14 @@ export function deserializeGroupBaseTypeField(val: JSON): GroupBaseTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupBaseTypeField(val: GroupBaseTypeField): JSON {
+export function serializeGroupBaseTypeField(val: GroupBaseTypeField): Json {
     return val;
 }
 export interface GroupBase {
     readonly id?: string;
     readonly type?: GroupBaseTypeField;
 }
-export function deserializeGroupBase(val: JSON): GroupBase {
+export function deserializeGroupBase(val: Json): GroupBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupBase\"";
     }
@@ -4373,11 +4373,11 @@ export function deserializeGroupBase(val: JSON): GroupBase {
     const type: undefined | GroupBaseTypeField = val.type === void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
     return { id: id, type: type } satisfies GroupBase;
 }
-export function serializeGroupBase(val: GroupBase): JSON {
+export function serializeGroupBase(val: GroupBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeGroupBaseTypeField(val.type) };
 }
 export type GroupFullInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export function deserializeGroupFullInvitabilityLevelField(val: JSON): GroupFullInvitabilityLevelField {
+export function deserializeGroupFullInvitabilityLevelField(val: Json): GroupFullInvitabilityLevelField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupFullInvitabilityLevelField\"";
     }
@@ -4392,11 +4392,11 @@ export function deserializeGroupFullInvitabilityLevelField(val: JSON): GroupFull
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupFullInvitabilityLevelField(val: GroupFullInvitabilityLevelField): JSON {
+export function serializeGroupFullInvitabilityLevelField(val: GroupFullInvitabilityLevelField): Json {
     return val;
 }
 export type GroupFullMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export function deserializeGroupFullMemberViewabilityLevelField(val: JSON): GroupFullMemberViewabilityLevelField {
+export function deserializeGroupFullMemberViewabilityLevelField(val: Json): GroupFullMemberViewabilityLevelField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupFullMemberViewabilityLevelField\"";
     }
@@ -4411,13 +4411,13 @@ export function deserializeGroupFullMemberViewabilityLevelField(val: JSON): Grou
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupFullMemberViewabilityLevelField(val: GroupFullMemberViewabilityLevelField): JSON {
+export function serializeGroupFullMemberViewabilityLevelField(val: GroupFullMemberViewabilityLevelField): Json {
     return val;
 }
 export interface GroupFullPermissionsField {
     readonly canInviteAsCollaborator?: boolean;
 }
-export function deserializeGroupFullPermissionsField(val: JSON): GroupFullPermissionsField {
+export function deserializeGroupFullPermissionsField(val: Json): GroupFullPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupFullPermissionsField\"";
     }
@@ -4427,11 +4427,11 @@ export function deserializeGroupFullPermissionsField(val: JSON): GroupFullPermis
     const canInviteAsCollaborator: undefined | boolean = isJson(val.can_invite_as_collaborator, "boolean") ? val.can_invite_as_collaborator : void 0;
     return { canInviteAsCollaborator: canInviteAsCollaborator } satisfies GroupFullPermissionsField;
 }
-export function serializeGroupFullPermissionsField(val: GroupFullPermissionsField): JSON {
+export function serializeGroupFullPermissionsField(val: GroupFullPermissionsField): Json {
     return { ["can_invite_as_collaborator"]: val.canInviteAsCollaborator };
 }
 export type GroupMiniGroupTypeField = "managed_group" | "all_users_group";
-export function deserializeGroupMiniGroupTypeField(val: JSON): GroupMiniGroupTypeField {
+export function deserializeGroupMiniGroupTypeField(val: Json): GroupMiniGroupTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupMiniGroupTypeField\"";
     }
@@ -4443,7 +4443,7 @@ export function deserializeGroupMiniGroupTypeField(val: JSON): GroupMiniGroupTyp
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupMiniGroupTypeField(val: GroupMiniGroupTypeField): JSON {
+export function serializeGroupMiniGroupTypeField(val: GroupMiniGroupTypeField): Json {
     return val;
 }
 export type GroupMini = GroupBase & {
@@ -4454,7 +4454,7 @@ export type GroupMini = GroupBase & {
      * The type of the group. */
     readonly groupType?: GroupMiniGroupTypeField;
 };
-export function deserializeGroupMini(val: JSON): GroupMini {
+export function deserializeGroupMini(val: Json): GroupMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupMini\"";
     }
@@ -4470,7 +4470,7 @@ export function deserializeGroupMini(val: JSON): GroupMini {
     const type: undefined | GroupBaseTypeField = val.type === void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
     return { name: name, groupType: groupType, id: id, type: type } satisfies GroupMini;
 }
-export function serializeGroupMini(val: GroupMini): JSON {
+export function serializeGroupMini(val: GroupMini): Json {
     const base: any = serializeGroupBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"GroupMini\"";
@@ -4484,7 +4484,7 @@ export interface Groups {
     readonly order?: readonly GroupsOrderField[];
     readonly entries?: readonly GroupMini[];
 }
-export function deserializeGroups(val: JSON): Groups {
+export function deserializeGroups(val: Json): Groups {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Groups\"";
     }
@@ -4503,18 +4503,18 @@ export function deserializeGroups(val: JSON): Groups {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Groups\"";
     }
-    const order: undefined | readonly GroupsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly GroupsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeGroupsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Groups\"";
     }
-    const entries: undefined | readonly GroupMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly GroupMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeGroupMini(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Groups;
 }
-export function serializeGroups(val: Groups): JSON {
+export function serializeGroups(val: Groups): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: GroupsOrderField): any {
             return serializeGroupsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: GroupMini): any {
@@ -4529,7 +4529,7 @@ export type Group = GroupMini & {
      * When the group object was last modified */
     readonly modifiedAt?: string;
 };
-export function deserializeGroup(val: JSON): Group {
+export function deserializeGroup(val: Json): Group {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Group\"";
     }
@@ -4553,7 +4553,7 @@ export function deserializeGroup(val: JSON): Group {
     const type: undefined | GroupBaseTypeField = val.type === void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
     return { createdAt: createdAt, modifiedAt: modifiedAt, name: name, groupType: groupType, id: id, type: type } satisfies Group;
 }
-export function serializeGroup(val: Group): JSON {
+export function serializeGroup(val: Group): Json {
     const base: any = serializeGroupMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Group\"";
@@ -4606,7 +4606,7 @@ export type GroupFull = Group & {
     readonly memberViewabilityLevel?: GroupFullMemberViewabilityLevelField;
     readonly permissions?: GroupFullPermissionsField;
 };
-export function deserializeGroupFull(val: JSON): GroupFull {
+export function deserializeGroupFull(val: Json): GroupFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupFull\"";
     }
@@ -4645,7 +4645,7 @@ export function deserializeGroupFull(val: JSON): GroupFull {
     const type: undefined | GroupBaseTypeField = val.type === void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
     return { provenance: provenance, externalSyncIdentifier: externalSyncIdentifier, description: description, invitabilityLevel: invitabilityLevel, memberViewabilityLevel: memberViewabilityLevel, permissions: permissions, createdAt: createdAt, modifiedAt: modifiedAt, name: name, groupType: groupType, id: id, type: type } satisfies GroupFull;
 }
-export function serializeGroupFull(val: GroupFull): JSON {
+export function serializeGroupFull(val: GroupFull): Json {
     const base: any = serializeGroup(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"GroupFull\"";
@@ -4653,7 +4653,7 @@ export function serializeGroupFull(val: GroupFull): JSON {
     return { ...base, ...{ ["provenance"]: val.provenance, ["external_sync_identifier"]: val.externalSyncIdentifier, ["description"]: val.description, ["invitability_level"]: val.invitabilityLevel === void 0 ? void 0 : serializeGroupFullInvitabilityLevelField(val.invitabilityLevel), ["member_viewability_level"]: val.memberViewabilityLevel === void 0 ? void 0 : serializeGroupFullMemberViewabilityLevelField(val.memberViewabilityLevel), ["permissions"]: val.permissions === void 0 ? void 0 : serializeGroupFullPermissionsField(val.permissions) } };
 }
 export type GroupMembershipTypeField = "group_membership";
-export function deserializeGroupMembershipTypeField(val: JSON): GroupMembershipTypeField {
+export function deserializeGroupMembershipTypeField(val: Json): GroupMembershipTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupMembershipTypeField\"";
     }
@@ -4662,11 +4662,11 @@ export function deserializeGroupMembershipTypeField(val: JSON): GroupMembershipT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupMembershipTypeField(val: GroupMembershipTypeField): JSON {
+export function serializeGroupMembershipTypeField(val: GroupMembershipTypeField): Json {
     return val;
 }
 export type GroupMembershipRoleField = "member" | "admin";
-export function deserializeGroupMembershipRoleField(val: JSON): GroupMembershipRoleField {
+export function deserializeGroupMembershipRoleField(val: Json): GroupMembershipRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupMembershipRoleField\"";
     }
@@ -4678,11 +4678,11 @@ export function deserializeGroupMembershipRoleField(val: JSON): GroupMembershipR
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupMembershipRoleField(val: GroupMembershipRoleField): JSON {
+export function serializeGroupMembershipRoleField(val: GroupMembershipRoleField): Json {
     return val;
 }
 export type GroupMembershipsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeGroupMembershipsOrderFieldDirectionField(val: JSON): GroupMembershipsOrderFieldDirectionField {
+export function deserializeGroupMembershipsOrderFieldDirectionField(val: Json): GroupMembershipsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GroupMembershipsOrderFieldDirectionField\"";
     }
@@ -4694,14 +4694,14 @@ export function deserializeGroupMembershipsOrderFieldDirectionField(val: JSON): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeGroupMembershipsOrderFieldDirectionField(val: GroupMembershipsOrderFieldDirectionField): JSON {
+export function serializeGroupMembershipsOrderFieldDirectionField(val: GroupMembershipsOrderFieldDirectionField): Json {
     return val;
 }
 export interface GroupMembershipsOrderField {
     readonly by?: string;
     readonly direction?: GroupMembershipsOrderFieldDirectionField;
 }
-export function deserializeGroupMembershipsOrderField(val: JSON): GroupMembershipsOrderField {
+export function deserializeGroupMembershipsOrderField(val: Json): GroupMembershipsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupMembershipsOrderField\"";
     }
@@ -4712,11 +4712,11 @@ export function deserializeGroupMembershipsOrderField(val: JSON): GroupMembershi
     const direction: undefined | GroupMembershipsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeGroupMembershipsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies GroupMembershipsOrderField;
 }
-export function serializeGroupMembershipsOrderField(val: GroupMembershipsOrderField): JSON {
+export function serializeGroupMembershipsOrderField(val: GroupMembershipsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeGroupMembershipsOrderFieldDirectionField(val.direction) };
 }
 export type InviteTypeField = "invite";
-export function deserializeInviteTypeField(val: JSON): InviteTypeField {
+export function deserializeInviteTypeField(val: Json): InviteTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"InviteTypeField\"";
     }
@@ -4725,11 +4725,11 @@ export function deserializeInviteTypeField(val: JSON): InviteTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeInviteTypeField(val: InviteTypeField): JSON {
+export function serializeInviteTypeField(val: InviteTypeField): Json {
     return val;
 }
 export type InviteInvitedToFieldTypeField = "enterprise";
-export function deserializeInviteInvitedToFieldTypeField(val: JSON): InviteInvitedToFieldTypeField {
+export function deserializeInviteInvitedToFieldTypeField(val: Json): InviteInvitedToFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"InviteInvitedToFieldTypeField\"";
     }
@@ -4738,7 +4738,7 @@ export function deserializeInviteInvitedToFieldTypeField(val: JSON): InviteInvit
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeInviteInvitedToFieldTypeField(val: InviteInvitedToFieldTypeField): JSON {
+export function serializeInviteInvitedToFieldTypeField(val: InviteInvitedToFieldTypeField): Json {
     return val;
 }
 export interface InviteInvitedToField {
@@ -4746,7 +4746,7 @@ export interface InviteInvitedToField {
     readonly type?: InviteInvitedToFieldTypeField;
     readonly name?: string;
 }
-export function deserializeInviteInvitedToField(val: JSON): InviteInvitedToField {
+export function deserializeInviteInvitedToField(val: Json): InviteInvitedToField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"InviteInvitedToField\"";
     }
@@ -4761,11 +4761,11 @@ export function deserializeInviteInvitedToField(val: JSON): InviteInvitedToField
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies InviteInvitedToField;
 }
-export function serializeInviteInvitedToField(val: InviteInvitedToField): JSON {
+export function serializeInviteInvitedToField(val: InviteInvitedToField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeInviteInvitedToFieldTypeField(val.type), ["name"]: val.name };
 }
 export type ItemsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeItemsOrderFieldDirectionField(val: JSON): ItemsOrderFieldDirectionField {
+export function deserializeItemsOrderFieldDirectionField(val: Json): ItemsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ItemsOrderFieldDirectionField\"";
     }
@@ -4777,14 +4777,14 @@ export function deserializeItemsOrderFieldDirectionField(val: JSON): ItemsOrderF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeItemsOrderFieldDirectionField(val: ItemsOrderFieldDirectionField): JSON {
+export function serializeItemsOrderFieldDirectionField(val: ItemsOrderFieldDirectionField): Json {
     return val;
 }
 export interface ItemsOrderField {
     readonly by?: string;
     readonly direction?: ItemsOrderFieldDirectionField;
 }
-export function deserializeItemsOrderField(val: JSON): ItemsOrderField {
+export function deserializeItemsOrderField(val: Json): ItemsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ItemsOrderField\"";
     }
@@ -4795,11 +4795,11 @@ export function deserializeItemsOrderField(val: JSON): ItemsOrderField {
     const direction: undefined | ItemsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeItemsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies ItemsOrderField;
 }
-export function serializeItemsOrderField(val: ItemsOrderField): JSON {
+export function serializeItemsOrderField(val: ItemsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeItemsOrderFieldDirectionField(val.direction) };
 }
 export type LegalHoldPolicyStatusField = "active" | "applying" | "releasing" | "released";
-export function deserializeLegalHoldPolicyStatusField(val: JSON): LegalHoldPolicyStatusField {
+export function deserializeLegalHoldPolicyStatusField(val: Json): LegalHoldPolicyStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"LegalHoldPolicyStatusField\"";
     }
@@ -4817,7 +4817,7 @@ export function deserializeLegalHoldPolicyStatusField(val: JSON): LegalHoldPolic
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeLegalHoldPolicyStatusField(val: LegalHoldPolicyStatusField): JSON {
+export function serializeLegalHoldPolicyStatusField(val: LegalHoldPolicyStatusField): Json {
     return val;
 }
 export interface LegalHoldPolicyAssignmentCountsField {
@@ -4826,7 +4826,7 @@ export interface LegalHoldPolicyAssignmentCountsField {
     readonly file?: number;
     readonly fileVersion?: number;
 }
-export function deserializeLegalHoldPolicyAssignmentCountsField(val: JSON): LegalHoldPolicyAssignmentCountsField {
+export function deserializeLegalHoldPolicyAssignmentCountsField(val: Json): LegalHoldPolicyAssignmentCountsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignmentCountsField\"";
     }
@@ -4848,11 +4848,11 @@ export function deserializeLegalHoldPolicyAssignmentCountsField(val: JSON): Lega
     const fileVersion: undefined | number = isJson(val.file_version, "number") ? val.file_version : void 0;
     return { user: user, folder: folder, file: file, fileVersion: fileVersion } satisfies LegalHoldPolicyAssignmentCountsField;
 }
-export function serializeLegalHoldPolicyAssignmentCountsField(val: LegalHoldPolicyAssignmentCountsField): JSON {
+export function serializeLegalHoldPolicyAssignmentCountsField(val: LegalHoldPolicyAssignmentCountsField): Json {
     return { ["user"]: val.user, ["folder"]: val.folder, ["file"]: val.file, ["file_version"]: val.fileVersion };
 }
 export type LegalHoldPolicyMiniTypeField = "legal_hold_policy";
-export function deserializeLegalHoldPolicyMiniTypeField(val: JSON): LegalHoldPolicyMiniTypeField {
+export function deserializeLegalHoldPolicyMiniTypeField(val: Json): LegalHoldPolicyMiniTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"LegalHoldPolicyMiniTypeField\"";
     }
@@ -4861,14 +4861,14 @@ export function deserializeLegalHoldPolicyMiniTypeField(val: JSON): LegalHoldPol
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeLegalHoldPolicyMiniTypeField(val: LegalHoldPolicyMiniTypeField): JSON {
+export function serializeLegalHoldPolicyMiniTypeField(val: LegalHoldPolicyMiniTypeField): Json {
     return val;
 }
 export interface LegalHoldPolicyMini {
     readonly id?: string;
     readonly type?: LegalHoldPolicyMiniTypeField;
 }
-export function deserializeLegalHoldPolicyMini(val: JSON): LegalHoldPolicyMini {
+export function deserializeLegalHoldPolicyMini(val: Json): LegalHoldPolicyMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyMini\"";
     }
@@ -4879,11 +4879,11 @@ export function deserializeLegalHoldPolicyMini(val: JSON): LegalHoldPolicyMini {
     const type: undefined | LegalHoldPolicyMiniTypeField = val.type === void 0 ? void 0 : deserializeLegalHoldPolicyMiniTypeField(val.type);
     return { id: id, type: type } satisfies LegalHoldPolicyMini;
 }
-export function serializeLegalHoldPolicyMini(val: LegalHoldPolicyMini): JSON {
+export function serializeLegalHoldPolicyMini(val: LegalHoldPolicyMini): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeLegalHoldPolicyMiniTypeField(val.type) };
 }
 export type LegalHoldPolicyAssignmentBaseTypeField = "legal_hold_policy_assignment";
-export function deserializeLegalHoldPolicyAssignmentBaseTypeField(val: JSON): LegalHoldPolicyAssignmentBaseTypeField {
+export function deserializeLegalHoldPolicyAssignmentBaseTypeField(val: Json): LegalHoldPolicyAssignmentBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"LegalHoldPolicyAssignmentBaseTypeField\"";
     }
@@ -4892,14 +4892,14 @@ export function deserializeLegalHoldPolicyAssignmentBaseTypeField(val: JSON): Le
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeLegalHoldPolicyAssignmentBaseTypeField(val: LegalHoldPolicyAssignmentBaseTypeField): JSON {
+export function serializeLegalHoldPolicyAssignmentBaseTypeField(val: LegalHoldPolicyAssignmentBaseTypeField): Json {
     return val;
 }
 export interface LegalHoldPolicyAssignmentBase {
     readonly id?: string;
     readonly type?: LegalHoldPolicyAssignmentBaseTypeField;
 }
-export function deserializeLegalHoldPolicyAssignmentBase(val: JSON): LegalHoldPolicyAssignmentBase {
+export function deserializeLegalHoldPolicyAssignmentBase(val: Json): LegalHoldPolicyAssignmentBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignmentBase\"";
     }
@@ -4910,7 +4910,7 @@ export function deserializeLegalHoldPolicyAssignmentBase(val: JSON): LegalHoldPo
     const type: undefined | LegalHoldPolicyAssignmentBaseTypeField = val.type === void 0 ? void 0 : deserializeLegalHoldPolicyAssignmentBaseTypeField(val.type);
     return { id: id, type: type } satisfies LegalHoldPolicyAssignmentBase;
 }
-export function serializeLegalHoldPolicyAssignmentBase(val: LegalHoldPolicyAssignmentBase): JSON {
+export function serializeLegalHoldPolicyAssignmentBase(val: LegalHoldPolicyAssignmentBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeLegalHoldPolicyAssignmentBaseTypeField(val.type) };
 }
 export interface LegalHoldPolicyAssignments {
@@ -4919,7 +4919,7 @@ export interface LegalHoldPolicyAssignments {
     readonly prevMarker?: number;
     readonly entries?: readonly LegalHoldPolicyAssignmentBase[];
 }
-export function deserializeLegalHoldPolicyAssignments(val: JSON): LegalHoldPolicyAssignments {
+export function deserializeLegalHoldPolicyAssignments(val: Json): LegalHoldPolicyAssignments {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignments\"";
     }
@@ -4938,39 +4938,39 @@ export function deserializeLegalHoldPolicyAssignments(val: JSON): LegalHoldPolic
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"LegalHoldPolicyAssignments\"";
     }
-    const entries: undefined | readonly LegalHoldPolicyAssignmentBase[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly LegalHoldPolicyAssignmentBase[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeLegalHoldPolicyAssignmentBase(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies LegalHoldPolicyAssignments;
 }
-export function serializeLegalHoldPolicyAssignments(val: LegalHoldPolicyAssignments): JSON {
+export function serializeLegalHoldPolicyAssignments(val: LegalHoldPolicyAssignments): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: LegalHoldPolicyAssignmentBase): any {
             return serializeLegalHoldPolicyAssignmentBase(item);
         }) as readonly any[] };
 }
 export interface Metadata {
 }
-export function deserializeMetadata(val: JSON): Metadata {
+export function deserializeMetadata(val: Json): Metadata {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Metadata\"";
     }
     return {} satisfies Metadata;
 }
-export function serializeMetadata(val: Metadata): JSON {
+export function serializeMetadata(val: Metadata): Json {
     return {};
 }
 export interface Metadatas {
     readonly entries?: readonly Metadata[];
     readonly limit?: number;
 }
-export function deserializeMetadatas(val: JSON): Metadatas {
+export function deserializeMetadatas(val: Json): Metadatas {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Metadatas\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Metadatas\"";
     }
-    const entries: undefined | readonly Metadata[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Metadata[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeMetadata(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -4979,7 +4979,7 @@ export function deserializeMetadatas(val: JSON): Metadatas {
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { entries: entries, limit: limit } satisfies Metadatas;
 }
-export function serializeMetadatas(val: Metadatas): JSON {
+export function serializeMetadatas(val: Metadatas): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Metadata): any {
             return serializeMetadata(item);
         }) as readonly any[], ["limit"]: val.limit };
@@ -5002,7 +5002,7 @@ export type MetadataFull = Metadata & {
      * application. */
     readonly typeVersion?: number;
 };
-export function deserializeMetadataFull(val: JSON): MetadataFull {
+export function deserializeMetadataFull(val: Json): MetadataFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFull\"";
     }
@@ -5024,7 +5024,7 @@ export function deserializeMetadataFull(val: JSON): MetadataFull {
     const typeVersion: undefined | number = isJson(val.$typeVersion, "number") ? val.$typeVersion : void 0;
     return { canEdit: canEdit, id: id, type: type, typeVersion: typeVersion } satisfies MetadataFull;
 }
-export function serializeMetadataFull(val: MetadataFull): JSON {
+export function serializeMetadataFull(val: MetadataFull): Json {
     const base: any = serializeMetadata(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"MetadataFull\"";
@@ -5037,7 +5037,7 @@ export interface MetadataBase {
     readonly scope?: string;
     readonly version?: number;
 }
-export function deserializeMetadataBase(val: JSON): MetadataBase {
+export function deserializeMetadataBase(val: Json): MetadataBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataBase\"";
     }
@@ -5059,11 +5059,11 @@ export function deserializeMetadataBase(val: JSON): MetadataBase {
     const version: undefined | number = isJson(val.$version, "number") ? val.$version : void 0;
     return { parent: parent, template: template, scope: scope, version: version } satisfies MetadataBase;
 }
-export function serializeMetadataBase(val: MetadataBase): JSON {
+export function serializeMetadataBase(val: MetadataBase): Json {
     return { ["$parent"]: val.parent, ["$template"]: val.template, ["$scope"]: val.scope, ["$version"]: val.version };
 }
 export type MetadataCascadePolicyTypeField = "metadata_cascade_policy";
-export function deserializeMetadataCascadePolicyTypeField(val: JSON): MetadataCascadePolicyTypeField {
+export function deserializeMetadataCascadePolicyTypeField(val: Json): MetadataCascadePolicyTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataCascadePolicyTypeField\"";
     }
@@ -5072,11 +5072,11 @@ export function deserializeMetadataCascadePolicyTypeField(val: JSON): MetadataCa
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataCascadePolicyTypeField(val: MetadataCascadePolicyTypeField): JSON {
+export function serializeMetadataCascadePolicyTypeField(val: MetadataCascadePolicyTypeField): Json {
     return val;
 }
 export type MetadataCascadePolicyOwnerEnterpriseFieldTypeField = "enterprise";
-export function deserializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: JSON): MetadataCascadePolicyOwnerEnterpriseFieldTypeField {
+export function deserializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: Json): MetadataCascadePolicyOwnerEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataCascadePolicyOwnerEnterpriseFieldTypeField\"";
     }
@@ -5085,14 +5085,14 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(va
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: MetadataCascadePolicyOwnerEnterpriseFieldTypeField): JSON {
+export function serializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: MetadataCascadePolicyOwnerEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface MetadataCascadePolicyOwnerEnterpriseField {
     readonly type?: MetadataCascadePolicyOwnerEnterpriseFieldTypeField;
     readonly id?: string;
 }
-export function deserializeMetadataCascadePolicyOwnerEnterpriseField(val: JSON): MetadataCascadePolicyOwnerEnterpriseField {
+export function deserializeMetadataCascadePolicyOwnerEnterpriseField(val: Json): MetadataCascadePolicyOwnerEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataCascadePolicyOwnerEnterpriseField\"";
     }
@@ -5103,11 +5103,11 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseField(val: JSON):
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, id: id } satisfies MetadataCascadePolicyOwnerEnterpriseField;
 }
-export function serializeMetadataCascadePolicyOwnerEnterpriseField(val: MetadataCascadePolicyOwnerEnterpriseField): JSON {
+export function serializeMetadataCascadePolicyOwnerEnterpriseField(val: MetadataCascadePolicyOwnerEnterpriseField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val.type), ["id"]: val.id };
 }
 export type MetadataCascadePolicyParentFieldTypeField = "folder";
-export function deserializeMetadataCascadePolicyParentFieldTypeField(val: JSON): MetadataCascadePolicyParentFieldTypeField {
+export function deserializeMetadataCascadePolicyParentFieldTypeField(val: Json): MetadataCascadePolicyParentFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataCascadePolicyParentFieldTypeField\"";
     }
@@ -5116,14 +5116,14 @@ export function deserializeMetadataCascadePolicyParentFieldTypeField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataCascadePolicyParentFieldTypeField(val: MetadataCascadePolicyParentFieldTypeField): JSON {
+export function serializeMetadataCascadePolicyParentFieldTypeField(val: MetadataCascadePolicyParentFieldTypeField): Json {
     return val;
 }
 export interface MetadataCascadePolicyParentField {
     readonly type?: MetadataCascadePolicyParentFieldTypeField;
     readonly id?: string;
 }
-export function deserializeMetadataCascadePolicyParentField(val: JSON): MetadataCascadePolicyParentField {
+export function deserializeMetadataCascadePolicyParentField(val: Json): MetadataCascadePolicyParentField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataCascadePolicyParentField\"";
     }
@@ -5134,11 +5134,11 @@ export function deserializeMetadataCascadePolicyParentField(val: JSON): Metadata
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, id: id } satisfies MetadataCascadePolicyParentField;
 }
-export function serializeMetadataCascadePolicyParentField(val: MetadataCascadePolicyParentField): JSON {
+export function serializeMetadataCascadePolicyParentField(val: MetadataCascadePolicyParentField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeMetadataCascadePolicyParentFieldTypeField(val.type), ["id"]: val.id };
 }
 export type MetadataCascadePolicyScopeField = "global" | "enterprise_*";
-export function deserializeMetadataCascadePolicyScopeField(val: JSON): MetadataCascadePolicyScopeField {
+export function deserializeMetadataCascadePolicyScopeField(val: Json): MetadataCascadePolicyScopeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataCascadePolicyScopeField\"";
     }
@@ -5150,7 +5150,7 @@ export function deserializeMetadataCascadePolicyScopeField(val: JSON): MetadataC
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataCascadePolicyScopeField(val: MetadataCascadePolicyScopeField): JSON {
+export function serializeMetadataCascadePolicyScopeField(val: MetadataCascadePolicyScopeField): Json {
     return val;
 }
 export interface MetadataCascadePolicy {
@@ -5161,7 +5161,7 @@ export interface MetadataCascadePolicy {
     readonly scope?: MetadataCascadePolicyScopeField;
     readonly templateKey?: string;
 }
-export function deserializeMetadataCascadePolicy(val: JSON): MetadataCascadePolicy {
+export function deserializeMetadataCascadePolicy(val: Json): MetadataCascadePolicy {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataCascadePolicy\"";
     }
@@ -5179,7 +5179,7 @@ export function deserializeMetadataCascadePolicy(val: JSON): MetadataCascadePoli
     const templateKey: undefined | string = isJson(val.templateKey, "string") ? val.templateKey : void 0;
     return { id: id, type: type, ownerEnterprise: ownerEnterprise, parent: parent, scope: scope, templateKey: templateKey } satisfies MetadataCascadePolicy;
 }
-export function serializeMetadataCascadePolicy(val: MetadataCascadePolicy): JSON {
+export function serializeMetadataCascadePolicy(val: MetadataCascadePolicy): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeMetadataCascadePolicyTypeField(val.type), ["owner_enterprise"]: val.ownerEnterprise === void 0 ? void 0 : serializeMetadataCascadePolicyOwnerEnterpriseField(val.ownerEnterprise), ["parent"]: val.parent === void 0 ? void 0 : serializeMetadataCascadePolicyParentField(val.parent), ["scope"]: val.scope === void 0 ? void 0 : serializeMetadataCascadePolicyScopeField(val.scope), ["templateKey"]: val.templateKey };
 }
 export interface MetadataCascadePolicies {
@@ -5188,7 +5188,7 @@ export interface MetadataCascadePolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly MetadataCascadePolicy[];
 }
-export function deserializeMetadataCascadePolicies(val: JSON): MetadataCascadePolicies {
+export function deserializeMetadataCascadePolicies(val: Json): MetadataCascadePolicies {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataCascadePolicies\"";
     }
@@ -5207,18 +5207,18 @@ export function deserializeMetadataCascadePolicies(val: JSON): MetadataCascadePo
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"MetadataCascadePolicies\"";
     }
-    const entries: undefined | readonly MetadataCascadePolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly MetadataCascadePolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeMetadataCascadePolicy(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies MetadataCascadePolicies;
 }
-export function serializeMetadataCascadePolicies(val: MetadataCascadePolicies): JSON {
+export function serializeMetadataCascadePolicies(val: MetadataCascadePolicies): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: MetadataCascadePolicy): any {
             return serializeMetadataCascadePolicy(item);
         }) as readonly any[] };
 }
 export type MetadataQueryIndexStatusField = "building" | "active" | "disabled";
-export function deserializeMetadataQueryIndexStatusField(val: JSON): MetadataQueryIndexStatusField {
+export function deserializeMetadataQueryIndexStatusField(val: Json): MetadataQueryIndexStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataQueryIndexStatusField\"";
     }
@@ -5233,11 +5233,11 @@ export function deserializeMetadataQueryIndexStatusField(val: JSON): MetadataQue
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataQueryIndexStatusField(val: MetadataQueryIndexStatusField): JSON {
+export function serializeMetadataQueryIndexStatusField(val: MetadataQueryIndexStatusField): Json {
     return val;
 }
 export type MetadataQueryIndexFieldsFieldSortDirectionField = "asc" | "desc";
-export function deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val: JSON): MetadataQueryIndexFieldsFieldSortDirectionField {
+export function deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val: Json): MetadataQueryIndexFieldsFieldSortDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataQueryIndexFieldsFieldSortDirectionField\"";
     }
@@ -5249,14 +5249,14 @@ export function deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val: 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataQueryIndexFieldsFieldSortDirectionField(val: MetadataQueryIndexFieldsFieldSortDirectionField): JSON {
+export function serializeMetadataQueryIndexFieldsFieldSortDirectionField(val: MetadataQueryIndexFieldsFieldSortDirectionField): Json {
     return val;
 }
 export interface MetadataQueryIndexFieldsField {
     readonly key?: string;
     readonly sortDirection?: MetadataQueryIndexFieldsFieldSortDirectionField;
 }
-export function deserializeMetadataQueryIndexFieldsField(val: JSON): MetadataQueryIndexFieldsField {
+export function deserializeMetadataQueryIndexFieldsField(val: Json): MetadataQueryIndexFieldsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryIndexFieldsField\"";
     }
@@ -5267,7 +5267,7 @@ export function deserializeMetadataQueryIndexFieldsField(val: JSON): MetadataQue
     const sortDirection: undefined | MetadataQueryIndexFieldsFieldSortDirectionField = val.sort_direction === void 0 ? void 0 : deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val.sort_direction);
     return { key: key, sortDirection: sortDirection } satisfies MetadataQueryIndexFieldsField;
 }
-export function serializeMetadataQueryIndexFieldsField(val: MetadataQueryIndexFieldsField): JSON {
+export function serializeMetadataQueryIndexFieldsField(val: MetadataQueryIndexFieldsField): Json {
     return { ["key"]: val.key, ["sort_direction"]: val.sortDirection === void 0 ? void 0 : serializeMetadataQueryIndexFieldsFieldSortDirectionField(val.sortDirection) };
 }
 export interface MetadataQueryIndex {
@@ -5276,7 +5276,7 @@ export interface MetadataQueryIndex {
     readonly status: MetadataQueryIndexStatusField;
     readonly fields?: readonly MetadataQueryIndexFieldsField[];
 }
-export function deserializeMetadataQueryIndex(val: JSON): MetadataQueryIndex {
+export function deserializeMetadataQueryIndex(val: Json): MetadataQueryIndex {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryIndex\"";
     }
@@ -5298,12 +5298,12 @@ export function deserializeMetadataQueryIndex(val: JSON): MetadataQueryIndex {
     if (!(val.fields === void 0) && !isJson(val.fields, "array")) {
         throw "Expecting array for \"fields\" of type \"MetadataQueryIndex\"";
     }
-    const fields: undefined | readonly MetadataQueryIndexFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: JSON): any {
+    const fields: undefined | readonly MetadataQueryIndexFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
         return deserializeMetadataQueryIndexFieldsField(itm);
     }) as readonly any[] : void 0;
     return { id: id, type: type, status: status, fields: fields } satisfies MetadataQueryIndex;
 }
-export function serializeMetadataQueryIndex(val: MetadataQueryIndex): JSON {
+export function serializeMetadataQueryIndex(val: MetadataQueryIndex): Json {
     return { ["id"]: val.id, ["type"]: val.type, ["status"]: serializeMetadataQueryIndexStatusField(val.status), ["fields"]: val.fields === void 0 ? void 0 : val.fields.map(function (item: MetadataQueryIndexFieldsField): any {
             return serializeMetadataQueryIndexFieldsField(item);
         }) as readonly any[] };
@@ -5313,14 +5313,14 @@ export interface MetadataQueryIndices {
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export function deserializeMetadataQueryIndices(val: JSON): MetadataQueryIndices {
+export function deserializeMetadataQueryIndices(val: Json): MetadataQueryIndices {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryIndices\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"MetadataQueryIndices\"";
     }
-    const entries: undefined | readonly MetadataQueryIndex[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly MetadataQueryIndex[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeMetadataQueryIndex(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -5333,13 +5333,13 @@ export function deserializeMetadataQueryIndices(val: JSON): MetadataQueryIndices
     const nextMarker: undefined | string = isJson(val.next_marker, "string") ? val.next_marker : void 0;
     return { entries: entries, limit: limit, nextMarker: nextMarker } satisfies MetadataQueryIndices;
 }
-export function serializeMetadataQueryIndices(val: MetadataQueryIndices): JSON {
+export function serializeMetadataQueryIndices(val: MetadataQueryIndices): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: MetadataQueryIndex): any {
             return serializeMetadataQueryIndex(item);
         }) as readonly any[], ["limit"]: val.limit, ["next_marker"]: val.nextMarker };
 }
 export type MetadataTemplateTypeField = "metadata_template";
-export function deserializeMetadataTemplateTypeField(val: JSON): MetadataTemplateTypeField {
+export function deserializeMetadataTemplateTypeField(val: Json): MetadataTemplateTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataTemplateTypeField\"";
     }
@@ -5348,11 +5348,11 @@ export function deserializeMetadataTemplateTypeField(val: JSON): MetadataTemplat
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataTemplateTypeField(val: MetadataTemplateTypeField): JSON {
+export function serializeMetadataTemplateTypeField(val: MetadataTemplateTypeField): Json {
     return val;
 }
 export type MetadataTemplateFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
-export function deserializeMetadataTemplateFieldsFieldTypeField(val: JSON): MetadataTemplateFieldsFieldTypeField {
+export function deserializeMetadataTemplateFieldsFieldTypeField(val: Json): MetadataTemplateFieldsFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataTemplateFieldsFieldTypeField\"";
     }
@@ -5373,14 +5373,14 @@ export function deserializeMetadataTemplateFieldsFieldTypeField(val: JSON): Meta
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataTemplateFieldsFieldTypeField(val: MetadataTemplateFieldsFieldTypeField): JSON {
+export function serializeMetadataTemplateFieldsFieldTypeField(val: MetadataTemplateFieldsFieldTypeField): Json {
     return val;
 }
 export interface MetadataTemplateFieldsFieldOptionsField {
     readonly key: string;
     readonly id?: string;
 }
-export function deserializeMetadataTemplateFieldsFieldOptionsField(val: JSON): MetadataTemplateFieldsFieldOptionsField {
+export function deserializeMetadataTemplateFieldsFieldOptionsField(val: Json): MetadataTemplateFieldsFieldOptionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataTemplateFieldsFieldOptionsField\"";
     }
@@ -5397,7 +5397,7 @@ export function deserializeMetadataTemplateFieldsFieldOptionsField(val: JSON): M
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { key: key, id: id } satisfies MetadataTemplateFieldsFieldOptionsField;
 }
-export function serializeMetadataTemplateFieldsFieldOptionsField(val: MetadataTemplateFieldsFieldOptionsField): JSON {
+export function serializeMetadataTemplateFieldsFieldOptionsField(val: MetadataTemplateFieldsFieldOptionsField): Json {
     return { ["key"]: val.key, ["id"]: val.id };
 }
 export interface MetadataTemplateFieldsField {
@@ -5409,7 +5409,7 @@ export interface MetadataTemplateFieldsField {
     readonly options?: readonly MetadataTemplateFieldsFieldOptionsField[];
     readonly id?: string;
 }
-export function deserializeMetadataTemplateFieldsField(val: JSON): MetadataTemplateFieldsField {
+export function deserializeMetadataTemplateFieldsField(val: Json): MetadataTemplateFieldsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataTemplateFieldsField\"";
     }
@@ -5442,7 +5442,7 @@ export function deserializeMetadataTemplateFieldsField(val: JSON): MetadataTempl
     if (!(val.options === void 0) && !isJson(val.options, "array")) {
         throw "Expecting array for \"options\" of type \"MetadataTemplateFieldsField\"";
     }
-    const options: undefined | readonly MetadataTemplateFieldsFieldOptionsField[] = isJson(val.options, "array") ? val.options.map(function (itm: JSON): any {
+    const options: undefined | readonly MetadataTemplateFieldsFieldOptionsField[] = isJson(val.options, "array") ? val.options.map(function (itm: Json): any {
         return deserializeMetadataTemplateFieldsFieldOptionsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
@@ -5451,7 +5451,7 @@ export function deserializeMetadataTemplateFieldsField(val: JSON): MetadataTempl
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, key: key, displayName: displayName, description: description, hidden: hidden, options: options, id: id } satisfies MetadataTemplateFieldsField;
 }
-export function serializeMetadataTemplateFieldsField(val: MetadataTemplateFieldsField): JSON {
+export function serializeMetadataTemplateFieldsField(val: MetadataTemplateFieldsField): Json {
     return { ["type"]: serializeMetadataTemplateFieldsFieldTypeField(val.type), ["key"]: val.key, ["displayName"]: val.displayName, ["description"]: val.description, ["hidden"]: val.hidden, ["options"]: val.options === void 0 ? void 0 : val.options.map(function (item: MetadataTemplateFieldsFieldOptionsField): any {
             return serializeMetadataTemplateFieldsFieldOptionsField(item);
         }) as readonly any[], ["id"]: val.id };
@@ -5466,7 +5466,7 @@ export interface MetadataTemplate {
     readonly fields?: readonly MetadataTemplateFieldsField[];
     readonly copyInstanceOnItemCopy?: boolean;
 }
-export function deserializeMetadataTemplate(val: JSON): MetadataTemplate {
+export function deserializeMetadataTemplate(val: Json): MetadataTemplate {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataTemplate\"";
     }
@@ -5497,7 +5497,7 @@ export function deserializeMetadataTemplate(val: JSON): MetadataTemplate {
     if (!(val.fields === void 0) && !isJson(val.fields, "array")) {
         throw "Expecting array for \"fields\" of type \"MetadataTemplate\"";
     }
-    const fields: undefined | readonly MetadataTemplateFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: JSON): any {
+    const fields: undefined | readonly MetadataTemplateFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
         return deserializeMetadataTemplateFieldsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.copyInstanceOnItemCopy === void 0) && !isJson(val.copyInstanceOnItemCopy, "boolean")) {
@@ -5506,7 +5506,7 @@ export function deserializeMetadataTemplate(val: JSON): MetadataTemplate {
     const copyInstanceOnItemCopy: undefined | boolean = isJson(val.copyInstanceOnItemCopy, "boolean") ? val.copyInstanceOnItemCopy : void 0;
     return { id: id, type: type, scope: scope, templateKey: templateKey, displayName: displayName, hidden: hidden, fields: fields, copyInstanceOnItemCopy: copyInstanceOnItemCopy } satisfies MetadataTemplate;
 }
-export function serializeMetadataTemplate(val: MetadataTemplate): JSON {
+export function serializeMetadataTemplate(val: MetadataTemplate): Json {
     return { ["id"]: val.id, ["type"]: serializeMetadataTemplateTypeField(val.type), ["scope"]: val.scope, ["templateKey"]: val.templateKey, ["displayName"]: val.displayName, ["hidden"]: val.hidden, ["fields"]: val.fields === void 0 ? void 0 : val.fields.map(function (item: MetadataTemplateFieldsField): any {
             return serializeMetadataTemplateFieldsField(item);
         }) as readonly any[], ["copyInstanceOnItemCopy"]: val.copyInstanceOnItemCopy };
@@ -5517,7 +5517,7 @@ export interface MetadataTemplates {
     readonly prevMarker?: number;
     readonly entries?: readonly MetadataTemplate[];
 }
-export function deserializeMetadataTemplates(val: JSON): MetadataTemplates {
+export function deserializeMetadataTemplates(val: Json): MetadataTemplates {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataTemplates\"";
     }
@@ -5536,12 +5536,12 @@ export function deserializeMetadataTemplates(val: JSON): MetadataTemplates {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"MetadataTemplates\"";
     }
-    const entries: undefined | readonly MetadataTemplate[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly MetadataTemplate[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeMetadataTemplate(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies MetadataTemplates;
 }
-export function serializeMetadataTemplates(val: MetadataTemplates): JSON {
+export function serializeMetadataTemplates(val: MetadataTemplates): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: MetadataTemplate): any {
             return serializeMetadataTemplate(item);
         }) as readonly any[] };
@@ -5553,7 +5553,7 @@ export interface RealtimeServer {
     readonly maxRetries?: number;
     readonly retryTimeout?: number;
 }
-export function deserializeRealtimeServer(val: JSON): RealtimeServer {
+export function deserializeRealtimeServer(val: Json): RealtimeServer {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RealtimeServer\"";
     }
@@ -5579,14 +5579,14 @@ export function deserializeRealtimeServer(val: JSON): RealtimeServer {
     const retryTimeout: undefined | number = isJson(val.retry_timeout, "number") ? val.retry_timeout : void 0;
     return { type: type, url: url, ttl: ttl, maxRetries: maxRetries, retryTimeout: retryTimeout } satisfies RealtimeServer;
 }
-export function serializeRealtimeServer(val: RealtimeServer): JSON {
+export function serializeRealtimeServer(val: RealtimeServer): Json {
     return { ["type"]: val.type, ["url"]: val.url, ["ttl"]: val.ttl, ["max_retries"]: val.maxRetries, ["retry_timeout"]: val.retryTimeout };
 }
 export interface RealtimeServers {
     readonly chunkSize?: number;
     readonly entries?: readonly RealtimeServer[];
 }
-export function deserializeRealtimeServers(val: JSON): RealtimeServers {
+export function deserializeRealtimeServers(val: Json): RealtimeServers {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RealtimeServers\"";
     }
@@ -5597,18 +5597,18 @@ export function deserializeRealtimeServers(val: JSON): RealtimeServers {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"RealtimeServers\"";
     }
-    const entries: undefined | readonly RealtimeServer[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly RealtimeServer[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeRealtimeServer(itm);
     }) as readonly any[] : void 0;
     return { chunkSize: chunkSize, entries: entries } satisfies RealtimeServers;
 }
-export function serializeRealtimeServers(val: RealtimeServers): JSON {
+export function serializeRealtimeServers(val: RealtimeServers): Json {
     return { ["chunk_size"]: val.chunkSize, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: RealtimeServer): any {
             return serializeRealtimeServer(item);
         }) as readonly any[] };
 }
 export type RecentItemInteractionTypeField = "item_preview" | "item_upload" | "item_comment" | "item_open" | "item_modify";
-export function deserializeRecentItemInteractionTypeField(val: JSON): RecentItemInteractionTypeField {
+export function deserializeRecentItemInteractionTypeField(val: Json): RecentItemInteractionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RecentItemInteractionTypeField\"";
     }
@@ -5629,11 +5629,11 @@ export function deserializeRecentItemInteractionTypeField(val: JSON): RecentItem
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRecentItemInteractionTypeField(val: RecentItemInteractionTypeField): JSON {
+export function serializeRecentItemInteractionTypeField(val: RecentItemInteractionTypeField): Json {
     return val;
 }
 export type RetentionPolicyPolicyTypeField = "finite" | "indefinite";
-export function deserializeRetentionPolicyPolicyTypeField(val: JSON): RetentionPolicyPolicyTypeField {
+export function deserializeRetentionPolicyPolicyTypeField(val: Json): RetentionPolicyPolicyTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyPolicyTypeField\"";
     }
@@ -5645,11 +5645,11 @@ export function deserializeRetentionPolicyPolicyTypeField(val: JSON): RetentionP
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyPolicyTypeField(val: RetentionPolicyPolicyTypeField): JSON {
+export function serializeRetentionPolicyPolicyTypeField(val: RetentionPolicyPolicyTypeField): Json {
     return val;
 }
 export type RetentionPolicyRetentionTypeField = "modifiable" | "non-modifiable";
-export function deserializeRetentionPolicyRetentionTypeField(val: JSON): RetentionPolicyRetentionTypeField {
+export function deserializeRetentionPolicyRetentionTypeField(val: Json): RetentionPolicyRetentionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyRetentionTypeField\"";
     }
@@ -5661,11 +5661,11 @@ export function deserializeRetentionPolicyRetentionTypeField(val: JSON): Retenti
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyRetentionTypeField(val: RetentionPolicyRetentionTypeField): JSON {
+export function serializeRetentionPolicyRetentionTypeField(val: RetentionPolicyRetentionTypeField): Json {
     return val;
 }
 export type RetentionPolicyStatusField = "active" | "retired";
-export function deserializeRetentionPolicyStatusField(val: JSON): RetentionPolicyStatusField {
+export function deserializeRetentionPolicyStatusField(val: Json): RetentionPolicyStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyStatusField\"";
     }
@@ -5677,7 +5677,7 @@ export function deserializeRetentionPolicyStatusField(val: JSON): RetentionPolic
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyStatusField(val: RetentionPolicyStatusField): JSON {
+export function serializeRetentionPolicyStatusField(val: RetentionPolicyStatusField): Json {
     return val;
 }
 export interface RetentionPolicyAssignmentCountsField {
@@ -5685,7 +5685,7 @@ export interface RetentionPolicyAssignmentCountsField {
     readonly folder?: number;
     readonly metadataTemplate?: number;
 }
-export function deserializeRetentionPolicyAssignmentCountsField(val: JSON): RetentionPolicyAssignmentCountsField {
+export function deserializeRetentionPolicyAssignmentCountsField(val: Json): RetentionPolicyAssignmentCountsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignmentCountsField\"";
     }
@@ -5703,11 +5703,11 @@ export function deserializeRetentionPolicyAssignmentCountsField(val: JSON): Rete
     const metadataTemplate: undefined | number = isJson(val.metadata_template, "number") ? val.metadata_template : void 0;
     return { enterprise: enterprise, folder: folder, metadataTemplate: metadataTemplate } satisfies RetentionPolicyAssignmentCountsField;
 }
-export function serializeRetentionPolicyAssignmentCountsField(val: RetentionPolicyAssignmentCountsField): JSON {
+export function serializeRetentionPolicyAssignmentCountsField(val: RetentionPolicyAssignmentCountsField): Json {
     return { ["enterprise"]: val.enterprise, ["folder"]: val.folder, ["metadata_template"]: val.metadataTemplate };
 }
 export type RetentionPolicyMiniDispositionActionField = "permanently_delete" | "remove_retention";
-export function deserializeRetentionPolicyMiniDispositionActionField(val: JSON): RetentionPolicyMiniDispositionActionField {
+export function deserializeRetentionPolicyMiniDispositionActionField(val: Json): RetentionPolicyMiniDispositionActionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyMiniDispositionActionField\"";
     }
@@ -5719,11 +5719,11 @@ export function deserializeRetentionPolicyMiniDispositionActionField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyMiniDispositionActionField(val: RetentionPolicyMiniDispositionActionField): JSON {
+export function serializeRetentionPolicyMiniDispositionActionField(val: RetentionPolicyMiniDispositionActionField): Json {
     return val;
 }
 export type RetentionPolicyBaseTypeField = "retention_policy";
-export function deserializeRetentionPolicyBaseTypeField(val: JSON): RetentionPolicyBaseTypeField {
+export function deserializeRetentionPolicyBaseTypeField(val: Json): RetentionPolicyBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyBaseTypeField\"";
     }
@@ -5732,14 +5732,14 @@ export function deserializeRetentionPolicyBaseTypeField(val: JSON): RetentionPol
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyBaseTypeField(val: RetentionPolicyBaseTypeField): JSON {
+export function serializeRetentionPolicyBaseTypeField(val: RetentionPolicyBaseTypeField): Json {
     return val;
 }
 export interface RetentionPolicyBase {
     readonly id: string;
     readonly type: RetentionPolicyBaseTypeField;
 }
-export function deserializeRetentionPolicyBase(val: JSON): RetentionPolicyBase {
+export function deserializeRetentionPolicyBase(val: Json): RetentionPolicyBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyBase\"";
     }
@@ -5756,7 +5756,7 @@ export function deserializeRetentionPolicyBase(val: JSON): RetentionPolicyBase {
     const type: RetentionPolicyBaseTypeField = deserializeRetentionPolicyBaseTypeField(val.type);
     return { id: id, type: type } satisfies RetentionPolicyBase;
 }
-export function serializeRetentionPolicyBase(val: RetentionPolicyBase): JSON {
+export function serializeRetentionPolicyBase(val: RetentionPolicyBase): Json {
     return { ["id"]: val.id, ["type"]: serializeRetentionPolicyBaseTypeField(val.type) };
 }
 export type RetentionPolicyMini = RetentionPolicyBase & {
@@ -5781,7 +5781,7 @@ export type RetentionPolicyMini = RetentionPolicyBase & {
      * once the retention policy has expired. */
     readonly dispositionAction?: RetentionPolicyMiniDispositionActionField;
 };
-export function deserializeRetentionPolicyMini(val: JSON): RetentionPolicyMini {
+export function deserializeRetentionPolicyMini(val: Json): RetentionPolicyMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyMini\"";
     }
@@ -5807,7 +5807,7 @@ export function deserializeRetentionPolicyMini(val: JSON): RetentionPolicyMini {
     const type: RetentionPolicyBaseTypeField = deserializeRetentionPolicyBaseTypeField(val.type);
     return { policyName: policyName, retentionLength: retentionLength, dispositionAction: dispositionAction, id: id, type: type } satisfies RetentionPolicyMini;
 }
-export function serializeRetentionPolicyMini(val: RetentionPolicyMini): JSON {
+export function serializeRetentionPolicyMini(val: RetentionPolicyMini): Json {
     const base: any = serializeRetentionPolicyBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"RetentionPolicyMini\"";
@@ -5819,14 +5819,14 @@ export interface RetentionPolicies {
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export function deserializeRetentionPolicies(val: JSON): RetentionPolicies {
+export function deserializeRetentionPolicies(val: Json): RetentionPolicies {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicies\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"RetentionPolicies\"";
     }
-    const entries: undefined | readonly RetentionPolicyMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly RetentionPolicyMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeRetentionPolicyMini(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -5839,7 +5839,7 @@ export function deserializeRetentionPolicies(val: JSON): RetentionPolicies {
     const nextMarker: undefined | string = isJson(val.next_marker, "string") ? val.next_marker : void 0;
     return { entries: entries, limit: limit, nextMarker: nextMarker } satisfies RetentionPolicies;
 }
-export function serializeRetentionPolicies(val: RetentionPolicies): JSON {
+export function serializeRetentionPolicies(val: RetentionPolicies): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: RetentionPolicyMini): any {
             return serializeRetentionPolicyMini(item);
         }) as readonly any[], ["limit"]: val.limit, ["next_marker"]: val.nextMarker };
@@ -5853,7 +5853,7 @@ export interface FileVersionRetention {
     readonly dispositionAt?: string;
     readonly winningRetentionPolicy?: RetentionPolicyMini;
 }
-export function deserializeFileVersionRetention(val: JSON): FileVersionRetention {
+export function deserializeFileVersionRetention(val: Json): FileVersionRetention {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionRetention\"";
     }
@@ -5875,7 +5875,7 @@ export function deserializeFileVersionRetention(val: JSON): FileVersionRetention
     const winningRetentionPolicy: undefined | RetentionPolicyMini = val.winning_retention_policy === void 0 ? void 0 : deserializeRetentionPolicyMini(val.winning_retention_policy);
     return { id: id, type: type, fileVersion: fileVersion, file: file, appliedAt: appliedAt, dispositionAt: dispositionAt, winningRetentionPolicy: winningRetentionPolicy } satisfies FileVersionRetention;
 }
-export function serializeFileVersionRetention(val: FileVersionRetention): JSON {
+export function serializeFileVersionRetention(val: FileVersionRetention): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeFileVersionRetentionTypeField(val.type), ["file_version"]: val.fileVersion === void 0 ? void 0 : serializeFileVersionMini(val.fileVersion), ["file"]: val.file === void 0 ? void 0 : serializeFileMini(val.file), ["applied_at"]: val.appliedAt, ["disposition_at"]: val.dispositionAt, ["winning_retention_policy"]: val.winningRetentionPolicy === void 0 ? void 0 : serializeRetentionPolicyMini(val.winningRetentionPolicy) };
 }
 export interface FileVersionRetentions {
@@ -5884,7 +5884,7 @@ export interface FileVersionRetentions {
     readonly prevMarker?: number;
     readonly entries?: readonly FileVersionRetention[];
 }
-export function deserializeFileVersionRetentions(val: JSON): FileVersionRetentions {
+export function deserializeFileVersionRetentions(val: Json): FileVersionRetentions {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionRetentions\"";
     }
@@ -5903,18 +5903,18 @@ export function deserializeFileVersionRetentions(val: JSON): FileVersionRetentio
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FileVersionRetentions\"";
     }
-    const entries: undefined | readonly FileVersionRetention[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FileVersionRetention[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileVersionRetention(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies FileVersionRetentions;
 }
-export function serializeFileVersionRetentions(val: FileVersionRetentions): JSON {
+export function serializeFileVersionRetentions(val: FileVersionRetentions): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FileVersionRetention): any {
             return serializeFileVersionRetention(item);
         }) as readonly any[] };
 }
 export type RetentionPolicyAssignmentBaseTypeField = "retention_policy_assignment";
-export function deserializeRetentionPolicyAssignmentBaseTypeField(val: JSON): RetentionPolicyAssignmentBaseTypeField {
+export function deserializeRetentionPolicyAssignmentBaseTypeField(val: Json): RetentionPolicyAssignmentBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyAssignmentBaseTypeField\"";
     }
@@ -5923,14 +5923,14 @@ export function deserializeRetentionPolicyAssignmentBaseTypeField(val: JSON): Re
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyAssignmentBaseTypeField(val: RetentionPolicyAssignmentBaseTypeField): JSON {
+export function serializeRetentionPolicyAssignmentBaseTypeField(val: RetentionPolicyAssignmentBaseTypeField): Json {
     return val;
 }
 export interface RetentionPolicyAssignmentBase {
     readonly id: string;
     readonly type: RetentionPolicyAssignmentBaseTypeField;
 }
-export function deserializeRetentionPolicyAssignmentBase(val: JSON): RetentionPolicyAssignmentBase {
+export function deserializeRetentionPolicyAssignmentBase(val: Json): RetentionPolicyAssignmentBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignmentBase\"";
     }
@@ -5947,7 +5947,7 @@ export function deserializeRetentionPolicyAssignmentBase(val: JSON): RetentionPo
     const type: RetentionPolicyAssignmentBaseTypeField = deserializeRetentionPolicyAssignmentBaseTypeField(val.type);
     return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
 }
-export function serializeRetentionPolicyAssignmentBase(val: RetentionPolicyAssignmentBase): JSON {
+export function serializeRetentionPolicyAssignmentBase(val: RetentionPolicyAssignmentBase): Json {
     return { ["id"]: val.id, ["type"]: serializeRetentionPolicyAssignmentBaseTypeField(val.type) };
 }
 export interface RetentionPolicyAssignments {
@@ -5955,14 +5955,14 @@ export interface RetentionPolicyAssignments {
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export function deserializeRetentionPolicyAssignments(val: JSON): RetentionPolicyAssignments {
+export function deserializeRetentionPolicyAssignments(val: Json): RetentionPolicyAssignments {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignments\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"RetentionPolicyAssignments\"";
     }
-    const entries: undefined | readonly RetentionPolicyAssignmentBase[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly RetentionPolicyAssignmentBase[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeRetentionPolicyAssignmentBase(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -5975,13 +5975,13 @@ export function deserializeRetentionPolicyAssignments(val: JSON): RetentionPolic
     const nextMarker: undefined | string = isJson(val.next_marker, "string") ? val.next_marker : void 0;
     return { entries: entries, limit: limit, nextMarker: nextMarker } satisfies RetentionPolicyAssignments;
 }
-export function serializeRetentionPolicyAssignments(val: RetentionPolicyAssignments): JSON {
+export function serializeRetentionPolicyAssignments(val: RetentionPolicyAssignments): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: RetentionPolicyAssignmentBase): any {
             return serializeRetentionPolicyAssignmentBase(item);
         }) as readonly any[], ["limit"]: val.limit, ["next_marker"]: val.nextMarker };
 }
 export type RetentionPolicyAssignmentTypeField = "retention_policy_assignment";
-export function deserializeRetentionPolicyAssignmentTypeField(val: JSON): RetentionPolicyAssignmentTypeField {
+export function deserializeRetentionPolicyAssignmentTypeField(val: Json): RetentionPolicyAssignmentTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyAssignmentTypeField\"";
     }
@@ -5990,11 +5990,11 @@ export function deserializeRetentionPolicyAssignmentTypeField(val: JSON): Retent
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyAssignmentTypeField(val: RetentionPolicyAssignmentTypeField): JSON {
+export function serializeRetentionPolicyAssignmentTypeField(val: RetentionPolicyAssignmentTypeField): Json {
     return val;
 }
 export type RetentionPolicyAssignmentAssignedToFieldTypeField = "folder" | "enterprise" | "metadata_template";
-export function deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: JSON): RetentionPolicyAssignmentAssignedToFieldTypeField {
+export function deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: Json): RetentionPolicyAssignmentAssignedToFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"RetentionPolicyAssignmentAssignedToFieldTypeField\"";
     }
@@ -6009,14 +6009,14 @@ export function deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: RetentionPolicyAssignmentAssignedToFieldTypeField): JSON {
+export function serializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: RetentionPolicyAssignmentAssignedToFieldTypeField): Json {
     return val;
 }
 export interface RetentionPolicyAssignmentAssignedToField {
     readonly id?: string;
     readonly type?: RetentionPolicyAssignmentAssignedToFieldTypeField;
 }
-export function deserializeRetentionPolicyAssignmentAssignedToField(val: JSON): RetentionPolicyAssignmentAssignedToField {
+export function deserializeRetentionPolicyAssignmentAssignedToField(val: Json): RetentionPolicyAssignmentAssignedToField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignmentAssignedToField\"";
     }
@@ -6027,14 +6027,14 @@ export function deserializeRetentionPolicyAssignmentAssignedToField(val: JSON): 
     const type: undefined | RetentionPolicyAssignmentAssignedToFieldTypeField = val.type === void 0 ? void 0 : deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val.type);
     return { id: id, type: type } satisfies RetentionPolicyAssignmentAssignedToField;
 }
-export function serializeRetentionPolicyAssignmentAssignedToField(val: RetentionPolicyAssignmentAssignedToField): JSON {
+export function serializeRetentionPolicyAssignmentAssignedToField(val: RetentionPolicyAssignmentAssignedToField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeRetentionPolicyAssignmentAssignedToFieldTypeField(val.type) };
 }
 export interface RetentionPolicyAssignmentFilterFieldsField {
     readonly field?: string;
     readonly value?: string;
 }
-export function deserializeRetentionPolicyAssignmentFilterFieldsField(val: JSON): RetentionPolicyAssignmentFilterFieldsField {
+export function deserializeRetentionPolicyAssignmentFilterFieldsField(val: Json): RetentionPolicyAssignmentFilterFieldsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignmentFilterFieldsField\"";
     }
@@ -6048,11 +6048,11 @@ export function deserializeRetentionPolicyAssignmentFilterFieldsField(val: JSON)
     const value: undefined | string = isJson(val.value, "string") ? val.value : void 0;
     return { field: field, value: value } satisfies RetentionPolicyAssignmentFilterFieldsField;
 }
-export function serializeRetentionPolicyAssignmentFilterFieldsField(val: RetentionPolicyAssignmentFilterFieldsField): JSON {
+export function serializeRetentionPolicyAssignmentFilterFieldsField(val: RetentionPolicyAssignmentFilterFieldsField): Json {
     return { ["field"]: val.field, ["value"]: val.value };
 }
 export type ShieldInformationBarrierTypeField = "shield_information_barrier";
-export function deserializeShieldInformationBarrierTypeField(val: JSON): ShieldInformationBarrierTypeField {
+export function deserializeShieldInformationBarrierTypeField(val: Json): ShieldInformationBarrierTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierTypeField\"";
     }
@@ -6061,11 +6061,11 @@ export function deserializeShieldInformationBarrierTypeField(val: JSON): ShieldI
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierTypeField(val: ShieldInformationBarrierTypeField): JSON {
+export function serializeShieldInformationBarrierTypeField(val: ShieldInformationBarrierTypeField): Json {
     return val;
 }
 export type ShieldInformationBarrierStatusField = "draft" | "pending" | "disabled" | "enabled" | "invalid";
-export function deserializeShieldInformationBarrierStatusField(val: JSON): ShieldInformationBarrierStatusField {
+export function deserializeShieldInformationBarrierStatusField(val: Json): ShieldInformationBarrierStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierStatusField\"";
     }
@@ -6086,11 +6086,11 @@ export function deserializeShieldInformationBarrierStatusField(val: JSON): Shiel
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierStatusField(val: ShieldInformationBarrierStatusField): JSON {
+export function serializeShieldInformationBarrierStatusField(val: ShieldInformationBarrierStatusField): Json {
     return val;
 }
 export type ShieldInformationBarrierBaseTypeField = "shield_information_barrier";
-export function deserializeShieldInformationBarrierBaseTypeField(val: JSON): ShieldInformationBarrierBaseTypeField {
+export function deserializeShieldInformationBarrierBaseTypeField(val: Json): ShieldInformationBarrierBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierBaseTypeField\"";
     }
@@ -6099,14 +6099,14 @@ export function deserializeShieldInformationBarrierBaseTypeField(val: JSON): Shi
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierBaseTypeField(val: ShieldInformationBarrierBaseTypeField): JSON {
+export function serializeShieldInformationBarrierBaseTypeField(val: ShieldInformationBarrierBaseTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierBaseTypeField;
 }
-export function deserializeShieldInformationBarrierBase(val: JSON): ShieldInformationBarrierBase {
+export function deserializeShieldInformationBarrierBase(val: Json): ShieldInformationBarrierBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierBase\"";
     }
@@ -6117,35 +6117,35 @@ export function deserializeShieldInformationBarrierBase(val: JSON): ShieldInform
     const type: undefined | ShieldInformationBarrierBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierBaseTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierBase;
 }
-export function serializeShieldInformationBarrierBase(val: ShieldInformationBarrierBase): JSON {
+export function serializeShieldInformationBarrierBase(val: ShieldInformationBarrierBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierBaseTypeField(val.type) };
 }
 export interface ShieldInformationBarrierReference {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
 }
-export function deserializeShieldInformationBarrierReference(val: JSON): ShieldInformationBarrierReference {
+export function deserializeShieldInformationBarrierReference(val: Json): ShieldInformationBarrierReference {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReference\"";
     }
     const shieldInformationBarrier: undefined | ShieldInformationBarrierBase = val.shield_information_barrier === void 0 ? void 0 : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
     return { shieldInformationBarrier: shieldInformationBarrier } satisfies ShieldInformationBarrierReference;
 }
-export function serializeShieldInformationBarrierReference(val: ShieldInformationBarrierReference): JSON {
+export function serializeShieldInformationBarrierReference(val: ShieldInformationBarrierReference): Json {
     return { ["shield_information_barrier"]: val.shieldInformationBarrier === void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier) };
 }
 export interface ShieldInformationBarrierReportShieldInformationBarrierField {
 }
-export function deserializeShieldInformationBarrierReportShieldInformationBarrierField(val: JSON): ShieldInformationBarrierReportShieldInformationBarrierField {
+export function deserializeShieldInformationBarrierReportShieldInformationBarrierField(val: Json): ShieldInformationBarrierReportShieldInformationBarrierField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReportShieldInformationBarrierField\"";
     }
     return {} satisfies ShieldInformationBarrierReportShieldInformationBarrierField;
 }
-export function serializeShieldInformationBarrierReportShieldInformationBarrierField(val: ShieldInformationBarrierReportShieldInformationBarrierField): JSON {
+export function serializeShieldInformationBarrierReportShieldInformationBarrierField(val: ShieldInformationBarrierReportShieldInformationBarrierField): Json {
     return {};
 }
 export type ShieldInformationBarrierReportStatusField = "pending" | "error" | "done" | "cancelled";
-export function deserializeShieldInformationBarrierReportStatusField(val: JSON): ShieldInformationBarrierReportStatusField {
+export function deserializeShieldInformationBarrierReportStatusField(val: Json): ShieldInformationBarrierReportStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierReportStatusField\"";
     }
@@ -6163,22 +6163,22 @@ export function deserializeShieldInformationBarrierReportStatusField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierReportStatusField(val: ShieldInformationBarrierReportStatusField): JSON {
+export function serializeShieldInformationBarrierReportStatusField(val: ShieldInformationBarrierReportStatusField): Json {
     return val;
 }
 export interface ShieldInformationBarrierReportDetailsField {
 }
-export function deserializeShieldInformationBarrierReportDetailsField(val: JSON): ShieldInformationBarrierReportDetailsField {
+export function deserializeShieldInformationBarrierReportDetailsField(val: Json): ShieldInformationBarrierReportDetailsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReportDetailsField\"";
     }
     return {} satisfies ShieldInformationBarrierReportDetailsField;
 }
-export function serializeShieldInformationBarrierReportDetailsField(val: ShieldInformationBarrierReportDetailsField): JSON {
+export function serializeShieldInformationBarrierReportDetailsField(val: ShieldInformationBarrierReportDetailsField): Json {
     return {};
 }
 export type ShieldInformationBarrierReportBaseTypeField = "shield_information_barrier_report";
-export function deserializeShieldInformationBarrierReportBaseTypeField(val: JSON): ShieldInformationBarrierReportBaseTypeField {
+export function deserializeShieldInformationBarrierReportBaseTypeField(val: Json): ShieldInformationBarrierReportBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierReportBaseTypeField\"";
     }
@@ -6187,14 +6187,14 @@ export function deserializeShieldInformationBarrierReportBaseTypeField(val: JSON
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierReportBaseTypeField(val: ShieldInformationBarrierReportBaseTypeField): JSON {
+export function serializeShieldInformationBarrierReportBaseTypeField(val: ShieldInformationBarrierReportBaseTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierReportBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierReportBaseTypeField;
 }
-export function deserializeShieldInformationBarrierReportBase(val: JSON): ShieldInformationBarrierReportBase {
+export function deserializeShieldInformationBarrierReportBase(val: Json): ShieldInformationBarrierReportBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReportBase\"";
     }
@@ -6205,11 +6205,11 @@ export function deserializeShieldInformationBarrierReportBase(val: JSON): Shield
     const type: undefined | ShieldInformationBarrierReportBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierReportBaseTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierReportBase;
 }
-export function serializeShieldInformationBarrierReportBase(val: ShieldInformationBarrierReportBase): JSON {
+export function serializeShieldInformationBarrierReportBase(val: ShieldInformationBarrierReportBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierReportBaseTypeField(val.type) };
 }
 export type ShieldInformationBarrierSegmentTypeField = "shield_information_barrier_segment";
-export function deserializeShieldInformationBarrierSegmentTypeField(val: JSON): ShieldInformationBarrierSegmentTypeField {
+export function deserializeShieldInformationBarrierSegmentTypeField(val: Json): ShieldInformationBarrierSegmentTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentTypeField\"";
     }
@@ -6218,11 +6218,11 @@ export function deserializeShieldInformationBarrierSegmentTypeField(val: JSON): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentTypeField(val: ShieldInformationBarrierSegmentTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentTypeField(val: ShieldInformationBarrierSegmentTypeField): Json {
     return val;
 }
 export type ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
-export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: JSON): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField {
+export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField\"";
     }
@@ -6231,14 +6231,14 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField;
 }
-export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: JSON): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
+export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: Json): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField\"";
     }
@@ -6249,11 +6249,11 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
     const type: undefined | ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
 }
-export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField): JSON {
+export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val.type) };
 }
 export type ShieldInformationBarrierSegmentMemberBaseTypeField = "shield_information_barrier_segment_member";
-export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val: JSON): ShieldInformationBarrierSegmentMemberBaseTypeField {
+export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val: Json): ShieldInformationBarrierSegmentMemberBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentMemberBaseTypeField\"";
     }
@@ -6262,14 +6262,14 @@ export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(va
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentMemberBaseTypeField(val: ShieldInformationBarrierSegmentMemberBaseTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentMemberBaseTypeField(val: ShieldInformationBarrierSegmentMemberBaseTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierSegmentMemberBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentMemberBaseTypeField;
 }
-export function deserializeShieldInformationBarrierSegmentMemberBase(val: JSON): ShieldInformationBarrierSegmentMemberBase {
+export function deserializeShieldInformationBarrierSegmentMemberBase(val: Json): ShieldInformationBarrierSegmentMemberBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMemberBase\"";
     }
@@ -6280,11 +6280,11 @@ export function deserializeShieldInformationBarrierSegmentMemberBase(val: JSON):
     const type: undefined | ShieldInformationBarrierSegmentMemberBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierSegmentMemberBase;
 }
-export function serializeShieldInformationBarrierSegmentMemberBase(val: ShieldInformationBarrierSegmentMemberBase): JSON {
+export function serializeShieldInformationBarrierSegmentMemberBase(val: ShieldInformationBarrierSegmentMemberBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type) };
 }
 export type ShieldInformationBarrierSegmentRestrictionBaseTypeField = "shield_information_barrier_segment_restriction";
-export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: JSON): ShieldInformationBarrierSegmentRestrictionBaseTypeField {
+export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentRestrictionBaseTypeField\"";
     }
@@ -6293,14 +6293,14 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: ShieldInformationBarrierSegmentRestrictionBaseTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: ShieldInformationBarrierSegmentRestrictionBaseTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierSegmentRestrictionBase {
     readonly type?: ShieldInformationBarrierSegmentRestrictionBaseTypeField;
     readonly id?: string;
 }
-export function deserializeShieldInformationBarrierSegmentRestrictionBase(val: JSON): ShieldInformationBarrierSegmentRestrictionBase {
+export function deserializeShieldInformationBarrierSegmentRestrictionBase(val: Json): ShieldInformationBarrierSegmentRestrictionBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestrictionBase\"";
     }
@@ -6311,11 +6311,11 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBase(val: J
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, id: id } satisfies ShieldInformationBarrierSegmentRestrictionBase;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionBase(val: ShieldInformationBarrierSegmentRestrictionBase): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionBase(val: ShieldInformationBarrierSegmentRestrictionBase): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val.type), ["id"]: val.id };
 }
 export type ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
-export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: JSON): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField {
+export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField\"";
     }
@@ -6324,14 +6324,14 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldI
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField;
 }
-export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: JSON): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField {
+export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField\"";
     }
@@ -6342,11 +6342,11 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldI
     const type: undefined | ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val.type) };
 }
 export type ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField = "shield_information_barrier_segment";
-export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: JSON): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField {
+export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField\"";
     }
@@ -6355,14 +6355,14 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestric
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField): Json {
     return val;
 }
 export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField;
 }
-export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: JSON): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField {
+export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField\"";
     }
@@ -6373,7 +6373,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestric
     const type: undefined | ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val.type) };
 }
 export type ShieldInformationBarrierSegmentRestrictionMini = ShieldInformationBarrierSegmentRestrictionBase & {
@@ -6386,7 +6386,7 @@ export type ShieldInformationBarrierSegmentRestrictionMini = ShieldInformationBa
      * restricted shield information barrier segment. */
     readonly restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
 };
-export function deserializeShieldInformationBarrierSegmentRestrictionMini(val: JSON): ShieldInformationBarrierSegmentRestrictionMini {
+export function deserializeShieldInformationBarrierSegmentRestrictionMini(val: Json): ShieldInformationBarrierSegmentRestrictionMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestrictionMini\"";
     }
@@ -6405,7 +6405,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMini(val: J
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { shieldInformationBarrierSegment: shieldInformationBarrierSegment, restrictedSegment: restrictedSegment, type: type, id: id } satisfies ShieldInformationBarrierSegmentRestrictionMini;
 }
-export function serializeShieldInformationBarrierSegmentRestrictionMini(val: ShieldInformationBarrierSegmentRestrictionMini): JSON {
+export function serializeShieldInformationBarrierSegmentRestrictionMini(val: ShieldInformationBarrierSegmentRestrictionMini): Json {
     const base: any = serializeShieldInformationBarrierSegmentRestrictionBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestrictionMini\"";
@@ -6415,7 +6415,7 @@ export function serializeShieldInformationBarrierSegmentRestrictionMini(val: Shi
 export interface SessionTerminationMessage {
     readonly message?: string;
 }
-export function deserializeSessionTerminationMessage(val: JSON): SessionTerminationMessage {
+export function deserializeSessionTerminationMessage(val: Json): SessionTerminationMessage {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SessionTerminationMessage\"";
     }
@@ -6425,11 +6425,11 @@ export function deserializeSessionTerminationMessage(val: JSON): SessionTerminat
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
     return { message: message } satisfies SessionTerminationMessage;
 }
-export function serializeSessionTerminationMessage(val: SessionTerminationMessage): JSON {
+export function serializeSessionTerminationMessage(val: SessionTerminationMessage): Json {
     return { ["message"]: val.message };
 }
 export type StoragePolicyMiniTypeField = "storage_policy";
-export function deserializeStoragePolicyMiniTypeField(val: JSON): StoragePolicyMiniTypeField {
+export function deserializeStoragePolicyMiniTypeField(val: Json): StoragePolicyMiniTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StoragePolicyMiniTypeField\"";
     }
@@ -6438,14 +6438,14 @@ export function deserializeStoragePolicyMiniTypeField(val: JSON): StoragePolicyM
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStoragePolicyMiniTypeField(val: StoragePolicyMiniTypeField): JSON {
+export function serializeStoragePolicyMiniTypeField(val: StoragePolicyMiniTypeField): Json {
     return val;
 }
 export interface StoragePolicyMini {
     readonly id?: string;
     readonly type?: StoragePolicyMiniTypeField;
 }
-export function deserializeStoragePolicyMini(val: JSON): StoragePolicyMini {
+export function deserializeStoragePolicyMini(val: Json): StoragePolicyMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicyMini\"";
     }
@@ -6456,7 +6456,7 @@ export function deserializeStoragePolicyMini(val: JSON): StoragePolicyMini {
     const type: undefined | StoragePolicyMiniTypeField = val.type === void 0 ? void 0 : deserializeStoragePolicyMiniTypeField(val.type);
     return { id: id, type: type } satisfies StoragePolicyMini;
 }
-export function serializeStoragePolicyMini(val: StoragePolicyMini): JSON {
+export function serializeStoragePolicyMini(val: StoragePolicyMini): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeStoragePolicyMiniTypeField(val.type) };
 }
 export type StoragePolicy = StoragePolicyMini & {
@@ -6464,7 +6464,7 @@ export type StoragePolicy = StoragePolicyMini & {
      * A descriptive name of the region */
     readonly name?: string;
 };
-export function deserializeStoragePolicy(val: JSON): StoragePolicy {
+export function deserializeStoragePolicy(val: Json): StoragePolicy {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicy\"";
     }
@@ -6479,7 +6479,7 @@ export function deserializeStoragePolicy(val: JSON): StoragePolicy {
     const type: undefined | StoragePolicyMiniTypeField = val.type === void 0 ? void 0 : deserializeStoragePolicyMiniTypeField(val.type);
     return { name: name, id: id, type: type } satisfies StoragePolicy;
 }
-export function serializeStoragePolicy(val: StoragePolicy): JSON {
+export function serializeStoragePolicy(val: StoragePolicy): Json {
     const base: any = serializeStoragePolicyMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"StoragePolicy\"";
@@ -6492,7 +6492,7 @@ export interface StoragePolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly StoragePolicy[];
 }
-export function deserializeStoragePolicies(val: JSON): StoragePolicies {
+export function deserializeStoragePolicies(val: Json): StoragePolicies {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicies\"";
     }
@@ -6511,12 +6511,12 @@ export function deserializeStoragePolicies(val: JSON): StoragePolicies {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"StoragePolicies\"";
     }
-    const entries: undefined | readonly StoragePolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly StoragePolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeStoragePolicy(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies StoragePolicies;
 }
-export function serializeStoragePolicies(val: StoragePolicies): JSON {
+export function serializeStoragePolicies(val: StoragePolicies): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: StoragePolicy): any {
             return serializeStoragePolicy(item);
         }) as readonly any[] };
@@ -6525,7 +6525,7 @@ export interface StoragePolicyAssignmentAssignedToField {
     readonly id?: string;
     readonly type?: string;
 }
-export function deserializeStoragePolicyAssignmentAssignedToField(val: JSON): StoragePolicyAssignmentAssignedToField {
+export function deserializeStoragePolicyAssignmentAssignedToField(val: Json): StoragePolicyAssignmentAssignedToField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicyAssignmentAssignedToField\"";
     }
@@ -6539,14 +6539,14 @@ export function deserializeStoragePolicyAssignmentAssignedToField(val: JSON): St
     const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
     return { id: id, type: type } satisfies StoragePolicyAssignmentAssignedToField;
 }
-export function serializeStoragePolicyAssignmentAssignedToField(val: StoragePolicyAssignmentAssignedToField): JSON {
+export function serializeStoragePolicyAssignmentAssignedToField(val: StoragePolicyAssignmentAssignedToField): Json {
     return { ["id"]: val.id, ["type"]: val.type };
 }
 export interface StoragePolicyAssignment {
     readonly storagePolicy?: StoragePolicyMini;
     readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
 }
-export function deserializeStoragePolicyAssignment(val: JSON): StoragePolicyAssignment {
+export function deserializeStoragePolicyAssignment(val: Json): StoragePolicyAssignment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicyAssignment\"";
     }
@@ -6554,7 +6554,7 @@ export function deserializeStoragePolicyAssignment(val: JSON): StoragePolicyAssi
     const assignedTo: undefined | StoragePolicyAssignmentAssignedToField = val.assigned_to === void 0 ? void 0 : deserializeStoragePolicyAssignmentAssignedToField(val.assigned_to);
     return { storagePolicy: storagePolicy, assignedTo: assignedTo } satisfies StoragePolicyAssignment;
 }
-export function serializeStoragePolicyAssignment(val: StoragePolicyAssignment): JSON {
+export function serializeStoragePolicyAssignment(val: StoragePolicyAssignment): Json {
     return { ["storage_policy"]: val.storagePolicy === void 0 ? void 0 : serializeStoragePolicyMini(val.storagePolicy), ["assigned_to"]: val.assignedTo === void 0 ? void 0 : serializeStoragePolicyAssignmentAssignedToField(val.assignedTo) };
 }
 export interface StoragePolicyAssignments {
@@ -6563,7 +6563,7 @@ export interface StoragePolicyAssignments {
     readonly prevMarker?: number;
     readonly entries?: readonly StoragePolicyAssignment[];
 }
-export function deserializeStoragePolicyAssignments(val: JSON): StoragePolicyAssignments {
+export function deserializeStoragePolicyAssignments(val: Json): StoragePolicyAssignments {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StoragePolicyAssignments\"";
     }
@@ -6582,18 +6582,18 @@ export function deserializeStoragePolicyAssignments(val: JSON): StoragePolicyAss
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"StoragePolicyAssignments\"";
     }
-    const entries: undefined | readonly StoragePolicyAssignment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly StoragePolicyAssignment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeStoragePolicyAssignment(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies StoragePolicyAssignments;
 }
-export function serializeStoragePolicyAssignments(val: StoragePolicyAssignments): JSON {
+export function serializeStoragePolicyAssignments(val: StoragePolicyAssignments): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: StoragePolicyAssignment): any {
             return serializeStoragePolicyAssignment(item);
         }) as readonly any[] };
 }
 export type TaskTypeField = "task";
-export function deserializeTaskTypeField(val: JSON): TaskTypeField {
+export function deserializeTaskTypeField(val: Json): TaskTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TaskTypeField\"";
     }
@@ -6602,11 +6602,11 @@ export function deserializeTaskTypeField(val: JSON): TaskTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTaskTypeField(val: TaskTypeField): JSON {
+export function serializeTaskTypeField(val: TaskTypeField): Json {
     return val;
 }
 export type TaskActionField = "review" | "complete";
-export function deserializeTaskActionField(val: JSON): TaskActionField {
+export function deserializeTaskActionField(val: Json): TaskActionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TaskActionField\"";
     }
@@ -6618,11 +6618,11 @@ export function deserializeTaskActionField(val: JSON): TaskActionField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTaskActionField(val: TaskActionField): JSON {
+export function serializeTaskActionField(val: TaskActionField): Json {
     return val;
 }
 export type TaskCompletionRuleField = "all_assignees" | "any_assignee";
-export function deserializeTaskCompletionRuleField(val: JSON): TaskCompletionRuleField {
+export function deserializeTaskCompletionRuleField(val: Json): TaskCompletionRuleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TaskCompletionRuleField\"";
     }
@@ -6634,11 +6634,11 @@ export function deserializeTaskCompletionRuleField(val: JSON): TaskCompletionRul
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTaskCompletionRuleField(val: TaskCompletionRuleField): JSON {
+export function serializeTaskCompletionRuleField(val: TaskCompletionRuleField): Json {
     return val;
 }
 export type TaskAssignmentTypeField = "task_assignment";
-export function deserializeTaskAssignmentTypeField(val: JSON): TaskAssignmentTypeField {
+export function deserializeTaskAssignmentTypeField(val: Json): TaskAssignmentTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TaskAssignmentTypeField\"";
     }
@@ -6647,11 +6647,11 @@ export function deserializeTaskAssignmentTypeField(val: JSON): TaskAssignmentTyp
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTaskAssignmentTypeField(val: TaskAssignmentTypeField): JSON {
+export function serializeTaskAssignmentTypeField(val: TaskAssignmentTypeField): Json {
     return val;
 }
 export type TaskAssignmentResolutionStateField = "completed" | "incomplete" | "approved" | "rejected";
-export function deserializeTaskAssignmentResolutionStateField(val: JSON): TaskAssignmentResolutionStateField {
+export function deserializeTaskAssignmentResolutionStateField(val: Json): TaskAssignmentResolutionStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TaskAssignmentResolutionStateField\"";
     }
@@ -6669,11 +6669,11 @@ export function deserializeTaskAssignmentResolutionStateField(val: JSON): TaskAs
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTaskAssignmentResolutionStateField(val: TaskAssignmentResolutionStateField): JSON {
+export function serializeTaskAssignmentResolutionStateField(val: TaskAssignmentResolutionStateField): Json {
     return val;
 }
 export type TermsOfServiceStatusField = "enabled" | "disabled";
-export function deserializeTermsOfServiceStatusField(val: JSON): TermsOfServiceStatusField {
+export function deserializeTermsOfServiceStatusField(val: Json): TermsOfServiceStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TermsOfServiceStatusField\"";
     }
@@ -6685,11 +6685,11 @@ export function deserializeTermsOfServiceStatusField(val: JSON): TermsOfServiceS
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTermsOfServiceStatusField(val: TermsOfServiceStatusField): JSON {
+export function serializeTermsOfServiceStatusField(val: TermsOfServiceStatusField): Json {
     return val;
 }
 export type TermsOfServiceEnterpriseFieldTypeField = "enterprise";
-export function deserializeTermsOfServiceEnterpriseFieldTypeField(val: JSON): TermsOfServiceEnterpriseFieldTypeField {
+export function deserializeTermsOfServiceEnterpriseFieldTypeField(val: Json): TermsOfServiceEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TermsOfServiceEnterpriseFieldTypeField\"";
     }
@@ -6698,7 +6698,7 @@ export function deserializeTermsOfServiceEnterpriseFieldTypeField(val: JSON): Te
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTermsOfServiceEnterpriseFieldTypeField(val: TermsOfServiceEnterpriseFieldTypeField): JSON {
+export function serializeTermsOfServiceEnterpriseFieldTypeField(val: TermsOfServiceEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface TermsOfServiceEnterpriseField {
@@ -6706,7 +6706,7 @@ export interface TermsOfServiceEnterpriseField {
     readonly type?: TermsOfServiceEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export function deserializeTermsOfServiceEnterpriseField(val: JSON): TermsOfServiceEnterpriseField {
+export function deserializeTermsOfServiceEnterpriseField(val: Json): TermsOfServiceEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfServiceEnterpriseField\"";
     }
@@ -6721,11 +6721,11 @@ export function deserializeTermsOfServiceEnterpriseField(val: JSON): TermsOfServ
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies TermsOfServiceEnterpriseField;
 }
-export function serializeTermsOfServiceEnterpriseField(val: TermsOfServiceEnterpriseField): JSON {
+export function serializeTermsOfServiceEnterpriseField(val: TermsOfServiceEnterpriseField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeTermsOfServiceEnterpriseFieldTypeField(val.type), ["name"]: val.name };
 }
 export type TermsOfServiceTosTypeField = "managed" | "external";
-export function deserializeTermsOfServiceTosTypeField(val: JSON): TermsOfServiceTosTypeField {
+export function deserializeTermsOfServiceTosTypeField(val: Json): TermsOfServiceTosTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TermsOfServiceTosTypeField\"";
     }
@@ -6737,11 +6737,11 @@ export function deserializeTermsOfServiceTosTypeField(val: JSON): TermsOfService
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTermsOfServiceTosTypeField(val: TermsOfServiceTosTypeField): JSON {
+export function serializeTermsOfServiceTosTypeField(val: TermsOfServiceTosTypeField): Json {
     return val;
 }
 export type TermsOfServiceBaseTypeField = "terms_of_service";
-export function deserializeTermsOfServiceBaseTypeField(val: JSON): TermsOfServiceBaseTypeField {
+export function deserializeTermsOfServiceBaseTypeField(val: Json): TermsOfServiceBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TermsOfServiceBaseTypeField\"";
     }
@@ -6750,14 +6750,14 @@ export function deserializeTermsOfServiceBaseTypeField(val: JSON): TermsOfServic
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTermsOfServiceBaseTypeField(val: TermsOfServiceBaseTypeField): JSON {
+export function serializeTermsOfServiceBaseTypeField(val: TermsOfServiceBaseTypeField): Json {
     return val;
 }
 export interface TermsOfServiceBase {
     readonly id?: string;
     readonly type?: TermsOfServiceBaseTypeField;
 }
-export function deserializeTermsOfServiceBase(val: JSON): TermsOfServiceBase {
+export function deserializeTermsOfServiceBase(val: Json): TermsOfServiceBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfServiceBase\"";
     }
@@ -6768,7 +6768,7 @@ export function deserializeTermsOfServiceBase(val: JSON): TermsOfServiceBase {
     const type: undefined | TermsOfServiceBaseTypeField = val.type === void 0 ? void 0 : deserializeTermsOfServiceBaseTypeField(val.type);
     return { id: id, type: type } satisfies TermsOfServiceBase;
 }
-export function serializeTermsOfServiceBase(val: TermsOfServiceBase): JSON {
+export function serializeTermsOfServiceBase(val: TermsOfServiceBase): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeTermsOfServiceBaseTypeField(val.type) };
 }
 export type TermsOfService = TermsOfServiceBase & {
@@ -6790,7 +6790,7 @@ export type TermsOfService = TermsOfServiceBase & {
      * When the legal item was modified. */
     readonly modifiedAt?: string;
 };
-export function deserializeTermsOfService(val: JSON): TermsOfService {
+export function deserializeTermsOfService(val: Json): TermsOfService {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfService\"";
     }
@@ -6816,7 +6816,7 @@ export function deserializeTermsOfService(val: JSON): TermsOfService {
     const type: undefined | TermsOfServiceBaseTypeField = val.type === void 0 ? void 0 : deserializeTermsOfServiceBaseTypeField(val.type);
     return { status: status, enterprise: enterprise, tosType: tosType, text: text, createdAt: createdAt, modifiedAt: modifiedAt, id: id, type: type } satisfies TermsOfService;
 }
-export function serializeTermsOfService(val: TermsOfService): JSON {
+export function serializeTermsOfService(val: TermsOfService): Json {
     const base: any = serializeTermsOfServiceBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"TermsOfService\"";
@@ -6827,7 +6827,7 @@ export interface TermsOfServices {
     readonly totalCount?: number;
     readonly entries?: readonly TermsOfService[];
 }
-export function deserializeTermsOfServices(val: JSON): TermsOfServices {
+export function deserializeTermsOfServices(val: Json): TermsOfServices {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfServices\"";
     }
@@ -6838,12 +6838,12 @@ export function deserializeTermsOfServices(val: JSON): TermsOfServices {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TermsOfServices\"";
     }
-    const entries: undefined | readonly TermsOfService[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly TermsOfService[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeTermsOfService(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies TermsOfServices;
 }
-export function serializeTermsOfServices(val: TermsOfServices): JSON {
+export function serializeTermsOfServices(val: TermsOfServices): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: TermsOfService): any {
             return serializeTermsOfService(item);
         }) as readonly any[] };
@@ -6852,7 +6852,7 @@ export interface CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceReq
     readonly isAccepted?: boolean;
     readonly termsOfService?: TermsOfServiceBase;
 }
-export function deserializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: JSON): CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField {
+export function deserializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField\"";
     }
@@ -6863,7 +6863,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusFieldTermsOf
     const termsOfService: undefined | TermsOfServiceBase = val.terms_of_service === void 0 ? void 0 : deserializeTermsOfServiceBase(val.terms_of_service);
     return { isAccepted: isAccepted, termsOfService: termsOfService } satisfies CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField;
 }
-export function serializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField): JSON {
+export function serializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField): Json {
     return { ["is_accepted"]: val.isAccepted, ["terms_of_service"]: val.termsOfService === void 0 ? void 0 : serializeTermsOfServiceBase(val.termsOfService) };
 }
 export interface CollaborationAcceptanceRequirementsStatusField {
@@ -6871,7 +6871,7 @@ export interface CollaborationAcceptanceRequirementsStatusField {
     readonly strongPasswordRequirement?: CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField;
     readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
 }
-export function deserializeCollaborationAcceptanceRequirementsStatusField(val: JSON): CollaborationAcceptanceRequirementsStatusField {
+export function deserializeCollaborationAcceptanceRequirementsStatusField(val: Json): CollaborationAcceptanceRequirementsStatusField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationAcceptanceRequirementsStatusField\"";
     }
@@ -6880,11 +6880,11 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(val: J
     const twoFactorAuthenticationRequirement: undefined | CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField = val.two_factor_authentication_requirement === void 0 ? void 0 : deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val.two_factor_authentication_requirement);
     return { termsOfServiceRequirement: termsOfServiceRequirement, strongPasswordRequirement: strongPasswordRequirement, twoFactorAuthenticationRequirement: twoFactorAuthenticationRequirement } satisfies CollaborationAcceptanceRequirementsStatusField;
 }
-export function serializeCollaborationAcceptanceRequirementsStatusField(val: CollaborationAcceptanceRequirementsStatusField): JSON {
+export function serializeCollaborationAcceptanceRequirementsStatusField(val: CollaborationAcceptanceRequirementsStatusField): Json {
     return { ["terms_of_service_requirement"]: val.termsOfServiceRequirement === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val.termsOfServiceRequirement), ["strong_password_requirement"]: val.strongPasswordRequirement === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val.strongPasswordRequirement), ["two_factor_authentication_requirement"]: val.twoFactorAuthenticationRequirement === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val.twoFactorAuthenticationRequirement) };
 }
 export type TermsOfServiceUserStatusTypeField = "terms_of_service_user_status";
-export function deserializeTermsOfServiceUserStatusTypeField(val: JSON): TermsOfServiceUserStatusTypeField {
+export function deserializeTermsOfServiceUserStatusTypeField(val: Json): TermsOfServiceUserStatusTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TermsOfServiceUserStatusTypeField\"";
     }
@@ -6893,11 +6893,11 @@ export function deserializeTermsOfServiceUserStatusTypeField(val: JSON): TermsOf
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTermsOfServiceUserStatusTypeField(val: TermsOfServiceUserStatusTypeField): JSON {
+export function serializeTermsOfServiceUserStatusTypeField(val: TermsOfServiceUserStatusTypeField): Json {
     return val;
 }
 export type TrashFileTypeField = "file";
-export function deserializeTrashFileTypeField(val: JSON): TrashFileTypeField {
+export function deserializeTrashFileTypeField(val: Json): TrashFileTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFileTypeField\"";
     }
@@ -6906,11 +6906,11 @@ export function deserializeTrashFileTypeField(val: JSON): TrashFileTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFileTypeField(val: TrashFileTypeField): JSON {
+export function serializeTrashFileTypeField(val: TrashFileTypeField): Json {
     return val;
 }
 export type TrashFilePathCollectionFieldEntriesFieldTypeField = "folder";
-export function deserializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: JSON): TrashFilePathCollectionFieldEntriesFieldTypeField {
+export function deserializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: Json): TrashFilePathCollectionFieldEntriesFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFilePathCollectionFieldEntriesFieldTypeField\"";
     }
@@ -6919,7 +6919,7 @@ export function deserializeTrashFilePathCollectionFieldEntriesFieldTypeField(val
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: TrashFilePathCollectionFieldEntriesFieldTypeField): JSON {
+export function serializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: TrashFilePathCollectionFieldEntriesFieldTypeField): Json {
     return val;
 }
 export interface TrashFilePathCollectionFieldEntriesField {
@@ -6929,7 +6929,7 @@ export interface TrashFilePathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export function deserializeTrashFilePathCollectionFieldEntriesField(val: JSON): TrashFilePathCollectionFieldEntriesField {
+export function deserializeTrashFilePathCollectionFieldEntriesField(val: Json): TrashFilePathCollectionFieldEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFilePathCollectionFieldEntriesField\"";
     }
@@ -6952,14 +6952,14 @@ export function deserializeTrashFilePathCollectionFieldEntriesField(val: JSON): 
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { type: type, id: id, sequenceId: sequenceId, etag: etag, name: name } satisfies TrashFilePathCollectionFieldEntriesField;
 }
-export function serializeTrashFilePathCollectionFieldEntriesField(val: TrashFilePathCollectionFieldEntriesField): JSON {
+export function serializeTrashFilePathCollectionFieldEntriesField(val: TrashFilePathCollectionFieldEntriesField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrashFilePathCollectionFieldEntriesFieldTypeField(val.type), ["id"]: val.id, ["sequence_id"]: val.sequenceId, ["etag"]: val.etag, ["name"]: val.name };
 }
 export interface TrashFilePathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashFilePathCollectionFieldEntriesField[];
 }
-export function deserializeTrashFilePathCollectionField(val: JSON): TrashFilePathCollectionField {
+export function deserializeTrashFilePathCollectionField(val: Json): TrashFilePathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFilePathCollectionField\"";
     }
@@ -6976,18 +6976,18 @@ export function deserializeTrashFilePathCollectionField(val: JSON): TrashFilePat
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashFilePathCollectionField\"";
     }
-    const entries: readonly TrashFilePathCollectionFieldEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly TrashFilePathCollectionFieldEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeTrashFilePathCollectionFieldEntriesField(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashFilePathCollectionField;
 }
-export function serializeTrashFilePathCollectionField(val: TrashFilePathCollectionField): JSON {
+export function serializeTrashFilePathCollectionField(val: TrashFilePathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: TrashFilePathCollectionFieldEntriesField): any {
             return serializeTrashFilePathCollectionFieldEntriesField(item);
         }) as readonly any[] };
 }
 export type TrashFileItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashFileItemStatusField(val: JSON): TrashFileItemStatusField {
+export function deserializeTrashFileItemStatusField(val: Json): TrashFileItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFileItemStatusField\"";
     }
@@ -7002,11 +7002,11 @@ export function deserializeTrashFileItemStatusField(val: JSON): TrashFileItemSta
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFileItemStatusField(val: TrashFileItemStatusField): JSON {
+export function serializeTrashFileItemStatusField(val: TrashFileItemStatusField): Json {
     return val;
 }
 export type TrashFolderTypeField = "folder";
-export function deserializeTrashFolderTypeField(val: JSON): TrashFolderTypeField {
+export function deserializeTrashFolderTypeField(val: Json): TrashFolderTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFolderTypeField\"";
     }
@@ -7015,11 +7015,11 @@ export function deserializeTrashFolderTypeField(val: JSON): TrashFolderTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFolderTypeField(val: TrashFolderTypeField): JSON {
+export function serializeTrashFolderTypeField(val: TrashFolderTypeField): Json {
     return val;
 }
 export type TrashFolderPathCollectionFieldEntriesFieldTypeField = "folder";
-export function deserializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: JSON): TrashFolderPathCollectionFieldEntriesFieldTypeField {
+export function deserializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: Json): TrashFolderPathCollectionFieldEntriesFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFolderPathCollectionFieldEntriesFieldTypeField\"";
     }
@@ -7028,7 +7028,7 @@ export function deserializeTrashFolderPathCollectionFieldEntriesFieldTypeField(v
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: TrashFolderPathCollectionFieldEntriesFieldTypeField): JSON {
+export function serializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: TrashFolderPathCollectionFieldEntriesFieldTypeField): Json {
     return val;
 }
 export interface TrashFolderPathCollectionFieldEntriesField {
@@ -7038,7 +7038,7 @@ export interface TrashFolderPathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export function deserializeTrashFolderPathCollectionFieldEntriesField(val: JSON): TrashFolderPathCollectionFieldEntriesField {
+export function deserializeTrashFolderPathCollectionFieldEntriesField(val: Json): TrashFolderPathCollectionFieldEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFolderPathCollectionFieldEntriesField\"";
     }
@@ -7061,14 +7061,14 @@ export function deserializeTrashFolderPathCollectionFieldEntriesField(val: JSON)
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { type: type, id: id, sequenceId: sequenceId, etag: etag, name: name } satisfies TrashFolderPathCollectionFieldEntriesField;
 }
-export function serializeTrashFolderPathCollectionFieldEntriesField(val: TrashFolderPathCollectionFieldEntriesField): JSON {
+export function serializeTrashFolderPathCollectionFieldEntriesField(val: TrashFolderPathCollectionFieldEntriesField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val.type), ["id"]: val.id, ["sequence_id"]: val.sequenceId, ["etag"]: val.etag, ["name"]: val.name };
 }
 export interface TrashFolderPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashFolderPathCollectionFieldEntriesField[];
 }
-export function deserializeTrashFolderPathCollectionField(val: JSON): TrashFolderPathCollectionField {
+export function deserializeTrashFolderPathCollectionField(val: Json): TrashFolderPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFolderPathCollectionField\"";
     }
@@ -7085,18 +7085,18 @@ export function deserializeTrashFolderPathCollectionField(val: JSON): TrashFolde
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashFolderPathCollectionField\"";
     }
-    const entries: readonly TrashFolderPathCollectionFieldEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly TrashFolderPathCollectionFieldEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeTrashFolderPathCollectionFieldEntriesField(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashFolderPathCollectionField;
 }
-export function serializeTrashFolderPathCollectionField(val: TrashFolderPathCollectionField): JSON {
+export function serializeTrashFolderPathCollectionField(val: TrashFolderPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: TrashFolderPathCollectionFieldEntriesField): any {
             return serializeTrashFolderPathCollectionFieldEntriesField(item);
         }) as readonly any[] };
 }
 export type TrashFolderItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashFolderItemStatusField(val: JSON): TrashFolderItemStatusField {
+export function deserializeTrashFolderItemStatusField(val: Json): TrashFolderItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFolderItemStatusField\"";
     }
@@ -7111,11 +7111,11 @@ export function deserializeTrashFolderItemStatusField(val: JSON): TrashFolderIte
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFolderItemStatusField(val: TrashFolderItemStatusField): JSON {
+export function serializeTrashFolderItemStatusField(val: TrashFolderItemStatusField): Json {
     return val;
 }
 export type TrashWebLinkTypeField = "web_link";
-export function deserializeTrashWebLinkTypeField(val: JSON): TrashWebLinkTypeField {
+export function deserializeTrashWebLinkTypeField(val: Json): TrashWebLinkTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashWebLinkTypeField\"";
     }
@@ -7124,11 +7124,11 @@ export function deserializeTrashWebLinkTypeField(val: JSON): TrashWebLinkTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashWebLinkTypeField(val: TrashWebLinkTypeField): JSON {
+export function serializeTrashWebLinkTypeField(val: TrashWebLinkTypeField): Json {
     return val;
 }
 export type TrashWebLinkPathCollectionFieldEntriesFieldTypeField = "folder";
-export function deserializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: JSON): TrashWebLinkPathCollectionFieldEntriesFieldTypeField {
+export function deserializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: Json): TrashWebLinkPathCollectionFieldEntriesFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashWebLinkPathCollectionFieldEntriesFieldTypeField\"";
     }
@@ -7137,7 +7137,7 @@ export function deserializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: TrashWebLinkPathCollectionFieldEntriesFieldTypeField): JSON {
+export function serializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: TrashWebLinkPathCollectionFieldEntriesFieldTypeField): Json {
     return val;
 }
 export interface TrashWebLinkPathCollectionFieldEntriesField {
@@ -7147,7 +7147,7 @@ export interface TrashWebLinkPathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export function deserializeTrashWebLinkPathCollectionFieldEntriesField(val: JSON): TrashWebLinkPathCollectionFieldEntriesField {
+export function deserializeTrashWebLinkPathCollectionFieldEntriesField(val: Json): TrashWebLinkPathCollectionFieldEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashWebLinkPathCollectionFieldEntriesField\"";
     }
@@ -7170,14 +7170,14 @@ export function deserializeTrashWebLinkPathCollectionFieldEntriesField(val: JSON
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { type: type, id: id, sequenceId: sequenceId, etag: etag, name: name } satisfies TrashWebLinkPathCollectionFieldEntriesField;
 }
-export function serializeTrashWebLinkPathCollectionFieldEntriesField(val: TrashWebLinkPathCollectionFieldEntriesField): JSON {
+export function serializeTrashWebLinkPathCollectionFieldEntriesField(val: TrashWebLinkPathCollectionFieldEntriesField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val.type), ["id"]: val.id, ["sequence_id"]: val.sequenceId, ["etag"]: val.etag, ["name"]: val.name };
 }
 export interface TrashWebLinkPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashWebLinkPathCollectionFieldEntriesField[];
 }
-export function deserializeTrashWebLinkPathCollectionField(val: JSON): TrashWebLinkPathCollectionField {
+export function deserializeTrashWebLinkPathCollectionField(val: Json): TrashWebLinkPathCollectionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashWebLinkPathCollectionField\"";
     }
@@ -7194,18 +7194,18 @@ export function deserializeTrashWebLinkPathCollectionField(val: JSON): TrashWebL
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TrashWebLinkPathCollectionField\"";
     }
-    const entries: readonly TrashWebLinkPathCollectionFieldEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly TrashWebLinkPathCollectionFieldEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeTrashWebLinkPathCollectionFieldEntriesField(itm);
     }) as readonly any[];
     return { totalCount: totalCount, entries: entries } satisfies TrashWebLinkPathCollectionField;
 }
-export function serializeTrashWebLinkPathCollectionField(val: TrashWebLinkPathCollectionField): JSON {
+export function serializeTrashWebLinkPathCollectionField(val: TrashWebLinkPathCollectionField): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries.map(function (item: TrashWebLinkPathCollectionFieldEntriesField): any {
             return serializeTrashWebLinkPathCollectionFieldEntriesField(item);
         }) as readonly any[] };
 }
 export type TrashWebLinkItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashWebLinkItemStatusField(val: JSON): TrashWebLinkItemStatusField {
+export function deserializeTrashWebLinkItemStatusField(val: Json): TrashWebLinkItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashWebLinkItemStatusField\"";
     }
@@ -7220,11 +7220,11 @@ export function deserializeTrashWebLinkItemStatusField(val: JSON): TrashWebLinkI
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashWebLinkItemStatusField(val: TrashWebLinkItemStatusField): JSON {
+export function serializeTrashWebLinkItemStatusField(val: TrashWebLinkItemStatusField): Json {
     return val;
 }
 export type TrashFileRestoredTypeField = "file";
-export function deserializeTrashFileRestoredTypeField(val: JSON): TrashFileRestoredTypeField {
+export function deserializeTrashFileRestoredTypeField(val: Json): TrashFileRestoredTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFileRestoredTypeField\"";
     }
@@ -7233,11 +7233,11 @@ export function deserializeTrashFileRestoredTypeField(val: JSON): TrashFileResto
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFileRestoredTypeField(val: TrashFileRestoredTypeField): JSON {
+export function serializeTrashFileRestoredTypeField(val: TrashFileRestoredTypeField): Json {
     return val;
 }
 export type TrashFileRestoredItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashFileRestoredItemStatusField(val: JSON): TrashFileRestoredItemStatusField {
+export function deserializeTrashFileRestoredItemStatusField(val: Json): TrashFileRestoredItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFileRestoredItemStatusField\"";
     }
@@ -7252,11 +7252,11 @@ export function deserializeTrashFileRestoredItemStatusField(val: JSON): TrashFil
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFileRestoredItemStatusField(val: TrashFileRestoredItemStatusField): JSON {
+export function serializeTrashFileRestoredItemStatusField(val: TrashFileRestoredItemStatusField): Json {
     return val;
 }
 export type TrashFolderRestoredTypeField = "folder";
-export function deserializeTrashFolderRestoredTypeField(val: JSON): TrashFolderRestoredTypeField {
+export function deserializeTrashFolderRestoredTypeField(val: Json): TrashFolderRestoredTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFolderRestoredTypeField\"";
     }
@@ -7265,11 +7265,11 @@ export function deserializeTrashFolderRestoredTypeField(val: JSON): TrashFolderR
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFolderRestoredTypeField(val: TrashFolderRestoredTypeField): JSON {
+export function serializeTrashFolderRestoredTypeField(val: TrashFolderRestoredTypeField): Json {
     return val;
 }
 export type TrashFolderRestoredItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashFolderRestoredItemStatusField(val: JSON): TrashFolderRestoredItemStatusField {
+export function deserializeTrashFolderRestoredItemStatusField(val: Json): TrashFolderRestoredItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashFolderRestoredItemStatusField\"";
     }
@@ -7284,11 +7284,11 @@ export function deserializeTrashFolderRestoredItemStatusField(val: JSON): TrashF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashFolderRestoredItemStatusField(val: TrashFolderRestoredItemStatusField): JSON {
+export function serializeTrashFolderRestoredItemStatusField(val: TrashFolderRestoredItemStatusField): Json {
     return val;
 }
 export type TrashWebLinkRestoredTypeField = "web_link";
-export function deserializeTrashWebLinkRestoredTypeField(val: JSON): TrashWebLinkRestoredTypeField {
+export function deserializeTrashWebLinkRestoredTypeField(val: Json): TrashWebLinkRestoredTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashWebLinkRestoredTypeField\"";
     }
@@ -7297,11 +7297,11 @@ export function deserializeTrashWebLinkRestoredTypeField(val: JSON): TrashWebLin
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashWebLinkRestoredTypeField(val: TrashWebLinkRestoredTypeField): JSON {
+export function serializeTrashWebLinkRestoredTypeField(val: TrashWebLinkRestoredTypeField): Json {
     return val;
 }
 export type TrashWebLinkRestoredItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeTrashWebLinkRestoredItemStatusField(val: JSON): TrashWebLinkRestoredItemStatusField {
+export function deserializeTrashWebLinkRestoredItemStatusField(val: Json): TrashWebLinkRestoredItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrashWebLinkRestoredItemStatusField\"";
     }
@@ -7316,7 +7316,7 @@ export function deserializeTrashWebLinkRestoredItemStatusField(val: JSON): Trash
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrashWebLinkRestoredItemStatusField(val: TrashWebLinkRestoredItemStatusField): JSON {
+export function serializeTrashWebLinkRestoredItemStatusField(val: TrashWebLinkRestoredItemStatusField): Json {
     return val;
 }
 export interface UploadPartMini {
@@ -7324,7 +7324,7 @@ export interface UploadPartMini {
     readonly offset?: number;
     readonly size?: number;
 }
-export function deserializeUploadPartMini(val: JSON): UploadPartMini {
+export function deserializeUploadPartMini(val: Json): UploadPartMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadPartMini\"";
     }
@@ -7342,7 +7342,7 @@ export function deserializeUploadPartMini(val: JSON): UploadPartMini {
     const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
     return { partId: partId, offset: offset, size: size } satisfies UploadPartMini;
 }
-export function serializeUploadPartMini(val: UploadPartMini): JSON {
+export function serializeUploadPartMini(val: UploadPartMini): Json {
     return { ["part_id"]: val.partId, ["offset"]: val.offset, ["size"]: val.size };
 }
 export type UploadPart = UploadPartMini & {
@@ -7350,7 +7350,7 @@ export type UploadPart = UploadPartMini & {
      * The SHA1 hash of the chunk. */
     readonly sha1?: string;
 };
-export function deserializeUploadPart(val: JSON): UploadPart {
+export function deserializeUploadPart(val: Json): UploadPart {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadPart\"";
     }
@@ -7372,7 +7372,7 @@ export function deserializeUploadPart(val: JSON): UploadPart {
     const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
     return { sha1: sha1, partId: partId, offset: offset, size: size } satisfies UploadPart;
 }
-export function serializeUploadPart(val: UploadPart): JSON {
+export function serializeUploadPart(val: UploadPart): Json {
     const base: any = serializeUploadPartMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"UploadPart\"";
@@ -7382,18 +7382,18 @@ export function serializeUploadPart(val: UploadPart): JSON {
 export interface UploadedPart {
     readonly part?: UploadPart;
 }
-export function deserializeUploadedPart(val: JSON): UploadedPart {
+export function deserializeUploadedPart(val: Json): UploadedPart {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadedPart\"";
     }
     const part: undefined | UploadPart = val.part === void 0 ? void 0 : deserializeUploadPart(val.part);
     return { part: part } satisfies UploadedPart;
 }
-export function serializeUploadedPart(val: UploadedPart): JSON {
+export function serializeUploadedPart(val: UploadedPart): Json {
     return { ["part"]: val.part === void 0 ? void 0 : serializeUploadPart(val.part) };
 }
 export type UploadPartsOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeUploadPartsOrderFieldDirectionField(val: JSON): UploadPartsOrderFieldDirectionField {
+export function deserializeUploadPartsOrderFieldDirectionField(val: Json): UploadPartsOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UploadPartsOrderFieldDirectionField\"";
     }
@@ -7405,14 +7405,14 @@ export function deserializeUploadPartsOrderFieldDirectionField(val: JSON): Uploa
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUploadPartsOrderFieldDirectionField(val: UploadPartsOrderFieldDirectionField): JSON {
+export function serializeUploadPartsOrderFieldDirectionField(val: UploadPartsOrderFieldDirectionField): Json {
     return val;
 }
 export interface UploadPartsOrderField {
     readonly by?: string;
     readonly direction?: UploadPartsOrderFieldDirectionField;
 }
-export function deserializeUploadPartsOrderField(val: JSON): UploadPartsOrderField {
+export function deserializeUploadPartsOrderField(val: Json): UploadPartsOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadPartsOrderField\"";
     }
@@ -7423,7 +7423,7 @@ export function deserializeUploadPartsOrderField(val: JSON): UploadPartsOrderFie
     const direction: undefined | UploadPartsOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeUploadPartsOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies UploadPartsOrderField;
 }
-export function serializeUploadPartsOrderField(val: UploadPartsOrderField): JSON {
+export function serializeUploadPartsOrderField(val: UploadPartsOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeUploadPartsOrderFieldDirectionField(val.direction) };
 }
 export interface UploadParts {
@@ -7433,7 +7433,7 @@ export interface UploadParts {
     readonly order?: readonly UploadPartsOrderField[];
     readonly entries?: readonly UploadPart[];
 }
-export function deserializeUploadParts(val: JSON): UploadParts {
+export function deserializeUploadParts(val: Json): UploadParts {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadParts\"";
     }
@@ -7452,18 +7452,18 @@ export function deserializeUploadParts(val: JSON): UploadParts {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"UploadParts\"";
     }
-    const order: undefined | readonly UploadPartsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly UploadPartsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeUploadPartsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"UploadParts\"";
     }
-    const entries: undefined | readonly UploadPart[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly UploadPart[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeUploadPart(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies UploadParts;
 }
-export function serializeUploadParts(val: UploadParts): JSON {
+export function serializeUploadParts(val: UploadParts): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: UploadPartsOrderField): any {
             return serializeUploadPartsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: UploadPart): any {
@@ -7471,7 +7471,7 @@ export function serializeUploadParts(val: UploadParts): JSON {
         }) as readonly any[] };
 }
 export type UploadSessionTypeField = "upload_session";
-export function deserializeUploadSessionTypeField(val: JSON): UploadSessionTypeField {
+export function deserializeUploadSessionTypeField(val: Json): UploadSessionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UploadSessionTypeField\"";
     }
@@ -7480,7 +7480,7 @@ export function deserializeUploadSessionTypeField(val: JSON): UploadSessionTypeF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUploadSessionTypeField(val: UploadSessionTypeField): JSON {
+export function serializeUploadSessionTypeField(val: UploadSessionTypeField): Json {
     return val;
 }
 export interface UploadSessionSessionEndpointsField {
@@ -7491,7 +7491,7 @@ export interface UploadSessionSessionEndpointsField {
     readonly status?: string;
     readonly logEvent?: string;
 }
-export function deserializeUploadSessionSessionEndpointsField(val: JSON): UploadSessionSessionEndpointsField {
+export function deserializeUploadSessionSessionEndpointsField(val: Json): UploadSessionSessionEndpointsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadSessionSessionEndpointsField\"";
     }
@@ -7521,7 +7521,7 @@ export function deserializeUploadSessionSessionEndpointsField(val: JSON): Upload
     const logEvent: undefined | string = isJson(val.log_event, "string") ? val.log_event : void 0;
     return { uploadPart: uploadPart, commit: commit, abort: abort, listParts: listParts, status: status, logEvent: logEvent } satisfies UploadSessionSessionEndpointsField;
 }
-export function serializeUploadSessionSessionEndpointsField(val: UploadSessionSessionEndpointsField): JSON {
+export function serializeUploadSessionSessionEndpointsField(val: UploadSessionSessionEndpointsField): Json {
     return { ["upload_part"]: val.uploadPart, ["commit"]: val.commit, ["abort"]: val.abort, ["list_parts"]: val.listParts, ["status"]: val.status, ["log_event"]: val.logEvent };
 }
 export interface UploadSession {
@@ -7533,7 +7533,7 @@ export interface UploadSession {
     readonly numPartsProcessed?: number;
     readonly sessionEndpoints?: UploadSessionSessionEndpointsField;
 }
-export function deserializeUploadSession(val: JSON): UploadSession {
+export function deserializeUploadSession(val: Json): UploadSession {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadSession\"";
     }
@@ -7561,14 +7561,14 @@ export function deserializeUploadSession(val: JSON): UploadSession {
     const sessionEndpoints: undefined | UploadSessionSessionEndpointsField = val.session_endpoints === void 0 ? void 0 : deserializeUploadSessionSessionEndpointsField(val.session_endpoints);
     return { id: id, type: type, sessionExpiresAt: sessionExpiresAt, partSize: partSize, totalParts: totalParts, numPartsProcessed: numPartsProcessed, sessionEndpoints: sessionEndpoints } satisfies UploadSession;
 }
-export function serializeUploadSession(val: UploadSession): JSON {
+export function serializeUploadSession(val: UploadSession): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeUploadSessionTypeField(val.type), ["session_expires_at"]: val.sessionExpiresAt, ["part_size"]: val.partSize, ["total_parts"]: val.totalParts, ["num_parts_processed"]: val.numPartsProcessed, ["session_endpoints"]: val.sessionEndpoints === void 0 ? void 0 : serializeUploadSessionSessionEndpointsField(val.sessionEndpoints) };
 }
 export interface UploadUrl {
     readonly uploadUrl?: string;
     readonly uploadToken?: string;
 }
-export function deserializeUploadUrl(val: JSON): UploadUrl {
+export function deserializeUploadUrl(val: Json): UploadUrl {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UploadUrl\"";
     }
@@ -7582,11 +7582,11 @@ export function deserializeUploadUrl(val: JSON): UploadUrl {
     const uploadToken: undefined | string = isJson(val.upload_token, "string") ? val.upload_token : void 0;
     return { uploadUrl: uploadUrl, uploadToken: uploadToken } satisfies UploadUrl;
 }
-export function serializeUploadUrl(val: UploadUrl): JSON {
+export function serializeUploadUrl(val: UploadUrl): Json {
     return { ["upload_url"]: val.uploadUrl, ["upload_token"]: val.uploadToken };
 }
 export type UserStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
-export function deserializeUserStatusField(val: JSON): UserStatusField {
+export function deserializeUserStatusField(val: Json): UserStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UserStatusField\"";
     }
@@ -7604,14 +7604,14 @@ export function deserializeUserStatusField(val: JSON): UserStatusField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUserStatusField(val: UserStatusField): JSON {
+export function serializeUserStatusField(val: UserStatusField): Json {
     return val;
 }
 export interface UserNotificationEmailField {
     readonly email?: string;
     readonly isConfirmed?: boolean;
 }
-export function deserializeUserNotificationEmailField(val: JSON): UserNotificationEmailField {
+export function deserializeUserNotificationEmailField(val: Json): UserNotificationEmailField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserNotificationEmailField\"";
     }
@@ -7625,7 +7625,7 @@ export function deserializeUserNotificationEmailField(val: JSON): UserNotificati
     const isConfirmed: undefined | boolean = isJson(val.is_confirmed, "boolean") ? val.is_confirmed : void 0;
     return { email: email, isConfirmed: isConfirmed } satisfies UserNotificationEmailField;
 }
-export function serializeUserNotificationEmailField(val: UserNotificationEmailField): JSON {
+export function serializeUserNotificationEmailField(val: UserNotificationEmailField): Json {
     return { ["email"]: val.email, ["is_confirmed"]: val.isConfirmed };
 }
 export interface UserAvatarPicUrlsField {
@@ -7633,7 +7633,7 @@ export interface UserAvatarPicUrlsField {
     readonly large?: string;
     readonly preview?: string;
 }
-export function deserializeUserAvatarPicUrlsField(val: JSON): UserAvatarPicUrlsField {
+export function deserializeUserAvatarPicUrlsField(val: Json): UserAvatarPicUrlsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserAvatarPicUrlsField\"";
     }
@@ -7651,24 +7651,24 @@ export function deserializeUserAvatarPicUrlsField(val: JSON): UserAvatarPicUrlsF
     const preview: undefined | string = isJson(val.preview, "string") ? val.preview : void 0;
     return { small: small, large: large, preview: preview } satisfies UserAvatarPicUrlsField;
 }
-export function serializeUserAvatarPicUrlsField(val: UserAvatarPicUrlsField): JSON {
+export function serializeUserAvatarPicUrlsField(val: UserAvatarPicUrlsField): Json {
     return { ["small"]: val.small, ["large"]: val.large, ["preview"]: val.preview };
 }
 export interface UserAvatar {
     readonly picUrls?: UserAvatarPicUrlsField;
 }
-export function deserializeUserAvatar(val: JSON): UserAvatar {
+export function deserializeUserAvatar(val: Json): UserAvatar {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserAvatar\"";
     }
     const picUrls: undefined | UserAvatarPicUrlsField = val.pic_urls === void 0 ? void 0 : deserializeUserAvatarPicUrlsField(val.pic_urls);
     return { picUrls: picUrls } satisfies UserAvatar;
 }
-export function serializeUserAvatar(val: UserAvatar): JSON {
+export function serializeUserAvatar(val: UserAvatar): Json {
     return { ["pic_urls"]: val.picUrls === void 0 ? void 0 : serializeUserAvatarPicUrlsField(val.picUrls) };
 }
 export type UsersOrderFieldDirectionField = "ASC" | "DESC";
-export function deserializeUsersOrderFieldDirectionField(val: JSON): UsersOrderFieldDirectionField {
+export function deserializeUsersOrderFieldDirectionField(val: Json): UsersOrderFieldDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UsersOrderFieldDirectionField\"";
     }
@@ -7680,14 +7680,14 @@ export function deserializeUsersOrderFieldDirectionField(val: JSON): UsersOrderF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUsersOrderFieldDirectionField(val: UsersOrderFieldDirectionField): JSON {
+export function serializeUsersOrderFieldDirectionField(val: UsersOrderFieldDirectionField): Json {
     return val;
 }
 export interface UsersOrderField {
     readonly by?: string;
     readonly direction?: UsersOrderFieldDirectionField;
 }
-export function deserializeUsersOrderField(val: JSON): UsersOrderField {
+export function deserializeUsersOrderField(val: Json): UsersOrderField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UsersOrderField\"";
     }
@@ -7698,11 +7698,11 @@ export function deserializeUsersOrderField(val: JSON): UsersOrderField {
     const direction: undefined | UsersOrderFieldDirectionField = val.direction === void 0 ? void 0 : deserializeUsersOrderFieldDirectionField(val.direction);
     return { by: by, direction: direction } satisfies UsersOrderField;
 }
-export function serializeUsersOrderField(val: UsersOrderField): JSON {
+export function serializeUsersOrderField(val: UsersOrderField): Json {
     return { ["by"]: val.by, ["direction"]: val.direction === void 0 ? void 0 : serializeUsersOrderFieldDirectionField(val.direction) };
 }
 export type UserFullRoleField = "admin" | "coadmin" | "user";
-export function deserializeUserFullRoleField(val: JSON): UserFullRoleField {
+export function deserializeUserFullRoleField(val: Json): UserFullRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UserFullRoleField\"";
     }
@@ -7717,11 +7717,11 @@ export function deserializeUserFullRoleField(val: JSON): UserFullRoleField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUserFullRoleField(val: UserFullRoleField): JSON {
+export function serializeUserFullRoleField(val: UserFullRoleField): Json {
     return val;
 }
 export type UserFullEnterpriseFieldTypeField = "enterprise";
-export function deserializeUserFullEnterpriseFieldTypeField(val: JSON): UserFullEnterpriseFieldTypeField {
+export function deserializeUserFullEnterpriseFieldTypeField(val: Json): UserFullEnterpriseFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UserFullEnterpriseFieldTypeField\"";
     }
@@ -7730,7 +7730,7 @@ export function deserializeUserFullEnterpriseFieldTypeField(val: JSON): UserFull
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUserFullEnterpriseFieldTypeField(val: UserFullEnterpriseFieldTypeField): JSON {
+export function serializeUserFullEnterpriseFieldTypeField(val: UserFullEnterpriseFieldTypeField): Json {
     return val;
 }
 export interface UserFullEnterpriseField {
@@ -7738,7 +7738,7 @@ export interface UserFullEnterpriseField {
     readonly type?: UserFullEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export function deserializeUserFullEnterpriseField(val: JSON): UserFullEnterpriseField {
+export function deserializeUserFullEnterpriseField(val: Json): UserFullEnterpriseField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserFullEnterpriseField\"";
     }
@@ -7753,11 +7753,11 @@ export function deserializeUserFullEnterpriseField(val: JSON): UserFullEnterpris
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { id: id, type: type, name: name } satisfies UserFullEnterpriseField;
 }
-export function serializeUserFullEnterpriseField(val: UserFullEnterpriseField): JSON {
+export function serializeUserFullEnterpriseField(val: UserFullEnterpriseField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeUserFullEnterpriseFieldTypeField(val.type), ["name"]: val.name };
 }
 export type UserBaseTypeField = "user";
-export function deserializeUserBaseTypeField(val: JSON): UserBaseTypeField {
+export function deserializeUserBaseTypeField(val: Json): UserBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UserBaseTypeField\"";
     }
@@ -7766,14 +7766,14 @@ export function deserializeUserBaseTypeField(val: JSON): UserBaseTypeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUserBaseTypeField(val: UserBaseTypeField): JSON {
+export function serializeUserBaseTypeField(val: UserBaseTypeField): Json {
     return val;
 }
 export interface UserBase {
     readonly id?: string;
     readonly type: UserBaseTypeField;
 }
-export function deserializeUserBase(val: JSON): UserBase {
+export function deserializeUserBase(val: Json): UserBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserBase\"";
     }
@@ -7787,7 +7787,7 @@ export function deserializeUserBase(val: JSON): UserBase {
     const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
     return { id: id, type: type } satisfies UserBase;
 }
-export function serializeUserBase(val: UserBase): JSON {
+export function serializeUserBase(val: UserBase): Json {
     return { ["id"]: val.id, ["type"]: serializeUserBaseTypeField(val.type) };
 }
 export type UserCollaborations = UserBase & {
@@ -7798,7 +7798,7 @@ export type UserCollaborations = UserBase & {
      * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
     readonly login: string;
 };
-export function deserializeUserCollaborations(val: JSON): UserCollaborations {
+export function deserializeUserCollaborations(val: Json): UserCollaborations {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserCollaborations\"";
     }
@@ -7826,7 +7826,7 @@ export function deserializeUserCollaborations(val: JSON): UserCollaborations {
     const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
     return { name: name, login: login, id: id, type: type } satisfies UserCollaborations;
 }
-export function serializeUserCollaborations(val: UserCollaborations): JSON {
+export function serializeUserCollaborations(val: UserCollaborations): Json {
     const base: any = serializeUserBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"UserCollaborations\"";
@@ -7841,7 +7841,7 @@ export type UserMini = UserBase & {
      * The primary email address of this user */
     readonly login: string;
 };
-export function deserializeUserMini(val: JSON): UserMini {
+export function deserializeUserMini(val: Json): UserMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserMini\"";
     }
@@ -7869,7 +7869,7 @@ export function deserializeUserMini(val: JSON): UserMini {
     const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
     return { name: name, login: login, id: id, type: type } satisfies UserMini;
 }
-export function serializeUserMini(val: UserMini): JSON {
+export function serializeUserMini(val: UserMini): Json {
     const base: any = serializeUserBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"UserMini\"";
@@ -7921,7 +7921,7 @@ export type User = UserMini & {
      * to the primary email address. */
     readonly notificationEmail?: UserNotificationEmailField;
 };
-export function deserializeUser(val: JSON): User {
+export function deserializeUser(val: Json): User {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"User\"";
     }
@@ -7995,7 +7995,7 @@ export function deserializeUser(val: JSON): User {
     const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
     return { createdAt: createdAt, modifiedAt: modifiedAt, language: language, timezone: timezone, spaceAmount: spaceAmount, spaceUsed: spaceUsed, maxUploadSize: maxUploadSize, status: status, jobTitle: jobTitle, phone: phone, address: address, avatarUrl: avatarUrl, notificationEmail: notificationEmail, name: name, login: login, id: id, type: type } satisfies User;
 }
-export function serializeUser(val: User): JSON {
+export function serializeUser(val: User): Json {
     const base: any = serializeUserMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"User\"";
@@ -8009,7 +8009,7 @@ export interface Users {
     readonly order?: readonly UsersOrderField[];
     readonly entries?: readonly User[];
 }
-export function deserializeUsers(val: JSON): Users {
+export function deserializeUsers(val: Json): Users {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Users\"";
     }
@@ -8028,18 +8028,18 @@ export function deserializeUsers(val: JSON): Users {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Users\"";
     }
-    const order: undefined | readonly UsersOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly UsersOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeUsersOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Users\"";
     }
-    const entries: undefined | readonly User[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly User[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeUser(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Users;
 }
-export function serializeUsers(val: Users): JSON {
+export function serializeUsers(val: Users): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: UsersOrderField): any {
             return serializeUsersOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: User): any {
@@ -8066,7 +8066,7 @@ export interface TrashWebLinkRestored {
     readonly sharedLink?: string;
     readonly itemStatus?: TrashWebLinkRestoredItemStatusField;
 }
-export function deserializeTrashWebLinkRestored(val: JSON): TrashWebLinkRestored {
+export function deserializeTrashWebLinkRestored(val: Json): TrashWebLinkRestored {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashWebLinkRestored\"";
     }
@@ -8129,7 +8129,7 @@ export function deserializeTrashWebLinkRestored(val: JSON): TrashWebLinkRestored
     const itemStatus: undefined | TrashWebLinkRestoredItemStatusField = val.item_status === void 0 ? void 0 : deserializeTrashWebLinkRestoredItemStatusField(val.item_status);
     return { type: type, id: id, sequenceId: sequenceId, etag: etag, name: name, url: url, parent: parent, description: description, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, itemStatus: itemStatus } satisfies TrashWebLinkRestored;
 }
-export function serializeTrashWebLinkRestored(val: TrashWebLinkRestored): JSON {
+export function serializeTrashWebLinkRestored(val: TrashWebLinkRestored): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrashWebLinkRestoredTypeField(val.type), ["id"]: val.id, ["sequence_id"]: val.sequenceId, ["etag"]: val.etag, ["name"]: val.name, ["url"]: val.url, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["description"]: val.description, ["path_collection"]: serializeTrashWebLinkRestoredPathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeTrashWebLinkRestoredItemStatusField(val.itemStatus) };
 }
 export interface TrashFolderRestored {
@@ -8155,7 +8155,7 @@ export interface TrashFolderRestored {
     readonly parent?: FolderMini;
     readonly itemStatus?: TrashFolderRestoredItemStatusField;
 }
-export function deserializeTrashFolderRestored(val: JSON): TrashFolderRestored {
+export function deserializeTrashFolderRestored(val: Json): TrashFolderRestored {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFolderRestored\"";
     }
@@ -8224,7 +8224,7 @@ export function deserializeTrashFolderRestored(val: JSON): TrashFolderRestored {
     const itemStatus: undefined | TrashFolderRestoredItemStatusField = val.item_status === void 0 ? void 0 : deserializeTrashFolderRestoredItemStatusField(val.item_status);
     return { id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus } satisfies TrashFolderRestored;
 }
-export function serializeTrashFolderRestored(val: TrashFolderRestored): JSON {
+export function serializeTrashFolderRestored(val: TrashFolderRestored): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: val.type === void 0 ? void 0 : serializeTrashFolderRestoredTypeField(val.type), ["sequence_id"]: val.sequenceId, ["name"]: val.name, ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["description"]: val.description, ["size"]: val.size, ["path_collection"]: val.pathCollection === void 0 ? void 0 : serializeTrashFolderRestoredPathCollectionField(val.pathCollection), ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["folder_upload_email"]: val.folderUploadEmail, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeTrashFolderRestoredItemStatusField(val.itemStatus) };
 }
 export interface TrashFileRestored {
@@ -8251,7 +8251,7 @@ export interface TrashFileRestored {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFileRestoredItemStatusField;
 }
-export function deserializeTrashFileRestored(val: JSON): TrashFileRestored {
+export function deserializeTrashFileRestored(val: Json): TrashFileRestored {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFileRestored\"";
     }
@@ -8357,7 +8357,7 @@ export function deserializeTrashFileRestored(val: JSON): TrashFileRestored {
     const itemStatus: TrashFileRestoredItemStatusField = deserializeTrashFileRestoredItemStatusField(val.item_status);
     return { id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus } satisfies TrashFileRestored;
 }
-export function serializeTrashFileRestored(val: TrashFileRestored): JSON {
+export function serializeTrashFileRestored(val: TrashFileRestored): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeTrashFileRestoredTypeField(val.type), ["sequence_id"]: val.sequenceId, ["name"]: val.name, ["sha1"]: val.sha1, ["file_version"]: val.fileVersion === void 0 ? void 0 : serializeFileVersionMini(val.fileVersion), ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeTrashFileRestoredPathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeTrashFileRestoredItemStatusField(val.itemStatus) };
 }
 export interface TrashWebLink {
@@ -8380,7 +8380,7 @@ export interface TrashWebLink {
     readonly sharedLink?: string;
     readonly itemStatus?: TrashWebLinkItemStatusField;
 }
-export function deserializeTrashWebLink(val: JSON): TrashWebLink {
+export function deserializeTrashWebLink(val: Json): TrashWebLink {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashWebLink\"";
     }
@@ -8437,7 +8437,7 @@ export function deserializeTrashWebLink(val: JSON): TrashWebLink {
     const itemStatus: undefined | TrashWebLinkItemStatusField = val.item_status === void 0 ? void 0 : deserializeTrashWebLinkItemStatusField(val.item_status);
     return { type: type, id: id, sequenceId: sequenceId, etag: etag, name: name, url: url, parent: parent, description: description, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, itemStatus: itemStatus } satisfies TrashWebLink;
 }
-export function serializeTrashWebLink(val: TrashWebLink): JSON {
+export function serializeTrashWebLink(val: TrashWebLink): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrashWebLinkTypeField(val.type), ["id"]: val.id, ["sequence_id"]: val.sequenceId, ["etag"]: val.etag, ["name"]: val.name, ["url"]: val.url, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["description"]: val.description, ["path_collection"]: val.pathCollection === void 0 ? void 0 : serializeTrashWebLinkPathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeTrashWebLinkItemStatusField(val.itemStatus) };
 }
 export interface TrashFolder {
@@ -8463,7 +8463,7 @@ export interface TrashFolder {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFolderItemStatusField;
 }
-export function deserializeTrashFolder(val: JSON): TrashFolder {
+export function deserializeTrashFolder(val: Json): TrashFolder {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFolder\"";
     }
@@ -8562,7 +8562,7 @@ export function deserializeTrashFolder(val: JSON): TrashFolder {
     const itemStatus: TrashFolderItemStatusField = deserializeTrashFolderItemStatusField(val.item_status);
     return { id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus } satisfies TrashFolder;
 }
-export function serializeTrashFolder(val: TrashFolder): JSON {
+export function serializeTrashFolder(val: TrashFolder): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeTrashFolderTypeField(val.type), ["sequence_id"]: val.sequenceId, ["name"]: val.name, ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeTrashFolderPathCollectionField(val.pathCollection), ["created_by"]: serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["folder_upload_email"]: val.folderUploadEmail, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeTrashFolderItemStatusField(val.itemStatus) };
 }
 export interface TrashFile {
@@ -8589,7 +8589,7 @@ export interface TrashFile {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFileItemStatusField;
 }
-export function deserializeTrashFile(val: JSON): TrashFile {
+export function deserializeTrashFile(val: Json): TrashFile {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrashFile\"";
     }
@@ -8695,7 +8695,7 @@ export function deserializeTrashFile(val: JSON): TrashFile {
     const itemStatus: TrashFileItemStatusField = deserializeTrashFileItemStatusField(val.item_status);
     return { id: id, etag: etag, type: type, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus } satisfies TrashFile;
 }
-export function serializeTrashFile(val: TrashFile): JSON {
+export function serializeTrashFile(val: TrashFile): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeTrashFileTypeField(val.type), ["sequence_id"]: val.sequenceId, ["name"]: val.name, ["sha1"]: val.sha1, ["file_version"]: val.fileVersion === void 0 ? void 0 : serializeFileVersionMini(val.fileVersion), ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeTrashFilePathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink, ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeTrashFileItemStatusField(val.itemStatus) };
 }
 export interface TermsOfServiceUserStatus {
@@ -8707,7 +8707,7 @@ export interface TermsOfServiceUserStatus {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export function deserializeTermsOfServiceUserStatus(val: JSON): TermsOfServiceUserStatus {
+export function deserializeTermsOfServiceUserStatus(val: Json): TermsOfServiceUserStatus {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfServiceUserStatus\"";
     }
@@ -8732,14 +8732,14 @@ export function deserializeTermsOfServiceUserStatus(val: JSON): TermsOfServiceUs
     const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     return { id: id, type: type, tos: tos, user: user, isAccepted: isAccepted, createdAt: createdAt, modifiedAt: modifiedAt } satisfies TermsOfServiceUserStatus;
 }
-export function serializeTermsOfServiceUserStatus(val: TermsOfServiceUserStatus): JSON {
+export function serializeTermsOfServiceUserStatus(val: TermsOfServiceUserStatus): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeTermsOfServiceUserStatusTypeField(val.type), ["tos"]: val.tos === void 0 ? void 0 : serializeTermsOfServiceBase(val.tos), ["user"]: val.user === void 0 ? void 0 : serializeUserMini(val.user), ["is_accepted"]: val.isAccepted, ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt };
 }
 export interface TermsOfServiceUserStatuses {
     readonly totalCount?: number;
     readonly entries?: readonly TermsOfServiceUserStatus[];
 }
-export function deserializeTermsOfServiceUserStatuses(val: JSON): TermsOfServiceUserStatuses {
+export function deserializeTermsOfServiceUserStatuses(val: Json): TermsOfServiceUserStatuses {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TermsOfServiceUserStatuses\"";
     }
@@ -8750,12 +8750,12 @@ export function deserializeTermsOfServiceUserStatuses(val: JSON): TermsOfService
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TermsOfServiceUserStatuses\"";
     }
-    const entries: undefined | readonly TermsOfServiceUserStatus[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly TermsOfServiceUserStatus[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeTermsOfServiceUserStatus(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies TermsOfServiceUserStatuses;
 }
-export function serializeTermsOfServiceUserStatuses(val: TermsOfServiceUserStatuses): JSON {
+export function serializeTermsOfServiceUserStatuses(val: TermsOfServiceUserStatuses): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: TermsOfServiceUserStatus): any {
             return serializeTermsOfServiceUserStatus(item);
         }) as readonly any[] };
@@ -8772,7 +8772,7 @@ export interface TaskAssignment {
     readonly resolutionState?: TaskAssignmentResolutionStateField;
     readonly assignedBy?: UserMini;
 }
-export function deserializeTaskAssignment(val: JSON): TaskAssignment {
+export function deserializeTaskAssignment(val: Json): TaskAssignment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TaskAssignment\"";
     }
@@ -8803,14 +8803,14 @@ export function deserializeTaskAssignment(val: JSON): TaskAssignment {
     const assignedBy: undefined | UserMini = val.assigned_by === void 0 ? void 0 : deserializeUserMini(val.assigned_by);
     return { id: id, type: type, item: item, assignedTo: assignedTo, message: message, completedAt: completedAt, assignedAt: assignedAt, remindedAt: remindedAt, resolutionState: resolutionState, assignedBy: assignedBy } satisfies TaskAssignment;
 }
-export function serializeTaskAssignment(val: TaskAssignment): JSON {
+export function serializeTaskAssignment(val: TaskAssignment): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeTaskAssignmentTypeField(val.type), ["item"]: val.item === void 0 ? void 0 : serializeFileMini(val.item), ["assigned_to"]: val.assignedTo === void 0 ? void 0 : serializeUserMini(val.assignedTo), ["message"]: val.message, ["completed_at"]: val.completedAt, ["assigned_at"]: val.assignedAt, ["reminded_at"]: val.remindedAt, ["resolution_state"]: val.resolutionState === void 0 ? void 0 : serializeTaskAssignmentResolutionStateField(val.resolutionState), ["assigned_by"]: val.assignedBy === void 0 ? void 0 : serializeUserMini(val.assignedBy) };
 }
 export interface TaskAssignments {
     readonly totalCount?: number;
     readonly entries?: readonly TaskAssignment[];
 }
-export function deserializeTaskAssignments(val: JSON): TaskAssignments {
+export function deserializeTaskAssignments(val: Json): TaskAssignments {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TaskAssignments\"";
     }
@@ -8821,12 +8821,12 @@ export function deserializeTaskAssignments(val: JSON): TaskAssignments {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TaskAssignments\"";
     }
-    const entries: undefined | readonly TaskAssignment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly TaskAssignment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeTaskAssignment(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies TaskAssignments;
 }
-export function serializeTaskAssignments(val: TaskAssignments): JSON {
+export function serializeTaskAssignments(val: TaskAssignments): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: TaskAssignment): any {
             return serializeTaskAssignment(item);
         }) as readonly any[] };
@@ -8844,7 +8844,7 @@ export interface Task {
     readonly createdAt?: string;
     readonly completionRule?: TaskCompletionRuleField;
 }
-export function deserializeTask(val: JSON): Task {
+export function deserializeTask(val: Json): Task {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Task\"";
     }
@@ -8876,14 +8876,14 @@ export function deserializeTask(val: JSON): Task {
     const completionRule: undefined | TaskCompletionRuleField = val.completion_rule === void 0 ? void 0 : deserializeTaskCompletionRuleField(val.completion_rule);
     return { id: id, type: type, item: item, dueAt: dueAt, action: action, message: message, taskAssignmentCollection: taskAssignmentCollection, isCompleted: isCompleted, createdBy: createdBy, createdAt: createdAt, completionRule: completionRule } satisfies Task;
 }
-export function serializeTask(val: Task): JSON {
+export function serializeTask(val: Task): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeTaskTypeField(val.type), ["item"]: val.item === void 0 ? void 0 : serializeFileMini(val.item), ["due_at"]: val.dueAt, ["action"]: val.action === void 0 ? void 0 : serializeTaskActionField(val.action), ["message"]: val.message, ["task_assignment_collection"]: val.taskAssignmentCollection === void 0 ? void 0 : serializeTaskAssignments(val.taskAssignmentCollection), ["is_completed"]: val.isCompleted, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["created_at"]: val.createdAt, ["completion_rule"]: val.completionRule === void 0 ? void 0 : serializeTaskCompletionRuleField(val.completionRule) };
 }
 export interface Tasks {
     readonly totalCount?: number;
     readonly entries?: readonly Task[];
 }
-export function deserializeTasks(val: JSON): Tasks {
+export function deserializeTasks(val: Json): Tasks {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Tasks\"";
     }
@@ -8894,12 +8894,12 @@ export function deserializeTasks(val: JSON): Tasks {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Tasks\"";
     }
-    const entries: undefined | readonly Task[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Task[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeTask(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies Tasks;
 }
-export function serializeTasks(val: Tasks): JSON {
+export function serializeTasks(val: Tasks): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Task): any {
             return serializeTask(item);
         }) as readonly any[] };
@@ -8914,7 +8914,7 @@ export interface RetentionPolicyAssignment {
     readonly assignedAt?: string;
     readonly startDateField?: string;
 }
-export function deserializeRetentionPolicyAssignment(val: JSON): RetentionPolicyAssignment {
+export function deserializeRetentionPolicyAssignment(val: Json): RetentionPolicyAssignment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicyAssignment\"";
     }
@@ -8928,7 +8928,7 @@ export function deserializeRetentionPolicyAssignment(val: JSON): RetentionPolicy
     if (!(val.filter_fields === void 0) && !isJson(val.filter_fields, "array")) {
         throw "Expecting array for \"filter_fields\" of type \"RetentionPolicyAssignment\"";
     }
-    const filterFields: undefined | readonly RetentionPolicyAssignmentFilterFieldsField[] = isJson(val.filter_fields, "array") ? val.filter_fields.map(function (itm: JSON): any {
+    const filterFields: undefined | readonly RetentionPolicyAssignmentFilterFieldsField[] = isJson(val.filter_fields, "array") ? val.filter_fields.map(function (itm: Json): any {
         return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
     }) as readonly any[] : void 0;
     const assignedBy: undefined | UserMini = val.assigned_by === void 0 ? void 0 : deserializeUserMini(val.assigned_by);
@@ -8942,7 +8942,7 @@ export function deserializeRetentionPolicyAssignment(val: JSON): RetentionPolicy
     const startDateField: undefined | string = isJson(val.start_date_field, "string") ? val.start_date_field : void 0;
     return { id: id, type: type, retentionPolicy: retentionPolicy, assignedTo: assignedTo, filterFields: filterFields, assignedBy: assignedBy, assignedAt: assignedAt, startDateField: startDateField } satisfies RetentionPolicyAssignment;
 }
-export function serializeRetentionPolicyAssignment(val: RetentionPolicyAssignment): JSON {
+export function serializeRetentionPolicyAssignment(val: RetentionPolicyAssignment): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeRetentionPolicyAssignmentTypeField(val.type), ["retention_policy"]: val.retentionPolicy === void 0 ? void 0 : serializeRetentionPolicyMini(val.retentionPolicy), ["assigned_to"]: val.assignedTo === void 0 ? void 0 : serializeRetentionPolicyAssignmentAssignedToField(val.assignedTo), ["filter_fields"]: val.filterFields === void 0 ? void 0 : val.filterFields.map(function (item: RetentionPolicyAssignmentFilterFieldsField): any {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
         }) as readonly any[], ["assigned_by"]: val.assignedBy === void 0 ? void 0 : serializeUserMini(val.assignedBy), ["assigned_at"]: val.assignedAt, ["start_date_field"]: val.startDateField };
@@ -9006,7 +9006,7 @@ export type RetentionPolicy = RetentionPolicyMini & {
      * Counts the retention policy assignments for each item type. */
     readonly assignmentCounts?: RetentionPolicyAssignmentCountsField;
 };
-export function deserializeRetentionPolicy(val: JSON): RetentionPolicy {
+export function deserializeRetentionPolicy(val: Json): RetentionPolicy {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RetentionPolicy\"";
     }
@@ -9037,7 +9037,7 @@ export function deserializeRetentionPolicy(val: JSON): RetentionPolicy {
     if (!(val.custom_notification_recipients === void 0) && !isJson(val.custom_notification_recipients, "array")) {
         throw "Expecting array for \"custom_notification_recipients\" of type \"RetentionPolicy\"";
     }
-    const customNotificationRecipients: undefined | readonly UserMini[] = isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: JSON): any {
+    const customNotificationRecipients: undefined | readonly UserMini[] = isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: Json): any {
         return deserializeUserMini(itm);
     }) as readonly any[] : void 0;
     const assignmentCounts: undefined | RetentionPolicyAssignmentCountsField = val.assignment_counts === void 0 ? void 0 : deserializeRetentionPolicyAssignmentCountsField(val.assignment_counts);
@@ -9063,7 +9063,7 @@ export function deserializeRetentionPolicy(val: JSON): RetentionPolicy {
     const type: RetentionPolicyBaseTypeField = deserializeRetentionPolicyBaseTypeField(val.type);
     return { description: description, policyType: policyType, retentionType: retentionType, status: status, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, canOwnerExtendRetention: canOwnerExtendRetention, areOwnersNotified: areOwnersNotified, customNotificationRecipients: customNotificationRecipients, assignmentCounts: assignmentCounts, policyName: policyName, retentionLength: retentionLength, dispositionAction: dispositionAction, id: id, type: type } satisfies RetentionPolicy;
 }
-export function serializeRetentionPolicy(val: RetentionPolicy): JSON {
+export function serializeRetentionPolicy(val: RetentionPolicy): Json {
     const base: any = serializeRetentionPolicyMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"RetentionPolicy\"";
@@ -9118,7 +9118,7 @@ export type LegalHoldPolicy = LegalHoldPolicyMini & {
      * Optional notes about why the policy was created. */
     readonly releaseNotes?: string;
 };
-export function deserializeLegalHoldPolicy(val: JSON): LegalHoldPolicy {
+export function deserializeLegalHoldPolicy(val: Json): LegalHoldPolicy {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicy\"";
     }
@@ -9164,7 +9164,7 @@ export function deserializeLegalHoldPolicy(val: JSON): LegalHoldPolicy {
     const type: undefined | LegalHoldPolicyMiniTypeField = val.type === void 0 ? void 0 : deserializeLegalHoldPolicyMiniTypeField(val.type);
     return { policyName: policyName, description: description, status: status, assignmentCounts: assignmentCounts, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, deletedAt: deletedAt, filterStartedAt: filterStartedAt, filterEndedAt: filterEndedAt, releaseNotes: releaseNotes, id: id, type: type } satisfies LegalHoldPolicy;
 }
-export function serializeLegalHoldPolicy(val: LegalHoldPolicy): JSON {
+export function serializeLegalHoldPolicy(val: LegalHoldPolicy): Json {
     const base: any = serializeLegalHoldPolicyMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"LegalHoldPolicy\"";
@@ -9177,7 +9177,7 @@ export interface LegalHoldPolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly LegalHoldPolicy[];
 }
-export function deserializeLegalHoldPolicies(val: JSON): LegalHoldPolicies {
+export function deserializeLegalHoldPolicies(val: Json): LegalHoldPolicies {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicies\"";
     }
@@ -9196,12 +9196,12 @@ export function deserializeLegalHoldPolicies(val: JSON): LegalHoldPolicies {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"LegalHoldPolicies\"";
     }
-    const entries: undefined | readonly LegalHoldPolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly LegalHoldPolicy[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeLegalHoldPolicy(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies LegalHoldPolicies;
 }
-export function serializeLegalHoldPolicies(val: LegalHoldPolicies): JSON {
+export function serializeLegalHoldPolicies(val: LegalHoldPolicies): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: LegalHoldPolicy): any {
             return serializeLegalHoldPolicy(item);
         }) as readonly any[] };
@@ -9216,7 +9216,7 @@ export interface Invite {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export function deserializeInvite(val: JSON): Invite {
+export function deserializeInvite(val: Json): Invite {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Invite\"";
     }
@@ -9242,7 +9242,7 @@ export function deserializeInvite(val: JSON): Invite {
     const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     return { id: id, type: type, invitedTo: invitedTo, actionableBy: actionableBy, invitedBy: invitedBy, status: status, createdAt: createdAt, modifiedAt: modifiedAt } satisfies Invite;
 }
-export function serializeInvite(val: Invite): JSON {
+export function serializeInvite(val: Invite): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeInviteTypeField(val.type), ["invited_to"]: val.invitedTo === void 0 ? void 0 : serializeInviteInvitedToField(val.invitedTo), ["actionable_by"]: val.actionableBy === void 0 ? void 0 : serializeUserMini(val.actionableBy), ["invited_by"]: val.invitedBy === void 0 ? void 0 : serializeUserMini(val.invitedBy), ["status"]: val.status, ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt };
 }
 export interface GroupMembership {
@@ -9254,7 +9254,7 @@ export interface GroupMembership {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export function deserializeGroupMembership(val: JSON): GroupMembership {
+export function deserializeGroupMembership(val: Json): GroupMembership {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupMembership\"";
     }
@@ -9276,7 +9276,7 @@ export function deserializeGroupMembership(val: JSON): GroupMembership {
     const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     return { id: id, type: type, user: user, group: group, role: role, createdAt: createdAt, modifiedAt: modifiedAt } satisfies GroupMembership;
 }
-export function serializeGroupMembership(val: GroupMembership): JSON {
+export function serializeGroupMembership(val: GroupMembership): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeGroupMembershipTypeField(val.type), ["user"]: val.user === void 0 ? void 0 : serializeUserMini(val.user), ["group"]: val.group === void 0 ? void 0 : serializeGroupMini(val.group), ["role"]: val.role === void 0 ? void 0 : serializeGroupMembershipRoleField(val.role), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt };
 }
 export interface GroupMemberships {
@@ -9286,7 +9286,7 @@ export interface GroupMemberships {
     readonly order?: readonly GroupMembershipsOrderField[];
     readonly entries?: readonly GroupMembership[];
 }
-export function deserializeGroupMemberships(val: JSON): GroupMemberships {
+export function deserializeGroupMemberships(val: Json): GroupMemberships {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"GroupMemberships\"";
     }
@@ -9305,18 +9305,18 @@ export function deserializeGroupMemberships(val: JSON): GroupMemberships {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"GroupMemberships\"";
     }
-    const order: undefined | readonly GroupMembershipsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly GroupMembershipsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeGroupMembershipsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"GroupMemberships\"";
     }
-    const entries: undefined | readonly GroupMembership[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly GroupMembership[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeGroupMembership(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies GroupMemberships;
 }
-export function serializeGroupMemberships(val: GroupMemberships): JSON {
+export function serializeGroupMemberships(val: GroupMemberships): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: GroupMembershipsOrderField): any {
             return serializeGroupMembershipsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: GroupMembership): any {
@@ -9350,7 +9350,7 @@ export type FileVersion = FileVersionMini & {
     readonly purgedAt?: string;
     readonly uploaderDisplayName?: string;
 };
-export function deserializeFileVersion(val: JSON): FileVersion {
+export function deserializeFileVersion(val: Json): FileVersion {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersion\"";
     }
@@ -9406,7 +9406,7 @@ export function deserializeFileVersion(val: JSON): FileVersion {
     const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(val.type);
     return { name: name, size: size, createdAt: createdAt, modifiedAt: modifiedAt, modifiedBy: modifiedBy, trashedAt: trashedAt, trashedBy: trashedBy, restoredAt: restoredAt, restoredBy: restoredBy, purgedAt: purgedAt, uploaderDisplayName: uploaderDisplayName, sha1: sha1, id: id, type: type } satisfies FileVersion;
 }
-export function serializeFileVersion(val: FileVersion): JSON {
+export function serializeFileVersion(val: FileVersion): Json {
     const base: any = serializeFileVersionMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileVersion\"";
@@ -9420,7 +9420,7 @@ export interface FileVersions {
     readonly order?: readonly FileVersionsOrderField[];
     readonly entries?: readonly FileVersion[];
 }
-export function deserializeFileVersions(val: JSON): FileVersions {
+export function deserializeFileVersions(val: Json): FileVersions {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersions\"";
     }
@@ -9439,18 +9439,18 @@ export function deserializeFileVersions(val: JSON): FileVersions {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"FileVersions\"";
     }
-    const order: undefined | readonly FileVersionsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly FileVersionsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeFileVersionsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FileVersions\"";
     }
-    const entries: undefined | readonly FileVersion[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FileVersion[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileVersion(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies FileVersions;
 }
-export function serializeFileVersions(val: FileVersions): JSON {
+export function serializeFileVersions(val: FileVersions): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: FileVersionsOrderField): any {
             return serializeFileVersionsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FileVersion): any {
@@ -9462,7 +9462,7 @@ export type FileVersionFull = FileVersion & {
      * The version number of this file version */
     readonly versionNumber?: string;
 };
-export function deserializeFileVersionFull(val: JSON): FileVersionFull {
+export function deserializeFileVersionFull(val: Json): FileVersionFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionFull\"";
     }
@@ -9522,7 +9522,7 @@ export function deserializeFileVersionFull(val: JSON): FileVersionFull {
     const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(val.type);
     return { versionNumber: versionNumber, name: name, size: size, createdAt: createdAt, modifiedAt: modifiedAt, modifiedBy: modifiedBy, trashedAt: trashedAt, trashedBy: trashedBy, restoredAt: restoredAt, restoredBy: restoredBy, purgedAt: purgedAt, uploaderDisplayName: uploaderDisplayName, sha1: sha1, id: id, type: type } satisfies FileVersionFull;
 }
-export function serializeFileVersionFull(val: FileVersionFull): JSON {
+export function serializeFileVersionFull(val: FileVersionFull): Json {
     const base: any = serializeFileVersion(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileVersionFull\"";
@@ -9546,7 +9546,7 @@ export interface FileRequest {
     readonly updatedBy?: UserMini;
     readonly updatedAt: string;
 }
-export function deserializeFileRequest(val: JSON): FileRequest {
+export function deserializeFileRequest(val: Json): FileRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileRequest\"";
     }
@@ -9606,7 +9606,7 @@ export function deserializeFileRequest(val: JSON): FileRequest {
     const updatedAt: string = val.updated_at;
     return { id: id, type: type, title: title, description: description, status: status, isEmailRequired: isEmailRequired, isDescriptionRequired: isDescriptionRequired, expiresAt: expiresAt, folder: folder, url: url, etag: etag, createdBy: createdBy, createdAt: createdAt, updatedBy: updatedBy, updatedAt: updatedAt } satisfies FileRequest;
 }
-export function serializeFileRequest(val: FileRequest): JSON {
+export function serializeFileRequest(val: FileRequest): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeFileRequestTypeField(val.type), ["title"]: val.title, ["description"]: val.description, ["status"]: val.status === void 0 ? void 0 : serializeFileRequestStatusField(val.status), ["is_email_required"]: val.isEmailRequired, ["is_description_required"]: val.isDescriptionRequired, ["expires_at"]: val.expiresAt, ["folder"]: serializeFolderMini(val.folder), ["url"]: val.url, ["etag"]: val.etag, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["created_at"]: val.createdAt, ["updated_by"]: val.updatedBy === void 0 ? void 0 : serializeUserMini(val.updatedBy), ["updated_at"]: val.updatedAt };
 }
 export interface FileFullLockField {
@@ -9618,7 +9618,7 @@ export interface FileFullLockField {
     readonly isDownloadPrevented?: boolean;
     readonly appType?: FileFullLockFieldAppTypeField;
 }
-export function deserializeFileFullLockField(val: JSON): FileFullLockField {
+export function deserializeFileFullLockField(val: Json): FileFullLockField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullLockField\"";
     }
@@ -9643,7 +9643,7 @@ export function deserializeFileFullLockField(val: JSON): FileFullLockField {
     const appType: undefined | FileFullLockFieldAppTypeField = val.app_type === void 0 ? void 0 : deserializeFileFullLockFieldAppTypeField(val.app_type);
     return { id: id, type: type, createdBy: createdBy, createdAt: createdAt, expiredAt: expiredAt, isDownloadPrevented: isDownloadPrevented, appType: appType } satisfies FileFullLockField;
 }
-export function serializeFileFullLockField(val: FileFullLockField): JSON {
+export function serializeFileFullLockField(val: FileFullLockField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeFileFullLockFieldTypeField(val.type), ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["created_at"]: val.createdAt, ["expired_at"]: val.expiredAt, ["is_download_prevented"]: val.isDownloadPrevented, ["app_type"]: val.appType === void 0 ? void 0 : serializeFileFullLockFieldAppTypeField(val.appType) };
 }
 export type File = FileMini & {
@@ -9689,7 +9689,7 @@ export type File = FileMini & {
      * * `deleted` when the item has been permanently deleted. */
     readonly itemStatus: FileItemStatusField;
 };
-export function deserializeFile(val: JSON): File {
+export function deserializeFile(val: Json): File {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"File\"";
     }
@@ -9792,7 +9792,7 @@ export function deserializeFile(val: JSON): File {
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
     return { description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, id: id, etag: etag, type: type } satisfies File;
 }
-export function serializeFile(val: File): JSON {
+export function serializeFile(val: File): Json {
     const base: any = serializeFileMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"File\"";
@@ -9803,7 +9803,7 @@ export interface Files {
     readonly totalCount?: number;
     readonly entries?: readonly File[];
 }
-export function deserializeFiles(val: JSON): Files {
+export function deserializeFiles(val: Json): Files {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Files\"";
     }
@@ -9814,12 +9814,12 @@ export function deserializeFiles(val: JSON): Files {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Files\"";
     }
-    const entries: undefined | readonly File[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly File[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFile(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, entries: entries } satisfies Files;
 }
-export function serializeFiles(val: Files): JSON {
+export function serializeFiles(val: Files): Json {
     return { ["total_count"]: val.totalCount, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: File): any {
             return serializeFile(item);
         }) as readonly any[] };
@@ -9830,7 +9830,7 @@ export interface DevicePinner {
     readonly ownedBy?: UserMini;
     readonly productName?: string;
 }
-export function deserializeDevicePinner(val: JSON): DevicePinner {
+export function deserializeDevicePinner(val: Json): DevicePinner {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"DevicePinner\"";
     }
@@ -9846,7 +9846,7 @@ export function deserializeDevicePinner(val: JSON): DevicePinner {
     const productName: undefined | string = isJson(val.product_name, "string") ? val.product_name : void 0;
     return { id: id, type: type, ownedBy: ownedBy, productName: productName } satisfies DevicePinner;
 }
-export function serializeDevicePinner(val: DevicePinner): JSON {
+export function serializeDevicePinner(val: DevicePinner): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeDevicePinnerTypeField(val.type), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["product_name"]: val.productName };
 }
 export interface DevicePinners {
@@ -9855,14 +9855,14 @@ export interface DevicePinners {
     readonly nextMarker?: number;
     readonly order?: readonly DevicePinnersOrderField[];
 }
-export function deserializeDevicePinners(val: JSON): DevicePinners {
+export function deserializeDevicePinners(val: Json): DevicePinners {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"DevicePinners\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"DevicePinners\"";
     }
-    const entries: undefined | readonly DevicePinner[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly DevicePinner[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeDevicePinner(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -9876,12 +9876,12 @@ export function deserializeDevicePinners(val: JSON): DevicePinners {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"DevicePinners\"";
     }
-    const order: undefined | readonly DevicePinnersOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly DevicePinnersOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeDevicePinnersOrderField(itm);
     }) as readonly any[] : void 0;
     return { entries: entries, limit: limit, nextMarker: nextMarker, order: order } satisfies DevicePinners;
 }
-export function serializeDevicePinners(val: DevicePinners): JSON {
+export function serializeDevicePinners(val: DevicePinners): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: DevicePinner): any {
             return serializeDevicePinner(item);
         }) as readonly any[], ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: DevicePinnersOrderField): any {
@@ -9905,7 +9905,7 @@ export type Comment = CommentBase & {
     readonly modifiedAt?: string;
     readonly item?: CommentItemField;
 };
-export function deserializeComment(val: JSON): Comment {
+export function deserializeComment(val: Json): Comment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Comment\"";
     }
@@ -9934,7 +9934,7 @@ export function deserializeComment(val: JSON): Comment {
     const type: undefined | CommentBaseTypeField = val.type === void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);
     return { isReplyComment: isReplyComment, message: message, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, item: item, id: id, type: type } satisfies Comment;
 }
-export function serializeComment(val: Comment): JSON {
+export function serializeComment(val: Comment): Json {
     const base: any = serializeCommentBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Comment\"";
@@ -9949,7 +9949,7 @@ export type CommentFull = Comment & {
      * their display name. */
     readonly taggedMessage?: string;
 };
-export function deserializeCommentFull(val: JSON): CommentFull {
+export function deserializeCommentFull(val: Json): CommentFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CommentFull\"";
     }
@@ -9982,7 +9982,7 @@ export function deserializeCommentFull(val: JSON): CommentFull {
     const type: undefined | CommentBaseTypeField = val.type === void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);
     return { taggedMessage: taggedMessage, isReplyComment: isReplyComment, message: message, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, item: item, id: id, type: type } satisfies CommentFull;
 }
-export function serializeCommentFull(val: CommentFull): JSON {
+export function serializeCommentFull(val: CommentFull): Json {
     const base: any = serializeComment(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"CommentFull\"";
@@ -9996,7 +9996,7 @@ export interface Comments {
     readonly order?: readonly CommentsOrderField[];
     readonly entries?: readonly Comment[];
 }
-export function deserializeComments(val: JSON): Comments {
+export function deserializeComments(val: Json): Comments {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Comments\"";
     }
@@ -10015,18 +10015,18 @@ export function deserializeComments(val: JSON): Comments {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Comments\"";
     }
-    const order: undefined | readonly CommentsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly CommentsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeCommentsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Comments\"";
     }
-    const entries: undefined | readonly Comment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Comment[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeComment(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Comments;
 }
-export function serializeComments(val: Comments): JSON {
+export function serializeComments(val: Comments): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: CommentsOrderField): any {
             return serializeCommentsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Comment): any {
@@ -10048,7 +10048,7 @@ export type ShieldInformationBarrierSegmentRestriction = ShieldInformationBarrie
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 };
-export function deserializeShieldInformationBarrierSegmentRestriction(val: JSON): ShieldInformationBarrierSegmentRestriction {
+export function deserializeShieldInformationBarrierSegmentRestriction(val: Json): ShieldInformationBarrierSegmentRestriction {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestriction\"";
     }
@@ -10078,7 +10078,7 @@ export function deserializeShieldInformationBarrierSegmentRestriction(val: JSON)
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { shieldInformationBarrier: shieldInformationBarrier, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy, shieldInformationBarrierSegment: shieldInformationBarrierSegment, restrictedSegment: restrictedSegment, type: type, id: id } satisfies ShieldInformationBarrierSegmentRestriction;
 }
-export function serializeShieldInformationBarrierSegmentRestriction(val: ShieldInformationBarrierSegmentRestriction): JSON {
+export function serializeShieldInformationBarrierSegmentRestriction(val: ShieldInformationBarrierSegmentRestriction): Json {
     const base: any = serializeShieldInformationBarrierSegmentRestrictionMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentRestriction\"";
@@ -10088,7 +10088,7 @@ export function serializeShieldInformationBarrierSegmentRestriction(val: ShieldI
 export type ShieldInformationBarrierSegmentMemberMini = ShieldInformationBarrierSegmentMemberBase & {
     readonly user?: UserBase;
 };
-export function deserializeShieldInformationBarrierSegmentMemberMini(val: JSON): ShieldInformationBarrierSegmentMemberMini {
+export function deserializeShieldInformationBarrierSegmentMemberMini(val: Json): ShieldInformationBarrierSegmentMemberMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMemberMini\"";
     }
@@ -10100,7 +10100,7 @@ export function deserializeShieldInformationBarrierSegmentMemberMini(val: JSON):
     const type: undefined | ShieldInformationBarrierSegmentMemberBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type);
     return { user: user, id: id, type: type } satisfies ShieldInformationBarrierSegmentMemberMini;
 }
-export function serializeShieldInformationBarrierSegmentMemberMini(val: ShieldInformationBarrierSegmentMemberMini): JSON {
+export function serializeShieldInformationBarrierSegmentMemberMini(val: ShieldInformationBarrierSegmentMemberMini): Json {
     const base: any = serializeShieldInformationBarrierSegmentMemberBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMemberMini\"";
@@ -10125,7 +10125,7 @@ export type ShieldInformationBarrierSegmentMember = ShieldInformationBarrierSegm
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 };
-export function deserializeShieldInformationBarrierSegmentMember(val: JSON): ShieldInformationBarrierSegmentMember {
+export function deserializeShieldInformationBarrierSegmentMember(val: Json): ShieldInformationBarrierSegmentMember {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMember\"";
     }
@@ -10149,7 +10149,7 @@ export function deserializeShieldInformationBarrierSegmentMember(val: JSON): Shi
     const type: undefined | ShieldInformationBarrierSegmentMemberBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type);
     return { shieldInformationBarrier: shieldInformationBarrier, shieldInformationBarrierSegment: shieldInformationBarrierSegment, user: user, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy, id: id, type: type } satisfies ShieldInformationBarrierSegmentMember;
 }
-export function serializeShieldInformationBarrierSegmentMember(val: ShieldInformationBarrierSegmentMember): JSON {
+export function serializeShieldInformationBarrierSegmentMember(val: ShieldInformationBarrierSegmentMember): Json {
     const base: any = serializeShieldInformationBarrierSegmentMemberMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMember\"";
@@ -10167,7 +10167,7 @@ export interface ShieldInformationBarrierSegment {
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 }
-export function deserializeShieldInformationBarrierSegment(val: JSON): ShieldInformationBarrierSegment {
+export function deserializeShieldInformationBarrierSegment(val: Json): ShieldInformationBarrierSegment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegment\"";
     }
@@ -10197,7 +10197,7 @@ export function deserializeShieldInformationBarrierSegment(val: JSON): ShieldInf
     const updatedBy: undefined | UserBase = val.updated_by === void 0 ? void 0 : deserializeUserBase(val.updated_by);
     return { id: id, type: type, shieldInformationBarrier: shieldInformationBarrier, name: name, description: description, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy } satisfies ShieldInformationBarrierSegment;
 }
-export function serializeShieldInformationBarrierSegment(val: ShieldInformationBarrierSegment): JSON {
+export function serializeShieldInformationBarrierSegment(val: ShieldInformationBarrierSegment): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierSegmentTypeField(val.type), ["shield_information_barrier"]: val.shieldInformationBarrier === void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["name"]: val.name, ["description"]: val.description, ["created_at"]: val.createdAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserBase(val.createdBy), ["updated_at"]: val.updatedAt, ["updated_by"]: val.updatedBy === void 0 ? void 0 : serializeUserBase(val.updatedBy) };
 }
 export type ShieldInformationBarrierReport = ShieldInformationBarrierReportBase & {
@@ -10216,7 +10216,7 @@ export type ShieldInformationBarrierReport = ShieldInformationBarrierReportBase 
      * shield information barrier report was updated. */
     readonly updatedAt?: string;
 };
-export function deserializeShieldInformationBarrierReport(val: JSON): ShieldInformationBarrierReport {
+export function deserializeShieldInformationBarrierReport(val: Json): ShieldInformationBarrierReport {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReport\"";
     }
@@ -10239,7 +10239,7 @@ export function deserializeShieldInformationBarrierReport(val: JSON): ShieldInfo
     const type: undefined | ShieldInformationBarrierReportBaseTypeField = val.type === void 0 ? void 0 : deserializeShieldInformationBarrierReportBaseTypeField(val.type);
     return { shieldInformationBarrier: shieldInformationBarrier, status: status, details: details, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, id: id, type: type } satisfies ShieldInformationBarrierReport;
 }
-export function serializeShieldInformationBarrierReport(val: ShieldInformationBarrierReport): JSON {
+export function serializeShieldInformationBarrierReport(val: ShieldInformationBarrierReport): Json {
     const base: any = serializeShieldInformationBarrierReportBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReport\"";
@@ -10258,7 +10258,7 @@ export interface ShieldInformationBarrier {
     readonly enabledAt?: string;
     readonly enabledBy?: UserBase;
 }
-export function deserializeShieldInformationBarrier(val: JSON): ShieldInformationBarrier {
+export function deserializeShieldInformationBarrier(val: Json): ShieldInformationBarrier {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrier\"";
     }
@@ -10286,7 +10286,7 @@ export function deserializeShieldInformationBarrier(val: JSON): ShieldInformatio
     const enabledBy: undefined | UserBase = val.enabled_by === void 0 ? void 0 : deserializeUserBase(val.enabled_by);
     return { id: id, type: type, enterprise: enterprise, status: status, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy, enabledAt: enabledAt, enabledBy: enabledBy } satisfies ShieldInformationBarrier;
 }
-export function serializeShieldInformationBarrier(val: ShieldInformationBarrier): JSON {
+export function serializeShieldInformationBarrier(val: ShieldInformationBarrier): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeShieldInformationBarrierTypeField(val.type), ["enterprise"]: val.enterprise === void 0 ? void 0 : serializeEnterpriseBase(val.enterprise), ["status"]: val.status === void 0 ? void 0 : serializeShieldInformationBarrierStatusField(val.status), ["created_at"]: val.createdAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserBase(val.createdBy), ["updated_at"]: val.updatedAt, ["updated_by"]: val.updatedBy === void 0 ? void 0 : serializeUserBase(val.updatedBy), ["enabled_at"]: val.enabledAt, ["enabled_by"]: val.enabledBy === void 0 ? void 0 : serializeUserBase(val.enabledBy) };
 }
 export interface FolderLock {
@@ -10298,7 +10298,7 @@ export interface FolderLock {
     readonly lockedOperations?: FolderLockLockedOperationsField;
     readonly lockType?: string;
 }
-export function deserializeFolderLock(val: JSON): FolderLock {
+export function deserializeFolderLock(val: Json): FolderLock {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderLock\"";
     }
@@ -10323,7 +10323,7 @@ export function deserializeFolderLock(val: JSON): FolderLock {
     const lockType: undefined | string = isJson(val.lock_type, "string") ? val.lock_type : void 0;
     return { folder: folder, id: id, type: type, createdBy: createdBy, createdAt: createdAt, lockedOperations: lockedOperations, lockType: lockType } satisfies FolderLock;
 }
-export function serializeFolderLock(val: FolderLock): JSON {
+export function serializeFolderLock(val: FolderLock): Json {
     return { ["folder"]: val.folder === void 0 ? void 0 : serializeFolderMini(val.folder), ["id"]: val.id, ["type"]: val.type, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserBase(val.createdBy), ["created_at"]: val.createdAt, ["locked_operations"]: val.lockedOperations === void 0 ? void 0 : serializeFolderLockLockedOperationsField(val.lockedOperations), ["lock_type"]: val.lockType };
 }
 export interface FolderLocks {
@@ -10332,7 +10332,7 @@ export interface FolderLocks {
     readonly prevMarker?: number;
     readonly entries?: readonly FolderLock[];
 }
-export function deserializeFolderLocks(val: JSON): FolderLocks {
+export function deserializeFolderLocks(val: Json): FolderLocks {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderLocks\"";
     }
@@ -10351,12 +10351,12 @@ export function deserializeFolderLocks(val: JSON): FolderLocks {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FolderLocks\"";
     }
-    const entries: undefined | readonly FolderLock[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FolderLock[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFolderLock(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies FolderLocks;
 }
-export function serializeFolderLocks(val: FolderLocks): JSON {
+export function serializeFolderLocks(val: FolderLocks): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FolderLock): any {
             return serializeFolderLock(item);
         }) as readonly any[] };
@@ -10365,7 +10365,7 @@ export interface WatermarkWatermarkField {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export function deserializeWatermarkWatermarkField(val: JSON): WatermarkWatermarkField {
+export function deserializeWatermarkWatermarkField(val: Json): WatermarkWatermarkField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WatermarkWatermarkField\"";
     }
@@ -10379,24 +10379,24 @@ export function deserializeWatermarkWatermarkField(val: JSON): WatermarkWatermar
     const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     return { createdAt: createdAt, modifiedAt: modifiedAt } satisfies WatermarkWatermarkField;
 }
-export function serializeWatermarkWatermarkField(val: WatermarkWatermarkField): JSON {
+export function serializeWatermarkWatermarkField(val: WatermarkWatermarkField): Json {
     return { ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt };
 }
 export interface Watermark {
     readonly watermark?: WatermarkWatermarkField;
 }
-export function deserializeWatermark(val: JSON): Watermark {
+export function deserializeWatermark(val: Json): Watermark {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Watermark\"";
     }
     const watermark: undefined | WatermarkWatermarkField = val.watermark === void 0 ? void 0 : deserializeWatermarkWatermarkField(val.watermark);
     return { watermark: watermark } satisfies Watermark;
 }
-export function serializeWatermark(val: Watermark): JSON {
+export function serializeWatermark(val: Watermark): Json {
     return { ["watermark"]: val.watermark === void 0 ? void 0 : serializeWatermarkWatermarkField(val.watermark) };
 }
 export type WebhookTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED";
-export function deserializeWebhookTriggersField(val: JSON): WebhookTriggersField {
+export function deserializeWebhookTriggersField(val: Json): WebhookTriggersField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebhookTriggersField\"";
     }
@@ -10519,11 +10519,11 @@ export function deserializeWebhookTriggersField(val: JSON): WebhookTriggersField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebhookTriggersField(val: WebhookTriggersField): JSON {
+export function serializeWebhookTriggersField(val: WebhookTriggersField): Json {
     return val;
 }
 export type WebhookMiniTypeField = "webhook";
-export function deserializeWebhookMiniTypeField(val: JSON): WebhookMiniTypeField {
+export function deserializeWebhookMiniTypeField(val: Json): WebhookMiniTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebhookMiniTypeField\"";
     }
@@ -10532,11 +10532,11 @@ export function deserializeWebhookMiniTypeField(val: JSON): WebhookMiniTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebhookMiniTypeField(val: WebhookMiniTypeField): JSON {
+export function serializeWebhookMiniTypeField(val: WebhookMiniTypeField): Json {
     return val;
 }
 export type WebhookMiniTargetFieldTypeField = "file" | "folder";
-export function deserializeWebhookMiniTargetFieldTypeField(val: JSON): WebhookMiniTargetFieldTypeField {
+export function deserializeWebhookMiniTargetFieldTypeField(val: Json): WebhookMiniTargetFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebhookMiniTargetFieldTypeField\"";
     }
@@ -10548,14 +10548,14 @@ export function deserializeWebhookMiniTargetFieldTypeField(val: JSON): WebhookMi
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebhookMiniTargetFieldTypeField(val: WebhookMiniTargetFieldTypeField): JSON {
+export function serializeWebhookMiniTargetFieldTypeField(val: WebhookMiniTargetFieldTypeField): Json {
     return val;
 }
 export interface WebhookMiniTargetField {
     readonly id?: string;
     readonly type?: WebhookMiniTargetFieldTypeField;
 }
-export function deserializeWebhookMiniTargetField(val: JSON): WebhookMiniTargetField {
+export function deserializeWebhookMiniTargetField(val: Json): WebhookMiniTargetField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebhookMiniTargetField\"";
     }
@@ -10566,7 +10566,7 @@ export function deserializeWebhookMiniTargetField(val: JSON): WebhookMiniTargetF
     const type: undefined | WebhookMiniTargetFieldTypeField = val.type === void 0 ? void 0 : deserializeWebhookMiniTargetFieldTypeField(val.type);
     return { id: id, type: type } satisfies WebhookMiniTargetField;
 }
-export function serializeWebhookMiniTargetField(val: WebhookMiniTargetField): JSON {
+export function serializeWebhookMiniTargetField(val: WebhookMiniTargetField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWebhookMiniTargetFieldTypeField(val.type) };
 }
 export interface WebhookMini {
@@ -10574,7 +10574,7 @@ export interface WebhookMini {
     readonly type?: WebhookMiniTypeField;
     readonly target?: WebhookMiniTargetField;
 }
-export function deserializeWebhookMini(val: JSON): WebhookMini {
+export function deserializeWebhookMini(val: Json): WebhookMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebhookMini\"";
     }
@@ -10586,7 +10586,7 @@ export function deserializeWebhookMini(val: JSON): WebhookMini {
     const target: undefined | WebhookMiniTargetField = val.target === void 0 ? void 0 : deserializeWebhookMiniTargetField(val.target);
     return { id: id, type: type, target: target } satisfies WebhookMini;
 }
-export function serializeWebhookMini(val: WebhookMini): JSON {
+export function serializeWebhookMini(val: WebhookMini): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWebhookMiniTypeField(val.type), ["target"]: val.target === void 0 ? void 0 : serializeWebhookMiniTargetField(val.target) };
 }
 export interface Webhooks {
@@ -10595,7 +10595,7 @@ export interface Webhooks {
     readonly prevMarker?: number;
     readonly entries?: readonly WebhookMini[];
 }
-export function deserializeWebhooks(val: JSON): Webhooks {
+export function deserializeWebhooks(val: Json): Webhooks {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Webhooks\"";
     }
@@ -10614,12 +10614,12 @@ export function deserializeWebhooks(val: JSON): Webhooks {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Webhooks\"";
     }
-    const entries: undefined | readonly WebhookMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly WebhookMini[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeWebhookMini(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies Webhooks;
 }
-export function serializeWebhooks(val: Webhooks): JSON {
+export function serializeWebhooks(val: Webhooks): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: WebhookMini): any {
             return serializeWebhookMini(item);
         }) as readonly any[] };
@@ -10638,7 +10638,7 @@ export type Webhook = WebhookMini & {
      * to be triggered for */
     readonly triggers?: readonly WebhookTriggersField[];
 };
-export function deserializeWebhook(val: JSON): Webhook {
+export function deserializeWebhook(val: Json): Webhook {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Webhook\"";
     }
@@ -10654,7 +10654,7 @@ export function deserializeWebhook(val: JSON): Webhook {
     if (!(val.triggers === void 0) && !isJson(val.triggers, "array")) {
         throw "Expecting array for \"triggers\" of type \"Webhook\"";
     }
-    const triggers: undefined | readonly WebhookTriggersField[] = isJson(val.triggers, "array") ? val.triggers.map(function (itm: JSON): any {
+    const triggers: undefined | readonly WebhookTriggersField[] = isJson(val.triggers, "array") ? val.triggers.map(function (itm: Json): any {
         return deserializeWebhookTriggersField(itm);
     }) as readonly any[] : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
@@ -10665,7 +10665,7 @@ export function deserializeWebhook(val: JSON): Webhook {
     const target: undefined | WebhookMiniTargetField = val.target === void 0 ? void 0 : deserializeWebhookMiniTargetField(val.target);
     return { createdBy: createdBy, createdAt: createdAt, address: address, triggers: triggers, id: id, type: type, target: target } satisfies Webhook;
 }
-export function serializeWebhook(val: Webhook): JSON {
+export function serializeWebhook(val: Webhook): Json {
     const base: any = serializeWebhookMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Webhook\"";
@@ -10675,7 +10675,7 @@ export function serializeWebhook(val: Webhook): JSON {
             }) as readonly any[] } };
 }
 export type WebLinkSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export function deserializeWebLinkSharedLinkFieldAccessField(val: JSON): WebLinkSharedLinkFieldAccessField {
+export function deserializeWebLinkSharedLinkFieldAccessField(val: Json): WebLinkSharedLinkFieldAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebLinkSharedLinkFieldAccessField\"";
     }
@@ -10690,11 +10690,11 @@ export function deserializeWebLinkSharedLinkFieldAccessField(val: JSON): WebLink
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebLinkSharedLinkFieldAccessField(val: WebLinkSharedLinkFieldAccessField): JSON {
+export function serializeWebLinkSharedLinkFieldAccessField(val: WebLinkSharedLinkFieldAccessField): Json {
     return val;
 }
 export type WebLinkSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export function deserializeWebLinkSharedLinkFieldEffectiveAccessField(val: JSON): WebLinkSharedLinkFieldEffectiveAccessField {
+export function deserializeWebLinkSharedLinkFieldEffectiveAccessField(val: Json): WebLinkSharedLinkFieldEffectiveAccessField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebLinkSharedLinkFieldEffectiveAccessField\"";
     }
@@ -10709,11 +10709,11 @@ export function deserializeWebLinkSharedLinkFieldEffectiveAccessField(val: JSON)
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebLinkSharedLinkFieldEffectiveAccessField(val: WebLinkSharedLinkFieldEffectiveAccessField): JSON {
+export function serializeWebLinkSharedLinkFieldEffectiveAccessField(val: WebLinkSharedLinkFieldEffectiveAccessField): Json {
     return val;
 }
 export type WebLinkSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export function deserializeWebLinkSharedLinkFieldEffectivePermissionField(val: JSON): WebLinkSharedLinkFieldEffectivePermissionField {
+export function deserializeWebLinkSharedLinkFieldEffectivePermissionField(val: Json): WebLinkSharedLinkFieldEffectivePermissionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebLinkSharedLinkFieldEffectivePermissionField\"";
     }
@@ -10731,7 +10731,7 @@ export function deserializeWebLinkSharedLinkFieldEffectivePermissionField(val: J
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebLinkSharedLinkFieldEffectivePermissionField(val: WebLinkSharedLinkFieldEffectivePermissionField): JSON {
+export function serializeWebLinkSharedLinkFieldEffectivePermissionField(val: WebLinkSharedLinkFieldEffectivePermissionField): Json {
     return val;
 }
 export interface WebLinkSharedLinkFieldPermissionsField {
@@ -10739,7 +10739,7 @@ export interface WebLinkSharedLinkFieldPermissionsField {
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export function deserializeWebLinkSharedLinkFieldPermissionsField(val: JSON): WebLinkSharedLinkFieldPermissionsField {
+export function deserializeWebLinkSharedLinkFieldPermissionsField(val: Json): WebLinkSharedLinkFieldPermissionsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLinkSharedLinkFieldPermissionsField\"";
     }
@@ -10766,7 +10766,7 @@ export function deserializeWebLinkSharedLinkFieldPermissionsField(val: JSON): We
     const canEdit: boolean = val.can_edit;
     return { canDownload: canDownload, canPreview: canPreview, canEdit: canEdit } satisfies WebLinkSharedLinkFieldPermissionsField;
 }
-export function serializeWebLinkSharedLinkFieldPermissionsField(val: WebLinkSharedLinkFieldPermissionsField): JSON {
+export function serializeWebLinkSharedLinkFieldPermissionsField(val: WebLinkSharedLinkFieldPermissionsField): Json {
     return { ["can_download"]: val.canDownload, ["can_preview"]: val.canPreview, ["can_edit"]: val.canEdit };
 }
 export interface WebLinkSharedLinkField {
@@ -10783,7 +10783,7 @@ export interface WebLinkSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export function deserializeWebLinkSharedLinkField(val: JSON): WebLinkSharedLinkField {
+export function deserializeWebLinkSharedLinkField(val: Json): WebLinkSharedLinkField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLinkSharedLinkField\"";
     }
@@ -10843,11 +10843,11 @@ export function deserializeWebLinkSharedLinkField(val: JSON): WebLinkSharedLinkF
     const previewCount: number = val.preview_count;
     return { url: url, downloadUrl: downloadUrl, vanityUrl: vanityUrl, vanityName: vanityName, access: access, effectiveAccess: effectiveAccess, effectivePermission: effectivePermission, unsharedAt: unsharedAt, isPasswordEnabled: isPasswordEnabled, permissions: permissions, downloadCount: downloadCount, previewCount: previewCount } satisfies WebLinkSharedLinkField;
 }
-export function serializeWebLinkSharedLinkField(val: WebLinkSharedLinkField): JSON {
+export function serializeWebLinkSharedLinkField(val: WebLinkSharedLinkField): Json {
     return { ["url"]: val.url, ["download_url"]: val.downloadUrl, ["vanity_url"]: val.vanityUrl, ["vanity_name"]: val.vanityName, ["access"]: val.access === void 0 ? void 0 : serializeWebLinkSharedLinkFieldAccessField(val.access), ["effective_access"]: serializeWebLinkSharedLinkFieldEffectiveAccessField(val.effectiveAccess), ["effective_permission"]: serializeWebLinkSharedLinkFieldEffectivePermissionField(val.effectivePermission), ["unshared_at"]: val.unsharedAt, ["is_password_enabled"]: val.isPasswordEnabled, ["permissions"]: val.permissions === void 0 ? void 0 : serializeWebLinkSharedLinkFieldPermissionsField(val.permissions), ["download_count"]: val.downloadCount, ["preview_count"]: val.previewCount };
 }
 export type WebLinkItemStatusField = "active" | "trashed" | "deleted";
-export function deserializeWebLinkItemStatusField(val: JSON): WebLinkItemStatusField {
+export function deserializeWebLinkItemStatusField(val: Json): WebLinkItemStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebLinkItemStatusField\"";
     }
@@ -10862,11 +10862,11 @@ export function deserializeWebLinkItemStatusField(val: JSON): WebLinkItemStatusF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebLinkItemStatusField(val: WebLinkItemStatusField): JSON {
+export function serializeWebLinkItemStatusField(val: WebLinkItemStatusField): Json {
     return val;
 }
 export type WebLinkBaseTypeField = "web_link";
-export function deserializeWebLinkBaseTypeField(val: JSON): WebLinkBaseTypeField {
+export function deserializeWebLinkBaseTypeField(val: Json): WebLinkBaseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WebLinkBaseTypeField\"";
     }
@@ -10875,7 +10875,7 @@ export function deserializeWebLinkBaseTypeField(val: JSON): WebLinkBaseTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWebLinkBaseTypeField(val: WebLinkBaseTypeField): JSON {
+export function serializeWebLinkBaseTypeField(val: WebLinkBaseTypeField): Json {
     return val;
 }
 export interface WebLinkBase {
@@ -10883,7 +10883,7 @@ export interface WebLinkBase {
     readonly type: WebLinkBaseTypeField;
     readonly etag?: string;
 }
-export function deserializeWebLinkBase(val: JSON): WebLinkBase {
+export function deserializeWebLinkBase(val: Json): WebLinkBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLinkBase\"";
     }
@@ -10904,7 +10904,7 @@ export function deserializeWebLinkBase(val: JSON): WebLinkBase {
     const etag: undefined | string = isJson(val.etag, "string") ? val.etag : void 0;
     return { id: id, type: type, etag: etag } satisfies WebLinkBase;
 }
-export function serializeWebLinkBase(val: WebLinkBase): JSON {
+export function serializeWebLinkBase(val: WebLinkBase): Json {
     return { ["id"]: val.id, ["type"]: serializeWebLinkBaseTypeField(val.type), ["etag"]: val.etag };
 }
 export type WebLinkMini = WebLinkBase & {
@@ -10916,7 +10916,7 @@ export type WebLinkMini = WebLinkBase & {
      * The name of the web link */
     readonly name?: string;
 };
-export function deserializeWebLinkMini(val: JSON): WebLinkMini {
+export function deserializeWebLinkMini(val: Json): WebLinkMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLinkMini\"";
     }
@@ -10949,7 +10949,7 @@ export function deserializeWebLinkMini(val: JSON): WebLinkMini {
     const etag: undefined | string = isJson(val.etag, "string") ? val.etag : void 0;
     return { url: url, sequenceId: sequenceId, name: name, id: id, type: type, etag: etag } satisfies WebLinkMini;
 }
-export function serializeWebLinkMini(val: WebLinkMini): JSON {
+export function serializeWebLinkMini(val: WebLinkMini): Json {
     const base: any = serializeWebLinkBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"WebLinkMini\"";
@@ -10986,7 +10986,7 @@ export type WebLink = WebLinkMini & {
      * the file has been permanently deleted */
     readonly itemStatus?: WebLinkItemStatusField;
 };
-export function deserializeWebLink(val: JSON): WebLink {
+export function deserializeWebLink(val: Json): WebLink {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebLink\"";
     }
@@ -11046,7 +11046,7 @@ export function deserializeWebLink(val: JSON): WebLink {
     const etag: undefined | string = isJson(val.etag, "string") ? val.etag : void 0;
     return { parent: parent, description: description, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, itemStatus: itemStatus, url: url, sequenceId: sequenceId, name: name, id: id, type: type, etag: etag } satisfies WebLink;
 }
-export function serializeWebLink(val: WebLink): JSON {
+export function serializeWebLink(val: WebLink): Json {
     const base: any = serializeWebLinkMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"WebLink\"";
@@ -11054,7 +11054,7 @@ export function serializeWebLink(val: WebLink): JSON {
     return { ...base, ...{ ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["description"]: val.description, ["path_collection"]: val.pathCollection === void 0 ? void 0 : serializeWebLinkPathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeWebLinkSharedLinkField(val.sharedLink), ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeWebLinkItemStatusField(val.itemStatus) } };
 }
 export type ItemsEntriesField = FileMini | FolderMini | WebLinkMini;
-export function deserializeItemsEntriesField(val: JSON): ItemsEntriesField {
+export function deserializeItemsEntriesField(val: Json): ItemsEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ItemsEntriesField\"";
     }
@@ -11069,7 +11069,7 @@ export function deserializeItemsEntriesField(val: JSON): ItemsEntriesField {
     }
     throw "unknown type";
 }
-export function serializeItemsEntriesField(val: ItemsEntriesField): JSON {
+export function serializeItemsEntriesField(val: ItemsEntriesField): Json {
     if (val.type === "file") {
         return serializeFileMini(val);
     }
@@ -11088,7 +11088,7 @@ export interface Items {
     readonly order?: readonly ItemsOrderField[];
     readonly entries?: readonly ItemsEntriesField[];
 }
-export function deserializeItems(val: JSON): Items {
+export function deserializeItems(val: Json): Items {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Items\"";
     }
@@ -11107,18 +11107,18 @@ export function deserializeItems(val: JSON): Items {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Items\"";
     }
-    const order: undefined | readonly ItemsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly ItemsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeItemsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Items\"";
     }
-    const entries: undefined | readonly ItemsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly ItemsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeItemsEntriesField(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Items;
 }
-export function serializeItems(val: Items): JSON {
+export function serializeItems(val: Items): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: ItemsOrderField): any {
             return serializeItemsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: ItemsEntriesField): any {
@@ -11173,7 +11173,7 @@ export type Folder = FolderMini & {
     readonly itemStatus: FolderItemStatusField;
     readonly itemCollection: Items;
 };
-export function deserializeFolder(val: JSON): Folder {
+export function deserializeFolder(val: Json): Folder {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Folder\"";
     }
@@ -11264,7 +11264,7 @@ export function deserializeFolder(val: JSON): Folder {
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
     return { createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies Folder;
 }
-export function serializeFolder(val: Folder): JSON {
+export function serializeFolder(val: Folder): Json {
     const base: any = serializeFolderMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Folder\"";
@@ -11272,7 +11272,7 @@ export function serializeFolder(val: Folder): JSON {
     return { ...base, ...{ ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeFolderPathCollectionField(val.pathCollection), ["created_by"]: serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeFolderSharedLinkField(val.sharedLink), ["folder_upload_email"]: val.folderUploadEmail === void 0 ? void 0 : serializeFolderFolderUploadEmailField(val.folderUploadEmail), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeFolderItemStatusField(val.itemStatus), ["item_collection"]: serializeItems(val.itemCollection) } };
 }
 export type SearchResultWithSharedLinkItemField = File | Folder | WebLink;
-export function deserializeSearchResultWithSharedLinkItemField(val: JSON): SearchResultWithSharedLinkItemField {
+export function deserializeSearchResultWithSharedLinkItemField(val: Json): SearchResultWithSharedLinkItemField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SearchResultWithSharedLinkItemField\"";
     }
@@ -11287,7 +11287,7 @@ export function deserializeSearchResultWithSharedLinkItemField(val: JSON): Searc
     }
     throw "unknown type";
 }
-export function serializeSearchResultWithSharedLinkItemField(val: SearchResultWithSharedLinkItemField): JSON {
+export function serializeSearchResultWithSharedLinkItemField(val: SearchResultWithSharedLinkItemField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11304,7 +11304,7 @@ export interface SearchResultWithSharedLink {
     readonly item?: SearchResultWithSharedLinkItemField;
     readonly type?: string;
 }
-export function deserializeSearchResultWithSharedLink(val: JSON): SearchResultWithSharedLink {
+export function deserializeSearchResultWithSharedLink(val: Json): SearchResultWithSharedLink {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SearchResultWithSharedLink\"";
     }
@@ -11319,7 +11319,7 @@ export function deserializeSearchResultWithSharedLink(val: JSON): SearchResultWi
     const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
     return { accessibleViaSharedLink: accessibleViaSharedLink, item: item, type: type } satisfies SearchResultWithSharedLink;
 }
-export function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): JSON {
+export function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): Json {
     return { ["accessible_via_shared_link"]: val.accessibleViaSharedLink, ["item"]: val.item === void 0 ? void 0 : serializeSearchResultWithSharedLinkItemField(val.item), ["type"]: val.type };
 }
 export interface SearchResultsWithSharedLinks {
@@ -11328,7 +11328,7 @@ export interface SearchResultsWithSharedLinks {
     readonly offset?: number;
     readonly entries?: readonly SearchResultWithSharedLink[];
 }
-export function deserializeSearchResultsWithSharedLinks(val: JSON): SearchResultsWithSharedLinks {
+export function deserializeSearchResultsWithSharedLinks(val: Json): SearchResultsWithSharedLinks {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SearchResultsWithSharedLinks\"";
     }
@@ -11347,18 +11347,18 @@ export function deserializeSearchResultsWithSharedLinks(val: JSON): SearchResult
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"SearchResultsWithSharedLinks\"";
     }
-    const entries: undefined | readonly SearchResultWithSharedLink[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly SearchResultWithSharedLink[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeSearchResultWithSharedLink(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, entries: entries } satisfies SearchResultsWithSharedLinks;
 }
-export function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): JSON {
+export function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: SearchResultWithSharedLink): any {
             return serializeSearchResultWithSharedLink(item);
         }) as readonly any[] };
 }
 export type SearchResultsEntriesField = File | Folder | WebLink;
-export function deserializeSearchResultsEntriesField(val: JSON): SearchResultsEntriesField {
+export function deserializeSearchResultsEntriesField(val: Json): SearchResultsEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SearchResultsEntriesField\"";
     }
@@ -11373,7 +11373,7 @@ export function deserializeSearchResultsEntriesField(val: JSON): SearchResultsEn
     }
     throw "unknown type";
 }
-export function serializeSearchResultsEntriesField(val: SearchResultsEntriesField): JSON {
+export function serializeSearchResultsEntriesField(val: SearchResultsEntriesField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11391,7 +11391,7 @@ export interface SearchResults {
     readonly offset?: number;
     readonly entries?: readonly SearchResultsEntriesField[];
 }
-export function deserializeSearchResults(val: JSON): SearchResults {
+export function deserializeSearchResults(val: Json): SearchResults {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SearchResults\"";
     }
@@ -11410,18 +11410,18 @@ export function deserializeSearchResults(val: JSON): SearchResults {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"SearchResults\"";
     }
-    const entries: undefined | readonly SearchResultsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly SearchResultsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeSearchResultsEntriesField(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, entries: entries } satisfies SearchResults;
 }
-export function serializeSearchResults(val: SearchResults): JSON {
+export function serializeSearchResults(val: SearchResults): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: SearchResultsEntriesField): any {
             return serializeSearchResultsEntriesField(item);
         }) as readonly any[] };
 }
 export type RecentItemItemField = File | Folder | WebLink;
-export function deserializeRecentItemItemField(val: JSON): RecentItemItemField {
+export function deserializeRecentItemItemField(val: Json): RecentItemItemField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RecentItemItemField\"";
     }
@@ -11436,7 +11436,7 @@ export function deserializeRecentItemItemField(val: JSON): RecentItemItemField {
     }
     throw "unknown type";
 }
-export function serializeRecentItemItemField(val: RecentItemItemField): JSON {
+export function serializeRecentItemItemField(val: RecentItemItemField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11455,7 +11455,7 @@ export interface RecentItem {
     readonly interactedAt?: string;
     readonly interactionSharedLink?: string;
 }
-export function deserializeRecentItem(val: JSON): RecentItem {
+export function deserializeRecentItem(val: Json): RecentItem {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RecentItem\"";
     }
@@ -11475,7 +11475,7 @@ export function deserializeRecentItem(val: JSON): RecentItem {
     const interactionSharedLink: undefined | string = isJson(val.interaction_shared_link, "string") ? val.interaction_shared_link : void 0;
     return { type: type, item: item, interactionType: interactionType, interactedAt: interactedAt, interactionSharedLink: interactionSharedLink } satisfies RecentItem;
 }
-export function serializeRecentItem(val: RecentItem): JSON {
+export function serializeRecentItem(val: RecentItem): Json {
     return { ["type"]: val.type, ["item"]: val.item === void 0 ? void 0 : serializeRecentItemItemField(val.item), ["interaction_type"]: val.interactionType === void 0 ? void 0 : serializeRecentItemInteractionTypeField(val.interactionType), ["interacted_at"]: val.interactedAt, ["interaction_shared_link"]: val.interactionSharedLink };
 }
 export interface RecentItems {
@@ -11484,7 +11484,7 @@ export interface RecentItems {
     readonly prevMarker?: number;
     readonly entries?: readonly RecentItem[];
 }
-export function deserializeRecentItems(val: JSON): RecentItems {
+export function deserializeRecentItems(val: Json): RecentItems {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"RecentItems\"";
     }
@@ -11503,18 +11503,18 @@ export function deserializeRecentItems(val: JSON): RecentItems {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"RecentItems\"";
     }
-    const entries: undefined | readonly RecentItem[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly RecentItem[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeRecentItem(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies RecentItems;
 }
-export function serializeRecentItems(val: RecentItems): JSON {
+export function serializeRecentItems(val: RecentItems): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: RecentItem): any {
             return serializeRecentItem(item);
         }) as readonly any[] };
 }
 export type MetadataQueryResultsEntriesField = File | Folder;
-export function deserializeMetadataQueryResultsEntriesField(val: JSON): MetadataQueryResultsEntriesField {
+export function deserializeMetadataQueryResultsEntriesField(val: Json): MetadataQueryResultsEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryResultsEntriesField\"";
     }
@@ -11526,7 +11526,7 @@ export function deserializeMetadataQueryResultsEntriesField(val: JSON): Metadata
     }
     throw "unknown type";
 }
-export function serializeMetadataQueryResultsEntriesField(val: MetadataQueryResultsEntriesField): JSON {
+export function serializeMetadataQueryResultsEntriesField(val: MetadataQueryResultsEntriesField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11540,14 +11540,14 @@ export interface MetadataQueryResults {
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export function deserializeMetadataQueryResults(val: JSON): MetadataQueryResults {
+export function deserializeMetadataQueryResults(val: Json): MetadataQueryResults {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataQueryResults\"";
     }
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"MetadataQueryResults\"";
     }
-    const entries: undefined | readonly MetadataQueryResultsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly MetadataQueryResultsEntriesField[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeMetadataQueryResultsEntriesField(itm);
     }) as readonly any[] : void 0;
     if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
@@ -11560,13 +11560,13 @@ export function deserializeMetadataQueryResults(val: JSON): MetadataQueryResults
     const nextMarker: undefined | string = isJson(val.next_marker, "string") ? val.next_marker : void 0;
     return { entries: entries, limit: limit, nextMarker: nextMarker } satisfies MetadataQueryResults;
 }
-export function serializeMetadataQueryResults(val: MetadataQueryResults): JSON {
+export function serializeMetadataQueryResults(val: MetadataQueryResults): Json {
     return { ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: MetadataQueryResultsEntriesField): any {
             return serializeMetadataQueryResultsEntriesField(item);
         }) as readonly any[], ["limit"]: val.limit, ["next_marker"]: val.nextMarker };
 }
 export type LegalHoldPolicyAssignmentAssignedToField = File | Folder | WebLink;
-export function deserializeLegalHoldPolicyAssignmentAssignedToField(val: JSON): LegalHoldPolicyAssignmentAssignedToField {
+export function deserializeLegalHoldPolicyAssignmentAssignedToField(val: Json): LegalHoldPolicyAssignmentAssignedToField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignmentAssignedToField\"";
     }
@@ -11581,7 +11581,7 @@ export function deserializeLegalHoldPolicyAssignmentAssignedToField(val: JSON): 
     }
     throw "unknown type";
 }
-export function serializeLegalHoldPolicyAssignmentAssignedToField(val: LegalHoldPolicyAssignmentAssignedToField): JSON {
+export function serializeLegalHoldPolicyAssignmentAssignedToField(val: LegalHoldPolicyAssignmentAssignedToField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11609,7 +11609,7 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
      * was not deleted. */
     readonly deletedAt?: string;
 };
-export function deserializeLegalHoldPolicyAssignment(val: JSON): LegalHoldPolicyAssignment {
+export function deserializeLegalHoldPolicyAssignment(val: Json): LegalHoldPolicyAssignment {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignment\"";
     }
@@ -11631,7 +11631,7 @@ export function deserializeLegalHoldPolicyAssignment(val: JSON): LegalHoldPolicy
     const type: undefined | LegalHoldPolicyAssignmentBaseTypeField = val.type === void 0 ? void 0 : deserializeLegalHoldPolicyAssignmentBaseTypeField(val.type);
     return { legalHoldPolicy: legalHoldPolicy, assignedTo: assignedTo, assignedBy: assignedBy, assignedAt: assignedAt, deletedAt: deletedAt, id: id, type: type } satisfies LegalHoldPolicyAssignment;
 }
-export function serializeLegalHoldPolicyAssignment(val: LegalHoldPolicyAssignment): JSON {
+export function serializeLegalHoldPolicyAssignment(val: LegalHoldPolicyAssignment): Json {
     const base: any = serializeLegalHoldPolicyAssignmentBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"LegalHoldPolicyAssignment\"";
@@ -11646,7 +11646,7 @@ export interface FileVersionLegalHold {
     readonly legalHoldPolicyAssignments?: readonly LegalHoldPolicyAssignment[];
     readonly deletedAt?: string;
 }
-export function deserializeFileVersionLegalHold(val: JSON): FileVersionLegalHold {
+export function deserializeFileVersionLegalHold(val: Json): FileVersionLegalHold {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionLegalHold\"";
     }
@@ -11660,7 +11660,7 @@ export function deserializeFileVersionLegalHold(val: JSON): FileVersionLegalHold
     if (!(val.legal_hold_policy_assignments === void 0) && !isJson(val.legal_hold_policy_assignments, "array")) {
         throw "Expecting array for \"legal_hold_policy_assignments\" of type \"FileVersionLegalHold\"";
     }
-    const legalHoldPolicyAssignments: undefined | readonly LegalHoldPolicyAssignment[] = isJson(val.legal_hold_policy_assignments, "array") ? val.legal_hold_policy_assignments.map(function (itm: JSON): any {
+    const legalHoldPolicyAssignments: undefined | readonly LegalHoldPolicyAssignment[] = isJson(val.legal_hold_policy_assignments, "array") ? val.legal_hold_policy_assignments.map(function (itm: Json): any {
         return deserializeLegalHoldPolicyAssignment(itm);
     }) as readonly any[] : void 0;
     if (!(val.deleted_at === void 0) && !isJson(val.deleted_at, "string")) {
@@ -11669,7 +11669,7 @@ export function deserializeFileVersionLegalHold(val: JSON): FileVersionLegalHold
     const deletedAt: undefined | string = isJson(val.deleted_at, "string") ? val.deleted_at : void 0;
     return { id: id, type: type, fileVersion: fileVersion, file: file, legalHoldPolicyAssignments: legalHoldPolicyAssignments, deletedAt: deletedAt } satisfies FileVersionLegalHold;
 }
-export function serializeFileVersionLegalHold(val: FileVersionLegalHold): JSON {
+export function serializeFileVersionLegalHold(val: FileVersionLegalHold): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeFileVersionLegalHoldTypeField(val.type), ["file_version"]: val.fileVersion === void 0 ? void 0 : serializeFileVersionMini(val.fileVersion), ["file"]: val.file === void 0 ? void 0 : serializeFileMini(val.file), ["legal_hold_policy_assignments"]: val.legalHoldPolicyAssignments === void 0 ? void 0 : val.legalHoldPolicyAssignments.map(function (item: LegalHoldPolicyAssignment): any {
             return serializeLegalHoldPolicyAssignment(item);
         }) as readonly any[], ["deleted_at"]: val.deletedAt };
@@ -11680,7 +11680,7 @@ export interface FileVersionLegalHolds {
     readonly prevMarker?: number;
     readonly entries?: readonly FileVersionLegalHold[];
 }
-export function deserializeFileVersionLegalHolds(val: JSON): FileVersionLegalHolds {
+export function deserializeFileVersionLegalHolds(val: Json): FileVersionLegalHolds {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileVersionLegalHolds\"";
     }
@@ -11699,12 +11699,12 @@ export function deserializeFileVersionLegalHolds(val: JSON): FileVersionLegalHol
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"FileVersionLegalHolds\"";
     }
-    const entries: undefined | readonly FileVersionLegalHold[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly FileVersionLegalHold[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileVersionLegalHold(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies FileVersionLegalHolds;
 }
-export function serializeFileVersionLegalHolds(val: FileVersionLegalHolds): JSON {
+export function serializeFileVersionLegalHolds(val: FileVersionLegalHolds): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: FileVersionLegalHold): any {
             return serializeFileVersionLegalHold(item);
         }) as readonly any[] };
@@ -11750,7 +11750,7 @@ export type FolderFull = Folder & {
     readonly canNonOwnersViewCollaborators?: boolean;
     readonly classification?: FolderFullClassificationField;
 };
-export function deserializeFolderFull(val: JSON): FolderFull {
+export function deserializeFolderFull(val: Json): FolderFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderFull\"";
     }
@@ -11763,7 +11763,7 @@ export function deserializeFolderFull(val: JSON): FolderFull {
     if (!(val.tags === void 0) && !isJson(val.tags, "array")) {
         throw "Expecting array for \"tags\" of type \"FolderFull\"";
     }
-    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: JSON): undefined {
+    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     if (!(val.can_non_owners_invite === void 0) && !isJson(val.can_non_owners_invite, "boolean")) {
@@ -11782,13 +11782,13 @@ export function deserializeFolderFull(val: JSON): FolderFull {
     if (!(val.allowed_shared_link_access_levels === void 0) && !isJson(val.allowed_shared_link_access_levels, "array")) {
         throw "Expecting array for \"allowed_shared_link_access_levels\" of type \"FolderFull\"";
     }
-    const allowedSharedLinkAccessLevels: undefined | readonly FolderFullAllowedSharedLinkAccessLevelsField[] = isJson(val.allowed_shared_link_access_levels, "array") ? val.allowed_shared_link_access_levels.map(function (itm: JSON): any {
+    const allowedSharedLinkAccessLevels: undefined | readonly FolderFullAllowedSharedLinkAccessLevelsField[] = isJson(val.allowed_shared_link_access_levels, "array") ? val.allowed_shared_link_access_levels.map(function (itm: Json): any {
         return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.allowed_invitee_roles === void 0) && !isJson(val.allowed_invitee_roles, "array")) {
         throw "Expecting array for \"allowed_invitee_roles\" of type \"FolderFull\"";
     }
-    const allowedInviteeRoles: undefined | readonly FolderFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: JSON): any {
+    const allowedInviteeRoles: undefined | readonly FolderFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: Json): any {
         return deserializeFolderFullAllowedInviteeRolesField(itm);
     }) as readonly any[] : void 0;
     const watermarkInfo: undefined | FolderFullWatermarkInfoField = val.watermark_info === void 0 ? void 0 : deserializeFolderFullWatermarkInfoField(val.watermark_info);
@@ -11888,7 +11888,7 @@ export function deserializeFolderFull(val: JSON): FolderFull {
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
     return { syncState: syncState, hasCollaborations: hasCollaborations, permissions: permissions, tags: tags, canNonOwnersInvite: canNonOwnersInvite, isExternallyOwned: isExternallyOwned, metadata: metadata, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, allowedSharedLinkAccessLevels: allowedSharedLinkAccessLevels, allowedInviteeRoles: allowedInviteeRoles, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators, classification: classification, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderFull;
 }
-export function serializeFolderFull(val: FolderFull): JSON {
+export function serializeFolderFull(val: FolderFull): Json {
     const base: any = serializeFolder(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderFull\"";
@@ -11902,7 +11902,7 @@ export function serializeFolderFull(val: FolderFull): JSON {
             }) as readonly any[], ["watermark_info"]: val.watermarkInfo === void 0 ? void 0 : serializeFolderFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink, ["can_non_owners_view_collaborators"]: val.canNonOwnersViewCollaborators, ["classification"]: val.classification === void 0 ? void 0 : serializeFolderFullClassificationField(val.classification) } };
 }
 export type CollaborationItemField = File | Folder | WebLink;
-export function deserializeCollaborationItemField(val: JSON): CollaborationItemField {
+export function deserializeCollaborationItemField(val: Json): CollaborationItemField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"CollaborationItemField\"";
     }
@@ -11917,7 +11917,7 @@ export function deserializeCollaborationItemField(val: JSON): CollaborationItemF
     }
     throw "unknown type";
 }
-export function serializeCollaborationItemField(val: CollaborationItemField): JSON {
+export function serializeCollaborationItemField(val: CollaborationItemField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -11944,7 +11944,7 @@ export interface Collaboration {
     readonly modifiedAt?: string;
     readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }
-export function deserializeCollaboration(val: JSON): Collaboration {
+export function deserializeCollaboration(val: Json): Collaboration {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Collaboration\"";
     }
@@ -11981,7 +11981,7 @@ export function deserializeCollaboration(val: JSON): Collaboration {
     const acceptanceRequirementsStatus: undefined | CollaborationAcceptanceRequirementsStatusField = val.acceptance_requirements_status === void 0 ? void 0 : deserializeCollaborationAcceptanceRequirementsStatusField(val.acceptance_requirements_status);
     return { id: id, type: type, item: item, accessibleBy: accessibleBy, inviteEmail: inviteEmail, role: role, expiresAt: expiresAt, status: status, acknowledgedAt: acknowledgedAt, createdBy: createdBy, createdAt: createdAt, modifiedAt: modifiedAt, acceptanceRequirementsStatus: acceptanceRequirementsStatus } satisfies Collaboration;
 }
-export function serializeCollaboration(val: Collaboration): JSON {
+export function serializeCollaboration(val: Collaboration): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeCollaborationTypeField(val.type), ["item"]: val.item === void 0 ? void 0 : serializeCollaborationItemField(val.item), ["accessible_by"]: val.accessibleBy === void 0 ? void 0 : serializeUserCollaborations(val.accessibleBy), ["invite_email"]: val.inviteEmail, ["role"]: val.role === void 0 ? void 0 : serializeCollaborationRoleField(val.role), ["expires_at"]: val.expiresAt, ["status"]: val.status === void 0 ? void 0 : serializeCollaborationStatusField(val.status), ["acknowledged_at"]: val.acknowledgedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserCollaborations(val.createdBy), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["acceptance_requirements_status"]: val.acceptanceRequirementsStatus === void 0 ? void 0 : serializeCollaborationAcceptanceRequirementsStatusField(val.acceptanceRequirementsStatus) };
 }
 export interface Collaborations {
@@ -11991,7 +11991,7 @@ export interface Collaborations {
     readonly order?: readonly CollaborationsOrderField[];
     readonly entries?: readonly Collaboration[];
 }
-export function deserializeCollaborations(val: JSON): Collaborations {
+export function deserializeCollaborations(val: Json): Collaborations {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Collaborations\"";
     }
@@ -12010,18 +12010,18 @@ export function deserializeCollaborations(val: JSON): Collaborations {
     if (!(val.order === void 0) && !isJson(val.order, "array")) {
         throw "Expecting array for \"order\" of type \"Collaborations\"";
     }
-    const order: undefined | readonly CollaborationsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: JSON): any {
+    const order: undefined | readonly CollaborationsOrderField[] = isJson(val.order, "array") ? val.order.map(function (itm: Json): any {
         return deserializeCollaborationsOrderField(itm);
     }) as readonly any[] : void 0;
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Collaborations\"";
     }
-    const entries: undefined | readonly Collaboration[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Collaboration[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeCollaboration(itm);
     }) as readonly any[] : void 0;
     return { totalCount: totalCount, limit: limit, offset: offset, order: order, entries: entries } satisfies Collaborations;
 }
-export function serializeCollaborations(val: Collaborations): JSON {
+export function serializeCollaborations(val: Collaborations): Json {
     return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["order"]: val.order === void 0 ? void 0 : val.order.map(function (item: CollaborationsOrderField): any {
             return serializeCollaborationsOrderField(item);
         }) as readonly any[], ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Collaboration): any {
@@ -12029,7 +12029,7 @@ export function serializeCollaborations(val: Collaborations): JSON {
         }) as readonly any[] };
 }
 export type WebhookInvocationSourceField = File | Folder;
-export function deserializeWebhookInvocationSourceField(val: JSON): WebhookInvocationSourceField {
+export function deserializeWebhookInvocationSourceField(val: Json): WebhookInvocationSourceField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebhookInvocationSourceField\"";
     }
@@ -12041,7 +12041,7 @@ export function deserializeWebhookInvocationSourceField(val: JSON): WebhookInvoc
     }
     throw "unknown type";
 }
-export function serializeWebhookInvocationSourceField(val: WebhookInvocationSourceField): JSON {
+export function serializeWebhookInvocationSourceField(val: WebhookInvocationSourceField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -12059,7 +12059,7 @@ export interface WebhookInvocation {
     readonly trigger?: WebhookInvocationTriggerField;
     readonly source?: WebhookInvocationSourceField;
 }
-export function deserializeWebhookInvocation(val: JSON): WebhookInvocation {
+export function deserializeWebhookInvocation(val: Json): WebhookInvocation {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WebhookInvocation\"";
     }
@@ -12078,11 +12078,11 @@ export function deserializeWebhookInvocation(val: JSON): WebhookInvocation {
     const source: undefined | WebhookInvocationSourceField = val.source === void 0 ? void 0 : deserializeWebhookInvocationSourceField(val.source);
     return { id: id, type: type, webhook: webhook, createdBy: createdBy, createdAt: createdAt, trigger: trigger, source: source } satisfies WebhookInvocation;
 }
-export function serializeWebhookInvocation(val: WebhookInvocation): JSON {
+export function serializeWebhookInvocation(val: WebhookInvocation): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWebhookInvocationTypeField(val.type), ["webhook"]: val.webhook === void 0 ? void 0 : serializeWebhook(val.webhook), ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["created_at"]: val.createdAt, ["trigger"]: val.trigger === void 0 ? void 0 : serializeWebhookInvocationTriggerField(val.trigger), ["source"]: val.source === void 0 ? void 0 : serializeWebhookInvocationSourceField(val.source) };
 }
 export type SkillInvocationSourceField = File | Folder;
-export function deserializeSkillInvocationSourceField(val: JSON): SkillInvocationSourceField {
+export function deserializeSkillInvocationSourceField(val: Json): SkillInvocationSourceField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocationSourceField\"";
     }
@@ -12094,7 +12094,7 @@ export function deserializeSkillInvocationSourceField(val: JSON): SkillInvocatio
     }
     throw "unknown type";
 }
-export function serializeSkillInvocationSourceField(val: SkillInvocationSourceField): JSON {
+export function serializeSkillInvocationSourceField(val: SkillInvocationSourceField): Json {
     if (val.type === "file") {
         return serializeFile(val);
     }
@@ -12104,7 +12104,7 @@ export function serializeSkillInvocationSourceField(val: SkillInvocationSourceFi
     throw "unknown type";
 }
 export type WorkflowFlowsFieldTypeField = "flow";
-export function deserializeWorkflowFlowsFieldTypeField(val: JSON): WorkflowFlowsFieldTypeField {
+export function deserializeWorkflowFlowsFieldTypeField(val: Json): WorkflowFlowsFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldTypeField\"";
     }
@@ -12113,11 +12113,11 @@ export function deserializeWorkflowFlowsFieldTypeField(val: JSON): WorkflowFlows
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldTypeField(val: WorkflowFlowsFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldTypeField(val: WorkflowFlowsFieldTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldTriggerFieldTypeField = "trigger";
-export function deserializeWorkflowFlowsFieldTriggerFieldTypeField(val: JSON): WorkflowFlowsFieldTriggerFieldTypeField {
+export function deserializeWorkflowFlowsFieldTriggerFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldTriggerFieldTypeField\"";
     }
@@ -12126,11 +12126,11 @@ export function deserializeWorkflowFlowsFieldTriggerFieldTypeField(val: JSON): W
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldTypeField(val: WorkflowFlowsFieldTriggerFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldTypeField(val: WorkflowFlowsFieldTriggerFieldTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldTriggerFieldTriggerTypeField = "WORKFLOW_MANUAL_START";
-export function deserializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: JSON): WorkflowFlowsFieldTriggerFieldTriggerTypeField {
+export function deserializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: Json): WorkflowFlowsFieldTriggerFieldTriggerTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldTriggerFieldTriggerTypeField\"";
     }
@@ -12139,11 +12139,11 @@ export function deserializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: J
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: WorkflowFlowsFieldTriggerFieldTriggerTypeField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: WorkflowFlowsFieldTriggerFieldTriggerTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldTriggerFieldScopeFieldTypeField = "trigger_scope";
-export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: JSON): WorkflowFlowsFieldTriggerFieldScopeFieldTypeField {
+export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldTriggerFieldScopeFieldTypeField\"";
     }
@@ -12152,11 +12152,11 @@ export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField = "folder";
-export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: JSON): WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField {
+export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField\"";
     }
@@ -12165,14 +12165,14 @@ export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTy
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField): Json {
     return val;
 }
 export interface WorkflowFlowsFieldTriggerFieldScopeFieldObjectField {
     readonly type?: WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField;
     readonly id?: string;
 }
-export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: JSON): WorkflowFlowsFieldTriggerFieldScopeFieldObjectField {
+export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldObjectField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsFieldTriggerFieldScopeFieldObjectField\"";
     }
@@ -12183,7 +12183,7 @@ export function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(v
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, id: id } satisfies WorkflowFlowsFieldTriggerFieldScopeFieldObjectField;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface WorkflowFlowsFieldTriggerFieldScopeField {
@@ -12191,7 +12191,7 @@ export interface WorkflowFlowsFieldTriggerFieldScopeField {
     readonly ref?: string;
     readonly object?: WorkflowFlowsFieldTriggerFieldScopeFieldObjectField;
 }
-export function deserializeWorkflowFlowsFieldTriggerFieldScopeField(val: JSON): WorkflowFlowsFieldTriggerFieldScopeField {
+export function deserializeWorkflowFlowsFieldTriggerFieldScopeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsFieldTriggerFieldScopeField\"";
     }
@@ -12203,7 +12203,7 @@ export function deserializeWorkflowFlowsFieldTriggerFieldScopeField(val: JSON): 
     const object: undefined | WorkflowFlowsFieldTriggerFieldScopeFieldObjectField = val.object === void 0 ? void 0 : deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val.object);
     return { type: type, ref: ref, object: object } satisfies WorkflowFlowsFieldTriggerFieldScopeField;
 }
-export function serializeWorkflowFlowsFieldTriggerFieldScopeField(val: WorkflowFlowsFieldTriggerFieldScopeField): JSON {
+export function serializeWorkflowFlowsFieldTriggerFieldScopeField(val: WorkflowFlowsFieldTriggerFieldScopeField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val.type), ["ref"]: val.ref, ["object"]: val.object === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val.object) };
 }
 export interface WorkflowFlowsFieldTriggerField {
@@ -12211,7 +12211,7 @@ export interface WorkflowFlowsFieldTriggerField {
     readonly triggerType?: WorkflowFlowsFieldTriggerFieldTriggerTypeField;
     readonly scope?: readonly WorkflowFlowsFieldTriggerFieldScopeField[];
 }
-export function deserializeWorkflowFlowsFieldTriggerField(val: JSON): WorkflowFlowsFieldTriggerField {
+export function deserializeWorkflowFlowsFieldTriggerField(val: Json): WorkflowFlowsFieldTriggerField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsFieldTriggerField\"";
     }
@@ -12220,18 +12220,18 @@ export function deserializeWorkflowFlowsFieldTriggerField(val: JSON): WorkflowFl
     if (!(val.scope === void 0) && !isJson(val.scope, "array")) {
         throw "Expecting array for \"scope\" of type \"WorkflowFlowsFieldTriggerField\"";
     }
-    const scope: undefined | readonly WorkflowFlowsFieldTriggerFieldScopeField[] = isJson(val.scope, "array") ? val.scope.map(function (itm: JSON): any {
+    const scope: undefined | readonly WorkflowFlowsFieldTriggerFieldScopeField[] = isJson(val.scope, "array") ? val.scope.map(function (itm: Json): any {
         return deserializeWorkflowFlowsFieldTriggerFieldScopeField(itm);
     }) as readonly any[] : void 0;
     return { type: type, triggerType: triggerType, scope: scope } satisfies WorkflowFlowsFieldTriggerField;
 }
-export function serializeWorkflowFlowsFieldTriggerField(val: WorkflowFlowsFieldTriggerField): JSON {
+export function serializeWorkflowFlowsFieldTriggerField(val: WorkflowFlowsFieldTriggerField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerFieldTypeField(val.type), ["trigger_type"]: val.triggerType === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val.triggerType), ["scope"]: val.scope === void 0 ? void 0 : val.scope.map(function (item: WorkflowFlowsFieldTriggerFieldScopeField): any {
             return serializeWorkflowFlowsFieldTriggerFieldScopeField(item);
         }) as readonly any[] };
 }
 export type WorkflowFlowsFieldOutcomesFieldTypeField = "outcome";
-export function deserializeWorkflowFlowsFieldOutcomesFieldTypeField(val: JSON): WorkflowFlowsFieldOutcomesFieldTypeField {
+export function deserializeWorkflowFlowsFieldOutcomesFieldTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldOutcomesFieldTypeField\"";
     }
@@ -12240,11 +12240,11 @@ export function deserializeWorkflowFlowsFieldOutcomesFieldTypeField(val: JSON): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldOutcomesFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldOutcomesFieldActionTypeField = "add_metadata" | "assign_task" | "copy_file" | "copy_folder" | "create_folder" | "delete_file" | "delete_folder" | "lock_file" | "move_file" | "move_folder" | "remove_watermark_file" | "rename_folder" | "restore_folder" | "share_file" | "share_folder" | "unlock_file" | "upload_file" | "wait_for_task" | "watermark_file" | "go_back_to_step" | "apply_file_classification" | "apply_folder_classification" | "send_notification";
-export function deserializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: JSON): WorkflowFlowsFieldOutcomesFieldActionTypeField {
+export function deserializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldActionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldOutcomesFieldActionTypeField\"";
     }
@@ -12319,11 +12319,11 @@ export function deserializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: J
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldActionTypeField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldActionTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField = "outcome";
-export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: JSON): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField {
+export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField\"";
     }
@@ -12332,11 +12332,11 @@ export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField): Json {
     return val;
 }
 export type WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField = "add_metadata" | "assign_task" | "copy_file" | "copy_folder" | "create_folder" | "delete_file" | "delete_folder" | "lock_file" | "move_file" | "move_folder" | "remove_watermark_file" | "rename_folder" | "restore_folder" | "share_file" | "share_folder" | "unlock_file" | "upload_file" | "wait_for_task" | "watermark_file" | "go_back_to_step" | "apply_file_classification" | "apply_folder_classification" | "send_notification";
-export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: JSON): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField {
+export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField\"";
     }
@@ -12411,7 +12411,7 @@ export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField): Json {
     return val;
 }
 export interface WorkflowFlowsFieldOutcomesFieldIfRejectedField {
@@ -12420,7 +12420,7 @@ export interface WorkflowFlowsFieldOutcomesFieldIfRejectedField {
     readonly name?: string;
     readonly actionType?: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField;
 }
-export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: JSON): WorkflowFlowsFieldOutcomesFieldIfRejectedField {
+export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsFieldOutcomesFieldIfRejectedField\"";
     }
@@ -12436,7 +12436,7 @@ export function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: J
     const actionType: undefined | WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField = val.action_type === void 0 ? void 0 : deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val.action_type);
     return { id: id, type: type, name: name, actionType: actionType } satisfies WorkflowFlowsFieldOutcomesFieldIfRejectedField;
 }
-export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val.type), ["name"]: val.name, ["action_type"]: val.actionType === void 0 ? void 0 : serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val.actionType) };
 }
 export interface WorkflowFlowsFieldOutcomesField {
@@ -12446,7 +12446,7 @@ export interface WorkflowFlowsFieldOutcomesField {
     readonly actionType?: WorkflowFlowsFieldOutcomesFieldActionTypeField;
     readonly ifRejected?: readonly WorkflowFlowsFieldOutcomesFieldIfRejectedField[];
 }
-export function deserializeWorkflowFlowsFieldOutcomesField(val: JSON): WorkflowFlowsFieldOutcomesField {
+export function deserializeWorkflowFlowsFieldOutcomesField(val: Json): WorkflowFlowsFieldOutcomesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsFieldOutcomesField\"";
     }
@@ -12463,12 +12463,12 @@ export function deserializeWorkflowFlowsFieldOutcomesField(val: JSON): WorkflowF
     if (!(val.if_rejected === void 0) && !isJson(val.if_rejected, "array")) {
         throw "Expecting array for \"if_rejected\" of type \"WorkflowFlowsFieldOutcomesField\"";
     }
-    const ifRejected: undefined | readonly WorkflowFlowsFieldOutcomesFieldIfRejectedField[] = isJson(val.if_rejected, "array") ? val.if_rejected.map(function (itm: JSON): any {
+    const ifRejected: undefined | readonly WorkflowFlowsFieldOutcomesFieldIfRejectedField[] = isJson(val.if_rejected, "array") ? val.if_rejected.map(function (itm: Json): any {
         return deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(itm);
     }) as readonly any[] : void 0;
     return { id: id, type: type, name: name, actionType: actionType, ifRejected: ifRejected } satisfies WorkflowFlowsFieldOutcomesField;
 }
-export function serializeWorkflowFlowsFieldOutcomesField(val: WorkflowFlowsFieldOutcomesField): JSON {
+export function serializeWorkflowFlowsFieldOutcomesField(val: WorkflowFlowsFieldOutcomesField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldOutcomesFieldTypeField(val.type), ["name"]: val.name, ["action_type"]: val.actionType === void 0 ? void 0 : serializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val.actionType), ["if_rejected"]: val.ifRejected === void 0 ? void 0 : val.ifRejected.map(function (item: WorkflowFlowsFieldOutcomesFieldIfRejectedField): any {
             return serializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(item);
         }) as readonly any[] };
@@ -12481,7 +12481,7 @@ export interface WorkflowFlowsField {
     readonly createdAt?: string;
     readonly createdBy?: UserBase;
 }
-export function deserializeWorkflowFlowsField(val: JSON): WorkflowFlowsField {
+export function deserializeWorkflowFlowsField(val: Json): WorkflowFlowsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFlowsField\"";
     }
@@ -12494,7 +12494,7 @@ export function deserializeWorkflowFlowsField(val: JSON): WorkflowFlowsField {
     if (!(val.outcomes === void 0) && !isJson(val.outcomes, "array")) {
         throw "Expecting array for \"outcomes\" of type \"WorkflowFlowsField\"";
     }
-    const outcomes: undefined | readonly WorkflowFlowsFieldOutcomesField[] = isJson(val.outcomes, "array") ? val.outcomes.map(function (itm: JSON): any {
+    const outcomes: undefined | readonly WorkflowFlowsFieldOutcomesField[] = isJson(val.outcomes, "array") ? val.outcomes.map(function (itm: Json): any {
         return deserializeWorkflowFlowsFieldOutcomesField(itm);
     }) as readonly any[] : void 0;
     if (!(val.created_at === void 0) && !isJson(val.created_at, "string")) {
@@ -12504,13 +12504,13 @@ export function deserializeWorkflowFlowsField(val: JSON): WorkflowFlowsField {
     const createdBy: undefined | UserBase = val.created_by === void 0 ? void 0 : deserializeUserBase(val.created_by);
     return { id: id, type: type, trigger: trigger, outcomes: outcomes, createdAt: createdAt, createdBy: createdBy } satisfies WorkflowFlowsField;
 }
-export function serializeWorkflowFlowsField(val: WorkflowFlowsField): JSON {
+export function serializeWorkflowFlowsField(val: WorkflowFlowsField): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWorkflowFlowsFieldTypeField(val.type), ["trigger"]: val.trigger === void 0 ? void 0 : serializeWorkflowFlowsFieldTriggerField(val.trigger), ["outcomes"]: val.outcomes === void 0 ? void 0 : val.outcomes.map(function (item: WorkflowFlowsFieldOutcomesField): any {
             return serializeWorkflowFlowsFieldOutcomesField(item);
         }) as readonly any[], ["created_at"]: val.createdAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserBase(val.createdBy) };
 }
 export type WorkflowMiniTypeField = "workflow";
-export function deserializeWorkflowMiniTypeField(val: JSON): WorkflowMiniTypeField {
+export function deserializeWorkflowMiniTypeField(val: Json): WorkflowMiniTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"WorkflowMiniTypeField\"";
     }
@@ -12519,7 +12519,7 @@ export function deserializeWorkflowMiniTypeField(val: JSON): WorkflowMiniTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeWorkflowMiniTypeField(val: WorkflowMiniTypeField): JSON {
+export function serializeWorkflowMiniTypeField(val: WorkflowMiniTypeField): Json {
     return val;
 }
 export interface WorkflowMini {
@@ -12529,7 +12529,7 @@ export interface WorkflowMini {
     readonly description?: string;
     readonly isEnabled?: boolean;
 }
-export function deserializeWorkflowMini(val: JSON): WorkflowMini {
+export function deserializeWorkflowMini(val: Json): WorkflowMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowMini\"";
     }
@@ -12552,7 +12552,7 @@ export function deserializeWorkflowMini(val: JSON): WorkflowMini {
     const isEnabled: undefined | boolean = isJson(val.is_enabled, "boolean") ? val.is_enabled : void 0;
     return { id: id, type: type, name: name, description: description, isEnabled: isEnabled } satisfies WorkflowMini;
 }
-export function serializeWorkflowMini(val: WorkflowMini): JSON {
+export function serializeWorkflowMini(val: WorkflowMini): Json {
     return { ["id"]: val.id, ["type"]: val.type === void 0 ? void 0 : serializeWorkflowMiniTypeField(val.type), ["name"]: val.name, ["description"]: val.description, ["is_enabled"]: val.isEnabled };
 }
 export type Workflow = WorkflowMini & {
@@ -12560,14 +12560,14 @@ export type Workflow = WorkflowMini & {
      * A list of flows assigned to a workflow. */
     readonly flows?: readonly WorkflowFlowsField[];
 };
-export function deserializeWorkflow(val: JSON): Workflow {
+export function deserializeWorkflow(val: Json): Workflow {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Workflow\"";
     }
     if (!(val.flows === void 0) && !isJson(val.flows, "array")) {
         throw "Expecting array for \"flows\" of type \"Workflow\"";
     }
-    const flows: undefined | readonly WorkflowFlowsField[] = isJson(val.flows, "array") ? val.flows.map(function (itm: JSON): any {
+    const flows: undefined | readonly WorkflowFlowsField[] = isJson(val.flows, "array") ? val.flows.map(function (itm: Json): any {
         return deserializeWorkflowFlowsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
@@ -12589,7 +12589,7 @@ export function deserializeWorkflow(val: JSON): Workflow {
     const isEnabled: undefined | boolean = isJson(val.is_enabled, "boolean") ? val.is_enabled : void 0;
     return { flows: flows, id: id, type: type, name: name, description: description, isEnabled: isEnabled } satisfies Workflow;
 }
-export function serializeWorkflow(val: Workflow): JSON {
+export function serializeWorkflow(val: Workflow): Json {
     const base: any = serializeWorkflowMini(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Workflow\"";
@@ -12604,7 +12604,7 @@ export interface Workflows {
     readonly prevMarker?: number;
     readonly entries?: readonly Workflow[];
 }
-export function deserializeWorkflows(val: JSON): Workflows {
+export function deserializeWorkflows(val: Json): Workflows {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Workflows\"";
     }
@@ -12623,12 +12623,12 @@ export function deserializeWorkflows(val: JSON): Workflows {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Workflows\"";
     }
-    const entries: undefined | readonly Workflow[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Workflow[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeWorkflow(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies Workflows;
 }
-export function serializeWorkflows(val: Workflows): JSON {
+export function serializeWorkflows(val: Workflows): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Workflow): any {
             return serializeWorkflow(item);
         }) as readonly any[] };
@@ -12643,7 +12643,7 @@ export type WorkflowFull = Workflow & {
     readonly createdBy?: UserBase;
     readonly modifiedBy?: UserBase;
 };
-export function deserializeWorkflowFull(val: JSON): WorkflowFull {
+export function deserializeWorkflowFull(val: Json): WorkflowFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"WorkflowFull\"";
     }
@@ -12660,7 +12660,7 @@ export function deserializeWorkflowFull(val: JSON): WorkflowFull {
     if (!(val.flows === void 0) && !isJson(val.flows, "array")) {
         throw "Expecting array for \"flows\" of type \"WorkflowFull\"";
     }
-    const flows: undefined | readonly WorkflowFlowsField[] = isJson(val.flows, "array") ? val.flows.map(function (itm: JSON): any {
+    const flows: undefined | readonly WorkflowFlowsField[] = isJson(val.flows, "array") ? val.flows.map(function (itm: Json): any {
         return deserializeWorkflowFlowsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
@@ -12682,7 +12682,7 @@ export function deserializeWorkflowFull(val: JSON): WorkflowFull {
     const isEnabled: undefined | boolean = isJson(val.is_enabled, "boolean") ? val.is_enabled : void 0;
     return { createdAt: createdAt, modifiedAt: modifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, flows: flows, id: id, type: type, name: name, description: description, isEnabled: isEnabled } satisfies WorkflowFull;
 }
-export function serializeWorkflowFull(val: WorkflowFull): JSON {
+export function serializeWorkflowFull(val: WorkflowFull): Json {
     const base: any = serializeWorkflow(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"WorkflowFull\"";
@@ -12709,7 +12709,7 @@ export interface ZipDownload {
         readonly downloadName?: string;
     }[])[];
 }
-export function deserializeZipDownload(val: JSON): ZipDownload {
+export function deserializeZipDownload(val: Json): ZipDownload {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ZipDownload\"";
     }
@@ -12742,12 +12742,12 @@ export function deserializeZipDownload(val: JSON): ZipDownload {
          * The new name of this item as it will appear in the
          * downloaded `zip` archive. */
         readonly downloadName?: string;
-    }[])[] = isJson(val.name_conflicts, "array") ? val.name_conflicts.map(function (itm: JSON): undefined {
+    }[])[] = isJson(val.name_conflicts, "array") ? val.name_conflicts.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     return { downloadUrl: downloadUrl, statusUrl: statusUrl, expiresAt: expiresAt, nameConflicts: nameConflicts } satisfies ZipDownload;
 }
-export function serializeZipDownload(val: ZipDownload): JSON {
+export function serializeZipDownload(val: ZipDownload): Json {
     return { ["download_url"]: val.downloadUrl, ["status_url"]: val.statusUrl, ["expires_at"]: val.expiresAt, ["name_conflicts"]: val.nameConflicts === void 0 ? void 0 : val.nameConflicts.map(function (item: readonly {
             /**
              * The identifier of the item */
@@ -12767,7 +12767,7 @@ export function serializeZipDownload(val: ZipDownload): JSON {
         }) as readonly any[] };
 }
 export type ZipDownloadStatusStateField = "in_progress" | "failed" | "success";
-export function deserializeZipDownloadStatusStateField(val: JSON): ZipDownloadStatusStateField {
+export function deserializeZipDownloadStatusStateField(val: Json): ZipDownloadStatusStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"ZipDownloadStatusStateField\"";
     }
@@ -12782,7 +12782,7 @@ export function deserializeZipDownloadStatusStateField(val: JSON): ZipDownloadSt
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeZipDownloadStatusStateField(val: ZipDownloadStatusStateField): JSON {
+export function serializeZipDownloadStatusStateField(val: ZipDownloadStatusStateField): Json {
     return val;
 }
 export interface ZipDownloadStatus {
@@ -12792,7 +12792,7 @@ export interface ZipDownloadStatus {
     readonly skippedFolderCount?: number;
     readonly state?: ZipDownloadStatusStateField;
 }
-export function deserializeZipDownloadStatus(val: JSON): ZipDownloadStatus {
+export function deserializeZipDownloadStatus(val: Json): ZipDownloadStatus {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ZipDownloadStatus\"";
     }
@@ -12815,11 +12815,11 @@ export function deserializeZipDownloadStatus(val: JSON): ZipDownloadStatus {
     const state: undefined | ZipDownloadStatusStateField = val.state === void 0 ? void 0 : deserializeZipDownloadStatusStateField(val.state);
     return { totalFileCount: totalFileCount, downloadedFileCount: downloadedFileCount, skippedFileCount: skippedFileCount, skippedFolderCount: skippedFolderCount, state: state } satisfies ZipDownloadStatus;
 }
-export function serializeZipDownloadStatus(val: ZipDownloadStatus): JSON {
+export function serializeZipDownloadStatus(val: ZipDownloadStatus): Json {
     return { ["total_file_count"]: val.totalFileCount, ["downloaded_file_count"]: val.downloadedFileCount, ["skipped_file_count"]: val.skippedFileCount, ["skipped_folder_count"]: val.skippedFolderCount, ["state"]: val.state === void 0 ? void 0 : serializeZipDownloadStatusStateField(val.state) };
 }
 export type SignRequestTypeField = "sign-request";
-export function deserializeSignRequestTypeField(val: JSON): SignRequestTypeField {
+export function deserializeSignRequestTypeField(val: Json): SignRequestTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestTypeField\"";
     }
@@ -12828,11 +12828,11 @@ export function deserializeSignRequestTypeField(val: JSON): SignRequestTypeField
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestTypeField(val: SignRequestTypeField): JSON {
+export function serializeSignRequestTypeField(val: SignRequestTypeField): Json {
     return val;
 }
 export type SignRequestStatusField = "converting" | "created" | "sent" | "viewed" | "signed" | "cancelled" | "declined" | "error_converting" | "error_sending" | "expired";
-export function deserializeSignRequestStatusField(val: JSON): SignRequestStatusField {
+export function deserializeSignRequestStatusField(val: Json): SignRequestStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestStatusField\"";
     }
@@ -12868,11 +12868,11 @@ export function deserializeSignRequestStatusField(val: JSON): SignRequestStatusF
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestStatusField(val: SignRequestStatusField): JSON {
+export function serializeSignRequestStatusField(val: SignRequestStatusField): Json {
     return val;
 }
 export type FileScopeScopeField = "annotation_edit" | "annotation_view_all" | "annotation_view_self" | "base_explorer" | "base_picker" | "base_preview" | "base_upload" | "item_delete" | "item_download" | "item_preview" | "item_rename" | "item_share";
-export function deserializeFileScopeScopeField(val: JSON): FileScopeScopeField {
+export function deserializeFileScopeScopeField(val: Json): FileScopeScopeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"FileScopeScopeField\"";
     }
@@ -12914,14 +12914,14 @@ export function deserializeFileScopeScopeField(val: JSON): FileScopeScopeField {
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeFileScopeScopeField(val: FileScopeScopeField): JSON {
+export function serializeFileScopeScopeField(val: FileScopeScopeField): Json {
     return val;
 }
 export interface FileScope {
     readonly scope?: FileScopeScopeField;
     readonly object?: FileMini;
 }
-export function deserializeFileScope(val: JSON): FileScope {
+export function deserializeFileScope(val: Json): FileScope {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileScope\"";
     }
@@ -12929,7 +12929,7 @@ export function deserializeFileScope(val: JSON): FileScope {
     const object: undefined | FileMini = val.object === void 0 ? void 0 : deserializeFileMini(val.object);
     return { scope: scope, object: object } satisfies FileScope;
 }
-export function serializeFileScope(val: FileScope): JSON {
+export function serializeFileScope(val: FileScope): Json {
     return { ["scope"]: val.scope === void 0 ? void 0 : serializeFileScopeScopeField(val.scope), ["object"]: val.object === void 0 ? void 0 : serializeFileMini(val.object) };
 }
 export interface FileFullExpiringEmbedLinkField {
@@ -12939,7 +12939,7 @@ export interface FileFullExpiringEmbedLinkField {
     readonly restrictedTo?: readonly FileScope[];
     readonly url?: string;
 }
-export function deserializeFileFullExpiringEmbedLinkField(val: JSON): FileFullExpiringEmbedLinkField {
+export function deserializeFileFullExpiringEmbedLinkField(val: Json): FileFullExpiringEmbedLinkField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFullExpiringEmbedLinkField\"";
     }
@@ -12955,7 +12955,7 @@ export function deserializeFileFullExpiringEmbedLinkField(val: JSON): FileFullEx
     if (!(val.restricted_to === void 0) && !isJson(val.restricted_to, "array")) {
         throw "Expecting array for \"restricted_to\" of type \"FileFullExpiringEmbedLinkField\"";
     }
-    const restrictedTo: undefined | readonly FileScope[] = isJson(val.restricted_to, "array") ? val.restricted_to.map(function (itm: JSON): any {
+    const restrictedTo: undefined | readonly FileScope[] = isJson(val.restricted_to, "array") ? val.restricted_to.map(function (itm: Json): any {
         return deserializeFileScope(itm);
     }) as readonly any[] : void 0;
     if (!(val.url === void 0) && !isJson(val.url, "string")) {
@@ -12964,7 +12964,7 @@ export function deserializeFileFullExpiringEmbedLinkField(val: JSON): FileFullEx
     const url: undefined | string = isJson(val.url, "string") ? val.url : void 0;
     return { accessToken: accessToken, expiresIn: expiresIn, tokenType: tokenType, restrictedTo: restrictedTo, url: url } satisfies FileFullExpiringEmbedLinkField;
 }
-export function serializeFileFullExpiringEmbedLinkField(val: FileFullExpiringEmbedLinkField): JSON {
+export function serializeFileFullExpiringEmbedLinkField(val: FileFullExpiringEmbedLinkField): Json {
     return { ["access_token"]: val.accessToken, ["expires_in"]: val.expiresIn, ["token_type"]: val.tokenType === void 0 ? void 0 : serializeFileFullExpiringEmbedLinkFieldTokenTypeField(val.tokenType), ["restricted_to"]: val.restrictedTo === void 0 ? void 0 : val.restrictedTo.map(function (item: FileScope): any {
             return serializeFileScope(item);
         }) as readonly any[], ["url"]: val.url };
@@ -13020,7 +13020,7 @@ export type FileFull = File & {
      * when sharing this file. */
     readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
 };
-export function deserializeFileFull(val: JSON): FileFull {
+export function deserializeFileFull(val: Json): FileFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileFull\"";
     }
@@ -13036,7 +13036,7 @@ export function deserializeFileFull(val: JSON): FileFull {
     if (!(val.tags === void 0) && !isJson(val.tags, "array")) {
         throw "Expecting array for \"tags\" of type \"FileFull\"";
     }
-    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: JSON): undefined {
+    const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     const lock: undefined | FileFullLockField = val.lock === void 0 ? void 0 : deserializeFileFullLockField(val.lock);
@@ -13057,7 +13057,7 @@ export function deserializeFileFull(val: JSON): FileFull {
     if (!(val.allowed_invitee_roles === void 0) && !isJson(val.allowed_invitee_roles, "array")) {
         throw "Expecting array for \"allowed_invitee_roles\" of type \"FileFull\"";
     }
-    const allowedInviteeRoles: undefined | readonly FileFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: JSON): any {
+    const allowedInviteeRoles: undefined | readonly FileFullAllowedInviteeRolesField[] = isJson(val.allowed_invitee_roles, "array") ? val.allowed_invitee_roles.map(function (itm: Json): any {
         return deserializeFileFullAllowedInviteeRolesField(itm);
     }) as readonly any[] : void 0;
     if (!(val.is_externally_owned === void 0) && !isJson(val.is_externally_owned, "boolean")) {
@@ -13086,7 +13086,7 @@ export function deserializeFileFull(val: JSON): FileFull {
     if (!(val.shared_link_permission_options === void 0) && !isJson(val.shared_link_permission_options, "array")) {
         throw "Expecting array for \"shared_link_permission_options\" of type \"FileFull\"";
     }
-    const sharedLinkPermissionOptions: undefined | readonly FileFullSharedLinkPermissionOptionsField[] = isJson(val.shared_link_permission_options, "array") ? val.shared_link_permission_options.map(function (itm: JSON): any {
+    const sharedLinkPermissionOptions: undefined | readonly FileFullSharedLinkPermissionOptionsField[] = isJson(val.shared_link_permission_options, "array") ? val.shared_link_permission_options.map(function (itm: Json): any {
         return deserializeFileFullSharedLinkPermissionOptionsField(itm);
     }) as readonly any[] : void 0;
     if (val.description === void 0) {
@@ -13188,7 +13188,7 @@ export function deserializeFileFull(val: JSON): FileFull {
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
     return { versionNumber: versionNumber, commentCount: commentCount, permissions: permissions, tags: tags, lock: lock, extension: extension, isPackage: isPackage, expiringEmbedLink: expiringEmbedLink, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, allowedInviteeRoles: allowedInviteeRoles, isExternallyOwned: isExternallyOwned, hasCollaborations: hasCollaborations, metadata: metadata, expiresAt: expiresAt, representations: representations, classification: classification, uploaderDisplayName: uploaderDisplayName, dispositionAt: dispositionAt, sharedLinkPermissionOptions: sharedLinkPermissionOptions, description: description, size: size, pathCollection: pathCollection, createdAt: createdAt, modifiedAt: modifiedAt, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, createdBy: createdBy, modifiedBy: modifiedBy, ownedBy: ownedBy, sharedLink: sharedLink, parent: parent, itemStatus: itemStatus, sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, id: id, etag: etag, type: type } satisfies FileFull;
 }
-export function serializeFileFull(val: FileFull): JSON {
+export function serializeFileFull(val: FileFull): Json {
     const base: any = serializeFile(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileFull\"";
@@ -13209,7 +13209,7 @@ export interface AccessToken {
     readonly refreshToken?: string;
     readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
 }
-export function deserializeAccessToken(val: JSON): AccessToken {
+export function deserializeAccessToken(val: Json): AccessToken {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"AccessToken\"";
     }
@@ -13225,7 +13225,7 @@ export function deserializeAccessToken(val: JSON): AccessToken {
     if (!(val.restricted_to === void 0) && !isJson(val.restricted_to, "array")) {
         throw "Expecting array for \"restricted_to\" of type \"AccessToken\"";
     }
-    const restrictedTo: undefined | readonly FileScope[] = isJson(val.restricted_to, "array") ? val.restricted_to.map(function (itm: JSON): any {
+    const restrictedTo: undefined | readonly FileScope[] = isJson(val.restricted_to, "array") ? val.restricted_to.map(function (itm: Json): any {
         return deserializeFileScope(itm);
     }) as readonly any[] : void 0;
     if (!(val.refresh_token === void 0) && !isJson(val.refresh_token, "string")) {
@@ -13235,13 +13235,13 @@ export function deserializeAccessToken(val: JSON): AccessToken {
     const issuedTokenType: undefined | AccessTokenIssuedTokenTypeField = val.issued_token_type === void 0 ? void 0 : deserializeAccessTokenIssuedTokenTypeField(val.issued_token_type);
     return { accessToken: accessToken, expiresIn: expiresIn, tokenType: tokenType, restrictedTo: restrictedTo, refreshToken: refreshToken, issuedTokenType: issuedTokenType } satisfies AccessToken;
 }
-export function serializeAccessToken(val: AccessToken): JSON {
+export function serializeAccessToken(val: AccessToken): Json {
     return { ["access_token"]: val.accessToken, ["expires_in"]: val.expiresIn, ["token_type"]: val.tokenType === void 0 ? void 0 : serializeAccessTokenTokenTypeField(val.tokenType), ["restricted_to"]: val.restrictedTo === void 0 ? void 0 : val.restrictedTo.map(function (item: FileScope): any {
             return serializeFileScope(item);
         }) as readonly any[], ["refresh_token"]: val.refreshToken, ["issued_token_type"]: val.issuedTokenType === void 0 ? void 0 : serializeAccessTokenIssuedTokenTypeField(val.issuedTokenType) };
 }
 export type EventSourceItemTypeField = "file" | "folder";
-export function deserializeEventSourceItemTypeField(val: JSON): EventSourceItemTypeField {
+export function deserializeEventSourceItemTypeField(val: Json): EventSourceItemTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"EventSourceItemTypeField\"";
     }
@@ -13253,13 +13253,13 @@ export function deserializeEventSourceItemTypeField(val: JSON): EventSourceItemT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeEventSourceItemTypeField(val: EventSourceItemTypeField): JSON {
+export function serializeEventSourceItemTypeField(val: EventSourceItemTypeField): Json {
     return val;
 }
 export interface EventSourceClassificationField {
     readonly name?: string;
 }
-export function deserializeEventSourceClassificationField(val: JSON): EventSourceClassificationField {
+export function deserializeEventSourceClassificationField(val: Json): EventSourceClassificationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EventSourceClassificationField\"";
     }
@@ -13269,7 +13269,7 @@ export function deserializeEventSourceClassificationField(val: JSON): EventSourc
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     return { name: name } satisfies EventSourceClassificationField;
 }
-export function serializeEventSourceClassificationField(val: EventSourceClassificationField): JSON {
+export function serializeEventSourceClassificationField(val: EventSourceClassificationField): Json {
     return { ["name"]: val.name };
 }
 export interface EventSource {
@@ -13280,7 +13280,7 @@ export interface EventSource {
     readonly parent?: FolderMini;
     readonly ownedBy?: UserMini;
 }
-export function deserializeEventSource(val: JSON): EventSource {
+export function deserializeEventSource(val: Json): EventSource {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"EventSource\"";
     }
@@ -13307,14 +13307,14 @@ export function deserializeEventSource(val: JSON): EventSource {
     const ownedBy: undefined | UserMini = val.owned_by === void 0 ? void 0 : deserializeUserMini(val.owned_by);
     return { itemType: itemType, itemId: itemId, itemName: itemName, classification: classification, parent: parent, ownedBy: ownedBy } satisfies EventSource;
 }
-export function serializeEventSource(val: EventSource): JSON {
+export function serializeEventSource(val: EventSource): Json {
     return { ["item_type"]: serializeEventSourceItemTypeField(val.itemType), ["item_id"]: val.itemId, ["item_name"]: val.itemName, ["classification"]: val.classification === void 0 ? void 0 : serializeEventSourceClassificationField(val.classification), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy) };
 }
 export type EventSourceField = User | EventSource | File | Folder;
-export function deserializeEventSourceField(val: JSON): EventSourceField {
+export function deserializeEventSourceField(val: Json): EventSourceField {
     throw "Can't deserialize EventSourceField";
 }
-export function serializeEventSourceField(val: EventSourceField): JSON {
+export function serializeEventSourceField(val: EventSourceField): Json {
     throw "Can't serialize EventSourceField";
 }
 export interface Event {
@@ -13328,7 +13328,7 @@ export interface Event {
     readonly source?: EventSourceField;
     readonly additionalDetails?: EventAdditionalDetailsField;
 }
-export function deserializeEvent(val: JSON): Event {
+export function deserializeEvent(val: Json): Event {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Event\"";
     }
@@ -13358,7 +13358,7 @@ export function deserializeEvent(val: JSON): Event {
     const additionalDetails: undefined | EventAdditionalDetailsField = val.additional_details === void 0 ? void 0 : deserializeEventAdditionalDetailsField(val.additional_details);
     return { type: type, createdAt: createdAt, recordedAt: recordedAt, eventId: eventId, createdBy: createdBy, eventType: eventType, sessionId: sessionId, source: source, additionalDetails: additionalDetails } satisfies Event;
 }
-export function serializeEvent(val: Event): JSON {
+export function serializeEvent(val: Event): Json {
     return { ["type"]: val.type, ["created_at"]: val.createdAt, ["recorded_at"]: val.recordedAt, ["event_id"]: val.eventId, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["event_type"]: val.eventType === void 0 ? void 0 : serializeEventEventTypeField(val.eventType), ["session_id"]: val.sessionId, ["source"]: val.source === void 0 ? void 0 : serializeEventSourceField(val.source), ["additional_details"]: val.additionalDetails === void 0 ? void 0 : serializeEventAdditionalDetailsField(val.additionalDetails) };
 }
 export interface Events {
@@ -13366,7 +13366,7 @@ export interface Events {
     readonly nextStreamPosition?: string;
     readonly entries?: readonly Event[];
 }
-export function deserializeEvents(val: JSON): Events {
+export function deserializeEvents(val: Json): Events {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"Events\"";
     }
@@ -13381,12 +13381,12 @@ export function deserializeEvents(val: JSON): Events {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"Events\"";
     }
-    const entries: undefined | readonly Event[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly Event[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeEvent(itm);
     }) as readonly any[] : void 0;
     return { chunkSize: chunkSize, nextStreamPosition: nextStreamPosition, entries: entries } satisfies Events;
 }
-export function serializeEvents(val: Events): JSON {
+export function serializeEvents(val: Events): Json {
     return { ["chunk_size"]: val.chunkSize, ["next_stream_position"]: val.nextStreamPosition, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: Event): any {
             return serializeEvent(item);
         }) as readonly any[] };
@@ -13403,7 +13403,7 @@ export interface SkillInvocation {
     readonly source?: SkillInvocationSourceField;
     readonly event?: Event;
 }
-export function deserializeSkillInvocation(val: JSON): SkillInvocation {
+export function deserializeSkillInvocation(val: Json): SkillInvocation {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillInvocation\"";
     }
@@ -13428,11 +13428,11 @@ export function deserializeSkillInvocation(val: JSON): SkillInvocation {
     const event: undefined | Event = val.event === void 0 ? void 0 : deserializeEvent(val.event);
     return { type: type, id: id, skill: skill, token: token, status: status, createdAt: createdAt, trigger: trigger, enterprise: enterprise, source: source, event: event } satisfies SkillInvocation;
 }
-export function serializeSkillInvocation(val: SkillInvocation): JSON {
+export function serializeSkillInvocation(val: SkillInvocation): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeSkillInvocationTypeField(val.type), ["id"]: val.id, ["skill"]: val.skill === void 0 ? void 0 : serializeSkillInvocationSkillField(val.skill), ["token"]: val.token === void 0 ? void 0 : serializeSkillInvocationTokenField(val.token), ["status"]: val.status === void 0 ? void 0 : serializeSkillInvocationStatusField(val.status), ["created_at"]: val.createdAt, ["trigger"]: val.trigger, ["enterprise"]: val.enterprise === void 0 ? void 0 : serializeSkillInvocationEnterpriseField(val.enterprise), ["source"]: val.source === void 0 ? void 0 : serializeSkillInvocationSourceField(val.source), ["event"]: val.event === void 0 ? void 0 : serializeEvent(val.event) };
 }
 export type KeywordSkillCardTypeField = "skill_card";
-export function deserializeKeywordSkillCardTypeField(val: JSON): KeywordSkillCardTypeField {
+export function deserializeKeywordSkillCardTypeField(val: Json): KeywordSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"KeywordSkillCardTypeField\"";
     }
@@ -13441,11 +13441,11 @@ export function deserializeKeywordSkillCardTypeField(val: JSON): KeywordSkillCar
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeKeywordSkillCardTypeField(val: KeywordSkillCardTypeField): JSON {
+export function serializeKeywordSkillCardTypeField(val: KeywordSkillCardTypeField): Json {
     return val;
 }
 export type KeywordSkillCardSkillCardTypeField = "keyword";
-export function deserializeKeywordSkillCardSkillCardTypeField(val: JSON): KeywordSkillCardSkillCardTypeField {
+export function deserializeKeywordSkillCardSkillCardTypeField(val: Json): KeywordSkillCardSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"KeywordSkillCardSkillCardTypeField\"";
     }
@@ -13454,14 +13454,14 @@ export function deserializeKeywordSkillCardSkillCardTypeField(val: JSON): Keywor
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeKeywordSkillCardSkillCardTypeField(val: KeywordSkillCardSkillCardTypeField): JSON {
+export function serializeKeywordSkillCardSkillCardTypeField(val: KeywordSkillCardSkillCardTypeField): Json {
     return val;
 }
 export interface KeywordSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export function deserializeKeywordSkillCardSkillCardTitleField(val: JSON): KeywordSkillCardSkillCardTitleField {
+export function deserializeKeywordSkillCardSkillCardTitleField(val: Json): KeywordSkillCardSkillCardTitleField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"KeywordSkillCardSkillCardTitleField\"";
     }
@@ -13478,11 +13478,11 @@ export function deserializeKeywordSkillCardSkillCardTitleField(val: JSON): Keywo
     const message: string = val.message;
     return { code: code, message: message } satisfies KeywordSkillCardSkillCardTitleField;
 }
-export function serializeKeywordSkillCardSkillCardTitleField(val: KeywordSkillCardSkillCardTitleField): JSON {
+export function serializeKeywordSkillCardSkillCardTitleField(val: KeywordSkillCardSkillCardTitleField): Json {
     return { ["code"]: val.code, ["message"]: val.message };
 }
 export type KeywordSkillCardSkillFieldTypeField = "service";
-export function deserializeKeywordSkillCardSkillFieldTypeField(val: JSON): KeywordSkillCardSkillFieldTypeField {
+export function deserializeKeywordSkillCardSkillFieldTypeField(val: Json): KeywordSkillCardSkillFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"KeywordSkillCardSkillFieldTypeField\"";
     }
@@ -13491,14 +13491,14 @@ export function deserializeKeywordSkillCardSkillFieldTypeField(val: JSON): Keywo
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeKeywordSkillCardSkillFieldTypeField(val: KeywordSkillCardSkillFieldTypeField): JSON {
+export function serializeKeywordSkillCardSkillFieldTypeField(val: KeywordSkillCardSkillFieldTypeField): Json {
     return val;
 }
 export interface KeywordSkillCardSkillField {
     readonly type: KeywordSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export function deserializeKeywordSkillCardSkillField(val: JSON): KeywordSkillCardSkillField {
+export function deserializeKeywordSkillCardSkillField(val: Json): KeywordSkillCardSkillField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"KeywordSkillCardSkillField\"";
     }
@@ -13515,11 +13515,11 @@ export function deserializeKeywordSkillCardSkillField(val: JSON): KeywordSkillCa
     const id: string = val.id;
     return { type: type, id: id } satisfies KeywordSkillCardSkillField;
 }
-export function serializeKeywordSkillCardSkillField(val: KeywordSkillCardSkillField): JSON {
+export function serializeKeywordSkillCardSkillField(val: KeywordSkillCardSkillField): Json {
     return { ["type"]: serializeKeywordSkillCardSkillFieldTypeField(val.type), ["id"]: val.id };
 }
 export type KeywordSkillCardInvocationFieldTypeField = "skill_invocation";
-export function deserializeKeywordSkillCardInvocationFieldTypeField(val: JSON): KeywordSkillCardInvocationFieldTypeField {
+export function deserializeKeywordSkillCardInvocationFieldTypeField(val: Json): KeywordSkillCardInvocationFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"KeywordSkillCardInvocationFieldTypeField\"";
     }
@@ -13528,14 +13528,14 @@ export function deserializeKeywordSkillCardInvocationFieldTypeField(val: JSON): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeKeywordSkillCardInvocationFieldTypeField(val: KeywordSkillCardInvocationFieldTypeField): JSON {
+export function serializeKeywordSkillCardInvocationFieldTypeField(val: KeywordSkillCardInvocationFieldTypeField): Json {
     return val;
 }
 export interface KeywordSkillCardInvocationField {
     readonly type: KeywordSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export function deserializeKeywordSkillCardInvocationField(val: JSON): KeywordSkillCardInvocationField {
+export function deserializeKeywordSkillCardInvocationField(val: Json): KeywordSkillCardInvocationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"KeywordSkillCardInvocationField\"";
     }
@@ -13552,13 +13552,13 @@ export function deserializeKeywordSkillCardInvocationField(val: JSON): KeywordSk
     const id: string = val.id;
     return { type: type, id: id } satisfies KeywordSkillCardInvocationField;
 }
-export function serializeKeywordSkillCardInvocationField(val: KeywordSkillCardInvocationField): JSON {
+export function serializeKeywordSkillCardInvocationField(val: KeywordSkillCardInvocationField): Json {
     return { ["type"]: serializeKeywordSkillCardInvocationFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface KeywordSkillCardEntriesField {
     readonly text?: string;
 }
-export function deserializeKeywordSkillCardEntriesField(val: JSON): KeywordSkillCardEntriesField {
+export function deserializeKeywordSkillCardEntriesField(val: Json): KeywordSkillCardEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"KeywordSkillCardEntriesField\"";
     }
@@ -13568,7 +13568,7 @@ export function deserializeKeywordSkillCardEntriesField(val: JSON): KeywordSkill
     const text: undefined | string = isJson(val.text, "string") ? val.text : void 0;
     return { text: text } satisfies KeywordSkillCardEntriesField;
 }
-export function serializeKeywordSkillCardEntriesField(val: KeywordSkillCardEntriesField): JSON {
+export function serializeKeywordSkillCardEntriesField(val: KeywordSkillCardEntriesField): Json {
     return { ["text"]: val.text };
 }
 export interface KeywordSkillCard {
@@ -13580,7 +13580,7 @@ export interface KeywordSkillCard {
     readonly invocation: KeywordSkillCardInvocationField;
     readonly entries: readonly KeywordSkillCardEntriesField[];
 }
-export function deserializeKeywordSkillCard(val: JSON): KeywordSkillCard {
+export function deserializeKeywordSkillCard(val: Json): KeywordSkillCard {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"KeywordSkillCard\"";
     }
@@ -13611,18 +13611,18 @@ export function deserializeKeywordSkillCard(val: JSON): KeywordSkillCard {
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"KeywordSkillCard\"";
     }
-    const entries: readonly KeywordSkillCardEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly KeywordSkillCardEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeKeywordSkillCardEntriesField(itm);
     }) as readonly any[];
     return { createdAt: createdAt, type: type, skillCardType: skillCardType, skillCardTitle: skillCardTitle, skill: skill, invocation: invocation, entries: entries } satisfies KeywordSkillCard;
 }
-export function serializeKeywordSkillCard(val: KeywordSkillCard): JSON {
+export function serializeKeywordSkillCard(val: KeywordSkillCard): Json {
     return { ["created_at"]: val.createdAt, ["type"]: serializeKeywordSkillCardTypeField(val.type), ["skill_card_type"]: serializeKeywordSkillCardSkillCardTypeField(val.skillCardType), ["skill_card_title"]: val.skillCardTitle === void 0 ? void 0 : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle), ["skill"]: serializeKeywordSkillCardSkillField(val.skill), ["invocation"]: serializeKeywordSkillCardInvocationField(val.invocation), ["entries"]: val.entries.map(function (item: KeywordSkillCardEntriesField): any {
             return serializeKeywordSkillCardEntriesField(item);
         }) as readonly any[] };
 }
 export type TimelineSkillCardTypeField = "skill_card";
-export function deserializeTimelineSkillCardTypeField(val: JSON): TimelineSkillCardTypeField {
+export function deserializeTimelineSkillCardTypeField(val: Json): TimelineSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TimelineSkillCardTypeField\"";
     }
@@ -13631,11 +13631,11 @@ export function deserializeTimelineSkillCardTypeField(val: JSON): TimelineSkillC
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTimelineSkillCardTypeField(val: TimelineSkillCardTypeField): JSON {
+export function serializeTimelineSkillCardTypeField(val: TimelineSkillCardTypeField): Json {
     return val;
 }
 export type TimelineSkillCardSkillCardTypeField = "timeline";
-export function deserializeTimelineSkillCardSkillCardTypeField(val: JSON): TimelineSkillCardSkillCardTypeField {
+export function deserializeTimelineSkillCardSkillCardTypeField(val: Json): TimelineSkillCardSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TimelineSkillCardSkillCardTypeField\"";
     }
@@ -13644,14 +13644,14 @@ export function deserializeTimelineSkillCardSkillCardTypeField(val: JSON): Timel
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTimelineSkillCardSkillCardTypeField(val: TimelineSkillCardSkillCardTypeField): JSON {
+export function serializeTimelineSkillCardSkillCardTypeField(val: TimelineSkillCardSkillCardTypeField): Json {
     return val;
 }
 export interface TimelineSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export function deserializeTimelineSkillCardSkillCardTitleField(val: JSON): TimelineSkillCardSkillCardTitleField {
+export function deserializeTimelineSkillCardSkillCardTitleField(val: Json): TimelineSkillCardSkillCardTitleField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCardSkillCardTitleField\"";
     }
@@ -13668,11 +13668,11 @@ export function deserializeTimelineSkillCardSkillCardTitleField(val: JSON): Time
     const message: string = val.message;
     return { code: code, message: message } satisfies TimelineSkillCardSkillCardTitleField;
 }
-export function serializeTimelineSkillCardSkillCardTitleField(val: TimelineSkillCardSkillCardTitleField): JSON {
+export function serializeTimelineSkillCardSkillCardTitleField(val: TimelineSkillCardSkillCardTitleField): Json {
     return { ["code"]: val.code, ["message"]: val.message };
 }
 export type TimelineSkillCardSkillFieldTypeField = "service";
-export function deserializeTimelineSkillCardSkillFieldTypeField(val: JSON): TimelineSkillCardSkillFieldTypeField {
+export function deserializeTimelineSkillCardSkillFieldTypeField(val: Json): TimelineSkillCardSkillFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TimelineSkillCardSkillFieldTypeField\"";
     }
@@ -13681,14 +13681,14 @@ export function deserializeTimelineSkillCardSkillFieldTypeField(val: JSON): Time
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTimelineSkillCardSkillFieldTypeField(val: TimelineSkillCardSkillFieldTypeField): JSON {
+export function serializeTimelineSkillCardSkillFieldTypeField(val: TimelineSkillCardSkillFieldTypeField): Json {
     return val;
 }
 export interface TimelineSkillCardSkillField {
     readonly type: TimelineSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export function deserializeTimelineSkillCardSkillField(val: JSON): TimelineSkillCardSkillField {
+export function deserializeTimelineSkillCardSkillField(val: Json): TimelineSkillCardSkillField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCardSkillField\"";
     }
@@ -13705,11 +13705,11 @@ export function deserializeTimelineSkillCardSkillField(val: JSON): TimelineSkill
     const id: string = val.id;
     return { type: type, id: id } satisfies TimelineSkillCardSkillField;
 }
-export function serializeTimelineSkillCardSkillField(val: TimelineSkillCardSkillField): JSON {
+export function serializeTimelineSkillCardSkillField(val: TimelineSkillCardSkillField): Json {
     return { ["type"]: serializeTimelineSkillCardSkillFieldTypeField(val.type), ["id"]: val.id };
 }
 export type TimelineSkillCardInvocationFieldTypeField = "skill_invocation";
-export function deserializeTimelineSkillCardInvocationFieldTypeField(val: JSON): TimelineSkillCardInvocationFieldTypeField {
+export function deserializeTimelineSkillCardInvocationFieldTypeField(val: Json): TimelineSkillCardInvocationFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TimelineSkillCardInvocationFieldTypeField\"";
     }
@@ -13718,14 +13718,14 @@ export function deserializeTimelineSkillCardInvocationFieldTypeField(val: JSON):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTimelineSkillCardInvocationFieldTypeField(val: TimelineSkillCardInvocationFieldTypeField): JSON {
+export function serializeTimelineSkillCardInvocationFieldTypeField(val: TimelineSkillCardInvocationFieldTypeField): Json {
     return val;
 }
 export interface TimelineSkillCardInvocationField {
     readonly type: TimelineSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export function deserializeTimelineSkillCardInvocationField(val: JSON): TimelineSkillCardInvocationField {
+export function deserializeTimelineSkillCardInvocationField(val: Json): TimelineSkillCardInvocationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCardInvocationField\"";
     }
@@ -13742,14 +13742,14 @@ export function deserializeTimelineSkillCardInvocationField(val: JSON): Timeline
     const id: string = val.id;
     return { type: type, id: id } satisfies TimelineSkillCardInvocationField;
 }
-export function serializeTimelineSkillCardInvocationField(val: TimelineSkillCardInvocationField): JSON {
+export function serializeTimelineSkillCardInvocationField(val: TimelineSkillCardInvocationField): Json {
     return { ["type"]: serializeTimelineSkillCardInvocationFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface TimelineSkillCardEntriesFieldAppearsField {
     readonly start?: number;
     readonly end?: number;
 }
-export function deserializeTimelineSkillCardEntriesFieldAppearsField(val: JSON): TimelineSkillCardEntriesFieldAppearsField {
+export function deserializeTimelineSkillCardEntriesFieldAppearsField(val: Json): TimelineSkillCardEntriesFieldAppearsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCardEntriesFieldAppearsField\"";
     }
@@ -13763,7 +13763,7 @@ export function deserializeTimelineSkillCardEntriesFieldAppearsField(val: JSON):
     const end: undefined | number = isJson(val.end, "number") ? val.end : void 0;
     return { start: start, end: end } satisfies TimelineSkillCardEntriesFieldAppearsField;
 }
-export function serializeTimelineSkillCardEntriesFieldAppearsField(val: TimelineSkillCardEntriesFieldAppearsField): JSON {
+export function serializeTimelineSkillCardEntriesFieldAppearsField(val: TimelineSkillCardEntriesFieldAppearsField): Json {
     return { ["start"]: val.start, ["end"]: val.end };
 }
 export interface TimelineSkillCardEntriesField {
@@ -13771,7 +13771,7 @@ export interface TimelineSkillCardEntriesField {
     readonly appears?: readonly TimelineSkillCardEntriesFieldAppearsField[];
     readonly imageUrl?: string;
 }
-export function deserializeTimelineSkillCardEntriesField(val: JSON): TimelineSkillCardEntriesField {
+export function deserializeTimelineSkillCardEntriesField(val: Json): TimelineSkillCardEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCardEntriesField\"";
     }
@@ -13782,7 +13782,7 @@ export function deserializeTimelineSkillCardEntriesField(val: JSON): TimelineSki
     if (!(val.appears === void 0) && !isJson(val.appears, "array")) {
         throw "Expecting array for \"appears\" of type \"TimelineSkillCardEntriesField\"";
     }
-    const appears: undefined | readonly TimelineSkillCardEntriesFieldAppearsField[] = isJson(val.appears, "array") ? val.appears.map(function (itm: JSON): any {
+    const appears: undefined | readonly TimelineSkillCardEntriesFieldAppearsField[] = isJson(val.appears, "array") ? val.appears.map(function (itm: Json): any {
         return deserializeTimelineSkillCardEntriesFieldAppearsField(itm);
     }) as readonly any[] : void 0;
     if (!(val.image_url === void 0) && !isJson(val.image_url, "string")) {
@@ -13791,7 +13791,7 @@ export function deserializeTimelineSkillCardEntriesField(val: JSON): TimelineSki
     const imageUrl: undefined | string = isJson(val.image_url, "string") ? val.image_url : void 0;
     return { text: text, appears: appears, imageUrl: imageUrl } satisfies TimelineSkillCardEntriesField;
 }
-export function serializeTimelineSkillCardEntriesField(val: TimelineSkillCardEntriesField): JSON {
+export function serializeTimelineSkillCardEntriesField(val: TimelineSkillCardEntriesField): Json {
     return { ["text"]: val.text, ["appears"]: val.appears === void 0 ? void 0 : val.appears.map(function (item: TimelineSkillCardEntriesFieldAppearsField): any {
             return serializeTimelineSkillCardEntriesFieldAppearsField(item);
         }) as readonly any[], ["image_url"]: val.imageUrl };
@@ -13806,7 +13806,7 @@ export interface TimelineSkillCard {
     readonly duration?: number;
     readonly entries: readonly TimelineSkillCardEntriesField[];
 }
-export function deserializeTimelineSkillCard(val: JSON): TimelineSkillCard {
+export function deserializeTimelineSkillCard(val: Json): TimelineSkillCard {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TimelineSkillCard\"";
     }
@@ -13841,18 +13841,18 @@ export function deserializeTimelineSkillCard(val: JSON): TimelineSkillCard {
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TimelineSkillCard\"";
     }
-    const entries: readonly TimelineSkillCardEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly TimelineSkillCardEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeTimelineSkillCardEntriesField(itm);
     }) as readonly any[];
     return { createdAt: createdAt, type: type, skillCardType: skillCardType, skillCardTitle: skillCardTitle, skill: skill, invocation: invocation, duration: duration, entries: entries } satisfies TimelineSkillCard;
 }
-export function serializeTimelineSkillCard(val: TimelineSkillCard): JSON {
+export function serializeTimelineSkillCard(val: TimelineSkillCard): Json {
     return { ["created_at"]: val.createdAt, ["type"]: serializeTimelineSkillCardTypeField(val.type), ["skill_card_type"]: serializeTimelineSkillCardSkillCardTypeField(val.skillCardType), ["skill_card_title"]: val.skillCardTitle === void 0 ? void 0 : serializeTimelineSkillCardSkillCardTitleField(val.skillCardTitle), ["skill"]: serializeTimelineSkillCardSkillField(val.skill), ["invocation"]: serializeTimelineSkillCardInvocationField(val.invocation), ["duration"]: val.duration, ["entries"]: val.entries.map(function (item: TimelineSkillCardEntriesField): any {
             return serializeTimelineSkillCardEntriesField(item);
         }) as readonly any[] };
 }
 export type TranscriptSkillCardTypeField = "skill_card";
-export function deserializeTranscriptSkillCardTypeField(val: JSON): TranscriptSkillCardTypeField {
+export function deserializeTranscriptSkillCardTypeField(val: Json): TranscriptSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TranscriptSkillCardTypeField\"";
     }
@@ -13861,11 +13861,11 @@ export function deserializeTranscriptSkillCardTypeField(val: JSON): TranscriptSk
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTranscriptSkillCardTypeField(val: TranscriptSkillCardTypeField): JSON {
+export function serializeTranscriptSkillCardTypeField(val: TranscriptSkillCardTypeField): Json {
     return val;
 }
 export type TranscriptSkillCardSkillCardTypeField = "transcript";
-export function deserializeTranscriptSkillCardSkillCardTypeField(val: JSON): TranscriptSkillCardSkillCardTypeField {
+export function deserializeTranscriptSkillCardSkillCardTypeField(val: Json): TranscriptSkillCardSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TranscriptSkillCardSkillCardTypeField\"";
     }
@@ -13874,14 +13874,14 @@ export function deserializeTranscriptSkillCardSkillCardTypeField(val: JSON): Tra
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTranscriptSkillCardSkillCardTypeField(val: TranscriptSkillCardSkillCardTypeField): JSON {
+export function serializeTranscriptSkillCardSkillCardTypeField(val: TranscriptSkillCardSkillCardTypeField): Json {
     return val;
 }
 export interface TranscriptSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export function deserializeTranscriptSkillCardSkillCardTitleField(val: JSON): TranscriptSkillCardSkillCardTitleField {
+export function deserializeTranscriptSkillCardSkillCardTitleField(val: Json): TranscriptSkillCardSkillCardTitleField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCardSkillCardTitleField\"";
     }
@@ -13898,11 +13898,11 @@ export function deserializeTranscriptSkillCardSkillCardTitleField(val: JSON): Tr
     const message: string = val.message;
     return { code: code, message: message } satisfies TranscriptSkillCardSkillCardTitleField;
 }
-export function serializeTranscriptSkillCardSkillCardTitleField(val: TranscriptSkillCardSkillCardTitleField): JSON {
+export function serializeTranscriptSkillCardSkillCardTitleField(val: TranscriptSkillCardSkillCardTitleField): Json {
     return { ["code"]: val.code, ["message"]: val.message };
 }
 export type TranscriptSkillCardSkillFieldTypeField = "service";
-export function deserializeTranscriptSkillCardSkillFieldTypeField(val: JSON): TranscriptSkillCardSkillFieldTypeField {
+export function deserializeTranscriptSkillCardSkillFieldTypeField(val: Json): TranscriptSkillCardSkillFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TranscriptSkillCardSkillFieldTypeField\"";
     }
@@ -13911,14 +13911,14 @@ export function deserializeTranscriptSkillCardSkillFieldTypeField(val: JSON): Tr
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTranscriptSkillCardSkillFieldTypeField(val: TranscriptSkillCardSkillFieldTypeField): JSON {
+export function serializeTranscriptSkillCardSkillFieldTypeField(val: TranscriptSkillCardSkillFieldTypeField): Json {
     return val;
 }
 export interface TranscriptSkillCardSkillField {
     readonly type: TranscriptSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export function deserializeTranscriptSkillCardSkillField(val: JSON): TranscriptSkillCardSkillField {
+export function deserializeTranscriptSkillCardSkillField(val: Json): TranscriptSkillCardSkillField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCardSkillField\"";
     }
@@ -13935,11 +13935,11 @@ export function deserializeTranscriptSkillCardSkillField(val: JSON): TranscriptS
     const id: string = val.id;
     return { type: type, id: id } satisfies TranscriptSkillCardSkillField;
 }
-export function serializeTranscriptSkillCardSkillField(val: TranscriptSkillCardSkillField): JSON {
+export function serializeTranscriptSkillCardSkillField(val: TranscriptSkillCardSkillField): Json {
     return { ["type"]: serializeTranscriptSkillCardSkillFieldTypeField(val.type), ["id"]: val.id };
 }
 export type TranscriptSkillCardInvocationFieldTypeField = "skill_invocation";
-export function deserializeTranscriptSkillCardInvocationFieldTypeField(val: JSON): TranscriptSkillCardInvocationFieldTypeField {
+export function deserializeTranscriptSkillCardInvocationFieldTypeField(val: Json): TranscriptSkillCardInvocationFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TranscriptSkillCardInvocationFieldTypeField\"";
     }
@@ -13948,14 +13948,14 @@ export function deserializeTranscriptSkillCardInvocationFieldTypeField(val: JSON
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTranscriptSkillCardInvocationFieldTypeField(val: TranscriptSkillCardInvocationFieldTypeField): JSON {
+export function serializeTranscriptSkillCardInvocationFieldTypeField(val: TranscriptSkillCardInvocationFieldTypeField): Json {
     return val;
 }
 export interface TranscriptSkillCardInvocationField {
     readonly type: TranscriptSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export function deserializeTranscriptSkillCardInvocationField(val: JSON): TranscriptSkillCardInvocationField {
+export function deserializeTranscriptSkillCardInvocationField(val: Json): TranscriptSkillCardInvocationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCardInvocationField\"";
     }
@@ -13972,13 +13972,13 @@ export function deserializeTranscriptSkillCardInvocationField(val: JSON): Transc
     const id: string = val.id;
     return { type: type, id: id } satisfies TranscriptSkillCardInvocationField;
 }
-export function serializeTranscriptSkillCardInvocationField(val: TranscriptSkillCardInvocationField): JSON {
+export function serializeTranscriptSkillCardInvocationField(val: TranscriptSkillCardInvocationField): Json {
     return { ["type"]: serializeTranscriptSkillCardInvocationFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface TranscriptSkillCardEntriesFieldAppearsField {
     readonly start?: number;
 }
-export function deserializeTranscriptSkillCardEntriesFieldAppearsField(val: JSON): TranscriptSkillCardEntriesFieldAppearsField {
+export function deserializeTranscriptSkillCardEntriesFieldAppearsField(val: Json): TranscriptSkillCardEntriesFieldAppearsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCardEntriesFieldAppearsField\"";
     }
@@ -13988,14 +13988,14 @@ export function deserializeTranscriptSkillCardEntriesFieldAppearsField(val: JSON
     const start: undefined | number = isJson(val.start, "number") ? val.start : void 0;
     return { start: start } satisfies TranscriptSkillCardEntriesFieldAppearsField;
 }
-export function serializeTranscriptSkillCardEntriesFieldAppearsField(val: TranscriptSkillCardEntriesFieldAppearsField): JSON {
+export function serializeTranscriptSkillCardEntriesFieldAppearsField(val: TranscriptSkillCardEntriesFieldAppearsField): Json {
     return { ["start"]: val.start };
 }
 export interface TranscriptSkillCardEntriesField {
     readonly text?: string;
     readonly appears?: readonly TranscriptSkillCardEntriesFieldAppearsField[];
 }
-export function deserializeTranscriptSkillCardEntriesField(val: JSON): TranscriptSkillCardEntriesField {
+export function deserializeTranscriptSkillCardEntriesField(val: Json): TranscriptSkillCardEntriesField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCardEntriesField\"";
     }
@@ -14006,12 +14006,12 @@ export function deserializeTranscriptSkillCardEntriesField(val: JSON): Transcrip
     if (!(val.appears === void 0) && !isJson(val.appears, "array")) {
         throw "Expecting array for \"appears\" of type \"TranscriptSkillCardEntriesField\"";
     }
-    const appears: undefined | readonly TranscriptSkillCardEntriesFieldAppearsField[] = isJson(val.appears, "array") ? val.appears.map(function (itm: JSON): any {
+    const appears: undefined | readonly TranscriptSkillCardEntriesFieldAppearsField[] = isJson(val.appears, "array") ? val.appears.map(function (itm: Json): any {
         return deserializeTranscriptSkillCardEntriesFieldAppearsField(itm);
     }) as readonly any[] : void 0;
     return { text: text, appears: appears } satisfies TranscriptSkillCardEntriesField;
 }
-export function serializeTranscriptSkillCardEntriesField(val: TranscriptSkillCardEntriesField): JSON {
+export function serializeTranscriptSkillCardEntriesField(val: TranscriptSkillCardEntriesField): Json {
     return { ["text"]: val.text, ["appears"]: val.appears === void 0 ? void 0 : val.appears.map(function (item: TranscriptSkillCardEntriesFieldAppearsField): any {
             return serializeTranscriptSkillCardEntriesFieldAppearsField(item);
         }) as readonly any[] };
@@ -14026,7 +14026,7 @@ export interface TranscriptSkillCard {
     readonly duration?: number;
     readonly entries: readonly TranscriptSkillCardEntriesField[];
 }
-export function deserializeTranscriptSkillCard(val: JSON): TranscriptSkillCard {
+export function deserializeTranscriptSkillCard(val: Json): TranscriptSkillCard {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TranscriptSkillCard\"";
     }
@@ -14061,18 +14061,18 @@ export function deserializeTranscriptSkillCard(val: JSON): TranscriptSkillCard {
     if (!isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"TranscriptSkillCard\"";
     }
-    const entries: readonly TranscriptSkillCardEntriesField[] = val.entries.map(function (itm: JSON): any {
+    const entries: readonly TranscriptSkillCardEntriesField[] = val.entries.map(function (itm: Json): any {
         return deserializeTranscriptSkillCardEntriesField(itm);
     }) as readonly any[];
     return { createdAt: createdAt, type: type, skillCardType: skillCardType, skillCardTitle: skillCardTitle, skill: skill, invocation: invocation, duration: duration, entries: entries } satisfies TranscriptSkillCard;
 }
-export function serializeTranscriptSkillCard(val: TranscriptSkillCard): JSON {
+export function serializeTranscriptSkillCard(val: TranscriptSkillCard): Json {
     return { ["created_at"]: val.createdAt, ["type"]: serializeTranscriptSkillCardTypeField(val.type), ["skill_card_type"]: serializeTranscriptSkillCardSkillCardTypeField(val.skillCardType), ["skill_card_title"]: val.skillCardTitle === void 0 ? void 0 : serializeTranscriptSkillCardSkillCardTitleField(val.skillCardTitle), ["skill"]: serializeTranscriptSkillCardSkillField(val.skill), ["invocation"]: serializeTranscriptSkillCardInvocationField(val.invocation), ["duration"]: val.duration, ["entries"]: val.entries.map(function (item: TranscriptSkillCardEntriesField): any {
             return serializeTranscriptSkillCardEntriesField(item);
         }) as readonly any[] };
 }
 export type StatusSkillCardTypeField = "skill_card";
-export function deserializeStatusSkillCardTypeField(val: JSON): StatusSkillCardTypeField {
+export function deserializeStatusSkillCardTypeField(val: Json): StatusSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StatusSkillCardTypeField\"";
     }
@@ -14081,11 +14081,11 @@ export function deserializeStatusSkillCardTypeField(val: JSON): StatusSkillCardT
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStatusSkillCardTypeField(val: StatusSkillCardTypeField): JSON {
+export function serializeStatusSkillCardTypeField(val: StatusSkillCardTypeField): Json {
     return val;
 }
 export type StatusSkillCardSkillCardTypeField = "status";
-export function deserializeStatusSkillCardSkillCardTypeField(val: JSON): StatusSkillCardSkillCardTypeField {
+export function deserializeStatusSkillCardSkillCardTypeField(val: Json): StatusSkillCardSkillCardTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StatusSkillCardSkillCardTypeField\"";
     }
@@ -14094,14 +14094,14 @@ export function deserializeStatusSkillCardSkillCardTypeField(val: JSON): StatusS
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStatusSkillCardSkillCardTypeField(val: StatusSkillCardSkillCardTypeField): JSON {
+export function serializeStatusSkillCardSkillCardTypeField(val: StatusSkillCardSkillCardTypeField): Json {
     return val;
 }
 export interface StatusSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export function deserializeStatusSkillCardSkillCardTitleField(val: JSON): StatusSkillCardSkillCardTitleField {
+export function deserializeStatusSkillCardSkillCardTitleField(val: Json): StatusSkillCardSkillCardTitleField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StatusSkillCardSkillCardTitleField\"";
     }
@@ -14118,11 +14118,11 @@ export function deserializeStatusSkillCardSkillCardTitleField(val: JSON): Status
     const message: string = val.message;
     return { code: code, message: message } satisfies StatusSkillCardSkillCardTitleField;
 }
-export function serializeStatusSkillCardSkillCardTitleField(val: StatusSkillCardSkillCardTitleField): JSON {
+export function serializeStatusSkillCardSkillCardTitleField(val: StatusSkillCardSkillCardTitleField): Json {
     return { ["code"]: val.code, ["message"]: val.message };
 }
 export type StatusSkillCardStatusFieldCodeField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export function deserializeStatusSkillCardStatusFieldCodeField(val: JSON): StatusSkillCardStatusFieldCodeField {
+export function deserializeStatusSkillCardStatusFieldCodeField(val: Json): StatusSkillCardStatusFieldCodeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StatusSkillCardStatusFieldCodeField\"";
     }
@@ -14143,14 +14143,14 @@ export function deserializeStatusSkillCardStatusFieldCodeField(val: JSON): Statu
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStatusSkillCardStatusFieldCodeField(val: StatusSkillCardStatusFieldCodeField): JSON {
+export function serializeStatusSkillCardStatusFieldCodeField(val: StatusSkillCardStatusFieldCodeField): Json {
     return val;
 }
 export interface StatusSkillCardStatusField {
     readonly code: StatusSkillCardStatusFieldCodeField;
     readonly message?: string;
 }
-export function deserializeStatusSkillCardStatusField(val: JSON): StatusSkillCardStatusField {
+export function deserializeStatusSkillCardStatusField(val: Json): StatusSkillCardStatusField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StatusSkillCardStatusField\"";
     }
@@ -14164,11 +14164,11 @@ export function deserializeStatusSkillCardStatusField(val: JSON): StatusSkillCar
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
     return { code: code, message: message } satisfies StatusSkillCardStatusField;
 }
-export function serializeStatusSkillCardStatusField(val: StatusSkillCardStatusField): JSON {
+export function serializeStatusSkillCardStatusField(val: StatusSkillCardStatusField): Json {
     return { ["code"]: serializeStatusSkillCardStatusFieldCodeField(val.code), ["message"]: val.message };
 }
 export type StatusSkillCardSkillFieldTypeField = "service";
-export function deserializeStatusSkillCardSkillFieldTypeField(val: JSON): StatusSkillCardSkillFieldTypeField {
+export function deserializeStatusSkillCardSkillFieldTypeField(val: Json): StatusSkillCardSkillFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StatusSkillCardSkillFieldTypeField\"";
     }
@@ -14177,14 +14177,14 @@ export function deserializeStatusSkillCardSkillFieldTypeField(val: JSON): Status
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStatusSkillCardSkillFieldTypeField(val: StatusSkillCardSkillFieldTypeField): JSON {
+export function serializeStatusSkillCardSkillFieldTypeField(val: StatusSkillCardSkillFieldTypeField): Json {
     return val;
 }
 export interface StatusSkillCardSkillField {
     readonly type: StatusSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export function deserializeStatusSkillCardSkillField(val: JSON): StatusSkillCardSkillField {
+export function deserializeStatusSkillCardSkillField(val: Json): StatusSkillCardSkillField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StatusSkillCardSkillField\"";
     }
@@ -14201,11 +14201,11 @@ export function deserializeStatusSkillCardSkillField(val: JSON): StatusSkillCard
     const id: string = val.id;
     return { type: type, id: id } satisfies StatusSkillCardSkillField;
 }
-export function serializeStatusSkillCardSkillField(val: StatusSkillCardSkillField): JSON {
+export function serializeStatusSkillCardSkillField(val: StatusSkillCardSkillField): Json {
     return { ["type"]: serializeStatusSkillCardSkillFieldTypeField(val.type), ["id"]: val.id };
 }
 export type StatusSkillCardInvocationFieldTypeField = "skill_invocation";
-export function deserializeStatusSkillCardInvocationFieldTypeField(val: JSON): StatusSkillCardInvocationFieldTypeField {
+export function deserializeStatusSkillCardInvocationFieldTypeField(val: Json): StatusSkillCardInvocationFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"StatusSkillCardInvocationFieldTypeField\"";
     }
@@ -14214,14 +14214,14 @@ export function deserializeStatusSkillCardInvocationFieldTypeField(val: JSON): S
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeStatusSkillCardInvocationFieldTypeField(val: StatusSkillCardInvocationFieldTypeField): JSON {
+export function serializeStatusSkillCardInvocationFieldTypeField(val: StatusSkillCardInvocationFieldTypeField): Json {
     return val;
 }
 export interface StatusSkillCardInvocationField {
     readonly type: StatusSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export function deserializeStatusSkillCardInvocationField(val: JSON): StatusSkillCardInvocationField {
+export function deserializeStatusSkillCardInvocationField(val: Json): StatusSkillCardInvocationField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StatusSkillCardInvocationField\"";
     }
@@ -14238,7 +14238,7 @@ export function deserializeStatusSkillCardInvocationField(val: JSON): StatusSkil
     const id: string = val.id;
     return { type: type, id: id } satisfies StatusSkillCardInvocationField;
 }
-export function serializeStatusSkillCardInvocationField(val: StatusSkillCardInvocationField): JSON {
+export function serializeStatusSkillCardInvocationField(val: StatusSkillCardInvocationField): Json {
     return { ["type"]: serializeStatusSkillCardInvocationFieldTypeField(val.type), ["id"]: val.id };
 }
 export interface StatusSkillCard {
@@ -14250,7 +14250,7 @@ export interface StatusSkillCard {
     readonly skill: StatusSkillCardSkillField;
     readonly invocation: StatusSkillCardInvocationField;
 }
-export function deserializeStatusSkillCard(val: JSON): StatusSkillCard {
+export function deserializeStatusSkillCard(val: Json): StatusSkillCard {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"StatusSkillCard\"";
     }
@@ -14281,11 +14281,11 @@ export function deserializeStatusSkillCard(val: JSON): StatusSkillCard {
     const invocation: StatusSkillCardInvocationField = deserializeStatusSkillCardInvocationField(val.invocation);
     return { createdAt: createdAt, type: type, skillCardType: skillCardType, skillCardTitle: skillCardTitle, status: status, skill: skill, invocation: invocation } satisfies StatusSkillCard;
 }
-export function serializeStatusSkillCard(val: StatusSkillCard): JSON {
+export function serializeStatusSkillCard(val: StatusSkillCard): Json {
     return { ["created_at"]: val.createdAt, ["type"]: serializeStatusSkillCardTypeField(val.type), ["skill_card_type"]: serializeStatusSkillCardSkillCardTypeField(val.skillCardType), ["skill_card_title"]: val.skillCardTitle === void 0 ? void 0 : serializeStatusSkillCardSkillCardTitleField(val.skillCardTitle), ["status"]: serializeStatusSkillCardStatusField(val.status), ["skill"]: serializeStatusSkillCardSkillField(val.skill), ["invocation"]: serializeStatusSkillCardInvocationField(val.invocation) };
 }
 export type SkillCardsMetadataCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
-export function deserializeSkillCardsMetadataCardsField(val: JSON): SkillCardsMetadataCardsField {
+export function deserializeSkillCardsMetadataCardsField(val: Json): SkillCardsMetadataCardsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillCardsMetadataCardsField\"";
     }
@@ -14303,7 +14303,7 @@ export function deserializeSkillCardsMetadataCardsField(val: JSON): SkillCardsMe
     }
     throw "unknown type";
 }
-export function serializeSkillCardsMetadataCardsField(val: SkillCardsMetadataCardsField): JSON {
+export function serializeSkillCardsMetadataCardsField(val: SkillCardsMetadataCardsField): Json {
     throw "Can't serialize SkillCardsMetadataCardsField";
 }
 export interface SkillCardsMetadata {
@@ -14317,7 +14317,7 @@ export interface SkillCardsMetadata {
     readonly version?: number;
     readonly cards?: readonly SkillCardsMetadataCardsField[];
 }
-export function deserializeSkillCardsMetadata(val: JSON): SkillCardsMetadata {
+export function deserializeSkillCardsMetadata(val: Json): SkillCardsMetadata {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SkillCardsMetadata\"";
     }
@@ -14356,18 +14356,18 @@ export function deserializeSkillCardsMetadata(val: JSON): SkillCardsMetadata {
     if (!(val.cards === void 0) && !isJson(val.cards, "array")) {
         throw "Expecting array for \"cards\" of type \"SkillCardsMetadata\"";
     }
-    const cards: undefined | readonly SkillCardsMetadataCardsField[] = isJson(val.cards, "array") ? val.cards.map(function (itm: JSON): any {
+    const cards: undefined | readonly SkillCardsMetadataCardsField[] = isJson(val.cards, "array") ? val.cards.map(function (itm: Json): any {
         return deserializeSkillCardsMetadataCardsField(itm);
     }) as readonly any[] : void 0;
     return { canEdit: canEdit, id: id, parent: parent, scope: scope, template: template, type: type, typeVersion: typeVersion, version: version, cards: cards } satisfies SkillCardsMetadata;
 }
-export function serializeSkillCardsMetadata(val: SkillCardsMetadata): JSON {
+export function serializeSkillCardsMetadata(val: SkillCardsMetadata): Json {
     return { ["$canEdit"]: val.canEdit, ["$id"]: val.id, ["$parent"]: val.parent, ["$scope"]: val.scope, ["$template"]: val.template, ["$type"]: val.type, ["$typeVersion"]: val.typeVersion, ["$version"]: val.version, ["cards"]: val.cards === void 0 ? void 0 : val.cards.map(function (item: SkillCardsMetadataCardsField): any {
             return serializeSkillCardsMetadataCardsField(item);
         }) as readonly any[] };
 }
 export type SignRequestCreateSignerRoleField = "signer" | "approver" | "final_copy_reader";
-export function deserializeSignRequestCreateSignerRoleField(val: JSON): SignRequestCreateSignerRoleField {
+export function deserializeSignRequestCreateSignerRoleField(val: Json): SignRequestCreateSignerRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestCreateSignerRoleField\"";
     }
@@ -14382,7 +14382,7 @@ export function deserializeSignRequestCreateSignerRoleField(val: JSON): SignRequ
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestCreateSignerRoleField(val: SignRequestCreateSignerRoleField): JSON {
+export function serializeSignRequestCreateSignerRoleField(val: SignRequestCreateSignerRoleField): Json {
     return val;
 }
 export interface SignRequestCreateSigner {
@@ -14397,7 +14397,7 @@ export interface SignRequestCreateSigner {
     readonly verificationPhoneNumber?: string;
     readonly password?: string;
 }
-export function deserializeSignRequestCreateSigner(val: JSON): SignRequestCreateSigner {
+export function deserializeSignRequestCreateSigner(val: Json): SignRequestCreateSigner {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestCreateSigner\"";
     }
@@ -14443,7 +14443,7 @@ export function deserializeSignRequestCreateSigner(val: JSON): SignRequestCreate
     const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
     return { email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestCreateSigner;
 }
-export function serializeSignRequestCreateSigner(val: SignRequestCreateSigner): JSON {
+export function serializeSignRequestCreateSigner(val: SignRequestCreateSigner): Json {
     return { ["email"]: val.email, ["role"]: val.role === void 0 ? void 0 : serializeSignRequestCreateSignerRoleField(val.role), ["is_in_person"]: val.isInPerson, ["order"]: val.order, ["embed_url_external_user_id"]: val.embedUrlExternalUserId, ["redirect_url"]: val.redirectUrl, ["declined_redirect_url"]: val.declinedRedirectUrl, ["login_required"]: val.loginRequired, ["verification_phone_number"]: val.verificationPhoneNumber, ["password"]: val.password };
 }
 export interface SignRequestPrefillTag {
@@ -14452,7 +14452,7 @@ export interface SignRequestPrefillTag {
     readonly checkboxValue?: boolean;
     readonly dateValue?: string;
 }
-export function deserializeSignRequestPrefillTag(val: JSON): SignRequestPrefillTag {
+export function deserializeSignRequestPrefillTag(val: Json): SignRequestPrefillTag {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestPrefillTag\"";
     }
@@ -14474,7 +14474,7 @@ export function deserializeSignRequestPrefillTag(val: JSON): SignRequestPrefillT
     const dateValue: undefined | string = isJson(val.date_value, "string") ? val.date_value : void 0;
     return { documentTagId: documentTagId, textValue: textValue, checkboxValue: checkboxValue, dateValue: dateValue } satisfies SignRequestPrefillTag;
 }
-export function serializeSignRequestPrefillTag(val: SignRequestPrefillTag): JSON {
+export function serializeSignRequestPrefillTag(val: SignRequestPrefillTag): Json {
     return { ["document_tag_id"]: val.documentTagId, ["text_value"]: val.textValue, ["checkbox_value"]: val.checkboxValue, ["date_value"]: val.dateValue };
 }
 export interface SignRequestBase {
@@ -14492,7 +14492,7 @@ export interface SignRequestBase {
     readonly externalId?: string;
     readonly isPhoneVerificationRequiredToView?: boolean;
 }
-export function deserializeSignRequestBase(val: JSON): SignRequestBase {
+export function deserializeSignRequestBase(val: Json): SignRequestBase {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestBase\"";
     }
@@ -14535,7 +14535,7 @@ export function deserializeSignRequestBase(val: JSON): SignRequestBase {
     if (!(val.prefill_tags === void 0) && !isJson(val.prefill_tags, "array")) {
         throw "Expecting array for \"prefill_tags\" of type \"SignRequestBase\"";
     }
-    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: JSON): any {
+    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: Json): any {
         return deserializeSignRequestPrefillTag(itm);
     }) as readonly any[] : void 0;
     if (!(val.days_valid === void 0) && !isJson(val.days_valid, "number")) {
@@ -14552,7 +14552,7 @@ export function deserializeSignRequestBase(val: JSON): SignRequestBase {
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
     return { isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequestBase;
 }
-export function serializeSignRequestBase(val: SignRequestBase): JSON {
+export function serializeSignRequestBase(val: SignRequestBase): Json {
     return { ["is_document_preparation_needed"]: val.isDocumentPreparationNeeded, ["redirect_url"]: val.redirectUrl, ["declined_redirect_url"]: val.declinedRedirectUrl, ["are_text_signatures_enabled"]: val.areTextSignaturesEnabled, ["email_subject"]: val.emailSubject, ["email_message"]: val.emailMessage, ["are_reminders_enabled"]: val.areRemindersEnabled, ["parent_folder"]: serializeFolderMini(val.parentFolder), ["name"]: val.name, ["prefill_tags"]: val.prefillTags === void 0 ? void 0 : val.prefillTags.map(function (item: SignRequestPrefillTag): any {
             return serializeSignRequestPrefillTag(item);
         }) as readonly any[], ["days_valid"]: val.daysValid, ["external_id"]: val.externalId, ["is_phone_verification_required_to_view"]: val.isPhoneVerificationRequiredToView };
@@ -14572,14 +14572,14 @@ export type SignRequestCreateRequest = SignRequestBase & {
      * max number of signers permitted. */
     readonly signers: readonly SignRequestCreateSigner[];
 };
-export function deserializeSignRequestCreateRequest(val: JSON): SignRequestCreateRequest {
+export function deserializeSignRequestCreateRequest(val: Json): SignRequestCreateRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestCreateRequest\"";
     }
     if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
         throw "Expecting array for \"source_files\" of type \"SignRequestCreateRequest\"";
     }
-    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: JSON): any {
+    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
         return deserializeFileMini(itm);
     }) as readonly any[] : void 0;
     const signatureColor: undefined | SignRequestCreateRequestSignatureColorField = val.signature_color === void 0 ? void 0 : deserializeSignRequestCreateRequestSignatureColorField(val.signature_color);
@@ -14589,7 +14589,7 @@ export function deserializeSignRequestCreateRequest(val: JSON): SignRequestCreat
     if (!isJson(val.signers, "array")) {
         throw "Expecting array for \"signers\" of type \"SignRequestCreateRequest\"";
     }
-    const signers: readonly SignRequestCreateSigner[] = val.signers.map(function (itm: JSON): any {
+    const signers: readonly SignRequestCreateSigner[] = val.signers.map(function (itm: Json): any {
         return deserializeSignRequestCreateSigner(itm);
     }) as readonly any[];
     if (!(val.is_document_preparation_needed === void 0) && !isJson(val.is_document_preparation_needed, "boolean")) {
@@ -14631,7 +14631,7 @@ export function deserializeSignRequestCreateRequest(val: JSON): SignRequestCreat
     if (!(val.prefill_tags === void 0) && !isJson(val.prefill_tags, "array")) {
         throw "Expecting array for \"prefill_tags\" of type \"SignRequestCreateRequest\"";
     }
-    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: JSON): any {
+    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: Json): any {
         return deserializeSignRequestPrefillTag(itm);
     }) as readonly any[] : void 0;
     if (!(val.days_valid === void 0) && !isJson(val.days_valid, "number")) {
@@ -14648,7 +14648,7 @@ export function deserializeSignRequestCreateRequest(val: JSON): SignRequestCreat
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
     return { sourceFiles: sourceFiles, signatureColor: signatureColor, signers: signers, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequestCreateRequest;
 }
-export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest): JSON {
+export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest): Json {
     const base: any = serializeSignRequestBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequestCreateRequest\"";
@@ -14660,7 +14660,7 @@ export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest)
             }) as readonly any[] } };
 }
 export type SignRequestSignerInputTypeField = "signature" | "date" | "text" | "checkbox";
-export function deserializeSignRequestSignerInputTypeField(val: JSON): SignRequestSignerInputTypeField {
+export function deserializeSignRequestSignerInputTypeField(val: Json): SignRequestSignerInputTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestSignerInputTypeField\"";
     }
@@ -14678,11 +14678,11 @@ export function deserializeSignRequestSignerInputTypeField(val: JSON): SignReque
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestSignerInputTypeField(val: SignRequestSignerInputTypeField): JSON {
+export function serializeSignRequestSignerInputTypeField(val: SignRequestSignerInputTypeField): Json {
     return val;
 }
 export type SignRequestSignerInputContentTypeField = "initial" | "stamp" | "signature" | "company" | "title" | "email" | "full_name" | "first_name" | "last_name" | "text" | "date" | "checkbox" | "attachment";
-export function deserializeSignRequestSignerInputContentTypeField(val: JSON): SignRequestSignerInputContentTypeField {
+export function deserializeSignRequestSignerInputContentTypeField(val: Json): SignRequestSignerInputContentTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestSignerInputContentTypeField\"";
     }
@@ -14727,7 +14727,7 @@ export function deserializeSignRequestSignerInputContentTypeField(val: JSON): Si
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestSignerInputContentTypeField(val: SignRequestSignerInputContentTypeField): JSON {
+export function serializeSignRequestSignerInputContentTypeField(val: SignRequestSignerInputContentTypeField): Json {
     return val;
 }
 export type SignRequestSignerInput = SignRequestPrefillTag & {
@@ -14741,7 +14741,7 @@ export type SignRequestSignerInput = SignRequestPrefillTag & {
      * Index of page that the input is on */
     readonly pageIndex: number;
 };
-export function deserializeSignRequestSignerInput(val: JSON): SignRequestSignerInput {
+export function deserializeSignRequestSignerInput(val: Json): SignRequestSignerInput {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestSignerInput\"";
     }
@@ -14772,7 +14772,7 @@ export function deserializeSignRequestSignerInput(val: JSON): SignRequestSignerI
     const dateValue: undefined | string = isJson(val.date_value, "string") ? val.date_value : void 0;
     return { type: type, contentType: contentType, pageIndex: pageIndex, documentTagId: documentTagId, textValue: textValue, checkboxValue: checkboxValue, dateValue: dateValue } satisfies SignRequestSignerInput;
 }
-export function serializeSignRequestSignerInput(val: SignRequestSignerInput): JSON {
+export function serializeSignRequestSignerInput(val: SignRequestSignerInput): Json {
     const base: any = serializeSignRequestPrefillTag(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequestSignerInput\"";
@@ -14780,7 +14780,7 @@ export function serializeSignRequestSignerInput(val: SignRequestSignerInput): JS
     return { ...base, ...{ ["type"]: val.type === void 0 ? void 0 : serializeSignRequestSignerInputTypeField(val.type), ["content_type"]: val.contentType === void 0 ? void 0 : serializeSignRequestSignerInputContentTypeField(val.contentType), ["page_index"]: val.pageIndex } };
 }
 export type SignRequestSignerSignerDecisionFieldTypeField = "signed" | "declined";
-export function deserializeSignRequestSignerSignerDecisionFieldTypeField(val: JSON): SignRequestSignerSignerDecisionFieldTypeField {
+export function deserializeSignRequestSignerSignerDecisionFieldTypeField(val: Json): SignRequestSignerSignerDecisionFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"SignRequestSignerSignerDecisionFieldTypeField\"";
     }
@@ -14792,14 +14792,14 @@ export function deserializeSignRequestSignerSignerDecisionFieldTypeField(val: JS
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeSignRequestSignerSignerDecisionFieldTypeField(val: SignRequestSignerSignerDecisionFieldTypeField): JSON {
+export function serializeSignRequestSignerSignerDecisionFieldTypeField(val: SignRequestSignerSignerDecisionFieldTypeField): Json {
     return val;
 }
 export interface SignRequestSignerSignerDecisionField {
     readonly type?: SignRequestSignerSignerDecisionFieldTypeField;
     readonly finalizedAt?: string;
 }
-export function deserializeSignRequestSignerSignerDecisionField(val: JSON): SignRequestSignerSignerDecisionField {
+export function deserializeSignRequestSignerSignerDecisionField(val: Json): SignRequestSignerSignerDecisionField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestSignerSignerDecisionField\"";
     }
@@ -14810,7 +14810,7 @@ export function deserializeSignRequestSignerSignerDecisionField(val: JSON): Sign
     const finalizedAt: undefined | string = isJson(val.finalized_at, "string") ? val.finalized_at : void 0;
     return { type: type, finalizedAt: finalizedAt } satisfies SignRequestSignerSignerDecisionField;
 }
-export function serializeSignRequestSignerSignerDecisionField(val: SignRequestSignerSignerDecisionField): JSON {
+export function serializeSignRequestSignerSignerDecisionField(val: SignRequestSignerSignerDecisionField): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeSignRequestSignerSignerDecisionFieldTypeField(val.type), ["finalized_at"]: val.finalizedAt };
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
@@ -14825,7 +14825,7 @@ export type SignRequestSigner = SignRequestCreateSigner & {
      * URL to direct a signer to for signing */
     readonly embedUrl?: string;
 };
-export function deserializeSignRequestSigner(val: JSON): SignRequestSigner {
+export function deserializeSignRequestSigner(val: Json): SignRequestSigner {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequestSigner\"";
     }
@@ -14837,7 +14837,7 @@ export function deserializeSignRequestSigner(val: JSON): SignRequestSigner {
     if (!(val.inputs === void 0) && !isJson(val.inputs, "array")) {
         throw "Expecting array for \"inputs\" of type \"SignRequestSigner\"";
     }
-    const inputs: undefined | readonly SignRequestSignerInput[] = isJson(val.inputs, "array") ? val.inputs.map(function (itm: JSON): any {
+    const inputs: undefined | readonly SignRequestSignerInput[] = isJson(val.inputs, "array") ? val.inputs.map(function (itm: Json): any {
         return deserializeSignRequestSignerInput(itm);
     }) as readonly any[] : void 0;
     if (!(val.embed_url === void 0) && !isJson(val.embed_url, "string")) {
@@ -14886,7 +14886,7 @@ export function deserializeSignRequestSigner(val: JSON): SignRequestSigner {
     const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
     return { hasViewedDocument: hasViewedDocument, signerDecision: signerDecision, inputs: inputs, embedUrl: embedUrl, email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestSigner;
 }
-export function serializeSignRequestSigner(val: SignRequestSigner): JSON {
+export function serializeSignRequestSigner(val: SignRequestSigner): Json {
     const base: any = serializeSignRequestCreateSigner(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequestSigner\"";
@@ -14929,7 +14929,7 @@ export type SignRequest = SignRequestBase & {
      * List of files to create a signing document from. Only the ID and type fields are required for each file. The array will be empty if the `source_files` are deleted. */
     readonly sourceFiles?: readonly FileMini[];
 };
-export function deserializeSignRequest(val: JSON): SignRequest {
+export function deserializeSignRequest(val: Json): SignRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequest\"";
     }
@@ -14937,7 +14937,7 @@ export function deserializeSignRequest(val: JSON): SignRequest {
     if (!(val.signers === void 0) && !isJson(val.signers, "array")) {
         throw "Expecting array for \"signers\" of type \"SignRequest\"";
     }
-    const signers: undefined | readonly SignRequestSigner[] = isJson(val.signers, "array") ? val.signers.map(function (itm: JSON): any {
+    const signers: undefined | readonly SignRequestSigner[] = isJson(val.signers, "array") ? val.signers.map(function (itm: Json): any {
         return deserializeSignRequestSigner(itm);
     }) as readonly any[] : void 0;
     if (!(val.signature_color === void 0) && !isJson(val.signature_color, "string")) {
@@ -14962,7 +14962,7 @@ export function deserializeSignRequest(val: JSON): SignRequest {
     if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
         throw "Expecting array for \"source_files\" of type \"SignRequest\"";
     }
-    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: JSON): any {
+    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
         return deserializeFileMini(itm);
     }) as readonly any[] : void 0;
     if (!(val.is_document_preparation_needed === void 0) && !isJson(val.is_document_preparation_needed, "boolean")) {
@@ -15004,7 +15004,7 @@ export function deserializeSignRequest(val: JSON): SignRequest {
     if (!(val.prefill_tags === void 0) && !isJson(val.prefill_tags, "array")) {
         throw "Expecting array for \"prefill_tags\" of type \"SignRequest\"";
     }
-    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: JSON): any {
+    const prefillTags: undefined | readonly SignRequestPrefillTag[] = isJson(val.prefill_tags, "array") ? val.prefill_tags.map(function (itm: Json): any {
         return deserializeSignRequestPrefillTag(itm);
     }) as readonly any[] : void 0;
     if (!(val.days_valid === void 0) && !isJson(val.days_valid, "number")) {
@@ -15021,7 +15021,7 @@ export function deserializeSignRequest(val: JSON): SignRequest {
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
     return { type: type, signers: signers, signatureColor: signatureColor, id: id, prepareUrl: prepareUrl, signingLog: signingLog, status: status, signFiles: signFiles, autoExpireAt: autoExpireAt, sourceFiles: sourceFiles, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequest;
 }
-export function serializeSignRequest(val: SignRequest): JSON {
+export function serializeSignRequest(val: SignRequest): Json {
     const base: any = serializeSignRequestBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequest\"";
@@ -15038,7 +15038,7 @@ export interface SignRequests {
     readonly prevMarker?: number;
     readonly entries?: readonly SignRequest[];
 }
-export function deserializeSignRequests(val: JSON): SignRequests {
+export function deserializeSignRequests(val: Json): SignRequests {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequests\"";
     }
@@ -15057,12 +15057,12 @@ export function deserializeSignRequests(val: JSON): SignRequests {
     if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
         throw "Expecting array for \"entries\" of type \"SignRequests\"";
     }
-    const entries: undefined | readonly SignRequest[] = isJson(val.entries, "array") ? val.entries.map(function (itm: JSON): any {
+    const entries: undefined | readonly SignRequest[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeSignRequest(itm);
     }) as readonly any[] : void 0;
     return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies SignRequests;
 }
-export function serializeSignRequests(val: SignRequests): JSON {
+export function serializeSignRequests(val: SignRequests): Json {
     return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: SignRequest): any {
             return serializeSignRequest(item);
         }) as readonly any[] };
@@ -15070,7 +15070,7 @@ export function serializeSignRequests(val: SignRequests): JSON {
 export interface ShieldInformationBarrierReportDetailsDetailsField {
     readonly folderId?: string;
 }
-export function deserializeShieldInformationBarrierReportDetailsDetailsField(val: JSON): ShieldInformationBarrierReportDetailsDetailsField {
+export function deserializeShieldInformationBarrierReportDetailsDetailsField(val: Json): ShieldInformationBarrierReportDetailsDetailsField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReportDetailsDetailsField\"";
     }
@@ -15080,24 +15080,24 @@ export function deserializeShieldInformationBarrierReportDetailsDetailsField(val
     const folderId: undefined | string = isJson(val.folder_id, "string") ? val.folder_id : void 0;
     return { folderId: folderId } satisfies ShieldInformationBarrierReportDetailsDetailsField;
 }
-export function serializeShieldInformationBarrierReportDetailsDetailsField(val: ShieldInformationBarrierReportDetailsDetailsField): JSON {
+export function serializeShieldInformationBarrierReportDetailsDetailsField(val: ShieldInformationBarrierReportDetailsDetailsField): Json {
     return { ["folder_id"]: val.folderId };
 }
 export interface ShieldInformationBarrierReportDetails {
     readonly details?: ShieldInformationBarrierReportDetailsDetailsField;
 }
-export function deserializeShieldInformationBarrierReportDetails(val: JSON): ShieldInformationBarrierReportDetails {
+export function deserializeShieldInformationBarrierReportDetails(val: Json): ShieldInformationBarrierReportDetails {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierReportDetails\"";
     }
     const details: undefined | ShieldInformationBarrierReportDetailsDetailsField = val.details === void 0 ? void 0 : deserializeShieldInformationBarrierReportDetailsDetailsField(val.details);
     return { details: details } satisfies ShieldInformationBarrierReportDetails;
 }
-export function serializeShieldInformationBarrierReportDetails(val: ShieldInformationBarrierReportDetails): JSON {
+export function serializeShieldInformationBarrierReportDetails(val: ShieldInformationBarrierReportDetails): Json {
     return { ["details"]: val.details === void 0 ? void 0 : serializeShieldInformationBarrierReportDetailsDetailsField(val.details) };
 }
 export type TrackingCodeTypeField = "tracking_code";
-export function deserializeTrackingCodeTypeField(val: JSON): TrackingCodeTypeField {
+export function deserializeTrackingCodeTypeField(val: Json): TrackingCodeTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"TrackingCodeTypeField\"";
     }
@@ -15106,7 +15106,7 @@ export function deserializeTrackingCodeTypeField(val: JSON): TrackingCodeTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeTrackingCodeTypeField(val: TrackingCodeTypeField): JSON {
+export function serializeTrackingCodeTypeField(val: TrackingCodeTypeField): Json {
     return val;
 }
 export interface TrackingCode {
@@ -15114,7 +15114,7 @@ export interface TrackingCode {
     readonly name?: string;
     readonly value?: string;
 }
-export function deserializeTrackingCode(val: JSON): TrackingCode {
+export function deserializeTrackingCode(val: Json): TrackingCode {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"TrackingCode\"";
     }
@@ -15129,7 +15129,7 @@ export function deserializeTrackingCode(val: JSON): TrackingCode {
     const value: undefined | string = isJson(val.value, "string") ? val.value : void 0;
     return { type: type, name: name, value: value } satisfies TrackingCode;
 }
-export function serializeTrackingCode(val: TrackingCode): JSON {
+export function serializeTrackingCode(val: TrackingCode): Json {
     return { ["type"]: val.type === void 0 ? void 0 : serializeTrackingCodeTypeField(val.type), ["name"]: val.name, ["value"]: val.value };
 }
 export type UserFull = User & {
@@ -15176,7 +15176,7 @@ export type UserFull = User & {
      * providers to Box users. */
     readonly externalAppUserId?: string;
 };
-export function deserializeUserFull(val: JSON): UserFull {
+export function deserializeUserFull(val: Json): UserFull {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserFull\"";
     }
@@ -15184,7 +15184,7 @@ export function deserializeUserFull(val: JSON): UserFull {
     if (!(val.tracking_codes === void 0) && !isJson(val.tracking_codes, "array")) {
         throw "Expecting array for \"tracking_codes\" of type \"UserFull\"";
     }
-    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: JSON): any {
+    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
         return deserializeTrackingCode(itm);
     }) as readonly any[] : void 0;
     if (!(val.can_see_managed_users === void 0) && !isJson(val.can_see_managed_users, "boolean")) {
@@ -15211,7 +15211,7 @@ export function deserializeUserFull(val: JSON): UserFull {
     if (!(val.my_tags === void 0) && !isJson(val.my_tags, "array")) {
         throw "Expecting array for \"my_tags\" of type \"UserFull\"";
     }
-    const myTags: undefined | readonly string[] = isJson(val.my_tags, "array") ? val.my_tags.map(function (itm: JSON): undefined {
+    const myTags: undefined | readonly string[] = isJson(val.my_tags, "array") ? val.my_tags.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     if (!(val.hostname === void 0) && !isJson(val.hostname, "string")) {
@@ -15296,7 +15296,7 @@ export function deserializeUserFull(val: JSON): UserFull {
     const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
     return { role: role, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, isSyncEnabled: isSyncEnabled, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, enterprise: enterprise, myTags: myTags, hostname: hostname, isPlatformAccessOnly: isPlatformAccessOnly, externalAppUserId: externalAppUserId, createdAt: createdAt, modifiedAt: modifiedAt, language: language, timezone: timezone, spaceAmount: spaceAmount, spaceUsed: spaceUsed, maxUploadSize: maxUploadSize, status: status, jobTitle: jobTitle, phone: phone, address: address, avatarUrl: avatarUrl, notificationEmail: notificationEmail, name: name, login: login, id: id, type: type } satisfies UserFull;
 }
-export function serializeUserFull(val: UserFull): JSON {
+export function serializeUserFull(val: UserFull): Json {
     const base: any = serializeUser(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"UserFull\"";
@@ -15308,7 +15308,7 @@ export function serializeUserFull(val: UserFull): JSON {
             }) as readonly any[], ["hostname"]: val.hostname, ["is_platform_access_only"]: val.isPlatformAccessOnly, ["external_app_user_id"]: val.externalAppUserId } };
 }
 export type MetadataFilterScopeField = "global" | "enterprise" | "enterprise_{enterprise_id}";
-export function deserializeMetadataFilterScopeField(val: JSON): MetadataFilterScopeField {
+export function deserializeMetadataFilterScopeField(val: Json): MetadataFilterScopeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"MetadataFilterScopeField\"";
     }
@@ -15323,18 +15323,18 @@ export function deserializeMetadataFilterScopeField(val: JSON): MetadataFilterSc
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeMetadataFilterScopeField(val: MetadataFilterScopeField): JSON {
+export function serializeMetadataFilterScopeField(val: MetadataFilterScopeField): Json {
     return val;
 }
 export interface MetadataFilterFiltersField {
 }
-export function deserializeMetadataFilterFiltersField(val: JSON): MetadataFilterFiltersField {
+export function deserializeMetadataFilterFiltersField(val: Json): MetadataFilterFiltersField {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFilterFiltersField\"";
     }
     return {} satisfies MetadataFilterFiltersField;
 }
-export function serializeMetadataFilterFiltersField(val: MetadataFilterFiltersField): JSON {
+export function serializeMetadataFilterFiltersField(val: MetadataFilterFiltersField): Json {
     return {};
 }
 export interface MetadataFilter {
@@ -15342,7 +15342,7 @@ export interface MetadataFilter {
     readonly templateKey?: string;
     readonly filters?: MetadataFilterFiltersField;
 }
-export function deserializeMetadataFilter(val: JSON): MetadataFilter {
+export function deserializeMetadataFilter(val: Json): MetadataFilter {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFilter\"";
     }
@@ -15354,61 +15354,61 @@ export function deserializeMetadataFilter(val: JSON): MetadataFilter {
     const filters: undefined | MetadataFilterFiltersField = val.filters === void 0 ? void 0 : deserializeMetadataFilterFiltersField(val.filters);
     return { scope: scope, templateKey: templateKey, filters: filters } satisfies MetadataFilter;
 }
-export function serializeMetadataFilter(val: MetadataFilter): JSON {
+export function serializeMetadataFilter(val: MetadataFilter): Json {
     return { ["scope"]: val.scope === void 0 ? void 0 : serializeMetadataFilterScopeField(val.scope), ["templateKey"]: val.templateKey, ["filters"]: val.filters === void 0 ? void 0 : serializeMetadataFilterFiltersField(val.filters) };
 }
 export interface MetadataFieldFilterString {
 }
-export function deserializeMetadataFieldFilterString(val: JSON): MetadataFieldFilterString {
+export function deserializeMetadataFieldFilterString(val: Json): MetadataFieldFilterString {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFieldFilterString\"";
     }
     return {} satisfies MetadataFieldFilterString;
 }
-export function serializeMetadataFieldFilterString(val: MetadataFieldFilterString): JSON {
+export function serializeMetadataFieldFilterString(val: MetadataFieldFilterString): Json {
     return {};
 }
 export interface MetadataFieldFilterFloat {
 }
-export function deserializeMetadataFieldFilterFloat(val: JSON): MetadataFieldFilterFloat {
+export function deserializeMetadataFieldFilterFloat(val: Json): MetadataFieldFilterFloat {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFieldFilterFloat\"";
     }
     return {} satisfies MetadataFieldFilterFloat;
 }
-export function serializeMetadataFieldFilterFloat(val: MetadataFieldFilterFloat): JSON {
+export function serializeMetadataFieldFilterFloat(val: MetadataFieldFilterFloat): Json {
     return {};
 }
 export interface MetadataFieldFilterMultiSelect {
 }
-export function deserializeMetadataFieldFilterMultiSelect(val: JSON): MetadataFieldFilterMultiSelect {
+export function deserializeMetadataFieldFilterMultiSelect(val: Json): MetadataFieldFilterMultiSelect {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFieldFilterMultiSelect\"";
     }
     return {} satisfies MetadataFieldFilterMultiSelect;
 }
-export function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilterMultiSelect): JSON {
+export function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilterMultiSelect): Json {
     return {};
 }
 export interface MetadataFieldFilterFloatRange {
 }
-export function deserializeMetadataFieldFilterFloatRange(val: JSON): MetadataFieldFilterFloatRange {
+export function deserializeMetadataFieldFilterFloatRange(val: Json): MetadataFieldFilterFloatRange {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFieldFilterFloatRange\"";
     }
     return {} satisfies MetadataFieldFilterFloatRange;
 }
-export function serializeMetadataFieldFilterFloatRange(val: MetadataFieldFilterFloatRange): JSON {
+export function serializeMetadataFieldFilterFloatRange(val: MetadataFieldFilterFloatRange): Json {
     return {};
 }
 export interface MetadataFieldFilterDateRange {
 }
-export function deserializeMetadataFieldFilterDateRange(val: JSON): MetadataFieldFilterDateRange {
+export function deserializeMetadataFieldFilterDateRange(val: Json): MetadataFieldFilterDateRange {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"MetadataFieldFilterDateRange\"";
     }
     return {} satisfies MetadataFieldFilterDateRange;
 }
-export function serializeMetadataFieldFilterDateRange(val: MetadataFieldFilterDateRange): JSON {
+export function serializeMetadataFieldFilterDateRange(val: MetadataFieldFilterDateRange): Json {
     return {};
 }

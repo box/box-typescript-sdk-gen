@@ -1,8 +1,8 @@
 import { ShieldInformationBarrier } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
 export interface CreateShieldInformationBarrierChangeStatusRequestBodyArg {
     readonly id: string;
