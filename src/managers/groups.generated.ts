@@ -11,14 +11,14 @@ import { GroupFull } from "../schemas.generated.js";
 import { deserializeGroupFull } from "../schemas.generated.js";
 import { serializeGroupFull } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type GroupsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type GroupsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetGroupsOptionsArg {
     readonly filterTerm?: string;
     readonly fields?: string;
@@ -61,19 +61,19 @@ export class GroupsManager {
     }
     async getGroups(options: GetGroupsOptionsArg = {} satisfies GetGroupsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: { ["filter_term"]: options.filterTerm, ["fields"]: options.fields, ["limit"]: options.limit, ["offset"]: options.offset }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroups(deserializeJSON(response.text) as JSON);
+        return deserializeGroups(deserializeJson(response.text));
     }
     async createGroup(requestBody: CreateGroupRequestBodyArg, options: CreateGroupOptionsArg = {} satisfies CreateGroupOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroup(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeGroup(deserializeJson(response.text));
     }
     async getGroupById(groupId: string, options: GetGroupByIdOptionsArg = {} satisfies GetGroupByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: { ["fields"]: options.fields }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroupFull(deserializeJSON(response.text) as JSON);
+        return deserializeGroupFull(deserializeJson(response.text));
     }
     async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, options: UpdateGroupByIdOptionsArg = {} satisfies UpdateGroupByIdOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeGroupFull(deserializeJSON(response.text) as JSON);
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
+        return deserializeGroupFull(deserializeJson(response.text));
     }
     async deleteGroupById(groupId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;

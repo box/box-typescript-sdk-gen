@@ -1,7 +1,43 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type UploadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+export interface DownloadFileOptionsArg {
+    readonly range?: string;
+    readonly boxapi?: string;
+    readonly version?: string;
+    readonly accessToken?: string;
+}
+export interface UploadFileVersionRequestBodyArgAttributesField {
+    readonly name: string;
+    readonly contentModifiedAt?: string;
+}
+export interface UploadFileVersionRequestBodyArg {
+    readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
+    readonly file: string;
+}
+export interface UploadFileVersionOptionsArg {
+    readonly ifMatch?: string;
+    readonly fields?: string;
+    readonly contentMd5?: string;
+}
+export interface UploadFileRequestBodyArgAttributesFieldParentField {
+    readonly id: string;
+}
+export interface UploadFileRequestBodyArgAttributesField {
+    readonly name: string;
+    readonly parent: UploadFileRequestBodyArgAttributesFieldParentField;
+    readonly contentCreatedAt?: string;
+    readonly contentModifiedAt?: string;
+}
+export interface UploadFileRequestBodyArg {
+    readonly attributes: UploadFileRequestBodyArgAttributesField;
+    readonly file: string;
+}
+export interface UploadFileOptionsArg {
+    readonly fields?: string;
+    readonly contentMd5?: string;
+}
 export interface PreflightFileUploadRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -12,6 +48,9 @@ export interface PreflightFileUploadRequestBodyArg {
 }
 export declare class UploadsManager {
     readonly auth: UploadsManagerAuthField;
-    constructor(fields: Omit<UploadsManager, "preflightFileUpload">);
+    constructor(fields: Omit<UploadsManager, "downloadFile" | "uploadFileVersion" | "uploadFile" | "preflightFileUpload">);
+    downloadFile(fileId: string, options?: DownloadFileOptionsArg): Promise<any>;
+    uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, options?: UploadFileVersionOptionsArg): Promise<any>;
+    uploadFile(requestBody: UploadFileRequestBodyArg, options?: UploadFileOptionsArg): Promise<any>;
     preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<any>;
 }

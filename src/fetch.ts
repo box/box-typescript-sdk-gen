@@ -1,6 +1,14 @@
 import nodeFetch from 'node-fetch';
-import { CCGAuth } from './ccgAuth.js';
+import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
+
+export interface MultipartItem {
+  readonly partName: string;
+  readonly body?: string;
+  readonly fileStream?: any;
+  readonly fileName?: string;
+  readonly contentType?: string;
+}
 
 export interface FetchOptions {
   /**
@@ -25,9 +33,19 @@ export interface FetchOptions {
   readonly body?: string;
 
   /**
+   * Parts of multipart data
+   */
+  readonly multipartData?: MultipartItem[];
+
+  /**
+   * Request body content type
+   */
+  readonly contentType?: string;
+
+  /**
    * Auth object
    */
-  readonly auth?: CCGAuth | DeveloperTokenAuth;
+  readonly auth?: CcgAuth | DeveloperTokenAuth;
 }
 
 export interface FetchResponse {

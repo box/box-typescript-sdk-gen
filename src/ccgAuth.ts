@@ -6,20 +6,20 @@ import {
   TokenRequestGrantType,
 } from './authSchemas';
 
-export type CCGConfig = {
+export type CcgConfig = {
   clientId: string;
   clientSecret: string;
   enterpriseId?: string;
   userId?: string;
 };
 
-export class CCGAuth {
-  config: CCGConfig;
+export class CcgAuth {
+  config: CcgConfig;
   token?: string;
   subjectId: string;
   subjectType: string;
 
-  constructor({ config }: Pick<CCGAuth, 'config'>) {
+  constructor({ config }: Pick<CcgAuth, 'config'>) {
     if (!config.enterpriseId && !config.userId) {
       throw new Error('Enterprise ID or User ID is needed');
     }

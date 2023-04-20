@@ -1,8 +1,8 @@
 import { ZipDownloadRequest } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type ZipDownloadsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type ZipDownloadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export declare class ZipDownloadsManager {
     readonly auth: ZipDownloadsManagerAuthField;
     constructor(fields: Omit<ZipDownloadsManager, "createZipDownload" | "getZipDownloadContent" | "getZipDownloadStatus">);

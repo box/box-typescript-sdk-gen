@@ -1,8 +1,8 @@
 import { TrackingCode } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type UsersManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type UsersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetUsersOptionsArgUserTypeField = "all" | "managed" | "external";
 export interface GetUsersOptionsArg {
     readonly filterTerm?: string;

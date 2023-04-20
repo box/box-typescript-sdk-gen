@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type TrashedItemsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type TrashedItemsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetFolderTrashItemsOptionsArgDirectionField = "ASC" | "DESC";
 export type GetFolderTrashItemsOptionsArgSortField = "id" | "name" | "date" | "size";
 export interface GetFolderTrashItemsOptionsArg {

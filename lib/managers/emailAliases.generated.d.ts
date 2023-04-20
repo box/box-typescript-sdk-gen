@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type EmailAliasesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type EmailAliasesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface CreateUserEmailAliasRequestBodyArg {
     readonly email: string;
 }

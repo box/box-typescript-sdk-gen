@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type TermsOfServicesManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type TermsOfServicesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export type GetTermOfServicesOptionsArgTosTypeField = "external" | "managed";
 export interface GetTermOfServicesOptionsArg {
     readonly tosType?: GetTermOfServicesOptionsArgTosTypeField;

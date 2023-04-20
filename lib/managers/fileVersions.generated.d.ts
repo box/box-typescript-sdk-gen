@@ -1,7 +1,7 @@
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
-export type FileVersionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
+export type FileVersionsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetFileVersionsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

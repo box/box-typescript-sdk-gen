@@ -8,14 +8,14 @@ import { Items } from "../schemas.generated.js";
 import { deserializeItems } from "../schemas.generated.js";
 import { serializeItems } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CCGAuth } from "../ccgAuth.js";
-import { JWTAuth } from "../jwtAuth.js";
+import { CcgAuth } from "../ccgAuth.js";
+import { JwtAuth } from "../jwtAuth.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
-import { JSON } from "../json.js";
-export type CollectionsManagerAuthField = DeveloperTokenAuth | CCGAuth | JWTAuth;
+import { Json } from "../json.js";
+export type CollectionsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface GetCollectionsOptionsArg {
     readonly fields?: string;
     readonly offset?: number;
@@ -33,10 +33,10 @@ export class CollectionsManager {
     }
     async getCollections(options: GetCollectionsOptionsArg = {} satisfies GetCollectionsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeCollections(deserializeJSON(response.text) as JSON);
+        return deserializeCollections(deserializeJson(response.text));
     }
     async getCollectionItems(collectionId: string, options: GetCollectionItemsOptionsArg = {} satisfies GetCollectionItemsOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: { ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeItems(deserializeJSON(response.text) as JSON);
+        return deserializeItems(deserializeJson(response.text));
     }
 }
