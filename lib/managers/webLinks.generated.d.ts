@@ -22,16 +22,6 @@ export interface CreateWebLinkRequestBodyArg {
 export interface GetWebLinkByIdOptionsArg {
     readonly boxapi?: string;
 }
-export interface CreateWebLinkByIdRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface CreateWebLinkByIdRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: CreateWebLinkByIdRequestBodyArgParentField;
-}
-export interface CreateWebLinkByIdOptionsArg {
-    readonly fields?: string;
-}
 export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -51,10 +41,9 @@ export interface UpdateWebLinkByIdRequestBodyArg {
 }
 export declare class WebLinksManager {
     readonly auth: WebLinksManagerAuthField;
-    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "createWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
+    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
     createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<any>;
     getWebLinkById(webLinkId: string, options?: GetWebLinkByIdOptionsArg): Promise<any>;
-    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, options?: CreateWebLinkByIdOptionsArg): Promise<any>;
     updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<any>;
     deleteWebLinkById(webLinkId: string): Promise<any>;
 }

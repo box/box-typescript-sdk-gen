@@ -8,16 +8,6 @@ export interface GetFileByIdOptionsArg {
     readonly boxapi?: string;
     readonly xRepHints?: string;
 }
-export interface RestoreFileFromTrashRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface RestoreFileFromTrashRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: RestoreFileFromTrashRequestBodyArgParentField;
-}
-export interface RestoreFileFromTrashOptionsArg {
-    readonly fields?: string;
-}
 export interface UpdateFileByIdRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -79,9 +69,8 @@ export interface GetFileThumbnailByIdOptionsArg {
 }
 export declare class FilesManager {
     readonly auth: FilesManagerAuthField;
-    constructor(fields: Omit<FilesManager, "getFileById" | "restoreFileFromTrash" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
+    constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
     getFileById(fileId: string, options?: GetFileByIdOptionsArg): Promise<any>;
-    restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, options?: RestoreFileFromTrashOptionsArg): Promise<any>;
     updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, options?: UpdateFileByIdOptionsArg): Promise<any>;
     deleteFileById(fileId: string, options?: DeleteFileByIdOptionsArg): Promise<any>;
     copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, options?: CopyFileOptionsArg): Promise<any>;

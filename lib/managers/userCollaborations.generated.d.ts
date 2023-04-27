@@ -13,12 +13,6 @@ export interface UpdateCollaborationByIdRequestBodyArg {
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
 }
-export type GetCollaborationsStatusArg = "pending";
-export interface GetCollaborationsOptionsArg {
-    readonly fields?: string;
-    readonly offset?: number;
-    readonly limit?: number;
-}
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
     readonly type: CreateCollaborationRequestBodyArgItemFieldTypeField;
@@ -44,10 +38,9 @@ export interface CreateCollaborationOptionsArg {
 }
 export declare class UserCollaborationsManager {
     readonly auth: UserCollaborationsManagerAuthField;
-    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "getCollaborations" | "createCollaboration">);
+    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">);
     getCollaborationById(collaborationId: string, options?: GetCollaborationByIdOptionsArg): Promise<any>;
     updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<any>;
     deleteCollaborationById(collaborationId: string): Promise<any>;
-    getCollaborations(status: GetCollaborationsStatusArg, options?: GetCollaborationsOptionsArg): Promise<any>;
     createCollaboration(requestBody: CreateCollaborationRequestBodyArg, options?: CreateCollaborationOptionsArg): Promise<any>;
 }

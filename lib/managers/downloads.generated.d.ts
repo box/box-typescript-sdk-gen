@@ -8,22 +8,8 @@ export interface DownloadFileOptionsArg {
     readonly version?: string;
     readonly accessToken?: string;
 }
-export interface UploadFileVersionRequestBodyArgAttributesField {
-    readonly name: string;
-    readonly contentModifiedAt?: string;
-}
-export interface UploadFileVersionRequestBodyArg {
-    readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
-    readonly file: string;
-}
-export interface UploadFileVersionOptionsArg {
-    readonly ifMatch?: string;
-    readonly fields?: string;
-    readonly contentMd5?: string;
-}
 export declare class DownloadsManager {
     readonly auth: DownloadsManagerAuthField;
-    constructor(fields: Omit<DownloadsManager, "downloadFile" | "uploadFileVersion">);
+    constructor(fields: Omit<DownloadsManager, "downloadFile">);
     downloadFile(fileId: string, options?: DownloadFileOptionsArg): Promise<any>;
-    uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, options?: UploadFileVersionOptionsArg): Promise<any>;
 }

@@ -4,9 +4,6 @@ import { serializeCollaboration } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { Collaborations } from "../schemas.generated.js";
-import { deserializeCollaborations } from "../schemas.generated.js";
-import { serializeCollaborations } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CcgAuth } from "../ccgAuth.js";
 import { JwtAuth } from "../jwtAuth.js";
@@ -26,12 +23,6 @@ export interface UpdateCollaborationByIdRequestBodyArg {
     readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
-}
-export type GetCollaborationsStatusArg = "pending";
-export interface GetCollaborationsOptionsArg {
-    readonly fields?: string;
-    readonly offset?: number;
-    readonly limit?: number;
 }
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
@@ -58,7 +49,7 @@ export interface CreateCollaborationOptionsArg {
 }
 export class UserCollaborationsManager {
     readonly auth!: UserCollaborationsManagerAuthField;
-    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "getCollaborations" | "createCollaboration">) {
+    constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">) {
         Object.assign(this, fields);
     }
     async getCollaborationById(collaborationId: string, options: GetCollaborationByIdOptionsArg = {} satisfies GetCollaborationByIdOptionsArg): Promise<any> {
@@ -72,10 +63,6 @@ export class UserCollaborationsManager {
     async deleteCollaborationById(collaborationId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
-    }
-    async getCollaborations(status: GetCollaborationsStatusArg, options: GetCollaborationsOptionsArg = {} satisfies GetCollaborationsOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: { ["status"]: status, ["fields"]: options.fields, ["offset"]: options.offset, ["limit"]: options.limit }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeCollaborations(deserializeJson(response.text));
     }
     async createCollaboration(requestBody: CreateCollaborationRequestBodyArg, options: CreateCollaborationOptionsArg = {} satisfies CreateCollaborationOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: { ["fields"]: options.fields, ["notify"]: options.notify }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
