@@ -14560,10 +14560,10 @@ export function serializeSignRequestBase(val: SignRequestBase): Json {
 export type SignRequestCreateRequest = SignRequestBase & {
     /**
      * List of files to create a signing document from. This is currently
-     * limited to 10 files. Only the ID and type fields are required
+     * limited to 10 files. Only the `ID` and `type` fields are required
      * for each file. The array will be empty if the `source_files`
      * are deleted. */
-    readonly sourceFiles?: readonly FileMini[];
+    readonly sourceFiles?: readonly FileBase[];
     /**
      * Force a specific signature color (blue, black, or red). */
     readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
@@ -14579,8 +14579,8 @@ export function deserializeSignRequestCreateRequest(val: Json): SignRequestCreat
     if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
         throw "Expecting array for \"source_files\" of type \"SignRequestCreateRequest\"";
     }
-    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
-        return deserializeFileMini(itm);
+    const sourceFiles: undefined | readonly FileBase[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
+        return deserializeFileBase(itm);
     }) as readonly any[] : void 0;
     const signatureColor: undefined | SignRequestCreateRequestSignatureColorField = val.signature_color === void 0 ? void 0 : deserializeSignRequestCreateRequestSignatureColorField(val.signature_color);
     if (val.signers === void 0) {
@@ -14653,8 +14653,8 @@ export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest)
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequestCreateRequest\"";
     }
-    return { ...base, ...{ ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileMini): any {
-                return serializeFileMini(item);
+    return { ...base, ...{ ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileBase): any {
+                return serializeFileBase(item);
             }) as readonly any[], ["signature_color"]: val.signatureColor === void 0 ? void 0 : serializeSignRequestCreateRequestSignatureColorField(val.signatureColor), ["signers"]: val.signers.map(function (item: SignRequestCreateSigner): any {
                 return serializeSignRequestCreateSigner(item);
             }) as readonly any[] } };
