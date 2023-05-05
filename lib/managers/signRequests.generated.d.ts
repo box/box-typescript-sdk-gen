@@ -9,9 +9,9 @@ export interface GetSignRequestsOptionsArg {
 }
 export declare class SignRequestsManager {
     readonly auth: SignRequestsManagerAuthField;
-    constructor(fields: Omit<SignRequestsManager, "createSignRequestCancel" | "createSignRequestResend" | "getSignRequestById" | "getSignRequests" | "createSignRequest">);
-    createSignRequestCancel(signRequestId: string): Promise<any>;
-    createSignRequestResend(signRequestId: string): Promise<any>;
+    constructor(fields: Omit<SignRequestsManager, "cancelSignRequest" | "resendSignRequest" | "getSignRequestById" | "getSignRequests" | "createSignRequest">);
+    cancelSignRequest(signRequestId: string): Promise<any>;
+    resendSignRequest(signRequestId: string): Promise<any>;
     getSignRequestById(signRequestId: string): Promise<any>;
     getSignRequests(options?: GetSignRequestsOptionsArg): Promise<any>;
     createSignRequest(requestBody: SignRequestCreateRequest): Promise<any>;

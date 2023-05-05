@@ -26,14 +26,14 @@ export interface GetSignRequestsOptionsArg {
 }
 export class SignRequestsManager {
     readonly auth!: SignRequestsManagerAuthField;
-    constructor(fields: Omit<SignRequestsManager, "createSignRequestCancel" | "createSignRequestResend" | "getSignRequestById" | "getSignRequests" | "createSignRequest">) {
+    constructor(fields: Omit<SignRequestsManager, "cancelSignRequest" | "resendSignRequest" | "getSignRequestById" | "getSignRequests" | "createSignRequest">) {
         Object.assign(this, fields);
     }
-    async createSignRequestCancel(signRequestId: string): Promise<any> {
+    async cancelSignRequest(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/cancel") as string, { method: "POST", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeSignRequest(deserializeJson(response.text));
     }
-    async createSignRequestResend(signRequestId: string): Promise<any> {
+    async resendSignRequest(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/resend") as string, { method: "POST", auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }

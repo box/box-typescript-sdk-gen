@@ -4,9 +4,6 @@ import { serializeWebLink } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { TrashWebLinkRestored } from "../schemas.generated.js";
-import { deserializeTrashWebLinkRestored } from "../schemas.generated.js";
-import { serializeTrashWebLinkRestored } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CcgAuth } from "../ccgAuth.js";
 import { JwtAuth } from "../jwtAuth.js";
@@ -36,16 +33,6 @@ export interface CreateWebLinkRequestBodyArg {
 export interface GetWebLinkByIdOptionsArg {
     readonly boxapi?: string;
 }
-export interface CreateWebLinkByIdRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface CreateWebLinkByIdRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: CreateWebLinkByIdRequestBodyArgParentField;
-}
-export interface CreateWebLinkByIdOptionsArg {
-    readonly fields?: string;
-}
 export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -65,7 +52,7 @@ export interface UpdateWebLinkByIdRequestBodyArg {
 }
 export class WebLinksManager {
     readonly auth!: WebLinksManagerAuthField;
-    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "createWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">) {
+    constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">) {
         Object.assign(this, fields);
     }
     async createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<any> {
@@ -75,10 +62,6 @@ export class WebLinksManager {
     async getWebLinkById(webLinkId: string, options: GetWebLinkByIdOptionsArg = {} satisfies GetWebLinkByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: { ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
-    }
-    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, options: CreateWebLinkByIdOptionsArg = {} satisfies CreateWebLinkByIdOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeTrashWebLinkRestored(deserializeJson(response.text));
     }
     async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;

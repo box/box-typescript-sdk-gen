@@ -2,12 +2,6 @@ import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CcgAuth } from "../ccgAuth.js";
 import { JwtAuth } from "../jwtAuth.js";
 export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
-export interface DownloadFileOptionsArg {
-    readonly range?: string;
-    readonly boxapi?: string;
-    readonly version?: string;
-    readonly accessToken?: string;
-}
 export interface UploadFileVersionRequestBodyArgAttributesField {
     readonly name: string;
     readonly contentModifiedAt?: string;
@@ -48,8 +42,7 @@ export interface PreflightFileUploadRequestBodyArg {
 }
 export declare class UploadsManager {
     readonly auth: UploadsManagerAuthField;
-    constructor(fields: Omit<UploadsManager, "downloadFile" | "uploadFileVersion" | "uploadFile" | "preflightFileUpload">);
-    downloadFile(fileId: string, options?: DownloadFileOptionsArg): Promise<any>;
+    constructor(fields: Omit<UploadsManager, "uploadFileVersion" | "uploadFile" | "preflightFileUpload">);
     uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, options?: UploadFileVersionOptionsArg): Promise<any>;
     uploadFile(requestBody: UploadFileRequestBodyArg, options?: UploadFileOptionsArg): Promise<any>;
     preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<any>;

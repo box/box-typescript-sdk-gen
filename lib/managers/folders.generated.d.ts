@@ -7,16 +7,6 @@ export interface GetFolderByIdOptionsArg {
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
 }
-export interface RestoreFolderFromTrashRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface RestoreFolderFromTrashRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: RestoreFolderFromTrashRequestBodyArgParentField;
-}
-export interface RestoreFolderFromTrashOptionsArg {
-    readonly fields?: string;
-}
 export type UpdateFolderByIdRequestBodyArgSyncStateField = "synced" | "not_synced" | "partially_synced";
 export interface UpdateFolderByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -102,9 +92,8 @@ export interface CopyFolderOptionsArg {
 }
 export declare class FoldersManager {
     readonly auth: FoldersManagerAuthField;
-    constructor(fields: Omit<FoldersManager, "getFolderById" | "restoreFolderFromTrash" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">);
+    constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">);
     getFolderById(folderId: string, options?: GetFolderByIdOptionsArg): Promise<any>;
-    restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, options?: RestoreFolderFromTrashOptionsArg): Promise<any>;
     updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, options?: UpdateFolderByIdOptionsArg): Promise<any>;
     deleteFolderById(folderId: string, options?: DeleteFolderByIdOptionsArg): Promise<any>;
     getFolderItems(folderId: string, options?: GetFolderItemsOptionsArg): Promise<any>;

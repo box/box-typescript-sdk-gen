@@ -4,9 +4,6 @@ import { serializeFileFull } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { TrashFileRestored } from "../schemas.generated.js";
-import { deserializeTrashFileRestored } from "../schemas.generated.js";
-import { serializeTrashFileRestored } from "../schemas.generated.js";
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CcgAuth } from "../ccgAuth.js";
 import { JwtAuth } from "../jwtAuth.js";
@@ -21,16 +18,6 @@ export interface GetFileByIdOptionsArg {
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
     readonly xRepHints?: string;
-}
-export interface RestoreFileFromTrashRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface RestoreFileFromTrashRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: RestoreFileFromTrashRequestBodyArgParentField;
-}
-export interface RestoreFileFromTrashOptionsArg {
-    readonly fields?: string;
 }
 export interface UpdateFileByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -93,16 +80,12 @@ export interface GetFileThumbnailByIdOptionsArg {
 }
 export class FilesManager {
     readonly auth!: FilesManagerAuthField;
-    constructor(fields: Omit<FilesManager, "getFileById" | "restoreFileFromTrash" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">) {
+    constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">) {
         Object.assign(this, fields);
     }
     async getFileById(fileId: string, options: GetFileByIdOptionsArg = {} satisfies GetFileByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi, ["x-rep-hints"]: options.xRepHints }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
-    }
-    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, options: RestoreFileFromTrashOptionsArg = {} satisfies RestoreFileFromTrashOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeTrashFileRestored(deserializeJson(response.text));
     }
     async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, options: UpdateFileByIdOptionsArg = {} satisfies UpdateFileByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "PUT", params: { ["fields"]: options.fields }, headers: { ["if-match"]: options.ifMatch }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;

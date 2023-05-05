@@ -4,9 +4,6 @@ import { serializeFolderFull } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
-import { TrashFolderRestored } from "../schemas.generated.js";
-import { deserializeTrashFolderRestored } from "../schemas.generated.js";
-import { serializeTrashFolderRestored } from "../schemas.generated.js";
 import { Items } from "../schemas.generated.js";
 import { deserializeItems } from "../schemas.generated.js";
 import { serializeItems } from "../schemas.generated.js";
@@ -23,16 +20,6 @@ export interface GetFolderByIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
-}
-export interface RestoreFolderFromTrashRequestBodyArgParentField {
-    readonly id?: string;
-}
-export interface RestoreFolderFromTrashRequestBodyArg {
-    readonly name?: string;
-    readonly parent?: RestoreFolderFromTrashRequestBodyArgParentField;
-}
-export interface RestoreFolderFromTrashOptionsArg {
-    readonly fields?: string;
 }
 export type UpdateFolderByIdRequestBodyArgSyncStateField = "synced" | "not_synced" | "partially_synced";
 export interface UpdateFolderByIdRequestBodyArgParentField {
@@ -119,16 +106,12 @@ export interface CopyFolderOptionsArg {
 }
 export class FoldersManager {
     readonly auth!: FoldersManagerAuthField;
-    constructor(fields: Omit<FoldersManager, "getFolderById" | "restoreFolderFromTrash" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">) {
+    constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">) {
         Object.assign(this, fields);
     }
     async getFolderById(folderId: string, options: GetFolderByIdOptionsArg = {} satisfies GetFolderByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: { ["fields"]: options.fields }, headers: { ["if-none-match"]: options.ifNoneMatch, ["boxapi"]: options.boxapi }, auth: this.auth } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
-    }
-    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, options: RestoreFolderFromTrashOptionsArg = {} satisfies RestoreFolderFromTrashOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: { ["fields"]: options.fields }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
-        return deserializeTrashFolderRestored(deserializeJson(response.text));
     }
     async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, options: UpdateFolderByIdOptionsArg = {} satisfies UpdateFolderByIdOptionsArg): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: { ["fields"]: options.fields }, headers: { ["if-match"]: options.ifMatch }, body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth } satisfies FetchOptions) as FetchResponse;
