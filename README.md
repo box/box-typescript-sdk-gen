@@ -28,13 +28,13 @@ Using `Client` object you can access managers, which allow you to perform some o
 The example below demonstrates how to authenticate with Developer Token and print names of all items inside a root folder.
 
 ```js
-import { Client } from 'BoxSDK/lib/client.generated.js';
-import { DeveloperTokenAuth } from 'BoxSDK/lib/developerTokenAuth.js';
+const { Client } = require('BoxSDK/lib/client.generated.js');
+const { DeveloperTokenAuth } = require('BoxSDK/lib/developerTokenAuth.js');
 
 async function main(token) {
   let auth = new DeveloperTokenAuth({ token });
   let client = new Client({ auth });
-  let entries = (await client.folders.getFoldersIdItems('0')).entries;
+  let entries = (await client.folders.getFolderItems('0')).entries;
   entries.forEach((entry) => console.log(entry));
 }
 
