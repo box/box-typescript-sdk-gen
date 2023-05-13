@@ -15,18 +15,18 @@ export declare class JwtConfig {
     constructor(fields: Omit<JwtConfig, 'fromConfigJsonString' | 'fromConfigFile'>);
     /**
      * Create a JwtConfig instance from a JSON string.
-     * @param {string} config_json_string The JSON string to parse.
+     * @param {string} configJsonString The JSON string to parse.
      * @returns {JwtConfig} The JwtConfig instance.
      */
-    static fromConfigJsonString(config_json_string: string): JwtConfig;
+    static fromConfigJsonString(configJsonString: string): JwtConfig;
     /**
      * Create a JwtConfig instance from a JSON file.
-     * @param {string} config_file_path The path to the JSON file.
+     * @param {string} configFilePath The path to the JSON file.
      * @returns {JwtConfig} The JwtConfig instance.
      * @throws {Error} If the file cannot be read.  If the file is not valid JSON.
      * If the file is missing required fields.
      */
-    static fromConfigFile(config_file_path: string): JwtConfig;
+    static fromConfigFile(configFilePath: string): JwtConfig;
 }
 /**
  * A class that manages the retrieval and storage of access tokens for a given app user.

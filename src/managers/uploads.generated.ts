@@ -19,6 +19,7 @@ import { FetchResponse } from "../fetch.js";
 import { MultipartItem } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { Readable } from "stream";
 export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface UploadFileVersionRequestBodyArgAttributesField {
     readonly name: string;
@@ -26,7 +27,7 @@ export interface UploadFileVersionRequestBodyArgAttributesField {
 }
 export interface UploadFileVersionRequestBodyArg {
     readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
-    readonly file: string;
+    readonly file: Readable;
 }
 export interface UploadFileVersionOptionsArg {
     readonly ifMatch?: string;
@@ -44,7 +45,7 @@ export interface UploadFileRequestBodyArgAttributesField {
 }
 export interface UploadFileRequestBodyArg {
     readonly attributes: UploadFileRequestBodyArgAttributesField;
-    readonly file: string;
+    readonly file: Readable;
 }
 export interface UploadFileOptionsArg {
     readonly fields?: string;

@@ -13,9 +13,10 @@ import { FetchResponse } from "../fetch.js";
 import { MultipartItem } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { Readable } from "stream";
 export type AvatarsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface CreateUserAvatarRequestBodyArg {
-    readonly pic: string;
+    readonly pic: Readable;
 }
 export class AvatarsManager {
     readonly auth!: AvatarsManagerAuthField;

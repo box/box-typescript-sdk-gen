@@ -9,8 +9,8 @@ export default async function run(main: Function) {
   try {
     const input =
       typeof process !== 'undefined' ? await read(process.stdin) : '';
-    const output = JSON.stringify(await main.apply(null, parse(input || '[]')));
-    console.log(output);
+    let result = await main.apply(null, parse(input || '[]'));
+    console.log(result);
   } catch (e) {
     console.error(`Error running program`, e);
   }

@@ -64,6 +64,7 @@ import { StoragePolicyAssignmentsManager } from "./managers/storagePolicyAssignm
 import { ZipDownloadsManager } from "./managers/zipDownloads.generated.js";
 import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
+import { SignTemplatesManager } from "./managers/signTemplates.generated.js";
 import { DeveloperTokenAuth } from "./developerTokenAuth.js";
 import { CcgAuth } from "./ccgAuth.js";
 import { JwtAuth } from "./jwtAuth.js";
@@ -136,7 +137,8 @@ export class Client {
     readonly zipDownloads: ZipDownloadsManager;
     readonly signRequests: SignRequestsManager;
     readonly workflows: WorkflowsManager;
-    constructor(fields: Omit<Client, "authorization" | "files" | "trashedFiles" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "folders" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows">) {
+    readonly signTemplates: SignTemplatesManager;
+    constructor(fields: Omit<Client, "authorization" | "files" | "trashedFiles" | "downloads" | "uploads" | "chunkedUploads" | "listCollaborations" | "comments" | "tasks" | "fileVersions" | "fileMetadata" | "fileClassifications" | "skills" | "fileWatermarks" | "fileRequests" | "folders" | "trashedFolders" | "folderMetadata" | "folderClassifications" | "trashedItems" | "folderWatermarks" | "folderLocks" | "metadataTemplates" | "classifications" | "metadataCascadePolicies" | "search" | "userCollaborations" | "taskAssignments" | "sharedLinksFiles" | "sharedLinksFolders" | "webLinks" | "trashedWebLinks" | "sharedLinksWebLinks" | "users" | "sessionTermination" | "avatars" | "transfer" | "emailAliases" | "memberships" | "invites" | "groups" | "webhooks" | "events" | "collections" | "recentItems" | "retentionPolicies" | "retentionPolicyAssignments" | "legalHoldPolicies" | "legalHoldPolicyAssignments" | "fileVersionRetentions" | "fileVersionLegalHolds" | "shieldInformationBarriers" | "shieldInformationBarrierReports" | "shieldInformationBarrierSegments" | "shieldInformationBarrierSegmentMembers" | "shieldInformationBarrierSegmentRestrictions" | "devicePinners" | "termsOfServices" | "termsOfServiceUserStatuses" | "collaborationAllowlistEntries" | "collaborationAllowlistExemptTargets" | "storagePolicies" | "storagePolicyAssignments" | "zipDownloads" | "signRequests" | "workflows" | "signTemplates">) {
         Object.assign(this, fields);
         this.authorization = new AuthorizationManager({ auth: this.auth });
         this.files = new FilesManager({ auth: this.auth });
@@ -204,5 +206,6 @@ export class Client {
         this.zipDownloads = new ZipDownloadsManager({ auth: this.auth });
         this.signRequests = new SignRequestsManager({ auth: this.auth });
         this.workflows = new WorkflowsManager({ auth: this.auth });
+        this.signTemplates = new SignTemplatesManager({ auth: this.auth });
     }
 }

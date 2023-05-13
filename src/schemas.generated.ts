@@ -535,25 +535,6 @@ export function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Js
     }
     return { ...base, ...{ ["folder"]: serializeFileRequestCopyRequestFolderField(val.folder) } };
 }
-export type SignRequestCreateRequestSignatureColorField = "blue" | "black" | "red";
-export function deserializeSignRequestCreateRequestSignatureColorField(val: Json): SignRequestCreateRequestSignatureColorField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"SignRequestCreateRequestSignatureColorField\"";
-    }
-    if (val === "blue") {
-        return "blue";
-    }
-    if (val === "black") {
-        return "black";
-    }
-    if (val === "red") {
-        return "red";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeSignRequestCreateRequestSignatureColorField(val: SignRequestCreateRequestSignatureColorField): Json {
-    return val;
-}
 export type ClientErrorTypeField = "error";
 export function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField {
     if (!isJson(val, "string")) {
@@ -6898,6 +6879,318 @@ export function deserializeTermsOfServiceUserStatusTypeField(val: Json): TermsOf
 }
 export function serializeTermsOfServiceUserStatusTypeField(val: TermsOfServiceUserStatusTypeField): Json {
     return val;
+}
+export type SignTemplateAdditionalInfoFieldNonEditableField = "email_subject" | "email_message" | "name" | "days_valid" | "signers" | "source_files";
+export function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: Json): SignTemplateAdditionalInfoFieldNonEditableField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"SignTemplateAdditionalInfoFieldNonEditableField\"";
+    }
+    if (val === "email_subject") {
+        return "email_subject";
+    }
+    if (val === "email_message") {
+        return "email_message";
+    }
+    if (val === "name") {
+        return "name";
+    }
+    if (val === "days_valid") {
+        return "days_valid";
+    }
+    if (val === "signers") {
+        return "signers";
+    }
+    if (val === "source_files") {
+        return "source_files";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeSignTemplateAdditionalInfoFieldNonEditableField(val: SignTemplateAdditionalInfoFieldNonEditableField): Json {
+    return val;
+}
+export interface SignTemplateAdditionalInfoFieldRequiredField {
+    readonly signers?: readonly (readonly ("email")[])[];
+}
+export function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: Json): SignTemplateAdditionalInfoFieldRequiredField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplateAdditionalInfoFieldRequiredField\"";
+    }
+    if (!(val.signers === void 0) && !isJson(val.signers, "array")) {
+        throw "Expecting array for \"signers\" of type \"SignTemplateAdditionalInfoFieldRequiredField\"";
+    }
+    const signers: undefined | readonly (readonly ("email")[])[] = isJson(val.signers, "array") ? val.signers.map(function (itm: Json): undefined {
+        return void 0;
+    }) as readonly any[] : void 0;
+    return { signers: signers } satisfies SignTemplateAdditionalInfoFieldRequiredField;
+}
+export function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json {
+    return { ["signers"]: val.signers === void 0 ? void 0 : val.signers.map(function (item: readonly ("email")[]): undefined {
+            return void 0;
+        }) as readonly any[] };
+}
+export interface SignTemplateAdditionalInfoField {
+    readonly nonEditable?: readonly SignTemplateAdditionalInfoFieldNonEditableField[];
+    readonly required?: SignTemplateAdditionalInfoFieldRequiredField;
+}
+export function deserializeSignTemplateAdditionalInfoField(val: Json): SignTemplateAdditionalInfoField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplateAdditionalInfoField\"";
+    }
+    if (!(val.non_editable === void 0) && !isJson(val.non_editable, "array")) {
+        throw "Expecting array for \"non_editable\" of type \"SignTemplateAdditionalInfoField\"";
+    }
+    const nonEditable: undefined | readonly SignTemplateAdditionalInfoFieldNonEditableField[] = isJson(val.non_editable, "array") ? val.non_editable.map(function (itm: Json): any {
+        return deserializeSignTemplateAdditionalInfoFieldNonEditableField(itm);
+    }) as readonly any[] : void 0;
+    const required: undefined | SignTemplateAdditionalInfoFieldRequiredField = val.required === void 0 ? void 0 : deserializeSignTemplateAdditionalInfoFieldRequiredField(val.required);
+    return { nonEditable: nonEditable, required: required } satisfies SignTemplateAdditionalInfoField;
+}
+export function serializeSignTemplateAdditionalInfoField(val: SignTemplateAdditionalInfoField): Json {
+    return { ["non_editable"]: val.nonEditable === void 0 ? void 0 : val.nonEditable.map(function (item: SignTemplateAdditionalInfoFieldNonEditableField): any {
+            return serializeSignTemplateAdditionalInfoFieldNonEditableField(item);
+        }) as readonly any[], ["required"]: val.required === void 0 ? void 0 : serializeSignTemplateAdditionalInfoFieldRequiredField(val.required) };
+}
+export interface SignTemplateReadySignLinkField {
+    readonly url?: string;
+    readonly name?: string;
+    readonly instructions?: string;
+    readonly folderId?: string;
+    readonly isNotificationDisabled?: boolean;
+    readonly isActive?: boolean;
+}
+export function deserializeSignTemplateReadySignLinkField(val: Json): SignTemplateReadySignLinkField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplateReadySignLinkField\"";
+    }
+    if (!(val.url === void 0) && !isJson(val.url, "string")) {
+        throw "Expecting string for \"url\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const url: undefined | string = isJson(val.url, "string") ? val.url : void 0;
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
+        throw "Expecting string for \"name\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.instructions === void 0) && !isJson(val.instructions, "string")) {
+        throw "Expecting string for \"instructions\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const instructions: undefined | string = isJson(val.instructions, "string") ? val.instructions : void 0;
+    if (!(val.folder_id === void 0) && !isJson(val.folder_id, "string")) {
+        throw "Expecting string for \"folder_id\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const folderId: undefined | string = isJson(val.folder_id, "string") ? val.folder_id : void 0;
+    if (!(val.is_notification_disabled === void 0) && !isJson(val.is_notification_disabled, "boolean")) {
+        throw "Expecting boolean for \"is_notification_disabled\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const isNotificationDisabled: undefined | boolean = isJson(val.is_notification_disabled, "boolean") ? val.is_notification_disabled : void 0;
+    if (!(val.is_active === void 0) && !isJson(val.is_active, "boolean")) {
+        throw "Expecting boolean for \"is_active\" of type \"SignTemplateReadySignLinkField\"";
+    }
+    const isActive: undefined | boolean = isJson(val.is_active, "boolean") ? val.is_active : void 0;
+    return { url: url, name: name, instructions: instructions, folderId: folderId, isNotificationDisabled: isNotificationDisabled, isActive: isActive } satisfies SignTemplateReadySignLinkField;
+}
+export function serializeSignTemplateReadySignLinkField(val: SignTemplateReadySignLinkField): Json {
+    return { ["url"]: val.url, ["name"]: val.name, ["instructions"]: val.instructions, ["folder_id"]: val.folderId, ["is_notification_disabled"]: val.isNotificationDisabled, ["is_active"]: val.isActive };
+}
+export interface SignTemplateCustomBrandingField {
+    readonly companyName?: string;
+    readonly logoUri?: string;
+    readonly brandingColor?: string;
+    readonly emailFooterText?: string;
+}
+export function deserializeSignTemplateCustomBrandingField(val: Json): SignTemplateCustomBrandingField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplateCustomBrandingField\"";
+    }
+    if (!(val.company_name === void 0) && !isJson(val.company_name, "string")) {
+        throw "Expecting string for \"company_name\" of type \"SignTemplateCustomBrandingField\"";
+    }
+    const companyName: undefined | string = isJson(val.company_name, "string") ? val.company_name : void 0;
+    if (!(val.logo_uri === void 0) && !isJson(val.logo_uri, "string")) {
+        throw "Expecting string for \"logo_uri\" of type \"SignTemplateCustomBrandingField\"";
+    }
+    const logoUri: undefined | string = isJson(val.logo_uri, "string") ? val.logo_uri : void 0;
+    if (!(val.branding_color === void 0) && !isJson(val.branding_color, "string")) {
+        throw "Expecting string for \"branding_color\" of type \"SignTemplateCustomBrandingField\"";
+    }
+    const brandingColor: undefined | string = isJson(val.branding_color, "string") ? val.branding_color : void 0;
+    if (!(val.email_footer_text === void 0) && !isJson(val.email_footer_text, "string")) {
+        throw "Expecting string for \"email_footer_text\" of type \"SignTemplateCustomBrandingField\"";
+    }
+    const emailFooterText: undefined | string = isJson(val.email_footer_text, "string") ? val.email_footer_text : void 0;
+    return { companyName: companyName, logoUri: logoUri, brandingColor: brandingColor, emailFooterText: emailFooterText } satisfies SignTemplateCustomBrandingField;
+}
+export function serializeSignTemplateCustomBrandingField(val: SignTemplateCustomBrandingField): Json {
+    return { ["company_name"]: val.companyName, ["logo_uri"]: val.logoUri, ["branding_color"]: val.brandingColor, ["email_footer_text"]: val.emailFooterText };
+}
+export interface SignTemplates {
+    readonly limit?: number;
+    readonly nextMarker?: string;
+    readonly prevMarker?: string;
+}
+export function deserializeSignTemplates(val: Json): SignTemplates {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplates\"";
+    }
+    if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
+        throw "Expecting number for \"limit\" of type \"SignTemplates\"";
+    }
+    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
+    if (!(val.next_marker === void 0) && !isJson(val.next_marker, "string")) {
+        throw "Expecting string for \"next_marker\" of type \"SignTemplates\"";
+    }
+    const nextMarker: undefined | string = isJson(val.next_marker, "string") ? val.next_marker : void 0;
+    if (!(val.prev_marker === void 0) && !isJson(val.prev_marker, "string")) {
+        throw "Expecting string for \"prev_marker\" of type \"SignTemplates\"";
+    }
+    const prevMarker: undefined | string = isJson(val.prev_marker, "string") ? val.prev_marker : void 0;
+    return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker } satisfies SignTemplates;
+}
+export function serializeSignTemplates(val: SignTemplates): Json {
+    return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker };
+}
+export type TemplateSignerRoleField = "signer" | "approver" | "final_copy_reader";
+export function deserializeTemplateSignerRoleField(val: Json): TemplateSignerRoleField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"TemplateSignerRoleField\"";
+    }
+    if (val === "signer") {
+        return "signer";
+    }
+    if (val === "approver") {
+        return "approver";
+    }
+    if (val === "final_copy_reader") {
+        return "final_copy_reader";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeTemplateSignerRoleField(val: TemplateSignerRoleField): Json {
+    return val;
+}
+export type TemplateSignerInputTypeField = "signature" | "date" | "text" | "checkbox" | "radio" | "dropdown";
+export function deserializeTemplateSignerInputTypeField(val: Json): TemplateSignerInputTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"TemplateSignerInputTypeField\"";
+    }
+    if (val === "signature") {
+        return "signature";
+    }
+    if (val === "date") {
+        return "date";
+    }
+    if (val === "text") {
+        return "text";
+    }
+    if (val === "checkbox") {
+        return "checkbox";
+    }
+    if (val === "radio") {
+        return "radio";
+    }
+    if (val === "dropdown") {
+        return "dropdown";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeTemplateSignerInputTypeField(val: TemplateSignerInputTypeField): Json {
+    return val;
+}
+export type TemplateSignerInputContentTypeField = "signature" | "initial" | "stamp" | "date" | "checkbox" | "text" | "full_name" | "first_name" | "last_name" | "company" | "title" | "email" | "attachment" | "radio" | "dropdown";
+export function deserializeTemplateSignerInputContentTypeField(val: Json): TemplateSignerInputContentTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"TemplateSignerInputContentTypeField\"";
+    }
+    if (val === "signature") {
+        return "signature";
+    }
+    if (val === "initial") {
+        return "initial";
+    }
+    if (val === "stamp") {
+        return "stamp";
+    }
+    if (val === "date") {
+        return "date";
+    }
+    if (val === "checkbox") {
+        return "checkbox";
+    }
+    if (val === "text") {
+        return "text";
+    }
+    if (val === "full_name") {
+        return "full_name";
+    }
+    if (val === "first_name") {
+        return "first_name";
+    }
+    if (val === "last_name") {
+        return "last_name";
+    }
+    if (val === "company") {
+        return "company";
+    }
+    if (val === "title") {
+        return "title";
+    }
+    if (val === "email") {
+        return "email";
+    }
+    if (val === "attachment") {
+        return "attachment";
+    }
+    if (val === "radio") {
+        return "radio";
+    }
+    if (val === "dropdown") {
+        return "dropdown";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeTemplateSignerInputContentTypeField(val: TemplateSignerInputContentTypeField): Json {
+    return val;
+}
+export interface TemplateSignerInputCoordinatesField {
+    readonly x?: number;
+    readonly y?: number;
+}
+export function deserializeTemplateSignerInputCoordinatesField(val: Json): TemplateSignerInputCoordinatesField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"TemplateSignerInputCoordinatesField\"";
+    }
+    if (!(val.x === void 0) && !isJson(val.x, "number")) {
+        throw "Expecting number for \"x\" of type \"TemplateSignerInputCoordinatesField\"";
+    }
+    const x: undefined | number = isJson(val.x, "number") ? val.x : void 0;
+    if (!(val.y === void 0) && !isJson(val.y, "number")) {
+        throw "Expecting number for \"y\" of type \"TemplateSignerInputCoordinatesField\"";
+    }
+    const y: undefined | number = isJson(val.y, "number") ? val.y : void 0;
+    return { x: x, y: y } satisfies TemplateSignerInputCoordinatesField;
+}
+export function serializeTemplateSignerInputCoordinatesField(val: TemplateSignerInputCoordinatesField): Json {
+    return { ["x"]: val.x, ["y"]: val.y };
+}
+export interface TemplateSignerInputDimensionsField {
+    readonly width?: number;
+    readonly height?: number;
+}
+export function deserializeTemplateSignerInputDimensionsField(val: Json): TemplateSignerInputDimensionsField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"TemplateSignerInputDimensionsField\"";
+    }
+    if (!(val.width === void 0) && !isJson(val.width, "number")) {
+        throw "Expecting number for \"width\" of type \"TemplateSignerInputDimensionsField\"";
+    }
+    const width: undefined | number = isJson(val.width, "number") ? val.width : void 0;
+    if (!(val.height === void 0) && !isJson(val.height, "number")) {
+        throw "Expecting number for \"height\" of type \"TemplateSignerInputDimensionsField\"";
+    }
+    const height: undefined | number = isJson(val.height, "number") ? val.height : void 0;
+    return { width: width, height: height } satisfies TemplateSignerInputDimensionsField;
+}
+export function serializeTemplateSignerInputDimensionsField(val: TemplateSignerInputDimensionsField): Json {
+    return { ["width"]: val.width, ["height"]: val.height };
 }
 export type TrashFileTypeField = "file";
 export function deserializeTrashFileTypeField(val: Json): TrashFileTypeField {
@@ -14497,6 +14790,7 @@ export interface SignRequestBase {
     readonly daysValid?: number;
     readonly externalId?: string;
     readonly isPhoneVerificationRequiredToView?: boolean;
+    readonly templateId?: string;
 }
 export function deserializeSignRequestBase(val: Json): SignRequestBase {
     if (!isJson(val, "object")) {
@@ -14556,23 +14850,21 @@ export function deserializeSignRequestBase(val: Json): SignRequestBase {
         throw "Expecting boolean for \"is_phone_verification_required_to_view\" of type \"SignRequestBase\"";
     }
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
-    return { isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequestBase;
+    if (!(val.template_id === void 0) && !isJson(val.template_id, "string")) {
+        throw "Expecting string for \"template_id\" of type \"SignRequestBase\"";
+    }
+    const templateId: undefined | string = isJson(val.template_id, "string") ? val.template_id : void 0;
+    return { isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView, templateId: templateId } satisfies SignRequestBase;
 }
 export function serializeSignRequestBase(val: SignRequestBase): Json {
     return { ["is_document_preparation_needed"]: val.isDocumentPreparationNeeded, ["redirect_url"]: val.redirectUrl, ["declined_redirect_url"]: val.declinedRedirectUrl, ["are_text_signatures_enabled"]: val.areTextSignaturesEnabled, ["email_subject"]: val.emailSubject, ["email_message"]: val.emailMessage, ["are_reminders_enabled"]: val.areRemindersEnabled, ["parent_folder"]: serializeFolderMini(val.parentFolder), ["name"]: val.name, ["prefill_tags"]: val.prefillTags === void 0 ? void 0 : val.prefillTags.map(function (item: SignRequestPrefillTag): any {
             return serializeSignRequestPrefillTag(item);
-        }) as readonly any[], ["days_valid"]: val.daysValid, ["external_id"]: val.externalId, ["is_phone_verification_required_to_view"]: val.isPhoneVerificationRequiredToView };
+        }) as readonly any[], ["days_valid"]: val.daysValid, ["external_id"]: val.externalId, ["is_phone_verification_required_to_view"]: val.isPhoneVerificationRequiredToView, ["template_id"]: val.templateId };
 }
 export type SignRequestCreateRequest = SignRequestBase & {
     /**
-     * List of files to create a signing document from. This is currently
-     * limited to 10 files. Only the `ID` and `type` fields are required
-     * for each file. The array will be empty if the `source_files`
-     * are deleted. */
+     * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
     readonly sourceFiles?: readonly FileBase[];
-    /**
-     * Force a specific signature color (blue, black, or red). */
-    readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
     /**
      * Array of signers for the sign request. 35 is the
      * max number of signers permitted. */
@@ -14588,7 +14880,6 @@ export function deserializeSignRequestCreateRequest(val: Json): SignRequestCreat
     const sourceFiles: undefined | readonly FileBase[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
         return deserializeFileBase(itm);
     }) as readonly any[] : void 0;
-    const signatureColor: undefined | SignRequestCreateRequestSignatureColorField = val.signature_color === void 0 ? void 0 : deserializeSignRequestCreateRequestSignatureColorField(val.signature_color);
     if (val.signers === void 0) {
         throw "Expecting \"signers\" of type \"SignRequestCreateRequest\" to be defined";
     }
@@ -14652,7 +14943,11 @@ export function deserializeSignRequestCreateRequest(val: Json): SignRequestCreat
         throw "Expecting boolean for \"is_phone_verification_required_to_view\" of type \"SignRequestCreateRequest\"";
     }
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
-    return { sourceFiles: sourceFiles, signatureColor: signatureColor, signers: signers, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequestCreateRequest;
+    if (!(val.template_id === void 0) && !isJson(val.template_id, "string")) {
+        throw "Expecting string for \"template_id\" of type \"SignRequestCreateRequest\"";
+    }
+    const templateId: undefined | string = isJson(val.template_id, "string") ? val.template_id : void 0;
+    return { sourceFiles: sourceFiles, signers: signers, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView, templateId: templateId } satisfies SignRequestCreateRequest;
 }
 export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest): Json {
     const base: any = serializeSignRequestBase(val);
@@ -14661,9 +14956,222 @@ export function serializeSignRequestCreateRequest(val: SignRequestCreateRequest)
     }
     return { ...base, ...{ ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileBase): any {
                 return serializeFileBase(item);
-            }) as readonly any[], ["signature_color"]: val.signatureColor === void 0 ? void 0 : serializeSignRequestCreateRequestSignatureColorField(val.signatureColor), ["signers"]: val.signers.map(function (item: SignRequestCreateSigner): any {
+            }) as readonly any[], ["signers"]: val.signers.map(function (item: SignRequestCreateSigner): any {
                 return serializeSignRequestCreateSigner(item);
             }) as readonly any[] } };
+}
+export type TemplateSignerInput = SignRequestPrefillTag & {
+    /**
+     * Type of input */
+    readonly type?: TemplateSignerInputTypeField;
+    /**
+     * Content type of input */
+    readonly contentType?: TemplateSignerInputContentTypeField;
+    /**
+     * Whether or not the input is required. */
+    readonly isRequired?: boolean;
+    /**
+     * Index of page that the input is on. */
+    readonly pageIndex: number;
+    /**
+     * Document identifier. */
+    readonly documentId?: string;
+    /**
+     * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
+    readonly dropdownChoices?: readonly string[];
+    /**
+     * When the input is of type `radio` they can be grouped to gather with this identifier. */
+    readonly groupId?: string;
+    /**
+     * Where the input is located on a page. */
+    readonly coordinates?: TemplateSignerInputCoordinatesField;
+    /**
+     * The size of the input. */
+    readonly dimensions?: TemplateSignerInputDimensionsField;
+};
+export function deserializeTemplateSignerInput(val: Json): TemplateSignerInput {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"TemplateSignerInput\"";
+    }
+    const type: undefined | TemplateSignerInputTypeField = val.type === void 0 ? void 0 : deserializeTemplateSignerInputTypeField(val.type);
+    const contentType: undefined | TemplateSignerInputContentTypeField = val.content_type === void 0 ? void 0 : deserializeTemplateSignerInputContentTypeField(val.content_type);
+    if (!(val.is_required === void 0) && !isJson(val.is_required, "boolean")) {
+        throw "Expecting boolean for \"is_required\" of type \"TemplateSignerInput\"";
+    }
+    const isRequired: undefined | boolean = isJson(val.is_required, "boolean") ? val.is_required : void 0;
+    if (val.page_index === void 0) {
+        throw "Expecting \"page_index\" of type \"TemplateSignerInput\" to be defined";
+    }
+    if (!isJson(val.page_index, "number")) {
+        throw "Expecting number for \"page_index\" of type \"TemplateSignerInput\"";
+    }
+    const pageIndex: number = val.page_index;
+    if (!(val.document_id === void 0) && !isJson(val.document_id, "string")) {
+        throw "Expecting string for \"document_id\" of type \"TemplateSignerInput\"";
+    }
+    const documentId: undefined | string = isJson(val.document_id, "string") ? val.document_id : void 0;
+    if (!(val.dropdown_choices === void 0) && !isJson(val.dropdown_choices, "array")) {
+        throw "Expecting array for \"dropdown_choices\" of type \"TemplateSignerInput\"";
+    }
+    const dropdownChoices: undefined | readonly string[] = isJson(val.dropdown_choices, "array") ? val.dropdown_choices.map(function (itm: Json): undefined {
+        return void 0;
+    }) as readonly any[] : void 0;
+    if (!(val.group_id === void 0) && !isJson(val.group_id, "string")) {
+        throw "Expecting string for \"group_id\" of type \"TemplateSignerInput\"";
+    }
+    const groupId: undefined | string = isJson(val.group_id, "string") ? val.group_id : void 0;
+    const coordinates: undefined | TemplateSignerInputCoordinatesField = val.coordinates === void 0 ? void 0 : deserializeTemplateSignerInputCoordinatesField(val.coordinates);
+    const dimensions: undefined | TemplateSignerInputDimensionsField = val.dimensions === void 0 ? void 0 : deserializeTemplateSignerInputDimensionsField(val.dimensions);
+    if (!(val.document_tag_id === void 0) && !isJson(val.document_tag_id, "string")) {
+        throw "Expecting string for \"document_tag_id\" of type \"TemplateSignerInput\"";
+    }
+    const documentTagId: undefined | string = isJson(val.document_tag_id, "string") ? val.document_tag_id : void 0;
+    if (!(val.text_value === void 0) && !isJson(val.text_value, "string")) {
+        throw "Expecting string for \"text_value\" of type \"TemplateSignerInput\"";
+    }
+    const textValue: undefined | string = isJson(val.text_value, "string") ? val.text_value : void 0;
+    if (!(val.checkbox_value === void 0) && !isJson(val.checkbox_value, "boolean")) {
+        throw "Expecting boolean for \"checkbox_value\" of type \"TemplateSignerInput\"";
+    }
+    const checkboxValue: undefined | boolean = isJson(val.checkbox_value, "boolean") ? val.checkbox_value : void 0;
+    if (!(val.date_value === void 0) && !isJson(val.date_value, "string")) {
+        throw "Expecting string for \"date_value\" of type \"TemplateSignerInput\"";
+    }
+    const dateValue: undefined | string = isJson(val.date_value, "string") ? val.date_value : void 0;
+    return { type: type, contentType: contentType, isRequired: isRequired, pageIndex: pageIndex, documentId: documentId, dropdownChoices: dropdownChoices, groupId: groupId, coordinates: coordinates, dimensions: dimensions, documentTagId: documentTagId, textValue: textValue, checkboxValue: checkboxValue, dateValue: dateValue } satisfies TemplateSignerInput;
+}
+export function serializeTemplateSignerInput(val: TemplateSignerInput): Json {
+    const base: any = serializeSignRequestPrefillTag(val);
+    if (!isJson(base, "object")) {
+        throw "Expecting an object for \"TemplateSignerInput\"";
+    }
+    return { ...base, ...{ ["type"]: val.type === void 0 ? void 0 : serializeTemplateSignerInputTypeField(val.type), ["content_type"]: val.contentType === void 0 ? void 0 : serializeTemplateSignerInputContentTypeField(val.contentType), ["is_required"]: val.isRequired, ["page_index"]: val.pageIndex, ["document_id"]: val.documentId, ["dropdown_choices"]: val.dropdownChoices === void 0 ? void 0 : val.dropdownChoices.map(function (item: string): undefined {
+                return void 0;
+            }) as readonly any[], ["group_id"]: val.groupId, ["coordinates"]: val.coordinates === void 0 ? void 0 : serializeTemplateSignerInputCoordinatesField(val.coordinates), ["dimensions"]: val.dimensions === void 0 ? void 0 : serializeTemplateSignerInputDimensionsField(val.dimensions) } };
+}
+export interface TemplateSigner {
+    readonly inputs?: readonly TemplateSignerInput[];
+    readonly email?: string;
+    readonly role?: TemplateSignerRoleField;
+    readonly isInPerson?: boolean;
+    readonly order?: number;
+}
+export function deserializeTemplateSigner(val: Json): TemplateSigner {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"TemplateSigner\"";
+    }
+    if (!(val.inputs === void 0) && !isJson(val.inputs, "array")) {
+        throw "Expecting array for \"inputs\" of type \"TemplateSigner\"";
+    }
+    const inputs: undefined | readonly TemplateSignerInput[] = isJson(val.inputs, "array") ? val.inputs.map(function (itm: Json): any {
+        return deserializeTemplateSignerInput(itm);
+    }) as readonly any[] : void 0;
+    if (!(val.email === void 0) && !isJson(val.email, "string")) {
+        throw "Expecting string for \"email\" of type \"TemplateSigner\"";
+    }
+    const email: undefined | string = isJson(val.email, "string") ? val.email : void 0;
+    const role: undefined | TemplateSignerRoleField = val.role === void 0 ? void 0 : deserializeTemplateSignerRoleField(val.role);
+    if (!(val.is_in_person === void 0) && !isJson(val.is_in_person, "boolean")) {
+        throw "Expecting boolean for \"is_in_person\" of type \"TemplateSigner\"";
+    }
+    const isInPerson: undefined | boolean = isJson(val.is_in_person, "boolean") ? val.is_in_person : void 0;
+    if (!(val.order === void 0) && !isJson(val.order, "number")) {
+        throw "Expecting number for \"order\" of type \"TemplateSigner\"";
+    }
+    const order: undefined | number = isJson(val.order, "number") ? val.order : void 0;
+    return { inputs: inputs, email: email, role: role, isInPerson: isInPerson, order: order } satisfies TemplateSigner;
+}
+export function serializeTemplateSigner(val: TemplateSigner): Json {
+    return { ["inputs"]: val.inputs === void 0 ? void 0 : val.inputs.map(function (item: TemplateSignerInput): any {
+            return serializeTemplateSignerInput(item);
+        }) as readonly any[], ["email"]: val.email, ["role"]: val.role === void 0 ? void 0 : serializeTemplateSignerRoleField(val.role), ["is_in_person"]: val.isInPerson, ["order"]: val.order };
+}
+export interface SignTemplate {
+    readonly id?: string;
+    readonly name?: string;
+    readonly emailSubject?: string;
+    readonly emailMessage?: string;
+    readonly daysValid?: number;
+    readonly parentFolder?: FolderMini;
+    readonly sourceFiles?: readonly FileMini[];
+    readonly areFieldsLocked?: boolean;
+    readonly areOptionsLocked?: boolean;
+    readonly areRecipientsLocked?: boolean;
+    readonly areEmailSettingsLocked?: boolean;
+    readonly areFilesLocked?: boolean;
+    readonly signers?: readonly TemplateSigner[];
+    readonly additionalInfo?: SignTemplateAdditionalInfoField;
+    readonly readySignLink?: SignTemplateReadySignLinkField;
+    readonly customBranding?: SignTemplateCustomBrandingField;
+}
+export function deserializeSignTemplate(val: Json): SignTemplate {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"SignTemplate\"";
+    }
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"SignTemplate\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
+        throw "Expecting string for \"name\" of type \"SignTemplate\"";
+    }
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.email_subject === void 0) && !isJson(val.email_subject, "string")) {
+        throw "Expecting string for \"email_subject\" of type \"SignTemplate\"";
+    }
+    const emailSubject: undefined | string = isJson(val.email_subject, "string") ? val.email_subject : void 0;
+    if (!(val.email_message === void 0) && !isJson(val.email_message, "string")) {
+        throw "Expecting string for \"email_message\" of type \"SignTemplate\"";
+    }
+    const emailMessage: undefined | string = isJson(val.email_message, "string") ? val.email_message : void 0;
+    if (!(val.days_valid === void 0) && !isJson(val.days_valid, "number")) {
+        throw "Expecting number for \"days_valid\" of type \"SignTemplate\"";
+    }
+    const daysValid: undefined | number = isJson(val.days_valid, "number") ? val.days_valid : void 0;
+    const parentFolder: undefined | FolderMini = val.parent_folder === void 0 ? void 0 : deserializeFolderMini(val.parent_folder);
+    if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
+        throw "Expecting array for \"source_files\" of type \"SignTemplate\"";
+    }
+    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
+        return deserializeFileMini(itm);
+    }) as readonly any[] : void 0;
+    if (!(val.are_fields_locked === void 0) && !isJson(val.are_fields_locked, "boolean")) {
+        throw "Expecting boolean for \"are_fields_locked\" of type \"SignTemplate\"";
+    }
+    const areFieldsLocked: undefined | boolean = isJson(val.are_fields_locked, "boolean") ? val.are_fields_locked : void 0;
+    if (!(val.are_options_locked === void 0) && !isJson(val.are_options_locked, "boolean")) {
+        throw "Expecting boolean for \"are_options_locked\" of type \"SignTemplate\"";
+    }
+    const areOptionsLocked: undefined | boolean = isJson(val.are_options_locked, "boolean") ? val.are_options_locked : void 0;
+    if (!(val.are_recipients_locked === void 0) && !isJson(val.are_recipients_locked, "boolean")) {
+        throw "Expecting boolean for \"are_recipients_locked\" of type \"SignTemplate\"";
+    }
+    const areRecipientsLocked: undefined | boolean = isJson(val.are_recipients_locked, "boolean") ? val.are_recipients_locked : void 0;
+    if (!(val.are_email_settings_locked === void 0) && !isJson(val.are_email_settings_locked, "boolean")) {
+        throw "Expecting boolean for \"are_email_settings_locked\" of type \"SignTemplate\"";
+    }
+    const areEmailSettingsLocked: undefined | boolean = isJson(val.are_email_settings_locked, "boolean") ? val.are_email_settings_locked : void 0;
+    if (!(val.are_files_locked === void 0) && !isJson(val.are_files_locked, "boolean")) {
+        throw "Expecting boolean for \"are_files_locked\" of type \"SignTemplate\"";
+    }
+    const areFilesLocked: undefined | boolean = isJson(val.are_files_locked, "boolean") ? val.are_files_locked : void 0;
+    if (!(val.signers === void 0) && !isJson(val.signers, "array")) {
+        throw "Expecting array for \"signers\" of type \"SignTemplate\"";
+    }
+    const signers: undefined | readonly TemplateSigner[] = isJson(val.signers, "array") ? val.signers.map(function (itm: Json): any {
+        return deserializeTemplateSigner(itm);
+    }) as readonly any[] : void 0;
+    const additionalInfo: undefined | SignTemplateAdditionalInfoField = val.additional_info === void 0 ? void 0 : deserializeSignTemplateAdditionalInfoField(val.additional_info);
+    const readySignLink: undefined | SignTemplateReadySignLinkField = val.ready_sign_link === void 0 ? void 0 : deserializeSignTemplateReadySignLinkField(val.ready_sign_link);
+    const customBranding: undefined | SignTemplateCustomBrandingField = val.custom_branding === void 0 ? void 0 : deserializeSignTemplateCustomBrandingField(val.custom_branding);
+    return { id: id, name: name, emailSubject: emailSubject, emailMessage: emailMessage, daysValid: daysValid, parentFolder: parentFolder, sourceFiles: sourceFiles, areFieldsLocked: areFieldsLocked, areOptionsLocked: areOptionsLocked, areRecipientsLocked: areRecipientsLocked, areEmailSettingsLocked: areEmailSettingsLocked, areFilesLocked: areFilesLocked, signers: signers, additionalInfo: additionalInfo, readySignLink: readySignLink, customBranding: customBranding } satisfies SignTemplate;
+}
+export function serializeSignTemplate(val: SignTemplate): Json {
+    return { ["id"]: val.id, ["name"]: val.name, ["email_subject"]: val.emailSubject, ["email_message"]: val.emailMessage, ["days_valid"]: val.daysValid, ["parent_folder"]: val.parentFolder === void 0 ? void 0 : serializeFolderMini(val.parentFolder), ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileMini): any {
+            return serializeFileMini(item);
+        }) as readonly any[], ["are_fields_locked"]: val.areFieldsLocked, ["are_options_locked"]: val.areOptionsLocked, ["are_recipients_locked"]: val.areRecipientsLocked, ["are_email_settings_locked"]: val.areEmailSettingsLocked, ["are_files_locked"]: val.areFilesLocked, ["signers"]: val.signers === void 0 ? void 0 : val.signers.map(function (item: TemplateSigner): any {
+            return serializeTemplateSigner(item);
+        }) as readonly any[], ["additional_info"]: val.additionalInfo === void 0 ? void 0 : serializeSignTemplateAdditionalInfoField(val.additionalInfo), ["ready_sign_link"]: val.readySignLink === void 0 ? void 0 : serializeSignTemplateReadySignLinkField(val.readySignLink), ["custom_branding"]: val.customBranding === void 0 ? void 0 : serializeSignTemplateCustomBrandingField(val.customBranding) };
 }
 export type SignRequestSignerInputTypeField = "signature" | "date" | "text" | "checkbox";
 export function deserializeSignRequestSignerInputTypeField(val: Json): SignRequestSignerInputTypeField {
@@ -14906,6 +15414,9 @@ export type SignRequest = SignRequestBase & {
      * object type */
     readonly type?: SignRequestTypeField;
     /**
+     * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
+    readonly sourceFiles?: readonly FileBase[];
+    /**
      * Array of signers for the sign request */
     readonly signers?: readonly SignRequestSigner[];
     /**
@@ -14931,15 +15442,18 @@ export type SignRequest = SignRequestBase & {
     /**
      * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
     readonly autoExpireAt?: string;
-    /**
-     * List of files to create a signing document from. Only the ID and type fields are required for each file. The array will be empty if the `source_files` are deleted. */
-    readonly sourceFiles?: readonly FileMini[];
 };
 export function deserializeSignRequest(val: Json): SignRequest {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"SignRequest\"";
     }
     const type: undefined | SignRequestTypeField = val.type === void 0 ? void 0 : deserializeSignRequestTypeField(val.type);
+    if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
+        throw "Expecting array for \"source_files\" of type \"SignRequest\"";
+    }
+    const sourceFiles: undefined | readonly FileBase[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
+        return deserializeFileBase(itm);
+    }) as readonly any[] : void 0;
     if (!(val.signers === void 0) && !isJson(val.signers, "array")) {
         throw "Expecting array for \"signers\" of type \"SignRequest\"";
     }
@@ -14965,12 +15479,6 @@ export function deserializeSignRequest(val: Json): SignRequest {
         throw "Expecting string for \"auto_expire_at\" of type \"SignRequest\"";
     }
     const autoExpireAt: undefined | string = isJson(val.auto_expire_at, "string") ? val.auto_expire_at : void 0;
-    if (!(val.source_files === void 0) && !isJson(val.source_files, "array")) {
-        throw "Expecting array for \"source_files\" of type \"SignRequest\"";
-    }
-    const sourceFiles: undefined | readonly FileMini[] = isJson(val.source_files, "array") ? val.source_files.map(function (itm: Json): any {
-        return deserializeFileMini(itm);
-    }) as readonly any[] : void 0;
     if (!(val.is_document_preparation_needed === void 0) && !isJson(val.is_document_preparation_needed, "boolean")) {
         throw "Expecting boolean for \"is_document_preparation_needed\" of type \"SignRequest\"";
     }
@@ -15025,18 +15533,22 @@ export function deserializeSignRequest(val: Json): SignRequest {
         throw "Expecting boolean for \"is_phone_verification_required_to_view\" of type \"SignRequest\"";
     }
     const isPhoneVerificationRequiredToView: undefined | boolean = isJson(val.is_phone_verification_required_to_view, "boolean") ? val.is_phone_verification_required_to_view : void 0;
-    return { type: type, signers: signers, signatureColor: signatureColor, id: id, prepareUrl: prepareUrl, signingLog: signingLog, status: status, signFiles: signFiles, autoExpireAt: autoExpireAt, sourceFiles: sourceFiles, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView } satisfies SignRequest;
+    if (!(val.template_id === void 0) && !isJson(val.template_id, "string")) {
+        throw "Expecting string for \"template_id\" of type \"SignRequest\"";
+    }
+    const templateId: undefined | string = isJson(val.template_id, "string") ? val.template_id : void 0;
+    return { type: type, sourceFiles: sourceFiles, signers: signers, signatureColor: signatureColor, id: id, prepareUrl: prepareUrl, signingLog: signingLog, status: status, signFiles: signFiles, autoExpireAt: autoExpireAt, isDocumentPreparationNeeded: isDocumentPreparationNeeded, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, areTextSignaturesEnabled: areTextSignaturesEnabled, emailSubject: emailSubject, emailMessage: emailMessage, areRemindersEnabled: areRemindersEnabled, parentFolder: parentFolder, name: name, prefillTags: prefillTags, daysValid: daysValid, externalId: externalId, isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView, templateId: templateId } satisfies SignRequest;
 }
 export function serializeSignRequest(val: SignRequest): Json {
     const base: any = serializeSignRequestBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"SignRequest\"";
     }
-    return { ...base, ...{ ["type"]: val.type === void 0 ? void 0 : serializeSignRequestTypeField(val.type), ["signers"]: val.signers === void 0 ? void 0 : val.signers.map(function (item: SignRequestSigner): any {
+    return { ...base, ...{ ["type"]: val.type === void 0 ? void 0 : serializeSignRequestTypeField(val.type), ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileBase): any {
+                return serializeFileBase(item);
+            }) as readonly any[], ["signers"]: val.signers === void 0 ? void 0 : val.signers.map(function (item: SignRequestSigner): any {
                 return serializeSignRequestSigner(item);
-            }) as readonly any[], ["signature_color"]: val.signatureColor, ["id"]: val.id, ["prepare_url"]: val.prepareUrl, ["signing_log"]: val.signingLog === void 0 ? void 0 : serializeFileMini(val.signingLog), ["status"]: val.status === void 0 ? void 0 : serializeSignRequestStatusField(val.status), ["sign_files"]: val.signFiles === void 0 ? void 0 : serializeSignRequestSignFilesField(val.signFiles), ["auto_expire_at"]: val.autoExpireAt, ["source_files"]: val.sourceFiles === void 0 ? void 0 : val.sourceFiles.map(function (item: FileMini): any {
-                return serializeFileMini(item);
-            }) as readonly any[] } };
+            }) as readonly any[], ["signature_color"]: val.signatureColor, ["id"]: val.id, ["prepare_url"]: val.prepareUrl, ["signing_log"]: val.signingLog === void 0 ? void 0 : serializeFileMini(val.signingLog), ["status"]: val.status === void 0 ? void 0 : serializeSignRequestStatusField(val.status), ["sign_files"]: val.signFiles === void 0 ? void 0 : serializeSignRequestSignFilesField(val.signFiles), ["auto_expire_at"]: val.autoExpireAt } };
 }
 export interface SignRequests {
     readonly limit?: number;

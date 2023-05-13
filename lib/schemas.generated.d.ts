@@ -117,9 +117,6 @@ export type FileRequestCopyRequest = FileRequestUpdateRequest & {
 };
 export declare function deserializeFileRequestCopyRequest(val: Json): FileRequestCopyRequest;
 export declare function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Json;
-export type SignRequestCreateRequestSignatureColorField = "blue" | "black" | "red";
-export declare function deserializeSignRequestCreateRequestSignatureColorField(val: Json): SignRequestCreateRequestSignatureColorField;
-export declare function serializeSignRequestCreateRequestSignatureColorField(val: SignRequestCreateRequestSignatureColorField): Json;
 export type ClientErrorTypeField = "error";
 export declare function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField;
 export declare function serializeClientErrorTypeField(val: ClientErrorTypeField): Json;
@@ -1556,6 +1553,66 @@ export declare function serializeCollaborationAcceptanceRequirementsStatusField(
 export type TermsOfServiceUserStatusTypeField = "terms_of_service_user_status";
 export declare function deserializeTermsOfServiceUserStatusTypeField(val: Json): TermsOfServiceUserStatusTypeField;
 export declare function serializeTermsOfServiceUserStatusTypeField(val: TermsOfServiceUserStatusTypeField): Json;
+export type SignTemplateAdditionalInfoFieldNonEditableField = "email_subject" | "email_message" | "name" | "days_valid" | "signers" | "source_files";
+export declare function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: Json): SignTemplateAdditionalInfoFieldNonEditableField;
+export declare function serializeSignTemplateAdditionalInfoFieldNonEditableField(val: SignTemplateAdditionalInfoFieldNonEditableField): Json;
+export interface SignTemplateAdditionalInfoFieldRequiredField {
+    readonly signers?: readonly (readonly ("email")[])[];
+}
+export declare function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: Json): SignTemplateAdditionalInfoFieldRequiredField;
+export declare function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json;
+export interface SignTemplateAdditionalInfoField {
+    readonly nonEditable?: readonly SignTemplateAdditionalInfoFieldNonEditableField[];
+    readonly required?: SignTemplateAdditionalInfoFieldRequiredField;
+}
+export declare function deserializeSignTemplateAdditionalInfoField(val: Json): SignTemplateAdditionalInfoField;
+export declare function serializeSignTemplateAdditionalInfoField(val: SignTemplateAdditionalInfoField): Json;
+export interface SignTemplateReadySignLinkField {
+    readonly url?: string;
+    readonly name?: string;
+    readonly instructions?: string;
+    readonly folderId?: string;
+    readonly isNotificationDisabled?: boolean;
+    readonly isActive?: boolean;
+}
+export declare function deserializeSignTemplateReadySignLinkField(val: Json): SignTemplateReadySignLinkField;
+export declare function serializeSignTemplateReadySignLinkField(val: SignTemplateReadySignLinkField): Json;
+export interface SignTemplateCustomBrandingField {
+    readonly companyName?: string;
+    readonly logoUri?: string;
+    readonly brandingColor?: string;
+    readonly emailFooterText?: string;
+}
+export declare function deserializeSignTemplateCustomBrandingField(val: Json): SignTemplateCustomBrandingField;
+export declare function serializeSignTemplateCustomBrandingField(val: SignTemplateCustomBrandingField): Json;
+export interface SignTemplates {
+    readonly limit?: number;
+    readonly nextMarker?: string;
+    readonly prevMarker?: string;
+}
+export declare function deserializeSignTemplates(val: Json): SignTemplates;
+export declare function serializeSignTemplates(val: SignTemplates): Json;
+export type TemplateSignerRoleField = "signer" | "approver" | "final_copy_reader";
+export declare function deserializeTemplateSignerRoleField(val: Json): TemplateSignerRoleField;
+export declare function serializeTemplateSignerRoleField(val: TemplateSignerRoleField): Json;
+export type TemplateSignerInputTypeField = "signature" | "date" | "text" | "checkbox" | "radio" | "dropdown";
+export declare function deserializeTemplateSignerInputTypeField(val: Json): TemplateSignerInputTypeField;
+export declare function serializeTemplateSignerInputTypeField(val: TemplateSignerInputTypeField): Json;
+export type TemplateSignerInputContentTypeField = "signature" | "initial" | "stamp" | "date" | "checkbox" | "text" | "full_name" | "first_name" | "last_name" | "company" | "title" | "email" | "attachment" | "radio" | "dropdown";
+export declare function deserializeTemplateSignerInputContentTypeField(val: Json): TemplateSignerInputContentTypeField;
+export declare function serializeTemplateSignerInputContentTypeField(val: TemplateSignerInputContentTypeField): Json;
+export interface TemplateSignerInputCoordinatesField {
+    readonly x?: number;
+    readonly y?: number;
+}
+export declare function deserializeTemplateSignerInputCoordinatesField(val: Json): TemplateSignerInputCoordinatesField;
+export declare function serializeTemplateSignerInputCoordinatesField(val: TemplateSignerInputCoordinatesField): Json;
+export interface TemplateSignerInputDimensionsField {
+    readonly width?: number;
+    readonly height?: number;
+}
+export declare function deserializeTemplateSignerInputDimensionsField(val: Json): TemplateSignerInputDimensionsField;
+export declare function serializeTemplateSignerInputDimensionsField(val: TemplateSignerInputDimensionsField): Json;
 export type TrashFileTypeField = "file";
 export declare function deserializeTrashFileTypeField(val: Json): TrashFileTypeField;
 export declare function serializeTrashFileTypeField(val: TrashFileTypeField): Json;
@@ -3434,19 +3491,14 @@ export interface SignRequestBase {
     readonly daysValid?: number;
     readonly externalId?: string;
     readonly isPhoneVerificationRequiredToView?: boolean;
+    readonly templateId?: string;
 }
 export declare function deserializeSignRequestBase(val: Json): SignRequestBase;
 export declare function serializeSignRequestBase(val: SignRequestBase): Json;
 export type SignRequestCreateRequest = SignRequestBase & {
     /**
-     * List of files to create a signing document from. This is currently
-     * limited to 10 files. Only the `ID` and `type` fields are required
-     * for each file. The array will be empty if the `source_files`
-     * are deleted. */
+     * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
     readonly sourceFiles?: readonly FileBase[];
-    /**
-     * Force a specific signature color (blue, black, or red). */
-    readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
     /**
      * Array of signers for the sign request. 35 is the
      * max number of signers permitted. */
@@ -3454,6 +3506,66 @@ export type SignRequestCreateRequest = SignRequestBase & {
 };
 export declare function deserializeSignRequestCreateRequest(val: Json): SignRequestCreateRequest;
 export declare function serializeSignRequestCreateRequest(val: SignRequestCreateRequest): Json;
+export type TemplateSignerInput = SignRequestPrefillTag & {
+    /**
+     * Type of input */
+    readonly type?: TemplateSignerInputTypeField;
+    /**
+     * Content type of input */
+    readonly contentType?: TemplateSignerInputContentTypeField;
+    /**
+     * Whether or not the input is required. */
+    readonly isRequired?: boolean;
+    /**
+     * Index of page that the input is on. */
+    readonly pageIndex: number;
+    /**
+     * Document identifier. */
+    readonly documentId?: string;
+    /**
+     * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
+    readonly dropdownChoices?: readonly string[];
+    /**
+     * When the input is of type `radio` they can be grouped to gather with this identifier. */
+    readonly groupId?: string;
+    /**
+     * Where the input is located on a page. */
+    readonly coordinates?: TemplateSignerInputCoordinatesField;
+    /**
+     * The size of the input. */
+    readonly dimensions?: TemplateSignerInputDimensionsField;
+};
+export declare function deserializeTemplateSignerInput(val: Json): TemplateSignerInput;
+export declare function serializeTemplateSignerInput(val: TemplateSignerInput): Json;
+export interface TemplateSigner {
+    readonly inputs?: readonly TemplateSignerInput[];
+    readonly email?: string;
+    readonly role?: TemplateSignerRoleField;
+    readonly isInPerson?: boolean;
+    readonly order?: number;
+}
+export declare function deserializeTemplateSigner(val: Json): TemplateSigner;
+export declare function serializeTemplateSigner(val: TemplateSigner): Json;
+export interface SignTemplate {
+    readonly id?: string;
+    readonly name?: string;
+    readonly emailSubject?: string;
+    readonly emailMessage?: string;
+    readonly daysValid?: number;
+    readonly parentFolder?: FolderMini;
+    readonly sourceFiles?: readonly FileMini[];
+    readonly areFieldsLocked?: boolean;
+    readonly areOptionsLocked?: boolean;
+    readonly areRecipientsLocked?: boolean;
+    readonly areEmailSettingsLocked?: boolean;
+    readonly areFilesLocked?: boolean;
+    readonly signers?: readonly TemplateSigner[];
+    readonly additionalInfo?: SignTemplateAdditionalInfoField;
+    readonly readySignLink?: SignTemplateReadySignLinkField;
+    readonly customBranding?: SignTemplateCustomBrandingField;
+}
+export declare function deserializeSignTemplate(val: Json): SignTemplate;
+export declare function serializeSignTemplate(val: SignTemplate): Json;
 export type SignRequestSignerInputTypeField = "signature" | "date" | "text" | "checkbox";
 export declare function deserializeSignRequestSignerInputTypeField(val: Json): SignRequestSignerInputTypeField;
 export declare function serializeSignRequestSignerInputTypeField(val: SignRequestSignerInputTypeField): Json;
@@ -3501,6 +3613,9 @@ export type SignRequest = SignRequestBase & {
      * object type */
     readonly type?: SignRequestTypeField;
     /**
+     * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
+    readonly sourceFiles?: readonly FileBase[];
+    /**
      * Array of signers for the sign request */
     readonly signers?: readonly SignRequestSigner[];
     /**
@@ -3526,9 +3641,6 @@ export type SignRequest = SignRequestBase & {
     /**
      * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
     readonly autoExpireAt?: string;
-    /**
-     * List of files to create a signing document from. Only the ID and type fields are required for each file. The array will be empty if the `source_files` are deleted. */
-    readonly sourceFiles?: readonly FileMini[];
 };
 export declare function deserializeSignRequest(val: Json): SignRequest;
 export declare function serializeSignRequest(val: SignRequest): Json;
