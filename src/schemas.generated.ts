@@ -3302,38 +3302,32 @@ export function serializeFileVersionMini(val: FileVersionMini): Json {
     return { ...base, ...{ ["sha1"]: val.sha1 } };
 }
 export type FileMini = FileBase & {
-    readonly sequenceId: string;
+    readonly sequenceId?: string;
     /**
      * The name of the file */
     readonly name?: string;
     /**
      * The SHA1 hash of the file. This can be used to compare the contents
      * of a file on Box with a local file. */
-    readonly sha1: string;
+    readonly sha1?: string;
     readonly fileVersion?: FileVersionMini;
 };
 export function deserializeFileMini(val: Json): FileMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileMini\"";
     }
-    if (val.sequence_id === void 0) {
-        throw "Expecting \"sequence_id\" of type \"FileMini\" to be defined";
-    }
-    if (!isJson(val.sequence_id, "string")) {
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"FileMini\"";
     }
-    const sequenceId: string = val.sequence_id;
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FileMini\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
-    if (val.sha1 === void 0) {
-        throw "Expecting \"sha1\" of type \"FileMini\" to be defined";
-    }
-    if (!isJson(val.sha1, "string")) {
+    if (!(val.sha1 === void 0) && !isJson(val.sha1, "string")) {
         throw "Expecting string for \"sha1\" of type \"FileMini\"";
     }
-    const sha1: string = val.sha1;
+    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
     const fileVersion: undefined | FileVersionMini = val.file_version === void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FileMini\" to be defined";
@@ -3429,21 +3423,15 @@ export function deserializeFileConflict(val: Json): FileConflict {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FileConflict\"";
     }
-    if (val.sha1 === void 0) {
-        throw "Expecting \"sha1\" of type \"FileConflict\" to be defined";
-    }
-    if (!isJson(val.sha1, "string")) {
+    if (!(val.sha1 === void 0) && !isJson(val.sha1, "string")) {
         throw "Expecting string for \"sha1\" of type \"FileConflict\"";
     }
-    const sha1: string = val.sha1;
+    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
     const fileVersion: undefined | FileVersionMini = val.file_version === void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
-    if (val.sequence_id === void 0) {
-        throw "Expecting \"sequence_id\" of type \"FileConflict\" to be defined";
-    }
-    if (!isJson(val.sequence_id, "string")) {
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"FileConflict\"";
     }
-    const sequenceId: string = val.sequence_id;
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FileConflict\"";
     }
@@ -8089,29 +8077,23 @@ export function serializeUserBase(val: UserBase): Json {
 export type UserCollaborations = UserBase & {
     /**
      * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
-    readonly name: string;
+    readonly name?: string;
     /**
      * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
-    readonly login: string;
+    readonly login?: string;
 };
 export function deserializeUserCollaborations(val: Json): UserCollaborations {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserCollaborations\"";
     }
-    if (val.name === void 0) {
-        throw "Expecting \"name\" of type \"UserCollaborations\" to be defined";
-    }
-    if (!isJson(val.name, "string")) {
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"UserCollaborations\"";
     }
-    const name: string = val.name;
-    if (val.login === void 0) {
-        throw "Expecting \"login\" of type \"UserCollaborations\" to be defined";
-    }
-    if (!isJson(val.login, "string")) {
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.login === void 0) && !isJson(val.login, "string")) {
         throw "Expecting string for \"login\" of type \"UserCollaborations\"";
     }
-    const login: string = val.login;
+    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
         throw "Expecting string for \"id\" of type \"UserCollaborations\"";
     }
@@ -8132,29 +8114,23 @@ export function serializeUserCollaborations(val: UserCollaborations): Json {
 export type UserMini = UserBase & {
     /**
      * The display name of this user */
-    readonly name: string;
+    readonly name?: string;
     /**
      * The primary email address of this user */
-    readonly login: string;
+    readonly login?: string;
 };
 export function deserializeUserMini(val: Json): UserMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"UserMini\"";
     }
-    if (val.name === void 0) {
-        throw "Expecting \"name\" of type \"UserMini\" to be defined";
-    }
-    if (!isJson(val.name, "string")) {
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"UserMini\"";
     }
-    const name: string = val.name;
-    if (val.login === void 0) {
-        throw "Expecting \"login\" of type \"UserMini\" to be defined";
-    }
-    if (!isJson(val.login, "string")) {
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.login === void 0) && !isJson(val.login, "string")) {
         throw "Expecting string for \"login\" of type \"UserMini\"";
     }
-    const login: string = val.login;
+    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
         throw "Expecting string for \"id\" of type \"UserMini\"";
     }
@@ -8267,20 +8243,14 @@ export function deserializeUser(val: Json): User {
     }
     const avatarUrl: undefined | string = isJson(val.avatar_url, "string") ? val.avatar_url : void 0;
     const notificationEmail: undefined | UserNotificationEmailField = val.notification_email === void 0 ? void 0 : deserializeUserNotificationEmailField(val.notification_email);
-    if (val.name === void 0) {
-        throw "Expecting \"name\" of type \"User\" to be defined";
-    }
-    if (!isJson(val.name, "string")) {
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"User\"";
     }
-    const name: string = val.name;
-    if (val.login === void 0) {
-        throw "Expecting \"login\" of type \"User\" to be defined";
-    }
-    if (!isJson(val.login, "string")) {
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.login === void 0) && !isJson(val.login, "string")) {
         throw "Expecting string for \"login\" of type \"User\"";
     }
-    const login: string = val.login;
+    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
         throw "Expecting string for \"id\" of type \"User\"";
     }
@@ -9945,18 +9915,18 @@ export function serializeFileFullLockField(val: FileFullLockField): Json {
 export type File = FileMini & {
     /**
      * The optional description of this file */
-    readonly description: string;
+    readonly description?: string;
     /**
      * The file size in bytes. Be careful parsing this integer as it can
      * get very large and cause an integer overflow. */
-    readonly size: number;
-    readonly pathCollection: FilePathCollectionField;
+    readonly size?: number;
+    readonly pathCollection?: FilePathCollectionField;
     /**
      * The date and time when the file was created on Box. */
-    readonly createdAt: string;
+    readonly createdAt?: string;
     /**
      * The date and time when the file was last updated on Box. */
-    readonly modifiedAt: string;
+    readonly modifiedAt?: string;
     /**
      * The time at which this file was put in the trash. */
     readonly trashedAt?: string;
@@ -9973,8 +9943,8 @@ export type File = FileMini & {
      * which might be before it was uploaded to Box. */
     readonly contentModifiedAt?: string;
     readonly createdBy?: UserMini;
-    readonly modifiedBy: UserMini;
-    readonly ownedBy: UserMini;
+    readonly modifiedBy?: UserMini;
+    readonly ownedBy?: UserMini;
     readonly sharedLink?: FileSharedLinkField;
     readonly parent?: FolderMini;
     /**
@@ -9983,44 +9953,29 @@ export type File = FileMini & {
      * * `active` when the item has is not in the trash
      * * `trashed` when the item has been moved to the trash but not deleted
      * * `deleted` when the item has been permanently deleted. */
-    readonly itemStatus: FileItemStatusField;
+    readonly itemStatus?: FileItemStatusField;
 };
 export function deserializeFile(val: Json): File {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"File\"";
     }
-    if (val.description === void 0) {
-        throw "Expecting \"description\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.description, "string")) {
+    if (!(val.description === void 0) && !isJson(val.description, "string")) {
         throw "Expecting string for \"description\" of type \"File\"";
     }
-    const description: string = val.description;
-    if (val.size === void 0) {
-        throw "Expecting \"size\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.size, "number")) {
+    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    if (!(val.size === void 0) && !isJson(val.size, "number")) {
         throw "Expecting number for \"size\" of type \"File\"";
     }
-    const size: number = val.size;
-    if (val.path_collection === void 0) {
-        throw "Expecting \"path_collection\" of type \"File\" to be defined";
-    }
-    const pathCollection: FilePathCollectionField = deserializeFilePathCollectionField(val.path_collection);
-    if (val.created_at === void 0) {
-        throw "Expecting \"created_at\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.created_at, "string")) {
+    const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
+    const pathCollection: undefined | FilePathCollectionField = val.path_collection === void 0 ? void 0 : deserializeFilePathCollectionField(val.path_collection);
+    if (!(val.created_at === void 0) && !isJson(val.created_at, "string")) {
         throw "Expecting string for \"created_at\" of type \"File\"";
     }
-    const createdAt: string = val.created_at;
-    if (val.modified_at === void 0) {
-        throw "Expecting \"modified_at\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.modified_at, "string")) {
+    const createdAt: undefined | string = isJson(val.created_at, "string") ? val.created_at : void 0;
+    if (!(val.modified_at === void 0) && !isJson(val.modified_at, "string")) {
         throw "Expecting string for \"modified_at\" of type \"File\"";
     }
-    const modifiedAt: string = val.modified_at;
+    const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     if (!(val.trashed_at === void 0) && !isJson(val.trashed_at, "string")) {
         throw "Expecting string for \"trashed_at\" of type \"File\"";
     }
@@ -10038,38 +9993,23 @@ export function deserializeFile(val: Json): File {
     }
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
     const createdBy: undefined | UserMini = val.created_by === void 0 ? void 0 : deserializeUserMini(val.created_by);
-    if (val.modified_by === void 0) {
-        throw "Expecting \"modified_by\" of type \"File\" to be defined";
-    }
-    const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
-    if (val.owned_by === void 0) {
-        throw "Expecting \"owned_by\" of type \"File\" to be defined";
-    }
-    const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+    const modifiedBy: undefined | UserMini = val.modified_by === void 0 ? void 0 : deserializeUserMini(val.modified_by);
+    const ownedBy: undefined | UserMini = val.owned_by === void 0 ? void 0 : deserializeUserMini(val.owned_by);
     const sharedLink: undefined | FileSharedLinkField = val.shared_link === void 0 ? void 0 : deserializeFileSharedLinkField(val.shared_link);
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
-    if (val.item_status === void 0) {
-        throw "Expecting \"item_status\" of type \"File\" to be defined";
-    }
-    const itemStatus: FileItemStatusField = deserializeFileItemStatusField(val.item_status);
-    if (val.sequence_id === void 0) {
-        throw "Expecting \"sequence_id\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.sequence_id, "string")) {
+    const itemStatus: undefined | FileItemStatusField = val.item_status === void 0 ? void 0 : deserializeFileItemStatusField(val.item_status);
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"File\"";
     }
-    const sequenceId: string = val.sequence_id;
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"File\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
-    if (val.sha1 === void 0) {
-        throw "Expecting \"sha1\" of type \"File\" to be defined";
-    }
-    if (!isJson(val.sha1, "string")) {
+    if (!(val.sha1 === void 0) && !isJson(val.sha1, "string")) {
         throw "Expecting string for \"sha1\" of type \"File\"";
     }
-    const sha1: string = val.sha1;
+    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
     const fileVersion: undefined | FileVersionMini = val.file_version === void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"File\" to be defined";
@@ -10093,7 +10033,7 @@ export function serializeFile(val: File): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"File\"";
     }
-    return { ...base, ...{ ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeFilePathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeFileSharedLinkField(val.sharedLink), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeFileItemStatusField(val.itemStatus) } };
+    return { ...base, ...{ ["description"]: val.description, ["size"]: val.size, ["path_collection"]: val.pathCollection === void 0 ? void 0 : serializeFilePathCollectionField(val.pathCollection), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeFileSharedLinkField(val.sharedLink), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeFileItemStatusField(val.itemStatus) } };
 }
 export interface Files {
     readonly totalCount?: number;
@@ -11441,10 +11381,10 @@ export type Folder = FolderMini & {
      * 
      * Be careful parsing this integer as its
      * value can get very large. */
-    readonly size: number;
-    readonly pathCollection: FolderPathCollectionField;
-    readonly createdBy: UserMini;
-    readonly modifiedBy: UserMini;
+    readonly size?: number;
+    readonly pathCollection?: FolderPathCollectionField;
+    readonly createdBy?: UserMini;
+    readonly modifiedBy?: UserMini;
     /**
      * The time at which this folder was put in the trash. */
     readonly trashedAt?: string;
@@ -11459,7 +11399,7 @@ export type Folder = FolderMini & {
     /**
      * The date and time at which this folder was last updated. */
     readonly contentModifiedAt?: string;
-    readonly ownedBy: UserMini;
+    readonly ownedBy?: UserMini;
     readonly sharedLink?: FolderSharedLinkField;
     readonly folderUploadEmail?: FolderFolderUploadEmailField;
     readonly parent?: FolderMini;
@@ -11469,8 +11409,8 @@ export type Folder = FolderMini & {
      * * `active` when the item has is not in the trash
      * * `trashed` when the item has been moved to the trash but not deleted
      * * `deleted` when the item has been permanently deleted. */
-    readonly itemStatus: FolderItemStatusField;
-    readonly itemCollection: Items;
+    readonly itemStatus?: FolderItemStatusField;
+    readonly itemCollection?: Items;
 };
 export function deserializeFolder(val: Json): Folder {
     if (!isJson(val, "object")) {
@@ -11488,25 +11428,13 @@ export function deserializeFolder(val: Json): Folder {
         throw "Expecting string for \"description\" of type \"Folder\"";
     }
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    if (val.size === void 0) {
-        throw "Expecting \"size\" of type \"Folder\" to be defined";
-    }
-    if (!isJson(val.size, "number")) {
+    if (!(val.size === void 0) && !isJson(val.size, "number")) {
         throw "Expecting number for \"size\" of type \"Folder\"";
     }
-    const size: number = val.size;
-    if (val.path_collection === void 0) {
-        throw "Expecting \"path_collection\" of type \"Folder\" to be defined";
-    }
-    const pathCollection: FolderPathCollectionField = deserializeFolderPathCollectionField(val.path_collection);
-    if (val.created_by === void 0) {
-        throw "Expecting \"created_by\" of type \"Folder\" to be defined";
-    }
-    const createdBy: UserMini = deserializeUserMini(val.created_by);
-    if (val.modified_by === void 0) {
-        throw "Expecting \"modified_by\" of type \"Folder\" to be defined";
-    }
-    const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+    const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
+    const pathCollection: undefined | FolderPathCollectionField = val.path_collection === void 0 ? void 0 : deserializeFolderPathCollectionField(val.path_collection);
+    const createdBy: undefined | UserMini = val.created_by === void 0 ? void 0 : deserializeUserMini(val.created_by);
+    const modifiedBy: undefined | UserMini = val.modified_by === void 0 ? void 0 : deserializeUserMini(val.modified_by);
     if (!(val.trashed_at === void 0) && !isJson(val.trashed_at, "string")) {
         throw "Expecting string for \"trashed_at\" of type \"Folder\"";
     }
@@ -11523,21 +11451,12 @@ export function deserializeFolder(val: Json): Folder {
         throw "Expecting string for \"content_modified_at\" of type \"Folder\"";
     }
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
-    if (val.owned_by === void 0) {
-        throw "Expecting \"owned_by\" of type \"Folder\" to be defined";
-    }
-    const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+    const ownedBy: undefined | UserMini = val.owned_by === void 0 ? void 0 : deserializeUserMini(val.owned_by);
     const sharedLink: undefined | FolderSharedLinkField = val.shared_link === void 0 ? void 0 : deserializeFolderSharedLinkField(val.shared_link);
     const folderUploadEmail: undefined | FolderFolderUploadEmailField = val.folder_upload_email === void 0 ? void 0 : deserializeFolderFolderUploadEmailField(val.folder_upload_email);
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
-    if (val.item_status === void 0) {
-        throw "Expecting \"item_status\" of type \"Folder\" to be defined";
-    }
-    const itemStatus: FolderItemStatusField = deserializeFolderItemStatusField(val.item_status);
-    if (val.item_collection === void 0) {
-        throw "Expecting \"item_collection\" of type \"Folder\" to be defined";
-    }
-    const itemCollection: Items = deserializeItems(val.item_collection);
+    const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
+    const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
     if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"Folder\"";
     }
@@ -11568,7 +11487,7 @@ export function serializeFolder(val: Folder): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"Folder\"";
     }
-    return { ...base, ...{ ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["description"]: val.description, ["size"]: val.size, ["path_collection"]: serializeFolderPathCollectionField(val.pathCollection), ["created_by"]: serializeUserMini(val.createdBy), ["modified_by"]: serializeUserMini(val.modifiedBy), ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["owned_by"]: serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeFolderSharedLinkField(val.sharedLink), ["folder_upload_email"]: val.folderUploadEmail === void 0 ? void 0 : serializeFolderFolderUploadEmailField(val.folderUploadEmail), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: serializeFolderItemStatusField(val.itemStatus), ["item_collection"]: serializeItems(val.itemCollection) } };
+    return { ...base, ...{ ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["description"]: val.description, ["size"]: val.size, ["path_collection"]: val.pathCollection === void 0 ? void 0 : serializeFolderPathCollectionField(val.pathCollection), ["created_by"]: val.createdBy === void 0 ? void 0 : serializeUserMini(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeUserMini(val.modifiedBy), ["trashed_at"]: val.trashedAt, ["purged_at"]: val.purgedAt, ["content_created_at"]: val.contentCreatedAt, ["content_modified_at"]: val.contentModifiedAt, ["owned_by"]: val.ownedBy === void 0 ? void 0 : serializeUserMini(val.ownedBy), ["shared_link"]: val.sharedLink === void 0 ? void 0 : serializeFolderSharedLinkField(val.sharedLink), ["folder_upload_email"]: val.folderUploadEmail === void 0 ? void 0 : serializeFolderFolderUploadEmailField(val.folderUploadEmail), ["parent"]: val.parent === void 0 ? void 0 : serializeFolderMini(val.parent), ["item_status"]: val.itemStatus === void 0 ? void 0 : serializeFolderItemStatusField(val.itemStatus), ["item_collection"]: val.itemCollection === void 0 ? void 0 : serializeItems(val.itemCollection) } };
 }
 export type SearchResultWithSharedLinkItemField = File | Folder | WebLink;
 export function deserializeSearchResultWithSharedLinkItemField(val: Json): SearchResultWithSharedLinkItemField {
@@ -12112,25 +12031,13 @@ export function deserializeFolderFull(val: Json): FolderFull {
         throw "Expecting string for \"description\" of type \"FolderFull\"";
     }
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    if (val.size === void 0) {
-        throw "Expecting \"size\" of type \"FolderFull\" to be defined";
-    }
-    if (!isJson(val.size, "number")) {
+    if (!(val.size === void 0) && !isJson(val.size, "number")) {
         throw "Expecting number for \"size\" of type \"FolderFull\"";
     }
-    const size: number = val.size;
-    if (val.path_collection === void 0) {
-        throw "Expecting \"path_collection\" of type \"FolderFull\" to be defined";
-    }
-    const pathCollection: FolderPathCollectionField = deserializeFolderPathCollectionField(val.path_collection);
-    if (val.created_by === void 0) {
-        throw "Expecting \"created_by\" of type \"FolderFull\" to be defined";
-    }
-    const createdBy: UserMini = deserializeUserMini(val.created_by);
-    if (val.modified_by === void 0) {
-        throw "Expecting \"modified_by\" of type \"FolderFull\" to be defined";
-    }
-    const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+    const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
+    const pathCollection: undefined | FolderPathCollectionField = val.path_collection === void 0 ? void 0 : deserializeFolderPathCollectionField(val.path_collection);
+    const createdBy: undefined | UserMini = val.created_by === void 0 ? void 0 : deserializeUserMini(val.created_by);
+    const modifiedBy: undefined | UserMini = val.modified_by === void 0 ? void 0 : deserializeUserMini(val.modified_by);
     if (!(val.trashed_at === void 0) && !isJson(val.trashed_at, "string")) {
         throw "Expecting string for \"trashed_at\" of type \"FolderFull\"";
     }
@@ -12147,21 +12054,12 @@ export function deserializeFolderFull(val: Json): FolderFull {
         throw "Expecting string for \"content_modified_at\" of type \"FolderFull\"";
     }
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
-    if (val.owned_by === void 0) {
-        throw "Expecting \"owned_by\" of type \"FolderFull\" to be defined";
-    }
-    const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+    const ownedBy: undefined | UserMini = val.owned_by === void 0 ? void 0 : deserializeUserMini(val.owned_by);
     const sharedLink: undefined | FolderSharedLinkField = val.shared_link === void 0 ? void 0 : deserializeFolderSharedLinkField(val.shared_link);
     const folderUploadEmail: undefined | FolderFolderUploadEmailField = val.folder_upload_email === void 0 ? void 0 : deserializeFolderFolderUploadEmailField(val.folder_upload_email);
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
-    if (val.item_status === void 0) {
-        throw "Expecting \"item_status\" of type \"FolderFull\" to be defined";
-    }
-    const itemStatus: FolderItemStatusField = deserializeFolderItemStatusField(val.item_status);
-    if (val.item_collection === void 0) {
-        throw "Expecting \"item_collection\" of type \"FolderFull\" to be defined";
-    }
-    const itemCollection: Items = deserializeItems(val.item_collection);
+    const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
+    const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
     if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"FolderFull\"";
     }
@@ -13388,38 +13286,23 @@ export function deserializeFileFull(val: Json): FileFull {
     const sharedLinkPermissionOptions: undefined | readonly FileFullSharedLinkPermissionOptionsField[] = isJson(val.shared_link_permission_options, "array") ? val.shared_link_permission_options.map(function (itm: Json): any {
         return deserializeFileFullSharedLinkPermissionOptionsField(itm);
     }) as readonly any[] : void 0;
-    if (val.description === void 0) {
-        throw "Expecting \"description\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.description, "string")) {
+    if (!(val.description === void 0) && !isJson(val.description, "string")) {
         throw "Expecting string for \"description\" of type \"FileFull\"";
     }
-    const description: string = val.description;
-    if (val.size === void 0) {
-        throw "Expecting \"size\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.size, "number")) {
+    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    if (!(val.size === void 0) && !isJson(val.size, "number")) {
         throw "Expecting number for \"size\" of type \"FileFull\"";
     }
-    const size: number = val.size;
-    if (val.path_collection === void 0) {
-        throw "Expecting \"path_collection\" of type \"FileFull\" to be defined";
-    }
-    const pathCollection: FilePathCollectionField = deserializeFilePathCollectionField(val.path_collection);
-    if (val.created_at === void 0) {
-        throw "Expecting \"created_at\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.created_at, "string")) {
+    const size: undefined | number = isJson(val.size, "number") ? val.size : void 0;
+    const pathCollection: undefined | FilePathCollectionField = val.path_collection === void 0 ? void 0 : deserializeFilePathCollectionField(val.path_collection);
+    if (!(val.created_at === void 0) && !isJson(val.created_at, "string")) {
         throw "Expecting string for \"created_at\" of type \"FileFull\"";
     }
-    const createdAt: string = val.created_at;
-    if (val.modified_at === void 0) {
-        throw "Expecting \"modified_at\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.modified_at, "string")) {
+    const createdAt: undefined | string = isJson(val.created_at, "string") ? val.created_at : void 0;
+    if (!(val.modified_at === void 0) && !isJson(val.modified_at, "string")) {
         throw "Expecting string for \"modified_at\" of type \"FileFull\"";
     }
-    const modifiedAt: string = val.modified_at;
+    const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
     if (!(val.trashed_at === void 0) && !isJson(val.trashed_at, "string")) {
         throw "Expecting string for \"trashed_at\" of type \"FileFull\"";
     }
@@ -13437,38 +13320,23 @@ export function deserializeFileFull(val: Json): FileFull {
     }
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
     const createdBy: undefined | UserMini = val.created_by === void 0 ? void 0 : deserializeUserMini(val.created_by);
-    if (val.modified_by === void 0) {
-        throw "Expecting \"modified_by\" of type \"FileFull\" to be defined";
-    }
-    const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
-    if (val.owned_by === void 0) {
-        throw "Expecting \"owned_by\" of type \"FileFull\" to be defined";
-    }
-    const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+    const modifiedBy: undefined | UserMini = val.modified_by === void 0 ? void 0 : deserializeUserMini(val.modified_by);
+    const ownedBy: undefined | UserMini = val.owned_by === void 0 ? void 0 : deserializeUserMini(val.owned_by);
     const sharedLink: undefined | FileSharedLinkField = val.shared_link === void 0 ? void 0 : deserializeFileSharedLinkField(val.shared_link);
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
-    if (val.item_status === void 0) {
-        throw "Expecting \"item_status\" of type \"FileFull\" to be defined";
-    }
-    const itemStatus: FileItemStatusField = deserializeFileItemStatusField(val.item_status);
-    if (val.sequence_id === void 0) {
-        throw "Expecting \"sequence_id\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.sequence_id, "string")) {
+    const itemStatus: undefined | FileItemStatusField = val.item_status === void 0 ? void 0 : deserializeFileItemStatusField(val.item_status);
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
         throw "Expecting string for \"sequence_id\" of type \"FileFull\"";
     }
-    const sequenceId: string = val.sequence_id;
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FileFull\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
-    if (val.sha1 === void 0) {
-        throw "Expecting \"sha1\" of type \"FileFull\" to be defined";
-    }
-    if (!isJson(val.sha1, "string")) {
+    if (!(val.sha1 === void 0) && !isJson(val.sha1, "string")) {
         throw "Expecting string for \"sha1\" of type \"FileFull\"";
     }
-    const sha1: string = val.sha1;
+    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
     const fileVersion: undefined | FileVersionMini = val.file_version === void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FileFull\" to be defined";
@@ -15790,20 +15658,14 @@ export function deserializeUserFull(val: Json): UserFull {
     }
     const avatarUrl: undefined | string = isJson(val.avatar_url, "string") ? val.avatar_url : void 0;
     const notificationEmail: undefined | UserNotificationEmailField = val.notification_email === void 0 ? void 0 : deserializeUserNotificationEmailField(val.notification_email);
-    if (val.name === void 0) {
-        throw "Expecting \"name\" of type \"UserFull\" to be defined";
-    }
-    if (!isJson(val.name, "string")) {
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"UserFull\"";
     }
-    const name: string = val.name;
-    if (val.login === void 0) {
-        throw "Expecting \"login\" of type \"UserFull\" to be defined";
-    }
-    if (!isJson(val.login, "string")) {
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.login === void 0) && !isJson(val.login, "string")) {
         throw "Expecting string for \"login\" of type \"UserFull\"";
     }
-    const login: string = val.login;
+    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
     if (!(val.id === void 0) && !isJson(val.id, "string")) {
         throw "Expecting string for \"id\" of type \"UserFull\"";
     }

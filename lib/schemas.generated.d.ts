@@ -659,14 +659,14 @@ export type FileVersionMini = FileVersionBase & {
 export declare function deserializeFileVersionMini(val: Json): FileVersionMini;
 export declare function serializeFileVersionMini(val: FileVersionMini): Json;
 export type FileMini = FileBase & {
-    readonly sequenceId: string;
+    readonly sequenceId?: string;
     /**
      * The name of the file */
     readonly name?: string;
     /**
      * The SHA1 hash of the file. This can be used to compare the contents
      * of a file on Box with a local file. */
-    readonly sha1: string;
+    readonly sha1?: string;
     readonly fileVersion?: FileVersionMini;
 };
 export declare function deserializeFileMini(val: Json): FileMini;
@@ -1825,20 +1825,20 @@ export declare function serializeUserBase(val: UserBase): Json;
 export type UserCollaborations = UserBase & {
     /**
      * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
-    readonly name: string;
+    readonly name?: string;
     /**
      * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
-    readonly login: string;
+    readonly login?: string;
 };
 export declare function deserializeUserCollaborations(val: Json): UserCollaborations;
 export declare function serializeUserCollaborations(val: UserCollaborations): Json;
 export type UserMini = UserBase & {
     /**
      * The display name of this user */
-    readonly name: string;
+    readonly name?: string;
     /**
      * The primary email address of this user */
-    readonly login: string;
+    readonly login?: string;
 };
 export declare function deserializeUserMini(val: Json): UserMini;
 export declare function serializeUserMini(val: UserMini): Json;
@@ -2341,18 +2341,18 @@ export declare function serializeFileFullLockField(val: FileFullLockField): Json
 export type File = FileMini & {
     /**
      * The optional description of this file */
-    readonly description: string;
+    readonly description?: string;
     /**
      * The file size in bytes. Be careful parsing this integer as it can
      * get very large and cause an integer overflow. */
-    readonly size: number;
-    readonly pathCollection: FilePathCollectionField;
+    readonly size?: number;
+    readonly pathCollection?: FilePathCollectionField;
     /**
      * The date and time when the file was created on Box. */
-    readonly createdAt: string;
+    readonly createdAt?: string;
     /**
      * The date and time when the file was last updated on Box. */
-    readonly modifiedAt: string;
+    readonly modifiedAt?: string;
     /**
      * The time at which this file was put in the trash. */
     readonly trashedAt?: string;
@@ -2369,8 +2369,8 @@ export type File = FileMini & {
      * which might be before it was uploaded to Box. */
     readonly contentModifiedAt?: string;
     readonly createdBy?: UserMini;
-    readonly modifiedBy: UserMini;
-    readonly ownedBy: UserMini;
+    readonly modifiedBy?: UserMini;
+    readonly ownedBy?: UserMini;
     readonly sharedLink?: FileSharedLinkField;
     readonly parent?: FolderMini;
     /**
@@ -2379,7 +2379,7 @@ export type File = FileMini & {
      * * `active` when the item has is not in the trash
      * * `trashed` when the item has been moved to the trash but not deleted
      * * `deleted` when the item has been permanently deleted. */
-    readonly itemStatus: FileItemStatusField;
+    readonly itemStatus?: FileItemStatusField;
 };
 export declare function deserializeFile(val: Json): File;
 export declare function serializeFile(val: File): Json;
@@ -2723,10 +2723,10 @@ export type Folder = FolderMini & {
      *
      * Be careful parsing this integer as its
      * value can get very large. */
-    readonly size: number;
-    readonly pathCollection: FolderPathCollectionField;
-    readonly createdBy: UserMini;
-    readonly modifiedBy: UserMini;
+    readonly size?: number;
+    readonly pathCollection?: FolderPathCollectionField;
+    readonly createdBy?: UserMini;
+    readonly modifiedBy?: UserMini;
     /**
      * The time at which this folder was put in the trash. */
     readonly trashedAt?: string;
@@ -2741,7 +2741,7 @@ export type Folder = FolderMini & {
     /**
      * The date and time at which this folder was last updated. */
     readonly contentModifiedAt?: string;
-    readonly ownedBy: UserMini;
+    readonly ownedBy?: UserMini;
     readonly sharedLink?: FolderSharedLinkField;
     readonly folderUploadEmail?: FolderFolderUploadEmailField;
     readonly parent?: FolderMini;
@@ -2751,8 +2751,8 @@ export type Folder = FolderMini & {
      * * `active` when the item has is not in the trash
      * * `trashed` when the item has been moved to the trash but not deleted
      * * `deleted` when the item has been permanently deleted. */
-    readonly itemStatus: FolderItemStatusField;
-    readonly itemCollection: Items;
+    readonly itemStatus?: FolderItemStatusField;
+    readonly itemCollection?: Items;
 };
 export declare function deserializeFolder(val: Json): Folder;
 export declare function serializeFolder(val: Folder): Json;
