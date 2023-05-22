@@ -32,7 +32,7 @@ const { Client } = require('BoxSDK/lib/client.generated.js');
 const { DeveloperTokenAuth } = require('BoxSDK/lib/developerTokenAuth.js');
 
 async function main(token) {
-  let auth = new DeveloperTokenAuth({ token });
+  let auth = new DeveloperTokenAuth(token);
   let client = new Client({ auth });
   let entries = (await client.folders.getFolderItems('0')).entries;
   entries.forEach((entry) => console.log(entry));

@@ -12,6 +12,6 @@ export declare class CcgAuth {
     constructor({ config }: Pick<CcgAuth, 'config'>);
     retrieveToken(): Promise<string>;
     refreshToken(): Promise<string | undefined>;
-    authenticateUser(userId: string): Promise<string | undefined>;
-    authenticateEnterprise(enterpriseId: string): Promise<string | undefined>;
+    asUser(userId: string): void;
+    asEnterprise(enterpriseId: string): void;
 }

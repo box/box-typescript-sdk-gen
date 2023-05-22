@@ -65,15 +65,15 @@ export class CcgAuth {
     return this.token;
   }
 
-  async authenticateUser(userId: string) {
+  asUser(userId: string) {
     this.subjectId = userId;
     this.subjectType = 'user' as TokenRequestBoxSubjectType;
-    return this.refreshToken();
+    this.token = undefined;
   }
 
-  async authenticateEnterprise(enterpriseId: string) {
+  asEnterprise(enterpriseId: string) {
     this.subjectId = enterpriseId;
     this.subjectType = 'enterprise' as TokenRequestBoxSubjectType;
-    return this.refreshToken();
+    this.token = undefined;
   }
 }

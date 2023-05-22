@@ -50,15 +50,13 @@ export declare class JwtAuth {
      */
     refreshToken(): Promise<string | undefined>;
     /**
-     * Authenticate as a user
+     * Set authentication as user. The new token will be automatically fetched with a next API call.
      * @param {string} userId The ID of the user to authenticate as
-     * @returns {Promise<string>} A promise resolving to the access token.
      */
-    authenticateUser(userId: string): Promise<string | undefined>;
+    asUser(userId: string): void;
     /**
-     * Authenticate as an enterprise
+     * Set authentication as enterprise. The new token will be automatically fetched with a next API call.
      * @param {string} enterpriseId The ID of the enterprise to authenticate as
-     * @returns {Promise<string>} A promise resolving to the access token.
      */
-    authenticateEnterprise(enterpriseId: string): Promise<string | undefined>;
+    asEnterprise(enterpriseId: string): void;
 }

@@ -1,12 +1,8 @@
-export interface DeveloperTokenConfig {
-  readonly token: string;
-}
-
 export class DeveloperTokenAuth {
   token: string;
 
-  constructor(config: DeveloperTokenConfig) {
-    this.token = config.token;
+  constructor(token: string) {
+    this.token = token;
   }
 
   async retrieveToken() {

@@ -104,7 +104,7 @@ make calls as that user. See the [API documentation](https://developer.box.com/)
 for detailed instructions on how to use app auth.
 
 Clients for making calls as an App User can be created with the same JSON JWT config file generated through the
-[Box Developer Console][dev_console], but it is also required to call `jwtAuth.authenticate_user('USER_ID')`, with
+[Box Developer Console][dev_console], but it is also required to call `jwtAuth.asUser('USER_ID')`, with
 a user ID you want to authenticate.
 
 ```js
@@ -113,7 +113,7 @@ const { JwtAuth, JwtConfig } = require('BoxSDK/lib/jwtAuth.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new JwtAuth({ config: jwtConfig });
-jwtAuth.authenticate_user('USER_ID');
+jwtAuth.asUser('USER_ID');
 const userClient = new Client({ auth: jwtAuth });
 ```
 
@@ -216,15 +216,15 @@ const client = new Client({ auth: ccgAuth });
 In order to switch between being authenticated as Service Account and a User you can call:
 
 ```js
-ccgAuth.authenticateEnterprise('YOUR_ENTERPRISE_ID');
+ccgAuth.asEnterprise('YOUR_ENTERPRISE_ID');
 ```
 
 to authenticate as enterprise or
 
 ```js
-ccgAuth.authenticateUser('YOUR_USER_ID');
+ccgAuth.asUser('YOUR_USER_ID');
 ```
 
-to authenticate as User with provided ID.
+to authenticate as User with provided ID. The new token will be automatically fetched with a next API call.
 
 [ccg_guide]: https://developer.box.com/guides/authentication/client-credentials/client-credentials-setup/
