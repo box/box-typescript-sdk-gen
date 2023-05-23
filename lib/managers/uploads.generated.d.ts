@@ -1,6 +1,8 @@
+/// <reference types="node" />
 import { DeveloperTokenAuth } from "../developerTokenAuth.js";
 import { CcgAuth } from "../ccgAuth.js";
 import { JwtAuth } from "../jwtAuth.js";
+import { Readable } from "stream";
 export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface UploadFileVersionRequestBodyArgAttributesField {
     readonly name: string;
@@ -8,7 +10,7 @@ export interface UploadFileVersionRequestBodyArgAttributesField {
 }
 export interface UploadFileVersionRequestBodyArg {
     readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
-    readonly file: string;
+    readonly file: Readable;
 }
 export interface UploadFileVersionOptionsArg {
     readonly ifMatch?: string;
@@ -26,7 +28,7 @@ export interface UploadFileRequestBodyArgAttributesField {
 }
 export interface UploadFileRequestBodyArg {
     readonly attributes: UploadFileRequestBodyArgAttributesField;
-    readonly file: string;
+    readonly file: Readable;
 }
 export interface UploadFileOptionsArg {
     readonly fields?: string;

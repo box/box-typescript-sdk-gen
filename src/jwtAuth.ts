@@ -78,13 +78,13 @@ export class JwtConfig {
 
   /**
    * Create a JwtConfig instance from a JSON string.
-   * @param {string} config_json_string The JSON string to parse.
+   * @param {string} configJsonString The JSON string to parse.
    * @returns {JwtConfig} The JwtConfig instance.
    */
-  static fromConfigJsonString(config_json_string: string): JwtConfig {
+  static fromConfigJsonString(configJsonString: string): JwtConfig {
     let config;
     try {
-      config = JSON.parse(config_json_string);
+      config = JSON.parse(configJsonString);
     } catch (err) {
       throw new Error('Unable to parse the JWT configuration.');
     }
@@ -112,13 +112,13 @@ export class JwtConfig {
 
   /**
    * Create a JwtConfig instance from a JSON file.
-   * @param {string} config_file_path The path to the JSON file.
+   * @param {string} configFilePath The path to the JSON file.
    * @returns {JwtConfig} The JwtConfig instance.
    * @throws {Error} If the file cannot be read.  If the file is not valid JSON.
    * If the file is missing required fields.
    */
-  static fromConfigFile(config_file_path: string): JwtConfig {
-    const config = readFileSync(config_file_path, 'utf8');
+  static fromConfigFile(configFilePath: string): JwtConfig {
+    const config = readFileSync(configFilePath, 'utf8');
     return JwtConfig.fromConfigJsonString(config);
   }
 }
@@ -245,24 +245,22 @@ export class JwtAuth {
   }
 
   /**
-   * Authenticate as a user
+   * Set authentication as user. The new token will be automatically fetched with a next API call.
    * @param {string} userId The ID of the user to authenticate as
-   * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async authenticateUser(userId: string) {
+  asUser(userId: string) {
     this.subjectId = userId;
     this.subjectType = 'user' as TokenRequestBoxSubjectType;
-    return this.refreshToken();
+    this.token = undefined;
   }
 
   /**
-   * Authenticate as an enterprise
+   * Set authentication as enterprise. The new token will be automatically fetched with a next API call.
    * @param {string} enterpriseId The ID of the enterprise to authenticate as
-   * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async authenticateEnterprise(enterpriseId: string) {
+  asEnterprise(enterpriseId: string) {
     this.subjectId = enterpriseId;
     this.subjectType = 'enterprise' as TokenRequestBoxSubjectType;
-    return this.refreshToken();
+    this.token = undefined;
   }
 }

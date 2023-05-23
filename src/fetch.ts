@@ -1,6 +1,9 @@
-import nodeFetch from 'node-fetch';
+import nodeFetch, { RequestInit } from 'node-fetch';
 import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
+import FormData from 'form-data';
+import { createHash } from 'crypto';
+import { ReadStream } from 'fs';
 
 export interface MultipartItem {
   readonly partName: string;
@@ -65,11 +68,65 @@ export interface FetchResponse {
   readonly content: ArrayBuffer;
 }
 
+async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
+  const { method = 'GET', headers = {}, params = {}, body } = options;
+  let fetchOptions = {} as RequestInit;
+  let contentType = options.contentType ?? 'application/json';
+  let requestBody: any = body;
+
+  if (options.multipartData) {
+    const formData = new FormData();
+    for (const item of options.multipartData) {
+      if (item.fileStream) {
+        let buffer;
+        if (item.fileStream instanceof ReadStream) {
+          // We need to read the stream to calculate the MD5 hash
+          buffer = await readFilestream(item.fileStream);
+        } else {
+          // We already have the buffer or input is a string
+          buffer = item.fileStream;
+        }
+        headers['content-md5'] = calculateMD5Hash(buffer);
+        formData.append(item.partName, buffer, {
+          filename: item.fileName ?? 'file',
+          contentType: item.contentType ?? 'application/octet-stream',
+        });
+      } else if (item.body) {
+        formData.append(item.partName, item.body);
+      } else {
+        throw new Error('Multipart item must have either body or fileStream');
+      }
+    }
+
+    contentType = `multipart/form-data; boundary=${formData.getBoundary()}`;
+    requestBody = formData;
+  }
+
+  fetchOptions = {
+    method,
+    headers: {
+      'Content-Type': contentType,
+      ...Object.fromEntries(
+        Object.entries(params).filter<[string, string]>(
+          (entry): entry is [string, string] => typeof entry[1] === 'string'
+        )
+      ),
+      ...(options.auth && {
+        Authorization: `Bearer ${await options.auth.retrieveToken()}`,
+      }),
+    },
+    body: requestBody,
+  };
+
+  return fetchOptions;
+}
+
 export async function fetch(
   resource: string,
   options: FetchOptions
 ): Promise<FetchResponse> {
-  const { method = 'GET', headers = {}, params = {}, body } = options;
+  const { params = {} } = options;
+  let fetchOptions = await createFetchOptions(options);
 
   const response = await nodeFetch(
     ''.concat(
@@ -90,22 +147,24 @@ export async function fetch(
         )
       ).toString()
     ),
-    {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...Object.fromEntries(
-          Object.entries(params).filter<[string, string]>(
-            (entry): entry is [string, string] => typeof entry[1] === 'string'
-          )
-        ),
-        ...(options.auth && {
-          Authorization: `Bearer ${await options.auth.retrieveToken()}`,
-        }),
-      },
-      body,
-    }
+    fetchOptions
   );
+
+  if (!response.ok) {
+    let responseBody = await response.text();
+    if (response.headers.get('content-type')?.startsWith('application/json')) {
+      try {
+        responseBody = JSON.stringify(JSON.parse(responseBody), null, 2);
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    throw new Error(
+      `Request failed, status code ${response.status}: ${response.statusText}\n
+      ${responseBody}`
+    );
+  }
 
   const responseBytesBuffer = await response.arrayBuffer();
   return {
@@ -113,4 +172,22 @@ export async function fetch(
     text: new TextDecoder().decode(responseBytesBuffer),
     content: responseBytesBuffer,
   };
+}
+
+function calculateMD5Hash(data: string): string {
+  /**
+   * Calculate the SHA1 hash of the data
+   */
+  return createHash('sha1').update(data).digest('hex');
+}
+
+async function readFilestream(fileStream: ReadStream): Promise<ArrayBuffer> {
+  return new Promise((resolve, reject) => {
+    const chunks: any[] = [];
+    fileStream.on('data', (chunk: ArrayBuffer) => chunks.push(chunk));
+    fileStream.on('end', () => {
+      resolve(Buffer.concat(chunks));
+    });
+    fileStream.on('error', (err: Error) => reject(err));
+  });
 }
