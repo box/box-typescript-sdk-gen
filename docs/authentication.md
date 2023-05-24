@@ -34,7 +34,7 @@ object with the `token` set to the developer token and construct the client with
 const { Client } = require('BoxSDK/lib/client.generated.js');
 const { DeveloperTokenAuth } = require('BoxSDK/lib/developerTokenAuth.js');
 
-const auth = new DeveloperTokenAuth('DEVELOPER_TOKEN_GOES_HERE');
+const auth = new DeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
 const client = new Client({ auth });
 
 const me = await client.users.getUserMe();

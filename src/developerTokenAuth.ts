@@ -1,7 +1,7 @@
 export class DeveloperTokenAuth {
   token: string;
 
-  constructor(token: string) {
+  constructor({ token }: { token: string }) {
     this.token = token;
   }
 

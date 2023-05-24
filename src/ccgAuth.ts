@@ -55,9 +55,7 @@ export class CcgAuth {
       body: new URLSearchParams(
         requestBody as unknown as Record<string, string>
       ).toString(),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      contentType: 'application/x-www-form-urlencoded',
     } as FetchOptions)) as FetchResponse;
 
     const tokenResponse = JSON.parse(response.text) as AccessToken;

@@ -117,6 +117,25 @@ export type FileRequestCopyRequest = FileRequestUpdateRequest & {
 };
 export declare function deserializeFileRequestCopyRequest(val: Json): FileRequestCopyRequest;
 export declare function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Json;
+export interface IntegrationMappingSlackCreateRequestPartnerItemField {
+}
+export declare function deserializeIntegrationMappingSlackCreateRequestPartnerItemField(val: Json): IntegrationMappingSlackCreateRequestPartnerItemField;
+export declare function serializeIntegrationMappingSlackCreateRequestPartnerItemField(val: IntegrationMappingSlackCreateRequestPartnerItemField): Json;
+export interface IntegrationMappingSlackCreateRequestBoxItemField {
+}
+export declare function deserializeIntegrationMappingSlackCreateRequestBoxItemField(val: Json): IntegrationMappingSlackCreateRequestBoxItemField;
+export declare function serializeIntegrationMappingSlackCreateRequestBoxItemField(val: IntegrationMappingSlackCreateRequestBoxItemField): Json;
+export interface IntegrationMappingSlackCreateRequestOptionsField {
+}
+export declare function deserializeIntegrationMappingSlackCreateRequestOptionsField(val: Json): IntegrationMappingSlackCreateRequestOptionsField;
+export declare function serializeIntegrationMappingSlackCreateRequestOptionsField(val: IntegrationMappingSlackCreateRequestOptionsField): Json;
+export interface IntegrationMappingSlackCreateRequest {
+    readonly partnerItem: IntegrationMappingSlackCreateRequestPartnerItemField;
+    readonly boxItem: IntegrationMappingSlackCreateRequestBoxItemField;
+    readonly options?: IntegrationMappingSlackCreateRequestOptionsField;
+}
+export declare function deserializeIntegrationMappingSlackCreateRequest(val: Json): IntegrationMappingSlackCreateRequest;
+export declare function serializeIntegrationMappingSlackCreateRequest(val: IntegrationMappingSlackCreateRequest): Json;
 export type ClientErrorTypeField = "error";
 export declare function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField;
 export declare function serializeClientErrorTypeField(val: ClientErrorTypeField): Json;
@@ -858,6 +877,56 @@ export interface FolderLockLockedOperationsField {
 }
 export declare function deserializeFolderLockLockedOperationsField(val: Json): FolderLockLockedOperationsField;
 export declare function serializeFolderLockLockedOperationsField(val: FolderLockLockedOperationsField): Json;
+export type IntegrationMappingTypeField = "integration_mapping";
+export declare function deserializeIntegrationMappingTypeField(val: Json): IntegrationMappingTypeField;
+export declare function serializeIntegrationMappingTypeField(val: IntegrationMappingTypeField): Json;
+export interface IntegrationMappingBoxItemField {
+}
+export declare function deserializeIntegrationMappingBoxItemField(val: Json): IntegrationMappingBoxItemField;
+export declare function serializeIntegrationMappingBoxItemField(val: IntegrationMappingBoxItemField): Json;
+export interface IntegrationMappingOptionsField {
+}
+export declare function deserializeIntegrationMappingOptionsField(val: Json): IntegrationMappingOptionsField;
+export declare function serializeIntegrationMappingOptionsField(val: IntegrationMappingOptionsField): Json;
+export interface IntegrationMappingCreatedByField {
+}
+export declare function deserializeIntegrationMappingCreatedByField(val: Json): IntegrationMappingCreatedByField;
+export declare function serializeIntegrationMappingCreatedByField(val: IntegrationMappingCreatedByField): Json;
+export interface IntegrationMappingModifiedByField {
+}
+export declare function deserializeIntegrationMappingModifiedByField(val: Json): IntegrationMappingModifiedByField;
+export declare function serializeIntegrationMappingModifiedByField(val: IntegrationMappingModifiedByField): Json;
+export type IntegrationMappingBaseIntegrationTypeField = "slack";
+export declare function deserializeIntegrationMappingBaseIntegrationTypeField(val: Json): IntegrationMappingBaseIntegrationTypeField;
+export declare function serializeIntegrationMappingBaseIntegrationTypeField(val: IntegrationMappingBaseIntegrationTypeField): Json;
+export interface IntegrationMappingBase {
+    readonly id?: string;
+    readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
+}
+export declare function deserializeIntegrationMappingBase(val: Json): IntegrationMappingBase;
+export declare function serializeIntegrationMappingBase(val: IntegrationMappingBase): Json;
+export type IntegrationMappingMiniPartnerItemTypeField = "channel";
+export declare function deserializeIntegrationMappingMiniPartnerItemTypeField(val: Json): IntegrationMappingMiniPartnerItemTypeField;
+export declare function serializeIntegrationMappingMiniPartnerItemTypeField(val: IntegrationMappingMiniPartnerItemTypeField): Json;
+export type IntegrationMappingMiniBoxItemTypeField = "folder";
+export declare function deserializeIntegrationMappingMiniBoxItemTypeField(val: Json): IntegrationMappingMiniBoxItemTypeField;
+export declare function serializeIntegrationMappingMiniBoxItemTypeField(val: IntegrationMappingMiniBoxItemTypeField): Json;
+export type IntegrationMappingMini = IntegrationMappingBase & {
+    /**
+     * ID of the mapped partner item */
+    readonly partnerItemId?: string;
+    /**
+     * Domain-specific type of the mapped partner item */
+    readonly partnerItemType?: IntegrationMappingMiniPartnerItemTypeField;
+    /**
+     * ID of the Box item mapped to the object referenced in `partner_item_id` */
+    readonly boxItemId?: string;
+    /**
+     * Type of the Box object referenced in `box_item_id` */
+    readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
+};
+export declare function deserializeIntegrationMappingMini(val: Json): IntegrationMappingMini;
+export declare function serializeIntegrationMappingMini(val: IntegrationMappingMini): Json;
 export type GroupsOrderFieldDirectionField = "ASC" | "DESC";
 export declare function deserializeGroupsOrderFieldDirectionField(val: Json): GroupsOrderFieldDirectionField;
 export declare function serializeGroupsOrderFieldDirectionField(val: GroupsOrderFieldDirectionField): Json;
@@ -1822,6 +1891,16 @@ export interface UserBase {
 }
 export declare function deserializeUserBase(val: Json): UserBase;
 export declare function serializeUserBase(val: UserBase): Json;
+export type UserIntegrationMappings = UserBase & {
+    /**
+     * The display name of this user */
+    readonly name?: string;
+    /**
+     * The primary email address of this user */
+    readonly login?: string;
+};
+export declare function deserializeUserIntegrationMappings(val: Json): UserIntegrationMappings;
+export declare function serializeUserIntegrationMappings(val: UserIntegrationMappings): Json;
 export type UserCollaborations = UserBase & {
     /**
      * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
@@ -3278,6 +3357,78 @@ export interface KeywordSkillCard {
 }
 export declare function deserializeKeywordSkillCard(val: Json): KeywordSkillCard;
 export declare function serializeKeywordSkillCard(val: KeywordSkillCard): Json;
+export interface IntegrationMappingSlackOptions {
+    readonly isAccessManagementDisabled?: boolean;
+}
+export declare function deserializeIntegrationMappingSlackOptions(val: Json): IntegrationMappingSlackOptions;
+export declare function serializeIntegrationMappingSlackOptions(val: IntegrationMappingSlackOptions): Json;
+export type IntegrationMappingPartnerItemSlackTypeField = "channel";
+export declare function deserializeIntegrationMappingPartnerItemSlackTypeField(val: Json): IntegrationMappingPartnerItemSlackTypeField;
+export declare function serializeIntegrationMappingPartnerItemSlackTypeField(val: IntegrationMappingPartnerItemSlackTypeField): Json;
+export interface IntegrationMappingPartnerItemSlack {
+    readonly type: IntegrationMappingPartnerItemSlackTypeField;
+    readonly id: string;
+    readonly slackWorkspaceId?: string;
+    readonly slackOrgId?: string;
+}
+export declare function deserializeIntegrationMappingPartnerItemSlack(val: Json): IntegrationMappingPartnerItemSlack;
+export declare function serializeIntegrationMappingPartnerItemSlack(val: IntegrationMappingPartnerItemSlack): Json;
+export type IntegrationMappingPartnerItemField = IntegrationMappingPartnerItemSlack;
+export declare function deserializeIntegrationMappingPartnerItemField(val: Json): IntegrationMappingPartnerItemField;
+export declare function serializeIntegrationMappingPartnerItemField(val: IntegrationMappingPartnerItemField): Json;
+export type IntegrationMapping = IntegrationMappingBase & {
+    /**
+     * Mapping type */
+    readonly type: IntegrationMappingTypeField;
+    /**
+     * Mapped item object for Slack */
+    readonly partnerItem: IntegrationMappingPartnerItemField;
+    /**
+     * The Box folder, to which the object from the
+     * partner app domain (referenced in `partner_item_id`) is mapped */
+    readonly boxItem: IntegrationMappingBoxItemField;
+    /**
+     * Identifies whether the mapping has
+     * been manually set
+     * (as opposed to being automatically created) */
+    readonly isManuallyCreated?: boolean;
+    /**
+     * Integration mapping options for Slack */
+    readonly options?: IntegrationMappingOptionsField;
+    /**
+     * An object representing the user who
+     * created the integration mapping */
+    readonly createdBy?: IntegrationMappingCreatedByField;
+    /**
+     * The user who
+     * last modified the integration mapping */
+    readonly modifiedBy?: IntegrationMappingModifiedByField;
+    /**
+     * When the integration mapping object was created */
+    readonly createdAt?: string;
+    /**
+     * When the integration mapping object was last modified */
+    readonly modifiedAt?: string;
+};
+export declare function deserializeIntegrationMapping(val: Json): IntegrationMapping;
+export declare function serializeIntegrationMapping(val: IntegrationMapping): Json;
+export interface IntegrationMappings {
+    readonly limit?: number;
+    readonly nextMarker?: number;
+    readonly prevMarker?: number;
+    readonly entries?: readonly IntegrationMapping[];
+}
+export declare function deserializeIntegrationMappings(val: Json): IntegrationMappings;
+export declare function serializeIntegrationMappings(val: IntegrationMappings): Json;
+export type IntegrationMappingBoxItemSlackTypeField = "folder";
+export declare function deserializeIntegrationMappingBoxItemSlackTypeField(val: Json): IntegrationMappingBoxItemSlackTypeField;
+export declare function serializeIntegrationMappingBoxItemSlackTypeField(val: IntegrationMappingBoxItemSlackTypeField): Json;
+export interface IntegrationMappingBoxItemSlack {
+    readonly type: IntegrationMappingBoxItemSlackTypeField;
+    readonly id: string;
+}
+export declare function deserializeIntegrationMappingBoxItemSlack(val: Json): IntegrationMappingBoxItemSlack;
+export declare function serializeIntegrationMappingBoxItemSlack(val: IntegrationMappingBoxItemSlack): Json;
 export type TimelineSkillCardTypeField = "skill_card";
 export declare function deserializeTimelineSkillCardTypeField(val: Json): TimelineSkillCardTypeField;
 export declare function serializeTimelineSkillCardTypeField(val: TimelineSkillCardTypeField): Json;
