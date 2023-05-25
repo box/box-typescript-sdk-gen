@@ -4085,23 +4085,37 @@ export function serializeFolderBase(val: FolderBase): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeFolderBaseTypeField(val.type) };
 }
 export type FolderMini = FolderBase & {
-    readonly sequenceId?: string;
     /**
      * The name of the folder. */
     readonly name?: string;
+    /**
+     * A numeric identifier that represents the most recent user event
+     * that has been applied to this item.
+     * 
+     * This can be used in combination with the `GET /events`-endpoint
+     * to filter out user events that would have occurred before this
+     * identifier was read.
+     * 
+     * An example would be where a Box Drive-like application
+     * would fetch an item via the API, and then listen to incoming
+     * user events for changes to the item. The application would
+     * ignore any user events where the `sequence_id` in the event
+     * is smaller than or equal to the `sequence_id` in the originally
+     * fetched resource. */
+    readonly sequenceId?: string;
 };
 export function deserializeFolderMini(val: Json): FolderMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderMini\"";
     }
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"FolderMini\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FolderMini\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"FolderMini\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FolderMini\" to be defined";
     }
@@ -4117,14 +4131,14 @@ export function deserializeFolderMini(val: Json): FolderMini {
         throw "Expecting \"type\" of type \"FolderMini\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderMini;
+    return { name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies FolderMini;
 }
 export function serializeFolderMini(val: FolderMini): Json {
     const base: any = serializeFolderBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderMini\"";
     }
-    return { ...base, ...{ ["sequence_id"]: val.sequenceId, ["name"]: val.name } };
+    return { ...base, ...{ ["name"]: val.name, ["sequence_id"]: val.sequenceId } };
 }
 export interface WebLinkPathCollectionField {
     readonly totalCount: number;
@@ -11706,14 +11720,14 @@ export function deserializeFolder(val: Json): Folder {
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
     const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
     const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"Folder\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"Folder\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"Folder\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"Folder\" to be defined";
     }
@@ -11729,7 +11743,7 @@ export function deserializeFolder(val: Json): Folder {
         throw "Expecting \"type\" of type \"Folder\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies Folder;
+    return { createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies Folder;
 }
 export function serializeFolder(val: Folder): Json {
     const base: any = serializeFolderMini(val);
@@ -12309,14 +12323,14 @@ export function deserializeFolderFull(val: Json): FolderFull {
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
     const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
     const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"FolderFull\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FolderFull\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"FolderFull\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FolderFull\" to be defined";
     }
@@ -12332,7 +12346,7 @@ export function deserializeFolderFull(val: Json): FolderFull {
         throw "Expecting \"type\" of type \"FolderFull\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { syncState: syncState, hasCollaborations: hasCollaborations, permissions: permissions, tags: tags, canNonOwnersInvite: canNonOwnersInvite, isExternallyOwned: isExternallyOwned, metadata: metadata, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, allowedSharedLinkAccessLevels: allowedSharedLinkAccessLevels, allowedInviteeRoles: allowedInviteeRoles, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators, classification: classification, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderFull;
+    return { syncState: syncState, hasCollaborations: hasCollaborations, permissions: permissions, tags: tags, canNonOwnersInvite: canNonOwnersInvite, isExternallyOwned: isExternallyOwned, metadata: metadata, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, allowedSharedLinkAccessLevels: allowedSharedLinkAccessLevels, allowedInviteeRoles: allowedInviteeRoles, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators, classification: classification, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies FolderFull;
 }
 export function serializeFolderFull(val: FolderFull): Json {
     const base: any = serializeFolder(val);
