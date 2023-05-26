@@ -535,6 +535,62 @@ export function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Js
     }
     return { ...base, ...{ ["folder"]: serializeFileRequestCopyRequestFolderField(val.folder) } };
 }
+export interface IntegrationMappingSlackCreateRequestPartnerItemField {
+}
+export function deserializeIntegrationMappingSlackCreateRequestPartnerItemField(val: Json): IntegrationMappingSlackCreateRequestPartnerItemField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingSlackCreateRequestPartnerItemField\"";
+    }
+    return {} satisfies IntegrationMappingSlackCreateRequestPartnerItemField;
+}
+export function serializeIntegrationMappingSlackCreateRequestPartnerItemField(val: IntegrationMappingSlackCreateRequestPartnerItemField): Json {
+    return {};
+}
+export interface IntegrationMappingSlackCreateRequestBoxItemField {
+}
+export function deserializeIntegrationMappingSlackCreateRequestBoxItemField(val: Json): IntegrationMappingSlackCreateRequestBoxItemField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingSlackCreateRequestBoxItemField\"";
+    }
+    return {} satisfies IntegrationMappingSlackCreateRequestBoxItemField;
+}
+export function serializeIntegrationMappingSlackCreateRequestBoxItemField(val: IntegrationMappingSlackCreateRequestBoxItemField): Json {
+    return {};
+}
+export interface IntegrationMappingSlackCreateRequestOptionsField {
+}
+export function deserializeIntegrationMappingSlackCreateRequestOptionsField(val: Json): IntegrationMappingSlackCreateRequestOptionsField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingSlackCreateRequestOptionsField\"";
+    }
+    return {} satisfies IntegrationMappingSlackCreateRequestOptionsField;
+}
+export function serializeIntegrationMappingSlackCreateRequestOptionsField(val: IntegrationMappingSlackCreateRequestOptionsField): Json {
+    return {};
+}
+export interface IntegrationMappingSlackCreateRequest {
+    readonly partnerItem: IntegrationMappingSlackCreateRequestPartnerItemField;
+    readonly boxItem: IntegrationMappingSlackCreateRequestBoxItemField;
+    readonly options?: IntegrationMappingSlackCreateRequestOptionsField;
+}
+export function deserializeIntegrationMappingSlackCreateRequest(val: Json): IntegrationMappingSlackCreateRequest {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingSlackCreateRequest\"";
+    }
+    if (val.partner_item === void 0) {
+        throw "Expecting \"partner_item\" of type \"IntegrationMappingSlackCreateRequest\" to be defined";
+    }
+    const partnerItem: IntegrationMappingSlackCreateRequestPartnerItemField = deserializeIntegrationMappingSlackCreateRequestPartnerItemField(val.partner_item);
+    if (val.box_item === void 0) {
+        throw "Expecting \"box_item\" of type \"IntegrationMappingSlackCreateRequest\" to be defined";
+    }
+    const boxItem: IntegrationMappingSlackCreateRequestBoxItemField = deserializeIntegrationMappingSlackCreateRequestBoxItemField(val.box_item);
+    const options: undefined | IntegrationMappingSlackCreateRequestOptionsField = val.options === void 0 ? void 0 : deserializeIntegrationMappingSlackCreateRequestOptionsField(val.options);
+    return { partnerItem: partnerItem, boxItem: boxItem, options: options } satisfies IntegrationMappingSlackCreateRequest;
+}
+export function serializeIntegrationMappingSlackCreateRequest(val: IntegrationMappingSlackCreateRequest): Json {
+    return { ["partner_item"]: serializeIntegrationMappingSlackCreateRequestPartnerItemField(val.partnerItem), ["box_item"]: serializeIntegrationMappingSlackCreateRequestBoxItemField(val.boxItem), ["options"]: val.options === void 0 ? void 0 : serializeIntegrationMappingSlackCreateRequestOptionsField(val.options) };
+}
 export type ClientErrorTypeField = "error";
 export function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField {
     if (!isJson(val, "string")) {
@@ -4029,23 +4085,37 @@ export function serializeFolderBase(val: FolderBase): Json {
     return { ["id"]: val.id, ["etag"]: val.etag, ["type"]: serializeFolderBaseTypeField(val.type) };
 }
 export type FolderMini = FolderBase & {
-    readonly sequenceId?: string;
     /**
      * The name of the folder. */
     readonly name?: string;
+    /**
+     * A numeric identifier that represents the most recent user event
+     * that has been applied to this item.
+     * 
+     * This can be used in combination with the `GET /events`-endpoint
+     * to filter out user events that would have occurred before this
+     * identifier was read.
+     * 
+     * An example would be where a Box Drive-like application
+     * would fetch an item via the API, and then listen to incoming
+     * user events for changes to the item. The application would
+     * ignore any user events where the `sequence_id` in the event
+     * is smaller than or equal to the `sequence_id` in the originally
+     * fetched resource. */
+    readonly sequenceId?: string;
 };
 export function deserializeFolderMini(val: Json): FolderMini {
     if (!isJson(val, "object")) {
         throw "Expecting an object for \"FolderMini\"";
     }
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"FolderMini\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FolderMini\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"FolderMini\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FolderMini\" to be defined";
     }
@@ -4061,14 +4131,14 @@ export function deserializeFolderMini(val: Json): FolderMini {
         throw "Expecting \"type\" of type \"FolderMini\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderMini;
+    return { name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies FolderMini;
 }
 export function serializeFolderMini(val: FolderMini): Json {
     const base: any = serializeFolderBase(val);
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderMini\"";
     }
-    return { ...base, ...{ ["sequence_id"]: val.sequenceId, ["name"]: val.name } };
+    return { ...base, ...{ ["name"]: val.name, ["sequence_id"]: val.sequenceId } };
 }
 export interface WebLinkPathCollectionField {
     readonly totalCount: number;
@@ -4282,6 +4352,162 @@ export function deserializeFolderLockLockedOperationsField(val: Json): FolderLoc
 }
 export function serializeFolderLockLockedOperationsField(val: FolderLockLockedOperationsField): Json {
     return { ["move"]: val.move, ["delete"]: val.delete };
+}
+export type IntegrationMappingTypeField = "integration_mapping";
+export function deserializeIntegrationMappingTypeField(val: Json): IntegrationMappingTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingTypeField\"";
+    }
+    if (val === "integration_mapping") {
+        return "integration_mapping";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingTypeField(val: IntegrationMappingTypeField): Json {
+    return val;
+}
+export interface IntegrationMappingBoxItemField {
+}
+export function deserializeIntegrationMappingBoxItemField(val: Json): IntegrationMappingBoxItemField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingBoxItemField\"";
+    }
+    return {} satisfies IntegrationMappingBoxItemField;
+}
+export function serializeIntegrationMappingBoxItemField(val: IntegrationMappingBoxItemField): Json {
+    return {};
+}
+export interface IntegrationMappingOptionsField {
+}
+export function deserializeIntegrationMappingOptionsField(val: Json): IntegrationMappingOptionsField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingOptionsField\"";
+    }
+    return {} satisfies IntegrationMappingOptionsField;
+}
+export function serializeIntegrationMappingOptionsField(val: IntegrationMappingOptionsField): Json {
+    return {};
+}
+export interface IntegrationMappingCreatedByField {
+}
+export function deserializeIntegrationMappingCreatedByField(val: Json): IntegrationMappingCreatedByField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingCreatedByField\"";
+    }
+    return {} satisfies IntegrationMappingCreatedByField;
+}
+export function serializeIntegrationMappingCreatedByField(val: IntegrationMappingCreatedByField): Json {
+    return {};
+}
+export interface IntegrationMappingModifiedByField {
+}
+export function deserializeIntegrationMappingModifiedByField(val: Json): IntegrationMappingModifiedByField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingModifiedByField\"";
+    }
+    return {} satisfies IntegrationMappingModifiedByField;
+}
+export function serializeIntegrationMappingModifiedByField(val: IntegrationMappingModifiedByField): Json {
+    return {};
+}
+export type IntegrationMappingBaseIntegrationTypeField = "slack";
+export function deserializeIntegrationMappingBaseIntegrationTypeField(val: Json): IntegrationMappingBaseIntegrationTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingBaseIntegrationTypeField\"";
+    }
+    if (val === "slack") {
+        return "slack";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingBaseIntegrationTypeField(val: IntegrationMappingBaseIntegrationTypeField): Json {
+    return val;
+}
+export interface IntegrationMappingBase {
+    readonly id?: string;
+    readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
+}
+export function deserializeIntegrationMappingBase(val: Json): IntegrationMappingBase {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingBase\"";
+    }
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"IntegrationMappingBase\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const integrationType: undefined | IntegrationMappingBaseIntegrationTypeField = val.integration_type === void 0 ? void 0 : deserializeIntegrationMappingBaseIntegrationTypeField(val.integration_type);
+    return { id: id, integrationType: integrationType } satisfies IntegrationMappingBase;
+}
+export function serializeIntegrationMappingBase(val: IntegrationMappingBase): Json {
+    return { ["id"]: val.id, ["integration_type"]: val.integrationType === void 0 ? void 0 : serializeIntegrationMappingBaseIntegrationTypeField(val.integrationType) };
+}
+export type IntegrationMappingMiniPartnerItemTypeField = "channel";
+export function deserializeIntegrationMappingMiniPartnerItemTypeField(val: Json): IntegrationMappingMiniPartnerItemTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingMiniPartnerItemTypeField\"";
+    }
+    if (val === "channel") {
+        return "channel";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingMiniPartnerItemTypeField(val: IntegrationMappingMiniPartnerItemTypeField): Json {
+    return val;
+}
+export type IntegrationMappingMiniBoxItemTypeField = "folder";
+export function deserializeIntegrationMappingMiniBoxItemTypeField(val: Json): IntegrationMappingMiniBoxItemTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingMiniBoxItemTypeField\"";
+    }
+    if (val === "folder") {
+        return "folder";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingMiniBoxItemTypeField(val: IntegrationMappingMiniBoxItemTypeField): Json {
+    return val;
+}
+export type IntegrationMappingMini = IntegrationMappingBase & {
+    /**
+     * ID of the mapped partner item */
+    readonly partnerItemId?: string;
+    /**
+     * Domain-specific type of the mapped partner item */
+    readonly partnerItemType?: IntegrationMappingMiniPartnerItemTypeField;
+    /**
+     * ID of the Box item mapped to the object referenced in `partner_item_id` */
+    readonly boxItemId?: string;
+    /**
+     * Type of the Box object referenced in `box_item_id` */
+    readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
+};
+export function deserializeIntegrationMappingMini(val: Json): IntegrationMappingMini {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingMini\"";
+    }
+    if (!(val.partner_item_id === void 0) && !isJson(val.partner_item_id, "string")) {
+        throw "Expecting string for \"partner_item_id\" of type \"IntegrationMappingMini\"";
+    }
+    const partnerItemId: undefined | string = isJson(val.partner_item_id, "string") ? val.partner_item_id : void 0;
+    const partnerItemType: undefined | IntegrationMappingMiniPartnerItemTypeField = val.partner_item_type === void 0 ? void 0 : deserializeIntegrationMappingMiniPartnerItemTypeField(val.partner_item_type);
+    if (!(val.box_item_id === void 0) && !isJson(val.box_item_id, "string")) {
+        throw "Expecting string for \"box_item_id\" of type \"IntegrationMappingMini\"";
+    }
+    const boxItemId: undefined | string = isJson(val.box_item_id, "string") ? val.box_item_id : void 0;
+    const boxItemType: undefined | IntegrationMappingMiniBoxItemTypeField = val.box_item_type === void 0 ? void 0 : deserializeIntegrationMappingMiniBoxItemTypeField(val.box_item_type);
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"IntegrationMappingMini\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const integrationType: undefined | IntegrationMappingBaseIntegrationTypeField = val.integration_type === void 0 ? void 0 : deserializeIntegrationMappingBaseIntegrationTypeField(val.integration_type);
+    return { partnerItemId: partnerItemId, partnerItemType: partnerItemType, boxItemId: boxItemId, boxItemType: boxItemType, id: id, integrationType: integrationType } satisfies IntegrationMappingMini;
+}
+export function serializeIntegrationMappingMini(val: IntegrationMappingMini): Json {
+    const base: any = serializeIntegrationMappingBase(val);
+    if (!isJson(base, "object")) {
+        throw "Expecting an object for \"IntegrationMappingMini\"";
+    }
+    return { ...base, ...{ ["partner_item_id"]: val.partnerItemId, ["partner_item_type"]: val.partnerItemType === void 0 ? void 0 : serializeIntegrationMappingMiniPartnerItemTypeField(val.partnerItemType), ["box_item_id"]: val.boxItemId, ["box_item_type"]: val.boxItemType === void 0 ? void 0 : serializeIntegrationMappingMiniBoxItemTypeField(val.boxItemType) } };
 }
 export type GroupsOrderFieldDirectionField = "ASC" | "DESC";
 export function deserializeGroupsOrderFieldDirectionField(val: Json): GroupsOrderFieldDirectionField {
@@ -8074,6 +8300,43 @@ export function deserializeUserBase(val: Json): UserBase {
 export function serializeUserBase(val: UserBase): Json {
     return { ["id"]: val.id, ["type"]: serializeUserBaseTypeField(val.type) };
 }
+export type UserIntegrationMappings = UserBase & {
+    /**
+     * The display name of this user */
+    readonly name?: string;
+    /**
+     * The primary email address of this user */
+    readonly login?: string;
+};
+export function deserializeUserIntegrationMappings(val: Json): UserIntegrationMappings {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"UserIntegrationMappings\"";
+    }
+    if (!(val.name === void 0) && !isJson(val.name, "string")) {
+        throw "Expecting string for \"name\" of type \"UserIntegrationMappings\"";
+    }
+    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.login === void 0) && !isJson(val.login, "string")) {
+        throw "Expecting string for \"login\" of type \"UserIntegrationMappings\"";
+    }
+    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"UserIntegrationMappings\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    if (val.type === void 0) {
+        throw "Expecting \"type\" of type \"UserIntegrationMappings\" to be defined";
+    }
+    const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
+    return { name: name, login: login, id: id, type: type } satisfies UserIntegrationMappings;
+}
+export function serializeUserIntegrationMappings(val: UserIntegrationMappings): Json {
+    const base: any = serializeUserBase(val);
+    if (!isJson(base, "object")) {
+        throw "Expecting an object for \"UserIntegrationMappings\"";
+    }
+    return { ...base, ...{ ["name"]: val.name, ["login"]: val.login } };
+}
 export type UserCollaborations = UserBase & {
     /**
      * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
@@ -11457,14 +11720,14 @@ export function deserializeFolder(val: Json): Folder {
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
     const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
     const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"Folder\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"Folder\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"Folder\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"Folder\" to be defined";
     }
@@ -11480,7 +11743,7 @@ export function deserializeFolder(val: Json): Folder {
         throw "Expecting \"type\" of type \"Folder\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies Folder;
+    return { createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies Folder;
 }
 export function serializeFolder(val: Folder): Json {
     const base: any = serializeFolderMini(val);
@@ -12060,14 +12323,14 @@ export function deserializeFolderFull(val: Json): FolderFull {
     const parent: undefined | FolderMini = val.parent === void 0 ? void 0 : deserializeFolderMini(val.parent);
     const itemStatus: undefined | FolderItemStatusField = val.item_status === void 0 ? void 0 : deserializeFolderItemStatusField(val.item_status);
     const itemCollection: undefined | Items = val.item_collection === void 0 ? void 0 : deserializeItems(val.item_collection);
-    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
-        throw "Expecting string for \"sequence_id\" of type \"FolderFull\"";
-    }
-    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (!(val.name === void 0) && !isJson(val.name, "string")) {
         throw "Expecting string for \"name\" of type \"FolderFull\"";
     }
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    if (!(val.sequence_id === void 0) && !isJson(val.sequence_id, "string")) {
+        throw "Expecting string for \"sequence_id\" of type \"FolderFull\"";
+    }
+    const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     if (val.id === void 0) {
         throw "Expecting \"id\" of type \"FolderFull\" to be defined";
     }
@@ -12083,7 +12346,7 @@ export function deserializeFolderFull(val: Json): FolderFull {
         throw "Expecting \"type\" of type \"FolderFull\" to be defined";
     }
     const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
-    return { syncState: syncState, hasCollaborations: hasCollaborations, permissions: permissions, tags: tags, canNonOwnersInvite: canNonOwnersInvite, isExternallyOwned: isExternallyOwned, metadata: metadata, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, allowedSharedLinkAccessLevels: allowedSharedLinkAccessLevels, allowedInviteeRoles: allowedInviteeRoles, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators, classification: classification, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FolderFull;
+    return { syncState: syncState, hasCollaborations: hasCollaborations, permissions: permissions, tags: tags, canNonOwnersInvite: canNonOwnersInvite, isExternallyOwned: isExternallyOwned, metadata: metadata, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, allowedSharedLinkAccessLevels: allowedSharedLinkAccessLevels, allowedInviteeRoles: allowedInviteeRoles, watermarkInfo: watermarkInfo, isAccessibleViaSharedLink: isAccessibleViaSharedLink, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators, classification: classification, createdAt: createdAt, modifiedAt: modifiedAt, description: description, size: size, pathCollection: pathCollection, createdBy: createdBy, modifiedBy: modifiedBy, trashedAt: trashedAt, purgedAt: purgedAt, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt, ownedBy: ownedBy, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, parent: parent, itemStatus: itemStatus, itemCollection: itemCollection, name: name, sequenceId: sequenceId, id: id, etag: etag, type: type } satisfies FolderFull;
 }
 export function serializeFolderFull(val: FolderFull): Json {
     const base: any = serializeFolder(val);
@@ -13787,6 +14050,236 @@ export function serializeKeywordSkillCard(val: KeywordSkillCard): Json {
     return { ["created_at"]: val.createdAt, ["type"]: serializeKeywordSkillCardTypeField(val.type), ["skill_card_type"]: serializeKeywordSkillCardSkillCardTypeField(val.skillCardType), ["skill_card_title"]: val.skillCardTitle === void 0 ? void 0 : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle), ["skill"]: serializeKeywordSkillCardSkillField(val.skill), ["invocation"]: serializeKeywordSkillCardInvocationField(val.invocation), ["entries"]: val.entries.map(function (item: KeywordSkillCardEntriesField): any {
             return serializeKeywordSkillCardEntriesField(item);
         }) as readonly any[] };
+}
+export interface IntegrationMappingSlackOptions {
+    readonly isAccessManagementDisabled?: boolean;
+}
+export function deserializeIntegrationMappingSlackOptions(val: Json): IntegrationMappingSlackOptions {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingSlackOptions\"";
+    }
+    if (!(val.is_access_management_disabled === void 0) && !isJson(val.is_access_management_disabled, "boolean")) {
+        throw "Expecting boolean for \"is_access_management_disabled\" of type \"IntegrationMappingSlackOptions\"";
+    }
+    const isAccessManagementDisabled: undefined | boolean = isJson(val.is_access_management_disabled, "boolean") ? val.is_access_management_disabled : void 0;
+    return { isAccessManagementDisabled: isAccessManagementDisabled } satisfies IntegrationMappingSlackOptions;
+}
+export function serializeIntegrationMappingSlackOptions(val: IntegrationMappingSlackOptions): Json {
+    return { ["is_access_management_disabled"]: val.isAccessManagementDisabled };
+}
+export type IntegrationMappingPartnerItemSlackTypeField = "channel";
+export function deserializeIntegrationMappingPartnerItemSlackTypeField(val: Json): IntegrationMappingPartnerItemSlackTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingPartnerItemSlackTypeField\"";
+    }
+    if (val === "channel") {
+        return "channel";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingPartnerItemSlackTypeField(val: IntegrationMappingPartnerItemSlackTypeField): Json {
+    return val;
+}
+export interface IntegrationMappingPartnerItemSlack {
+    readonly type: IntegrationMappingPartnerItemSlackTypeField;
+    readonly id: string;
+    readonly slackWorkspaceId?: string;
+    readonly slackOrgId?: string;
+}
+export function deserializeIntegrationMappingPartnerItemSlack(val: Json): IntegrationMappingPartnerItemSlack {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingPartnerItemSlack\"";
+    }
+    if (val.type === void 0) {
+        throw "Expecting \"type\" of type \"IntegrationMappingPartnerItemSlack\" to be defined";
+    }
+    const type: IntegrationMappingPartnerItemSlackTypeField = deserializeIntegrationMappingPartnerItemSlackTypeField(val.type);
+    if (val.id === void 0) {
+        throw "Expecting \"id\" of type \"IntegrationMappingPartnerItemSlack\" to be defined";
+    }
+    if (!isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"IntegrationMappingPartnerItemSlack\"";
+    }
+    const id: string = val.id;
+    if (!(val.slack_workspace_id === void 0) && !isJson(val.slack_workspace_id, "string")) {
+        throw "Expecting string for \"slack_workspace_id\" of type \"IntegrationMappingPartnerItemSlack\"";
+    }
+    const slackWorkspaceId: undefined | string = isJson(val.slack_workspace_id, "string") ? val.slack_workspace_id : void 0;
+    if (!(val.slack_org_id === void 0) && !isJson(val.slack_org_id, "string")) {
+        throw "Expecting string for \"slack_org_id\" of type \"IntegrationMappingPartnerItemSlack\"";
+    }
+    const slackOrgId: undefined | string = isJson(val.slack_org_id, "string") ? val.slack_org_id : void 0;
+    return { type: type, id: id, slackWorkspaceId: slackWorkspaceId, slackOrgId: slackOrgId } satisfies IntegrationMappingPartnerItemSlack;
+}
+export function serializeIntegrationMappingPartnerItemSlack(val: IntegrationMappingPartnerItemSlack): Json {
+    return { ["type"]: serializeIntegrationMappingPartnerItemSlackTypeField(val.type), ["id"]: val.id, ["slack_workspace_id"]: val.slackWorkspaceId, ["slack_org_id"]: val.slackOrgId };
+}
+export type IntegrationMappingPartnerItemField = IntegrationMappingPartnerItemSlack;
+export function deserializeIntegrationMappingPartnerItemField(val: Json): IntegrationMappingPartnerItemField {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingPartnerItemField\"";
+    }
+    if (val.type === "channel") {
+        return deserializeIntegrationMappingPartnerItemSlack(val);
+    }
+    throw "unknown type";
+}
+export function serializeIntegrationMappingPartnerItemField(val: IntegrationMappingPartnerItemField): Json {
+    if (val.type === "channel") {
+        return serializeIntegrationMappingPartnerItemSlack(val);
+    }
+    throw "unknown type";
+}
+export type IntegrationMapping = IntegrationMappingBase & {
+    /**
+     * Mapping type */
+    readonly type: IntegrationMappingTypeField;
+    /**
+     * Mapped item object for Slack */
+    readonly partnerItem: IntegrationMappingPartnerItemField;
+    /**
+     * The Box folder, to which the object from the
+     * partner app domain (referenced in `partner_item_id`) is mapped */
+    readonly boxItem: IntegrationMappingBoxItemField;
+    /**
+     * Identifies whether the mapping has
+     * been manually set
+     * (as opposed to being automatically created) */
+    readonly isManuallyCreated?: boolean;
+    /**
+     * Integration mapping options for Slack */
+    readonly options?: IntegrationMappingOptionsField;
+    /**
+     * An object representing the user who
+     * created the integration mapping */
+    readonly createdBy?: IntegrationMappingCreatedByField;
+    /**
+     * The user who
+     * last modified the integration mapping */
+    readonly modifiedBy?: IntegrationMappingModifiedByField;
+    /**
+     * When the integration mapping object was created */
+    readonly createdAt?: string;
+    /**
+     * When the integration mapping object was last modified */
+    readonly modifiedAt?: string;
+};
+export function deserializeIntegrationMapping(val: Json): IntegrationMapping {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMapping\"";
+    }
+    if (val.type === void 0) {
+        throw "Expecting \"type\" of type \"IntegrationMapping\" to be defined";
+    }
+    const type: IntegrationMappingTypeField = deserializeIntegrationMappingTypeField(val.type);
+    if (val.partner_item === void 0) {
+        throw "Expecting \"partner_item\" of type \"IntegrationMapping\" to be defined";
+    }
+    const partnerItem: IntegrationMappingPartnerItemField = deserializeIntegrationMappingPartnerItemField(val.partner_item);
+    if (val.box_item === void 0) {
+        throw "Expecting \"box_item\" of type \"IntegrationMapping\" to be defined";
+    }
+    const boxItem: IntegrationMappingBoxItemField = deserializeIntegrationMappingBoxItemField(val.box_item);
+    if (!(val.is_manually_created === void 0) && !isJson(val.is_manually_created, "boolean")) {
+        throw "Expecting boolean for \"is_manually_created\" of type \"IntegrationMapping\"";
+    }
+    const isManuallyCreated: undefined | boolean = isJson(val.is_manually_created, "boolean") ? val.is_manually_created : void 0;
+    const options: undefined | IntegrationMappingOptionsField = val.options === void 0 ? void 0 : deserializeIntegrationMappingOptionsField(val.options);
+    const createdBy: undefined | IntegrationMappingCreatedByField = val.created_by === void 0 ? void 0 : deserializeIntegrationMappingCreatedByField(val.created_by);
+    const modifiedBy: undefined | IntegrationMappingModifiedByField = val.modified_by === void 0 ? void 0 : deserializeIntegrationMappingModifiedByField(val.modified_by);
+    if (!(val.created_at === void 0) && !isJson(val.created_at, "string")) {
+        throw "Expecting string for \"created_at\" of type \"IntegrationMapping\"";
+    }
+    const createdAt: undefined | string = isJson(val.created_at, "string") ? val.created_at : void 0;
+    if (!(val.modified_at === void 0) && !isJson(val.modified_at, "string")) {
+        throw "Expecting string for \"modified_at\" of type \"IntegrationMapping\"";
+    }
+    const modifiedAt: undefined | string = isJson(val.modified_at, "string") ? val.modified_at : void 0;
+    if (!(val.id === void 0) && !isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"IntegrationMapping\"";
+    }
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const integrationType: undefined | IntegrationMappingBaseIntegrationTypeField = val.integration_type === void 0 ? void 0 : deserializeIntegrationMappingBaseIntegrationTypeField(val.integration_type);
+    return { type: type, partnerItem: partnerItem, boxItem: boxItem, isManuallyCreated: isManuallyCreated, options: options, createdBy: createdBy, modifiedBy: modifiedBy, createdAt: createdAt, modifiedAt: modifiedAt, id: id, integrationType: integrationType } satisfies IntegrationMapping;
+}
+export function serializeIntegrationMapping(val: IntegrationMapping): Json {
+    const base: any = serializeIntegrationMappingBase(val);
+    if (!isJson(base, "object")) {
+        throw "Expecting an object for \"IntegrationMapping\"";
+    }
+    return { ...base, ...{ ["type"]: serializeIntegrationMappingTypeField(val.type), ["partner_item"]: serializeIntegrationMappingPartnerItemField(val.partnerItem), ["box_item"]: serializeIntegrationMappingBoxItemField(val.boxItem), ["is_manually_created"]: val.isManuallyCreated, ["options"]: val.options === void 0 ? void 0 : serializeIntegrationMappingOptionsField(val.options), ["created_by"]: val.createdBy === void 0 ? void 0 : serializeIntegrationMappingCreatedByField(val.createdBy), ["modified_by"]: val.modifiedBy === void 0 ? void 0 : serializeIntegrationMappingModifiedByField(val.modifiedBy), ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt } };
+}
+export interface IntegrationMappings {
+    readonly limit?: number;
+    readonly nextMarker?: number;
+    readonly prevMarker?: number;
+    readonly entries?: readonly IntegrationMapping[];
+}
+export function deserializeIntegrationMappings(val: Json): IntegrationMappings {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappings\"";
+    }
+    if (!(val.limit === void 0) && !isJson(val.limit, "number")) {
+        throw "Expecting number for \"limit\" of type \"IntegrationMappings\"";
+    }
+    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
+    if (!(val.next_marker === void 0) && !isJson(val.next_marker, "number")) {
+        throw "Expecting number for \"next_marker\" of type \"IntegrationMappings\"";
+    }
+    const nextMarker: undefined | number = isJson(val.next_marker, "number") ? val.next_marker : void 0;
+    if (!(val.prev_marker === void 0) && !isJson(val.prev_marker, "number")) {
+        throw "Expecting number for \"prev_marker\" of type \"IntegrationMappings\"";
+    }
+    const prevMarker: undefined | number = isJson(val.prev_marker, "number") ? val.prev_marker : void 0;
+    if (!(val.entries === void 0) && !isJson(val.entries, "array")) {
+        throw "Expecting array for \"entries\" of type \"IntegrationMappings\"";
+    }
+    const entries: undefined | readonly IntegrationMapping[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
+        return deserializeIntegrationMapping(itm);
+    }) as readonly any[] : void 0;
+    return { limit: limit, nextMarker: nextMarker, prevMarker: prevMarker, entries: entries } satisfies IntegrationMappings;
+}
+export function serializeIntegrationMappings(val: IntegrationMappings): Json {
+    return { ["limit"]: val.limit, ["next_marker"]: val.nextMarker, ["prev_marker"]: val.prevMarker, ["entries"]: val.entries === void 0 ? void 0 : val.entries.map(function (item: IntegrationMapping): any {
+            return serializeIntegrationMapping(item);
+        }) as readonly any[] };
+}
+export type IntegrationMappingBoxItemSlackTypeField = "folder";
+export function deserializeIntegrationMappingBoxItemSlackTypeField(val: Json): IntegrationMappingBoxItemSlackTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"IntegrationMappingBoxItemSlackTypeField\"";
+    }
+    if (val === "folder") {
+        return "folder";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeIntegrationMappingBoxItemSlackTypeField(val: IntegrationMappingBoxItemSlackTypeField): Json {
+    return val;
+}
+export interface IntegrationMappingBoxItemSlack {
+    readonly type: IntegrationMappingBoxItemSlackTypeField;
+    readonly id: string;
+}
+export function deserializeIntegrationMappingBoxItemSlack(val: Json): IntegrationMappingBoxItemSlack {
+    if (!isJson(val, "object")) {
+        throw "Expecting an object for \"IntegrationMappingBoxItemSlack\"";
+    }
+    if (val.type === void 0) {
+        throw "Expecting \"type\" of type \"IntegrationMappingBoxItemSlack\" to be defined";
+    }
+    const type: IntegrationMappingBoxItemSlackTypeField = deserializeIntegrationMappingBoxItemSlackTypeField(val.type);
+    if (val.id === void 0) {
+        throw "Expecting \"id\" of type \"IntegrationMappingBoxItemSlack\" to be defined";
+    }
+    if (!isJson(val.id, "string")) {
+        throw "Expecting string for \"id\" of type \"IntegrationMappingBoxItemSlack\"";
+    }
+    const id: string = val.id;
+    return { type: type, id: id } satisfies IntegrationMappingBoxItemSlack;
+}
+export function serializeIntegrationMappingBoxItemSlack(val: IntegrationMappingBoxItemSlack): Json {
+    return { ["type"]: serializeIntegrationMappingBoxItemSlackTypeField(val.type), ["id"]: val.id };
 }
 export type TimelineSkillCardTypeField = "skill_card";
 export function deserializeTimelineSkillCardTypeField(val: Json): TimelineSkillCardTypeField {

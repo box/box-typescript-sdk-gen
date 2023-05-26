@@ -5,6 +5,10 @@ import FormData from 'form-data';
 import { createHash } from 'crypto';
 import { ReadStream } from 'fs';
 
+const sdkVersion = '0.1.0';
+export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
+export const xBoxUaHeader = constructBoxUAHeader();
+
 export interface MultipartItem {
   readonly partName: string;
   readonly body?: string;
@@ -114,6 +118,8 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
       ...(options.auth && {
         Authorization: `Bearer ${await options.auth.retrieveToken()}`,
       }),
+      'User-Agent': userAgentHeader,
+      'X-Box-UA': xBoxUaHeader,
     },
     body: requestBody,
   };
@@ -190,4 +196,15 @@ async function readFilestream(fileStream: ReadStream): Promise<ArrayBuffer> {
     });
     fileStream.on('error', (err: Error) => reject(err));
   });
+}
+
+function constructBoxUAHeader() {
+  const analyticsIdentifiers = {
+    agent: `box-javascript-generated-sdk/${sdkVersion}`,
+    env: `Node/${process.version.replace('v', '')}`,
+  } as Record<string, string>;
+
+  return Object.keys(analyticsIdentifiers)
+    .map((k) => `${k}=${analyticsIdentifiers[k]}`)
+    .join('; ');
 }

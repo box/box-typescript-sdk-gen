@@ -1,5 +1,7 @@
 import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
+export declare const userAgentHeader: string;
+export declare const xBoxUaHeader: string;
 export interface MultipartItem {
     readonly partName: string;
     readonly body?: string;
