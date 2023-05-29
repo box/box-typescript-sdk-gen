@@ -1,6 +1,6 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('ts-jest/dist/types').JestConfigWithTsJest} */
 module.exports = {
-  name: 'jest',
+  displayName: 'jest',
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: [
@@ -10,11 +10,17 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-    },
+  transform: {
+    '^.+\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.test.json',
+      },
+    ],
+  },
+  moduleNameMapper: {
+    "^(\.\.?\/.+)\.jsx?$": "$1"
   },
   clearMocks: true,
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.js']
 };
-        

@@ -1,9 +1,9 @@
+import { createHash } from 'crypto';
+import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
+import { Readable } from 'stream';
 import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
-import FormData from 'form-data';
-import { createHash } from 'crypto';
-import { ReadStream } from 'fs';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -69,7 +69,7 @@ export interface FetchResponse {
   /**
    * Binary array buffer of response body
    */
-  readonly content: ArrayBuffer;
+  readonly content: Buffer;
 }
 
 async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
@@ -83,9 +83,9 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
     for (const item of options.multipartData) {
       if (item.fileStream) {
         let buffer;
-        if (item.fileStream instanceof ReadStream) {
+        if (item.fileStream instanceof Readable) {
           // We need to read the stream to calculate the MD5 hash
-          buffer = await readFilestream(item.fileStream);
+          buffer = await readStream(item.fileStream);
         } else {
           // We already have the buffer or input is a string
           buffer = item.fileStream;
@@ -172,7 +172,7 @@ export async function fetch(
     );
   }
 
-  const responseBytesBuffer = await response.arrayBuffer();
+  const responseBytesBuffer = await response.buffer();
   return {
     status: response.status,
     text: new TextDecoder().decode(responseBytesBuffer),
@@ -187,10 +187,10 @@ function calculateMD5Hash(data: string): string {
   return createHash('sha1').update(data).digest('hex');
 }
 
-async function readFilestream(fileStream: ReadStream): Promise<ArrayBuffer> {
+async function readStream(fileStream: Readable): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const chunks: any[] = [];
-    fileStream.on('data', (chunk: ArrayBuffer) => chunks.push(chunk));
+    fileStream.on('data', (chunk: Buffer) => chunks.push(chunk));
     fileStream.on('end', () => {
       resolve(Buffer.concat(chunks));
     });
