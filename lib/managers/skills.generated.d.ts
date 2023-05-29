@@ -2,10 +2,8 @@ import { KeywordSkillCard } from "../schemas.generated.js";
 import { TimelineSkillCard } from "../schemas.generated.js";
 import { TranscriptSkillCard } from "../schemas.generated.js";
 import { StatusSkillCard } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SkillsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly CreateFileMetadataGlobalBoxSkillsCardRequestBodyArgCardsField[];
@@ -37,7 +35,8 @@ export interface UpdateSkillInvocationByIdRequestBodyArg {
     readonly usage?: UpdateSkillInvocationByIdRequestBodyArgUsageField;
 }
 export declare class SkillsManager {
-    readonly auth: SkillsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SkillsManager, "getFileMetadataGlobalBoxSkillsCards" | "createFileMetadataGlobalBoxSkillsCard" | "deleteFileMetadataGlobalBoxSkillsCard" | "updateSkillInvocationById">);
     getFileMetadataGlobalBoxSkillsCards(fileId: string): Promise<any>;
     createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Promise<any>;

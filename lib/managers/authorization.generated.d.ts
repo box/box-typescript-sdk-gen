@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type AuthorizationManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetAuthorizeResponseTypeArg = "code";
 export interface GetAuthorizeOptionsArg {
     readonly redirectUri?: string;
@@ -9,7 +7,8 @@ export interface GetAuthorizeOptionsArg {
     readonly scope?: string;
 }
 export declare class AuthorizationManager {
-    readonly auth: AuthorizationManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<AuthorizationManager, "getAuthorize">);
     getAuthorize(responseType: GetAuthorizeResponseTypeArg, clientId: string, options?: GetAuthorizeOptionsArg): Promise<undefined>;
 }

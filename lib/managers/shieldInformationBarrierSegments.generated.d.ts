@@ -1,8 +1,6 @@
 import { ShieldInformationBarrierBase } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type ShieldInformationBarrierSegmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface UpdateShieldInformationBarrierSegmentByIdRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
@@ -17,7 +15,8 @@ export interface CreateShieldInformationBarrierSegmentRequestBodyArg {
     readonly description?: string;
 }
 export declare class ShieldInformationBarrierSegmentsManager {
-    readonly auth: ShieldInformationBarrierSegmentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ShieldInformationBarrierSegmentsManager, "getShieldInformationBarrierSegmentById" | "updateShieldInformationBarrierSegmentById" | "deleteShieldInformationBarrierSegmentById" | "getShieldInformationBarrierSegments" | "createShieldInformationBarrierSegment">);
     getShieldInformationBarrierSegmentById(shieldInformationBarrierSegmentId: string): Promise<any>;
     updateShieldInformationBarrierSegmentById(shieldInformationBarrierSegmentId: string, requestBody: UpdateShieldInformationBarrierSegmentByIdRequestBodyArg): Promise<any>;

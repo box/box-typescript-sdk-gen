@@ -1,14 +1,13 @@
 import { FileRequestUpdateRequest } from "../schemas.generated.js";
 import { FileRequestCopyRequest } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FileRequestsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface UpdateFileRequestByIdOptionsArg {
     readonly ifMatch?: string;
 }
 export declare class FileRequestsManager {
-    readonly auth: FileRequestsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileRequestsManager, "getFileRequestById" | "updateFileRequestById" | "deleteFileRequestById" | "createFileRequestCopy">);
     getFileRequestById(fileRequestId: string): Promise<any>;
     updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, options?: UpdateFileRequestByIdOptionsArg): Promise<any>;

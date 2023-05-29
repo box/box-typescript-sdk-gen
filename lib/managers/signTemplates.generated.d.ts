@@ -1,13 +1,12 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SignTemplatesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetSignTemplatesOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
 export declare class SignTemplatesManager {
-    readonly auth: SignTemplatesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SignTemplatesManager, "getSignTemplates" | "getSignTemplateById">);
     getSignTemplates(options?: GetSignTemplatesOptionsArg): Promise<any>;
     getSignTemplateById(templateId: string): Promise<any>;

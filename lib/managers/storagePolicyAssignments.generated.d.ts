@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type StoragePolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetStoragePolicyAssignmentsResolvedForTypeArg = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsOptionsArg {
     readonly marker?: string;
@@ -29,7 +27,8 @@ export interface UpdateStoragePolicyAssignmentByIdRequestBodyArg {
     readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
 }
 export declare class StoragePolicyAssignmentsManager {
-    readonly auth: StoragePolicyAssignmentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "createStoragePolicyAssignment" | "getStoragePolicyAssignmentById" | "updateStoragePolicyAssignmentById" | "deleteStoragePolicyAssignmentById">);
     getStoragePolicyAssignments(resolvedForType: GetStoragePolicyAssignmentsResolvedForTypeArg, resolvedForId: string, options?: GetStoragePolicyAssignmentsOptionsArg): Promise<any>;
     createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg): Promise<any>;

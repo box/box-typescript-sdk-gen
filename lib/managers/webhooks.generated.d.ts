@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type WebhooksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetWebhooksOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
@@ -29,7 +27,8 @@ export interface UpdateWebhookByIdRequestBodyArg {
     readonly triggers?: readonly UpdateWebhookByIdRequestBodyArgTriggersField[];
 }
 export declare class WebhooksManager {
-    readonly auth: WebhooksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">);
     getWebhooks(options?: GetWebhooksOptionsArg): Promise<any>;
     createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<any>;

@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type CollaborationAllowlistEntriesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetCollaborationWhitelistEntriesOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
@@ -12,7 +10,8 @@ export interface CreateCollaborationWhitelistEntryRequestBodyArg {
     readonly direction: CreateCollaborationWhitelistEntryRequestBodyArgDirectionField;
 }
 export declare class CollaborationAllowlistEntriesManager {
-    readonly auth: CollaborationAllowlistEntriesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "createCollaborationWhitelistEntry" | "getCollaborationWhitelistEntryById" | "deleteCollaborationWhitelistEntryById">);
     getCollaborationWhitelistEntries(options?: GetCollaborationWhitelistEntriesOptionsArg): Promise<any>;
     createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<any>;

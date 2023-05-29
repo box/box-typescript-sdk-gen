@@ -1,8 +1,6 @@
 import { IntegrationMappingSlackCreateRequest } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type IntegrationMappingsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetIntegrationMappingSlackOptionsArgPartnerItemTypeField = "channel";
 export type GetIntegrationMappingSlackOptionsArgBoxItemTypeField = "folder";
 export interface GetIntegrationMappingSlackOptionsArg {
@@ -23,7 +21,8 @@ export interface UpdateIntegrationMappingSlackByIdRequestBodyArg {
     readonly options?: UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField;
 }
 export declare class IntegrationMappingsManager {
-    readonly auth: IntegrationMappingsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<IntegrationMappingsManager, "getIntegrationMappingSlack" | "createIntegrationMappingSlack" | "updateIntegrationMappingSlackById" | "deleteIntegrationMappingSlackById">);
     getIntegrationMappingSlack(options?: GetIntegrationMappingSlackOptionsArg): Promise<any>;
     createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest): Promise<any>;

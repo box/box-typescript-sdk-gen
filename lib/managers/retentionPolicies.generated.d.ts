@@ -1,8 +1,6 @@
 import { UserMini } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type RetentionPoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
 export interface GetRetentionPoliciesOptionsArg {
     readonly policyName?: string;
@@ -42,7 +40,8 @@ export interface UpdateRetentionPolicyByIdRequestBodyArg {
     readonly customNotificationRecipients?: readonly UserMini[];
 }
 export declare class RetentionPoliciesManager {
-    readonly auth: RetentionPoliciesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">);
     getRetentionPolicies(options?: GetRetentionPoliciesOptionsArg): Promise<any>;
     createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<any>;

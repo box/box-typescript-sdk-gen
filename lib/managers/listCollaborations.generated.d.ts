@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type ListCollaborationsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFileCollaborationsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -21,7 +19,8 @@ export interface GetGroupCollaborationsOptionsArg {
     readonly offset?: number;
 }
 export declare class ListCollaborationsManager {
-    readonly auth: ListCollaborationsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ListCollaborationsManager, "getFileCollaborations" | "getFolderCollaborations" | "getCollaborations" | "getGroupCollaborations">);
     getFileCollaborations(fileId: string, options?: GetFileCollaborationsOptionsArg): Promise<any>;
     getFolderCollaborations(folderId: string, options?: GetFolderCollaborationsOptionsArg): Promise<any>;

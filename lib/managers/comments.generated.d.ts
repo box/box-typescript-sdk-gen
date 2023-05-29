@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type CommentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFileCommentsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -30,7 +28,8 @@ export interface CreateCommentOptionsArg {
     readonly fields?: string;
 }
 export declare class CommentsManager {
-    readonly auth: CommentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">);
     getFileComments(fileId: string, options?: GetFileCommentsOptionsArg): Promise<any>;
     getCommentById(commentId: string, options?: GetCommentByIdOptionsArg): Promise<any>;

@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TermsOfServiceUserStatusesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetTermOfServiceUserStatusesOptionsArg {
     readonly userId?: string;
 }
@@ -24,7 +22,8 @@ export interface UpdateTermOfServiceUserStatusByIdRequestBodyArg {
     readonly isAccepted: boolean;
 }
 export declare class TermsOfServiceUserStatusesManager {
-    readonly auth: TermsOfServiceUserStatusesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TermsOfServiceUserStatusesManager, "getTermOfServiceUserStatuses" | "createTermOfServiceUserStatus" | "updateTermOfServiceUserStatusById">);
     getTermOfServiceUserStatuses(tosId: string, options?: GetTermOfServiceUserStatusesOptionsArg): Promise<any>;
     createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg): Promise<any>;

@@ -1,14 +1,13 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FolderMetadataManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetFolderMetadataByIdScopeArg = "global" | "enterprise";
 export type CreateFolderMetadataByIdScopeArg = "global" | "enterprise";
 export interface CreateFolderMetadataByIdRequestBodyArg {
 }
 export type DeleteFolderMetadataByIdScopeArg = "global" | "enterprise";
 export declare class FolderMetadataManager {
-    readonly auth: FolderMetadataManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FolderMetadataManager, "getFolderMetadata" | "getFolderMetadataById" | "createFolderMetadataById" | "deleteFolderMetadataById">);
     getFolderMetadata(folderId: string): Promise<any>;
     getFolderMetadataById(folderId: string, scope: GetFolderMetadataByIdScopeArg, templateKey: string): Promise<any>;

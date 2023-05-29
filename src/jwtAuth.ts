@@ -8,6 +8,8 @@ import { readFileSync } from 'fs';
 import jwt from 'jsonwebtoken';
 import fetch from 'node-fetch';
 import { v4 as uuid } from 'uuid';
+import { Authentication } from './auth';
+import { NetworkSession } from './network';
 
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =
@@ -128,7 +130,7 @@ export class JwtConfig {
  * @param {JwtConfig} config The JwtConfig instance.
  * @typedef {Object} JwtAuth
  */
-export class JwtAuth {
+export class JwtAuth implements Authentication {
   config: JwtConfig;
   token?: string;
   subjectId: string;
@@ -150,9 +152,9 @@ export class JwtAuth {
    * Get the access token for the app user.  If the token is not cached or is expired, a new one will be fetched.
    * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async retrieveToken(): Promise<string> {
+  async retrieveToken(networkSession?: NetworkSession): Promise<string> {
     if (!this.token) {
-      await this.refreshToken();
+      await this.refreshToken(networkSession);
     }
     return this.token!;
   }
@@ -161,7 +163,9 @@ export class JwtAuth {
    * Get a new access token for the app user.
    * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async refreshToken(): Promise<string | undefined> {
+  async refreshToken(
+    networkSession?: NetworkSession
+  ): Promise<string | undefined> {
     const expInSec = Math.floor(Date.now() / 1000) + 30;
     const claims = {
       exp: expInSec,

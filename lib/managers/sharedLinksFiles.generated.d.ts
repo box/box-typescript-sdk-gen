@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SharedLinksFilesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetSharedItemsOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
@@ -44,7 +42,8 @@ export interface UpdateFileRemoveSharedLinkRequestBodyArg {
     readonly sharedLink?: UpdateFileRemoveSharedLinkRequestBodyArgSharedLinkField;
 }
 export declare class SharedLinksFilesManager {
-    readonly auth: SharedLinksFilesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SharedLinksFilesManager, "getSharedItems" | "getFileGetSharedLink" | "updateFileAddSharedLink" | "updateFileUpdateSharedLink" | "updateFileRemoveSharedLink">);
     getSharedItems(boxapi: string, options?: GetSharedItemsOptionsArg): Promise<any>;
     getFileGetSharedLink(fileId: string, fields: string): Promise<any>;

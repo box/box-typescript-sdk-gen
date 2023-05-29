@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type LegalHoldPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField = "file" | "file_version" | "folder" | "user";
 export interface GetLegalHoldPolicyAssignmentsOptionsArg {
     readonly assignToType?: GetLegalHoldPolicyAssignmentsOptionsArgAssignToTypeField;
@@ -30,7 +28,8 @@ export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionsArg {
     readonly fields?: string;
 }
 export declare class LegalHoldPolicyAssignmentsManager {
-    readonly auth: LegalHoldPolicyAssignmentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<LegalHoldPolicyAssignmentsManager, "getLegalHoldPolicyAssignments" | "createLegalHoldPolicyAssignment" | "getLegalHoldPolicyAssignmentById" | "deleteLegalHoldPolicyAssignmentById" | "getLegalHoldPolicyAssignmentFileOnHold" | "getLegalHoldPolicyAssignmentFileVersionOnHold">);
     getLegalHoldPolicyAssignments(policyId: string, options?: GetLegalHoldPolicyAssignmentsOptionsArg): Promise<any>;
     createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg): Promise<any>;

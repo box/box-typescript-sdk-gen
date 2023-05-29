@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { CcgAuth } from './ccgAuth.js';
-import { DeveloperTokenAuth } from './developerTokenAuth.js';
+import { NetworkSession } from './network';
+import { Authentication } from './auth';
 export declare const userAgentHeader: string;
 export declare const xBoxUaHeader: string;
 export interface MultipartItem {
@@ -43,7 +43,11 @@ export interface FetchOptions {
     /**
      * Auth object
      */
-    readonly auth?: CcgAuth | DeveloperTokenAuth;
+    readonly auth?: Authentication;
+    /**
+     *
+     */
+    readonly networkSession?: NetworkSession;
 }
 export interface FetchResponse {
     /**

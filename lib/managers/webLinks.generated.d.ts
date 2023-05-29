@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type WebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface CreateWebLinkRequestBodyArgParentField {
     readonly id: string;
 }
@@ -40,7 +38,8 @@ export interface UpdateWebLinkByIdRequestBodyArg {
     readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
 }
 export declare class WebLinksManager {
-    readonly auth: WebLinksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
     createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<any>;
     getWebLinkById(webLinkId: string, options?: GetWebLinkByIdOptionsArg): Promise<any>;

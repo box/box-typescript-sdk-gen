@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type MetadataCascadePoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetMetadataCascadePoliciesOptionsArg {
     readonly ownerEnterpriseId?: string;
     readonly marker?: string;
@@ -18,7 +16,8 @@ export interface CreateMetadataCascadePolicyApplyRequestBodyArg {
     readonly conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField;
 }
 export declare class MetadataCascadePoliciesManager {
-    readonly auth: MetadataCascadePoliciesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "createMetadataCascadePolicy" | "getMetadataCascadePolicyById" | "deleteMetadataCascadePolicyById" | "createMetadataCascadePolicyApply">);
     getMetadataCascadePolicies(folderId: string, options?: GetMetadataCascadePoliciesOptionsArg): Promise<any>;
     createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg): Promise<any>;

@@ -66,12 +66,11 @@ import { SignRequestsManager } from "./managers/signRequests.generated.js";
 import { WorkflowsManager } from "./managers/workflows.generated.js";
 import { SignTemplatesManager } from "./managers/signTemplates.generated.js";
 import { IntegrationMappingsManager } from "./managers/integrationMappings.generated.js";
-import { DeveloperTokenAuth } from "./developerTokenAuth.js";
-import { CcgAuth } from "./ccgAuth.js";
-import { JwtAuth } from "./jwtAuth.js";
-export type ClientAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "./auth.js";
+import { NetworkSession } from "./network.js";
 export declare class Client {
-    readonly auth: ClientAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     readonly authorization: AuthorizationManager;
     readonly files: FilesManager;
     readonly trashedFiles: TrashedFilesManager;

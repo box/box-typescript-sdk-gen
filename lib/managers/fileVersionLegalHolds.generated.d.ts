@@ -1,13 +1,12 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FileVersionLegalHoldsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFileVersionLegalHoldsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
 export declare class FileVersionLegalHoldsManager {
-    readonly auth: FileVersionLegalHoldsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileVersionLegalHoldsManager, "getFileVersionLegalHoldById" | "getFileVersionLegalHolds">);
     getFileVersionLegalHoldById(fileVersionLegalHoldId: string): Promise<any>;
     getFileVersionLegalHolds(policyId: string, options?: GetFileVersionLegalHoldsOptionsArg): Promise<any>;

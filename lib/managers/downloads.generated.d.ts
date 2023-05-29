@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type DownloadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface DownloadFileOptionsArg {
     readonly range?: string;
     readonly boxapi?: string;
@@ -9,7 +7,8 @@ export interface DownloadFileOptionsArg {
     readonly accessToken?: string;
 }
 export declare class DownloadsManager {
-    readonly auth: DownloadsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<DownloadsManager, "downloadFile">);
     downloadFile(fileId: string, options?: DownloadFileOptionsArg): Promise<any>;
 }

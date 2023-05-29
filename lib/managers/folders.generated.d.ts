@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FoldersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFolderByIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
@@ -91,7 +89,8 @@ export interface CopyFolderOptionsArg {
     readonly fields?: string;
 }
 export declare class FoldersManager {
-    readonly auth: FoldersManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">);
     getFolderById(folderId: string, options?: GetFolderByIdOptionsArg): Promise<any>;
     updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, options?: UpdateFolderByIdOptionsArg): Promise<any>;

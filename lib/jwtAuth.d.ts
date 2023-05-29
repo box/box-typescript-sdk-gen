@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import { Authentication } from './auth';
+import { NetworkSession } from './network';
 /**
  *  A class managing the configuration for JWT authentication.
  * @typedef {Object} JwtConfig
@@ -33,7 +35,7 @@ export declare class JwtConfig {
  * @param {JwtConfig} config The JwtConfig instance.
  * @typedef {Object} JwtAuth
  */
-export declare class JwtAuth {
+export declare class JwtAuth implements Authentication {
     config: JwtConfig;
     token?: string;
     subjectId: string;
@@ -43,12 +45,12 @@ export declare class JwtAuth {
      * Get the access token for the app user.  If the token is not cached or is expired, a new one will be fetched.
      * @returns {Promise<string>} A promise resolving to the access token.
      */
-    retrieveToken(): Promise<string>;
+    retrieveToken(networkSession?: NetworkSession): Promise<string>;
     /**
      * Get a new access token for the app user.
      * @returns {Promise<string>} A promise resolving to the access token.
      */
-    refreshToken(): Promise<string | undefined>;
+    refreshToken(networkSession?: NetworkSession): Promise<string | undefined>;
     /**
      * Set authentication as user. The new token will be automatically fetched with a next API call.
      * @param {string} userId The ID of the user to authenticate as

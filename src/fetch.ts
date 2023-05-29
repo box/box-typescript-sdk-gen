@@ -2,8 +2,8 @@ import { createHash } from 'crypto';
 import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
-import { CcgAuth } from './ccgAuth.js';
-import { DeveloperTokenAuth } from './developerTokenAuth.js';
+import { NetworkSession } from './network';
+import { Authentication } from './auth';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -52,7 +52,11 @@ export interface FetchOptions {
   /**
    * Auth object
    */
-  readonly auth?: CcgAuth | DeveloperTokenAuth;
+  readonly auth?: Authentication;
+  /**
+   *
+   */
+  readonly networkSession?: NetworkSession;
 }
 
 export interface FetchResponse {
@@ -116,7 +120,9 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
         )
       ),
       ...(options.auth && {
-        Authorization: `Bearer ${await options.auth.retrieveToken()}`,
+        Authorization: `Bearer ${await options.auth.retrieveToken(
+          options.networkSession
+        )}`,
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,

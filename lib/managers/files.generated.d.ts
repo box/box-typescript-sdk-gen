@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FilesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFileByIdOptionsArg {
     readonly fields?: string;
     readonly ifNoneMatch?: string;
@@ -68,7 +66,8 @@ export interface GetFileThumbnailByIdOptionsArg {
     readonly maxWidth?: number;
 }
 export declare class FilesManager {
-    readonly auth: FilesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
     getFileById(fileId: string, options?: GetFileByIdOptionsArg): Promise<any>;
     updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, options?: UpdateFileByIdOptionsArg): Promise<any>;

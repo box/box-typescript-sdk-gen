@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type GroupsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetGroupsOptionsArg {
     readonly filterTerm?: string;
     readonly fields?: string;
@@ -38,7 +36,8 @@ export interface UpdateGroupByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class GroupsManager {
-    readonly auth: GroupsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">);
     getGroups(options?: GetGroupsOptionsArg): Promise<any>;
     createGroup(requestBody: CreateGroupRequestBodyArg, options?: CreateGroupOptionsArg): Promise<any>;

@@ -5,6 +5,8 @@ import {
   TokenRequestBoxSubjectType,
   TokenRequestGrantType,
 } from './authSchemas';
+import { Authentication } from './auth';
+import { NetworkSession } from './network';
 
 export type CcgConfig = {
   clientId: string;
@@ -13,7 +15,7 @@ export type CcgConfig = {
   userId?: string;
 };
 
-export class CcgAuth {
+export class CcgAuth implements Authentication {
   config: CcgConfig;
   token?: string;
   subjectId: string;
@@ -34,14 +36,14 @@ export class CcgAuth {
     }
   }
 
-  async retrieveToken() {
+  async retrieveToken(networkSession?: NetworkSession) {
     if (!this.token) {
-      await this.refreshToken();
+      await this.refreshToken(networkSession);
     }
     return this.token!;
   }
 
-  async refreshToken() {
+  async refreshToken(networkSession?: NetworkSession) {
     const requestBody = {
       grant_type: 'client_credentials' as TokenRequestGrantType,
       client_id: this.config.clientId,
@@ -56,6 +58,7 @@ export class CcgAuth {
         requestBody as unknown as Record<string, string>
       ).toString(),
       contentType: 'application/x-www-form-urlencoded',
+      networkSession: networkSession,
     } as FetchOptions)) as FetchResponse;
 
     const tokenResponse = JSON.parse(response.text) as AccessToken;

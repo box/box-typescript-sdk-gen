@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TrashedFoldersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface RestoreFolderFromTrashRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -16,7 +14,8 @@ export interface GetFolderTrashOptionsArg {
     readonly fields?: string;
 }
 export declare class TrashedFoldersManager {
-    readonly auth: TrashedFoldersManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">);
     restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, options?: RestoreFolderFromTrashOptionsArg): Promise<any>;
     getFolderTrash(folderId: string, options?: GetFolderTrashOptionsArg): Promise<any>;

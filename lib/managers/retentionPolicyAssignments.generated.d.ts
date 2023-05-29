@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type RetentionPolicyAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetRetentionPolicyAssignmentsOptionsArgTypeField = "folder" | "enterprise" | "metadata_template";
 export interface GetRetentionPolicyAssignmentsOptionsArg {
     readonly type?: GetRetentionPolicyAssignmentsOptionsArgTypeField;
@@ -36,7 +34,8 @@ export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionOptionsArg
     readonly limit?: number;
 }
 export declare class RetentionPolicyAssignmentsManager {
-    readonly auth: RetentionPolicyAssignmentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPolicyAssignmentsManager, "getRetentionPolicyAssignments" | "createRetentionPolicyAssignment" | "getRetentionPolicyAssignmentById" | "deleteRetentionPolicyAssignmentById" | "getRetentionPolicyAssignmentFileUnderRetention" | "getRetentionPolicyAssignmentFileVersionUnderRetention">);
     getRetentionPolicyAssignments(retentionPolicyId: string, options?: GetRetentionPolicyAssignmentsOptionsArg): Promise<any>;
     createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg): Promise<any>;

@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type MembershipsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetUserMembershipsOptionsArg {
     readonly limit?: number;
     readonly offset?: number;
@@ -42,7 +40,8 @@ export interface UpdateGroupMembershipByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class MembershipsManager {
-    readonly auth: MembershipsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<MembershipsManager, "getUserMemberships" | "getGroupMemberships" | "createGroupMembership" | "getGroupMembershipById" | "updateGroupMembershipById" | "deleteGroupMembershipById">);
     getUserMemberships(userId: string, options?: GetUserMembershipsOptionsArg): Promise<any>;
     getGroupMemberships(groupId: string, options?: GetGroupMembershipsOptionsArg): Promise<any>;

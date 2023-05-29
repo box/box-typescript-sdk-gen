@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type MetadataTemplatesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetMetadataTemplateSchemaScopeArg = "global" | "enterprise";
 export type DeleteMetadataTemplateSchemaScopeArg = "global" | "enterprise";
 export interface GetMetadataTemplateGlobalOptionsArg {
@@ -33,7 +31,8 @@ export interface CreateMetadataTemplateSchemaRequestBodyArg {
     readonly copyInstanceOnItemCopy?: boolean;
 }
 export declare class MetadataTemplatesManager {
-    readonly auth: MetadataTemplatesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplateSchema" | "deleteMetadataTemplateSchema" | "getMetadataTemplateById" | "getMetadataTemplateGlobal" | "getMetadataTemplateEnterprise" | "createMetadataTemplateSchema">);
     getMetadataTemplates(metadataInstanceId: string): Promise<any>;
     getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any>;

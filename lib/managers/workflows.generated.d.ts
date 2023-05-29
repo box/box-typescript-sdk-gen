@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type WorkflowsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetWorkflowsOptionsArg {
     readonly triggerType?: string;
     readonly limit?: number;
@@ -36,7 +34,8 @@ export interface CreateWorkflowStartRequestBodyArg {
     readonly outcomes?: readonly CreateWorkflowStartRequestBodyArgOutcomesField[];
 }
 export declare class WorkflowsManager {
-    readonly auth: WorkflowsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WorkflowsManager, "getWorkflows" | "createWorkflowStart">);
     getWorkflows(folderId: string, options?: GetWorkflowsOptionsArg): Promise<any>;
     createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg): Promise<any>;
