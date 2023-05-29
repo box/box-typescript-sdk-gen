@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { CcgAuth } from './ccgAuth.js';
 import { DeveloperTokenAuth } from './developerTokenAuth.js';
 export declare const userAgentHeader: string;
@@ -56,6 +57,6 @@ export interface FetchResponse {
     /**
      * Binary array buffer of response body
      */
-    readonly content: ArrayBuffer;
+    readonly content: Buffer;
 }
 export declare function fetch(resource: string, options: FetchOptions): Promise<FetchResponse>;

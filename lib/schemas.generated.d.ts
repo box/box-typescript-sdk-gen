@@ -1,15 +1,15 @@
 import { Json } from "./json.js";
 export type PostOAuth2TokenGrantTypeField = "authorization_code" | "refresh_token" | "client_credentials" | "urn:ietf:params:oauth:grant-type:jwt-bearer" | "urn:ietf:params:oauth:grant-type:token-exchange";
-export declare function deserializePostOAuth2TokenGrantTypeField(val: Json): PostOAuth2TokenGrantTypeField;
+export declare function deserializePostOAuth2TokenGrantTypeField(val: any): PostOAuth2TokenGrantTypeField;
 export declare function serializePostOAuth2TokenGrantTypeField(val: PostOAuth2TokenGrantTypeField): Json;
 export type PostOAuth2TokenSubjectTokenTypeField = "urn:ietf:params:oauth:token-type:access_token";
-export declare function deserializePostOAuth2TokenSubjectTokenTypeField(val: Json): PostOAuth2TokenSubjectTokenTypeField;
+export declare function deserializePostOAuth2TokenSubjectTokenTypeField(val: any): PostOAuth2TokenSubjectTokenTypeField;
 export declare function serializePostOAuth2TokenSubjectTokenTypeField(val: PostOAuth2TokenSubjectTokenTypeField): Json;
 export type PostOAuth2TokenActorTokenTypeField = "urn:ietf:params:oauth:token-type:id_token";
-export declare function deserializePostOAuth2TokenActorTokenTypeField(val: Json): PostOAuth2TokenActorTokenTypeField;
+export declare function deserializePostOAuth2TokenActorTokenTypeField(val: any): PostOAuth2TokenActorTokenTypeField;
 export declare function serializePostOAuth2TokenActorTokenTypeField(val: PostOAuth2TokenActorTokenTypeField): Json;
 export type PostOAuth2TokenBoxSubjectTypeField = "enterprise" | "user";
-export declare function deserializePostOAuth2TokenBoxSubjectTypeField(val: Json): PostOAuth2TokenBoxSubjectTypeField;
+export declare function deserializePostOAuth2TokenBoxSubjectTypeField(val: any): PostOAuth2TokenBoxSubjectTypeField;
 export declare function serializePostOAuth2TokenBoxSubjectTypeField(val: PostOAuth2TokenBoxSubjectTypeField): Json;
 export interface PostOAuth2Token {
     readonly grantType: PostOAuth2TokenGrantTypeField;
@@ -28,10 +28,10 @@ export interface PostOAuth2Token {
     readonly boxSubjectId?: string;
     readonly boxSharedLink?: string;
 }
-export declare function deserializePostOAuth2Token(val: Json): PostOAuth2Token;
+export declare function deserializePostOAuth2Token(val: any): PostOAuth2Token;
 export declare function serializePostOAuth2Token(val: PostOAuth2Token): Json;
 export type PostOAuth2TokenRefreshAccessTokenGrantTypeField = "refresh_token";
-export declare function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: Json): PostOAuth2TokenRefreshAccessTokenGrantTypeField;
+export declare function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: any): PostOAuth2TokenRefreshAccessTokenGrantTypeField;
 export declare function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(val: PostOAuth2TokenRefreshAccessTokenGrantTypeField): Json;
 export interface PostOAuth2TokenRefreshAccessToken {
     readonly grantType: PostOAuth2TokenRefreshAccessTokenGrantTypeField;
@@ -39,42 +39,42 @@ export interface PostOAuth2TokenRefreshAccessToken {
     readonly clientSecret: string;
     readonly refreshToken: string;
 }
-export declare function deserializePostOAuth2TokenRefreshAccessToken(val: Json): PostOAuth2TokenRefreshAccessToken;
+export declare function deserializePostOAuth2TokenRefreshAccessToken(val: any): PostOAuth2TokenRefreshAccessToken;
 export declare function serializePostOAuth2TokenRefreshAccessToken(val: PostOAuth2TokenRefreshAccessToken): Json;
 export interface PostOAuth2Revoke {
     readonly clientId?: string;
     readonly clientSecret?: string;
     readonly token?: string;
 }
-export declare function deserializePostOAuth2Revoke(val: Json): PostOAuth2Revoke;
+export declare function deserializePostOAuth2Revoke(val: any): PostOAuth2Revoke;
 export declare function serializePostOAuth2Revoke(val: PostOAuth2Revoke): Json;
 export type ZipDownloadRequestItemsFieldTypeField = "file" | "folder.";
-export declare function deserializeZipDownloadRequestItemsFieldTypeField(val: Json): ZipDownloadRequestItemsFieldTypeField;
+export declare function deserializeZipDownloadRequestItemsFieldTypeField(val: any): ZipDownloadRequestItemsFieldTypeField;
 export declare function serializeZipDownloadRequestItemsFieldTypeField(val: ZipDownloadRequestItemsFieldTypeField): Json;
 export interface ZipDownloadRequestItemsField {
     readonly type: ZipDownloadRequestItemsFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeZipDownloadRequestItemsField(val: Json): ZipDownloadRequestItemsField;
+export declare function deserializeZipDownloadRequestItemsField(val: any): ZipDownloadRequestItemsField;
 export declare function serializeZipDownloadRequestItemsField(val: ZipDownloadRequestItemsField): Json;
 export interface ZipDownloadRequest {
     readonly items: readonly ZipDownloadRequestItemsField[];
     readonly downloadFileName?: string;
 }
-export declare function deserializeZipDownloadRequest(val: Json): ZipDownloadRequest;
+export declare function deserializeZipDownloadRequest(val: any): ZipDownloadRequest;
 export declare function serializeZipDownloadRequest(val: ZipDownloadRequest): Json;
 export interface MetadataQueryQueryParamsField {
 }
-export declare function deserializeMetadataQueryQueryParamsField(val: Json): MetadataQueryQueryParamsField;
+export declare function deserializeMetadataQueryQueryParamsField(val: any): MetadataQueryQueryParamsField;
 export declare function serializeMetadataQueryQueryParamsField(val: MetadataQueryQueryParamsField): Json;
 export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC" | "asc" | "desc";
-export declare function deserializeMetadataQueryOrderByFieldDirectionField(val: Json): MetadataQueryOrderByFieldDirectionField;
+export declare function deserializeMetadataQueryOrderByFieldDirectionField(val: any): MetadataQueryOrderByFieldDirectionField;
 export declare function serializeMetadataQueryOrderByFieldDirectionField(val: MetadataQueryOrderByFieldDirectionField): Json;
 export interface MetadataQueryOrderByField {
     readonly fieldKey?: string;
     readonly direction?: MetadataQueryOrderByFieldDirectionField;
 }
-export declare function deserializeMetadataQueryOrderByField(val: Json): MetadataQueryOrderByField;
+export declare function deserializeMetadataQueryOrderByField(val: any): MetadataQueryOrderByField;
 export declare function serializeMetadataQueryOrderByField(val: MetadataQueryOrderByField): Json;
 export interface MetadataQuery {
     readonly from: string;
@@ -86,10 +86,10 @@ export interface MetadataQuery {
     readonly marker?: string;
     readonly fields?: readonly string[];
 }
-export declare function deserializeMetadataQuery(val: Json): MetadataQuery;
+export declare function deserializeMetadataQuery(val: any): MetadataQuery;
 export declare function serializeMetadataQuery(val: MetadataQuery): Json;
 export type FileRequestUpdateRequestStatusField = "active" | "inactive";
-export declare function deserializeFileRequestUpdateRequestStatusField(val: Json): FileRequestUpdateRequestStatusField;
+export declare function deserializeFileRequestUpdateRequestStatusField(val: any): FileRequestUpdateRequestStatusField;
 export declare function serializeFileRequestUpdateRequestStatusField(val: FileRequestUpdateRequestStatusField): Json;
 export interface FileRequestUpdateRequest {
     readonly title?: string;
@@ -99,53 +99,53 @@ export interface FileRequestUpdateRequest {
     readonly isDescriptionRequired?: boolean;
     readonly expiresAt?: string;
 }
-export declare function deserializeFileRequestUpdateRequest(val: Json): FileRequestUpdateRequest;
+export declare function deserializeFileRequestUpdateRequest(val: any): FileRequestUpdateRequest;
 export declare function serializeFileRequestUpdateRequest(val: FileRequestUpdateRequest): Json;
 export type FileRequestCopyRequestFolderFieldTypeField = "folder";
-export declare function deserializeFileRequestCopyRequestFolderFieldTypeField(val: Json): FileRequestCopyRequestFolderFieldTypeField;
+export declare function deserializeFileRequestCopyRequestFolderFieldTypeField(val: any): FileRequestCopyRequestFolderFieldTypeField;
 export declare function serializeFileRequestCopyRequestFolderFieldTypeField(val: FileRequestCopyRequestFolderFieldTypeField): Json;
 export interface FileRequestCopyRequestFolderField {
     readonly type?: FileRequestCopyRequestFolderFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeFileRequestCopyRequestFolderField(val: Json): FileRequestCopyRequestFolderField;
+export declare function deserializeFileRequestCopyRequestFolderField(val: any): FileRequestCopyRequestFolderField;
 export declare function serializeFileRequestCopyRequestFolderField(val: FileRequestCopyRequestFolderField): Json;
 export type FileRequestCopyRequest = FileRequestUpdateRequest & {
     /**
      * The folder to associate the new file request to. */
     readonly folder: FileRequestCopyRequestFolderField;
 };
-export declare function deserializeFileRequestCopyRequest(val: Json): FileRequestCopyRequest;
+export declare function deserializeFileRequestCopyRequest(val: any): FileRequestCopyRequest;
 export declare function serializeFileRequestCopyRequest(val: FileRequestCopyRequest): Json;
 export interface IntegrationMappingSlackCreateRequestPartnerItemField {
 }
-export declare function deserializeIntegrationMappingSlackCreateRequestPartnerItemField(val: Json): IntegrationMappingSlackCreateRequestPartnerItemField;
+export declare function deserializeIntegrationMappingSlackCreateRequestPartnerItemField(val: any): IntegrationMappingSlackCreateRequestPartnerItemField;
 export declare function serializeIntegrationMappingSlackCreateRequestPartnerItemField(val: IntegrationMappingSlackCreateRequestPartnerItemField): Json;
 export interface IntegrationMappingSlackCreateRequestBoxItemField {
 }
-export declare function deserializeIntegrationMappingSlackCreateRequestBoxItemField(val: Json): IntegrationMappingSlackCreateRequestBoxItemField;
+export declare function deserializeIntegrationMappingSlackCreateRequestBoxItemField(val: any): IntegrationMappingSlackCreateRequestBoxItemField;
 export declare function serializeIntegrationMappingSlackCreateRequestBoxItemField(val: IntegrationMappingSlackCreateRequestBoxItemField): Json;
 export interface IntegrationMappingSlackCreateRequestOptionsField {
 }
-export declare function deserializeIntegrationMappingSlackCreateRequestOptionsField(val: Json): IntegrationMappingSlackCreateRequestOptionsField;
+export declare function deserializeIntegrationMappingSlackCreateRequestOptionsField(val: any): IntegrationMappingSlackCreateRequestOptionsField;
 export declare function serializeIntegrationMappingSlackCreateRequestOptionsField(val: IntegrationMappingSlackCreateRequestOptionsField): Json;
 export interface IntegrationMappingSlackCreateRequest {
     readonly partnerItem: IntegrationMappingSlackCreateRequestPartnerItemField;
     readonly boxItem: IntegrationMappingSlackCreateRequestBoxItemField;
     readonly options?: IntegrationMappingSlackCreateRequestOptionsField;
 }
-export declare function deserializeIntegrationMappingSlackCreateRequest(val: Json): IntegrationMappingSlackCreateRequest;
+export declare function deserializeIntegrationMappingSlackCreateRequest(val: any): IntegrationMappingSlackCreateRequest;
 export declare function serializeIntegrationMappingSlackCreateRequest(val: IntegrationMappingSlackCreateRequest): Json;
 export type ClientErrorTypeField = "error";
-export declare function deserializeClientErrorTypeField(val: Json): ClientErrorTypeField;
+export declare function deserializeClientErrorTypeField(val: any): ClientErrorTypeField;
 export declare function serializeClientErrorTypeField(val: ClientErrorTypeField): Json;
 export type ClientErrorCodeField = "created" | "accepted" | "no_content" | "redirect" | "not_modified" | "bad_request" | "unauthorized" | "forbidden" | "not_found" | "method_not_allowed" | "conflict" | "precondition_failed" | "too_many_requests" | "internal_server_error" | "unavailable" | "item_name_invalid" | "insufficient_scope";
-export declare function deserializeClientErrorCodeField(val: Json): ClientErrorCodeField;
+export declare function deserializeClientErrorCodeField(val: any): ClientErrorCodeField;
 export declare function serializeClientErrorCodeField(val: ClientErrorCodeField): Json;
 export interface ClientErrorContextInfoField {
     readonly message?: string;
 }
-export declare function deserializeClientErrorContextInfoField(val: Json): ClientErrorContextInfoField;
+export declare function deserializeClientErrorContextInfoField(val: any): ClientErrorContextInfoField;
 export declare function serializeClientErrorContextInfoField(val: ClientErrorContextInfoField): Json;
 export interface ClientError {
     readonly type?: ClientErrorTypeField;
@@ -156,19 +156,19 @@ export interface ClientError {
     readonly helpUrl?: string;
     readonly requestId?: string;
 }
-export declare function deserializeClientError(val: Json): ClientError;
+export declare function deserializeClientError(val: any): ClientError;
 export declare function serializeClientError(val: ClientError): Json;
 export interface OAuth2Error {
     readonly error?: string;
     readonly errorDescription?: string;
 }
-export declare function deserializeOAuth2Error(val: Json): OAuth2Error;
+export declare function deserializeOAuth2Error(val: any): OAuth2Error;
 export declare function serializeOAuth2Error(val: OAuth2Error): Json;
 export type SkillInvocationTypeField = "skill_invocation";
-export declare function deserializeSkillInvocationTypeField(val: Json): SkillInvocationTypeField;
+export declare function deserializeSkillInvocationTypeField(val: any): SkillInvocationTypeField;
 export declare function serializeSkillInvocationTypeField(val: SkillInvocationTypeField): Json;
 export type SkillInvocationSkillFieldTypeField = "skill";
-export declare function deserializeSkillInvocationSkillFieldTypeField(val: Json): SkillInvocationSkillFieldTypeField;
+export declare function deserializeSkillInvocationSkillFieldTypeField(val: any): SkillInvocationSkillFieldTypeField;
 export declare function serializeSkillInvocationSkillFieldTypeField(val: SkillInvocationSkillFieldTypeField): Json;
 export interface SkillInvocationSkillField {
     readonly id?: string;
@@ -176,10 +176,10 @@ export interface SkillInvocationSkillField {
     readonly name?: string;
     readonly apiKey?: string;
 }
-export declare function deserializeSkillInvocationSkillField(val: Json): SkillInvocationSkillField;
+export declare function deserializeSkillInvocationSkillField(val: any): SkillInvocationSkillField;
 export declare function serializeSkillInvocationSkillField(val: SkillInvocationSkillField): Json;
 export type SkillInvocationTokenFieldReadFieldTokenTypeField = "bearer";
-export declare function deserializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: Json): SkillInvocationTokenFieldReadFieldTokenTypeField;
+export declare function deserializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: any): SkillInvocationTokenFieldReadFieldTokenTypeField;
 export declare function serializeSkillInvocationTokenFieldReadFieldTokenTypeField(val: SkillInvocationTokenFieldReadFieldTokenTypeField): Json;
 export interface SkillInvocationTokenFieldReadField {
     readonly accessToken?: string;
@@ -187,10 +187,10 @@ export interface SkillInvocationTokenFieldReadField {
     readonly tokenType?: SkillInvocationTokenFieldReadFieldTokenTypeField;
     readonly restrictedTo?: string;
 }
-export declare function deserializeSkillInvocationTokenFieldReadField(val: Json): SkillInvocationTokenFieldReadField;
+export declare function deserializeSkillInvocationTokenFieldReadField(val: any): SkillInvocationTokenFieldReadField;
 export declare function serializeSkillInvocationTokenFieldReadField(val: SkillInvocationTokenFieldReadField): Json;
 export type SkillInvocationTokenFieldWriteFieldTokenTypeField = "bearer";
-export declare function deserializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: Json): SkillInvocationTokenFieldWriteFieldTokenTypeField;
+export declare function deserializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: any): SkillInvocationTokenFieldWriteFieldTokenTypeField;
 export declare function serializeSkillInvocationTokenFieldWriteFieldTokenTypeField(val: SkillInvocationTokenFieldWriteFieldTokenTypeField): Json;
 export interface SkillInvocationTokenFieldWriteField {
     readonly accessToken?: string;
@@ -198,16 +198,16 @@ export interface SkillInvocationTokenFieldWriteField {
     readonly tokenType?: SkillInvocationTokenFieldWriteFieldTokenTypeField;
     readonly restrictedTo?: string;
 }
-export declare function deserializeSkillInvocationTokenFieldWriteField(val: Json): SkillInvocationTokenFieldWriteField;
+export declare function deserializeSkillInvocationTokenFieldWriteField(val: any): SkillInvocationTokenFieldWriteField;
 export declare function serializeSkillInvocationTokenFieldWriteField(val: SkillInvocationTokenFieldWriteField): Json;
 export interface SkillInvocationTokenField {
     readonly read?: SkillInvocationTokenFieldReadField;
     readonly write?: SkillInvocationTokenFieldWriteField;
 }
-export declare function deserializeSkillInvocationTokenField(val: Json): SkillInvocationTokenField;
+export declare function deserializeSkillInvocationTokenField(val: any): SkillInvocationTokenField;
 export declare function serializeSkillInvocationTokenField(val: SkillInvocationTokenField): Json;
 export type SkillInvocationStatusFieldStateField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export declare function deserializeSkillInvocationStatusFieldStateField(val: Json): SkillInvocationStatusFieldStateField;
+export declare function deserializeSkillInvocationStatusFieldStateField(val: any): SkillInvocationStatusFieldStateField;
 export declare function serializeSkillInvocationStatusFieldStateField(val: SkillInvocationStatusFieldStateField): Json;
 export interface SkillInvocationStatusField {
     readonly state?: SkillInvocationStatusFieldStateField;
@@ -215,32 +215,32 @@ export interface SkillInvocationStatusField {
     readonly errorCode?: string;
     readonly additionalInfo?: string;
 }
-export declare function deserializeSkillInvocationStatusField(val: Json): SkillInvocationStatusField;
+export declare function deserializeSkillInvocationStatusField(val: any): SkillInvocationStatusField;
 export declare function serializeSkillInvocationStatusField(val: SkillInvocationStatusField): Json;
 export type SkillInvocationEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeSkillInvocationEnterpriseFieldTypeField(val: Json): SkillInvocationEnterpriseFieldTypeField;
+export declare function deserializeSkillInvocationEnterpriseFieldTypeField(val: any): SkillInvocationEnterpriseFieldTypeField;
 export declare function serializeSkillInvocationEnterpriseFieldTypeField(val: SkillInvocationEnterpriseFieldTypeField): Json;
 export interface SkillInvocationEnterpriseField {
     readonly id?: string;
     readonly type?: SkillInvocationEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeSkillInvocationEnterpriseField(val: Json): SkillInvocationEnterpriseField;
+export declare function deserializeSkillInvocationEnterpriseField(val: any): SkillInvocationEnterpriseField;
 export declare function serializeSkillInvocationEnterpriseField(val: SkillInvocationEnterpriseField): Json;
 export type WebhookInvocationTypeField = "webhook_event";
-export declare function deserializeWebhookInvocationTypeField(val: Json): WebhookInvocationTypeField;
+export declare function deserializeWebhookInvocationTypeField(val: any): WebhookInvocationTypeField;
 export declare function serializeWebhookInvocationTypeField(val: WebhookInvocationTypeField): Json;
 export type WebhookInvocationTriggerField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED" | "SIGN_REQUEST.SIGNER_EMAIL_BOUNCED";
-export declare function deserializeWebhookInvocationTriggerField(val: Json): WebhookInvocationTriggerField;
+export declare function deserializeWebhookInvocationTriggerField(val: any): WebhookInvocationTriggerField;
 export declare function serializeWebhookInvocationTriggerField(val: WebhookInvocationTriggerField): Json;
 export type AccessTokenTokenTypeField = "bearer";
-export declare function deserializeAccessTokenTokenTypeField(val: Json): AccessTokenTokenTypeField;
+export declare function deserializeAccessTokenTokenTypeField(val: any): AccessTokenTokenTypeField;
 export declare function serializeAccessTokenTokenTypeField(val: AccessTokenTokenTypeField): Json;
 export type AccessTokenIssuedTokenTypeField = "urn:ietf:params:oauth:token-type:access_token";
-export declare function deserializeAccessTokenIssuedTokenTypeField(val: Json): AccessTokenIssuedTokenTypeField;
+export declare function deserializeAccessTokenIssuedTokenTypeField(val: any): AccessTokenIssuedTokenTypeField;
 export declare function serializeAccessTokenIssuedTokenTypeField(val: AccessTokenIssuedTokenTypeField): Json;
 export type ClassificationTemplateField = "securityClassification-6VMVochwUWo";
-export declare function deserializeClassificationTemplateField(val: Json): ClassificationTemplateField;
+export declare function deserializeClassificationTemplateField(val: any): ClassificationTemplateField;
 export declare function serializeClassificationTemplateField(val: ClassificationTemplateField): Json;
 export interface Classification {
     readonly boxSecurityClassificationKey?: string;
@@ -252,43 +252,43 @@ export interface Classification {
     readonly typeVersion?: number;
     readonly canEdit?: boolean;
 }
-export declare function deserializeClassification(val: Json): Classification;
+export declare function deserializeClassification(val: any): Classification;
 export declare function serializeClassification(val: Classification): Json;
 export type ClassificationTemplateTypeField = "metadata_template";
-export declare function deserializeClassificationTemplateTypeField(val: Json): ClassificationTemplateTypeField;
+export declare function deserializeClassificationTemplateTypeField(val: any): ClassificationTemplateTypeField;
 export declare function serializeClassificationTemplateTypeField(val: ClassificationTemplateTypeField): Json;
 export type ClassificationTemplateTemplateKeyField = "securityClassification-6VMVochwUWo";
-export declare function deserializeClassificationTemplateTemplateKeyField(val: Json): ClassificationTemplateTemplateKeyField;
+export declare function deserializeClassificationTemplateTemplateKeyField(val: any): ClassificationTemplateTemplateKeyField;
 export declare function serializeClassificationTemplateTemplateKeyField(val: ClassificationTemplateTemplateKeyField): Json;
 export type ClassificationTemplateDisplayNameField = "Classification";
-export declare function deserializeClassificationTemplateDisplayNameField(val: Json): ClassificationTemplateDisplayNameField;
+export declare function deserializeClassificationTemplateDisplayNameField(val: any): ClassificationTemplateDisplayNameField;
 export declare function serializeClassificationTemplateDisplayNameField(val: ClassificationTemplateDisplayNameField): Json;
 export type ClassificationTemplateFieldsFieldTypeField = "enum";
-export declare function deserializeClassificationTemplateFieldsFieldTypeField(val: Json): ClassificationTemplateFieldsFieldTypeField;
+export declare function deserializeClassificationTemplateFieldsFieldTypeField(val: any): ClassificationTemplateFieldsFieldTypeField;
 export declare function serializeClassificationTemplateFieldsFieldTypeField(val: ClassificationTemplateFieldsFieldTypeField): Json;
 export type ClassificationTemplateFieldsFieldKeyField = "Box__Security__Classification__Key";
-export declare function deserializeClassificationTemplateFieldsFieldKeyField(val: Json): ClassificationTemplateFieldsFieldKeyField;
+export declare function deserializeClassificationTemplateFieldsFieldKeyField(val: any): ClassificationTemplateFieldsFieldKeyField;
 export declare function serializeClassificationTemplateFieldsFieldKeyField(val: ClassificationTemplateFieldsFieldKeyField): Json;
 export type ClassificationTemplateFieldsFieldDisplayNameField = "Classification";
-export declare function deserializeClassificationTemplateFieldsFieldDisplayNameField(val: Json): ClassificationTemplateFieldsFieldDisplayNameField;
+export declare function deserializeClassificationTemplateFieldsFieldDisplayNameField(val: any): ClassificationTemplateFieldsFieldDisplayNameField;
 export declare function serializeClassificationTemplateFieldsFieldDisplayNameField(val: ClassificationTemplateFieldsFieldDisplayNameField): Json;
 export interface ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
     readonly classificationDefinition?: string;
     readonly colorId?: number;
 }
-export declare function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: Json): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
+export declare function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: any): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 export declare function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField): Json;
 export interface ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField {
     readonly classification?: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
-export declare function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: Json): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField;
+export declare function deserializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: any): ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField;
 export declare function serializeClassificationTemplateFieldsFieldOptionsFieldStaticConfigField(val: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField): Json;
 export interface ClassificationTemplateFieldsFieldOptionsField {
     readonly id?: string;
     readonly key?: string;
     readonly staticConfig?: ClassificationTemplateFieldsFieldOptionsFieldStaticConfigField;
 }
-export declare function deserializeClassificationTemplateFieldsFieldOptionsField(val: Json): ClassificationTemplateFieldsFieldOptionsField;
+export declare function deserializeClassificationTemplateFieldsFieldOptionsField(val: any): ClassificationTemplateFieldsFieldOptionsField;
 export declare function serializeClassificationTemplateFieldsFieldOptionsField(val: ClassificationTemplateFieldsFieldOptionsField): Json;
 export interface ClassificationTemplateFieldsField {
     readonly id?: string;
@@ -298,7 +298,7 @@ export interface ClassificationTemplateFieldsField {
     readonly hidden?: boolean;
     readonly options?: readonly ClassificationTemplateFieldsFieldOptionsField[];
 }
-export declare function deserializeClassificationTemplateFieldsField(val: Json): ClassificationTemplateFieldsField;
+export declare function deserializeClassificationTemplateFieldsField(val: any): ClassificationTemplateFieldsField;
 export declare function serializeClassificationTemplateFieldsField(val: ClassificationTemplateFieldsField): Json;
 export interface ClassificationTemplate {
     readonly id?: string;
@@ -310,53 +310,53 @@ export interface ClassificationTemplate {
     readonly copyInstanceOnItemCopy?: boolean;
     readonly fields?: readonly ClassificationTemplateFieldsField[];
 }
-export declare function deserializeClassificationTemplate(val: Json): ClassificationTemplate;
+export declare function deserializeClassificationTemplate(val: any): ClassificationTemplate;
 export declare function serializeClassificationTemplate(val: ClassificationTemplate): Json;
 export type CollaborationTypeField = "collaboration";
-export declare function deserializeCollaborationTypeField(val: Json): CollaborationTypeField;
+export declare function deserializeCollaborationTypeField(val: any): CollaborationTypeField;
 export declare function serializeCollaborationTypeField(val: CollaborationTypeField): Json;
 export type CollaborationRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
-export declare function deserializeCollaborationRoleField(val: Json): CollaborationRoleField;
+export declare function deserializeCollaborationRoleField(val: any): CollaborationRoleField;
 export declare function serializeCollaborationRoleField(val: CollaborationRoleField): Json;
 export type CollaborationStatusField = "accepted" | "pending" | "rejected";
-export declare function deserializeCollaborationStatusField(val: Json): CollaborationStatusField;
+export declare function deserializeCollaborationStatusField(val: any): CollaborationStatusField;
 export declare function serializeCollaborationStatusField(val: CollaborationStatusField): Json;
 export interface CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField {
     readonly enterpriseHasStrongPasswordRequiredForExternalUsers?: boolean;
     readonly userHasStrongPassword?: boolean;
 }
-export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField;
+export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: any): CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField;
 export declare function serializeCollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField): Json;
 export interface CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField {
     readonly enterpriseHasTwoFactorAuthEnabled?: boolean;
     readonly userHasTwoFactorAuthenticationEnabled?: boolean;
 }
-export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
+export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: any): CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
 export declare function serializeCollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField): Json;
 export type CollaborationsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeCollaborationsOrderFieldDirectionField(val: Json): CollaborationsOrderFieldDirectionField;
+export declare function deserializeCollaborationsOrderFieldDirectionField(val: any): CollaborationsOrderFieldDirectionField;
 export declare function serializeCollaborationsOrderFieldDirectionField(val: CollaborationsOrderFieldDirectionField): Json;
 export interface CollaborationsOrderField {
     readonly by?: string;
     readonly direction?: CollaborationsOrderFieldDirectionField;
 }
-export declare function deserializeCollaborationsOrderField(val: Json): CollaborationsOrderField;
+export declare function deserializeCollaborationsOrderField(val: any): CollaborationsOrderField;
 export declare function serializeCollaborationsOrderField(val: CollaborationsOrderField): Json;
 export type CollaborationAllowlistEntryTypeField = "collaboration_whitelist_entry";
-export declare function deserializeCollaborationAllowlistEntryTypeField(val: Json): CollaborationAllowlistEntryTypeField;
+export declare function deserializeCollaborationAllowlistEntryTypeField(val: any): CollaborationAllowlistEntryTypeField;
 export declare function serializeCollaborationAllowlistEntryTypeField(val: CollaborationAllowlistEntryTypeField): Json;
 export type CollaborationAllowlistEntryDirectionField = "inbound" | "outbound" | "both";
-export declare function deserializeCollaborationAllowlistEntryDirectionField(val: Json): CollaborationAllowlistEntryDirectionField;
+export declare function deserializeCollaborationAllowlistEntryDirectionField(val: any): CollaborationAllowlistEntryDirectionField;
 export declare function serializeCollaborationAllowlistEntryDirectionField(val: CollaborationAllowlistEntryDirectionField): Json;
 export type CollaborationAllowlistEntryEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: Json): CollaborationAllowlistEntryEnterpriseFieldTypeField;
+export declare function deserializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: any): CollaborationAllowlistEntryEnterpriseFieldTypeField;
 export declare function serializeCollaborationAllowlistEntryEnterpriseFieldTypeField(val: CollaborationAllowlistEntryEnterpriseFieldTypeField): Json;
 export interface CollaborationAllowlistEntryEnterpriseField {
     readonly id?: string;
     readonly type?: CollaborationAllowlistEntryEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeCollaborationAllowlistEntryEnterpriseField(val: Json): CollaborationAllowlistEntryEnterpriseField;
+export declare function deserializeCollaborationAllowlistEntryEnterpriseField(val: any): CollaborationAllowlistEntryEnterpriseField;
 export declare function serializeCollaborationAllowlistEntryEnterpriseField(val: CollaborationAllowlistEntryEnterpriseField): Json;
 export interface CollaborationAllowlistEntry {
     readonly id?: string;
@@ -366,7 +366,7 @@ export interface CollaborationAllowlistEntry {
     readonly enterprise?: CollaborationAllowlistEntryEnterpriseField;
     readonly createdAt?: string;
 }
-export declare function deserializeCollaborationAllowlistEntry(val: Json): CollaborationAllowlistEntry;
+export declare function deserializeCollaborationAllowlistEntry(val: any): CollaborationAllowlistEntry;
 export declare function serializeCollaborationAllowlistEntry(val: CollaborationAllowlistEntry): Json;
 export interface CollaborationAllowlistEntries {
     readonly limit?: number;
@@ -374,30 +374,30 @@ export interface CollaborationAllowlistEntries {
     readonly prevMarker?: number;
     readonly entries?: readonly CollaborationAllowlistEntry[];
 }
-export declare function deserializeCollaborationAllowlistEntries(val: Json): CollaborationAllowlistEntries;
+export declare function deserializeCollaborationAllowlistEntries(val: any): CollaborationAllowlistEntries;
 export declare function serializeCollaborationAllowlistEntries(val: CollaborationAllowlistEntries): Json;
 export type CollaborationAllowlistExemptTargetTypeField = "collaboration_whitelist";
-export declare function deserializeCollaborationAllowlistExemptTargetTypeField(val: Json): CollaborationAllowlistExemptTargetTypeField;
+export declare function deserializeCollaborationAllowlistExemptTargetTypeField(val: any): CollaborationAllowlistExemptTargetTypeField;
 export declare function serializeCollaborationAllowlistExemptTargetTypeField(val: CollaborationAllowlistExemptTargetTypeField): Json;
 export type CollaborationAllowlistExemptTargetEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: Json): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
+export declare function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: any): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
 export declare function serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(val: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField): Json;
 export interface CollaborationAllowlistExemptTargetEnterpriseField {
     readonly id?: string;
     readonly type?: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeCollaborationAllowlistExemptTargetEnterpriseField(val: Json): CollaborationAllowlistExemptTargetEnterpriseField;
+export declare function deserializeCollaborationAllowlistExemptTargetEnterpriseField(val: any): CollaborationAllowlistExemptTargetEnterpriseField;
 export declare function serializeCollaborationAllowlistExemptTargetEnterpriseField(val: CollaborationAllowlistExemptTargetEnterpriseField): Json;
 export type CollaborationAllowlistExemptTargetUserFieldTypeField = "enterprise";
-export declare function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: Json): CollaborationAllowlistExemptTargetUserFieldTypeField;
+export declare function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: any): CollaborationAllowlistExemptTargetUserFieldTypeField;
 export declare function serializeCollaborationAllowlistExemptTargetUserFieldTypeField(val: CollaborationAllowlistExemptTargetUserFieldTypeField): Json;
 export interface CollaborationAllowlistExemptTargetUserField {
     readonly id?: string;
     readonly type?: CollaborationAllowlistExemptTargetUserFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeCollaborationAllowlistExemptTargetUserField(val: Json): CollaborationAllowlistExemptTargetUserField;
+export declare function deserializeCollaborationAllowlistExemptTargetUserField(val: any): CollaborationAllowlistExemptTargetUserField;
 export declare function serializeCollaborationAllowlistExemptTargetUserField(val: CollaborationAllowlistExemptTargetUserField): Json;
 export interface CollaborationAllowlistExemptTarget {
     readonly id?: string;
@@ -407,7 +407,7 @@ export interface CollaborationAllowlistExemptTarget {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export declare function deserializeCollaborationAllowlistExemptTarget(val: Json): CollaborationAllowlistExemptTarget;
+export declare function deserializeCollaborationAllowlistExemptTarget(val: any): CollaborationAllowlistExemptTarget;
 export declare function serializeCollaborationAllowlistExemptTarget(val: CollaborationAllowlistExemptTarget): Json;
 export interface CollaborationAllowlistExemptTargets {
     readonly limit?: number;
@@ -415,16 +415,16 @@ export interface CollaborationAllowlistExemptTargets {
     readonly prevMarker?: number;
     readonly entries?: readonly CollaborationAllowlistExemptTarget[];
 }
-export declare function deserializeCollaborationAllowlistExemptTargets(val: Json): CollaborationAllowlistExemptTargets;
+export declare function deserializeCollaborationAllowlistExemptTargets(val: any): CollaborationAllowlistExemptTargets;
 export declare function serializeCollaborationAllowlistExemptTargets(val: CollaborationAllowlistExemptTargets): Json;
 export type CollectionTypeField = "collection";
-export declare function deserializeCollectionTypeField(val: Json): CollectionTypeField;
+export declare function deserializeCollectionTypeField(val: any): CollectionTypeField;
 export declare function serializeCollectionTypeField(val: CollectionTypeField): Json;
 export type CollectionNameField = "Favorites";
-export declare function deserializeCollectionNameField(val: Json): CollectionNameField;
+export declare function deserializeCollectionNameField(val: any): CollectionNameField;
 export declare function serializeCollectionNameField(val: CollectionNameField): Json;
 export type CollectionCollectionTypeField = "favorites";
-export declare function deserializeCollectionCollectionTypeField(val: Json): CollectionCollectionTypeField;
+export declare function deserializeCollectionCollectionTypeField(val: any): CollectionCollectionTypeField;
 export declare function serializeCollectionCollectionTypeField(val: CollectionCollectionTypeField): Json;
 export interface Collection {
     readonly id?: string;
@@ -432,16 +432,16 @@ export interface Collection {
     readonly name?: CollectionNameField;
     readonly collectionType?: CollectionCollectionTypeField;
 }
-export declare function deserializeCollection(val: Json): Collection;
+export declare function deserializeCollection(val: any): Collection;
 export declare function serializeCollection(val: Collection): Json;
 export type CollectionsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeCollectionsOrderFieldDirectionField(val: Json): CollectionsOrderFieldDirectionField;
+export declare function deserializeCollectionsOrderFieldDirectionField(val: any): CollectionsOrderFieldDirectionField;
 export declare function serializeCollectionsOrderFieldDirectionField(val: CollectionsOrderFieldDirectionField): Json;
 export interface CollectionsOrderField {
     readonly by?: string;
     readonly direction?: CollectionsOrderFieldDirectionField;
 }
-export declare function deserializeCollectionsOrderField(val: Json): CollectionsOrderField;
+export declare function deserializeCollectionsOrderField(val: any): CollectionsOrderField;
 export declare function serializeCollectionsOrderField(val: CollectionsOrderField): Json;
 export interface Collections {
     readonly totalCount?: number;
@@ -450,49 +450,49 @@ export interface Collections {
     readonly order?: readonly CollectionsOrderField[];
     readonly entries?: readonly Collection[];
 }
-export declare function deserializeCollections(val: Json): Collections;
+export declare function deserializeCollections(val: any): Collections;
 export declare function serializeCollections(val: Collections): Json;
 export interface CommentItemField {
     readonly id?: string;
     readonly type?: string;
 }
-export declare function deserializeCommentItemField(val: Json): CommentItemField;
+export declare function deserializeCommentItemField(val: any): CommentItemField;
 export declare function serializeCommentItemField(val: CommentItemField): Json;
 export type CommentsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeCommentsOrderFieldDirectionField(val: Json): CommentsOrderFieldDirectionField;
+export declare function deserializeCommentsOrderFieldDirectionField(val: any): CommentsOrderFieldDirectionField;
 export declare function serializeCommentsOrderFieldDirectionField(val: CommentsOrderFieldDirectionField): Json;
 export interface CommentsOrderField {
     readonly by?: string;
     readonly direction?: CommentsOrderFieldDirectionField;
 }
-export declare function deserializeCommentsOrderField(val: Json): CommentsOrderField;
+export declare function deserializeCommentsOrderField(val: any): CommentsOrderField;
 export declare function serializeCommentsOrderField(val: CommentsOrderField): Json;
 export type CommentBaseTypeField = "comment";
-export declare function deserializeCommentBaseTypeField(val: Json): CommentBaseTypeField;
+export declare function deserializeCommentBaseTypeField(val: any): CommentBaseTypeField;
 export declare function serializeCommentBaseTypeField(val: CommentBaseTypeField): Json;
 export interface CommentBase {
     readonly id?: string;
     readonly type?: CommentBaseTypeField;
 }
-export declare function deserializeCommentBase(val: Json): CommentBase;
+export declare function deserializeCommentBase(val: any): CommentBase;
 export declare function serializeCommentBase(val: CommentBase): Json;
 export type DevicePinnerTypeField = "device_pinner";
-export declare function deserializeDevicePinnerTypeField(val: Json): DevicePinnerTypeField;
+export declare function deserializeDevicePinnerTypeField(val: any): DevicePinnerTypeField;
 export declare function serializeDevicePinnerTypeField(val: DevicePinnerTypeField): Json;
 export type DevicePinnersOrderFieldByField = "id";
-export declare function deserializeDevicePinnersOrderFieldByField(val: Json): DevicePinnersOrderFieldByField;
+export declare function deserializeDevicePinnersOrderFieldByField(val: any): DevicePinnersOrderFieldByField;
 export declare function serializeDevicePinnersOrderFieldByField(val: DevicePinnersOrderFieldByField): Json;
 export type DevicePinnersOrderFieldDirectionField = "asc" | "desc";
-export declare function deserializeDevicePinnersOrderFieldDirectionField(val: Json): DevicePinnersOrderFieldDirectionField;
+export declare function deserializeDevicePinnersOrderFieldDirectionField(val: any): DevicePinnersOrderFieldDirectionField;
 export declare function serializeDevicePinnersOrderFieldDirectionField(val: DevicePinnersOrderFieldDirectionField): Json;
 export interface DevicePinnersOrderField {
     readonly by?: DevicePinnersOrderFieldByField;
     readonly direction?: DevicePinnersOrderFieldDirectionField;
 }
-export declare function deserializeDevicePinnersOrderField(val: Json): DevicePinnersOrderField;
+export declare function deserializeDevicePinnersOrderField(val: any): DevicePinnersOrderField;
 export declare function serializeDevicePinnersOrderField(val: DevicePinnersOrderField): Json;
 export type EmailAliasTypeField = "email_alias";
-export declare function deserializeEmailAliasTypeField(val: Json): EmailAliasTypeField;
+export declare function deserializeEmailAliasTypeField(val: any): EmailAliasTypeField;
 export declare function serializeEmailAliasTypeField(val: EmailAliasTypeField): Json;
 export interface EmailAlias {
     readonly id?: string;
@@ -500,45 +500,45 @@ export interface EmailAlias {
     readonly email?: string;
     readonly isConfirmed?: boolean;
 }
-export declare function deserializeEmailAlias(val: Json): EmailAlias;
+export declare function deserializeEmailAlias(val: any): EmailAlias;
 export declare function serializeEmailAlias(val: EmailAlias): Json;
 export interface EmailAliases {
     readonly totalCount?: number;
     readonly entries?: readonly EmailAlias[];
 }
-export declare function deserializeEmailAliases(val: Json): EmailAliases;
+export declare function deserializeEmailAliases(val: any): EmailAliases;
 export declare function serializeEmailAliases(val: EmailAliases): Json;
 export type EnterpriseBaseTypeField = "enterprise";
-export declare function deserializeEnterpriseBaseTypeField(val: Json): EnterpriseBaseTypeField;
+export declare function deserializeEnterpriseBaseTypeField(val: any): EnterpriseBaseTypeField;
 export declare function serializeEnterpriseBaseTypeField(val: EnterpriseBaseTypeField): Json;
 export interface EnterpriseBase {
     readonly id?: string;
     readonly type?: EnterpriseBaseTypeField;
 }
-export declare function deserializeEnterpriseBase(val: Json): EnterpriseBase;
+export declare function deserializeEnterpriseBase(val: any): EnterpriseBase;
 export declare function serializeEnterpriseBase(val: EnterpriseBase): Json;
 export type EventEventTypeField = "ACCESS_GRANTED" | "ACCESS_REVOKED" | "ADD_DEVICE_ASSOCIATION" | "ADD_LOGIN_ACTIVITY_DEVICE" | "ADMIN_LOGIN" | "APPLICATION_CREATED" | "APPLICATION_PUBLIC_KEY_ADDED" | "APPLICATION_PUBLIC_KEY_DELETED" | "CHANGE_ADMIN_ROLE" | "CHANGE_FOLDER_PERMISSION" | "COLLABORATION_ACCEPT" | "COLLABORATION_EXPIRATION" | "COLLABORATION_INVITE" | "COLLABORATION_REMOVE" | "COLLABORATION_ROLE_CHANGE" | "COLLAB_ADD_COLLABORATOR" | "COLLAB_INVITE_COLLABORATOR" | "COLLAB_REMOVE_COLLABORATOR" | "COLLAB_ROLE_CHANGE" | "COMMENT_CREATE" | "COMMENT_DELETE" | "CONTENT_ACCESS" | "CONTENT_WORKFLOW_ABNORMAL_DOWNLOAD_ACTIVITY" | "CONTENT_WORKFLOW_AUTOMATION_ADD" | "CONTENT_WORKFLOW_AUTOMATION_DELETE" | "CONTENT_WORKFLOW_POLICY_ADD" | "CONTENT_WORKFLOW_SHARING_POLICY_VIOLATION" | "CONTENT_WORKFLOW_UPLOAD_POLICY_VIOLATION" | "COPY" | "DATA_RETENTION_CREATE_RETENTION" | "DATA_RETENTION_REMOVE_RETENTION" | "DELETE" | "DELETE_USER" | "DEVICE_TRUST_CHECK_FAILED" | "DOWNLOAD" | "EDIT" | "EDIT_USER" | "EMAIL_ALIAS_CONFIRM" | "EMAIL_ALIAS_REMOVE" | "ENABLE_TWO_FACTOR_AUTH" | "ENTERPRISE_APP_AUTHORIZATION_UPDATE" | "FAILED_LOGIN" | "FILE_MARKED_MALICIOUS" | "FILE_WATERMARKED_DOWNLOAD" | "GROUP_ADD_ITEM" | "GROUP_ADD_USER" | "GROUP_CREATION" | "GROUP_DELETION" | "GROUP_EDITED" | "GROUP_REMOVE_ITEM" | "GROUP_REMOVE_USER" | "ITEM_COPY" | "ITEM_CREATE" | "ITEM_DOWNLOAD" | "ITEM_MAKE_CURRENT_VERSION" | "ITEM_MODIFY" | "ITEM_MOVE" | "ITEM_OPEN" | "ITEM_PREVIEW" | "ITEM_RENAME" | "ITEM_SHARED" | "ITEM_SHARED_CREATE" | "ITEM_SHARED_UNSHARE" | "ITEM_SHARED_UPDATE" | "ITEM_SYNC" | "ITEM_TRASH" | "ITEM_UNDELETE_VIA_TRASH" | "ITEM_UNSYNC" | "ITEM_UPLOAD" | "LEGAL_HOLD_ASSIGNMENT_CREATE" | "LEGAL_HOLD_ASSIGNMENT_DELETE" | "LEGAL_HOLD_POLICY_CREATE" | "LEGAL_HOLD_POLICY_DELETE" | "LEGAL_HOLD_POLICY_UPDATE" | "LOCK" | "LOCK_CREATE" | "LOCK_DESTROY" | "LOGIN" | "MASTER_INVITE_ACCEPT" | "MASTER_INVITE_REJECT" | "METADATA_INSTANCE_CREATE" | "METADATA_INSTANCE_DELETE" | "METADATA_INSTANCE_UPDATE" | "METADATA_TEMPLATE_CREATE" | "METADATA_TEMPLATE_DELETE" | "METADATA_TEMPLATE_UPDATE" | "MOVE" | "NEW_USER" | "PREVIEW" | "REMOVE_DEVICE_ASSOCIATION" | "REMOVE_LOGIN_ACTIVITY_DEVICE" | "RENAME" | "RETENTION_POLICY_ASSIGNMENT_ADD" | "SHARE" | "SHARE_EXPIRATION" | "SHIELD_ALERT" | "SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED" | "SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION" | "SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED" | "SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION" | "SHIELD_JUSTIFICATION_APPROVAL" | "SIGN_DOCUMENT_ASSIGNED" | "SIGN_DOCUMENT_CANCELLED" | "SIGN_DOCUMENT_COMPLETED" | "SIGN_DOCUMENT_CONVERTED" | "SIGN_DOCUMENT_CREATED" | "SIGN_DOCUMENT_DECLINED" | "SIGN_DOCUMENT_EXPIRED" | "SIGN_DOCUMENT_SIGNED" | "SIGN_DOCUMENT_VIEWED_BY_SIGNED" | "SIGNER_DOWNLOADED" | "SIGNER_FORWARDED" | "STORAGE_EXPIRATION" | "TAG_ITEM_CREATE" | "TASK_ASSIGNMENT_CREATE" | "TASK_ASSIGNMENT_DELETE" | "TASK_ASSIGNMENT_UPDATE" | "TASK_CREATE" | "TASK_UPDATE" | "TERMS_OF_SERVICE_ACCEPT" | "TERMS_OF_SERVICE_REJECT" | "UNDELETE" | "UNLOCK" | "UNSHARE" | "UPDATE_COLLABORATION_EXPIRATION" | "UPDATE_SHARE_EXPIRATION" | "UPLOAD" | "USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE" | "WATERMARK_LABEL_CREATE" | "WATERMARK_LABEL_DELETE";
-export declare function deserializeEventEventTypeField(val: Json): EventEventTypeField;
+export declare function deserializeEventEventTypeField(val: any): EventEventTypeField;
 export declare function serializeEventEventTypeField(val: EventEventTypeField): Json;
 export interface EventAdditionalDetailsField {
 }
-export declare function deserializeEventAdditionalDetailsField(val: Json): EventAdditionalDetailsField;
+export declare function deserializeEventAdditionalDetailsField(val: any): EventAdditionalDetailsField;
 export declare function serializeEventAdditionalDetailsField(val: EventAdditionalDetailsField): Json;
 export type FileSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export declare function deserializeFileSharedLinkFieldAccessField(val: Json): FileSharedLinkFieldAccessField;
+export declare function deserializeFileSharedLinkFieldAccessField(val: any): FileSharedLinkFieldAccessField;
 export declare function serializeFileSharedLinkFieldAccessField(val: FileSharedLinkFieldAccessField): Json;
 export type FileSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export declare function deserializeFileSharedLinkFieldEffectiveAccessField(val: Json): FileSharedLinkFieldEffectiveAccessField;
+export declare function deserializeFileSharedLinkFieldEffectiveAccessField(val: any): FileSharedLinkFieldEffectiveAccessField;
 export declare function serializeFileSharedLinkFieldEffectiveAccessField(val: FileSharedLinkFieldEffectiveAccessField): Json;
 export type FileSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export declare function deserializeFileSharedLinkFieldEffectivePermissionField(val: Json): FileSharedLinkFieldEffectivePermissionField;
+export declare function deserializeFileSharedLinkFieldEffectivePermissionField(val: any): FileSharedLinkFieldEffectivePermissionField;
 export declare function serializeFileSharedLinkFieldEffectivePermissionField(val: FileSharedLinkFieldEffectivePermissionField): Json;
 export interface FileSharedLinkFieldPermissionsField {
     readonly canDownload: boolean;
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export declare function deserializeFileSharedLinkFieldPermissionsField(val: Json): FileSharedLinkFieldPermissionsField;
+export declare function deserializeFileSharedLinkFieldPermissionsField(val: any): FileSharedLinkFieldPermissionsField;
 export declare function serializeFileSharedLinkFieldPermissionsField(val: FileSharedLinkFieldPermissionsField): Json;
 export interface FileSharedLinkField {
     readonly url: string;
@@ -554,10 +554,10 @@ export interface FileSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export declare function deserializeFileSharedLinkField(val: Json): FileSharedLinkField;
+export declare function deserializeFileSharedLinkField(val: any): FileSharedLinkField;
 export declare function serializeFileSharedLinkField(val: FileSharedLinkField): Json;
 export type FileItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeFileItemStatusField(val: Json): FileItemStatusField;
+export declare function deserializeFileItemStatusField(val: any): FileItemStatusField;
 export declare function serializeFileItemStatusField(val: FileItemStatusField): Json;
 export interface FileFullPermissionsField {
     readonly canDelete: boolean;
@@ -573,53 +573,53 @@ export interface FileFullPermissionsField {
     readonly canViewAnnotationsAll?: boolean;
     readonly canViewAnnotationsSelf?: boolean;
 }
-export declare function deserializeFileFullPermissionsField(val: Json): FileFullPermissionsField;
+export declare function deserializeFileFullPermissionsField(val: any): FileFullPermissionsField;
 export declare function serializeFileFullPermissionsField(val: FileFullPermissionsField): Json;
 export type FileFullLockFieldTypeField = "lock";
-export declare function deserializeFileFullLockFieldTypeField(val: Json): FileFullLockFieldTypeField;
+export declare function deserializeFileFullLockFieldTypeField(val: any): FileFullLockFieldTypeField;
 export declare function serializeFileFullLockFieldTypeField(val: FileFullLockFieldTypeField): Json;
 export type FileFullLockFieldAppTypeField = "gsuite" | "office_wopi" | "office_wopiplus" | "other";
-export declare function deserializeFileFullLockFieldAppTypeField(val: Json): FileFullLockFieldAppTypeField;
+export declare function deserializeFileFullLockFieldAppTypeField(val: any): FileFullLockFieldAppTypeField;
 export declare function serializeFileFullLockFieldAppTypeField(val: FileFullLockFieldAppTypeField): Json;
 export type FileFullExpiringEmbedLinkFieldTokenTypeField = "bearer";
-export declare function deserializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: Json): FileFullExpiringEmbedLinkFieldTokenTypeField;
+export declare function deserializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: any): FileFullExpiringEmbedLinkFieldTokenTypeField;
 export declare function serializeFileFullExpiringEmbedLinkFieldTokenTypeField(val: FileFullExpiringEmbedLinkFieldTokenTypeField): Json;
 export interface FileFullWatermarkInfoField {
     readonly isWatermarked?: boolean;
 }
-export declare function deserializeFileFullWatermarkInfoField(val: Json): FileFullWatermarkInfoField;
+export declare function deserializeFileFullWatermarkInfoField(val: any): FileFullWatermarkInfoField;
 export declare function serializeFileFullWatermarkInfoField(val: FileFullWatermarkInfoField): Json;
 export type FileFullAllowedInviteeRolesField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export declare function deserializeFileFullAllowedInviteeRolesField(val: Json): FileFullAllowedInviteeRolesField;
+export declare function deserializeFileFullAllowedInviteeRolesField(val: any): FileFullAllowedInviteeRolesField;
 export declare function serializeFileFullAllowedInviteeRolesField(val: FileFullAllowedInviteeRolesField): Json;
 export interface FileFullMetadataField {
 }
-export declare function deserializeFileFullMetadataField(val: Json): FileFullMetadataField;
+export declare function deserializeFileFullMetadataField(val: any): FileFullMetadataField;
 export declare function serializeFileFullMetadataField(val: FileFullMetadataField): Json;
 export interface FileFullRepresentationsFieldEntriesFieldContentField {
     readonly urlTemplate?: string;
 }
-export declare function deserializeFileFullRepresentationsFieldEntriesFieldContentField(val: Json): FileFullRepresentationsFieldEntriesFieldContentField;
+export declare function deserializeFileFullRepresentationsFieldEntriesFieldContentField(val: any): FileFullRepresentationsFieldEntriesFieldContentField;
 export declare function serializeFileFullRepresentationsFieldEntriesFieldContentField(val: FileFullRepresentationsFieldEntriesFieldContentField): Json;
 export interface FileFullRepresentationsFieldEntriesFieldInfoField {
     readonly url?: string;
 }
-export declare function deserializeFileFullRepresentationsFieldEntriesFieldInfoField(val: Json): FileFullRepresentationsFieldEntriesFieldInfoField;
+export declare function deserializeFileFullRepresentationsFieldEntriesFieldInfoField(val: any): FileFullRepresentationsFieldEntriesFieldInfoField;
 export declare function serializeFileFullRepresentationsFieldEntriesFieldInfoField(val: FileFullRepresentationsFieldEntriesFieldInfoField): Json;
 export interface FileFullRepresentationsFieldEntriesFieldPropertiesField {
     readonly dimensions?: string;
     readonly paged?: boolean;
     readonly thumb?: boolean;
 }
-export declare function deserializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: Json): FileFullRepresentationsFieldEntriesFieldPropertiesField;
+export declare function deserializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: any): FileFullRepresentationsFieldEntriesFieldPropertiesField;
 export declare function serializeFileFullRepresentationsFieldEntriesFieldPropertiesField(val: FileFullRepresentationsFieldEntriesFieldPropertiesField): Json;
 export type FileFullRepresentationsFieldEntriesFieldStatusFieldStateField = "success" | "viewable" | "pending" | "none";
-export declare function deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: Json): FileFullRepresentationsFieldEntriesFieldStatusFieldStateField;
+export declare function deserializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: any): FileFullRepresentationsFieldEntriesFieldStatusFieldStateField;
 export declare function serializeFileFullRepresentationsFieldEntriesFieldStatusFieldStateField(val: FileFullRepresentationsFieldEntriesFieldStatusFieldStateField): Json;
 export interface FileFullRepresentationsFieldEntriesFieldStatusField {
     readonly state?: FileFullRepresentationsFieldEntriesFieldStatusFieldStateField;
 }
-export declare function deserializeFileFullRepresentationsFieldEntriesFieldStatusField(val: Json): FileFullRepresentationsFieldEntriesFieldStatusField;
+export declare function deserializeFileFullRepresentationsFieldEntriesFieldStatusField(val: any): FileFullRepresentationsFieldEntriesFieldStatusField;
 export declare function serializeFileFullRepresentationsFieldEntriesFieldStatusField(val: FileFullRepresentationsFieldEntriesFieldStatusField): Json;
 export interface FileFullRepresentationsFieldEntriesField {
     readonly content?: FileFullRepresentationsFieldEntriesFieldContentField;
@@ -628,54 +628,54 @@ export interface FileFullRepresentationsFieldEntriesField {
     readonly representation?: string;
     readonly status?: FileFullRepresentationsFieldEntriesFieldStatusField;
 }
-export declare function deserializeFileFullRepresentationsFieldEntriesField(val: Json): FileFullRepresentationsFieldEntriesField;
+export declare function deserializeFileFullRepresentationsFieldEntriesField(val: any): FileFullRepresentationsFieldEntriesField;
 export declare function serializeFileFullRepresentationsFieldEntriesField(val: FileFullRepresentationsFieldEntriesField): Json;
 export interface FileFullRepresentationsField {
     readonly entries?: readonly FileFullRepresentationsFieldEntriesField[];
 }
-export declare function deserializeFileFullRepresentationsField(val: Json): FileFullRepresentationsField;
+export declare function deserializeFileFullRepresentationsField(val: any): FileFullRepresentationsField;
 export declare function serializeFileFullRepresentationsField(val: FileFullRepresentationsField): Json;
 export interface FileFullClassificationField {
     readonly name?: string;
     readonly definition?: string;
     readonly color?: string;
 }
-export declare function deserializeFileFullClassificationField(val: Json): FileFullClassificationField;
+export declare function deserializeFileFullClassificationField(val: any): FileFullClassificationField;
 export declare function serializeFileFullClassificationField(val: FileFullClassificationField): Json;
 export type FileFullSharedLinkPermissionOptionsField = "can_preview" | "can_download" | "can_edit";
-export declare function deserializeFileFullSharedLinkPermissionOptionsField(val: Json): FileFullSharedLinkPermissionOptionsField;
+export declare function deserializeFileFullSharedLinkPermissionOptionsField(val: any): FileFullSharedLinkPermissionOptionsField;
 export declare function serializeFileFullSharedLinkPermissionOptionsField(val: FileFullSharedLinkPermissionOptionsField): Json;
 export type FileBaseTypeField = "file";
-export declare function deserializeFileBaseTypeField(val: Json): FileBaseTypeField;
+export declare function deserializeFileBaseTypeField(val: any): FileBaseTypeField;
 export declare function serializeFileBaseTypeField(val: FileBaseTypeField): Json;
 export interface FileBase {
     readonly id: string;
     readonly etag?: string;
     readonly type: FileBaseTypeField;
 }
-export declare function deserializeFileBase(val: Json): FileBase;
+export declare function deserializeFileBase(val: any): FileBase;
 export declare function serializeFileBase(val: FileBase): Json;
 export type FileRequestTypeField = "file_request";
-export declare function deserializeFileRequestTypeField(val: Json): FileRequestTypeField;
+export declare function deserializeFileRequestTypeField(val: any): FileRequestTypeField;
 export declare function serializeFileRequestTypeField(val: FileRequestTypeField): Json;
 export type FileRequestStatusField = "active" | "inactive";
-export declare function deserializeFileRequestStatusField(val: Json): FileRequestStatusField;
+export declare function deserializeFileRequestStatusField(val: any): FileRequestStatusField;
 export declare function serializeFileRequestStatusField(val: FileRequestStatusField): Json;
 export type FileVersionBaseTypeField = "file_version";
-export declare function deserializeFileVersionBaseTypeField(val: Json): FileVersionBaseTypeField;
+export declare function deserializeFileVersionBaseTypeField(val: any): FileVersionBaseTypeField;
 export declare function serializeFileVersionBaseTypeField(val: FileVersionBaseTypeField): Json;
 export interface FileVersionBase {
     readonly id: string;
     readonly type: FileVersionBaseTypeField;
 }
-export declare function deserializeFileVersionBase(val: Json): FileVersionBase;
+export declare function deserializeFileVersionBase(val: any): FileVersionBase;
 export declare function serializeFileVersionBase(val: FileVersionBase): Json;
 export type FileVersionMini = FileVersionBase & {
     /**
      * The SHA1 hash of this version of the file. */
     readonly sha1?: string;
 };
-export declare function deserializeFileVersionMini(val: Json): FileVersionMini;
+export declare function deserializeFileVersionMini(val: any): FileVersionMini;
 export declare function serializeFileVersionMini(val: FileVersionMini): Json;
 export type FileMini = FileBase & {
     readonly sequenceId?: string;
@@ -688,13 +688,13 @@ export type FileMini = FileBase & {
     readonly sha1?: string;
     readonly fileVersion?: FileVersionMini;
 };
-export declare function deserializeFileMini(val: Json): FileMini;
+export declare function deserializeFileMini(val: any): FileMini;
 export declare function serializeFileMini(val: FileMini): Json;
 export interface SignRequestSignFilesField {
     readonly files?: readonly FileMini[];
     readonly isReadyForDownload?: boolean;
 }
-export declare function deserializeSignRequestSignFilesField(val: Json): SignRequestSignFilesField;
+export declare function deserializeSignRequestSignFilesField(val: any): SignRequestSignFilesField;
 export declare function serializeSignRequestSignFilesField(val: SignRequestSignFilesField): Json;
 export interface FilesUnderRetention {
     readonly limit?: number;
@@ -702,7 +702,7 @@ export interface FilesUnderRetention {
     readonly prevMarker?: number;
     readonly entries?: readonly FileMini[];
 }
-export declare function deserializeFilesUnderRetention(val: Json): FilesUnderRetention;
+export declare function deserializeFilesUnderRetention(val: any): FilesUnderRetention;
 export declare function serializeFilesUnderRetention(val: FilesUnderRetention): Json;
 export type FileConflict = FileMini & {
     /**
@@ -710,48 +710,48 @@ export type FileConflict = FileMini & {
     readonly sha1?: string;
     readonly fileVersion?: FileVersionMini;
 };
-export declare function deserializeFileConflict(val: Json): FileConflict;
+export declare function deserializeFileConflict(val: any): FileConflict;
 export declare function serializeFileConflict(val: FileConflict): Json;
 export interface ConflictErrorContextInfoField {
     readonly conflicts?: readonly FileConflict[];
 }
-export declare function deserializeConflictErrorContextInfoField(val: Json): ConflictErrorContextInfoField;
+export declare function deserializeConflictErrorContextInfoField(val: any): ConflictErrorContextInfoField;
 export declare function serializeConflictErrorContextInfoField(val: ConflictErrorContextInfoField): Json;
 export type ConflictError = ClientError & {
     readonly contextInfo?: ConflictErrorContextInfoField;
 };
-export declare function deserializeConflictError(val: Json): ConflictError;
+export declare function deserializeConflictError(val: any): ConflictError;
 export declare function serializeConflictError(val: ConflictError): Json;
 export type FileVersionsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeFileVersionsOrderFieldDirectionField(val: Json): FileVersionsOrderFieldDirectionField;
+export declare function deserializeFileVersionsOrderFieldDirectionField(val: any): FileVersionsOrderFieldDirectionField;
 export declare function serializeFileVersionsOrderFieldDirectionField(val: FileVersionsOrderFieldDirectionField): Json;
 export interface FileVersionsOrderField {
     readonly by?: string;
     readonly direction?: FileVersionsOrderFieldDirectionField;
 }
-export declare function deserializeFileVersionsOrderField(val: Json): FileVersionsOrderField;
+export declare function deserializeFileVersionsOrderField(val: any): FileVersionsOrderField;
 export declare function serializeFileVersionsOrderField(val: FileVersionsOrderField): Json;
 export type FileVersionLegalHoldTypeField = "file_version_legal_hold";
-export declare function deserializeFileVersionLegalHoldTypeField(val: Json): FileVersionLegalHoldTypeField;
+export declare function deserializeFileVersionLegalHoldTypeField(val: any): FileVersionLegalHoldTypeField;
 export declare function serializeFileVersionLegalHoldTypeField(val: FileVersionLegalHoldTypeField): Json;
 export type FileVersionRetentionTypeField = "file_version_retention";
-export declare function deserializeFileVersionRetentionTypeField(val: Json): FileVersionRetentionTypeField;
+export declare function deserializeFileVersionRetentionTypeField(val: any): FileVersionRetentionTypeField;
 export declare function serializeFileVersionRetentionTypeField(val: FileVersionRetentionTypeField): Json;
 export type FolderSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export declare function deserializeFolderSharedLinkFieldAccessField(val: Json): FolderSharedLinkFieldAccessField;
+export declare function deserializeFolderSharedLinkFieldAccessField(val: any): FolderSharedLinkFieldAccessField;
 export declare function serializeFolderSharedLinkFieldAccessField(val: FolderSharedLinkFieldAccessField): Json;
 export type FolderSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export declare function deserializeFolderSharedLinkFieldEffectiveAccessField(val: Json): FolderSharedLinkFieldEffectiveAccessField;
+export declare function deserializeFolderSharedLinkFieldEffectiveAccessField(val: any): FolderSharedLinkFieldEffectiveAccessField;
 export declare function serializeFolderSharedLinkFieldEffectiveAccessField(val: FolderSharedLinkFieldEffectiveAccessField): Json;
 export type FolderSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export declare function deserializeFolderSharedLinkFieldEffectivePermissionField(val: Json): FolderSharedLinkFieldEffectivePermissionField;
+export declare function deserializeFolderSharedLinkFieldEffectivePermissionField(val: any): FolderSharedLinkFieldEffectivePermissionField;
 export declare function serializeFolderSharedLinkFieldEffectivePermissionField(val: FolderSharedLinkFieldEffectivePermissionField): Json;
 export interface FolderSharedLinkFieldPermissionsField {
     readonly canDownload: boolean;
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export declare function deserializeFolderSharedLinkFieldPermissionsField(val: Json): FolderSharedLinkFieldPermissionsField;
+export declare function deserializeFolderSharedLinkFieldPermissionsField(val: any): FolderSharedLinkFieldPermissionsField;
 export declare function serializeFolderSharedLinkFieldPermissionsField(val: FolderSharedLinkFieldPermissionsField): Json;
 export interface FolderSharedLinkField {
     readonly url: string;
@@ -767,22 +767,22 @@ export interface FolderSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export declare function deserializeFolderSharedLinkField(val: Json): FolderSharedLinkField;
+export declare function deserializeFolderSharedLinkField(val: any): FolderSharedLinkField;
 export declare function serializeFolderSharedLinkField(val: FolderSharedLinkField): Json;
 export type FolderFolderUploadEmailFieldAccessField = "open" | "collaborators";
-export declare function deserializeFolderFolderUploadEmailFieldAccessField(val: Json): FolderFolderUploadEmailFieldAccessField;
+export declare function deserializeFolderFolderUploadEmailFieldAccessField(val: any): FolderFolderUploadEmailFieldAccessField;
 export declare function serializeFolderFolderUploadEmailFieldAccessField(val: FolderFolderUploadEmailFieldAccessField): Json;
 export interface FolderFolderUploadEmailField {
     readonly access?: FolderFolderUploadEmailFieldAccessField;
     readonly email?: string;
 }
-export declare function deserializeFolderFolderUploadEmailField(val: Json): FolderFolderUploadEmailField;
+export declare function deserializeFolderFolderUploadEmailField(val: any): FolderFolderUploadEmailField;
 export declare function serializeFolderFolderUploadEmailField(val: FolderFolderUploadEmailField): Json;
 export type FolderItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeFolderItemStatusField(val: Json): FolderItemStatusField;
+export declare function deserializeFolderItemStatusField(val: any): FolderItemStatusField;
 export declare function serializeFolderItemStatusField(val: FolderItemStatusField): Json;
 export type FolderFullSyncStateField = "synced" | "not_synced" | "partially_synced";
-export declare function deserializeFolderFullSyncStateField(val: Json): FolderFullSyncStateField;
+export declare function deserializeFolderFullSyncStateField(val: any): FolderFullSyncStateField;
 export declare function serializeFolderFullSyncStateField(val: FolderFullSyncStateField): Json;
 export interface FolderFullPermissionsField {
     readonly canDelete: boolean;
@@ -793,39 +793,39 @@ export interface FolderFullPermissionsField {
     readonly canShare: boolean;
     readonly canUpload?: boolean;
 }
-export declare function deserializeFolderFullPermissionsField(val: Json): FolderFullPermissionsField;
+export declare function deserializeFolderFullPermissionsField(val: any): FolderFullPermissionsField;
 export declare function serializeFolderFullPermissionsField(val: FolderFullPermissionsField): Json;
 export interface FolderFullMetadataField {
 }
-export declare function deserializeFolderFullMetadataField(val: Json): FolderFullMetadataField;
+export declare function deserializeFolderFullMetadataField(val: any): FolderFullMetadataField;
 export declare function serializeFolderFullMetadataField(val: FolderFullMetadataField): Json;
 export type FolderFullAllowedSharedLinkAccessLevelsField = "open" | "company" | "collaborators";
-export declare function deserializeFolderFullAllowedSharedLinkAccessLevelsField(val: Json): FolderFullAllowedSharedLinkAccessLevelsField;
+export declare function deserializeFolderFullAllowedSharedLinkAccessLevelsField(val: any): FolderFullAllowedSharedLinkAccessLevelsField;
 export declare function serializeFolderFullAllowedSharedLinkAccessLevelsField(val: FolderFullAllowedSharedLinkAccessLevelsField): Json;
 export type FolderFullAllowedInviteeRolesField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner";
-export declare function deserializeFolderFullAllowedInviteeRolesField(val: Json): FolderFullAllowedInviteeRolesField;
+export declare function deserializeFolderFullAllowedInviteeRolesField(val: any): FolderFullAllowedInviteeRolesField;
 export declare function serializeFolderFullAllowedInviteeRolesField(val: FolderFullAllowedInviteeRolesField): Json;
 export interface FolderFullWatermarkInfoField {
     readonly isWatermarked?: boolean;
 }
-export declare function deserializeFolderFullWatermarkInfoField(val: Json): FolderFullWatermarkInfoField;
+export declare function deserializeFolderFullWatermarkInfoField(val: any): FolderFullWatermarkInfoField;
 export declare function serializeFolderFullWatermarkInfoField(val: FolderFullWatermarkInfoField): Json;
 export interface FolderFullClassificationField {
     readonly name?: string;
     readonly definition?: string;
     readonly color?: string;
 }
-export declare function deserializeFolderFullClassificationField(val: Json): FolderFullClassificationField;
+export declare function deserializeFolderFullClassificationField(val: any): FolderFullClassificationField;
 export declare function serializeFolderFullClassificationField(val: FolderFullClassificationField): Json;
 export type FolderBaseTypeField = "folder";
-export declare function deserializeFolderBaseTypeField(val: Json): FolderBaseTypeField;
+export declare function deserializeFolderBaseTypeField(val: any): FolderBaseTypeField;
 export declare function serializeFolderBaseTypeField(val: FolderBaseTypeField): Json;
 export interface FolderBase {
     readonly id: string;
     readonly etag?: string;
     readonly type: FolderBaseTypeField;
 }
-export declare function deserializeFolderBase(val: Json): FolderBase;
+export declare function deserializeFolderBase(val: any): FolderBase;
 export declare function serializeFolderBase(val: FolderBase): Json;
 export type FolderMini = FolderBase & {
     /**
@@ -847,83 +847,83 @@ export type FolderMini = FolderBase & {
      * fetched resource. */
     readonly sequenceId?: string;
 };
-export declare function deserializeFolderMini(val: Json): FolderMini;
+export declare function deserializeFolderMini(val: any): FolderMini;
 export declare function serializeFolderMini(val: FolderMini): Json;
 export interface WebLinkPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeWebLinkPathCollectionField(val: Json): WebLinkPathCollectionField;
+export declare function deserializeWebLinkPathCollectionField(val: any): WebLinkPathCollectionField;
 export declare function serializeWebLinkPathCollectionField(val: WebLinkPathCollectionField): Json;
 export interface TrashWebLinkRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeTrashWebLinkRestoredPathCollectionField(val: Json): TrashWebLinkRestoredPathCollectionField;
+export declare function deserializeTrashWebLinkRestoredPathCollectionField(val: any): TrashWebLinkRestoredPathCollectionField;
 export declare function serializeTrashWebLinkRestoredPathCollectionField(val: TrashWebLinkRestoredPathCollectionField): Json;
 export interface TrashFolderRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeTrashFolderRestoredPathCollectionField(val: Json): TrashFolderRestoredPathCollectionField;
+export declare function deserializeTrashFolderRestoredPathCollectionField(val: any): TrashFolderRestoredPathCollectionField;
 export declare function serializeTrashFolderRestoredPathCollectionField(val: TrashFolderRestoredPathCollectionField): Json;
 export interface TrashFileRestoredPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeTrashFileRestoredPathCollectionField(val: Json): TrashFileRestoredPathCollectionField;
+export declare function deserializeTrashFileRestoredPathCollectionField(val: any): TrashFileRestoredPathCollectionField;
 export declare function serializeTrashFileRestoredPathCollectionField(val: TrashFileRestoredPathCollectionField): Json;
 export interface FolderPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeFolderPathCollectionField(val: Json): FolderPathCollectionField;
+export declare function deserializeFolderPathCollectionField(val: any): FolderPathCollectionField;
 export declare function serializeFolderPathCollectionField(val: FolderPathCollectionField): Json;
 export interface FilePathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly FolderMini[];
 }
-export declare function deserializeFilePathCollectionField(val: Json): FilePathCollectionField;
+export declare function deserializeFilePathCollectionField(val: any): FilePathCollectionField;
 export declare function serializeFilePathCollectionField(val: FilePathCollectionField): Json;
 export interface FolderLockLockedOperationsField {
     readonly move: boolean;
     readonly delete: boolean;
 }
-export declare function deserializeFolderLockLockedOperationsField(val: Json): FolderLockLockedOperationsField;
+export declare function deserializeFolderLockLockedOperationsField(val: any): FolderLockLockedOperationsField;
 export declare function serializeFolderLockLockedOperationsField(val: FolderLockLockedOperationsField): Json;
 export type IntegrationMappingTypeField = "integration_mapping";
-export declare function deserializeIntegrationMappingTypeField(val: Json): IntegrationMappingTypeField;
+export declare function deserializeIntegrationMappingTypeField(val: any): IntegrationMappingTypeField;
 export declare function serializeIntegrationMappingTypeField(val: IntegrationMappingTypeField): Json;
 export interface IntegrationMappingBoxItemField {
 }
-export declare function deserializeIntegrationMappingBoxItemField(val: Json): IntegrationMappingBoxItemField;
+export declare function deserializeIntegrationMappingBoxItemField(val: any): IntegrationMappingBoxItemField;
 export declare function serializeIntegrationMappingBoxItemField(val: IntegrationMappingBoxItemField): Json;
 export interface IntegrationMappingOptionsField {
 }
-export declare function deserializeIntegrationMappingOptionsField(val: Json): IntegrationMappingOptionsField;
+export declare function deserializeIntegrationMappingOptionsField(val: any): IntegrationMappingOptionsField;
 export declare function serializeIntegrationMappingOptionsField(val: IntegrationMappingOptionsField): Json;
 export interface IntegrationMappingCreatedByField {
 }
-export declare function deserializeIntegrationMappingCreatedByField(val: Json): IntegrationMappingCreatedByField;
+export declare function deserializeIntegrationMappingCreatedByField(val: any): IntegrationMappingCreatedByField;
 export declare function serializeIntegrationMappingCreatedByField(val: IntegrationMappingCreatedByField): Json;
 export interface IntegrationMappingModifiedByField {
 }
-export declare function deserializeIntegrationMappingModifiedByField(val: Json): IntegrationMappingModifiedByField;
+export declare function deserializeIntegrationMappingModifiedByField(val: any): IntegrationMappingModifiedByField;
 export declare function serializeIntegrationMappingModifiedByField(val: IntegrationMappingModifiedByField): Json;
 export type IntegrationMappingBaseIntegrationTypeField = "slack";
-export declare function deserializeIntegrationMappingBaseIntegrationTypeField(val: Json): IntegrationMappingBaseIntegrationTypeField;
+export declare function deserializeIntegrationMappingBaseIntegrationTypeField(val: any): IntegrationMappingBaseIntegrationTypeField;
 export declare function serializeIntegrationMappingBaseIntegrationTypeField(val: IntegrationMappingBaseIntegrationTypeField): Json;
 export interface IntegrationMappingBase {
     readonly id?: string;
     readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
 }
-export declare function deserializeIntegrationMappingBase(val: Json): IntegrationMappingBase;
+export declare function deserializeIntegrationMappingBase(val: any): IntegrationMappingBase;
 export declare function serializeIntegrationMappingBase(val: IntegrationMappingBase): Json;
 export type IntegrationMappingMiniPartnerItemTypeField = "channel";
-export declare function deserializeIntegrationMappingMiniPartnerItemTypeField(val: Json): IntegrationMappingMiniPartnerItemTypeField;
+export declare function deserializeIntegrationMappingMiniPartnerItemTypeField(val: any): IntegrationMappingMiniPartnerItemTypeField;
 export declare function serializeIntegrationMappingMiniPartnerItemTypeField(val: IntegrationMappingMiniPartnerItemTypeField): Json;
 export type IntegrationMappingMiniBoxItemTypeField = "folder";
-export declare function deserializeIntegrationMappingMiniBoxItemTypeField(val: Json): IntegrationMappingMiniBoxItemTypeField;
+export declare function deserializeIntegrationMappingMiniBoxItemTypeField(val: any): IntegrationMappingMiniBoxItemTypeField;
 export declare function serializeIntegrationMappingMiniBoxItemTypeField(val: IntegrationMappingMiniBoxItemTypeField): Json;
 export type IntegrationMappingMini = IntegrationMappingBase & {
     /**
@@ -939,39 +939,39 @@ export type IntegrationMappingMini = IntegrationMappingBase & {
      * Type of the Box object referenced in `box_item_id` */
     readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
 };
-export declare function deserializeIntegrationMappingMini(val: Json): IntegrationMappingMini;
+export declare function deserializeIntegrationMappingMini(val: any): IntegrationMappingMini;
 export declare function serializeIntegrationMappingMini(val: IntegrationMappingMini): Json;
 export type GroupsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeGroupsOrderFieldDirectionField(val: Json): GroupsOrderFieldDirectionField;
+export declare function deserializeGroupsOrderFieldDirectionField(val: any): GroupsOrderFieldDirectionField;
 export declare function serializeGroupsOrderFieldDirectionField(val: GroupsOrderFieldDirectionField): Json;
 export interface GroupsOrderField {
     readonly by?: string;
     readonly direction?: GroupsOrderFieldDirectionField;
 }
-export declare function deserializeGroupsOrderField(val: Json): GroupsOrderField;
+export declare function deserializeGroupsOrderField(val: any): GroupsOrderField;
 export declare function serializeGroupsOrderField(val: GroupsOrderField): Json;
 export type GroupBaseTypeField = "group";
-export declare function deserializeGroupBaseTypeField(val: Json): GroupBaseTypeField;
+export declare function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField;
 export declare function serializeGroupBaseTypeField(val: GroupBaseTypeField): Json;
 export interface GroupBase {
     readonly id?: string;
     readonly type?: GroupBaseTypeField;
 }
-export declare function deserializeGroupBase(val: Json): GroupBase;
+export declare function deserializeGroupBase(val: any): GroupBase;
 export declare function serializeGroupBase(val: GroupBase): Json;
 export type GroupFullInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export declare function deserializeGroupFullInvitabilityLevelField(val: Json): GroupFullInvitabilityLevelField;
+export declare function deserializeGroupFullInvitabilityLevelField(val: any): GroupFullInvitabilityLevelField;
 export declare function serializeGroupFullInvitabilityLevelField(val: GroupFullInvitabilityLevelField): Json;
 export type GroupFullMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
-export declare function deserializeGroupFullMemberViewabilityLevelField(val: Json): GroupFullMemberViewabilityLevelField;
+export declare function deserializeGroupFullMemberViewabilityLevelField(val: any): GroupFullMemberViewabilityLevelField;
 export declare function serializeGroupFullMemberViewabilityLevelField(val: GroupFullMemberViewabilityLevelField): Json;
 export interface GroupFullPermissionsField {
     readonly canInviteAsCollaborator?: boolean;
 }
-export declare function deserializeGroupFullPermissionsField(val: Json): GroupFullPermissionsField;
+export declare function deserializeGroupFullPermissionsField(val: any): GroupFullPermissionsField;
 export declare function serializeGroupFullPermissionsField(val: GroupFullPermissionsField): Json;
 export type GroupMiniGroupTypeField = "managed_group" | "all_users_group";
-export declare function deserializeGroupMiniGroupTypeField(val: Json): GroupMiniGroupTypeField;
+export declare function deserializeGroupMiniGroupTypeField(val: any): GroupMiniGroupTypeField;
 export declare function serializeGroupMiniGroupTypeField(val: GroupMiniGroupTypeField): Json;
 export type GroupMini = GroupBase & {
     /**
@@ -981,7 +981,7 @@ export type GroupMini = GroupBase & {
      * The type of the group. */
     readonly groupType?: GroupMiniGroupTypeField;
 };
-export declare function deserializeGroupMini(val: Json): GroupMini;
+export declare function deserializeGroupMini(val: any): GroupMini;
 export declare function serializeGroupMini(val: GroupMini): Json;
 export interface Groups {
     readonly totalCount?: number;
@@ -990,7 +990,7 @@ export interface Groups {
     readonly order?: readonly GroupsOrderField[];
     readonly entries?: readonly GroupMini[];
 }
-export declare function deserializeGroups(val: Json): Groups;
+export declare function deserializeGroups(val: any): Groups;
 export declare function serializeGroups(val: Groups): Json;
 export type Group = GroupMini & {
     /**
@@ -1000,7 +1000,7 @@ export type Group = GroupMini & {
      * When the group object was last modified */
     readonly modifiedAt?: string;
 };
-export declare function deserializeGroup(val: Json): Group;
+export declare function deserializeGroup(val: any): Group;
 export declare function serializeGroup(val: Group): Json;
 export type GroupFull = Group & {
     /**
@@ -1048,47 +1048,47 @@ export type GroupFull = Group & {
     readonly memberViewabilityLevel?: GroupFullMemberViewabilityLevelField;
     readonly permissions?: GroupFullPermissionsField;
 };
-export declare function deserializeGroupFull(val: Json): GroupFull;
+export declare function deserializeGroupFull(val: any): GroupFull;
 export declare function serializeGroupFull(val: GroupFull): Json;
 export type GroupMembershipTypeField = "group_membership";
-export declare function deserializeGroupMembershipTypeField(val: Json): GroupMembershipTypeField;
+export declare function deserializeGroupMembershipTypeField(val: any): GroupMembershipTypeField;
 export declare function serializeGroupMembershipTypeField(val: GroupMembershipTypeField): Json;
 export type GroupMembershipRoleField = "member" | "admin";
-export declare function deserializeGroupMembershipRoleField(val: Json): GroupMembershipRoleField;
+export declare function deserializeGroupMembershipRoleField(val: any): GroupMembershipRoleField;
 export declare function serializeGroupMembershipRoleField(val: GroupMembershipRoleField): Json;
 export type GroupMembershipsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeGroupMembershipsOrderFieldDirectionField(val: Json): GroupMembershipsOrderFieldDirectionField;
+export declare function deserializeGroupMembershipsOrderFieldDirectionField(val: any): GroupMembershipsOrderFieldDirectionField;
 export declare function serializeGroupMembershipsOrderFieldDirectionField(val: GroupMembershipsOrderFieldDirectionField): Json;
 export interface GroupMembershipsOrderField {
     readonly by?: string;
     readonly direction?: GroupMembershipsOrderFieldDirectionField;
 }
-export declare function deserializeGroupMembershipsOrderField(val: Json): GroupMembershipsOrderField;
+export declare function deserializeGroupMembershipsOrderField(val: any): GroupMembershipsOrderField;
 export declare function serializeGroupMembershipsOrderField(val: GroupMembershipsOrderField): Json;
 export type InviteTypeField = "invite";
-export declare function deserializeInviteTypeField(val: Json): InviteTypeField;
+export declare function deserializeInviteTypeField(val: any): InviteTypeField;
 export declare function serializeInviteTypeField(val: InviteTypeField): Json;
 export type InviteInvitedToFieldTypeField = "enterprise";
-export declare function deserializeInviteInvitedToFieldTypeField(val: Json): InviteInvitedToFieldTypeField;
+export declare function deserializeInviteInvitedToFieldTypeField(val: any): InviteInvitedToFieldTypeField;
 export declare function serializeInviteInvitedToFieldTypeField(val: InviteInvitedToFieldTypeField): Json;
 export interface InviteInvitedToField {
     readonly id?: string;
     readonly type?: InviteInvitedToFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeInviteInvitedToField(val: Json): InviteInvitedToField;
+export declare function deserializeInviteInvitedToField(val: any): InviteInvitedToField;
 export declare function serializeInviteInvitedToField(val: InviteInvitedToField): Json;
 export type ItemsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeItemsOrderFieldDirectionField(val: Json): ItemsOrderFieldDirectionField;
+export declare function deserializeItemsOrderFieldDirectionField(val: any): ItemsOrderFieldDirectionField;
 export declare function serializeItemsOrderFieldDirectionField(val: ItemsOrderFieldDirectionField): Json;
 export interface ItemsOrderField {
     readonly by?: string;
     readonly direction?: ItemsOrderFieldDirectionField;
 }
-export declare function deserializeItemsOrderField(val: Json): ItemsOrderField;
+export declare function deserializeItemsOrderField(val: any): ItemsOrderField;
 export declare function serializeItemsOrderField(val: ItemsOrderField): Json;
 export type LegalHoldPolicyStatusField = "active" | "applying" | "releasing" | "released";
-export declare function deserializeLegalHoldPolicyStatusField(val: Json): LegalHoldPolicyStatusField;
+export declare function deserializeLegalHoldPolicyStatusField(val: any): LegalHoldPolicyStatusField;
 export declare function serializeLegalHoldPolicyStatusField(val: LegalHoldPolicyStatusField): Json;
 export interface LegalHoldPolicyAssignmentCountsField {
     readonly user?: number;
@@ -1096,25 +1096,25 @@ export interface LegalHoldPolicyAssignmentCountsField {
     readonly file?: number;
     readonly fileVersion?: number;
 }
-export declare function deserializeLegalHoldPolicyAssignmentCountsField(val: Json): LegalHoldPolicyAssignmentCountsField;
+export declare function deserializeLegalHoldPolicyAssignmentCountsField(val: any): LegalHoldPolicyAssignmentCountsField;
 export declare function serializeLegalHoldPolicyAssignmentCountsField(val: LegalHoldPolicyAssignmentCountsField): Json;
 export type LegalHoldPolicyMiniTypeField = "legal_hold_policy";
-export declare function deserializeLegalHoldPolicyMiniTypeField(val: Json): LegalHoldPolicyMiniTypeField;
+export declare function deserializeLegalHoldPolicyMiniTypeField(val: any): LegalHoldPolicyMiniTypeField;
 export declare function serializeLegalHoldPolicyMiniTypeField(val: LegalHoldPolicyMiniTypeField): Json;
 export interface LegalHoldPolicyMini {
     readonly id?: string;
     readonly type?: LegalHoldPolicyMiniTypeField;
 }
-export declare function deserializeLegalHoldPolicyMini(val: Json): LegalHoldPolicyMini;
+export declare function deserializeLegalHoldPolicyMini(val: any): LegalHoldPolicyMini;
 export declare function serializeLegalHoldPolicyMini(val: LegalHoldPolicyMini): Json;
 export type LegalHoldPolicyAssignmentBaseTypeField = "legal_hold_policy_assignment";
-export declare function deserializeLegalHoldPolicyAssignmentBaseTypeField(val: Json): LegalHoldPolicyAssignmentBaseTypeField;
+export declare function deserializeLegalHoldPolicyAssignmentBaseTypeField(val: any): LegalHoldPolicyAssignmentBaseTypeField;
 export declare function serializeLegalHoldPolicyAssignmentBaseTypeField(val: LegalHoldPolicyAssignmentBaseTypeField): Json;
 export interface LegalHoldPolicyAssignmentBase {
     readonly id?: string;
     readonly type?: LegalHoldPolicyAssignmentBaseTypeField;
 }
-export declare function deserializeLegalHoldPolicyAssignmentBase(val: Json): LegalHoldPolicyAssignmentBase;
+export declare function deserializeLegalHoldPolicyAssignmentBase(val: any): LegalHoldPolicyAssignmentBase;
 export declare function serializeLegalHoldPolicyAssignmentBase(val: LegalHoldPolicyAssignmentBase): Json;
 export interface LegalHoldPolicyAssignments {
     readonly limit?: number;
@@ -1122,17 +1122,17 @@ export interface LegalHoldPolicyAssignments {
     readonly prevMarker?: number;
     readonly entries?: readonly LegalHoldPolicyAssignmentBase[];
 }
-export declare function deserializeLegalHoldPolicyAssignments(val: Json): LegalHoldPolicyAssignments;
+export declare function deserializeLegalHoldPolicyAssignments(val: any): LegalHoldPolicyAssignments;
 export declare function serializeLegalHoldPolicyAssignments(val: LegalHoldPolicyAssignments): Json;
 export interface Metadata {
 }
-export declare function deserializeMetadata(val: Json): Metadata;
+export declare function deserializeMetadata(val: any): Metadata;
 export declare function serializeMetadata(val: Metadata): Json;
 export interface Metadatas {
     readonly entries?: readonly Metadata[];
     readonly limit?: number;
 }
-export declare function deserializeMetadatas(val: Json): Metadatas;
+export declare function deserializeMetadatas(val: any): Metadatas;
 export declare function serializeMetadatas(val: Metadatas): Json;
 export type MetadataFull = Metadata & {
     /**
@@ -1152,7 +1152,7 @@ export type MetadataFull = Metadata & {
      * application. */
     readonly typeVersion?: number;
 };
-export declare function deserializeMetadataFull(val: Json): MetadataFull;
+export declare function deserializeMetadataFull(val: any): MetadataFull;
 export declare function serializeMetadataFull(val: MetadataFull): Json;
 export interface MetadataBase {
     readonly parent?: string;
@@ -1160,31 +1160,31 @@ export interface MetadataBase {
     readonly scope?: string;
     readonly version?: number;
 }
-export declare function deserializeMetadataBase(val: Json): MetadataBase;
+export declare function deserializeMetadataBase(val: any): MetadataBase;
 export declare function serializeMetadataBase(val: MetadataBase): Json;
 export type MetadataCascadePolicyTypeField = "metadata_cascade_policy";
-export declare function deserializeMetadataCascadePolicyTypeField(val: Json): MetadataCascadePolicyTypeField;
+export declare function deserializeMetadataCascadePolicyTypeField(val: any): MetadataCascadePolicyTypeField;
 export declare function serializeMetadataCascadePolicyTypeField(val: MetadataCascadePolicyTypeField): Json;
 export type MetadataCascadePolicyOwnerEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: Json): MetadataCascadePolicyOwnerEnterpriseFieldTypeField;
+export declare function deserializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: any): MetadataCascadePolicyOwnerEnterpriseFieldTypeField;
 export declare function serializeMetadataCascadePolicyOwnerEnterpriseFieldTypeField(val: MetadataCascadePolicyOwnerEnterpriseFieldTypeField): Json;
 export interface MetadataCascadePolicyOwnerEnterpriseField {
     readonly type?: MetadataCascadePolicyOwnerEnterpriseFieldTypeField;
     readonly id?: string;
 }
-export declare function deserializeMetadataCascadePolicyOwnerEnterpriseField(val: Json): MetadataCascadePolicyOwnerEnterpriseField;
+export declare function deserializeMetadataCascadePolicyOwnerEnterpriseField(val: any): MetadataCascadePolicyOwnerEnterpriseField;
 export declare function serializeMetadataCascadePolicyOwnerEnterpriseField(val: MetadataCascadePolicyOwnerEnterpriseField): Json;
 export type MetadataCascadePolicyParentFieldTypeField = "folder";
-export declare function deserializeMetadataCascadePolicyParentFieldTypeField(val: Json): MetadataCascadePolicyParentFieldTypeField;
+export declare function deserializeMetadataCascadePolicyParentFieldTypeField(val: any): MetadataCascadePolicyParentFieldTypeField;
 export declare function serializeMetadataCascadePolicyParentFieldTypeField(val: MetadataCascadePolicyParentFieldTypeField): Json;
 export interface MetadataCascadePolicyParentField {
     readonly type?: MetadataCascadePolicyParentFieldTypeField;
     readonly id?: string;
 }
-export declare function deserializeMetadataCascadePolicyParentField(val: Json): MetadataCascadePolicyParentField;
+export declare function deserializeMetadataCascadePolicyParentField(val: any): MetadataCascadePolicyParentField;
 export declare function serializeMetadataCascadePolicyParentField(val: MetadataCascadePolicyParentField): Json;
 export type MetadataCascadePolicyScopeField = "global" | "enterprise_*";
-export declare function deserializeMetadataCascadePolicyScopeField(val: Json): MetadataCascadePolicyScopeField;
+export declare function deserializeMetadataCascadePolicyScopeField(val: any): MetadataCascadePolicyScopeField;
 export declare function serializeMetadataCascadePolicyScopeField(val: MetadataCascadePolicyScopeField): Json;
 export interface MetadataCascadePolicy {
     readonly id?: string;
@@ -1194,7 +1194,7 @@ export interface MetadataCascadePolicy {
     readonly scope?: MetadataCascadePolicyScopeField;
     readonly templateKey?: string;
 }
-export declare function deserializeMetadataCascadePolicy(val: Json): MetadataCascadePolicy;
+export declare function deserializeMetadataCascadePolicy(val: any): MetadataCascadePolicy;
 export declare function serializeMetadataCascadePolicy(val: MetadataCascadePolicy): Json;
 export interface MetadataCascadePolicies {
     readonly limit?: number;
@@ -1202,19 +1202,19 @@ export interface MetadataCascadePolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly MetadataCascadePolicy[];
 }
-export declare function deserializeMetadataCascadePolicies(val: Json): MetadataCascadePolicies;
+export declare function deserializeMetadataCascadePolicies(val: any): MetadataCascadePolicies;
 export declare function serializeMetadataCascadePolicies(val: MetadataCascadePolicies): Json;
 export type MetadataQueryIndexStatusField = "building" | "active" | "disabled";
-export declare function deserializeMetadataQueryIndexStatusField(val: Json): MetadataQueryIndexStatusField;
+export declare function deserializeMetadataQueryIndexStatusField(val: any): MetadataQueryIndexStatusField;
 export declare function serializeMetadataQueryIndexStatusField(val: MetadataQueryIndexStatusField): Json;
 export type MetadataQueryIndexFieldsFieldSortDirectionField = "asc" | "desc";
-export declare function deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val: Json): MetadataQueryIndexFieldsFieldSortDirectionField;
+export declare function deserializeMetadataQueryIndexFieldsFieldSortDirectionField(val: any): MetadataQueryIndexFieldsFieldSortDirectionField;
 export declare function serializeMetadataQueryIndexFieldsFieldSortDirectionField(val: MetadataQueryIndexFieldsFieldSortDirectionField): Json;
 export interface MetadataQueryIndexFieldsField {
     readonly key?: string;
     readonly sortDirection?: MetadataQueryIndexFieldsFieldSortDirectionField;
 }
-export declare function deserializeMetadataQueryIndexFieldsField(val: Json): MetadataQueryIndexFieldsField;
+export declare function deserializeMetadataQueryIndexFieldsField(val: any): MetadataQueryIndexFieldsField;
 export declare function serializeMetadataQueryIndexFieldsField(val: MetadataQueryIndexFieldsField): Json;
 export interface MetadataQueryIndex {
     readonly id?: string;
@@ -1222,26 +1222,26 @@ export interface MetadataQueryIndex {
     readonly status: MetadataQueryIndexStatusField;
     readonly fields?: readonly MetadataQueryIndexFieldsField[];
 }
-export declare function deserializeMetadataQueryIndex(val: Json): MetadataQueryIndex;
+export declare function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex;
 export declare function serializeMetadataQueryIndex(val: MetadataQueryIndex): Json;
 export interface MetadataQueryIndices {
     readonly entries?: readonly MetadataQueryIndex[];
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export declare function deserializeMetadataQueryIndices(val: Json): MetadataQueryIndices;
+export declare function deserializeMetadataQueryIndices(val: any): MetadataQueryIndices;
 export declare function serializeMetadataQueryIndices(val: MetadataQueryIndices): Json;
 export type MetadataTemplateTypeField = "metadata_template";
-export declare function deserializeMetadataTemplateTypeField(val: Json): MetadataTemplateTypeField;
+export declare function deserializeMetadataTemplateTypeField(val: any): MetadataTemplateTypeField;
 export declare function serializeMetadataTemplateTypeField(val: MetadataTemplateTypeField): Json;
 export type MetadataTemplateFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
-export declare function deserializeMetadataTemplateFieldsFieldTypeField(val: Json): MetadataTemplateFieldsFieldTypeField;
+export declare function deserializeMetadataTemplateFieldsFieldTypeField(val: any): MetadataTemplateFieldsFieldTypeField;
 export declare function serializeMetadataTemplateFieldsFieldTypeField(val: MetadataTemplateFieldsFieldTypeField): Json;
 export interface MetadataTemplateFieldsFieldOptionsField {
     readonly key: string;
     readonly id?: string;
 }
-export declare function deserializeMetadataTemplateFieldsFieldOptionsField(val: Json): MetadataTemplateFieldsFieldOptionsField;
+export declare function deserializeMetadataTemplateFieldsFieldOptionsField(val: any): MetadataTemplateFieldsFieldOptionsField;
 export declare function serializeMetadataTemplateFieldsFieldOptionsField(val: MetadataTemplateFieldsFieldOptionsField): Json;
 export interface MetadataTemplateFieldsField {
     readonly type: MetadataTemplateFieldsFieldTypeField;
@@ -1252,7 +1252,7 @@ export interface MetadataTemplateFieldsField {
     readonly options?: readonly MetadataTemplateFieldsFieldOptionsField[];
     readonly id?: string;
 }
-export declare function deserializeMetadataTemplateFieldsField(val: Json): MetadataTemplateFieldsField;
+export declare function deserializeMetadataTemplateFieldsField(val: any): MetadataTemplateFieldsField;
 export declare function serializeMetadataTemplateFieldsField(val: MetadataTemplateFieldsField): Json;
 export interface MetadataTemplate {
     readonly id?: string;
@@ -1264,7 +1264,7 @@ export interface MetadataTemplate {
     readonly fields?: readonly MetadataTemplateFieldsField[];
     readonly copyInstanceOnItemCopy?: boolean;
 }
-export declare function deserializeMetadataTemplate(val: Json): MetadataTemplate;
+export declare function deserializeMetadataTemplate(val: any): MetadataTemplate;
 export declare function serializeMetadataTemplate(val: MetadataTemplate): Json;
 export interface MetadataTemplates {
     readonly limit?: number;
@@ -1272,7 +1272,7 @@ export interface MetadataTemplates {
     readonly prevMarker?: number;
     readonly entries?: readonly MetadataTemplate[];
 }
-export declare function deserializeMetadataTemplates(val: Json): MetadataTemplates;
+export declare function deserializeMetadataTemplates(val: any): MetadataTemplates;
 export declare function serializeMetadataTemplates(val: MetadataTemplates): Json;
 export interface RealtimeServer {
     readonly type?: string;
@@ -1281,44 +1281,44 @@ export interface RealtimeServer {
     readonly maxRetries?: number;
     readonly retryTimeout?: number;
 }
-export declare function deserializeRealtimeServer(val: Json): RealtimeServer;
+export declare function deserializeRealtimeServer(val: any): RealtimeServer;
 export declare function serializeRealtimeServer(val: RealtimeServer): Json;
 export interface RealtimeServers {
     readonly chunkSize?: number;
     readonly entries?: readonly RealtimeServer[];
 }
-export declare function deserializeRealtimeServers(val: Json): RealtimeServers;
+export declare function deserializeRealtimeServers(val: any): RealtimeServers;
 export declare function serializeRealtimeServers(val: RealtimeServers): Json;
 export type RecentItemInteractionTypeField = "item_preview" | "item_upload" | "item_comment" | "item_open" | "item_modify";
-export declare function deserializeRecentItemInteractionTypeField(val: Json): RecentItemInteractionTypeField;
+export declare function deserializeRecentItemInteractionTypeField(val: any): RecentItemInteractionTypeField;
 export declare function serializeRecentItemInteractionTypeField(val: RecentItemInteractionTypeField): Json;
 export type RetentionPolicyPolicyTypeField = "finite" | "indefinite";
-export declare function deserializeRetentionPolicyPolicyTypeField(val: Json): RetentionPolicyPolicyTypeField;
+export declare function deserializeRetentionPolicyPolicyTypeField(val: any): RetentionPolicyPolicyTypeField;
 export declare function serializeRetentionPolicyPolicyTypeField(val: RetentionPolicyPolicyTypeField): Json;
 export type RetentionPolicyRetentionTypeField = "modifiable" | "non-modifiable";
-export declare function deserializeRetentionPolicyRetentionTypeField(val: Json): RetentionPolicyRetentionTypeField;
+export declare function deserializeRetentionPolicyRetentionTypeField(val: any): RetentionPolicyRetentionTypeField;
 export declare function serializeRetentionPolicyRetentionTypeField(val: RetentionPolicyRetentionTypeField): Json;
 export type RetentionPolicyStatusField = "active" | "retired";
-export declare function deserializeRetentionPolicyStatusField(val: Json): RetentionPolicyStatusField;
+export declare function deserializeRetentionPolicyStatusField(val: any): RetentionPolicyStatusField;
 export declare function serializeRetentionPolicyStatusField(val: RetentionPolicyStatusField): Json;
 export interface RetentionPolicyAssignmentCountsField {
     readonly enterprise?: number;
     readonly folder?: number;
     readonly metadataTemplate?: number;
 }
-export declare function deserializeRetentionPolicyAssignmentCountsField(val: Json): RetentionPolicyAssignmentCountsField;
+export declare function deserializeRetentionPolicyAssignmentCountsField(val: any): RetentionPolicyAssignmentCountsField;
 export declare function serializeRetentionPolicyAssignmentCountsField(val: RetentionPolicyAssignmentCountsField): Json;
 export type RetentionPolicyMiniDispositionActionField = "permanently_delete" | "remove_retention";
-export declare function deserializeRetentionPolicyMiniDispositionActionField(val: Json): RetentionPolicyMiniDispositionActionField;
+export declare function deserializeRetentionPolicyMiniDispositionActionField(val: any): RetentionPolicyMiniDispositionActionField;
 export declare function serializeRetentionPolicyMiniDispositionActionField(val: RetentionPolicyMiniDispositionActionField): Json;
 export type RetentionPolicyBaseTypeField = "retention_policy";
-export declare function deserializeRetentionPolicyBaseTypeField(val: Json): RetentionPolicyBaseTypeField;
+export declare function deserializeRetentionPolicyBaseTypeField(val: any): RetentionPolicyBaseTypeField;
 export declare function serializeRetentionPolicyBaseTypeField(val: RetentionPolicyBaseTypeField): Json;
 export interface RetentionPolicyBase {
     readonly id: string;
     readonly type: RetentionPolicyBaseTypeField;
 }
-export declare function deserializeRetentionPolicyBase(val: Json): RetentionPolicyBase;
+export declare function deserializeRetentionPolicyBase(val: any): RetentionPolicyBase;
 export declare function serializeRetentionPolicyBase(val: RetentionPolicyBase): Json;
 export type RetentionPolicyMini = RetentionPolicyBase & {
     /**
@@ -1342,14 +1342,14 @@ export type RetentionPolicyMini = RetentionPolicyBase & {
      * once the retention policy has expired. */
     readonly dispositionAction?: RetentionPolicyMiniDispositionActionField;
 };
-export declare function deserializeRetentionPolicyMini(val: Json): RetentionPolicyMini;
+export declare function deserializeRetentionPolicyMini(val: any): RetentionPolicyMini;
 export declare function serializeRetentionPolicyMini(val: RetentionPolicyMini): Json;
 export interface RetentionPolicies {
     readonly entries?: readonly RetentionPolicyMini[];
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export declare function deserializeRetentionPolicies(val: Json): RetentionPolicies;
+export declare function deserializeRetentionPolicies(val: any): RetentionPolicies;
 export declare function serializeRetentionPolicies(val: RetentionPolicies): Json;
 export interface FileVersionRetention {
     readonly id?: string;
@@ -1360,7 +1360,7 @@ export interface FileVersionRetention {
     readonly dispositionAt?: string;
     readonly winningRetentionPolicy?: RetentionPolicyMini;
 }
-export declare function deserializeFileVersionRetention(val: Json): FileVersionRetention;
+export declare function deserializeFileVersionRetention(val: any): FileVersionRetention;
 export declare function serializeFileVersionRetention(val: FileVersionRetention): Json;
 export interface FileVersionRetentions {
     readonly limit?: number;
@@ -1368,129 +1368,129 @@ export interface FileVersionRetentions {
     readonly prevMarker?: number;
     readonly entries?: readonly FileVersionRetention[];
 }
-export declare function deserializeFileVersionRetentions(val: Json): FileVersionRetentions;
+export declare function deserializeFileVersionRetentions(val: any): FileVersionRetentions;
 export declare function serializeFileVersionRetentions(val: FileVersionRetentions): Json;
 export type RetentionPolicyAssignmentBaseTypeField = "retention_policy_assignment";
-export declare function deserializeRetentionPolicyAssignmentBaseTypeField(val: Json): RetentionPolicyAssignmentBaseTypeField;
+export declare function deserializeRetentionPolicyAssignmentBaseTypeField(val: any): RetentionPolicyAssignmentBaseTypeField;
 export declare function serializeRetentionPolicyAssignmentBaseTypeField(val: RetentionPolicyAssignmentBaseTypeField): Json;
 export interface RetentionPolicyAssignmentBase {
     readonly id: string;
     readonly type: RetentionPolicyAssignmentBaseTypeField;
 }
-export declare function deserializeRetentionPolicyAssignmentBase(val: Json): RetentionPolicyAssignmentBase;
+export declare function deserializeRetentionPolicyAssignmentBase(val: any): RetentionPolicyAssignmentBase;
 export declare function serializeRetentionPolicyAssignmentBase(val: RetentionPolicyAssignmentBase): Json;
 export interface RetentionPolicyAssignments {
     readonly entries?: readonly RetentionPolicyAssignmentBase[];
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export declare function deserializeRetentionPolicyAssignments(val: Json): RetentionPolicyAssignments;
+export declare function deserializeRetentionPolicyAssignments(val: any): RetentionPolicyAssignments;
 export declare function serializeRetentionPolicyAssignments(val: RetentionPolicyAssignments): Json;
 export type RetentionPolicyAssignmentTypeField = "retention_policy_assignment";
-export declare function deserializeRetentionPolicyAssignmentTypeField(val: Json): RetentionPolicyAssignmentTypeField;
+export declare function deserializeRetentionPolicyAssignmentTypeField(val: any): RetentionPolicyAssignmentTypeField;
 export declare function serializeRetentionPolicyAssignmentTypeField(val: RetentionPolicyAssignmentTypeField): Json;
 export type RetentionPolicyAssignmentAssignedToFieldTypeField = "folder" | "enterprise" | "metadata_template";
-export declare function deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: Json): RetentionPolicyAssignmentAssignedToFieldTypeField;
+export declare function deserializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: any): RetentionPolicyAssignmentAssignedToFieldTypeField;
 export declare function serializeRetentionPolicyAssignmentAssignedToFieldTypeField(val: RetentionPolicyAssignmentAssignedToFieldTypeField): Json;
 export interface RetentionPolicyAssignmentAssignedToField {
     readonly id?: string;
     readonly type?: RetentionPolicyAssignmentAssignedToFieldTypeField;
 }
-export declare function deserializeRetentionPolicyAssignmentAssignedToField(val: Json): RetentionPolicyAssignmentAssignedToField;
+export declare function deserializeRetentionPolicyAssignmentAssignedToField(val: any): RetentionPolicyAssignmentAssignedToField;
 export declare function serializeRetentionPolicyAssignmentAssignedToField(val: RetentionPolicyAssignmentAssignedToField): Json;
 export interface RetentionPolicyAssignmentFilterFieldsField {
     readonly field?: string;
     readonly value?: string;
 }
-export declare function deserializeRetentionPolicyAssignmentFilterFieldsField(val: Json): RetentionPolicyAssignmentFilterFieldsField;
+export declare function deserializeRetentionPolicyAssignmentFilterFieldsField(val: any): RetentionPolicyAssignmentFilterFieldsField;
 export declare function serializeRetentionPolicyAssignmentFilterFieldsField(val: RetentionPolicyAssignmentFilterFieldsField): Json;
 export type ShieldInformationBarrierTypeField = "shield_information_barrier";
-export declare function deserializeShieldInformationBarrierTypeField(val: Json): ShieldInformationBarrierTypeField;
+export declare function deserializeShieldInformationBarrierTypeField(val: any): ShieldInformationBarrierTypeField;
 export declare function serializeShieldInformationBarrierTypeField(val: ShieldInformationBarrierTypeField): Json;
 export type ShieldInformationBarrierStatusField = "draft" | "pending" | "disabled" | "enabled" | "invalid";
-export declare function deserializeShieldInformationBarrierStatusField(val: Json): ShieldInformationBarrierStatusField;
+export declare function deserializeShieldInformationBarrierStatusField(val: any): ShieldInformationBarrierStatusField;
 export declare function serializeShieldInformationBarrierStatusField(val: ShieldInformationBarrierStatusField): Json;
 export type ShieldInformationBarrierBaseTypeField = "shield_information_barrier";
-export declare function deserializeShieldInformationBarrierBaseTypeField(val: Json): ShieldInformationBarrierBaseTypeField;
+export declare function deserializeShieldInformationBarrierBaseTypeField(val: any): ShieldInformationBarrierBaseTypeField;
 export declare function serializeShieldInformationBarrierBaseTypeField(val: ShieldInformationBarrierBaseTypeField): Json;
 export interface ShieldInformationBarrierBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierBaseTypeField;
 }
-export declare function deserializeShieldInformationBarrierBase(val: Json): ShieldInformationBarrierBase;
+export declare function deserializeShieldInformationBarrierBase(val: any): ShieldInformationBarrierBase;
 export declare function serializeShieldInformationBarrierBase(val: ShieldInformationBarrierBase): Json;
 export interface ShieldInformationBarrierReference {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
 }
-export declare function deserializeShieldInformationBarrierReference(val: Json): ShieldInformationBarrierReference;
+export declare function deserializeShieldInformationBarrierReference(val: any): ShieldInformationBarrierReference;
 export declare function serializeShieldInformationBarrierReference(val: ShieldInformationBarrierReference): Json;
 export interface ShieldInformationBarrierReportShieldInformationBarrierField {
 }
-export declare function deserializeShieldInformationBarrierReportShieldInformationBarrierField(val: Json): ShieldInformationBarrierReportShieldInformationBarrierField;
+export declare function deserializeShieldInformationBarrierReportShieldInformationBarrierField(val: any): ShieldInformationBarrierReportShieldInformationBarrierField;
 export declare function serializeShieldInformationBarrierReportShieldInformationBarrierField(val: ShieldInformationBarrierReportShieldInformationBarrierField): Json;
 export type ShieldInformationBarrierReportStatusField = "pending" | "error" | "done" | "cancelled";
-export declare function deserializeShieldInformationBarrierReportStatusField(val: Json): ShieldInformationBarrierReportStatusField;
+export declare function deserializeShieldInformationBarrierReportStatusField(val: any): ShieldInformationBarrierReportStatusField;
 export declare function serializeShieldInformationBarrierReportStatusField(val: ShieldInformationBarrierReportStatusField): Json;
 export interface ShieldInformationBarrierReportDetailsField {
 }
-export declare function deserializeShieldInformationBarrierReportDetailsField(val: Json): ShieldInformationBarrierReportDetailsField;
+export declare function deserializeShieldInformationBarrierReportDetailsField(val: any): ShieldInformationBarrierReportDetailsField;
 export declare function serializeShieldInformationBarrierReportDetailsField(val: ShieldInformationBarrierReportDetailsField): Json;
 export type ShieldInformationBarrierReportBaseTypeField = "shield_information_barrier_report";
-export declare function deserializeShieldInformationBarrierReportBaseTypeField(val: Json): ShieldInformationBarrierReportBaseTypeField;
+export declare function deserializeShieldInformationBarrierReportBaseTypeField(val: any): ShieldInformationBarrierReportBaseTypeField;
 export declare function serializeShieldInformationBarrierReportBaseTypeField(val: ShieldInformationBarrierReportBaseTypeField): Json;
 export interface ShieldInformationBarrierReportBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierReportBaseTypeField;
 }
-export declare function deserializeShieldInformationBarrierReportBase(val: Json): ShieldInformationBarrierReportBase;
+export declare function deserializeShieldInformationBarrierReportBase(val: any): ShieldInformationBarrierReportBase;
 export declare function serializeShieldInformationBarrierReportBase(val: ShieldInformationBarrierReportBase): Json;
 export type ShieldInformationBarrierSegmentTypeField = "shield_information_barrier_segment";
-export declare function deserializeShieldInformationBarrierSegmentTypeField(val: Json): ShieldInformationBarrierSegmentTypeField;
+export declare function deserializeShieldInformationBarrierSegmentTypeField(val: any): ShieldInformationBarrierSegmentTypeField;
 export declare function serializeShieldInformationBarrierSegmentTypeField(val: ShieldInformationBarrierSegmentTypeField): Json;
 export type ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
-export declare function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField;
+export declare function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: any): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField;
 export declare function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField): Json;
 export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentFieldTypeField;
 }
-export declare function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: Json): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
+export declare function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: any): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
 export declare function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField): Json;
 export type ShieldInformationBarrierSegmentMemberBaseTypeField = "shield_information_barrier_segment_member";
-export declare function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val: Json): ShieldInformationBarrierSegmentMemberBaseTypeField;
+export declare function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val: any): ShieldInformationBarrierSegmentMemberBaseTypeField;
 export declare function serializeShieldInformationBarrierSegmentMemberBaseTypeField(val: ShieldInformationBarrierSegmentMemberBaseTypeField): Json;
 export interface ShieldInformationBarrierSegmentMemberBase {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentMemberBaseTypeField;
 }
-export declare function deserializeShieldInformationBarrierSegmentMemberBase(val: Json): ShieldInformationBarrierSegmentMemberBase;
+export declare function deserializeShieldInformationBarrierSegmentMemberBase(val: any): ShieldInformationBarrierSegmentMemberBase;
 export declare function serializeShieldInformationBarrierSegmentMemberBase(val: ShieldInformationBarrierSegmentMemberBase): Json;
 export type ShieldInformationBarrierSegmentRestrictionBaseTypeField = "shield_information_barrier_segment_restriction";
-export declare function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionBaseTypeField;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: any): ShieldInformationBarrierSegmentRestrictionBaseTypeField;
 export declare function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(val: ShieldInformationBarrierSegmentRestrictionBaseTypeField): Json;
 export interface ShieldInformationBarrierSegmentRestrictionBase {
     readonly type?: ShieldInformationBarrierSegmentRestrictionBaseTypeField;
     readonly id?: string;
 }
-export declare function deserializeShieldInformationBarrierSegmentRestrictionBase(val: Json): ShieldInformationBarrierSegmentRestrictionBase;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionBase(val: any): ShieldInformationBarrierSegmentRestrictionBase;
 export declare function serializeShieldInformationBarrierSegmentRestrictionBase(val: ShieldInformationBarrierSegmentRestrictionBase): Json;
 export type ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
-export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: any): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField;
 export declare function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField): Json;
 export interface ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentFieldTypeField;
 }
-export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: any): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
 export declare function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField): Json;
 export type ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField = "shield_information_barrier_segment";
-export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: any): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField;
 export declare function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField): Json;
 export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField {
     readonly id?: string;
     readonly type?: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentFieldTypeField;
 }
-export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: Json): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: any): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
 export declare function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField): Json;
 export type ShieldInformationBarrierSegmentRestrictionMini = ShieldInformationBarrierSegmentRestrictionBase & {
     /**
@@ -1502,28 +1502,28 @@ export type ShieldInformationBarrierSegmentRestrictionMini = ShieldInformationBa
      * restricted shield information barrier segment. */
     readonly restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
 };
-export declare function deserializeShieldInformationBarrierSegmentRestrictionMini(val: Json): ShieldInformationBarrierSegmentRestrictionMini;
+export declare function deserializeShieldInformationBarrierSegmentRestrictionMini(val: any): ShieldInformationBarrierSegmentRestrictionMini;
 export declare function serializeShieldInformationBarrierSegmentRestrictionMini(val: ShieldInformationBarrierSegmentRestrictionMini): Json;
 export interface SessionTerminationMessage {
     readonly message?: string;
 }
-export declare function deserializeSessionTerminationMessage(val: Json): SessionTerminationMessage;
+export declare function deserializeSessionTerminationMessage(val: any): SessionTerminationMessage;
 export declare function serializeSessionTerminationMessage(val: SessionTerminationMessage): Json;
 export type StoragePolicyMiniTypeField = "storage_policy";
-export declare function deserializeStoragePolicyMiniTypeField(val: Json): StoragePolicyMiniTypeField;
+export declare function deserializeStoragePolicyMiniTypeField(val: any): StoragePolicyMiniTypeField;
 export declare function serializeStoragePolicyMiniTypeField(val: StoragePolicyMiniTypeField): Json;
 export interface StoragePolicyMini {
     readonly id?: string;
     readonly type?: StoragePolicyMiniTypeField;
 }
-export declare function deserializeStoragePolicyMini(val: Json): StoragePolicyMini;
+export declare function deserializeStoragePolicyMini(val: any): StoragePolicyMini;
 export declare function serializeStoragePolicyMini(val: StoragePolicyMini): Json;
 export type StoragePolicy = StoragePolicyMini & {
     /**
      * A descriptive name of the region */
     readonly name?: string;
 };
-export declare function deserializeStoragePolicy(val: Json): StoragePolicy;
+export declare function deserializeStoragePolicy(val: any): StoragePolicy;
 export declare function serializeStoragePolicy(val: StoragePolicy): Json;
 export interface StoragePolicies {
     readonly limit?: number;
@@ -1531,19 +1531,19 @@ export interface StoragePolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly StoragePolicy[];
 }
-export declare function deserializeStoragePolicies(val: Json): StoragePolicies;
+export declare function deserializeStoragePolicies(val: any): StoragePolicies;
 export declare function serializeStoragePolicies(val: StoragePolicies): Json;
 export interface StoragePolicyAssignmentAssignedToField {
     readonly id?: string;
     readonly type?: string;
 }
-export declare function deserializeStoragePolicyAssignmentAssignedToField(val: Json): StoragePolicyAssignmentAssignedToField;
+export declare function deserializeStoragePolicyAssignmentAssignedToField(val: any): StoragePolicyAssignmentAssignedToField;
 export declare function serializeStoragePolicyAssignmentAssignedToField(val: StoragePolicyAssignmentAssignedToField): Json;
 export interface StoragePolicyAssignment {
     readonly storagePolicy?: StoragePolicyMini;
     readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
 }
-export declare function deserializeStoragePolicyAssignment(val: Json): StoragePolicyAssignment;
+export declare function deserializeStoragePolicyAssignment(val: any): StoragePolicyAssignment;
 export declare function serializeStoragePolicyAssignment(val: StoragePolicyAssignment): Json;
 export interface StoragePolicyAssignments {
     readonly limit?: number;
@@ -1551,47 +1551,47 @@ export interface StoragePolicyAssignments {
     readonly prevMarker?: number;
     readonly entries?: readonly StoragePolicyAssignment[];
 }
-export declare function deserializeStoragePolicyAssignments(val: Json): StoragePolicyAssignments;
+export declare function deserializeStoragePolicyAssignments(val: any): StoragePolicyAssignments;
 export declare function serializeStoragePolicyAssignments(val: StoragePolicyAssignments): Json;
 export type TaskTypeField = "task";
-export declare function deserializeTaskTypeField(val: Json): TaskTypeField;
+export declare function deserializeTaskTypeField(val: any): TaskTypeField;
 export declare function serializeTaskTypeField(val: TaskTypeField): Json;
 export type TaskActionField = "review" | "complete";
-export declare function deserializeTaskActionField(val: Json): TaskActionField;
+export declare function deserializeTaskActionField(val: any): TaskActionField;
 export declare function serializeTaskActionField(val: TaskActionField): Json;
 export type TaskCompletionRuleField = "all_assignees" | "any_assignee";
-export declare function deserializeTaskCompletionRuleField(val: Json): TaskCompletionRuleField;
+export declare function deserializeTaskCompletionRuleField(val: any): TaskCompletionRuleField;
 export declare function serializeTaskCompletionRuleField(val: TaskCompletionRuleField): Json;
 export type TaskAssignmentTypeField = "task_assignment";
-export declare function deserializeTaskAssignmentTypeField(val: Json): TaskAssignmentTypeField;
+export declare function deserializeTaskAssignmentTypeField(val: any): TaskAssignmentTypeField;
 export declare function serializeTaskAssignmentTypeField(val: TaskAssignmentTypeField): Json;
 export type TaskAssignmentResolutionStateField = "completed" | "incomplete" | "approved" | "rejected";
-export declare function deserializeTaskAssignmentResolutionStateField(val: Json): TaskAssignmentResolutionStateField;
+export declare function deserializeTaskAssignmentResolutionStateField(val: any): TaskAssignmentResolutionStateField;
 export declare function serializeTaskAssignmentResolutionStateField(val: TaskAssignmentResolutionStateField): Json;
 export type TermsOfServiceStatusField = "enabled" | "disabled";
-export declare function deserializeTermsOfServiceStatusField(val: Json): TermsOfServiceStatusField;
+export declare function deserializeTermsOfServiceStatusField(val: any): TermsOfServiceStatusField;
 export declare function serializeTermsOfServiceStatusField(val: TermsOfServiceStatusField): Json;
 export type TermsOfServiceEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeTermsOfServiceEnterpriseFieldTypeField(val: Json): TermsOfServiceEnterpriseFieldTypeField;
+export declare function deserializeTermsOfServiceEnterpriseFieldTypeField(val: any): TermsOfServiceEnterpriseFieldTypeField;
 export declare function serializeTermsOfServiceEnterpriseFieldTypeField(val: TermsOfServiceEnterpriseFieldTypeField): Json;
 export interface TermsOfServiceEnterpriseField {
     readonly id?: string;
     readonly type?: TermsOfServiceEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeTermsOfServiceEnterpriseField(val: Json): TermsOfServiceEnterpriseField;
+export declare function deserializeTermsOfServiceEnterpriseField(val: any): TermsOfServiceEnterpriseField;
 export declare function serializeTermsOfServiceEnterpriseField(val: TermsOfServiceEnterpriseField): Json;
 export type TermsOfServiceTosTypeField = "managed" | "external";
-export declare function deserializeTermsOfServiceTosTypeField(val: Json): TermsOfServiceTosTypeField;
+export declare function deserializeTermsOfServiceTosTypeField(val: any): TermsOfServiceTosTypeField;
 export declare function serializeTermsOfServiceTosTypeField(val: TermsOfServiceTosTypeField): Json;
 export type TermsOfServiceBaseTypeField = "terms_of_service";
-export declare function deserializeTermsOfServiceBaseTypeField(val: Json): TermsOfServiceBaseTypeField;
+export declare function deserializeTermsOfServiceBaseTypeField(val: any): TermsOfServiceBaseTypeField;
 export declare function serializeTermsOfServiceBaseTypeField(val: TermsOfServiceBaseTypeField): Json;
 export interface TermsOfServiceBase {
     readonly id?: string;
     readonly type?: TermsOfServiceBaseTypeField;
 }
-export declare function deserializeTermsOfServiceBase(val: Json): TermsOfServiceBase;
+export declare function deserializeTermsOfServiceBase(val: any): TermsOfServiceBase;
 export declare function serializeTermsOfServiceBase(val: TermsOfServiceBase): Json;
 export type TermsOfService = TermsOfServiceBase & {
     /**
@@ -1612,43 +1612,43 @@ export type TermsOfService = TermsOfServiceBase & {
      * When the legal item was modified. */
     readonly modifiedAt?: string;
 };
-export declare function deserializeTermsOfService(val: Json): TermsOfService;
+export declare function deserializeTermsOfService(val: any): TermsOfService;
 export declare function serializeTermsOfService(val: TermsOfService): Json;
 export interface TermsOfServices {
     readonly totalCount?: number;
     readonly entries?: readonly TermsOfService[];
 }
-export declare function deserializeTermsOfServices(val: Json): TermsOfServices;
+export declare function deserializeTermsOfServices(val: any): TermsOfServices;
 export declare function serializeTermsOfServices(val: TermsOfServices): Json;
 export interface CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField {
     readonly isAccepted?: boolean;
     readonly termsOfService?: TermsOfServiceBase;
 }
-export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: Json): CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField;
+export declare function deserializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: any): CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField;
 export declare function serializeCollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField(val: CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField): Json;
 export interface CollaborationAcceptanceRequirementsStatusField {
     readonly termsOfServiceRequirement?: CollaborationAcceptanceRequirementsStatusFieldTermsOfServiceRequirementField;
     readonly strongPasswordRequirement?: CollaborationAcceptanceRequirementsStatusFieldStrongPasswordRequirementField;
     readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
 }
-export declare function deserializeCollaborationAcceptanceRequirementsStatusField(val: Json): CollaborationAcceptanceRequirementsStatusField;
+export declare function deserializeCollaborationAcceptanceRequirementsStatusField(val: any): CollaborationAcceptanceRequirementsStatusField;
 export declare function serializeCollaborationAcceptanceRequirementsStatusField(val: CollaborationAcceptanceRequirementsStatusField): Json;
 export type TermsOfServiceUserStatusTypeField = "terms_of_service_user_status";
-export declare function deserializeTermsOfServiceUserStatusTypeField(val: Json): TermsOfServiceUserStatusTypeField;
+export declare function deserializeTermsOfServiceUserStatusTypeField(val: any): TermsOfServiceUserStatusTypeField;
 export declare function serializeTermsOfServiceUserStatusTypeField(val: TermsOfServiceUserStatusTypeField): Json;
 export type SignTemplateAdditionalInfoFieldNonEditableField = "email_subject" | "email_message" | "name" | "days_valid" | "signers" | "source_files";
-export declare function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: Json): SignTemplateAdditionalInfoFieldNonEditableField;
+export declare function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: any): SignTemplateAdditionalInfoFieldNonEditableField;
 export declare function serializeSignTemplateAdditionalInfoFieldNonEditableField(val: SignTemplateAdditionalInfoFieldNonEditableField): Json;
 export interface SignTemplateAdditionalInfoFieldRequiredField {
     readonly signers?: readonly (readonly ("email")[])[];
 }
-export declare function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: Json): SignTemplateAdditionalInfoFieldRequiredField;
+export declare function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: any): SignTemplateAdditionalInfoFieldRequiredField;
 export declare function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json;
 export interface SignTemplateAdditionalInfoField {
     readonly nonEditable?: readonly SignTemplateAdditionalInfoFieldNonEditableField[];
     readonly required?: SignTemplateAdditionalInfoFieldRequiredField;
 }
-export declare function deserializeSignTemplateAdditionalInfoField(val: Json): SignTemplateAdditionalInfoField;
+export declare function deserializeSignTemplateAdditionalInfoField(val: any): SignTemplateAdditionalInfoField;
 export declare function serializeSignTemplateAdditionalInfoField(val: SignTemplateAdditionalInfoField): Json;
 export interface SignTemplateReadySignLinkField {
     readonly url?: string;
@@ -1658,7 +1658,7 @@ export interface SignTemplateReadySignLinkField {
     readonly isNotificationDisabled?: boolean;
     readonly isActive?: boolean;
 }
-export declare function deserializeSignTemplateReadySignLinkField(val: Json): SignTemplateReadySignLinkField;
+export declare function deserializeSignTemplateReadySignLinkField(val: any): SignTemplateReadySignLinkField;
 export declare function serializeSignTemplateReadySignLinkField(val: SignTemplateReadySignLinkField): Json;
 export interface SignTemplateCustomBrandingField {
     readonly companyName?: string;
@@ -1666,41 +1666,41 @@ export interface SignTemplateCustomBrandingField {
     readonly brandingColor?: string;
     readonly emailFooterText?: string;
 }
-export declare function deserializeSignTemplateCustomBrandingField(val: Json): SignTemplateCustomBrandingField;
+export declare function deserializeSignTemplateCustomBrandingField(val: any): SignTemplateCustomBrandingField;
 export declare function serializeSignTemplateCustomBrandingField(val: SignTemplateCustomBrandingField): Json;
 export interface SignTemplates {
     readonly limit?: number;
     readonly nextMarker?: string;
     readonly prevMarker?: string;
 }
-export declare function deserializeSignTemplates(val: Json): SignTemplates;
+export declare function deserializeSignTemplates(val: any): SignTemplates;
 export declare function serializeSignTemplates(val: SignTemplates): Json;
 export type TemplateSignerRoleField = "signer" | "approver" | "final_copy_reader";
-export declare function deserializeTemplateSignerRoleField(val: Json): TemplateSignerRoleField;
+export declare function deserializeTemplateSignerRoleField(val: any): TemplateSignerRoleField;
 export declare function serializeTemplateSignerRoleField(val: TemplateSignerRoleField): Json;
 export type TemplateSignerInputTypeField = "signature" | "date" | "text" | "checkbox" | "radio" | "dropdown";
-export declare function deserializeTemplateSignerInputTypeField(val: Json): TemplateSignerInputTypeField;
+export declare function deserializeTemplateSignerInputTypeField(val: any): TemplateSignerInputTypeField;
 export declare function serializeTemplateSignerInputTypeField(val: TemplateSignerInputTypeField): Json;
 export type TemplateSignerInputContentTypeField = "signature" | "initial" | "stamp" | "date" | "checkbox" | "text" | "full_name" | "first_name" | "last_name" | "company" | "title" | "email" | "attachment" | "radio" | "dropdown";
-export declare function deserializeTemplateSignerInputContentTypeField(val: Json): TemplateSignerInputContentTypeField;
+export declare function deserializeTemplateSignerInputContentTypeField(val: any): TemplateSignerInputContentTypeField;
 export declare function serializeTemplateSignerInputContentTypeField(val: TemplateSignerInputContentTypeField): Json;
 export interface TemplateSignerInputCoordinatesField {
     readonly x?: number;
     readonly y?: number;
 }
-export declare function deserializeTemplateSignerInputCoordinatesField(val: Json): TemplateSignerInputCoordinatesField;
+export declare function deserializeTemplateSignerInputCoordinatesField(val: any): TemplateSignerInputCoordinatesField;
 export declare function serializeTemplateSignerInputCoordinatesField(val: TemplateSignerInputCoordinatesField): Json;
 export interface TemplateSignerInputDimensionsField {
     readonly width?: number;
     readonly height?: number;
 }
-export declare function deserializeTemplateSignerInputDimensionsField(val: Json): TemplateSignerInputDimensionsField;
+export declare function deserializeTemplateSignerInputDimensionsField(val: any): TemplateSignerInputDimensionsField;
 export declare function serializeTemplateSignerInputDimensionsField(val: TemplateSignerInputDimensionsField): Json;
 export type TrashFileTypeField = "file";
-export declare function deserializeTrashFileTypeField(val: Json): TrashFileTypeField;
+export declare function deserializeTrashFileTypeField(val: any): TrashFileTypeField;
 export declare function serializeTrashFileTypeField(val: TrashFileTypeField): Json;
 export type TrashFilePathCollectionFieldEntriesFieldTypeField = "folder";
-export declare function deserializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: Json): TrashFilePathCollectionFieldEntriesFieldTypeField;
+export declare function deserializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: any): TrashFilePathCollectionFieldEntriesFieldTypeField;
 export declare function serializeTrashFilePathCollectionFieldEntriesFieldTypeField(val: TrashFilePathCollectionFieldEntriesFieldTypeField): Json;
 export interface TrashFilePathCollectionFieldEntriesField {
     readonly type?: TrashFilePathCollectionFieldEntriesFieldTypeField;
@@ -1709,22 +1709,22 @@ export interface TrashFilePathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export declare function deserializeTrashFilePathCollectionFieldEntriesField(val: Json): TrashFilePathCollectionFieldEntriesField;
+export declare function deserializeTrashFilePathCollectionFieldEntriesField(val: any): TrashFilePathCollectionFieldEntriesField;
 export declare function serializeTrashFilePathCollectionFieldEntriesField(val: TrashFilePathCollectionFieldEntriesField): Json;
 export interface TrashFilePathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashFilePathCollectionFieldEntriesField[];
 }
-export declare function deserializeTrashFilePathCollectionField(val: Json): TrashFilePathCollectionField;
+export declare function deserializeTrashFilePathCollectionField(val: any): TrashFilePathCollectionField;
 export declare function serializeTrashFilePathCollectionField(val: TrashFilePathCollectionField): Json;
 export type TrashFileItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashFileItemStatusField(val: Json): TrashFileItemStatusField;
+export declare function deserializeTrashFileItemStatusField(val: any): TrashFileItemStatusField;
 export declare function serializeTrashFileItemStatusField(val: TrashFileItemStatusField): Json;
 export type TrashFolderTypeField = "folder";
-export declare function deserializeTrashFolderTypeField(val: Json): TrashFolderTypeField;
+export declare function deserializeTrashFolderTypeField(val: any): TrashFolderTypeField;
 export declare function serializeTrashFolderTypeField(val: TrashFolderTypeField): Json;
 export type TrashFolderPathCollectionFieldEntriesFieldTypeField = "folder";
-export declare function deserializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: Json): TrashFolderPathCollectionFieldEntriesFieldTypeField;
+export declare function deserializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: any): TrashFolderPathCollectionFieldEntriesFieldTypeField;
 export declare function serializeTrashFolderPathCollectionFieldEntriesFieldTypeField(val: TrashFolderPathCollectionFieldEntriesFieldTypeField): Json;
 export interface TrashFolderPathCollectionFieldEntriesField {
     readonly type?: TrashFolderPathCollectionFieldEntriesFieldTypeField;
@@ -1733,22 +1733,22 @@ export interface TrashFolderPathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export declare function deserializeTrashFolderPathCollectionFieldEntriesField(val: Json): TrashFolderPathCollectionFieldEntriesField;
+export declare function deserializeTrashFolderPathCollectionFieldEntriesField(val: any): TrashFolderPathCollectionFieldEntriesField;
 export declare function serializeTrashFolderPathCollectionFieldEntriesField(val: TrashFolderPathCollectionFieldEntriesField): Json;
 export interface TrashFolderPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashFolderPathCollectionFieldEntriesField[];
 }
-export declare function deserializeTrashFolderPathCollectionField(val: Json): TrashFolderPathCollectionField;
+export declare function deserializeTrashFolderPathCollectionField(val: any): TrashFolderPathCollectionField;
 export declare function serializeTrashFolderPathCollectionField(val: TrashFolderPathCollectionField): Json;
 export type TrashFolderItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashFolderItemStatusField(val: Json): TrashFolderItemStatusField;
+export declare function deserializeTrashFolderItemStatusField(val: any): TrashFolderItemStatusField;
 export declare function serializeTrashFolderItemStatusField(val: TrashFolderItemStatusField): Json;
 export type TrashWebLinkTypeField = "web_link";
-export declare function deserializeTrashWebLinkTypeField(val: Json): TrashWebLinkTypeField;
+export declare function deserializeTrashWebLinkTypeField(val: any): TrashWebLinkTypeField;
 export declare function serializeTrashWebLinkTypeField(val: TrashWebLinkTypeField): Json;
 export type TrashWebLinkPathCollectionFieldEntriesFieldTypeField = "folder";
-export declare function deserializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: Json): TrashWebLinkPathCollectionFieldEntriesFieldTypeField;
+export declare function deserializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: any): TrashWebLinkPathCollectionFieldEntriesFieldTypeField;
 export declare function serializeTrashWebLinkPathCollectionFieldEntriesFieldTypeField(val: TrashWebLinkPathCollectionFieldEntriesFieldTypeField): Json;
 export interface TrashWebLinkPathCollectionFieldEntriesField {
     readonly type?: TrashWebLinkPathCollectionFieldEntriesFieldTypeField;
@@ -1757,62 +1757,62 @@ export interface TrashWebLinkPathCollectionFieldEntriesField {
     readonly etag?: string;
     readonly name?: string;
 }
-export declare function deserializeTrashWebLinkPathCollectionFieldEntriesField(val: Json): TrashWebLinkPathCollectionFieldEntriesField;
+export declare function deserializeTrashWebLinkPathCollectionFieldEntriesField(val: any): TrashWebLinkPathCollectionFieldEntriesField;
 export declare function serializeTrashWebLinkPathCollectionFieldEntriesField(val: TrashWebLinkPathCollectionFieldEntriesField): Json;
 export interface TrashWebLinkPathCollectionField {
     readonly totalCount: number;
     readonly entries: readonly TrashWebLinkPathCollectionFieldEntriesField[];
 }
-export declare function deserializeTrashWebLinkPathCollectionField(val: Json): TrashWebLinkPathCollectionField;
+export declare function deserializeTrashWebLinkPathCollectionField(val: any): TrashWebLinkPathCollectionField;
 export declare function serializeTrashWebLinkPathCollectionField(val: TrashWebLinkPathCollectionField): Json;
 export type TrashWebLinkItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashWebLinkItemStatusField(val: Json): TrashWebLinkItemStatusField;
+export declare function deserializeTrashWebLinkItemStatusField(val: any): TrashWebLinkItemStatusField;
 export declare function serializeTrashWebLinkItemStatusField(val: TrashWebLinkItemStatusField): Json;
 export type TrashFileRestoredTypeField = "file";
-export declare function deserializeTrashFileRestoredTypeField(val: Json): TrashFileRestoredTypeField;
+export declare function deserializeTrashFileRestoredTypeField(val: any): TrashFileRestoredTypeField;
 export declare function serializeTrashFileRestoredTypeField(val: TrashFileRestoredTypeField): Json;
 export type TrashFileRestoredItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashFileRestoredItemStatusField(val: Json): TrashFileRestoredItemStatusField;
+export declare function deserializeTrashFileRestoredItemStatusField(val: any): TrashFileRestoredItemStatusField;
 export declare function serializeTrashFileRestoredItemStatusField(val: TrashFileRestoredItemStatusField): Json;
 export type TrashFolderRestoredTypeField = "folder";
-export declare function deserializeTrashFolderRestoredTypeField(val: Json): TrashFolderRestoredTypeField;
+export declare function deserializeTrashFolderRestoredTypeField(val: any): TrashFolderRestoredTypeField;
 export declare function serializeTrashFolderRestoredTypeField(val: TrashFolderRestoredTypeField): Json;
 export type TrashFolderRestoredItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashFolderRestoredItemStatusField(val: Json): TrashFolderRestoredItemStatusField;
+export declare function deserializeTrashFolderRestoredItemStatusField(val: any): TrashFolderRestoredItemStatusField;
 export declare function serializeTrashFolderRestoredItemStatusField(val: TrashFolderRestoredItemStatusField): Json;
 export type TrashWebLinkRestoredTypeField = "web_link";
-export declare function deserializeTrashWebLinkRestoredTypeField(val: Json): TrashWebLinkRestoredTypeField;
+export declare function deserializeTrashWebLinkRestoredTypeField(val: any): TrashWebLinkRestoredTypeField;
 export declare function serializeTrashWebLinkRestoredTypeField(val: TrashWebLinkRestoredTypeField): Json;
 export type TrashWebLinkRestoredItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeTrashWebLinkRestoredItemStatusField(val: Json): TrashWebLinkRestoredItemStatusField;
+export declare function deserializeTrashWebLinkRestoredItemStatusField(val: any): TrashWebLinkRestoredItemStatusField;
 export declare function serializeTrashWebLinkRestoredItemStatusField(val: TrashWebLinkRestoredItemStatusField): Json;
 export interface UploadPartMini {
     readonly partId?: string;
     readonly offset?: number;
     readonly size?: number;
 }
-export declare function deserializeUploadPartMini(val: Json): UploadPartMini;
+export declare function deserializeUploadPartMini(val: any): UploadPartMini;
 export declare function serializeUploadPartMini(val: UploadPartMini): Json;
 export type UploadPart = UploadPartMini & {
     /**
      * The SHA1 hash of the chunk. */
     readonly sha1?: string;
 };
-export declare function deserializeUploadPart(val: Json): UploadPart;
+export declare function deserializeUploadPart(val: any): UploadPart;
 export declare function serializeUploadPart(val: UploadPart): Json;
 export interface UploadedPart {
     readonly part?: UploadPart;
 }
-export declare function deserializeUploadedPart(val: Json): UploadedPart;
+export declare function deserializeUploadedPart(val: any): UploadedPart;
 export declare function serializeUploadedPart(val: UploadedPart): Json;
 export type UploadPartsOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeUploadPartsOrderFieldDirectionField(val: Json): UploadPartsOrderFieldDirectionField;
+export declare function deserializeUploadPartsOrderFieldDirectionField(val: any): UploadPartsOrderFieldDirectionField;
 export declare function serializeUploadPartsOrderFieldDirectionField(val: UploadPartsOrderFieldDirectionField): Json;
 export interface UploadPartsOrderField {
     readonly by?: string;
     readonly direction?: UploadPartsOrderFieldDirectionField;
 }
-export declare function deserializeUploadPartsOrderField(val: Json): UploadPartsOrderField;
+export declare function deserializeUploadPartsOrderField(val: any): UploadPartsOrderField;
 export declare function serializeUploadPartsOrderField(val: UploadPartsOrderField): Json;
 export interface UploadParts {
     readonly totalCount?: number;
@@ -1821,10 +1821,10 @@ export interface UploadParts {
     readonly order?: readonly UploadPartsOrderField[];
     readonly entries?: readonly UploadPart[];
 }
-export declare function deserializeUploadParts(val: Json): UploadParts;
+export declare function deserializeUploadParts(val: any): UploadParts;
 export declare function serializeUploadParts(val: UploadParts): Json;
 export type UploadSessionTypeField = "upload_session";
-export declare function deserializeUploadSessionTypeField(val: Json): UploadSessionTypeField;
+export declare function deserializeUploadSessionTypeField(val: any): UploadSessionTypeField;
 export declare function serializeUploadSessionTypeField(val: UploadSessionTypeField): Json;
 export interface UploadSessionSessionEndpointsField {
     readonly uploadPart?: string;
@@ -1834,7 +1834,7 @@ export interface UploadSessionSessionEndpointsField {
     readonly status?: string;
     readonly logEvent?: string;
 }
-export declare function deserializeUploadSessionSessionEndpointsField(val: Json): UploadSessionSessionEndpointsField;
+export declare function deserializeUploadSessionSessionEndpointsField(val: any): UploadSessionSessionEndpointsField;
 export declare function serializeUploadSessionSessionEndpointsField(val: UploadSessionSessionEndpointsField): Json;
 export interface UploadSession {
     readonly id?: string;
@@ -1845,65 +1845,65 @@ export interface UploadSession {
     readonly numPartsProcessed?: number;
     readonly sessionEndpoints?: UploadSessionSessionEndpointsField;
 }
-export declare function deserializeUploadSession(val: Json): UploadSession;
+export declare function deserializeUploadSession(val: any): UploadSession;
 export declare function serializeUploadSession(val: UploadSession): Json;
 export interface UploadUrl {
     readonly uploadUrl?: string;
     readonly uploadToken?: string;
 }
-export declare function deserializeUploadUrl(val: Json): UploadUrl;
+export declare function deserializeUploadUrl(val: any): UploadUrl;
 export declare function serializeUploadUrl(val: UploadUrl): Json;
 export type UserStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
-export declare function deserializeUserStatusField(val: Json): UserStatusField;
+export declare function deserializeUserStatusField(val: any): UserStatusField;
 export declare function serializeUserStatusField(val: UserStatusField): Json;
 export interface UserNotificationEmailField {
     readonly email?: string;
     readonly isConfirmed?: boolean;
 }
-export declare function deserializeUserNotificationEmailField(val: Json): UserNotificationEmailField;
+export declare function deserializeUserNotificationEmailField(val: any): UserNotificationEmailField;
 export declare function serializeUserNotificationEmailField(val: UserNotificationEmailField): Json;
 export interface UserAvatarPicUrlsField {
     readonly small?: string;
     readonly large?: string;
     readonly preview?: string;
 }
-export declare function deserializeUserAvatarPicUrlsField(val: Json): UserAvatarPicUrlsField;
+export declare function deserializeUserAvatarPicUrlsField(val: any): UserAvatarPicUrlsField;
 export declare function serializeUserAvatarPicUrlsField(val: UserAvatarPicUrlsField): Json;
 export interface UserAvatar {
     readonly picUrls?: UserAvatarPicUrlsField;
 }
-export declare function deserializeUserAvatar(val: Json): UserAvatar;
+export declare function deserializeUserAvatar(val: any): UserAvatar;
 export declare function serializeUserAvatar(val: UserAvatar): Json;
 export type UsersOrderFieldDirectionField = "ASC" | "DESC";
-export declare function deserializeUsersOrderFieldDirectionField(val: Json): UsersOrderFieldDirectionField;
+export declare function deserializeUsersOrderFieldDirectionField(val: any): UsersOrderFieldDirectionField;
 export declare function serializeUsersOrderFieldDirectionField(val: UsersOrderFieldDirectionField): Json;
 export interface UsersOrderField {
     readonly by?: string;
     readonly direction?: UsersOrderFieldDirectionField;
 }
-export declare function deserializeUsersOrderField(val: Json): UsersOrderField;
+export declare function deserializeUsersOrderField(val: any): UsersOrderField;
 export declare function serializeUsersOrderField(val: UsersOrderField): Json;
 export type UserFullRoleField = "admin" | "coadmin" | "user";
-export declare function deserializeUserFullRoleField(val: Json): UserFullRoleField;
+export declare function deserializeUserFullRoleField(val: any): UserFullRoleField;
 export declare function serializeUserFullRoleField(val: UserFullRoleField): Json;
 export type UserFullEnterpriseFieldTypeField = "enterprise";
-export declare function deserializeUserFullEnterpriseFieldTypeField(val: Json): UserFullEnterpriseFieldTypeField;
+export declare function deserializeUserFullEnterpriseFieldTypeField(val: any): UserFullEnterpriseFieldTypeField;
 export declare function serializeUserFullEnterpriseFieldTypeField(val: UserFullEnterpriseFieldTypeField): Json;
 export interface UserFullEnterpriseField {
     readonly id?: string;
     readonly type?: UserFullEnterpriseFieldTypeField;
     readonly name?: string;
 }
-export declare function deserializeUserFullEnterpriseField(val: Json): UserFullEnterpriseField;
+export declare function deserializeUserFullEnterpriseField(val: any): UserFullEnterpriseField;
 export declare function serializeUserFullEnterpriseField(val: UserFullEnterpriseField): Json;
 export type UserBaseTypeField = "user";
-export declare function deserializeUserBaseTypeField(val: Json): UserBaseTypeField;
+export declare function deserializeUserBaseTypeField(val: any): UserBaseTypeField;
 export declare function serializeUserBaseTypeField(val: UserBaseTypeField): Json;
 export interface UserBase {
     readonly id?: string;
     readonly type: UserBaseTypeField;
 }
-export declare function deserializeUserBase(val: Json): UserBase;
+export declare function deserializeUserBase(val: any): UserBase;
 export declare function serializeUserBase(val: UserBase): Json;
 export type UserIntegrationMappings = UserBase & {
     /**
@@ -1913,7 +1913,7 @@ export type UserIntegrationMappings = UserBase & {
      * The primary email address of this user */
     readonly login?: string;
 };
-export declare function deserializeUserIntegrationMappings(val: Json): UserIntegrationMappings;
+export declare function deserializeUserIntegrationMappings(val: any): UserIntegrationMappings;
 export declare function serializeUserIntegrationMappings(val: UserIntegrationMappings): Json;
 export type UserCollaborations = UserBase & {
     /**
@@ -1923,7 +1923,7 @@ export type UserCollaborations = UserBase & {
      * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
     readonly login?: string;
 };
-export declare function deserializeUserCollaborations(val: Json): UserCollaborations;
+export declare function deserializeUserCollaborations(val: any): UserCollaborations;
 export declare function serializeUserCollaborations(val: UserCollaborations): Json;
 export type UserMini = UserBase & {
     /**
@@ -1933,7 +1933,7 @@ export type UserMini = UserBase & {
      * The primary email address of this user */
     readonly login?: string;
 };
-export declare function deserializeUserMini(val: Json): UserMini;
+export declare function deserializeUserMini(val: any): UserMini;
 export declare function serializeUserMini(val: UserMini): Json;
 export type User = UserMini & {
     /**
@@ -1980,7 +1980,7 @@ export type User = UserMini & {
      * to the primary email address. */
     readonly notificationEmail?: UserNotificationEmailField;
 };
-export declare function deserializeUser(val: Json): User;
+export declare function deserializeUser(val: any): User;
 export declare function serializeUser(val: User): Json;
 export interface Users {
     readonly totalCount?: number;
@@ -1989,7 +1989,7 @@ export interface Users {
     readonly order?: readonly UsersOrderField[];
     readonly entries?: readonly User[];
 }
-export declare function deserializeUsers(val: Json): Users;
+export declare function deserializeUsers(val: any): Users;
 export declare function serializeUsers(val: Users): Json;
 export interface TrashWebLinkRestored {
     readonly type?: TrashWebLinkRestoredTypeField;
@@ -2011,7 +2011,7 @@ export interface TrashWebLinkRestored {
     readonly sharedLink?: string;
     readonly itemStatus?: TrashWebLinkRestoredItemStatusField;
 }
-export declare function deserializeTrashWebLinkRestored(val: Json): TrashWebLinkRestored;
+export declare function deserializeTrashWebLinkRestored(val: any): TrashWebLinkRestored;
 export declare function serializeTrashWebLinkRestored(val: TrashWebLinkRestored): Json;
 export interface TrashFolderRestored {
     readonly id?: string;
@@ -2036,7 +2036,7 @@ export interface TrashFolderRestored {
     readonly parent?: FolderMini;
     readonly itemStatus?: TrashFolderRestoredItemStatusField;
 }
-export declare function deserializeTrashFolderRestored(val: Json): TrashFolderRestored;
+export declare function deserializeTrashFolderRestored(val: any): TrashFolderRestored;
 export declare function serializeTrashFolderRestored(val: TrashFolderRestored): Json;
 export interface TrashFileRestored {
     readonly id: string;
@@ -2062,7 +2062,7 @@ export interface TrashFileRestored {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFileRestoredItemStatusField;
 }
-export declare function deserializeTrashFileRestored(val: Json): TrashFileRestored;
+export declare function deserializeTrashFileRestored(val: any): TrashFileRestored;
 export declare function serializeTrashFileRestored(val: TrashFileRestored): Json;
 export interface TrashWebLink {
     readonly type?: TrashWebLinkTypeField;
@@ -2084,7 +2084,7 @@ export interface TrashWebLink {
     readonly sharedLink?: string;
     readonly itemStatus?: TrashWebLinkItemStatusField;
 }
-export declare function deserializeTrashWebLink(val: Json): TrashWebLink;
+export declare function deserializeTrashWebLink(val: any): TrashWebLink;
 export declare function serializeTrashWebLink(val: TrashWebLink): Json;
 export interface TrashFolder {
     readonly id: string;
@@ -2109,7 +2109,7 @@ export interface TrashFolder {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFolderItemStatusField;
 }
-export declare function deserializeTrashFolder(val: Json): TrashFolder;
+export declare function deserializeTrashFolder(val: any): TrashFolder;
 export declare function serializeTrashFolder(val: TrashFolder): Json;
 export interface TrashFile {
     readonly id: string;
@@ -2135,7 +2135,7 @@ export interface TrashFile {
     readonly parent?: FolderMini;
     readonly itemStatus: TrashFileItemStatusField;
 }
-export declare function deserializeTrashFile(val: Json): TrashFile;
+export declare function deserializeTrashFile(val: any): TrashFile;
 export declare function serializeTrashFile(val: TrashFile): Json;
 export interface TermsOfServiceUserStatus {
     readonly id?: string;
@@ -2146,13 +2146,13 @@ export interface TermsOfServiceUserStatus {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export declare function deserializeTermsOfServiceUserStatus(val: Json): TermsOfServiceUserStatus;
+export declare function deserializeTermsOfServiceUserStatus(val: any): TermsOfServiceUserStatus;
 export declare function serializeTermsOfServiceUserStatus(val: TermsOfServiceUserStatus): Json;
 export interface TermsOfServiceUserStatuses {
     readonly totalCount?: number;
     readonly entries?: readonly TermsOfServiceUserStatus[];
 }
-export declare function deserializeTermsOfServiceUserStatuses(val: Json): TermsOfServiceUserStatuses;
+export declare function deserializeTermsOfServiceUserStatuses(val: any): TermsOfServiceUserStatuses;
 export declare function serializeTermsOfServiceUserStatuses(val: TermsOfServiceUserStatuses): Json;
 export interface TaskAssignment {
     readonly id?: string;
@@ -2166,13 +2166,13 @@ export interface TaskAssignment {
     readonly resolutionState?: TaskAssignmentResolutionStateField;
     readonly assignedBy?: UserMini;
 }
-export declare function deserializeTaskAssignment(val: Json): TaskAssignment;
+export declare function deserializeTaskAssignment(val: any): TaskAssignment;
 export declare function serializeTaskAssignment(val: TaskAssignment): Json;
 export interface TaskAssignments {
     readonly totalCount?: number;
     readonly entries?: readonly TaskAssignment[];
 }
-export declare function deserializeTaskAssignments(val: Json): TaskAssignments;
+export declare function deserializeTaskAssignments(val: any): TaskAssignments;
 export declare function serializeTaskAssignments(val: TaskAssignments): Json;
 export interface Task {
     readonly id?: string;
@@ -2187,13 +2187,13 @@ export interface Task {
     readonly createdAt?: string;
     readonly completionRule?: TaskCompletionRuleField;
 }
-export declare function deserializeTask(val: Json): Task;
+export declare function deserializeTask(val: any): Task;
 export declare function serializeTask(val: Task): Json;
 export interface Tasks {
     readonly totalCount?: number;
     readonly entries?: readonly Task[];
 }
-export declare function deserializeTasks(val: Json): Tasks;
+export declare function deserializeTasks(val: any): Tasks;
 export declare function serializeTasks(val: Tasks): Json;
 export interface RetentionPolicyAssignment {
     readonly id?: string;
@@ -2205,7 +2205,7 @@ export interface RetentionPolicyAssignment {
     readonly assignedAt?: string;
     readonly startDateField?: string;
 }
-export declare function deserializeRetentionPolicyAssignment(val: Json): RetentionPolicyAssignment;
+export declare function deserializeRetentionPolicyAssignment(val: any): RetentionPolicyAssignment;
 export declare function serializeRetentionPolicyAssignment(val: RetentionPolicyAssignment): Json;
 export type RetentionPolicy = RetentionPolicyMini & {
     /**
@@ -2266,7 +2266,7 @@ export type RetentionPolicy = RetentionPolicyMini & {
      * Counts the retention policy assignments for each item type. */
     readonly assignmentCounts?: RetentionPolicyAssignmentCountsField;
 };
-export declare function deserializeRetentionPolicy(val: Json): RetentionPolicy;
+export declare function deserializeRetentionPolicy(val: any): RetentionPolicy;
 export declare function serializeRetentionPolicy(val: RetentionPolicy): Json;
 export type LegalHoldPolicy = LegalHoldPolicyMini & {
     /**
@@ -2314,7 +2314,7 @@ export type LegalHoldPolicy = LegalHoldPolicyMini & {
      * Optional notes about why the policy was created. */
     readonly releaseNotes?: string;
 };
-export declare function deserializeLegalHoldPolicy(val: Json): LegalHoldPolicy;
+export declare function deserializeLegalHoldPolicy(val: any): LegalHoldPolicy;
 export declare function serializeLegalHoldPolicy(val: LegalHoldPolicy): Json;
 export interface LegalHoldPolicies {
     readonly limit?: number;
@@ -2322,7 +2322,7 @@ export interface LegalHoldPolicies {
     readonly prevMarker?: number;
     readonly entries?: readonly LegalHoldPolicy[];
 }
-export declare function deserializeLegalHoldPolicies(val: Json): LegalHoldPolicies;
+export declare function deserializeLegalHoldPolicies(val: any): LegalHoldPolicies;
 export declare function serializeLegalHoldPolicies(val: LegalHoldPolicies): Json;
 export interface Invite {
     readonly id?: string;
@@ -2334,7 +2334,7 @@ export interface Invite {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export declare function deserializeInvite(val: Json): Invite;
+export declare function deserializeInvite(val: any): Invite;
 export declare function serializeInvite(val: Invite): Json;
 export interface GroupMembership {
     readonly id?: string;
@@ -2345,7 +2345,7 @@ export interface GroupMembership {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export declare function deserializeGroupMembership(val: Json): GroupMembership;
+export declare function deserializeGroupMembership(val: any): GroupMembership;
 export declare function serializeGroupMembership(val: GroupMembership): Json;
 export interface GroupMemberships {
     readonly totalCount?: number;
@@ -2354,7 +2354,7 @@ export interface GroupMemberships {
     readonly order?: readonly GroupMembershipsOrderField[];
     readonly entries?: readonly GroupMembership[];
 }
-export declare function deserializeGroupMemberships(val: Json): GroupMemberships;
+export declare function deserializeGroupMemberships(val: any): GroupMemberships;
 export declare function serializeGroupMemberships(val: GroupMemberships): Json;
 export type FileVersion = FileVersionMini & {
     /**
@@ -2383,7 +2383,7 @@ export type FileVersion = FileVersionMini & {
     readonly purgedAt?: string;
     readonly uploaderDisplayName?: string;
 };
-export declare function deserializeFileVersion(val: Json): FileVersion;
+export declare function deserializeFileVersion(val: any): FileVersion;
 export declare function serializeFileVersion(val: FileVersion): Json;
 export interface FileVersions {
     readonly totalCount?: number;
@@ -2392,14 +2392,14 @@ export interface FileVersions {
     readonly order?: readonly FileVersionsOrderField[];
     readonly entries?: readonly FileVersion[];
 }
-export declare function deserializeFileVersions(val: Json): FileVersions;
+export declare function deserializeFileVersions(val: any): FileVersions;
 export declare function serializeFileVersions(val: FileVersions): Json;
 export type FileVersionFull = FileVersion & {
     /**
      * The version number of this file version */
     readonly versionNumber?: string;
 };
-export declare function deserializeFileVersionFull(val: Json): FileVersionFull;
+export declare function deserializeFileVersionFull(val: any): FileVersionFull;
 export declare function serializeFileVersionFull(val: FileVersionFull): Json;
 export interface FileRequest {
     readonly id?: string;
@@ -2418,7 +2418,7 @@ export interface FileRequest {
     readonly updatedBy?: UserMini;
     readonly updatedAt: string;
 }
-export declare function deserializeFileRequest(val: Json): FileRequest;
+export declare function deserializeFileRequest(val: any): FileRequest;
 export declare function serializeFileRequest(val: FileRequest): Json;
 export interface FileFullLockField {
     readonly id?: string;
@@ -2429,7 +2429,7 @@ export interface FileFullLockField {
     readonly isDownloadPrevented?: boolean;
     readonly appType?: FileFullLockFieldAppTypeField;
 }
-export declare function deserializeFileFullLockField(val: Json): FileFullLockField;
+export declare function deserializeFileFullLockField(val: any): FileFullLockField;
 export declare function serializeFileFullLockField(val: FileFullLockField): Json;
 export type File = FileMini & {
     /**
@@ -2474,13 +2474,13 @@ export type File = FileMini & {
      * * `deleted` when the item has been permanently deleted. */
     readonly itemStatus?: FileItemStatusField;
 };
-export declare function deserializeFile(val: Json): File;
+export declare function deserializeFile(val: any): File;
 export declare function serializeFile(val: File): Json;
 export interface Files {
     readonly totalCount?: number;
     readonly entries?: readonly File[];
 }
-export declare function deserializeFiles(val: Json): Files;
+export declare function deserializeFiles(val: any): Files;
 export declare function serializeFiles(val: Files): Json;
 export interface DevicePinner {
     readonly id?: string;
@@ -2488,7 +2488,7 @@ export interface DevicePinner {
     readonly ownedBy?: UserMini;
     readonly productName?: string;
 }
-export declare function deserializeDevicePinner(val: Json): DevicePinner;
+export declare function deserializeDevicePinner(val: any): DevicePinner;
 export declare function serializeDevicePinner(val: DevicePinner): Json;
 export interface DevicePinners {
     readonly entries?: readonly DevicePinner[];
@@ -2496,7 +2496,7 @@ export interface DevicePinners {
     readonly nextMarker?: number;
     readonly order?: readonly DevicePinnersOrderField[];
 }
-export declare function deserializeDevicePinners(val: Json): DevicePinners;
+export declare function deserializeDevicePinners(val: any): DevicePinners;
 export declare function serializeDevicePinners(val: DevicePinners): Json;
 export type Comment = CommentBase & {
     /**
@@ -2515,7 +2515,7 @@ export type Comment = CommentBase & {
     readonly modifiedAt?: string;
     readonly item?: CommentItemField;
 };
-export declare function deserializeComment(val: Json): Comment;
+export declare function deserializeComment(val: any): Comment;
 export declare function serializeComment(val: Comment): Json;
 export type CommentFull = Comment & {
     /**
@@ -2525,7 +2525,7 @@ export type CommentFull = Comment & {
      * their display name. */
     readonly taggedMessage?: string;
 };
-export declare function deserializeCommentFull(val: Json): CommentFull;
+export declare function deserializeCommentFull(val: any): CommentFull;
 export declare function serializeCommentFull(val: CommentFull): Json;
 export interface Comments {
     readonly totalCount?: number;
@@ -2534,7 +2534,7 @@ export interface Comments {
     readonly order?: readonly CommentsOrderField[];
     readonly entries?: readonly Comment[];
 }
-export declare function deserializeComments(val: Json): Comments;
+export declare function deserializeComments(val: any): Comments;
 export declare function serializeComments(val: Comments): Json;
 export type ShieldInformationBarrierSegmentRestriction = ShieldInformationBarrierSegmentRestrictionMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
@@ -2551,12 +2551,12 @@ export type ShieldInformationBarrierSegmentRestriction = ShieldInformationBarrie
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 };
-export declare function deserializeShieldInformationBarrierSegmentRestriction(val: Json): ShieldInformationBarrierSegmentRestriction;
+export declare function deserializeShieldInformationBarrierSegmentRestriction(val: any): ShieldInformationBarrierSegmentRestriction;
 export declare function serializeShieldInformationBarrierSegmentRestriction(val: ShieldInformationBarrierSegmentRestriction): Json;
 export type ShieldInformationBarrierSegmentMemberMini = ShieldInformationBarrierSegmentMemberBase & {
     readonly user?: UserBase;
 };
-export declare function deserializeShieldInformationBarrierSegmentMemberMini(val: Json): ShieldInformationBarrierSegmentMemberMini;
+export declare function deserializeShieldInformationBarrierSegmentMemberMini(val: any): ShieldInformationBarrierSegmentMemberMini;
 export declare function serializeShieldInformationBarrierSegmentMemberMini(val: ShieldInformationBarrierSegmentMemberMini): Json;
 export type ShieldInformationBarrierSegmentMember = ShieldInformationBarrierSegmentMemberMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
@@ -2576,7 +2576,7 @@ export type ShieldInformationBarrierSegmentMember = ShieldInformationBarrierSegm
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 };
-export declare function deserializeShieldInformationBarrierSegmentMember(val: Json): ShieldInformationBarrierSegmentMember;
+export declare function deserializeShieldInformationBarrierSegmentMember(val: any): ShieldInformationBarrierSegmentMember;
 export declare function serializeShieldInformationBarrierSegmentMember(val: ShieldInformationBarrierSegmentMember): Json;
 export interface ShieldInformationBarrierSegment {
     readonly id?: string;
@@ -2589,7 +2589,7 @@ export interface ShieldInformationBarrierSegment {
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
 }
-export declare function deserializeShieldInformationBarrierSegment(val: Json): ShieldInformationBarrierSegment;
+export declare function deserializeShieldInformationBarrierSegment(val: any): ShieldInformationBarrierSegment;
 export declare function serializeShieldInformationBarrierSegment(val: ShieldInformationBarrierSegment): Json;
 export type ShieldInformationBarrierReport = ShieldInformationBarrierReportBase & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierReportShieldInformationBarrierField;
@@ -2607,7 +2607,7 @@ export type ShieldInformationBarrierReport = ShieldInformationBarrierReportBase 
      * shield information barrier report was updated. */
     readonly updatedAt?: string;
 };
-export declare function deserializeShieldInformationBarrierReport(val: Json): ShieldInformationBarrierReport;
+export declare function deserializeShieldInformationBarrierReport(val: any): ShieldInformationBarrierReport;
 export declare function serializeShieldInformationBarrierReport(val: ShieldInformationBarrierReport): Json;
 export interface ShieldInformationBarrier {
     readonly id?: string;
@@ -2621,7 +2621,7 @@ export interface ShieldInformationBarrier {
     readonly enabledAt?: string;
     readonly enabledBy?: UserBase;
 }
-export declare function deserializeShieldInformationBarrier(val: Json): ShieldInformationBarrier;
+export declare function deserializeShieldInformationBarrier(val: any): ShieldInformationBarrier;
 export declare function serializeShieldInformationBarrier(val: ShieldInformationBarrier): Json;
 export interface FolderLock {
     readonly folder?: FolderMini;
@@ -2632,7 +2632,7 @@ export interface FolderLock {
     readonly lockedOperations?: FolderLockLockedOperationsField;
     readonly lockType?: string;
 }
-export declare function deserializeFolderLock(val: Json): FolderLock;
+export declare function deserializeFolderLock(val: any): FolderLock;
 export declare function serializeFolderLock(val: FolderLock): Json;
 export interface FolderLocks {
     readonly limit?: number;
@@ -2640,40 +2640,40 @@ export interface FolderLocks {
     readonly prevMarker?: number;
     readonly entries?: readonly FolderLock[];
 }
-export declare function deserializeFolderLocks(val: Json): FolderLocks;
+export declare function deserializeFolderLocks(val: any): FolderLocks;
 export declare function serializeFolderLocks(val: FolderLocks): Json;
 export interface WatermarkWatermarkField {
     readonly createdAt?: string;
     readonly modifiedAt?: string;
 }
-export declare function deserializeWatermarkWatermarkField(val: Json): WatermarkWatermarkField;
+export declare function deserializeWatermarkWatermarkField(val: any): WatermarkWatermarkField;
 export declare function serializeWatermarkWatermarkField(val: WatermarkWatermarkField): Json;
 export interface Watermark {
     readonly watermark?: WatermarkWatermarkField;
 }
-export declare function deserializeWatermark(val: Json): Watermark;
+export declare function deserializeWatermark(val: any): Watermark;
 export declare function serializeWatermark(val: Watermark): Json;
 export type WebhookTriggersField = "FILE.UPLOADED" | "FILE.PREVIEWED" | "FILE.DOWNLOADED" | "FILE.TRASHED" | "FILE.DELETED" | "FILE.RESTORED" | "FILE.COPIED" | "FILE.MOVED" | "FILE.LOCKED" | "FILE.UNLOCKED" | "FILE.RENAMED" | "COMMENT.CREATED" | "COMMENT.UPDATED" | "COMMENT.DELETED" | "TASK_ASSIGNMENT.CREATED" | "TASK_ASSIGNMENT.UPDATED" | "METADATA_INSTANCE.CREATED" | "METADATA_INSTANCE.UPDATED" | "METADATA_INSTANCE.DELETED" | "FOLDER.CREATED" | "FOLDER.RENAMED" | "FOLDER.DOWNLOADED" | "FOLDER.RESTORED" | "FOLDER.DELETED" | "FOLDER.COPIED" | "FOLDER.MOVED" | "FOLDER.TRASHED" | "WEBHOOK.DELETED" | "COLLABORATION.CREATED" | "COLLABORATION.ACCEPTED" | "COLLABORATION.REJECTED" | "COLLABORATION.REMOVED" | "COLLABORATION.UPDATED" | "SHARED_LINK.DELETED" | "SHARED_LINK.CREATED" | "SHARED_LINK.UPDATED" | "SIGN_REQUEST.COMPLETED" | "SIGN_REQUEST.DECLINED" | "SIGN_REQUEST.EXPIRED" | "SIGN_REQUEST.SIGNER_EMAIL_BOUNCED";
-export declare function deserializeWebhookTriggersField(val: Json): WebhookTriggersField;
+export declare function deserializeWebhookTriggersField(val: any): WebhookTriggersField;
 export declare function serializeWebhookTriggersField(val: WebhookTriggersField): Json;
 export type WebhookMiniTypeField = "webhook";
-export declare function deserializeWebhookMiniTypeField(val: Json): WebhookMiniTypeField;
+export declare function deserializeWebhookMiniTypeField(val: any): WebhookMiniTypeField;
 export declare function serializeWebhookMiniTypeField(val: WebhookMiniTypeField): Json;
 export type WebhookMiniTargetFieldTypeField = "file" | "folder";
-export declare function deserializeWebhookMiniTargetFieldTypeField(val: Json): WebhookMiniTargetFieldTypeField;
+export declare function deserializeWebhookMiniTargetFieldTypeField(val: any): WebhookMiniTargetFieldTypeField;
 export declare function serializeWebhookMiniTargetFieldTypeField(val: WebhookMiniTargetFieldTypeField): Json;
 export interface WebhookMiniTargetField {
     readonly id?: string;
     readonly type?: WebhookMiniTargetFieldTypeField;
 }
-export declare function deserializeWebhookMiniTargetField(val: Json): WebhookMiniTargetField;
+export declare function deserializeWebhookMiniTargetField(val: any): WebhookMiniTargetField;
 export declare function serializeWebhookMiniTargetField(val: WebhookMiniTargetField): Json;
 export interface WebhookMini {
     readonly id?: string;
     readonly type?: WebhookMiniTypeField;
     readonly target?: WebhookMiniTargetField;
 }
-export declare function deserializeWebhookMini(val: Json): WebhookMini;
+export declare function deserializeWebhookMini(val: any): WebhookMini;
 export declare function serializeWebhookMini(val: WebhookMini): Json;
 export interface Webhooks {
     readonly limit?: number;
@@ -2681,7 +2681,7 @@ export interface Webhooks {
     readonly prevMarker?: number;
     readonly entries?: readonly WebhookMini[];
 }
-export declare function deserializeWebhooks(val: Json): Webhooks;
+export declare function deserializeWebhooks(val: any): Webhooks;
 export declare function serializeWebhooks(val: Webhooks): Json;
 export type Webhook = WebhookMini & {
     readonly createdBy?: UserMini;
@@ -2697,23 +2697,23 @@ export type Webhook = WebhookMini & {
      * to be triggered for */
     readonly triggers?: readonly WebhookTriggersField[];
 };
-export declare function deserializeWebhook(val: Json): Webhook;
+export declare function deserializeWebhook(val: any): Webhook;
 export declare function serializeWebhook(val: Webhook): Json;
 export type WebLinkSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export declare function deserializeWebLinkSharedLinkFieldAccessField(val: Json): WebLinkSharedLinkFieldAccessField;
+export declare function deserializeWebLinkSharedLinkFieldAccessField(val: any): WebLinkSharedLinkFieldAccessField;
 export declare function serializeWebLinkSharedLinkFieldAccessField(val: WebLinkSharedLinkFieldAccessField): Json;
 export type WebLinkSharedLinkFieldEffectiveAccessField = "open" | "company" | "collaborators";
-export declare function deserializeWebLinkSharedLinkFieldEffectiveAccessField(val: Json): WebLinkSharedLinkFieldEffectiveAccessField;
+export declare function deserializeWebLinkSharedLinkFieldEffectiveAccessField(val: any): WebLinkSharedLinkFieldEffectiveAccessField;
 export declare function serializeWebLinkSharedLinkFieldEffectiveAccessField(val: WebLinkSharedLinkFieldEffectiveAccessField): Json;
 export type WebLinkSharedLinkFieldEffectivePermissionField = "can_edit" | "can_download" | "can_preview" | "no_access";
-export declare function deserializeWebLinkSharedLinkFieldEffectivePermissionField(val: Json): WebLinkSharedLinkFieldEffectivePermissionField;
+export declare function deserializeWebLinkSharedLinkFieldEffectivePermissionField(val: any): WebLinkSharedLinkFieldEffectivePermissionField;
 export declare function serializeWebLinkSharedLinkFieldEffectivePermissionField(val: WebLinkSharedLinkFieldEffectivePermissionField): Json;
 export interface WebLinkSharedLinkFieldPermissionsField {
     readonly canDownload: boolean;
     readonly canPreview: boolean;
     readonly canEdit: boolean;
 }
-export declare function deserializeWebLinkSharedLinkFieldPermissionsField(val: Json): WebLinkSharedLinkFieldPermissionsField;
+export declare function deserializeWebLinkSharedLinkFieldPermissionsField(val: any): WebLinkSharedLinkFieldPermissionsField;
 export declare function serializeWebLinkSharedLinkFieldPermissionsField(val: WebLinkSharedLinkFieldPermissionsField): Json;
 export interface WebLinkSharedLinkField {
     readonly url: string;
@@ -2729,20 +2729,20 @@ export interface WebLinkSharedLinkField {
     readonly downloadCount: number;
     readonly previewCount: number;
 }
-export declare function deserializeWebLinkSharedLinkField(val: Json): WebLinkSharedLinkField;
+export declare function deserializeWebLinkSharedLinkField(val: any): WebLinkSharedLinkField;
 export declare function serializeWebLinkSharedLinkField(val: WebLinkSharedLinkField): Json;
 export type WebLinkItemStatusField = "active" | "trashed" | "deleted";
-export declare function deserializeWebLinkItemStatusField(val: Json): WebLinkItemStatusField;
+export declare function deserializeWebLinkItemStatusField(val: any): WebLinkItemStatusField;
 export declare function serializeWebLinkItemStatusField(val: WebLinkItemStatusField): Json;
 export type WebLinkBaseTypeField = "web_link";
-export declare function deserializeWebLinkBaseTypeField(val: Json): WebLinkBaseTypeField;
+export declare function deserializeWebLinkBaseTypeField(val: any): WebLinkBaseTypeField;
 export declare function serializeWebLinkBaseTypeField(val: WebLinkBaseTypeField): Json;
 export interface WebLinkBase {
     readonly id: string;
     readonly type: WebLinkBaseTypeField;
     readonly etag?: string;
 }
-export declare function deserializeWebLinkBase(val: Json): WebLinkBase;
+export declare function deserializeWebLinkBase(val: any): WebLinkBase;
 export declare function serializeWebLinkBase(val: WebLinkBase): Json;
 export type WebLinkMini = WebLinkBase & {
     /**
@@ -2753,7 +2753,7 @@ export type WebLinkMini = WebLinkBase & {
      * The name of the web link */
     readonly name?: string;
 };
-export declare function deserializeWebLinkMini(val: Json): WebLinkMini;
+export declare function deserializeWebLinkMini(val: any): WebLinkMini;
 export declare function serializeWebLinkMini(val: WebLinkMini): Json;
 export type WebLink = WebLinkMini & {
     readonly parent?: FolderMini;
@@ -2785,10 +2785,10 @@ export type WebLink = WebLinkMini & {
      * the file has been permanently deleted */
     readonly itemStatus?: WebLinkItemStatusField;
 };
-export declare function deserializeWebLink(val: Json): WebLink;
+export declare function deserializeWebLink(val: any): WebLink;
 export declare function serializeWebLink(val: WebLink): Json;
 export type ItemsEntriesField = FileMini | FolderMini | WebLinkMini;
-export declare function deserializeItemsEntriesField(val: Json): ItemsEntriesField;
+export declare function deserializeItemsEntriesField(val: any): ItemsEntriesField;
 export declare function serializeItemsEntriesField(val: ItemsEntriesField): Json;
 export interface Items {
     readonly totalCount?: number;
@@ -2797,7 +2797,7 @@ export interface Items {
     readonly order?: readonly ItemsOrderField[];
     readonly entries?: readonly ItemsEntriesField[];
 }
-export declare function deserializeItems(val: Json): Items;
+export declare function deserializeItems(val: any): Items;
 export declare function serializeItems(val: Items): Json;
 export type Folder = FolderMini & {
     /**
@@ -2847,17 +2847,17 @@ export type Folder = FolderMini & {
     readonly itemStatus?: FolderItemStatusField;
     readonly itemCollection?: Items;
 };
-export declare function deserializeFolder(val: Json): Folder;
+export declare function deserializeFolder(val: any): Folder;
 export declare function serializeFolder(val: Folder): Json;
 export type SearchResultWithSharedLinkItemField = File | Folder | WebLink;
-export declare function deserializeSearchResultWithSharedLinkItemField(val: Json): SearchResultWithSharedLinkItemField;
+export declare function deserializeSearchResultWithSharedLinkItemField(val: any): SearchResultWithSharedLinkItemField;
 export declare function serializeSearchResultWithSharedLinkItemField(val: SearchResultWithSharedLinkItemField): Json;
 export interface SearchResultWithSharedLink {
     readonly accessibleViaSharedLink?: string;
     readonly item?: SearchResultWithSharedLinkItemField;
     readonly type?: string;
 }
-export declare function deserializeSearchResultWithSharedLink(val: Json): SearchResultWithSharedLink;
+export declare function deserializeSearchResultWithSharedLink(val: any): SearchResultWithSharedLink;
 export declare function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): Json;
 export interface SearchResultsWithSharedLinks {
     readonly totalCount?: number;
@@ -2865,10 +2865,10 @@ export interface SearchResultsWithSharedLinks {
     readonly offset?: number;
     readonly entries?: readonly SearchResultWithSharedLink[];
 }
-export declare function deserializeSearchResultsWithSharedLinks(val: Json): SearchResultsWithSharedLinks;
+export declare function deserializeSearchResultsWithSharedLinks(val: any): SearchResultsWithSharedLinks;
 export declare function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json;
 export type SearchResultsEntriesField = File | Folder | WebLink;
-export declare function deserializeSearchResultsEntriesField(val: Json): SearchResultsEntriesField;
+export declare function deserializeSearchResultsEntriesField(val: any): SearchResultsEntriesField;
 export declare function serializeSearchResultsEntriesField(val: SearchResultsEntriesField): Json;
 export interface SearchResults {
     readonly totalCount?: number;
@@ -2876,10 +2876,10 @@ export interface SearchResults {
     readonly offset?: number;
     readonly entries?: readonly SearchResultsEntriesField[];
 }
-export declare function deserializeSearchResults(val: Json): SearchResults;
+export declare function deserializeSearchResults(val: any): SearchResults;
 export declare function serializeSearchResults(val: SearchResults): Json;
 export type RecentItemItemField = File | Folder | WebLink;
-export declare function deserializeRecentItemItemField(val: Json): RecentItemItemField;
+export declare function deserializeRecentItemItemField(val: any): RecentItemItemField;
 export declare function serializeRecentItemItemField(val: RecentItemItemField): Json;
 export interface RecentItem {
     readonly type?: string;
@@ -2888,7 +2888,7 @@ export interface RecentItem {
     readonly interactedAt?: string;
     readonly interactionSharedLink?: string;
 }
-export declare function deserializeRecentItem(val: Json): RecentItem;
+export declare function deserializeRecentItem(val: any): RecentItem;
 export declare function serializeRecentItem(val: RecentItem): Json;
 export interface RecentItems {
     readonly limit?: number;
@@ -2896,20 +2896,20 @@ export interface RecentItems {
     readonly prevMarker?: number;
     readonly entries?: readonly RecentItem[];
 }
-export declare function deserializeRecentItems(val: Json): RecentItems;
+export declare function deserializeRecentItems(val: any): RecentItems;
 export declare function serializeRecentItems(val: RecentItems): Json;
 export type MetadataQueryResultsEntriesField = File | Folder;
-export declare function deserializeMetadataQueryResultsEntriesField(val: Json): MetadataQueryResultsEntriesField;
+export declare function deserializeMetadataQueryResultsEntriesField(val: any): MetadataQueryResultsEntriesField;
 export declare function serializeMetadataQueryResultsEntriesField(val: MetadataQueryResultsEntriesField): Json;
 export interface MetadataQueryResults {
     readonly entries?: readonly MetadataQueryResultsEntriesField[];
     readonly limit?: number;
     readonly nextMarker?: string;
 }
-export declare function deserializeMetadataQueryResults(val: Json): MetadataQueryResults;
+export declare function deserializeMetadataQueryResults(val: any): MetadataQueryResults;
 export declare function serializeMetadataQueryResults(val: MetadataQueryResults): Json;
 export type LegalHoldPolicyAssignmentAssignedToField = File | Folder | WebLink;
-export declare function deserializeLegalHoldPolicyAssignmentAssignedToField(val: Json): LegalHoldPolicyAssignmentAssignedToField;
+export declare function deserializeLegalHoldPolicyAssignmentAssignedToField(val: any): LegalHoldPolicyAssignmentAssignedToField;
 export declare function serializeLegalHoldPolicyAssignmentAssignedToField(val: LegalHoldPolicyAssignmentAssignedToField): Json;
 export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
     readonly legalHoldPolicy?: LegalHoldPolicyMini;
@@ -2927,7 +2927,7 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
      * was not deleted. */
     readonly deletedAt?: string;
 };
-export declare function deserializeLegalHoldPolicyAssignment(val: Json): LegalHoldPolicyAssignment;
+export declare function deserializeLegalHoldPolicyAssignment(val: any): LegalHoldPolicyAssignment;
 export declare function serializeLegalHoldPolicyAssignment(val: LegalHoldPolicyAssignment): Json;
 export interface FileVersionLegalHold {
     readonly id?: string;
@@ -2937,7 +2937,7 @@ export interface FileVersionLegalHold {
     readonly legalHoldPolicyAssignments?: readonly LegalHoldPolicyAssignment[];
     readonly deletedAt?: string;
 }
-export declare function deserializeFileVersionLegalHold(val: Json): FileVersionLegalHold;
+export declare function deserializeFileVersionLegalHold(val: any): FileVersionLegalHold;
 export declare function serializeFileVersionLegalHold(val: FileVersionLegalHold): Json;
 export interface FileVersionLegalHolds {
     readonly limit?: number;
@@ -2945,7 +2945,7 @@ export interface FileVersionLegalHolds {
     readonly prevMarker?: number;
     readonly entries?: readonly FileVersionLegalHold[];
 }
-export declare function deserializeFileVersionLegalHolds(val: Json): FileVersionLegalHolds;
+export declare function deserializeFileVersionLegalHolds(val: any): FileVersionLegalHolds;
 export declare function serializeFileVersionLegalHolds(val: FileVersionLegalHolds): Json;
 export type FolderFull = Folder & {
     readonly syncState?: FolderFullSyncStateField;
@@ -2988,10 +2988,10 @@ export type FolderFull = Folder & {
     readonly canNonOwnersViewCollaborators?: boolean;
     readonly classification?: FolderFullClassificationField;
 };
-export declare function deserializeFolderFull(val: Json): FolderFull;
+export declare function deserializeFolderFull(val: any): FolderFull;
 export declare function serializeFolderFull(val: FolderFull): Json;
 export type CollaborationItemField = File | Folder | WebLink;
-export declare function deserializeCollaborationItemField(val: Json): CollaborationItemField;
+export declare function deserializeCollaborationItemField(val: any): CollaborationItemField;
 export declare function serializeCollaborationItemField(val: CollaborationItemField): Json;
 export interface Collaboration {
     readonly id?: string;
@@ -3008,7 +3008,7 @@ export interface Collaboration {
     readonly modifiedAt?: string;
     readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }
-export declare function deserializeCollaboration(val: Json): Collaboration;
+export declare function deserializeCollaboration(val: any): Collaboration;
 export declare function serializeCollaboration(val: Collaboration): Json;
 export interface Collaborations {
     readonly totalCount?: number;
@@ -3017,10 +3017,10 @@ export interface Collaborations {
     readonly order?: readonly CollaborationsOrderField[];
     readonly entries?: readonly Collaboration[];
 }
-export declare function deserializeCollaborations(val: Json): Collaborations;
+export declare function deserializeCollaborations(val: any): Collaborations;
 export declare function serializeCollaborations(val: Collaborations): Json;
 export type WebhookInvocationSourceField = File | Folder;
-export declare function deserializeWebhookInvocationSourceField(val: Json): WebhookInvocationSourceField;
+export declare function deserializeWebhookInvocationSourceField(val: any): WebhookInvocationSourceField;
 export declare function serializeWebhookInvocationSourceField(val: WebhookInvocationSourceField): Json;
 export interface WebhookInvocation {
     readonly id?: string;
@@ -3031,57 +3031,57 @@ export interface WebhookInvocation {
     readonly trigger?: WebhookInvocationTriggerField;
     readonly source?: WebhookInvocationSourceField;
 }
-export declare function deserializeWebhookInvocation(val: Json): WebhookInvocation;
+export declare function deserializeWebhookInvocation(val: any): WebhookInvocation;
 export declare function serializeWebhookInvocation(val: WebhookInvocation): Json;
 export type SkillInvocationSourceField = File | Folder;
-export declare function deserializeSkillInvocationSourceField(val: Json): SkillInvocationSourceField;
+export declare function deserializeSkillInvocationSourceField(val: any): SkillInvocationSourceField;
 export declare function serializeSkillInvocationSourceField(val: SkillInvocationSourceField): Json;
 export type WorkflowFlowsFieldTypeField = "flow";
-export declare function deserializeWorkflowFlowsFieldTypeField(val: Json): WorkflowFlowsFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldTypeField(val: any): WorkflowFlowsFieldTypeField;
 export declare function serializeWorkflowFlowsFieldTypeField(val: WorkflowFlowsFieldTypeField): Json;
 export type WorkflowFlowsFieldTriggerFieldTypeField = "trigger";
-export declare function deserializeWorkflowFlowsFieldTriggerFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldTypeField(val: any): WorkflowFlowsFieldTriggerFieldTypeField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldTypeField(val: WorkflowFlowsFieldTriggerFieldTypeField): Json;
 export type WorkflowFlowsFieldTriggerFieldTriggerTypeField = "WORKFLOW_MANUAL_START";
-export declare function deserializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: Json): WorkflowFlowsFieldTriggerFieldTriggerTypeField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: any): WorkflowFlowsFieldTriggerFieldTriggerTypeField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldTriggerTypeField(val: WorkflowFlowsFieldTriggerFieldTriggerTypeField): Json;
 export type WorkflowFlowsFieldTriggerFieldScopeFieldTypeField = "trigger_scope";
-export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: any): WorkflowFlowsFieldTriggerFieldScopeFieldTypeField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldScopeFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldTypeField): Json;
 export type WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField = "folder";
-export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: any): WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField): Json;
 export interface WorkflowFlowsFieldTriggerFieldScopeFieldObjectField {
     readonly type?: WorkflowFlowsFieldTriggerFieldScopeFieldObjectFieldTypeField;
     readonly id?: string;
 }
-export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: Json): WorkflowFlowsFieldTriggerFieldScopeFieldObjectField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: any): WorkflowFlowsFieldTriggerFieldScopeFieldObjectField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldScopeFieldObjectField(val: WorkflowFlowsFieldTriggerFieldScopeFieldObjectField): Json;
 export interface WorkflowFlowsFieldTriggerFieldScopeField {
     readonly type?: WorkflowFlowsFieldTriggerFieldScopeFieldTypeField;
     readonly ref?: string;
     readonly object?: WorkflowFlowsFieldTriggerFieldScopeFieldObjectField;
 }
-export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeField(val: Json): WorkflowFlowsFieldTriggerFieldScopeField;
+export declare function deserializeWorkflowFlowsFieldTriggerFieldScopeField(val: any): WorkflowFlowsFieldTriggerFieldScopeField;
 export declare function serializeWorkflowFlowsFieldTriggerFieldScopeField(val: WorkflowFlowsFieldTriggerFieldScopeField): Json;
 export interface WorkflowFlowsFieldTriggerField {
     readonly type?: WorkflowFlowsFieldTriggerFieldTypeField;
     readonly triggerType?: WorkflowFlowsFieldTriggerFieldTriggerTypeField;
     readonly scope?: readonly WorkflowFlowsFieldTriggerFieldScopeField[];
 }
-export declare function deserializeWorkflowFlowsFieldTriggerField(val: Json): WorkflowFlowsFieldTriggerField;
+export declare function deserializeWorkflowFlowsFieldTriggerField(val: any): WorkflowFlowsFieldTriggerField;
 export declare function serializeWorkflowFlowsFieldTriggerField(val: WorkflowFlowsFieldTriggerField): Json;
 export type WorkflowFlowsFieldOutcomesFieldTypeField = "outcome";
-export declare function deserializeWorkflowFlowsFieldOutcomesFieldTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldOutcomesFieldTypeField(val: any): WorkflowFlowsFieldOutcomesFieldTypeField;
 export declare function serializeWorkflowFlowsFieldOutcomesFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldTypeField): Json;
 export type WorkflowFlowsFieldOutcomesFieldActionTypeField = "add_metadata" | "assign_task" | "copy_file" | "copy_folder" | "create_folder" | "delete_file" | "delete_folder" | "lock_file" | "move_file" | "move_folder" | "remove_watermark_file" | "rename_folder" | "restore_folder" | "share_file" | "share_folder" | "unlock_file" | "upload_file" | "wait_for_task" | "watermark_file" | "go_back_to_step" | "apply_file_classification" | "apply_folder_classification" | "send_notification";
-export declare function deserializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldActionTypeField;
+export declare function deserializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: any): WorkflowFlowsFieldOutcomesFieldActionTypeField;
 export declare function serializeWorkflowFlowsFieldOutcomesFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldActionTypeField): Json;
 export type WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField = "outcome";
-export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField;
+export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: any): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField;
 export declare function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldTypeField): Json;
 export type WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField = "add_metadata" | "assign_task" | "copy_file" | "copy_folder" | "create_folder" | "delete_file" | "delete_folder" | "lock_file" | "move_file" | "move_folder" | "remove_watermark_file" | "rename_folder" | "restore_folder" | "share_file" | "share_folder" | "unlock_file" | "upload_file" | "wait_for_task" | "watermark_file" | "go_back_to_step" | "apply_file_classification" | "apply_folder_classification" | "send_notification";
-export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField;
+export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: any): WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField;
 export declare function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField): Json;
 export interface WorkflowFlowsFieldOutcomesFieldIfRejectedField {
     readonly id?: string;
@@ -3089,7 +3089,7 @@ export interface WorkflowFlowsFieldOutcomesFieldIfRejectedField {
     readonly name?: string;
     readonly actionType?: WorkflowFlowsFieldOutcomesFieldIfRejectedFieldActionTypeField;
 }
-export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: Json): WorkflowFlowsFieldOutcomesFieldIfRejectedField;
+export declare function deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: any): WorkflowFlowsFieldOutcomesFieldIfRejectedField;
 export declare function serializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(val: WorkflowFlowsFieldOutcomesFieldIfRejectedField): Json;
 export interface WorkflowFlowsFieldOutcomesField {
     readonly id?: string;
@@ -3098,7 +3098,7 @@ export interface WorkflowFlowsFieldOutcomesField {
     readonly actionType?: WorkflowFlowsFieldOutcomesFieldActionTypeField;
     readonly ifRejected?: readonly WorkflowFlowsFieldOutcomesFieldIfRejectedField[];
 }
-export declare function deserializeWorkflowFlowsFieldOutcomesField(val: Json): WorkflowFlowsFieldOutcomesField;
+export declare function deserializeWorkflowFlowsFieldOutcomesField(val: any): WorkflowFlowsFieldOutcomesField;
 export declare function serializeWorkflowFlowsFieldOutcomesField(val: WorkflowFlowsFieldOutcomesField): Json;
 export interface WorkflowFlowsField {
     readonly id?: string;
@@ -3108,10 +3108,10 @@ export interface WorkflowFlowsField {
     readonly createdAt?: string;
     readonly createdBy?: UserBase;
 }
-export declare function deserializeWorkflowFlowsField(val: Json): WorkflowFlowsField;
+export declare function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField;
 export declare function serializeWorkflowFlowsField(val: WorkflowFlowsField): Json;
 export type WorkflowMiniTypeField = "workflow";
-export declare function deserializeWorkflowMiniTypeField(val: Json): WorkflowMiniTypeField;
+export declare function deserializeWorkflowMiniTypeField(val: any): WorkflowMiniTypeField;
 export declare function serializeWorkflowMiniTypeField(val: WorkflowMiniTypeField): Json;
 export interface WorkflowMini {
     readonly id?: string;
@@ -3120,14 +3120,14 @@ export interface WorkflowMini {
     readonly description?: string;
     readonly isEnabled?: boolean;
 }
-export declare function deserializeWorkflowMini(val: Json): WorkflowMini;
+export declare function deserializeWorkflowMini(val: any): WorkflowMini;
 export declare function serializeWorkflowMini(val: WorkflowMini): Json;
 export type Workflow = WorkflowMini & {
     /**
      * A list of flows assigned to a workflow. */
     readonly flows?: readonly WorkflowFlowsField[];
 };
-export declare function deserializeWorkflow(val: Json): Workflow;
+export declare function deserializeWorkflow(val: any): Workflow;
 export declare function serializeWorkflow(val: Workflow): Json;
 export interface Workflows {
     readonly limit?: number;
@@ -3135,7 +3135,7 @@ export interface Workflows {
     readonly prevMarker?: number;
     readonly entries?: readonly Workflow[];
 }
-export declare function deserializeWorkflows(val: Json): Workflows;
+export declare function deserializeWorkflows(val: any): Workflows;
 export declare function serializeWorkflows(val: Workflows): Json;
 export type WorkflowFull = Workflow & {
     /**
@@ -3147,7 +3147,7 @@ export type WorkflowFull = Workflow & {
     readonly createdBy?: UserBase;
     readonly modifiedBy?: UserBase;
 };
-export declare function deserializeWorkflowFull(val: Json): WorkflowFull;
+export declare function deserializeWorkflowFull(val: any): WorkflowFull;
 export declare function serializeWorkflowFull(val: WorkflowFull): Json;
 export interface ZipDownload {
     readonly downloadUrl?: string;
@@ -3169,10 +3169,10 @@ export interface ZipDownload {
         readonly downloadName?: string;
     }[])[];
 }
-export declare function deserializeZipDownload(val: Json): ZipDownload;
+export declare function deserializeZipDownload(val: any): ZipDownload;
 export declare function serializeZipDownload(val: ZipDownload): Json;
 export type ZipDownloadStatusStateField = "in_progress" | "failed" | "success";
-export declare function deserializeZipDownloadStatusStateField(val: Json): ZipDownloadStatusStateField;
+export declare function deserializeZipDownloadStatusStateField(val: any): ZipDownloadStatusStateField;
 export declare function serializeZipDownloadStatusStateField(val: ZipDownloadStatusStateField): Json;
 export interface ZipDownloadStatus {
     readonly totalFileCount?: number;
@@ -3181,22 +3181,22 @@ export interface ZipDownloadStatus {
     readonly skippedFolderCount?: number;
     readonly state?: ZipDownloadStatusStateField;
 }
-export declare function deserializeZipDownloadStatus(val: Json): ZipDownloadStatus;
+export declare function deserializeZipDownloadStatus(val: any): ZipDownloadStatus;
 export declare function serializeZipDownloadStatus(val: ZipDownloadStatus): Json;
 export type SignRequestTypeField = "sign-request";
-export declare function deserializeSignRequestTypeField(val: Json): SignRequestTypeField;
+export declare function deserializeSignRequestTypeField(val: any): SignRequestTypeField;
 export declare function serializeSignRequestTypeField(val: SignRequestTypeField): Json;
 export type SignRequestStatusField = "converting" | "created" | "sent" | "viewed" | "signed" | "cancelled" | "declined" | "error_converting" | "error_sending" | "expired";
-export declare function deserializeSignRequestStatusField(val: Json): SignRequestStatusField;
+export declare function deserializeSignRequestStatusField(val: any): SignRequestStatusField;
 export declare function serializeSignRequestStatusField(val: SignRequestStatusField): Json;
 export type FileScopeScopeField = "annotation_edit" | "annotation_view_all" | "annotation_view_self" | "base_explorer" | "base_picker" | "base_preview" | "base_upload" | "item_delete" | "item_download" | "item_preview" | "item_rename" | "item_share";
-export declare function deserializeFileScopeScopeField(val: Json): FileScopeScopeField;
+export declare function deserializeFileScopeScopeField(val: any): FileScopeScopeField;
 export declare function serializeFileScopeScopeField(val: FileScopeScopeField): Json;
 export interface FileScope {
     readonly scope?: FileScopeScopeField;
     readonly object?: FileMini;
 }
-export declare function deserializeFileScope(val: Json): FileScope;
+export declare function deserializeFileScope(val: any): FileScope;
 export declare function serializeFileScope(val: FileScope): Json;
 export interface FileFullExpiringEmbedLinkField {
     readonly accessToken?: string;
@@ -3205,7 +3205,7 @@ export interface FileFullExpiringEmbedLinkField {
     readonly restrictedTo?: readonly FileScope[];
     readonly url?: string;
 }
-export declare function deserializeFileFullExpiringEmbedLinkField(val: Json): FileFullExpiringEmbedLinkField;
+export declare function deserializeFileFullExpiringEmbedLinkField(val: any): FileFullExpiringEmbedLinkField;
 export declare function serializeFileFullExpiringEmbedLinkField(val: FileFullExpiringEmbedLinkField): Json;
 export type FileFull = File & {
     /**
@@ -3258,7 +3258,7 @@ export type FileFull = File & {
      * when sharing this file. */
     readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
 };
-export declare function deserializeFileFull(val: Json): FileFull;
+export declare function deserializeFileFull(val: any): FileFull;
 export declare function serializeFileFull(val: FileFull): Json;
 export interface AccessToken {
     readonly accessToken?: string;
@@ -3268,15 +3268,15 @@ export interface AccessToken {
     readonly refreshToken?: string;
     readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
 }
-export declare function deserializeAccessToken(val: Json): AccessToken;
+export declare function deserializeAccessToken(val: any): AccessToken;
 export declare function serializeAccessToken(val: AccessToken): Json;
 export type EventSourceItemTypeField = "file" | "folder";
-export declare function deserializeEventSourceItemTypeField(val: Json): EventSourceItemTypeField;
+export declare function deserializeEventSourceItemTypeField(val: any): EventSourceItemTypeField;
 export declare function serializeEventSourceItemTypeField(val: EventSourceItemTypeField): Json;
 export interface EventSourceClassificationField {
     readonly name?: string;
 }
-export declare function deserializeEventSourceClassificationField(val: Json): EventSourceClassificationField;
+export declare function deserializeEventSourceClassificationField(val: any): EventSourceClassificationField;
 export declare function serializeEventSourceClassificationField(val: EventSourceClassificationField): Json;
 export interface EventSource {
     readonly itemType: EventSourceItemTypeField;
@@ -3286,10 +3286,10 @@ export interface EventSource {
     readonly parent?: FolderMini;
     readonly ownedBy?: UserMini;
 }
-export declare function deserializeEventSource(val: Json): EventSource;
+export declare function deserializeEventSource(val: any): EventSource;
 export declare function serializeEventSource(val: EventSource): Json;
 export type EventSourceField = User | EventSource | File | Folder;
-export declare function deserializeEventSourceField(val: Json): EventSourceField;
+export declare function deserializeEventSourceField(val: any): EventSourceField;
 export declare function serializeEventSourceField(val: EventSourceField): Json;
 export interface Event {
     readonly type?: string;
@@ -3302,14 +3302,14 @@ export interface Event {
     readonly source?: EventSourceField;
     readonly additionalDetails?: EventAdditionalDetailsField;
 }
-export declare function deserializeEvent(val: Json): Event;
+export declare function deserializeEvent(val: any): Event;
 export declare function serializeEvent(val: Event): Json;
 export interface Events {
     readonly chunkSize?: number;
     readonly nextStreamPosition?: string;
     readonly entries?: readonly Event[];
 }
-export declare function deserializeEvents(val: Json): Events;
+export declare function deserializeEvents(val: any): Events;
 export declare function serializeEvents(val: Events): Json;
 export interface SkillInvocation {
     readonly type?: SkillInvocationTypeField;
@@ -3323,42 +3323,42 @@ export interface SkillInvocation {
     readonly source?: SkillInvocationSourceField;
     readonly event?: Event;
 }
-export declare function deserializeSkillInvocation(val: Json): SkillInvocation;
+export declare function deserializeSkillInvocation(val: any): SkillInvocation;
 export declare function serializeSkillInvocation(val: SkillInvocation): Json;
 export type KeywordSkillCardTypeField = "skill_card";
-export declare function deserializeKeywordSkillCardTypeField(val: Json): KeywordSkillCardTypeField;
+export declare function deserializeKeywordSkillCardTypeField(val: any): KeywordSkillCardTypeField;
 export declare function serializeKeywordSkillCardTypeField(val: KeywordSkillCardTypeField): Json;
 export type KeywordSkillCardSkillCardTypeField = "keyword";
-export declare function deserializeKeywordSkillCardSkillCardTypeField(val: Json): KeywordSkillCardSkillCardTypeField;
+export declare function deserializeKeywordSkillCardSkillCardTypeField(val: any): KeywordSkillCardSkillCardTypeField;
 export declare function serializeKeywordSkillCardSkillCardTypeField(val: KeywordSkillCardSkillCardTypeField): Json;
 export interface KeywordSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export declare function deserializeKeywordSkillCardSkillCardTitleField(val: Json): KeywordSkillCardSkillCardTitleField;
+export declare function deserializeKeywordSkillCardSkillCardTitleField(val: any): KeywordSkillCardSkillCardTitleField;
 export declare function serializeKeywordSkillCardSkillCardTitleField(val: KeywordSkillCardSkillCardTitleField): Json;
 export type KeywordSkillCardSkillFieldTypeField = "service";
-export declare function deserializeKeywordSkillCardSkillFieldTypeField(val: Json): KeywordSkillCardSkillFieldTypeField;
+export declare function deserializeKeywordSkillCardSkillFieldTypeField(val: any): KeywordSkillCardSkillFieldTypeField;
 export declare function serializeKeywordSkillCardSkillFieldTypeField(val: KeywordSkillCardSkillFieldTypeField): Json;
 export interface KeywordSkillCardSkillField {
     readonly type: KeywordSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeKeywordSkillCardSkillField(val: Json): KeywordSkillCardSkillField;
+export declare function deserializeKeywordSkillCardSkillField(val: any): KeywordSkillCardSkillField;
 export declare function serializeKeywordSkillCardSkillField(val: KeywordSkillCardSkillField): Json;
 export type KeywordSkillCardInvocationFieldTypeField = "skill_invocation";
-export declare function deserializeKeywordSkillCardInvocationFieldTypeField(val: Json): KeywordSkillCardInvocationFieldTypeField;
+export declare function deserializeKeywordSkillCardInvocationFieldTypeField(val: any): KeywordSkillCardInvocationFieldTypeField;
 export declare function serializeKeywordSkillCardInvocationFieldTypeField(val: KeywordSkillCardInvocationFieldTypeField): Json;
 export interface KeywordSkillCardInvocationField {
     readonly type: KeywordSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeKeywordSkillCardInvocationField(val: Json): KeywordSkillCardInvocationField;
+export declare function deserializeKeywordSkillCardInvocationField(val: any): KeywordSkillCardInvocationField;
 export declare function serializeKeywordSkillCardInvocationField(val: KeywordSkillCardInvocationField): Json;
 export interface KeywordSkillCardEntriesField {
     readonly text?: string;
 }
-export declare function deserializeKeywordSkillCardEntriesField(val: Json): KeywordSkillCardEntriesField;
+export declare function deserializeKeywordSkillCardEntriesField(val: any): KeywordSkillCardEntriesField;
 export declare function serializeKeywordSkillCardEntriesField(val: KeywordSkillCardEntriesField): Json;
 export interface KeywordSkillCard {
     readonly createdAt?: string;
@@ -3369,15 +3369,15 @@ export interface KeywordSkillCard {
     readonly invocation: KeywordSkillCardInvocationField;
     readonly entries: readonly KeywordSkillCardEntriesField[];
 }
-export declare function deserializeKeywordSkillCard(val: Json): KeywordSkillCard;
+export declare function deserializeKeywordSkillCard(val: any): KeywordSkillCard;
 export declare function serializeKeywordSkillCard(val: KeywordSkillCard): Json;
 export interface IntegrationMappingSlackOptions {
     readonly isAccessManagementDisabled?: boolean;
 }
-export declare function deserializeIntegrationMappingSlackOptions(val: Json): IntegrationMappingSlackOptions;
+export declare function deserializeIntegrationMappingSlackOptions(val: any): IntegrationMappingSlackOptions;
 export declare function serializeIntegrationMappingSlackOptions(val: IntegrationMappingSlackOptions): Json;
 export type IntegrationMappingPartnerItemSlackTypeField = "channel";
-export declare function deserializeIntegrationMappingPartnerItemSlackTypeField(val: Json): IntegrationMappingPartnerItemSlackTypeField;
+export declare function deserializeIntegrationMappingPartnerItemSlackTypeField(val: any): IntegrationMappingPartnerItemSlackTypeField;
 export declare function serializeIntegrationMappingPartnerItemSlackTypeField(val: IntegrationMappingPartnerItemSlackTypeField): Json;
 export interface IntegrationMappingPartnerItemSlack {
     readonly type: IntegrationMappingPartnerItemSlackTypeField;
@@ -3385,10 +3385,10 @@ export interface IntegrationMappingPartnerItemSlack {
     readonly slackWorkspaceId?: string;
     readonly slackOrgId?: string;
 }
-export declare function deserializeIntegrationMappingPartnerItemSlack(val: Json): IntegrationMappingPartnerItemSlack;
+export declare function deserializeIntegrationMappingPartnerItemSlack(val: any): IntegrationMappingPartnerItemSlack;
 export declare function serializeIntegrationMappingPartnerItemSlack(val: IntegrationMappingPartnerItemSlack): Json;
 export type IntegrationMappingPartnerItemField = IntegrationMappingPartnerItemSlack;
-export declare function deserializeIntegrationMappingPartnerItemField(val: Json): IntegrationMappingPartnerItemField;
+export declare function deserializeIntegrationMappingPartnerItemField(val: any): IntegrationMappingPartnerItemField;
 export declare function serializeIntegrationMappingPartnerItemField(val: IntegrationMappingPartnerItemField): Json;
 export type IntegrationMapping = IntegrationMappingBase & {
     /**
@@ -3424,7 +3424,7 @@ export type IntegrationMapping = IntegrationMappingBase & {
      * When the integration mapping object was last modified */
     readonly modifiedAt?: string;
 };
-export declare function deserializeIntegrationMapping(val: Json): IntegrationMapping;
+export declare function deserializeIntegrationMapping(val: any): IntegrationMapping;
 export declare function serializeIntegrationMapping(val: IntegrationMapping): Json;
 export interface IntegrationMappings {
     readonly limit?: number;
@@ -3432,59 +3432,59 @@ export interface IntegrationMappings {
     readonly prevMarker?: number;
     readonly entries?: readonly IntegrationMapping[];
 }
-export declare function deserializeIntegrationMappings(val: Json): IntegrationMappings;
+export declare function deserializeIntegrationMappings(val: any): IntegrationMappings;
 export declare function serializeIntegrationMappings(val: IntegrationMappings): Json;
 export type IntegrationMappingBoxItemSlackTypeField = "folder";
-export declare function deserializeIntegrationMappingBoxItemSlackTypeField(val: Json): IntegrationMappingBoxItemSlackTypeField;
+export declare function deserializeIntegrationMappingBoxItemSlackTypeField(val: any): IntegrationMappingBoxItemSlackTypeField;
 export declare function serializeIntegrationMappingBoxItemSlackTypeField(val: IntegrationMappingBoxItemSlackTypeField): Json;
 export interface IntegrationMappingBoxItemSlack {
     readonly type: IntegrationMappingBoxItemSlackTypeField;
     readonly id: string;
 }
-export declare function deserializeIntegrationMappingBoxItemSlack(val: Json): IntegrationMappingBoxItemSlack;
+export declare function deserializeIntegrationMappingBoxItemSlack(val: any): IntegrationMappingBoxItemSlack;
 export declare function serializeIntegrationMappingBoxItemSlack(val: IntegrationMappingBoxItemSlack): Json;
 export type TimelineSkillCardTypeField = "skill_card";
-export declare function deserializeTimelineSkillCardTypeField(val: Json): TimelineSkillCardTypeField;
+export declare function deserializeTimelineSkillCardTypeField(val: any): TimelineSkillCardTypeField;
 export declare function serializeTimelineSkillCardTypeField(val: TimelineSkillCardTypeField): Json;
 export type TimelineSkillCardSkillCardTypeField = "timeline";
-export declare function deserializeTimelineSkillCardSkillCardTypeField(val: Json): TimelineSkillCardSkillCardTypeField;
+export declare function deserializeTimelineSkillCardSkillCardTypeField(val: any): TimelineSkillCardSkillCardTypeField;
 export declare function serializeTimelineSkillCardSkillCardTypeField(val: TimelineSkillCardSkillCardTypeField): Json;
 export interface TimelineSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export declare function deserializeTimelineSkillCardSkillCardTitleField(val: Json): TimelineSkillCardSkillCardTitleField;
+export declare function deserializeTimelineSkillCardSkillCardTitleField(val: any): TimelineSkillCardSkillCardTitleField;
 export declare function serializeTimelineSkillCardSkillCardTitleField(val: TimelineSkillCardSkillCardTitleField): Json;
 export type TimelineSkillCardSkillFieldTypeField = "service";
-export declare function deserializeTimelineSkillCardSkillFieldTypeField(val: Json): TimelineSkillCardSkillFieldTypeField;
+export declare function deserializeTimelineSkillCardSkillFieldTypeField(val: any): TimelineSkillCardSkillFieldTypeField;
 export declare function serializeTimelineSkillCardSkillFieldTypeField(val: TimelineSkillCardSkillFieldTypeField): Json;
 export interface TimelineSkillCardSkillField {
     readonly type: TimelineSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeTimelineSkillCardSkillField(val: Json): TimelineSkillCardSkillField;
+export declare function deserializeTimelineSkillCardSkillField(val: any): TimelineSkillCardSkillField;
 export declare function serializeTimelineSkillCardSkillField(val: TimelineSkillCardSkillField): Json;
 export type TimelineSkillCardInvocationFieldTypeField = "skill_invocation";
-export declare function deserializeTimelineSkillCardInvocationFieldTypeField(val: Json): TimelineSkillCardInvocationFieldTypeField;
+export declare function deserializeTimelineSkillCardInvocationFieldTypeField(val: any): TimelineSkillCardInvocationFieldTypeField;
 export declare function serializeTimelineSkillCardInvocationFieldTypeField(val: TimelineSkillCardInvocationFieldTypeField): Json;
 export interface TimelineSkillCardInvocationField {
     readonly type: TimelineSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeTimelineSkillCardInvocationField(val: Json): TimelineSkillCardInvocationField;
+export declare function deserializeTimelineSkillCardInvocationField(val: any): TimelineSkillCardInvocationField;
 export declare function serializeTimelineSkillCardInvocationField(val: TimelineSkillCardInvocationField): Json;
 export interface TimelineSkillCardEntriesFieldAppearsField {
     readonly start?: number;
     readonly end?: number;
 }
-export declare function deserializeTimelineSkillCardEntriesFieldAppearsField(val: Json): TimelineSkillCardEntriesFieldAppearsField;
+export declare function deserializeTimelineSkillCardEntriesFieldAppearsField(val: any): TimelineSkillCardEntriesFieldAppearsField;
 export declare function serializeTimelineSkillCardEntriesFieldAppearsField(val: TimelineSkillCardEntriesFieldAppearsField): Json;
 export interface TimelineSkillCardEntriesField {
     readonly text?: string;
     readonly appears?: readonly TimelineSkillCardEntriesFieldAppearsField[];
     readonly imageUrl?: string;
 }
-export declare function deserializeTimelineSkillCardEntriesField(val: Json): TimelineSkillCardEntriesField;
+export declare function deserializeTimelineSkillCardEntriesField(val: any): TimelineSkillCardEntriesField;
 export declare function serializeTimelineSkillCardEntriesField(val: TimelineSkillCardEntriesField): Json;
 export interface TimelineSkillCard {
     readonly createdAt?: string;
@@ -3496,48 +3496,48 @@ export interface TimelineSkillCard {
     readonly duration?: number;
     readonly entries: readonly TimelineSkillCardEntriesField[];
 }
-export declare function deserializeTimelineSkillCard(val: Json): TimelineSkillCard;
+export declare function deserializeTimelineSkillCard(val: any): TimelineSkillCard;
 export declare function serializeTimelineSkillCard(val: TimelineSkillCard): Json;
 export type TranscriptSkillCardTypeField = "skill_card";
-export declare function deserializeTranscriptSkillCardTypeField(val: Json): TranscriptSkillCardTypeField;
+export declare function deserializeTranscriptSkillCardTypeField(val: any): TranscriptSkillCardTypeField;
 export declare function serializeTranscriptSkillCardTypeField(val: TranscriptSkillCardTypeField): Json;
 export type TranscriptSkillCardSkillCardTypeField = "transcript";
-export declare function deserializeTranscriptSkillCardSkillCardTypeField(val: Json): TranscriptSkillCardSkillCardTypeField;
+export declare function deserializeTranscriptSkillCardSkillCardTypeField(val: any): TranscriptSkillCardSkillCardTypeField;
 export declare function serializeTranscriptSkillCardSkillCardTypeField(val: TranscriptSkillCardSkillCardTypeField): Json;
 export interface TranscriptSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export declare function deserializeTranscriptSkillCardSkillCardTitleField(val: Json): TranscriptSkillCardSkillCardTitleField;
+export declare function deserializeTranscriptSkillCardSkillCardTitleField(val: any): TranscriptSkillCardSkillCardTitleField;
 export declare function serializeTranscriptSkillCardSkillCardTitleField(val: TranscriptSkillCardSkillCardTitleField): Json;
 export type TranscriptSkillCardSkillFieldTypeField = "service";
-export declare function deserializeTranscriptSkillCardSkillFieldTypeField(val: Json): TranscriptSkillCardSkillFieldTypeField;
+export declare function deserializeTranscriptSkillCardSkillFieldTypeField(val: any): TranscriptSkillCardSkillFieldTypeField;
 export declare function serializeTranscriptSkillCardSkillFieldTypeField(val: TranscriptSkillCardSkillFieldTypeField): Json;
 export interface TranscriptSkillCardSkillField {
     readonly type: TranscriptSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeTranscriptSkillCardSkillField(val: Json): TranscriptSkillCardSkillField;
+export declare function deserializeTranscriptSkillCardSkillField(val: any): TranscriptSkillCardSkillField;
 export declare function serializeTranscriptSkillCardSkillField(val: TranscriptSkillCardSkillField): Json;
 export type TranscriptSkillCardInvocationFieldTypeField = "skill_invocation";
-export declare function deserializeTranscriptSkillCardInvocationFieldTypeField(val: Json): TranscriptSkillCardInvocationFieldTypeField;
+export declare function deserializeTranscriptSkillCardInvocationFieldTypeField(val: any): TranscriptSkillCardInvocationFieldTypeField;
 export declare function serializeTranscriptSkillCardInvocationFieldTypeField(val: TranscriptSkillCardInvocationFieldTypeField): Json;
 export interface TranscriptSkillCardInvocationField {
     readonly type: TranscriptSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeTranscriptSkillCardInvocationField(val: Json): TranscriptSkillCardInvocationField;
+export declare function deserializeTranscriptSkillCardInvocationField(val: any): TranscriptSkillCardInvocationField;
 export declare function serializeTranscriptSkillCardInvocationField(val: TranscriptSkillCardInvocationField): Json;
 export interface TranscriptSkillCardEntriesFieldAppearsField {
     readonly start?: number;
 }
-export declare function deserializeTranscriptSkillCardEntriesFieldAppearsField(val: Json): TranscriptSkillCardEntriesFieldAppearsField;
+export declare function deserializeTranscriptSkillCardEntriesFieldAppearsField(val: any): TranscriptSkillCardEntriesFieldAppearsField;
 export declare function serializeTranscriptSkillCardEntriesFieldAppearsField(val: TranscriptSkillCardEntriesFieldAppearsField): Json;
 export interface TranscriptSkillCardEntriesField {
     readonly text?: string;
     readonly appears?: readonly TranscriptSkillCardEntriesFieldAppearsField[];
 }
-export declare function deserializeTranscriptSkillCardEntriesField(val: Json): TranscriptSkillCardEntriesField;
+export declare function deserializeTranscriptSkillCardEntriesField(val: any): TranscriptSkillCardEntriesField;
 export declare function serializeTranscriptSkillCardEntriesField(val: TranscriptSkillCardEntriesField): Json;
 export interface TranscriptSkillCard {
     readonly createdAt?: string;
@@ -3549,46 +3549,46 @@ export interface TranscriptSkillCard {
     readonly duration?: number;
     readonly entries: readonly TranscriptSkillCardEntriesField[];
 }
-export declare function deserializeTranscriptSkillCard(val: Json): TranscriptSkillCard;
+export declare function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard;
 export declare function serializeTranscriptSkillCard(val: TranscriptSkillCard): Json;
 export type StatusSkillCardTypeField = "skill_card";
-export declare function deserializeStatusSkillCardTypeField(val: Json): StatusSkillCardTypeField;
+export declare function deserializeStatusSkillCardTypeField(val: any): StatusSkillCardTypeField;
 export declare function serializeStatusSkillCardTypeField(val: StatusSkillCardTypeField): Json;
 export type StatusSkillCardSkillCardTypeField = "status";
-export declare function deserializeStatusSkillCardSkillCardTypeField(val: Json): StatusSkillCardSkillCardTypeField;
+export declare function deserializeStatusSkillCardSkillCardTypeField(val: any): StatusSkillCardSkillCardTypeField;
 export declare function serializeStatusSkillCardSkillCardTypeField(val: StatusSkillCardSkillCardTypeField): Json;
 export interface StatusSkillCardSkillCardTitleField {
     readonly code?: string;
     readonly message: string;
 }
-export declare function deserializeStatusSkillCardSkillCardTitleField(val: Json): StatusSkillCardSkillCardTitleField;
+export declare function deserializeStatusSkillCardSkillCardTitleField(val: any): StatusSkillCardSkillCardTitleField;
 export declare function serializeStatusSkillCardSkillCardTitleField(val: StatusSkillCardSkillCardTitleField): Json;
 export type StatusSkillCardStatusFieldCodeField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
-export declare function deserializeStatusSkillCardStatusFieldCodeField(val: Json): StatusSkillCardStatusFieldCodeField;
+export declare function deserializeStatusSkillCardStatusFieldCodeField(val: any): StatusSkillCardStatusFieldCodeField;
 export declare function serializeStatusSkillCardStatusFieldCodeField(val: StatusSkillCardStatusFieldCodeField): Json;
 export interface StatusSkillCardStatusField {
     readonly code: StatusSkillCardStatusFieldCodeField;
     readonly message?: string;
 }
-export declare function deserializeStatusSkillCardStatusField(val: Json): StatusSkillCardStatusField;
+export declare function deserializeStatusSkillCardStatusField(val: any): StatusSkillCardStatusField;
 export declare function serializeStatusSkillCardStatusField(val: StatusSkillCardStatusField): Json;
 export type StatusSkillCardSkillFieldTypeField = "service";
-export declare function deserializeStatusSkillCardSkillFieldTypeField(val: Json): StatusSkillCardSkillFieldTypeField;
+export declare function deserializeStatusSkillCardSkillFieldTypeField(val: any): StatusSkillCardSkillFieldTypeField;
 export declare function serializeStatusSkillCardSkillFieldTypeField(val: StatusSkillCardSkillFieldTypeField): Json;
 export interface StatusSkillCardSkillField {
     readonly type: StatusSkillCardSkillFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeStatusSkillCardSkillField(val: Json): StatusSkillCardSkillField;
+export declare function deserializeStatusSkillCardSkillField(val: any): StatusSkillCardSkillField;
 export declare function serializeStatusSkillCardSkillField(val: StatusSkillCardSkillField): Json;
 export type StatusSkillCardInvocationFieldTypeField = "skill_invocation";
-export declare function deserializeStatusSkillCardInvocationFieldTypeField(val: Json): StatusSkillCardInvocationFieldTypeField;
+export declare function deserializeStatusSkillCardInvocationFieldTypeField(val: any): StatusSkillCardInvocationFieldTypeField;
 export declare function serializeStatusSkillCardInvocationFieldTypeField(val: StatusSkillCardInvocationFieldTypeField): Json;
 export interface StatusSkillCardInvocationField {
     readonly type: StatusSkillCardInvocationFieldTypeField;
     readonly id: string;
 }
-export declare function deserializeStatusSkillCardInvocationField(val: Json): StatusSkillCardInvocationField;
+export declare function deserializeStatusSkillCardInvocationField(val: any): StatusSkillCardInvocationField;
 export declare function serializeStatusSkillCardInvocationField(val: StatusSkillCardInvocationField): Json;
 export interface StatusSkillCard {
     readonly createdAt?: string;
@@ -3599,10 +3599,10 @@ export interface StatusSkillCard {
     readonly skill: StatusSkillCardSkillField;
     readonly invocation: StatusSkillCardInvocationField;
 }
-export declare function deserializeStatusSkillCard(val: Json): StatusSkillCard;
+export declare function deserializeStatusSkillCard(val: any): StatusSkillCard;
 export declare function serializeStatusSkillCard(val: StatusSkillCard): Json;
 export type SkillCardsMetadataCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
-export declare function deserializeSkillCardsMetadataCardsField(val: Json): SkillCardsMetadataCardsField;
+export declare function deserializeSkillCardsMetadataCardsField(val: any): SkillCardsMetadataCardsField;
 export declare function serializeSkillCardsMetadataCardsField(val: SkillCardsMetadataCardsField): Json;
 export interface SkillCardsMetadata {
     readonly canEdit?: boolean;
@@ -3615,10 +3615,10 @@ export interface SkillCardsMetadata {
     readonly version?: number;
     readonly cards?: readonly SkillCardsMetadataCardsField[];
 }
-export declare function deserializeSkillCardsMetadata(val: Json): SkillCardsMetadata;
+export declare function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata;
 export declare function serializeSkillCardsMetadata(val: SkillCardsMetadata): Json;
 export type SignRequestCreateSignerRoleField = "signer" | "approver" | "final_copy_reader";
-export declare function deserializeSignRequestCreateSignerRoleField(val: Json): SignRequestCreateSignerRoleField;
+export declare function deserializeSignRequestCreateSignerRoleField(val: any): SignRequestCreateSignerRoleField;
 export declare function serializeSignRequestCreateSignerRoleField(val: SignRequestCreateSignerRoleField): Json;
 export interface SignRequestCreateSigner {
     readonly email: string;
@@ -3632,7 +3632,7 @@ export interface SignRequestCreateSigner {
     readonly verificationPhoneNumber?: string;
     readonly password?: string;
 }
-export declare function deserializeSignRequestCreateSigner(val: Json): SignRequestCreateSigner;
+export declare function deserializeSignRequestCreateSigner(val: any): SignRequestCreateSigner;
 export declare function serializeSignRequestCreateSigner(val: SignRequestCreateSigner): Json;
 export interface SignRequestPrefillTag {
     readonly documentTagId?: string;
@@ -3640,7 +3640,7 @@ export interface SignRequestPrefillTag {
     readonly checkboxValue?: boolean;
     readonly dateValue?: string;
 }
-export declare function deserializeSignRequestPrefillTag(val: Json): SignRequestPrefillTag;
+export declare function deserializeSignRequestPrefillTag(val: any): SignRequestPrefillTag;
 export declare function serializeSignRequestPrefillTag(val: SignRequestPrefillTag): Json;
 export interface SignRequestBase {
     readonly isDocumentPreparationNeeded?: boolean;
@@ -3658,7 +3658,7 @@ export interface SignRequestBase {
     readonly isPhoneVerificationRequiredToView?: boolean;
     readonly templateId?: string;
 }
-export declare function deserializeSignRequestBase(val: Json): SignRequestBase;
+export declare function deserializeSignRequestBase(val: any): SignRequestBase;
 export declare function serializeSignRequestBase(val: SignRequestBase): Json;
 export type SignRequestCreateRequest = SignRequestBase & {
     /**
@@ -3669,7 +3669,7 @@ export type SignRequestCreateRequest = SignRequestBase & {
      * max number of signers permitted. */
     readonly signers: readonly SignRequestCreateSigner[];
 };
-export declare function deserializeSignRequestCreateRequest(val: Json): SignRequestCreateRequest;
+export declare function deserializeSignRequestCreateRequest(val: any): SignRequestCreateRequest;
 export declare function serializeSignRequestCreateRequest(val: SignRequestCreateRequest): Json;
 export type TemplateSignerInput = SignRequestPrefillTag & {
     /**
@@ -3700,7 +3700,7 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
      * The size of the input. */
     readonly dimensions?: TemplateSignerInputDimensionsField;
 };
-export declare function deserializeTemplateSignerInput(val: Json): TemplateSignerInput;
+export declare function deserializeTemplateSignerInput(val: any): TemplateSignerInput;
 export declare function serializeTemplateSignerInput(val: TemplateSignerInput): Json;
 export interface TemplateSigner {
     readonly inputs?: readonly TemplateSignerInput[];
@@ -3709,7 +3709,7 @@ export interface TemplateSigner {
     readonly isInPerson?: boolean;
     readonly order?: number;
 }
-export declare function deserializeTemplateSigner(val: Json): TemplateSigner;
+export declare function deserializeTemplateSigner(val: any): TemplateSigner;
 export declare function serializeTemplateSigner(val: TemplateSigner): Json;
 export interface SignTemplate {
     readonly id?: string;
@@ -3729,13 +3729,13 @@ export interface SignTemplate {
     readonly readySignLink?: SignTemplateReadySignLinkField;
     readonly customBranding?: SignTemplateCustomBrandingField;
 }
-export declare function deserializeSignTemplate(val: Json): SignTemplate;
+export declare function deserializeSignTemplate(val: any): SignTemplate;
 export declare function serializeSignTemplate(val: SignTemplate): Json;
 export type SignRequestSignerInputTypeField = "signature" | "date" | "text" | "checkbox";
-export declare function deserializeSignRequestSignerInputTypeField(val: Json): SignRequestSignerInputTypeField;
+export declare function deserializeSignRequestSignerInputTypeField(val: any): SignRequestSignerInputTypeField;
 export declare function serializeSignRequestSignerInputTypeField(val: SignRequestSignerInputTypeField): Json;
 export type SignRequestSignerInputContentTypeField = "initial" | "stamp" | "signature" | "company" | "title" | "email" | "full_name" | "first_name" | "last_name" | "text" | "date" | "checkbox" | "attachment";
-export declare function deserializeSignRequestSignerInputContentTypeField(val: Json): SignRequestSignerInputContentTypeField;
+export declare function deserializeSignRequestSignerInputContentTypeField(val: any): SignRequestSignerInputContentTypeField;
 export declare function serializeSignRequestSignerInputContentTypeField(val: SignRequestSignerInputContentTypeField): Json;
 export type SignRequestSignerInput = SignRequestPrefillTag & {
     /**
@@ -3748,16 +3748,16 @@ export type SignRequestSignerInput = SignRequestPrefillTag & {
      * Index of page that the input is on */
     readonly pageIndex: number;
 };
-export declare function deserializeSignRequestSignerInput(val: Json): SignRequestSignerInput;
+export declare function deserializeSignRequestSignerInput(val: any): SignRequestSignerInput;
 export declare function serializeSignRequestSignerInput(val: SignRequestSignerInput): Json;
 export type SignRequestSignerSignerDecisionFieldTypeField = "signed" | "declined";
-export declare function deserializeSignRequestSignerSignerDecisionFieldTypeField(val: Json): SignRequestSignerSignerDecisionFieldTypeField;
+export declare function deserializeSignRequestSignerSignerDecisionFieldTypeField(val: any): SignRequestSignerSignerDecisionFieldTypeField;
 export declare function serializeSignRequestSignerSignerDecisionFieldTypeField(val: SignRequestSignerSignerDecisionFieldTypeField): Json;
 export interface SignRequestSignerSignerDecisionField {
     readonly type?: SignRequestSignerSignerDecisionFieldTypeField;
     readonly finalizedAt?: string;
 }
-export declare function deserializeSignRequestSignerSignerDecisionField(val: Json): SignRequestSignerSignerDecisionField;
+export declare function deserializeSignRequestSignerSignerDecisionField(val: any): SignRequestSignerSignerDecisionField;
 export declare function serializeSignRequestSignerSignerDecisionField(val: SignRequestSignerSignerDecisionField): Json;
 export type SignRequestSigner = SignRequestCreateSigner & {
     /**
@@ -3771,7 +3771,7 @@ export type SignRequestSigner = SignRequestCreateSigner & {
      * URL to direct a signer to for signing */
     readonly embedUrl?: string;
 };
-export declare function deserializeSignRequestSigner(val: Json): SignRequestSigner;
+export declare function deserializeSignRequestSigner(val: any): SignRequestSigner;
 export declare function serializeSignRequestSigner(val: SignRequestSigner): Json;
 export type SignRequest = SignRequestBase & {
     /**
@@ -3807,7 +3807,7 @@ export type SignRequest = SignRequestBase & {
      * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
     readonly autoExpireAt?: string;
 };
-export declare function deserializeSignRequest(val: Json): SignRequest;
+export declare function deserializeSignRequest(val: any): SignRequest;
 export declare function serializeSignRequest(val: SignRequest): Json;
 export interface SignRequests {
     readonly limit?: number;
@@ -3815,27 +3815,27 @@ export interface SignRequests {
     readonly prevMarker?: number;
     readonly entries?: readonly SignRequest[];
 }
-export declare function deserializeSignRequests(val: Json): SignRequests;
+export declare function deserializeSignRequests(val: any): SignRequests;
 export declare function serializeSignRequests(val: SignRequests): Json;
 export interface ShieldInformationBarrierReportDetailsDetailsField {
     readonly folderId?: string;
 }
-export declare function deserializeShieldInformationBarrierReportDetailsDetailsField(val: Json): ShieldInformationBarrierReportDetailsDetailsField;
+export declare function deserializeShieldInformationBarrierReportDetailsDetailsField(val: any): ShieldInformationBarrierReportDetailsDetailsField;
 export declare function serializeShieldInformationBarrierReportDetailsDetailsField(val: ShieldInformationBarrierReportDetailsDetailsField): Json;
 export interface ShieldInformationBarrierReportDetails {
     readonly details?: ShieldInformationBarrierReportDetailsDetailsField;
 }
-export declare function deserializeShieldInformationBarrierReportDetails(val: Json): ShieldInformationBarrierReportDetails;
+export declare function deserializeShieldInformationBarrierReportDetails(val: any): ShieldInformationBarrierReportDetails;
 export declare function serializeShieldInformationBarrierReportDetails(val: ShieldInformationBarrierReportDetails): Json;
 export type TrackingCodeTypeField = "tracking_code";
-export declare function deserializeTrackingCodeTypeField(val: Json): TrackingCodeTypeField;
+export declare function deserializeTrackingCodeTypeField(val: any): TrackingCodeTypeField;
 export declare function serializeTrackingCodeTypeField(val: TrackingCodeTypeField): Json;
 export interface TrackingCode {
     readonly type?: TrackingCodeTypeField;
     readonly name?: string;
     readonly value?: string;
 }
-export declare function deserializeTrackingCode(val: Json): TrackingCode;
+export declare function deserializeTrackingCode(val: any): TrackingCode;
 export declare function serializeTrackingCode(val: TrackingCode): Json;
 export type UserFull = User & {
     /**
@@ -3881,39 +3881,39 @@ export type UserFull = User & {
      * providers to Box users. */
     readonly externalAppUserId?: string;
 };
-export declare function deserializeUserFull(val: Json): UserFull;
+export declare function deserializeUserFull(val: any): UserFull;
 export declare function serializeUserFull(val: UserFull): Json;
 export type MetadataFilterScopeField = "global" | "enterprise" | "enterprise_{enterprise_id}";
-export declare function deserializeMetadataFilterScopeField(val: Json): MetadataFilterScopeField;
+export declare function deserializeMetadataFilterScopeField(val: any): MetadataFilterScopeField;
 export declare function serializeMetadataFilterScopeField(val: MetadataFilterScopeField): Json;
 export interface MetadataFilterFiltersField {
 }
-export declare function deserializeMetadataFilterFiltersField(val: Json): MetadataFilterFiltersField;
+export declare function deserializeMetadataFilterFiltersField(val: any): MetadataFilterFiltersField;
 export declare function serializeMetadataFilterFiltersField(val: MetadataFilterFiltersField): Json;
 export interface MetadataFilter {
     readonly scope?: MetadataFilterScopeField;
     readonly templateKey?: string;
     readonly filters?: MetadataFilterFiltersField;
 }
-export declare function deserializeMetadataFilter(val: Json): MetadataFilter;
+export declare function deserializeMetadataFilter(val: any): MetadataFilter;
 export declare function serializeMetadataFilter(val: MetadataFilter): Json;
 export interface MetadataFieldFilterString {
 }
-export declare function deserializeMetadataFieldFilterString(val: Json): MetadataFieldFilterString;
+export declare function deserializeMetadataFieldFilterString(val: any): MetadataFieldFilterString;
 export declare function serializeMetadataFieldFilterString(val: MetadataFieldFilterString): Json;
 export interface MetadataFieldFilterFloat {
 }
-export declare function deserializeMetadataFieldFilterFloat(val: Json): MetadataFieldFilterFloat;
+export declare function deserializeMetadataFieldFilterFloat(val: any): MetadataFieldFilterFloat;
 export declare function serializeMetadataFieldFilterFloat(val: MetadataFieldFilterFloat): Json;
 export interface MetadataFieldFilterMultiSelect {
 }
-export declare function deserializeMetadataFieldFilterMultiSelect(val: Json): MetadataFieldFilterMultiSelect;
+export declare function deserializeMetadataFieldFilterMultiSelect(val: any): MetadataFieldFilterMultiSelect;
 export declare function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilterMultiSelect): Json;
 export interface MetadataFieldFilterFloatRange {
 }
-export declare function deserializeMetadataFieldFilterFloatRange(val: Json): MetadataFieldFilterFloatRange;
+export declare function deserializeMetadataFieldFilterFloatRange(val: any): MetadataFieldFilterFloatRange;
 export declare function serializeMetadataFieldFilterFloatRange(val: MetadataFieldFilterFloatRange): Json;
 export interface MetadataFieldFilterDateRange {
 }
-export declare function deserializeMetadataFieldFilterDateRange(val: Json): MetadataFieldFilterDateRange;
+export declare function deserializeMetadataFieldFilterDateRange(val: any): MetadataFieldFilterDateRange;
 export declare function serializeMetadataFieldFilterDateRange(val: MetadataFieldFilterDateRange): Json;
