@@ -30,7 +30,7 @@ import { deserializeJson } from "../json.js";
 export type GetMetadataQueryIndicesScopeArg = "global" | "enterprise";
 export type GetSearchOptionsArgScopeField = "user_content" | "enterprise_content";
 export type GetSearchOptionsArgTypeField = "file" | "folder" | "web_link";
-export type GetSearchOptionsArgTrashContentField = "non_trashed_only" | "trashed_only";
+export type GetSearchOptionsArgTrashContentField = "non_trashed_only" | "trashed_only" | "all_items";
 export type GetSearchOptionsArgSortField = "modified_at" | "relevance";
 export type GetSearchOptionsArgDirectionField = "DESC" | "ASC";
 export interface GetSearchOptionsArg {
