@@ -12,7 +12,7 @@ import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 export type GetFolderTrashItemsOptionsArgDirectionField = "ASC" | "DESC";
-export type GetFolderTrashItemsOptionsArgSortField = "id" | "name" | "date" | "size";
+export type GetFolderTrashItemsOptionsArgSortField = "name" | "date" | "size";
 export interface GetFolderTrashItemsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

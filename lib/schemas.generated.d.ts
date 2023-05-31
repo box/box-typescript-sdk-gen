@@ -2755,47 +2755,15 @@ export type WebLinkMini = WebLinkBase & {
 };
 export declare function deserializeWebLinkMini(val: any): WebLinkMini;
 export declare function serializeWebLinkMini(val: WebLinkMini): Json;
-export type WebLink = WebLinkMini & {
-    readonly parent?: FolderMini;
-    /**
-     * The description accompanying the web link. This is
-     * visible within the Box web application. */
-    readonly description?: string;
-    readonly pathCollection?: WebLinkPathCollectionField;
-    /**
-     * When this file was created on Box’s servers. */
-    readonly createdAt?: string;
-    /**
-     * When this file was last updated on the Box
-     * servers. */
-    readonly modifiedAt?: string;
-    /**
-     * When this file was moved to the trash. */
-    readonly trashedAt?: string;
-    /**
-     * When this file will be permanently deleted. */
-    readonly purgedAt?: string;
-    readonly createdBy?: UserMini;
-    readonly modifiedBy?: UserMini;
-    readonly ownedBy?: UserMini;
-    readonly sharedLink?: WebLinkSharedLinkField;
-    /**
-     * Whether this item is deleted or not. Values include `active`,
-     * `trashed` if the file has been moved to the trash, and `deleted` if
-     * the file has been permanently deleted */
-    readonly itemStatus?: WebLinkItemStatusField;
-};
-export declare function deserializeWebLink(val: any): WebLink;
-export declare function serializeWebLink(val: WebLink): Json;
-export type ItemsEntriesField = FileMini | FolderMini | WebLinkMini;
-export declare function deserializeItemsEntriesField(val: any): ItemsEntriesField;
-export declare function serializeItemsEntriesField(val: ItemsEntriesField): Json;
+export type FileMiniOrFolderMiniOrWebLinkMini = FileMini | FolderMini | WebLinkMini;
+export declare function deserializeFileMiniOrFolderMiniOrWebLinkMini(val: any): FileMiniOrFolderMiniOrWebLinkMini;
+export declare function serializeFileMiniOrFolderMiniOrWebLinkMini(val: FileMiniOrFolderMiniOrWebLinkMini): Json;
 export interface Items {
     readonly totalCount?: number;
     readonly limit?: number;
     readonly offset?: number;
     readonly order?: readonly ItemsOrderField[];
-    readonly entries?: readonly ItemsEntriesField[];
+    readonly entries?: readonly FileMiniOrFolderMiniOrWebLinkMini[];
 }
 export declare function deserializeItems(val: any): Items;
 export declare function serializeItems(val: Items): Json;
@@ -2849,104 +2817,27 @@ export type Folder = FolderMini & {
 };
 export declare function deserializeFolder(val: any): Folder;
 export declare function serializeFolder(val: Folder): Json;
-export type SearchResultWithSharedLinkItemField = File | Folder | WebLink;
-export declare function deserializeSearchResultWithSharedLinkItemField(val: any): SearchResultWithSharedLinkItemField;
-export declare function serializeSearchResultWithSharedLinkItemField(val: SearchResultWithSharedLinkItemField): Json;
-export interface SearchResultWithSharedLink {
-    readonly accessibleViaSharedLink?: string;
-    readonly item?: SearchResultWithSharedLinkItemField;
-    readonly type?: string;
-}
-export declare function deserializeSearchResultWithSharedLink(val: any): SearchResultWithSharedLink;
-export declare function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): Json;
-export interface SearchResultsWithSharedLinks {
-    readonly totalCount?: number;
-    readonly limit?: number;
-    readonly offset?: number;
-    readonly entries?: readonly SearchResultWithSharedLink[];
-}
-export declare function deserializeSearchResultsWithSharedLinks(val: any): SearchResultsWithSharedLinks;
-export declare function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json;
-export type SearchResultsEntriesField = File | Folder | WebLink;
-export declare function deserializeSearchResultsEntriesField(val: any): SearchResultsEntriesField;
-export declare function serializeSearchResultsEntriesField(val: SearchResultsEntriesField): Json;
-export interface SearchResults {
-    readonly totalCount?: number;
-    readonly limit?: number;
-    readonly offset?: number;
-    readonly entries?: readonly SearchResultsEntriesField[];
-}
-export declare function deserializeSearchResults(val: any): SearchResults;
-export declare function serializeSearchResults(val: SearchResults): Json;
-export type RecentItemItemField = File | Folder | WebLink;
-export declare function deserializeRecentItemItemField(val: any): RecentItemItemField;
-export declare function serializeRecentItemItemField(val: RecentItemItemField): Json;
-export interface RecentItem {
-    readonly type?: string;
-    readonly item?: RecentItemItemField;
-    readonly interactionType?: RecentItemInteractionTypeField;
-    readonly interactedAt?: string;
-    readonly interactionSharedLink?: string;
-}
-export declare function deserializeRecentItem(val: any): RecentItem;
-export declare function serializeRecentItem(val: RecentItem): Json;
-export interface RecentItems {
-    readonly limit?: number;
-    readonly nextMarker?: number;
-    readonly prevMarker?: number;
-    readonly entries?: readonly RecentItem[];
-}
-export declare function deserializeRecentItems(val: any): RecentItems;
-export declare function serializeRecentItems(val: RecentItems): Json;
-export type MetadataQueryResultsEntriesField = File | Folder;
-export declare function deserializeMetadataQueryResultsEntriesField(val: any): MetadataQueryResultsEntriesField;
-export declare function serializeMetadataQueryResultsEntriesField(val: MetadataQueryResultsEntriesField): Json;
+export type FileOrFolder = File | Folder;
+export declare function deserializeFileOrFolder(val: any): FileOrFolder;
+export declare function serializeFileOrFolder(val: FileOrFolder): Json;
 export interface MetadataQueryResults {
-    readonly entries?: readonly MetadataQueryResultsEntriesField[];
+    readonly entries?: readonly FileOrFolder[];
     readonly limit?: number;
     readonly nextMarker?: string;
 }
 export declare function deserializeMetadataQueryResults(val: any): MetadataQueryResults;
 export declare function serializeMetadataQueryResults(val: MetadataQueryResults): Json;
-export type LegalHoldPolicyAssignmentAssignedToField = File | Folder | WebLink;
-export declare function deserializeLegalHoldPolicyAssignmentAssignedToField(val: any): LegalHoldPolicyAssignmentAssignedToField;
-export declare function serializeLegalHoldPolicyAssignmentAssignedToField(val: LegalHoldPolicyAssignmentAssignedToField): Json;
-export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
-    readonly legalHoldPolicy?: LegalHoldPolicyMini;
-    readonly assignedTo?: LegalHoldPolicyAssignmentAssignedToField;
-    readonly assignedBy?: UserMini;
-    /**
-     * When the legal hold policy assignment object was
-     * created */
-    readonly assignedAt?: string;
-    /**
-     * When the assignment release request was sent.
-     * (Because it can take time for an assignment to fully
-     * delete, this isn't quite the same time that the
-     * assignment is fully deleted). If null, Assignment
-     * was not deleted. */
-    readonly deletedAt?: string;
-};
-export declare function deserializeLegalHoldPolicyAssignment(val: any): LegalHoldPolicyAssignment;
-export declare function serializeLegalHoldPolicyAssignment(val: LegalHoldPolicyAssignment): Json;
-export interface FileVersionLegalHold {
+export interface WebhookInvocation {
     readonly id?: string;
-    readonly type?: FileVersionLegalHoldTypeField;
-    readonly fileVersion?: FileVersionMini;
-    readonly file?: FileMini;
-    readonly legalHoldPolicyAssignments?: readonly LegalHoldPolicyAssignment[];
-    readonly deletedAt?: string;
+    readonly type?: WebhookInvocationTypeField;
+    readonly webhook?: Webhook;
+    readonly createdBy?: UserMini;
+    readonly createdAt?: string;
+    readonly trigger?: WebhookInvocationTriggerField;
+    readonly source?: FileOrFolder;
 }
-export declare function deserializeFileVersionLegalHold(val: any): FileVersionLegalHold;
-export declare function serializeFileVersionLegalHold(val: FileVersionLegalHold): Json;
-export interface FileVersionLegalHolds {
-    readonly limit?: number;
-    readonly nextMarker?: number;
-    readonly prevMarker?: number;
-    readonly entries?: readonly FileVersionLegalHold[];
-}
-export declare function deserializeFileVersionLegalHolds(val: any): FileVersionLegalHolds;
-export declare function serializeFileVersionLegalHolds(val: FileVersionLegalHolds): Json;
+export declare function deserializeWebhookInvocation(val: any): WebhookInvocation;
+export declare function serializeWebhookInvocation(val: WebhookInvocation): Json;
 export type FolderFull = Folder & {
     readonly syncState?: FolderFullSyncStateField;
     /**
@@ -2990,13 +2881,124 @@ export type FolderFull = Folder & {
 };
 export declare function deserializeFolderFull(val: any): FolderFull;
 export declare function serializeFolderFull(val: FolderFull): Json;
-export type CollaborationItemField = File | Folder | WebLink;
-export declare function deserializeCollaborationItemField(val: any): CollaborationItemField;
-export declare function serializeCollaborationItemField(val: CollaborationItemField): Json;
+export type WebLink = WebLinkMini & {
+    readonly parent?: FolderMini;
+    /**
+     * The description accompanying the web link. This is
+     * visible within the Box web application. */
+    readonly description?: string;
+    readonly pathCollection?: WebLinkPathCollectionField;
+    /**
+     * When this file was created on Box’s servers. */
+    readonly createdAt?: string;
+    /**
+     * When this file was last updated on the Box
+     * servers. */
+    readonly modifiedAt?: string;
+    /**
+     * When this file was moved to the trash. */
+    readonly trashedAt?: string;
+    /**
+     * When this file will be permanently deleted. */
+    readonly purgedAt?: string;
+    readonly createdBy?: UserMini;
+    readonly modifiedBy?: UserMini;
+    readonly ownedBy?: UserMini;
+    readonly sharedLink?: WebLinkSharedLinkField;
+    /**
+     * Whether this item is deleted or not. Values include `active`,
+     * `trashed` if the file has been moved to the trash, and `deleted` if
+     * the file has been permanently deleted */
+    readonly itemStatus?: WebLinkItemStatusField;
+};
+export declare function deserializeWebLink(val: any): WebLink;
+export declare function serializeWebLink(val: WebLink): Json;
+export type FileOrFolderOrWebLink = File | Folder | WebLink;
+export declare function deserializeFileOrFolderOrWebLink(val: any): FileOrFolderOrWebLink;
+export declare function serializeFileOrFolderOrWebLink(val: FileOrFolderOrWebLink): Json;
+export interface SearchResultWithSharedLink {
+    readonly accessibleViaSharedLink?: string;
+    readonly item?: FileOrFolderOrWebLink;
+    readonly type?: string;
+}
+export declare function deserializeSearchResultWithSharedLink(val: any): SearchResultWithSharedLink;
+export declare function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): Json;
+export interface SearchResultsWithSharedLinks {
+    readonly totalCount?: number;
+    readonly limit?: number;
+    readonly offset?: number;
+    readonly entries?: readonly SearchResultWithSharedLink[];
+}
+export declare function deserializeSearchResultsWithSharedLinks(val: any): SearchResultsWithSharedLinks;
+export declare function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json;
+export interface SearchResults {
+    readonly totalCount?: number;
+    readonly limit?: number;
+    readonly offset?: number;
+    readonly entries?: readonly FileOrFolderOrWebLink[];
+}
+export declare function deserializeSearchResults(val: any): SearchResults;
+export declare function serializeSearchResults(val: SearchResults): Json;
+export type SearchResultsOrSearchResultsWithSharedLinks = SearchResults | SearchResultsWithSharedLinks;
+export declare function deserializeSearchResultsOrSearchResultsWithSharedLinks(val: any): SearchResultsOrSearchResultsWithSharedLinks;
+export declare function serializeSearchResultsOrSearchResultsWithSharedLinks(val: SearchResultsOrSearchResultsWithSharedLinks): Json;
+export interface RecentItem {
+    readonly type?: string;
+    readonly item?: FileOrFolderOrWebLink;
+    readonly interactionType?: RecentItemInteractionTypeField;
+    readonly interactedAt?: string;
+    readonly interactionSharedLink?: string;
+}
+export declare function deserializeRecentItem(val: any): RecentItem;
+export declare function serializeRecentItem(val: RecentItem): Json;
+export interface RecentItems {
+    readonly limit?: number;
+    readonly nextMarker?: number;
+    readonly prevMarker?: number;
+    readonly entries?: readonly RecentItem[];
+}
+export declare function deserializeRecentItems(val: any): RecentItems;
+export declare function serializeRecentItems(val: RecentItems): Json;
+export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
+    readonly legalHoldPolicy?: LegalHoldPolicyMini;
+    readonly assignedTo?: FileOrFolderOrWebLink;
+    readonly assignedBy?: UserMini;
+    /**
+     * When the legal hold policy assignment object was
+     * created */
+    readonly assignedAt?: string;
+    /**
+     * When the assignment release request was sent.
+     * (Because it can take time for an assignment to fully
+     * delete, this isn't quite the same time that the
+     * assignment is fully deleted). If null, Assignment
+     * was not deleted. */
+    readonly deletedAt?: string;
+};
+export declare function deserializeLegalHoldPolicyAssignment(val: any): LegalHoldPolicyAssignment;
+export declare function serializeLegalHoldPolicyAssignment(val: LegalHoldPolicyAssignment): Json;
+export interface FileVersionLegalHold {
+    readonly id?: string;
+    readonly type?: FileVersionLegalHoldTypeField;
+    readonly fileVersion?: FileVersionMini;
+    readonly file?: FileMini;
+    readonly legalHoldPolicyAssignments?: readonly LegalHoldPolicyAssignment[];
+    readonly deletedAt?: string;
+}
+export declare function deserializeFileVersionLegalHold(val: any): FileVersionLegalHold;
+export declare function serializeFileVersionLegalHold(val: FileVersionLegalHold): Json;
+export interface FileVersionLegalHolds {
+    readonly limit?: number;
+    readonly nextMarker?: number;
+    readonly prevMarker?: number;
+    readonly entries?: readonly FileVersionLegalHold[];
+}
+export declare function deserializeFileVersionLegalHolds(val: any): FileVersionLegalHolds;
+export declare function serializeFileVersionLegalHolds(val: FileVersionLegalHolds): Json;
 export interface Collaboration {
     readonly id?: string;
     readonly type?: CollaborationTypeField;
-    readonly item?: CollaborationItemField;
+    readonly item?: FileOrFolderOrWebLink;
     readonly accessibleBy?: UserCollaborations;
     readonly inviteEmail?: string;
     readonly role?: CollaborationRoleField;
@@ -3019,23 +3021,6 @@ export interface Collaborations {
 }
 export declare function deserializeCollaborations(val: any): Collaborations;
 export declare function serializeCollaborations(val: Collaborations): Json;
-export type WebhookInvocationSourceField = File | Folder;
-export declare function deserializeWebhookInvocationSourceField(val: any): WebhookInvocationSourceField;
-export declare function serializeWebhookInvocationSourceField(val: WebhookInvocationSourceField): Json;
-export interface WebhookInvocation {
-    readonly id?: string;
-    readonly type?: WebhookInvocationTypeField;
-    readonly webhook?: Webhook;
-    readonly createdBy?: UserMini;
-    readonly createdAt?: string;
-    readonly trigger?: WebhookInvocationTriggerField;
-    readonly source?: WebhookInvocationSourceField;
-}
-export declare function deserializeWebhookInvocation(val: any): WebhookInvocation;
-export declare function serializeWebhookInvocation(val: WebhookInvocation): Json;
-export type SkillInvocationSourceField = File | Folder;
-export declare function deserializeSkillInvocationSourceField(val: any): SkillInvocationSourceField;
-export declare function serializeSkillInvocationSourceField(val: SkillInvocationSourceField): Json;
 export type WorkflowFlowsFieldTypeField = "flow";
 export declare function deserializeWorkflowFlowsFieldTypeField(val: any): WorkflowFlowsFieldTypeField;
 export declare function serializeWorkflowFlowsFieldTypeField(val: WorkflowFlowsFieldTypeField): Json;
@@ -3288,9 +3273,9 @@ export interface EventSource {
 }
 export declare function deserializeEventSource(val: any): EventSource;
 export declare function serializeEventSource(val: EventSource): Json;
-export type EventSourceField = User | EventSource | File | Folder;
-export declare function deserializeEventSourceField(val: any): EventSourceField;
-export declare function serializeEventSourceField(val: EventSourceField): Json;
+export type EventSourceOrFileOrFolderOrUser = EventSource | File | Folder | User;
+export declare function deserializeEventSourceOrFileOrFolderOrUser(val: any): EventSourceOrFileOrFolderOrUser;
+export declare function serializeEventSourceOrFileOrFolderOrUser(val: EventSourceOrFileOrFolderOrUser): Json;
 export interface Event {
     readonly type?: string;
     readonly createdAt?: string;
@@ -3299,7 +3284,7 @@ export interface Event {
     readonly createdBy?: UserMini;
     readonly eventType?: EventEventTypeField;
     readonly sessionId?: string;
-    readonly source?: EventSourceField;
+    readonly source?: EventSourceOrFileOrFolderOrUser;
     readonly additionalDetails?: EventAdditionalDetailsField;
 }
 export declare function deserializeEvent(val: any): Event;
@@ -3320,7 +3305,7 @@ export interface SkillInvocation {
     readonly createdAt?: string;
     readonly trigger?: string;
     readonly enterprise?: SkillInvocationEnterpriseField;
-    readonly source?: SkillInvocationSourceField;
+    readonly source?: FileOrFolder;
     readonly event?: Event;
 }
 export declare function deserializeSkillInvocation(val: any): SkillInvocation;
@@ -3387,16 +3372,13 @@ export interface IntegrationMappingPartnerItemSlack {
 }
 export declare function deserializeIntegrationMappingPartnerItemSlack(val: any): IntegrationMappingPartnerItemSlack;
 export declare function serializeIntegrationMappingPartnerItemSlack(val: IntegrationMappingPartnerItemSlack): Json;
-export type IntegrationMappingPartnerItemField = IntegrationMappingPartnerItemSlack;
-export declare function deserializeIntegrationMappingPartnerItemField(val: any): IntegrationMappingPartnerItemField;
-export declare function serializeIntegrationMappingPartnerItemField(val: IntegrationMappingPartnerItemField): Json;
 export type IntegrationMapping = IntegrationMappingBase & {
     /**
      * Mapping type */
     readonly type: IntegrationMappingTypeField;
     /**
      * Mapped item object for Slack */
-    readonly partnerItem: IntegrationMappingPartnerItemField;
+    readonly partnerItem: IntegrationMappingPartnerItemSlack;
     /**
      * The Box folder, to which the object from the
      * partner app domain (referenced in `partner_item_id`) is mapped */
@@ -3601,9 +3583,9 @@ export interface StatusSkillCard {
 }
 export declare function deserializeStatusSkillCard(val: any): StatusSkillCard;
 export declare function serializeStatusSkillCard(val: StatusSkillCard): Json;
-export type SkillCardsMetadataCardsField = KeywordSkillCard | TimelineSkillCard | TranscriptSkillCard | StatusSkillCard;
-export declare function deserializeSkillCardsMetadataCardsField(val: any): SkillCardsMetadataCardsField;
-export declare function serializeSkillCardsMetadataCardsField(val: SkillCardsMetadataCardsField): Json;
+export type KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard = KeywordSkillCard | StatusSkillCard | TimelineSkillCard | TranscriptSkillCard;
+export declare function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(val: any): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard;
+export declare function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(val: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard): Json;
 export interface SkillCardsMetadata {
     readonly canEdit?: boolean;
     readonly id?: string;
@@ -3613,7 +3595,7 @@ export interface SkillCardsMetadata {
     readonly type?: string;
     readonly typeVersion?: number;
     readonly version?: number;
-    readonly cards?: readonly SkillCardsMetadataCardsField[];
+    readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
 }
 export declare function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata;
 export declare function serializeSkillCardsMetadata(val: SkillCardsMetadata): Json;

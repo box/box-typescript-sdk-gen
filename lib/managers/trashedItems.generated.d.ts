@@ -1,7 +1,7 @@
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 export type GetFolderTrashItemsOptionsArgDirectionField = "ASC" | "DESC";
-export type GetFolderTrashItemsOptionsArgSortField = "id" | "name" | "date" | "size";
+export type GetFolderTrashItemsOptionsArgSortField = "name" | "date" | "size";
 export interface GetFolderTrashItemsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;

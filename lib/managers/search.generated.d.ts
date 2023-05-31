@@ -36,5 +36,5 @@ export declare class SearchManager {
     constructor(fields: Omit<SearchManager, "createMetadataQueryExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
     createMetadataQueryExecuteRead(requestBody: MetadataQuery): Promise<any>;
     getMetadataQueryIndices(scope: GetMetadataQueryIndicesScopeArg, templateKey: string): Promise<any>;
-    getSearch(options?: GetSearchOptionsArg): Promise<undefined>;
+    getSearch(options?: GetSearchOptionsArg): Promise<any>;
 }
