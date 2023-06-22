@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type UserCollaborationsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetCollaborationByIdOptionsArg {
     readonly fields?: string;
 }
@@ -37,7 +35,8 @@ export interface CreateCollaborationOptionsArg {
     readonly notify?: boolean;
 }
 export declare class UserCollaborationsManager {
-    readonly auth: UserCollaborationsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">);
     getCollaborationById(collaborationId: string, options?: GetCollaborationByIdOptionsArg): Promise<any>;
     updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<any>;

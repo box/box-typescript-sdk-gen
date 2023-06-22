@@ -1,8 +1,6 @@
 import { ShieldInformationBarrier } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type ShieldInformationBarriersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
 export interface CreateShieldInformationBarrierChangeStatusRequestBodyArg {
     readonly id: string;
@@ -13,7 +11,8 @@ export interface GetShieldInformationBarriersOptionsArg {
     readonly limit?: number;
 }
 export declare class ShieldInformationBarriersManager {
-    readonly auth: ShieldInformationBarriersManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ShieldInformationBarriersManager, "getShieldInformationBarrierById" | "createShieldInformationBarrierChangeStatus" | "getShieldInformationBarriers" | "createShieldInformationBarrier">);
     getShieldInformationBarrierById(shieldInformationBarrierId: string): Promise<any>;
     createShieldInformationBarrierChangeStatus(requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg): Promise<any>;

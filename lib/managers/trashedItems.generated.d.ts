@@ -1,9 +1,7 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TrashedItemsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetFolderTrashItemsOptionsArgDirectionField = "ASC" | "DESC";
-export type GetFolderTrashItemsOptionsArgSortField = "id" | "name" | "date" | "size";
+export type GetFolderTrashItemsOptionsArgSortField = "name" | "date" | "size";
 export interface GetFolderTrashItemsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -14,7 +12,8 @@ export interface GetFolderTrashItemsOptionsArg {
     readonly sort?: GetFolderTrashItemsOptionsArgSortField;
 }
 export declare class TrashedItemsManager {
-    readonly auth: TrashedItemsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedItemsManager, "getFolderTrashItems">);
     getFolderTrashItems(options?: GetFolderTrashItemsOptionsArg): Promise<any>;
 }

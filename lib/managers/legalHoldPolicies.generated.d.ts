@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type LegalHoldPoliciesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetLegalHoldPoliciesOptionsArg {
     readonly policyName?: string;
     readonly fields?: string;
@@ -21,7 +19,8 @@ export interface UpdateLegalHoldPolicyByIdRequestBodyArg {
     readonly releaseNotes?: string;
 }
 export declare class LegalHoldPoliciesManager {
-    readonly auth: LegalHoldPoliciesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<LegalHoldPoliciesManager, "getLegalHoldPolicies" | "createLegalHoldPolicy" | "getLegalHoldPolicyById" | "updateLegalHoldPolicyById" | "deleteLegalHoldPolicyById">);
     getLegalHoldPolicies(options?: GetLegalHoldPoliciesOptionsArg): Promise<any>;
     createLegalHoldPolicy(requestBody: CreateLegalHoldPolicyRequestBodyArg): Promise<any>;

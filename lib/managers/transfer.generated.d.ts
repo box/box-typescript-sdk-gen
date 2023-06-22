@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TransferManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface TransferOwnedFolderRequestBodyArgOwnedByField {
     readonly id: string;
 }
@@ -13,7 +11,8 @@ export interface TransferOwnedFolderOptionsArg {
     readonly notify?: boolean;
 }
 export declare class TransferManager {
-    readonly auth: TransferManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TransferManager, "transferOwnedFolder">);
     transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, options?: TransferOwnedFolderOptionsArg): Promise<any>;
 }

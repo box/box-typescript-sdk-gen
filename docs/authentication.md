@@ -12,6 +12,7 @@
     - [Obtaining Service Account token](#obtaining-service-account-token)
     - [Obtaining User token](#obtaining-user-token)
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
+  - [OAuth 2.0 Auth](#oauth-20-auth)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -228,3 +229,43 @@ ccgAuth.asUser('YOUR_USER_ID');
 to authenticate as User with provided ID. The new token will be automatically fetched with a next API call.
 
 [ccg_guide]: https://developer.box.com/guides/authentication/client-credentials/client-credentials-setup/
+
+## OAuth 2.0 Auth
+
+If your application needs to integrate with existing Box users who will provide
+their login credentials to grant your application access to their account, you
+will need to go through the standard OAuth2 login flow. A detailed guide for
+this process is available in the
+[Authentication with OAuth API documentation](https://developer.box.com/en/guides/authentication/oauth2/).
+
+Using an auth code is the most common way of authenticating with the Box API for
+existing Box users, to integrate with their accounts.
+Your application must provide a way for the user to login to Box (usually with a
+browser or web view) in order to obtain an auth code.
+
+<!-- sample get_authorize -->
+
+```js
+const { OAuth, OAuthConfig } = require('BoxSDK/lib/oauth.js');
+
+const config = {
+  clientId: 'OAUTH_CLIENT_ID',
+  clientSecret: 'OAUTH_CLIENT_SECRET',
+};
+const oauth = new OAuth({ config: config });
+
+// the URL to redirect the user to
+var authorize_url = oauth.getAuthorizeUrl();
+```
+
+After a user logs in and grants your application access to their Box account,
+they will be redirected to your application's `redirect_uri` which will contain
+an auth code. This auth code can then be used along with your client ID and
+client secret to establish an API connection.
+You need to provide the auth code to the SDK to obtain an access token, then you can use the SDK as usual.
+
+<!-- sample post_oauth2_token --->
+
+```js
+await oauth.getTokensAuthorizationCodeGrant('code');
+```

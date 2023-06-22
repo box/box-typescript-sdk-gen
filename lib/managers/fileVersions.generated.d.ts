@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FileVersionsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetFileVersionsOptionsArg {
     readonly fields?: string;
     readonly limit?: number;
@@ -25,7 +23,8 @@ export interface PromoteFileVersionOptionsArg {
     readonly fields?: string;
 }
 export declare class FileVersionsManager {
-    readonly auth: FileVersionsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileVersionsManager, "getFileVersions" | "getFileVersionById" | "updateFileVersionById" | "deleteFileVersionById" | "promoteFileVersion">);
     getFileVersions(fileId: string, options?: GetFileVersionsOptionsArg): Promise<any>;
     getFileVersionById(fileId: string, fileVersionId: string, options?: GetFileVersionByIdOptionsArg): Promise<any>;

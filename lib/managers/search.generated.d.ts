@@ -1,12 +1,10 @@
 import { MetadataQuery } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SearchManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetMetadataQueryIndicesScopeArg = "global" | "enterprise";
 export type GetSearchOptionsArgScopeField = "user_content" | "enterprise_content";
 export type GetSearchOptionsArgTypeField = "file" | "folder" | "web_link";
-export type GetSearchOptionsArgTrashContentField = "non_trashed_only" | "trashed_only";
+export type GetSearchOptionsArgTrashContentField = "non_trashed_only" | "trashed_only" | "all_items";
 export type GetSearchOptionsArgSortField = "modified_at" | "relevance";
 export type GetSearchOptionsArgDirectionField = "DESC" | "ASC";
 export interface GetSearchOptionsArg {
@@ -33,9 +31,10 @@ export interface GetSearchOptionsArg {
     readonly deletedAtRange?: string;
 }
 export declare class SearchManager {
-    readonly auth: SearchManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SearchManager, "createMetadataQueryExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
     createMetadataQueryExecuteRead(requestBody: MetadataQuery): Promise<any>;
     getMetadataQueryIndices(scope: GetMetadataQueryIndicesScopeArg, templateKey: string): Promise<any>;
-    getSearch(options?: GetSearchOptionsArg): Promise<undefined>;
+    getSearch(options?: GetSearchOptionsArg): Promise<any>;
 }

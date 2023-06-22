@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TermsOfServicesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetTermOfServicesOptionsArgTosTypeField = "external" | "managed";
 export interface GetTermOfServicesOptionsArg {
     readonly tosType?: GetTermOfServicesOptionsArgTosTypeField;
@@ -19,7 +17,8 @@ export interface UpdateTermOfServiceByIdRequestBodyArg {
     readonly text: string;
 }
 export declare class TermsOfServicesManager {
-    readonly auth: TermsOfServicesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TermsOfServicesManager, "getTermOfServices" | "createTermOfService" | "getTermOfServiceById" | "updateTermOfServiceById">);
     getTermOfServices(options?: GetTermOfServicesOptionsArg): Promise<any>;
     createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<any>;

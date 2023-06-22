@@ -1,14 +1,13 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FileMetadataManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetFileMetadataByIdScopeArg = "global" | "enterprise";
 export type CreateFileMetadataByIdScopeArg = "global" | "enterprise";
 export interface CreateFileMetadataByIdRequestBodyArg {
 }
 export type DeleteFileMetadataByIdScopeArg = "global" | "enterprise";
 export declare class FileMetadataManager {
-    readonly auth: FileMetadataManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileMetadataManager, "getFileMetadata" | "getFileMetadataById" | "createFileMetadataById" | "deleteFileMetadataById">);
     getFileMetadata(fileId: string): Promise<any>;
     getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string): Promise<any>;

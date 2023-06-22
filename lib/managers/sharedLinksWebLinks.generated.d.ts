@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SharedLinksWebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetSharedItemWebLinksOptionsArg {
     readonly ifNoneMatch?: string;
     readonly fields?: string;
@@ -44,7 +42,8 @@ export interface UpdateWebLinkRemoveSharedLinkRequestBodyArg {
     readonly sharedLink?: UpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField;
 }
 export declare class SharedLinksWebLinksManager {
-    readonly auth: SharedLinksWebLinksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SharedLinksWebLinksManager, "getSharedItemWebLinks" | "getWebLinkGetSharedLink" | "updateWebLinkAddSharedLink" | "updateWebLinkUpdateSharedLink" | "updateWebLinkRemoveSharedLink">);
     getSharedItemWebLinks(boxapi: string, options?: GetSharedItemWebLinksOptionsArg): Promise<any>;
     getWebLinkGetSharedLink(webLinkId: string, fields: string): Promise<any>;

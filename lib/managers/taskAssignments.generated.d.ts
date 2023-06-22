@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TaskAssignmentsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type CreateTaskAssignmentRequestBodyArgTaskFieldTypeField = "task";
 export interface CreateTaskAssignmentRequestBodyArgTaskField {
     readonly id: string;
@@ -21,7 +19,8 @@ export interface UpdateTaskAssignmentByIdRequestBodyArg {
     readonly resolutionState?: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField;
 }
 export declare class TaskAssignmentsManager {
-    readonly auth: TaskAssignmentsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TaskAssignmentsManager, "getTaskAssignments" | "createTaskAssignment" | "getTaskAssignmentById" | "updateTaskAssignmentById" | "deleteTaskAssignmentById">);
     getTaskAssignments(taskId: string): Promise<any>;
     createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg): Promise<any>;

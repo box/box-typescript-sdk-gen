@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TrashedWebLinksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface CreateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -16,7 +14,8 @@ export interface GetWebLinkTrashOptionsArg {
     readonly fields?: string;
 }
 export declare class TrashedWebLinksManager {
-    readonly auth: TrashedWebLinksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedWebLinksManager, "createWebLinkById" | "getWebLinkTrash" | "deleteWebLinkTrash">);
     createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, options?: CreateWebLinkByIdOptionsArg): Promise<any>;
     getWebLinkTrash(webLinkId: string, options?: GetWebLinkTrashOptionsArg): Promise<any>;

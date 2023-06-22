@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type InvitesManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface CreateInviteRequestBodyArgEnterpriseField {
     readonly id: string;
 }
@@ -19,7 +17,8 @@ export interface GetInviteByIdOptionsArg {
     readonly fields?: string;
 }
 export declare class InvitesManager {
-    readonly auth: InvitesManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<InvitesManager, "createInvite" | "getInviteById">);
     createInvite(requestBody: CreateInviteRequestBodyArg, options?: CreateInviteOptionsArg): Promise<any>;
     getInviteById(inviteId: string, options?: GetInviteByIdOptionsArg): Promise<any>;

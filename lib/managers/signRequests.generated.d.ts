@@ -1,14 +1,13 @@
 import { SignRequestCreateRequest } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type SignRequestsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface GetSignRequestsOptionsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
 export declare class SignRequestsManager {
-    readonly auth: SignRequestsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SignRequestsManager, "cancelSignRequest" | "resendSignRequest" | "getSignRequestById" | "getSignRequests" | "createSignRequest">);
     cancelSignRequest(signRequestId: string): Promise<any>;
     resendSignRequest(signRequestId: string): Promise<any>;

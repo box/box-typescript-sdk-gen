@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type FolderLocksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export interface CreateFolderLockRequestBodyArgLockedOperationsField {
     readonly move: boolean;
     readonly delete: boolean;
@@ -15,7 +13,8 @@ export interface CreateFolderLockRequestBodyArg {
     readonly folder: CreateFolderLockRequestBodyArgFolderField;
 }
 export declare class FolderLocksManager {
-    readonly auth: FolderLocksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FolderLocksManager, "getFolderLocks" | "createFolderLock" | "deleteFolderLockById">);
     getFolderLocks(folderId: string): Promise<any>;
     createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<any>;

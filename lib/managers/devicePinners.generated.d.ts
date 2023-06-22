@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type DevicePinnersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetEnterpriseDevicePinnersOptionsArgDirectionField = "ASC" | "DESC";
 export interface GetEnterpriseDevicePinnersOptionsArg {
     readonly marker?: string;
@@ -9,7 +7,8 @@ export interface GetEnterpriseDevicePinnersOptionsArg {
     readonly direction?: GetEnterpriseDevicePinnersOptionsArgDirectionField;
 }
 export declare class DevicePinnersManager {
-    readonly auth: DevicePinnersManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<DevicePinnersManager, "getDevicePinnerById" | "deleteDevicePinnerById" | "getEnterpriseDevicePinners">);
     getDevicePinnerById(devicePinnerId: string): Promise<any>;
     deleteDevicePinnerById(devicePinnerId: string): Promise<any>;

@@ -1,7 +1,5 @@
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type TasksManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
     readonly id: string;
@@ -25,7 +23,8 @@ export interface UpdateTaskByIdRequestBodyArg {
     readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
 }
 export declare class TasksManager {
-    readonly auth: TasksManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TasksManager, "getFileTasks" | "createTask" | "getTaskById" | "updateTaskById" | "deleteTaskById">);
     getFileTasks(fileId: string): Promise<any>;
     createTask(requestBody: CreateTaskRequestBodyArg): Promise<any>;

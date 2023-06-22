@@ -1,8 +1,6 @@
 import { TrackingCode } from "../schemas.generated.js";
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
-export type UsersManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 export type GetUsersOptionsArgUserTypeField = "all" | "managed" | "external";
 export interface GetUsersOptionsArg {
     readonly filterTerm?: string;
@@ -81,7 +79,8 @@ export interface DeleteUserByIdOptionsArg {
     readonly force?: boolean;
 }
 export declare class UsersManager {
-    readonly auth: UsersManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">);
     getUsers(options?: GetUsersOptionsArg): Promise<any>;
     createUser(requestBody: CreateUserRequestBodyArg, options?: CreateUserOptionsArg): Promise<any>;

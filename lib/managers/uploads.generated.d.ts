@@ -1,9 +1,7 @@
 /// <reference types="node" />
-import { DeveloperTokenAuth } from "../developerTokenAuth.js";
-import { CcgAuth } from "../ccgAuth.js";
-import { JwtAuth } from "../jwtAuth.js";
+import { Authentication } from "../auth.js";
+import { NetworkSession } from "../network.js";
 import { Readable } from "stream";
-export type UploadsManagerAuthField = DeveloperTokenAuth | CcgAuth | JwtAuth;
 export interface UploadFileVersionRequestBodyArgAttributesField {
     readonly name: string;
     readonly contentModifiedAt?: string;
@@ -43,7 +41,8 @@ export interface PreflightFileUploadRequestBodyArg {
     readonly parent?: PreflightFileUploadRequestBodyArgParentField;
 }
 export declare class UploadsManager {
-    readonly auth: UploadsManagerAuthField;
+    readonly auth?: Authentication;
+    readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UploadsManager, "uploadFileVersion" | "uploadFile" | "preflightFileUpload">);
     uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, options?: UploadFileVersionOptionsArg): Promise<any>;
     uploadFile(requestBody: UploadFileRequestBodyArg, options?: UploadFileOptionsArg): Promise<any>;
