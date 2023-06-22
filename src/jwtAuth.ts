@@ -14,7 +14,6 @@ import { fetch, FetchResponse } from './fetch.js';
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =
   'urn:ietf:params:oauth:grant-type:jwt-bearer';
-const HEADER_XFF = 'X-Forwarded-For';
 
 /**
  * Determines if a given string could represent an authorization code or token.
@@ -201,13 +200,6 @@ export class JwtAuth implements Authentication {
       contentType: 'application/x-www-form-urlencoded',
       networkSession,
     };
-    const options: {
-      ip?: string;
-    } = {};
-
-    if (options.ip) {
-      params.headers[HEADER_XFF] = options.ip;
-    }
 
     const response = (await fetch(BOX_JWT_AUDIENCE, params)) as FetchResponse;
     const tokenResponse = JSON.parse(response.text) as AccessToken;
