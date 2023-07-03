@@ -2,8 +2,8 @@ import { createHash } from 'crypto';
 import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
-import { NetworkSession } from './network';
 import { Authentication } from './auth';
+import { NetworkSession, getRetryTimeout } from './network';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -133,9 +133,15 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
   return fetchOptions;
 }
 
+const DEFAULT_MAX_ATTEMPTS = 5;
+const RETRY_BASE_INTERVAL = 1;
+
 export async function fetch(
   resource: string,
-  options: FetchOptions
+  options: FetchOptions & {
+    /** @private */
+    numRetries?: number;
+  }
 ): Promise<FetchResponse> {
   const { params = {} } = options;
   let fetchOptions = await createFetchOptions(options);
@@ -163,6 +169,29 @@ export async function fetch(
   );
 
   if (!response.ok) {
+    const { numRetries = 0 } = options;
+
+    const reauthenticationNeeded = response.status == 401;
+    if (reauthenticationNeeded) {
+      await options.auth?.refreshToken(options.networkSession);
+
+      // retry the request right away
+      return fetch(resource, { ...options, numRetries: numRetries + 1 });
+    }
+
+    const isRetryable =
+      options.contentType !== 'application/x-www-form-urlencoded' &&
+      (response.status === 429 || response.status >= 500);
+
+    if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
+      const retryTimeout = response.headers.has('retry-after')
+        ? parseFloat(response.headers.get('retry-after')!) * 1000
+        : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
+
+      await new Promise((resolve) => setTimeout(resolve, retryTimeout));
+      return fetch(resource, { ...options, numRetries: numRetries + 1 });
+    }
+
     let responseBody = await response.text();
     if (response.headers.get('content-type')?.startsWith('application/json')) {
       try {

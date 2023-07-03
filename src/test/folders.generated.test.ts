@@ -34,14 +34,16 @@ test("test_get_folder_full_info_with_extra_fields", async function test_get_fold
     if (!(rootFolder.hasCollaborations == false)) {
         throw "Assertion failed";
     }
-    if (!(rootFolder.tags.length == 0)) {
+    const tagsLength: number = rootFolder.tags.length;
+    if (!(tagsLength == 0)) {
         throw "Assertion failed";
     }
 });
 test("test_create_and_delete_folder", async function test_create_and_delete_folder(): Promise<any> {
     const newFolderName: string = getUuid();
     const newFolder: any = await client.folders.createFolder({ name: newFolderName, parent: { id: "0" } satisfies CreateFolderRequestBodyArgParentField } satisfies CreateFolderRequestBodyArg);
-    if (!((await client.folders.getFolderById(newFolder.id)).name == newFolderName)) {
+    const createdFolder: any = await client.folders.getFolderById(newFolder.id);
+    if (!(createdFolder.name == newFolderName)) {
         throw "Assertion failed";
     }
     await client.folders.deleteFolderById(newFolder.id)

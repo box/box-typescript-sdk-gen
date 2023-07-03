@@ -5274,17 +5274,30 @@ export function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: 
 export function serializeSignTemplateAdditionalInfoFieldNonEditableField(val: SignTemplateAdditionalInfoFieldNonEditableField): Json {
     return val;
 }
+export type SignTemplateAdditionalInfoFieldRequiredFieldSignersField = "email";
+export function deserializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(val: any): SignTemplateAdditionalInfoFieldRequiredFieldSignersField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"SignTemplateAdditionalInfoFieldRequiredFieldSignersField\"";
+    }
+    if (val == "email") {
+        return "email";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(val: SignTemplateAdditionalInfoFieldRequiredFieldSignersField): Json {
+    return val;
+}
 export interface SignTemplateAdditionalInfoFieldRequiredField {
-    readonly signers?: readonly (readonly ("email")[])[];
+    readonly signers?: readonly (readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[])[];
 }
 export function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: any): SignTemplateAdditionalInfoFieldRequiredField {
-    const signers: undefined | readonly (readonly ("email")[])[] = isJson(val.signers, "array") ? val.signers.map(function (itm: Json): undefined {
+    const signers: undefined | readonly (readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[])[] = isJson(val.signers, "array") ? val.signers.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     return { signers: signers } satisfies SignTemplateAdditionalInfoFieldRequiredField;
 }
 export function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json {
-    return { ["signers"]: val.signers == void 0 ? void 0 : val.signers.map(function (item: readonly ("email")[]): undefined {
+    return { ["signers"]: val.signers == void 0 ? void 0 : val.signers.map(function (item: readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[]): undefined {
             return void 0;
         }) as readonly any[] };
 }
@@ -9118,65 +9131,55 @@ export function serializeWorkflowFull(val: WorkflowFull): Json {
     }
     return { ...base, ...{ ["created_at"]: val.createdAt, ["modified_at"]: val.modifiedAt, ["created_by"]: val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy), ["modified_by"]: val.modifiedBy == void 0 ? void 0 : serializeUserBase(val.modifiedBy) } };
 }
+export type ZipDownloadNameConflictsFieldTypeField = "file" | "folder";
+export function deserializeZipDownloadNameConflictsFieldTypeField(val: any): ZipDownloadNameConflictsFieldTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"ZipDownloadNameConflictsFieldTypeField\"";
+    }
+    if (val == "file") {
+        return "file";
+    }
+    if (val == "folder") {
+        return "folder";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeZipDownloadNameConflictsFieldTypeField(val: ZipDownloadNameConflictsFieldTypeField): Json {
+    return val;
+}
+export interface ZipDownloadNameConflictsField {
+    readonly id?: string;
+    readonly type?: ZipDownloadNameConflictsFieldTypeField;
+    readonly originalName?: string;
+    readonly downloadName?: string;
+}
+export function deserializeZipDownloadNameConflictsField(val: any): ZipDownloadNameConflictsField {
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const type: undefined | ZipDownloadNameConflictsFieldTypeField = val.type == void 0 ? void 0 : deserializeZipDownloadNameConflictsFieldTypeField(val.type);
+    const originalName: undefined | string = isJson(val.original_name, "string") ? val.original_name : void 0;
+    const downloadName: undefined | string = isJson(val.download_name, "string") ? val.download_name : void 0;
+    return { id: id, type: type, originalName: originalName, downloadName: downloadName } satisfies ZipDownloadNameConflictsField;
+}
+export function serializeZipDownloadNameConflictsField(val: ZipDownloadNameConflictsField): Json {
+    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeZipDownloadNameConflictsFieldTypeField(val.type), ["original_name"]: val.originalName, ["download_name"]: val.downloadName };
+}
 export interface ZipDownload {
     readonly downloadUrl?: string;
     readonly statusUrl?: string;
     readonly expiresAt?: string;
-    readonly nameConflicts?: readonly (readonly {
-        /**
-         * The identifier of the item */
-        readonly id?: string;
-        /**
-         * The type of this item */
-        readonly type?: "file" | "folder";
-        /**
-         * The original name of this item */
-        readonly originalName?: string;
-        /**
-         * The new name of this item as it will appear in the
-         * downloaded `zip` archive. */
-        readonly downloadName?: string;
-    }[])[];
+    readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
 }
 export function deserializeZipDownload(val: any): ZipDownload {
     const downloadUrl: undefined | string = isJson(val.download_url, "string") ? val.download_url : void 0;
     const statusUrl: undefined | string = isJson(val.status_url, "string") ? val.status_url : void 0;
     const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
-    const nameConflicts: undefined | readonly (readonly {
-        /**
-         * The identifier of the item */
-        readonly id?: string;
-        /**
-         * The type of this item */
-        readonly type?: "file" | "folder";
-        /**
-         * The original name of this item */
-        readonly originalName?: string;
-        /**
-         * The new name of this item as it will appear in the
-         * downloaded `zip` archive. */
-        readonly downloadName?: string;
-    }[])[] = isJson(val.name_conflicts, "array") ? val.name_conflicts.map(function (itm: Json): undefined {
+    const nameConflicts: undefined | readonly (readonly ZipDownloadNameConflictsField[])[] = isJson(val.name_conflicts, "array") ? val.name_conflicts.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
     return { downloadUrl: downloadUrl, statusUrl: statusUrl, expiresAt: expiresAt, nameConflicts: nameConflicts } satisfies ZipDownload;
 }
 export function serializeZipDownload(val: ZipDownload): Json {
-    return { ["download_url"]: val.downloadUrl, ["status_url"]: val.statusUrl, ["expires_at"]: val.expiresAt, ["name_conflicts"]: val.nameConflicts == void 0 ? void 0 : val.nameConflicts.map(function (item: readonly {
-            /**
-             * The identifier of the item */
-            readonly id?: string;
-            /**
-             * The type of this item */
-            readonly type?: "file" | "folder";
-            /**
-             * The original name of this item */
-            readonly originalName?: string;
-            /**
-             * The new name of this item as it will appear in the
-             * downloaded `zip` archive. */
-            readonly downloadName?: string;
-        }[]): undefined {
+    return { ["download_url"]: val.downloadUrl, ["status_url"]: val.statusUrl, ["expires_at"]: val.expiresAt, ["name_conflicts"]: val.nameConflicts == void 0 ? void 0 : val.nameConflicts.map(function (item: readonly ZipDownloadNameConflictsField[]): undefined {
             return void 0;
         }) as readonly any[] };
 }

@@ -1639,8 +1639,11 @@ export declare function serializeTermsOfServiceUserStatusTypeField(val: TermsOfS
 export type SignTemplateAdditionalInfoFieldNonEditableField = "email_subject" | "email_message" | "name" | "days_valid" | "signers" | "source_files";
 export declare function deserializeSignTemplateAdditionalInfoFieldNonEditableField(val: any): SignTemplateAdditionalInfoFieldNonEditableField;
 export declare function serializeSignTemplateAdditionalInfoFieldNonEditableField(val: SignTemplateAdditionalInfoFieldNonEditableField): Json;
+export type SignTemplateAdditionalInfoFieldRequiredFieldSignersField = "email";
+export declare function deserializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(val: any): SignTemplateAdditionalInfoFieldRequiredFieldSignersField;
+export declare function serializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(val: SignTemplateAdditionalInfoFieldRequiredFieldSignersField): Json;
 export interface SignTemplateAdditionalInfoFieldRequiredField {
-    readonly signers?: readonly (readonly ("email")[])[];
+    readonly signers?: readonly (readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[])[];
 }
 export declare function deserializeSignTemplateAdditionalInfoFieldRequiredField(val: any): SignTemplateAdditionalInfoFieldRequiredField;
 export declare function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json;
@@ -3134,25 +3137,22 @@ export type WorkflowFull = Workflow & {
 };
 export declare function deserializeWorkflowFull(val: any): WorkflowFull;
 export declare function serializeWorkflowFull(val: WorkflowFull): Json;
+export type ZipDownloadNameConflictsFieldTypeField = "file" | "folder";
+export declare function deserializeZipDownloadNameConflictsFieldTypeField(val: any): ZipDownloadNameConflictsFieldTypeField;
+export declare function serializeZipDownloadNameConflictsFieldTypeField(val: ZipDownloadNameConflictsFieldTypeField): Json;
+export interface ZipDownloadNameConflictsField {
+    readonly id?: string;
+    readonly type?: ZipDownloadNameConflictsFieldTypeField;
+    readonly originalName?: string;
+    readonly downloadName?: string;
+}
+export declare function deserializeZipDownloadNameConflictsField(val: any): ZipDownloadNameConflictsField;
+export declare function serializeZipDownloadNameConflictsField(val: ZipDownloadNameConflictsField): Json;
 export interface ZipDownload {
     readonly downloadUrl?: string;
     readonly statusUrl?: string;
     readonly expiresAt?: string;
-    readonly nameConflicts?: readonly (readonly {
-        /**
-         * The identifier of the item */
-        readonly id?: string;
-        /**
-         * The type of this item */
-        readonly type?: "file" | "folder";
-        /**
-         * The original name of this item */
-        readonly originalName?: string;
-        /**
-         * The new name of this item as it will appear in the
-         * downloaded `zip` archive. */
-        readonly downloadName?: string;
-    }[])[];
+    readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
 }
 export declare function deserializeZipDownload(val: any): ZipDownload;
 export declare function serializeZipDownload(val: ZipDownload): Json;

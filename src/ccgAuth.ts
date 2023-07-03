@@ -27,12 +27,12 @@ export class CcgAuth implements Authentication {
     }
     this.config = config;
 
-    if (this.config.enterpriseId) {
-      this.subjectId = this.config.enterpriseId!;
-      this.subjectType = 'enterprise' as TokenRequestBoxSubjectType;
-    } else {
+    if (this.config.userId) {
       this.subjectId = this.config.userId!;
       this.subjectType = 'user' as TokenRequestBoxSubjectType;
+    } else {
+      this.subjectId = this.config.enterpriseId!;
+      this.subjectType = 'enterprise' as TokenRequestBoxSubjectType;
     }
   }
 
