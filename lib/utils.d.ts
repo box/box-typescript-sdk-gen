@@ -7,3 +7,6 @@ export declare function getEnvVar(name: string): string;
 export declare const BUFFER_SIZE: number;
 export declare function generateByteStream(): Readable;
 export declare function readByteStream(byteStream: Readable): Promise<Buffer>;
+export declare function toMap(obj: object): {
+    [key: string]: string | number | boolean | null | undefined;
+};

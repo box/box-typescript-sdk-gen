@@ -1,6 +1,9 @@
+import { Webhooks } from "../schemas.generated.js";
+import { Webhook } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-export interface GetWebhooksOptionsArg {
+import { Json } from "../json.js";
+export interface GetWebhooksQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
@@ -30,9 +33,27 @@ export declare class WebhooksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">);
-    getWebhooks(options?: GetWebhooksOptionsArg): Promise<any>;
-    createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<any>;
-    getWebhookById(webhookId: string): Promise<any>;
-    updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<any>;
+    getWebhooks(queryParams?: undefined | GetWebhooksQueryParamsArg): Promise<Webhooks>;
+    createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook>;
+    getWebhookById(webhookId: string): Promise<Webhook>;
+    updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook>;
     deleteWebhookById(webhookId: string): Promise<any>;
 }
+export declare function newSerializeGetWebhooksQueryParamsArg(val: GetWebhooksQueryParamsArg): Json;
+export declare function newDeserializeGetWebhooksQueryParamsArg(val: any): GetWebhooksQueryParamsArg;
+export declare function newSerializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: CreateWebhookRequestBodyArgTargetFieldTypeField): Json;
+export declare function newDeserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: any): CreateWebhookRequestBodyArgTargetFieldTypeField;
+export declare function newSerializeCreateWebhookRequestBodyArgTargetField(val: CreateWebhookRequestBodyArgTargetField): Json;
+export declare function newDeserializeCreateWebhookRequestBodyArgTargetField(val: any): CreateWebhookRequestBodyArgTargetField;
+export declare function newSerializeCreateWebhookRequestBodyArgTriggersField(val: CreateWebhookRequestBodyArgTriggersField): Json;
+export declare function newDeserializeCreateWebhookRequestBodyArgTriggersField(val: any): CreateWebhookRequestBodyArgTriggersField;
+export declare function newSerializeCreateWebhookRequestBodyArg(val: CreateWebhookRequestBodyArg): Json;
+export declare function newDeserializeCreateWebhookRequestBodyArg(val: any): CreateWebhookRequestBodyArg;
+export declare function newSerializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField): Json;
+export declare function newDeserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: any): UpdateWebhookByIdRequestBodyArgTargetFieldTypeField;
+export declare function newSerializeUpdateWebhookByIdRequestBodyArgTargetField(val: UpdateWebhookByIdRequestBodyArgTargetField): Json;
+export declare function newDeserializeUpdateWebhookByIdRequestBodyArgTargetField(val: any): UpdateWebhookByIdRequestBodyArgTargetField;
+export declare function newSerializeUpdateWebhookByIdRequestBodyArgTriggersField(val: UpdateWebhookByIdRequestBodyArgTriggersField): Json;
+export declare function newDeserializeUpdateWebhookByIdRequestBodyArgTriggersField(val: any): UpdateWebhookByIdRequestBodyArgTriggersField;
+export declare function newSerializeUpdateWebhookByIdRequestBodyArg(val: UpdateWebhookByIdRequestBodyArg): Json;
+export declare function newDeserializeUpdateWebhookByIdRequestBodyArg(val: any): UpdateWebhookByIdRequestBodyArg;

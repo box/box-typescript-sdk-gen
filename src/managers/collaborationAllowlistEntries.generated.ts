@@ -1,20 +1,22 @@
+import { newSerializeCollaborationAllowlistEntries } from "../schemas.generated.js";
+import { newDeserializeCollaborationAllowlistEntries } from "../schemas.generated.js";
+import { newSerializeClientError } from "../schemas.generated.js";
+import { newDeserializeClientError } from "../schemas.generated.js";
+import { newSerializeCollaborationAllowlistEntry } from "../schemas.generated.js";
+import { newDeserializeCollaborationAllowlistEntry } from "../schemas.generated.js";
 import { CollaborationAllowlistEntries } from "../schemas.generated.js";
-import { deserializeCollaborationAllowlistEntries } from "../schemas.generated.js";
-import { serializeCollaborationAllowlistEntries } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
-import { deserializeClientError } from "../schemas.generated.js";
-import { serializeClientError } from "../schemas.generated.js";
 import { CollaborationAllowlistEntry } from "../schemas.generated.js";
-import { deserializeCollaborationAllowlistEntry } from "../schemas.generated.js";
-import { serializeCollaborationAllowlistEntry } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
+import { toMap } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-export interface GetCollaborationWhitelistEntriesOptionsArg {
+import { isJson } from "../json.js";
+export interface GetCollaborationWhitelistEntriesQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
@@ -29,20 +31,54 @@ export class CollaborationAllowlistEntriesManager {
     constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "createCollaborationWhitelistEntry" | "getCollaborationWhitelistEntryById" | "deleteCollaborationWhitelistEntryById">) {
         Object.assign(this, fields);
     }
-    async getCollaborationWhitelistEntries(options: GetCollaborationWhitelistEntriesOptionsArg = {} satisfies GetCollaborationWhitelistEntriesOptionsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "GET", params: { ["marker"]: options.marker, ["limit"]: options.limit }, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeCollaborationAllowlistEntries(deserializeJson(response.text));
+    async getCollaborationWhitelistEntries(queryParams: undefined | GetCollaborationWhitelistEntriesQueryParamsArg = {} satisfies GetCollaborationWhitelistEntriesQueryParamsArg): Promise<CollaborationAllowlistEntries> {
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return newDeserializeCollaborationAllowlistEntries(deserializeJson(response.text));
     }
-    async createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<any> {
+    async createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<CollaborationAllowlistEntry> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeCollaborationAllowlistEntry(deserializeJson(response.text));
+        return newDeserializeCollaborationAllowlistEntry(deserializeJson(response.text));
     }
-    async getCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<any> {
+    async getCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<CollaborationAllowlistEntry> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries/", collaborationWhitelistEntryId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeCollaborationAllowlistEntry(deserializeJson(response.text));
+        return newDeserializeCollaborationAllowlistEntry(deserializeJson(response.text));
     }
     async deleteCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries/", collaborationWhitelistEntryId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
+}
+export function newSerializeGetCollaborationWhitelistEntriesQueryParamsArg(val: GetCollaborationWhitelistEntriesQueryParamsArg): Json {
+    return { ["marker"]: val.marker, ["limit"]: val.limit };
+}
+export function newDeserializeGetCollaborationWhitelistEntriesQueryParamsArg(val: any): GetCollaborationWhitelistEntriesQueryParamsArg {
+    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
+    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
+    return { marker: marker, limit: limit } satisfies GetCollaborationWhitelistEntriesQueryParamsArg;
+}
+export function newSerializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(val: CreateCollaborationWhitelistEntryRequestBodyArgDirectionField): Json {
+    return val;
+}
+export function newDeserializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(val: any): CreateCollaborationWhitelistEntryRequestBodyArgDirectionField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"CreateCollaborationWhitelistEntryRequestBodyArgDirectionField\"";
+    }
+    if (val == "inbound") {
+        return "inbound";
+    }
+    if (val == "outbound") {
+        return "outbound";
+    }
+    if (val == "both") {
+        return "both";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function newSerializeCreateCollaborationWhitelistEntryRequestBodyArg(val: CreateCollaborationWhitelistEntryRequestBodyArg): Json {
+    return { ["domain"]: val.domain, ["direction"]: newSerializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(val.direction) };
+}
+export function newDeserializeCreateCollaborationWhitelistEntryRequestBodyArg(val: any): CreateCollaborationWhitelistEntryRequestBodyArg {
+    const domain: string = val.domain;
+    const direction: CreateCollaborationWhitelistEntryRequestBodyArgDirectionField = newDeserializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(val.direction);
+    return { domain: domain, direction: direction } satisfies CreateCollaborationWhitelistEntryRequestBodyArg;
 }

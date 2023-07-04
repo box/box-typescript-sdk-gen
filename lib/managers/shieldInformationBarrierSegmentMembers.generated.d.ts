@@ -1,8 +1,11 @@
+import { ShieldInformationBarrierSegmentMember } from "../schemas.generated.js";
 import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { UserBase } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-export interface GetShieldInformationBarrierSegmentMembersOptionsArg {
+import { Json } from "../json.js";
+export interface GetShieldInformationBarrierSegmentMembersQueryParamsArg {
+    readonly shieldInformationBarrierSegmentId: string;
     readonly marker?: string;
     readonly limit?: number;
 }
@@ -22,8 +25,18 @@ export declare class ShieldInformationBarrierSegmentMembersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ShieldInformationBarrierSegmentMembersManager, "getShieldInformationBarrierSegmentMemberById" | "deleteShieldInformationBarrierSegmentMemberById" | "getShieldInformationBarrierSegmentMembers" | "createShieldInformationBarrierSegmentMember">);
-    getShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
+    getShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<ShieldInformationBarrierSegmentMember>;
     deleteShieldInformationBarrierSegmentMemberById(shieldInformationBarrierSegmentMemberId: string): Promise<any>;
-    getShieldInformationBarrierSegmentMembers(shieldInformationBarrierSegmentId: string, options?: GetShieldInformationBarrierSegmentMembersOptionsArg): Promise<undefined>;
-    createShieldInformationBarrierSegmentMember(requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Promise<any>;
+    getShieldInformationBarrierSegmentMembers(queryParams: GetShieldInformationBarrierSegmentMembersQueryParamsArg): Promise<undefined>;
+    createShieldInformationBarrierSegmentMember(requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Promise<ShieldInformationBarrierSegmentMember>;
 }
+export declare function newSerializeGetShieldInformationBarrierSegmentMembersQueryParamsArg(val: GetShieldInformationBarrierSegmentMembersQueryParamsArg): Json;
+export declare function newDeserializeGetShieldInformationBarrierSegmentMembersQueryParamsArg(val: any): GetShieldInformationBarrierSegmentMembersQueryParamsArg;
+export declare function newSerializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField): Json;
+export declare function newDeserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField;
+export declare function newSerializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField): Json;
+export declare function newDeserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField;
+export declare function newSerializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField): Json;
+export declare function newDeserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
+export declare function newSerializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Json;
+export declare function newDeserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArg;

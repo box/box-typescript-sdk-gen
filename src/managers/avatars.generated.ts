@@ -1,11 +1,12 @@
+import { newSerializeClientError } from "../schemas.generated.js";
+import { newDeserializeClientError } from "../schemas.generated.js";
+import { newSerializeUserAvatar } from "../schemas.generated.js";
+import { newDeserializeUserAvatar } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
-import { deserializeClientError } from "../schemas.generated.js";
-import { serializeClientError } from "../schemas.generated.js";
 import { UserAvatar } from "../schemas.generated.js";
-import { deserializeUserAvatar } from "../schemas.generated.js";
-import { serializeUserAvatar } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
+import { toMap } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -26,9 +27,9 @@ export class AvatarsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<any> {
+    async createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<UserAvatar> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", multipartData: [{ partName: "pic", fileStream: requestBody.pic } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeUserAvatar(deserializeJson(response.text));
+        return newDeserializeUserAvatar(deserializeJson(response.text));
     }
     async deleteUserAvatar(userId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;

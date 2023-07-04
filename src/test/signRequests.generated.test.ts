@@ -1,6 +1,20 @@
+import { newSerializeFolderBaseTypeField } from "../schemas.generated.js";
+import { newDeserializeFolderBaseTypeField } from "../schemas.generated.js";
+import { newSerializeFileBaseTypeField } from "../schemas.generated.js";
+import { newDeserializeFileBaseTypeField } from "../schemas.generated.js";
+import { newSerializeDeleteFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
+import { newDeserializeDeleteFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
+import { newSerializeSignRequestCreateRequest } from "../schemas.generated.js";
+import { newDeserializeSignRequestCreateRequest } from "../schemas.generated.js";
+import { newSerializeSignRequestCreateSigner } from "../schemas.generated.js";
+import { newDeserializeSignRequestCreateSigner } from "../schemas.generated.js";
+import { newSerializeFolderMini } from "../schemas.generated.js";
+import { newDeserializeFolderMini } from "../schemas.generated.js";
+import { newSerializeFileBase } from "../schemas.generated.js";
+import { newDeserializeFileBase } from "../schemas.generated.js";
 import { FolderBaseTypeField } from "../schemas.generated.js";
 import { FileBaseTypeField } from "../schemas.generated.js";
-import { DeleteFolderByIdOptionsArg } from "../managers/folders.generated.js";
+import { DeleteFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";
 import { getUuid } from "../utils.js";
@@ -14,10 +28,10 @@ import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
 import { JwtConfig } from "../jwtAuth.js";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
-const auth: JwtAuth = new JwtAuth({ config: jwtConfig });
-const client: Client = new Client({ auth: auth });
+const auth: any = new JwtAuth({ config: jwtConfig });
+const client: any = new Client({ auth: auth });
 test("test_create_get_cancel_and_list_sign_request", async function test_create_get_cancel_and_list_sign_request(): Promise<any> {
-    const signerEmail: string = "".concat(getUuid(), "@box.com") as string;
+    const signerEmail: any = "".concat(getUuid(), "@box.com") as string;
     const fileToSign: any = await uploadNewFile();
     const destinationFolder: any = await createNewFolder();
     const createdSignRequest: any = await client.signRequests.createSignRequest({ signers: [{ email: signerEmail } satisfies SignRequestCreateSigner], parentFolder: { id: destinationFolder.id, type: "folder" as FolderBaseTypeField } satisfies FolderMini, sourceFiles: [{ id: fileToSign.id, type: "file" as FileBaseTypeField } satisfies FileBase] } satisfies SignRequestCreateRequest);
@@ -48,7 +62,7 @@ test("test_create_get_cancel_and_list_sign_request", async function test_create_
     if (!(signRequests.entries[0].type == "sign-request")) {
         throw "Assertion failed";
     }
-    await client.folders.deleteFolderById(destinationFolder.id, { recursive: true } satisfies DeleteFolderByIdOptionsArg)
+    await client.folders.deleteFolderById(destinationFolder.id, { recursive: true } satisfies DeleteFolderByIdQueryParamsArg)
     await client.files.deleteFileById(fileToSign.id)
 });
 export {};

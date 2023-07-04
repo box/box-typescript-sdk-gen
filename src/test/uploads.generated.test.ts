@@ -1,3 +1,9 @@
+import { newSerializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { newDeserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { newSerializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { newDeserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { newSerializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { newDeserializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArg } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
@@ -12,17 +18,17 @@ import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
 import { JwtConfig } from "../jwtAuth.js";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
-const auth: JwtAuth = new JwtAuth({ config: jwtConfig });
-const client: Client = new Client({ auth: auth });
+const auth: any = new JwtAuth({ config: jwtConfig });
+const client: any = new Client({ auth: auth });
 test("test_upload_file_and_file_version", async function test_upload_file_and_file_version(): Promise<any> {
-    const newFileName: string = getUuid();
+    const newFileName: any = getUuid();
     const fileContentStream: any = generateByteStream();
     const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: newFileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileContentStream } satisfies UploadFileRequestBodyArg);
     const uploadedFile: any = uploadedFiles.entries[0];
     if (!(uploadedFile.name == newFileName)) {
         throw "Assertion failed";
     }
-    const newFileVersionName: string = getUuid();
+    const newFileVersionName: any = getUuid();
     const newFileContentStream: any = generateByteStream();
     const uploadedFilesVersion: any = await client.uploads.uploadFileVersion(uploadedFile.id, { attributes: { name: newFileVersionName } satisfies UploadFileVersionRequestBodyArgAttributesField, file: newFileContentStream } satisfies UploadFileVersionRequestBodyArg);
     const newFileVersion: any = uploadedFilesVersion.entries[0];

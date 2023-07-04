@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { UserAvatar } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Readable } from "stream";
@@ -10,6 +11,6 @@ export declare class AvatarsManager {
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<AvatarsManager, "getUserAvatar" | "createUserAvatar" | "deleteUserAvatar">);
     getUserAvatar(userId: string): Promise<any>;
-    createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<any>;
+    createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<UserAvatar>;
     deleteUserAvatar(userId: string): Promise<any>;
 }

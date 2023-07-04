@@ -68,6 +68,7 @@ import { SignTemplatesManager } from "./managers/signTemplates.generated.js";
 import { IntegrationMappingsManager } from "./managers/integrationMappings.generated.js";
 import { Authentication } from "./auth.js";
 import { NetworkSession } from "./network.js";
+import { Readable } from "stream";
 export class Client {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession = {} satisfies NetworkSession;

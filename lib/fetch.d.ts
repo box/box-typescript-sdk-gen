@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { NetworkSession } from './network';
 import { Authentication } from './auth';
+import { NetworkSession } from './network';
 export declare const userAgentHeader: string;
 export declare const xBoxUaHeader: string;
 export interface MultipartItem {
@@ -19,7 +19,7 @@ export interface FetchOptions {
      * [key1, value1, key2, value2, ...]
      */
     readonly headers?: {
-        [key: string]: string | null | undefined;
+        [key: string]: string | number | boolean | null | undefined;
     };
     /**
      * query params
@@ -63,4 +63,7 @@ export interface FetchResponse {
      */
     readonly content: Buffer;
 }
-export declare function fetch(resource: string, options: FetchOptions): Promise<FetchResponse>;
+export declare function fetch(resource: string, options: FetchOptions & {
+    /** @private */
+    numRetries?: number;
+}): Promise<FetchResponse>;

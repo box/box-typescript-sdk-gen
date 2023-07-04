@@ -28,3 +28,9 @@ export async function readByteStream(byteStream: Readable) {
 
   return Buffer.concat(buffers);
 }
+
+export function toMap(obj: object): {
+  [key: string]: string | number | boolean | null | undefined;
+} {
+  return obj as { [key: string]: string | number | boolean | null | undefined };
+}
