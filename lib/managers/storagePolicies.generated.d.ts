@@ -1,6 +1,9 @@
+import { StoragePolicies } from "../schemas.generated.js";
+import { StoragePolicy } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-export interface GetStoragePoliciesOptionsArg {
+import { Json } from "../json.js";
+export interface GetStoragePoliciesQueryParamsArg {
     readonly fields?: string;
     readonly marker?: string;
     readonly limit?: number;
@@ -9,6 +12,8 @@ export declare class StoragePoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePolicyById">);
-    getStoragePolicies(options?: GetStoragePoliciesOptionsArg): Promise<any>;
-    getStoragePolicyById(storagePolicyId: string): Promise<any>;
+    getStoragePolicies(queryParams?: undefined | GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies>;
+    getStoragePolicyById(storagePolicyId: string): Promise<StoragePolicy>;
 }
+export declare function newSerializeGetStoragePoliciesQueryParamsArg(val: GetStoragePoliciesQueryParamsArg): Json;
+export declare function newDeserializeGetStoragePoliciesQueryParamsArg(val: any): GetStoragePoliciesQueryParamsArg;

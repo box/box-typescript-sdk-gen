@@ -1,6 +1,10 @@
+import { Groups } from "../schemas.generated.js";
+import { Group } from "../schemas.generated.js";
+import { GroupFull } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-export interface GetGroupsOptionsArg {
+import { Json } from "../json.js";
+export interface GetGroupsQueryParamsArg {
     readonly filterTerm?: string;
     readonly fields?: string;
     readonly limit?: number;
@@ -16,10 +20,10 @@ export interface CreateGroupRequestBodyArg {
     readonly invitabilityLevel?: CreateGroupRequestBodyArgInvitabilityLevelField;
     readonly memberViewabilityLevel?: CreateGroupRequestBodyArgMemberViewabilityLevelField;
 }
-export interface CreateGroupOptionsArg {
+export interface CreateGroupQueryParamsArg {
     readonly fields?: string;
 }
-export interface GetGroupByIdOptionsArg {
+export interface GetGroupByIdQueryParamsArg {
     readonly fields?: string;
 }
 export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
@@ -32,16 +36,36 @@ export interface UpdateGroupByIdRequestBodyArg {
     readonly invitabilityLevel?: UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
     readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
 }
-export interface UpdateGroupByIdOptionsArg {
+export interface UpdateGroupByIdQueryParamsArg {
     readonly fields?: string;
 }
 export declare class GroupsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">);
-    getGroups(options?: GetGroupsOptionsArg): Promise<any>;
-    createGroup(requestBody: CreateGroupRequestBodyArg, options?: CreateGroupOptionsArg): Promise<any>;
-    getGroupById(groupId: string, options?: GetGroupByIdOptionsArg): Promise<any>;
-    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, options?: UpdateGroupByIdOptionsArg): Promise<any>;
+    getGroups(queryParams?: undefined | GetGroupsQueryParamsArg): Promise<Groups>;
+    createGroup(requestBody: CreateGroupRequestBodyArg, queryParams?: undefined | CreateGroupQueryParamsArg): Promise<Group>;
+    getGroupById(groupId: string, queryParams?: undefined | GetGroupByIdQueryParamsArg): Promise<GroupFull>;
+    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams?: undefined | UpdateGroupByIdQueryParamsArg): Promise<GroupFull>;
     deleteGroupById(groupId: string): Promise<any>;
 }
+export declare function newSerializeGetGroupsQueryParamsArg(val: GetGroupsQueryParamsArg): Json;
+export declare function newDeserializeGetGroupsQueryParamsArg(val: any): GetGroupsQueryParamsArg;
+export declare function newSerializeCreateGroupRequestBodyArgInvitabilityLevelField(val: CreateGroupRequestBodyArgInvitabilityLevelField): Json;
+export declare function newDeserializeCreateGroupRequestBodyArgInvitabilityLevelField(val: any): CreateGroupRequestBodyArgInvitabilityLevelField;
+export declare function newSerializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val: CreateGroupRequestBodyArgMemberViewabilityLevelField): Json;
+export declare function newDeserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val: any): CreateGroupRequestBodyArgMemberViewabilityLevelField;
+export declare function newSerializeCreateGroupRequestBodyArg(val: CreateGroupRequestBodyArg): Json;
+export declare function newDeserializeCreateGroupRequestBodyArg(val: any): CreateGroupRequestBodyArg;
+export declare function newSerializeCreateGroupQueryParamsArg(val: CreateGroupQueryParamsArg): Json;
+export declare function newDeserializeCreateGroupQueryParamsArg(val: any): CreateGroupQueryParamsArg;
+export declare function newSerializeGetGroupByIdQueryParamsArg(val: GetGroupByIdQueryParamsArg): Json;
+export declare function newDeserializeGetGroupByIdQueryParamsArg(val: any): GetGroupByIdQueryParamsArg;
+export declare function newSerializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val: UpdateGroupByIdRequestBodyArgInvitabilityLevelField): Json;
+export declare function newDeserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val: any): UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
+export declare function newSerializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField): Json;
+export declare function newDeserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val: any): UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
+export declare function newSerializeUpdateGroupByIdRequestBodyArg(val: UpdateGroupByIdRequestBodyArg): Json;
+export declare function newDeserializeUpdateGroupByIdRequestBodyArg(val: any): UpdateGroupByIdRequestBodyArg;
+export declare function newSerializeUpdateGroupByIdQueryParamsArg(val: UpdateGroupByIdQueryParamsArg): Json;
+export declare function newDeserializeUpdateGroupByIdQueryParamsArg(val: any): UpdateGroupByIdQueryParamsArg;

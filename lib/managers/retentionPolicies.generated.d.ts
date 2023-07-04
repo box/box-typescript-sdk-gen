@@ -1,10 +1,13 @@
+import { RetentionPolicies } from "../schemas.generated.js";
+import { RetentionPolicy } from "../schemas.generated.js";
 import { UserMini } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-export type GetRetentionPoliciesOptionsArgPolicyTypeField = "finite" | "indefinite";
-export interface GetRetentionPoliciesOptionsArg {
+import { Json } from "../json.js";
+export type GetRetentionPoliciesQueryParamsArgPolicyTypeField = "finite" | "indefinite";
+export interface GetRetentionPoliciesQueryParamsArg {
     readonly policyName?: string;
-    readonly policyType?: GetRetentionPoliciesOptionsArgPolicyTypeField;
+    readonly policyType?: GetRetentionPoliciesQueryParamsArgPolicyTypeField;
     readonly createdByUserId?: string;
     readonly fields?: string;
     readonly limit?: number;
@@ -24,7 +27,7 @@ export interface CreateRetentionPolicyRequestBodyArg {
     readonly areOwnersNotified?: boolean;
     readonly customNotificationRecipients?: readonly UserMini[];
 }
-export interface GetRetentionPolicyByIdOptionsArg {
+export interface GetRetentionPolicyByIdQueryParamsArg {
     readonly fields?: string;
 }
 export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
@@ -43,9 +46,27 @@ export declare class RetentionPoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">);
-    getRetentionPolicies(options?: GetRetentionPoliciesOptionsArg): Promise<any>;
-    createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<any>;
-    getRetentionPolicyById(retentionPolicyId: string, options?: GetRetentionPolicyByIdOptionsArg): Promise<any>;
-    updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<any>;
+    getRetentionPolicies(queryParams?: undefined | GetRetentionPoliciesQueryParamsArg): Promise<RetentionPolicies>;
+    createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<RetentionPolicy>;
+    getRetentionPolicyById(retentionPolicyId: string, queryParams?: undefined | GetRetentionPolicyByIdQueryParamsArg): Promise<RetentionPolicy>;
+    updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<RetentionPolicy>;
     deleteRetentionPolicyById(retentionPolicyId: string): Promise<any>;
 }
+export declare function newSerializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(val: GetRetentionPoliciesQueryParamsArgPolicyTypeField): Json;
+export declare function newDeserializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(val: any): GetRetentionPoliciesQueryParamsArgPolicyTypeField;
+export declare function newSerializeGetRetentionPoliciesQueryParamsArg(val: GetRetentionPoliciesQueryParamsArg): Json;
+export declare function newDeserializeGetRetentionPoliciesQueryParamsArg(val: any): GetRetentionPoliciesQueryParamsArg;
+export declare function newSerializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val: CreateRetentionPolicyRequestBodyArgPolicyTypeField): Json;
+export declare function newDeserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val: any): CreateRetentionPolicyRequestBodyArgPolicyTypeField;
+export declare function newSerializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val: CreateRetentionPolicyRequestBodyArgDispositionActionField): Json;
+export declare function newDeserializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val: any): CreateRetentionPolicyRequestBodyArgDispositionActionField;
+export declare function newSerializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val: CreateRetentionPolicyRequestBodyArgRetentionTypeField): Json;
+export declare function newDeserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val: any): CreateRetentionPolicyRequestBodyArgRetentionTypeField;
+export declare function newSerializeCreateRetentionPolicyRequestBodyArg(val: CreateRetentionPolicyRequestBodyArg): Json;
+export declare function newDeserializeCreateRetentionPolicyRequestBodyArg(val: any): CreateRetentionPolicyRequestBodyArg;
+export declare function newSerializeGetRetentionPolicyByIdQueryParamsArg(val: GetRetentionPolicyByIdQueryParamsArg): Json;
+export declare function newDeserializeGetRetentionPolicyByIdQueryParamsArg(val: any): GetRetentionPolicyByIdQueryParamsArg;
+export declare function newSerializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField): Json;
+export declare function newDeserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val: any): UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
+export declare function newSerializeUpdateRetentionPolicyByIdRequestBodyArg(val: UpdateRetentionPolicyByIdRequestBodyArg): Json;
+export declare function newDeserializeUpdateRetentionPolicyByIdRequestBodyArg(val: any): UpdateRetentionPolicyByIdRequestBodyArg;

@@ -25,7 +25,9 @@ export interface FetchOptions {
   /**
    * [key1, value1, key2, value2, ...]
    */
-  readonly headers?: { [key: string]: string | null | undefined };
+  readonly headers?: {
+    [key: string]: string | number | boolean | null | undefined;
+  };
   /**
    * query params
    * [key1, value1, key2, value2, ...]
