@@ -14,5 +14,5 @@ export declare class EmailAliasesManager {
     createUserEmailAlias(userId: string, requestBody: CreateUserEmailAliasRequestBodyArg): Promise<EmailAlias>;
     deleteUserEmailAliasById(userId: string, emailAliasId: string): Promise<any>;
 }
-export declare function newSerializeCreateUserEmailAliasRequestBodyArg(val: CreateUserEmailAliasRequestBodyArg): Json;
-export declare function newDeserializeCreateUserEmailAliasRequestBodyArg(val: any): CreateUserEmailAliasRequestBodyArg;
+export declare function serializeCreateUserEmailAliasRequestBodyArg(val: CreateUserEmailAliasRequestBodyArg): Json;
+export declare function deserializeCreateUserEmailAliasRequestBodyArg(val: any): CreateUserEmailAliasRequestBodyArg;

@@ -1,9 +1,9 @@
-import { newSerializeTaskAssignments } from "../schemas.generated.js";
-import { newDeserializeTaskAssignments } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeTaskAssignment } from "../schemas.generated.js";
-import { newDeserializeTaskAssignment } from "../schemas.generated.js";
+import { serializeTaskAssignments } from "../schemas.generated.js";
+import { deserializeTaskAssignments } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeTaskAssignment } from "../schemas.generated.js";
+import { deserializeTaskAssignment } from "../schemas.generated.js";
 import { TaskAssignments } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { TaskAssignment } from "../schemas.generated.js";
@@ -42,29 +42,29 @@ export class TaskAssignmentsManager {
     }
     async getTaskAssignments(taskId: string): Promise<TaskAssignments> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId, "/assignments") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTaskAssignments(deserializeJson(response.text));
+        return deserializeTaskAssignments(deserializeJson(response.text));
     }
     async createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg): Promise<TaskAssignment> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTaskAssignment(deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJson(response.text));
     }
     async getTaskAssignmentById(taskAssignmentId: string): Promise<TaskAssignment> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTaskAssignment(deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJson(response.text));
     }
     async updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg): Promise<TaskAssignment> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTaskAssignment(deserializeJson(response.text));
+        return deserializeTaskAssignment(deserializeJson(response.text));
     }
     async deleteTaskAssignmentById(taskAssignmentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField): Json {
+export function serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField): Json {
     return val;
 }
-export function newDeserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: any): CreateTaskAssignmentRequestBodyArgTaskFieldTypeField {
+export function deserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: any): CreateTaskAssignmentRequestBodyArgTaskFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateTaskAssignmentRequestBodyArgTaskFieldTypeField\"";
     }
@@ -73,34 +73,34 @@ export function newDeserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateTaskAssignmentRequestBodyArgTaskField(val: CreateTaskAssignmentRequestBodyArgTaskField): Json {
-    return { ["id"]: val.id, ["type"]: newSerializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val.type) };
+export function serializeCreateTaskAssignmentRequestBodyArgTaskField(val: CreateTaskAssignmentRequestBodyArgTaskField): Json {
+    return { ["id"]: val.id, ["type"]: serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val.type) };
 }
-export function newDeserializeCreateTaskAssignmentRequestBodyArgTaskField(val: any): CreateTaskAssignmentRequestBodyArgTaskField {
+export function deserializeCreateTaskAssignmentRequestBodyArgTaskField(val: any): CreateTaskAssignmentRequestBodyArgTaskField {
     const id: string = val.id;
-    const type: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField = newDeserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val.type);
+    const type: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField = deserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateTaskAssignmentRequestBodyArgTaskField;
 }
-export function newSerializeCreateTaskAssignmentRequestBodyArgAssignToField(val: CreateTaskAssignmentRequestBodyArgAssignToField): Json {
+export function serializeCreateTaskAssignmentRequestBodyArgAssignToField(val: CreateTaskAssignmentRequestBodyArgAssignToField): Json {
     return { ["id"]: val.id, ["login"]: val.login };
 }
-export function newDeserializeCreateTaskAssignmentRequestBodyArgAssignToField(val: any): CreateTaskAssignmentRequestBodyArgAssignToField {
+export function deserializeCreateTaskAssignmentRequestBodyArgAssignToField(val: any): CreateTaskAssignmentRequestBodyArgAssignToField {
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
     return { id: id, login: login } satisfies CreateTaskAssignmentRequestBodyArgAssignToField;
 }
-export function newSerializeCreateTaskAssignmentRequestBodyArg(val: CreateTaskAssignmentRequestBodyArg): Json {
-    return { ["task"]: newSerializeCreateTaskAssignmentRequestBodyArgTaskField(val.task), ["assignTo"]: newSerializeCreateTaskAssignmentRequestBodyArgAssignToField(val.assignTo) };
+export function serializeCreateTaskAssignmentRequestBodyArg(val: CreateTaskAssignmentRequestBodyArg): Json {
+    return { ["task"]: serializeCreateTaskAssignmentRequestBodyArgTaskField(val.task), ["assignTo"]: serializeCreateTaskAssignmentRequestBodyArgAssignToField(val.assignTo) };
 }
-export function newDeserializeCreateTaskAssignmentRequestBodyArg(val: any): CreateTaskAssignmentRequestBodyArg {
-    const task: CreateTaskAssignmentRequestBodyArgTaskField = newDeserializeCreateTaskAssignmentRequestBodyArgTaskField(val.task);
-    const assignTo: CreateTaskAssignmentRequestBodyArgAssignToField = newDeserializeCreateTaskAssignmentRequestBodyArgAssignToField(val.assignTo);
+export function deserializeCreateTaskAssignmentRequestBodyArg(val: any): CreateTaskAssignmentRequestBodyArg {
+    const task: CreateTaskAssignmentRequestBodyArgTaskField = deserializeCreateTaskAssignmentRequestBodyArgTaskField(val.task);
+    const assignTo: CreateTaskAssignmentRequestBodyArgAssignToField = deserializeCreateTaskAssignmentRequestBodyArgAssignToField(val.assignTo);
     return { task: task, assignTo: assignTo } satisfies CreateTaskAssignmentRequestBodyArg;
 }
-export function newSerializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField): Json {
+export function serializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField): Json {
     return val;
 }
-export function newDeserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val: any): UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField {
+export function deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val: any): UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField\"";
     }
@@ -118,11 +118,11 @@ export function newDeserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionSt
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateTaskAssignmentByIdRequestBodyArg(val: UpdateTaskAssignmentByIdRequestBodyArg): Json {
-    return { ["message"]: val.message, ["resolutionState"]: val.resolutionState == void 0 ? void 0 : newSerializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState) };
+export function serializeUpdateTaskAssignmentByIdRequestBodyArg(val: UpdateTaskAssignmentByIdRequestBodyArg): Json {
+    return { ["message"]: val.message, ["resolutionState"]: val.resolutionState == void 0 ? void 0 : serializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState) };
 }
-export function newDeserializeUpdateTaskAssignmentByIdRequestBodyArg(val: any): UpdateTaskAssignmentByIdRequestBodyArg {
+export function deserializeUpdateTaskAssignmentByIdRequestBodyArg(val: any): UpdateTaskAssignmentByIdRequestBodyArg {
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
-    const resolutionState: undefined | UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField = val.resolutionState == void 0 ? void 0 : newDeserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState);
+    const resolutionState: undefined | UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField = val.resolutionState == void 0 ? void 0 : deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState);
     return { message: message, resolutionState: resolutionState } satisfies UpdateTaskAssignmentByIdRequestBodyArg;
 }

@@ -15,7 +15,7 @@ export declare class DownloadsManager {
     constructor(fields: Omit<DownloadsManager, "downloadFile">);
     downloadFile(fileId: string, queryParams?: undefined | DownloadFileQueryParamsArg, headers?: undefined | DownloadFileHeadersArg): Promise<any>;
 }
-export declare function newSerializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json;
-export declare function newDeserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg;
-export declare function newSerializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json;
-export declare function newDeserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg;
+export declare function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json;
+export declare function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg;
+export declare function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json;
+export declare function deserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg;

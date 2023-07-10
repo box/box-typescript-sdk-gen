@@ -16,7 +16,7 @@ export declare class SessionTerminationManager {
     createUserTerminateSession(requestBody: CreateUserTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage>;
     createGroupTerminateSession(requestBody: CreateGroupTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage>;
 }
-export declare function newSerializeCreateUserTerminateSessionRequestBodyArg(val: CreateUserTerminateSessionRequestBodyArg): Json;
-export declare function newDeserializeCreateUserTerminateSessionRequestBodyArg(val: any): CreateUserTerminateSessionRequestBodyArg;
-export declare function newSerializeCreateGroupTerminateSessionRequestBodyArg(val: CreateGroupTerminateSessionRequestBodyArg): Json;
-export declare function newDeserializeCreateGroupTerminateSessionRequestBodyArg(val: any): CreateGroupTerminateSessionRequestBodyArg;
+export declare function serializeCreateUserTerminateSessionRequestBodyArg(val: CreateUserTerminateSessionRequestBodyArg): Json;
+export declare function deserializeCreateUserTerminateSessionRequestBodyArg(val: any): CreateUserTerminateSessionRequestBodyArg;
+export declare function serializeCreateGroupTerminateSessionRequestBodyArg(val: CreateGroupTerminateSessionRequestBodyArg): Json;
+export declare function deserializeCreateGroupTerminateSessionRequestBodyArg(val: any): CreateGroupTerminateSessionRequestBodyArg;

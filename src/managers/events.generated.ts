@@ -1,9 +1,9 @@
-import { newSerializeEvents } from "../schemas.generated.js";
-import { newDeserializeEvents } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeRealtimeServers } from "../schemas.generated.js";
-import { newDeserializeRealtimeServers } from "../schemas.generated.js";
+import { serializeEvents } from "../schemas.generated.js";
+import { deserializeEvents } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeRealtimeServers } from "../schemas.generated.js";
+import { deserializeRealtimeServers } from "../schemas.generated.js";
 import { Events } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { RealtimeServers } from "../schemas.generated.js";
@@ -33,17 +33,17 @@ export class EventsManager {
     }
     async getEvents(queryParams: undefined | GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg): Promise<Events> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeEvents(deserializeJson(response.text));
+        return deserializeEvents(deserializeJson(response.text));
     }
     async getEventsWithLongPolling(): Promise<RealtimeServers> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "OPTIONS", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeRealtimeServers(deserializeJson(response.text));
+        return deserializeRealtimeServers(deserializeJson(response.text));
     }
 }
-export function newSerializeGetEventsQueryParamsArgStreamTypeField(val: GetEventsQueryParamsArgStreamTypeField): Json {
+export function serializeGetEventsQueryParamsArgStreamTypeField(val: GetEventsQueryParamsArgStreamTypeField): Json {
     return val;
 }
-export function newDeserializeGetEventsQueryParamsArgStreamTypeField(val: any): GetEventsQueryParamsArgStreamTypeField {
+export function deserializeGetEventsQueryParamsArgStreamTypeField(val: any): GetEventsQueryParamsArgStreamTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetEventsQueryParamsArgStreamTypeField\"";
     }
@@ -64,11 +64,11 @@ export function newDeserializeGetEventsQueryParamsArgStreamTypeField(val: any): 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetEventsQueryParamsArg(val: GetEventsQueryParamsArg): Json {
-    return { ["streamType"]: val.streamType == void 0 ? void 0 : newSerializeGetEventsQueryParamsArgStreamTypeField(val.streamType), ["streamPosition"]: val.streamPosition, ["limit"]: val.limit, ["eventType"]: val.eventType, ["createdAfter"]: val.createdAfter, ["createdBefore"]: val.createdBefore };
+export function serializeGetEventsQueryParamsArg(val: GetEventsQueryParamsArg): Json {
+    return { ["streamType"]: val.streamType == void 0 ? void 0 : serializeGetEventsQueryParamsArgStreamTypeField(val.streamType), ["streamPosition"]: val.streamPosition, ["limit"]: val.limit, ["eventType"]: val.eventType, ["createdAfter"]: val.createdAfter, ["createdBefore"]: val.createdBefore };
 }
-export function newDeserializeGetEventsQueryParamsArg(val: any): GetEventsQueryParamsArg {
-    const streamType: undefined | GetEventsQueryParamsArgStreamTypeField = val.streamType == void 0 ? void 0 : newDeserializeGetEventsQueryParamsArgStreamTypeField(val.streamType);
+export function deserializeGetEventsQueryParamsArg(val: any): GetEventsQueryParamsArg {
+    const streamType: undefined | GetEventsQueryParamsArgStreamTypeField = val.streamType == void 0 ? void 0 : deserializeGetEventsQueryParamsArgStreamTypeField(val.streamType);
     const streamPosition: undefined | string = isJson(val.streamPosition, "string") ? val.streamPosition : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const eventType: undefined | string = isJson(val.eventType, "string") ? val.eventType : void 0;

@@ -1,5 +1,5 @@
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
@@ -28,18 +28,18 @@ export class DownloadsManager {
         return response.content;
     }
 }
-export function newSerializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
+export function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
     return { ["version"]: val.version, ["accessToken"]: val.accessToken };
 }
-export function newDeserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
+export function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
     const version: undefined | string = isJson(val.version, "string") ? val.version : void 0;
     const accessToken: undefined | string = isJson(val.accessToken, "string") ? val.accessToken : void 0;
     return { version: version, accessToken: accessToken } satisfies DownloadFileQueryParamsArg;
 }
-export function newSerializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {
+export function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {
     return { ["range"]: val.range, ["boxapi"]: val.boxapi };
 }
-export function newDeserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg {
+export function deserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg {
     const range: undefined | string = isJson(val.range, "string") ? val.range : void 0;
     const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
     return { range: range, boxapi: boxapi } satisfies DownloadFileHeadersArg;

@@ -1,11 +1,11 @@
-import { newSerializeSignRequest } from "../schemas.generated.js";
-import { newDeserializeSignRequest } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeSignRequests } from "../schemas.generated.js";
-import { newDeserializeSignRequests } from "../schemas.generated.js";
-import { newSerializeSignRequestCreateRequest } from "../schemas.generated.js";
-import { newDeserializeSignRequestCreateRequest } from "../schemas.generated.js";
+import { serializeSignRequest } from "../schemas.generated.js";
+import { deserializeSignRequest } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeSignRequests } from "../schemas.generated.js";
+import { deserializeSignRequests } from "../schemas.generated.js";
+import { serializeSignRequestCreateRequest } from "../schemas.generated.js";
+import { deserializeSignRequestCreateRequest } from "../schemas.generated.js";
 import { SignRequest } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { SignRequests } from "../schemas.generated.js";
@@ -32,7 +32,7 @@ export class SignRequestsManager {
     }
     async cancelSignRequest(signRequestId: string): Promise<SignRequest> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/cancel") as string, { method: "POST", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeSignRequest(deserializeJson(response.text));
+        return deserializeSignRequest(deserializeJson(response.text));
     }
     async resendSignRequest(signRequestId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId, "/resend") as string, { method: "POST", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
@@ -40,21 +40,21 @@ export class SignRequestsManager {
     }
     async getSignRequestById(signRequestId: string): Promise<SignRequest> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeSignRequest(deserializeJson(response.text));
+        return deserializeSignRequest(deserializeJson(response.text));
     }
     async getSignRequests(queryParams: undefined | GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg): Promise<SignRequests> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeSignRequests(deserializeJson(response.text));
+        return deserializeSignRequests(deserializeJson(response.text));
     }
     async createSignRequest(requestBody: SignRequestCreateRequest): Promise<SignRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "POST", body: serializeJson(newSerializeSignRequestCreateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeSignRequest(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "POST", body: serializeJson(serializeSignRequestCreateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeSignRequest(deserializeJson(response.text));
     }
 }
-export function newSerializeGetSignRequestsQueryParamsArg(val: GetSignRequestsQueryParamsArg): Json {
+export function serializeGetSignRequestsQueryParamsArg(val: GetSignRequestsQueryParamsArg): Json {
     return { ["marker"]: val.marker, ["limit"]: val.limit };
 }
-export function newDeserializeGetSignRequestsQueryParamsArg(val: any): GetSignRequestsQueryParamsArg {
+export function deserializeGetSignRequestsQueryParamsArg(val: any): GetSignRequestsQueryParamsArg {
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { marker: marker, limit: limit } satisfies GetSignRequestsQueryParamsArg;

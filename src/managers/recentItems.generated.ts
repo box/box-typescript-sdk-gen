@@ -1,7 +1,7 @@
-import { newSerializeRecentItems } from "../schemas.generated.js";
-import { newDeserializeRecentItems } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeRecentItems } from "../schemas.generated.js";
+import { deserializeRecentItems } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { RecentItems } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -26,13 +26,13 @@ export class RecentItemsManager {
     }
     async getRecentItems(queryParams: undefined | GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg): Promise<RecentItems> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeRecentItems(deserializeJson(response.text));
+        return deserializeRecentItems(deserializeJson(response.text));
     }
 }
-export function newSerializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json {
+export function serializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json {
     return { ["fields"]: val.fields, ["limit"]: val.limit, ["marker"]: val.marker };
 }
-export function newDeserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg {
+export function deserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;

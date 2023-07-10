@@ -1,7 +1,7 @@
-import { newSerializeItems } from "../schemas.generated.js";
-import { newDeserializeItems } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeItems } from "../schemas.generated.js";
+import { deserializeItems } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { Items } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -32,13 +32,13 @@ export class TrashedItemsManager {
     }
     async getFolderTrashItems(queryParams: undefined | GetFolderTrashItemsQueryParamsArg = {} satisfies GetFolderTrashItemsQueryParamsArg): Promise<Items> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/trash/items") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeItems(deserializeJson(response.text));
+        return deserializeItems(deserializeJson(response.text));
     }
 }
-export function newSerializeGetFolderTrashItemsQueryParamsArgDirectionField(val: GetFolderTrashItemsQueryParamsArgDirectionField): Json {
+export function serializeGetFolderTrashItemsQueryParamsArgDirectionField(val: GetFolderTrashItemsQueryParamsArgDirectionField): Json {
     return val;
 }
-export function newDeserializeGetFolderTrashItemsQueryParamsArgDirectionField(val: any): GetFolderTrashItemsQueryParamsArgDirectionField {
+export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(val: any): GetFolderTrashItemsQueryParamsArgDirectionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetFolderTrashItemsQueryParamsArgDirectionField\"";
     }
@@ -50,10 +50,10 @@ export function newDeserializeGetFolderTrashItemsQueryParamsArgDirectionField(va
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetFolderTrashItemsQueryParamsArgSortField(val: GetFolderTrashItemsQueryParamsArgSortField): Json {
+export function serializeGetFolderTrashItemsQueryParamsArgSortField(val: GetFolderTrashItemsQueryParamsArgSortField): Json {
     return val;
 }
-export function newDeserializeGetFolderTrashItemsQueryParamsArgSortField(val: any): GetFolderTrashItemsQueryParamsArgSortField {
+export function deserializeGetFolderTrashItemsQueryParamsArgSortField(val: any): GetFolderTrashItemsQueryParamsArgSortField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetFolderTrashItemsQueryParamsArgSortField\"";
     }
@@ -68,16 +68,16 @@ export function newDeserializeGetFolderTrashItemsQueryParamsArgSortField(val: an
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetFolderTrashItemsQueryParamsArg(val: GetFolderTrashItemsQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset, ["usemarker"]: val.usemarker, ["marker"]: val.marker, ["direction"]: val.direction == void 0 ? void 0 : newSerializeGetFolderTrashItemsQueryParamsArgDirectionField(val.direction), ["sort"]: val.sort == void 0 ? void 0 : newSerializeGetFolderTrashItemsQueryParamsArgSortField(val.sort) };
+export function serializeGetFolderTrashItemsQueryParamsArg(val: GetFolderTrashItemsQueryParamsArg): Json {
+    return { ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset, ["usemarker"]: val.usemarker, ["marker"]: val.marker, ["direction"]: val.direction == void 0 ? void 0 : serializeGetFolderTrashItemsQueryParamsArgDirectionField(val.direction), ["sort"]: val.sort == void 0 ? void 0 : serializeGetFolderTrashItemsQueryParamsArgSortField(val.sort) };
 }
-export function newDeserializeGetFolderTrashItemsQueryParamsArg(val: any): GetFolderTrashItemsQueryParamsArg {
+export function deserializeGetFolderTrashItemsQueryParamsArg(val: any): GetFolderTrashItemsQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
     const usemarker: undefined | boolean = isJson(val.usemarker, "boolean") ? val.usemarker : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const direction: undefined | GetFolderTrashItemsQueryParamsArgDirectionField = val.direction == void 0 ? void 0 : newDeserializeGetFolderTrashItemsQueryParamsArgDirectionField(val.direction);
-    const sort: undefined | GetFolderTrashItemsQueryParamsArgSortField = val.sort == void 0 ? void 0 : newDeserializeGetFolderTrashItemsQueryParamsArgSortField(val.sort);
+    const direction: undefined | GetFolderTrashItemsQueryParamsArgDirectionField = val.direction == void 0 ? void 0 : deserializeGetFolderTrashItemsQueryParamsArgDirectionField(val.direction);
+    const sort: undefined | GetFolderTrashItemsQueryParamsArgSortField = val.sort == void 0 ? void 0 : deserializeGetFolderTrashItemsQueryParamsArgSortField(val.sort);
     return { fields: fields, limit: limit, offset: offset, usemarker: usemarker, marker: marker, direction: direction, sort: sort } satisfies GetFolderTrashItemsQueryParamsArg;
 }

@@ -26,11 +26,11 @@ export declare class FolderLocksManager {
     createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<FolderLock>;
     deleteFolderLockById(folderLockId: string): Promise<any>;
 }
-export declare function newSerializeGetFolderLocksQueryParamsArg(val: GetFolderLocksQueryParamsArg): Json;
-export declare function newDeserializeGetFolderLocksQueryParamsArg(val: any): GetFolderLocksQueryParamsArg;
-export declare function newSerializeCreateFolderLockRequestBodyArgLockedOperationsField(val: CreateFolderLockRequestBodyArgLockedOperationsField): Json;
-export declare function newDeserializeCreateFolderLockRequestBodyArgLockedOperationsField(val: any): CreateFolderLockRequestBodyArgLockedOperationsField;
-export declare function newSerializeCreateFolderLockRequestBodyArgFolderField(val: CreateFolderLockRequestBodyArgFolderField): Json;
-export declare function newDeserializeCreateFolderLockRequestBodyArgFolderField(val: any): CreateFolderLockRequestBodyArgFolderField;
-export declare function newSerializeCreateFolderLockRequestBodyArg(val: CreateFolderLockRequestBodyArg): Json;
-export declare function newDeserializeCreateFolderLockRequestBodyArg(val: any): CreateFolderLockRequestBodyArg;
+export declare function serializeGetFolderLocksQueryParamsArg(val: GetFolderLocksQueryParamsArg): Json;
+export declare function deserializeGetFolderLocksQueryParamsArg(val: any): GetFolderLocksQueryParamsArg;
+export declare function serializeCreateFolderLockRequestBodyArgLockedOperationsField(val: CreateFolderLockRequestBodyArgLockedOperationsField): Json;
+export declare function deserializeCreateFolderLockRequestBodyArgLockedOperationsField(val: any): CreateFolderLockRequestBodyArgLockedOperationsField;
+export declare function serializeCreateFolderLockRequestBodyArgFolderField(val: CreateFolderLockRequestBodyArgFolderField): Json;
+export declare function deserializeCreateFolderLockRequestBodyArgFolderField(val: any): CreateFolderLockRequestBodyArgFolderField;
+export declare function serializeCreateFolderLockRequestBodyArg(val: CreateFolderLockRequestBodyArg): Json;
+export declare function deserializeCreateFolderLockRequestBodyArg(val: any): CreateFolderLockRequestBodyArg;

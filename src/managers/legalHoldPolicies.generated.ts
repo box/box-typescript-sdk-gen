@@ -1,9 +1,9 @@
-import { newSerializeLegalHoldPolicies } from "../schemas.generated.js";
-import { newDeserializeLegalHoldPolicies } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeLegalHoldPolicy } from "../schemas.generated.js";
-import { newDeserializeLegalHoldPolicy } from "../schemas.generated.js";
+import { serializeLegalHoldPolicies } from "../schemas.generated.js";
+import { deserializeLegalHoldPolicies } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeLegalHoldPolicy } from "../schemas.generated.js";
+import { deserializeLegalHoldPolicy } from "../schemas.generated.js";
 import { LegalHoldPolicies } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { LegalHoldPolicy } from "../schemas.generated.js";
@@ -42,39 +42,39 @@ export class LegalHoldPoliciesManager {
     }
     async getLegalHoldPolicies(queryParams: undefined | GetLegalHoldPoliciesQueryParamsArg = {} satisfies GetLegalHoldPoliciesQueryParamsArg): Promise<LegalHoldPolicies> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeLegalHoldPolicies(deserializeJson(response.text));
+        return deserializeLegalHoldPolicies(deserializeJson(response.text));
     }
     async createLegalHoldPolicy(requestBody: CreateLegalHoldPolicyRequestBodyArg): Promise<LegalHoldPolicy> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeLegalHoldPolicy(deserializeJson(response.text));
+        return deserializeLegalHoldPolicy(deserializeJson(response.text));
     }
     async getLegalHoldPolicyById(legalHoldPolicyId: string): Promise<LegalHoldPolicy> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeLegalHoldPolicy(deserializeJson(response.text));
+        return deserializeLegalHoldPolicy(deserializeJson(response.text));
     }
     async updateLegalHoldPolicyById(legalHoldPolicyId: string, requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg): Promise<LegalHoldPolicy> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeLegalHoldPolicy(deserializeJson(response.text));
+        return deserializeLegalHoldPolicy(deserializeJson(response.text));
     }
     async deleteLegalHoldPolicyById(legalHoldPolicyId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeGetLegalHoldPoliciesQueryParamsArg(val: GetLegalHoldPoliciesQueryParamsArg): Json {
+export function serializeGetLegalHoldPoliciesQueryParamsArg(val: GetLegalHoldPoliciesQueryParamsArg): Json {
     return { ["policyName"]: val.policyName, ["fields"]: val.fields, ["marker"]: val.marker, ["limit"]: val.limit };
 }
-export function newDeserializeGetLegalHoldPoliciesQueryParamsArg(val: any): GetLegalHoldPoliciesQueryParamsArg {
+export function deserializeGetLegalHoldPoliciesQueryParamsArg(val: any): GetLegalHoldPoliciesQueryParamsArg {
     const policyName: undefined | string = isJson(val.policyName, "string") ? val.policyName : void 0;
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { policyName: policyName, fields: fields, marker: marker, limit: limit } satisfies GetLegalHoldPoliciesQueryParamsArg;
 }
-export function newSerializeCreateLegalHoldPolicyRequestBodyArg(val: CreateLegalHoldPolicyRequestBodyArg): Json {
+export function serializeCreateLegalHoldPolicyRequestBodyArg(val: CreateLegalHoldPolicyRequestBodyArg): Json {
     return { ["policyName"]: val.policyName, ["description"]: val.description, ["filterStartedAt"]: val.filterStartedAt, ["filterEndedAt"]: val.filterEndedAt, ["isOngoing"]: val.isOngoing };
 }
-export function newDeserializeCreateLegalHoldPolicyRequestBodyArg(val: any): CreateLegalHoldPolicyRequestBodyArg {
+export function deserializeCreateLegalHoldPolicyRequestBodyArg(val: any): CreateLegalHoldPolicyRequestBodyArg {
     const policyName: string = val.policyName;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
     const filterStartedAt: undefined | string = isJson(val.filterStartedAt, "string") ? val.filterStartedAt : void 0;
@@ -82,10 +82,10 @@ export function newDeserializeCreateLegalHoldPolicyRequestBodyArg(val: any): Cre
     const isOngoing: undefined | boolean = isJson(val.isOngoing, "boolean") ? val.isOngoing : void 0;
     return { policyName: policyName, description: description, filterStartedAt: filterStartedAt, filterEndedAt: filterEndedAt, isOngoing: isOngoing } satisfies CreateLegalHoldPolicyRequestBodyArg;
 }
-export function newSerializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: UpdateLegalHoldPolicyByIdRequestBodyArg): Json {
+export function serializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: UpdateLegalHoldPolicyByIdRequestBodyArg): Json {
     return { ["policyName"]: val.policyName, ["description"]: val.description, ["releaseNotes"]: val.releaseNotes };
 }
-export function newDeserializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: any): UpdateLegalHoldPolicyByIdRequestBodyArg {
+export function deserializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: any): UpdateLegalHoldPolicyByIdRequestBodyArg {
     const policyName: undefined | string = isJson(val.policyName, "string") ? val.policyName : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
     const releaseNotes: undefined | string = isJson(val.releaseNotes, "string") ? val.releaseNotes : void 0;

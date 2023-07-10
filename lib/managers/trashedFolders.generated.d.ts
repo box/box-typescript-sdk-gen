@@ -24,11 +24,11 @@ export declare class TrashedFoldersManager {
     getFolderTrash(folderId: string, queryParams?: undefined | GetFolderTrashQueryParamsArg): Promise<TrashFolder>;
     deleteFolderTrash(folderId: string): Promise<any>;
 }
-export declare function newSerializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json;
-export declare function newDeserializeRestoreFolderFromTrashRequestBodyArgParentField(val: any): RestoreFolderFromTrashRequestBodyArgParentField;
-export declare function newSerializeRestoreFolderFromTrashRequestBodyArg(val: RestoreFolderFromTrashRequestBodyArg): Json;
-export declare function newDeserializeRestoreFolderFromTrashRequestBodyArg(val: any): RestoreFolderFromTrashRequestBodyArg;
-export declare function newSerializeRestoreFolderFromTrashQueryParamsArg(val: RestoreFolderFromTrashQueryParamsArg): Json;
-export declare function newDeserializeRestoreFolderFromTrashQueryParamsArg(val: any): RestoreFolderFromTrashQueryParamsArg;
-export declare function newSerializeGetFolderTrashQueryParamsArg(val: GetFolderTrashQueryParamsArg): Json;
-export declare function newDeserializeGetFolderTrashQueryParamsArg(val: any): GetFolderTrashQueryParamsArg;
+export declare function serializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json;
+export declare function deserializeRestoreFolderFromTrashRequestBodyArgParentField(val: any): RestoreFolderFromTrashRequestBodyArgParentField;
+export declare function serializeRestoreFolderFromTrashRequestBodyArg(val: RestoreFolderFromTrashRequestBodyArg): Json;
+export declare function deserializeRestoreFolderFromTrashRequestBodyArg(val: any): RestoreFolderFromTrashRequestBodyArg;
+export declare function serializeRestoreFolderFromTrashQueryParamsArg(val: RestoreFolderFromTrashQueryParamsArg): Json;
+export declare function deserializeRestoreFolderFromTrashQueryParamsArg(val: any): RestoreFolderFromTrashQueryParamsArg;
+export declare function serializeGetFolderTrashQueryParamsArg(val: GetFolderTrashQueryParamsArg): Json;
+export declare function deserializeGetFolderTrashQueryParamsArg(val: any): GetFolderTrashQueryParamsArg;

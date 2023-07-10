@@ -17,7 +17,7 @@ export declare class DevicePinnersManager {
     deleteDevicePinnerById(devicePinnerId: string): Promise<any>;
     getEnterpriseDevicePinners(enterpriseId: string, queryParams?: undefined | GetEnterpriseDevicePinnersQueryParamsArg): Promise<DevicePinners>;
 }
-export declare function newSerializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField): Json;
-export declare function newDeserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: any): GetEnterpriseDevicePinnersQueryParamsArgDirectionField;
-export declare function newSerializeGetEnterpriseDevicePinnersQueryParamsArg(val: GetEnterpriseDevicePinnersQueryParamsArg): Json;
-export declare function newDeserializeGetEnterpriseDevicePinnersQueryParamsArg(val: any): GetEnterpriseDevicePinnersQueryParamsArg;
+export declare function serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField): Json;
+export declare function deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: any): GetEnterpriseDevicePinnersQueryParamsArgDirectionField;
+export declare function serializeGetEnterpriseDevicePinnersQueryParamsArg(val: GetEnterpriseDevicePinnersQueryParamsArg): Json;
+export declare function deserializeGetEnterpriseDevicePinnersQueryParamsArg(val: any): GetEnterpriseDevicePinnersQueryParamsArg;

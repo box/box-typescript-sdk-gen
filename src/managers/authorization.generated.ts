@@ -1,7 +1,7 @@
-import { newSerializeAccessToken } from "../schemas.generated.js";
-import { newDeserializeAccessToken } from "../schemas.generated.js";
-import { newSerializeOAuth2Error } from "../schemas.generated.js";
-import { newDeserializeOAuth2Error } from "../schemas.generated.js";
+import { serializeAccessToken } from "../schemas.generated.js";
+import { deserializeAccessToken } from "../schemas.generated.js";
+import { serializeOAuth2Error } from "../schemas.generated.js";
+import { deserializeOAuth2Error } from "../schemas.generated.js";
 import { AccessToken } from "../schemas.generated.js";
 import { OAuth2Error } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -31,10 +31,10 @@ export class AuthorizationManager {
         return void 0;
     }
 }
-export function newSerializeGetAuthorizeQueryParamsArgResponseTypeField(val: GetAuthorizeQueryParamsArgResponseTypeField): Json {
+export function serializeGetAuthorizeQueryParamsArgResponseTypeField(val: GetAuthorizeQueryParamsArgResponseTypeField): Json {
     return val;
 }
-export function newDeserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any): GetAuthorizeQueryParamsArgResponseTypeField {
+export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any): GetAuthorizeQueryParamsArgResponseTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetAuthorizeQueryParamsArgResponseTypeField\"";
     }
@@ -43,11 +43,11 @@ export function newDeserializeGetAuthorizeQueryParamsArgResponseTypeField(val: a
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json {
-    return { ["responseType"]: newSerializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType), ["clientId"]: val.clientId, ["redirectUri"]: val.redirectUri, ["state"]: val.state, ["scope"]: val.scope };
+export function serializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json {
+    return { ["responseType"]: serializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType), ["clientId"]: val.clientId, ["redirectUri"]: val.redirectUri, ["state"]: val.state, ["scope"]: val.scope };
 }
-export function newDeserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg {
-    const responseType: GetAuthorizeQueryParamsArgResponseTypeField = newDeserializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType);
+export function deserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg {
+    const responseType: GetAuthorizeQueryParamsArgResponseTypeField = deserializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType);
     const clientId: string = val.clientId;
     const redirectUri: undefined | string = isJson(val.redirectUri, "string") ? val.redirectUri : void 0;
     const state: undefined | string = isJson(val.state, "string") ? val.state : void 0;

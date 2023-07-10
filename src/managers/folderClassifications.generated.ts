@@ -1,7 +1,7 @@
-import { newSerializeClassification } from "../schemas.generated.js";
-import { newDeserializeClassification } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeClassification } from "../schemas.generated.js";
+import { deserializeClassification } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { Classification } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -24,21 +24,21 @@ export class FolderClassificationsManager {
     }
     async getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo(folderId: string): Promise<Classification> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeClassification(deserializeJson(response.text));
+        return deserializeClassification(deserializeJson(response.text));
     }
     async createFolderMetadataEnterpriseSecurityClassification(folderId: string, requestBody: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg): Promise<Classification> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeClassification(deserializeJson(response.text));
+        return deserializeClassification(deserializeJson(response.text));
     }
     async deleteFolderMetadataEnterpriseSecurityClassification(folderId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/enterprise/securityClassification-6VMVochwUWo") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(val: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg): Json {
+export function serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(val: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg): Json {
     return { ["boxSecurityClassificationKey"]: val.boxSecurityClassificationKey };
 }
-export function newDeserializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(val: any): CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
+export function deserializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(val: any): CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
     const boxSecurityClassificationKey: undefined | string = isJson(val.boxSecurityClassificationKey, "string") ? val.boxSecurityClassificationKey : void 0;
     return { boxSecurityClassificationKey: boxSecurityClassificationKey } satisfies CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg;
 }

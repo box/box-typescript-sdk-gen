@@ -1,7 +1,7 @@
-import { newSerializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
-import { newDeserializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
-import { newSerializeUserFull } from "../schemas.generated.js";
-import { newDeserializeUserFull } from "../schemas.generated.js";
+import { serializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
+import { deserializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
+import { serializeUserFull } from "../schemas.generated.js";
+import { deserializeUserFull } from "../schemas.generated.js";
 import { GetUserMeQueryParamsArg } from "../managers/users.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";

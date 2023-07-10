@@ -1,7 +1,7 @@
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeUserAvatar } from "../schemas.generated.js";
-import { newDeserializeUserAvatar } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeUserAvatar } from "../schemas.generated.js";
+import { deserializeUserAvatar } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { UserAvatar } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -29,7 +29,7 @@ export class AvatarsManager {
     }
     async createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<UserAvatar> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", multipartData: [{ partName: "pic", fileStream: requestBody.pic } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUserAvatar(deserializeJson(response.text));
+        return deserializeUserAvatar(deserializeJson(response.text));
     }
     async deleteUserAvatar(userId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;

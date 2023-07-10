@@ -19,7 +19,7 @@ export declare class EventsManager {
     getEvents(queryParams?: undefined | GetEventsQueryParamsArg): Promise<Events>;
     getEventsWithLongPolling(): Promise<RealtimeServers>;
 }
-export declare function newSerializeGetEventsQueryParamsArgStreamTypeField(val: GetEventsQueryParamsArgStreamTypeField): Json;
-export declare function newDeserializeGetEventsQueryParamsArgStreamTypeField(val: any): GetEventsQueryParamsArgStreamTypeField;
-export declare function newSerializeGetEventsQueryParamsArg(val: GetEventsQueryParamsArg): Json;
-export declare function newDeserializeGetEventsQueryParamsArg(val: any): GetEventsQueryParamsArg;
+export declare function serializeGetEventsQueryParamsArgStreamTypeField(val: GetEventsQueryParamsArgStreamTypeField): Json;
+export declare function deserializeGetEventsQueryParamsArgStreamTypeField(val: any): GetEventsQueryParamsArgStreamTypeField;
+export declare function serializeGetEventsQueryParamsArg(val: GetEventsQueryParamsArg): Json;
+export declare function deserializeGetEventsQueryParamsArg(val: any): GetEventsQueryParamsArg;

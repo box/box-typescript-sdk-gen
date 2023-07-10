@@ -16,5 +16,5 @@ export declare class ShieldInformationBarrierReportsManager {
     createShieldInformationBarrierReport(requestBody: ShieldInformationBarrierReference): Promise<ShieldInformationBarrierReport>;
     getShieldInformationBarrierReportById(shieldInformationBarrierReportId: string): Promise<ShieldInformationBarrierReport>;
 }
-export declare function newSerializeGetShieldInformationBarrierReportsQueryParamsArg(val: GetShieldInformationBarrierReportsQueryParamsArg): Json;
-export declare function newDeserializeGetShieldInformationBarrierReportsQueryParamsArg(val: any): GetShieldInformationBarrierReportsQueryParamsArg;
+export declare function serializeGetShieldInformationBarrierReportsQueryParamsArg(val: GetShieldInformationBarrierReportsQueryParamsArg): Json;
+export declare function deserializeGetShieldInformationBarrierReportsQueryParamsArg(val: any): GetShieldInformationBarrierReportsQueryParamsArg;

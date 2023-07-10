@@ -15,5 +15,5 @@ export declare class FileVersionLegalHoldsManager {
     getFileVersionLegalHoldById(fileVersionLegalHoldId: string): Promise<FileVersionLegalHold>;
     getFileVersionLegalHolds(queryParams: GetFileVersionLegalHoldsQueryParamsArg): Promise<FileVersionLegalHolds>;
 }
-export declare function newSerializeGetFileVersionLegalHoldsQueryParamsArg(val: GetFileVersionLegalHoldsQueryParamsArg): Json;
-export declare function newDeserializeGetFileVersionLegalHoldsQueryParamsArg(val: any): GetFileVersionLegalHoldsQueryParamsArg;
+export declare function serializeGetFileVersionLegalHoldsQueryParamsArg(val: GetFileVersionLegalHoldsQueryParamsArg): Json;
+export declare function deserializeGetFileVersionLegalHoldsQueryParamsArg(val: any): GetFileVersionLegalHoldsQueryParamsArg;

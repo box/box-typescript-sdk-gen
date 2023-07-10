@@ -18,9 +18,9 @@ export declare class TransferManager {
     constructor(fields: Omit<TransferManager, "transferOwnedFolder">);
     transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, queryParams?: undefined | TransferOwnedFolderQueryParamsArg): Promise<FolderFull>;
 }
-export declare function newSerializeTransferOwnedFolderRequestBodyArgOwnedByField(val: TransferOwnedFolderRequestBodyArgOwnedByField): Json;
-export declare function newDeserializeTransferOwnedFolderRequestBodyArgOwnedByField(val: any): TransferOwnedFolderRequestBodyArgOwnedByField;
-export declare function newSerializeTransferOwnedFolderRequestBodyArg(val: TransferOwnedFolderRequestBodyArg): Json;
-export declare function newDeserializeTransferOwnedFolderRequestBodyArg(val: any): TransferOwnedFolderRequestBodyArg;
-export declare function newSerializeTransferOwnedFolderQueryParamsArg(val: TransferOwnedFolderQueryParamsArg): Json;
-export declare function newDeserializeTransferOwnedFolderQueryParamsArg(val: any): TransferOwnedFolderQueryParamsArg;
+export declare function serializeTransferOwnedFolderRequestBodyArgOwnedByField(val: TransferOwnedFolderRequestBodyArgOwnedByField): Json;
+export declare function deserializeTransferOwnedFolderRequestBodyArgOwnedByField(val: any): TransferOwnedFolderRequestBodyArgOwnedByField;
+export declare function serializeTransferOwnedFolderRequestBodyArg(val: TransferOwnedFolderRequestBodyArg): Json;
+export declare function deserializeTransferOwnedFolderRequestBodyArg(val: any): TransferOwnedFolderRequestBodyArg;
+export declare function serializeTransferOwnedFolderQueryParamsArg(val: TransferOwnedFolderQueryParamsArg): Json;
+export declare function deserializeTransferOwnedFolderQueryParamsArg(val: any): TransferOwnedFolderQueryParamsArg;

@@ -21,7 +21,7 @@ export declare class FileVersionRetentionsManager {
     getFileVersionRetentions(queryParams?: undefined | GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions>;
     getFileVersionRetentionById(fileVersionRetentionId: string): Promise<FileVersionRetention>;
 }
-export declare function newSerializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: GetFileVersionRetentionsQueryParamsArgDispositionActionField): Json;
-export declare function newDeserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: any): GetFileVersionRetentionsQueryParamsArgDispositionActionField;
-export declare function newSerializeGetFileVersionRetentionsQueryParamsArg(val: GetFileVersionRetentionsQueryParamsArg): Json;
-export declare function newDeserializeGetFileVersionRetentionsQueryParamsArg(val: any): GetFileVersionRetentionsQueryParamsArg;
+export declare function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: GetFileVersionRetentionsQueryParamsArgDispositionActionField): Json;
+export declare function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: any): GetFileVersionRetentionsQueryParamsArgDispositionActionField;
+export declare function serializeGetFileVersionRetentionsQueryParamsArg(val: GetFileVersionRetentionsQueryParamsArg): Json;
+export declare function deserializeGetFileVersionRetentionsQueryParamsArg(val: any): GetFileVersionRetentionsQueryParamsArg;

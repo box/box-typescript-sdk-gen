@@ -1,9 +1,9 @@
-import { newSerializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
-import { newDeserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
-import { newSerializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
-import { newDeserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
-import { newSerializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
-import { newDeserializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { serializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { deserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { serializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { deserializeUploadFileVersionRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArg } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";

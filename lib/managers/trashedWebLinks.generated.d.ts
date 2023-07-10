@@ -24,11 +24,11 @@ export declare class TrashedWebLinksManager {
     getWebLinkTrash(webLinkId: string, queryParams?: undefined | GetWebLinkTrashQueryParamsArg): Promise<TrashWebLink>;
     deleteWebLinkTrash(webLinkId: string): Promise<any>;
 }
-export declare function newSerializeCreateWebLinkByIdRequestBodyArgParentField(val: CreateWebLinkByIdRequestBodyArgParentField): Json;
-export declare function newDeserializeCreateWebLinkByIdRequestBodyArgParentField(val: any): CreateWebLinkByIdRequestBodyArgParentField;
-export declare function newSerializeCreateWebLinkByIdRequestBodyArg(val: CreateWebLinkByIdRequestBodyArg): Json;
-export declare function newDeserializeCreateWebLinkByIdRequestBodyArg(val: any): CreateWebLinkByIdRequestBodyArg;
-export declare function newSerializeCreateWebLinkByIdQueryParamsArg(val: CreateWebLinkByIdQueryParamsArg): Json;
-export declare function newDeserializeCreateWebLinkByIdQueryParamsArg(val: any): CreateWebLinkByIdQueryParamsArg;
-export declare function newSerializeGetWebLinkTrashQueryParamsArg(val: GetWebLinkTrashQueryParamsArg): Json;
-export declare function newDeserializeGetWebLinkTrashQueryParamsArg(val: any): GetWebLinkTrashQueryParamsArg;
+export declare function serializeCreateWebLinkByIdRequestBodyArgParentField(val: CreateWebLinkByIdRequestBodyArgParentField): Json;
+export declare function deserializeCreateWebLinkByIdRequestBodyArgParentField(val: any): CreateWebLinkByIdRequestBodyArgParentField;
+export declare function serializeCreateWebLinkByIdRequestBodyArg(val: CreateWebLinkByIdRequestBodyArg): Json;
+export declare function deserializeCreateWebLinkByIdRequestBodyArg(val: any): CreateWebLinkByIdRequestBodyArg;
+export declare function serializeCreateWebLinkByIdQueryParamsArg(val: CreateWebLinkByIdQueryParamsArg): Json;
+export declare function deserializeCreateWebLinkByIdQueryParamsArg(val: any): CreateWebLinkByIdQueryParamsArg;
+export declare function serializeGetWebLinkTrashQueryParamsArg(val: GetWebLinkTrashQueryParamsArg): Json;
+export declare function deserializeGetWebLinkTrashQueryParamsArg(val: any): GetWebLinkTrashQueryParamsArg;

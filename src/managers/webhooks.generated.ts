@@ -1,9 +1,9 @@
-import { newSerializeWebhooks } from "../schemas.generated.js";
-import { newDeserializeWebhooks } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeWebhook } from "../schemas.generated.js";
-import { newDeserializeWebhook } from "../schemas.generated.js";
+import { serializeWebhooks } from "../schemas.generated.js";
+import { deserializeWebhooks } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeWebhook } from "../schemas.generated.js";
+import { deserializeWebhook } from "../schemas.generated.js";
 import { Webhooks } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Webhook } from "../schemas.generated.js";
@@ -50,37 +50,37 @@ export class WebhooksManager {
     }
     async getWebhooks(queryParams: undefined | GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg): Promise<Webhooks> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWebhooks(deserializeJson(response.text));
+        return deserializeWebhooks(deserializeJson(response.text));
     }
     async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWebhook(deserializeJson(response.text));
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async getWebhookById(webhookId: string): Promise<Webhook> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWebhook(deserializeJson(response.text));
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWebhook(deserializeJson(response.text));
+        return deserializeWebhook(deserializeJson(response.text));
     }
     async deleteWebhookById(webhookId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeGetWebhooksQueryParamsArg(val: GetWebhooksQueryParamsArg): Json {
+export function serializeGetWebhooksQueryParamsArg(val: GetWebhooksQueryParamsArg): Json {
     return { ["marker"]: val.marker, ["limit"]: val.limit };
 }
-export function newDeserializeGetWebhooksQueryParamsArg(val: any): GetWebhooksQueryParamsArg {
+export function deserializeGetWebhooksQueryParamsArg(val: any): GetWebhooksQueryParamsArg {
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { marker: marker, limit: limit } satisfies GetWebhooksQueryParamsArg;
 }
-export function newSerializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: CreateWebhookRequestBodyArgTargetFieldTypeField): Json {
+export function serializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: CreateWebhookRequestBodyArgTargetFieldTypeField): Json {
     return val;
 }
-export function newDeserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: any): CreateWebhookRequestBodyArgTargetFieldTypeField {
+export function deserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: any): CreateWebhookRequestBodyArgTargetFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateWebhookRequestBodyArgTargetFieldTypeField\"";
     }
@@ -92,18 +92,18 @@ export function newDeserializeCreateWebhookRequestBodyArgTargetFieldTypeField(va
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateWebhookRequestBodyArgTargetField(val: CreateWebhookRequestBodyArgTargetField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : newSerializeCreateWebhookRequestBodyArgTargetFieldTypeField(val.type) };
+export function serializeCreateWebhookRequestBodyArgTargetField(val: CreateWebhookRequestBodyArgTargetField): Json {
+    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateWebhookRequestBodyArgTargetFieldTypeField(val.type) };
 }
-export function newDeserializeCreateWebhookRequestBodyArgTargetField(val: any): CreateWebhookRequestBodyArgTargetField {
+export function deserializeCreateWebhookRequestBodyArgTargetField(val: any): CreateWebhookRequestBodyArgTargetField {
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
-    const type: undefined | CreateWebhookRequestBodyArgTargetFieldTypeField = val.type == void 0 ? void 0 : newDeserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val.type);
+    const type: undefined | CreateWebhookRequestBodyArgTargetFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateWebhookRequestBodyArgTargetField;
 }
-export function newSerializeCreateWebhookRequestBodyArgTriggersField(val: CreateWebhookRequestBodyArgTriggersField): Json {
+export function serializeCreateWebhookRequestBodyArgTriggersField(val: CreateWebhookRequestBodyArgTriggersField): Json {
     return val;
 }
-export function newDeserializeCreateWebhookRequestBodyArgTriggersField(val: any): CreateWebhookRequestBodyArgTriggersField {
+export function deserializeCreateWebhookRequestBodyArgTriggersField(val: any): CreateWebhookRequestBodyArgTriggersField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateWebhookRequestBodyArgTriggersField\"";
     }
@@ -229,23 +229,23 @@ export function newDeserializeCreateWebhookRequestBodyArgTriggersField(val: any)
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateWebhookRequestBodyArg(val: CreateWebhookRequestBodyArg): Json {
-    return { ["target"]: newSerializeCreateWebhookRequestBodyArgTargetField(val.target), ["address"]: val.address, ["triggers"]: val.triggers.map(function (item: CreateWebhookRequestBodyArgTriggersField): any {
-            return newSerializeCreateWebhookRequestBodyArgTriggersField(item);
+export function serializeCreateWebhookRequestBodyArg(val: CreateWebhookRequestBodyArg): Json {
+    return { ["target"]: serializeCreateWebhookRequestBodyArgTargetField(val.target), ["address"]: val.address, ["triggers"]: val.triggers.map(function (item: CreateWebhookRequestBodyArgTriggersField): any {
+            return serializeCreateWebhookRequestBodyArgTriggersField(item);
         }) as readonly any[] };
 }
-export function newDeserializeCreateWebhookRequestBodyArg(val: any): CreateWebhookRequestBodyArg {
-    const target: CreateWebhookRequestBodyArgTargetField = newDeserializeCreateWebhookRequestBodyArgTargetField(val.target);
+export function deserializeCreateWebhookRequestBodyArg(val: any): CreateWebhookRequestBodyArg {
+    const target: CreateWebhookRequestBodyArgTargetField = deserializeCreateWebhookRequestBodyArgTargetField(val.target);
     const address: string = val.address;
     const triggers: readonly CreateWebhookRequestBodyArgTriggersField[] = val.triggers.map(function (itm: Json): any {
-        return newDeserializeCreateWebhookRequestBodyArgTriggersField(itm);
+        return deserializeCreateWebhookRequestBodyArgTriggersField(itm);
     }) as readonly any[];
     return { target: target, address: address, triggers: triggers } satisfies CreateWebhookRequestBodyArg;
 }
-export function newSerializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField): Json {
+export function serializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField): Json {
     return val;
 }
-export function newDeserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: any): UpdateWebhookByIdRequestBodyArgTargetFieldTypeField {
+export function deserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val: any): UpdateWebhookByIdRequestBodyArgTargetFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateWebhookByIdRequestBodyArgTargetFieldTypeField\"";
     }
@@ -257,18 +257,18 @@ export function newDeserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeFiel
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateWebhookByIdRequestBodyArgTargetField(val: UpdateWebhookByIdRequestBodyArgTargetField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : newSerializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val.type) };
+export function serializeUpdateWebhookByIdRequestBodyArgTargetField(val: UpdateWebhookByIdRequestBodyArgTargetField): Json {
+    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val.type) };
 }
-export function newDeserializeUpdateWebhookByIdRequestBodyArgTargetField(val: any): UpdateWebhookByIdRequestBodyArgTargetField {
+export function deserializeUpdateWebhookByIdRequestBodyArgTargetField(val: any): UpdateWebhookByIdRequestBodyArgTargetField {
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
-    const type: undefined | UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = val.type == void 0 ? void 0 : newDeserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val.type);
+    const type: undefined | UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = val.type == void 0 ? void 0 : deserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(val.type);
     return { id: id, type: type } satisfies UpdateWebhookByIdRequestBodyArgTargetField;
 }
-export function newSerializeUpdateWebhookByIdRequestBodyArgTriggersField(val: UpdateWebhookByIdRequestBodyArgTriggersField): Json {
+export function serializeUpdateWebhookByIdRequestBodyArgTriggersField(val: UpdateWebhookByIdRequestBodyArgTriggersField): Json {
     return val;
 }
-export function newDeserializeUpdateWebhookByIdRequestBodyArgTriggersField(val: any): UpdateWebhookByIdRequestBodyArgTriggersField {
+export function deserializeUpdateWebhookByIdRequestBodyArgTriggersField(val: any): UpdateWebhookByIdRequestBodyArgTriggersField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateWebhookByIdRequestBodyArgTriggersField\"";
     }
@@ -394,16 +394,16 @@ export function newDeserializeUpdateWebhookByIdRequestBodyArgTriggersField(val: 
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateWebhookByIdRequestBodyArg(val: UpdateWebhookByIdRequestBodyArg): Json {
-    return { ["target"]: val.target == void 0 ? void 0 : newSerializeUpdateWebhookByIdRequestBodyArgTargetField(val.target), ["address"]: val.address, ["triggers"]: val.triggers == void 0 ? void 0 : val.triggers.map(function (item: UpdateWebhookByIdRequestBodyArgTriggersField): any {
-            return newSerializeUpdateWebhookByIdRequestBodyArgTriggersField(item);
+export function serializeUpdateWebhookByIdRequestBodyArg(val: UpdateWebhookByIdRequestBodyArg): Json {
+    return { ["target"]: val.target == void 0 ? void 0 : serializeUpdateWebhookByIdRequestBodyArgTargetField(val.target), ["address"]: val.address, ["triggers"]: val.triggers == void 0 ? void 0 : val.triggers.map(function (item: UpdateWebhookByIdRequestBodyArgTriggersField): any {
+            return serializeUpdateWebhookByIdRequestBodyArgTriggersField(item);
         }) as readonly any[] };
 }
-export function newDeserializeUpdateWebhookByIdRequestBodyArg(val: any): UpdateWebhookByIdRequestBodyArg {
-    const target: undefined | UpdateWebhookByIdRequestBodyArgTargetField = val.target == void 0 ? void 0 : newDeserializeUpdateWebhookByIdRequestBodyArgTargetField(val.target);
+export function deserializeUpdateWebhookByIdRequestBodyArg(val: any): UpdateWebhookByIdRequestBodyArg {
+    const target: undefined | UpdateWebhookByIdRequestBodyArgTargetField = val.target == void 0 ? void 0 : deserializeUpdateWebhookByIdRequestBodyArgTargetField(val.target);
     const address: undefined | string = isJson(val.address, "string") ? val.address : void 0;
     const triggers: undefined | readonly UpdateWebhookByIdRequestBodyArgTriggersField[] = isJson(val.triggers, "array") ? val.triggers.map(function (itm: Json): any {
-        return newDeserializeUpdateWebhookByIdRequestBodyArgTriggersField(itm);
+        return deserializeUpdateWebhookByIdRequestBodyArgTriggersField(itm);
     }) as readonly any[] : void 0;
     return { target: target, address: address, triggers: triggers } satisfies UpdateWebhookByIdRequestBodyArg;
 }

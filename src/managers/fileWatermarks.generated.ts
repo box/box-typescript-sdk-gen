@@ -1,7 +1,7 @@
-import { newSerializeWatermark } from "../schemas.generated.js";
-import { newDeserializeWatermark } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeWatermark } from "../schemas.generated.js";
+import { deserializeWatermark } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { Watermark } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
@@ -28,21 +28,21 @@ export class FileWatermarksManager {
     }
     async getFileWatermark(fileId: string): Promise<Watermark> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWatermark(deserializeJson(response.text));
+        return deserializeWatermark(deserializeJson(response.text));
     }
     async updateFileWatermark(fileId: string, requestBody: UpdateFileWatermarkRequestBodyArg): Promise<Watermark> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeWatermark(deserializeJson(response.text));
+        return deserializeWatermark(deserializeJson(response.text));
     }
     async deleteFileWatermark(fileId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField): Json {
+export function serializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField): Json {
     return val;
 }
-export function newDeserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val: any): UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField {
+export function deserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val: any): UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField\"";
     }
@@ -51,17 +51,17 @@ export function newDeserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImp
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateFileWatermarkRequestBodyArgWatermarkField(val: UpdateFileWatermarkRequestBodyArgWatermarkField): Json {
-    return { ["imprint"]: newSerializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val.imprint) };
+export function serializeUpdateFileWatermarkRequestBodyArgWatermarkField(val: UpdateFileWatermarkRequestBodyArgWatermarkField): Json {
+    return { ["imprint"]: serializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val.imprint) };
 }
-export function newDeserializeUpdateFileWatermarkRequestBodyArgWatermarkField(val: any): UpdateFileWatermarkRequestBodyArgWatermarkField {
-    const imprint: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField = newDeserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val.imprint);
+export function deserializeUpdateFileWatermarkRequestBodyArgWatermarkField(val: any): UpdateFileWatermarkRequestBodyArgWatermarkField {
+    const imprint: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField = deserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val.imprint);
     return { imprint: imprint } satisfies UpdateFileWatermarkRequestBodyArgWatermarkField;
 }
-export function newSerializeUpdateFileWatermarkRequestBodyArg(val: UpdateFileWatermarkRequestBodyArg): Json {
-    return { ["watermark"]: newSerializeUpdateFileWatermarkRequestBodyArgWatermarkField(val.watermark) };
+export function serializeUpdateFileWatermarkRequestBodyArg(val: UpdateFileWatermarkRequestBodyArg): Json {
+    return { ["watermark"]: serializeUpdateFileWatermarkRequestBodyArgWatermarkField(val.watermark) };
 }
-export function newDeserializeUpdateFileWatermarkRequestBodyArg(val: any): UpdateFileWatermarkRequestBodyArg {
-    const watermark: UpdateFileWatermarkRequestBodyArgWatermarkField = newDeserializeUpdateFileWatermarkRequestBodyArgWatermarkField(val.watermark);
+export function deserializeUpdateFileWatermarkRequestBodyArg(val: any): UpdateFileWatermarkRequestBodyArg {
+    const watermark: UpdateFileWatermarkRequestBodyArgWatermarkField = deserializeUpdateFileWatermarkRequestBodyArgWatermarkField(val.watermark);
     return { watermark: watermark } satisfies UpdateFileWatermarkRequestBodyArg;
 }

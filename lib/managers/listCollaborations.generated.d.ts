@@ -30,13 +30,13 @@ export declare class ListCollaborationsManager {
     getCollaborations(queryParams: GetCollaborationsQueryParamsArg): Promise<Collaborations>;
     getGroupCollaborations(groupId: string, queryParams?: undefined | GetGroupCollaborationsQueryParamsArg): Promise<Collaborations>;
 }
-export declare function newSerializeGetFileCollaborationsQueryParamsArg(val: GetFileCollaborationsQueryParamsArg): Json;
-export declare function newDeserializeGetFileCollaborationsQueryParamsArg(val: any): GetFileCollaborationsQueryParamsArg;
-export declare function newSerializeGetFolderCollaborationsQueryParamsArg(val: GetFolderCollaborationsQueryParamsArg): Json;
-export declare function newDeserializeGetFolderCollaborationsQueryParamsArg(val: any): GetFolderCollaborationsQueryParamsArg;
-export declare function newSerializeGetCollaborationsQueryParamsArgStatusField(val: GetCollaborationsQueryParamsArgStatusField): Json;
-export declare function newDeserializeGetCollaborationsQueryParamsArgStatusField(val: any): GetCollaborationsQueryParamsArgStatusField;
-export declare function newSerializeGetCollaborationsQueryParamsArg(val: GetCollaborationsQueryParamsArg): Json;
-export declare function newDeserializeGetCollaborationsQueryParamsArg(val: any): GetCollaborationsQueryParamsArg;
-export declare function newSerializeGetGroupCollaborationsQueryParamsArg(val: GetGroupCollaborationsQueryParamsArg): Json;
-export declare function newDeserializeGetGroupCollaborationsQueryParamsArg(val: any): GetGroupCollaborationsQueryParamsArg;
+export declare function serializeGetFileCollaborationsQueryParamsArg(val: GetFileCollaborationsQueryParamsArg): Json;
+export declare function deserializeGetFileCollaborationsQueryParamsArg(val: any): GetFileCollaborationsQueryParamsArg;
+export declare function serializeGetFolderCollaborationsQueryParamsArg(val: GetFolderCollaborationsQueryParamsArg): Json;
+export declare function deserializeGetFolderCollaborationsQueryParamsArg(val: any): GetFolderCollaborationsQueryParamsArg;
+export declare function serializeGetCollaborationsQueryParamsArgStatusField(val: GetCollaborationsQueryParamsArgStatusField): Json;
+export declare function deserializeGetCollaborationsQueryParamsArgStatusField(val: any): GetCollaborationsQueryParamsArgStatusField;
+export declare function serializeGetCollaborationsQueryParamsArg(val: GetCollaborationsQueryParamsArg): Json;
+export declare function deserializeGetCollaborationsQueryParamsArg(val: any): GetCollaborationsQueryParamsArg;
+export declare function serializeGetGroupCollaborationsQueryParamsArg(val: GetGroupCollaborationsQueryParamsArg): Json;
+export declare function deserializeGetGroupCollaborationsQueryParamsArg(val: any): GetGroupCollaborationsQueryParamsArg;

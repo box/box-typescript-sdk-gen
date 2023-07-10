@@ -1,9 +1,9 @@
-import { newSerializeTermsOfServiceUserStatuses } from "../schemas.generated.js";
-import { newDeserializeTermsOfServiceUserStatuses } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeTermsOfServiceUserStatus } from "../schemas.generated.js";
-import { newDeserializeTermsOfServiceUserStatus } from "../schemas.generated.js";
+import { serializeTermsOfServiceUserStatuses } from "../schemas.generated.js";
+import { deserializeTermsOfServiceUserStatuses } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeTermsOfServiceUserStatus } from "../schemas.generated.js";
+import { deserializeTermsOfServiceUserStatus } from "../schemas.generated.js";
 import { TermsOfServiceUserStatuses } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { TermsOfServiceUserStatus } from "../schemas.generated.js";
@@ -46,29 +46,29 @@ export class TermsOfServiceUserStatusesManager {
     }
     async getTermOfServiceUserStatuses(queryParams: GetTermOfServiceUserStatusesQueryParamsArg): Promise<TermsOfServiceUserStatuses> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTermsOfServiceUserStatuses(deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatuses(deserializeJson(response.text));
     }
     async createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg): Promise<TermsOfServiceUserStatus> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTermsOfServiceUserStatus(deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
     }
     async updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Promise<TermsOfServiceUserStatus> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses/", termsOfServiceUserStatusId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeTermsOfServiceUserStatus(deserializeJson(response.text));
+        return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
     }
 }
-export function newSerializeGetTermOfServiceUserStatusesQueryParamsArg(val: GetTermOfServiceUserStatusesQueryParamsArg): Json {
+export function serializeGetTermOfServiceUserStatusesQueryParamsArg(val: GetTermOfServiceUserStatusesQueryParamsArg): Json {
     return { ["tosId"]: val.tosId, ["userId"]: val.userId };
 }
-export function newDeserializeGetTermOfServiceUserStatusesQueryParamsArg(val: any): GetTermOfServiceUserStatusesQueryParamsArg {
+export function deserializeGetTermOfServiceUserStatusesQueryParamsArg(val: any): GetTermOfServiceUserStatusesQueryParamsArg {
     const tosId: string = val.tosId;
     const userId: undefined | string = isJson(val.userId, "string") ? val.userId : void 0;
     return { tosId: tosId, userId: userId } satisfies GetTermOfServiceUserStatusesQueryParamsArg;
 }
-export function newSerializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField): Json {
+export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField): Json {
     return val;
 }
-export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: any): CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField {
+export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: any): CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField\"";
     }
@@ -77,18 +77,18 @@ export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgTosFiel
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val: CreateTermOfServiceUserStatusRequestBodyArgTosField): Json {
-    return { ["type"]: newSerializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val.type), ["id"]: val.id };
+export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val: CreateTermOfServiceUserStatusRequestBodyArgTosField): Json {
+    return { ["type"]: serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val.type), ["id"]: val.id };
 }
-export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val: any): CreateTermOfServiceUserStatusRequestBodyArgTosField {
-    const type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField = newDeserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val.type);
+export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val: any): CreateTermOfServiceUserStatusRequestBodyArgTosField {
+    const type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField = deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val.type);
     const id: string = val.id;
     return { type: type, id: id } satisfies CreateTermOfServiceUserStatusRequestBodyArgTosField;
 }
-export function newSerializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField): Json {
+export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField): Json {
     return val;
 }
-export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val: any): CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField {
+export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val: any): CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField\"";
     }
@@ -97,27 +97,27 @@ export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgUserFie
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val: CreateTermOfServiceUserStatusRequestBodyArgUserField): Json {
-    return { ["type"]: newSerializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val.type), ["id"]: val.id };
+export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val: CreateTermOfServiceUserStatusRequestBodyArgUserField): Json {
+    return { ["type"]: serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val.type), ["id"]: val.id };
 }
-export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val: any): CreateTermOfServiceUserStatusRequestBodyArgUserField {
-    const type: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField = newDeserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val.type);
+export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val: any): CreateTermOfServiceUserStatusRequestBodyArgUserField {
+    const type: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField = deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(val.type);
     const id: string = val.id;
     return { type: type, id: id } satisfies CreateTermOfServiceUserStatusRequestBodyArgUserField;
 }
-export function newSerializeCreateTermOfServiceUserStatusRequestBodyArg(val: CreateTermOfServiceUserStatusRequestBodyArg): Json {
-    return { ["tos"]: newSerializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val.tos), ["user"]: newSerializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val.user), ["isAccepted"]: val.isAccepted };
+export function serializeCreateTermOfServiceUserStatusRequestBodyArg(val: CreateTermOfServiceUserStatusRequestBodyArg): Json {
+    return { ["tos"]: serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val.tos), ["user"]: serializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val.user), ["isAccepted"]: val.isAccepted };
 }
-export function newDeserializeCreateTermOfServiceUserStatusRequestBodyArg(val: any): CreateTermOfServiceUserStatusRequestBodyArg {
-    const tos: CreateTermOfServiceUserStatusRequestBodyArgTosField = newDeserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val.tos);
-    const user: CreateTermOfServiceUserStatusRequestBodyArgUserField = newDeserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val.user);
+export function deserializeCreateTermOfServiceUserStatusRequestBodyArg(val: any): CreateTermOfServiceUserStatusRequestBodyArg {
+    const tos: CreateTermOfServiceUserStatusRequestBodyArgTosField = deserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val.tos);
+    const user: CreateTermOfServiceUserStatusRequestBodyArgUserField = deserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val.user);
     const isAccepted: boolean = val.isAccepted;
     return { tos: tos, user: user, isAccepted: isAccepted } satisfies CreateTermOfServiceUserStatusRequestBodyArg;
 }
-export function newSerializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(val: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Json {
+export function serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(val: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Json {
     return { ["isAccepted"]: val.isAccepted };
 }
-export function newDeserializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(val: any): UpdateTermOfServiceUserStatusByIdRequestBodyArg {
+export function deserializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(val: any): UpdateTermOfServiceUserStatusByIdRequestBodyArg {
     const isAccepted: boolean = val.isAccepted;
     return { isAccepted: isAccepted } satisfies UpdateTermOfServiceUserStatusByIdRequestBodyArg;
 }
