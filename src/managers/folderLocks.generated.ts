@@ -9,7 +9,7 @@ import { ClientError } from "../schemas.generated.js";
 import { FolderLock } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -37,7 +37,7 @@ export class FolderLocksManager {
         Object.assign(this, fields);
     }
     async getFolderLocks(queryParams: GetFolderLocksQueryParamsArg): Promise<FolderLocks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderLocks(deserializeJson(response.text));
     }
     async createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<FolderLock> {

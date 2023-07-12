@@ -12,7 +12,7 @@ import { FileRequestUpdateRequest } from "../schemas.generated.js";
 import { FileRequestCopyRequest } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -34,7 +34,7 @@ export class FileRequestsManager {
         return deserializeFileRequest(deserializeJson(response.text));
     }
     async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: undefined | UpdateFileRequestByIdHeadersArg = {} satisfies UpdateFileRequestByIdHeadersArg): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: toMap(headers), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: prepareParams(headers), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
     async deleteFileRequestById(fileRequestId: string): Promise<any> {

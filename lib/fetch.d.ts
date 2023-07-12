@@ -19,14 +19,14 @@ export interface FetchOptions {
      * [key1, value1, key2, value2, ...]
      */
     readonly headers?: {
-        [key: string]: string | number | boolean | null | undefined;
+        [key: string]: string;
     };
     /**
      * query params
      * [key1, value1, key2, value2, ...]
      */
     readonly params?: {
-        [key: string]: string | number | boolean | null | undefined;
+        [key: string]: string;
     };
     /**
      * Request body

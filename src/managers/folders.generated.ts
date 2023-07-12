@@ -9,15 +9,21 @@ import { ClientError } from "../schemas.generated.js";
 import { Items } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { isJson } from "../json.js";
+export type GetFolderByIdQueryParamsArgSortField = "id" | "name" | "date" | "size";
+export type GetFolderByIdQueryParamsArgDirectionField = "ASC" | "DESC";
 export interface GetFolderByIdQueryParamsArg {
     readonly fields?: string;
+    readonly sort?: GetFolderByIdQueryParamsArgSortField;
+    readonly direction?: GetFolderByIdQueryParamsArgDirectionField;
+    readonly offset?: number;
+    readonly limit?: number;
 }
 export interface GetFolderByIdHeadersArg {
     readonly ifNoneMatch?: string;
@@ -119,36 +125,76 @@ export class FoldersManager {
         Object.assign(this, fields);
     }
     async getFolderById(folderId: string, queryParams: undefined | GetFolderByIdQueryParamsArg = {} satisfies GetFolderByIdQueryParamsArg, headers: undefined | GetFolderByIdHeadersArg = {} satisfies GetFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: toMap(queryParams), headers: toMap(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams: undefined | UpdateFolderByIdQueryParamsArg = {} satisfies UpdateFolderByIdQueryParamsArg, headers: undefined | UpdateFolderByIdHeadersArg = {} satisfies UpdateFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: toMap(queryParams), headers: toMap(headers), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: prepareParams(queryParams), headers: prepareParams(headers), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async deleteFolderById(folderId: string, queryParams: undefined | DeleteFolderByIdQueryParamsArg = {} satisfies DeleteFolderByIdQueryParamsArg, headers: undefined | DeleteFolderByIdHeadersArg = {} satisfies DeleteFolderByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: toMap(queryParams), headers: toMap(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async getFolderItems(folderId: string, queryParams: undefined | GetFolderItemsQueryParamsArg = {} satisfies GetFolderItemsQueryParamsArg, headers: undefined | GetFolderItemsHeadersArg = {} satisfies GetFolderItemsHeadersArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: toMap(queryParams), headers: toMap(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
     async createFolder(requestBody: CreateFolderRequestBodyArg, queryParams: undefined | CreateFolderQueryParamsArg = {} satisfies CreateFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: toMap(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams: undefined | CopyFolderQueryParamsArg = {} satisfies CopyFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: toMap(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
 }
+export function serializeGetFolderByIdQueryParamsArgSortField(val: GetFolderByIdQueryParamsArgSortField): Json {
+    return val;
+}
+export function deserializeGetFolderByIdQueryParamsArgSortField(val: any): GetFolderByIdQueryParamsArgSortField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"GetFolderByIdQueryParamsArgSortField\"";
+    }
+    if (val == "id") {
+        return "id";
+    }
+    if (val == "name") {
+        return "name";
+    }
+    if (val == "date") {
+        return "date";
+    }
+    if (val == "size") {
+        return "size";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
+export function serializeGetFolderByIdQueryParamsArgDirectionField(val: GetFolderByIdQueryParamsArgDirectionField): Json {
+    return val;
+}
+export function deserializeGetFolderByIdQueryParamsArgDirectionField(val: any): GetFolderByIdQueryParamsArgDirectionField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"GetFolderByIdQueryParamsArgDirectionField\"";
+    }
+    if (val == "ASC") {
+        return "ASC";
+    }
+    if (val == "DESC") {
+        return "DESC";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
 export function serializeGetFolderByIdQueryParamsArg(val: GetFolderByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
+    return { ["fields"]: val.fields, ["sort"]: val.sort == void 0 ? void 0 : serializeGetFolderByIdQueryParamsArgSortField(val.sort), ["direction"]: val.direction == void 0 ? void 0 : serializeGetFolderByIdQueryParamsArgDirectionField(val.direction), ["offset"]: val.offset, ["limit"]: val.limit };
 }
 export function deserializeGetFolderByIdQueryParamsArg(val: any): GetFolderByIdQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetFolderByIdQueryParamsArg;
+    const sort: undefined | GetFolderByIdQueryParamsArgSortField = val.sort == void 0 ? void 0 : deserializeGetFolderByIdQueryParamsArgSortField(val.sort);
+    const direction: undefined | GetFolderByIdQueryParamsArgDirectionField = val.direction == void 0 ? void 0 : deserializeGetFolderByIdQueryParamsArgDirectionField(val.direction);
+    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
+    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
+    return { fields: fields, sort: sort, direction: direction, offset: offset, limit: limit } satisfies GetFolderByIdQueryParamsArg;
 }
 export function serializeGetFolderByIdHeadersArg(val: GetFolderByIdHeadersArg): Json {
     return { ["ifNoneMatch"]: val.ifNoneMatch, ["boxapi"]: val.boxapi };

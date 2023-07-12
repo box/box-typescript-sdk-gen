@@ -29,8 +29,19 @@ export async function readByteStream(byteStream: Readable) {
   return Buffer.concat(buffers);
 }
 
-export function toMap(obj: object): {
-  [key: string]: string | number | boolean | null | undefined;
+export function prepareParams(obj: object): {
+  [key: string]: string;
 } {
-  return obj as { [key: string]: string | number | boolean | null | undefined };
+  return Object.fromEntries(
+    Object.entries(obj)
+      .map<[string, string | null | undefined]>(([key, value]) => {
+        if (typeof value === 'string' || value == null) {
+          return [key, value];
+        }
+        return [key, String(value)];
+      })
+      .filter<[string, string]>(
+        (entry): entry is [string, string] => typeof entry[1] === 'string'
+      )
+  );
 }

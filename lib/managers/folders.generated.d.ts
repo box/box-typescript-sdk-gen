@@ -3,8 +3,14 @@ import { Items } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export type GetFolderByIdQueryParamsArgSortField = "id" | "name" | "date" | "size";
+export type GetFolderByIdQueryParamsArgDirectionField = "ASC" | "DESC";
 export interface GetFolderByIdQueryParamsArg {
     readonly fields?: string;
+    readonly sort?: GetFolderByIdQueryParamsArgSortField;
+    readonly direction?: GetFolderByIdQueryParamsArgDirectionField;
+    readonly offset?: number;
+    readonly limit?: number;
 }
 export interface GetFolderByIdHeadersArg {
     readonly ifNoneMatch?: string;
@@ -110,6 +116,10 @@ export declare class FoldersManager {
     createFolder(requestBody: CreateFolderRequestBodyArg, queryParams?: undefined | CreateFolderQueryParamsArg): Promise<FolderFull>;
     copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams?: undefined | CopyFolderQueryParamsArg): Promise<FolderFull>;
 }
+export declare function serializeGetFolderByIdQueryParamsArgSortField(val: GetFolderByIdQueryParamsArgSortField): Json;
+export declare function deserializeGetFolderByIdQueryParamsArgSortField(val: any): GetFolderByIdQueryParamsArgSortField;
+export declare function serializeGetFolderByIdQueryParamsArgDirectionField(val: GetFolderByIdQueryParamsArgDirectionField): Json;
+export declare function deserializeGetFolderByIdQueryParamsArgDirectionField(val: any): GetFolderByIdQueryParamsArgDirectionField;
 export declare function serializeGetFolderByIdQueryParamsArg(val: GetFolderByIdQueryParamsArg): Json;
 export declare function deserializeGetFolderByIdQueryParamsArg(val: any): GetFolderByIdQueryParamsArg;
 export declare function serializeGetFolderByIdHeadersArg(val: GetFolderByIdHeadersArg): Json;
