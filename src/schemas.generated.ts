@@ -2120,16 +2120,20 @@ export interface SearchResultWithSharedLink {
     readonly item?: FileOrFolderOrWebLink;
     readonly type?: string;
 }
+export type SearchResultsWithSharedLinksTypeField = "search_results_with_shared_links";
 export interface SearchResultsWithSharedLinks {
     readonly totalCount?: number;
     readonly limit?: number;
     readonly offset?: number;
+    readonly type?: SearchResultsWithSharedLinksTypeField;
     readonly entries?: readonly SearchResultWithSharedLink[];
 }
+export type SearchResultsTypeField = "search_results_items";
 export interface SearchResults {
     readonly totalCount?: number;
     readonly limit?: number;
     readonly offset?: number;
+    readonly type?: SearchResultsTypeField;
     readonly entries?: readonly FileOrFolderOrWebLink[];
 }
 export type SearchResultsOrSearchResultsWithSharedLinks = SearchResults | SearchResultsWithSharedLinks;
@@ -8958,8 +8962,20 @@ export function deserializeSearchResultWithSharedLink(val: any): SearchResultWit
     const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
     return { accessibleViaSharedLink: accessibleViaSharedLink, item: item, type: type } satisfies SearchResultWithSharedLink;
 }
+export function serializeSearchResultsWithSharedLinksTypeField(val: SearchResultsWithSharedLinksTypeField): Json {
+    return val;
+}
+export function deserializeSearchResultsWithSharedLinksTypeField(val: any): SearchResultsWithSharedLinksTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"SearchResultsWithSharedLinksTypeField\"";
+    }
+    if (val == "search_results_with_shared_links") {
+        return "search_results_with_shared_links";
+    }
+    throw "".concat("Invalid value: ", val) as string;
+}
 export function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json {
-    return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["entries"]: val.entries == void 0 ? void 0 : val.entries.map(function (item: SearchResultWithSharedLink): any {
+    return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["type"]: val.type == void 0 ? void 0 : serializeSearchResultsWithSharedLinksTypeField(val.type), ["entries"]: val.entries == void 0 ? void 0 : val.entries.map(function (item: SearchResultWithSharedLink): any {
             return serializeSearchResultWithSharedLink(item);
         }) as readonly any[] };
 }
@@ -8967,13 +8983,26 @@ export function deserializeSearchResultsWithSharedLinks(val: any): SearchResults
     const totalCount: undefined | number = isJson(val.total_count, "number") ? val.total_count : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
+    const type: undefined | SearchResultsWithSharedLinksTypeField = val.type == void 0 ? void 0 : deserializeSearchResultsWithSharedLinksTypeField(val.type);
     const entries: undefined | readonly SearchResultWithSharedLink[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeSearchResultWithSharedLink(itm);
     }) as readonly any[] : void 0;
-    return { totalCount: totalCount, limit: limit, offset: offset, entries: entries } satisfies SearchResultsWithSharedLinks;
+    return { totalCount: totalCount, limit: limit, offset: offset, type: type, entries: entries } satisfies SearchResultsWithSharedLinks;
+}
+export function serializeSearchResultsTypeField(val: SearchResultsTypeField): Json {
+    return val;
+}
+export function deserializeSearchResultsTypeField(val: any): SearchResultsTypeField {
+    if (!isJson(val, "string")) {
+        throw "Expecting a string for \"SearchResultsTypeField\"";
+    }
+    if (val == "search_results_items") {
+        return "search_results_items";
+    }
+    throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeSearchResults(val: SearchResults): Json {
-    return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["entries"]: val.entries == void 0 ? void 0 : val.entries.map(function (item: FileOrFolderOrWebLink): any {
+    return { ["total_count"]: val.totalCount, ["limit"]: val.limit, ["offset"]: val.offset, ["type"]: val.type == void 0 ? void 0 : serializeSearchResultsTypeField(val.type), ["entries"]: val.entries == void 0 ? void 0 : val.entries.map(function (item: FileOrFolderOrWebLink): any {
             return serializeFileOrFolderOrWebLink(item);
         }) as readonly any[] };
 }
@@ -8981,10 +9010,11 @@ export function deserializeSearchResults(val: any): SearchResults {
     const totalCount: undefined | number = isJson(val.total_count, "number") ? val.total_count : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
+    const type: undefined | SearchResultsTypeField = val.type == void 0 ? void 0 : deserializeSearchResultsTypeField(val.type);
     const entries: undefined | readonly FileOrFolderOrWebLink[] = isJson(val.entries, "array") ? val.entries.map(function (itm: Json): any {
         return deserializeFileOrFolderOrWebLink(itm);
     }) as readonly any[] : void 0;
-    return { totalCount: totalCount, limit: limit, offset: offset, entries: entries } satisfies SearchResults;
+    return { totalCount: totalCount, limit: limit, offset: offset, type: type, entries: entries } satisfies SearchResults;
 }
 export function serializeSearchResultsOrSearchResultsWithSharedLinks(val: SearchResultsOrSearchResultsWithSharedLinks): Json {
     throw "Can't serialize SearchResultsOrSearchResultsWithSharedLinks";

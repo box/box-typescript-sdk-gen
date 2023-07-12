@@ -2119,16 +2119,20 @@ export interface SearchResultWithSharedLink {
     readonly item?: FileOrFolderOrWebLink;
     readonly type?: string;
 }
+export type SearchResultsWithSharedLinksTypeField = "search_results_with_shared_links";
 export interface SearchResultsWithSharedLinks {
     readonly totalCount?: number;
     readonly limit?: number;
     readonly offset?: number;
+    readonly type?: SearchResultsWithSharedLinksTypeField;
     readonly entries?: readonly SearchResultWithSharedLink[];
 }
+export type SearchResultsTypeField = "search_results_items";
 export interface SearchResults {
     readonly totalCount?: number;
     readonly limit?: number;
     readonly offset?: number;
+    readonly type?: SearchResultsTypeField;
     readonly entries?: readonly FileOrFolderOrWebLink[];
 }
 export type SearchResultsOrSearchResultsWithSharedLinks = SearchResults | SearchResultsWithSharedLinks;
@@ -3609,8 +3613,12 @@ export declare function serializeFileOrFolderOrWebLink(val: FileOrFolderOrWebLin
 export declare function deserializeFileOrFolderOrWebLink(val: any): FileOrFolderOrWebLink;
 export declare function serializeSearchResultWithSharedLink(val: SearchResultWithSharedLink): Json;
 export declare function deserializeSearchResultWithSharedLink(val: any): SearchResultWithSharedLink;
+export declare function serializeSearchResultsWithSharedLinksTypeField(val: SearchResultsWithSharedLinksTypeField): Json;
+export declare function deserializeSearchResultsWithSharedLinksTypeField(val: any): SearchResultsWithSharedLinksTypeField;
 export declare function serializeSearchResultsWithSharedLinks(val: SearchResultsWithSharedLinks): Json;
 export declare function deserializeSearchResultsWithSharedLinks(val: any): SearchResultsWithSharedLinks;
+export declare function serializeSearchResultsTypeField(val: SearchResultsTypeField): Json;
+export declare function deserializeSearchResultsTypeField(val: any): SearchResultsTypeField;
 export declare function serializeSearchResults(val: SearchResults): Json;
 export declare function deserializeSearchResults(val: any): SearchResults;
 export declare function serializeSearchResultsOrSearchResultsWithSharedLinks(val: SearchResultsOrSearchResultsWithSharedLinks): Json;
