@@ -2587,7 +2587,7 @@ export interface SignRequestBase {
     readonly templateId?: string;
 }
 export type SignRequestTypeField = "sign-request";
-export type SignRequestStatusField = "converting" | "created" | "sent" | "viewed" | "signed" | "cancelled" | "declined" | "error_converting" | "error_sending" | "expired";
+export type SignRequestStatusField = "converting" | "created" | "sent" | "viewed" | "signed" | "cancelled" | "declined" | "error_converting" | "error_sending" | "expired" | "finalizing" | "error_finalizing";
 export interface SignRequestSignFilesField {
     readonly files?: readonly FileMini[];
     readonly isReadyForDownload?: boolean;
@@ -10546,6 +10546,12 @@ export function deserializeSignRequestStatusField(val: any): SignRequestStatusFi
     }
     if (val == "expired") {
         return "expired";
+    }
+    if (val == "finalizing") {
+        return "finalizing";
+    }
+    if (val == "error_finalizing") {
+        return "error_finalizing";
     }
     throw "".concat("Invalid value: ", val) as string;
 }
