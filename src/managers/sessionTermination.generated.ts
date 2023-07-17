@@ -10,8 +10,9 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 export interface CreateUserTerminateSessionRequestBodyArg {
     readonly userIds: readonly string[];
     readonly userLogins: readonly string[];
@@ -26,37 +27,37 @@ export class SessionTerminationManager {
         Object.assign(this, fields);
     }
     async createUserTerminateSession(requestBody: CreateUserTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/terminate_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/terminate_sessions") as string, { method: "POST", body: serializeJson(serializeCreateUserTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSessionTerminationMessage(deserializeJson(response.text));
     }
     async createGroupTerminateSession(requestBody: CreateGroupTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/terminate_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/terminate_sessions") as string, { method: "POST", body: serializeJson(serializeCreateGroupTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSessionTerminationMessage(deserializeJson(response.text));
     }
 }
 export function serializeCreateUserTerminateSessionRequestBodyArg(val: CreateUserTerminateSessionRequestBodyArg): Json {
-    return { ["userIds"]: val.userIds.map(function (item: string): undefined {
+    return { ["user_ids"]: val.userIds.map(function (item: string): undefined {
             return void 0;
-        }) as readonly any[], ["userLogins"]: val.userLogins.map(function (item: string): undefined {
+        }) as readonly any[], ["user_logins"]: val.userLogins.map(function (item: string): undefined {
             return void 0;
         }) as readonly any[] };
 }
 export function deserializeCreateUserTerminateSessionRequestBodyArg(val: any): CreateUserTerminateSessionRequestBodyArg {
-    const userIds: readonly string[] = val.userIds.map(function (itm: Json): undefined {
+    const userIds: readonly string[] = val.user_ids.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[];
-    const userLogins: readonly string[] = val.userLogins.map(function (itm: Json): undefined {
+    const userLogins: readonly string[] = val.user_logins.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[];
     return { userIds: userIds, userLogins: userLogins } satisfies CreateUserTerminateSessionRequestBodyArg;
 }
 export function serializeCreateGroupTerminateSessionRequestBodyArg(val: CreateGroupTerminateSessionRequestBodyArg): Json {
-    return { ["groupIds"]: val.groupIds.map(function (item: string): undefined {
+    return { ["group_ids"]: val.groupIds.map(function (item: string): undefined {
             return void 0;
         }) as readonly any[] };
 }
 export function deserializeCreateGroupTerminateSessionRequestBodyArg(val: any): CreateGroupTerminateSessionRequestBodyArg {
-    const groupIds: readonly string[] = val.groupIds.map(function (itm: Json): undefined {
+    const groupIds: readonly string[] = val.group_ids.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[];
     return { groupIds: groupIds } satisfies CreateGroupTerminateSessionRequestBodyArg;

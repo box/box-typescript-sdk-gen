@@ -70,11 +70,11 @@ export class SearchManager {
         return deserializeMetadataQueryResults(deserializeJson(response.text));
     }
     async getMetadataQueryIndices(queryParams: GetMetadataQueryIndicesQueryParamsArg): Promise<MetadataQueryIndices> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_query_indices") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_query_indices") as string, { method: "GET", params: prepareParams(serializeGetMetadataQueryIndicesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataQueryIndices(deserializeJson(response.text));
     }
     async getSearch(queryParams: undefined | GetSearchQueryParamsArg = {} satisfies GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/search") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/search") as string, { method: "GET", params: prepareParams(serializeGetSearchQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSearchResultsOrSearchResultsWithSharedLinks(deserializeJson(response.text));
     }
 }
@@ -94,11 +94,11 @@ export function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(val: 
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetMetadataQueryIndicesQueryParamsArg(val: GetMetadataQueryIndicesQueryParamsArg): Json {
-    return { ["scope"]: serializeGetMetadataQueryIndicesQueryParamsArgScopeField(val.scope), ["templateKey"]: val.templateKey };
+    return { ["scope"]: serializeGetMetadataQueryIndicesQueryParamsArgScopeField(val.scope), ["template_key"]: val.templateKey };
 }
 export function deserializeGetMetadataQueryIndicesQueryParamsArg(val: any): GetMetadataQueryIndicesQueryParamsArg {
     const scope: GetMetadataQueryIndicesQueryParamsArgScopeField = deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(val.scope);
-    const templateKey: string = val.templateKey;
+    const templateKey: string = val.template_key;
     return { scope: scope, templateKey: templateKey } satisfies GetMetadataQueryIndicesQueryParamsArg;
 }
 export function serializeGetSearchQueryParamsArgScopeField(val: GetSearchQueryParamsArgScopeField): Json {
@@ -183,29 +183,29 @@ export function deserializeGetSearchQueryParamsArgDirectionField(val: any): GetS
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetSearchQueryParamsArg(val: GetSearchQueryParamsArg): Json {
-    return { ["query"]: val.query, ["scope"]: val.scope == void 0 ? void 0 : serializeGetSearchQueryParamsArgScopeField(val.scope), ["fileExtensions"]: val.fileExtensions, ["createdAtRange"]: val.createdAtRange, ["updatedAtRange"]: val.updatedAtRange, ["sizeRange"]: val.sizeRange, ["ownerUserIds"]: val.ownerUserIds, ["recentUpdaterUserIds"]: val.recentUpdaterUserIds, ["ancestorFolderIds"]: val.ancestorFolderIds, ["contentTypes"]: val.contentTypes, ["type"]: val.type == void 0 ? void 0 : serializeGetSearchQueryParamsArgTypeField(val.type), ["trashContent"]: val.trashContent == void 0 ? void 0 : serializeGetSearchQueryParamsArgTrashContentField(val.trashContent), ["mdfilters"]: val.mdfilters, ["sort"]: val.sort == void 0 ? void 0 : serializeGetSearchQueryParamsArgSortField(val.sort), ["direction"]: val.direction == void 0 ? void 0 : serializeGetSearchQueryParamsArgDirectionField(val.direction), ["limit"]: val.limit, ["includeRecentSharedLinks"]: val.includeRecentSharedLinks, ["fields"]: val.fields, ["offset"]: val.offset, ["deletedUserIds"]: val.deletedUserIds, ["deletedAtRange"]: val.deletedAtRange };
+    return { ["query"]: val.query, ["scope"]: val.scope == void 0 ? void 0 : serializeGetSearchQueryParamsArgScopeField(val.scope), ["file_extensions"]: val.fileExtensions, ["created_at_range"]: val.createdAtRange, ["updated_at_range"]: val.updatedAtRange, ["size_range"]: val.sizeRange, ["owner_user_ids"]: val.ownerUserIds, ["recent_updater_user_ids"]: val.recentUpdaterUserIds, ["ancestor_folder_ids"]: val.ancestorFolderIds, ["content_types"]: val.contentTypes, ["type"]: val.type == void 0 ? void 0 : serializeGetSearchQueryParamsArgTypeField(val.type), ["trash_content"]: val.trashContent == void 0 ? void 0 : serializeGetSearchQueryParamsArgTrashContentField(val.trashContent), ["mdfilters"]: val.mdfilters, ["sort"]: val.sort == void 0 ? void 0 : serializeGetSearchQueryParamsArgSortField(val.sort), ["direction"]: val.direction == void 0 ? void 0 : serializeGetSearchQueryParamsArgDirectionField(val.direction), ["limit"]: val.limit, ["include_recent_shared_links"]: val.includeRecentSharedLinks, ["fields"]: val.fields, ["offset"]: val.offset, ["deleted_user_ids"]: val.deletedUserIds, ["deleted_at_range"]: val.deletedAtRange };
 }
 export function deserializeGetSearchQueryParamsArg(val: any): GetSearchQueryParamsArg {
     const query: undefined | string = isJson(val.query, "string") ? val.query : void 0;
     const scope: undefined | GetSearchQueryParamsArgScopeField = val.scope == void 0 ? void 0 : deserializeGetSearchQueryParamsArgScopeField(val.scope);
-    const fileExtensions: undefined | string = isJson(val.fileExtensions, "string") ? val.fileExtensions : void 0;
-    const createdAtRange: undefined | string = isJson(val.createdAtRange, "string") ? val.createdAtRange : void 0;
-    const updatedAtRange: undefined | string = isJson(val.updatedAtRange, "string") ? val.updatedAtRange : void 0;
-    const sizeRange: undefined | string = isJson(val.sizeRange, "string") ? val.sizeRange : void 0;
-    const ownerUserIds: undefined | string = isJson(val.ownerUserIds, "string") ? val.ownerUserIds : void 0;
-    const recentUpdaterUserIds: undefined | string = isJson(val.recentUpdaterUserIds, "string") ? val.recentUpdaterUserIds : void 0;
-    const ancestorFolderIds: undefined | string = isJson(val.ancestorFolderIds, "string") ? val.ancestorFolderIds : void 0;
-    const contentTypes: undefined | string = isJson(val.contentTypes, "string") ? val.contentTypes : void 0;
+    const fileExtensions: undefined | string = isJson(val.file_extensions, "string") ? val.file_extensions : void 0;
+    const createdAtRange: undefined | string = isJson(val.created_at_range, "string") ? val.created_at_range : void 0;
+    const updatedAtRange: undefined | string = isJson(val.updated_at_range, "string") ? val.updated_at_range : void 0;
+    const sizeRange: undefined | string = isJson(val.size_range, "string") ? val.size_range : void 0;
+    const ownerUserIds: undefined | string = isJson(val.owner_user_ids, "string") ? val.owner_user_ids : void 0;
+    const recentUpdaterUserIds: undefined | string = isJson(val.recent_updater_user_ids, "string") ? val.recent_updater_user_ids : void 0;
+    const ancestorFolderIds: undefined | string = isJson(val.ancestor_folder_ids, "string") ? val.ancestor_folder_ids : void 0;
+    const contentTypes: undefined | string = isJson(val.content_types, "string") ? val.content_types : void 0;
     const type: undefined | GetSearchQueryParamsArgTypeField = val.type == void 0 ? void 0 : deserializeGetSearchQueryParamsArgTypeField(val.type);
-    const trashContent: undefined | GetSearchQueryParamsArgTrashContentField = val.trashContent == void 0 ? void 0 : deserializeGetSearchQueryParamsArgTrashContentField(val.trashContent);
+    const trashContent: undefined | GetSearchQueryParamsArgTrashContentField = val.trash_content == void 0 ? void 0 : deserializeGetSearchQueryParamsArgTrashContentField(val.trash_content);
     const mdfilters: undefined | string = isJson(val.mdfilters, "string") ? val.mdfilters : void 0;
     const sort: undefined | GetSearchQueryParamsArgSortField = val.sort == void 0 ? void 0 : deserializeGetSearchQueryParamsArgSortField(val.sort);
     const direction: undefined | GetSearchQueryParamsArgDirectionField = val.direction == void 0 ? void 0 : deserializeGetSearchQueryParamsArgDirectionField(val.direction);
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const includeRecentSharedLinks: undefined | boolean = isJson(val.includeRecentSharedLinks, "boolean") ? val.includeRecentSharedLinks : void 0;
+    const includeRecentSharedLinks: undefined | boolean = isJson(val.include_recent_shared_links, "boolean") ? val.include_recent_shared_links : void 0;
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    const deletedUserIds: undefined | string = isJson(val.deletedUserIds, "string") ? val.deletedUserIds : void 0;
-    const deletedAtRange: undefined | string = isJson(val.deletedAtRange, "string") ? val.deletedAtRange : void 0;
+    const deletedUserIds: undefined | string = isJson(val.deleted_user_ids, "string") ? val.deleted_user_ids : void 0;
+    const deletedAtRange: undefined | string = isJson(val.deleted_at_range, "string") ? val.deleted_at_range : void 0;
     return { query: query, scope: scope, fileExtensions: fileExtensions, createdAtRange: createdAtRange, updatedAtRange: updatedAtRange, sizeRange: sizeRange, ownerUserIds: ownerUserIds, recentUpdaterUserIds: recentUpdaterUserIds, ancestorFolderIds: ancestorFolderIds, contentTypes: contentTypes, type: type, trashContent: trashContent, mdfilters: mdfilters, sort: sort, direction: direction, limit: limit, includeRecentSharedLinks: includeRecentSharedLinks, fields: fields, offset: offset, deletedUserIds: deletedUserIds, deletedAtRange: deletedAtRange } satisfies GetSearchQueryParamsArg;
 }

@@ -52,7 +52,7 @@ export class IntegrationMappingsManager {
         Object.assign(this, fields);
     }
     async getIntegrationMappingSlack(queryParams: undefined | GetIntegrationMappingSlackQueryParamsArg = {} satisfies GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack") as string, { method: "GET", params: prepareParams(serializeGetIntegrationMappingSlackQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeIntegrationMappings(deserializeJson(response.text));
     }
     async createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest): Promise<IntegrationMapping> {
@@ -60,7 +60,7 @@ export class IntegrationMappingsManager {
         return deserializeIntegrationMapping(deserializeJson(response.text));
     }
     async updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg): Promise<IntegrationMapping> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack/", integrationMappingId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack/", integrationMappingId) as string, { method: "PUT", body: serializeJson(serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeIntegrationMapping(deserializeJson(response.text));
     }
     async deleteIntegrationMappingSlackById(integrationMappingId: string): Promise<any> {
@@ -93,16 +93,16 @@ export function deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeFi
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetIntegrationMappingSlackQueryParamsArg(val: GetIntegrationMappingSlackQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit, ["partnerItemType"]: val.partnerItemType == void 0 ? void 0 : serializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val.partnerItemType), ["partnerItemId"]: val.partnerItemId, ["boxItemId"]: val.boxItemId, ["boxItemType"]: val.boxItemType == void 0 ? void 0 : serializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val.boxItemType), ["isManuallyCreated"]: val.isManuallyCreated };
+    return { ["marker"]: val.marker, ["limit"]: val.limit, ["partner_item_type"]: val.partnerItemType == void 0 ? void 0 : serializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val.partnerItemType), ["partner_item_id"]: val.partnerItemId, ["box_item_id"]: val.boxItemId, ["box_item_type"]: val.boxItemType == void 0 ? void 0 : serializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val.boxItemType), ["is_manually_created"]: val.isManuallyCreated };
 }
 export function deserializeGetIntegrationMappingSlackQueryParamsArg(val: any): GetIntegrationMappingSlackQueryParamsArg {
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const partnerItemType: undefined | GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField = val.partnerItemType == void 0 ? void 0 : deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val.partnerItemType);
-    const partnerItemId: undefined | string = isJson(val.partnerItemId, "string") ? val.partnerItemId : void 0;
-    const boxItemId: undefined | string = isJson(val.boxItemId, "string") ? val.boxItemId : void 0;
-    const boxItemType: undefined | GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField = val.boxItemType == void 0 ? void 0 : deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val.boxItemType);
-    const isManuallyCreated: undefined | boolean = isJson(val.isManuallyCreated, "boolean") ? val.isManuallyCreated : void 0;
+    const partnerItemType: undefined | GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField = val.partner_item_type == void 0 ? void 0 : deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val.partner_item_type);
+    const partnerItemId: undefined | string = isJson(val.partner_item_id, "string") ? val.partner_item_id : void 0;
+    const boxItemId: undefined | string = isJson(val.box_item_id, "string") ? val.box_item_id : void 0;
+    const boxItemType: undefined | GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField = val.box_item_type == void 0 ? void 0 : deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val.box_item_type);
+    const isManuallyCreated: undefined | boolean = isJson(val.is_manually_created, "boolean") ? val.is_manually_created : void 0;
     return { marker: marker, limit: limit, partnerItemType: partnerItemType, partnerItemId: partnerItemId, boxItemId: boxItemId, boxItemType: boxItemType, isManuallyCreated: isManuallyCreated } satisfies GetIntegrationMappingSlackQueryParamsArg;
 }
 export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val: UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField): Json {
@@ -118,10 +118,10 @@ export function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgOption
     return {} satisfies UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField;
 }
 export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(val: UpdateIntegrationMappingSlackByIdRequestBodyArg): Json {
-    return { ["boxItem"]: val.boxItem == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.boxItem), ["options"]: val.options == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val.options) };
+    return { ["box_item"]: val.boxItem == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.boxItem), ["options"]: val.options == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val.options) };
 }
 export function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArg(val: any): UpdateIntegrationMappingSlackByIdRequestBodyArg {
-    const boxItem: undefined | UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField = val.boxItem == void 0 ? void 0 : deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.boxItem);
+    const boxItem: undefined | UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField = val.box_item == void 0 ? void 0 : deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.box_item);
     const options: undefined | UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField = val.options == void 0 ? void 0 : deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val.options);
     return { boxItem: boxItem, options: options } satisfies UpdateIntegrationMappingSlackByIdRequestBodyArg;
 }

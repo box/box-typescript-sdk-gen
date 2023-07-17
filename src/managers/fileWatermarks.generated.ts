@@ -12,6 +12,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
 export interface UpdateFileWatermarkRequestBodyArgWatermarkField {
@@ -31,7 +32,7 @@ export class FileWatermarksManager {
         return deserializeWatermark(deserializeJson(response.text));
     }
     async updateFileWatermark(fileId: string, requestBody: UpdateFileWatermarkRequestBodyArg): Promise<Watermark> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", body: serializeJson(serializeUpdateFileWatermarkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWatermark(deserializeJson(response.text));
     }
     async deleteFileWatermark(fileId: string): Promise<any> {

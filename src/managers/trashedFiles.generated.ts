@@ -13,8 +13,9 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface RestoreFileFromTrashRequestBodyArgParentField {
     readonly id?: string;
@@ -36,11 +37,11 @@ export class TrashedFilesManager {
         Object.assign(this, fields);
     }
     async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams: undefined | RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg): Promise<TrashFileRestored> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "POST", params: prepareParams(serializeRestoreFileFromTrashQueryParamsArg(queryParams)), body: serializeJson(serializeRestoreFileFromTrashRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFileRestored(deserializeJson(response.text));
     }
     async getFileTrash(fileId: string, queryParams: undefined | GetFileTrashQueryParamsArg = {} satisfies GetFileTrashQueryParamsArg): Promise<TrashFile> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "GET", params: prepareParams(serializeGetFileTrashQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFile(deserializeJson(response.text));
     }
     async deleteFileTrash(fileId: string): Promise<any> {

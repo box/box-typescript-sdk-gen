@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetGroupsQueryParamsArg {
     readonly filterTerm?: string;
@@ -61,19 +62,19 @@ export class GroupsManager {
         Object.assign(this, fields);
     }
     async getGroups(queryParams: undefined | GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg): Promise<Groups> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: prepareParams(serializeGetGroupsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroups(deserializeJson(response.text));
     }
     async createGroup(requestBody: CreateGroupRequestBodyArg, queryParams: undefined | CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg): Promise<Group> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: prepareParams(serializeCreateGroupQueryParamsArg(queryParams)), body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJson(response.text));
     }
     async getGroupById(groupId: string, queryParams: undefined | GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg): Promise<GroupFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: prepareParams(serializeGetGroupByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
     async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: undefined | UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg): Promise<GroupFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: prepareParams(serializeUpdateGroupByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateGroupByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
     async deleteGroupById(groupId: string): Promise<any> {
@@ -82,10 +83,10 @@ export class GroupsManager {
     }
 }
 export function serializeGetGroupsQueryParamsArg(val: GetGroupsQueryParamsArg): Json {
-    return { ["filterTerm"]: val.filterTerm, ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset };
+    return { ["filter_term"]: val.filterTerm, ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset };
 }
 export function deserializeGetGroupsQueryParamsArg(val: any): GetGroupsQueryParamsArg {
-    const filterTerm: undefined | string = isJson(val.filterTerm, "string") ? val.filterTerm : void 0;
+    const filterTerm: undefined | string = isJson(val.filter_term, "string") ? val.filter_term : void 0;
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
@@ -128,15 +129,15 @@ export function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateGroupRequestBodyArg(val: CreateGroupRequestBodyArg): Json {
-    return { ["name"]: val.name, ["provenance"]: val.provenance, ["externalSyncIdentifier"]: val.externalSyncIdentifier, ["description"]: val.description, ["invitabilityLevel"]: val.invitabilityLevel == void 0 ? void 0 : serializeCreateGroupRequestBodyArgInvitabilityLevelField(val.invitabilityLevel), ["memberViewabilityLevel"]: val.memberViewabilityLevel == void 0 ? void 0 : serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel) };
+    return { ["name"]: val.name, ["provenance"]: val.provenance, ["external_sync_identifier"]: val.externalSyncIdentifier, ["description"]: val.description, ["invitability_level"]: val.invitabilityLevel == void 0 ? void 0 : serializeCreateGroupRequestBodyArgInvitabilityLevelField(val.invitabilityLevel), ["member_viewability_level"]: val.memberViewabilityLevel == void 0 ? void 0 : serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel) };
 }
 export function deserializeCreateGroupRequestBodyArg(val: any): CreateGroupRequestBodyArg {
     const name: string = val.name;
     const provenance: undefined | string = isJson(val.provenance, "string") ? val.provenance : void 0;
-    const externalSyncIdentifier: undefined | string = isJson(val.externalSyncIdentifier, "string") ? val.externalSyncIdentifier : void 0;
+    const externalSyncIdentifier: undefined | string = isJson(val.external_sync_identifier, "string") ? val.external_sync_identifier : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const invitabilityLevel: undefined | CreateGroupRequestBodyArgInvitabilityLevelField = val.invitabilityLevel == void 0 ? void 0 : deserializeCreateGroupRequestBodyArgInvitabilityLevelField(val.invitabilityLevel);
-    const memberViewabilityLevel: undefined | CreateGroupRequestBodyArgMemberViewabilityLevelField = val.memberViewabilityLevel == void 0 ? void 0 : deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel);
+    const invitabilityLevel: undefined | CreateGroupRequestBodyArgInvitabilityLevelField = val.invitability_level == void 0 ? void 0 : deserializeCreateGroupRequestBodyArgInvitabilityLevelField(val.invitability_level);
+    const memberViewabilityLevel: undefined | CreateGroupRequestBodyArgMemberViewabilityLevelField = val.member_viewability_level == void 0 ? void 0 : deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val.member_viewability_level);
     return { name: name, provenance: provenance, externalSyncIdentifier: externalSyncIdentifier, description: description, invitabilityLevel: invitabilityLevel, memberViewabilityLevel: memberViewabilityLevel } satisfies CreateGroupRequestBodyArg;
 }
 export function serializeCreateGroupQueryParamsArg(val: CreateGroupQueryParamsArg): Json {
@@ -190,15 +191,15 @@ export function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelFi
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateGroupByIdRequestBodyArg(val: UpdateGroupByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["provenance"]: val.provenance, ["externalSyncIdentifier"]: val.externalSyncIdentifier, ["description"]: val.description, ["invitabilityLevel"]: val.invitabilityLevel == void 0 ? void 0 : serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val.invitabilityLevel), ["memberViewabilityLevel"]: val.memberViewabilityLevel == void 0 ? void 0 : serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel) };
+    return { ["name"]: val.name, ["provenance"]: val.provenance, ["external_sync_identifier"]: val.externalSyncIdentifier, ["description"]: val.description, ["invitability_level"]: val.invitabilityLevel == void 0 ? void 0 : serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val.invitabilityLevel), ["member_viewability_level"]: val.memberViewabilityLevel == void 0 ? void 0 : serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel) };
 }
 export function deserializeUpdateGroupByIdRequestBodyArg(val: any): UpdateGroupByIdRequestBodyArg {
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const provenance: undefined | string = isJson(val.provenance, "string") ? val.provenance : void 0;
-    const externalSyncIdentifier: undefined | string = isJson(val.externalSyncIdentifier, "string") ? val.externalSyncIdentifier : void 0;
+    const externalSyncIdentifier: undefined | string = isJson(val.external_sync_identifier, "string") ? val.external_sync_identifier : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const invitabilityLevel: undefined | UpdateGroupByIdRequestBodyArgInvitabilityLevelField = val.invitabilityLevel == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val.invitabilityLevel);
-    const memberViewabilityLevel: undefined | UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = val.memberViewabilityLevel == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val.memberViewabilityLevel);
+    const invitabilityLevel: undefined | UpdateGroupByIdRequestBodyArgInvitabilityLevelField = val.invitability_level == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val.invitability_level);
+    const memberViewabilityLevel: undefined | UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = val.member_viewability_level == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val.member_viewability_level);
     return { name: name, provenance: provenance, externalSyncIdentifier: externalSyncIdentifier, description: description, invitabilityLevel: invitabilityLevel, memberViewabilityLevel: memberViewabilityLevel } satisfies UpdateGroupByIdRequestBodyArg;
 }
 export function serializeUpdateGroupByIdQueryParamsArg(val: UpdateGroupByIdQueryParamsArg): Json {

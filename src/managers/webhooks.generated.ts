@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetWebhooksQueryParamsArg {
     readonly marker?: string;
@@ -49,11 +50,11 @@ export class WebhooksManager {
         Object.assign(this, fields);
     }
     async getWebhooks(queryParams: undefined | GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg): Promise<Webhooks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: prepareParams(serializeGetWebhooksQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhooks(deserializeJson(response.text));
     }
     async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: serializeJson(serializeCreateWebhookRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
     async getWebhookById(webhookId: string): Promise<Webhook> {
@@ -61,7 +62,7 @@ export class WebhooksManager {
         return deserializeWebhook(deserializeJson(response.text));
     }
     async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: serializeJson(serializeUpdateWebhookByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
     async deleteWebhookById(webhookId: string): Promise<any> {

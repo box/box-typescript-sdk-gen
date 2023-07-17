@@ -13,8 +13,9 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface RestoreFolderFromTrashRequestBodyArgParentField {
     readonly id?: string;
@@ -36,11 +37,11 @@ export class TrashedFoldersManager {
         Object.assign(this, fields);
     }
     async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams: undefined | RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg): Promise<TrashFolderRestored> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: prepareParams(serializeRestoreFolderFromTrashQueryParamsArg(queryParams)), body: serializeJson(serializeRestoreFolderFromTrashRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFolderRestored(deserializeJson(response.text));
     }
     async getFolderTrash(folderId: string, queryParams: undefined | GetFolderTrashQueryParamsArg = {} satisfies GetFolderTrashQueryParamsArg): Promise<TrashFolder> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "GET", params: prepareParams(serializeGetFolderTrashQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFolder(deserializeJson(response.text));
     }
     async deleteFolderTrash(folderId: string): Promise<any> {

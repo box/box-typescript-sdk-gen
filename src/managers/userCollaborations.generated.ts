@@ -12,6 +12,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetCollaborationByIdQueryParamsArg {
     readonly fields?: string;
@@ -54,11 +55,11 @@ export class UserCollaborationsManager {
         Object.assign(this, fields);
     }
     async getCollaborationById(collaborationId: string, queryParams: undefined | GetCollaborationByIdQueryParamsArg = {} satisfies GetCollaborationByIdQueryParamsArg): Promise<Collaboration> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: prepareParams(serializeGetCollaborationByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
     async updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<Collaboration> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: serializeJson(serializeUpdateCollaborationByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
     async deleteCollaborationById(collaborationId: string): Promise<any> {
@@ -66,7 +67,7 @@ export class UserCollaborationsManager {
         return response.content;
     }
     async createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams: undefined | CreateCollaborationQueryParamsArg = {} satisfies CreateCollaborationQueryParamsArg): Promise<Collaboration> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: prepareParams(serializeCreateCollaborationQueryParamsArg(queryParams)), body: serializeJson(serializeCreateCollaborationRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
 }
@@ -129,13 +130,13 @@ export function deserializeUpdateCollaborationByIdRequestBodyArgStatusField(val:
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateCollaborationByIdRequestBodyArg(val: UpdateCollaborationByIdRequestBodyArg): Json {
-    return { ["role"]: serializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role), ["status"]: val.status == void 0 ? void 0 : serializeUpdateCollaborationByIdRequestBodyArgStatusField(val.status), ["expiresAt"]: val.expiresAt, ["canViewPath"]: val.canViewPath };
+    return { ["role"]: serializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role), ["status"]: val.status == void 0 ? void 0 : serializeUpdateCollaborationByIdRequestBodyArgStatusField(val.status), ["expires_at"]: val.expiresAt, ["can_view_path"]: val.canViewPath };
 }
 export function deserializeUpdateCollaborationByIdRequestBodyArg(val: any): UpdateCollaborationByIdRequestBodyArg {
     const role: UpdateCollaborationByIdRequestBodyArgRoleField = deserializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role);
     const status: undefined | UpdateCollaborationByIdRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeUpdateCollaborationByIdRequestBodyArgStatusField(val.status);
-    const expiresAt: undefined | string = isJson(val.expiresAt, "string") ? val.expiresAt : void 0;
-    const canViewPath: undefined | boolean = isJson(val.canViewPath, "boolean") ? val.canViewPath : void 0;
+    const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
+    const canViewPath: undefined | boolean = isJson(val.can_view_path, "boolean") ? val.can_view_path : void 0;
     return { role: role, status: status, expiresAt: expiresAt, canViewPath: canViewPath } satisfies UpdateCollaborationByIdRequestBodyArg;
 }
 export function serializeCreateCollaborationRequestBodyArgItemFieldTypeField(val: CreateCollaborationRequestBodyArgItemFieldTypeField): Json {
@@ -216,14 +217,14 @@ export function deserializeCreateCollaborationRequestBodyArgRoleField(val: any):
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateCollaborationRequestBodyArg(val: CreateCollaborationRequestBodyArg): Json {
-    return { ["item"]: serializeCreateCollaborationRequestBodyArgItemField(val.item), ["accessibleBy"]: serializeCreateCollaborationRequestBodyArgAccessibleByField(val.accessibleBy), ["role"]: serializeCreateCollaborationRequestBodyArgRoleField(val.role), ["canViewPath"]: val.canViewPath, ["expiresAt"]: val.expiresAt };
+    return { ["item"]: serializeCreateCollaborationRequestBodyArgItemField(val.item), ["accessible_by"]: serializeCreateCollaborationRequestBodyArgAccessibleByField(val.accessibleBy), ["role"]: serializeCreateCollaborationRequestBodyArgRoleField(val.role), ["can_view_path"]: val.canViewPath, ["expires_at"]: val.expiresAt };
 }
 export function deserializeCreateCollaborationRequestBodyArg(val: any): CreateCollaborationRequestBodyArg {
     const item: CreateCollaborationRequestBodyArgItemField = deserializeCreateCollaborationRequestBodyArgItemField(val.item);
-    const accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField = deserializeCreateCollaborationRequestBodyArgAccessibleByField(val.accessibleBy);
+    const accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField = deserializeCreateCollaborationRequestBodyArgAccessibleByField(val.accessible_by);
     const role: CreateCollaborationRequestBodyArgRoleField = deserializeCreateCollaborationRequestBodyArgRoleField(val.role);
-    const canViewPath: undefined | boolean = isJson(val.canViewPath, "boolean") ? val.canViewPath : void 0;
-    const expiresAt: undefined | string = isJson(val.expiresAt, "string") ? val.expiresAt : void 0;
+    const canViewPath: undefined | boolean = isJson(val.can_view_path, "boolean") ? val.can_view_path : void 0;
+    const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
     return { item: item, accessibleBy: accessibleBy, role: role, canViewPath: canViewPath, expiresAt: expiresAt } satisfies CreateCollaborationRequestBodyArg;
 }
 export function serializeCreateCollaborationQueryParamsArg(val: CreateCollaborationQueryParamsArg): Json {

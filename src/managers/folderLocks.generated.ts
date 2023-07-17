@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 export interface GetFolderLocksQueryParamsArg {
     readonly folderId: string;
 }
@@ -37,11 +38,11 @@ export class FolderLocksManager {
         Object.assign(this, fields);
     }
     async getFolderLocks(queryParams: GetFolderLocksQueryParamsArg): Promise<FolderLocks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: prepareParams(serializeGetFolderLocksQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderLocks(deserializeJson(response.text));
     }
     async createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<FolderLock> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "POST", body: serializeJson(serializeCreateFolderLockRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderLock(deserializeJson(response.text));
     }
     async deleteFolderLockById(folderLockId: string): Promise<any> {
@@ -50,10 +51,10 @@ export class FolderLocksManager {
     }
 }
 export function serializeGetFolderLocksQueryParamsArg(val: GetFolderLocksQueryParamsArg): Json {
-    return { ["folderId"]: val.folderId };
+    return { ["folder_id"]: val.folderId };
 }
 export function deserializeGetFolderLocksQueryParamsArg(val: any): GetFolderLocksQueryParamsArg {
-    const folderId: string = val.folderId;
+    const folderId: string = val.folder_id;
     return { folderId: folderId } satisfies GetFolderLocksQueryParamsArg;
 }
 export function serializeCreateFolderLockRequestBodyArgLockedOperationsField(val: CreateFolderLockRequestBodyArgLockedOperationsField): Json {
@@ -73,10 +74,10 @@ export function deserializeCreateFolderLockRequestBodyArgFolderField(val: any): 
     return { type: type, id: id } satisfies CreateFolderLockRequestBodyArgFolderField;
 }
 export function serializeCreateFolderLockRequestBodyArg(val: CreateFolderLockRequestBodyArg): Json {
-    return { ["lockedOperations"]: val.lockedOperations == void 0 ? void 0 : serializeCreateFolderLockRequestBodyArgLockedOperationsField(val.lockedOperations), ["folder"]: serializeCreateFolderLockRequestBodyArgFolderField(val.folder) };
+    return { ["locked_operations"]: val.lockedOperations == void 0 ? void 0 : serializeCreateFolderLockRequestBodyArgLockedOperationsField(val.lockedOperations), ["folder"]: serializeCreateFolderLockRequestBodyArgFolderField(val.folder) };
 }
 export function deserializeCreateFolderLockRequestBodyArg(val: any): CreateFolderLockRequestBodyArg {
-    const lockedOperations: undefined | CreateFolderLockRequestBodyArgLockedOperationsField = val.lockedOperations == void 0 ? void 0 : deserializeCreateFolderLockRequestBodyArgLockedOperationsField(val.lockedOperations);
+    const lockedOperations: undefined | CreateFolderLockRequestBodyArgLockedOperationsField = val.locked_operations == void 0 ? void 0 : deserializeCreateFolderLockRequestBodyArgLockedOperationsField(val.locked_operations);
     const folder: CreateFolderLockRequestBodyArgFolderField = deserializeCreateFolderLockRequestBodyArgFolderField(val.folder);
     return { lockedOperations: lockedOperations, folder: folder } satisfies CreateFolderLockRequestBodyArg;
 }

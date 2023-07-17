@@ -34,7 +34,7 @@ export class FileVersionRetentionsManager {
         Object.assign(this, fields);
     }
     async getFileVersionRetentions(queryParams: undefined | GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: prepareParams(serializeGetFileVersionRetentionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionRetentions(deserializeJson(response.text));
     }
     async getFileVersionRetentionById(fileVersionRetentionId: string): Promise<FileVersionRetention> {
@@ -58,15 +58,15 @@ export function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActi
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetFileVersionRetentionsQueryParamsArg(val: GetFileVersionRetentionsQueryParamsArg): Json {
-    return { ["fileId"]: val.fileId, ["fileVersionId"]: val.fileVersionId, ["policyId"]: val.policyId, ["dispositionAction"]: val.dispositionAction == void 0 ? void 0 : serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction), ["dispositionBefore"]: val.dispositionBefore, ["dispositionAfter"]: val.dispositionAfter, ["limit"]: val.limit, ["marker"]: val.marker };
+    return { ["file_id"]: val.fileId, ["file_version_id"]: val.fileVersionId, ["policy_id"]: val.policyId, ["disposition_action"]: val.dispositionAction == void 0 ? void 0 : serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction), ["disposition_before"]: val.dispositionBefore, ["disposition_after"]: val.dispositionAfter, ["limit"]: val.limit, ["marker"]: val.marker };
 }
 export function deserializeGetFileVersionRetentionsQueryParamsArg(val: any): GetFileVersionRetentionsQueryParamsArg {
-    const fileId: undefined | string = isJson(val.fileId, "string") ? val.fileId : void 0;
-    const fileVersionId: undefined | string = isJson(val.fileVersionId, "string") ? val.fileVersionId : void 0;
-    const policyId: undefined | string = isJson(val.policyId, "string") ? val.policyId : void 0;
-    const dispositionAction: undefined | GetFileVersionRetentionsQueryParamsArgDispositionActionField = val.dispositionAction == void 0 ? void 0 : deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction);
-    const dispositionBefore: undefined | string = isJson(val.dispositionBefore, "string") ? val.dispositionBefore : void 0;
-    const dispositionAfter: undefined | string = isJson(val.dispositionAfter, "string") ? val.dispositionAfter : void 0;
+    const fileId: undefined | string = isJson(val.file_id, "string") ? val.file_id : void 0;
+    const fileVersionId: undefined | string = isJson(val.file_version_id, "string") ? val.file_version_id : void 0;
+    const policyId: undefined | string = isJson(val.policy_id, "string") ? val.policy_id : void 0;
+    const dispositionAction: undefined | GetFileVersionRetentionsQueryParamsArgDispositionActionField = val.disposition_action == void 0 ? void 0 : deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.disposition_action);
+    const dispositionBefore: undefined | string = isJson(val.disposition_before, "string") ? val.disposition_before : void 0;
+    const dispositionAfter: undefined | string = isJson(val.disposition_after, "string") ? val.disposition_after : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     return { fileId: fileId, fileVersionId: fileVersionId, policyId: policyId, dispositionAction: dispositionAction, dispositionBefore: dispositionBefore, dispositionAfter: dispositionAfter, limit: limit, marker: marker } satisfies GetFileVersionRetentionsQueryParamsArg;

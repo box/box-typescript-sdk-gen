@@ -22,14 +22,14 @@ const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
 test("test_upload_file_and_file_version", async function test_upload_file_and_file_version(): Promise<any> {
     const newFileName: any = getUuid();
-    const fileContentStream: any = generateByteStream();
+    const fileContentStream: any = generateByteStream(1048576);
     const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: newFileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileContentStream } satisfies UploadFileRequestBodyArg);
     const uploadedFile: any = uploadedFiles.entries[0];
     if (!(uploadedFile.name == newFileName)) {
         throw "Assertion failed";
     }
     const newFileVersionName: any = getUuid();
-    const newFileContentStream: any = generateByteStream();
+    const newFileContentStream: any = generateByteStream(1048576);
     const uploadedFilesVersion: any = await client.uploads.uploadFileVersion(uploadedFile.id, { attributes: { name: newFileVersionName } satisfies UploadFileVersionRequestBodyArgAttributesField, file: newFileContentStream } satisfies UploadFileVersionRequestBodyArg);
     const newFileVersion: any = uploadedFilesVersion.entries[0];
     if (!(newFileVersion.name == newFileVersionName)) {

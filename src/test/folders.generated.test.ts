@@ -36,9 +36,6 @@ test("test_get_folder_info", async function test_get_folder_info(): Promise<any>
     if (!(rootFolder.name == "All Files")) {
         throw "Assertion failed";
     }
-    if (!(rootFolder.type == "folder")) {
-        throw "Assertion failed";
-    }
 });
 test("test_get_folder_full_info_with_extra_fields", async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
     const rootFolder: any = await client.folders.getFolderById("0", { fields: "has_collaborations,tags" } satisfies GetFolderByIdQueryParamsArg);

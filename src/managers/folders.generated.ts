@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetFolderByIdQueryParamsArgSortField = "id" | "name" | "date" | "size";
 export type GetFolderByIdQueryParamsArgDirectionField = "ASC" | "DESC";
@@ -125,27 +126,27 @@ export class FoldersManager {
         Object.assign(this, fields);
     }
     async getFolderById(folderId: string, queryParams: undefined | GetFolderByIdQueryParamsArg = {} satisfies GetFolderByIdQueryParamsArg, headers: undefined | GetFolderByIdHeadersArg = {} satisfies GetFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: prepareParams(serializeGetFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFolderByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams: undefined | UpdateFolderByIdQueryParamsArg = {} satisfies UpdateFolderByIdQueryParamsArg, headers: undefined | UpdateFolderByIdHeadersArg = {} satisfies UpdateFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: prepareParams(queryParams), headers: prepareParams(headers), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: prepareParams(serializeUpdateFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeUpdateFolderByIdHeadersArg(headers)), body: serializeJson(serializeUpdateFolderByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async deleteFolderById(folderId: string, queryParams: undefined | DeleteFolderByIdQueryParamsArg = {} satisfies DeleteFolderByIdQueryParamsArg, headers: undefined | DeleteFolderByIdHeadersArg = {} satisfies DeleteFolderByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: prepareParams(serializeDeleteFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeDeleteFolderByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async getFolderItems(folderId: string, queryParams: undefined | GetFolderItemsQueryParamsArg = {} satisfies GetFolderItemsQueryParamsArg, headers: undefined | GetFolderItemsHeadersArg = {} satisfies GetFolderItemsHeadersArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: prepareParams(serializeGetFolderItemsQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFolderItemsHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
     async createFolder(requestBody: CreateFolderRequestBodyArg, queryParams: undefined | CreateFolderQueryParamsArg = {} satisfies CreateFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: prepareParams(serializeCreateFolderQueryParamsArg(queryParams)), body: serializeJson(serializeCreateFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
     async copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams: undefined | CopyFolderQueryParamsArg = {} satisfies CopyFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: prepareParams(serializeCopyFolderQueryParamsArg(queryParams)), body: serializeJson(serializeCopyFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
 }
@@ -197,10 +198,10 @@ export function deserializeGetFolderByIdQueryParamsArg(val: any): GetFolderByIdQ
     return { fields: fields, sort: sort, direction: direction, offset: offset, limit: limit } satisfies GetFolderByIdQueryParamsArg;
 }
 export function serializeGetFolderByIdHeadersArg(val: GetFolderByIdHeadersArg): Json {
-    return { ["ifNoneMatch"]: val.ifNoneMatch, ["boxapi"]: val.boxapi };
+    return { ["if-none-match"]: val.ifNoneMatch, ["boxapi"]: val.boxapi };
 }
 export function deserializeGetFolderByIdHeadersArg(val: any): GetFolderByIdHeadersArg {
-    const ifNoneMatch: undefined | string = isJson(val.ifNoneMatch, "string") ? val.ifNoneMatch : void 0;
+    const ifNoneMatch: undefined | string = isJson(val["if-none-match"], "string") ? val["if-none-match"] : void 0;
     const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
     return { ifNoneMatch: ifNoneMatch, boxapi: boxapi } satisfies GetFolderByIdHeadersArg;
 }
@@ -248,20 +249,20 @@ export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessFi
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(val: UpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField): Json {
-    return { ["canDownload"]: val.canDownload };
+    return { ["can_download"]: val.canDownload };
 }
 export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(val: any): UpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField {
-    const canDownload: undefined | boolean = isJson(val.canDownload, "boolean") ? val.canDownload : void 0;
+    const canDownload: undefined | boolean = isJson(val.can_download, "boolean") ? val.can_download : void 0;
     return { canDownload: canDownload } satisfies UpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField;
 }
 export function serializeUpdateFolderByIdRequestBodyArgSharedLinkField(val: UpdateFolderByIdRequestBodyArgSharedLinkField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanityName"]: val.vanityName, ["unsharedAt"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
+    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanity_name"]: val.vanityName, ["unshared_at"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
 }
 export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkField(val: any): UpdateFolderByIdRequestBodyArgSharedLinkField {
     const access: undefined | UpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField = val.access == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField(val.access);
     const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
-    const vanityName: undefined | string = isJson(val.vanityName, "string") ? val.vanityName : void 0;
-    const unsharedAt: undefined | string = isJson(val.unsharedAt, "string") ? val.unsharedAt : void 0;
+    const vanityName: undefined | string = isJson(val.vanity_name, "string") ? val.vanity_name : void 0;
+    const unsharedAt: undefined | string = isJson(val.unshared_at, "string") ? val.unshared_at : void 0;
     const permissions: undefined | UpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions);
     return { access: access, password: password, vanityName: vanityName, unsharedAt: unsharedAt, permissions: permissions } satisfies UpdateFolderByIdRequestBodyArgSharedLinkField;
 }
@@ -296,28 +297,28 @@ export function deserializeUpdateFolderByIdRequestBodyArgCollectionsField(val: a
     return { id: id, type: type } satisfies UpdateFolderByIdRequestBodyArgCollectionsField;
 }
 export function serializeUpdateFolderByIdRequestBodyArg(val: UpdateFolderByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["description"]: val.description, ["syncState"]: val.syncState == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSyncStateField(val.syncState), ["canNonOwnersInvite"]: val.canNonOwnersInvite, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgParentField(val.parent), ["sharedLink"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkField(val.sharedLink), ["folderUploadEmail"]: val.folderUploadEmail == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(val.folderUploadEmail), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
+    return { ["name"]: val.name, ["description"]: val.description, ["sync_state"]: val.syncState == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSyncStateField(val.syncState), ["can_non_owners_invite"]: val.canNonOwnersInvite, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgParentField(val.parent), ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgSharedLinkField(val.sharedLink), ["folder_upload_email"]: val.folderUploadEmail == void 0 ? void 0 : serializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(val.folderUploadEmail), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
             return void 0;
-        }) as readonly any[], ["isCollaborationRestrictedToEnterprise"]: val.isCollaborationRestrictedToEnterprise, ["collections"]: val.collections == void 0 ? void 0 : val.collections.map(function (item: UpdateFolderByIdRequestBodyArgCollectionsField): any {
+        }) as readonly any[], ["is_collaboration_restricted_to_enterprise"]: val.isCollaborationRestrictedToEnterprise, ["collections"]: val.collections == void 0 ? void 0 : val.collections.map(function (item: UpdateFolderByIdRequestBodyArgCollectionsField): any {
             return serializeUpdateFolderByIdRequestBodyArgCollectionsField(item);
-        }) as readonly any[], ["canNonOwnersViewCollaborators"]: val.canNonOwnersViewCollaborators };
+        }) as readonly any[], ["can_non_owners_view_collaborators"]: val.canNonOwnersViewCollaborators };
 }
 export function deserializeUpdateFolderByIdRequestBodyArg(val: any): UpdateFolderByIdRequestBodyArg {
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const syncState: undefined | UpdateFolderByIdRequestBodyArgSyncStateField = val.syncState == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSyncStateField(val.syncState);
-    const canNonOwnersInvite: undefined | boolean = isJson(val.canNonOwnersInvite, "boolean") ? val.canNonOwnersInvite : void 0;
+    const syncState: undefined | UpdateFolderByIdRequestBodyArgSyncStateField = val.sync_state == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSyncStateField(val.sync_state);
+    const canNonOwnersInvite: undefined | boolean = isJson(val.can_non_owners_invite, "boolean") ? val.can_non_owners_invite : void 0;
     const parent: undefined | UpdateFolderByIdRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgParentField(val.parent);
-    const sharedLink: undefined | UpdateFolderByIdRequestBodyArgSharedLinkField = val.sharedLink == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSharedLinkField(val.sharedLink);
-    const folderUploadEmail: undefined | UpdateFolderByIdRequestBodyArgFolderUploadEmailField = val.folderUploadEmail == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(val.folderUploadEmail);
+    const sharedLink: undefined | UpdateFolderByIdRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgSharedLinkField(val.shared_link);
+    const folderUploadEmail: undefined | UpdateFolderByIdRequestBodyArgFolderUploadEmailField = val.folder_upload_email == void 0 ? void 0 : deserializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(val.folder_upload_email);
     const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
-    const isCollaborationRestrictedToEnterprise: undefined | boolean = isJson(val.isCollaborationRestrictedToEnterprise, "boolean") ? val.isCollaborationRestrictedToEnterprise : void 0;
+    const isCollaborationRestrictedToEnterprise: undefined | boolean = isJson(val.is_collaboration_restricted_to_enterprise, "boolean") ? val.is_collaboration_restricted_to_enterprise : void 0;
     const collections: undefined | readonly UpdateFolderByIdRequestBodyArgCollectionsField[] = isJson(val.collections, "array") ? val.collections.map(function (itm: Json): any {
         return deserializeUpdateFolderByIdRequestBodyArgCollectionsField(itm);
     }) as readonly any[] : void 0;
-    const canNonOwnersViewCollaborators: undefined | boolean = isJson(val.canNonOwnersViewCollaborators, "boolean") ? val.canNonOwnersViewCollaborators : void 0;
+    const canNonOwnersViewCollaborators: undefined | boolean = isJson(val.can_non_owners_view_collaborators, "boolean") ? val.can_non_owners_view_collaborators : void 0;
     return { name: name, description: description, syncState: syncState, canNonOwnersInvite: canNonOwnersInvite, parent: parent, sharedLink: sharedLink, folderUploadEmail: folderUploadEmail, tags: tags, isCollaborationRestrictedToEnterprise: isCollaborationRestrictedToEnterprise, collections: collections, canNonOwnersViewCollaborators: canNonOwnersViewCollaborators } satisfies UpdateFolderByIdRequestBodyArg;
 }
 export function serializeUpdateFolderByIdQueryParamsArg(val: UpdateFolderByIdQueryParamsArg): Json {
@@ -328,10 +329,10 @@ export function deserializeUpdateFolderByIdQueryParamsArg(val: any): UpdateFolde
     return { fields: fields } satisfies UpdateFolderByIdQueryParamsArg;
 }
 export function serializeUpdateFolderByIdHeadersArg(val: UpdateFolderByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeUpdateFolderByIdHeadersArg(val: any): UpdateFolderByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies UpdateFolderByIdHeadersArg;
 }
 export function serializeDeleteFolderByIdQueryParamsArg(val: DeleteFolderByIdQueryParamsArg): Json {
@@ -342,10 +343,10 @@ export function deserializeDeleteFolderByIdQueryParamsArg(val: any): DeleteFolde
     return { recursive: recursive } satisfies DeleteFolderByIdQueryParamsArg;
 }
 export function serializeDeleteFolderByIdHeadersArg(val: DeleteFolderByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeDeleteFolderByIdHeadersArg(val: any): DeleteFolderByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies DeleteFolderByIdHeadersArg;
 }
 export function serializeGetFolderItemsQueryParamsArgSortField(val: GetFolderItemsQueryParamsArgSortField): Json {
@@ -452,13 +453,13 @@ export function deserializeCreateFolderRequestBodyArgSyncStateField(val: any): C
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateFolderRequestBodyArg(val: CreateFolderRequestBodyArg): Json {
-    return { ["name"]: val.name, ["parent"]: serializeCreateFolderRequestBodyArgParentField(val.parent), ["folderUploadEmail"]: val.folderUploadEmail == void 0 ? void 0 : serializeCreateFolderRequestBodyArgFolderUploadEmailField(val.folderUploadEmail), ["syncState"]: val.syncState == void 0 ? void 0 : serializeCreateFolderRequestBodyArgSyncStateField(val.syncState) };
+    return { ["name"]: val.name, ["parent"]: serializeCreateFolderRequestBodyArgParentField(val.parent), ["folder_upload_email"]: val.folderUploadEmail == void 0 ? void 0 : serializeCreateFolderRequestBodyArgFolderUploadEmailField(val.folderUploadEmail), ["sync_state"]: val.syncState == void 0 ? void 0 : serializeCreateFolderRequestBodyArgSyncStateField(val.syncState) };
 }
 export function deserializeCreateFolderRequestBodyArg(val: any): CreateFolderRequestBodyArg {
     const name: string = val.name;
     const parent: CreateFolderRequestBodyArgParentField = deserializeCreateFolderRequestBodyArgParentField(val.parent);
-    const folderUploadEmail: undefined | CreateFolderRequestBodyArgFolderUploadEmailField = val.folderUploadEmail == void 0 ? void 0 : deserializeCreateFolderRequestBodyArgFolderUploadEmailField(val.folderUploadEmail);
-    const syncState: undefined | CreateFolderRequestBodyArgSyncStateField = val.syncState == void 0 ? void 0 : deserializeCreateFolderRequestBodyArgSyncStateField(val.syncState);
+    const folderUploadEmail: undefined | CreateFolderRequestBodyArgFolderUploadEmailField = val.folder_upload_email == void 0 ? void 0 : deserializeCreateFolderRequestBodyArgFolderUploadEmailField(val.folder_upload_email);
+    const syncState: undefined | CreateFolderRequestBodyArgSyncStateField = val.sync_state == void 0 ? void 0 : deserializeCreateFolderRequestBodyArgSyncStateField(val.sync_state);
     return { name: name, parent: parent, folderUploadEmail: folderUploadEmail, syncState: syncState } satisfies CreateFolderRequestBodyArg;
 }
 export function serializeCreateFolderQueryParamsArg(val: CreateFolderQueryParamsArg): Json {

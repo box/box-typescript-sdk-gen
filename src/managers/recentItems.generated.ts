@@ -25,7 +25,7 @@ export class RecentItemsManager {
         Object.assign(this, fields);
     }
     async getRecentItems(queryParams: undefined | GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg): Promise<RecentItems> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: prepareParams(serializeGetRecentItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRecentItems(deserializeJson(response.text));
     }
 }

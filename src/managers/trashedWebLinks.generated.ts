@@ -13,8 +13,9 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface CreateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -36,11 +37,11 @@ export class TrashedWebLinksManager {
         Object.assign(this, fields);
     }
     async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams: undefined | CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg): Promise<TrashWebLinkRestored> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "POST", params: prepareParams(serializeCreateWebLinkByIdQueryParamsArg(queryParams)), body: serializeJson(serializeCreateWebLinkByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashWebLinkRestored(deserializeJson(response.text));
     }
     async getWebLinkTrash(webLinkId: string, queryParams: undefined | GetWebLinkTrashQueryParamsArg = {} satisfies GetWebLinkTrashQueryParamsArg): Promise<TrashWebLink> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "/trash") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId, "/trash") as string, { method: "GET", params: prepareParams(serializeGetWebLinkTrashQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashWebLink(deserializeJson(response.text));
     }
     async deleteWebLinkTrash(webLinkId: string): Promise<any> {

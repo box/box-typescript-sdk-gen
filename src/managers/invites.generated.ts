@@ -10,8 +10,9 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface CreateInviteRequestBodyArgEnterpriseField {
     readonly id: string;
@@ -36,11 +37,11 @@ export class InvitesManager {
         Object.assign(this, fields);
     }
     async createInvite(requestBody: CreateInviteRequestBodyArg, queryParams: undefined | CreateInviteQueryParamsArg = {} satisfies CreateInviteQueryParamsArg): Promise<Invite> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: prepareParams(serializeCreateInviteQueryParamsArg(queryParams)), body: serializeJson(serializeCreateInviteRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJson(response.text));
     }
     async getInviteById(inviteId: string, queryParams: undefined | GetInviteByIdQueryParamsArg = {} satisfies GetInviteByIdQueryParamsArg): Promise<Invite> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: prepareParams(serializeGetInviteByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJson(response.text));
     }
 }
@@ -59,11 +60,11 @@ export function deserializeCreateInviteRequestBodyArgActionableByField(val: any)
     return { login: login } satisfies CreateInviteRequestBodyArgActionableByField;
 }
 export function serializeCreateInviteRequestBodyArg(val: CreateInviteRequestBodyArg): Json {
-    return { ["enterprise"]: serializeCreateInviteRequestBodyArgEnterpriseField(val.enterprise), ["actionableBy"]: serializeCreateInviteRequestBodyArgActionableByField(val.actionableBy) };
+    return { ["enterprise"]: serializeCreateInviteRequestBodyArgEnterpriseField(val.enterprise), ["actionable_by"]: serializeCreateInviteRequestBodyArgActionableByField(val.actionableBy) };
 }
 export function deserializeCreateInviteRequestBodyArg(val: any): CreateInviteRequestBodyArg {
     const enterprise: CreateInviteRequestBodyArgEnterpriseField = deserializeCreateInviteRequestBodyArgEnterpriseField(val.enterprise);
-    const actionableBy: CreateInviteRequestBodyArgActionableByField = deserializeCreateInviteRequestBodyArgActionableByField(val.actionableBy);
+    const actionableBy: CreateInviteRequestBodyArgActionableByField = deserializeCreateInviteRequestBodyArgActionableByField(val.actionable_by);
     return { enterprise: enterprise, actionableBy: actionableBy } satisfies CreateInviteRequestBodyArg;
 }
 export function serializeCreateInviteQueryParamsArg(val: CreateInviteQueryParamsArg): Json {

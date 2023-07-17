@@ -12,6 +12,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = "enterprise";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
@@ -60,7 +61,7 @@ export class ClassificationsManager {
         return response.content;
     }
     async createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Promise<ClassificationTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", body: serializeJson(serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeClassificationTemplate(deserializeJson(response.text));
     }
 }
@@ -137,11 +138,11 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField): Json {
-    return { ["classificationDefinition"]: val.classificationDefinition, ["colorId"]: val.colorId };
+    return { ["classificationDefinition"]: val.classificationDefinition, ["colorID"]: val.colorId };
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: any): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
     const classificationDefinition: undefined | string = isJson(val.classificationDefinition, "string") ? val.classificationDefinition : void 0;
-    const colorId: undefined | number = isJson(val.colorId, "number") ? val.colorId : void 0;
+    const colorId: undefined | number = isJson(val.colorID, "number") ? val.colorID : void 0;
     return { classificationDefinition: classificationDefinition, colorId: colorId } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField): Json {

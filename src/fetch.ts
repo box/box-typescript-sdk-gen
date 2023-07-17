@@ -39,7 +39,7 @@ export interface FetchOptions {
   /**
    * Request body
    */
-  readonly body?: string;
+  readonly body?: string | Readable;
 
   /**
    * Parts of multipart data

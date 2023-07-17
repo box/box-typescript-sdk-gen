@@ -39,7 +39,7 @@ export async function uploadFile(fileName: any, fileStream: any): Promise<any> {
 }
 test("testGetFileThumbnail", async function testGetFileThumbnail(): Promise<any> {
     const thumbnailFileName: any = getUuid();
-    const thumbnailContentStream: any = generateByteStream();
+    const thumbnailContentStream: any = generateByteStream(1048576);
     const thumbnailFile: any = await uploadFile(thumbnailFileName, thumbnailContentStream);
     if (!!(await client.files.getFileThumbnailById(thumbnailFile.id, "png" as GetFileThumbnailByIdExtensionArg) == await readByteStream(thumbnailContentStream))) {
         throw "Assertion failed";
@@ -48,7 +48,7 @@ test("testGetFileThumbnail", async function testGetFileThumbnail(): Promise<any>
 });
 test("testGetFileFullExtraFields", async function testGetFileFullExtraFields(): Promise<any> {
     const newFileName: any = getUuid();
-    const fileContent: any = generateByteStream();
+    const fileContent: any = generateByteStream(1048576);
     const uploadedFile: any = await uploadFile(newFileName, fileContent);
     const file: any = await client.files.getFileById(uploadedFile.id, { fields: "is_externally_owned,has_collaborations" } satisfies GetFileByIdQueryParamsArg);
     if (!(file.isExternallyOwned == false)) {
@@ -61,7 +61,7 @@ test("testGetFileFullExtraFields", async function testGetFileFullExtraFields(): 
 });
 test("testCreateGetAndDeleteFile", async function testCreateGetAndDeleteFile(): Promise<any> {
     const newFileName: any = getUuid();
-    const updatedContentStream: any = generateByteStream();
+    const updatedContentStream: any = generateByteStream(1048576);
     const uploadedFile: any = await uploadFile(newFileName, updatedContentStream);
     const file: any = await client.files.getFileById(uploadedFile.id);
     if (!(file.name == newFileName)) {

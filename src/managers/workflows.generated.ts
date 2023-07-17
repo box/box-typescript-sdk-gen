@@ -12,6 +12,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetWorkflowsQueryParamsArg {
     readonly folderId: string;
@@ -54,20 +55,20 @@ export class WorkflowsManager {
         Object.assign(this, fields);
     }
     async getWorkflows(queryParams: GetWorkflowsQueryParamsArg): Promise<Workflows> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows") as string, { method: "GET", params: prepareParams(serializeGetWorkflowsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWorkflows(deserializeJson(response.text));
     }
     async createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows/", workflowId, "/start") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows/", workflowId, "/start") as string, { method: "POST", body: serializeJson(serializeCreateWorkflowStartRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
 export function serializeGetWorkflowsQueryParamsArg(val: GetWorkflowsQueryParamsArg): Json {
-    return { ["folderId"]: val.folderId, ["triggerType"]: val.triggerType, ["limit"]: val.limit, ["marker"]: val.marker };
+    return { ["folder_id"]: val.folderId, ["trigger_type"]: val.triggerType, ["limit"]: val.limit, ["marker"]: val.marker };
 }
 export function deserializeGetWorkflowsQueryParamsArg(val: any): GetWorkflowsQueryParamsArg {
-    const folderId: string = val.folderId;
-    const triggerType: undefined | string = isJson(val.triggerType, "string") ? val.triggerType : void 0;
+    const folderId: string = val.folder_id;
+    const triggerType: undefined | string = isJson(val.trigger_type, "string") ? val.trigger_type : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     return { folderId: folderId, triggerType: triggerType, limit: limit, marker: marker } satisfies GetWorkflowsQueryParamsArg;

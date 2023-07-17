@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
@@ -49,7 +50,7 @@ export class TasksManager {
         return deserializeTasks(deserializeJson(response.text));
     }
     async createTask(requestBody: CreateTaskRequestBodyArg): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", body: serializeJson(serializeCreateTaskRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
     async getTaskById(taskId: string): Promise<Task> {
@@ -57,7 +58,7 @@ export class TasksManager {
         return deserializeTask(deserializeJson(response.text));
     }
     async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", body: serializeJson(serializeUpdateTaskByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
     async deleteTaskById(taskId: string): Promise<any> {
@@ -116,14 +117,14 @@ export function deserializeCreateTaskRequestBodyArgCompletionRuleField(val: any)
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTaskRequestBodyArg(val: CreateTaskRequestBodyArg): Json {
-    return { ["item"]: serializeCreateTaskRequestBodyArgItemField(val.item), ["action"]: val.action == void 0 ? void 0 : serializeCreateTaskRequestBodyArgActionField(val.action), ["message"]: val.message, ["dueAt"]: val.dueAt, ["completionRule"]: val.completionRule == void 0 ? void 0 : serializeCreateTaskRequestBodyArgCompletionRuleField(val.completionRule) };
+    return { ["item"]: serializeCreateTaskRequestBodyArgItemField(val.item), ["action"]: val.action == void 0 ? void 0 : serializeCreateTaskRequestBodyArgActionField(val.action), ["message"]: val.message, ["due_at"]: val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeCreateTaskRequestBodyArgCompletionRuleField(val.completionRule) };
 }
 export function deserializeCreateTaskRequestBodyArg(val: any): CreateTaskRequestBodyArg {
     const item: CreateTaskRequestBodyArgItemField = deserializeCreateTaskRequestBodyArgItemField(val.item);
     const action: undefined | CreateTaskRequestBodyArgActionField = val.action == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgActionField(val.action);
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
-    const dueAt: undefined | string = isJson(val.dueAt, "string") ? val.dueAt : void 0;
-    const completionRule: undefined | CreateTaskRequestBodyArgCompletionRuleField = val.completionRule == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgCompletionRuleField(val.completionRule);
+    const dueAt: undefined | string = isJson(val.due_at, "string") ? val.due_at : void 0;
+    const completionRule: undefined | CreateTaskRequestBodyArgCompletionRuleField = val.completion_rule == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgCompletionRuleField(val.completion_rule);
     return { item: item, action: action, message: message, dueAt: dueAt, completionRule: completionRule } satisfies CreateTaskRequestBodyArg;
 }
 export function serializeUpdateTaskByIdRequestBodyArgActionField(val: UpdateTaskByIdRequestBodyArgActionField): Json {
@@ -157,12 +158,12 @@ export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val: 
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateTaskByIdRequestBodyArg(val: UpdateTaskByIdRequestBodyArg): Json {
-    return { ["action"]: val.action == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgActionField(val.action), ["message"]: val.message, ["dueAt"]: val.dueAt, ["completionRule"]: val.completionRule == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completionRule) };
+    return { ["action"]: val.action == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgActionField(val.action), ["message"]: val.message, ["due_at"]: val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completionRule) };
 }
 export function deserializeUpdateTaskByIdRequestBodyArg(val: any): UpdateTaskByIdRequestBodyArg {
     const action: undefined | UpdateTaskByIdRequestBodyArgActionField = val.action == void 0 ? void 0 : deserializeUpdateTaskByIdRequestBodyArgActionField(val.action);
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
-    const dueAt: undefined | string = isJson(val.dueAt, "string") ? val.dueAt : void 0;
-    const completionRule: undefined | UpdateTaskByIdRequestBodyArgCompletionRuleField = val.completionRule == void 0 ? void 0 : deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completionRule);
+    const dueAt: undefined | string = isJson(val.due_at, "string") ? val.due_at : void 0;
+    const completionRule: undefined | UpdateTaskByIdRequestBodyArgCompletionRuleField = val.completion_rule == void 0 ? void 0 : deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completion_rule);
     return { action: action, message: message, dueAt: dueAt, completionRule: completionRule } satisfies UpdateTaskByIdRequestBodyArg;
 }

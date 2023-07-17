@@ -34,7 +34,7 @@ export class FileRequestsManager {
         return deserializeFileRequest(deserializeJson(response.text));
     }
     async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: undefined | UpdateFileRequestByIdHeadersArg = {} satisfies UpdateFileRequestByIdHeadersArg): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: prepareParams(headers), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: prepareParams(serializeUpdateFileRequestByIdHeadersArg(headers)), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
     async deleteFileRequestById(fileRequestId: string): Promise<any> {
@@ -47,9 +47,9 @@ export class FileRequestsManager {
     }
 }
 export function serializeUpdateFileRequestByIdHeadersArg(val: UpdateFileRequestByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeUpdateFileRequestByIdHeadersArg(val: any): UpdateFileRequestByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies UpdateFileRequestByIdHeadersArg;
 }

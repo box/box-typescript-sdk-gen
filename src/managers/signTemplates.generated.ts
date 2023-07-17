@@ -27,7 +27,7 @@ export class SignTemplatesManager {
         Object.assign(this, fields);
     }
     async getSignTemplates(queryParams: undefined | GetSignTemplatesQueryParamsArg = {} satisfies GetSignTemplatesQueryParamsArg): Promise<SignTemplates> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates") as string, { method: "GET", params: prepareParams(serializeGetSignTemplatesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignTemplates(deserializeJson(response.text));
     }
     async getSignTemplateById(templateId: string): Promise<SignTemplate> {

@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetRetentionPolicyAssignmentsQueryParamsArgTypeField = "folder" | "enterprise" | "metadata_template";
 export interface GetRetentionPolicyAssignmentsQueryParamsArg {
@@ -59,15 +60,15 @@ export class RetentionPolicyAssignmentsManager {
         Object.assign(this, fields);
     }
     async getRetentionPolicyAssignments(retentionPolicyId: string, queryParams: undefined | GetRetentionPolicyAssignmentsQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentsQueryParamsArg): Promise<RetentionPolicyAssignments> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId, "/assignments") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId, "/assignments") as string, { method: "GET", params: prepareParams(serializeGetRetentionPolicyAssignmentsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicyAssignments(deserializeJson(response.text));
     }
     async createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg): Promise<RetentionPolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments") as string, { method: "POST", body: serializeJson(serializeCreateRetentionPolicyAssignmentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicyAssignment(deserializeJson(response.text));
     }
     async getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, queryParams: undefined | GetRetentionPolicyAssignmentByIdQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentByIdQueryParamsArg): Promise<RetentionPolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId) as string, { method: "GET", params: prepareParams(serializeGetRetentionPolicyAssignmentByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicyAssignment(deserializeJson(response.text));
     }
     async deleteRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string): Promise<any> {
@@ -75,11 +76,11 @@ export class RetentionPolicyAssignmentsManager {
         return response.content;
     }
     async getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, queryParams: undefined | GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg): Promise<FilesUnderRetention> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId, "/files_under_retention") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId, "/files_under_retention") as string, { method: "GET", params: prepareParams(serializeGetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFilesUnderRetention(deserializeJson(response.text));
     }
     async getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, queryParams: undefined | GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg): Promise<FilesUnderRetention> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId, "/file_versions_under_retention") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policy_assignments/", retentionPolicyAssignmentId, "/file_versions_under_retention") as string, { method: "GET", params: prepareParams(serializeGetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFilesUnderRetention(deserializeJson(response.text));
     }
 }
@@ -146,17 +147,17 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFi
     return { field: field, value: value } satisfies CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyArg(val: CreateRetentionPolicyAssignmentRequestBodyArg): Json {
-    return { ["policyId"]: val.policyId, ["assignTo"]: serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assignTo), ["filterFields"]: val.filterFields == void 0 ? void 0 : val.filterFields.map(function (item: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField): any {
+    return { ["policy_id"]: val.policyId, ["assign_to"]: serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assignTo), ["filter_fields"]: val.filterFields == void 0 ? void 0 : val.filterFields.map(function (item: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField): any {
             return serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(item);
-        }) as readonly any[], ["startDateField"]: val.startDateField };
+        }) as readonly any[], ["start_date_field"]: val.startDateField };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(val: any): CreateRetentionPolicyAssignmentRequestBodyArg {
-    const policyId: string = val.policyId;
-    const assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField = deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assignTo);
-    const filterFields: undefined | readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[] = isJson(val.filterFields, "array") ? val.filterFields.map(function (itm: Json): any {
+    const policyId: string = val.policy_id;
+    const assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField = deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assign_to);
+    const filterFields: undefined | readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[] = isJson(val.filter_fields, "array") ? val.filter_fields.map(function (itm: Json): any {
         return deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(itm);
     }) as readonly any[] : void 0;
-    const startDateField: undefined | string = isJson(val.startDateField, "string") ? val.startDateField : void 0;
+    const startDateField: undefined | string = isJson(val.start_date_field, "string") ? val.start_date_field : void 0;
     return { policyId: policyId, assignTo: assignTo, filterFields: filterFields, startDateField: startDateField } satisfies CreateRetentionPolicyAssignmentRequestBodyArg;
 }
 export function serializeGetRetentionPolicyAssignmentByIdQueryParamsArg(val: GetRetentionPolicyAssignmentByIdQueryParamsArg): Json {

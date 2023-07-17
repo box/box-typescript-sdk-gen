@@ -37,7 +37,7 @@ export class DevicePinnersManager {
         return response.content;
     }
     async getEnterpriseDevicePinners(enterpriseId: string, queryParams: undefined | GetEnterpriseDevicePinnersQueryParamsArg = {} satisfies GetEnterpriseDevicePinnersQueryParamsArg): Promise<DevicePinners> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/enterprises/", enterpriseId, "/device_pinners") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/enterprises/", enterpriseId, "/device_pinners") as string, { method: "GET", params: prepareParams(serializeGetEnterpriseDevicePinnersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeDevicePinners(deserializeJson(response.text));
     }
 }

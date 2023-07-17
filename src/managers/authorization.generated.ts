@@ -27,7 +27,7 @@ export class AuthorizationManager {
         Object.assign(this, fields);
     }
     async getAuthorize(queryParams: GetAuthorizeQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: prepareParams(serializeGetAuthorizeQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
 }
@@ -44,12 +44,12 @@ export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any)
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json {
-    return { ["responseType"]: serializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType), ["clientId"]: val.clientId, ["redirectUri"]: val.redirectUri, ["state"]: val.state, ["scope"]: val.scope };
+    return { ["response_type"]: serializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType), ["client_id"]: val.clientId, ["redirect_uri"]: val.redirectUri, ["state"]: val.state, ["scope"]: val.scope };
 }
 export function deserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg {
-    const responseType: GetAuthorizeQueryParamsArgResponseTypeField = deserializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType);
-    const clientId: string = val.clientId;
-    const redirectUri: undefined | string = isJson(val.redirectUri, "string") ? val.redirectUri : void 0;
+    const responseType: GetAuthorizeQueryParamsArgResponseTypeField = deserializeGetAuthorizeQueryParamsArgResponseTypeField(val.response_type);
+    const clientId: string = val.client_id;
+    const redirectUri: undefined | string = isJson(val.redirect_uri, "string") ? val.redirect_uri : void 0;
     const state: undefined | string = isJson(val.state, "string") ? val.state : void 0;
     const scope: undefined | string = isJson(val.scope, "string") ? val.scope : void 0;
     return { responseType: responseType, clientId: clientId, redirectUri: redirectUri, state: state, scope: scope } satisfies GetAuthorizeQueryParamsArg;

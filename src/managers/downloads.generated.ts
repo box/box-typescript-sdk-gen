@@ -24,16 +24,16 @@ export class DownloadsManager {
         Object.assign(this, fields);
     }
     async downloadFile(fileId: string, queryParams: undefined | DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: undefined | DownloadFileHeadersArg = {} satisfies DownloadFileHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: prepareParams(serializeDownloadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeDownloadFileHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
 export function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
-    return { ["version"]: val.version, ["accessToken"]: val.accessToken };
+    return { ["version"]: val.version, ["access_token"]: val.accessToken };
 }
 export function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
     const version: undefined | string = isJson(val.version, "string") ? val.version : void 0;
-    const accessToken: undefined | string = isJson(val.accessToken, "string") ? val.accessToken : void 0;
+    const accessToken: undefined | string = isJson(val.access_token, "string") ? val.access_token : void 0;
     return { version: version, accessToken: accessToken } satisfies DownloadFileQueryParamsArg;
 }
 export function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {

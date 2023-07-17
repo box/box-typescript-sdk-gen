@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetFileCommentsQueryParamsArg {
     readonly fields?: string;
@@ -53,15 +54,15 @@ export class CommentsManager {
         Object.assign(this, fields);
     }
     async getFileComments(fileId: string, queryParams: undefined | GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg): Promise<Comments> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: prepareParams(serializeGetFileCommentsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComments(deserializeJson(response.text));
     }
     async getCommentById(commentId: string, queryParams: undefined | GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg): Promise<CommentFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: prepareParams(serializeGetCommentByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
     async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: undefined | UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg): Promise<CommentFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: prepareParams(serializeUpdateCommentByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateCommentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
     async deleteCommentById(commentId: string): Promise<any> {
@@ -69,7 +70,7 @@ export class CommentsManager {
         return response.content;
     }
     async createComment(requestBody: CreateCommentRequestBodyArg, queryParams: undefined | CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg): Promise<Comment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: prepareParams(serializeCreateCommentQueryParamsArg(queryParams)), body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComment(deserializeJson(response.text));
     }
 }
@@ -127,11 +128,11 @@ export function deserializeCreateCommentRequestBodyArgItemField(val: any): Creat
     return { id: id, type: type } satisfies CreateCommentRequestBodyArgItemField;
 }
 export function serializeCreateCommentRequestBodyArg(val: CreateCommentRequestBodyArg): Json {
-    return { ["message"]: val.message, ["taggedMessage"]: val.taggedMessage, ["item"]: val.item == void 0 ? void 0 : serializeCreateCommentRequestBodyArgItemField(val.item) };
+    return { ["message"]: val.message, ["tagged_message"]: val.taggedMessage, ["item"]: val.item == void 0 ? void 0 : serializeCreateCommentRequestBodyArgItemField(val.item) };
 }
 export function deserializeCreateCommentRequestBodyArg(val: any): CreateCommentRequestBodyArg {
     const message: string = val.message;
-    const taggedMessage: undefined | string = isJson(val.taggedMessage, "string") ? val.taggedMessage : void 0;
+    const taggedMessage: undefined | string = isJson(val.tagged_message, "string") ? val.tagged_message : void 0;
     const item: undefined | CreateCommentRequestBodyArgItemField = val.item == void 0 ? void 0 : deserializeCreateCommentRequestBodyArgItemField(val.item);
     return { message: message, taggedMessage: taggedMessage, item: item } satisfies CreateCommentRequestBodyArg;
 }

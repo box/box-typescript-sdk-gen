@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetShieldInformationBarrierSegmentMembersQueryParamsArg {
     readonly shieldInformationBarrierSegmentId: string;
@@ -51,19 +52,19 @@ export class ShieldInformationBarrierSegmentMembersManager {
         return response.content;
     }
     async getShieldInformationBarrierSegmentMembers(queryParams: GetShieldInformationBarrierSegmentMembersQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "GET", params: prepareParams(serializeGetShieldInformationBarrierSegmentMembersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
     async createShieldInformationBarrierSegmentMember(requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Promise<ShieldInformationBarrierSegmentMember> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_members") as string, { method: "POST", body: serializeJson(serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeShieldInformationBarrierSegmentMember(deserializeJson(response.text));
     }
 }
 export function serializeGetShieldInformationBarrierSegmentMembersQueryParamsArg(val: GetShieldInformationBarrierSegmentMembersQueryParamsArg): Json {
-    return { ["shieldInformationBarrierSegmentId"]: val.shieldInformationBarrierSegmentId, ["marker"]: val.marker, ["limit"]: val.limit };
+    return { ["shield_information_barrier_segment_id"]: val.shieldInformationBarrierSegmentId, ["marker"]: val.marker, ["limit"]: val.limit };
 }
 export function deserializeGetShieldInformationBarrierSegmentMembersQueryParamsArg(val: any): GetShieldInformationBarrierSegmentMembersQueryParamsArg {
-    const shieldInformationBarrierSegmentId: string = val.shieldInformationBarrierSegmentId;
+    const shieldInformationBarrierSegmentId: string = val.shield_information_barrier_segment_id;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { shieldInformationBarrierSegmentId: shieldInformationBarrierSegmentId, marker: marker, limit: limit } satisfies GetShieldInformationBarrierSegmentMembersQueryParamsArg;
@@ -101,12 +102,12 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
     return { id: id, type: type } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArg): Json {
-    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(val.type), ["shieldInformationBarrier"]: val.shieldInformationBarrier == void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["shieldInformationBarrierSegment"]: serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val.shieldInformationBarrierSegment), ["user"]: serializeUserBase(val.user) };
+    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(val.type), ["shield_information_barrier"]: val.shieldInformationBarrier == void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["shield_information_barrier_segment"]: serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val.shieldInformationBarrierSegment), ["user"]: serializeUserBase(val.user) };
 }
 export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArg {
     const type: undefined | CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField = val.type == void 0 ? void 0 : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(val.type);
-    const shieldInformationBarrier: undefined | ShieldInformationBarrierBase = val.shieldInformationBarrier == void 0 ? void 0 : deserializeShieldInformationBarrierBase(val.shieldInformationBarrier);
-    const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField = deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val.shieldInformationBarrierSegment);
+    const shieldInformationBarrier: undefined | ShieldInformationBarrierBase = val.shield_information_barrier == void 0 ? void 0 : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
+    const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField = deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val.shield_information_barrier_segment);
     const user: UserBase = deserializeUserBase(val.user);
     return { type: type, shieldInformationBarrier: shieldInformationBarrier, shieldInformationBarrierSegment: shieldInformationBarrierSegment, user: user } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyArg;
 }

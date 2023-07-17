@@ -32,15 +32,15 @@ export class FileVersionLegalHoldsManager {
         return deserializeFileVersionLegalHold(deserializeJson(response.text));
     }
     async getFileVersionLegalHolds(queryParams: GetFileVersionLegalHoldsQueryParamsArg): Promise<FileVersionLegalHolds> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_legal_holds") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_legal_holds") as string, { method: "GET", params: prepareParams(serializeGetFileVersionLegalHoldsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionLegalHolds(deserializeJson(response.text));
     }
 }
 export function serializeGetFileVersionLegalHoldsQueryParamsArg(val: GetFileVersionLegalHoldsQueryParamsArg): Json {
-    return { ["policyId"]: val.policyId, ["marker"]: val.marker, ["limit"]: val.limit };
+    return { ["policy_id"]: val.policyId, ["marker"]: val.marker, ["limit"]: val.limit };
 }
 export function deserializeGetFileVersionLegalHoldsQueryParamsArg(val: any): GetFileVersionLegalHoldsQueryParamsArg {
-    const policyId: string = val.policyId;
+    const policyId: string = val.policy_id;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { policyId: policyId, marker: marker, limit: limit } satisfies GetFileVersionLegalHoldsQueryParamsArg;

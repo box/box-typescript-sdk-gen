@@ -43,7 +43,7 @@ export class SignRequestsManager {
         return deserializeSignRequest(deserializeJson(response.text));
     }
     async getSignRequests(queryParams: undefined | GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg): Promise<SignRequests> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: prepareParams(serializeGetSignRequestsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignRequests(deserializeJson(response.text));
     }
     async createSignRequest(requestBody: SignRequestCreateRequest): Promise<SignRequest> {

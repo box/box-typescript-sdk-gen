@@ -12,6 +12,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetFileByIdQueryParamsArg {
     readonly fields?: string;
@@ -89,23 +90,23 @@ export class FilesManager {
         Object.assign(this, fields);
     }
     async getFileById(fileId: string, queryParams: undefined | GetFileByIdQueryParamsArg = {} satisfies GetFileByIdQueryParamsArg, headers: undefined | GetFileByIdHeadersArg = {} satisfies GetFileByIdHeadersArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: prepareParams(queryParams), headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: prepareParams(serializeGetFileByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFileByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
     async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams: undefined | UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg, headers: undefined | UpdateFileByIdHeadersArg = {} satisfies UpdateFileByIdHeadersArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "PUT", params: prepareParams(queryParams), headers: prepareParams(headers), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "PUT", params: prepareParams(serializeUpdateFileByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeUpdateFileByIdHeadersArg(headers)), body: serializeJson(serializeUpdateFileByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
     async deleteFileById(fileId: string, headers: undefined | DeleteFileByIdHeadersArg = {} satisfies DeleteFileByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "DELETE", headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "DELETE", headers: prepareParams(serializeDeleteFileByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams: undefined | CopyFileQueryParamsArg = {} satisfies CopyFileQueryParamsArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/copy") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/copy") as string, { method: "POST", params: prepareParams(serializeCopyFileQueryParamsArg(queryParams)), body: serializeJson(serializeCopyFileRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
     async getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams: undefined | GetFileThumbnailByIdQueryParamsArg = {} satisfies GetFileThumbnailByIdQueryParamsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/thumbnail.", extension) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/thumbnail.", extension) as string, { method: "GET", params: prepareParams(serializeGetFileThumbnailByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
@@ -117,12 +118,12 @@ export function deserializeGetFileByIdQueryParamsArg(val: any): GetFileByIdQuery
     return { fields: fields } satisfies GetFileByIdQueryParamsArg;
 }
 export function serializeGetFileByIdHeadersArg(val: GetFileByIdHeadersArg): Json {
-    return { ["ifNoneMatch"]: val.ifNoneMatch, ["boxapi"]: val.boxapi, ["xRepHints"]: val.xRepHints };
+    return { ["if-none-match"]: val.ifNoneMatch, ["boxapi"]: val.boxapi, ["x-rep-hints"]: val.xRepHints };
 }
 export function deserializeGetFileByIdHeadersArg(val: any): GetFileByIdHeadersArg {
-    const ifNoneMatch: undefined | string = isJson(val.ifNoneMatch, "string") ? val.ifNoneMatch : void 0;
+    const ifNoneMatch: undefined | string = isJson(val["if-none-match"], "string") ? val["if-none-match"] : void 0;
     const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
-    const xRepHints: undefined | string = isJson(val.xRepHints, "string") ? val.xRepHints : void 0;
+    const xRepHints: undefined | string = isJson(val["x-rep-hints"], "string") ? val["x-rep-hints"] : void 0;
     return { ifNoneMatch: ifNoneMatch, boxapi: boxapi, xRepHints: xRepHints } satisfies GetFileByIdHeadersArg;
 }
 export function serializeUpdateFileByIdRequestBodyArgParentField(val: UpdateFileByIdRequestBodyArgParentField): Json {
@@ -151,20 +152,20 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessFiel
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(val: UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField): Json {
-    return { ["canDownload"]: val.canDownload };
+    return { ["can_download"]: val.canDownload };
 }
 export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(val: any): UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField {
-    const canDownload: undefined | boolean = isJson(val.canDownload, "boolean") ? val.canDownload : void 0;
+    const canDownload: undefined | boolean = isJson(val.can_download, "boolean") ? val.can_download : void 0;
     return { canDownload: canDownload } satisfies UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodyArgSharedLinkField(val: UpdateFileByIdRequestBodyArgSharedLinkField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanityName"]: val.vanityName, ["unsharedAt"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
+    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanity_name"]: val.vanityName, ["unshared_at"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
 }
 export function deserializeUpdateFileByIdRequestBodyArgSharedLinkField(val: any): UpdateFileByIdRequestBodyArgSharedLinkField {
     const access: undefined | UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField = val.access == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(val.access);
     const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
-    const vanityName: undefined | string = isJson(val.vanityName, "string") ? val.vanityName : void 0;
-    const unsharedAt: undefined | string = isJson(val.unsharedAt, "string") ? val.unsharedAt : void 0;
+    const vanityName: undefined | string = isJson(val.vanity_name, "string") ? val.vanity_name : void 0;
+    const unsharedAt: undefined | string = isJson(val.unshared_at, "string") ? val.unshared_at : void 0;
     const permissions: undefined | UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(val.permissions);
     return { access: access, password: password, vanityName: vanityName, unsharedAt: unsharedAt, permissions: permissions } satisfies UpdateFileByIdRequestBodyArgSharedLinkField;
 }
@@ -181,12 +182,12 @@ export function deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val:
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFileByIdRequestBodyArgLockField(val: UpdateFileByIdRequestBodyArgLockField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val.access), ["expiresAt"]: val.expiresAt, ["isDownloadPrevented"]: val.isDownloadPrevented };
+    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val.access), ["expires_at"]: val.expiresAt, ["is_download_prevented"]: val.isDownloadPrevented };
 }
 export function deserializeUpdateFileByIdRequestBodyArgLockField(val: any): UpdateFileByIdRequestBodyArgLockField {
     const access: undefined | UpdateFileByIdRequestBodyArgLockFieldAccessField = val.access == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val.access);
-    const expiresAt: undefined | string = isJson(val.expiresAt, "string") ? val.expiresAt : void 0;
-    const isDownloadPrevented: undefined | boolean = isJson(val.isDownloadPrevented, "boolean") ? val.isDownloadPrevented : void 0;
+    const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
+    const isDownloadPrevented: undefined | boolean = isJson(val.is_download_prevented, "boolean") ? val.is_download_prevented : void 0;
     return { access: access, expiresAt: expiresAt, isDownloadPrevented: isDownloadPrevented } satisfies UpdateFileByIdRequestBodyArgLockField;
 }
 export function serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField): Json {
@@ -205,14 +206,14 @@ export function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownlo
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFileByIdRequestBodyArgPermissionsField(val: UpdateFileByIdRequestBodyArgPermissionsField): Json {
-    return { ["canDownload"]: val.canDownload == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val.canDownload) };
+    return { ["can_download"]: val.canDownload == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val.canDownload) };
 }
 export function deserializeUpdateFileByIdRequestBodyArgPermissionsField(val: any): UpdateFileByIdRequestBodyArgPermissionsField {
-    const canDownload: undefined | UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = val.canDownload == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val.canDownload);
+    const canDownload: undefined | UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = val.can_download == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val.can_download);
     return { canDownload: canDownload } satisfies UpdateFileByIdRequestBodyArgPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodyArg(val: UpdateFileByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["description"]: val.description, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgParentField(val.parent), ["sharedLink"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink), ["lock"]: val.lock == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockField(val.lock), ["dispositionAt"]: val.dispositionAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
+    return { ["name"]: val.name, ["description"]: val.description, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgParentField(val.parent), ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink), ["lock"]: val.lock == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockField(val.lock), ["disposition_at"]: val.dispositionAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
             return void 0;
         }) as readonly any[] };
 }
@@ -220,9 +221,9 @@ export function deserializeUpdateFileByIdRequestBodyArg(val: any): UpdateFileByI
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
     const parent: undefined | UpdateFileByIdRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgParentField(val.parent);
-    const sharedLink: undefined | UpdateFileByIdRequestBodyArgSharedLinkField = val.sharedLink == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink);
+    const sharedLink: undefined | UpdateFileByIdRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgSharedLinkField(val.shared_link);
     const lock: undefined | UpdateFileByIdRequestBodyArgLockField = val.lock == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgLockField(val.lock);
-    const dispositionAt: undefined | string = isJson(val.dispositionAt, "string") ? val.dispositionAt : void 0;
+    const dispositionAt: undefined | string = isJson(val.disposition_at, "string") ? val.disposition_at : void 0;
     const permissions: undefined | UpdateFileByIdRequestBodyArgPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions);
     const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: Json): undefined {
         return void 0;
@@ -237,17 +238,17 @@ export function deserializeUpdateFileByIdQueryParamsArg(val: any): UpdateFileByI
     return { fields: fields } satisfies UpdateFileByIdQueryParamsArg;
 }
 export function serializeUpdateFileByIdHeadersArg(val: UpdateFileByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeUpdateFileByIdHeadersArg(val: any): UpdateFileByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies UpdateFileByIdHeadersArg;
 }
 export function serializeDeleteFileByIdHeadersArg(val: DeleteFileByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeDeleteFileByIdHeadersArg(val: any): DeleteFileByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies DeleteFileByIdHeadersArg;
 }
 export function serializeCopyFileRequestBodyArgParentField(val: CopyFileRequestBodyArgParentField): Json {
@@ -289,12 +290,12 @@ export function deserializeGetFileThumbnailByIdExtensionArg(val: any): GetFileTh
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetFileThumbnailByIdQueryParamsArg(val: GetFileThumbnailByIdQueryParamsArg): Json {
-    return { ["minHeight"]: val.minHeight, ["minWidth"]: val.minWidth, ["maxHeight"]: val.maxHeight, ["maxWidth"]: val.maxWidth };
+    return { ["min_height"]: val.minHeight, ["min_width"]: val.minWidth, ["max_height"]: val.maxHeight, ["max_width"]: val.maxWidth };
 }
 export function deserializeGetFileThumbnailByIdQueryParamsArg(val: any): GetFileThumbnailByIdQueryParamsArg {
-    const minHeight: undefined | number = isJson(val.minHeight, "number") ? val.minHeight : void 0;
-    const minWidth: undefined | number = isJson(val.minWidth, "number") ? val.minWidth : void 0;
-    const maxHeight: undefined | number = isJson(val.maxHeight, "number") ? val.maxHeight : void 0;
-    const maxWidth: undefined | number = isJson(val.maxWidth, "number") ? val.maxWidth : void 0;
+    const minHeight: undefined | number = isJson(val.min_height, "number") ? val.min_height : void 0;
+    const minWidth: undefined | number = isJson(val.min_width, "number") ? val.min_width : void 0;
+    const maxHeight: undefined | number = isJson(val.max_height, "number") ? val.max_height : void 0;
+    const maxWidth: undefined | number = isJson(val.max_width, "number") ? val.max_width : void 0;
     return { minHeight: minHeight, minWidth: minWidth, maxHeight: maxHeight, maxWidth: maxWidth } satisfies GetFileThumbnailByIdQueryParamsArg;
 }

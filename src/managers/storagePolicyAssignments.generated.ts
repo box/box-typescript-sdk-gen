@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField = "user" | "enterprise";
 export interface GetStoragePolicyAssignmentsQueryParamsArg {
@@ -51,11 +52,11 @@ export class StoragePolicyAssignmentsManager {
         Object.assign(this, fields);
     }
     async getStoragePolicyAssignments(queryParams: GetStoragePolicyAssignmentsQueryParamsArg): Promise<StoragePolicyAssignments> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "GET", params: prepareParams(serializeGetStoragePolicyAssignmentsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignments(deserializeJson(response.text));
     }
     async createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg): Promise<StoragePolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments") as string, { method: "POST", body: serializeJson(serializeCreateStoragePolicyAssignmentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignment(deserializeJson(response.text));
     }
     async getStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<StoragePolicyAssignment> {
@@ -63,7 +64,7 @@ export class StoragePolicyAssignmentsManager {
         return deserializeStoragePolicyAssignment(deserializeJson(response.text));
     }
     async updateStoragePolicyAssignmentById(storagePolicyAssignmentId: string, requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg): Promise<StoragePolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policy_assignments/", storagePolicyAssignmentId) as string, { method: "PUT", body: serializeJson(serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicyAssignment(deserializeJson(response.text));
     }
     async deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any> {
@@ -87,12 +88,12 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForT
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetStoragePolicyAssignmentsQueryParamsArg(val: GetStoragePolicyAssignmentsQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["resolvedForType"]: serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val.resolvedForType), ["resolvedForId"]: val.resolvedForId };
+    return { ["marker"]: val.marker, ["resolved_for_type"]: serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val.resolvedForType), ["resolved_for_id"]: val.resolvedForId };
 }
 export function deserializeGetStoragePolicyAssignmentsQueryParamsArg(val: any): GetStoragePolicyAssignmentsQueryParamsArg {
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const resolvedForType: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField = deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val.resolvedForType);
-    const resolvedForId: string = val.resolvedForId;
+    const resolvedForType: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField = deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val.resolved_for_type);
+    const resolvedForId: string = val.resolved_for_id;
     return { marker: marker, resolvedForType: resolvedForType, resolvedForId: resolvedForId } satisfies GetStoragePolicyAssignmentsQueryParamsArg;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField): Json {
@@ -139,11 +140,11 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedTo
     return { type: type, id: id } satisfies CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArg(val: CreateStoragePolicyAssignmentRequestBodyArg): Json {
-    return { ["storagePolicy"]: serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(val.storagePolicy), ["assignedTo"]: serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(val.assignedTo) };
+    return { ["storage_policy"]: serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(val.storagePolicy), ["assigned_to"]: serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(val.assignedTo) };
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyArg(val: any): CreateStoragePolicyAssignmentRequestBodyArg {
-    const storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField = deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(val.storagePolicy);
-    const assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField = deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(val.assignedTo);
+    const storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField = deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(val.storage_policy);
+    const assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField = deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(val.assigned_to);
     return { storagePolicy: storagePolicy, assignedTo: assignedTo } satisfies CreateStoragePolicyAssignmentRequestBodyArg;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(val: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField): Json {
@@ -167,9 +168,9 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStorag
     return { type: type, id: id } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(val: UpdateStoragePolicyAssignmentByIdRequestBodyArg): Json {
-    return { ["storagePolicy"]: serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(val.storagePolicy) };
+    return { ["storage_policy"]: serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(val.storagePolicy) };
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(val: any): UpdateStoragePolicyAssignmentByIdRequestBodyArg {
-    const storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField = deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(val.storagePolicy);
+    const storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField = deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(val.storage_policy);
     return { storagePolicy: storagePolicy } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyArg;
 }

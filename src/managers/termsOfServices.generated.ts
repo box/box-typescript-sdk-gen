@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetTermOfServicesQueryParamsArgTosTypeField = "external" | "managed";
 export interface GetTermOfServicesQueryParamsArg {
@@ -42,11 +43,11 @@ export class TermsOfServicesManager {
         Object.assign(this, fields);
     }
     async getTermOfServices(queryParams: undefined | GetTermOfServicesQueryParamsArg = {} satisfies GetTermOfServicesQueryParamsArg): Promise<TermsOfServices> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "GET", params: prepareParams(serializeGetTermOfServicesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfServices(deserializeJson(response.text));
     }
     async createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "POST", body: serializeJson(serializeCreateTermOfServiceRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
     async getTermOfServiceById(termsOfServiceId: string): Promise<TermsOfService> {
@@ -54,7 +55,7 @@ export class TermsOfServicesManager {
         return deserializeTermsOfService(deserializeJson(response.text));
     }
     async updateTermOfServiceById(termsOfServiceId: string, requestBody: UpdateTermOfServiceByIdRequestBodyArg): Promise<TermsOfService> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services/", termsOfServiceId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services/", termsOfServiceId) as string, { method: "PUT", body: serializeJson(serializeUpdateTermOfServiceByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfService(deserializeJson(response.text));
     }
 }
@@ -74,10 +75,10 @@ export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(val: any)
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetTermOfServicesQueryParamsArg(val: GetTermOfServicesQueryParamsArg): Json {
-    return { ["tosType"]: val.tosType == void 0 ? void 0 : serializeGetTermOfServicesQueryParamsArgTosTypeField(val.tosType) };
+    return { ["tos_type"]: val.tosType == void 0 ? void 0 : serializeGetTermOfServicesQueryParamsArgTosTypeField(val.tosType) };
 }
 export function deserializeGetTermOfServicesQueryParamsArg(val: any): GetTermOfServicesQueryParamsArg {
-    const tosType: undefined | GetTermOfServicesQueryParamsArgTosTypeField = val.tosType == void 0 ? void 0 : deserializeGetTermOfServicesQueryParamsArgTosTypeField(val.tosType);
+    const tosType: undefined | GetTermOfServicesQueryParamsArgTosTypeField = val.tos_type == void 0 ? void 0 : deserializeGetTermOfServicesQueryParamsArgTosTypeField(val.tos_type);
     return { tosType: tosType } satisfies GetTermOfServicesQueryParamsArg;
 }
 export function serializeCreateTermOfServiceRequestBodyArgStatusField(val: CreateTermOfServiceRequestBodyArgStatusField): Json {
@@ -111,11 +112,11 @@ export function deserializeCreateTermOfServiceRequestBodyArgTosTypeField(val: an
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTermOfServiceRequestBodyArg(val: CreateTermOfServiceRequestBodyArg): Json {
-    return { ["status"]: serializeCreateTermOfServiceRequestBodyArgStatusField(val.status), ["tosType"]: val.tosType == void 0 ? void 0 : serializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tosType), ["text"]: val.text };
+    return { ["status"]: serializeCreateTermOfServiceRequestBodyArgStatusField(val.status), ["tos_type"]: val.tosType == void 0 ? void 0 : serializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tosType), ["text"]: val.text };
 }
 export function deserializeCreateTermOfServiceRequestBodyArg(val: any): CreateTermOfServiceRequestBodyArg {
     const status: CreateTermOfServiceRequestBodyArgStatusField = deserializeCreateTermOfServiceRequestBodyArgStatusField(val.status);
-    const tosType: undefined | CreateTermOfServiceRequestBodyArgTosTypeField = val.tosType == void 0 ? void 0 : deserializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tosType);
+    const tosType: undefined | CreateTermOfServiceRequestBodyArgTosTypeField = val.tos_type == void 0 ? void 0 : deserializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tos_type);
     const text: string = val.text;
     return { status: status, tosType: tosType, text: text } satisfies CreateTermOfServiceRequestBodyArg;
 }

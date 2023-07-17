@@ -29,7 +29,7 @@ export class ShieldInformationBarrierReportsManager {
         Object.assign(this, fields);
     }
     async getShieldInformationBarrierReports(queryParams: GetShieldInformationBarrierReportsQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_reports") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_reports") as string, { method: "GET", params: prepareParams(serializeGetShieldInformationBarrierReportsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
     async createShieldInformationBarrierReport(requestBody: ShieldInformationBarrierReference): Promise<ShieldInformationBarrierReport> {
@@ -42,10 +42,10 @@ export class ShieldInformationBarrierReportsManager {
     }
 }
 export function serializeGetShieldInformationBarrierReportsQueryParamsArg(val: GetShieldInformationBarrierReportsQueryParamsArg): Json {
-    return { ["shieldInformationBarrierId"]: val.shieldInformationBarrierId, ["marker"]: val.marker, ["limit"]: val.limit };
+    return { ["shield_information_barrier_id"]: val.shieldInformationBarrierId, ["marker"]: val.marker, ["limit"]: val.limit };
 }
 export function deserializeGetShieldInformationBarrierReportsQueryParamsArg(val: any): GetShieldInformationBarrierReportsQueryParamsArg {
-    const shieldInformationBarrierId: string = val.shieldInformationBarrierId;
+    const shieldInformationBarrierId: string = val.shield_information_barrier_id;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     return { shieldInformationBarrierId: shieldInformationBarrierId, marker: marker, limit: limit } satisfies GetShieldInformationBarrierReportsQueryParamsArg;

@@ -32,7 +32,7 @@ export class EventsManager {
         Object.assign(this, fields);
     }
     async getEvents(queryParams: undefined | GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg): Promise<Events> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: prepareParams(serializeGetEventsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeEvents(deserializeJson(response.text));
     }
     async getEventsWithLongPolling(): Promise<RealtimeServers> {
@@ -65,14 +65,14 @@ export function deserializeGetEventsQueryParamsArgStreamTypeField(val: any): Get
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeGetEventsQueryParamsArg(val: GetEventsQueryParamsArg): Json {
-    return { ["streamType"]: val.streamType == void 0 ? void 0 : serializeGetEventsQueryParamsArgStreamTypeField(val.streamType), ["streamPosition"]: val.streamPosition, ["limit"]: val.limit, ["eventType"]: val.eventType, ["createdAfter"]: val.createdAfter, ["createdBefore"]: val.createdBefore };
+    return { ["stream_type"]: val.streamType == void 0 ? void 0 : serializeGetEventsQueryParamsArgStreamTypeField(val.streamType), ["stream_position"]: val.streamPosition, ["limit"]: val.limit, ["event_type"]: val.eventType, ["created_after"]: val.createdAfter, ["created_before"]: val.createdBefore };
 }
 export function deserializeGetEventsQueryParamsArg(val: any): GetEventsQueryParamsArg {
-    const streamType: undefined | GetEventsQueryParamsArgStreamTypeField = val.streamType == void 0 ? void 0 : deserializeGetEventsQueryParamsArgStreamTypeField(val.streamType);
-    const streamPosition: undefined | string = isJson(val.streamPosition, "string") ? val.streamPosition : void 0;
+    const streamType: undefined | GetEventsQueryParamsArgStreamTypeField = val.stream_type == void 0 ? void 0 : deserializeGetEventsQueryParamsArgStreamTypeField(val.stream_type);
+    const streamPosition: undefined | string = isJson(val.stream_position, "string") ? val.stream_position : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const eventType: undefined | string = isJson(val.eventType, "string") ? val.eventType : void 0;
-    const createdAfter: undefined | string = isJson(val.createdAfter, "string") ? val.createdAfter : void 0;
-    const createdBefore: undefined | string = isJson(val.createdBefore, "string") ? val.createdBefore : void 0;
+    const eventType: undefined | string = isJson(val.event_type, "string") ? val.event_type : void 0;
+    const createdAfter: undefined | string = isJson(val.created_after, "string") ? val.created_after : void 0;
+    const createdBefore: undefined | string = isJson(val.created_before, "string") ? val.created_before : void 0;
     return { streamType: streamType, streamPosition: streamPosition, limit: limit, eventType: eventType, createdAfter: createdAfter, createdBefore: createdBefore } satisfies GetEventsQueryParamsArg;
 }

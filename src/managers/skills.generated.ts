@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
@@ -55,7 +56,7 @@ export class SkillsManager {
         return deserializeSkillCardsMetadata(deserializeJson(response.text));
     }
     async createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Promise<SkillCardsMetadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", body: serializeJson(serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSkillCardsMetadata(deserializeJson(response.text));
     }
     async deleteFileMetadataGlobalBoxSkillsCard(fileId: string): Promise<any> {
@@ -63,7 +64,7 @@ export class SkillsManager {
         return response.content;
     }
     async updateSkillInvocationById(skillId: string, requestBody: UpdateSkillInvocationByIdRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/skill_invocations/", skillId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/skill_invocations/", skillId) as string, { method: "PUT", body: serializeJson(serializeUpdateSkillInvocationByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
@@ -162,13 +163,13 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgUsageField(val
     return { unit: unit, value: value } satisfies UpdateSkillInvocationByIdRequestBodyArgUsageField;
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArg(val: UpdateSkillInvocationByIdRequestBodyArg): Json {
-    return { ["status"]: serializeUpdateSkillInvocationByIdRequestBodyArgStatusField(val.status), ["metadata"]: serializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(val.metadata), ["file"]: serializeUpdateSkillInvocationByIdRequestBodyArgFileField(val.file), ["fileVersion"]: val.fileVersion == void 0 ? void 0 : serializeUpdateSkillInvocationByIdRequestBodyArgFileVersionField(val.fileVersion), ["usage"]: val.usage == void 0 ? void 0 : serializeUpdateSkillInvocationByIdRequestBodyArgUsageField(val.usage) };
+    return { ["status"]: serializeUpdateSkillInvocationByIdRequestBodyArgStatusField(val.status), ["metadata"]: serializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(val.metadata), ["file"]: serializeUpdateSkillInvocationByIdRequestBodyArgFileField(val.file), ["file_version"]: val.fileVersion == void 0 ? void 0 : serializeUpdateSkillInvocationByIdRequestBodyArgFileVersionField(val.fileVersion), ["usage"]: val.usage == void 0 ? void 0 : serializeUpdateSkillInvocationByIdRequestBodyArgUsageField(val.usage) };
 }
 export function deserializeUpdateSkillInvocationByIdRequestBodyArg(val: any): UpdateSkillInvocationByIdRequestBodyArg {
     const status: UpdateSkillInvocationByIdRequestBodyArgStatusField = deserializeUpdateSkillInvocationByIdRequestBodyArgStatusField(val.status);
     const metadata: UpdateSkillInvocationByIdRequestBodyArgMetadataField = deserializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(val.metadata);
     const file: UpdateSkillInvocationByIdRequestBodyArgFileField = deserializeUpdateSkillInvocationByIdRequestBodyArgFileField(val.file);
-    const fileVersion: undefined | UpdateSkillInvocationByIdRequestBodyArgFileVersionField = val.fileVersion == void 0 ? void 0 : deserializeUpdateSkillInvocationByIdRequestBodyArgFileVersionField(val.fileVersion);
+    const fileVersion: undefined | UpdateSkillInvocationByIdRequestBodyArgFileVersionField = val.file_version == void 0 ? void 0 : deserializeUpdateSkillInvocationByIdRequestBodyArgFileVersionField(val.file_version);
     const usage: undefined | UpdateSkillInvocationByIdRequestBodyArgUsageField = val.usage == void 0 ? void 0 : deserializeUpdateSkillInvocationByIdRequestBodyArgUsageField(val.usage);
     return { status: status, metadata: metadata, file: file, fileVersion: fileVersion, usage: usage } satisfies UpdateSkillInvocationByIdRequestBodyArg;
 }

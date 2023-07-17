@@ -18,6 +18,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetMetadataCascadePoliciesQueryParamsArg {
     readonly folderId: string;
@@ -42,11 +43,11 @@ export class MetadataCascadePoliciesManager {
         Object.assign(this, fields);
     }
     async getMetadataCascadePolicies(queryParams: GetMetadataCascadePoliciesQueryParamsArg): Promise<MetadataCascadePolicies> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: prepareParams(serializeGetMetadataCascadePoliciesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicies(deserializeJson(response.text));
     }
     async createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg): Promise<MetadataCascadePolicy> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", body: serializeJson(serializeCreateMetadataCascadePolicyRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicy(deserializeJson(response.text));
     }
     async getMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<MetadataCascadePolicy> {
@@ -58,16 +59,16 @@ export class MetadataCascadePoliciesManager {
         return response.content;
     }
     async createMetadataCascadePolicyApply(metadataCascadePolicyId: string, requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId, "/apply") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId, "/apply") as string, { method: "POST", body: serializeJson(serializeCreateMetadataCascadePolicyApplyRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
 export function serializeGetMetadataCascadePoliciesQueryParamsArg(val: GetMetadataCascadePoliciesQueryParamsArg): Json {
-    return { ["folderId"]: val.folderId, ["ownerEnterpriseId"]: val.ownerEnterpriseId, ["marker"]: val.marker, ["offset"]: val.offset };
+    return { ["folder_id"]: val.folderId, ["owner_enterprise_id"]: val.ownerEnterpriseId, ["marker"]: val.marker, ["offset"]: val.offset };
 }
 export function deserializeGetMetadataCascadePoliciesQueryParamsArg(val: any): GetMetadataCascadePoliciesQueryParamsArg {
-    const folderId: string = val.folderId;
-    const ownerEnterpriseId: undefined | string = isJson(val.ownerEnterpriseId, "string") ? val.ownerEnterpriseId : void 0;
+    const folderId: string = val.folder_id;
+    const ownerEnterpriseId: undefined | string = isJson(val.owner_enterprise_id, "string") ? val.owner_enterprise_id : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
     return { folderId: folderId, ownerEnterpriseId: ownerEnterpriseId, marker: marker, offset: offset } satisfies GetMetadataCascadePoliciesQueryParamsArg;
@@ -88,10 +89,10 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyArgScopeField(v
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyArg(val: CreateMetadataCascadePolicyRequestBodyArg): Json {
-    return { ["folderId"]: val.folderId, ["scope"]: serializeCreateMetadataCascadePolicyRequestBodyArgScopeField(val.scope), ["templateKey"]: val.templateKey };
+    return { ["folder_id"]: val.folderId, ["scope"]: serializeCreateMetadataCascadePolicyRequestBodyArgScopeField(val.scope), ["templateKey"]: val.templateKey };
 }
 export function deserializeCreateMetadataCascadePolicyRequestBodyArg(val: any): CreateMetadataCascadePolicyRequestBodyArg {
-    const folderId: string = val.folderId;
+    const folderId: string = val.folder_id;
     const scope: CreateMetadataCascadePolicyRequestBodyArgScopeField = deserializeCreateMetadataCascadePolicyRequestBodyArgScopeField(val.scope);
     const templateKey: string = val.templateKey;
     return { folderId: folderId, scope: scope, templateKey: templateKey } satisfies CreateMetadataCascadePolicyRequestBodyArg;
@@ -112,9 +113,9 @@ export function deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflic
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateMetadataCascadePolicyApplyRequestBodyArg(val: CreateMetadataCascadePolicyApplyRequestBodyArg): Json {
-    return { ["conflictResolution"]: serializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(val.conflictResolution) };
+    return { ["conflict_resolution"]: serializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(val.conflictResolution) };
 }
 export function deserializeCreateMetadataCascadePolicyApplyRequestBodyArg(val: any): CreateMetadataCascadePolicyApplyRequestBodyArg {
-    const conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField = deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(val.conflictResolution);
+    const conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField = deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(val.conflict_resolution);
     return { conflictResolution: conflictResolution } satisfies CreateMetadataCascadePolicyApplyRequestBodyArg;
 }

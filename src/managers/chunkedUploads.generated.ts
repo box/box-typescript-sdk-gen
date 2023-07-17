@@ -22,9 +22,11 @@ import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { deserializeJson } from "../json.js";
+import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
+import { Readable } from "stream";
 export interface CreateFileUploadSessionRequestBodyArg {
     readonly folderId: string;
     readonly fileSize: number;
@@ -33,6 +35,10 @@ export interface CreateFileUploadSessionRequestBodyArg {
 export interface CreateFileUploadSessionForExistingFileRequestBodyArg {
     readonly fileSize: number;
     readonly fileName?: string;
+}
+export interface UploadFilePartHeadersArg {
+    readonly digest: string;
+    readonly contentRange: string;
 }
 export interface GetFileUploadSessionPartsQueryParamsArg {
     readonly offset?: number;
@@ -49,50 +55,62 @@ export interface CreateFileUploadSessionCommitHeadersArg {
 export class ChunkedUploadsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
-    constructor(fields: Omit<ChunkedUploadsManager, "createFileUploadSession" | "createFileUploadSessionForExistingFile" | "getFileUploadSessionById" | "deleteFileUploadSessionById" | "getFileUploadSessionParts" | "createFileUploadSessionCommit">) {
+    constructor(fields: Omit<ChunkedUploadsManager, "createFileUploadSession" | "createFileUploadSessionForExistingFile" | "getFileUploadSessionById" | "uploadFilePart" | "deleteFileUploadSessionById" | "getFileUploadSessionParts" | "createFileUploadSessionCommit">) {
         Object.assign(this, fields);
     }
     async createFileUploadSession(requestBody: CreateFileUploadSessionRequestBodyArg): Promise<UploadSession> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions") as string, { method: "POST", body: serializeJson(serializeCreateFileUploadSessionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadSession(deserializeJson(response.text));
     }
     async createFileUploadSessionForExistingFile(fileId: string, requestBody: CreateFileUploadSessionForExistingFileRequestBodyArg): Promise<UploadSession> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/upload_sessions") as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/upload_sessions") as string, { method: "POST", body: serializeJson(serializeCreateFileUploadSessionForExistingFileRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadSession(deserializeJson(response.text));
     }
     async getFileUploadSessionById(uploadSessionId: string): Promise<UploadSession> {
         const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadSession(deserializeJson(response.text));
     }
+    async uploadFilePart(uploadSessionId: string, requestBody: Readable, headers: UploadFilePartHeadersArg): Promise<UploadedPart> {
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "PUT", headers: prepareParams(serializeUploadFilePartHeadersArg(headers)), body: requestBody, contentType: "application/octet-stream", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUploadedPart(deserializeJson(response.text));
+    }
     async deleteFileUploadSessionById(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async getFileUploadSessionParts(uploadSessionId: string, queryParams: undefined | GetFileUploadSessionPartsQueryParamsArg = {} satisfies GetFileUploadSessionPartsQueryParamsArg): Promise<UploadParts> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: prepareParams(serializeGetFileUploadSessionPartsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadParts(deserializeJson(response.text));
     }
     async createFileUploadSessionCommit(uploadSessionId: string, requestBody: CreateFileUploadSessionCommitRequestBodyArg, headers: CreateFileUploadSessionCommitHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: prepareParams(headers), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: prepareParams(serializeCreateFileUploadSessionCommitHeadersArg(headers)), body: serializeJson(serializeCreateFileUploadSessionCommitRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
 }
 export function serializeCreateFileUploadSessionRequestBodyArg(val: CreateFileUploadSessionRequestBodyArg): Json {
-    return { ["folderId"]: val.folderId, ["fileSize"]: val.fileSize, ["fileName"]: val.fileName };
+    return { ["folder_id"]: val.folderId, ["file_size"]: val.fileSize, ["file_name"]: val.fileName };
 }
 export function deserializeCreateFileUploadSessionRequestBodyArg(val: any): CreateFileUploadSessionRequestBodyArg {
-    const folderId: string = val.folderId;
-    const fileSize: number = val.fileSize;
-    const fileName: string = val.fileName;
+    const folderId: string = val.folder_id;
+    const fileSize: number = val.file_size;
+    const fileName: string = val.file_name;
     return { folderId: folderId, fileSize: fileSize, fileName: fileName } satisfies CreateFileUploadSessionRequestBodyArg;
 }
 export function serializeCreateFileUploadSessionForExistingFileRequestBodyArg(val: CreateFileUploadSessionForExistingFileRequestBodyArg): Json {
-    return { ["fileSize"]: val.fileSize, ["fileName"]: val.fileName };
+    return { ["file_size"]: val.fileSize, ["file_name"]: val.fileName };
 }
 export function deserializeCreateFileUploadSessionForExistingFileRequestBodyArg(val: any): CreateFileUploadSessionForExistingFileRequestBodyArg {
-    const fileSize: number = val.fileSize;
-    const fileName: undefined | string = isJson(val.fileName, "string") ? val.fileName : void 0;
+    const fileSize: number = val.file_size;
+    const fileName: undefined | string = isJson(val.file_name, "string") ? val.file_name : void 0;
     return { fileSize: fileSize, fileName: fileName } satisfies CreateFileUploadSessionForExistingFileRequestBodyArg;
+}
+export function serializeUploadFilePartHeadersArg(val: UploadFilePartHeadersArg): Json {
+    return { ["digest"]: val.digest, ["content-range"]: val.contentRange };
+}
+export function deserializeUploadFilePartHeadersArg(val: any): UploadFilePartHeadersArg {
+    const digest: string = val.digest;
+    const contentRange: string = val["content-range"];
+    return { digest: digest, contentRange: contentRange } satisfies UploadFilePartHeadersArg;
 }
 export function serializeGetFileUploadSessionPartsQueryParamsArg(val: GetFileUploadSessionPartsQueryParamsArg): Json {
     return { ["offset"]: val.offset, ["limit"]: val.limit };
@@ -114,11 +132,11 @@ export function deserializeCreateFileUploadSessionCommitRequestBodyArg(val: any)
     return { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg;
 }
 export function serializeCreateFileUploadSessionCommitHeadersArg(val: CreateFileUploadSessionCommitHeadersArg): Json {
-    return { ["digest"]: val.digest, ["ifMatch"]: val.ifMatch, ["ifNoneMatch"]: val.ifNoneMatch };
+    return { ["digest"]: val.digest, ["if-match"]: val.ifMatch, ["if-none-match"]: val.ifNoneMatch };
 }
 export function deserializeCreateFileUploadSessionCommitHeadersArg(val: any): CreateFileUploadSessionCommitHeadersArg {
     const digest: string = val.digest;
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
-    const ifNoneMatch: undefined | string = isJson(val.ifNoneMatch, "string") ? val.ifNoneMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
+    const ifNoneMatch: undefined | string = isJson(val["if-none-match"], "string") ? val["if-none-match"] : void 0;
     return { digest: digest, ifMatch: ifMatch, ifNoneMatch: ifNoneMatch } satisfies CreateFileUploadSessionCommitHeadersArg;
 }

@@ -33,11 +33,11 @@ export class CollectionsManager {
         Object.assign(this, fields);
     }
     async getCollections(queryParams: undefined | GetCollectionsQueryParamsArg = {} satisfies GetCollectionsQueryParamsArg): Promise<Collections> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: prepareParams(serializeGetCollectionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollections(deserializeJson(response.text));
     }
     async getCollectionItems(collectionId: string, queryParams: undefined | GetCollectionItemsQueryParamsArg = {} satisfies GetCollectionItemsQueryParamsArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: prepareParams(serializeGetCollectionItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
 }

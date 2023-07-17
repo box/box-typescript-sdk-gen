@@ -15,6 +15,7 @@ import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export interface GetFileVersionsQueryParamsArg {
     readonly fields?: string;
@@ -45,23 +46,23 @@ export class FileVersionsManager {
         Object.assign(this, fields);
     }
     async getFileVersions(fileId: string, queryParams: undefined | GetFileVersionsQueryParamsArg = {} satisfies GetFileVersionsQueryParamsArg): Promise<FileVersions> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions") as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions") as string, { method: "GET", params: prepareParams(serializeGetFileVersionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersions(deserializeJson(response.text));
     }
     async getFileVersionById(fileId: string, fileVersionId: string, queryParams: undefined | GetFileVersionByIdQueryParamsArg = {} satisfies GetFileVersionByIdQueryParamsArg): Promise<FileVersionFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: prepareParams(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: prepareParams(serializeGetFileVersionByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionFull(deserializeJson(response.text));
     }
     async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg): Promise<FileVersionFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "PUT", body: serializeJson(serializeUpdateFileVersionByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionFull(deserializeJson(response.text));
     }
     async deleteFileVersionById(fileId: string, fileVersionId: string, headers: undefined | DeleteFileVersionByIdHeadersArg = {} satisfies DeleteFileVersionByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: prepareParams(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: prepareParams(serializeDeleteFileVersionByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
     async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, queryParams: undefined | PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg): Promise<FileVersionFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: prepareParams(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/current") as string, { method: "POST", params: prepareParams(serializePromoteFileVersionQueryParamsArg(queryParams)), body: serializeJson(serializePromoteFileVersionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionFull(deserializeJson(response.text));
     }
 }
@@ -82,17 +83,17 @@ export function deserializeGetFileVersionByIdQueryParamsArg(val: any): GetFileVe
     return { fields: fields } satisfies GetFileVersionByIdQueryParamsArg;
 }
 export function serializeUpdateFileVersionByIdRequestBodyArg(val: UpdateFileVersionByIdRequestBodyArg): Json {
-    return { ["trashedAt"]: val.trashedAt };
+    return { ["trashed_at"]: val.trashedAt };
 }
 export function deserializeUpdateFileVersionByIdRequestBodyArg(val: any): UpdateFileVersionByIdRequestBodyArg {
-    const trashedAt: undefined | string = isJson(val.trashedAt, "string") ? val.trashedAt : void 0;
+    const trashedAt: undefined | string = isJson(val.trashed_at, "string") ? val.trashed_at : void 0;
     return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBodyArg;
 }
 export function serializeDeleteFileVersionByIdHeadersArg(val: DeleteFileVersionByIdHeadersArg): Json {
-    return { ["ifMatch"]: val.ifMatch };
+    return { ["if-match"]: val.ifMatch };
 }
 export function deserializeDeleteFileVersionByIdHeadersArg(val: any): DeleteFileVersionByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val.ifMatch, "string") ? val.ifMatch : void 0;
+    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
     return { ifMatch: ifMatch } satisfies DeleteFileVersionByIdHeadersArg;
 }
 export function serializePromoteFileVersionRequestBodyArgTypeField(val: PromoteFileVersionRequestBodyArgTypeField): Json {
