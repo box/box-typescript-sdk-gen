@@ -5,6 +5,8 @@ import { NetworkSession } from "../network.js";
 import { Readable } from "stream";
 export interface CreateUserAvatarRequestBodyArg {
     readonly pic: Readable;
+    readonly picFileName?: string;
+    readonly picContentType?: string;
 }
 export declare class AvatarsManager {
     readonly auth?: Authentication;

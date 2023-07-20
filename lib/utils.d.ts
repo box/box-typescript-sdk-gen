@@ -17,6 +17,7 @@ export declare function createHash(algorithm: 'sha1'): Hash;
 export declare function getEnvVar(name: string): string;
 export declare function listConcat<T>(a: readonly T[], b: readonly T[]): T[];
 export declare function generateByteStream(size: number): Readable;
+export declare function decodeBase64ByteStream(data: string): Readable;
 export declare function readByteStream(byteStream: Readable): Promise<Buffer>;
 export declare function cloneByteStream(readableStream: Readable): Promise<[Readable, Readable]>;
 export declare function iterateChunks(stream: Readable, chunkSize: number): AsyncIterator<Readable>;

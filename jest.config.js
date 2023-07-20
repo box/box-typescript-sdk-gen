@@ -22,5 +22,7 @@ module.exports = {
     "^(\.\.?\/.+)\.jsx?$": "$1"
   },
   clearMocks: true,
-  setupFilesAfterEnv: ['<rootDir>/setup-jest.js']
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
+  collectCoverage: false, // true on CI
+  coverageDirectory: '<rootDir>/coverage',
 };

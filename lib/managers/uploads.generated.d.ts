@@ -12,6 +12,8 @@ export interface UploadFileVersionRequestBodyArgAttributesField {
 export interface UploadFileVersionRequestBodyArg {
     readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
     readonly file: Readable;
+    readonly fileFileName?: string;
+    readonly fileContentType?: string;
 }
 export interface UploadFileVersionQueryParamsArg {
     readonly fields?: string;
@@ -32,6 +34,8 @@ export interface UploadFileRequestBodyArgAttributesField {
 export interface UploadFileRequestBodyArg {
     readonly attributes: UploadFileRequestBodyArgAttributesField;
     readonly file: Readable;
+    readonly fileFileName?: string;
+    readonly fileContentType?: string;
 }
 export interface UploadFileQueryParamsArg {
     readonly fields?: string;

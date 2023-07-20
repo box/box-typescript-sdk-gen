@@ -16,6 +16,8 @@ import { Json } from "../json.js";
 import { Readable } from "stream";
 export interface CreateUserAvatarRequestBodyArg {
     readonly pic: Readable;
+    readonly picFileName?: string;
+    readonly picContentType?: string;
 }
 export class AvatarsManager {
     readonly auth?: Authentication;
@@ -28,7 +30,7 @@ export class AvatarsManager {
         return response.content;
     }
     async createUserAvatar(userId: string, requestBody: CreateUserAvatarRequestBodyArg): Promise<UserAvatar> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", multipartData: [{ partName: "pic", fileStream: requestBody.pic } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", multipartData: [{ partName: "pic", fileStream: requestBody.pic, contentType: requestBody.picContentType, fileName: requestBody.picFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserAvatar(deserializeJson(response.text));
     }
     async deleteUserAvatar(userId: string): Promise<any> {

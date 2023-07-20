@@ -48,6 +48,10 @@ export function generateByteStream(size: number): Readable {
   return Readable.from(crypto.randomBytes(size));
 }
 
+export function decodeBase64ByteStream(data: string): Readable {
+  return Readable.from(Buffer.from(data, 'base64'));
+}
+
 export async function readByteStream(byteStream: Readable) {
   const buffers: Buffer[] = [];
   for await (const data of byteStream) {
