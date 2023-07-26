@@ -1,15 +1,15 @@
-import { newSerializeFileVersionRetentions } from "../schemas.generated.js";
-import { newDeserializeFileVersionRetentions } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeFileVersionRetention } from "../schemas.generated.js";
-import { newDeserializeFileVersionRetention } from "../schemas.generated.js";
+import { serializeFileVersionRetentions } from "../schemas.generated.js";
+import { deserializeFileVersionRetentions } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeFileVersionRetention } from "../schemas.generated.js";
+import { deserializeFileVersionRetention } from "../schemas.generated.js";
 import { FileVersionRetentions } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { FileVersionRetention } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -34,18 +34,18 @@ export class FileVersionRetentionsManager {
         Object.assign(this, fields);
     }
     async getFileVersionRetentions(queryParams: undefined | GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeFileVersionRetentions(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: prepareParams(serializeGetFileVersionRetentionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeFileVersionRetentions(deserializeJson(response.text));
     }
     async getFileVersionRetentionById(fileVersionRetentionId: string): Promise<FileVersionRetention> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions/", fileVersionRetentionId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeFileVersionRetention(deserializeJson(response.text));
+        return deserializeFileVersionRetention(deserializeJson(response.text));
     }
 }
-export function newSerializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: GetFileVersionRetentionsQueryParamsArgDispositionActionField): Json {
+export function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: GetFileVersionRetentionsQueryParamsArgDispositionActionField): Json {
     return val;
 }
-export function newDeserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: any): GetFileVersionRetentionsQueryParamsArgDispositionActionField {
+export function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: any): GetFileVersionRetentionsQueryParamsArgDispositionActionField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetFileVersionRetentionsQueryParamsArgDispositionActionField\"";
     }
@@ -57,16 +57,16 @@ export function newDeserializeGetFileVersionRetentionsQueryParamsArgDispositionA
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetFileVersionRetentionsQueryParamsArg(val: GetFileVersionRetentionsQueryParamsArg): Json {
-    return { ["fileId"]: val.fileId, ["fileVersionId"]: val.fileVersionId, ["policyId"]: val.policyId, ["dispositionAction"]: val.dispositionAction == void 0 ? void 0 : newSerializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction), ["dispositionBefore"]: val.dispositionBefore, ["dispositionAfter"]: val.dispositionAfter, ["limit"]: val.limit, ["marker"]: val.marker };
+export function serializeGetFileVersionRetentionsQueryParamsArg(val: GetFileVersionRetentionsQueryParamsArg): Json {
+    return { ["file_id"]: val.fileId, ["file_version_id"]: val.fileVersionId, ["policy_id"]: val.policyId, ["disposition_action"]: val.dispositionAction == void 0 ? void 0 : serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction), ["disposition_before"]: val.dispositionBefore, ["disposition_after"]: val.dispositionAfter, ["limit"]: val.limit, ["marker"]: val.marker };
 }
-export function newDeserializeGetFileVersionRetentionsQueryParamsArg(val: any): GetFileVersionRetentionsQueryParamsArg {
-    const fileId: undefined | string = isJson(val.fileId, "string") ? val.fileId : void 0;
-    const fileVersionId: undefined | string = isJson(val.fileVersionId, "string") ? val.fileVersionId : void 0;
-    const policyId: undefined | string = isJson(val.policyId, "string") ? val.policyId : void 0;
-    const dispositionAction: undefined | GetFileVersionRetentionsQueryParamsArgDispositionActionField = val.dispositionAction == void 0 ? void 0 : newDeserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.dispositionAction);
-    const dispositionBefore: undefined | string = isJson(val.dispositionBefore, "string") ? val.dispositionBefore : void 0;
-    const dispositionAfter: undefined | string = isJson(val.dispositionAfter, "string") ? val.dispositionAfter : void 0;
+export function deserializeGetFileVersionRetentionsQueryParamsArg(val: any): GetFileVersionRetentionsQueryParamsArg {
+    const fileId: undefined | string = isJson(val.file_id, "string") ? val.file_id : void 0;
+    const fileVersionId: undefined | string = isJson(val.file_version_id, "string") ? val.file_version_id : void 0;
+    const policyId: undefined | string = isJson(val.policy_id, "string") ? val.policy_id : void 0;
+    const dispositionAction: undefined | GetFileVersionRetentionsQueryParamsArgDispositionActionField = val.disposition_action == void 0 ? void 0 : deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val.disposition_action);
+    const dispositionBefore: undefined | string = isJson(val.disposition_before, "string") ? val.disposition_before : void 0;
+    const dispositionAfter: undefined | string = isJson(val.disposition_after, "string") ? val.disposition_after : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     return { fileId: fileId, fileVersionId: fileVersionId, policyId: policyId, dispositionAction: dispositionAction, dispositionBefore: dispositionBefore, dispositionAfter: dispositionAfter, limit: limit, marker: marker } satisfies GetFileVersionRetentionsQueryParamsArg;

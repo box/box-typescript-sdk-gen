@@ -26,20 +26,20 @@ export interface FetchOptions {
    * [key1, value1, key2, value2, ...]
    */
   readonly headers?: {
-    [key: string]: string | number | boolean | null | undefined;
+    [key: string]: string;
   };
   /**
    * query params
    * [key1, value1, key2, value2, ...]
    */
   readonly params?: {
-    [key: string]: string | number | boolean | null | undefined;
+    [key: string]: string;
   };
 
   /**
    * Request body
    */
-  readonly body?: string;
+  readonly body?: string | Readable;
 
   /**
    * Parts of multipart data
@@ -116,11 +116,7 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
     method,
     headers: {
       'Content-Type': contentType,
-      ...Object.fromEntries(
-        Object.entries(params).filter<[string, string]>(
-          (entry): entry is [string, string] => typeof entry[1] === 'string'
-        )
-      ),
+      ...headers,
       ...(options.auth && {
         Authorization: `Bearer ${await options.auth.retrieveToken(
           options.networkSession
@@ -152,20 +148,7 @@ export async function fetch(
     ''.concat(
       resource,
       Object.keys(params).length === 0 || resource.endsWith('?') ? '' : '?',
-      new URLSearchParams(
-        Object.fromEntries(
-          Object.entries(params)
-            .map<[string, string | null | undefined]>(([key, value]) => {
-              if (typeof value === 'string' || value == null) {
-                return [key, value];
-              }
-              return [key, String(value)];
-            })
-            .filter<[string, string]>(
-              (entry): entry is [string, string] => typeof entry[1] === 'string'
-            )
-        )
-      ).toString()
+      new URLSearchParams(params).toString()
     ),
     fetchOptions
   );

@@ -1,20 +1,21 @@
-import { newSerializeMetadatas } from "../schemas.generated.js";
-import { newDeserializeMetadatas } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeMetadata } from "../schemas.generated.js";
-import { newDeserializeMetadata } from "../schemas.generated.js";
+import { serializeMetadatas } from "../schemas.generated.js";
+import { deserializeMetadatas } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeMetadata } from "../schemas.generated.js";
+import { deserializeMetadata } from "../schemas.generated.js";
 import { Metadatas } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Metadata } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetFolderMetadataByIdScopeArg = "global" | "enterprise";
 export type CreateFolderMetadataByIdScopeArg = "global" | "enterprise";
@@ -29,25 +30,25 @@ export class FolderMetadataManager {
     }
     async getFolderMetadata(folderId: string): Promise<Metadatas> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeMetadatas(deserializeJson(response.text));
+        return deserializeMetadatas(deserializeJson(response.text));
     }
     async getFolderMetadataById(folderId: string, scope: GetFolderMetadataByIdScopeArg, templateKey: string): Promise<Metadata> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeMetadata(deserializeJson(response.text));
+        return deserializeMetadata(deserializeJson(response.text));
     }
     async createFolderMetadataById(folderId: string, scope: CreateFolderMetadataByIdScopeArg, templateKey: string, requestBody: CreateFolderMetadataByIdRequestBodyArg): Promise<Metadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeMetadata(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", body: serializeJson(serializeCreateFolderMetadataByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeMetadata(deserializeJson(response.text));
     }
     async deleteFolderMetadataById(folderId: string, scope: DeleteFolderMetadataByIdScopeArg, templateKey: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/metadata/", scope, "/", templateKey) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeGetFolderMetadataByIdScopeArg(val: GetFolderMetadataByIdScopeArg): Json {
+export function serializeGetFolderMetadataByIdScopeArg(val: GetFolderMetadataByIdScopeArg): Json {
     return val;
 }
-export function newDeserializeGetFolderMetadataByIdScopeArg(val: any): GetFolderMetadataByIdScopeArg {
+export function deserializeGetFolderMetadataByIdScopeArg(val: any): GetFolderMetadataByIdScopeArg {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetFolderMetadataByIdScopeArg\"";
     }
@@ -59,10 +60,10 @@ export function newDeserializeGetFolderMetadataByIdScopeArg(val: any): GetFolder
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateFolderMetadataByIdScopeArg(val: CreateFolderMetadataByIdScopeArg): Json {
+export function serializeCreateFolderMetadataByIdScopeArg(val: CreateFolderMetadataByIdScopeArg): Json {
     return val;
 }
-export function newDeserializeCreateFolderMetadataByIdScopeArg(val: any): CreateFolderMetadataByIdScopeArg {
+export function deserializeCreateFolderMetadataByIdScopeArg(val: any): CreateFolderMetadataByIdScopeArg {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateFolderMetadataByIdScopeArg\"";
     }
@@ -74,16 +75,16 @@ export function newDeserializeCreateFolderMetadataByIdScopeArg(val: any): Create
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateFolderMetadataByIdRequestBodyArg(val: CreateFolderMetadataByIdRequestBodyArg): Json {
+export function serializeCreateFolderMetadataByIdRequestBodyArg(val: CreateFolderMetadataByIdRequestBodyArg): Json {
     return {};
 }
-export function newDeserializeCreateFolderMetadataByIdRequestBodyArg(val: any): CreateFolderMetadataByIdRequestBodyArg {
+export function deserializeCreateFolderMetadataByIdRequestBodyArg(val: any): CreateFolderMetadataByIdRequestBodyArg {
     return {} satisfies CreateFolderMetadataByIdRequestBodyArg;
 }
-export function newSerializeDeleteFolderMetadataByIdScopeArg(val: DeleteFolderMetadataByIdScopeArg): Json {
+export function serializeDeleteFolderMetadataByIdScopeArg(val: DeleteFolderMetadataByIdScopeArg): Json {
     return val;
 }
-export function newDeserializeDeleteFolderMetadataByIdScopeArg(val: any): DeleteFolderMetadataByIdScopeArg {
+export function deserializeDeleteFolderMetadataByIdScopeArg(val: any): DeleteFolderMetadataByIdScopeArg {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"DeleteFolderMetadataByIdScopeArg\"";
     }

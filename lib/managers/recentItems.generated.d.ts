@@ -13,5 +13,5 @@ export declare class RecentItemsManager {
     constructor(fields: Omit<RecentItemsManager, "getRecentItems">);
     getRecentItems(queryParams?: undefined | GetRecentItemsQueryParamsArg): Promise<RecentItems>;
 }
-export declare function newSerializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json;
-export declare function newDeserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg;
+export declare function serializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json;
+export declare function deserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg;

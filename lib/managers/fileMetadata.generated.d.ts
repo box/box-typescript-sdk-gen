@@ -17,11 +17,11 @@ export declare class FileMetadataManager {
     createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg): Promise<Metadata>;
     deleteFileMetadataById(fileId: string, scope: DeleteFileMetadataByIdScopeArg, templateKey: string): Promise<any>;
 }
-export declare function newSerializeGetFileMetadataByIdScopeArg(val: GetFileMetadataByIdScopeArg): Json;
-export declare function newDeserializeGetFileMetadataByIdScopeArg(val: any): GetFileMetadataByIdScopeArg;
-export declare function newSerializeCreateFileMetadataByIdScopeArg(val: CreateFileMetadataByIdScopeArg): Json;
-export declare function newDeserializeCreateFileMetadataByIdScopeArg(val: any): CreateFileMetadataByIdScopeArg;
-export declare function newSerializeCreateFileMetadataByIdRequestBodyArg(val: CreateFileMetadataByIdRequestBodyArg): Json;
-export declare function newDeserializeCreateFileMetadataByIdRequestBodyArg(val: any): CreateFileMetadataByIdRequestBodyArg;
-export declare function newSerializeDeleteFileMetadataByIdScopeArg(val: DeleteFileMetadataByIdScopeArg): Json;
-export declare function newDeserializeDeleteFileMetadataByIdScopeArg(val: any): DeleteFileMetadataByIdScopeArg;
+export declare function serializeGetFileMetadataByIdScopeArg(val: GetFileMetadataByIdScopeArg): Json;
+export declare function deserializeGetFileMetadataByIdScopeArg(val: any): GetFileMetadataByIdScopeArg;
+export declare function serializeCreateFileMetadataByIdScopeArg(val: CreateFileMetadataByIdScopeArg): Json;
+export declare function deserializeCreateFileMetadataByIdScopeArg(val: any): CreateFileMetadataByIdScopeArg;
+export declare function serializeCreateFileMetadataByIdRequestBodyArg(val: CreateFileMetadataByIdRequestBodyArg): Json;
+export declare function deserializeCreateFileMetadataByIdRequestBodyArg(val: any): CreateFileMetadataByIdRequestBodyArg;
+export declare function serializeDeleteFileMetadataByIdScopeArg(val: DeleteFileMetadataByIdScopeArg): Json;
+export declare function deserializeDeleteFileMetadataByIdScopeArg(val: any): DeleteFileMetadataByIdScopeArg;

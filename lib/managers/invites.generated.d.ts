@@ -25,13 +25,13 @@ export declare class InvitesManager {
     createInvite(requestBody: CreateInviteRequestBodyArg, queryParams?: undefined | CreateInviteQueryParamsArg): Promise<Invite>;
     getInviteById(inviteId: string, queryParams?: undefined | GetInviteByIdQueryParamsArg): Promise<Invite>;
 }
-export declare function newSerializeCreateInviteRequestBodyArgEnterpriseField(val: CreateInviteRequestBodyArgEnterpriseField): Json;
-export declare function newDeserializeCreateInviteRequestBodyArgEnterpriseField(val: any): CreateInviteRequestBodyArgEnterpriseField;
-export declare function newSerializeCreateInviteRequestBodyArgActionableByField(val: CreateInviteRequestBodyArgActionableByField): Json;
-export declare function newDeserializeCreateInviteRequestBodyArgActionableByField(val: any): CreateInviteRequestBodyArgActionableByField;
-export declare function newSerializeCreateInviteRequestBodyArg(val: CreateInviteRequestBodyArg): Json;
-export declare function newDeserializeCreateInviteRequestBodyArg(val: any): CreateInviteRequestBodyArg;
-export declare function newSerializeCreateInviteQueryParamsArg(val: CreateInviteQueryParamsArg): Json;
-export declare function newDeserializeCreateInviteQueryParamsArg(val: any): CreateInviteQueryParamsArg;
-export declare function newSerializeGetInviteByIdQueryParamsArg(val: GetInviteByIdQueryParamsArg): Json;
-export declare function newDeserializeGetInviteByIdQueryParamsArg(val: any): GetInviteByIdQueryParamsArg;
+export declare function serializeCreateInviteRequestBodyArgEnterpriseField(val: CreateInviteRequestBodyArgEnterpriseField): Json;
+export declare function deserializeCreateInviteRequestBodyArgEnterpriseField(val: any): CreateInviteRequestBodyArgEnterpriseField;
+export declare function serializeCreateInviteRequestBodyArgActionableByField(val: CreateInviteRequestBodyArgActionableByField): Json;
+export declare function deserializeCreateInviteRequestBodyArgActionableByField(val: any): CreateInviteRequestBodyArgActionableByField;
+export declare function serializeCreateInviteRequestBodyArg(val: CreateInviteRequestBodyArg): Json;
+export declare function deserializeCreateInviteRequestBodyArg(val: any): CreateInviteRequestBodyArg;
+export declare function serializeCreateInviteQueryParamsArg(val: CreateInviteQueryParamsArg): Json;
+export declare function deserializeCreateInviteQueryParamsArg(val: any): CreateInviteQueryParamsArg;
+export declare function serializeGetInviteByIdQueryParamsArg(val: GetInviteByIdQueryParamsArg): Json;
+export declare function deserializeGetInviteByIdQueryParamsArg(val: any): GetInviteByIdQueryParamsArg;

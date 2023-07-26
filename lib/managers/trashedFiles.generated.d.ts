@@ -24,11 +24,11 @@ export declare class TrashedFilesManager {
     getFileTrash(fileId: string, queryParams?: undefined | GetFileTrashQueryParamsArg): Promise<TrashFile>;
     deleteFileTrash(fileId: string): Promise<any>;
 }
-export declare function newSerializeRestoreFileFromTrashRequestBodyArgParentField(val: RestoreFileFromTrashRequestBodyArgParentField): Json;
-export declare function newDeserializeRestoreFileFromTrashRequestBodyArgParentField(val: any): RestoreFileFromTrashRequestBodyArgParentField;
-export declare function newSerializeRestoreFileFromTrashRequestBodyArg(val: RestoreFileFromTrashRequestBodyArg): Json;
-export declare function newDeserializeRestoreFileFromTrashRequestBodyArg(val: any): RestoreFileFromTrashRequestBodyArg;
-export declare function newSerializeRestoreFileFromTrashQueryParamsArg(val: RestoreFileFromTrashQueryParamsArg): Json;
-export declare function newDeserializeRestoreFileFromTrashQueryParamsArg(val: any): RestoreFileFromTrashQueryParamsArg;
-export declare function newSerializeGetFileTrashQueryParamsArg(val: GetFileTrashQueryParamsArg): Json;
-export declare function newDeserializeGetFileTrashQueryParamsArg(val: any): GetFileTrashQueryParamsArg;
+export declare function serializeRestoreFileFromTrashRequestBodyArgParentField(val: RestoreFileFromTrashRequestBodyArgParentField): Json;
+export declare function deserializeRestoreFileFromTrashRequestBodyArgParentField(val: any): RestoreFileFromTrashRequestBodyArgParentField;
+export declare function serializeRestoreFileFromTrashRequestBodyArg(val: RestoreFileFromTrashRequestBodyArg): Json;
+export declare function deserializeRestoreFileFromTrashRequestBodyArg(val: any): RestoreFileFromTrashRequestBodyArg;
+export declare function serializeRestoreFileFromTrashQueryParamsArg(val: RestoreFileFromTrashQueryParamsArg): Json;
+export declare function deserializeRestoreFileFromTrashQueryParamsArg(val: any): RestoreFileFromTrashQueryParamsArg;
+export declare function serializeGetFileTrashQueryParamsArg(val: GetFileTrashQueryParamsArg): Json;
+export declare function deserializeGetFileTrashQueryParamsArg(val: any): GetFileTrashQueryParamsArg;

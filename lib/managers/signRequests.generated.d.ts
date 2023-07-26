@@ -18,5 +18,5 @@ export declare class SignRequestsManager {
     getSignRequests(queryParams?: undefined | GetSignRequestsQueryParamsArg): Promise<SignRequests>;
     createSignRequest(requestBody: SignRequestCreateRequest): Promise<SignRequest>;
 }
-export declare function newSerializeGetSignRequestsQueryParamsArg(val: GetSignRequestsQueryParamsArg): Json;
-export declare function newDeserializeGetSignRequestsQueryParamsArg(val: any): GetSignRequestsQueryParamsArg;
+export declare function serializeGetSignRequestsQueryParamsArg(val: GetSignRequestsQueryParamsArg): Json;
+export declare function deserializeGetSignRequestsQueryParamsArg(val: any): GetSignRequestsQueryParamsArg;

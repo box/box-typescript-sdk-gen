@@ -15,7 +15,7 @@ export declare class AuthorizationManager {
     constructor(fields: Omit<AuthorizationManager, "getAuthorize">);
     getAuthorize(queryParams: GetAuthorizeQueryParamsArg): Promise<undefined>;
 }
-export declare function newSerializeGetAuthorizeQueryParamsArgResponseTypeField(val: GetAuthorizeQueryParamsArgResponseTypeField): Json;
-export declare function newDeserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any): GetAuthorizeQueryParamsArgResponseTypeField;
-export declare function newSerializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json;
-export declare function newDeserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg;
+export declare function serializeGetAuthorizeQueryParamsArgResponseTypeField(val: GetAuthorizeQueryParamsArgResponseTypeField): Json;
+export declare function deserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any): GetAuthorizeQueryParamsArgResponseTypeField;
+export declare function serializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json;
+export declare function deserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg;

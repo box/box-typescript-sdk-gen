@@ -1,9 +1,9 @@
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -24,22 +24,22 @@ export class DownloadsManager {
         Object.assign(this, fields);
     }
     async downloadFile(fileId: string, queryParams: undefined | DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: undefined | DownloadFileHeadersArg = {} satisfies DownloadFileHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: toMap(queryParams), headers: toMap(headers), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: prepareParams(serializeDownloadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeDownloadFileHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
-    return { ["version"]: val.version, ["accessToken"]: val.accessToken };
+export function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
+    return { ["version"]: val.version, ["access_token"]: val.accessToken };
 }
-export function newDeserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
+export function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
     const version: undefined | string = isJson(val.version, "string") ? val.version : void 0;
-    const accessToken: undefined | string = isJson(val.accessToken, "string") ? val.accessToken : void 0;
+    const accessToken: undefined | string = isJson(val.access_token, "string") ? val.access_token : void 0;
     return { version: version, accessToken: accessToken } satisfies DownloadFileQueryParamsArg;
 }
-export function newSerializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {
+export function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {
     return { ["range"]: val.range, ["boxapi"]: val.boxapi };
 }
-export function newDeserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg {
+export function deserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg {
     const range: undefined | string = isJson(val.range, "string") ? val.range : void 0;
     const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
     return { range: range, boxapi: boxapi } satisfies DownloadFileHeadersArg;

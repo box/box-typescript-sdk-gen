@@ -16,5 +16,5 @@ export declare class FileRequestsManager {
     deleteFileRequestById(fileRequestId: string): Promise<any>;
     createFileRequestCopy(fileRequestId: string, requestBody: FileRequestCopyRequest): Promise<FileRequest>;
 }
-export declare function newSerializeUpdateFileRequestByIdHeadersArg(val: UpdateFileRequestByIdHeadersArg): Json;
-export declare function newDeserializeUpdateFileRequestByIdHeadersArg(val: any): UpdateFileRequestByIdHeadersArg;
+export declare function serializeUpdateFileRequestByIdHeadersArg(val: UpdateFileRequestByIdHeadersArg): Json;
+export declare function deserializeUpdateFileRequestByIdHeadersArg(val: any): UpdateFileRequestByIdHeadersArg;

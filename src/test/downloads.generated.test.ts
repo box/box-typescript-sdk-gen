@@ -1,7 +1,7 @@
-import { newSerializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
-import { newDeserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
-import { newSerializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
-import { newDeserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { serializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { deserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
+import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArg } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
@@ -18,7 +18,7 @@ const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
 test("test_download_file", async function test_download_file(): Promise<any> {
     const newFileName: any = getUuid();
-    const fileContentStream: any = generateByteStream();
+    const fileContentStream: any = generateByteStream(1048576);
     const fileBuffer: any = await readByteStream(fileContentStream);
     const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: newFileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileBuffer } satisfies UploadFileRequestBodyArg);
     const uploadedFile: any = uploadedFiles.entries[0];

@@ -14,5 +14,5 @@ export declare class SignTemplatesManager {
     getSignTemplates(queryParams?: undefined | GetSignTemplatesQueryParamsArg): Promise<SignTemplates>;
     getSignTemplateById(templateId: string): Promise<SignTemplate>;
 }
-export declare function newSerializeGetSignTemplatesQueryParamsArg(val: GetSignTemplatesQueryParamsArg): Json;
-export declare function newDeserializeGetSignTemplatesQueryParamsArg(val: any): GetSignTemplatesQueryParamsArg;
+export declare function serializeGetSignTemplatesQueryParamsArg(val: GetSignTemplatesQueryParamsArg): Json;
+export declare function deserializeGetSignTemplatesQueryParamsArg(val: any): GetSignTemplatesQueryParamsArg;

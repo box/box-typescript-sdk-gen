@@ -1,4 +1,6 @@
 /// <reference types="node" />
+/// <reference types="node" />
+import { Readable } from 'stream';
 import { Authentication } from './auth';
 import { NetworkSession } from './network';
 export declare const userAgentHeader: string;
@@ -19,19 +21,19 @@ export interface FetchOptions {
      * [key1, value1, key2, value2, ...]
      */
     readonly headers?: {
-        [key: string]: string | number | boolean | null | undefined;
+        [key: string]: string;
     };
     /**
      * query params
      * [key1, value1, key2, value2, ...]
      */
     readonly params?: {
-        [key: string]: string | number | boolean | null | undefined;
+        [key: string]: string;
     };
     /**
      * Request body
      */
-    readonly body?: string;
+    readonly body?: string | Readable;
     /**
      * Parts of multipart data
      */

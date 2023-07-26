@@ -15,5 +15,5 @@ export declare class StoragePoliciesManager {
     getStoragePolicies(queryParams?: undefined | GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies>;
     getStoragePolicyById(storagePolicyId: string): Promise<StoragePolicy>;
 }
-export declare function newSerializeGetStoragePoliciesQueryParamsArg(val: GetStoragePoliciesQueryParamsArg): Json;
-export declare function newDeserializeGetStoragePoliciesQueryParamsArg(val: any): GetStoragePoliciesQueryParamsArg;
+export declare function serializeGetStoragePoliciesQueryParamsArg(val: GetStoragePoliciesQueryParamsArg): Json;
+export declare function deserializeGetStoragePoliciesQueryParamsArg(val: any): GetStoragePoliciesQueryParamsArg;

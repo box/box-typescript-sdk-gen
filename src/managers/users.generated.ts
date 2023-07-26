@@ -1,13 +1,13 @@
-import { newSerializeUsers } from "../schemas.generated.js";
-import { newDeserializeUsers } from "../schemas.generated.js";
-import { newSerializeClientError } from "../schemas.generated.js";
-import { newDeserializeClientError } from "../schemas.generated.js";
-import { newSerializeUser } from "../schemas.generated.js";
-import { newDeserializeUser } from "../schemas.generated.js";
-import { newSerializeTrackingCode } from "../schemas.generated.js";
-import { newDeserializeTrackingCode } from "../schemas.generated.js";
-import { newSerializeUserFull } from "../schemas.generated.js";
-import { newDeserializeUserFull } from "../schemas.generated.js";
+import { serializeUsers } from "../schemas.generated.js";
+import { deserializeUsers } from "../schemas.generated.js";
+import { serializeClientError } from "../schemas.generated.js";
+import { deserializeClientError } from "../schemas.generated.js";
+import { serializeUser } from "../schemas.generated.js";
+import { deserializeUser } from "../schemas.generated.js";
+import { serializeTrackingCode } from "../schemas.generated.js";
+import { deserializeTrackingCode } from "../schemas.generated.js";
+import { serializeUserFull } from "../schemas.generated.js";
+import { deserializeUserFull } from "../schemas.generated.js";
 import { Users } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
 import { User } from "../schemas.generated.js";
@@ -15,12 +15,13 @@ import { TrackingCode } from "../schemas.generated.js";
 import { UserFull } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { toMap } from "../utils.js";
+import { prepareParams } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
+import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
 export type GetUsersQueryParamsArgUserTypeField = "all" | "managed" | "external";
 export interface GetUsersQueryParamsArg {
@@ -106,34 +107,34 @@ export class UsersManager {
         Object.assign(this, fields);
     }
     async getUsers(queryParams: undefined | GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg): Promise<Users> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUsers(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: prepareParams(serializeGetUsersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUsers(deserializeJson(response.text));
     }
     async createUser(requestBody: CreateUserRequestBodyArg, queryParams: undefined | CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg): Promise<User> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: toMap(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUser(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: prepareParams(serializeCreateUserQueryParamsArg(queryParams)), body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUser(deserializeJson(response.text));
     }
     async getUserMe(queryParams: undefined | GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUserFull(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: prepareParams(serializeGetUserMeQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUserFull(deserializeJson(response.text));
     }
     async getUserById(userId: string, queryParams: undefined | GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUserFull(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: prepareParams(serializeGetUserByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUserFull(deserializeJson(response.text));
     }
     async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: undefined | UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: toMap(queryParams), body: JSON.stringify(requestBody), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return newDeserializeUserFull(deserializeJson(response.text));
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: prepareParams(serializeUpdateUserByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeUserFull(deserializeJson(response.text));
     }
     async deleteUserById(userId: string, queryParams: undefined | DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: toMap(queryParams), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: prepareParams(serializeDeleteUserByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }
-export function newSerializeGetUsersQueryParamsArgUserTypeField(val: GetUsersQueryParamsArgUserTypeField): Json {
+export function serializeGetUsersQueryParamsArgUserTypeField(val: GetUsersQueryParamsArgUserTypeField): Json {
     return val;
 }
-export function newDeserializeGetUsersQueryParamsArgUserTypeField(val: any): GetUsersQueryParamsArgUserTypeField {
+export function deserializeGetUsersQueryParamsArgUserTypeField(val: any): GetUsersQueryParamsArgUserTypeField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"GetUsersQueryParamsArgUserTypeField\"";
     }
@@ -148,13 +149,13 @@ export function newDeserializeGetUsersQueryParamsArgUserTypeField(val: any): Get
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeGetUsersQueryParamsArg(val: GetUsersQueryParamsArg): Json {
-    return { ["filterTerm"]: val.filterTerm, ["userType"]: val.userType == void 0 ? void 0 : newSerializeGetUsersQueryParamsArgUserTypeField(val.userType), ["externalAppUserId"]: val.externalAppUserId, ["fields"]: val.fields, ["offset"]: val.offset, ["limit"]: val.limit, ["usemarker"]: val.usemarker, ["marker"]: val.marker };
+export function serializeGetUsersQueryParamsArg(val: GetUsersQueryParamsArg): Json {
+    return { ["filter_term"]: val.filterTerm, ["user_type"]: val.userType == void 0 ? void 0 : serializeGetUsersQueryParamsArgUserTypeField(val.userType), ["external_app_user_id"]: val.externalAppUserId, ["fields"]: val.fields, ["offset"]: val.offset, ["limit"]: val.limit, ["usemarker"]: val.usemarker, ["marker"]: val.marker };
 }
-export function newDeserializeGetUsersQueryParamsArg(val: any): GetUsersQueryParamsArg {
-    const filterTerm: undefined | string = isJson(val.filterTerm, "string") ? val.filterTerm : void 0;
-    const userType: undefined | GetUsersQueryParamsArgUserTypeField = val.userType == void 0 ? void 0 : newDeserializeGetUsersQueryParamsArgUserTypeField(val.userType);
-    const externalAppUserId: undefined | string = isJson(val.externalAppUserId, "string") ? val.externalAppUserId : void 0;
+export function deserializeGetUsersQueryParamsArg(val: any): GetUsersQueryParamsArg {
+    const filterTerm: undefined | string = isJson(val.filter_term, "string") ? val.filter_term : void 0;
+    const userType: undefined | GetUsersQueryParamsArgUserTypeField = val.user_type == void 0 ? void 0 : deserializeGetUsersQueryParamsArgUserTypeField(val.user_type);
+    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
     const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
@@ -162,10 +163,10 @@ export function newDeserializeGetUsersQueryParamsArg(val: any): GetUsersQueryPar
     const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
     return { filterTerm: filterTerm, userType: userType, externalAppUserId: externalAppUserId, fields: fields, offset: offset, limit: limit, usemarker: usemarker, marker: marker } satisfies GetUsersQueryParamsArg;
 }
-export function newSerializeCreateUserRequestBodyArgRoleField(val: CreateUserRequestBodyArgRoleField): Json {
+export function serializeCreateUserRequestBodyArgRoleField(val: CreateUserRequestBodyArgRoleField): Json {
     return val;
 }
-export function newDeserializeCreateUserRequestBodyArgRoleField(val: any): CreateUserRequestBodyArgRoleField {
+export function deserializeCreateUserRequestBodyArgRoleField(val: any): CreateUserRequestBodyArgRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateUserRequestBodyArgRoleField\"";
     }
@@ -177,10 +178,10 @@ export function newDeserializeCreateUserRequestBodyArgRoleField(val: any): Creat
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateUserRequestBodyArgStatusField(val: CreateUserRequestBodyArgStatusField): Json {
+export function serializeCreateUserRequestBodyArgStatusField(val: CreateUserRequestBodyArgStatusField): Json {
     return val;
 }
-export function newDeserializeCreateUserRequestBodyArgStatusField(val: any): CreateUserRequestBodyArgStatusField {
+export function deserializeCreateUserRequestBodyArgStatusField(val: any): CreateUserRequestBodyArgStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"CreateUserRequestBodyArgStatusField\"";
     }
@@ -198,59 +199,59 @@ export function newDeserializeCreateUserRequestBodyArgStatusField(val: any): Cre
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeCreateUserRequestBodyArg(val: CreateUserRequestBodyArg): Json {
-    return { ["name"]: val.name, ["login"]: val.login, ["isPlatformAccessOnly"]: val.isPlatformAccessOnly, ["role"]: val.role == void 0 ? void 0 : newSerializeCreateUserRequestBodyArgRoleField(val.role), ["language"]: val.language, ["isSyncEnabled"]: val.isSyncEnabled, ["jobTitle"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["spaceAmount"]: val.spaceAmount, ["trackingCodes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
-            return newSerializeTrackingCode(item);
-        }) as readonly any[], ["canSeeManagedUsers"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["isExternalCollabRestricted"]: val.isExternalCollabRestricted, ["isExemptFromDeviceLimits"]: val.isExemptFromDeviceLimits, ["isExemptFromLoginVerification"]: val.isExemptFromLoginVerification, ["status"]: val.status == void 0 ? void 0 : newSerializeCreateUserRequestBodyArgStatusField(val.status), ["externalAppUserId"]: val.externalAppUserId };
+export function serializeCreateUserRequestBodyArg(val: CreateUserRequestBodyArg): Json {
+    return { ["name"]: val.name, ["login"]: val.login, ["is_platform_access_only"]: val.isPlatformAccessOnly, ["role"]: val.role == void 0 ? void 0 : serializeCreateUserRequestBodyArgRoleField(val.role), ["language"]: val.language, ["is_sync_enabled"]: val.isSyncEnabled, ["job_title"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["space_amount"]: val.spaceAmount, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
+            return serializeTrackingCode(item);
+        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification, ["status"]: val.status == void 0 ? void 0 : serializeCreateUserRequestBodyArgStatusField(val.status), ["external_app_user_id"]: val.externalAppUserId };
 }
-export function newDeserializeCreateUserRequestBodyArg(val: any): CreateUserRequestBodyArg {
+export function deserializeCreateUserRequestBodyArg(val: any): CreateUserRequestBodyArg {
     const name: string = val.name;
     const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
-    const isPlatformAccessOnly: undefined | boolean = isJson(val.isPlatformAccessOnly, "boolean") ? val.isPlatformAccessOnly : void 0;
-    const role: undefined | CreateUserRequestBodyArgRoleField = val.role == void 0 ? void 0 : newDeserializeCreateUserRequestBodyArgRoleField(val.role);
+    const isPlatformAccessOnly: undefined | boolean = isJson(val.is_platform_access_only, "boolean") ? val.is_platform_access_only : void 0;
+    const role: undefined | CreateUserRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeCreateUserRequestBodyArgRoleField(val.role);
     const language: undefined | string = isJson(val.language, "string") ? val.language : void 0;
-    const isSyncEnabled: undefined | boolean = isJson(val.isSyncEnabled, "boolean") ? val.isSyncEnabled : void 0;
-    const jobTitle: undefined | string = isJson(val.jobTitle, "string") ? val.jobTitle : void 0;
+    const isSyncEnabled: undefined | boolean = isJson(val.is_sync_enabled, "boolean") ? val.is_sync_enabled : void 0;
+    const jobTitle: undefined | string = isJson(val.job_title, "string") ? val.job_title : void 0;
     const phone: undefined | string = isJson(val.phone, "string") ? val.phone : void 0;
     const address: undefined | string = isJson(val.address, "string") ? val.address : void 0;
-    const spaceAmount: undefined | number = isJson(val.spaceAmount, "number") ? val.spaceAmount : void 0;
-    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.trackingCodes, "array") ? val.trackingCodes.map(function (itm: Json): any {
-        return newDeserializeTrackingCode(itm);
+    const spaceAmount: undefined | number = isJson(val.space_amount, "number") ? val.space_amount : void 0;
+    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
+        return deserializeTrackingCode(itm);
     }) as readonly any[] : void 0;
-    const canSeeManagedUsers: undefined | boolean = isJson(val.canSeeManagedUsers, "boolean") ? val.canSeeManagedUsers : void 0;
+    const canSeeManagedUsers: undefined | boolean = isJson(val.can_see_managed_users, "boolean") ? val.can_see_managed_users : void 0;
     const timezone: undefined | string = isJson(val.timezone, "string") ? val.timezone : void 0;
-    const isExternalCollabRestricted: undefined | boolean = isJson(val.isExternalCollabRestricted, "boolean") ? val.isExternalCollabRestricted : void 0;
-    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.isExemptFromDeviceLimits, "boolean") ? val.isExemptFromDeviceLimits : void 0;
-    const isExemptFromLoginVerification: undefined | boolean = isJson(val.isExemptFromLoginVerification, "boolean") ? val.isExemptFromLoginVerification : void 0;
-    const status: undefined | CreateUserRequestBodyArgStatusField = val.status == void 0 ? void 0 : newDeserializeCreateUserRequestBodyArgStatusField(val.status);
-    const externalAppUserId: undefined | string = isJson(val.externalAppUserId, "string") ? val.externalAppUserId : void 0;
+    const isExternalCollabRestricted: undefined | boolean = isJson(val.is_external_collab_restricted, "boolean") ? val.is_external_collab_restricted : void 0;
+    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.is_exempt_from_device_limits, "boolean") ? val.is_exempt_from_device_limits : void 0;
+    const isExemptFromLoginVerification: undefined | boolean = isJson(val.is_exempt_from_login_verification, "boolean") ? val.is_exempt_from_login_verification : void 0;
+    const status: undefined | CreateUserRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeCreateUserRequestBodyArgStatusField(val.status);
+    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
     return { name: name, login: login, isPlatformAccessOnly: isPlatformAccessOnly, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, spaceAmount: spaceAmount, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, status: status, externalAppUserId: externalAppUserId } satisfies CreateUserRequestBodyArg;
 }
-export function newSerializeCreateUserQueryParamsArg(val: CreateUserQueryParamsArg): Json {
+export function serializeCreateUserQueryParamsArg(val: CreateUserQueryParamsArg): Json {
     return { ["fields"]: val.fields };
 }
-export function newDeserializeCreateUserQueryParamsArg(val: any): CreateUserQueryParamsArg {
+export function deserializeCreateUserQueryParamsArg(val: any): CreateUserQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     return { fields: fields } satisfies CreateUserQueryParamsArg;
 }
-export function newSerializeGetUserMeQueryParamsArg(val: GetUserMeQueryParamsArg): Json {
+export function serializeGetUserMeQueryParamsArg(val: GetUserMeQueryParamsArg): Json {
     return { ["fields"]: val.fields };
 }
-export function newDeserializeGetUserMeQueryParamsArg(val: any): GetUserMeQueryParamsArg {
+export function deserializeGetUserMeQueryParamsArg(val: any): GetUserMeQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     return { fields: fields } satisfies GetUserMeQueryParamsArg;
 }
-export function newSerializeGetUserByIdQueryParamsArg(val: GetUserByIdQueryParamsArg): Json {
+export function serializeGetUserByIdQueryParamsArg(val: GetUserByIdQueryParamsArg): Json {
     return { ["fields"]: val.fields };
 }
-export function newDeserializeGetUserByIdQueryParamsArg(val: any): GetUserByIdQueryParamsArg {
+export function deserializeGetUserByIdQueryParamsArg(val: any): GetUserByIdQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     return { fields: fields } satisfies GetUserByIdQueryParamsArg;
 }
-export function newSerializeUpdateUserByIdRequestBodyArgRoleField(val: UpdateUserByIdRequestBodyArgRoleField): Json {
+export function serializeUpdateUserByIdRequestBodyArgRoleField(val: UpdateUserByIdRequestBodyArgRoleField): Json {
     return val;
 }
-export function newDeserializeUpdateUserByIdRequestBodyArgRoleField(val: any): UpdateUserByIdRequestBodyArgRoleField {
+export function deserializeUpdateUserByIdRequestBodyArgRoleField(val: any): UpdateUserByIdRequestBodyArgRoleField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateUserByIdRequestBodyArgRoleField\"";
     }
@@ -262,10 +263,10 @@ export function newDeserializeUpdateUserByIdRequestBodyArgRoleField(val: any): U
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateUserByIdRequestBodyArgStatusField(val: UpdateUserByIdRequestBodyArgStatusField): Json {
+export function serializeUpdateUserByIdRequestBodyArgStatusField(val: UpdateUserByIdRequestBodyArgStatusField): Json {
     return val;
 }
-export function newDeserializeUpdateUserByIdRequestBodyArgStatusField(val: any): UpdateUserByIdRequestBodyArgStatusField {
+export function deserializeUpdateUserByIdRequestBodyArgStatusField(val: any): UpdateUserByIdRequestBodyArgStatusField {
     if (!isJson(val, "string")) {
         throw "Expecting a string for \"UpdateUserByIdRequestBodyArgStatusField\"";
     }
@@ -283,55 +284,55 @@ export function newDeserializeUpdateUserByIdRequestBodyArgStatusField(val: any):
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function newSerializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: UpdateUserByIdRequestBodyArgNotificationEmailField): Json {
+export function serializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: UpdateUserByIdRequestBodyArgNotificationEmailField): Json {
     return { ["email"]: val.email };
 }
-export function newDeserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: any): UpdateUserByIdRequestBodyArgNotificationEmailField {
+export function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: any): UpdateUserByIdRequestBodyArgNotificationEmailField {
     const email: undefined | string = isJson(val.email, "string") ? val.email : void 0;
     return { email: email } satisfies UpdateUserByIdRequestBodyArgNotificationEmailField;
 }
-export function newSerializeUpdateUserByIdRequestBodyArg(val: UpdateUserByIdRequestBodyArg): Json {
-    return { ["enterprise"]: val.enterprise, ["notify"]: val.notify, ["name"]: val.name, ["login"]: val.login, ["role"]: val.role == void 0 ? void 0 : newSerializeUpdateUserByIdRequestBodyArgRoleField(val.role), ["language"]: val.language, ["isSyncEnabled"]: val.isSyncEnabled, ["jobTitle"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["trackingCodes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
-            return newSerializeTrackingCode(item);
-        }) as readonly any[], ["canSeeManagedUsers"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["isExternalCollabRestricted"]: val.isExternalCollabRestricted, ["isExemptFromDeviceLimits"]: val.isExemptFromDeviceLimits, ["isExemptFromLoginVerification"]: val.isExemptFromLoginVerification, ["isPasswordResetRequired"]: val.isPasswordResetRequired, ["status"]: val.status == void 0 ? void 0 : newSerializeUpdateUserByIdRequestBodyArgStatusField(val.status), ["spaceAmount"]: val.spaceAmount, ["notificationEmail"]: val.notificationEmail == void 0 ? void 0 : newSerializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notificationEmail), ["externalAppUserId"]: val.externalAppUserId };
+export function serializeUpdateUserByIdRequestBodyArg(val: UpdateUserByIdRequestBodyArg): Json {
+    return { ["enterprise"]: val.enterprise, ["notify"]: val.notify, ["name"]: val.name, ["login"]: val.login, ["role"]: val.role == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgRoleField(val.role), ["language"]: val.language, ["is_sync_enabled"]: val.isSyncEnabled, ["job_title"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
+            return serializeTrackingCode(item);
+        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification, ["is_password_reset_required"]: val.isPasswordResetRequired, ["status"]: val.status == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgStatusField(val.status), ["space_amount"]: val.spaceAmount, ["notification_email"]: val.notificationEmail == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notificationEmail), ["external_app_user_id"]: val.externalAppUserId };
 }
-export function newDeserializeUpdateUserByIdRequestBodyArg(val: any): UpdateUserByIdRequestBodyArg {
+export function deserializeUpdateUserByIdRequestBodyArg(val: any): UpdateUserByIdRequestBodyArg {
     const enterprise: undefined | string = isJson(val.enterprise, "string") ? val.enterprise : void 0;
     const notify: undefined | boolean = isJson(val.notify, "boolean") ? val.notify : void 0;
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
-    const role: undefined | UpdateUserByIdRequestBodyArgRoleField = val.role == void 0 ? void 0 : newDeserializeUpdateUserByIdRequestBodyArgRoleField(val.role);
+    const role: undefined | UpdateUserByIdRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgRoleField(val.role);
     const language: undefined | string = isJson(val.language, "string") ? val.language : void 0;
-    const isSyncEnabled: undefined | boolean = isJson(val.isSyncEnabled, "boolean") ? val.isSyncEnabled : void 0;
-    const jobTitle: undefined | string = isJson(val.jobTitle, "string") ? val.jobTitle : void 0;
+    const isSyncEnabled: undefined | boolean = isJson(val.is_sync_enabled, "boolean") ? val.is_sync_enabled : void 0;
+    const jobTitle: undefined | string = isJson(val.job_title, "string") ? val.job_title : void 0;
     const phone: undefined | string = isJson(val.phone, "string") ? val.phone : void 0;
     const address: undefined | string = isJson(val.address, "string") ? val.address : void 0;
-    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.trackingCodes, "array") ? val.trackingCodes.map(function (itm: Json): any {
-        return newDeserializeTrackingCode(itm);
+    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
+        return deserializeTrackingCode(itm);
     }) as readonly any[] : void 0;
-    const canSeeManagedUsers: undefined | boolean = isJson(val.canSeeManagedUsers, "boolean") ? val.canSeeManagedUsers : void 0;
+    const canSeeManagedUsers: undefined | boolean = isJson(val.can_see_managed_users, "boolean") ? val.can_see_managed_users : void 0;
     const timezone: undefined | string = isJson(val.timezone, "string") ? val.timezone : void 0;
-    const isExternalCollabRestricted: undefined | boolean = isJson(val.isExternalCollabRestricted, "boolean") ? val.isExternalCollabRestricted : void 0;
-    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.isExemptFromDeviceLimits, "boolean") ? val.isExemptFromDeviceLimits : void 0;
-    const isExemptFromLoginVerification: undefined | boolean = isJson(val.isExemptFromLoginVerification, "boolean") ? val.isExemptFromLoginVerification : void 0;
-    const isPasswordResetRequired: undefined | boolean = isJson(val.isPasswordResetRequired, "boolean") ? val.isPasswordResetRequired : void 0;
-    const status: undefined | UpdateUserByIdRequestBodyArgStatusField = val.status == void 0 ? void 0 : newDeserializeUpdateUserByIdRequestBodyArgStatusField(val.status);
-    const spaceAmount: undefined | number = isJson(val.spaceAmount, "number") ? val.spaceAmount : void 0;
-    const notificationEmail: undefined | UpdateUserByIdRequestBodyArgNotificationEmailField = val.notificationEmail == void 0 ? void 0 : newDeserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notificationEmail);
-    const externalAppUserId: undefined | string = isJson(val.externalAppUserId, "string") ? val.externalAppUserId : void 0;
+    const isExternalCollabRestricted: undefined | boolean = isJson(val.is_external_collab_restricted, "boolean") ? val.is_external_collab_restricted : void 0;
+    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.is_exempt_from_device_limits, "boolean") ? val.is_exempt_from_device_limits : void 0;
+    const isExemptFromLoginVerification: undefined | boolean = isJson(val.is_exempt_from_login_verification, "boolean") ? val.is_exempt_from_login_verification : void 0;
+    const isPasswordResetRequired: undefined | boolean = isJson(val.is_password_reset_required, "boolean") ? val.is_password_reset_required : void 0;
+    const status: undefined | UpdateUserByIdRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgStatusField(val.status);
+    const spaceAmount: undefined | number = isJson(val.space_amount, "number") ? val.space_amount : void 0;
+    const notificationEmail: undefined | UpdateUserByIdRequestBodyArgNotificationEmailField = val.notification_email == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notification_email);
+    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
     return { enterprise: enterprise, notify: notify, name: name, login: login, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, isPasswordResetRequired: isPasswordResetRequired, status: status, spaceAmount: spaceAmount, notificationEmail: notificationEmail, externalAppUserId: externalAppUserId } satisfies UpdateUserByIdRequestBodyArg;
 }
-export function newSerializeUpdateUserByIdQueryParamsArg(val: UpdateUserByIdQueryParamsArg): Json {
+export function serializeUpdateUserByIdQueryParamsArg(val: UpdateUserByIdQueryParamsArg): Json {
     return { ["fields"]: val.fields };
 }
-export function newDeserializeUpdateUserByIdQueryParamsArg(val: any): UpdateUserByIdQueryParamsArg {
+export function deserializeUpdateUserByIdQueryParamsArg(val: any): UpdateUserByIdQueryParamsArg {
     const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
     return { fields: fields } satisfies UpdateUserByIdQueryParamsArg;
 }
-export function newSerializeDeleteUserByIdQueryParamsArg(val: DeleteUserByIdQueryParamsArg): Json {
+export function serializeDeleteUserByIdQueryParamsArg(val: DeleteUserByIdQueryParamsArg): Json {
     return { ["notify"]: val.notify, ["force"]: val.force };
 }
-export function newDeserializeDeleteUserByIdQueryParamsArg(val: any): DeleteUserByIdQueryParamsArg {
+export function deserializeDeleteUserByIdQueryParamsArg(val: any): DeleteUserByIdQueryParamsArg {
     const notify: undefined | boolean = isJson(val.notify, "boolean") ? val.notify : void 0;
     const force: undefined | boolean = isJson(val.force, "boolean") ? val.force : void 0;
     return { notify: notify, force: force } satisfies DeleteUserByIdQueryParamsArg;

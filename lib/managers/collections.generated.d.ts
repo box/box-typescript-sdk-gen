@@ -20,7 +20,7 @@ export declare class CollectionsManager {
     getCollections(queryParams?: undefined | GetCollectionsQueryParamsArg): Promise<Collections>;
     getCollectionItems(collectionId: string, queryParams?: undefined | GetCollectionItemsQueryParamsArg): Promise<Items>;
 }
-export declare function newSerializeGetCollectionsQueryParamsArg(val: GetCollectionsQueryParamsArg): Json;
-export declare function newDeserializeGetCollectionsQueryParamsArg(val: any): GetCollectionsQueryParamsArg;
-export declare function newSerializeGetCollectionItemsQueryParamsArg(val: GetCollectionItemsQueryParamsArg): Json;
-export declare function newDeserializeGetCollectionItemsQueryParamsArg(val: any): GetCollectionItemsQueryParamsArg;
+export declare function serializeGetCollectionsQueryParamsArg(val: GetCollectionsQueryParamsArg): Json;
+export declare function deserializeGetCollectionsQueryParamsArg(val: any): GetCollectionsQueryParamsArg;
+export declare function serializeGetCollectionItemsQueryParamsArg(val: GetCollectionItemsQueryParamsArg): Json;
+export declare function deserializeGetCollectionItemsQueryParamsArg(val: any): GetCollectionItemsQueryParamsArg;
