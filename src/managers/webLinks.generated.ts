@@ -17,19 +17,11 @@ import { isJson } from "../json.js";
 export interface CreateWebLinkRequestBodyArgParentField {
     readonly id: string;
 }
-export type CreateWebLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface CreateWebLinkRequestBodyArgSharedLinkField {
-    readonly access?: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField;
-    readonly password?: string;
-    readonly vanityName?: string;
-    readonly unsharedAt?: string;
-}
 export interface CreateWebLinkRequestBodyArg {
     readonly url: string;
     readonly parent: CreateWebLinkRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: CreateWebLinkRequestBodyArgSharedLinkField;
 }
 export interface GetWebLinkByIdHeadersArg {
     readonly boxapi?: string;
@@ -81,44 +73,15 @@ export function deserializeCreateWebLinkRequestBodyArgParentField(val: any): Cre
     const id: string = val.id;
     return { id: id } satisfies CreateWebLinkRequestBodyArgParentField;
 }
-export function serializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField): Json {
-    return val;
-}
-export function deserializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val: any): CreateWebLinkRequestBodyArgSharedLinkFieldAccessField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"CreateWebLinkRequestBodyArgSharedLinkFieldAccessField\"";
-    }
-    if (val == "open") {
-        return "open";
-    }
-    if (val == "company") {
-        return "company";
-    }
-    if (val == "collaborators") {
-        return "collaborators";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeCreateWebLinkRequestBodyArgSharedLinkField(val: CreateWebLinkRequestBodyArgSharedLinkField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanity_name"]: val.vanityName, ["unshared_at"]: val.unsharedAt };
-}
-export function deserializeCreateWebLinkRequestBodyArgSharedLinkField(val: any): CreateWebLinkRequestBodyArgSharedLinkField {
-    const access: undefined | CreateWebLinkRequestBodyArgSharedLinkFieldAccessField = val.access == void 0 ? void 0 : deserializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val.access);
-    const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
-    const vanityName: undefined | string = isJson(val.vanity_name, "string") ? val.vanity_name : void 0;
-    const unsharedAt: undefined | string = isJson(val.unshared_at, "string") ? val.unshared_at : void 0;
-    return { access: access, password: password, vanityName: vanityName, unsharedAt: unsharedAt } satisfies CreateWebLinkRequestBodyArgSharedLinkField;
-}
 export function serializeCreateWebLinkRequestBodyArg(val: CreateWebLinkRequestBodyArg): Json {
-    return { ["url"]: val.url, ["parent"]: serializeCreateWebLinkRequestBodyArgParentField(val.parent), ["name"]: val.name, ["description"]: val.description, ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeCreateWebLinkRequestBodyArgSharedLinkField(val.sharedLink) };
+    return { ["url"]: val.url, ["parent"]: serializeCreateWebLinkRequestBodyArgParentField(val.parent), ["name"]: val.name, ["description"]: val.description };
 }
 export function deserializeCreateWebLinkRequestBodyArg(val: any): CreateWebLinkRequestBodyArg {
     const url: string = val.url;
     const parent: CreateWebLinkRequestBodyArgParentField = deserializeCreateWebLinkRequestBodyArgParentField(val.parent);
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const sharedLink: undefined | CreateWebLinkRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeCreateWebLinkRequestBodyArgSharedLinkField(val.shared_link);
-    return { url: url, parent: parent, name: name, description: description, sharedLink: sharedLink } satisfies CreateWebLinkRequestBodyArg;
+    return { url: url, parent: parent, name: name, description: description } satisfies CreateWebLinkRequestBodyArg;
 }
 export function serializeGetWebLinkByIdHeadersArg(val: GetWebLinkByIdHeadersArg): Json {
     return { ["boxapi"]: val.boxapi };

@@ -5,19 +5,11 @@ import { Json } from "../json.js";
 export interface CreateWebLinkRequestBodyArgParentField {
     readonly id: string;
 }
-export type CreateWebLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
-export interface CreateWebLinkRequestBodyArgSharedLinkField {
-    readonly access?: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField;
-    readonly password?: string;
-    readonly vanityName?: string;
-    readonly unsharedAt?: string;
-}
 export interface CreateWebLinkRequestBodyArg {
     readonly url: string;
     readonly parent: CreateWebLinkRequestBodyArgParentField;
     readonly name?: string;
     readonly description?: string;
-    readonly sharedLink?: CreateWebLinkRequestBodyArgSharedLinkField;
 }
 export interface GetWebLinkByIdHeadersArg {
     readonly boxapi?: string;
@@ -50,10 +42,6 @@ export declare class WebLinksManager {
 }
 export declare function serializeCreateWebLinkRequestBodyArgParentField(val: CreateWebLinkRequestBodyArgParentField): Json;
 export declare function deserializeCreateWebLinkRequestBodyArgParentField(val: any): CreateWebLinkRequestBodyArgParentField;
-export declare function serializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val: CreateWebLinkRequestBodyArgSharedLinkFieldAccessField): Json;
-export declare function deserializeCreateWebLinkRequestBodyArgSharedLinkFieldAccessField(val: any): CreateWebLinkRequestBodyArgSharedLinkFieldAccessField;
-export declare function serializeCreateWebLinkRequestBodyArgSharedLinkField(val: CreateWebLinkRequestBodyArgSharedLinkField): Json;
-export declare function deserializeCreateWebLinkRequestBodyArgSharedLinkField(val: any): CreateWebLinkRequestBodyArgSharedLinkField;
 export declare function serializeCreateWebLinkRequestBodyArg(val: CreateWebLinkRequestBodyArg): Json;
 export declare function deserializeCreateWebLinkRequestBodyArg(val: any): CreateWebLinkRequestBodyArg;
 export declare function serializeGetWebLinkByIdHeadersArg(val: GetWebLinkByIdHeadersArg): Json;
