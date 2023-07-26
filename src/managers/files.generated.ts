@@ -46,6 +46,10 @@ export type UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = "open
 export interface UpdateFileByIdRequestBodyArgPermissionsField {
     readonly canDownload?: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField;
 }
+export interface UpdateFileByIdRequestBodyArgCollectionsField {
+    readonly id?: string;
+    readonly type?: string;
+}
 export interface UpdateFileByIdRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
@@ -54,6 +58,7 @@ export interface UpdateFileByIdRequestBodyArg {
     readonly lock?: UpdateFileByIdRequestBodyArgLockField;
     readonly dispositionAt?: string;
     readonly permissions?: UpdateFileByIdRequestBodyArgPermissionsField;
+    readonly collections?: readonly UpdateFileByIdRequestBodyArgCollectionsField[];
     readonly tags?: readonly string[];
 }
 export interface UpdateFileByIdQueryParamsArg {
@@ -212,8 +217,18 @@ export function deserializeUpdateFileByIdRequestBodyArgPermissionsField(val: any
     const canDownload: undefined | UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = val.can_download == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val.can_download);
     return { canDownload: canDownload } satisfies UpdateFileByIdRequestBodyArgPermissionsField;
 }
+export function serializeUpdateFileByIdRequestBodyArgCollectionsField(val: UpdateFileByIdRequestBodyArgCollectionsField): Json {
+    return { ["id"]: val.id, ["type"]: val.type };
+}
+export function deserializeUpdateFileByIdRequestBodyArgCollectionsField(val: any): UpdateFileByIdRequestBodyArgCollectionsField {
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
+    return { id: id, type: type } satisfies UpdateFileByIdRequestBodyArgCollectionsField;
+}
 export function serializeUpdateFileByIdRequestBodyArg(val: UpdateFileByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["description"]: val.description, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgParentField(val.parent), ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink), ["lock"]: val.lock == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockField(val.lock), ["disposition_at"]: val.dispositionAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
+    return { ["name"]: val.name, ["description"]: val.description, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgParentField(val.parent), ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink), ["lock"]: val.lock == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockField(val.lock), ["disposition_at"]: val.dispositionAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions), ["collections"]: val.collections == void 0 ? void 0 : val.collections.map(function (item: UpdateFileByIdRequestBodyArgCollectionsField): any {
+            return serializeUpdateFileByIdRequestBodyArgCollectionsField(item);
+        }) as readonly any[], ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): undefined {
             return void 0;
         }) as readonly any[] };
 }
@@ -225,10 +240,13 @@ export function deserializeUpdateFileByIdRequestBodyArg(val: any): UpdateFileByI
     const lock: undefined | UpdateFileByIdRequestBodyArgLockField = val.lock == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgLockField(val.lock);
     const dispositionAt: undefined | string = isJson(val.disposition_at, "string") ? val.disposition_at : void 0;
     const permissions: undefined | UpdateFileByIdRequestBodyArgPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions);
+    const collections: undefined | readonly UpdateFileByIdRequestBodyArgCollectionsField[] = isJson(val.collections, "array") ? val.collections.map(function (itm: Json): any {
+        return deserializeUpdateFileByIdRequestBodyArgCollectionsField(itm);
+    }) as readonly any[] : void 0;
     const tags: undefined | readonly string[] = isJson(val.tags, "array") ? val.tags.map(function (itm: Json): undefined {
         return void 0;
     }) as readonly any[] : void 0;
-    return { name: name, description: description, parent: parent, sharedLink: sharedLink, lock: lock, dispositionAt: dispositionAt, permissions: permissions, tags: tags } satisfies UpdateFileByIdRequestBodyArg;
+    return { name: name, description: description, parent: parent, sharedLink: sharedLink, lock: lock, dispositionAt: dispositionAt, permissions: permissions, collections: collections, tags: tags } satisfies UpdateFileByIdRequestBodyArg;
 }
 export function serializeUpdateFileByIdQueryParamsArg(val: UpdateFileByIdQueryParamsArg): Json {
     return { ["fields"]: val.fields };

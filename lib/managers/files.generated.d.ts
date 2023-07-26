@@ -34,6 +34,10 @@ export type UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField = "open
 export interface UpdateFileByIdRequestBodyArgPermissionsField {
     readonly canDownload?: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField;
 }
+export interface UpdateFileByIdRequestBodyArgCollectionsField {
+    readonly id?: string;
+    readonly type?: string;
+}
 export interface UpdateFileByIdRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
@@ -42,6 +46,7 @@ export interface UpdateFileByIdRequestBodyArg {
     readonly lock?: UpdateFileByIdRequestBodyArgLockField;
     readonly dispositionAt?: string;
     readonly permissions?: UpdateFileByIdRequestBodyArgPermissionsField;
+    readonly collections?: readonly UpdateFileByIdRequestBodyArgCollectionsField[];
     readonly tags?: readonly string[];
 }
 export interface UpdateFileByIdQueryParamsArg {
@@ -101,6 +106,8 @@ export declare function serializeUpdateFileByIdRequestBodyArgPermissionsFieldCan
 export declare function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(val: any): UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField;
 export declare function serializeUpdateFileByIdRequestBodyArgPermissionsField(val: UpdateFileByIdRequestBodyArgPermissionsField): Json;
 export declare function deserializeUpdateFileByIdRequestBodyArgPermissionsField(val: any): UpdateFileByIdRequestBodyArgPermissionsField;
+export declare function serializeUpdateFileByIdRequestBodyArgCollectionsField(val: UpdateFileByIdRequestBodyArgCollectionsField): Json;
+export declare function deserializeUpdateFileByIdRequestBodyArgCollectionsField(val: any): UpdateFileByIdRequestBodyArgCollectionsField;
 export declare function serializeUpdateFileByIdRequestBodyArg(val: UpdateFileByIdRequestBodyArg): Json;
 export declare function deserializeUpdateFileByIdRequestBodyArg(val: any): UpdateFileByIdRequestBodyArg;
 export declare function serializeUpdateFileByIdQueryParamsArg(val: UpdateFileByIdQueryParamsArg): Json;
