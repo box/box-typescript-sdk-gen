@@ -15,7 +15,7 @@ export declare class DevicePinnersManager {
     constructor(fields: Omit<DevicePinnersManager, "getDevicePinnerById" | "deleteDevicePinnerById" | "getEnterpriseDevicePinners">);
     getDevicePinnerById(devicePinnerId: string): Promise<DevicePinner>;
     deleteDevicePinnerById(devicePinnerId: string): Promise<any>;
-    getEnterpriseDevicePinners(enterpriseId: string, queryParams?: undefined | GetEnterpriseDevicePinnersQueryParamsArg): Promise<DevicePinners>;
+    getEnterpriseDevicePinners(enterpriseId: string, queryParams?: GetEnterpriseDevicePinnersQueryParamsArg): Promise<DevicePinners>;
 }
 export declare function serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField): Json;
 export declare function deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: any): GetEnterpriseDevicePinnersQueryParamsArgDirectionField;

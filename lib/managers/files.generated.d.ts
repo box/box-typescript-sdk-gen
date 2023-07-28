@@ -80,11 +80,11 @@ export declare class FilesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
-    getFileById(fileId: string, queryParams?: undefined | GetFileByIdQueryParamsArg, headers?: undefined | GetFileByIdHeadersArg): Promise<FileFull>;
-    updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams?: undefined | UpdateFileByIdQueryParamsArg, headers?: undefined | UpdateFileByIdHeadersArg): Promise<FileFull>;
-    deleteFileById(fileId: string, headers?: undefined | DeleteFileByIdHeadersArg): Promise<any>;
-    copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams?: undefined | CopyFileQueryParamsArg): Promise<FileFull>;
-    getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams?: undefined | GetFileThumbnailByIdQueryParamsArg): Promise<any>;
+    getFileById(fileId: string, queryParams?: GetFileByIdQueryParamsArg, headers?: GetFileByIdHeadersArg): Promise<FileFull>;
+    updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams?: UpdateFileByIdQueryParamsArg, headers?: UpdateFileByIdHeadersArg): Promise<FileFull>;
+    deleteFileById(fileId: string, headers?: DeleteFileByIdHeadersArg): Promise<any>;
+    copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams?: CopyFileQueryParamsArg): Promise<FileFull>;
+    getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams?: GetFileThumbnailByIdQueryParamsArg): Promise<any>;
 }
 export declare function serializeGetFileByIdQueryParamsArg(val: GetFileByIdQueryParamsArg): Json;
 export declare function deserializeGetFileByIdQueryParamsArg(val: any): GetFileByIdQueryParamsArg;

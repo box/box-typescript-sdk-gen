@@ -63,7 +63,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetShieldInformationBarriersQueryParamsArg`
+- queryParams `GetShieldInformationBarriersQueryParamsArg`
   - Used as queryParams for the API call
 
 

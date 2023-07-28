@@ -46,11 +46,11 @@ export declare class MembershipsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<MembershipsManager, "getUserMemberships" | "getGroupMemberships" | "createGroupMembership" | "getGroupMembershipById" | "updateGroupMembershipById" | "deleteGroupMembershipById">);
-    getUserMemberships(userId: string, queryParams?: undefined | GetUserMembershipsQueryParamsArg): Promise<GroupMemberships>;
-    getGroupMemberships(groupId: string, queryParams?: undefined | GetGroupMembershipsQueryParamsArg): Promise<GroupMemberships>;
-    createGroupMembership(requestBody: CreateGroupMembershipRequestBodyArg, queryParams?: undefined | CreateGroupMembershipQueryParamsArg): Promise<GroupMembership>;
-    getGroupMembershipById(groupMembershipId: string, queryParams?: undefined | GetGroupMembershipByIdQueryParamsArg): Promise<GroupMembership>;
-    updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg, queryParams?: undefined | UpdateGroupMembershipByIdQueryParamsArg): Promise<GroupMembership>;
+    getUserMemberships(userId: string, queryParams?: GetUserMembershipsQueryParamsArg): Promise<GroupMemberships>;
+    getGroupMemberships(groupId: string, queryParams?: GetGroupMembershipsQueryParamsArg): Promise<GroupMemberships>;
+    createGroupMembership(requestBody: CreateGroupMembershipRequestBodyArg, queryParams?: CreateGroupMembershipQueryParamsArg): Promise<GroupMembership>;
+    getGroupMembershipById(groupMembershipId: string, queryParams?: GetGroupMembershipByIdQueryParamsArg): Promise<GroupMembership>;
+    updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg, queryParams?: UpdateGroupMembershipByIdQueryParamsArg): Promise<GroupMembership>;
     deleteGroupMembershipById(groupMembershipId: string): Promise<any>;
 }
 export declare function serializeGetUserMembershipsQueryParamsArg(val: GetUserMembershipsQueryParamsArg): Json;

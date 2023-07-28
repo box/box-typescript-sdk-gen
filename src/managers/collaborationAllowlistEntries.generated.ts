@@ -10,6 +10,7 @@ import { CollaborationAllowlistEntry } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -32,8 +33,11 @@ export class CollaborationAllowlistEntriesManager {
     constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "createCollaborationWhitelistEntry" | "getCollaborationWhitelistEntryById" | "deleteCollaborationWhitelistEntryById">) {
         Object.assign(this, fields);
     }
-    async getCollaborationWhitelistEntries(queryParams: undefined | GetCollaborationWhitelistEntriesQueryParamsArg = {} satisfies GetCollaborationWhitelistEntriesQueryParamsArg): Promise<CollaborationAllowlistEntries> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "GET", params: prepareParams(serializeGetCollaborationWhitelistEntriesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getCollaborationWhitelistEntries(queryParams: GetCollaborationWhitelistEntriesQueryParamsArg = {} satisfies GetCollaborationWhitelistEntriesQueryParamsArg): Promise<CollaborationAllowlistEntries> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaboration_whitelist_entries") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborationAllowlistEntries(deserializeJson(response.text));
     }
     async createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<CollaborationAllowlistEntry> {

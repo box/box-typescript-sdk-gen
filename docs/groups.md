@@ -17,7 +17,7 @@ await client.groups.getGroups()
 
 ### Arguments
 
-- queryParams `undefined | GetGroupsQueryParamsArg`
+- queryParams `GetGroupsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -48,7 +48,7 @@ await client.groups.createGroup({ name: getUuid() } satisfies CreateGroupRequest
 
 - requestBody `CreateGroupRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateGroupQueryParamsArg`
+- queryParams `CreateGroupQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -80,7 +80,7 @@ await client.groups.getGroupById(group.id)
 - groupId `string`
   - The ID of the group.
   - Used as `group_id` in path `path` of the API call
-- queryParams `undefined | GetGroupByIdQueryParamsArg`
+- queryParams `GetGroupByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -114,7 +114,7 @@ await client.groups.updateGroupById(group.id, { name: updatedGroupName } satisfi
   - Used as `group_id` in path `path` of the API call
 - requestBody `UpdateGroupByIdRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | UpdateGroupByIdQueryParamsArg`
+- queryParams `UpdateGroupByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 

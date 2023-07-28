@@ -19,7 +19,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetSharedItemWebLinksQueryParamsArg`
+- queryParams `GetSharedItemWebLinksQueryParamsArg`
   - Used as queryParams for the API call
 - headers `GetSharedItemWebLinksHeadersArg`
   - Used as headers for the API call

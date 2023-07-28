@@ -20,8 +20,8 @@ export declare class TrashedFilesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedFilesManager, "restoreFileFromTrash" | "getFileTrash" | "deleteFileTrash">);
-    restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams?: undefined | RestoreFileFromTrashQueryParamsArg): Promise<TrashFileRestored>;
-    getFileTrash(fileId: string, queryParams?: undefined | GetFileTrashQueryParamsArg): Promise<TrashFile>;
+    restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams?: RestoreFileFromTrashQueryParamsArg): Promise<TrashFileRestored>;
+    getFileTrash(fileId: string, queryParams?: GetFileTrashQueryParamsArg): Promise<TrashFile>;
     deleteFileTrash(fileId: string): Promise<any>;
 }
 export declare function serializeRestoreFileFromTrashRequestBodyArgParentField(val: RestoreFileFromTrashRequestBodyArgParentField): Json;

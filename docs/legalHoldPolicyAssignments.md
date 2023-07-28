@@ -125,7 +125,7 @@ See the endpoint docs at
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg`
+- queryParams `GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -168,7 +168,7 @@ See the endpoint docs at
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg`
+- queryParams `GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg`
   - Used as queryParams for the API call
 
 

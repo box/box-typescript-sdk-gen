@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -30,8 +31,11 @@ export class TrashedItemsManager {
     constructor(fields: Omit<TrashedItemsManager, "getFolderTrashItems">) {
         Object.assign(this, fields);
     }
-    async getFolderTrashItems(queryParams: undefined | GetFolderTrashItemsQueryParamsArg = {} satisfies GetFolderTrashItemsQueryParamsArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/trash/items") as string, { method: "GET", params: prepareParams(serializeGetFolderTrashItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFolderTrashItems(queryParams: GetFolderTrashItemsQueryParamsArg = {} satisfies GetFolderTrashItemsQueryParamsArg): Promise<Items> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset), ["usemarker"]: toString(queryParams.usemarker), ["marker"]: toString(queryParams.marker), ["direction"]: toString(queryParams.direction), ["sort"]: toString(queryParams.sort) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/trash/items") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
 }

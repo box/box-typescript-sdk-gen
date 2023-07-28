@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -36,12 +37,18 @@ export class InvitesManager {
     constructor(fields: Omit<InvitesManager, "createInvite" | "getInviteById">) {
         Object.assign(this, fields);
     }
-    async createInvite(requestBody: CreateInviteRequestBodyArg, queryParams: undefined | CreateInviteQueryParamsArg = {} satisfies CreateInviteQueryParamsArg): Promise<Invite> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: prepareParams(serializeCreateInviteQueryParamsArg(queryParams)), body: serializeJson(serializeCreateInviteRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createInvite(requestBody: CreateInviteRequestBodyArg, queryParams: CreateInviteQueryParamsArg = {} satisfies CreateInviteQueryParamsArg): Promise<Invite> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateInviteRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJson(response.text));
     }
-    async getInviteById(inviteId: string, queryParams: undefined | GetInviteByIdQueryParamsArg = {} satisfies GetInviteByIdQueryParamsArg): Promise<Invite> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: prepareParams(serializeGetInviteByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getInviteById(inviteId: string, queryParams: GetInviteByIdQueryParamsArg = {} satisfies GetInviteByIdQueryParamsArg): Promise<Invite> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/invites/", inviteId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeInvite(deserializeJson(response.text));
     }
 }

@@ -7,6 +7,7 @@ import { OAuth2Error } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -27,7 +28,10 @@ export class AuthorizationManager {
         Object.assign(this, fields);
     }
     async getAuthorize(queryParams: GetAuthorizeQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: prepareParams(serializeGetAuthorizeQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["response_type"]: toString(queryParams.responseType), ["client_id"]: toString(queryParams.clientId), ["redirect_uri"]: toString(queryParams.redirectUri), ["state"]: toString(queryParams.state), ["scope"]: toString(queryParams.scope) });
+        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
 }

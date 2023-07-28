@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -24,8 +25,11 @@ export class RecentItemsManager {
     constructor(fields: Omit<RecentItemsManager, "getRecentItems">) {
         Object.assign(this, fields);
     }
-    async getRecentItems(queryParams: undefined | GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg): Promise<RecentItems> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: prepareParams(serializeGetRecentItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getRecentItems(queryParams: GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg): Promise<RecentItems> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["marker"]: toString(queryParams.marker) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRecentItems(deserializeJson(response.text));
     }
 }

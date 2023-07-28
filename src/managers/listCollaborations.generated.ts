@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -38,20 +39,32 @@ export class ListCollaborationsManager {
     constructor(fields: Omit<ListCollaborationsManager, "getFileCollaborations" | "getFolderCollaborations" | "getCollaborations" | "getGroupCollaborations">) {
         Object.assign(this, fields);
     }
-    async getFileCollaborations(fileId: string, queryParams: undefined | GetFileCollaborationsQueryParamsArg = {} satisfies GetFileCollaborationsQueryParamsArg): Promise<Collaborations> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/collaborations") as string, { method: "GET", params: prepareParams(serializeGetFileCollaborationsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileCollaborations(fileId: string, queryParams: GetFileCollaborationsQueryParamsArg = {} satisfies GetFileCollaborationsQueryParamsArg): Promise<Collaborations> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["marker"]: toString(queryParams.marker) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/collaborations") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJson(response.text));
     }
-    async getFolderCollaborations(folderId: string, queryParams: undefined | GetFolderCollaborationsQueryParamsArg = {} satisfies GetFolderCollaborationsQueryParamsArg): Promise<Collaborations> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/collaborations") as string, { method: "GET", params: prepareParams(serializeGetFolderCollaborationsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFolderCollaborations(folderId: string, queryParams: GetFolderCollaborationsQueryParamsArg = {} satisfies GetFolderCollaborationsQueryParamsArg): Promise<Collaborations> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/collaborations") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJson(response.text));
     }
     async getCollaborations(queryParams: GetCollaborationsQueryParamsArg): Promise<Collaborations> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: prepareParams(serializeGetCollaborationsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["status"]: toString(queryParams.status), ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJson(response.text));
     }
-    async getGroupCollaborations(groupId: string, queryParams: undefined | GetGroupCollaborationsQueryParamsArg = {} satisfies GetGroupCollaborationsQueryParamsArg): Promise<Collaborations> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/collaborations") as string, { method: "GET", params: prepareParams(serializeGetGroupCollaborationsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getGroupCollaborations(groupId: string, queryParams: GetGroupCollaborationsQueryParamsArg = {} satisfies GetGroupCollaborationsQueryParamsArg): Promise<Collaborations> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId, "/collaborations") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaborations(deserializeJson(response.text));
     }
 }

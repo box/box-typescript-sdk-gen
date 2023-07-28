@@ -19,6 +19,7 @@ import { IntegrationMappingSlackOptions } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -51,8 +52,11 @@ export class IntegrationMappingsManager {
     constructor(fields: Omit<IntegrationMappingsManager, "getIntegrationMappingSlack" | "createIntegrationMappingSlack" | "updateIntegrationMappingSlackById" | "deleteIntegrationMappingSlackById">) {
         Object.assign(this, fields);
     }
-    async getIntegrationMappingSlack(queryParams: undefined | GetIntegrationMappingSlackQueryParamsArg = {} satisfies GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack") as string, { method: "GET", params: prepareParams(serializeGetIntegrationMappingSlackQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getIntegrationMappingSlack(queryParams: GetIntegrationMappingSlackQueryParamsArg = {} satisfies GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit), ["partner_item_type"]: toString(queryParams.partnerItemType), ["partner_item_id"]: toString(queryParams.partnerItemId), ["box_item_id"]: toString(queryParams.boxItemId), ["box_item_type"]: toString(queryParams.boxItemType), ["is_manually_created"]: toString(queryParams.isManuallyCreated) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeIntegrationMappings(deserializeJson(response.text));
     }
     async createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest): Promise<IntegrationMapping> {

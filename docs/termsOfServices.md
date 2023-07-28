@@ -14,7 +14,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetTermOfServicesQueryParamsArg`
+- queryParams `GetTermOfServicesQueryParamsArg`
   - Used as queryParams for the API call
 
 

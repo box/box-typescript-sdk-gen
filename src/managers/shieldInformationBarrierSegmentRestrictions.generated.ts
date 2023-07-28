@@ -10,6 +10,7 @@ import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -54,7 +55,10 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
         return response.content;
     }
     async getShieldInformationBarrierSegmentRestrictions(queryParams: GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_restrictions") as string, { method: "GET", params: prepareParams(serializeGetShieldInformationBarrierSegmentRestrictionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["shield_information_barrier_segment_id"]: toString(queryParams.shieldInformationBarrierSegmentId), ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segment_restrictions") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
     async createShieldInformationBarrierSegmentRestriction(requestBody: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg): Promise<ShieldInformationBarrierSegmentRestriction> {

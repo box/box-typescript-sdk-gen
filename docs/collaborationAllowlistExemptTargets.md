@@ -14,7 +14,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetCollaborationWhitelistExemptTargetsQueryParamsArg`
+- queryParams `GetCollaborationWhitelistExemptTargetsQueryParamsArg`
   - Used as queryParams for the API call
 
 

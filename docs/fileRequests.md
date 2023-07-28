@@ -44,7 +44,7 @@ See the endpoint docs at
   - Used as `file_request_id` in path `path` of the API call
 - requestBody `FileRequestUpdateRequest`
   - Used as requestBody for the API call
-- headers `undefined | UpdateFileRequestByIdHeadersArg`
+- headers `UpdateFileRequestByIdHeadersArg`
   - Used as headers for the API call
 
 

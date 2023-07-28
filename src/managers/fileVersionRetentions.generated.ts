@@ -10,6 +10,7 @@ import { FileVersionRetention } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -33,8 +34,11 @@ export class FileVersionRetentionsManager {
     constructor(fields: Omit<FileVersionRetentionsManager, "getFileVersionRetentions" | "getFileVersionRetentionById">) {
         Object.assign(this, fields);
     }
-    async getFileVersionRetentions(queryParams: undefined | GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: prepareParams(serializeGetFileVersionRetentionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileVersionRetentions(queryParams: GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["file_id"]: toString(queryParams.fileId), ["file_version_id"]: toString(queryParams.fileVersionId), ["policy_id"]: toString(queryParams.policyId), ["disposition_action"]: toString(queryParams.dispositionAction), ["disposition_before"]: toString(queryParams.dispositionBefore), ["disposition_after"]: toString(queryParams.dispositionAfter), ["limit"]: toString(queryParams.limit), ["marker"]: toString(queryParams.marker) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_version_retentions") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionRetentions(deserializeJson(response.text));
     }
     async getFileVersionRetentionById(fileVersionRetentionId: string): Promise<FileVersionRetention> {

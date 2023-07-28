@@ -118,20 +118,22 @@ export async function reduceIterator<T, U>(
   return result;
 }
 
-export function prepareParams(obj: any): Record<string, string> {
-  if (!obj || typeof obj !== 'object') {
+export function prepareParams(map: {
+  readonly [key: string]: undefined | string;
+}): { readonly [key: string]: string } {
+  if (!map || typeof map !== 'object') {
     throw new Error('Expecting obj to be an object in prepareParams');
   }
   return Object.fromEntries(
-    Object.entries(obj)
-      .map<[string, string | null | undefined]>(([key, value]) => {
-        if (typeof value === 'string' || value == null) {
-          return [key, value];
-        }
-        return [key, String(value)];
-      })
-      .filter<[string, string]>(
-        (entry): entry is [string, string] => typeof entry[1] === 'string'
-      )
+    Object.entries(map).filter<[string, string]>(
+      (entry): entry is [string, string] => typeof entry[1] === 'string'
+    )
   );
+}
+
+export function toString(value: any): string {
+  if (typeof value === 'string' || value == null) {
+    return value;
+  }
+  return String(value);
 }

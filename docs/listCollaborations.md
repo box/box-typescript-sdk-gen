@@ -18,7 +18,7 @@ See the endpoint docs at
 - fileId `string`
   - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
   - Used as `file_id` in path `path` of the API call
-- queryParams `undefined | GetFileCollaborationsQueryParamsArg`
+- queryParams `GetFileCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -52,7 +52,7 @@ See the endpoint docs at
 - folderId `string`
   - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.
   - Used as `folder_id` in path `path` of the API call
-- queryParams `undefined | GetFolderCollaborationsQueryParamsArg`
+- queryParams `GetFolderCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -115,7 +115,7 @@ See the endpoint docs at
 - groupId `string`
   - The ID of the group.
   - Used as `group_id` in path `path` of the API call
-- queryParams `undefined | GetGroupCollaborationsQueryParamsArg`
+- queryParams `GetGroupCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
 
 

@@ -17,7 +17,7 @@ See the endpoint docs at
 - retentionPolicyId `string`
   - The ID of the retention policy.
   - Used as `retention_policy_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentsQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -69,7 +69,7 @@ See the endpoint docs at
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment.
   - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentByIdQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -115,7 +115,7 @@ See the endpoint docs at
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment.
   - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -144,7 +144,7 @@ See the endpoint docs at
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment.
   - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg`
   - Used as queryParams for the API call
 
 

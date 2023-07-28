@@ -67,7 +67,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetSearchQueryParamsArg`
+- queryParams `GetSearchQueryParamsArg`
   - Used as queryParams for the API call
 
 

@@ -13,7 +13,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetRetentionPoliciesQueryParamsArg`
+- queryParams `GetRetentionPoliciesQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -64,7 +64,7 @@ See the endpoint docs at
 - retentionPolicyId `string`
   - The ID of the retention policy.
   - Used as `retention_policy_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyByIdQueryParamsArg`
+- queryParams `GetRetentionPolicyByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 

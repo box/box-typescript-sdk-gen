@@ -10,6 +10,7 @@ import { StoragePolicy } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -27,8 +28,11 @@ export class StoragePoliciesManager {
     constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePolicyById">) {
         Object.assign(this, fields);
     }
-    async getStoragePolicies(queryParams: undefined | GetStoragePoliciesQueryParamsArg = {} satisfies GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: prepareParams(serializeGetStoragePoliciesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getStoragePolicies(queryParams: GetStoragePoliciesQueryParamsArg = {} satisfies GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicies(deserializeJson(response.text));
     }
     async getStoragePolicyById(storagePolicyId: string): Promise<StoragePolicy> {

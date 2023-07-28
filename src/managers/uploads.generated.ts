@@ -13,6 +13,7 @@ import { ConflictError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -74,12 +75,24 @@ export class UploadsManager {
     constructor(fields: Omit<UploadsManager, "uploadFileVersion" | "uploadFile" | "preflightFileUpload">) {
         Object.assign(this, fields);
     }
-    async uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams: undefined | UploadFileVersionQueryParamsArg = {} satisfies UploadFileVersionQueryParamsArg, headers: undefined | UploadFileVersionHeadersArg = {} satisfies UploadFileVersionHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/content") as string, { method: "POST", params: prepareParams(serializeUploadFileVersionQueryParamsArg(queryParams)), headers: prepareParams(serializeUploadFileVersionHeadersArg(headers)), multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileVersionRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams: UploadFileVersionQueryParamsArg = {} satisfies UploadFileVersionQueryParamsArg, headers: UploadFileVersionHeadersArg = {} satisfies UploadFileVersionHeadersArg): Promise<Files> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch), ["content-md5"]: toString(headers.contentMd5) });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/content") as string, { method: "POST", params: queryParamsMap, headers: headersMap, multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileVersionRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
-    async uploadFile(requestBody: UploadFileRequestBodyArg, queryParams: undefined | UploadFileQueryParamsArg = {} satisfies UploadFileQueryParamsArg, headers: undefined | UploadFileHeadersArg = {} satisfies UploadFileHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/content") as string, { method: "POST", params: prepareParams(serializeUploadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeUploadFileHeadersArg(headers)), multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async uploadFile(requestBody: UploadFileRequestBodyArg, queryParams: UploadFileQueryParamsArg = {} satisfies UploadFileQueryParamsArg, headers: UploadFileHeadersArg = {} satisfies UploadFileHeadersArg): Promise<Files> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["content-md5"]: toString(headers.contentMd5) });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/content") as string, { method: "POST", params: queryParamsMap, headers: headersMap, multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
     async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<UploadUrl> {

@@ -16,6 +16,7 @@ import { UserFull } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -106,28 +107,46 @@ export class UsersManager {
     constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">) {
         Object.assign(this, fields);
     }
-    async getUsers(queryParams: undefined | GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg): Promise<Users> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: prepareParams(serializeGetUsersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getUsers(queryParams: GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg): Promise<Users> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["filter_term"]: toString(queryParams.filterTerm), ["user_type"]: toString(queryParams.userType), ["external_app_user_id"]: toString(queryParams.externalAppUserId), ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit), ["usemarker"]: toString(queryParams.usemarker), ["marker"]: toString(queryParams.marker) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUsers(deserializeJson(response.text));
     }
-    async createUser(requestBody: CreateUserRequestBodyArg, queryParams: undefined | CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg): Promise<User> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: prepareParams(serializeCreateUserQueryParamsArg(queryParams)), body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createUser(requestBody: CreateUserRequestBodyArg, queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg): Promise<User> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUser(deserializeJson(response.text));
     }
-    async getUserMe(queryParams: undefined | GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: prepareParams(serializeGetUserMeQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getUserMe(queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg): Promise<UserFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async getUserById(userId: string, queryParams: undefined | GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: prepareParams(serializeGetUserByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getUserById(userId: string, queryParams: GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg): Promise<UserFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: undefined | UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg): Promise<UserFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: prepareParams(serializeUpdateUserByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg): Promise<UserFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async deleteUserById(userId: string, queryParams: undefined | DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: prepareParams(serializeDeleteUserByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async deleteUserById(userId: string, queryParams: DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg): Promise<any> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["notify"]: toString(queryParams.notify), ["force"]: toString(queryParams.force) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }

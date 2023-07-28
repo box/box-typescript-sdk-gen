@@ -15,7 +15,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetRecentItemsQueryParamsArg`
+- queryParams `GetRecentItemsQueryParamsArg`
   - Used as queryParams for the API call
 
 

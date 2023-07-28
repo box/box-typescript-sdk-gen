@@ -119,7 +119,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetMetadataTemplateGlobalQueryParamsArg`
+- queryParams `GetMetadataTemplateGlobalQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -145,7 +145,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetMetadataTemplateEnterpriseQueryParamsArg`
+- queryParams `GetMetadataTemplateEnterpriseQueryParamsArg`
   - Used as queryParams for the API call
 
 

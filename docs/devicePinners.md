@@ -62,7 +62,7 @@ See the endpoint docs at
 - enterpriseId `string`
   - The ID of the enterprise
   - Used as `enterprise_id` in path `path` of the API call
-- queryParams `undefined | GetEnterpriseDevicePinnersQueryParamsArg`
+- queryParams `GetEnterpriseDevicePinnersQueryParamsArg`
   - Used as queryParams for the API call
 
 

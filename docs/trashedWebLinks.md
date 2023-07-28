@@ -21,7 +21,7 @@ See the endpoint docs at
   - Used as `web_link_id` in path `path` of the API call
 - requestBody `CreateWebLinkByIdRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateWebLinkByIdQueryParamsArg`
+- queryParams `CreateWebLinkByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -48,7 +48,7 @@ See the endpoint docs at
 - webLinkId `string`
   - The ID of the web link.
   - Used as `web_link_id` in path `path` of the API call
-- queryParams `undefined | GetWebLinkTrashQueryParamsArg`
+- queryParams `GetWebLinkTrashQueryParamsArg`
   - Used as queryParams for the API call
 
 

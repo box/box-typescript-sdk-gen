@@ -36,7 +36,7 @@ export declare class WebLinksManager {
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
     createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<WebLink>;
-    getWebLinkById(webLinkId: string, headers?: undefined | GetWebLinkByIdHeadersArg): Promise<WebLink>;
+    getWebLinkById(webLinkId: string, headers?: GetWebLinkByIdHeadersArg): Promise<WebLink>;
     updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<WebLink>;
     deleteWebLinkById(webLinkId: string): Promise<any>;
 }

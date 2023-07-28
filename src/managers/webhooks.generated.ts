@@ -10,6 +10,7 @@ import { Webhook } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -49,8 +50,11 @@ export class WebhooksManager {
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">) {
         Object.assign(this, fields);
     }
-    async getWebhooks(queryParams: undefined | GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg): Promise<Webhooks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: prepareParams(serializeGetWebhooksQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWebhooks(queryParams: GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg): Promise<Webhooks> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhooks(deserializeJson(response.text));
     }
     async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook> {

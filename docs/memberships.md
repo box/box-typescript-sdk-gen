@@ -21,7 +21,7 @@ await client.memberships.getUserMemberships(user.id)
 - userId `string`
   - The ID of the user.
   - Used as `user_id` in path `path` of the API call
-- queryParams `undefined | GetUserMembershipsQueryParamsArg`
+- queryParams `GetUserMembershipsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -54,7 +54,7 @@ await client.memberships.getGroupMemberships(group.id)
 - groupId `string`
   - The ID of the group.
   - Used as `group_id` in path `path` of the API call
-- queryParams `undefined | GetGroupMembershipsQueryParamsArg`
+- queryParams `GetGroupMembershipsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -85,7 +85,7 @@ await client.memberships.createGroupMembership({ user: user, group: group } sati
 
 - requestBody `CreateGroupMembershipRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateGroupMembershipQueryParamsArg`
+- queryParams `CreateGroupMembershipQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -117,7 +117,7 @@ await client.memberships.getGroupMembershipById(groupMembership.id)
 - groupMembershipId `string`
   - The ID of the group membership.
   - Used as `group_membership_id` in path `path` of the API call
-- queryParams `undefined | GetGroupMembershipByIdQueryParamsArg`
+- queryParams `GetGroupMembershipByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -151,7 +151,7 @@ await client.memberships.updateGroupMembershipById(groupMembership.id, { role: &
   - Used as `group_membership_id` in path `path` of the API call
 - requestBody `UpdateGroupMembershipByIdRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | UpdateGroupMembershipByIdQueryParamsArg`
+- queryParams `UpdateGroupMembershipByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 

@@ -22,8 +22,8 @@ export declare class InvitesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<InvitesManager, "createInvite" | "getInviteById">);
-    createInvite(requestBody: CreateInviteRequestBodyArg, queryParams?: undefined | CreateInviteQueryParamsArg): Promise<Invite>;
-    getInviteById(inviteId: string, queryParams?: undefined | GetInviteByIdQueryParamsArg): Promise<Invite>;
+    createInvite(requestBody: CreateInviteRequestBodyArg, queryParams?: CreateInviteQueryParamsArg): Promise<Invite>;
+    getInviteById(inviteId: string, queryParams?: GetInviteByIdQueryParamsArg): Promise<Invite>;
 }
 export declare function serializeCreateInviteRequestBodyArgEnterpriseField(val: CreateInviteRequestBodyArgEnterpriseField): Json;
 export declare function deserializeCreateInviteRequestBodyArgEnterpriseField(val: any): CreateInviteRequestBodyArgEnterpriseField;

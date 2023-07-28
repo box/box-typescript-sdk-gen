@@ -13,6 +13,7 @@ import { Comment } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -53,24 +54,36 @@ export class CommentsManager {
     constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">) {
         Object.assign(this, fields);
     }
-    async getFileComments(fileId: string, queryParams: undefined | GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg): Promise<Comments> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: prepareParams(serializeGetFileCommentsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileComments(fileId: string, queryParams: GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg): Promise<Comments> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComments(deserializeJson(response.text));
     }
-    async getCommentById(commentId: string, queryParams: undefined | GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg): Promise<CommentFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: prepareParams(serializeGetCommentByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getCommentById(commentId: string, queryParams: GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg): Promise<CommentFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
-    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: undefined | UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg): Promise<CommentFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: prepareParams(serializeUpdateCommentByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateCommentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg): Promise<CommentFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateCommentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
     async deleteCommentById(commentId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async createComment(requestBody: CreateCommentRequestBodyArg, queryParams: undefined | CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg): Promise<Comment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: prepareParams(serializeCreateCommentQueryParamsArg(queryParams)), body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createComment(requestBody: CreateCommentRequestBodyArg, queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg): Promise<Comment> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComment(deserializeJson(response.text));
     }
 }

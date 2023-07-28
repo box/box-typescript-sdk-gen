@@ -19,6 +19,7 @@ import { UploadPart } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -71,19 +72,28 @@ export class ChunkedUploadsManager {
         return deserializeUploadSession(deserializeJson(response.text));
     }
     async uploadFilePart(uploadSessionId: string, requestBody: Readable, headers: UploadFilePartHeadersArg): Promise<UploadedPart> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "PUT", headers: prepareParams(serializeUploadFilePartHeadersArg(headers)), body: requestBody, contentType: "application/octet-stream", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["digest"]: toString(headers.digest), ["content-range"]: toString(headers.contentRange) });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "PUT", headers: headersMap, body: requestBody, contentType: "application/octet-stream", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadedPart(deserializeJson(response.text));
     }
     async deleteFileUploadSessionById(uploadSessionId: string): Promise<any> {
         const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async getFileUploadSessionParts(uploadSessionId: string, queryParams: undefined | GetFileUploadSessionPartsQueryParamsArg = {} satisfies GetFileUploadSessionPartsQueryParamsArg): Promise<UploadParts> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: prepareParams(serializeGetFileUploadSessionPartsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileUploadSessionParts(uploadSessionId: string, queryParams: GetFileUploadSessionPartsQueryParamsArg = {} satisfies GetFileUploadSessionPartsQueryParamsArg): Promise<UploadParts> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/parts") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadParts(deserializeJson(response.text));
     }
     async createFileUploadSessionCommit(uploadSessionId: string, requestBody: CreateFileUploadSessionCommitRequestBodyArg, headers: CreateFileUploadSessionCommitHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: prepareParams(serializeCreateFileUploadSessionCommitHeadersArg(headers)), body: serializeJson(serializeCreateFileUploadSessionCommitRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["digest"]: toString(headers.digest), ["if-match"]: toString(headers.ifMatch), ["if-none-match"]: toString(headers.ifNoneMatch) });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/upload_sessions/", uploadSessionId, "/commit") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateFileUploadSessionCommitRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
 }

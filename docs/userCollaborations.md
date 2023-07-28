@@ -16,7 +16,7 @@ See the endpoint docs at
 - collaborationId `string`
   - The ID of the collaboration
   - Used as `collaboration_id` in path `path` of the API call
-- queryParams `undefined | GetCollaborationByIdQueryParamsArg`
+- queryParams `GetCollaborationByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -104,7 +104,7 @@ See the endpoint docs at
 
 - requestBody `CreateCollaborationRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateCollaborationQueryParamsArg`
+- queryParams `CreateCollaborationQueryParamsArg`
   - Used as queryParams for the API call
 
 

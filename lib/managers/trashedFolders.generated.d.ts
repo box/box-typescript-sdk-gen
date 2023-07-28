@@ -20,8 +20,8 @@ export declare class TrashedFoldersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">);
-    restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams?: undefined | RestoreFolderFromTrashQueryParamsArg): Promise<TrashFolderRestored>;
-    getFolderTrash(folderId: string, queryParams?: undefined | GetFolderTrashQueryParamsArg): Promise<TrashFolder>;
+    restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams?: RestoreFolderFromTrashQueryParamsArg): Promise<TrashFolderRestored>;
+    getFolderTrash(folderId: string, queryParams?: GetFolderTrashQueryParamsArg): Promise<TrashFolder>;
     deleteFolderTrash(folderId: string): Promise<any>;
 }
 export declare function serializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json;

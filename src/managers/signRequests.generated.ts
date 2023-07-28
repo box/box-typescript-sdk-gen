@@ -13,6 +13,7 @@ import { SignRequestCreateRequest } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -42,8 +43,11 @@ export class SignRequestsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests/", signRequestId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignRequest(deserializeJson(response.text));
     }
-    async getSignRequests(queryParams: undefined | GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg): Promise<SignRequests> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: prepareParams(serializeGetSignRequestsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getSignRequests(queryParams: GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg): Promise<SignRequests> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_requests") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignRequests(deserializeJson(response.text));
     }
     async createSignRequest(requestBody: SignRequestCreateRequest): Promise<SignRequest> {

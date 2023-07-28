@@ -55,8 +55,8 @@ export declare class UploadsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UploadsManager, "uploadFileVersion" | "uploadFile" | "preflightFileUpload">);
-    uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams?: undefined | UploadFileVersionQueryParamsArg, headers?: undefined | UploadFileVersionHeadersArg): Promise<Files>;
-    uploadFile(requestBody: UploadFileRequestBodyArg, queryParams?: undefined | UploadFileQueryParamsArg, headers?: undefined | UploadFileHeadersArg): Promise<Files>;
+    uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams?: UploadFileVersionQueryParamsArg, headers?: UploadFileVersionHeadersArg): Promise<Files>;
+    uploadFile(requestBody: UploadFileRequestBodyArg, queryParams?: UploadFileQueryParamsArg, headers?: UploadFileHeadersArg): Promise<Files>;
     preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<UploadUrl>;
 }
 export declare function serializeUploadFileVersionRequestBodyArgAttributesField(val: UploadFileVersionRequestBodyArgAttributesField): Json;

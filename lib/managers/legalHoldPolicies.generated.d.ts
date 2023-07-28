@@ -25,7 +25,7 @@ export declare class LegalHoldPoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<LegalHoldPoliciesManager, "getLegalHoldPolicies" | "createLegalHoldPolicy" | "getLegalHoldPolicyById" | "updateLegalHoldPolicyById" | "deleteLegalHoldPolicyById">);
-    getLegalHoldPolicies(queryParams?: undefined | GetLegalHoldPoliciesQueryParamsArg): Promise<LegalHoldPolicies>;
+    getLegalHoldPolicies(queryParams?: GetLegalHoldPoliciesQueryParamsArg): Promise<LegalHoldPolicies>;
     createLegalHoldPolicy(requestBody: CreateLegalHoldPolicyRequestBodyArg): Promise<LegalHoldPolicy>;
     getLegalHoldPolicyById(legalHoldPolicyId: string): Promise<LegalHoldPolicy>;
     updateLegalHoldPolicyById(legalHoldPolicyId: string, requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg): Promise<LegalHoldPolicy>;

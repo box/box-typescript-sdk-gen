@@ -20,8 +20,8 @@ export declare class TrashedWebLinksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedWebLinksManager, "createWebLinkById" | "getWebLinkTrash" | "deleteWebLinkTrash">);
-    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams?: undefined | CreateWebLinkByIdQueryParamsArg): Promise<TrashWebLinkRestored>;
-    getWebLinkTrash(webLinkId: string, queryParams?: undefined | GetWebLinkTrashQueryParamsArg): Promise<TrashWebLink>;
+    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams?: CreateWebLinkByIdQueryParamsArg): Promise<TrashWebLinkRestored>;
+    getWebLinkTrash(webLinkId: string, queryParams?: GetWebLinkTrashQueryParamsArg): Promise<TrashWebLink>;
     deleteWebLinkTrash(webLinkId: string): Promise<any>;
 }
 export declare function serializeCreateWebLinkByIdRequestBodyArgParentField(val: CreateWebLinkByIdRequestBodyArgParentField): Json;

@@ -19,7 +19,7 @@ await client.comments.getFileComments(fileId)
 - fileId `string`
   - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
   - Used as `file_id` in path `path` of the API call
-- queryParams `undefined | GetFileCommentsQueryParamsArg`
+- queryParams `GetFileCommentsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -51,7 +51,7 @@ await client.comments.getCommentById(newComment.id)
 - commentId `string`
   - The ID of the comment.
   - Used as `comment_id` in path `path` of the API call
-- queryParams `undefined | GetCommentByIdQueryParamsArg`
+- queryParams `GetCommentByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -83,7 +83,7 @@ await client.comments.updateCommentById(newReplyComment.id, { message: newMessag
   - Used as `comment_id` in path `path` of the API call
 - requestBody `UpdateCommentByIdRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | UpdateCommentByIdQueryParamsArg`
+- queryParams `UpdateCommentByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -134,7 +134,7 @@ await client.comments.createComment({ message: message, item: { id: newComment.i
 
 - requestBody `CreateCommentRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateCommentQueryParamsArg`
+- queryParams `CreateCommentQueryParamsArg`
   - Used as queryParams for the API call
 
 

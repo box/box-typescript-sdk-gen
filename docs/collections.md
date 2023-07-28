@@ -16,7 +16,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetCollectionsQueryParamsArg`
+- queryParams `GetCollectionsQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -44,7 +44,7 @@ See the endpoint docs at
 - collectionId `string`
   - The ID of the collection.
   - Used as `collection_id` in path `path` of the API call
-- queryParams `undefined | GetCollectionItemsQueryParamsArg`
+- queryParams `GetCollectionItemsQueryParamsArg`
   - Used as queryParams for the API call
 
 

@@ -42,7 +42,7 @@ export declare class ChunkedUploadsManager {
     getFileUploadSessionById(uploadSessionId: string): Promise<UploadSession>;
     uploadFilePart(uploadSessionId: string, requestBody: Readable, headers: UploadFilePartHeadersArg): Promise<UploadedPart>;
     deleteFileUploadSessionById(uploadSessionId: string): Promise<any>;
-    getFileUploadSessionParts(uploadSessionId: string, queryParams?: undefined | GetFileUploadSessionPartsQueryParamsArg): Promise<UploadParts>;
+    getFileUploadSessionParts(uploadSessionId: string, queryParams?: GetFileUploadSessionPartsQueryParamsArg): Promise<UploadParts>;
     createFileUploadSessionCommit(uploadSessionId: string, requestBody: CreateFileUploadSessionCommitRequestBodyArg, headers: CreateFileUploadSessionCommitHeadersArg): Promise<Files>;
 }
 export declare function serializeCreateFileUploadSessionRequestBodyArg(val: CreateFileUploadSessionRequestBodyArg): Json;

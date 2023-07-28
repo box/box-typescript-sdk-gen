@@ -16,7 +16,7 @@ export declare class TransferManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TransferManager, "transferOwnedFolder">);
-    transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, queryParams?: undefined | TransferOwnedFolderQueryParamsArg): Promise<FolderFull>;
+    transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, queryParams?: TransferOwnedFolderQueryParamsArg): Promise<FolderFull>;
 }
 export declare function serializeTransferOwnedFolderRequestBodyArgOwnedByField(val: TransferOwnedFolderRequestBodyArgOwnedByField): Json;
 export declare function deserializeTransferOwnedFolderRequestBodyArgOwnedByField(val: any): TransferOwnedFolderRequestBodyArgOwnedByField;

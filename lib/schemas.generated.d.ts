@@ -292,18 +292,11 @@ export interface FilesUnderRetention {
     readonly prevMarker?: number;
     readonly entries?: readonly FileMini[];
 }
-export type FileConflict = FileMini & {
-    /**
-     * The SHA1 hash of the file. */
-    readonly sha1?: string;
-    readonly fileVersion?: FileVersionMini;
-};
+export type FileConflict = FileMini & {};
 export interface ConflictErrorContextInfoField {
     readonly conflicts?: readonly FileConflict[];
 }
-export type ConflictError = ClientError & {
-    readonly contextInfo?: ConflictErrorContextInfoField;
-};
+export type ConflictError = ClientError & {};
 export type FolderBaseTypeField = "folder";
 export interface FolderBase {
     readonly id: string;
@@ -1680,7 +1673,6 @@ export type ShieldInformationBarrierSegmentMember = ShieldInformationBarrierSegm
      * The `type` and `id` of the requested
      * shield information barrier segment. */
     readonly shieldInformationBarrierSegment?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
-    readonly user?: UserBase;
     /**
      * ISO date time string when this shield
      * information barrier object was created. */

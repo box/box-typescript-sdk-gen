@@ -16,7 +16,7 @@ export declare class CollaborationAllowlistEntriesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CollaborationAllowlistEntriesManager, "getCollaborationWhitelistEntries" | "createCollaborationWhitelistEntry" | "getCollaborationWhitelistEntryById" | "deleteCollaborationWhitelistEntryById">);
-    getCollaborationWhitelistEntries(queryParams?: undefined | GetCollaborationWhitelistEntriesQueryParamsArg): Promise<CollaborationAllowlistEntries>;
+    getCollaborationWhitelistEntries(queryParams?: GetCollaborationWhitelistEntriesQueryParamsArg): Promise<CollaborationAllowlistEntries>;
     createCollaborationWhitelistEntry(requestBody: CreateCollaborationWhitelistEntryRequestBodyArg): Promise<CollaborationAllowlistEntry>;
     getCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<CollaborationAllowlistEntry>;
     deleteCollaborationWhitelistEntryById(collaborationWhitelistEntryId: string): Promise<any>;

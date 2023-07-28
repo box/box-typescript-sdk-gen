@@ -12,7 +12,7 @@ export declare class FileRequestsManager {
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileRequestsManager, "getFileRequestById" | "updateFileRequestById" | "deleteFileRequestById" | "createFileRequestCopy">);
     getFileRequestById(fileRequestId: string): Promise<FileRequest>;
-    updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers?: undefined | UpdateFileRequestByIdHeadersArg): Promise<FileRequest>;
+    updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers?: UpdateFileRequestByIdHeadersArg): Promise<FileRequest>;
     deleteFileRequestById(fileRequestId: string): Promise<any>;
     createFileRequestCopy(fileRequestId: string, requestBody: FileRequestCopyRequest): Promise<FileRequest>;
 }

@@ -293,18 +293,11 @@ export interface FilesUnderRetention {
     readonly prevMarker?: number;
     readonly entries?: readonly FileMini[];
 }
-export type FileConflict = FileMini & {
-    /**
-     * The SHA1 hash of the file. */
-    readonly sha1?: string;
-    readonly fileVersion?: FileVersionMini;
-};
+export type FileConflict = FileMini & {};
 export interface ConflictErrorContextInfoField {
     readonly conflicts?: readonly FileConflict[];
 }
-export type ConflictError = ClientError & {
-    readonly contextInfo?: ConflictErrorContextInfoField;
-};
+export type ConflictError = ClientError & {};
 export type FolderBaseTypeField = "folder";
 export interface FolderBase {
     readonly id: string;
@@ -1681,7 +1674,6 @@ export type ShieldInformationBarrierSegmentMember = ShieldInformationBarrierSegm
      * The `type` and `id` of the requested
      * shield information barrier segment. */
     readonly shieldInformationBarrierSegment?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
-    readonly user?: UserBase;
     /**
      * ISO date time string when this shield
      * information barrier object was created. */
@@ -3870,17 +3862,17 @@ export function serializeFileConflict(val: FileConflict): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileConflict\"";
     }
-    return { ...base, ...{ ["sha1"]: val.sha1, ["file_version"]: val.fileVersion == void 0 ? void 0 : serializeFileVersionMini(val.fileVersion) } };
+    return { ...base, ...{} };
 }
 export function deserializeFileConflict(val: any): FileConflict {
-    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
-    const fileVersion: undefined | FileVersionMini = val.file_version == void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
     const sequenceId: undefined | string = isJson(val.sequence_id, "string") ? val.sequence_id : void 0;
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    const sha1: undefined | string = isJson(val.sha1, "string") ? val.sha1 : void 0;
+    const fileVersion: undefined | FileVersionMini = val.file_version == void 0 ? void 0 : deserializeFileVersionMini(val.file_version);
     const id: string = val.id;
     const etag: undefined | string = isJson(val.etag, "string") ? val.etag : void 0;
     const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
-    return { sha1: sha1, fileVersion: fileVersion, sequenceId: sequenceId, name: name, id: id, etag: etag, type: type } satisfies FileConflict;
+    return { sequenceId: sequenceId, name: name, sha1: sha1, fileVersion: fileVersion, id: id, etag: etag, type: type } satisfies FileConflict;
 }
 export function serializeConflictErrorContextInfoField(val: ConflictErrorContextInfoField): Json {
     return { ["conflicts"]: val.conflicts == void 0 ? void 0 : val.conflicts.map(function (item: FileConflict): any {
@@ -3898,17 +3890,17 @@ export function serializeConflictError(val: ConflictError): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ConflictError\"";
     }
-    return { ...base, ...{ ["context_info"]: val.contextInfo == void 0 ? void 0 : serializeConflictErrorContextInfoField(val.contextInfo) } };
+    return { ...base, ...{} };
 }
 export function deserializeConflictError(val: any): ConflictError {
-    const contextInfo: undefined | ClientErrorContextInfoField = val.context_info == void 0 ? void 0 : deserializeClientErrorContextInfoField(val.context_info);
     const type: undefined | ClientErrorTypeField = val.type == void 0 ? void 0 : deserializeClientErrorTypeField(val.type);
     const status: undefined | number = isJson(val.status, "number") ? val.status : void 0;
     const code: undefined | ClientErrorCodeField = val.code == void 0 ? void 0 : deserializeClientErrorCodeField(val.code);
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
+    const contextInfo: undefined | ClientErrorContextInfoField = val.context_info == void 0 ? void 0 : deserializeClientErrorContextInfoField(val.context_info);
     const helpUrl: undefined | string = isJson(val.help_url, "string") ? val.help_url : void 0;
     const requestId: undefined | string = isJson(val.request_id, "string") ? val.request_id : void 0;
-    return { contextInfo: contextInfo, type: type, status: status, code: code, message: message, helpUrl: helpUrl, requestId: requestId } satisfies ConflictError;
+    return { type: type, status: status, code: code, message: message, contextInfo: contextInfo, helpUrl: helpUrl, requestId: requestId } satisfies ConflictError;
 }
 export function serializeFolderBaseTypeField(val: FolderBaseTypeField): Json {
     return val;
@@ -7155,19 +7147,19 @@ export function serializeShieldInformationBarrierSegmentMember(val: ShieldInform
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"ShieldInformationBarrierSegmentMember\"";
     }
-    return { ...base, ...{ ["shield_information_barrier"]: val.shieldInformationBarrier == void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["shield_information_barrier_segment"]: val.shieldInformationBarrierSegment == void 0 ? void 0 : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val.shieldInformationBarrierSegment), ["user"]: val.user == void 0 ? void 0 : serializeUserBase(val.user), ["created_at"]: val.createdAt, ["created_by"]: val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy), ["updated_at"]: val.updatedAt, ["updated_by"]: val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy) } };
+    return { ...base, ...{ ["shield_information_barrier"]: val.shieldInformationBarrier == void 0 ? void 0 : serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["shield_information_barrier_segment"]: val.shieldInformationBarrierSegment == void 0 ? void 0 : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val.shieldInformationBarrierSegment), ["created_at"]: val.createdAt, ["created_by"]: val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy), ["updated_at"]: val.updatedAt, ["updated_by"]: val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy) } };
 }
 export function deserializeShieldInformationBarrierSegmentMember(val: any): ShieldInformationBarrierSegmentMember {
     const shieldInformationBarrier: undefined | ShieldInformationBarrierBase = val.shield_information_barrier == void 0 ? void 0 : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
     const shieldInformationBarrierSegment: undefined | ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField = val.shield_information_barrier_segment == void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(val.shield_information_barrier_segment);
-    const user: undefined | UserBase = val.user == void 0 ? void 0 : deserializeUserBase(val.user);
     const createdAt: undefined | string = isJson(val.created_at, "string") ? val.created_at : void 0;
     const createdBy: undefined | UserBase = val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
     const updatedAt: undefined | string = isJson(val.updated_at, "string") ? val.updated_at : void 0;
     const updatedBy: undefined | UserBase = val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
+    const user: undefined | UserBase = val.user == void 0 ? void 0 : deserializeUserBase(val.user);
     const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     const type: undefined | ShieldInformationBarrierSegmentMemberBaseTypeField = val.type == void 0 ? void 0 : deserializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type);
-    return { shieldInformationBarrier: shieldInformationBarrier, shieldInformationBarrierSegment: shieldInformationBarrierSegment, user: user, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy, id: id, type: type } satisfies ShieldInformationBarrierSegmentMember;
+    return { shieldInformationBarrier: shieldInformationBarrier, shieldInformationBarrierSegment: shieldInformationBarrierSegment, createdAt: createdAt, createdBy: createdBy, updatedAt: updatedAt, updatedBy: updatedBy, user: user, id: id, type: type } satisfies ShieldInformationBarrierSegmentMember;
 }
 export function serializeShieldInformationBarrierSegmentTypeField(val: ShieldInformationBarrierSegmentTypeField): Json {
     return val;

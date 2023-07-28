@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -53,8 +54,11 @@ export class WebLinksManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links") as string, { method: "POST", body: serializeJson(serializeCreateWebLinkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
     }
-    async getWebLinkById(webLinkId: string, headers: undefined | GetWebLinkByIdHeadersArg = {} satisfies GetWebLinkByIdHeadersArg): Promise<WebLink> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: prepareParams(serializeGetWebLinkByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWebLinkById(webLinkId: string, headers: GetWebLinkByIdHeadersArg = {} satisfies GetWebLinkByIdHeadersArg): Promise<WebLink> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["boxapi"]: toString(headers.boxapi) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
     }
     async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<WebLink> {

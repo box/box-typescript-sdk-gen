@@ -10,6 +10,7 @@ import { RealtimeServers } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -31,8 +32,11 @@ export class EventsManager {
     constructor(fields: Omit<EventsManager, "getEvents" | "getEventsWithLongPolling">) {
         Object.assign(this, fields);
     }
-    async getEvents(queryParams: undefined | GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg): Promise<Events> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: prepareParams(serializeGetEventsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getEvents(queryParams: GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg): Promise<Events> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["stream_type"]: toString(queryParams.streamType), ["stream_position"]: toString(queryParams.streamPosition), ["limit"]: toString(queryParams.limit), ["event_type"]: toString(queryParams.eventType), ["created_after"]: toString(queryParams.createdAfter), ["created_before"]: toString(queryParams.createdBefore) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/events") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeEvents(deserializeJson(response.text));
     }
     async getEventsWithLongPolling(): Promise<RealtimeServers> {

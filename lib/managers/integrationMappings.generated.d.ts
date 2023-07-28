@@ -27,7 +27,7 @@ export declare class IntegrationMappingsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<IntegrationMappingsManager, "getIntegrationMappingSlack" | "createIntegrationMappingSlack" | "updateIntegrationMappingSlackById" | "deleteIntegrationMappingSlackById">);
-    getIntegrationMappingSlack(queryParams?: undefined | GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings>;
+    getIntegrationMappingSlack(queryParams?: GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings>;
     createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest): Promise<IntegrationMapping>;
     updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg): Promise<IntegrationMapping>;
     deleteIntegrationMappingSlackById(integrationMappingId: string): Promise<any>;

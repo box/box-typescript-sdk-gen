@@ -18,7 +18,7 @@ export declare class FileVersionRetentionsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileVersionRetentionsManager, "getFileVersionRetentions" | "getFileVersionRetentionById">);
-    getFileVersionRetentions(queryParams?: undefined | GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions>;
+    getFileVersionRetentions(queryParams?: GetFileVersionRetentionsQueryParamsArg): Promise<FileVersionRetentions>;
     getFileVersionRetentionById(fileVersionRetentionId: string): Promise<FileVersionRetention>;
 }
 export declare function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(val: GetFileVersionRetentionsQueryParamsArgDispositionActionField): Json;

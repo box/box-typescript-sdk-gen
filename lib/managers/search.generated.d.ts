@@ -44,7 +44,7 @@ export declare class SearchManager {
     constructor(fields: Omit<SearchManager, "createMetadataQueryExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
     createMetadataQueryExecuteRead(requestBody: MetadataQuery): Promise<MetadataQueryResults>;
     getMetadataQueryIndices(queryParams: GetMetadataQueryIndicesQueryParamsArg): Promise<MetadataQueryIndices>;
-    getSearch(queryParams?: undefined | GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks>;
+    getSearch(queryParams?: GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks>;
 }
 export declare function serializeGetMetadataQueryIndicesQueryParamsArgScopeField(val: GetMetadataQueryIndicesQueryParamsArgScopeField): Json;
 export declare function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(val: any): GetMetadataQueryIndicesQueryParamsArgScopeField;

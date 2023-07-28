@@ -11,7 +11,7 @@ export declare class SignTemplatesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SignTemplatesManager, "getSignTemplates" | "getSignTemplateById">);
-    getSignTemplates(queryParams?: undefined | GetSignTemplatesQueryParamsArg): Promise<SignTemplates>;
+    getSignTemplates(queryParams?: GetSignTemplatesQueryParamsArg): Promise<SignTemplates>;
     getSignTemplateById(templateId: string): Promise<SignTemplate>;
 }
 export declare function serializeGetSignTemplatesQueryParamsArg(val: GetSignTemplatesQueryParamsArg): Json;

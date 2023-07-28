@@ -46,9 +46,9 @@ export declare class RetentionPoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">);
-    getRetentionPolicies(queryParams?: undefined | GetRetentionPoliciesQueryParamsArg): Promise<RetentionPolicies>;
+    getRetentionPolicies(queryParams?: GetRetentionPoliciesQueryParamsArg): Promise<RetentionPolicies>;
     createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<RetentionPolicy>;
-    getRetentionPolicyById(retentionPolicyId: string, queryParams?: undefined | GetRetentionPolicyByIdQueryParamsArg): Promise<RetentionPolicy>;
+    getRetentionPolicyById(retentionPolicyId: string, queryParams?: GetRetentionPolicyByIdQueryParamsArg): Promise<RetentionPolicy>;
     updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<RetentionPolicy>;
     deleteRetentionPolicyById(retentionPolicyId: string): Promise<any>;
 }

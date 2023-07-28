@@ -109,12 +109,12 @@ export declare class FoldersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">);
-    getFolderById(folderId: string, queryParams?: undefined | GetFolderByIdQueryParamsArg, headers?: undefined | GetFolderByIdHeadersArg): Promise<FolderFull>;
-    updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams?: undefined | UpdateFolderByIdQueryParamsArg, headers?: undefined | UpdateFolderByIdHeadersArg): Promise<FolderFull>;
-    deleteFolderById(folderId: string, queryParams?: undefined | DeleteFolderByIdQueryParamsArg, headers?: undefined | DeleteFolderByIdHeadersArg): Promise<any>;
-    getFolderItems(folderId: string, queryParams?: undefined | GetFolderItemsQueryParamsArg, headers?: undefined | GetFolderItemsHeadersArg): Promise<Items>;
-    createFolder(requestBody: CreateFolderRequestBodyArg, queryParams?: undefined | CreateFolderQueryParamsArg): Promise<FolderFull>;
-    copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams?: undefined | CopyFolderQueryParamsArg): Promise<FolderFull>;
+    getFolderById(folderId: string, queryParams?: GetFolderByIdQueryParamsArg, headers?: GetFolderByIdHeadersArg): Promise<FolderFull>;
+    updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams?: UpdateFolderByIdQueryParamsArg, headers?: UpdateFolderByIdHeadersArg): Promise<FolderFull>;
+    deleteFolderById(folderId: string, queryParams?: DeleteFolderByIdQueryParamsArg, headers?: DeleteFolderByIdHeadersArg): Promise<any>;
+    getFolderItems(folderId: string, queryParams?: GetFolderItemsQueryParamsArg, headers?: GetFolderItemsHeadersArg): Promise<Items>;
+    createFolder(requestBody: CreateFolderRequestBodyArg, queryParams?: CreateFolderQueryParamsArg): Promise<FolderFull>;
+    copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams?: CopyFolderQueryParamsArg): Promise<FolderFull>;
 }
 export declare function serializeGetFolderByIdQueryParamsArgSortField(val: GetFolderByIdQueryParamsArgSortField): Json;
 export declare function deserializeGetFolderByIdQueryParamsArgSortField(val: any): GetFolderByIdQueryParamsArgSortField;

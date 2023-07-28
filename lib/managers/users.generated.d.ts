@@ -86,12 +86,12 @@ export declare class UsersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">);
-    getUsers(queryParams?: undefined | GetUsersQueryParamsArg): Promise<Users>;
-    createUser(requestBody: CreateUserRequestBodyArg, queryParams?: undefined | CreateUserQueryParamsArg): Promise<User>;
-    getUserMe(queryParams?: undefined | GetUserMeQueryParamsArg): Promise<UserFull>;
-    getUserById(userId: string, queryParams?: undefined | GetUserByIdQueryParamsArg): Promise<UserFull>;
-    updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams?: undefined | UpdateUserByIdQueryParamsArg): Promise<UserFull>;
-    deleteUserById(userId: string, queryParams?: undefined | DeleteUserByIdQueryParamsArg): Promise<any>;
+    getUsers(queryParams?: GetUsersQueryParamsArg): Promise<Users>;
+    createUser(requestBody: CreateUserRequestBodyArg, queryParams?: CreateUserQueryParamsArg): Promise<User>;
+    getUserMe(queryParams?: GetUserMeQueryParamsArg): Promise<UserFull>;
+    getUserById(userId: string, queryParams?: GetUserByIdQueryParamsArg): Promise<UserFull>;
+    updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams?: UpdateUserByIdQueryParamsArg): Promise<UserFull>;
+    deleteUserById(userId: string, queryParams?: DeleteUserByIdQueryParamsArg): Promise<any>;
 }
 export declare function serializeGetUsersQueryParamsArgUserTypeField(val: GetUsersQueryParamsArgUserTypeField): Json;
 export declare function deserializeGetUsersQueryParamsArgUserTypeField(val: any): GetUsersQueryParamsArgUserTypeField;

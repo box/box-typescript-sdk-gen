@@ -43,10 +43,10 @@ export declare class GroupsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">);
-    getGroups(queryParams?: undefined | GetGroupsQueryParamsArg): Promise<Groups>;
-    createGroup(requestBody: CreateGroupRequestBodyArg, queryParams?: undefined | CreateGroupQueryParamsArg): Promise<Group>;
-    getGroupById(groupId: string, queryParams?: undefined | GetGroupByIdQueryParamsArg): Promise<GroupFull>;
-    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams?: undefined | UpdateGroupByIdQueryParamsArg): Promise<GroupFull>;
+    getGroups(queryParams?: GetGroupsQueryParamsArg): Promise<Groups>;
+    createGroup(requestBody: CreateGroupRequestBodyArg, queryParams?: CreateGroupQueryParamsArg): Promise<Group>;
+    getGroupById(groupId: string, queryParams?: GetGroupByIdQueryParamsArg): Promise<GroupFull>;
+    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams?: UpdateGroupByIdQueryParamsArg): Promise<GroupFull>;
     deleteGroupById(groupId: string): Promise<any>;
 }
 export declare function serializeGetGroupsQueryParamsArg(val: GetGroupsQueryParamsArg): Json;

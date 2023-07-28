@@ -156,7 +156,7 @@ await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId)
 - uploadSessionId `string`
   - The ID of the upload session.
   - Used as `upload_session_id` in path `path` of the API call
-- queryParams `undefined | GetFileUploadSessionPartsQueryParamsArg`
+- queryParams `GetFileUploadSessionPartsQueryParamsArg`
   - Used as queryParams for the API call
 
 

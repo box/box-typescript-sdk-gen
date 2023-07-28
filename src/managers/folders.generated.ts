@@ -10,6 +10,7 @@ import { Items } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -125,28 +126,58 @@ export class FoldersManager {
     constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">) {
         Object.assign(this, fields);
     }
-    async getFolderById(folderId: string, queryParams: undefined | GetFolderByIdQueryParamsArg = {} satisfies GetFolderByIdQueryParamsArg, headers: undefined | GetFolderByIdHeadersArg = {} satisfies GetFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: prepareParams(serializeGetFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFolderByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFolderById(folderId: string, queryParams: GetFolderByIdQueryParamsArg = {} satisfies GetFolderByIdQueryParamsArg, headers: GetFolderByIdHeadersArg = {} satisfies GetFolderByIdHeadersArg): Promise<FolderFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["sort"]: toString(queryParams.sort), ["direction"]: toString(queryParams.direction), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-none-match"]: toString(headers.ifNoneMatch), ["boxapi"]: toString(headers.boxapi) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams: undefined | UpdateFolderByIdQueryParamsArg = {} satisfies UpdateFolderByIdQueryParamsArg, headers: undefined | UpdateFolderByIdHeadersArg = {} satisfies UpdateFolderByIdHeadersArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: prepareParams(serializeUpdateFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeUpdateFolderByIdHeadersArg(headers)), body: serializeJson(serializeUpdateFolderByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams: UpdateFolderByIdQueryParamsArg = {} satisfies UpdateFolderByIdQueryParamsArg, headers: UpdateFolderByIdHeadersArg = {} satisfies UpdateFolderByIdHeadersArg): Promise<FolderFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFolderByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async deleteFolderById(folderId: string, queryParams: undefined | DeleteFolderByIdQueryParamsArg = {} satisfies DeleteFolderByIdQueryParamsArg, headers: undefined | DeleteFolderByIdHeadersArg = {} satisfies DeleteFolderByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: prepareParams(serializeDeleteFolderByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeDeleteFolderByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async deleteFolderById(folderId: string, queryParams: DeleteFolderByIdQueryParamsArg = {} satisfies DeleteFolderByIdQueryParamsArg, headers: DeleteFolderByIdHeadersArg = {} satisfies DeleteFolderByIdHeadersArg): Promise<any> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["recursive"]: toString(queryParams.recursive) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "DELETE", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async getFolderItems(folderId: string, queryParams: undefined | GetFolderItemsQueryParamsArg = {} satisfies GetFolderItemsQueryParamsArg, headers: undefined | GetFolderItemsHeadersArg = {} satisfies GetFolderItemsHeadersArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: prepareParams(serializeGetFolderItemsQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFolderItemsHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFolderItems(folderId: string, queryParams: GetFolderItemsQueryParamsArg = {} satisfies GetFolderItemsQueryParamsArg, headers: GetFolderItemsHeadersArg = {} satisfies GetFolderItemsHeadersArg): Promise<Items> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["usemarker"]: toString(queryParams.usemarker), ["marker"]: toString(queryParams.marker), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit), ["sort"]: toString(queryParams.sort), ["direction"]: toString(queryParams.direction) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["boxapi"]: toString(headers.boxapi) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/items") as string, { method: "GET", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
-    async createFolder(requestBody: CreateFolderRequestBodyArg, queryParams: undefined | CreateFolderQueryParamsArg = {} satisfies CreateFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: prepareParams(serializeCreateFolderQueryParamsArg(queryParams)), body: serializeJson(serializeCreateFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createFolder(requestBody: CreateFolderRequestBodyArg, queryParams: CreateFolderQueryParamsArg = {} satisfies CreateFolderQueryParamsArg): Promise<FolderFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams: undefined | CopyFolderQueryParamsArg = {} satisfies CopyFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: prepareParams(serializeCopyFolderQueryParamsArg(queryParams)), body: serializeJson(serializeCopyFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams: CopyFolderQueryParamsArg = {} satisfies CopyFolderQueryParamsArg): Promise<FolderFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/copy") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCopyFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
 }

@@ -21,7 +21,7 @@ await client.users.getUsers()
 
 ### Arguments
 
-- queryParams `undefined | GetUsersQueryParamsArg`
+- queryParams `GetUsersQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -52,7 +52,7 @@ await client.users.createUser({ name: userName, login: userLogin, isPlatformAcce
 
 - requestBody `CreateUserRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | CreateUserQueryParamsArg`
+- queryParams `CreateUserQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -88,7 +88,7 @@ await client.users.getUserMe()
 
 ### Arguments
 
-- queryParams `undefined | GetUserMeQueryParamsArg`
+- queryParams `GetUserMeQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -128,7 +128,7 @@ await client.users.getUserById(user.id)
 - userId `string`
   - The ID of the user.
   - Used as `user_id` in path `path` of the API call
-- queryParams `undefined | GetUserByIdQueryParamsArg`
+- queryParams `GetUserByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -167,7 +167,7 @@ await client.users.updateUserById(user.id, { name: updatedUserName } satisfies U
   - Used as `user_id` in path `path` of the API call
 - requestBody `UpdateUserByIdRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | UpdateUserByIdQueryParamsArg`
+- queryParams `UpdateUserByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -200,7 +200,7 @@ await client.users.deleteUserById(user.id)
 - userId `string`
   - The ID of the user.
   - Used as `user_id` in path `path` of the API call
-- queryParams `undefined | DeleteUserByIdQueryParamsArg`
+- queryParams `DeleteUserByIdQueryParamsArg`
   - Used as queryParams for the API call
 
 

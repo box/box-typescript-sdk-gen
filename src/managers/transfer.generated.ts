@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -30,8 +31,11 @@ export class TransferManager {
     constructor(fields: Omit<TransferManager, "transferOwnedFolder">) {
         Object.assign(this, fields);
     }
-    async transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, queryParams: undefined | TransferOwnedFolderQueryParamsArg = {} satisfies TransferOwnedFolderQueryParamsArg): Promise<FolderFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: prepareParams(serializeTransferOwnedFolderQueryParamsArg(queryParams)), body: serializeJson(serializeTransferOwnedFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async transferOwnedFolder(userId: string, requestBody: TransferOwnedFolderRequestBodyArg, queryParams: TransferOwnedFolderQueryParamsArg = {} satisfies TransferOwnedFolderQueryParamsArg): Promise<FolderFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["notify"]: toString(queryParams.notify) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/folders/0") as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeTransferOwnedFolderRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
 }

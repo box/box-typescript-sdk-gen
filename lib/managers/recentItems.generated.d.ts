@@ -11,7 +11,7 @@ export declare class RecentItemsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RecentItemsManager, "getRecentItems">);
-    getRecentItems(queryParams?: undefined | GetRecentItemsQueryParamsArg): Promise<RecentItems>;
+    getRecentItems(queryParams?: GetRecentItemsQueryParamsArg): Promise<RecentItems>;
 }
 export declare function serializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json;
 export declare function deserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg;

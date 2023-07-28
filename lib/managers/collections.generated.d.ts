@@ -17,8 +17,8 @@ export declare class CollectionsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionItems">);
-    getCollections(queryParams?: undefined | GetCollectionsQueryParamsArg): Promise<Collections>;
-    getCollectionItems(collectionId: string, queryParams?: undefined | GetCollectionItemsQueryParamsArg): Promise<Items>;
+    getCollections(queryParams?: GetCollectionsQueryParamsArg): Promise<Collections>;
+    getCollectionItems(collectionId: string, queryParams?: GetCollectionItemsQueryParamsArg): Promise<Items>;
 }
 export declare function serializeGetCollectionsQueryParamsArg(val: GetCollectionsQueryParamsArg): Json;
 export declare function deserializeGetCollectionsQueryParamsArg(val: any): GetCollectionsQueryParamsArg;

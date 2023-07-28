@@ -15,7 +15,7 @@ export declare class SignRequestsManager {
     cancelSignRequest(signRequestId: string): Promise<SignRequest>;
     resendSignRequest(signRequestId: string): Promise<any>;
     getSignRequestById(signRequestId: string): Promise<SignRequest>;
-    getSignRequests(queryParams?: undefined | GetSignRequestsQueryParamsArg): Promise<SignRequests>;
+    getSignRequests(queryParams?: GetSignRequestsQueryParamsArg): Promise<SignRequests>;
     createSignRequest(requestBody: SignRequestCreateRequest): Promise<SignRequest>;
 }
 export declare function serializeGetSignRequestsQueryParamsArg(val: GetSignRequestsQueryParamsArg): Json;

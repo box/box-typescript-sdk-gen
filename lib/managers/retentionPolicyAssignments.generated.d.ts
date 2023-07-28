@@ -41,12 +41,12 @@ export declare class RetentionPolicyAssignmentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPolicyAssignmentsManager, "getRetentionPolicyAssignments" | "createRetentionPolicyAssignment" | "getRetentionPolicyAssignmentById" | "deleteRetentionPolicyAssignmentById" | "getRetentionPolicyAssignmentFileUnderRetention" | "getRetentionPolicyAssignmentFileVersionUnderRetention">);
-    getRetentionPolicyAssignments(retentionPolicyId: string, queryParams?: undefined | GetRetentionPolicyAssignmentsQueryParamsArg): Promise<RetentionPolicyAssignments>;
+    getRetentionPolicyAssignments(retentionPolicyId: string, queryParams?: GetRetentionPolicyAssignmentsQueryParamsArg): Promise<RetentionPolicyAssignments>;
     createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg): Promise<RetentionPolicyAssignment>;
-    getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, queryParams?: undefined | GetRetentionPolicyAssignmentByIdQueryParamsArg): Promise<RetentionPolicyAssignment>;
+    getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentByIdQueryParamsArg): Promise<RetentionPolicyAssignment>;
     deleteRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string): Promise<any>;
-    getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, queryParams?: undefined | GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
-    getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, queryParams?: undefined | GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
+    getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
+    getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
 }
 export declare function serializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(val: GetRetentionPolicyAssignmentsQueryParamsArgTypeField): Json;
 export declare function deserializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(val: any): GetRetentionPolicyAssignmentsQueryParamsArgTypeField;

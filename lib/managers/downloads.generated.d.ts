@@ -13,7 +13,7 @@ export declare class DownloadsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<DownloadsManager, "downloadFile">);
-    downloadFile(fileId: string, queryParams?: undefined | DownloadFileQueryParamsArg, headers?: undefined | DownloadFileHeadersArg): Promise<any>;
+    downloadFile(fileId: string, queryParams?: DownloadFileQueryParamsArg, headers?: DownloadFileHeadersArg): Promise<any>;
 }
 export declare function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json;
 export declare function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg;

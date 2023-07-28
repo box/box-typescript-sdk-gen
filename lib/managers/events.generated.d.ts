@@ -16,7 +16,7 @@ export declare class EventsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<EventsManager, "getEvents" | "getEventsWithLongPolling">);
-    getEvents(queryParams?: undefined | GetEventsQueryParamsArg): Promise<Events>;
+    getEvents(queryParams?: GetEventsQueryParamsArg): Promise<Events>;
     getEventsWithLongPolling(): Promise<RealtimeServers>;
 }
 export declare function serializeGetEventsQueryParamsArgStreamTypeField(val: GetEventsQueryParamsArgStreamTypeField): Json;

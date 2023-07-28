@@ -46,7 +46,7 @@ await client.webLinks.getWebLinkById(weblink.id)
 - webLinkId `string`
   - The ID of the web link.
   - Used as `web_link_id` in path `path` of the API call
-- headers `undefined | GetWebLinkByIdHeadersArg`
+- headers `GetWebLinkByIdHeadersArg`
   - Used as headers for the API call
 
 

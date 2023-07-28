@@ -35,11 +35,11 @@ export declare class CommentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">);
-    getFileComments(fileId: string, queryParams?: undefined | GetFileCommentsQueryParamsArg): Promise<Comments>;
-    getCommentById(commentId: string, queryParams?: undefined | GetCommentByIdQueryParamsArg): Promise<CommentFull>;
-    updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams?: undefined | UpdateCommentByIdQueryParamsArg): Promise<CommentFull>;
+    getFileComments(fileId: string, queryParams?: GetFileCommentsQueryParamsArg): Promise<Comments>;
+    getCommentById(commentId: string, queryParams?: GetCommentByIdQueryParamsArg): Promise<CommentFull>;
+    updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams?: UpdateCommentByIdQueryParamsArg): Promise<CommentFull>;
     deleteCommentById(commentId: string): Promise<any>;
-    createComment(requestBody: CreateCommentRequestBodyArg, queryParams?: undefined | CreateCommentQueryParamsArg): Promise<Comment>;
+    createComment(requestBody: CreateCommentRequestBodyArg, queryParams?: CreateCommentQueryParamsArg): Promise<Comment>;
 }
 export declare function serializeGetFileCommentsQueryParamsArg(val: GetFileCommentsQueryParamsArg): Json;
 export declare function deserializeGetFileCommentsQueryParamsArg(val: any): GetFileCommentsQueryParamsArg;

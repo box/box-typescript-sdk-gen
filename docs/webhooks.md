@@ -21,7 +21,7 @@ await client.webhooks.getWebhooks()
 
 ### Arguments
 
-- queryParams `undefined | GetWebhooksQueryParamsArg`
+- queryParams `GetWebhooksQueryParamsArg`
   - Used as queryParams for the API call
 
 

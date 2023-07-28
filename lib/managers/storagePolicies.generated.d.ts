@@ -12,7 +12,7 @@ export declare class StoragePoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePolicyById">);
-    getStoragePolicies(queryParams?: undefined | GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies>;
+    getStoragePolicies(queryParams?: GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies>;
     getStoragePolicyById(storagePolicyId: string): Promise<StoragePolicy>;
 }
 export declare function serializeGetStoragePoliciesQueryParamsArg(val: GetStoragePoliciesQueryParamsArg): Json;

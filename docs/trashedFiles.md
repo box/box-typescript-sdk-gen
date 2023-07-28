@@ -21,7 +21,7 @@ See the endpoint docs at
   - Used as `file_id` in path `path` of the API call
 - requestBody `RestoreFileFromTrashRequestBodyArg`
   - Used as requestBody for the API call
-- queryParams `undefined | RestoreFileFromTrashQueryParamsArg`
+- queryParams `RestoreFileFromTrashQueryParamsArg`
   - Used as queryParams for the API call
 
 
@@ -61,7 +61,7 @@ await client.trashedFiles.getFileTrash(uploadedFile.id)
 - fileId `string`
   - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
   - Used as `file_id` in path `path` of the API call
-- queryParams `undefined | GetFileTrashQueryParamsArg`
+- queryParams `GetFileTrashQueryParamsArg`
   - Used as queryParams for the API call
 
 

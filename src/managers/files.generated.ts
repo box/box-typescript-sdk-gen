@@ -7,6 +7,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -94,24 +95,45 @@ export class FilesManager {
     constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">) {
         Object.assign(this, fields);
     }
-    async getFileById(fileId: string, queryParams: undefined | GetFileByIdQueryParamsArg = {} satisfies GetFileByIdQueryParamsArg, headers: undefined | GetFileByIdHeadersArg = {} satisfies GetFileByIdHeadersArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: prepareParams(serializeGetFileByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeGetFileByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileById(fileId: string, queryParams: GetFileByIdQueryParamsArg = {} satisfies GetFileByIdQueryParamsArg, headers: GetFileByIdHeadersArg = {} satisfies GetFileByIdHeadersArg): Promise<FileFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-none-match"]: toString(headers.ifNoneMatch), ["boxapi"]: toString(headers.boxapi), ["x-rep-hints"]: toString(headers.xRepHints) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams: undefined | UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg, headers: undefined | UpdateFileByIdHeadersArg = {} satisfies UpdateFileByIdHeadersArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "PUT", params: prepareParams(serializeUpdateFileByIdQueryParamsArg(queryParams)), headers: prepareParams(serializeUpdateFileByIdHeadersArg(headers)), body: serializeJson(serializeUpdateFileByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams: UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg, headers: UpdateFileByIdHeadersArg = {} satisfies UpdateFileByIdHeadersArg): Promise<FileFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFileByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async deleteFileById(fileId: string, headers: undefined | DeleteFileByIdHeadersArg = {} satisfies DeleteFileByIdHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "DELETE", headers: prepareParams(serializeDeleteFileByIdHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async deleteFileById(fileId: string, headers: DeleteFileByIdHeadersArg = {} satisfies DeleteFileByIdHeadersArg): Promise<any> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "DELETE", headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-    async copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams: undefined | CopyFileQueryParamsArg = {} satisfies CopyFileQueryParamsArg): Promise<FileFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/copy") as string, { method: "POST", params: prepareParams(serializeCopyFileQueryParamsArg(queryParams)), body: serializeJson(serializeCopyFileRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams: CopyFileQueryParamsArg = {} satisfies CopyFileQueryParamsArg): Promise<FileFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/copy") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCopyFileRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams: undefined | GetFileThumbnailByIdQueryParamsArg = {} satisfies GetFileThumbnailByIdQueryParamsArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/thumbnail.", extension) as string, { method: "GET", params: prepareParams(serializeGetFileThumbnailByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams: GetFileThumbnailByIdQueryParamsArg = {} satisfies GetFileThumbnailByIdQueryParamsArg): Promise<any> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["min_height"]: toString(queryParams.minHeight), ["min_width"]: toString(queryParams.minWidth), ["max_height"]: toString(queryParams.maxHeight), ["max_width"]: toString(queryParams.maxWidth) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/thumbnail.", extension) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }

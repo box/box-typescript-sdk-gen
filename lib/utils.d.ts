@@ -22,4 +22,9 @@ export declare function readByteStream(byteStream: Readable): Promise<Buffer>;
 export declare function cloneByteStream(readableStream: Readable): Promise<[Readable, Readable]>;
 export declare function iterateChunks(stream: Readable, chunkSize: number): AsyncIterator<Readable>;
 export declare function reduceIterator<T, U>(iterator: AsyncIterator<T>, reducer: (accumulator: U, current: T) => Promise<U>, initialValue: U): Promise<U>;
-export declare function prepareParams(obj: any): Record<string, string>;
+export declare function prepareParams(map: {
+    readonly [key: string]: undefined | string;
+}): {
+    readonly [key: string]: string;
+};
+export declare function toString(value: any): string;

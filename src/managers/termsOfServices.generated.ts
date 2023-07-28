@@ -13,6 +13,7 @@ import { TermsOfService } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -42,8 +43,11 @@ export class TermsOfServicesManager {
     constructor(fields: Omit<TermsOfServicesManager, "getTermOfServices" | "createTermOfService" | "getTermOfServiceById" | "updateTermOfServiceById">) {
         Object.assign(this, fields);
     }
-    async getTermOfServices(queryParams: undefined | GetTermOfServicesQueryParamsArg = {} satisfies GetTermOfServicesQueryParamsArg): Promise<TermsOfServices> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "GET", params: prepareParams(serializeGetTermOfServicesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getTermOfServices(queryParams: GetTermOfServicesQueryParamsArg = {} satisfies GetTermOfServicesQueryParamsArg): Promise<TermsOfServices> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["tos_type"]: toString(queryParams.tosType) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_services") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfServices(deserializeJson(response.text));
     }
     async createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<Task> {

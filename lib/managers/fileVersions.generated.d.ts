@@ -29,11 +29,11 @@ export declare class FileVersionsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileVersionsManager, "getFileVersions" | "getFileVersionById" | "updateFileVersionById" | "deleteFileVersionById" | "promoteFileVersion">);
-    getFileVersions(fileId: string, queryParams?: undefined | GetFileVersionsQueryParamsArg): Promise<FileVersions>;
-    getFileVersionById(fileId: string, fileVersionId: string, queryParams?: undefined | GetFileVersionByIdQueryParamsArg): Promise<FileVersionFull>;
+    getFileVersions(fileId: string, queryParams?: GetFileVersionsQueryParamsArg): Promise<FileVersions>;
+    getFileVersionById(fileId: string, fileVersionId: string, queryParams?: GetFileVersionByIdQueryParamsArg): Promise<FileVersionFull>;
     updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg): Promise<FileVersionFull>;
-    deleteFileVersionById(fileId: string, fileVersionId: string, headers?: undefined | DeleteFileVersionByIdHeadersArg): Promise<any>;
-    promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, queryParams?: undefined | PromoteFileVersionQueryParamsArg): Promise<FileVersionFull>;
+    deleteFileVersionById(fileId: string, fileVersionId: string, headers?: DeleteFileVersionByIdHeadersArg): Promise<any>;
+    promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, queryParams?: PromoteFileVersionQueryParamsArg): Promise<FileVersionFull>;
 }
 export declare function serializeGetFileVersionsQueryParamsArg(val: GetFileVersionsQueryParamsArg): Json;
 export declare function deserializeGetFileVersionsQueryParamsArg(val: any): GetFileVersionsQueryParamsArg;

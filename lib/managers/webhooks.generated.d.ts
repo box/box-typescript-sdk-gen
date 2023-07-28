@@ -33,7 +33,7 @@ export declare class WebhooksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">);
-    getWebhooks(queryParams?: undefined | GetWebhooksQueryParamsArg): Promise<Webhooks>;
+    getWebhooks(queryParams?: GetWebhooksQueryParamsArg): Promise<Webhooks>;
     createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook>;
     getWebhookById(webhookId: string): Promise<Webhook>;
     updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook>;

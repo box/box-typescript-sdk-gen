@@ -17,7 +17,7 @@ export declare class TrashedItemsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedItemsManager, "getFolderTrashItems">);
-    getFolderTrashItems(queryParams?: undefined | GetFolderTrashItemsQueryParamsArg): Promise<Items>;
+    getFolderTrashItems(queryParams?: GetFolderTrashItemsQueryParamsArg): Promise<Items>;
 }
 export declare function serializeGetFolderTrashItemsQueryParamsArgDirectionField(val: GetFolderTrashItemsQueryParamsArgDirectionField): Json;
 export declare function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(val: any): GetFolderTrashItemsQueryParamsArgDirectionField;

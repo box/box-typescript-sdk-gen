@@ -19,6 +19,7 @@ import { MetadataFilter } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -70,11 +71,17 @@ export class SearchManager {
         return deserializeMetadataQueryResults(deserializeJson(response.text));
     }
     async getMetadataQueryIndices(queryParams: GetMetadataQueryIndicesQueryParamsArg): Promise<MetadataQueryIndices> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_query_indices") as string, { method: "GET", params: prepareParams(serializeGetMetadataQueryIndicesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["scope"]: toString(queryParams.scope), ["template_key"]: toString(queryParams.templateKey) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_query_indices") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataQueryIndices(deserializeJson(response.text));
     }
-    async getSearch(queryParams: undefined | GetSearchQueryParamsArg = {} satisfies GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/search") as string, { method: "GET", params: prepareParams(serializeGetSearchQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getSearch(queryParams: GetSearchQueryParamsArg = {} satisfies GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["query"]: toString(queryParams.query), ["scope"]: toString(queryParams.scope), ["file_extensions"]: toString(queryParams.fileExtensions), ["created_at_range"]: toString(queryParams.createdAtRange), ["updated_at_range"]: toString(queryParams.updatedAtRange), ["size_range"]: toString(queryParams.sizeRange), ["owner_user_ids"]: toString(queryParams.ownerUserIds), ["recent_updater_user_ids"]: toString(queryParams.recentUpdaterUserIds), ["ancestor_folder_ids"]: toString(queryParams.ancestorFolderIds), ["content_types"]: toString(queryParams.contentTypes), ["type"]: toString(queryParams.type), ["trash_content"]: toString(queryParams.trashContent), ["mdfilters"]: toString(queryParams.mdfilters), ["sort"]: toString(queryParams.sort), ["direction"]: toString(queryParams.direction), ["limit"]: toString(queryParams.limit), ["include_recent_shared_links"]: toString(queryParams.includeRecentSharedLinks), ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["deleted_user_ids"]: toString(queryParams.deletedUserIds), ["deleted_at_range"]: toString(queryParams.deletedAtRange) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/search") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSearchResultsOrSearchResultsWithSharedLinks(deserializeJson(response.text));
     }
 }

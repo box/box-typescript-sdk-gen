@@ -24,7 +24,7 @@ export declare class TermsOfServicesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TermsOfServicesManager, "getTermOfServices" | "createTermOfService" | "getTermOfServiceById" | "updateTermOfServiceById">);
-    getTermOfServices(queryParams?: undefined | GetTermOfServicesQueryParamsArg): Promise<TermsOfServices>;
+    getTermOfServices(queryParams?: GetTermOfServicesQueryParamsArg): Promise<TermsOfServices>;
     createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<Task>;
     getTermOfServiceById(termsOfServiceId: string): Promise<TermsOfService>;
     updateTermOfServiceById(termsOfServiceId: string, requestBody: UpdateTermOfServiceByIdRequestBodyArg): Promise<TermsOfService>;

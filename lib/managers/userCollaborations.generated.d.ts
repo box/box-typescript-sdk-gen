@@ -40,10 +40,10 @@ export declare class UserCollaborationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">);
-    getCollaborationById(collaborationId: string, queryParams?: undefined | GetCollaborationByIdQueryParamsArg): Promise<Collaboration>;
+    getCollaborationById(collaborationId: string, queryParams?: GetCollaborationByIdQueryParamsArg): Promise<Collaboration>;
     updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<Collaboration>;
     deleteCollaborationById(collaborationId: string): Promise<any>;
-    createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams?: undefined | CreateCollaborationQueryParamsArg): Promise<Collaboration>;
+    createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams?: CreateCollaborationQueryParamsArg): Promise<Collaboration>;
 }
 export declare function serializeGetCollaborationByIdQueryParamsArg(val: GetCollaborationByIdQueryParamsArg): Json;
 export declare function deserializeGetCollaborationByIdQueryParamsArg(val: any): GetCollaborationByIdQueryParamsArg;

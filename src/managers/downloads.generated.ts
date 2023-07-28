@@ -4,6 +4,7 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -23,8 +24,14 @@ export class DownloadsManager {
     constructor(fields: Omit<DownloadsManager, "downloadFile">) {
         Object.assign(this, fields);
     }
-    async downloadFile(fileId: string, queryParams: undefined | DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: undefined | DownloadFileHeadersArg = {} satisfies DownloadFileHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: prepareParams(serializeDownloadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeDownloadFileHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async downloadFile(fileId: string, queryParams: DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: DownloadFileHeadersArg = {} satisfies DownloadFileHeadersArg): Promise<any> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["version"]: toString(queryParams.version), ["access_token"]: toString(queryParams.accessToken) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["range"]: toString(headers.range), ["boxapi"]: toString(headers.boxapi) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
 }

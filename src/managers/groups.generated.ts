@@ -13,6 +13,7 @@ import { GroupFull } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -61,20 +62,32 @@ export class GroupsManager {
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">) {
         Object.assign(this, fields);
     }
-    async getGroups(queryParams: undefined | GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg): Promise<Groups> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: prepareParams(serializeGetGroupsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getGroups(queryParams: GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg): Promise<Groups> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["filter_term"]: toString(queryParams.filterTerm), ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroups(deserializeJson(response.text));
     }
-    async createGroup(requestBody: CreateGroupRequestBodyArg, queryParams: undefined | CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg): Promise<Group> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: prepareParams(serializeCreateGroupQueryParamsArg(queryParams)), body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createGroup(requestBody: CreateGroupRequestBodyArg, queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg): Promise<Group> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJson(response.text));
     }
-    async getGroupById(groupId: string, queryParams: undefined | GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg): Promise<GroupFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: prepareParams(serializeGetGroupByIdQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getGroupById(groupId: string, queryParams: GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg): Promise<GroupFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
-    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: undefined | UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg): Promise<GroupFull> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: prepareParams(serializeUpdateGroupByIdQueryParamsArg(queryParams)), body: serializeJson(serializeUpdateGroupByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg): Promise<GroupFull> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateGroupByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
     async deleteGroupById(groupId: string): Promise<any> {

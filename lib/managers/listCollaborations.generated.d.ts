@@ -25,10 +25,10 @@ export declare class ListCollaborationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ListCollaborationsManager, "getFileCollaborations" | "getFolderCollaborations" | "getCollaborations" | "getGroupCollaborations">);
-    getFileCollaborations(fileId: string, queryParams?: undefined | GetFileCollaborationsQueryParamsArg): Promise<Collaborations>;
-    getFolderCollaborations(folderId: string, queryParams?: undefined | GetFolderCollaborationsQueryParamsArg): Promise<Collaborations>;
+    getFileCollaborations(fileId: string, queryParams?: GetFileCollaborationsQueryParamsArg): Promise<Collaborations>;
+    getFolderCollaborations(folderId: string, queryParams?: GetFolderCollaborationsQueryParamsArg): Promise<Collaborations>;
     getCollaborations(queryParams: GetCollaborationsQueryParamsArg): Promise<Collaborations>;
-    getGroupCollaborations(groupId: string, queryParams?: undefined | GetGroupCollaborationsQueryParamsArg): Promise<Collaborations>;
+    getGroupCollaborations(groupId: string, queryParams?: GetGroupCollaborationsQueryParamsArg): Promise<Collaborations>;
 }
 export declare function serializeGetFileCollaborationsQueryParamsArg(val: GetFileCollaborationsQueryParamsArg): Json;
 export declare function deserializeGetFileCollaborationsQueryParamsArg(val: any): GetFileCollaborationsQueryParamsArg;

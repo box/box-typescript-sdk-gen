@@ -44,8 +44,8 @@ export declare class MetadataTemplatesManager {
     getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string): Promise<MetadataTemplate>;
     deleteMetadataTemplateSchema(scope: DeleteMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any>;
     getMetadataTemplateById(templateId: string): Promise<MetadataTemplate>;
-    getMetadataTemplateGlobal(queryParams?: undefined | GetMetadataTemplateGlobalQueryParamsArg): Promise<MetadataTemplates>;
-    getMetadataTemplateEnterprise(queryParams?: undefined | GetMetadataTemplateEnterpriseQueryParamsArg): Promise<MetadataTemplates>;
+    getMetadataTemplateGlobal(queryParams?: GetMetadataTemplateGlobalQueryParamsArg): Promise<MetadataTemplates>;
+    getMetadataTemplateEnterprise(queryParams?: GetMetadataTemplateEnterpriseQueryParamsArg): Promise<MetadataTemplates>;
     createMetadataTemplateSchema(requestBody: CreateMetadataTemplateSchemaRequestBodyArg): Promise<MetadataTemplate>;
 }
 export declare function serializeGetMetadataTemplatesQueryParamsArg(val: GetMetadataTemplatesQueryParamsArg): Json;

@@ -17,7 +17,7 @@ export declare class ShieldInformationBarriersManager {
     constructor(fields: Omit<ShieldInformationBarriersManager, "getShieldInformationBarrierById" | "createShieldInformationBarrierChangeStatus" | "getShieldInformationBarriers" | "createShieldInformationBarrier">);
     getShieldInformationBarrierById(shieldInformationBarrierId: string): Promise<ShieldInformationBarrier>;
     createShieldInformationBarrierChangeStatus(requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg): Promise<ShieldInformationBarrier>;
-    getShieldInformationBarriers(queryParams?: undefined | GetShieldInformationBarriersQueryParamsArg): Promise<undefined>;
+    getShieldInformationBarriers(queryParams?: GetShieldInformationBarriersQueryParamsArg): Promise<undefined>;
     createShieldInformationBarrier(requestBody: ShieldInformationBarrier): Promise<ShieldInformationBarrier>;
 }
 export declare function serializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(val: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField): Json;

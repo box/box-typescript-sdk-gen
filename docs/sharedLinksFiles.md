@@ -22,7 +22,7 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetSharedItemsQueryParamsArg`
+- queryParams `GetSharedItemsQueryParamsArg`
   - Used as queryParams for the API call
 - headers `GetSharedItemsHeadersArg`
   - Used as headers for the API call

@@ -13,6 +13,7 @@ import { FileRequestCopyRequest } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -33,8 +34,11 @@ export class FileRequestsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
-    async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: undefined | UpdateFileRequestByIdHeadersArg = {} satisfies UpdateFileRequestByIdHeadersArg): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: prepareParams(serializeUpdateFileRequestByIdHeadersArg(headers)), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: UpdateFileRequestByIdHeadersArg = {} satisfies UpdateFileRequestByIdHeadersArg): Promise<FileRequest> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["if-match"]: toString(headers.ifMatch) });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
     async deleteFileRequestById(fileRequestId: string): Promise<any> {
