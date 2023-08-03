@@ -1,4 +1,5 @@
 import { Metadatas } from "../schemas.generated.js";
+import { MetadataFull } from "../schemas.generated.js";
 import { Metadata } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
@@ -37,7 +38,7 @@ export declare class FileMetadataManager {
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileMetadataManager, "getFileMetadata" | "getFileMetadataById" | "createFileMetadataById" | "deleteFileMetadataById">);
     getFileMetadata(fileId: string, headers?: GetFileMetadataHeadersArg): Promise<Metadatas>;
-    getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string, headers?: GetFileMetadataByIdHeadersArg): Promise<Metadata>;
+    getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string, headers?: GetFileMetadataByIdHeadersArg): Promise<MetadataFull>;
     createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg, headers?: CreateFileMetadataByIdHeadersArg): Promise<Metadata>;
     deleteFileMetadataById(fileId: string, scope: DeleteFileMetadataByIdScopeArg, templateKey: string, headers?: DeleteFileMetadataByIdHeadersArg): Promise<undefined>;
 }

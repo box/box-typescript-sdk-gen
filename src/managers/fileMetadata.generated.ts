@@ -2,10 +2,13 @@ import { serializeMetadatas } from "../schemas.generated.js";
 import { deserializeMetadatas } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
+import { serializeMetadataFull } from "../schemas.generated.js";
+import { deserializeMetadataFull } from "../schemas.generated.js";
 import { serializeMetadata } from "../schemas.generated.js";
 import { deserializeMetadata } from "../schemas.generated.js";
 import { Metadatas } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
+import { MetadataFull } from "../schemas.generated.js";
 import { Metadata } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
@@ -69,12 +72,12 @@ export class FileMetadataManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadatas(deserializeJson(response.text));
     }
-    async getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string, headers: GetFileMetadataByIdHeadersArg = new GetFileMetadataByIdHeadersArg({})): Promise<Metadata> {
+    async getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string, headers: GetFileMetadataByIdHeadersArg = new GetFileMetadataByIdHeadersArg({})): Promise<MetadataFull> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeMetadata(deserializeJson(response.text));
+        return deserializeMetadataFull(deserializeJson(response.text));
     }
     async createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg, headers: CreateFileMetadataByIdHeadersArg = new CreateFileMetadataByIdHeadersArg({})): Promise<Metadata> {
         const headersMap: {
