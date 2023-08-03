@@ -16,6 +16,8 @@ See the endpoint docs at
 
 - queryParams `GetLegalHoldPoliciesQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetLegalHoldPoliciesHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -40,6 +42,8 @@ See the endpoint docs at
 
 - requestBody `CreateLegalHoldPolicyRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateLegalHoldPolicyHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -65,6 +69,8 @@ See the endpoint docs at
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy
   - Used as `legal_hold_policy_id` in path `path` of the API call
+- headers `GetLegalHoldPolicyByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -92,6 +98,8 @@ See the endpoint docs at
   - Used as `legal_hold_policy_id` in path `path` of the API call
 - requestBody `UpdateLegalHoldPolicyByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateLegalHoldPolicyByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -120,5 +128,15 @@ See the endpoint docs at
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy
   - Used as `legal_hold_policy_id` in path `path` of the API call
+- headers `DeleteLegalHoldPolicyByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the policy was
+successfully deleted.
 
 

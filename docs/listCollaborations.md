@@ -20,6 +20,8 @@ See the endpoint docs at
   - Used as `file_id` in path `path` of the API call
 - queryParams `GetFileCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetFileCollaborationsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -54,6 +56,8 @@ See the endpoint docs at
   - Used as `folder_id` in path `path` of the API call
 - queryParams `GetFolderCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetFolderCollaborationsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -83,6 +87,8 @@ See the endpoint docs at
 
 - queryParams `GetCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetCollaborationsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -117,6 +123,8 @@ See the endpoint docs at
   - Used as `group_id` in path `path` of the API call
 - queryParams `GetGroupCollaborationsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetGroupCollaborationsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

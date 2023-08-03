@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -24,8 +25,22 @@ export interface CreateWebLinkRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
 }
-export interface GetWebLinkByIdHeadersArg {
+export class CreateWebLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateWebLinkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetWebLinkByIdHeadersArg {
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetWebLinkByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -44,30 +59,55 @@ export interface UpdateWebLinkByIdRequestBodyArg {
     readonly description?: string;
     readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
 }
+export class UpdateWebLinkByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateWebLinkByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteWebLinkByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteWebLinkByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class WebLinksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">) {
         Object.assign(this, fields);
     }
-    async createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<WebLink> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links") as string, { method: "POST", body: serializeJson(serializeCreateWebLinkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeWebLink(deserializeJson(response.text));
-    }
-    async getWebLinkById(webLinkId: string, headers: GetWebLinkByIdHeadersArg = {} satisfies GetWebLinkByIdHeadersArg): Promise<WebLink> {
+    async createWebLink(requestBody: CreateWebLinkRequestBodyArg, headers: CreateWebLinkHeadersArg = new CreateWebLinkHeadersArg({})): Promise<WebLink> {
         const headersMap: {
             readonly [key: string]: string;
-        } = prepareParams({ ["boxapi"]: toString(headers.boxapi) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateWebLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
     }
-    async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<WebLink> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "PUT", body: serializeJson(serializeUpdateWebLinkByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWebLinkById(webLinkId: string, headers: GetWebLinkByIdHeadersArg = new GetWebLinkByIdHeadersArg({})): Promise<WebLink> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{ ["boxapi"]: toString(headers.boxapi) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
     }
-    async deleteWebLinkById(webLinkId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg, headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({})): Promise<WebLink> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateWebLinkByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeWebLink(deserializeJson(response.text));
+    }
+    async deleteWebLinkById(webLinkId: string, headers: DeleteWebLinkByIdHeadersArg = new DeleteWebLinkByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeCreateWebLinkRequestBodyArgParentField(val: CreateWebLinkRequestBodyArgParentField): Json {
@@ -86,13 +126,6 @@ export function deserializeCreateWebLinkRequestBodyArg(val: any): CreateWebLinkR
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
     return { url: url, parent: parent, name: name, description: description } satisfies CreateWebLinkRequestBodyArg;
-}
-export function serializeGetWebLinkByIdHeadersArg(val: GetWebLinkByIdHeadersArg): Json {
-    return { ["boxapi"]: val.boxapi };
-}
-export function deserializeGetWebLinkByIdHeadersArg(val: any): GetWebLinkByIdHeadersArg {
-    const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
-    return { boxapi: boxapi } satisfies GetWebLinkByIdHeadersArg;
 }
 export function serializeUpdateWebLinkByIdRequestBodyArgParentField(val: UpdateWebLinkByIdRequestBodyArgParentField): Json {
     return { ["id"]: val.id };

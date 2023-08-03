@@ -16,7 +16,10 @@ export declare class Hash {
 export declare function createHash(algorithm: 'sha1'): Hash;
 export declare function getEnvVar(name: string): string;
 export declare function listConcat<T>(a: readonly T[], b: readonly T[]): T[];
+export declare function generateByteBuffer(size: number): Buffer;
+export declare function generateByteStreamFromBuffer(buffer: Buffer): Readable;
 export declare function generateByteStream(size: number): Readable;
+export declare function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean;
 export declare function decodeBase64ByteStream(data: string): Readable;
 export declare function readByteStream(byteStream: Readable): Promise<Buffer>;
 export declare function cloneByteStream(readableStream: Readable): Promise<[Readable, Readable]>;

@@ -13,6 +13,12 @@ export interface GetRetentionPoliciesQueryParamsArg {
     readonly limit?: number;
     readonly marker?: string;
 }
+export declare class GetRetentionPoliciesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPoliciesHeadersArg);
+}
 export type CreateRetentionPolicyRequestBodyArgPolicyTypeField = "finite" | "indefinite";
 export type CreateRetentionPolicyRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
 export type CreateRetentionPolicyRequestBodyArgRetentionTypeField = "modifiable" | "non-modifiable";
@@ -27,8 +33,20 @@ export interface CreateRetentionPolicyRequestBodyArg {
     readonly areOwnersNotified?: boolean;
     readonly customNotificationRecipients?: readonly UserMini[];
 }
+export declare class CreateRetentionPolicyHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateRetentionPolicyHeadersArg);
+}
 export interface GetRetentionPolicyByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetRetentionPolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPolicyByIdHeadersArg);
 }
 export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField = "permanently_delete" | "remove_retention";
 export interface UpdateRetentionPolicyByIdRequestBodyArg {
@@ -42,20 +60,28 @@ export interface UpdateRetentionPolicyByIdRequestBodyArg {
     readonly areOwnersNotified?: boolean;
     readonly customNotificationRecipients?: readonly UserMini[];
 }
+export declare class UpdateRetentionPolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateRetentionPolicyByIdHeadersArg);
+}
+export declare class DeleteRetentionPolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteRetentionPolicyByIdHeadersArg);
+}
 export declare class RetentionPoliciesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPoliciesManager, "getRetentionPolicies" | "createRetentionPolicy" | "getRetentionPolicyById" | "updateRetentionPolicyById" | "deleteRetentionPolicyById">);
-    getRetentionPolicies(queryParams?: GetRetentionPoliciesQueryParamsArg): Promise<RetentionPolicies>;
-    createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg): Promise<RetentionPolicy>;
-    getRetentionPolicyById(retentionPolicyId: string, queryParams?: GetRetentionPolicyByIdQueryParamsArg): Promise<RetentionPolicy>;
-    updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg): Promise<RetentionPolicy>;
-    deleteRetentionPolicyById(retentionPolicyId: string): Promise<any>;
+    getRetentionPolicies(queryParams?: GetRetentionPoliciesQueryParamsArg, headers?: GetRetentionPoliciesHeadersArg): Promise<RetentionPolicies>;
+    createRetentionPolicy(requestBody: CreateRetentionPolicyRequestBodyArg, headers?: CreateRetentionPolicyHeadersArg): Promise<RetentionPolicy>;
+    getRetentionPolicyById(retentionPolicyId: string, queryParams?: GetRetentionPolicyByIdQueryParamsArg, headers?: GetRetentionPolicyByIdHeadersArg): Promise<RetentionPolicy>;
+    updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg, headers?: UpdateRetentionPolicyByIdHeadersArg): Promise<RetentionPolicy>;
+    deleteRetentionPolicyById(retentionPolicyId: string, headers?: DeleteRetentionPolicyByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(val: GetRetentionPoliciesQueryParamsArgPolicyTypeField): Json;
-export declare function deserializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(val: any): GetRetentionPoliciesQueryParamsArgPolicyTypeField;
-export declare function serializeGetRetentionPoliciesQueryParamsArg(val: GetRetentionPoliciesQueryParamsArg): Json;
-export declare function deserializeGetRetentionPoliciesQueryParamsArg(val: any): GetRetentionPoliciesQueryParamsArg;
 export declare function serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val: CreateRetentionPolicyRequestBodyArgPolicyTypeField): Json;
 export declare function deserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val: any): CreateRetentionPolicyRequestBodyArgPolicyTypeField;
 export declare function serializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val: CreateRetentionPolicyRequestBodyArgDispositionActionField): Json;
@@ -64,8 +90,6 @@ export declare function serializeCreateRetentionPolicyRequestBodyArgRetentionTyp
 export declare function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val: any): CreateRetentionPolicyRequestBodyArgRetentionTypeField;
 export declare function serializeCreateRetentionPolicyRequestBodyArg(val: CreateRetentionPolicyRequestBodyArg): Json;
 export declare function deserializeCreateRetentionPolicyRequestBodyArg(val: any): CreateRetentionPolicyRequestBodyArg;
-export declare function serializeGetRetentionPolicyByIdQueryParamsArg(val: GetRetentionPolicyByIdQueryParamsArg): Json;
-export declare function deserializeGetRetentionPolicyByIdQueryParamsArg(val: any): GetRetentionPolicyByIdQueryParamsArg;
 export declare function serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField): Json;
 export declare function deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val: any): UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
 export declare function serializeUpdateRetentionPolicyByIdRequestBodyArg(val: UpdateRetentionPolicyByIdRequestBodyArg): Json;

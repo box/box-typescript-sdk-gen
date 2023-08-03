@@ -54,6 +54,8 @@ See the endpoint docs at
   - Used as `file_id` in path `path` of the API call
 - queryParams `GetFileGetSharedLinkQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetFileGetSharedLinkHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -84,6 +86,8 @@ See the endpoint docs at
   - Used as requestBody for the API call
 - queryParams `UpdateFileAddSharedLinkQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateFileAddSharedLinkHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -114,6 +118,8 @@ See the endpoint docs at
   - Used as requestBody for the API call
 - queryParams `UpdateFileUpdateSharedLinkQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateFileUpdateSharedLinkHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -144,6 +150,8 @@ See the endpoint docs at
   - Used as requestBody for the API call
 - queryParams `UpdateFileRemoveSharedLinkQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateFileRemoveSharedLinkHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

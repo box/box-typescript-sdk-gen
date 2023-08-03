@@ -14,6 +14,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -30,6 +31,14 @@ export interface GetLegalHoldPolicyAssignmentsQueryParamsArg {
     readonly limit?: number;
     readonly fields?: string;
 }
+export class GetLegalHoldPolicyAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetLegalHoldPolicyAssignmentsHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField = "file" | "file_version" | "folder" | "user";
 export interface CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField {
     readonly type: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
@@ -39,15 +48,55 @@ export interface CreateLegalHoldPolicyAssignmentRequestBodyArg {
     readonly policyId: string;
     readonly assignTo: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField;
 }
+export class CreateLegalHoldPolicyAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateLegalHoldPolicyAssignmentHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetLegalHoldPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetLegalHoldPolicyAssignmentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteLegalHoldPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteLegalHoldPolicyAssignmentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
 }
+export class GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
+}
+export class GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class LegalHoldPolicyAssignmentsManager {
     readonly auth?: Authentication;
@@ -55,72 +104,57 @@ export class LegalHoldPolicyAssignmentsManager {
     constructor(fields: Omit<LegalHoldPolicyAssignmentsManager, "getLegalHoldPolicyAssignments" | "createLegalHoldPolicyAssignment" | "getLegalHoldPolicyAssignmentById" | "deleteLegalHoldPolicyAssignmentById" | "getLegalHoldPolicyAssignmentFileOnHold" | "getLegalHoldPolicyAssignmentFileVersionOnHold">) {
         Object.assign(this, fields);
     }
-    async getLegalHoldPolicyAssignments(queryParams: GetLegalHoldPolicyAssignmentsQueryParamsArg): Promise<LegalHoldPolicyAssignments> {
+    async getLegalHoldPolicyAssignments(queryParams: GetLegalHoldPolicyAssignmentsQueryParamsArg, headers: GetLegalHoldPolicyAssignmentsHeadersArg = new GetLegalHoldPolicyAssignmentsHeadersArg({})): Promise<LegalHoldPolicyAssignments> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["policy_id"]: toString(queryParams.policyId), ["assign_to_type"]: toString(queryParams.assignToType), ["assign_to_id"]: toString(queryParams.assignToId), ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit), ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeLegalHoldPolicyAssignments(deserializeJson(response.text));
     }
-    async createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg): Promise<LegalHoldPolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments") as string, { method: "POST", body: serializeJson(serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg, headers: CreateLegalHoldPolicyAssignmentHeadersArg = new CreateLegalHoldPolicyAssignmentHeadersArg({})): Promise<LegalHoldPolicyAssignment> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeLegalHoldPolicyAssignment(deserializeJson(response.text));
     }
-    async getLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<LegalHoldPolicyAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string, headers: GetLegalHoldPolicyAssignmentByIdHeadersArg = new GetLegalHoldPolicyAssignmentByIdHeadersArg({})): Promise<LegalHoldPolicyAssignment> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeLegalHoldPolicyAssignment(deserializeJson(response.text));
     }
-    async deleteLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string, headers: DeleteLegalHoldPolicyAssignmentByIdHeadersArg = new DeleteLegalHoldPolicyAssignmentByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async getLegalHoldPolicyAssignmentFileOnHold(legalHoldPolicyAssignmentId: string, queryParams: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg = {} satisfies GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg): Promise<FileVersionLegalHolds> {
+    async getLegalHoldPolicyAssignmentFileOnHold(legalHoldPolicyAssignmentId: string, queryParams: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg = {} satisfies GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg, headers: GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg = new GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg({})): Promise<FileVersionLegalHolds> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit), ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId, "/files_on_hold") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId, "/files_on_hold") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionLegalHolds(deserializeJson(response.text));
     }
-    async getLegalHoldPolicyAssignmentFileVersionOnHold(legalHoldPolicyAssignmentId: string, queryParams: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg = {} satisfies GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg): Promise<FileVersionLegalHolds> {
+    async getLegalHoldPolicyAssignmentFileVersionOnHold(legalHoldPolicyAssignmentId: string, queryParams: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg = {} satisfies GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg, headers: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg = new GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg({})): Promise<FileVersionLegalHolds> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit), ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId, "/file_versions_on_hold") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policy_assignments/", legalHoldPolicyAssignmentId, "/file_versions_on_hold") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionLegalHolds(deserializeJson(response.text));
     }
-}
-export function serializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val: GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField): Json {
-    return val;
-}
-export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val: any): GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField\"";
-    }
-    if (val == "file") {
-        return "file";
-    }
-    if (val == "file_version") {
-        return "file_version";
-    }
-    if (val == "folder") {
-        return "folder";
-    }
-    if (val == "user") {
-        return "user";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeGetLegalHoldPolicyAssignmentsQueryParamsArg(val: GetLegalHoldPolicyAssignmentsQueryParamsArg): Json {
-    return { ["policy_id"]: val.policyId, ["assign_to_type"]: val.assignToType == void 0 ? void 0 : serializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val.assignToType), ["assign_to_id"]: val.assignToId, ["marker"]: val.marker, ["limit"]: val.limit, ["fields"]: val.fields };
-}
-export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentsQueryParamsArg {
-    const policyId: string = val.policy_id;
-    const assignToType: undefined | GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField = val.assign_to_type == void 0 ? void 0 : deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val.assign_to_type);
-    const assignToId: undefined | string = isJson(val.assign_to_id, "string") ? val.assign_to_id : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { policyId: policyId, assignToType: assignToType, assignToId: assignToId, marker: marker, limit: limit, fields: fields } satisfies GetLegalHoldPolicyAssignmentsQueryParamsArg;
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField): Json {
     return val;
@@ -158,22 +192,4 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArg(val: an
     const policyId: string = val.policy_id;
     const assignTo: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField = deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField(val.assign_to);
     return { policyId: policyId, assignTo: assignTo } satisfies CreateLegalHoldPolicyAssignmentRequestBodyArg;
-}
-export function serializeGetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg(val: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit, ["fields"]: val.fields };
-}
-export function deserializeGetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { marker: marker, limit: limit, fields: fields } satisfies GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg;
-}
-export function serializeGetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg(val: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit, ["fields"]: val.fields };
-}
-export function deserializeGetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { marker: marker, limit: limit, fields: fields } satisfies GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg;
 }

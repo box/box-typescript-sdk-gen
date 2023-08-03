@@ -9,14 +9,38 @@ export interface GetFileCommentsQueryParamsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
+export declare class GetFileCommentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFileCommentsHeadersArg);
+}
 export interface GetCommentByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetCommentByIdHeadersArg);
 }
 export interface UpdateCommentByIdRequestBodyArg {
     readonly message?: string;
 }
 export interface UpdateCommentByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class UpdateCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateCommentByIdHeadersArg);
+}
+export declare class DeleteCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteCommentByIdHeadersArg);
 }
 export type CreateCommentRequestBodyArgItemFieldTypeField = "file" | "comment";
 export interface CreateCommentRequestBodyArgItemField {
@@ -31,29 +55,27 @@ export interface CreateCommentRequestBodyArg {
 export interface CreateCommentQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CreateCommentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateCommentHeadersArg);
+}
 export declare class CommentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">);
-    getFileComments(fileId: string, queryParams?: GetFileCommentsQueryParamsArg): Promise<Comments>;
-    getCommentById(commentId: string, queryParams?: GetCommentByIdQueryParamsArg): Promise<CommentFull>;
-    updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams?: UpdateCommentByIdQueryParamsArg): Promise<CommentFull>;
-    deleteCommentById(commentId: string): Promise<any>;
-    createComment(requestBody: CreateCommentRequestBodyArg, queryParams?: CreateCommentQueryParamsArg): Promise<Comment>;
+    getFileComments(fileId: string, queryParams?: GetFileCommentsQueryParamsArg, headers?: GetFileCommentsHeadersArg): Promise<Comments>;
+    getCommentById(commentId: string, queryParams?: GetCommentByIdQueryParamsArg, headers?: GetCommentByIdHeadersArg): Promise<CommentFull>;
+    updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams?: UpdateCommentByIdQueryParamsArg, headers?: UpdateCommentByIdHeadersArg): Promise<CommentFull>;
+    deleteCommentById(commentId: string, headers?: DeleteCommentByIdHeadersArg): Promise<undefined>;
+    createComment(requestBody: CreateCommentRequestBodyArg, queryParams?: CreateCommentQueryParamsArg, headers?: CreateCommentHeadersArg): Promise<Comment>;
 }
-export declare function serializeGetFileCommentsQueryParamsArg(val: GetFileCommentsQueryParamsArg): Json;
-export declare function deserializeGetFileCommentsQueryParamsArg(val: any): GetFileCommentsQueryParamsArg;
-export declare function serializeGetCommentByIdQueryParamsArg(val: GetCommentByIdQueryParamsArg): Json;
-export declare function deserializeGetCommentByIdQueryParamsArg(val: any): GetCommentByIdQueryParamsArg;
 export declare function serializeUpdateCommentByIdRequestBodyArg(val: UpdateCommentByIdRequestBodyArg): Json;
 export declare function deserializeUpdateCommentByIdRequestBodyArg(val: any): UpdateCommentByIdRequestBodyArg;
-export declare function serializeUpdateCommentByIdQueryParamsArg(val: UpdateCommentByIdQueryParamsArg): Json;
-export declare function deserializeUpdateCommentByIdQueryParamsArg(val: any): UpdateCommentByIdQueryParamsArg;
 export declare function serializeCreateCommentRequestBodyArgItemFieldTypeField(val: CreateCommentRequestBodyArgItemFieldTypeField): Json;
 export declare function deserializeCreateCommentRequestBodyArgItemFieldTypeField(val: any): CreateCommentRequestBodyArgItemFieldTypeField;
 export declare function serializeCreateCommentRequestBodyArgItemField(val: CreateCommentRequestBodyArgItemField): Json;
 export declare function deserializeCreateCommentRequestBodyArgItemField(val: any): CreateCommentRequestBodyArgItemField;
 export declare function serializeCreateCommentRequestBodyArg(val: CreateCommentRequestBodyArg): Json;
 export declare function deserializeCreateCommentRequestBodyArg(val: any): CreateCommentRequestBodyArg;
-export declare function serializeCreateCommentQueryParamsArg(val: CreateCommentQueryParamsArg): Json;
-export declare function deserializeCreateCommentQueryParamsArg(val: any): CreateCommentQueryParamsArg;

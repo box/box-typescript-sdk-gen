@@ -44,8 +44,20 @@ export function listConcat<T>(a: readonly T[], b: readonly T[]): T[] {
   return [...a, ...b];
 }
 
+export function generateByteBuffer(size: number): Buffer {
+  return crypto.randomBytes(size);
+}
+
+export function generateByteStreamFromBuffer(buffer: Buffer): Readable {
+  return Readable.from(buffer);
+}
+
 export function generateByteStream(size: number): Readable {
   return Readable.from(crypto.randomBytes(size));
+}
+
+export function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean {
+  return Buffer.compare(buffer1, buffer2) === 0;
 }
 
 export function decodeBase64ByteStream(data: string): Readable {

@@ -18,6 +18,8 @@ See the endpoint docs at
 
 - queryParams `GetCollectionsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetCollectionsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -46,6 +48,8 @@ See the endpoint docs at
   - Used as `collection_id` in path `path` of the API call
 - queryParams `GetCollectionItemsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetCollectionItemsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

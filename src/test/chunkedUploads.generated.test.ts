@@ -1,11 +1,7 @@
 import { serializeCreateFileUploadSessionRequestBodyArg } from "../managers/chunkedUploads.generated.js";
 import { deserializeCreateFileUploadSessionRequestBodyArg } from "../managers/chunkedUploads.generated.js";
-import { serializeUploadFilePartHeadersArg } from "../managers/chunkedUploads.generated.js";
-import { deserializeUploadFilePartHeadersArg } from "../managers/chunkedUploads.generated.js";
 import { serializeCreateFileUploadSessionCommitRequestBodyArg } from "../managers/chunkedUploads.generated.js";
 import { deserializeCreateFileUploadSessionCommitRequestBodyArg } from "../managers/chunkedUploads.generated.js";
-import { serializeCreateFileUploadSessionCommitHeadersArg } from "../managers/chunkedUploads.generated.js";
-import { deserializeCreateFileUploadSessionCommitHeadersArg } from "../managers/chunkedUploads.generated.js";
 import { serializeUploadPart } from "../schemas.generated.js";
 import { deserializeUploadPart } from "../schemas.generated.js";
 import { CreateFileUploadSessionRequestBodyArg } from "../managers/chunkedUploads.generated.js";
@@ -65,7 +61,7 @@ export async function upload(client: Client): Promise<any> {
         const bytesStart: any = lastIndex + 1;
         const bytesEnd: any = lastIndex + chunkSize;
         const contentRange: any = "".concat("bytes ", bytesStart, "-", bytesEnd, "/", fileSize) as string;
-        const uploadedPart: any = await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, { digest: digest, contentRange: contentRange } satisfies UploadFilePartHeadersArg);
+        const uploadedPart: any = await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, new UploadFilePartHeadersArg({ digest: digest, contentRange: contentRange }));
         const part: any = uploadedPart.part;
         const partSha1: any = hexToBase64(part.sha1);
         if (!(partSha1 == sha1)) {
@@ -92,7 +88,7 @@ export async function upload(client: Client): Promise<any> {
     }
     const sha1: any = fileHash.digestHash("base64");
     const digest: any = "".concat("sha=", sha1) as string;
-    const commmitedSession: any = await client.chunkedUploads.createFileUploadSessionCommit(uploadSessionId, { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg, { digest: digest } satisfies CreateFileUploadSessionCommitHeadersArg);
+    const commmitedSession: any = await client.chunkedUploads.createFileUploadSessionCommit(uploadSessionId, { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg, new CreateFileUploadSessionCommitHeadersArg({ digest: digest }));
     if (!(commmitedSession.totalCount == 1)) {
         throw "Assertion failed";
     }

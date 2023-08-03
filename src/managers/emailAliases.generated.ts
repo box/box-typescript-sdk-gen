@@ -11,14 +11,39 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
+export class GetUserEmailAliasesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetUserEmailAliasesHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface CreateUserEmailAliasRequestBodyArg {
     readonly email: string;
+}
+export class CreateUserEmailAliasHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateUserEmailAliasHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteUserEmailAliasByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteUserEmailAliasByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class EmailAliasesManager {
     readonly auth?: Authentication;
@@ -26,17 +51,26 @@ export class EmailAliasesManager {
     constructor(fields: Omit<EmailAliasesManager, "getUserEmailAliases" | "createUserEmailAlias" | "deleteUserEmailAliasById">) {
         Object.assign(this, fields);
     }
-    async getUserEmailAliases(userId: string): Promise<EmailAliases> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getUserEmailAliases(userId: string, headers: GetUserEmailAliasesHeadersArg = new GetUserEmailAliasesHeadersArg({})): Promise<EmailAliases> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeEmailAliases(deserializeJson(response.text));
     }
-    async createUserEmailAlias(userId: string, requestBody: CreateUserEmailAliasRequestBodyArg): Promise<EmailAlias> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "POST", body: serializeJson(serializeCreateUserEmailAliasRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createUserEmailAlias(userId: string, requestBody: CreateUserEmailAliasRequestBodyArg, headers: CreateUserEmailAliasHeadersArg = new CreateUserEmailAliasHeadersArg({})): Promise<EmailAlias> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateUserEmailAliasRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeEmailAlias(deserializeJson(response.text));
     }
-    async deleteUserEmailAliasById(userId: string, emailAliasId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases/", emailAliasId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteUserEmailAliasById(userId: string, emailAliasId: string, headers: DeleteUserEmailAliasByIdHeadersArg = new DeleteUserEmailAliasByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/email_aliases/", emailAliasId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeCreateUserEmailAliasRequestBodyArg(val: CreateUserEmailAliasRequestBodyArg): Json {

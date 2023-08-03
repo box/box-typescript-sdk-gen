@@ -7,6 +7,12 @@ export interface GetWebhooksQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
+export declare class GetWebhooksHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetWebhooksHeadersArg);
+}
 export type CreateWebhookRequestBodyArgTargetFieldTypeField = "file" | "folder";
 export interface CreateWebhookRequestBodyArgTargetField {
     readonly id?: string;
@@ -17,6 +23,18 @@ export interface CreateWebhookRequestBodyArg {
     readonly target: CreateWebhookRequestBodyArgTargetField;
     readonly address: string;
     readonly triggers: readonly CreateWebhookRequestBodyArgTriggersField[];
+}
+export declare class CreateWebhookHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateWebhookHeadersArg);
+}
+export declare class GetWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetWebhookByIdHeadersArg);
 }
 export type UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
 export interface UpdateWebhookByIdRequestBodyArgTargetField {
@@ -29,18 +47,28 @@ export interface UpdateWebhookByIdRequestBodyArg {
     readonly address?: string;
     readonly triggers?: readonly UpdateWebhookByIdRequestBodyArgTriggersField[];
 }
+export declare class UpdateWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateWebhookByIdHeadersArg);
+}
+export declare class DeleteWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteWebhookByIdHeadersArg);
+}
 export declare class WebhooksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">);
-    getWebhooks(queryParams?: GetWebhooksQueryParamsArg): Promise<Webhooks>;
-    createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook>;
-    getWebhookById(webhookId: string): Promise<Webhook>;
-    updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook>;
-    deleteWebhookById(webhookId: string): Promise<any>;
+    getWebhooks(queryParams?: GetWebhooksQueryParamsArg, headers?: GetWebhooksHeadersArg): Promise<Webhooks>;
+    createWebhook(requestBody: CreateWebhookRequestBodyArg, headers?: CreateWebhookHeadersArg): Promise<Webhook>;
+    getWebhookById(webhookId: string, headers?: GetWebhookByIdHeadersArg): Promise<Webhook>;
+    updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg, headers?: UpdateWebhookByIdHeadersArg): Promise<Webhook>;
+    deleteWebhookById(webhookId: string, headers?: DeleteWebhookByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetWebhooksQueryParamsArg(val: GetWebhooksQueryParamsArg): Json;
-export declare function deserializeGetWebhooksQueryParamsArg(val: any): GetWebhooksQueryParamsArg;
 export declare function serializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: CreateWebhookRequestBodyArgTargetFieldTypeField): Json;
 export declare function deserializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: any): CreateWebhookRequestBodyArgTargetFieldTypeField;
 export declare function serializeCreateWebhookRequestBodyArgTargetField(val: CreateWebhookRequestBodyArgTargetField): Json;

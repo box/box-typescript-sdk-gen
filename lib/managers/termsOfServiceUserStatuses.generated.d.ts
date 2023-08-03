@@ -7,6 +7,12 @@ export interface GetTermOfServiceUserStatusesQueryParamsArg {
     readonly tosId: string;
     readonly userId?: string;
 }
+export declare class GetTermOfServiceUserStatusesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTermOfServiceUserStatusesHeadersArg);
+}
 export type CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField = "terms_of_service";
 export interface CreateTermOfServiceUserStatusRequestBodyArgTosField {
     readonly type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField;
@@ -22,19 +28,29 @@ export interface CreateTermOfServiceUserStatusRequestBodyArg {
     readonly user: CreateTermOfServiceUserStatusRequestBodyArgUserField;
     readonly isAccepted: boolean;
 }
+export declare class CreateTermOfServiceUserStatusHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateTermOfServiceUserStatusHeadersArg);
+}
 export interface UpdateTermOfServiceUserStatusByIdRequestBodyArg {
     readonly isAccepted: boolean;
+}
+export declare class UpdateTermOfServiceUserStatusByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateTermOfServiceUserStatusByIdHeadersArg);
 }
 export declare class TermsOfServiceUserStatusesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TermsOfServiceUserStatusesManager, "getTermOfServiceUserStatuses" | "createTermOfServiceUserStatus" | "updateTermOfServiceUserStatusById">);
-    getTermOfServiceUserStatuses(queryParams: GetTermOfServiceUserStatusesQueryParamsArg): Promise<TermsOfServiceUserStatuses>;
-    createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg): Promise<TermsOfServiceUserStatus>;
-    updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Promise<TermsOfServiceUserStatus>;
+    getTermOfServiceUserStatuses(queryParams: GetTermOfServiceUserStatusesQueryParamsArg, headers?: GetTermOfServiceUserStatusesHeadersArg): Promise<TermsOfServiceUserStatuses>;
+    createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg, headers?: CreateTermOfServiceUserStatusHeadersArg): Promise<TermsOfServiceUserStatus>;
+    updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg, headers?: UpdateTermOfServiceUserStatusByIdHeadersArg): Promise<TermsOfServiceUserStatus>;
 }
-export declare function serializeGetTermOfServiceUserStatusesQueryParamsArg(val: GetTermOfServiceUserStatusesQueryParamsArg): Json;
-export declare function deserializeGetTermOfServiceUserStatusesQueryParamsArg(val: any): GetTermOfServiceUserStatusesQueryParamsArg;
 export declare function serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField): Json;
 export declare function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: any): CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField;
 export declare function serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val: CreateTermOfServiceUserStatusRequestBodyArgTosField): Json;

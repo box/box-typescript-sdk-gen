@@ -11,6 +11,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -28,8 +29,32 @@ export interface RestoreFileFromTrashRequestBodyArg {
 export interface RestoreFileFromTrashQueryParamsArg {
     readonly fields?: string;
 }
+export class RestoreFileFromTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: RestoreFileFromTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetFileTrashQueryParamsArg {
     readonly fields?: string;
+}
+export class GetFileTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFileTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFileTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class TrashedFilesManager {
     readonly auth?: Authentication;
@@ -37,23 +62,32 @@ export class TrashedFilesManager {
     constructor(fields: Omit<TrashedFilesManager, "restoreFileFromTrash" | "getFileTrash" | "deleteFileTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg): Promise<TrashFileRestored> {
+    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg, headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg({})): Promise<TrashFileRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeRestoreFileFromTrashRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeRestoreFileFromTrashRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFileRestored(deserializeJson(response.text));
     }
-    async getFileTrash(fileId: string, queryParams: GetFileTrashQueryParamsArg = {} satisfies GetFileTrashQueryParamsArg): Promise<TrashFile> {
+    async getFileTrash(fileId: string, queryParams: GetFileTrashQueryParamsArg = {} satisfies GetFileTrashQueryParamsArg, headers: GetFileTrashHeadersArg = new GetFileTrashHeadersArg({})): Promise<TrashFile> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFile(deserializeJson(response.text));
     }
-    async deleteFileTrash(fileId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFileTrash(fileId: string, headers: DeleteFileTrashHeadersArg = new DeleteFileTrashHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/trash") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeRestoreFileFromTrashRequestBodyArgParentField(val: RestoreFileFromTrashRequestBodyArgParentField): Json {
@@ -70,18 +104,4 @@ export function deserializeRestoreFileFromTrashRequestBodyArg(val: any): Restore
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const parent: undefined | RestoreFileFromTrashRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeRestoreFileFromTrashRequestBodyArgParentField(val.parent);
     return { name: name, parent: parent } satisfies RestoreFileFromTrashRequestBodyArg;
-}
-export function serializeRestoreFileFromTrashQueryParamsArg(val: RestoreFileFromTrashQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeRestoreFileFromTrashQueryParamsArg(val: any): RestoreFileFromTrashQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies RestoreFileFromTrashQueryParamsArg;
-}
-export function serializeGetFileTrashQueryParamsArg(val: GetFileTrashQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetFileTrashQueryParamsArg(val: any): GetFileTrashQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetFileTrashQueryParamsArg;
 }

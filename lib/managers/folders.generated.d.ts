@@ -12,9 +12,13 @@ export interface GetFolderByIdQueryParamsArg {
     readonly offset?: number;
     readonly limit?: number;
 }
-export interface GetFolderByIdHeadersArg {
+export declare class GetFolderByIdHeadersArg {
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFolderByIdHeadersArg);
 }
 export type UpdateFolderByIdRequestBodyArgSyncStateField = "synced" | "not_synced" | "partially_synced";
 export interface UpdateFolderByIdRequestBodyArgParentField {
@@ -55,14 +59,22 @@ export interface UpdateFolderByIdRequestBodyArg {
 export interface UpdateFolderByIdQueryParamsArg {
     readonly fields?: string;
 }
-export interface UpdateFolderByIdHeadersArg {
+export declare class UpdateFolderByIdHeadersArg {
     readonly ifMatch?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateFolderByIdHeadersArg);
 }
 export interface DeleteFolderByIdQueryParamsArg {
     readonly recursive?: boolean;
 }
-export interface DeleteFolderByIdHeadersArg {
+export declare class DeleteFolderByIdHeadersArg {
     readonly ifMatch?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteFolderByIdHeadersArg);
 }
 export type GetFolderItemsQueryParamsArgSortField = "id" | "name" | "date" | "size";
 export type GetFolderItemsQueryParamsArgDirectionField = "ASC" | "DESC";
@@ -75,8 +87,12 @@ export interface GetFolderItemsQueryParamsArg {
     readonly sort?: GetFolderItemsQueryParamsArgSortField;
     readonly direction?: GetFolderItemsQueryParamsArgDirectionField;
 }
-export interface GetFolderItemsHeadersArg {
+export declare class GetFolderItemsHeadersArg {
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFolderItemsHeadersArg);
 }
 export interface CreateFolderRequestBodyArgParentField {
     readonly id: string;
@@ -95,6 +111,12 @@ export interface CreateFolderRequestBodyArg {
 export interface CreateFolderQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CreateFolderHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateFolderHeadersArg);
+}
 export interface CopyFolderRequestBodyArgParentField {
     readonly id: string;
 }
@@ -105,25 +127,23 @@ export interface CopyFolderRequestBodyArg {
 export interface CopyFolderQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CopyFolderHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CopyFolderHeadersArg);
+}
 export declare class FoldersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FoldersManager, "getFolderById" | "updateFolderById" | "deleteFolderById" | "getFolderItems" | "createFolder" | "copyFolder">);
     getFolderById(folderId: string, queryParams?: GetFolderByIdQueryParamsArg, headers?: GetFolderByIdHeadersArg): Promise<FolderFull>;
     updateFolderById(folderId: string, requestBody: UpdateFolderByIdRequestBodyArg, queryParams?: UpdateFolderByIdQueryParamsArg, headers?: UpdateFolderByIdHeadersArg): Promise<FolderFull>;
-    deleteFolderById(folderId: string, queryParams?: DeleteFolderByIdQueryParamsArg, headers?: DeleteFolderByIdHeadersArg): Promise<any>;
+    deleteFolderById(folderId: string, queryParams?: DeleteFolderByIdQueryParamsArg, headers?: DeleteFolderByIdHeadersArg): Promise<undefined>;
     getFolderItems(folderId: string, queryParams?: GetFolderItemsQueryParamsArg, headers?: GetFolderItemsHeadersArg): Promise<Items>;
-    createFolder(requestBody: CreateFolderRequestBodyArg, queryParams?: CreateFolderQueryParamsArg): Promise<FolderFull>;
-    copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams?: CopyFolderQueryParamsArg): Promise<FolderFull>;
+    createFolder(requestBody: CreateFolderRequestBodyArg, queryParams?: CreateFolderQueryParamsArg, headers?: CreateFolderHeadersArg): Promise<FolderFull>;
+    copyFolder(folderId: string, requestBody: CopyFolderRequestBodyArg, queryParams?: CopyFolderQueryParamsArg, headers?: CopyFolderHeadersArg): Promise<FolderFull>;
 }
-export declare function serializeGetFolderByIdQueryParamsArgSortField(val: GetFolderByIdQueryParamsArgSortField): Json;
-export declare function deserializeGetFolderByIdQueryParamsArgSortField(val: any): GetFolderByIdQueryParamsArgSortField;
-export declare function serializeGetFolderByIdQueryParamsArgDirectionField(val: GetFolderByIdQueryParamsArgDirectionField): Json;
-export declare function deserializeGetFolderByIdQueryParamsArgDirectionField(val: any): GetFolderByIdQueryParamsArgDirectionField;
-export declare function serializeGetFolderByIdQueryParamsArg(val: GetFolderByIdQueryParamsArg): Json;
-export declare function deserializeGetFolderByIdQueryParamsArg(val: any): GetFolderByIdQueryParamsArg;
-export declare function serializeGetFolderByIdHeadersArg(val: GetFolderByIdHeadersArg): Json;
-export declare function deserializeGetFolderByIdHeadersArg(val: any): GetFolderByIdHeadersArg;
 export declare function serializeUpdateFolderByIdRequestBodyArgSyncStateField(val: UpdateFolderByIdRequestBodyArgSyncStateField): Json;
 export declare function deserializeUpdateFolderByIdRequestBodyArgSyncStateField(val: any): UpdateFolderByIdRequestBodyArgSyncStateField;
 export declare function serializeUpdateFolderByIdRequestBodyArgParentField(val: UpdateFolderByIdRequestBodyArgParentField): Json;
@@ -142,22 +162,6 @@ export declare function serializeUpdateFolderByIdRequestBodyArgCollectionsField(
 export declare function deserializeUpdateFolderByIdRequestBodyArgCollectionsField(val: any): UpdateFolderByIdRequestBodyArgCollectionsField;
 export declare function serializeUpdateFolderByIdRequestBodyArg(val: UpdateFolderByIdRequestBodyArg): Json;
 export declare function deserializeUpdateFolderByIdRequestBodyArg(val: any): UpdateFolderByIdRequestBodyArg;
-export declare function serializeUpdateFolderByIdQueryParamsArg(val: UpdateFolderByIdQueryParamsArg): Json;
-export declare function deserializeUpdateFolderByIdQueryParamsArg(val: any): UpdateFolderByIdQueryParamsArg;
-export declare function serializeUpdateFolderByIdHeadersArg(val: UpdateFolderByIdHeadersArg): Json;
-export declare function deserializeUpdateFolderByIdHeadersArg(val: any): UpdateFolderByIdHeadersArg;
-export declare function serializeDeleteFolderByIdQueryParamsArg(val: DeleteFolderByIdQueryParamsArg): Json;
-export declare function deserializeDeleteFolderByIdQueryParamsArg(val: any): DeleteFolderByIdQueryParamsArg;
-export declare function serializeDeleteFolderByIdHeadersArg(val: DeleteFolderByIdHeadersArg): Json;
-export declare function deserializeDeleteFolderByIdHeadersArg(val: any): DeleteFolderByIdHeadersArg;
-export declare function serializeGetFolderItemsQueryParamsArgSortField(val: GetFolderItemsQueryParamsArgSortField): Json;
-export declare function deserializeGetFolderItemsQueryParamsArgSortField(val: any): GetFolderItemsQueryParamsArgSortField;
-export declare function serializeGetFolderItemsQueryParamsArgDirectionField(val: GetFolderItemsQueryParamsArgDirectionField): Json;
-export declare function deserializeGetFolderItemsQueryParamsArgDirectionField(val: any): GetFolderItemsQueryParamsArgDirectionField;
-export declare function serializeGetFolderItemsQueryParamsArg(val: GetFolderItemsQueryParamsArg): Json;
-export declare function deserializeGetFolderItemsQueryParamsArg(val: any): GetFolderItemsQueryParamsArg;
-export declare function serializeGetFolderItemsHeadersArg(val: GetFolderItemsHeadersArg): Json;
-export declare function deserializeGetFolderItemsHeadersArg(val: any): GetFolderItemsHeadersArg;
 export declare function serializeCreateFolderRequestBodyArgParentField(val: CreateFolderRequestBodyArgParentField): Json;
 export declare function deserializeCreateFolderRequestBodyArgParentField(val: any): CreateFolderRequestBodyArgParentField;
 export declare function serializeCreateFolderRequestBodyArgFolderUploadEmailFieldAccessField(val: CreateFolderRequestBodyArgFolderUploadEmailFieldAccessField): Json;
@@ -168,11 +172,7 @@ export declare function serializeCreateFolderRequestBodyArgSyncStateField(val: C
 export declare function deserializeCreateFolderRequestBodyArgSyncStateField(val: any): CreateFolderRequestBodyArgSyncStateField;
 export declare function serializeCreateFolderRequestBodyArg(val: CreateFolderRequestBodyArg): Json;
 export declare function deserializeCreateFolderRequestBodyArg(val: any): CreateFolderRequestBodyArg;
-export declare function serializeCreateFolderQueryParamsArg(val: CreateFolderQueryParamsArg): Json;
-export declare function deserializeCreateFolderQueryParamsArg(val: any): CreateFolderQueryParamsArg;
 export declare function serializeCopyFolderRequestBodyArgParentField(val: CopyFolderRequestBodyArgParentField): Json;
 export declare function deserializeCopyFolderRequestBodyArgParentField(val: any): CopyFolderRequestBodyArgParentField;
 export declare function serializeCopyFolderRequestBodyArg(val: CopyFolderRequestBodyArg): Json;
 export declare function deserializeCopyFolderRequestBodyArg(val: any): CopyFolderRequestBodyArg;
-export declare function serializeCopyFolderQueryParamsArg(val: CopyFolderQueryParamsArg): Json;
-export declare function deserializeCopyFolderQueryParamsArg(val: any): CopyFolderQueryParamsArg;

@@ -19,6 +19,17 @@ await client.avatars.getUserAvatar(user.id)
 - userId `string`
   - The ID of the user.
   - Used as `user_id` in path `path` of the API call
+- headers `GetUserAvatarHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `ByteStream`.
+
+When an avatar can be found for the user the
+image data will be returned in the body of the
+response.
 
 
 ## Add or update user avatar
@@ -42,6 +53,8 @@ await client.avatars.createUserAvatar(user.id, { pic: decodeBase64ByteStream(&qu
   - Used as `user_id` in path `path` of the API call
 - requestBody `CreateUserAvatarRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateUserAvatarHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -73,5 +86,14 @@ await client.avatars.deleteUserAvatar(user.id)
 - userId `string`
   - The ID of the user.
   - Used as `user_id` in path `path` of the API call
+- headers `DeleteUserAvatarHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+* &#x60;no_content&#x60;: Removes the avatar and returns an empty response.
 
 

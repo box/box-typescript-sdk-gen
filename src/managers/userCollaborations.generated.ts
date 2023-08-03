@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -18,6 +19,14 @@ import { isJson } from "../json.js";
 export interface GetCollaborationByIdQueryParamsArg {
     readonly fields?: string;
 }
+export class GetCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetCollaborationByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateCollaborationByIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
 export type UpdateCollaborationByIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
 export interface UpdateCollaborationByIdRequestBodyArg {
@@ -25,6 +34,22 @@ export interface UpdateCollaborationByIdRequestBodyArg {
     readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
+}
+export class UpdateCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateCollaborationByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteCollaborationByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
@@ -49,41 +74,54 @@ export interface CreateCollaborationQueryParamsArg {
     readonly fields?: string;
     readonly notify?: boolean;
 }
+export class CreateCollaborationHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateCollaborationHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class UserCollaborationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">) {
         Object.assign(this, fields);
     }
-    async getCollaborationById(collaborationId: string, queryParams: GetCollaborationByIdQueryParamsArg = {} satisfies GetCollaborationByIdQueryParamsArg): Promise<Collaboration> {
+    async getCollaborationById(collaborationId: string, queryParams: GetCollaborationByIdQueryParamsArg = {} satisfies GetCollaborationByIdQueryParamsArg, headers: GetCollaborationByIdHeadersArg = new GetCollaborationByIdHeadersArg({})): Promise<Collaboration> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
-    async updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<Collaboration> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", body: serializeJson(serializeUpdateCollaborationByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg, headers: UpdateCollaborationByIdHeadersArg = new UpdateCollaborationByIdHeadersArg({})): Promise<Collaboration> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateCollaborationByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
-    async deleteCollaborationById(collaborationId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteCollaborationById(collaborationId: string, headers: DeleteCollaborationByIdHeadersArg = new DeleteCollaborationByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations/", collaborationId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams: CreateCollaborationQueryParamsArg = {} satisfies CreateCollaborationQueryParamsArg): Promise<Collaboration> {
+    async createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams: CreateCollaborationQueryParamsArg = {} satisfies CreateCollaborationQueryParamsArg, headers: CreateCollaborationHeadersArg = new CreateCollaborationHeadersArg({})): Promise<Collaboration> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields), ["notify"]: toString(queryParams.notify) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateCollaborationRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collaborations") as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeCreateCollaborationRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollaboration(deserializeJson(response.text));
     }
-}
-export function serializeGetCollaborationByIdQueryParamsArg(val: GetCollaborationByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetCollaborationByIdQueryParamsArg(val: any): GetCollaborationByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetCollaborationByIdQueryParamsArg;
 }
 export function serializeUpdateCollaborationByIdRequestBodyArgRoleField(val: UpdateCollaborationByIdRequestBodyArgRoleField): Json {
     return val;
@@ -233,12 +271,4 @@ export function deserializeCreateCollaborationRequestBodyArg(val: any): CreateCo
     const canViewPath: undefined | boolean = isJson(val.can_view_path, "boolean") ? val.can_view_path : void 0;
     const expiresAt: undefined | string = isJson(val.expires_at, "string") ? val.expires_at : void 0;
     return { item: item, accessibleBy: accessibleBy, role: role, canViewPath: canViewPath, expiresAt: expiresAt } satisfies CreateCollaborationRequestBodyArg;
-}
-export function serializeCreateCollaborationQueryParamsArg(val: CreateCollaborationQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["notify"]: val.notify };
-}
-export function deserializeCreateCollaborationQueryParamsArg(val: any): CreateCollaborationQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const notify: undefined | boolean = isJson(val.notify, "boolean") ? val.notify : void 0;
-    return { fields: fields, notify: notify } satisfies CreateCollaborationQueryParamsArg;
 }

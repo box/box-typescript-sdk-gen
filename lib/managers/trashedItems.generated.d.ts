@@ -1,7 +1,6 @@
 import { Items } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { Json } from "../json.js";
 export type GetFolderTrashItemsQueryParamsArgDirectionField = "ASC" | "DESC";
 export type GetFolderTrashItemsQueryParamsArgSortField = "name" | "date" | "size";
 export interface GetFolderTrashItemsQueryParamsArg {
@@ -13,15 +12,15 @@ export interface GetFolderTrashItemsQueryParamsArg {
     readonly direction?: GetFolderTrashItemsQueryParamsArgDirectionField;
     readonly sort?: GetFolderTrashItemsQueryParamsArgSortField;
 }
+export declare class GetFolderTrashItemsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFolderTrashItemsHeadersArg);
+}
 export declare class TrashedItemsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedItemsManager, "getFolderTrashItems">);
-    getFolderTrashItems(queryParams?: GetFolderTrashItemsQueryParamsArg): Promise<Items>;
+    getFolderTrashItems(queryParams?: GetFolderTrashItemsQueryParamsArg, headers?: GetFolderTrashItemsHeadersArg): Promise<Items>;
 }
-export declare function serializeGetFolderTrashItemsQueryParamsArgDirectionField(val: GetFolderTrashItemsQueryParamsArgDirectionField): Json;
-export declare function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(val: any): GetFolderTrashItemsQueryParamsArgDirectionField;
-export declare function serializeGetFolderTrashItemsQueryParamsArgSortField(val: GetFolderTrashItemsQueryParamsArgSortField): Json;
-export declare function deserializeGetFolderTrashItemsQueryParamsArgSortField(val: any): GetFolderTrashItemsQueryParamsArgSortField;
-export declare function serializeGetFolderTrashItemsQueryParamsArg(val: GetFolderTrashItemsQueryParamsArg): Json;
-export declare function deserializeGetFolderTrashItemsQueryParamsArg(val: any): GetFolderTrashItemsQueryParamsArg;

@@ -23,6 +23,8 @@ await client.webhooks.getWebhooks()
 
 - queryParams `GetWebhooksQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetWebhooksHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -50,6 +52,8 @@ await client.webhooks.createWebhook({ target: { id: folder.id, type: &quot;folde
 
 - requestBody `CreateWebhookRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateWebhookHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -78,6 +82,8 @@ await client.webhooks.getWebhookById(webhook.id)
 - webhookId `string`
   - The ID of the webhook.
   - Used as `webhook_id` in path `path` of the API call
+- headers `GetWebhookByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -108,6 +114,8 @@ await client.webhooks.updateWebhookById(webhook.id, { address: &quot;https://exa
   - Used as `webhook_id` in path `path` of the API call
 - requestBody `UpdateWebhookByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateWebhookByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -136,5 +144,15 @@ await client.webhooks.deleteWebhookById(webhook.id)
 - webhookId `string`
   - The ID of the webhook.
   - Used as `webhook_id` in path `path` of the API call
+- headers `DeleteWebhookByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+An empty response will be returned when the webhook
+was successfully deleted.
 
 

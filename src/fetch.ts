@@ -4,6 +4,7 @@ import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
 import { Authentication } from './auth';
 import { NetworkSession, getRetryTimeout } from './network';
+import { ByteStream } from './utils';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -12,7 +13,7 @@ export const xBoxUaHeader = constructBoxUAHeader();
 export interface MultipartItem {
   readonly partName: string;
   readonly body?: string;
-  readonly fileStream?: any;
+  readonly fileStream?: ByteStream;
   readonly fileName?: string;
   readonly contentType?: string;
 }
@@ -52,6 +53,11 @@ export interface FetchOptions {
   readonly contentType?: string;
 
   /**
+   * Expected format of the response: 'json', 'binary' or undefined
+   */
+  readonly responseFormat?: string;
+
+  /**
    * Auth object
    */
   readonly auth?: Authentication;
@@ -75,7 +81,7 @@ export interface FetchResponse {
   /**
    * Binary array buffer of response body
    */
-  readonly content: Buffer;
+  readonly content: ByteStream;
 }
 
 async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
@@ -88,14 +94,7 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
     const formData = new FormData();
     for (const item of options.multipartData) {
       if (item.fileStream) {
-        let buffer;
-        if (item.fileStream instanceof Readable) {
-          // We need to read the stream to calculate the MD5 hash
-          buffer = await readStream(item.fileStream);
-        } else {
-          // We already have the buffer or input is a string
-          buffer = item.fileStream;
-        }
+        const buffer = await readStream(item.fileStream);
         headers['content-md5'] = calculateMD5Hash(buffer);
         formData.append(item.partName, buffer, {
           filename: item.fileName ?? 'file',
@@ -196,11 +195,11 @@ export async function fetch(
   return {
     status: response.status,
     text: new TextDecoder().decode(responseBytesBuffer),
-    content: responseBytesBuffer,
+    content: Readable.from(responseBytesBuffer),
   };
 }
 
-function calculateMD5Hash(data: string): string {
+function calculateMD5Hash(data: string | Buffer): string {
   /**
    * Calculate the SHA1 hash of the data
    */

@@ -20,6 +20,8 @@ See the endpoint docs at
 
 - requestBody `MetadataQuery`
   - Used as requestBody for the API call
+- headers `CreateMetadataQueryExecuteReadHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -44,6 +46,8 @@ See the endpoint docs at
 
 - queryParams `GetMetadataQueryIndicesQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetMetadataQueryIndicesHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -69,6 +73,8 @@ See the endpoint docs at
 
 - queryParams `GetSearchQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetSearchHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

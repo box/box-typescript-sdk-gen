@@ -16,6 +16,8 @@ See the endpoint docs at
 - devicePinnerId `string`
   - The ID of the device pin
   - Used as `device_pinner_id` in path `path` of the API call
+- headers `GetDevicePinnerByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -41,6 +43,15 @@ See the endpoint docs at
 - devicePinnerId `string`
   - The ID of the device pin
   - Used as `device_pinner_id` in path `path` of the API call
+- headers `DeleteDevicePinnerByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the pin has been deleted.
 
 
 ## List enterprise device pins
@@ -64,6 +75,8 @@ See the endpoint docs at
   - Used as `enterprise_id` in path `path` of the API call
 - queryParams `GetEnterpriseDevicePinnersQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetEnterpriseDevicePinnersHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

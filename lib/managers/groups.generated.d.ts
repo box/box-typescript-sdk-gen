@@ -10,6 +10,12 @@ export interface GetGroupsQueryParamsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
+export declare class GetGroupsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetGroupsHeadersArg);
+}
 export type CreateGroupRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
 export type CreateGroupRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
 export interface CreateGroupRequestBodyArg {
@@ -23,8 +29,20 @@ export interface CreateGroupRequestBodyArg {
 export interface CreateGroupQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CreateGroupHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateGroupHeadersArg);
+}
 export interface GetGroupByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetGroupByIdHeadersArg);
 }
 export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
 export type UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
@@ -39,33 +57,37 @@ export interface UpdateGroupByIdRequestBodyArg {
 export interface UpdateGroupByIdQueryParamsArg {
     readonly fields?: string;
 }
+export declare class UpdateGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateGroupByIdHeadersArg);
+}
+export declare class DeleteGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteGroupByIdHeadersArg);
+}
 export declare class GroupsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">);
-    getGroups(queryParams?: GetGroupsQueryParamsArg): Promise<Groups>;
-    createGroup(requestBody: CreateGroupRequestBodyArg, queryParams?: CreateGroupQueryParamsArg): Promise<Group>;
-    getGroupById(groupId: string, queryParams?: GetGroupByIdQueryParamsArg): Promise<GroupFull>;
-    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams?: UpdateGroupByIdQueryParamsArg): Promise<GroupFull>;
-    deleteGroupById(groupId: string): Promise<any>;
+    getGroups(queryParams?: GetGroupsQueryParamsArg, headers?: GetGroupsHeadersArg): Promise<Groups>;
+    createGroup(requestBody: CreateGroupRequestBodyArg, queryParams?: CreateGroupQueryParamsArg, headers?: CreateGroupHeadersArg): Promise<Group>;
+    getGroupById(groupId: string, queryParams?: GetGroupByIdQueryParamsArg, headers?: GetGroupByIdHeadersArg): Promise<GroupFull>;
+    updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams?: UpdateGroupByIdQueryParamsArg, headers?: UpdateGroupByIdHeadersArg): Promise<GroupFull>;
+    deleteGroupById(groupId: string, headers?: DeleteGroupByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetGroupsQueryParamsArg(val: GetGroupsQueryParamsArg): Json;
-export declare function deserializeGetGroupsQueryParamsArg(val: any): GetGroupsQueryParamsArg;
 export declare function serializeCreateGroupRequestBodyArgInvitabilityLevelField(val: CreateGroupRequestBodyArgInvitabilityLevelField): Json;
 export declare function deserializeCreateGroupRequestBodyArgInvitabilityLevelField(val: any): CreateGroupRequestBodyArgInvitabilityLevelField;
 export declare function serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val: CreateGroupRequestBodyArgMemberViewabilityLevelField): Json;
 export declare function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val: any): CreateGroupRequestBodyArgMemberViewabilityLevelField;
 export declare function serializeCreateGroupRequestBodyArg(val: CreateGroupRequestBodyArg): Json;
 export declare function deserializeCreateGroupRequestBodyArg(val: any): CreateGroupRequestBodyArg;
-export declare function serializeCreateGroupQueryParamsArg(val: CreateGroupQueryParamsArg): Json;
-export declare function deserializeCreateGroupQueryParamsArg(val: any): CreateGroupQueryParamsArg;
-export declare function serializeGetGroupByIdQueryParamsArg(val: GetGroupByIdQueryParamsArg): Json;
-export declare function deserializeGetGroupByIdQueryParamsArg(val: any): GetGroupByIdQueryParamsArg;
 export declare function serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val: UpdateGroupByIdRequestBodyArgInvitabilityLevelField): Json;
 export declare function deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val: any): UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
 export declare function serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField): Json;
 export declare function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val: any): UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
 export declare function serializeUpdateGroupByIdRequestBodyArg(val: UpdateGroupByIdRequestBodyArg): Json;
 export declare function deserializeUpdateGroupByIdRequestBodyArg(val: any): UpdateGroupByIdRequestBodyArg;
-export declare function serializeUpdateGroupByIdQueryParamsArg(val: UpdateGroupByIdQueryParamsArg): Json;
-export declare function deserializeUpdateGroupByIdQueryParamsArg(val: any): UpdateGroupByIdQueryParamsArg;

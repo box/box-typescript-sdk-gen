@@ -11,16 +11,32 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-import { isJson } from "../json.js";
 export interface GetStoragePoliciesQueryParamsArg {
     readonly fields?: string;
     readonly marker?: string;
     readonly limit?: number;
+}
+export class GetStoragePoliciesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetStoragePoliciesHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetStoragePolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetStoragePolicyByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class StoragePoliciesManager {
     readonly auth?: Authentication;
@@ -28,24 +44,21 @@ export class StoragePoliciesManager {
     constructor(fields: Omit<StoragePoliciesManager, "getStoragePolicies" | "getStoragePolicyById">) {
         Object.assign(this, fields);
     }
-    async getStoragePolicies(queryParams: GetStoragePoliciesQueryParamsArg = {} satisfies GetStoragePoliciesQueryParamsArg): Promise<StoragePolicies> {
+    async getStoragePolicies(queryParams: GetStoragePoliciesQueryParamsArg = {} satisfies GetStoragePoliciesQueryParamsArg, headers: GetStoragePoliciesHeadersArg = new GetStoragePoliciesHeadersArg({})): Promise<StoragePolicies> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields), ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicies(deserializeJson(response.text));
     }
-    async getStoragePolicyById(storagePolicyId: string): Promise<StoragePolicy> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies/", storagePolicyId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getStoragePolicyById(storagePolicyId: string, headers: GetStoragePolicyByIdHeadersArg = new GetStoragePolicyByIdHeadersArg({})): Promise<StoragePolicy> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/storage_policies/", storagePolicyId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeStoragePolicy(deserializeJson(response.text));
     }
-}
-export function serializeGetStoragePoliciesQueryParamsArg(val: GetStoragePoliciesQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetStoragePoliciesQueryParamsArg(val: any): GetStoragePoliciesQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { fields: fields, marker: marker, limit: limit } satisfies GetStoragePoliciesQueryParamsArg;
 }

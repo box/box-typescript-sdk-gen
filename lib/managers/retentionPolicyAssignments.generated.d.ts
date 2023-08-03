@@ -11,6 +11,12 @@ export interface GetRetentionPolicyAssignmentsQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
+export declare class GetRetentionPolicyAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPolicyAssignmentsHeadersArg);
+}
 export type CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField = "enterprise" | "folder" | "metadata_template";
 export interface CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
     readonly type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
@@ -26,32 +32,58 @@ export interface CreateRetentionPolicyAssignmentRequestBodyArg {
     readonly filterFields?: readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[];
     readonly startDateField?: string;
 }
+export declare class CreateRetentionPolicyAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateRetentionPolicyAssignmentHeadersArg);
+}
 export interface GetRetentionPolicyAssignmentByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetRetentionPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPolicyAssignmentByIdHeadersArg);
+}
+export declare class DeleteRetentionPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteRetentionPolicyAssignmentByIdHeadersArg);
 }
 export interface GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
+export declare class GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg);
+}
 export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
+}
+export declare class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg);
 }
 export declare class RetentionPolicyAssignmentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<RetentionPolicyAssignmentsManager, "getRetentionPolicyAssignments" | "createRetentionPolicyAssignment" | "getRetentionPolicyAssignmentById" | "deleteRetentionPolicyAssignmentById" | "getRetentionPolicyAssignmentFileUnderRetention" | "getRetentionPolicyAssignmentFileVersionUnderRetention">);
-    getRetentionPolicyAssignments(retentionPolicyId: string, queryParams?: GetRetentionPolicyAssignmentsQueryParamsArg): Promise<RetentionPolicyAssignments>;
-    createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg): Promise<RetentionPolicyAssignment>;
-    getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentByIdQueryParamsArg): Promise<RetentionPolicyAssignment>;
-    deleteRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string): Promise<any>;
-    getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
-    getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg): Promise<FilesUnderRetention>;
+    getRetentionPolicyAssignments(retentionPolicyId: string, queryParams?: GetRetentionPolicyAssignmentsQueryParamsArg, headers?: GetRetentionPolicyAssignmentsHeadersArg): Promise<RetentionPolicyAssignments>;
+    createRetentionPolicyAssignment(requestBody: CreateRetentionPolicyAssignmentRequestBodyArg, headers?: CreateRetentionPolicyAssignmentHeadersArg): Promise<RetentionPolicyAssignment>;
+    getRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentByIdQueryParamsArg, headers?: GetRetentionPolicyAssignmentByIdHeadersArg): Promise<RetentionPolicyAssignment>;
+    deleteRetentionPolicyAssignmentById(retentionPolicyAssignmentId: string, headers?: DeleteRetentionPolicyAssignmentByIdHeadersArg): Promise<undefined>;
+    getRetentionPolicyAssignmentFileUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg, headers?: GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg): Promise<FilesUnderRetention>;
+    getRetentionPolicyAssignmentFileVersionUnderRetention(retentionPolicyAssignmentId: string, queryParams?: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg, headers?: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg): Promise<FilesUnderRetention>;
 }
-export declare function serializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(val: GetRetentionPolicyAssignmentsQueryParamsArgTypeField): Json;
-export declare function deserializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(val: any): GetRetentionPolicyAssignmentsQueryParamsArgTypeField;
-export declare function serializeGetRetentionPolicyAssignmentsQueryParamsArg(val: GetRetentionPolicyAssignmentsQueryParamsArg): Json;
-export declare function deserializeGetRetentionPolicyAssignmentsQueryParamsArg(val: any): GetRetentionPolicyAssignmentsQueryParamsArg;
 export declare function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(val: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField): Json;
 export declare function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(val: any): CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
 export declare function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField): Json;
@@ -60,9 +92,3 @@ export declare function serializeCreateRetentionPolicyAssignmentRequestBodyArgFi
 export declare function deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(val: any): CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField;
 export declare function serializeCreateRetentionPolicyAssignmentRequestBodyArg(val: CreateRetentionPolicyAssignmentRequestBodyArg): Json;
 export declare function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(val: any): CreateRetentionPolicyAssignmentRequestBodyArg;
-export declare function serializeGetRetentionPolicyAssignmentByIdQueryParamsArg(val: GetRetentionPolicyAssignmentByIdQueryParamsArg): Json;
-export declare function deserializeGetRetentionPolicyAssignmentByIdQueryParamsArg(val: any): GetRetentionPolicyAssignmentByIdQueryParamsArg;
-export declare function serializeGetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg(val: GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg): Json;
-export declare function deserializeGetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg(val: any): GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg;
-export declare function serializeGetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg(val: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg): Json;
-export declare function deserializeGetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg(val: any): GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg;

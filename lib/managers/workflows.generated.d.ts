@@ -8,6 +8,12 @@ export interface GetWorkflowsQueryParamsArg {
     readonly limit?: number;
     readonly marker?: string;
 }
+export declare class GetWorkflowsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetWorkflowsHeadersArg);
+}
 export type CreateWorkflowStartRequestBodyArgTypeField = "workflow_parameters";
 export interface CreateWorkflowStartRequestBodyArgFlowField {
     readonly type?: string;
@@ -36,15 +42,19 @@ export interface CreateWorkflowStartRequestBodyArg {
     readonly folder: CreateWorkflowStartRequestBodyArgFolderField;
     readonly outcomes?: readonly CreateWorkflowStartRequestBodyArgOutcomesField[];
 }
+export declare class CreateWorkflowStartHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateWorkflowStartHeadersArg);
+}
 export declare class WorkflowsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WorkflowsManager, "getWorkflows" | "createWorkflowStart">);
-    getWorkflows(queryParams: GetWorkflowsQueryParamsArg): Promise<Workflows>;
-    createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg): Promise<any>;
+    getWorkflows(queryParams: GetWorkflowsQueryParamsArg, headers?: GetWorkflowsHeadersArg): Promise<Workflows>;
+    createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg, headers?: CreateWorkflowStartHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetWorkflowsQueryParamsArg(val: GetWorkflowsQueryParamsArg): Json;
-export declare function deserializeGetWorkflowsQueryParamsArg(val: any): GetWorkflowsQueryParamsArg;
 export declare function serializeCreateWorkflowStartRequestBodyArgTypeField(val: CreateWorkflowStartRequestBodyArgTypeField): Json;
 export declare function deserializeCreateWorkflowStartRequestBodyArgTypeField(val: any): CreateWorkflowStartRequestBodyArgTypeField;
 export declare function serializeCreateWorkflowStartRequestBodyArgFlowField(val: CreateWorkflowStartRequestBodyArgFlowField): Json;

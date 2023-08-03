@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -18,12 +19,26 @@ import { isJson } from "../json.js";
 export interface GetSharedItemFoldersQueryParamsArg {
     readonly fields?: string;
 }
-export interface GetSharedItemFoldersHeadersArg {
+export class GetSharedItemFoldersHeadersArg {
     readonly ifNoneMatch?: string;
-    readonly boxapi: string;
+    readonly boxapi!: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetSharedItemFoldersHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface GetFolderGetSharedLinkQueryParamsArg {
     readonly fields: string;
+}
+export class GetFolderGetSharedLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFolderGetSharedLinkHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
 export interface UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
@@ -44,6 +59,14 @@ export interface UpdateFolderAddSharedLinkRequestBodyArg {
 export interface UpdateFolderAddSharedLinkQueryParamsArg {
     readonly fields: string;
 }
+export class UpdateFolderAddSharedLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFolderAddSharedLinkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = "open" | "company" | "collaborators";
 export interface UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
     readonly canDownload?: boolean;
@@ -63,6 +86,14 @@ export interface UpdateFolderUpdateSharedLinkRequestBodyArg {
 export interface UpdateFolderUpdateSharedLinkQueryParamsArg {
     readonly fields: string;
 }
+export class UpdateFolderUpdateSharedLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFolderUpdateSharedLinkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface UpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField {
 }
 export interface UpdateFolderRemoveSharedLinkRequestBodyArg {
@@ -70,6 +101,14 @@ export interface UpdateFolderRemoveSharedLinkRequestBodyArg {
 }
 export interface UpdateFolderRemoveSharedLinkQueryParamsArg {
     readonly fields: string;
+}
+export class UpdateFolderRemoveSharedLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFolderRemoveSharedLinkHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class SharedLinksFoldersManager {
     readonly auth?: Authentication;
@@ -83,60 +122,50 @@ export class SharedLinksFoldersManager {
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
         const headersMap: {
             readonly [key: string]: string;
-        } = prepareParams({ ["if-none-match"]: toString(headers.ifNoneMatch), ["boxapi"]: toString(headers.boxapi) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shared_items#folders") as string, { method: "GET", params: queryParamsMap, headers: headersMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        } = prepareParams({ ...{ ["if-none-match"]: toString(headers.ifNoneMatch), ["boxapi"]: toString(headers.boxapi) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shared_items#folders") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async getFolderGetSharedLink(folderId: string, queryParams: GetFolderGetSharedLinkQueryParamsArg): Promise<FolderFull> {
+    async getFolderGetSharedLink(folderId: string, queryParams: GetFolderGetSharedLinkQueryParamsArg, headers: GetFolderGetSharedLinkHeadersArg = new GetFolderGetSharedLinkHeadersArg({})): Promise<FolderFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#get_shared_link") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#get_shared_link") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async updateFolderAddSharedLink(folderId: string, requestBody: UpdateFolderAddSharedLinkRequestBodyArg, queryParams: UpdateFolderAddSharedLinkQueryParamsArg): Promise<FolderFull> {
+    async updateFolderAddSharedLink(folderId: string, requestBody: UpdateFolderAddSharedLinkRequestBodyArg, queryParams: UpdateFolderAddSharedLinkQueryParamsArg, headers: UpdateFolderAddSharedLinkHeadersArg = new UpdateFolderAddSharedLinkHeadersArg({})): Promise<FolderFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#add_shared_link") as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateFolderAddSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#add_shared_link") as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFolderAddSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async updateFolderUpdateSharedLink(folderId: string, requestBody: UpdateFolderUpdateSharedLinkRequestBodyArg, queryParams: UpdateFolderUpdateSharedLinkQueryParamsArg): Promise<FolderFull> {
+    async updateFolderUpdateSharedLink(folderId: string, requestBody: UpdateFolderUpdateSharedLinkRequestBodyArg, queryParams: UpdateFolderUpdateSharedLinkQueryParamsArg, headers: UpdateFolderUpdateSharedLinkHeadersArg = new UpdateFolderUpdateSharedLinkHeadersArg({})): Promise<FolderFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#update_shared_link") as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateFolderUpdateSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#update_shared_link") as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFolderUpdateSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-    async updateFolderRemoveSharedLink(folderId: string, requestBody: UpdateFolderRemoveSharedLinkRequestBodyArg, queryParams: UpdateFolderRemoveSharedLinkQueryParamsArg): Promise<FolderFull> {
+    async updateFolderRemoveSharedLink(folderId: string, requestBody: UpdateFolderRemoveSharedLinkRequestBodyArg, queryParams: UpdateFolderRemoveSharedLinkQueryParamsArg, headers: UpdateFolderRemoveSharedLinkHeadersArg = new UpdateFolderRemoveSharedLinkHeadersArg({})): Promise<FolderFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#remove_shared_link") as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateFolderRemoveSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "#remove_shared_link") as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFolderRemoveSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderFull(deserializeJson(response.text));
     }
-}
-export function serializeGetSharedItemFoldersQueryParamsArg(val: GetSharedItemFoldersQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetSharedItemFoldersQueryParamsArg(val: any): GetSharedItemFoldersQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetSharedItemFoldersQueryParamsArg;
-}
-export function serializeGetSharedItemFoldersHeadersArg(val: GetSharedItemFoldersHeadersArg): Json {
-    return { ["if-none-match"]: val.ifNoneMatch, ["boxapi"]: val.boxapi };
-}
-export function deserializeGetSharedItemFoldersHeadersArg(val: any): GetSharedItemFoldersHeadersArg {
-    const ifNoneMatch: undefined | string = isJson(val["if-none-match"], "string") ? val["if-none-match"] : void 0;
-    const boxapi: string = val.boxapi;
-    return { ifNoneMatch: ifNoneMatch, boxapi: boxapi } satisfies GetSharedItemFoldersHeadersArg;
-}
-export function serializeGetFolderGetSharedLinkQueryParamsArg(val: GetFolderGetSharedLinkQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetFolderGetSharedLinkQueryParamsArg(val: any): GetFolderGetSharedLinkQueryParamsArg {
-    const fields: string = val.fields;
-    return { fields: fields } satisfies GetFolderGetSharedLinkQueryParamsArg;
 }
 export function serializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(val: UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField): Json {
     return val;
@@ -183,13 +212,6 @@ export function deserializeUpdateFolderAddSharedLinkRequestBodyArg(val: any): Up
     const sharedLink: undefined | UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkField(val.shared_link);
     return { sharedLink: sharedLink } satisfies UpdateFolderAddSharedLinkRequestBodyArg;
 }
-export function serializeUpdateFolderAddSharedLinkQueryParamsArg(val: UpdateFolderAddSharedLinkQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateFolderAddSharedLinkQueryParamsArg(val: any): UpdateFolderAddSharedLinkQueryParamsArg {
-    const fields: string = val.fields;
-    return { fields: fields } satisfies UpdateFolderAddSharedLinkQueryParamsArg;
-}
 export function serializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(val: UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField): Json {
     return val;
 }
@@ -235,13 +257,6 @@ export function deserializeUpdateFolderUpdateSharedLinkRequestBodyArg(val: any):
     const sharedLink: undefined | UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField(val.shared_link);
     return { sharedLink: sharedLink } satisfies UpdateFolderUpdateSharedLinkRequestBodyArg;
 }
-export function serializeUpdateFolderUpdateSharedLinkQueryParamsArg(val: UpdateFolderUpdateSharedLinkQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateFolderUpdateSharedLinkQueryParamsArg(val: any): UpdateFolderUpdateSharedLinkQueryParamsArg {
-    const fields: string = val.fields;
-    return { fields: fields } satisfies UpdateFolderUpdateSharedLinkQueryParamsArg;
-}
 export function serializeUpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField(val: UpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField): Json {
     return {};
 }
@@ -254,11 +269,4 @@ export function serializeUpdateFolderRemoveSharedLinkRequestBodyArg(val: UpdateF
 export function deserializeUpdateFolderRemoveSharedLinkRequestBodyArg(val: any): UpdateFolderRemoveSharedLinkRequestBodyArg {
     const sharedLink: undefined | UpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField = val.shared_link == void 0 ? void 0 : deserializeUpdateFolderRemoveSharedLinkRequestBodyArgSharedLinkField(val.shared_link);
     return { sharedLink: sharedLink } satisfies UpdateFolderRemoveSharedLinkRequestBodyArg;
-}
-export function serializeUpdateFolderRemoveSharedLinkQueryParamsArg(val: UpdateFolderRemoveSharedLinkQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateFolderRemoveSharedLinkQueryParamsArg(val: any): UpdateFolderRemoveSharedLinkQueryParamsArg {
-    const fields: string = val.fields;
-    return { fields: fields } satisfies UpdateFolderRemoveSharedLinkQueryParamsArg;
 }

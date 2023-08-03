@@ -23,6 +23,8 @@ await client.users.getUsers()
 
 - queryParams `GetUsersQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetUsersHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -54,6 +56,8 @@ await client.users.createUser({ name: userName, login: userLogin, isPlatformAcce
   - Used as requestBody for the API call
 - queryParams `CreateUserQueryParamsArg`
   - Used as queryParams for the API call
+- headers `CreateUserHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -90,6 +94,8 @@ await client.users.getUserMe()
 
 - queryParams `GetUserMeQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetUserMeHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -130,6 +136,8 @@ await client.users.getUserById(user.id)
   - Used as `user_id` in path `path` of the API call
 - queryParams `GetUserByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetUserByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -169,6 +177,8 @@ await client.users.updateUserById(user.id, { name: updatedUserName } satisfies U
   - Used as requestBody for the API call
 - queryParams `UpdateUserByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateUserByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -202,5 +212,14 @@ await client.users.deleteUserById(user.id)
   - Used as `user_id` in path `path` of the API call
 - queryParams `DeleteUserByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `DeleteUserByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Removes the user and returns an empty response.
 
 

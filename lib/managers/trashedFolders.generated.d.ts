@@ -13,22 +13,36 @@ export interface RestoreFolderFromTrashRequestBodyArg {
 export interface RestoreFolderFromTrashQueryParamsArg {
     readonly fields?: string;
 }
+export declare class RestoreFolderFromTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: RestoreFolderFromTrashHeadersArg);
+}
 export interface GetFolderTrashQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetFolderTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFolderTrashHeadersArg);
+}
+export declare class DeleteFolderTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteFolderTrashHeadersArg);
 }
 export declare class TrashedFoldersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">);
-    restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams?: RestoreFolderFromTrashQueryParamsArg): Promise<TrashFolderRestored>;
-    getFolderTrash(folderId: string, queryParams?: GetFolderTrashQueryParamsArg): Promise<TrashFolder>;
-    deleteFolderTrash(folderId: string): Promise<any>;
+    restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams?: RestoreFolderFromTrashQueryParamsArg, headers?: RestoreFolderFromTrashHeadersArg): Promise<TrashFolderRestored>;
+    getFolderTrash(folderId: string, queryParams?: GetFolderTrashQueryParamsArg, headers?: GetFolderTrashHeadersArg): Promise<TrashFolder>;
+    deleteFolderTrash(folderId: string, headers?: DeleteFolderTrashHeadersArg): Promise<undefined>;
 }
 export declare function serializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json;
 export declare function deserializeRestoreFolderFromTrashRequestBodyArgParentField(val: any): RestoreFolderFromTrashRequestBodyArgParentField;
 export declare function serializeRestoreFolderFromTrashRequestBodyArg(val: RestoreFolderFromTrashRequestBodyArg): Json;
 export declare function deserializeRestoreFolderFromTrashRequestBodyArg(val: any): RestoreFolderFromTrashRequestBodyArg;
-export declare function serializeRestoreFolderFromTrashQueryParamsArg(val: RestoreFolderFromTrashQueryParamsArg): Json;
-export declare function deserializeRestoreFolderFromTrashQueryParamsArg(val: any): RestoreFolderFromTrashQueryParamsArg;
-export declare function serializeGetFolderTrashQueryParamsArg(val: GetFolderTrashQueryParamsArg): Json;
-export declare function deserializeGetFolderTrashQueryParamsArg(val: any): GetFolderTrashQueryParamsArg;

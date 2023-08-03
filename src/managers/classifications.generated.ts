@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -15,6 +16,22 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = "enterprise";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField = "Classification";
@@ -47,22 +64,39 @@ export interface CreateMetadataTemplateSchemaClassificationRequestBodyArg {
     readonly copyInstanceOnItemCopy?: boolean;
     readonly fields?: readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[];
 }
+export class CreateMetadataTemplateSchemaClassificationHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateMetadataTemplateSchemaClassificationHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class ClassificationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "createMetadataTemplateSchemaClassification">) {
         Object.assign(this, fields);
     }
-    async getMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<ClassificationTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getMetadataTemplateEnterpriseSecurityClassificationSchema(headers: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg = new GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg({})): Promise<ClassificationTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeClassificationTemplate(deserializeJson(response.text));
     }
-    async deleteMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteMetadataTemplateEnterpriseSecurityClassificationSchema(headers: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg = new DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Promise<ClassificationTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", body: serializeJson(serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg, headers: CreateMetadataTemplateSchemaClassificationHeadersArg = new CreateMetadataTemplateSchemaClassificationHeadersArg({})): Promise<ClassificationTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeClassificationTemplate(deserializeJson(response.text));
     }
 }

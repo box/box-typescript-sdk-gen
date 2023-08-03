@@ -8,6 +8,12 @@ export type GetTermOfServicesQueryParamsArgTosTypeField = "external" | "managed"
 export interface GetTermOfServicesQueryParamsArg {
     readonly tosType?: GetTermOfServicesQueryParamsArgTosTypeField;
 }
+export declare class GetTermOfServicesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTermOfServicesHeadersArg);
+}
 export type CreateTermOfServiceRequestBodyArgStatusField = "enabled" | "disabled";
 export type CreateTermOfServiceRequestBodyArgTosTypeField = "external" | "managed";
 export interface CreateTermOfServiceRequestBodyArg {
@@ -15,24 +21,38 @@ export interface CreateTermOfServiceRequestBodyArg {
     readonly tosType?: CreateTermOfServiceRequestBodyArgTosTypeField;
     readonly text: string;
 }
+export declare class CreateTermOfServiceHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateTermOfServiceHeadersArg);
+}
+export declare class GetTermOfServiceByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTermOfServiceByIdHeadersArg);
+}
 export type UpdateTermOfServiceByIdRequestBodyArgStatusField = "enabled" | "disabled";
 export interface UpdateTermOfServiceByIdRequestBodyArg {
     readonly status: UpdateTermOfServiceByIdRequestBodyArgStatusField;
     readonly text: string;
 }
+export declare class UpdateTermOfServiceByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateTermOfServiceByIdHeadersArg);
+}
 export declare class TermsOfServicesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TermsOfServicesManager, "getTermOfServices" | "createTermOfService" | "getTermOfServiceById" | "updateTermOfServiceById">);
-    getTermOfServices(queryParams?: GetTermOfServicesQueryParamsArg): Promise<TermsOfServices>;
-    createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg): Promise<Task>;
-    getTermOfServiceById(termsOfServiceId: string): Promise<TermsOfService>;
-    updateTermOfServiceById(termsOfServiceId: string, requestBody: UpdateTermOfServiceByIdRequestBodyArg): Promise<TermsOfService>;
+    getTermOfServices(queryParams?: GetTermOfServicesQueryParamsArg, headers?: GetTermOfServicesHeadersArg): Promise<TermsOfServices>;
+    createTermOfService(requestBody: CreateTermOfServiceRequestBodyArg, headers?: CreateTermOfServiceHeadersArg): Promise<Task>;
+    getTermOfServiceById(termsOfServiceId: string, headers?: GetTermOfServiceByIdHeadersArg): Promise<TermsOfService>;
+    updateTermOfServiceById(termsOfServiceId: string, requestBody: UpdateTermOfServiceByIdRequestBodyArg, headers?: UpdateTermOfServiceByIdHeadersArg): Promise<TermsOfService>;
 }
-export declare function serializeGetTermOfServicesQueryParamsArgTosTypeField(val: GetTermOfServicesQueryParamsArgTosTypeField): Json;
-export declare function deserializeGetTermOfServicesQueryParamsArgTosTypeField(val: any): GetTermOfServicesQueryParamsArgTosTypeField;
-export declare function serializeGetTermOfServicesQueryParamsArg(val: GetTermOfServicesQueryParamsArg): Json;
-export declare function deserializeGetTermOfServicesQueryParamsArg(val: any): GetTermOfServicesQueryParamsArg;
 export declare function serializeCreateTermOfServiceRequestBodyArgStatusField(val: CreateTermOfServiceRequestBodyArgStatusField): Json;
 export declare function deserializeCreateTermOfServiceRequestBodyArgStatusField(val: any): CreateTermOfServiceRequestBodyArgStatusField;
 export declare function serializeCreateTermOfServiceRequestBodyArgTosTypeField(val: CreateTermOfServiceRequestBodyArgTosTypeField): Json;

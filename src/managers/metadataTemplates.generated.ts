@@ -11,6 +11,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -21,15 +22,63 @@ import { isJson } from "../json.js";
 export interface GetMetadataTemplatesQueryParamsArg {
     readonly metadataInstanceId: string;
 }
+export class GetMetadataTemplatesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplatesHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type GetMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export class GetMetadataTemplateSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplateSchemaHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type DeleteMetadataTemplateSchemaScopeArg = "global" | "enterprise";
+export class DeleteMetadataTemplateSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteMetadataTemplateSchemaHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetMetadataTemplateByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplateByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetMetadataTemplateGlobalQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
+export class GetMetadataTemplateGlobalHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplateGlobalHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetMetadataTemplateEnterpriseQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
+}
+export class GetMetadataTemplateEnterpriseHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataTemplateEnterpriseHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField = "string" | "float" | "date" | "enum" | "multiSelect";
 export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField {
@@ -51,56 +100,78 @@ export interface CreateMetadataTemplateSchemaRequestBodyArg {
     readonly fields?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsField[];
     readonly copyInstanceOnItemCopy?: boolean;
 }
+export class CreateMetadataTemplateSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateMetadataTemplateSchemaHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class MetadataTemplatesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<MetadataTemplatesManager, "getMetadataTemplates" | "getMetadataTemplateSchema" | "deleteMetadataTemplateSchema" | "getMetadataTemplateById" | "getMetadataTemplateGlobal" | "getMetadataTemplateEnterprise" | "createMetadataTemplateSchema">) {
         Object.assign(this, fields);
     }
-    async getMetadataTemplates(queryParams: GetMetadataTemplatesQueryParamsArg): Promise<MetadataTemplates> {
+    async getMetadataTemplates(queryParams: GetMetadataTemplatesQueryParamsArg, headers: GetMetadataTemplatesHeadersArg = new GetMetadataTemplatesHeadersArg({})): Promise<MetadataTemplates> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["metadata_instance_id"]: toString(queryParams.metadataInstanceId) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJson(response.text));
     }
-    async getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string): Promise<MetadataTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getMetadataTemplateSchema(scope: GetMetadataTemplateSchemaScopeArg, templateKey: string, headers: GetMetadataTemplateSchemaHeadersArg = new GetMetadataTemplateSchemaHeadersArg({})): Promise<MetadataTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJson(response.text));
     }
-    async deleteMetadataTemplateSchema(scope: DeleteMetadataTemplateSchemaScopeArg, templateKey: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteMetadataTemplateSchema(scope: DeleteMetadataTemplateSchemaScopeArg, templateKey: string, headers: DeleteMetadataTemplateSchemaHeadersArg = new DeleteMetadataTemplateSchemaHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", scope, "/", templateKey, "/schema") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async getMetadataTemplateById(templateId: string): Promise<MetadataTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", templateId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getMetadataTemplateById(templateId: string, headers: GetMetadataTemplateByIdHeadersArg = new GetMetadataTemplateByIdHeadersArg({})): Promise<MetadataTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/", templateId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJson(response.text));
     }
-    async getMetadataTemplateGlobal(queryParams: GetMetadataTemplateGlobalQueryParamsArg = {} satisfies GetMetadataTemplateGlobalQueryParamsArg): Promise<MetadataTemplates> {
+    async getMetadataTemplateGlobal(queryParams: GetMetadataTemplateGlobalQueryParamsArg = {} satisfies GetMetadataTemplateGlobalQueryParamsArg, headers: GetMetadataTemplateGlobalHeadersArg = new GetMetadataTemplateGlobalHeadersArg({})): Promise<MetadataTemplates> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/global") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/global") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJson(response.text));
     }
-    async getMetadataTemplateEnterprise(queryParams: GetMetadataTemplateEnterpriseQueryParamsArg = {} satisfies GetMetadataTemplateEnterpriseQueryParamsArg): Promise<MetadataTemplates> {
+    async getMetadataTemplateEnterprise(queryParams: GetMetadataTemplateEnterpriseQueryParamsArg = {} satisfies GetMetadataTemplateEnterpriseQueryParamsArg, headers: GetMetadataTemplateEnterpriseHeadersArg = new GetMetadataTemplateEnterpriseHeadersArg({})): Promise<MetadataTemplates> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplates(deserializeJson(response.text));
     }
-    async createMetadataTemplateSchema(requestBody: CreateMetadataTemplateSchemaRequestBodyArg): Promise<MetadataTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema") as string, { method: "POST", body: serializeJson(serializeCreateMetadataTemplateSchemaRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createMetadataTemplateSchema(requestBody: CreateMetadataTemplateSchemaRequestBodyArg, headers: CreateMetadataTemplateSchemaHeadersArg = new CreateMetadataTemplateSchemaHeadersArg({})): Promise<MetadataTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateMetadataTemplateSchemaRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataTemplate(deserializeJson(response.text));
     }
-}
-export function serializeGetMetadataTemplatesQueryParamsArg(val: GetMetadataTemplatesQueryParamsArg): Json {
-    return { ["metadata_instance_id"]: val.metadataInstanceId };
-}
-export function deserializeGetMetadataTemplatesQueryParamsArg(val: any): GetMetadataTemplatesQueryParamsArg {
-    const metadataInstanceId: string = val.metadata_instance_id;
-    return { metadataInstanceId: metadataInstanceId } satisfies GetMetadataTemplatesQueryParamsArg;
 }
 export function serializeGetMetadataTemplateSchemaScopeArg(val: GetMetadataTemplateSchemaScopeArg): Json {
     return val;
@@ -131,22 +202,6 @@ export function deserializeDeleteMetadataTemplateSchemaScopeArg(val: any): Delet
         return "enterprise";
     }
     throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeGetMetadataTemplateGlobalQueryParamsArg(val: GetMetadataTemplateGlobalQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetMetadataTemplateGlobalQueryParamsArg(val: any): GetMetadataTemplateGlobalQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { marker: marker, limit: limit } satisfies GetMetadataTemplateGlobalQueryParamsArg;
-}
-export function serializeGetMetadataTemplateEnterpriseQueryParamsArg(val: GetMetadataTemplateEnterpriseQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetMetadataTemplateEnterpriseQueryParamsArg(val: any): GetMetadataTemplateEnterpriseQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { marker: marker, limit: limit } satisfies GetMetadataTemplateEnterpriseQueryParamsArg;
 }
 export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField(val: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField): Json {
     return val;

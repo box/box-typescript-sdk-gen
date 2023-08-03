@@ -9,6 +9,12 @@ export interface GetStoragePolicyAssignmentsQueryParamsArg {
     readonly resolvedForType: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField;
     readonly resolvedForId: string;
 }
+export declare class GetStoragePolicyAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetStoragePolicyAssignmentsHeadersArg);
+}
 export type CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
 export interface CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField {
     readonly type: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField;
@@ -23,6 +29,18 @@ export interface CreateStoragePolicyAssignmentRequestBodyArg {
     readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField;
     readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
 }
+export declare class CreateStoragePolicyAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateStoragePolicyAssignmentHeadersArg);
+}
+export declare class GetStoragePolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetStoragePolicyAssignmentByIdHeadersArg);
+}
 export type UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField = "storage_policy";
 export interface UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField {
     readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField;
@@ -31,20 +49,28 @@ export interface UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFie
 export interface UpdateStoragePolicyAssignmentByIdRequestBodyArg {
     readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
 }
+export declare class UpdateStoragePolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateStoragePolicyAssignmentByIdHeadersArg);
+}
+export declare class DeleteStoragePolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteStoragePolicyAssignmentByIdHeadersArg);
+}
 export declare class StoragePolicyAssignmentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<StoragePolicyAssignmentsManager, "getStoragePolicyAssignments" | "createStoragePolicyAssignment" | "getStoragePolicyAssignmentById" | "updateStoragePolicyAssignmentById" | "deleteStoragePolicyAssignmentById">);
-    getStoragePolicyAssignments(queryParams: GetStoragePolicyAssignmentsQueryParamsArg): Promise<StoragePolicyAssignments>;
-    createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg): Promise<StoragePolicyAssignment>;
-    getStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<StoragePolicyAssignment>;
-    updateStoragePolicyAssignmentById(storagePolicyAssignmentId: string, requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg): Promise<StoragePolicyAssignment>;
-    deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: string): Promise<any>;
+    getStoragePolicyAssignments(queryParams: GetStoragePolicyAssignmentsQueryParamsArg, headers?: GetStoragePolicyAssignmentsHeadersArg): Promise<StoragePolicyAssignments>;
+    createStoragePolicyAssignment(requestBody: CreateStoragePolicyAssignmentRequestBodyArg, headers?: CreateStoragePolicyAssignmentHeadersArg): Promise<StoragePolicyAssignment>;
+    getStoragePolicyAssignmentById(storagePolicyAssignmentId: string, headers?: GetStoragePolicyAssignmentByIdHeadersArg): Promise<StoragePolicyAssignment>;
+    updateStoragePolicyAssignmentById(storagePolicyAssignmentId: string, requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg, headers?: UpdateStoragePolicyAssignmentByIdHeadersArg): Promise<StoragePolicyAssignment>;
+    deleteStoragePolicyAssignmentById(storagePolicyAssignmentId: string, headers?: DeleteStoragePolicyAssignmentByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField): Json;
-export declare function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(val: any): GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField;
-export declare function serializeGetStoragePolicyAssignmentsQueryParamsArg(val: GetStoragePolicyAssignmentsQueryParamsArg): Json;
-export declare function deserializeGetStoragePolicyAssignmentsQueryParamsArg(val: any): GetStoragePolicyAssignmentsQueryParamsArg;
 export declare function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField): Json;
 export declare function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(val: any): CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField;
 export declare function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField): Json;

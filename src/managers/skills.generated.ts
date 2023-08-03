@@ -11,6 +11,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -18,8 +19,32 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetFileMetadataGlobalBoxSkillsCardsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileMetadataGlobalBoxSkillsCardsHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+}
+export class CreateFileMetadataGlobalBoxSkillsCardHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateFileMetadataGlobalBoxSkillsCardHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFileMetadataGlobalBoxSkillsCardHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type UpdateSkillInvocationByIdRequestBodyArgStatusField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
 export interface UpdateSkillInvocationByIdRequestBodyArgMetadataField {
@@ -46,27 +71,47 @@ export interface UpdateSkillInvocationByIdRequestBodyArg {
     readonly fileVersion?: UpdateSkillInvocationByIdRequestBodyArgFileVersionField;
     readonly usage?: UpdateSkillInvocationByIdRequestBodyArgUsageField;
 }
+export class UpdateSkillInvocationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateSkillInvocationByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class SkillsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SkillsManager, "getFileMetadataGlobalBoxSkillsCards" | "createFileMetadataGlobalBoxSkillsCard" | "deleteFileMetadataGlobalBoxSkillsCard" | "updateSkillInvocationById">) {
         Object.assign(this, fields);
     }
-    async getFileMetadataGlobalBoxSkillsCards(fileId: string): Promise<SkillCardsMetadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileMetadataGlobalBoxSkillsCards(fileId: string, headers: GetFileMetadataGlobalBoxSkillsCardsHeadersArg = new GetFileMetadataGlobalBoxSkillsCardsHeadersArg({})): Promise<SkillCardsMetadata> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSkillCardsMetadata(deserializeJson(response.text));
     }
-    async createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Promise<SkillCardsMetadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", body: serializeJson(serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg, headers: CreateFileMetadataGlobalBoxSkillsCardHeadersArg = new CreateFileMetadataGlobalBoxSkillsCardHeadersArg({})): Promise<SkillCardsMetadata> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSkillCardsMetadata(deserializeJson(response.text));
     }
-    async deleteFileMetadataGlobalBoxSkillsCard(fileId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFileMetadataGlobalBoxSkillsCard(fileId: string, headers: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg = new DeleteFileMetadataGlobalBoxSkillsCardHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/global/boxSkillsCards") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async updateSkillInvocationById(skillId: string, requestBody: UpdateSkillInvocationByIdRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/skill_invocations/", skillId) as string, { method: "PUT", body: serializeJson(serializeUpdateSkillInvocationByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async updateSkillInvocationById(skillId: string, requestBody: UpdateSkillInvocationByIdRequestBodyArg, headers: UpdateSkillInvocationByIdHeadersArg = new UpdateSkillInvocationByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/skill_invocations/", skillId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateSkillInvocationByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(val: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Json {

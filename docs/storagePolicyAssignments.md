@@ -15,6 +15,8 @@ See the endpoint docs at
 
 - queryParams `GetStoragePolicyAssignmentsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetStoragePolicyAssignmentsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -40,6 +42,8 @@ See the endpoint docs at
 
 - requestBody `CreateStoragePolicyAssignmentRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateStoragePolicyAssignmentHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -65,6 +69,8 @@ See the endpoint docs at
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment.
   - Used as `storage_policy_assignment_id` in path `path` of the API call
+- headers `GetStoragePolicyAssignmentByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -92,6 +98,8 @@ See the endpoint docs at
   - Used as `storage_policy_assignment_id` in path `path` of the API call
 - requestBody `UpdateStoragePolicyAssignmentByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateStoragePolicyAssignmentByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -124,5 +132,15 @@ See the endpoint docs at
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment.
   - Used as `storage_policy_assignment_id` in path `path` of the API call
+- headers `DeleteStoragePolicyAssignmentByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the storage policy
+assignment is successfully deleted.
 
 

@@ -5,6 +5,12 @@ import { Json } from "../json.js";
 export interface GetCollaborationByIdQueryParamsArg {
     readonly fields?: string;
 }
+export declare class GetCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetCollaborationByIdHeadersArg);
+}
 export type UpdateCollaborationByIdRequestBodyArgRoleField = "editor" | "viewer" | "previewer" | "uploader" | "previewer uploader" | "viewer uploader" | "co-owner" | "owner";
 export type UpdateCollaborationByIdRequestBodyArgStatusField = "pending" | "accepted" | "rejected";
 export interface UpdateCollaborationByIdRequestBodyArg {
@@ -12,6 +18,18 @@ export interface UpdateCollaborationByIdRequestBodyArg {
     readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
     readonly expiresAt?: string;
     readonly canViewPath?: boolean;
+}
+export declare class UpdateCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateCollaborationByIdHeadersArg);
+}
+export declare class DeleteCollaborationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteCollaborationByIdHeadersArg);
 }
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
@@ -36,17 +54,21 @@ export interface CreateCollaborationQueryParamsArg {
     readonly fields?: string;
     readonly notify?: boolean;
 }
+export declare class CreateCollaborationHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateCollaborationHeadersArg);
+}
 export declare class UserCollaborationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UserCollaborationsManager, "getCollaborationById" | "updateCollaborationById" | "deleteCollaborationById" | "createCollaboration">);
-    getCollaborationById(collaborationId: string, queryParams?: GetCollaborationByIdQueryParamsArg): Promise<Collaboration>;
-    updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg): Promise<Collaboration>;
-    deleteCollaborationById(collaborationId: string): Promise<any>;
-    createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams?: CreateCollaborationQueryParamsArg): Promise<Collaboration>;
+    getCollaborationById(collaborationId: string, queryParams?: GetCollaborationByIdQueryParamsArg, headers?: GetCollaborationByIdHeadersArg): Promise<Collaboration>;
+    updateCollaborationById(collaborationId: string, requestBody: UpdateCollaborationByIdRequestBodyArg, headers?: UpdateCollaborationByIdHeadersArg): Promise<Collaboration>;
+    deleteCollaborationById(collaborationId: string, headers?: DeleteCollaborationByIdHeadersArg): Promise<undefined>;
+    createCollaboration(requestBody: CreateCollaborationRequestBodyArg, queryParams?: CreateCollaborationQueryParamsArg, headers?: CreateCollaborationHeadersArg): Promise<Collaboration>;
 }
-export declare function serializeGetCollaborationByIdQueryParamsArg(val: GetCollaborationByIdQueryParamsArg): Json;
-export declare function deserializeGetCollaborationByIdQueryParamsArg(val: any): GetCollaborationByIdQueryParamsArg;
 export declare function serializeUpdateCollaborationByIdRequestBodyArgRoleField(val: UpdateCollaborationByIdRequestBodyArgRoleField): Json;
 export declare function deserializeUpdateCollaborationByIdRequestBodyArgRoleField(val: any): UpdateCollaborationByIdRequestBodyArgRoleField;
 export declare function serializeUpdateCollaborationByIdRequestBodyArgStatusField(val: UpdateCollaborationByIdRequestBodyArgStatusField): Json;
@@ -65,5 +87,3 @@ export declare function serializeCreateCollaborationRequestBodyArgRoleField(val:
 export declare function deserializeCreateCollaborationRequestBodyArgRoleField(val: any): CreateCollaborationRequestBodyArgRoleField;
 export declare function serializeCreateCollaborationRequestBodyArg(val: CreateCollaborationRequestBodyArg): Json;
 export declare function deserializeCreateCollaborationRequestBodyArg(val: any): CreateCollaborationRequestBodyArg;
-export declare function serializeCreateCollaborationQueryParamsArg(val: CreateCollaborationQueryParamsArg): Json;
-export declare function deserializeCreateCollaborationQueryParamsArg(val: any): CreateCollaborationQueryParamsArg;

@@ -18,6 +18,8 @@ await client.webLinks.createWebLink({ url: url, parent: parent, name: name, desc
 
 - requestBody `CreateWebLinkRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateWebLinkHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -78,6 +80,8 @@ await client.webLinks.updateWebLinkById(weblink.id, { name: updatedName, sharedL
   - Used as `web_link_id` in path `path` of the API call
 - requestBody `UpdateWebLinkByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateWebLinkByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -106,5 +110,15 @@ await client.webLinks.deleteWebLinkById(weblink.id)
 - webLinkId `string`
   - The ID of the web link.
   - Used as `web_link_id` in path `path` of the API call
+- headers `DeleteWebLinkByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+An empty response will be returned when the web link
+was successfully deleted.
 
 

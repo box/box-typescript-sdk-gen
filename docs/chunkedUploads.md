@@ -20,6 +20,8 @@ await client.chunkedUploads.createFileUploadSession({ fileName: fileName, fileSi
 
 - requestBody `CreateFileUploadSessionRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateFileUploadSessionHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -47,6 +49,8 @@ See the endpoint docs at
   - Used as `file_id` in path `path` of the API call
 - requestBody `CreateFileUploadSessionForExistingFileRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateFileUploadSessionForExistingFileHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -75,6 +79,8 @@ await client.chunkedUploads.getFileUploadSessionById(uploadSessionId)
 - uploadSessionId `string`
   - The ID of the upload session.
   - Used as `upload_session_id` in path `path` of the API call
+- headers `GetFileUploadSessionByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -95,7 +101,7 @@ See the endpoint docs at
 
 <!-- sample put_files_upload_sessions_id -->
 ```ts
-await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, { digest: digest, contentRange: contentRange } satisfies UploadFilePartHeadersArg)
+await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, new UploadFilePartHeadersArg({ digest: digest, contentRange: contentRange }))
 ```
 
 ### Arguments
@@ -103,7 +109,7 @@ await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, { dig
 - uploadSessionId `string`
   - The ID of the upload session.
   - Used as `upload_session_id` in path `path` of the API call
-- requestBody `Readable`
+- requestBody `ByteStream`
   - Used as requestBody for the API call
 - headers `UploadFilePartHeadersArg`
   - Used as headers for the API call
@@ -134,6 +140,16 @@ See the endpoint docs at
 - uploadSessionId `string`
   - The ID of the upload session.
   - Used as `upload_session_id` in path `path` of the API call
+- headers `DeleteFileUploadSessionByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the session was
+successfully aborted.
 
 
 ## List parts
@@ -158,6 +174,8 @@ await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId)
   - Used as `upload_session_id` in path `path` of the API call
 - queryParams `GetFileUploadSessionPartsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetFileUploadSessionPartsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -179,7 +197,7 @@ See the endpoint docs at
 
 <!-- sample post_files_upload_sessions_id_commit -->
 ```ts
-await client.chunkedUploads.createFileUploadSessionCommit(uploadSessionId, { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg, { digest: digest } satisfies CreateFileUploadSessionCommitHeadersArg)
+await client.chunkedUploads.createFileUploadSessionCommit(uploadSessionId, { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg, new CreateFileUploadSessionCommitHeadersArg({ digest: digest }))
 ```
 
 ### Arguments

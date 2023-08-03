@@ -13,6 +13,12 @@ export interface GetLegalHoldPolicyAssignmentsQueryParamsArg {
     readonly limit?: number;
     readonly fields?: string;
 }
+export declare class GetLegalHoldPolicyAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetLegalHoldPolicyAssignmentsHeadersArg);
+}
 export type CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField = "file" | "file_version" | "folder" | "user";
 export interface CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField {
     readonly type: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
@@ -22,38 +28,60 @@ export interface CreateLegalHoldPolicyAssignmentRequestBodyArg {
     readonly policyId: string;
     readonly assignTo: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField;
 }
+export declare class CreateLegalHoldPolicyAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateLegalHoldPolicyAssignmentHeadersArg);
+}
+export declare class GetLegalHoldPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetLegalHoldPolicyAssignmentByIdHeadersArg);
+}
+export declare class DeleteLegalHoldPolicyAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteLegalHoldPolicyAssignmentByIdHeadersArg);
+}
 export interface GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
+}
+export declare class GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg);
 }
 export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly fields?: string;
 }
+export declare class GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg);
+}
 export declare class LegalHoldPolicyAssignmentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<LegalHoldPolicyAssignmentsManager, "getLegalHoldPolicyAssignments" | "createLegalHoldPolicyAssignment" | "getLegalHoldPolicyAssignmentById" | "deleteLegalHoldPolicyAssignmentById" | "getLegalHoldPolicyAssignmentFileOnHold" | "getLegalHoldPolicyAssignmentFileVersionOnHold">);
-    getLegalHoldPolicyAssignments(queryParams: GetLegalHoldPolicyAssignmentsQueryParamsArg): Promise<LegalHoldPolicyAssignments>;
-    createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg): Promise<LegalHoldPolicyAssignment>;
-    getLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<LegalHoldPolicyAssignment>;
-    deleteLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string): Promise<any>;
-    getLegalHoldPolicyAssignmentFileOnHold(legalHoldPolicyAssignmentId: string, queryParams?: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg): Promise<FileVersionLegalHolds>;
-    getLegalHoldPolicyAssignmentFileVersionOnHold(legalHoldPolicyAssignmentId: string, queryParams?: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg): Promise<FileVersionLegalHolds>;
+    getLegalHoldPolicyAssignments(queryParams: GetLegalHoldPolicyAssignmentsQueryParamsArg, headers?: GetLegalHoldPolicyAssignmentsHeadersArg): Promise<LegalHoldPolicyAssignments>;
+    createLegalHoldPolicyAssignment(requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg, headers?: CreateLegalHoldPolicyAssignmentHeadersArg): Promise<LegalHoldPolicyAssignment>;
+    getLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string, headers?: GetLegalHoldPolicyAssignmentByIdHeadersArg): Promise<LegalHoldPolicyAssignment>;
+    deleteLegalHoldPolicyAssignmentById(legalHoldPolicyAssignmentId: string, headers?: DeleteLegalHoldPolicyAssignmentByIdHeadersArg): Promise<undefined>;
+    getLegalHoldPolicyAssignmentFileOnHold(legalHoldPolicyAssignmentId: string, queryParams?: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg, headers?: GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg): Promise<FileVersionLegalHolds>;
+    getLegalHoldPolicyAssignmentFileVersionOnHold(legalHoldPolicyAssignmentId: string, queryParams?: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg, headers?: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg): Promise<FileVersionLegalHolds>;
 }
-export declare function serializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val: GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField): Json;
-export declare function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(val: any): GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField;
-export declare function serializeGetLegalHoldPolicyAssignmentsQueryParamsArg(val: GetLegalHoldPolicyAssignmentsQueryParamsArg): Json;
-export declare function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentsQueryParamsArg;
 export declare function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField): Json;
 export declare function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(val: any): CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
 export declare function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField(val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField): Json;
 export declare function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField(val: any): CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField;
 export declare function serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(val: CreateLegalHoldPolicyAssignmentRequestBodyArg): Json;
 export declare function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArg(val: any): CreateLegalHoldPolicyAssignmentRequestBodyArg;
-export declare function serializeGetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg(val: GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg): Json;
-export declare function deserializeGetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg;
-export declare function serializeGetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg(val: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg): Json;
-export declare function deserializeGetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg(val: any): GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg;

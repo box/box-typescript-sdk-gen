@@ -17,6 +17,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -34,6 +35,14 @@ export interface GetUsersQueryParamsArg {
     readonly limit?: number;
     readonly usemarker?: boolean;
     readonly marker?: string;
+}
+export class GetUsersHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetUsersHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateUserRequestBodyArgRoleField = "coadmin" | "user";
 export type CreateUserRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
@@ -60,11 +69,35 @@ export interface CreateUserRequestBodyArg {
 export interface CreateUserQueryParamsArg {
     readonly fields?: string;
 }
+export class CreateUserHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateUserHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetUserMeQueryParamsArg {
     readonly fields?: string;
 }
+export class GetUserMeHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetUserMeHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetUserByIdQueryParamsArg {
     readonly fields?: string;
+}
+export class GetUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetUserByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type UpdateUserByIdRequestBodyArgRoleField = "coadmin" | "user";
 export type UpdateUserByIdRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
@@ -97,9 +130,25 @@ export interface UpdateUserByIdRequestBodyArg {
 export interface UpdateUserByIdQueryParamsArg {
     readonly fields?: string;
 }
+export class UpdateUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateUserByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface DeleteUserByIdQueryParamsArg {
     readonly notify?: boolean;
     readonly force?: boolean;
+}
+export class DeleteUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteUserByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class UsersManager {
     readonly auth?: Authentication;
@@ -107,80 +156,66 @@ export class UsersManager {
     constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">) {
         Object.assign(this, fields);
     }
-    async getUsers(queryParams: GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg): Promise<Users> {
+    async getUsers(queryParams: GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg, headers: GetUsersHeadersArg = new GetUsersHeadersArg({})): Promise<Users> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["filter_term"]: toString(queryParams.filterTerm), ["user_type"]: toString(queryParams.userType), ["external_app_user_id"]: toString(queryParams.externalAppUserId), ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit), ["usemarker"]: toString(queryParams.usemarker), ["marker"]: toString(queryParams.marker) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUsers(deserializeJson(response.text));
     }
-    async createUser(requestBody: CreateUserRequestBodyArg, queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg): Promise<User> {
+    async createUser(requestBody: CreateUserRequestBodyArg, queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg, headers: CreateUserHeadersArg = new CreateUserHeadersArg({})): Promise<User> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users") as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUser(deserializeJson(response.text));
     }
-    async getUserMe(queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg): Promise<UserFull> {
+    async getUserMe(queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg, headers: GetUserMeHeadersArg = new GetUserMeHeadersArg({})): Promise<UserFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/me") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async getUserById(userId: string, queryParams: GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg): Promise<UserFull> {
+    async getUserById(userId: string, queryParams: GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg, headers: GetUserByIdHeadersArg = new GetUserByIdHeadersArg({})): Promise<UserFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg): Promise<UserFull> {
+    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg, headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})): Promise<UserFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async deleteUserById(userId: string, queryParams: DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg): Promise<any> {
+    async deleteUserById(userId: string, queryParams: DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg, headers: DeleteUserByIdHeadersArg = new DeleteUserByIdHeadersArg({})): Promise<undefined> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["notify"]: toString(queryParams.notify), ["force"]: toString(queryParams.force) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "DELETE", params: queryParamsMap, headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetUsersQueryParamsArgUserTypeField(val: GetUsersQueryParamsArgUserTypeField): Json {
-    return val;
-}
-export function deserializeGetUsersQueryParamsArgUserTypeField(val: any): GetUsersQueryParamsArgUserTypeField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"GetUsersQueryParamsArgUserTypeField\"";
-    }
-    if (val == "all") {
-        return "all";
-    }
-    if (val == "managed") {
-        return "managed";
-    }
-    if (val == "external") {
-        return "external";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeGetUsersQueryParamsArg(val: GetUsersQueryParamsArg): Json {
-    return { ["filter_term"]: val.filterTerm, ["user_type"]: val.userType == void 0 ? void 0 : serializeGetUsersQueryParamsArgUserTypeField(val.userType), ["external_app_user_id"]: val.externalAppUserId, ["fields"]: val.fields, ["offset"]: val.offset, ["limit"]: val.limit, ["usemarker"]: val.usemarker, ["marker"]: val.marker };
-}
-export function deserializeGetUsersQueryParamsArg(val: any): GetUsersQueryParamsArg {
-    const filterTerm: undefined | string = isJson(val.filter_term, "string") ? val.filter_term : void 0;
-    const userType: undefined | GetUsersQueryParamsArgUserTypeField = val.user_type == void 0 ? void 0 : deserializeGetUsersQueryParamsArgUserTypeField(val.user_type);
-    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const usemarker: undefined | boolean = isJson(val.usemarker, "boolean") ? val.usemarker : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    return { filterTerm: filterTerm, userType: userType, externalAppUserId: externalAppUserId, fields: fields, offset: offset, limit: limit, usemarker: usemarker, marker: marker } satisfies GetUsersQueryParamsArg;
 }
 export function serializeCreateUserRequestBodyArgRoleField(val: CreateUserRequestBodyArgRoleField): Json {
     return val;
@@ -245,27 +280,6 @@ export function deserializeCreateUserRequestBodyArg(val: any): CreateUserRequest
     const status: undefined | CreateUserRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeCreateUserRequestBodyArgStatusField(val.status);
     const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
     return { name: name, login: login, isPlatformAccessOnly: isPlatformAccessOnly, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, spaceAmount: spaceAmount, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, status: status, externalAppUserId: externalAppUserId } satisfies CreateUserRequestBodyArg;
-}
-export function serializeCreateUserQueryParamsArg(val: CreateUserQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeCreateUserQueryParamsArg(val: any): CreateUserQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies CreateUserQueryParamsArg;
-}
-export function serializeGetUserMeQueryParamsArg(val: GetUserMeQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetUserMeQueryParamsArg(val: any): GetUserMeQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetUserMeQueryParamsArg;
-}
-export function serializeGetUserByIdQueryParamsArg(val: GetUserByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetUserByIdQueryParamsArg(val: any): GetUserByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetUserByIdQueryParamsArg;
 }
 export function serializeUpdateUserByIdRequestBodyArgRoleField(val: UpdateUserByIdRequestBodyArgRoleField): Json {
     return val;
@@ -340,19 +354,4 @@ export function deserializeUpdateUserByIdRequestBodyArg(val: any): UpdateUserByI
     const notificationEmail: undefined | UpdateUserByIdRequestBodyArgNotificationEmailField = val.notification_email == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notification_email);
     const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
     return { enterprise: enterprise, notify: notify, name: name, login: login, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, isPasswordResetRequired: isPasswordResetRequired, status: status, spaceAmount: spaceAmount, notificationEmail: notificationEmail, externalAppUserId: externalAppUserId } satisfies UpdateUserByIdRequestBodyArg;
-}
-export function serializeUpdateUserByIdQueryParamsArg(val: UpdateUserByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateUserByIdQueryParamsArg(val: any): UpdateUserByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies UpdateUserByIdQueryParamsArg;
-}
-export function serializeDeleteUserByIdQueryParamsArg(val: DeleteUserByIdQueryParamsArg): Json {
-    return { ["notify"]: val.notify, ["force"]: val.force };
-}
-export function deserializeDeleteUserByIdQueryParamsArg(val: any): DeleteUserByIdQueryParamsArg {
-    const notify: undefined | boolean = isJson(val.notify, "boolean") ? val.notify : void 0;
-    const force: undefined | boolean = isJson(val.force, "boolean") ? val.force : void 0;
-    return { notify: notify, force: force } satisfies DeleteUserByIdQueryParamsArg;
 }

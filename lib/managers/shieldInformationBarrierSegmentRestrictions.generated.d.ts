@@ -3,10 +3,28 @@ import { ShieldInformationBarrierBase } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export declare class GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg);
+}
+export declare class DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg);
+}
 export interface GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg {
     readonly shieldInformationBarrierSegmentId: string;
     readonly marker?: string;
     readonly limit?: number;
+}
+export declare class GetShieldInformationBarrierSegmentRestrictionsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetShieldInformationBarrierSegmentRestrictionsHeadersArg);
 }
 export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField = "shield_information_barrier_segment_restriction";
 export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField = "shield_information_barrier_segment";
@@ -25,17 +43,21 @@ export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg 
     readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField;
     readonly restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField;
 }
+export declare class CreateShieldInformationBarrierSegmentRestrictionHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateShieldInformationBarrierSegmentRestrictionHeadersArg);
+}
 export declare class ShieldInformationBarrierSegmentRestrictionsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ShieldInformationBarrierSegmentRestrictionsManager, "getShieldInformationBarrierSegmentRestrictionById" | "deleteShieldInformationBarrierSegmentRestrictionById" | "getShieldInformationBarrierSegmentRestrictions" | "createShieldInformationBarrierSegmentRestriction">);
-    getShieldInformationBarrierSegmentRestrictionById(shieldInformationBarrierSegmentRestrictionId: string): Promise<ShieldInformationBarrierSegmentRestriction>;
-    deleteShieldInformationBarrierSegmentRestrictionById(shieldInformationBarrierSegmentRestrictionId: string): Promise<any>;
-    getShieldInformationBarrierSegmentRestrictions(queryParams: GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg): Promise<undefined>;
-    createShieldInformationBarrierSegmentRestriction(requestBody: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg): Promise<ShieldInformationBarrierSegmentRestriction>;
+    getShieldInformationBarrierSegmentRestrictionById(shieldInformationBarrierSegmentRestrictionId: string, headers?: GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg): Promise<ShieldInformationBarrierSegmentRestriction>;
+    deleteShieldInformationBarrierSegmentRestrictionById(shieldInformationBarrierSegmentRestrictionId: string, headers?: DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg): Promise<undefined>;
+    getShieldInformationBarrierSegmentRestrictions(queryParams: GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg, headers?: GetShieldInformationBarrierSegmentRestrictionsHeadersArg): Promise<undefined>;
+    createShieldInformationBarrierSegmentRestriction(requestBody: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg, headers?: CreateShieldInformationBarrierSegmentRestrictionHeadersArg): Promise<ShieldInformationBarrierSegmentRestriction>;
 }
-export declare function serializeGetShieldInformationBarrierSegmentRestrictionsQueryParamsArg(val: GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg): Json;
-export declare function deserializeGetShieldInformationBarrierSegmentRestrictionsQueryParamsArg(val: any): GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg;
 export declare function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField(val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField): Json;
 export declare function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField(val: any): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField;
 export declare function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField): Json;

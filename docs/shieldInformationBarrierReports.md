@@ -15,6 +15,8 @@ See the endpoint docs at
 
 - queryParams `GetShieldInformationBarrierReportsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetShieldInformationBarrierReportsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -39,6 +41,8 @@ See the endpoint docs at
 
 - requestBody `ShieldInformationBarrierReference`
   - Used as requestBody for the API call
+- headers `CreateShieldInformationBarrierReportHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -64,6 +68,8 @@ See the endpoint docs at
 - shieldInformationBarrierReportId `string`
   - The ID of the shield information barrier Report.
   - Used as `shield_information_barrier_report_id` in path `path` of the API call
+- headers `GetShieldInformationBarrierReportByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

@@ -1,14 +1,14 @@
 /// <reference types="node" />
-/// <reference types="node" />
 import { Readable } from 'stream';
 import { Authentication } from './auth';
 import { NetworkSession } from './network';
+import { ByteStream } from './utils';
 export declare const userAgentHeader: string;
 export declare const xBoxUaHeader: string;
 export interface MultipartItem {
     readonly partName: string;
     readonly body?: string;
-    readonly fileStream?: any;
+    readonly fileStream?: ByteStream;
     readonly fileName?: string;
     readonly contentType?: string;
 }
@@ -43,6 +43,10 @@ export interface FetchOptions {
      */
     readonly contentType?: string;
     /**
+     * Expected format of the response: 'json', 'binary' or undefined
+     */
+    readonly responseFormat?: string;
+    /**
      * Auth object
      */
     readonly auth?: Authentication;
@@ -63,7 +67,7 @@ export interface FetchResponse {
     /**
      * Binary array buffer of response body
      */
-    readonly content: Buffer;
+    readonly content: ByteStream;
 }
 export declare function fetch(resource: string, options: FetchOptions & {
     /** @private */

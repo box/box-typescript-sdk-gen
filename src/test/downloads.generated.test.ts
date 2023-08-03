@@ -8,7 +8,9 @@ import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";
 import { getUuid } from "../utils.js";
-import { generateByteStream } from "../utils.js";
+import { generateByteBuffer } from "../utils.js";
+import { generateByteStreamFromBuffer } from "../utils.js";
+import { bufferEquals } from "../utils.js";
 import { readByteStream } from "../utils.js";
 import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
@@ -18,12 +20,12 @@ const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
 test("test_download_file", async function test_download_file(): Promise<any> {
     const newFileName: any = getUuid();
-    const fileContentStream: any = generateByteStream(1048576);
-    const fileBuffer: any = await readByteStream(fileContentStream);
-    const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: newFileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileBuffer } satisfies UploadFileRequestBodyArg);
+    const fileBuffer: any = generateByteBuffer(1048576);
+    const fileContentStream: any = generateByteStreamFromBuffer(fileBuffer);
+    const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: newFileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileContentStream } satisfies UploadFileRequestBodyArg);
     const uploadedFile: any = uploadedFiles.entries[0];
     const downloadedFileContent: any = await client.downloads.downloadFile(uploadedFile.id);
-    if (!(Buffer.compare(downloadedFileContent, fileBuffer) === 0)) {
+    if (!bufferEquals(await readByteStream(downloadedFileContent), fileBuffer)) {
         throw "Assertion failed";
     }
     await client.files.deleteFileById(uploadedFile.id)

@@ -44,7 +44,7 @@ export interface ZipDownloadRequest {
 }
 export interface MetadataQueryQueryParamsField {
 }
-export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC" | "asc" | "desc";
+export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC";
 export interface MetadataQueryOrderByField {
     readonly fieldKey?: string;
     readonly direction?: MetadataQueryOrderByFieldDirectionField;
@@ -2974,12 +2974,6 @@ export function deserializeMetadataQueryOrderByFieldDirectionField(val: any): Me
     }
     if (val == "DESC") {
         return "DESC";
-    }
-    if (val == "asc") {
-        return "asc";
-    }
-    if (val == "desc") {
-        return "desc";
     }
     throw "".concat("Invalid value: ", val) as string;
 }

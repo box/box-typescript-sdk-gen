@@ -4,11 +4,22 @@ import { MetadataQueryIndices } from "../schemas.generated.js";
 import { SearchResultsOrSearchResultsWithSharedLinks } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { Json } from "../json.js";
+export declare class CreateMetadataQueryExecuteReadHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateMetadataQueryExecuteReadHeadersArg);
+}
 export type GetMetadataQueryIndicesQueryParamsArgScopeField = "global" | "enterprise";
 export interface GetMetadataQueryIndicesQueryParamsArg {
     readonly scope: GetMetadataQueryIndicesQueryParamsArgScopeField;
     readonly templateKey: string;
+}
+export declare class GetMetadataQueryIndicesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetMetadataQueryIndicesHeadersArg);
 }
 export type GetSearchQueryParamsArgScopeField = "user_content" | "enterprise_content";
 export type GetSearchQueryParamsArgTypeField = "file" | "folder" | "web_link";
@@ -38,27 +49,17 @@ export interface GetSearchQueryParamsArg {
     readonly deletedUserIds?: string;
     readonly deletedAtRange?: string;
 }
+export declare class GetSearchHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetSearchHeadersArg);
+}
 export declare class SearchManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SearchManager, "createMetadataQueryExecuteRead" | "getMetadataQueryIndices" | "getSearch">);
-    createMetadataQueryExecuteRead(requestBody: MetadataQuery): Promise<MetadataQueryResults>;
-    getMetadataQueryIndices(queryParams: GetMetadataQueryIndicesQueryParamsArg): Promise<MetadataQueryIndices>;
-    getSearch(queryParams?: GetSearchQueryParamsArg): Promise<SearchResultsOrSearchResultsWithSharedLinks>;
+    createMetadataQueryExecuteRead(requestBody: MetadataQuery, headers?: CreateMetadataQueryExecuteReadHeadersArg): Promise<MetadataQueryResults>;
+    getMetadataQueryIndices(queryParams: GetMetadataQueryIndicesQueryParamsArg, headers?: GetMetadataQueryIndicesHeadersArg): Promise<MetadataQueryIndices>;
+    getSearch(queryParams?: GetSearchQueryParamsArg, headers?: GetSearchHeadersArg): Promise<SearchResultsOrSearchResultsWithSharedLinks>;
 }
-export declare function serializeGetMetadataQueryIndicesQueryParamsArgScopeField(val: GetMetadataQueryIndicesQueryParamsArgScopeField): Json;
-export declare function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(val: any): GetMetadataQueryIndicesQueryParamsArgScopeField;
-export declare function serializeGetMetadataQueryIndicesQueryParamsArg(val: GetMetadataQueryIndicesQueryParamsArg): Json;
-export declare function deserializeGetMetadataQueryIndicesQueryParamsArg(val: any): GetMetadataQueryIndicesQueryParamsArg;
-export declare function serializeGetSearchQueryParamsArgScopeField(val: GetSearchQueryParamsArgScopeField): Json;
-export declare function deserializeGetSearchQueryParamsArgScopeField(val: any): GetSearchQueryParamsArgScopeField;
-export declare function serializeGetSearchQueryParamsArgTypeField(val: GetSearchQueryParamsArgTypeField): Json;
-export declare function deserializeGetSearchQueryParamsArgTypeField(val: any): GetSearchQueryParamsArgTypeField;
-export declare function serializeGetSearchQueryParamsArgTrashContentField(val: GetSearchQueryParamsArgTrashContentField): Json;
-export declare function deserializeGetSearchQueryParamsArgTrashContentField(val: any): GetSearchQueryParamsArgTrashContentField;
-export declare function serializeGetSearchQueryParamsArgSortField(val: GetSearchQueryParamsArgSortField): Json;
-export declare function deserializeGetSearchQueryParamsArgSortField(val: any): GetSearchQueryParamsArgSortField;
-export declare function serializeGetSearchQueryParamsArgDirectionField(val: GetSearchQueryParamsArgDirectionField): Json;
-export declare function deserializeGetSearchQueryParamsArgDirectionField(val: any): GetSearchQueryParamsArgDirectionField;
-export declare function serializeGetSearchQueryParamsArg(val: GetSearchQueryParamsArg): Json;
-export declare function deserializeGetSearchQueryParamsArg(val: any): GetSearchQueryParamsArg;

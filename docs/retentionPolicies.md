@@ -15,6 +15,8 @@ See the endpoint docs at
 
 - queryParams `GetRetentionPoliciesQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetRetentionPoliciesHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -39,6 +41,8 @@ See the endpoint docs at
 
 - requestBody `CreateRetentionPolicyRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateRetentionPolicyHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -66,6 +70,8 @@ See the endpoint docs at
   - Used as `retention_policy_id` in path `path` of the API call
 - queryParams `GetRetentionPolicyByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetRetentionPolicyByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -93,6 +99,8 @@ See the endpoint docs at
   - Used as `retention_policy_id` in path `path` of the API call
 - requestBody `UpdateRetentionPolicyByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateRetentionPolicyByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -118,5 +126,14 @@ See the endpoint docs at
 - retentionPolicyId `string`
   - The ID of the retention policy.
   - Used as `retention_policy_id` in path `path` of the API call
+- headers `DeleteRetentionPolicyByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the policy has been deleted.
 
 

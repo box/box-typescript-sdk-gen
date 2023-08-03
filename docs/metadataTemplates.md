@@ -16,6 +16,8 @@ See the endpoint docs at
 
 - queryParams `GetMetadataTemplatesQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetMetadataTemplatesHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -48,6 +50,8 @@ See the endpoint docs at
 - templateKey `string`
   - The name of the metadata template
   - Used as `template_key` in path `path` of the API call
+- headers `GetMetadataTemplateSchemaHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -78,6 +82,16 @@ See the endpoint docs at
 - templateKey `string`
   - The name of the metadata template
   - Used as `template_key` in path `path` of the API call
+- headers `DeleteMetadataTemplateSchemaHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the metadata
+template is successfully deleted.
 
 
 ## Get metadata template by ID
@@ -96,6 +110,8 @@ See the endpoint docs at
 - templateId `string`
   - The ID of the template
   - Used as `template_id` in path `path` of the API call
+- headers `GetMetadataTemplateByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -121,6 +137,8 @@ See the endpoint docs at
 
 - queryParams `GetMetadataTemplateGlobalQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetMetadataTemplateGlobalHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -147,6 +165,8 @@ See the endpoint docs at
 
 - queryParams `GetMetadataTemplateEnterpriseQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetMetadataTemplateEnterpriseHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -173,6 +193,8 @@ See the endpoint docs at
 
 - requestBody `CreateMetadataTemplateSchemaRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateMetadataTemplateSchemaHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

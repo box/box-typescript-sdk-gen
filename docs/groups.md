@@ -19,6 +19,8 @@ await client.groups.getGroups()
 
 - queryParams `GetGroupsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetGroupsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -50,6 +52,8 @@ await client.groups.createGroup({ name: getUuid() } satisfies CreateGroupRequest
   - Used as requestBody for the API call
 - queryParams `CreateGroupQueryParamsArg`
   - Used as queryParams for the API call
+- headers `CreateGroupHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -82,6 +86,8 @@ await client.groups.getGroupById(group.id)
   - Used as `group_id` in path `path` of the API call
 - queryParams `GetGroupByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetGroupByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -116,6 +122,8 @@ await client.groups.updateGroupById(group.id, { name: updatedGroupName } satisfi
   - Used as requestBody for the API call
 - queryParams `UpdateGroupByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateGroupByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -145,5 +153,15 @@ await client.groups.deleteGroupById(group.id)
 - groupId `string`
   - The ID of the group.
   - Used as `group_id` in path `path` of the API call
+- headers `DeleteGroupByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the group was
+successfully deleted.
 
 

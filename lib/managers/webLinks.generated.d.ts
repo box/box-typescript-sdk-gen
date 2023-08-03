@@ -11,8 +11,18 @@ export interface CreateWebLinkRequestBodyArg {
     readonly name?: string;
     readonly description?: string;
 }
-export interface GetWebLinkByIdHeadersArg {
+export declare class CreateWebLinkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateWebLinkHeadersArg);
+}
+export declare class GetWebLinkByIdHeadersArg {
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetWebLinkByIdHeadersArg);
 }
 export interface UpdateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -31,21 +41,31 @@ export interface UpdateWebLinkByIdRequestBodyArg {
     readonly description?: string;
     readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
 }
+export declare class UpdateWebLinkByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateWebLinkByIdHeadersArg);
+}
+export declare class DeleteWebLinkByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteWebLinkByIdHeadersArg);
+}
 export declare class WebLinksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebLinksManager, "createWebLink" | "getWebLinkById" | "updateWebLinkById" | "deleteWebLinkById">);
-    createWebLink(requestBody: CreateWebLinkRequestBodyArg): Promise<WebLink>;
+    createWebLink(requestBody: CreateWebLinkRequestBodyArg, headers?: CreateWebLinkHeadersArg): Promise<WebLink>;
     getWebLinkById(webLinkId: string, headers?: GetWebLinkByIdHeadersArg): Promise<WebLink>;
-    updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg): Promise<WebLink>;
-    deleteWebLinkById(webLinkId: string): Promise<any>;
+    updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg, headers?: UpdateWebLinkByIdHeadersArg): Promise<WebLink>;
+    deleteWebLinkById(webLinkId: string, headers?: DeleteWebLinkByIdHeadersArg): Promise<undefined>;
 }
 export declare function serializeCreateWebLinkRequestBodyArgParentField(val: CreateWebLinkRequestBodyArgParentField): Json;
 export declare function deserializeCreateWebLinkRequestBodyArgParentField(val: any): CreateWebLinkRequestBodyArgParentField;
 export declare function serializeCreateWebLinkRequestBodyArg(val: CreateWebLinkRequestBodyArg): Json;
 export declare function deserializeCreateWebLinkRequestBodyArg(val: any): CreateWebLinkRequestBodyArg;
-export declare function serializeGetWebLinkByIdHeadersArg(val: GetWebLinkByIdHeadersArg): Json;
-export declare function deserializeGetWebLinkByIdHeadersArg(val: any): GetWebLinkByIdHeadersArg;
 export declare function serializeUpdateWebLinkByIdRequestBodyArgParentField(val: UpdateWebLinkByIdRequestBodyArgParentField): Json;
 export declare function deserializeUpdateWebLinkByIdRequestBodyArgParentField(val: any): UpdateWebLinkByIdRequestBodyArgParentField;
 export declare function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(val: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField): Json;

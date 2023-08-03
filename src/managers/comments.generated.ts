@@ -14,6 +14,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -26,14 +27,46 @@ export interface GetFileCommentsQueryParamsArg {
     readonly limit?: number;
     readonly offset?: number;
 }
+export class GetFileCommentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileCommentsHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetCommentByIdQueryParamsArg {
     readonly fields?: string;
+}
+export class GetCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetCommentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface UpdateCommentByIdRequestBodyArg {
     readonly message?: string;
 }
 export interface UpdateCommentByIdQueryParamsArg {
     readonly fields?: string;
+}
+export class UpdateCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateCommentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteCommentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteCommentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateCommentRequestBodyArgItemFieldTypeField = "file" | "comment";
 export interface CreateCommentRequestBodyArgItemField {
@@ -48,60 +81,67 @@ export interface CreateCommentRequestBodyArg {
 export interface CreateCommentQueryParamsArg {
     readonly fields?: string;
 }
+export class CreateCommentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateCommentHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class CommentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CommentsManager, "getFileComments" | "getCommentById" | "updateCommentById" | "deleteCommentById" | "createComment">) {
         Object.assign(this, fields);
     }
-    async getFileComments(fileId: string, queryParams: GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg): Promise<Comments> {
+    async getFileComments(fileId: string, queryParams: GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg, headers: GetFileCommentsHeadersArg = new GetFileCommentsHeadersArg({})): Promise<Comments> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/comments") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComments(deserializeJson(response.text));
     }
-    async getCommentById(commentId: string, queryParams: GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg): Promise<CommentFull> {
+    async getCommentById(commentId: string, queryParams: GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg, headers: GetCommentByIdHeadersArg = new GetCommentByIdHeadersArg({})): Promise<CommentFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
-    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg): Promise<CommentFull> {
+    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg, headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})): Promise<CommentFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateCommentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateCommentByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
-    async deleteCommentById(commentId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteCommentById(commentId: string, headers: DeleteCommentByIdHeadersArg = new DeleteCommentByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async createComment(requestBody: CreateCommentRequestBodyArg, queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg): Promise<Comment> {
+    async createComment(requestBody: CreateCommentRequestBodyArg, queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg, headers: CreateCommentHeadersArg = new CreateCommentHeadersArg({})): Promise<Comment> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments") as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeComment(deserializeJson(response.text));
     }
-}
-export function serializeGetFileCommentsQueryParamsArg(val: GetFileCommentsQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset };
-}
-export function deserializeGetFileCommentsQueryParamsArg(val: any): GetFileCommentsQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    return { fields: fields, limit: limit, offset: offset } satisfies GetFileCommentsQueryParamsArg;
-}
-export function serializeGetCommentByIdQueryParamsArg(val: GetCommentByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetCommentByIdQueryParamsArg(val: any): GetCommentByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetCommentByIdQueryParamsArg;
 }
 export function serializeUpdateCommentByIdRequestBodyArg(val: UpdateCommentByIdRequestBodyArg): Json {
     return { ["message"]: val.message };
@@ -109,13 +149,6 @@ export function serializeUpdateCommentByIdRequestBodyArg(val: UpdateCommentByIdR
 export function deserializeUpdateCommentByIdRequestBodyArg(val: any): UpdateCommentByIdRequestBodyArg {
     const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
     return { message: message } satisfies UpdateCommentByIdRequestBodyArg;
-}
-export function serializeUpdateCommentByIdQueryParamsArg(val: UpdateCommentByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateCommentByIdQueryParamsArg(val: any): UpdateCommentByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies UpdateCommentByIdQueryParamsArg;
 }
 export function serializeCreateCommentRequestBodyArgItemFieldTypeField(val: CreateCommentRequestBodyArgItemFieldTypeField): Json {
     return val;
@@ -148,11 +181,4 @@ export function deserializeCreateCommentRequestBodyArg(val: any): CreateCommentR
     const taggedMessage: undefined | string = isJson(val.tagged_message, "string") ? val.tagged_message : void 0;
     const item: undefined | CreateCommentRequestBodyArgItemField = val.item == void 0 ? void 0 : deserializeCreateCommentRequestBodyArgItemField(val.item);
     return { message: message, taggedMessage: taggedMessage, item: item } satisfies CreateCommentRequestBodyArg;
-}
-export function serializeCreateCommentQueryParamsArg(val: CreateCommentQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeCreateCommentQueryParamsArg(val: any): CreateCommentQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies CreateCommentQueryParamsArg;
 }

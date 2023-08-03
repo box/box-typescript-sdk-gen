@@ -2,6 +2,18 @@ import { ClassificationTemplate } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export declare class GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg);
+}
+export declare class DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg);
+}
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = "enterprise";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField = "Classification";
@@ -34,13 +46,19 @@ export interface CreateMetadataTemplateSchemaClassificationRequestBodyArg {
     readonly copyInstanceOnItemCopy?: boolean;
     readonly fields?: readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[];
 }
+export declare class CreateMetadataTemplateSchemaClassificationHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateMetadataTemplateSchemaClassificationHeadersArg);
+}
 export declare class ClassificationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "createMetadataTemplateSchemaClassification">);
-    getMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<ClassificationTemplate>;
-    deleteMetadataTemplateEnterpriseSecurityClassificationSchema(): Promise<any>;
-    createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Promise<ClassificationTemplate>;
+    getMetadataTemplateEnterpriseSecurityClassificationSchema(headers?: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg): Promise<ClassificationTemplate>;
+    deleteMetadataTemplateEnterpriseSecurityClassificationSchema(headers?: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg): Promise<undefined>;
+    createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg, headers?: CreateMetadataTemplateSchemaClassificationHeadersArg): Promise<ClassificationTemplate>;
 }
 export declare function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField): Json;
 export declare function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val: any): CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField;

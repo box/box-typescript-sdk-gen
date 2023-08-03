@@ -52,6 +52,8 @@ See the endpoint docs at
   - Used as requestBody for the API call
 - queryParams `TransferOwnedFolderQueryParamsArg`
   - Used as queryParams for the API call
+- headers `TransferOwnedFolderHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

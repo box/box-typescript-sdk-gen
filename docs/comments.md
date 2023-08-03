@@ -21,6 +21,8 @@ await client.comments.getFileComments(fileId)
   - Used as `file_id` in path `path` of the API call
 - queryParams `GetFileCommentsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetFileCommentsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -53,6 +55,8 @@ await client.comments.getCommentById(newComment.id)
   - Used as `comment_id` in path `path` of the API call
 - queryParams `GetCommentByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetCommentByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -85,6 +89,8 @@ await client.comments.updateCommentById(newReplyComment.id, { message: newMessag
   - Used as requestBody for the API call
 - queryParams `UpdateCommentByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateCommentByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -113,6 +119,15 @@ await client.comments.deleteCommentById(newComment.id)
 - commentId `string`
   - The ID of the comment.
   - Used as `comment_id` in path `path` of the API call
+- headers `DeleteCommentByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the comment has been deleted.
 
 
 ## Create comment
@@ -136,6 +151,8 @@ await client.comments.createComment({ message: message, item: { id: newComment.i
   - Used as requestBody for the API call
 - queryParams `CreateCommentQueryParamsArg`
   - Used as queryParams for the API call
+- headers `CreateCommentHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

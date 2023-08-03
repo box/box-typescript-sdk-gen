@@ -3,6 +3,12 @@ import { TaskAssignment } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export declare class GetTaskAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTaskAssignmentsHeadersArg);
+}
 export type CreateTaskAssignmentRequestBodyArgTaskFieldTypeField = "task";
 export interface CreateTaskAssignmentRequestBodyArgTaskField {
     readonly id: string;
@@ -16,20 +22,44 @@ export interface CreateTaskAssignmentRequestBodyArg {
     readonly task: CreateTaskAssignmentRequestBodyArgTaskField;
     readonly assignTo: CreateTaskAssignmentRequestBodyArgAssignToField;
 }
+export declare class CreateTaskAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateTaskAssignmentHeadersArg);
+}
+export declare class GetTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTaskAssignmentByIdHeadersArg);
+}
 export type UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField = "completed" | "incomplete" | "approved" | "rejected";
 export interface UpdateTaskAssignmentByIdRequestBodyArg {
     readonly message?: string;
     readonly resolutionState?: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField;
 }
+export declare class UpdateTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateTaskAssignmentByIdHeadersArg);
+}
+export declare class DeleteTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteTaskAssignmentByIdHeadersArg);
+}
 export declare class TaskAssignmentsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TaskAssignmentsManager, "getTaskAssignments" | "createTaskAssignment" | "getTaskAssignmentById" | "updateTaskAssignmentById" | "deleteTaskAssignmentById">);
-    getTaskAssignments(taskId: string): Promise<TaskAssignments>;
-    createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg): Promise<TaskAssignment>;
-    getTaskAssignmentById(taskAssignmentId: string): Promise<TaskAssignment>;
-    updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg): Promise<TaskAssignment>;
-    deleteTaskAssignmentById(taskAssignmentId: string): Promise<any>;
+    getTaskAssignments(taskId: string, headers?: GetTaskAssignmentsHeadersArg): Promise<TaskAssignments>;
+    createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg, headers?: CreateTaskAssignmentHeadersArg): Promise<TaskAssignment>;
+    getTaskAssignmentById(taskAssignmentId: string, headers?: GetTaskAssignmentByIdHeadersArg): Promise<TaskAssignment>;
+    updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg, headers?: UpdateTaskAssignmentByIdHeadersArg): Promise<TaskAssignment>;
+    deleteTaskAssignmentById(taskAssignmentId: string, headers?: DeleteTaskAssignmentByIdHeadersArg): Promise<undefined>;
 }
 export declare function serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField): Json;
 export declare function deserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: any): CreateTaskAssignmentRequestBodyArgTaskFieldTypeField;

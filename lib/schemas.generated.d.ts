@@ -43,7 +43,7 @@ export interface ZipDownloadRequest {
 }
 export interface MetadataQueryQueryParamsField {
 }
-export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC" | "asc" | "desc";
+export type MetadataQueryOrderByFieldDirectionField = "ASC" | "DESC";
 export interface MetadataQueryOrderByField {
     readonly fieldKey?: string;
     readonly direction?: MetadataQueryOrderByFieldDirectionField;

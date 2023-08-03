@@ -16,6 +16,12 @@ export interface GetUsersQueryParamsArg {
     readonly usemarker?: boolean;
     readonly marker?: string;
 }
+export declare class GetUsersHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetUsersHeadersArg);
+}
 export type CreateUserRequestBodyArgRoleField = "coadmin" | "user";
 export type CreateUserRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
 export interface CreateUserRequestBodyArg {
@@ -41,11 +47,29 @@ export interface CreateUserRequestBodyArg {
 export interface CreateUserQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CreateUserHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateUserHeadersArg);
+}
 export interface GetUserMeQueryParamsArg {
     readonly fields?: string;
 }
+export declare class GetUserMeHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetUserMeHeadersArg);
+}
 export interface GetUserByIdQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetUserByIdHeadersArg);
 }
 export type UpdateUserByIdRequestBodyArgRoleField = "coadmin" | "user";
 export type UpdateUserByIdRequestBodyArgStatusField = "active" | "inactive" | "cannot_delete_edit" | "cannot_delete_edit_upload";
@@ -78,37 +102,39 @@ export interface UpdateUserByIdRequestBodyArg {
 export interface UpdateUserByIdQueryParamsArg {
     readonly fields?: string;
 }
+export declare class UpdateUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateUserByIdHeadersArg);
+}
 export interface DeleteUserByIdQueryParamsArg {
     readonly notify?: boolean;
     readonly force?: boolean;
+}
+export declare class DeleteUserByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteUserByIdHeadersArg);
 }
 export declare class UsersManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UsersManager, "getUsers" | "createUser" | "getUserMe" | "getUserById" | "updateUserById" | "deleteUserById">);
-    getUsers(queryParams?: GetUsersQueryParamsArg): Promise<Users>;
-    createUser(requestBody: CreateUserRequestBodyArg, queryParams?: CreateUserQueryParamsArg): Promise<User>;
-    getUserMe(queryParams?: GetUserMeQueryParamsArg): Promise<UserFull>;
-    getUserById(userId: string, queryParams?: GetUserByIdQueryParamsArg): Promise<UserFull>;
-    updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams?: UpdateUserByIdQueryParamsArg): Promise<UserFull>;
-    deleteUserById(userId: string, queryParams?: DeleteUserByIdQueryParamsArg): Promise<any>;
+    getUsers(queryParams?: GetUsersQueryParamsArg, headers?: GetUsersHeadersArg): Promise<Users>;
+    createUser(requestBody: CreateUserRequestBodyArg, queryParams?: CreateUserQueryParamsArg, headers?: CreateUserHeadersArg): Promise<User>;
+    getUserMe(queryParams?: GetUserMeQueryParamsArg, headers?: GetUserMeHeadersArg): Promise<UserFull>;
+    getUserById(userId: string, queryParams?: GetUserByIdQueryParamsArg, headers?: GetUserByIdHeadersArg): Promise<UserFull>;
+    updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams?: UpdateUserByIdQueryParamsArg, headers?: UpdateUserByIdHeadersArg): Promise<UserFull>;
+    deleteUserById(userId: string, queryParams?: DeleteUserByIdQueryParamsArg, headers?: DeleteUserByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetUsersQueryParamsArgUserTypeField(val: GetUsersQueryParamsArgUserTypeField): Json;
-export declare function deserializeGetUsersQueryParamsArgUserTypeField(val: any): GetUsersQueryParamsArgUserTypeField;
-export declare function serializeGetUsersQueryParamsArg(val: GetUsersQueryParamsArg): Json;
-export declare function deserializeGetUsersQueryParamsArg(val: any): GetUsersQueryParamsArg;
 export declare function serializeCreateUserRequestBodyArgRoleField(val: CreateUserRequestBodyArgRoleField): Json;
 export declare function deserializeCreateUserRequestBodyArgRoleField(val: any): CreateUserRequestBodyArgRoleField;
 export declare function serializeCreateUserRequestBodyArgStatusField(val: CreateUserRequestBodyArgStatusField): Json;
 export declare function deserializeCreateUserRequestBodyArgStatusField(val: any): CreateUserRequestBodyArgStatusField;
 export declare function serializeCreateUserRequestBodyArg(val: CreateUserRequestBodyArg): Json;
 export declare function deserializeCreateUserRequestBodyArg(val: any): CreateUserRequestBodyArg;
-export declare function serializeCreateUserQueryParamsArg(val: CreateUserQueryParamsArg): Json;
-export declare function deserializeCreateUserQueryParamsArg(val: any): CreateUserQueryParamsArg;
-export declare function serializeGetUserMeQueryParamsArg(val: GetUserMeQueryParamsArg): Json;
-export declare function deserializeGetUserMeQueryParamsArg(val: any): GetUserMeQueryParamsArg;
-export declare function serializeGetUserByIdQueryParamsArg(val: GetUserByIdQueryParamsArg): Json;
-export declare function deserializeGetUserByIdQueryParamsArg(val: any): GetUserByIdQueryParamsArg;
 export declare function serializeUpdateUserByIdRequestBodyArgRoleField(val: UpdateUserByIdRequestBodyArgRoleField): Json;
 export declare function deserializeUpdateUserByIdRequestBodyArgRoleField(val: any): UpdateUserByIdRequestBodyArgRoleField;
 export declare function serializeUpdateUserByIdRequestBodyArgStatusField(val: UpdateUserByIdRequestBodyArgStatusField): Json;
@@ -117,7 +143,3 @@ export declare function serializeUpdateUserByIdRequestBodyArgNotificationEmailFi
 export declare function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: any): UpdateUserByIdRequestBodyArgNotificationEmailField;
 export declare function serializeUpdateUserByIdRequestBodyArg(val: UpdateUserByIdRequestBodyArg): Json;
 export declare function deserializeUpdateUserByIdRequestBodyArg(val: any): UpdateUserByIdRequestBodyArg;
-export declare function serializeUpdateUserByIdQueryParamsArg(val: UpdateUserByIdQueryParamsArg): Json;
-export declare function deserializeUpdateUserByIdQueryParamsArg(val: any): UpdateUserByIdQueryParamsArg;
-export declare function serializeDeleteUserByIdQueryParamsArg(val: DeleteUserByIdQueryParamsArg): Json;
-export declare function deserializeDeleteUserByIdQueryParamsArg(val: any): DeleteUserByIdQueryParamsArg;

@@ -7,23 +7,45 @@ export interface GetCollaborationWhitelistExemptTargetsQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
 }
+export declare class GetCollaborationWhitelistExemptTargetsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetCollaborationWhitelistExemptTargetsHeadersArg);
+}
 export interface CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField {
     readonly id: string;
 }
 export interface CreateCollaborationWhitelistExemptTargetRequestBodyArg {
     readonly user: CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField;
 }
+export declare class CreateCollaborationWhitelistExemptTargetHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateCollaborationWhitelistExemptTargetHeadersArg);
+}
+export declare class GetCollaborationWhitelistExemptTargetByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetCollaborationWhitelistExemptTargetByIdHeadersArg);
+}
+export declare class DeleteCollaborationWhitelistExemptTargetByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteCollaborationWhitelistExemptTargetByIdHeadersArg);
+}
 export declare class CollaborationAllowlistExemptTargetsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<CollaborationAllowlistExemptTargetsManager, "getCollaborationWhitelistExemptTargets" | "createCollaborationWhitelistExemptTarget" | "getCollaborationWhitelistExemptTargetById" | "deleteCollaborationWhitelistExemptTargetById">);
-    getCollaborationWhitelistExemptTargets(queryParams?: GetCollaborationWhitelistExemptTargetsQueryParamsArg): Promise<CollaborationAllowlistExemptTargets>;
-    createCollaborationWhitelistExemptTarget(requestBody: CreateCollaborationWhitelistExemptTargetRequestBodyArg): Promise<CollaborationAllowlistExemptTarget>;
-    getCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string): Promise<CollaborationAllowlistExemptTarget>;
-    deleteCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string): Promise<any>;
+    getCollaborationWhitelistExemptTargets(queryParams?: GetCollaborationWhitelistExemptTargetsQueryParamsArg, headers?: GetCollaborationWhitelistExemptTargetsHeadersArg): Promise<CollaborationAllowlistExemptTargets>;
+    createCollaborationWhitelistExemptTarget(requestBody: CreateCollaborationWhitelistExemptTargetRequestBodyArg, headers?: CreateCollaborationWhitelistExemptTargetHeadersArg): Promise<CollaborationAllowlistExemptTarget>;
+    getCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string, headers?: GetCollaborationWhitelistExemptTargetByIdHeadersArg): Promise<CollaborationAllowlistExemptTarget>;
+    deleteCollaborationWhitelistExemptTargetById(collaborationWhitelistExemptTargetId: string, headers?: DeleteCollaborationWhitelistExemptTargetByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetCollaborationWhitelistExemptTargetsQueryParamsArg(val: GetCollaborationWhitelistExemptTargetsQueryParamsArg): Json;
-export declare function deserializeGetCollaborationWhitelistExemptTargetsQueryParamsArg(val: any): GetCollaborationWhitelistExemptTargetsQueryParamsArg;
 export declare function serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField(val: CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField): Json;
 export declare function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField(val: any): CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField;
 export declare function serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg(val: CreateCollaborationWhitelistExemptTargetRequestBodyArg): Json;

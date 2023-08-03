@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -15,6 +16,14 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetFolderWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFolderWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
 export interface UpdateFolderWatermarkRequestBodyArgWatermarkField {
     readonly imprint: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField;
@@ -22,23 +31,48 @@ export interface UpdateFolderWatermarkRequestBodyArgWatermarkField {
 export interface UpdateFolderWatermarkRequestBodyArg {
     readonly watermark: UpdateFolderWatermarkRequestBodyArgWatermarkField;
 }
+export class UpdateFolderWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFolderWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFolderWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFolderWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class FolderWatermarksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FolderWatermarksManager, "getFolderWatermark" | "updateFolderWatermark" | "deleteFolderWatermark">) {
         Object.assign(this, fields);
     }
-    async getFolderWatermark(folderId: string): Promise<Watermark> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFolderWatermark(folderId: string, headers: GetFolderWatermarkHeadersArg = new GetFolderWatermarkHeadersArg({})): Promise<Watermark> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWatermark(deserializeJson(response.text));
     }
-    async updateFolderWatermark(folderId: string, requestBody: UpdateFolderWatermarkRequestBodyArg): Promise<Watermark> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "PUT", body: serializeJson(serializeUpdateFolderWatermarkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFolderWatermark(folderId: string, requestBody: UpdateFolderWatermarkRequestBodyArg, headers: UpdateFolderWatermarkHeadersArg = new UpdateFolderWatermarkHeadersArg({})): Promise<Watermark> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateFolderWatermarkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWatermark(deserializeJson(response.text));
     }
-    async deleteFolderWatermark(folderId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFolderWatermark(folderId: string, headers: DeleteFolderWatermarkHeadersArg = new DeleteFolderWatermarkHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/watermark") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(val: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField): Json {

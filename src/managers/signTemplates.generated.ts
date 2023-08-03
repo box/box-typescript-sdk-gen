@@ -11,15 +11,31 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-import { isJson } from "../json.js";
 export interface GetSignTemplatesQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
+}
+export class GetSignTemplatesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetSignTemplatesHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetSignTemplateByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetSignTemplateByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class SignTemplatesManager {
     readonly auth?: Authentication;
@@ -27,23 +43,21 @@ export class SignTemplatesManager {
     constructor(fields: Omit<SignTemplatesManager, "getSignTemplates" | "getSignTemplateById">) {
         Object.assign(this, fields);
     }
-    async getSignTemplates(queryParams: GetSignTemplatesQueryParamsArg = {} satisfies GetSignTemplatesQueryParamsArg): Promise<SignTemplates> {
+    async getSignTemplates(queryParams: GetSignTemplatesQueryParamsArg = {} satisfies GetSignTemplatesQueryParamsArg, headers: GetSignTemplatesHeadersArg = new GetSignTemplatesHeadersArg({})): Promise<SignTemplates> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignTemplates(deserializeJson(response.text));
     }
-    async getSignTemplateById(templateId: string): Promise<SignTemplate> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates/", templateId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getSignTemplateById(templateId: string, headers: GetSignTemplateByIdHeadersArg = new GetSignTemplateByIdHeadersArg({})): Promise<SignTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/sign_templates/", templateId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSignTemplate(deserializeJson(response.text));
     }
-}
-export function serializeGetSignTemplatesQueryParamsArg(val: GetSignTemplatesQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetSignTemplatesQueryParamsArg(val: any): GetSignTemplatesQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { marker: marker, limit: limit } satisfies GetSignTemplatesQueryParamsArg;
 }

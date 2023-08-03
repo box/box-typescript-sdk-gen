@@ -14,6 +14,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -27,15 +28,55 @@ export interface GetMetadataCascadePoliciesQueryParamsArg {
     readonly marker?: string;
     readonly offset?: number;
 }
+export class GetMetadataCascadePoliciesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataCascadePoliciesHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateMetadataCascadePolicyRequestBodyArgScopeField = "global" | "enterprise";
 export interface CreateMetadataCascadePolicyRequestBodyArg {
     readonly folderId: string;
     readonly scope: CreateMetadataCascadePolicyRequestBodyArgScopeField;
     readonly templateKey: string;
 }
+export class CreateMetadataCascadePolicyHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateMetadataCascadePolicyHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetMetadataCascadePolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetMetadataCascadePolicyByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteMetadataCascadePolicyByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteMetadataCascadePolicyByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField = "none" | "overwrite";
 export interface CreateMetadataCascadePolicyApplyRequestBodyArg {
     readonly conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField;
+}
+export class CreateMetadataCascadePolicyApplyHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateMetadataCascadePolicyApplyHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class MetadataCascadePoliciesManager {
     readonly auth?: Authentication;
@@ -43,39 +84,44 @@ export class MetadataCascadePoliciesManager {
     constructor(fields: Omit<MetadataCascadePoliciesManager, "getMetadataCascadePolicies" | "createMetadataCascadePolicy" | "getMetadataCascadePolicyById" | "deleteMetadataCascadePolicyById" | "createMetadataCascadePolicyApply">) {
         Object.assign(this, fields);
     }
-    async getMetadataCascadePolicies(queryParams: GetMetadataCascadePoliciesQueryParamsArg): Promise<MetadataCascadePolicies> {
+    async getMetadataCascadePolicies(queryParams: GetMetadataCascadePoliciesQueryParamsArg, headers: GetMetadataCascadePoliciesHeadersArg = new GetMetadataCascadePoliciesHeadersArg({})): Promise<MetadataCascadePolicies> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["folder_id"]: toString(queryParams.folderId), ["owner_enterprise_id"]: toString(queryParams.ownerEnterpriseId), ["marker"]: toString(queryParams.marker), ["offset"]: toString(queryParams.offset) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicies(deserializeJson(response.text));
     }
-    async createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg): Promise<MetadataCascadePolicy> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", body: serializeJson(serializeCreateMetadataCascadePolicyRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createMetadataCascadePolicy(requestBody: CreateMetadataCascadePolicyRequestBodyArg, headers: CreateMetadataCascadePolicyHeadersArg = new CreateMetadataCascadePolicyHeadersArg({})): Promise<MetadataCascadePolicy> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateMetadataCascadePolicyRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicy(deserializeJson(response.text));
     }
-    async getMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<MetadataCascadePolicy> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getMetadataCascadePolicyById(metadataCascadePolicyId: string, headers: GetMetadataCascadePolicyByIdHeadersArg = new GetMetadataCascadePolicyByIdHeadersArg({})): Promise<MetadataCascadePolicy> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataCascadePolicy(deserializeJson(response.text));
     }
-    async deleteMetadataCascadePolicyById(metadataCascadePolicyId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteMetadataCascadePolicyById(metadataCascadePolicyId: string, headers: DeleteMetadataCascadePolicyByIdHeadersArg = new DeleteMetadataCascadePolicyByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async createMetadataCascadePolicyApply(metadataCascadePolicyId: string, requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId, "/apply") as string, { method: "POST", body: serializeJson(serializeCreateMetadataCascadePolicyApplyRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async createMetadataCascadePolicyApply(metadataCascadePolicyId: string, requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg, headers: CreateMetadataCascadePolicyApplyHeadersArg = new CreateMetadataCascadePolicyApplyHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_cascade_policies/", metadataCascadePolicyId, "/apply") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateMetadataCascadePolicyApplyRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetMetadataCascadePoliciesQueryParamsArg(val: GetMetadataCascadePoliciesQueryParamsArg): Json {
-    return { ["folder_id"]: val.folderId, ["owner_enterprise_id"]: val.ownerEnterpriseId, ["marker"]: val.marker, ["offset"]: val.offset };
-}
-export function deserializeGetMetadataCascadePoliciesQueryParamsArg(val: any): GetMetadataCascadePoliciesQueryParamsArg {
-    const folderId: string = val.folder_id;
-    const ownerEnterpriseId: undefined | string = isJson(val.owner_enterprise_id, "string") ? val.owner_enterprise_id : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    return { folderId: folderId, ownerEnterpriseId: ownerEnterpriseId, marker: marker, offset: offset } satisfies GetMetadataCascadePoliciesQueryParamsArg;
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyArgScopeField(val: CreateMetadataCascadePolicyRequestBodyArgScopeField): Json {
     return val;

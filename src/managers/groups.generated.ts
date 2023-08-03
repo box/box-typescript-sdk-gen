@@ -14,6 +14,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -26,6 +27,14 @@ export interface GetGroupsQueryParamsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly offset?: number;
+}
+export class GetGroupsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetGroupsHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateGroupRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
 export type CreateGroupRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
@@ -40,8 +49,24 @@ export interface CreateGroupRequestBodyArg {
 export interface CreateGroupQueryParamsArg {
     readonly fields?: string;
 }
+export class CreateGroupHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateGroupHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetGroupByIdQueryParamsArg {
     readonly fields?: string;
+}
+export class GetGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetGroupByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
 export type UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = "admins_only" | "admins_and_members" | "all_managed_users";
@@ -56,54 +81,75 @@ export interface UpdateGroupByIdRequestBodyArg {
 export interface UpdateGroupByIdQueryParamsArg {
     readonly fields?: string;
 }
+export class UpdateGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateGroupByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteGroupByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteGroupByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class GroupsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<GroupsManager, "getGroups" | "createGroup" | "getGroupById" | "updateGroupById" | "deleteGroupById">) {
         Object.assign(this, fields);
     }
-    async getGroups(queryParams: GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg): Promise<Groups> {
+    async getGroups(queryParams: GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg, headers: GetGroupsHeadersArg = new GetGroupsHeadersArg({})): Promise<Groups> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["filter_term"]: toString(queryParams.filterTerm), ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["offset"]: toString(queryParams.offset) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroups(deserializeJson(response.text));
     }
-    async createGroup(requestBody: CreateGroupRequestBodyArg, queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg): Promise<Group> {
+    async createGroup(requestBody: CreateGroupRequestBodyArg, queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg, headers: CreateGroupHeadersArg = new CreateGroupHeadersArg({})): Promise<Group> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups") as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroup(deserializeJson(response.text));
     }
-    async getGroupById(groupId: string, queryParams: GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg): Promise<GroupFull> {
+    async getGroupById(groupId: string, queryParams: GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg, headers: GetGroupByIdHeadersArg = new GetGroupByIdHeadersArg({})): Promise<GroupFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
-    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg): Promise<GroupFull> {
+    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg, headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({})): Promise<GroupFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: queryParamsMap, body: serializeJson(serializeUpdateGroupByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateGroupByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
-    async deleteGroupById(groupId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteGroupById(groupId: string, headers: DeleteGroupByIdHeadersArg = new DeleteGroupByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetGroupsQueryParamsArg(val: GetGroupsQueryParamsArg): Json {
-    return { ["filter_term"]: val.filterTerm, ["fields"]: val.fields, ["limit"]: val.limit, ["offset"]: val.offset };
-}
-export function deserializeGetGroupsQueryParamsArg(val: any): GetGroupsQueryParamsArg {
-    const filterTerm: undefined | string = isJson(val.filter_term, "string") ? val.filter_term : void 0;
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    return { filterTerm: filterTerm, fields: fields, limit: limit, offset: offset } satisfies GetGroupsQueryParamsArg;
 }
 export function serializeCreateGroupRequestBodyArgInvitabilityLevelField(val: CreateGroupRequestBodyArgInvitabilityLevelField): Json {
     return val;
@@ -153,20 +199,6 @@ export function deserializeCreateGroupRequestBodyArg(val: any): CreateGroupReque
     const memberViewabilityLevel: undefined | CreateGroupRequestBodyArgMemberViewabilityLevelField = val.member_viewability_level == void 0 ? void 0 : deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(val.member_viewability_level);
     return { name: name, provenance: provenance, externalSyncIdentifier: externalSyncIdentifier, description: description, invitabilityLevel: invitabilityLevel, memberViewabilityLevel: memberViewabilityLevel } satisfies CreateGroupRequestBodyArg;
 }
-export function serializeCreateGroupQueryParamsArg(val: CreateGroupQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeCreateGroupQueryParamsArg(val: any): CreateGroupQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies CreateGroupQueryParamsArg;
-}
-export function serializeGetGroupByIdQueryParamsArg(val: GetGroupByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetGroupByIdQueryParamsArg(val: any): GetGroupByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetGroupByIdQueryParamsArg;
-}
 export function serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val: UpdateGroupByIdRequestBodyArgInvitabilityLevelField): Json {
     return val;
 }
@@ -214,11 +246,4 @@ export function deserializeUpdateGroupByIdRequestBodyArg(val: any): UpdateGroupB
     const invitabilityLevel: undefined | UpdateGroupByIdRequestBodyArgInvitabilityLevelField = val.invitability_level == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(val.invitability_level);
     const memberViewabilityLevel: undefined | UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField = val.member_viewability_level == void 0 ? void 0 : deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(val.member_viewability_level);
     return { name: name, provenance: provenance, externalSyncIdentifier: externalSyncIdentifier, description: description, invitabilityLevel: invitabilityLevel, memberViewabilityLevel: memberViewabilityLevel } satisfies UpdateGroupByIdRequestBodyArg;
-}
-export function serializeUpdateGroupByIdQueryParamsArg(val: UpdateGroupByIdQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUpdateGroupByIdQueryParamsArg(val: any): UpdateGroupByIdQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies UpdateGroupByIdQueryParamsArg;
 }

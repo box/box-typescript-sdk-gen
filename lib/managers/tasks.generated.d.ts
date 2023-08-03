@@ -3,6 +3,12 @@ import { Task } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export declare class GetFileTasksHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFileTasksHeadersArg);
+}
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
     readonly id: string;
@@ -17,6 +23,18 @@ export interface CreateTaskRequestBodyArg {
     readonly dueAt?: string;
     readonly completionRule?: CreateTaskRequestBodyArgCompletionRuleField;
 }
+export declare class CreateTaskHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateTaskHeadersArg);
+}
+export declare class GetTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetTaskByIdHeadersArg);
+}
 export type UpdateTaskByIdRequestBodyArgActionField = "review" | "complete";
 export type UpdateTaskByIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
 export interface UpdateTaskByIdRequestBodyArg {
@@ -25,15 +43,27 @@ export interface UpdateTaskByIdRequestBodyArg {
     readonly dueAt?: string;
     readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
 }
+export declare class UpdateTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateTaskByIdHeadersArg);
+}
+export declare class DeleteTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteTaskByIdHeadersArg);
+}
 export declare class TasksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TasksManager, "getFileTasks" | "createTask" | "getTaskById" | "updateTaskById" | "deleteTaskById">);
-    getFileTasks(fileId: string): Promise<Tasks>;
-    createTask(requestBody: CreateTaskRequestBodyArg): Promise<Task>;
-    getTaskById(taskId: string): Promise<Task>;
-    updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg): Promise<Task>;
-    deleteTaskById(taskId: string): Promise<any>;
+    getFileTasks(fileId: string, headers?: GetFileTasksHeadersArg): Promise<Tasks>;
+    createTask(requestBody: CreateTaskRequestBodyArg, headers?: CreateTaskHeadersArg): Promise<Task>;
+    getTaskById(taskId: string, headers?: GetTaskByIdHeadersArg): Promise<Task>;
+    updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg, headers?: UpdateTaskByIdHeadersArg): Promise<Task>;
+    deleteTaskById(taskId: string, headers?: DeleteTaskByIdHeadersArg): Promise<undefined>;
 }
 export declare function serializeCreateTaskRequestBodyArgItemFieldTypeField(val: CreateTaskRequestBodyArgItemFieldTypeField): Json;
 export declare function deserializeCreateTaskRequestBodyArgItemFieldTypeField(val: any): CreateTaskRequestBodyArgItemFieldTypeField;

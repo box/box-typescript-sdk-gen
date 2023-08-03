@@ -1,14 +1,20 @@
+/// <reference types="node" />
 import { FileFull } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
+import { ByteStream } from "../utils.js";
 import { Json } from "../json.js";
 export interface GetFileByIdQueryParamsArg {
     readonly fields?: string;
 }
-export interface GetFileByIdHeadersArg {
+export declare class GetFileByIdHeadersArg {
     readonly ifNoneMatch?: string;
     readonly boxapi?: string;
     readonly xRepHints?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFileByIdHeadersArg);
 }
 export interface UpdateFileByIdRequestBodyArgParentField {
     readonly id?: string;
@@ -52,11 +58,19 @@ export interface UpdateFileByIdRequestBodyArg {
 export interface UpdateFileByIdQueryParamsArg {
     readonly fields?: string;
 }
-export interface UpdateFileByIdHeadersArg {
+export declare class UpdateFileByIdHeadersArg {
     readonly ifMatch?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateFileByIdHeadersArg);
 }
-export interface DeleteFileByIdHeadersArg {
+export declare class DeleteFileByIdHeadersArg {
     readonly ifMatch?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteFileByIdHeadersArg);
 }
 export interface CopyFileRequestBodyArgParentField {
     readonly id: string;
@@ -69,6 +83,12 @@ export interface CopyFileRequestBodyArg {
 export interface CopyFileQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CopyFileHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CopyFileHeadersArg);
+}
 export type GetFileThumbnailByIdExtensionArg = "png" | "jpg";
 export interface GetFileThumbnailByIdQueryParamsArg {
     readonly minHeight?: number;
@@ -76,20 +96,22 @@ export interface GetFileThumbnailByIdQueryParamsArg {
     readonly maxHeight?: number;
     readonly maxWidth?: number;
 }
+export declare class GetFileThumbnailByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFileThumbnailByIdHeadersArg);
+}
 export declare class FilesManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FilesManager, "getFileById" | "updateFileById" | "deleteFileById" | "copyFile" | "getFileThumbnailById">);
     getFileById(fileId: string, queryParams?: GetFileByIdQueryParamsArg, headers?: GetFileByIdHeadersArg): Promise<FileFull>;
     updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams?: UpdateFileByIdQueryParamsArg, headers?: UpdateFileByIdHeadersArg): Promise<FileFull>;
-    deleteFileById(fileId: string, headers?: DeleteFileByIdHeadersArg): Promise<any>;
-    copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams?: CopyFileQueryParamsArg): Promise<FileFull>;
-    getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams?: GetFileThumbnailByIdQueryParamsArg): Promise<any>;
+    deleteFileById(fileId: string, headers?: DeleteFileByIdHeadersArg): Promise<undefined>;
+    copyFile(fileId: string, requestBody: CopyFileRequestBodyArg, queryParams?: CopyFileQueryParamsArg, headers?: CopyFileHeadersArg): Promise<FileFull>;
+    getFileThumbnailById(fileId: string, extension: GetFileThumbnailByIdExtensionArg, queryParams?: GetFileThumbnailByIdQueryParamsArg, headers?: GetFileThumbnailByIdHeadersArg): Promise<ByteStream>;
 }
-export declare function serializeGetFileByIdQueryParamsArg(val: GetFileByIdQueryParamsArg): Json;
-export declare function deserializeGetFileByIdQueryParamsArg(val: any): GetFileByIdQueryParamsArg;
-export declare function serializeGetFileByIdHeadersArg(val: GetFileByIdHeadersArg): Json;
-export declare function deserializeGetFileByIdHeadersArg(val: any): GetFileByIdHeadersArg;
 export declare function serializeUpdateFileByIdRequestBodyArgParentField(val: UpdateFileByIdRequestBodyArgParentField): Json;
 export declare function deserializeUpdateFileByIdRequestBodyArgParentField(val: any): UpdateFileByIdRequestBodyArgParentField;
 export declare function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(val: UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField): Json;
@@ -110,19 +132,9 @@ export declare function serializeUpdateFileByIdRequestBodyArgCollectionsField(va
 export declare function deserializeUpdateFileByIdRequestBodyArgCollectionsField(val: any): UpdateFileByIdRequestBodyArgCollectionsField;
 export declare function serializeUpdateFileByIdRequestBodyArg(val: UpdateFileByIdRequestBodyArg): Json;
 export declare function deserializeUpdateFileByIdRequestBodyArg(val: any): UpdateFileByIdRequestBodyArg;
-export declare function serializeUpdateFileByIdQueryParamsArg(val: UpdateFileByIdQueryParamsArg): Json;
-export declare function deserializeUpdateFileByIdQueryParamsArg(val: any): UpdateFileByIdQueryParamsArg;
-export declare function serializeUpdateFileByIdHeadersArg(val: UpdateFileByIdHeadersArg): Json;
-export declare function deserializeUpdateFileByIdHeadersArg(val: any): UpdateFileByIdHeadersArg;
-export declare function serializeDeleteFileByIdHeadersArg(val: DeleteFileByIdHeadersArg): Json;
-export declare function deserializeDeleteFileByIdHeadersArg(val: any): DeleteFileByIdHeadersArg;
 export declare function serializeCopyFileRequestBodyArgParentField(val: CopyFileRequestBodyArgParentField): Json;
 export declare function deserializeCopyFileRequestBodyArgParentField(val: any): CopyFileRequestBodyArgParentField;
 export declare function serializeCopyFileRequestBodyArg(val: CopyFileRequestBodyArg): Json;
 export declare function deserializeCopyFileRequestBodyArg(val: any): CopyFileRequestBodyArg;
-export declare function serializeCopyFileQueryParamsArg(val: CopyFileQueryParamsArg): Json;
-export declare function deserializeCopyFileQueryParamsArg(val: any): CopyFileQueryParamsArg;
 export declare function serializeGetFileThumbnailByIdExtensionArg(val: GetFileThumbnailByIdExtensionArg): Json;
 export declare function deserializeGetFileThumbnailByIdExtensionArg(val: any): GetFileThumbnailByIdExtensionArg;
-export declare function serializeGetFileThumbnailByIdQueryParamsArg(val: GetFileThumbnailByIdQueryParamsArg): Json;
-export declare function deserializeGetFileThumbnailByIdQueryParamsArg(val: any): GetFileThumbnailByIdQueryParamsArg;

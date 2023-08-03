@@ -4,8 +4,6 @@ import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from "../
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { serializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
 import { deserializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
-import { serializeGetFileByIdQueryParamsArg } from "../managers/files.generated.js";
-import { deserializeGetFileByIdQueryParamsArg } from "../managers/files.generated.js";
 import { serializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { deserializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { serializeCopyFileRequestBodyArg } from "../managers/files.generated.js";
@@ -29,7 +27,6 @@ import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
 import { JwtConfig } from "../jwtAuth.js";
 import { uploadNewFile } from "./commons.generated.js";
-import { Readable } from "stream";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
 const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });

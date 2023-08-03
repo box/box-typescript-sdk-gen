@@ -8,11 +8,10 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { isJson } from "../json.js";
-import { Json } from "../json.js";
 export type GetAuthorizeQueryParamsArgResponseTypeField = "code";
 export interface GetAuthorizeQueryParamsArg {
     readonly responseType: GetAuthorizeQueryParamsArgResponseTypeField;
@@ -21,40 +20,28 @@ export interface GetAuthorizeQueryParamsArg {
     readonly state?: string;
     readonly scope?: string;
 }
+export class GetAuthorizeHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetAuthorizeHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class AuthorizationManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<AuthorizationManager, "getAuthorize">) {
         Object.assign(this, fields);
     }
-    async getAuthorize(queryParams: GetAuthorizeQueryParamsArg): Promise<undefined> {
+    async getAuthorize(queryParams: GetAuthorizeQueryParamsArg, headers: GetAuthorizeHeadersArg = new GetAuthorizeHeadersArg({})): Promise<undefined> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["response_type"]: toString(queryParams.responseType), ["client_id"]: toString(queryParams.clientId), ["redirect_uri"]: toString(queryParams.redirectUri), ["state"]: toString(queryParams.state), ["scope"]: toString(queryParams.scope) });
-        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://account.box.com/api/oauth2/authorize") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
-}
-export function serializeGetAuthorizeQueryParamsArgResponseTypeField(val: GetAuthorizeQueryParamsArgResponseTypeField): Json {
-    return val;
-}
-export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(val: any): GetAuthorizeQueryParamsArgResponseTypeField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"GetAuthorizeQueryParamsArgResponseTypeField\"";
-    }
-    if (val == "code") {
-        return "code";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeGetAuthorizeQueryParamsArg(val: GetAuthorizeQueryParamsArg): Json {
-    return { ["response_type"]: serializeGetAuthorizeQueryParamsArgResponseTypeField(val.responseType), ["client_id"]: val.clientId, ["redirect_uri"]: val.redirectUri, ["state"]: val.state, ["scope"]: val.scope };
-}
-export function deserializeGetAuthorizeQueryParamsArg(val: any): GetAuthorizeQueryParamsArg {
-    const responseType: GetAuthorizeQueryParamsArgResponseTypeField = deserializeGetAuthorizeQueryParamsArgResponseTypeField(val.response_type);
-    const clientId: string = val.client_id;
-    const redirectUri: undefined | string = isJson(val.redirect_uri, "string") ? val.redirect_uri : void 0;
-    const state: undefined | string = isJson(val.state, "string") ? val.state : void 0;
-    const scope: undefined | string = isJson(val.scope, "string") ? val.scope : void 0;
-    return { responseType: responseType, clientId: clientId, redirectUri: redirectUri, state: state, scope: scope } satisfies GetAuthorizeQueryParamsArg;
 }

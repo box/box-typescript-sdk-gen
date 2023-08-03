@@ -1,21 +1,22 @@
+/// <reference types="node" />
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
-import { Json } from "../json.js";
+import { ByteStream } from "../utils.js";
 export interface DownloadFileQueryParamsArg {
     readonly version?: string;
     readonly accessToken?: string;
 }
-export interface DownloadFileHeadersArg {
+export declare class DownloadFileHeadersArg {
     readonly range?: string;
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DownloadFileHeadersArg);
 }
 export declare class DownloadsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<DownloadsManager, "downloadFile">);
-    downloadFile(fileId: string, queryParams?: DownloadFileQueryParamsArg, headers?: DownloadFileHeadersArg): Promise<any>;
+    downloadFile(fileId: string, queryParams?: DownloadFileQueryParamsArg, headers?: DownloadFileHeadersArg): Promise<ByteStream>;
 }
-export declare function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json;
-export declare function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg;
-export declare function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json;
-export declare function deserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg;

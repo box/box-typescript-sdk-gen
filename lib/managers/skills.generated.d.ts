@@ -3,8 +3,26 @@ import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCa
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { Json } from "../json.js";
+export declare class GetFileMetadataGlobalBoxSkillsCardsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetFileMetadataGlobalBoxSkillsCardsHeadersArg);
+}
 export interface CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
     readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+}
+export declare class CreateFileMetadataGlobalBoxSkillsCardHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateFileMetadataGlobalBoxSkillsCardHeadersArg);
+}
+export declare class DeleteFileMetadataGlobalBoxSkillsCardHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg);
 }
 export type UpdateSkillInvocationByIdRequestBodyArgStatusField = "invoked" | "processing" | "success" | "transient_failure" | "permanent_failure";
 export interface UpdateSkillInvocationByIdRequestBodyArgMetadataField {
@@ -31,14 +49,20 @@ export interface UpdateSkillInvocationByIdRequestBodyArg {
     readonly fileVersion?: UpdateSkillInvocationByIdRequestBodyArgFileVersionField;
     readonly usage?: UpdateSkillInvocationByIdRequestBodyArgUsageField;
 }
+export declare class UpdateSkillInvocationByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateSkillInvocationByIdHeadersArg);
+}
 export declare class SkillsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<SkillsManager, "getFileMetadataGlobalBoxSkillsCards" | "createFileMetadataGlobalBoxSkillsCard" | "deleteFileMetadataGlobalBoxSkillsCard" | "updateSkillInvocationById">);
-    getFileMetadataGlobalBoxSkillsCards(fileId: string): Promise<SkillCardsMetadata>;
-    createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Promise<SkillCardsMetadata>;
-    deleteFileMetadataGlobalBoxSkillsCard(fileId: string): Promise<any>;
-    updateSkillInvocationById(skillId: string, requestBody: UpdateSkillInvocationByIdRequestBodyArg): Promise<any>;
+    getFileMetadataGlobalBoxSkillsCards(fileId: string, headers?: GetFileMetadataGlobalBoxSkillsCardsHeadersArg): Promise<SkillCardsMetadata>;
+    createFileMetadataGlobalBoxSkillsCard(fileId: string, requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg, headers?: CreateFileMetadataGlobalBoxSkillsCardHeadersArg): Promise<SkillCardsMetadata>;
+    deleteFileMetadataGlobalBoxSkillsCard(fileId: string, headers?: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg): Promise<undefined>;
+    updateSkillInvocationById(skillId: string, requestBody: UpdateSkillInvocationByIdRequestBodyArg, headers?: UpdateSkillInvocationByIdHeadersArg): Promise<undefined>;
 }
 export declare function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(val: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg): Json;
 export declare function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(val: any): CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg;

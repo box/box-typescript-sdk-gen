@@ -8,6 +8,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -18,8 +19,24 @@ export interface CreateUserTerminateSessionRequestBodyArg {
     readonly userIds: readonly string[];
     readonly userLogins: readonly string[];
 }
+export class CreateUserTerminateSessionHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateUserTerminateSessionHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface CreateGroupTerminateSessionRequestBodyArg {
     readonly groupIds: readonly string[];
+}
+export class CreateGroupTerminateSessionHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateGroupTerminateSessionHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class SessionTerminationManager {
     readonly auth?: Authentication;
@@ -27,12 +44,18 @@ export class SessionTerminationManager {
     constructor(fields: Omit<SessionTerminationManager, "createUserTerminateSession" | "createGroupTerminateSession">) {
         Object.assign(this, fields);
     }
-    async createUserTerminateSession(requestBody: CreateUserTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/terminate_sessions") as string, { method: "POST", body: serializeJson(serializeCreateUserTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createUserTerminateSession(requestBody: CreateUserTerminateSessionRequestBodyArg, headers: CreateUserTerminateSessionHeadersArg = new CreateUserTerminateSessionHeadersArg({})): Promise<SessionTerminationMessage> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/terminate_sessions") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateUserTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSessionTerminationMessage(deserializeJson(response.text));
     }
-    async createGroupTerminateSession(requestBody: CreateGroupTerminateSessionRequestBodyArg): Promise<SessionTerminationMessage> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/terminate_sessions") as string, { method: "POST", body: serializeJson(serializeCreateGroupTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createGroupTerminateSession(requestBody: CreateGroupTerminateSessionRequestBodyArg, headers: CreateGroupTerminateSessionHeadersArg = new CreateGroupTerminateSessionHeadersArg({})): Promise<SessionTerminationMessage> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/terminate_sessions") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateGroupTerminateSessionRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeSessionTerminationMessage(deserializeJson(response.text));
     }
 }

@@ -23,6 +23,8 @@ await client.memberships.getUserMemberships(user.id)
   - Used as `user_id` in path `path` of the API call
 - queryParams `GetUserMembershipsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetUserMembershipsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -56,6 +58,8 @@ await client.memberships.getGroupMemberships(group.id)
   - Used as `group_id` in path `path` of the API call
 - queryParams `GetGroupMembershipsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetGroupMembershipsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -87,6 +91,8 @@ await client.memberships.createGroupMembership({ user: user, group: group } sati
   - Used as requestBody for the API call
 - queryParams `CreateGroupMembershipQueryParamsArg`
   - Used as queryParams for the API call
+- headers `CreateGroupMembershipHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -119,6 +125,8 @@ await client.memberships.getGroupMembershipById(groupMembership.id)
   - Used as `group_membership_id` in path `path` of the API call
 - queryParams `GetGroupMembershipByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetGroupMembershipByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -153,6 +161,8 @@ await client.memberships.updateGroupMembershipById(groupMembership.id, { role: &
   - Used as requestBody for the API call
 - queryParams `UpdateGroupMembershipByIdQueryParamsArg`
   - Used as queryParams for the API call
+- headers `UpdateGroupMembershipByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -183,5 +193,15 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id)
 - groupMembershipId `string`
   - The ID of the group membership.
   - Used as `group_membership_id` in path `path` of the API call
+- headers `DeleteGroupMembershipByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the membership was
+successfully deleted.
 
 

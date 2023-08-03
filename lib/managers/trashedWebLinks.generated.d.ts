@@ -13,22 +13,36 @@ export interface CreateWebLinkByIdRequestBodyArg {
 export interface CreateWebLinkByIdQueryParamsArg {
     readonly fields?: string;
 }
+export declare class CreateWebLinkByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateWebLinkByIdHeadersArg);
+}
 export interface GetWebLinkTrashQueryParamsArg {
     readonly fields?: string;
+}
+export declare class GetWebLinkTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetWebLinkTrashHeadersArg);
+}
+export declare class DeleteWebLinkTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteWebLinkTrashHeadersArg);
 }
 export declare class TrashedWebLinksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TrashedWebLinksManager, "createWebLinkById" | "getWebLinkTrash" | "deleteWebLinkTrash">);
-    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams?: CreateWebLinkByIdQueryParamsArg): Promise<TrashWebLinkRestored>;
-    getWebLinkTrash(webLinkId: string, queryParams?: GetWebLinkTrashQueryParamsArg): Promise<TrashWebLink>;
-    deleteWebLinkTrash(webLinkId: string): Promise<any>;
+    createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams?: CreateWebLinkByIdQueryParamsArg, headers?: CreateWebLinkByIdHeadersArg): Promise<TrashWebLinkRestored>;
+    getWebLinkTrash(webLinkId: string, queryParams?: GetWebLinkTrashQueryParamsArg, headers?: GetWebLinkTrashHeadersArg): Promise<TrashWebLink>;
+    deleteWebLinkTrash(webLinkId: string, headers?: DeleteWebLinkTrashHeadersArg): Promise<undefined>;
 }
 export declare function serializeCreateWebLinkByIdRequestBodyArgParentField(val: CreateWebLinkByIdRequestBodyArgParentField): Json;
 export declare function deserializeCreateWebLinkByIdRequestBodyArgParentField(val: any): CreateWebLinkByIdRequestBodyArgParentField;
 export declare function serializeCreateWebLinkByIdRequestBodyArg(val: CreateWebLinkByIdRequestBodyArg): Json;
 export declare function deserializeCreateWebLinkByIdRequestBodyArg(val: any): CreateWebLinkByIdRequestBodyArg;
-export declare function serializeCreateWebLinkByIdQueryParamsArg(val: CreateWebLinkByIdQueryParamsArg): Json;
-export declare function deserializeCreateWebLinkByIdQueryParamsArg(val: any): CreateWebLinkByIdQueryParamsArg;
-export declare function serializeGetWebLinkTrashQueryParamsArg(val: GetWebLinkTrashQueryParamsArg): Json;
-export declare function deserializeGetWebLinkTrashQueryParamsArg(val: any): GetWebLinkTrashQueryParamsArg;

@@ -11,6 +11,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -28,8 +29,32 @@ export interface RestoreFolderFromTrashRequestBodyArg {
 export interface RestoreFolderFromTrashQueryParamsArg {
     readonly fields?: string;
 }
+export class RestoreFolderFromTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: RestoreFolderFromTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetFolderTrashQueryParamsArg {
     readonly fields?: string;
+}
+export class GetFolderTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFolderTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFolderTrashHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFolderTrashHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class TrashedFoldersManager {
     readonly auth?: Authentication;
@@ -37,23 +62,32 @@ export class TrashedFoldersManager {
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg): Promise<TrashFolderRestored> {
+    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg, headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg({})): Promise<TrashFolderRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: queryParamsMap, body: serializeJson(serializeRestoreFolderFromTrashRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId) as string, { method: "POST", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeRestoreFolderFromTrashRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFolderRestored(deserializeJson(response.text));
     }
-    async getFolderTrash(folderId: string, queryParams: GetFolderTrashQueryParamsArg = {} satisfies GetFolderTrashQueryParamsArg): Promise<TrashFolder> {
+    async getFolderTrash(folderId: string, queryParams: GetFolderTrashQueryParamsArg = {} satisfies GetFolderTrashQueryParamsArg, headers: GetFolderTrashHeadersArg = new GetFolderTrashHeadersArg({})): Promise<TrashFolder> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTrashFolder(deserializeJson(response.text));
     }
-    async deleteFolderTrash(folderId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFolderTrash(folderId: string, headers: DeleteFolderTrashHeadersArg = new DeleteFolderTrashHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folders/", folderId, "/trash") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json {
@@ -70,18 +104,4 @@ export function deserializeRestoreFolderFromTrashRequestBodyArg(val: any): Resto
     const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
     const parent: undefined | RestoreFolderFromTrashRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent);
     return { name: name, parent: parent } satisfies RestoreFolderFromTrashRequestBodyArg;
-}
-export function serializeRestoreFolderFromTrashQueryParamsArg(val: RestoreFolderFromTrashQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeRestoreFolderFromTrashQueryParamsArg(val: any): RestoreFolderFromTrashQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies RestoreFolderFromTrashQueryParamsArg;
-}
-export function serializeGetFolderTrashQueryParamsArg(val: GetFolderTrashQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeGetFolderTrashQueryParamsArg(val: any): GetFolderTrashQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies GetFolderTrashQueryParamsArg;
 }

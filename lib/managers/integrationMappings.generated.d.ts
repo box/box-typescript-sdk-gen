@@ -15,6 +15,18 @@ export interface GetIntegrationMappingSlackQueryParamsArg {
     readonly boxItemType?: GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField;
     readonly isManuallyCreated?: boolean;
 }
+export declare class GetIntegrationMappingSlackHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: GetIntegrationMappingSlackHeadersArg);
+}
+export declare class CreateIntegrationMappingSlackHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: CreateIntegrationMappingSlackHeadersArg);
+}
 export interface UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField {
 }
 export interface UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField {
@@ -23,21 +35,27 @@ export interface UpdateIntegrationMappingSlackByIdRequestBodyArg {
     readonly boxItem?: UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField;
     readonly options?: UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField;
 }
+export declare class UpdateIntegrationMappingSlackByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: UpdateIntegrationMappingSlackByIdHeadersArg);
+}
+export declare class DeleteIntegrationMappingSlackByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    };
+    constructor(fields: DeleteIntegrationMappingSlackByIdHeadersArg);
+}
 export declare class IntegrationMappingsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<IntegrationMappingsManager, "getIntegrationMappingSlack" | "createIntegrationMappingSlack" | "updateIntegrationMappingSlackById" | "deleteIntegrationMappingSlackById">);
-    getIntegrationMappingSlack(queryParams?: GetIntegrationMappingSlackQueryParamsArg): Promise<IntegrationMappings>;
-    createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest): Promise<IntegrationMapping>;
-    updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg): Promise<IntegrationMapping>;
-    deleteIntegrationMappingSlackById(integrationMappingId: string): Promise<any>;
+    getIntegrationMappingSlack(queryParams?: GetIntegrationMappingSlackQueryParamsArg, headers?: GetIntegrationMappingSlackHeadersArg): Promise<IntegrationMappings>;
+    createIntegrationMappingSlack(requestBody: IntegrationMappingSlackCreateRequest, headers?: CreateIntegrationMappingSlackHeadersArg): Promise<IntegrationMapping>;
+    updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg, headers?: UpdateIntegrationMappingSlackByIdHeadersArg): Promise<IntegrationMapping>;
+    deleteIntegrationMappingSlackById(integrationMappingId: string, headers?: DeleteIntegrationMappingSlackByIdHeadersArg): Promise<undefined>;
 }
-export declare function serializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val: GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField): Json;
-export declare function deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(val: any): GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField;
-export declare function serializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val: GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField): Json;
-export declare function deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(val: any): GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField;
-export declare function serializeGetIntegrationMappingSlackQueryParamsArg(val: GetIntegrationMappingSlackQueryParamsArg): Json;
-export declare function deserializeGetIntegrationMappingSlackQueryParamsArg(val: any): GetIntegrationMappingSlackQueryParamsArg;
 export declare function serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val: UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField): Json;
 export declare function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val: any): UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField;
 export declare function serializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val: UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField): Json;

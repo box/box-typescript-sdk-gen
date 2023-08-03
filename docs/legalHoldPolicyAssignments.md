@@ -15,6 +15,8 @@ See the endpoint docs at
 
 - queryParams `GetLegalHoldPolicyAssignmentsQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetLegalHoldPolicyAssignmentsHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -39,6 +41,8 @@ See the endpoint docs at
 
 - requestBody `CreateLegalHoldPolicyAssignmentRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateLegalHoldPolicyAssignmentHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -64,6 +68,8 @@ See the endpoint docs at
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+- headers `GetLegalHoldPolicyAssignmentByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -92,6 +98,16 @@ See the endpoint docs at
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+- headers `DeleteLegalHoldPolicyAssignmentByIdHeadersArg`
+  - Used as headers for the API call
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the assignment was
+successfully deleted.
 
 
 ## List current file versions for legal hold policy assignment
@@ -127,6 +143,8 @@ See the endpoint docs at
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
 - queryParams `GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -170,6 +188,8 @@ See the endpoint docs at
   - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
 - queryParams `GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns

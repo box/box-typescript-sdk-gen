@@ -11,6 +11,7 @@ import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
 import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -19,6 +20,14 @@ import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 export interface GetFolderLocksQueryParamsArg {
     readonly folderId: string;
+}
+export class GetFolderLocksHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFolderLocksHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface CreateFolderLockRequestBodyArgLockedOperationsField {
     readonly move: boolean;
@@ -32,34 +41,52 @@ export interface CreateFolderLockRequestBodyArg {
     readonly lockedOperations?: CreateFolderLockRequestBodyArgLockedOperationsField;
     readonly folder: CreateFolderLockRequestBodyArgFolderField;
 }
+export class CreateFolderLockHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateFolderLockHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFolderLockByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFolderLockByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class FolderLocksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FolderLocksManager, "getFolderLocks" | "createFolderLock" | "deleteFolderLockById">) {
         Object.assign(this, fields);
     }
-    async getFolderLocks(queryParams: GetFolderLocksQueryParamsArg): Promise<FolderLocks> {
+    async getFolderLocks(queryParams: GetFolderLocksQueryParamsArg, headers: GetFolderLocksHeadersArg = new GetFolderLocksHeadersArg({})): Promise<FolderLocks> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["folder_id"]: toString(queryParams.folderId) });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: queryParamsMap, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderLocks(deserializeJson(response.text));
     }
-    async createFolderLock(requestBody: CreateFolderLockRequestBodyArg): Promise<FolderLock> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "POST", body: serializeJson(serializeCreateFolderLockRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createFolderLock(requestBody: CreateFolderLockRequestBodyArg, headers: CreateFolderLockHeadersArg = new CreateFolderLockHeadersArg({})): Promise<FolderLock> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateFolderLockRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFolderLock(deserializeJson(response.text));
     }
-    async deleteFolderLockById(folderLockId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks/", folderLockId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFolderLockById(folderLockId: string, headers: DeleteFolderLockByIdHeadersArg = new DeleteFolderLockByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/folder_locks/", folderLockId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetFolderLocksQueryParamsArg(val: GetFolderLocksQueryParamsArg): Json {
-    return { ["folder_id"]: val.folderId };
-}
-export function deserializeGetFolderLocksQueryParamsArg(val: any): GetFolderLocksQueryParamsArg {
-    const folderId: string = val.folder_id;
-    return { folderId: folderId } satisfies GetFolderLocksQueryParamsArg;
 }
 export function serializeCreateFolderLockRequestBodyArgLockedOperationsField(val: CreateFolderLockRequestBodyArgLockedOperationsField): Json {
     return { ["move"]: val.move, ["delete"]: val.delete };

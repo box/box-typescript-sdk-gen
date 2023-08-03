@@ -1,7 +1,5 @@
 import { serializeCreateGroupRequestBodyArg } from "../managers/groups.generated.js";
 import { deserializeCreateGroupRequestBodyArg } from "../managers/groups.generated.js";
-import { serializeGetGroupByIdQueryParamsArg } from "../managers/groups.generated.js";
-import { deserializeGetGroupByIdQueryParamsArg } from "../managers/groups.generated.js";
 import { serializeUpdateGroupByIdRequestBodyArg } from "../managers/groups.generated.js";
 import { deserializeUpdateGroupByIdRequestBodyArg } from "../managers/groups.generated.js";
 import { CreateGroupRequestBodyArg } from "../managers/groups.generated.js";

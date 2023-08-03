@@ -16,6 +16,8 @@ See the endpoint docs at
 
 - queryParams `GetTermOfServicesQueryParamsArg`
   - Used as queryParams for the API call
+- headers `GetTermOfServicesHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -42,6 +44,8 @@ See the endpoint docs at
 
 - requestBody `CreateTermOfServiceRequestBodyArg`
   - Used as requestBody for the API call
+- headers `CreateTermOfServiceHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -67,6 +71,8 @@ See the endpoint docs at
 - termsOfServiceId `string`
   - The ID of the terms of service.
   - Used as `terms_of_service_id` in path `path` of the API call
+- headers `GetTermOfServiceByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
@@ -94,6 +100,8 @@ See the endpoint docs at
   - Used as `terms_of_service_id` in path `path` of the API call
 - requestBody `UpdateTermOfServiceByIdRequestBodyArg`
   - Used as requestBody for the API call
+- headers `UpdateTermOfServiceByIdHeadersArg`
+  - Used as headers for the API call
 
 
 ### Returns
