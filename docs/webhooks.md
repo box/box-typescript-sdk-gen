@@ -1,5 +1,12 @@
 # WebhooksManager
 
+
+- [List all webhooks](#list-all-webhooks)
+- [Create webhook](#create-webhook)
+- [Get webhook](#get-webhook)
+- [Update webhook](#update-webhook)
+- [Remove webhook](#remove-webhook)
+
 ## List all webhooks
 
 Returns all defined webhooks for the requesting application.
@@ -22,9 +29,9 @@ await client.webhooks.getWebhooks()
 ### Arguments
 
 - queryParams `GetWebhooksQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getWebhooks method
 - headers `GetWebhooksHeadersArg`
-  - Used as headers for the API call
+  - Headers of getWebhooks method
 
 
 ### Returns
@@ -45,15 +52,15 @@ See the endpoint docs at
 
 <!-- sample post_webhooks -->
 ```ts
-await client.webhooks.createWebhook({ target: { id: folder.id, type: &quot;folder&quot; as CreateWebhookRequestBodyArgTargetFieldTypeField } satisfies CreateWebhookRequestBodyArgTargetField, address: &quot;https://example.com/new-webhook&quot;, triggers: [&quot;FILE.UPLOADED&quot;] } satisfies CreateWebhookRequestBodyArg)
+await client.webhooks.createWebhook({ target: { id: folder.id, type: "folder" as CreateWebhookRequestBodyArgTargetFieldTypeField } satisfies CreateWebhookRequestBodyArgTargetField, address: "https://example.com/new-webhook", triggers: ["FILE.UPLOADED"] } satisfies CreateWebhookRequestBodyArg)
 ```
 
 ### Arguments
 
 - requestBody `CreateWebhookRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createWebhook method
 - headers `CreateWebhookHeadersArg`
-  - Used as headers for the API call
+  - Headers of createWebhook method
 
 
 ### Returns
@@ -80,10 +87,9 @@ await client.webhooks.getWebhookById(webhook.id)
 ### Arguments
 
 - webhookId `string`
-  - The ID of the webhook.
-  - Used as `webhook_id` in path `path` of the API call
+  - The ID of the webhook. Example: "3321123"
 - headers `GetWebhookByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getWebhookById method
 
 
 ### Returns
@@ -104,18 +110,17 @@ See the endpoint docs at
 
 <!-- sample put_webhooks_id -->
 ```ts
-await client.webhooks.updateWebhookById(webhook.id, { address: &quot;https://example.com/updated-webhook&quot; } satisfies UpdateWebhookByIdRequestBodyArg)
+await client.webhooks.updateWebhookById(webhook.id, { address: "https://example.com/updated-webhook" } satisfies UpdateWebhookByIdRequestBodyArg)
 ```
 
 ### Arguments
 
 - webhookId `string`
-  - The ID of the webhook.
-  - Used as `webhook_id` in path `path` of the API call
+  - The ID of the webhook. Example: "3321123"
 - requestBody `UpdateWebhookByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateWebhookById method
 - headers `UpdateWebhookByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateWebhookById method
 
 
 ### Returns
@@ -142,10 +147,9 @@ await client.webhooks.deleteWebhookById(webhook.id)
 ### Arguments
 
 - webhookId `string`
-  - The ID of the webhook.
-  - Used as `webhook_id` in path `path` of the API call
+  - The ID of the webhook. Example: "3321123"
 - headers `DeleteWebhookByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteWebhookById method
 
 
 ### Returns

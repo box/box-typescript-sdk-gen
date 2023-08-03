@@ -1,5 +1,9 @@
 # StoragePoliciesManager
 
+
+- [List storage policies](#list-storage-policies)
+- [Get storage policy](#get-storage-policy)
+
 ## List storage policies
 
 Fetches all the storage policies in the enterprise.
@@ -14,9 +18,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetStoragePoliciesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getStoragePolicies method
 - headers `GetStoragePoliciesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getStoragePolicies method
 
 
 ### Returns
@@ -40,10 +44,9 @@ See the endpoint docs at
 ### Arguments
 
 - storagePolicyId `string`
-  - The ID of the storage policy.
-  - Used as `storage_policy_id` in path `path` of the API call
+  - The ID of the storage policy. Example: "34342"
 - headers `GetStoragePolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getStoragePolicyById method
 
 
 ### Returns

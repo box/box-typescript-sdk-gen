@@ -1,5 +1,11 @@
 # TermsOfServicesManager
 
+
+- [List terms of services](#list-terms-of-services)
+- [Create terms of service](#create-terms-of-service)
+- [Get terms of service](#get-terms-of-service)
+- [Update terms of service](#update-terms-of-service)
+
 ## List terms of services
 
 Returns the current terms of service text and settings
@@ -15,9 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetTermOfServicesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getTermOfServices method
 - headers `GetTermOfServicesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTermOfServices method
 
 
 ### Returns
@@ -43,9 +49,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateTermOfServiceRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createTermOfService method
 - headers `CreateTermOfServiceHeadersArg`
-  - Used as headers for the API call
+  - Headers of createTermOfService method
 
 
 ### Returns
@@ -69,10 +75,9 @@ See the endpoint docs at
 ### Arguments
 
 - termsOfServiceId `string`
-  - The ID of the terms of service.
-  - Used as `terms_of_service_id` in path `path` of the API call
+  - The ID of the terms of service. Example: "324234"
 - headers `GetTermOfServiceByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTermOfServiceById method
 
 
 ### Returns
@@ -96,12 +101,11 @@ See the endpoint docs at
 ### Arguments
 
 - termsOfServiceId `string`
-  - The ID of the terms of service.
-  - Used as `terms_of_service_id` in path `path` of the API call
+  - The ID of the terms of service. Example: "324234"
 - requestBody `UpdateTermOfServiceByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateTermOfServiceById method
 - headers `UpdateTermOfServiceByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateTermOfServiceById method
 
 
 ### Returns

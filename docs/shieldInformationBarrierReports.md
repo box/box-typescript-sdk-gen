@@ -1,5 +1,10 @@
 # ShieldInformationBarrierReportsManager
 
+
+- [List shield information barrier reports](#list-shield-information-barrier-reports)
+- [Create shield information barrier report](#create-shield-information-barrier-report)
+- [Get shield information barrier report by ID](#get-shield-information-barrier-report-by-id)
+
 ## List shield information barrier reports
 
 Lists shield information barrier reports with specific IDs.
@@ -14,9 +19,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetShieldInformationBarrierReportsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getShieldInformationBarrierReports method
 - headers `GetShieldInformationBarrierReportsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarrierReports method
 
 
 ### Returns
@@ -40,9 +45,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `ShieldInformationBarrierReference`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrierReport method
 - headers `CreateShieldInformationBarrierReportHeadersArg`
-  - Used as headers for the API call
+  - Headers of createShieldInformationBarrierReport method
 
 
 ### Returns
@@ -66,10 +71,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierReportId `string`
-  - The ID of the shield information barrier Report.
-  - Used as `shield_information_barrier_report_id` in path `path` of the API call
+  - The ID of the shield information barrier Report. Example: "3423"
 - headers `GetShieldInformationBarrierReportByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarrierReportById method
 
 
 ### Returns

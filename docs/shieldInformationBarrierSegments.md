@@ -1,5 +1,12 @@
 # ShieldInformationBarrierSegmentsManager
 
+
+- [Get shield information barrier segment with specified ID](#get-shield-information-barrier-segment-with-specified-id)
+- [Update shield information barrier segment with specified ID](#update-shield-information-barrier-segment-with-specified-id)
+- [Delete shield information barrier segment](#delete-shield-information-barrier-segment)
+- [List shield information barrier segments](#list-shield-information-barrier-segments)
+- [Create shield information barrier segment](#create-shield-information-barrier-segment)
+
 ## Get shield information barrier segment with specified ID
 
 Retrieves shield information barrier segment based on provided ID..
@@ -14,10 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentId `string`
-  - The ID of the shield information barrier segment.
-  - Used as `shield_information_barrier_segment_id` in path `path` of the API call
+  - The ID of the shield information barrier segment. Example: "3423"
 - headers `GetShieldInformationBarrierSegmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarrierSegmentById method
 
 
 ### Returns
@@ -41,12 +47,11 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentId `string`
-  - The ID of the shield information barrier segment.
-  - Used as `shield_information_barrier_segment_id` in path `path` of the API call
+  - The ID of the shield information barrier segment. Example: "3423"
 - requestBody `UpdateShieldInformationBarrierSegmentByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateShieldInformationBarrierSegmentById method
 - headers `UpdateShieldInformationBarrierSegmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateShieldInformationBarrierSegmentById method
 
 
 ### Returns
@@ -71,10 +76,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentId `string`
-  - The ID of the shield information barrier segment.
-  - Used as `shield_information_barrier_segment_id` in path `path` of the API call
+  - The ID of the shield information barrier segment. Example: "3423"
 - headers `DeleteShieldInformationBarrierSegmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteShieldInformationBarrierSegmentById method
 
 
 ### Returns
@@ -99,9 +103,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetShieldInformationBarrierSegmentsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getShieldInformationBarrierSegments method
 - headers `GetShieldInformationBarrierSegmentsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarrierSegments method
 
 
 ### Returns
@@ -125,9 +129,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateShieldInformationBarrierSegmentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrierSegment method
 - headers `CreateShieldInformationBarrierSegmentHeadersArg`
-  - Used as headers for the API call
+  - Headers of createShieldInformationBarrierSegment method
 
 
 ### Returns

@@ -1,5 +1,12 @@
 # TaskAssignmentsManager
 
+
+- [List task assignments](#list-task-assignments)
+- [Assign task](#assign-task)
+- [Get task assignment](#get-task-assignment)
+- [Update task assignment](#update-task-assignment)
+- [Unassign task](#unassign-task)
+
 ## List task assignments
 
 Lists all of the assignments for a given task.
@@ -14,10 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - taskId `string`
-  - The ID of the task.
-  - Used as `task_id` in path `path` of the API call
+  - The ID of the task. Example: "12345"
 - headers `GetTaskAssignmentsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTaskAssignments method
 
 
 ### Returns
@@ -45,9 +51,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateTaskAssignmentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createTaskAssignment method
 - headers `CreateTaskAssignmentHeadersArg`
-  - Used as headers for the API call
+  - Headers of createTaskAssignment method
 
 
 ### Returns
@@ -71,10 +77,9 @@ See the endpoint docs at
 ### Arguments
 
 - taskAssignmentId `string`
-  - The ID of the task assignment.
-  - Used as `task_assignment_id` in path `path` of the API call
+  - The ID of the task assignment. Example: "12345"
 - headers `GetTaskAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTaskAssignmentById method
 
 
 ### Returns
@@ -100,12 +105,11 @@ See the endpoint docs at
 ### Arguments
 
 - taskAssignmentId `string`
-  - The ID of the task assignment.
-  - Used as `task_assignment_id` in path `path` of the API call
+  - The ID of the task assignment. Example: "12345"
 - requestBody `UpdateTaskAssignmentByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateTaskAssignmentById method
 - headers `UpdateTaskAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateTaskAssignmentById method
 
 
 ### Returns
@@ -129,10 +133,9 @@ See the endpoint docs at
 ### Arguments
 
 - taskAssignmentId `string`
-  - The ID of the task assignment.
-  - Used as `task_assignment_id` in path `path` of the API call
+  - The ID of the task assignment. Example: "12345"
 - headers `DeleteTaskAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteTaskAssignmentById method
 
 
 ### Returns

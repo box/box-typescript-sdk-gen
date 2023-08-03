@@ -1,10 +1,17 @@
 # MetadataCascadePoliciesManager
 
+
+- [List metadata cascade policies](#list-metadata-cascade-policies)
+- [Create metadata cascade policy](#create-metadata-cascade-policy)
+- [Get metadata cascade policy](#get-metadata-cascade-policy)
+- [Remove metadata cascade policy](#remove-metadata-cascade-policy)
+- [Force-apply metadata cascade policy to folder](#force-apply-metadata-cascade-policy-to-folder)
+
 ## List metadata cascade policies
 
 Retrieves a list of all the metadata cascade policies
 that are applied to a given folder. This can not be used on the root
-folder with ID &#x60;0&#x60;.
+folder with ID `0`.
 
 This operation is performed by calling function `getMetadataCascadePolicies`.
 
@@ -16,9 +23,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetMetadataCascadePoliciesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getMetadataCascadePolicies method
 - headers `GetMetadataCascadePoliciesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getMetadataCascadePolicies method
 
 
 ### Returns
@@ -47,9 +54,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateMetadataCascadePolicyRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createMetadataCascadePolicy method
 - headers `CreateMetadataCascadePolicyHeadersArg`
-  - Used as headers for the API call
+  - Headers of createMetadataCascadePolicy method
 
 
 ### Returns
@@ -73,10 +80,9 @@ See the endpoint docs at
 ### Arguments
 
 - metadataCascadePolicyId `string`
-  - The ID of the metadata cascade policy.
-  - Used as `metadata_cascade_policy_id` in path `path` of the API call
+  - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
 - headers `GetMetadataCascadePolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getMetadataCascadePolicyById method
 
 
 ### Returns
@@ -100,10 +106,9 @@ See the endpoint docs at
 ### Arguments
 
 - metadataCascadePolicyId `string`
-  - The ID of the metadata cascade policy.
-  - Used as `metadata_cascade_policy_id` in path `path` of the API call
+  - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
 - headers `DeleteMetadataCascadePolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteMetadataCascadePolicyById method
 
 
 ### Returns
@@ -131,12 +136,11 @@ See the endpoint docs at
 ### Arguments
 
 - metadataCascadePolicyId `string`
-  - The ID of the cascade policy to force-apply.
-  - Used as `metadata_cascade_policy_id` in path `path` of the API call
+  - The ID of the cascade policy to force-apply. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
 - requestBody `CreateMetadataCascadePolicyApplyRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createMetadataCascadePolicyApply method
 - headers `CreateMetadataCascadePolicyApplyHeadersArg`
-  - Used as headers for the API call
+  - Headers of createMetadataCascadePolicyApply method
 
 
 ### Returns

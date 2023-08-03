@@ -1,11 +1,18 @@
 # FileVersionsManager
 
+
+- [List all file versions](#list-all-file-versions)
+- [Get file version](#get-file-version)
+- [Restore file version](#restore-file-version)
+- [Remove file version](#remove-file-version)
+- [Promote file version](#promote-file-version)
+
 ## List all file versions
 
 Retrieve a list of the past versions for a file.
 
 Versions are only tracked by Box users with premium accounts. To fetch the ID
-of the current version of a file, use the &#x60;GET /file/:id&#x60; API.
+of the current version of a file, use the `GET /file/:id` API.
 
 This operation is performed by calling function `getFileVersions`.
 
@@ -17,12 +24,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileVersionsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileVersions method
 - headers `GetFileVersionsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileVersions method
 
 
 ### Returns
@@ -48,15 +54,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
-  - The ID of the file version
-  - Used as `file_version_id` in path `path` of the API call
+  - The ID of the file version Example: "1234"
 - queryParams `GetFileVersionByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileVersionById method
 - headers `GetFileVersionByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileVersionById method
 
 
 ### Returns
@@ -73,7 +77,7 @@ any specific fields.
 ## Restore file version
 
 Restores a specific version of a file after it was deleted.
-Don&#x27;t use this endpoint to restore Box Notes,
+Don't use this endpoint to restore Box Notes,
 as it works with file formats such as PDF, DOC,
 PPTX or similar.
 
@@ -87,15 +91,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
-  - The ID of the file version
-  - Used as `file_version_id` in path `path` of the API call
+  - The ID of the file version Example: "1234"
 - requestBody `UpdateFileVersionByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFileVersionById method
 - headers `UpdateFileVersionByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateFileVersionById method
 
 
 ### Returns
@@ -121,13 +123,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
-  - The ID of the file version
-  - Used as `file_version_id` in path `path` of the API call
+  - The ID of the file version Example: "1234"
 - headers `DeleteFileVersionByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteFileVersionById method
 
 
 ### Returns
@@ -147,13 +147,13 @@ promote one of the older versions to the top of the version history.
 
 This creates a new copy of the old version and puts it at the
 top of the versions history. The file will have the exact same contents
-as the older version, with the the same hash digest, &#x60;etag&#x60;, and
+as the older version, with the the same hash digest, `etag`, and
 name as the original.
 
 Other properties such as comments do not get updated to their
 former values.
 
-Don&#x27;t use this endpoint to restore Box Notes,
+Don't use this endpoint to restore Box Notes,
 as it works with file formats such as PDF, DOC,
 PPTX or similar.
 
@@ -167,14 +167,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `PromoteFileVersionRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of promoteFileVersion method
 - queryParams `PromoteFileVersionQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of promoteFileVersion method
 - headers `PromoteFileVersionHeadersArg`
-  - Used as headers for the API call
+  - Headers of promoteFileVersion method
 
 
 ### Returns

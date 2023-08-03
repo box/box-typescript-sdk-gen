@@ -1,5 +1,10 @@
 # TermsOfServiceUserStatusesManager
 
+
+- [List terms of service user statuses](#list-terms-of-service-user-statuses)
+- [Create terms of service status for new user](#create-terms-of-service-status-for-new-user)
+- [Update terms of service status for existing user](#update-terms-of-service-status-for-existing-user)
+
 ## List terms of service user statuses
 
 Retrieves an overview of users and their status for a
@@ -16,9 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetTermOfServiceUserStatusesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getTermOfServiceUserStatuses method
 - headers `GetTermOfServiceUserStatusesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTermOfServiceUserStatuses method
 
 
 ### Returns
@@ -42,9 +47,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateTermOfServiceUserStatusRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createTermOfServiceUserStatus method
 - headers `CreateTermOfServiceUserStatusHeadersArg`
-  - Used as headers for the API call
+  - Headers of createTermOfServiceUserStatus method
 
 
 ### Returns
@@ -68,12 +73,11 @@ See the endpoint docs at
 ### Arguments
 
 - termsOfServiceUserStatusId `string`
-  - The ID of the terms of service status.
-  - Used as `terms_of_service_user_status_id` in path `path` of the API call
+  - The ID of the terms of service status. Example: "324234"
 - requestBody `UpdateTermOfServiceUserStatusByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateTermOfServiceUserStatusById method
 - headers `UpdateTermOfServiceUserStatusByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateTermOfServiceUserStatusById method
 
 
 ### Returns

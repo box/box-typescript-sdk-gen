@@ -1,9 +1,17 @@
 # UsersManager
 
+
+- [List enterprise users](#list-enterprise-users)
+- [Create user](#create-user)
+- [Get current user](#get-current-user)
+- [Get user](#get-user)
+- [Update user](#update-user)
+- [Delete user](#delete-user)
+
 ## List enterprise users
 
-Returns a list of all users for the Enterprise along with their &#x60;user_id&#x60;,
-&#x60;public_name&#x60;, and &#x60;login&#x60;.
+Returns a list of all users for the Enterprise along with their `user_id`,
+`public_name`, and `login`.
 
 The application and the authenticated user need to
 have the permission to look up users in the entire
@@ -22,9 +30,9 @@ await client.users.getUsers()
 ### Arguments
 
 - queryParams `GetUsersQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getUsers method
 - headers `GetUsersHeadersArg`
-  - Used as headers for the API call
+  - Headers of getUsers method
 
 
 ### Returns
@@ -53,11 +61,11 @@ await client.users.createUser({ name: userName, login: userLogin, isPlatformAcce
 ### Arguments
 
 - requestBody `CreateUserRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createUser method
 - queryParams `CreateUserQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of createUser method
 - headers `CreateUserHeadersArg`
-  - Used as headers for the API call
+  - Headers of createUser method
 
 
 ### Returns
@@ -78,7 +86,7 @@ In the case of a JWT, server-side authenticated application
 this will be the service account that belongs to the application
 by default.
 
-Use the &#x60;As-User&#x60; header to change who this API call is made on behalf of.
+Use the `As-User` header to change who this API call is made on behalf of.
 
 This operation is performed by calling function `getUserMe`.
 
@@ -93,9 +101,9 @@ await client.users.getUserMe()
 ### Arguments
 
 - queryParams `GetUserMeQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getUserMe method
 - headers `GetUserMeHeadersArg`
-  - Used as headers for the API call
+  - Headers of getUserMe method
 
 
 ### Returns
@@ -132,12 +140,11 @@ await client.users.getUserById(user.id)
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - queryParams `GetUserByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getUserById method
 - headers `GetUserByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getUserById method
 
 
 ### Returns
@@ -171,14 +178,13 @@ await client.users.updateUserById(user.id, { name: updatedUserName } satisfies U
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - requestBody `UpdateUserByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateUserById method
 - queryParams `UpdateUserByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateUserById method
 - headers `UpdateUserByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateUserById method
 
 
 ### Returns
@@ -192,7 +198,7 @@ Returns the updated user object.
 
 Deletes a user. By default this will fail if the user
 still owns any content. Move their owned content first
-before proceeding, or use the &#x60;force&#x60; field to delete
+before proceeding, or use the `force` field to delete
 the user and their files.
 
 This operation is performed by calling function `deleteUserById`.
@@ -208,12 +214,11 @@ await client.users.deleteUserById(user.id)
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - queryParams `DeleteUserByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of deleteUserById method
 - headers `DeleteUserByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteUserById method
 
 
 ### Returns

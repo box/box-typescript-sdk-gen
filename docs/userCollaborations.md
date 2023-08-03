@@ -1,5 +1,11 @@
 # UserCollaborationsManager
 
+
+- [Get collaboration](#get-collaboration)
+- [Update collaboration](#update-collaboration)
+- [Remove collaboration](#remove-collaboration)
+- [Create collaboration](#create-collaboration)
+
 ## Get collaboration
 
 Retrieves a single collaboration.
@@ -14,12 +20,11 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration
-  - Used as `collaboration_id` in path `path` of the API call
+  - The ID of the collaboration Example: "1234"
 - queryParams `GetCollaborationByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getCollaborationById method
 - headers `GetCollaborationByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getCollaborationById method
 
 
 ### Returns
@@ -45,21 +50,20 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration
-  - Used as `collaboration_id` in path `path` of the API call
+  - The ID of the collaboration Example: "1234"
 - requestBody `UpdateCollaborationByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateCollaborationById method
 - headers `UpdateCollaborationByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateCollaborationById method
 
 
 ### Returns
 
 This function returns a value of type `Collaboration`.
 
-Returns an updated collaboration object unless the owner has changed.If the role is changed to &#x60;owner&#x60;, the collaboration is deleted
-and a new collaboration is created. The previous &#x60;owner&#x60; of
-the old collaboration will be a &#x60;co-owner&#x60; on the new collaboration.
+Returns an updated collaboration object unless the owner has changed.If the role is changed to `owner`, the collaboration is deleted
+and a new collaboration is created. The previous `owner` of
+the old collaboration will be a `co-owner` on the new collaboration.
 
 
 ## Remove collaboration
@@ -76,10 +80,9 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration
-  - Used as `collaboration_id` in path `path` of the API call
+  - The ID of the collaboration Example: "1234"
 - headers `DeleteCollaborationByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteCollaborationById method
 
 
 ### Returns
@@ -99,13 +102,13 @@ Collaborations can be created using email address, user IDs, or a
 group IDs.
 
 If a collaboration is being created with a group, access to
-this endpoint is dependent on the group&#x27;s ability to be invited.
+this endpoint is dependent on the group's ability to be invited.
 
-If collaboration is in &#x60;pending&#x60; status, the following fields
+If collaboration is in `pending` status, the following fields
 are redacted:
-- &#x60;login&#x60; and &#x60;name&#x60; are hidden if a collaboration was created
-using &#x60;user_id&#x60;,
--  &#x60;name&#x60; is hidden if a collaboration was created using &#x60;login&#x60;.
+- `login` and `name` are hidden if a collaboration was created
+using `user_id`,
+-  `name` is hidden if a collaboration was created using `login`.
 
 This operation is performed by calling function `createCollaboration`.
 
@@ -117,11 +120,11 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateCollaborationRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createCollaboration method
 - queryParams `CreateCollaborationQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of createCollaboration method
 - headers `CreateCollaborationHeadersArg`
-  - Used as headers for the API call
+  - Headers of createCollaboration method
 
 
 ### Returns

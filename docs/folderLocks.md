@@ -1,5 +1,10 @@
 # FolderLocksManager
 
+
+- [List folder locks](#list-folder-locks)
+- [Create folder lock](#create-folder-lock)
+- [Delete folder lock](#delete-folder-lock)
+
 ## List folder locks
 
 Retrieves folder lock details for a given folder.
@@ -17,9 +22,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetFolderLocksQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFolderLocks method
 - headers `GetFolderLocksHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFolderLocks method
 
 
 ### Returns
@@ -48,9 +53,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateFolderLockRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFolderLock method
 - headers `CreateFolderLockHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFolderLock method
 
 
 ### Returns
@@ -78,10 +83,9 @@ See the endpoint docs at
 ### Arguments
 
 - folderLockId `string`
-  - The ID of the folder lock.
-  - Used as `folder_lock_id` in path `path` of the API call
+  - The ID of the folder lock. Example: "12345"
 - headers `DeleteFolderLockByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteFolderLockById method
 
 
 ### Returns

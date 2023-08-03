@@ -1,5 +1,11 @@
 # FileRequestsManager
 
+
+- [Get file request](#get-file-request)
+- [Update file request](#update-file-request)
+- [Delete file request](#delete-file-request)
+- [Copy file request](#copy-file-request)
+
 ## Get file request
 
 Retrieves the information about a file request.
@@ -14,10 +20,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileRequestId `string`
-  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/filerequest/123&#x60; the &#x60;file_request_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_request_id` in path `path` of the API call
+  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - headers `GetFileRequestByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileRequestById method
 
 
 ### Returns
@@ -42,12 +47,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileRequestId `string`
-  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/filerequest/123&#x60; the &#x60;file_request_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_request_id` in path `path` of the API call
+  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - requestBody `FileRequestUpdateRequest`
-  - Used as requestBody for the API call
+  - Request body of updateFileRequestById method
 - headers `UpdateFileRequestByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateFileRequestById method
 
 
 ### Returns
@@ -71,10 +75,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileRequestId `string`
-  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/filerequest/123&#x60; the &#x60;file_request_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_request_id` in path `path` of the API call
+  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - headers `DeleteFileRequestByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteFileRequestById method
 
 
 ### Returns
@@ -100,12 +103,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileRequestId `string`
-  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/filerequest/123&#x60; the &#x60;file_request_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_request_id` in path `path` of the API call
+  - The unique identifier that represent a file request.  The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - requestBody `FileRequestCopyRequest`
-  - Used as requestBody for the API call
+  - Request body of createFileRequestCopy method
 - headers `CreateFileRequestCopyHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFileRequestCopy method
 
 
 ### Returns

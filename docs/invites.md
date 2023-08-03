@@ -1,5 +1,9 @@
 # InvitesManager
 
+
+- [Create user invite](#create-user-invite)
+- [Get user invite status](#get-user-invite-status)
+
 ## Create user invite
 
 Invites an existing external user to join an enterprise.
@@ -9,7 +13,7 @@ must already have a Box account. Once invited, the user will receive an
 email and are prompted to accept the invitation within the
 Box web application.
 
-This method requires the &quot;Manage An Enterprise&quot; scope enabled for
+This method requires the "Manage An Enterprise" scope enabled for
 the application, which can be enabled within the developer console.
 
 This operation is performed by calling function `createInvite`.
@@ -22,11 +26,11 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateInviteRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createInvite method
 - queryParams `CreateInviteQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of createInvite method
 - headers `CreateInviteHeadersArg`
-  - Used as headers for the API call
+  - Headers of createInvite method
 
 
 ### Returns
@@ -50,12 +54,11 @@ See the endpoint docs at
 ### Arguments
 
 - inviteId `string`
-  - The ID of an invite.
-  - Used as `invite_id` in path `path` of the API call
+  - The ID of an invite. Example: "213723"
 - queryParams `GetInviteByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getInviteById method
 - headers `GetInviteByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getInviteById method
 
 
 ### Returns

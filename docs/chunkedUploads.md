@@ -2,6 +2,14 @@
 
 This is a manager for chunked uploads (allowed for files at least 20MB).
 
+- [Create upload session](#create-upload-session)
+- [Create upload session for existing file](#create-upload-session-for-existing-file)
+- [Get upload session](#get-upload-session)
+- [Upload part of file](#upload-part-of-file)
+- [Remove upload session](#remove-upload-session)
+- [List parts](#list-parts)
+- [Commit upload session](#commit-upload-session)
+
 ## Create upload session
 
 Creates an upload session for a new file.
@@ -19,9 +27,9 @@ await client.chunkedUploads.createFileUploadSession({ fileName: fileName, fileSi
 ### Arguments
 
 - requestBody `CreateFileUploadSessionRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFileUploadSession method
 - headers `CreateFileUploadSessionHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFileUploadSession method
 
 
 ### Returns
@@ -45,12 +53,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileUploadSessionForExistingFileRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFileUploadSessionForExistingFile method
 - headers `CreateFileUploadSessionForExistingFileHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFileUploadSessionForExistingFile method
 
 
 ### Returns
@@ -77,10 +84,9 @@ await client.chunkedUploads.getFileUploadSessionById(uploadSessionId)
 ### Arguments
 
 - uploadSessionId `string`
-  - The ID of the upload session.
-  - Used as `upload_session_id` in path `path` of the API call
+  - The ID of the upload session. Example: "D5E3F7A"
 - headers `GetFileUploadSessionByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileUploadSessionById method
 
 
 ### Returns
@@ -107,12 +113,11 @@ await client.chunkedUploads.uploadFilePart(uploadSessionId, uploadedChunk, new U
 ### Arguments
 
 - uploadSessionId `string`
-  - The ID of the upload session.
-  - Used as `upload_session_id` in path `path` of the API call
+  - The ID of the upload session. Example: "D5E3F7A"
 - requestBody `ByteStream`
-  - Used as requestBody for the API call
+  - Request body of uploadFilePart method
 - headers `UploadFilePartHeadersArg`
-  - Used as headers for the API call
+  - Headers of uploadFilePart method
 
 
 ### Returns
@@ -138,10 +143,9 @@ See the endpoint docs at
 ### Arguments
 
 - uploadSessionId `string`
-  - The ID of the upload session.
-  - Used as `upload_session_id` in path `path` of the API call
+  - The ID of the upload session. Example: "D5E3F7A"
 - headers `DeleteFileUploadSessionByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteFileUploadSessionById method
 
 
 ### Returns
@@ -170,12 +174,11 @@ await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId)
 ### Arguments
 
 - uploadSessionId `string`
-  - The ID of the upload session.
-  - Used as `upload_session_id` in path `path` of the API call
+  - The ID of the upload session. Example: "D5E3F7A"
 - queryParams `GetFileUploadSessionPartsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileUploadSessionParts method
 - headers `GetFileUploadSessionPartsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileUploadSessionParts method
 
 
 ### Returns
@@ -203,12 +206,11 @@ await client.chunkedUploads.createFileUploadSessionCommit(uploadSessionId, { par
 ### Arguments
 
 - uploadSessionId `string`
-  - The ID of the upload session.
-  - Used as `upload_session_id` in path `path` of the API call
+  - The ID of the upload session. Example: "D5E3F7A"
 - requestBody `CreateFileUploadSessionCommitRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFileUploadSessionCommit method
 - headers `CreateFileUploadSessionCommitHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFileUploadSessionCommit method
 
 
 ### Returns

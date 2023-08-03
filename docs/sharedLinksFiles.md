@@ -1,5 +1,12 @@
 # SharedLinksFilesManager
 
+
+- [Find file for shared link](#find-file-for-shared-link)
+- [Get shared link for file](#get-shared-link-for-file)
+- [Add shared link to file](#add-shared-link-to-file)
+- [Update shared link on file](#update-shared-link-on-file)
+- [Remove shared link from file](#remove-shared-link-from-file)
+
 ## Find file for shared link
 
 Returns the file represented by a shared link.
@@ -10,8 +17,8 @@ which can originate within the current enterprise or within another.
 This endpoint allows an application to retrieve information about a
 shared file when only given a shared link.
 
-The &#x60;shared_link_permission_options&#x60; array field can be returned
-by requesting it in the &#x60;fields&#x60; query parameter.
+The `shared_link_permission_options` array field can be returned
+by requesting it in the `fields` query parameter.
 
 This operation is performed by calling function `getSharedItems`.
 
@@ -23,9 +30,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetSharedItemsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getSharedItems method
 - headers `GetSharedItemsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSharedItems method
 
 
 ### Returns
@@ -50,12 +57,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileGetSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileGetSharedLink method
 - headers `GetFileGetSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileGetSharedLink method
 
 
 ### Returns
@@ -80,14 +86,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileAddSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFileAddSharedLink method
 - queryParams `UpdateFileAddSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFileAddSharedLink method
 - headers `UpdateFileAddSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateFileAddSharedLink method
 
 
 ### Returns
@@ -112,14 +117,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileUpdateSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFileUpdateSharedLink method
 - queryParams `UpdateFileUpdateSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFileUpdateSharedLink method
 - headers `UpdateFileUpdateSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateFileUpdateSharedLink method
 
 
 ### Returns
@@ -144,14 +148,13 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileRemoveSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFileRemoveSharedLink method
 - queryParams `UpdateFileRemoveSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFileRemoveSharedLink method
 - headers `UpdateFileRemoveSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateFileRemoveSharedLink method
 
 
 ### Returns

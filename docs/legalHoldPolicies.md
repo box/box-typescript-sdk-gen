@@ -1,5 +1,12 @@
 # LegalHoldPoliciesManager
 
+
+- [List all legal hold policies](#list-all-legal-hold-policies)
+- [Create legal hold policy](#create-legal-hold-policy)
+- [Get legal hold policy](#get-legal-hold-policy)
+- [Update legal hold policy](#update-legal-hold-policy)
+- [Remove legal hold policy](#remove-legal-hold-policy)
+
 ## List all legal hold policies
 
 Retrieves a list of legal hold policies that belong to
@@ -15,9 +22,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetLegalHoldPoliciesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getLegalHoldPolicies method
 - headers `GetLegalHoldPoliciesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicies method
 
 
 ### Returns
@@ -41,9 +48,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateLegalHoldPolicyRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createLegalHoldPolicy method
 - headers `CreateLegalHoldPolicyHeadersArg`
-  - Used as headers for the API call
+  - Headers of createLegalHoldPolicy method
 
 
 ### Returns
@@ -67,10 +74,9 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy
-  - Used as `legal_hold_policy_id` in path `path` of the API call
+  - The ID of the legal hold policy Example: "324432"
 - headers `GetLegalHoldPolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicyById method
 
 
 ### Returns
@@ -94,12 +100,11 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy
-  - Used as `legal_hold_policy_id` in path `path` of the API call
+  - The ID of the legal hold policy Example: "324432"
 - requestBody `UpdateLegalHoldPolicyByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateLegalHoldPolicyById method
 - headers `UpdateLegalHoldPolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateLegalHoldPolicyById method
 
 
 ### Returns
@@ -126,10 +131,9 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy
-  - Used as `legal_hold_policy_id` in path `path` of the API call
+  - The ID of the legal hold policy Example: "324432"
 - headers `DeleteLegalHoldPolicyByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteLegalHoldPolicyById method
 
 
 ### Returns

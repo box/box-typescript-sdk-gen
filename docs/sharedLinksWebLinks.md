@@ -1,5 +1,12 @@
 # SharedLinksWebLinksManager
 
+
+- [Find web link for shared link](#find-web-link-for-shared-link)
+- [Get shared link for web link](#get-shared-link-for-web-link)
+- [Add shared link to web link](#add-shared-link-to-web-link)
+- [Update shared link on web link](#update-shared-link-on-web-link)
+- [Remove shared link from web link](#remove-shared-link-from-web-link)
+
 ## Find web link for shared link
 
 Returns the web link represented by a shared link.
@@ -20,9 +27,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetSharedItemWebLinksQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getSharedItemWebLinks method
 - headers `GetSharedItemWebLinksHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSharedItemWebLinks method
 
 
 ### Returns
@@ -47,12 +54,11 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - queryParams `GetWebLinkGetSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getWebLinkGetSharedLink method
 - headers `GetWebLinkGetSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of getWebLinkGetSharedLink method
 
 
 ### Returns
@@ -77,14 +83,13 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - requestBody `UpdateWebLinkAddSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateWebLinkAddSharedLink method
 - queryParams `UpdateWebLinkAddSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateWebLinkAddSharedLink method
 - headers `UpdateWebLinkAddSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateWebLinkAddSharedLink method
 
 
 ### Returns
@@ -109,14 +114,13 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - requestBody `UpdateWebLinkUpdateSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateWebLinkUpdateSharedLink method
 - queryParams `UpdateWebLinkUpdateSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateWebLinkUpdateSharedLink method
 - headers `UpdateWebLinkUpdateSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateWebLinkUpdateSharedLink method
 
 
 ### Returns
@@ -141,14 +145,13 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - requestBody `UpdateWebLinkRemoveSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateWebLinkRemoveSharedLink method
 - queryParams `UpdateWebLinkRemoveSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateWebLinkRemoveSharedLink method
 - headers `UpdateWebLinkRemoveSharedLinkHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateWebLinkRemoveSharedLink method
 
 
 ### Returns

@@ -1,6 +1,11 @@
 # EmailAliasesManager
 
-## List user&#x27;s email aliases
+
+- [List user's email aliases](#list-users-email-aliases)
+- [Create email alias](#create-email-alias)
+- [Remove email alias](#remove-email-alias)
+
+## List user's email aliases
 
 Retrieves all email aliases for a user. The collection
 does not include the primary login for the user.
@@ -15,10 +20,9 @@ See the endpoint docs at
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - headers `GetUserEmailAliasesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getUserEmailAliases method
 
 
 ### Returns
@@ -42,12 +46,11 @@ See the endpoint docs at
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - requestBody `CreateUserEmailAliasRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createUserEmailAlias method
 - headers `CreateUserEmailAliasHeadersArg`
-  - Used as headers for the API call
+  - Headers of createUserEmailAlias method
 
 
 ### Returns
@@ -71,13 +74,11 @@ See the endpoint docs at
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - emailAliasId `string`
-  - The ID of the email alias.
-  - Used as `email_alias_id` in path `path` of the API call
+  - The ID of the email alias. Example: "23432"
 - headers `DeleteUserEmailAliasByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteUserEmailAliasById method
 
 
 ### Returns

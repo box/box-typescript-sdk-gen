@@ -1,5 +1,11 @@
 # ShieldInformationBarriersManager
 
+
+- [Get shield information barrier with specified ID](#get-shield-information-barrier-with-specified-id)
+- [Add changed status of shield information barrier with specified ID](#add-changed-status-of-shield-information-barrier-with-specified-id)
+- [List shield information barriers](#list-shield-information-barriers)
+- [Create shield information barrier](#create-shield-information-barrier)
+
 ## Get shield information barrier with specified ID
 
 Get shield information barrier based on provided ID..
@@ -14,10 +20,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierId `string`
-  - The ID of the shield information barrier.
-  - Used as `shield_information_barrier_id` in path `path` of the API call
+  - The ID of the shield information barrier. Example: "1910967"
 - headers `GetShieldInformationBarrierByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarrierById method
 
 
 ### Returns
@@ -41,9 +46,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateShieldInformationBarrierChangeStatusRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrierChangeStatus method
 - headers `CreateShieldInformationBarrierChangeStatusHeadersArg`
-  - Used as headers for the API call
+  - Headers of createShieldInformationBarrierChangeStatus method
 
 
 ### Returns
@@ -68,9 +73,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetShieldInformationBarriersQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getShieldInformationBarriers method
 - headers `GetShieldInformationBarriersHeadersArg`
-  - Used as headers for the API call
+  - Headers of getShieldInformationBarriers method
 
 
 ### Returns
@@ -98,9 +103,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `ShieldInformationBarrier`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrier method
 - headers `CreateShieldInformationBarrierHeadersArg`
-  - Used as headers for the API call
+  - Headers of createShieldInformationBarrier method
 
 
 ### Returns

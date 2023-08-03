@@ -1,5 +1,12 @@
 # CommentsManager
 
+
+- [List file comments](#list-file-comments)
+- [Get comment](#get-comment)
+- [Update comment](#update-comment)
+- [Remove comment](#remove-comment)
+- [Create comment](#create-comment)
+
 ## List file comments
 
 Retrieves a list of comments for a file.
@@ -17,12 +24,11 @@ await client.comments.getFileComments(fileId)
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileCommentsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileComments method
 - headers `GetFileCommentsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileComments method
 
 
 ### Returns
@@ -51,12 +57,11 @@ await client.comments.getCommentById(newComment.id)
 ### Arguments
 
 - commentId `string`
-  - The ID of the comment.
-  - Used as `comment_id` in path `path` of the API call
+  - The ID of the comment. Example: "12345"
 - queryParams `GetCommentByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getCommentById method
 - headers `GetCommentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getCommentById method
 
 
 ### Returns
@@ -83,14 +88,13 @@ await client.comments.updateCommentById(newReplyComment.id, { message: newMessag
 ### Arguments
 
 - commentId `string`
-  - The ID of the comment.
-  - Used as `comment_id` in path `path` of the API call
+  - The ID of the comment. Example: "12345"
 - requestBody `UpdateCommentByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateCommentById method
 - queryParams `UpdateCommentByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateCommentById method
 - headers `UpdateCommentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateCommentById method
 
 
 ### Returns
@@ -117,10 +121,9 @@ await client.comments.deleteCommentById(newComment.id)
 ### Arguments
 
 - commentId `string`
-  - The ID of the comment.
-  - Used as `comment_id` in path `path` of the API call
+  - The ID of the comment. Example: "12345"
 - headers `DeleteCommentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteCommentById method
 
 
 ### Returns
@@ -142,17 +145,17 @@ See the endpoint docs at
 
 <!-- sample post_comments -->
 ```ts
-await client.comments.createComment({ message: message, item: { id: newComment.id, type: &quot;comment&quot; as CreateCommentRequestBodyArgItemFieldTypeField } satisfies CreateCommentRequestBodyArgItemField } satisfies CreateCommentRequestBodyArg)
+await client.comments.createComment({ message: message, item: { id: newComment.id, type: "comment" as CreateCommentRequestBodyArgItemFieldTypeField } satisfies CreateCommentRequestBodyArgItemField } satisfies CreateCommentRequestBodyArg)
 ```
 
 ### Arguments
 
 - requestBody `CreateCommentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createComment method
 - queryParams `CreateCommentQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of createComment method
 - headers `CreateCommentHeadersArg`
-  - Used as headers for the API call
+  - Headers of createComment method
 
 
 ### Returns

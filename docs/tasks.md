@@ -1,5 +1,12 @@
 # TasksManager
 
+
+- [List tasks on file](#list-tasks-on-file)
+- [Create task](#create-task)
+- [Get task](#get-task)
+- [Update task](#update-task)
+- [Remove task](#remove-task)
+
 ## List tasks on file
 
 Retrieves a list of all the tasks for a file. This
@@ -15,10 +22,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileTasksHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileTasks method
 
 
 ### Returns
@@ -46,9 +52,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateTaskRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createTask method
 - headers `CreateTaskHeadersArg`
-  - Used as headers for the API call
+  - Headers of createTask method
 
 
 ### Returns
@@ -72,10 +78,9 @@ See the endpoint docs at
 ### Arguments
 
 - taskId `string`
-  - The ID of the task.
-  - Used as `task_id` in path `path` of the API call
+  - The ID of the task. Example: "12345"
 - headers `GetTaskByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getTaskById method
 
 
 ### Returns
@@ -87,7 +92,7 @@ Returns a task object.
 
 ## Update task
 
-Updates a task. This can be used to update a task&#x27;s configuration, or to
+Updates a task. This can be used to update a task's configuration, or to
 update its completion state.
 
 This operation is performed by calling function `updateTaskById`.
@@ -100,12 +105,11 @@ See the endpoint docs at
 ### Arguments
 
 - taskId `string`
-  - The ID of the task.
-  - Used as `task_id` in path `path` of the API call
+  - The ID of the task. Example: "12345"
 - requestBody `UpdateTaskByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateTaskById method
 - headers `UpdateTaskByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateTaskById method
 
 
 ### Returns
@@ -129,10 +133,9 @@ See the endpoint docs at
 ### Arguments
 
 - taskId `string`
-  - The ID of the task.
-  - Used as `task_id` in path `path` of the API call
+  - The ID of the task. Example: "12345"
 - headers `DeleteTaskByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteTaskById method
 
 
 ### Returns

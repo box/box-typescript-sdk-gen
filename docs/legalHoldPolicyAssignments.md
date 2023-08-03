@@ -1,5 +1,13 @@
 # LegalHoldPolicyAssignmentsManager
 
+
+- [List legal hold policy assignments](#list-legal-hold-policy-assignments)
+- [Assign legal hold policy](#assign-legal-hold-policy)
+- [Get legal hold policy assignment](#get-legal-hold-policy-assignment)
+- [Unassign legal hold policy](#unassign-legal-hold-policy)
+- [List current file versions for legal hold policy assignment](#list-current-file-versions-for-legal-hold-policy-assignment)
+- [List previous file versions for legal hold policy assignment](#list-previous-file-versions-for-legal-hold-policy-assignment)
+
 ## List legal hold policy assignments
 
 Retrieves a list of items a legal hold policy has been assigned to.
@@ -14,9 +22,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetLegalHoldPolicyAssignmentsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getLegalHoldPolicyAssignments method
 - headers `GetLegalHoldPolicyAssignmentsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicyAssignments method
 
 
 ### Returns
@@ -40,9 +48,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateLegalHoldPolicyAssignmentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createLegalHoldPolicyAssignment method
 - headers `CreateLegalHoldPolicyAssignmentHeadersArg`
-  - Used as headers for the API call
+  - Headers of createLegalHoldPolicyAssignment method
 
 
 ### Returns
@@ -66,10 +74,9 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment
-  - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+  - The ID of the legal hold policy assignment Example: "753465"
 - headers `GetLegalHoldPolicyAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicyAssignmentById method
 
 
 ### Returns
@@ -96,10 +103,9 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment
-  - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+  - The ID of the legal hold policy assignment Example: "753465"
 - headers `DeleteLegalHoldPolicyAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteLegalHoldPolicyAssignmentById method
 
 
 ### Returns
@@ -116,17 +122,17 @@ Get a list of current file versions for a legal hold
 assignment.
 
 In some cases you may want to get previous file versions instead. In these
-cases, use the &#x60;GET  /legal_hold_policy_assignments/:id/file_versions_on_hold&#x60;
+cases, use the `GET  /legal_hold_policy_assignments/:id/file_versions_on_hold`
 API instead to return any previous versions of a file for this legal hold
 policy assignment.
 
 Due to ongoing re-architecture efforts this API might not return all file
 versions held for this policy ID. Instead, this API will only return the
-latest file version held in the newly developed architecture. The &#x60;GET
-/file_version_legal_holds&#x60; API can be used to fetch current and past versions
+latest file version held in the newly developed architecture. The `GET
+/file_version_legal_holds` API can be used to fetch current and past versions
 of files held within the legacy architecture.
 
-The &#x60;GET /legal_hold_policy_assignments?policy_id&#x3D;{id}&#x60; API can be used to
+The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
 find a list of policy assignments for a given policy ID.
 
 This operation is performed by calling function `getLegalHoldPolicyAssignmentFileOnHold`.
@@ -139,12 +145,11 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment
-  - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+  - The ID of the legal hold policy assignment Example: "753465"
 - queryParams `GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getLegalHoldPolicyAssignmentFileOnHold method
 - headers `GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicyAssignmentFileOnHold method
 
 
 ### Returns
@@ -161,17 +166,17 @@ Get a list of previous file versions for a legal hold
 assignment.
 
 In some cases you may only need the latest file versions instead. In these
-cases, use the &#x60;GET  /legal_hold_policy_assignments/:id/files_on_hold&#x60; API
+cases, use the `GET  /legal_hold_policy_assignments/:id/files_on_hold` API
 instead to return any current (latest) versions of a file for this legal hold
 policy assignment.
 
 Due to ongoing re-architecture efforts this API might not return all files
 held for this policy ID. Instead, this API will only return past file versions
-held in the newly developed architecture. The &#x60;GET /file_version_legal_holds&#x60;
+held in the newly developed architecture. The `GET /file_version_legal_holds`
 API can be used to fetch current and past versions of files held within the
 legacy architecture.
 
-The &#x60;GET /legal_hold_policy_assignments?policy_id&#x3D;{id}&#x60; API can be used to
+The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
 find a list of policy assignments for a given policy ID.
 
 This operation is performed by calling function `getLegalHoldPolicyAssignmentFileVersionOnHold`.
@@ -184,12 +189,11 @@ See the endpoint docs at
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment
-  - Used as `legal_hold_policy_assignment_id` in path `path` of the API call
+  - The ID of the legal hold policy assignment Example: "753465"
 - queryParams `GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getLegalHoldPolicyAssignmentFileVersionOnHold method
 - headers `GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg`
-  - Used as headers for the API call
+  - Headers of getLegalHoldPolicyAssignmentFileVersionOnHold method
 
 
 ### Returns

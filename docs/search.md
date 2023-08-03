@@ -1,5 +1,10 @@
 # SearchManager
 
+
+- [Query files/folders by metadata](#query-files-folders-by-metadata)
+- [List metadata query indices](#list-metadata-query-indices)
+- [Search for content](#search-for-content)
+
 ## Query files/folders by metadata
 
 Create a search using SQL-like syntax to return items that match specific
@@ -7,7 +12,7 @@ metadata.
 
 By default, this endpoint returns only the most basic info about the items for
 which the query matches. To get additional fields for each item, including any
-of the metadata, use the &#x60;fields&#x60; attribute in the query.
+of the metadata, use the `fields` attribute in the query.
 
 This operation is performed by calling function `createMetadataQueryExecuteRead`.
 
@@ -19,9 +24,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `MetadataQuery`
-  - Used as requestBody for the API call
+  - Request body of createMetadataQueryExecuteRead method
 - headers `CreateMetadataQueryExecuteReadHeadersArg`
-  - Used as headers for the API call
+  - Headers of createMetadataQueryExecuteRead method
 
 
 ### Returns
@@ -45,9 +50,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetMetadataQueryIndicesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getMetadataQueryIndices method
 - headers `GetMetadataQueryIndicesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getMetadataQueryIndices method
 
 
 ### Returns
@@ -72,9 +77,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetSearchQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getSearch method
 - headers `GetSearchHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSearch method
 
 
 ### Returns
@@ -82,6 +87,6 @@ See the endpoint docs at
 This function returns a value of type `SearchResultsOrSearchResultsWithSharedLinks`.
 
 Returns a collection of search results. If there are no matching
-search results, the &#x60;entries&#x60; array will be empty.
+search results, the `entries` array will be empty.
 
 

@@ -1,5 +1,8 @@
 # RecentItemsManager
 
+
+- [List recently accessed items](#list-recently-accessed-items)
+
 ## List recently accessed items
 
 Returns information about the recent items accessed
@@ -16,9 +19,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetRecentItemsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getRecentItems method
 - headers `GetRecentItemsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getRecentItems method
 
 
 ### Returns

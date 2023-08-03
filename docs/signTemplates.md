@@ -1,5 +1,9 @@
 # SignTemplatesManager
 
+
+- [List Box Sign templates](#list-box-sign-templates)
+- [Get Box Sign template by ID](#get-box-sign-template-by-id)
+
 ## List Box Sign templates
 
 Gets Box Sign templates created by a user.
@@ -14,9 +18,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetSignTemplatesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getSignTemplates method
 - headers `GetSignTemplatesHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSignTemplates method
 
 
 ### Returns
@@ -40,10 +44,9 @@ See the endpoint docs at
 ### Arguments
 
 - templateId `string`
-  - The ID of a Box Sign template.
-  - Used as `template_id` in path `path` of the API call
+  - The ID of a Box Sign template. Example: "123075213-7d117509-8f05-42e4-a5ef-5190a319d41d"
 - headers `GetSignTemplateByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSignTemplateById method
 
 
 ### Returns

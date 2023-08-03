@@ -1,5 +1,12 @@
 # StoragePolicyAssignmentsManager
 
+
+- [List storage policy assignments](#list-storage-policy-assignments)
+- [Assign storage policy](#assign-storage-policy)
+- [Get storage policy assignment](#get-storage-policy-assignment)
+- [Update storage policy assignment](#update-storage-policy-assignment)
+- [Unassign storage policy](#unassign-storage-policy)
+
 ## List storage policy assignments
 
 Fetches all the storage policy assignment for an enterprise or user.
@@ -14,9 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetStoragePolicyAssignmentsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getStoragePolicyAssignments method
 - headers `GetStoragePolicyAssignmentsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getStoragePolicyAssignments method
 
 
 ### Returns
@@ -41,9 +48,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateStoragePolicyAssignmentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createStoragePolicyAssignment method
 - headers `CreateStoragePolicyAssignmentHeadersArg`
-  - Used as headers for the API call
+  - Headers of createStoragePolicyAssignment method
 
 
 ### Returns
@@ -67,10 +74,9 @@ See the endpoint docs at
 ### Arguments
 
 - storagePolicyAssignmentId `string`
-  - The ID of the storage policy assignment.
-  - Used as `storage_policy_assignment_id` in path `path` of the API call
+  - The ID of the storage policy assignment. Example: "932483"
 - headers `GetStoragePolicyAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getStoragePolicyAssignmentById method
 
 
 ### Returns
@@ -94,12 +100,11 @@ See the endpoint docs at
 ### Arguments
 
 - storagePolicyAssignmentId `string`
-  - The ID of the storage policy assignment.
-  - Used as `storage_policy_assignment_id` in path `path` of the API call
+  - The ID of the storage policy assignment. Example: "932483"
 - requestBody `UpdateStoragePolicyAssignmentByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateStoragePolicyAssignmentById method
 - headers `UpdateStoragePolicyAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateStoragePolicyAssignmentById method
 
 
 ### Returns
@@ -114,7 +119,7 @@ Returns an updated storage policy assignment object.
 Delete a storage policy assignment.
 
 Deleting a storage policy assignment on a user
-will have the user inherit the enterprise&#x27;s default
+will have the user inherit the enterprise's default
 storage policy.
 
 There is a rate limit for calling this endpoint of only
@@ -130,10 +135,9 @@ See the endpoint docs at
 ### Arguments
 
 - storagePolicyAssignmentId `string`
-  - The ID of the storage policy assignment.
-  - Used as `storage_policy_assignment_id` in path `path` of the API call
+  - The ID of the storage policy assignment. Example: "932483"
 - headers `DeleteStoragePolicyAssignmentByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteStoragePolicyAssignmentById method
 
 
 ### Returns

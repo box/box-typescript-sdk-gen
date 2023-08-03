@@ -1,5 +1,11 @@
 # SkillsManager
 
+
+- [List Box Skill cards on file](#list-box-skill-cards-on-file)
+- [Create Box Skill cards on file](#create-box-skill-cards-on-file)
+- [Remove Box Skill cards from file](#remove-box-skill-cards-from-file)
+- [Update all Box Skill cards on file](#update-all-box-skill-cards-on-file)
+
 ## List Box Skill cards on file
 
 List the Box Skills metadata cards that are attached to a file.
@@ -14,10 +20,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataGlobalBoxSkillsCardsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getFileMetadataGlobalBoxSkillsCards method
 
 
 ### Returns
@@ -44,12 +49,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFileMetadataGlobalBoxSkillsCard method
 - headers `CreateFileMetadataGlobalBoxSkillsCardHeadersArg`
-  - Used as headers for the API call
+  - Headers of createFileMetadataGlobalBoxSkillsCard method
 
 
 ### Returns
@@ -74,10 +78,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileMetadataGlobalBoxSkillsCardHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteFileMetadataGlobalBoxSkillsCard method
 
 
 ### Returns
@@ -103,12 +106,11 @@ See the endpoint docs at
 ### Arguments
 
 - skillId `string`
-  - The ID of the skill to apply this metadata for.
-  - Used as `skill_id` in path `path` of the API call
+  - The ID of the skill to apply this metadata for. Example: "33243242"
 - requestBody `UpdateSkillInvocationByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateSkillInvocationById method
 - headers `UpdateSkillInvocationByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateSkillInvocationById method
 
 
 ### Returns

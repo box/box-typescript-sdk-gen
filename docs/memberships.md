@@ -1,6 +1,14 @@
 # MembershipsManager
 
-## List user&#x27;s groups
+
+- [List user's groups](#list-users-groups)
+- [List members of group](#list-members-of-group)
+- [Add user to group](#add-user-to-group)
+- [Get group membership](#get-group-membership)
+- [Update group membership](#update-group-membership)
+- [Remove user from group](#remove-user-from-group)
+
+## List user's groups
 
 Retrieves all the groups for a user. Only members of this
 group or users with admin-level permissions will be able to
@@ -19,12 +27,11 @@ await client.memberships.getUserMemberships(user.id)
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - queryParams `GetUserMembershipsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getUserMemberships method
 - headers `GetUserMembershipsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getUserMemberships method
 
 
 ### Returns
@@ -54,12 +61,11 @@ await client.memberships.getGroupMemberships(group.id)
 ### Arguments
 
 - groupId `string`
-  - The ID of the group.
-  - Used as `group_id` in path `path` of the API call
+  - The ID of the group. Example: "57645"
 - queryParams `GetGroupMembershipsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getGroupMemberships method
 - headers `GetGroupMembershipsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getGroupMemberships method
 
 
 ### Returns
@@ -88,11 +94,11 @@ await client.memberships.createGroupMembership({ user: user, group: group } sati
 ### Arguments
 
 - requestBody `CreateGroupMembershipRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createGroupMembership method
 - queryParams `CreateGroupMembershipQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of createGroupMembership method
 - headers `CreateGroupMembershipHeadersArg`
-  - Used as headers for the API call
+  - Headers of createGroupMembership method
 
 
 ### Returns
@@ -121,12 +127,11 @@ await client.memberships.getGroupMembershipById(groupMembership.id)
 ### Arguments
 
 - groupMembershipId `string`
-  - The ID of the group membership.
-  - Used as `group_membership_id` in path `path` of the API call
+  - The ID of the group membership. Example: "434534"
 - queryParams `GetGroupMembershipByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getGroupMembershipById method
 - headers `GetGroupMembershipByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getGroupMembershipById method
 
 
 ### Returns
@@ -138,7 +143,7 @@ Returns the group membership object.
 
 ## Update group membership
 
-Updates a user&#x27;s group membership. Only admins of this
+Updates a user's group membership. Only admins of this
 group or users with admin-level permissions will be able to
 use this API.
 
@@ -149,20 +154,19 @@ See the endpoint docs at
 
 <!-- sample put_group_memberships_id -->
 ```ts
-await client.memberships.updateGroupMembershipById(groupMembership.id, { role: &quot;admin&quot; as UpdateGroupMembershipByIdRequestBodyArgRoleField } satisfies UpdateGroupMembershipByIdRequestBodyArg)
+await client.memberships.updateGroupMembershipById(groupMembership.id, { role: "admin" as UpdateGroupMembershipByIdRequestBodyArgRoleField } satisfies UpdateGroupMembershipByIdRequestBodyArg)
 ```
 
 ### Arguments
 
 - groupMembershipId `string`
-  - The ID of the group membership.
-  - Used as `group_membership_id` in path `path` of the API call
+  - The ID of the group membership. Example: "434534"
 - requestBody `UpdateGroupMembershipByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateGroupMembershipById method
 - queryParams `UpdateGroupMembershipByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateGroupMembershipById method
 - headers `UpdateGroupMembershipByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateGroupMembershipById method
 
 
 ### Returns
@@ -191,10 +195,9 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id)
 ### Arguments
 
 - groupMembershipId `string`
-  - The ID of the group membership.
-  - Used as `group_membership_id` in path `path` of the API call
+  - The ID of the group membership. Example: "434534"
 - headers `DeleteGroupMembershipByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteGroupMembershipById method
 
 
 ### Returns

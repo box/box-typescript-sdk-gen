@@ -1,8 +1,14 @@
 # IntegrationMappingsManager
 
+
+- [List Slack integration mappings](#list-slack-integration-mappings)
+- [Create Slack integration mapping](#create-slack-integration-mapping)
+- [Update Slack integration mapping](#update-slack-integration-mapping)
+- [Delete Slack integration mapping](#delete-slack-integration-mapping)
+
 ## List Slack integration mappings
 
-Lists [Slack integration mappings](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack) in a users&#x27; enterprise.
+Lists [Slack integration mappings](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack) in a users' enterprise.
 
 You need Admin or Co-Admin role to
 use this endpoint.
@@ -17,9 +23,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetIntegrationMappingSlackQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getIntegrationMappingSlack method
 - headers `GetIntegrationMappingSlackHeadersArg`
-  - Used as headers for the API call
+  - Headers of getIntegrationMappingSlack method
 
 
 ### Returns
@@ -47,9 +53,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `IntegrationMappingSlackCreateRequest`
-  - Used as requestBody for the API call
+  - Request body of createIntegrationMappingSlack method
 - headers `CreateIntegrationMappingSlackHeadersArg`
-  - Used as headers for the API call
+  - Headers of createIntegrationMappingSlack method
 
 
 ### Returns
@@ -77,12 +83,11 @@ See the endpoint docs at
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping
-  - Used as `integration_mapping_id` in path `path` of the API call
+  - An ID of an integration mapping Example: "11235432"
 - requestBody `UpdateIntegrationMappingSlackByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateIntegrationMappingSlackById method
 - headers `UpdateIntegrationMappingSlackByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of updateIntegrationMappingSlackById method
 
 
 ### Returns
@@ -110,10 +115,9 @@ See the endpoint docs at
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping
-  - Used as `integration_mapping_id` in path `path` of the API call
+  - An ID of an integration mapping Example: "11235432"
 - headers `DeleteIntegrationMappingSlackByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteIntegrationMappingSlackById method
 
 
 ### Returns

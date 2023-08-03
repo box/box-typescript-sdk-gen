@@ -1,5 +1,11 @@
 # CollaborationAllowlistExemptTargetsManager
 
+
+- [List users exempt from collaboration domain restrictions](#list-users-exempt-from-collaboration-domain-restrictions)
+- [Create user exemption from collaboration domain restrictions](#create-user-exemption-from-collaboration-domain-restrictions)
+- [Get user exempt from collaboration domain restrictions](#get-user-exempt-from-collaboration-domain-restrictions)
+- [Remove user from list of users exempt from domain restrictions](#remove-user-from-list-of-users-exempt-from-domain-restrictions)
+
 ## List users exempt from collaboration domain restrictions
 
 Returns a list of users who have been exempt from the collaboration
@@ -15,9 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetCollaborationWhitelistExemptTargetsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getCollaborationWhitelistExemptTargets method
 - headers `GetCollaborationWhitelistExemptTargetsHeadersArg`
-  - Used as headers for the API call
+  - Headers of getCollaborationWhitelistExemptTargets method
 
 
 ### Returns
@@ -42,9 +48,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateCollaborationWhitelistExemptTargetRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createCollaborationWhitelistExemptTarget method
 - headers `CreateCollaborationWhitelistExemptTargetHeadersArg`
-  - Used as headers for the API call
+  - Headers of createCollaborationWhitelistExemptTarget method
 
 
 ### Returns
@@ -69,22 +75,21 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationWhitelistExemptTargetId `string`
-  - The ID of the exemption to the list.
-  - Used as `collaboration_whitelist_exempt_target_id` in path `path` of the API call
+  - The ID of the exemption to the list. Example: "984923"
 - headers `GetCollaborationWhitelistExemptTargetByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of getCollaborationWhitelistExemptTargetById method
 
 
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistExemptTarget`.
 
-Returns the user&#x27;s exempted from the list of collaboration domains.
+Returns the user's exempted from the list of collaboration domains.
 
 
 ## Remove user from list of users exempt from domain restrictions
 
-Removes a user&#x27;s exemption from the restrictions set out by the allowed list
+Removes a user's exemption from the restrictions set out by the allowed list
 of domains for collaborations.
 
 This operation is performed by calling function `deleteCollaborationWhitelistExemptTargetById`.
@@ -97,10 +102,9 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationWhitelistExemptTargetId `string`
-  - The ID of the exemption to the list.
-  - Used as `collaboration_whitelist_exempt_target_id` in path `path` of the API call
+  - The ID of the exemption to the list. Example: "984923"
 - headers `DeleteCollaborationWhitelistExemptTargetByIdHeadersArg`
-  - Used as headers for the API call
+  - Headers of deleteCollaborationWhitelistExemptTargetById method
 
 
 ### Returns
