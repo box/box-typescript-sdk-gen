@@ -50,7 +50,7 @@ export interface CreateCommentRequestBodyArgItemField {
 export interface CreateCommentRequestBodyArg {
     readonly message: string;
     readonly taggedMessage?: string;
-    readonly item?: CreateCommentRequestBodyArgItemField;
+    readonly item: CreateCommentRequestBodyArgItemField;
 }
 export interface CreateCommentQueryParamsArg {
     readonly fields?: string;

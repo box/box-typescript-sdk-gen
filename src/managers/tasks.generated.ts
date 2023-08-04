@@ -29,8 +29,8 @@ export class GetFileTasksHeadersArg {
 }
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
-    readonly id: string;
-    readonly type: CreateTaskRequestBodyArgItemFieldTypeField;
+    readonly id?: string;
+    readonly type?: CreateTaskRequestBodyArgItemFieldTypeField;
 }
 export type CreateTaskRequestBodyArgActionField = "review" | "complete";
 export type CreateTaskRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
@@ -136,11 +136,11 @@ export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(val: any):
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTaskRequestBodyArgItemField(val: CreateTaskRequestBodyArgItemField): Json {
-    return { ["id"]: val.id, ["type"]: serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
+    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
 }
 export function deserializeCreateTaskRequestBodyArgItemField(val: any): CreateTaskRequestBodyArgItemField {
-    const id: string = val.id;
-    const type: CreateTaskRequestBodyArgItemFieldTypeField = deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const type: undefined | CreateTaskRequestBodyArgItemFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateTaskRequestBodyArgItemField;
 }
 export function serializeCreateTaskRequestBodyArgActionField(val: CreateTaskRequestBodyArgActionField): Json {

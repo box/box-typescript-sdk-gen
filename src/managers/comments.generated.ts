@@ -76,7 +76,7 @@ export interface CreateCommentRequestBodyArgItemField {
 export interface CreateCommentRequestBodyArg {
     readonly message: string;
     readonly taggedMessage?: string;
-    readonly item?: CreateCommentRequestBodyArgItemField;
+    readonly item: CreateCommentRequestBodyArgItemField;
 }
 export interface CreateCommentQueryParamsArg {
     readonly fields?: string;
@@ -174,11 +174,11 @@ export function deserializeCreateCommentRequestBodyArgItemField(val: any): Creat
     return { id: id, type: type } satisfies CreateCommentRequestBodyArgItemField;
 }
 export function serializeCreateCommentRequestBodyArg(val: CreateCommentRequestBodyArg): Json {
-    return { ["message"]: val.message, ["tagged_message"]: val.taggedMessage, ["item"]: val.item == void 0 ? void 0 : serializeCreateCommentRequestBodyArgItemField(val.item) };
+    return { ["message"]: val.message, ["tagged_message"]: val.taggedMessage, ["item"]: serializeCreateCommentRequestBodyArgItemField(val.item) };
 }
 export function deserializeCreateCommentRequestBodyArg(val: any): CreateCommentRequestBodyArg {
     const message: string = val.message;
     const taggedMessage: undefined | string = isJson(val.tagged_message, "string") ? val.tagged_message : void 0;
-    const item: undefined | CreateCommentRequestBodyArgItemField = val.item == void 0 ? void 0 : deserializeCreateCommentRequestBodyArgItemField(val.item);
+    const item: CreateCommentRequestBodyArgItemField = deserializeCreateCommentRequestBodyArgItemField(val.item);
     return { message: message, taggedMessage: taggedMessage, item: item } satisfies CreateCommentRequestBodyArg;
 }

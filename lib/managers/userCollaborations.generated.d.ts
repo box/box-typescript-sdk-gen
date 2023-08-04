@@ -33,8 +33,8 @@ export declare class DeleteCollaborationByIdHeadersArg {
 }
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
-    readonly type: CreateCollaborationRequestBodyArgItemFieldTypeField;
-    readonly id: string;
+    readonly type?: CreateCollaborationRequestBodyArgItemFieldTypeField;
+    readonly id?: string;
 }
 export type CreateCollaborationRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
 export interface CreateCollaborationRequestBodyArgAccessibleByField {

@@ -11,8 +11,8 @@ export declare class GetFileTasksHeadersArg {
 }
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
-    readonly id: string;
-    readonly type: CreateTaskRequestBodyArgItemFieldTypeField;
+    readonly id?: string;
+    readonly type?: CreateTaskRequestBodyArgItemFieldTypeField;
 }
 export type CreateTaskRequestBodyArgActionField = "review" | "complete";
 export type CreateTaskRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";

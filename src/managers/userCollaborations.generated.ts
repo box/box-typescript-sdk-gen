@@ -53,8 +53,8 @@ export class DeleteCollaborationByIdHeadersArg {
 }
 export type CreateCollaborationRequestBodyArgItemFieldTypeField = "file" | "folder";
 export interface CreateCollaborationRequestBodyArgItemField {
-    readonly type: CreateCollaborationRequestBodyArgItemFieldTypeField;
-    readonly id: string;
+    readonly type?: CreateCollaborationRequestBodyArgItemFieldTypeField;
+    readonly id?: string;
 }
 export type CreateCollaborationRequestBodyArgAccessibleByFieldTypeField = "user" | "group";
 export interface CreateCollaborationRequestBodyArgAccessibleByField {
@@ -200,11 +200,11 @@ export function deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(v
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateCollaborationRequestBodyArgItemField(val: CreateCollaborationRequestBodyArgItemField): Json {
-    return { ["type"]: serializeCreateCollaborationRequestBodyArgItemFieldTypeField(val.type), ["id"]: val.id };
+    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateCollaborationRequestBodyArgItemFieldTypeField(val.type), ["id"]: val.id };
 }
 export function deserializeCreateCollaborationRequestBodyArgItemField(val: any): CreateCollaborationRequestBodyArgItemField {
-    const type: CreateCollaborationRequestBodyArgItemFieldTypeField = deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(val.type);
-    const id: string = val.id;
+    const type: undefined | CreateCollaborationRequestBodyArgItemFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(val.type);
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
     return { type: type, id: id } satisfies CreateCollaborationRequestBodyArgItemField;
 }
 export function serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(val: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField): Json {
