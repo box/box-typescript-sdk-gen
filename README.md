@@ -5,6 +5,8 @@
 
 - [Installing](#installing)
 - [Getting Started](#getting-started)
+- [Questions, Bugs, and Feature Requests?](#questions-bugs-and-feature-requests)
+  - [Copyright and License](#copyright-and-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -51,7 +53,7 @@ back to you. If you have general questions about the Box API, you can
 post to the [Box Developer
 Forum](https://community.box.com/t5/Developer-Forum/bd-p/DeveloperForum).
 
-## Copyright and License
+# Copyright and License
 
 Copyright 2023 Box, Inc. All rights reserved.
 

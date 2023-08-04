@@ -15,6 +15,7 @@ import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.gen
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { GetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
 import { GetFileByIdQueryParamsArg } from "../managers/files.generated.js";
+import { GetFileByIdHeadersArg } from "../managers/files.generated.js";
 import { UpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArgParentField } from "../managers/files.generated.js";
@@ -61,6 +62,7 @@ test("testCreateGetAndDeleteFile", async function testCreateGetAndDeleteFile(): 
     const updatedContentStream: any = generateByteStream(1048576);
     const uploadedFile: any = await uploadFile(newFileName, updatedContentStream);
     const file: any = await client.files.getFileById(uploadedFile.id);
+    expect(async () => { await client.files.getFileById(uploadedFile.id, { fields: "name" } satisfies GetFileByIdQueryParamsArg, new GetFileByIdHeadersArg({ extraHeaders: { ["if-none-match"]: file.etag } })); }).rejects.toThrow();
     if (!(file.name == newFileName)) {
         throw "Assertion failed";
     }
