@@ -2,14 +2,19 @@ import { serializeMetadatas } from "../schemas.generated.js";
 import { deserializeMetadatas } from "../schemas.generated.js";
 import { serializeClientError } from "../schemas.generated.js";
 import { deserializeClientError } from "../schemas.generated.js";
+import { serializeMetadataFull } from "../schemas.generated.js";
+import { deserializeMetadataFull } from "../schemas.generated.js";
 import { serializeMetadata } from "../schemas.generated.js";
 import { deserializeMetadata } from "../schemas.generated.js";
 import { Metadatas } from "../schemas.generated.js";
 import { ClientError } from "../schemas.generated.js";
+import { MetadataFull } from "../schemas.generated.js";
 import { Metadata } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -17,32 +22,76 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetFileMetadataHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileMetadataHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type GetFileMetadataByIdScopeArg = "global" | "enterprise";
+export class GetFileMetadataByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileMetadataByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateFileMetadataByIdScopeArg = "global" | "enterprise";
 export interface CreateFileMetadataByIdRequestBodyArg {
 }
+export class CreateFileMetadataByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateFileMetadataByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type DeleteFileMetadataByIdScopeArg = "global" | "enterprise";
+export class DeleteFileMetadataByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFileMetadataByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class FileMetadataManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileMetadataManager, "getFileMetadata" | "getFileMetadataById" | "createFileMetadataById" | "deleteFileMetadataById">) {
         Object.assign(this, fields);
     }
-    async getFileMetadata(fileId: string): Promise<Metadatas> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileMetadata(fileId: string, headers: GetFileMetadataHeadersArg = new GetFileMetadataHeadersArg({})): Promise<Metadatas> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadatas(deserializeJson(response.text));
     }
-    async getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string): Promise<Metadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileMetadataById(fileId: string, scope: GetFileMetadataByIdScopeArg, templateKey: string, headers: GetFileMetadataByIdHeadersArg = new GetFileMetadataByIdHeadersArg({})): Promise<MetadataFull> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeMetadataFull(deserializeJson(response.text));
+    }
+    async createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg, headers: CreateFileMetadataByIdHeadersArg = new CreateFileMetadataByIdHeadersArg({})): Promise<Metadata> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateFileMetadataByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadata(deserializeJson(response.text));
     }
-    async createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg): Promise<Metadata> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "POST", body: serializeJson(serializeCreateFileMetadataByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return deserializeMetadata(deserializeJson(response.text));
-    }
-    async deleteFileMetadataById(fileId: string, scope: DeleteFileMetadataByIdScopeArg, templateKey: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFileMetadataById(fileId: string, scope: DeleteFileMetadataByIdScopeArg, templateKey: string, headers: DeleteFileMetadataByIdHeadersArg = new DeleteFileMetadataByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeGetFileMetadataByIdScopeArg(val: GetFileMetadataByIdScopeArg): Json {

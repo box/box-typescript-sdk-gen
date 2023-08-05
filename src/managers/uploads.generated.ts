@@ -13,6 +13,8 @@ import { ConflictError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -21,23 +23,28 @@ import { serializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
 import { isJson } from "../json.js";
-import { Readable } from "stream";
 export interface UploadFileVersionRequestBodyArgAttributesField {
     readonly name: string;
     readonly contentModifiedAt?: string;
 }
 export interface UploadFileVersionRequestBodyArg {
     readonly attributes: UploadFileVersionRequestBodyArgAttributesField;
-    readonly file: Readable;
+    readonly file: ByteStream;
     readonly fileFileName?: string;
     readonly fileContentType?: string;
 }
 export interface UploadFileVersionQueryParamsArg {
     readonly fields?: string;
 }
-export interface UploadFileVersionHeadersArg {
+export class UploadFileVersionHeadersArg {
     readonly ifMatch?: string;
     readonly contentMd5?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UploadFileVersionHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface UploadFileRequestBodyArgAttributesFieldParentField {
     readonly id: string;
@@ -50,15 +57,21 @@ export interface UploadFileRequestBodyArgAttributesField {
 }
 export interface UploadFileRequestBodyArg {
     readonly attributes: UploadFileRequestBodyArgAttributesField;
-    readonly file: Readable;
+    readonly file: ByteStream;
     readonly fileFileName?: string;
     readonly fileContentType?: string;
 }
 export interface UploadFileQueryParamsArg {
     readonly fields?: string;
 }
-export interface UploadFileHeadersArg {
+export class UploadFileHeadersArg {
     readonly contentMd5?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UploadFileHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export interface PreflightFileUploadRequestBodyArgParentField {
     readonly id?: string;
@@ -68,22 +81,45 @@ export interface PreflightFileUploadRequestBodyArg {
     readonly size?: number;
     readonly parent?: PreflightFileUploadRequestBodyArgParentField;
 }
+export class PreflightFileUploadHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: PreflightFileUploadHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class UploadsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<UploadsManager, "uploadFileVersion" | "uploadFile" | "preflightFileUpload">) {
         Object.assign(this, fields);
     }
-    async uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams: undefined | UploadFileVersionQueryParamsArg = {} satisfies UploadFileVersionQueryParamsArg, headers: undefined | UploadFileVersionHeadersArg = {} satisfies UploadFileVersionHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/content") as string, { method: "POST", params: prepareParams(serializeUploadFileVersionQueryParamsArg(queryParams)), headers: prepareParams(serializeUploadFileVersionHeadersArg(headers)), multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileVersionRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async uploadFileVersion(fileId: string, requestBody: UploadFileVersionRequestBodyArg, queryParams: UploadFileVersionQueryParamsArg = {} satisfies UploadFileVersionQueryParamsArg, headers: UploadFileVersionHeadersArg = new UploadFileVersionHeadersArg({})): Promise<Files> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{ ["if-match"]: toString(headers.ifMatch), ["content-md5"]: toString(headers.contentMd5) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/", fileId, "/content") as string, { method: "POST", params: queryParamsMap, headers: headersMap, multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileVersionRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
-    async uploadFile(requestBody: UploadFileRequestBodyArg, queryParams: undefined | UploadFileQueryParamsArg = {} satisfies UploadFileQueryParamsArg, headers: undefined | UploadFileHeadersArg = {} satisfies UploadFileHeadersArg): Promise<Files> {
-        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/content") as string, { method: "POST", params: prepareParams(serializeUploadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeUploadFileHeadersArg(headers)), multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async uploadFile(requestBody: UploadFileRequestBodyArg, queryParams: UploadFileQueryParamsArg = {} satisfies UploadFileQueryParamsArg, headers: UploadFileHeadersArg = new UploadFileHeadersArg({})): Promise<Files> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{ ["content-md5"]: toString(headers.contentMd5) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/content") as string, { method: "POST", params: queryParamsMap, headers: headersMap, multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
-    async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg): Promise<UploadUrl> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/content") as string, { method: "OPTIONS", body: serializeJson(serializePreflightFileUploadRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg, headers: PreflightFileUploadHeadersArg = new PreflightFileUploadHeadersArg({})): Promise<UploadUrl> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/content") as string, { method: "OPTIONS", headers: headersMap, body: serializeJson(serializePreflightFileUploadRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUploadUrl(deserializeJson(response.text));
     }
 }
@@ -94,21 +130,6 @@ export function deserializeUploadFileVersionRequestBodyArgAttributesField(val: a
     const name: string = val.name;
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
     return { name: name, contentModifiedAt: contentModifiedAt } satisfies UploadFileVersionRequestBodyArgAttributesField;
-}
-export function serializeUploadFileVersionQueryParamsArg(val: UploadFileVersionQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUploadFileVersionQueryParamsArg(val: any): UploadFileVersionQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies UploadFileVersionQueryParamsArg;
-}
-export function serializeUploadFileVersionHeadersArg(val: UploadFileVersionHeadersArg): Json {
-    return { ["if-match"]: val.ifMatch, ["content-md5"]: val.contentMd5 };
-}
-export function deserializeUploadFileVersionHeadersArg(val: any): UploadFileVersionHeadersArg {
-    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
-    const contentMd5: undefined | string = isJson(val["content-md5"], "string") ? val["content-md5"] : void 0;
-    return { ifMatch: ifMatch, contentMd5: contentMd5 } satisfies UploadFileVersionHeadersArg;
 }
 export function serializeUploadFileRequestBodyArgAttributesFieldParentField(val: UploadFileRequestBodyArgAttributesFieldParentField): Json {
     return { ["id"]: val.id };
@@ -126,20 +147,6 @@ export function deserializeUploadFileRequestBodyArgAttributesField(val: any): Up
     const contentCreatedAt: undefined | string = isJson(val.content_created_at, "string") ? val.content_created_at : void 0;
     const contentModifiedAt: undefined | string = isJson(val.content_modified_at, "string") ? val.content_modified_at : void 0;
     return { name: name, parent: parent, contentCreatedAt: contentCreatedAt, contentModifiedAt: contentModifiedAt } satisfies UploadFileRequestBodyArgAttributesField;
-}
-export function serializeUploadFileQueryParamsArg(val: UploadFileQueryParamsArg): Json {
-    return { ["fields"]: val.fields };
-}
-export function deserializeUploadFileQueryParamsArg(val: any): UploadFileQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    return { fields: fields } satisfies UploadFileQueryParamsArg;
-}
-export function serializeUploadFileHeadersArg(val: UploadFileHeadersArg): Json {
-    return { ["content-md5"]: val.contentMd5 };
-}
-export function deserializeUploadFileHeadersArg(val: any): UploadFileHeadersArg {
-    const contentMd5: undefined | string = isJson(val["content-md5"], "string") ? val["content-md5"] : void 0;
-    return { contentMd5: contentMd5 } satisfies UploadFileHeadersArg;
 }
 export function serializePreflightFileUploadRequestBodyArgParentField(val: PreflightFileUploadRequestBodyArgParentField): Json {
     return { ["id"]: val.id };

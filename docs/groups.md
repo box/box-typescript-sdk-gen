@@ -1,9 +1,16 @@
 # GroupsManager
 
+
+- [List groups for enterprise](#list-groups-for-enterprise)
+- [Create group](#create-group)
+- [Get group](#get-group)
+- [Update group](#update-group)
+- [Remove group](#remove-group)
+
 ## List groups for enterprise
 
 Retrieves all of the groups for a given enterprise. The user
-must have admin permissions to inspect enterprise&#x27;s groups.
+must have admin permissions to inspect enterprise's groups.
 
 This operation is performed by calling function `getGroups`.
 
@@ -17,8 +24,10 @@ await client.groups.getGroups()
 
 ### Arguments
 
-- queryParams `undefined | GetGroupsQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetGroupsQueryParamsArg`
+  - Query parameters of getGroups method
+- headers `GetGroupsHeadersArg`
+  - Headers of getGroups method
 
 
 ### Returns
@@ -47,9 +56,11 @@ await client.groups.createGroup({ name: getUuid() } satisfies CreateGroupRequest
 ### Arguments
 
 - requestBody `CreateGroupRequestBodyArg`
-  - Used as requestBody for the API call
-- queryParams `undefined | CreateGroupQueryParamsArg`
-  - Used as queryParams for the API call
+  - Request body of createGroup method
+- queryParams `CreateGroupQueryParamsArg`
+  - Query parameters of createGroup method
+- headers `CreateGroupHeadersArg`
+  - Headers of createGroup method
 
 
 ### Returns
@@ -78,10 +89,11 @@ await client.groups.getGroupById(group.id)
 ### Arguments
 
 - groupId `string`
-  - The ID of the group.
-  - Used as `group_id` in path `path` of the API call
-- queryParams `undefined | GetGroupByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the group. Example: "57645"
+- queryParams `GetGroupByIdQueryParamsArg`
+  - Query parameters of getGroupById method
+- headers `GetGroupByIdHeadersArg`
+  - Headers of getGroupById method
 
 
 ### Returns
@@ -110,12 +122,13 @@ await client.groups.updateGroupById(group.id, { name: updatedGroupName } satisfi
 ### Arguments
 
 - groupId `string`
-  - The ID of the group.
-  - Used as `group_id` in path `path` of the API call
+  - The ID of the group. Example: "57645"
 - requestBody `UpdateGroupByIdRequestBodyArg`
-  - Used as requestBody for the API call
-- queryParams `undefined | UpdateGroupByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Request body of updateGroupById method
+- queryParams `UpdateGroupByIdQueryParamsArg`
+  - Query parameters of updateGroupById method
+- headers `UpdateGroupByIdHeadersArg`
+  - Headers of updateGroupById method
 
 
 ### Returns
@@ -143,7 +156,16 @@ await client.groups.deleteGroupById(group.id)
 ### Arguments
 
 - groupId `string`
-  - The ID of the group.
-  - Used as `group_id` in path `path` of the API call
+  - The ID of the group. Example: "57645"
+- headers `DeleteGroupByIdHeadersArg`
+  - Headers of deleteGroupById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the group was
+successfully deleted.
 
 

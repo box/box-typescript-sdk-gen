@@ -1,5 +1,11 @@
 # ListCollaborationsManager
 
+
+- [List file collaborations](#list-file-collaborations)
+- [List folder collaborations](#list-folder-collaborations)
+- [List pending collaborations](#list-pending-collaborations)
+- [List group collaborations](#list-group-collaborations)
+
 ## List file collaborations
 
 Retrieves a list of pending and active collaborations for a
@@ -16,10 +22,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
-- queryParams `undefined | GetFileCollaborationsQueryParamsArg`
-  - Used as queryParams for the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- queryParams `GetFileCollaborationsQueryParamsArg`
+  - Query parameters of getFileCollaborations method
+- headers `GetFileCollaborationsHeadersArg`
+  - Headers of getFileCollaborations method
 
 
 ### Returns
@@ -29,8 +36,8 @@ This function returns a value of type `Collaborations`.
 Returns a collection of collaboration objects. If there are no
 collaborations on this file an empty collection will be returned.
 
-This list includes pending collaborations, for which the &#x60;status&#x60;
-is set to &#x60;pending&#x60;, indicating invitations that have been sent but not
+This list includes pending collaborations, for which the `status`
+is set to `pending`, indicating invitations that have been sent but not
 yet accepted.
 
 
@@ -50,10 +57,11 @@ See the endpoint docs at
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.
-  - Used as `folder_id` in path `path` of the API call
-- queryParams `undefined | GetFolderCollaborationsQueryParamsArg`
-  - Used as queryParams for the API call
+  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
+- queryParams `GetFolderCollaborationsQueryParamsArg`
+  - Query parameters of getFolderCollaborations method
+- headers `GetFolderCollaborationsHeadersArg`
+  - Headers of getFolderCollaborations method
 
 
 ### Returns
@@ -63,8 +71,8 @@ This function returns a value of type `Collaborations`.
 Returns a collection of collaboration objects. If there are no
 collaborations on this folder an empty collection will be returned.
 
-This list includes pending collaborations, for which the &#x60;status&#x60;
-is set to &#x60;pending&#x60;, indicating invitations that have been sent but not
+This list includes pending collaborations, for which the `status`
+is set to `pending`, indicating invitations that have been sent but not
 yet accepted.
 
 
@@ -82,7 +90,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetCollaborationsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getCollaborations method
+- headers `GetCollaborationsHeadersArg`
+  - Headers of getCollaborations method
 
 
 ### Returns
@@ -98,7 +108,7 @@ will be empty.
 ## List group collaborations
 
 Retrieves all the collaborations for a group. The user
-must have admin permissions to inspect enterprise&#x27;s groups.
+must have admin permissions to inspect enterprise's groups.
 
 Each collaboration object has details on which files or
 folders the group has access to and with what role.
@@ -113,10 +123,11 @@ See the endpoint docs at
 ### Arguments
 
 - groupId `string`
-  - The ID of the group.
-  - Used as `group_id` in path `path` of the API call
-- queryParams `undefined | GetGroupCollaborationsQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the group. Example: "57645"
+- queryParams `GetGroupCollaborationsQueryParamsArg`
+  - Query parameters of getGroupCollaborations method
+- headers `GetGroupCollaborationsHeadersArg`
+  - Headers of getGroupCollaborations method
 
 
 ### Returns

@@ -4,8 +4,6 @@ import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from "../
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { serializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
 import { deserializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
-import { serializeGetFileByIdQueryParamsArg } from "../managers/files.generated.js";
-import { deserializeGetFileByIdQueryParamsArg } from "../managers/files.generated.js";
 import { serializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { deserializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { serializeCopyFileRequestBodyArg } from "../managers/files.generated.js";
@@ -17,6 +15,7 @@ import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.gen
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { GetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
 import { GetFileByIdQueryParamsArg } from "../managers/files.generated.js";
+import { GetFileByIdHeadersArg } from "../managers/files.generated.js";
 import { UpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArgParentField } from "../managers/files.generated.js";
@@ -29,7 +28,6 @@ import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
 import { JwtConfig } from "../jwtAuth.js";
 import { uploadNewFile } from "./commons.generated.js";
-import { Readable } from "stream";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
 const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
@@ -64,6 +62,7 @@ test("testCreateGetAndDeleteFile", async function testCreateGetAndDeleteFile(): 
     const updatedContentStream: any = generateByteStream(1048576);
     const uploadedFile: any = await uploadFile(newFileName, updatedContentStream);
     const file: any = await client.files.getFileById(uploadedFile.id);
+    expect(async () => { await client.files.getFileById(uploadedFile.id, { fields: "name" } satisfies GetFileByIdQueryParamsArg, new GetFileByIdHeadersArg({ extraHeaders: { ["if-none-match"]: file.etag } })); }).rejects.toThrow();
     if (!(file.name == newFileName)) {
         throw "Assertion failed";
     }

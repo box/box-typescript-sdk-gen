@@ -10,6 +10,8 @@ import { Webhook } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -20,6 +22,14 @@ import { isJson } from "../json.js";
 export interface GetWebhooksQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
+}
+export class GetWebhooksHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetWebhooksHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateWebhookRequestBodyArgTargetFieldTypeField = "file" | "folder";
 export interface CreateWebhookRequestBodyArgTargetField {
@@ -32,6 +42,22 @@ export interface CreateWebhookRequestBodyArg {
     readonly address: string;
     readonly triggers: readonly CreateWebhookRequestBodyArgTriggersField[];
 }
+export class CreateWebhookHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateWebhookHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetWebhookByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateWebhookByIdRequestBodyArgTargetFieldTypeField = "file" | "folder";
 export interface UpdateWebhookByIdRequestBodyArgTargetField {
     readonly id?: string;
@@ -43,40 +69,66 @@ export interface UpdateWebhookByIdRequestBodyArg {
     readonly address?: string;
     readonly triggers?: readonly UpdateWebhookByIdRequestBodyArgTriggersField[];
 }
+export class UpdateWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateWebhookByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteWebhookByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteWebhookByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class WebhooksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WebhooksManager, "getWebhooks" | "createWebhook" | "getWebhookById" | "updateWebhookById" | "deleteWebhookById">) {
         Object.assign(this, fields);
     }
-    async getWebhooks(queryParams: undefined | GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg): Promise<Webhooks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: prepareParams(serializeGetWebhooksQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWebhooks(queryParams: GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg, headers: GetWebhooksHeadersArg = new GetWebhooksHeadersArg({})): Promise<Webhooks> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhooks(deserializeJson(response.text));
     }
-    async createWebhook(requestBody: CreateWebhookRequestBodyArg): Promise<Webhook> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", body: serializeJson(serializeCreateWebhookRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createWebhook(requestBody: CreateWebhookRequestBodyArg, headers: CreateWebhookHeadersArg = new CreateWebhookHeadersArg({})): Promise<Webhook> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateWebhookRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
-    async getWebhookById(webhookId: string): Promise<Webhook> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWebhookById(webhookId: string, headers: GetWebhookByIdHeadersArg = new GetWebhookByIdHeadersArg({})): Promise<Webhook> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
-    async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg): Promise<Webhook> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", body: serializeJson(serializeUpdateWebhookByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg, headers: UpdateWebhookByIdHeadersArg = new UpdateWebhookByIdHeadersArg({})): Promise<Webhook> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateWebhookByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
-    async deleteWebhookById(webhookId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteWebhookById(webhookId: string, headers: DeleteWebhookByIdHeadersArg = new DeleteWebhookByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetWebhooksQueryParamsArg(val: GetWebhooksQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetWebhooksQueryParamsArg(val: any): GetWebhooksQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { marker: marker, limit: limit } satisfies GetWebhooksQueryParamsArg;
 }
 export function serializeCreateWebhookRequestBodyArgTargetFieldTypeField(val: CreateWebhookRequestBodyArgTargetFieldTypeField): Json {
     return val;

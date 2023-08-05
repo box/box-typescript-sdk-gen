@@ -1,11 +1,15 @@
 # WorkflowsManager
 
+
+- [List workflows](#list-workflows)
+- [Starts workflow based on request body](#starts-workflow-based-on-request-body)
+
 ## List workflows
 
-Returns list of workflows that act on a given &#x60;folder ID&#x60;, and
-have a flow with a trigger type of &#x60;WORKFLOW_MANUAL_START&#x60;.
+Returns list of workflows that act on a given `folder ID`, and
+have a flow with a trigger type of `WORKFLOW_MANUAL_START`.
 
-You application must be authorized to use the &#x60;Manage Box Relay&#x60; application
+You application must be authorized to use the `Manage Box Relay` application
 scope within the developer console in to use this endpoint.
 
 This operation is performed by calling function `getWorkflows`.
@@ -18,7 +22,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetWorkflowsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getWorkflows method
+- headers `GetWorkflowsHeadersArg`
+  - Headers of getWorkflows method
 
 
 ### Returns
@@ -30,9 +36,9 @@ Returns the workflow.
 
 ## Starts workflow based on request body
 
-Initiates a flow with a trigger type of &#x60;WORKFLOW_MANUAL_START&#x60;.
+Initiates a flow with a trigger type of `WORKFLOW_MANUAL_START`.
 
-You application must be authorized to use the &#x60;Manage Box Relay&#x60; application
+You application must be authorized to use the `Manage Box Relay` application
 scope within the developer console.
 
 This operation is performed by calling function `createWorkflowStart`.
@@ -45,9 +51,17 @@ See the endpoint docs at
 ### Arguments
 
 - workflowId `string`
-  - The ID of the workflow.
-  - Used as `workflow_id` in path `path` of the API call
+  - The ID of the workflow. Example: "12345"
 - requestBody `CreateWorkflowStartRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createWorkflowStart method
+- headers `CreateWorkflowStartHeadersArg`
+  - Headers of createWorkflowStart method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Starts the workflow.
 
 

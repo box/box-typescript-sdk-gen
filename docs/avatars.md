@@ -1,8 +1,13 @@
 # AvatarsManager
 
+
+- [Get user avatar](#get-user-avatar)
+- [Add or update user avatar](#add-or-update-user-avatar)
+- [Delete user avatar](#delete-user-avatar)
+
 ## Get user avatar
 
-Retrieves an image of a the user&#x27;s avatar.
+Retrieves an image of a the user's avatar.
 
 This operation is performed by calling function `getUserAvatar`.
 
@@ -17,8 +22,18 @@ await client.avatars.getUserAvatar(user.id)
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
+- headers `GetUserAvatarHeadersArg`
+  - Headers of getUserAvatar method
+
+
+### Returns
+
+This function returns a value of type `ByteStream`.
+
+When an avatar can be found for the user the
+image data will be returned in the body of the
+response.
 
 
 ## Add or update user avatar
@@ -32,24 +47,25 @@ See the endpoint docs at
 
 <!-- sample post_users_id_avatar -->
 ```ts
-await client.avatars.createUserAvatar(user.id, { pic: decodeBase64ByteStream(&quot;iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg&#x3D;&#x3D;&quot;), picContentType: &quot;image/png&quot;, picFileName: &quot;avatar.png&quot; } satisfies CreateUserAvatarRequestBodyArg)
+await client.avatars.createUserAvatar(user.id, { pic: decodeBase64ByteStream("iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg=="), picContentType: "image/png", picFileName: "avatar.png" } satisfies CreateUserAvatarRequestBodyArg)
 ```
 
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - requestBody `CreateUserAvatarRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createUserAvatar method
+- headers `CreateUserAvatarHeadersArg`
+  - Headers of createUserAvatar method
 
 
 ### Returns
 
 This function returns a value of type `UserAvatar`.
 
-* &#x60;ok&#x60;: Returns the &#x60;pic_urls&#x60; object with URLs to existing
-user avatars that were updated.* &#x60;created&#x60;: Returns the &#x60;pic_urls&#x60; object with URLS to user avatars
+* `ok`: Returns the `pic_urls` object with URLs to existing
+user avatars that were updated.* `created`: Returns the `pic_urls` object with URLS to user avatars
 uploaded to Box with the request.
 
 
@@ -71,7 +87,15 @@ await client.avatars.deleteUserAvatar(user.id)
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
+- headers `DeleteUserAvatarHeadersArg`
+  - Headers of deleteUserAvatar method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+* `no_content`: Removes the avatar and returns an empty response.
 
 

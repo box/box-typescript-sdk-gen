@@ -1,11 +1,14 @@
 # TransferManager
 
+
+- [Transfer owned folders](#transfer-owned-folders)
+
 ## Transfer owned folders
 
 Move all of the items (files, folders and workflows) owned by a user into
-another user&#x27;s account
+another user's account
 
-Only the root folder (&#x60;0&#x60;) can be transferred.
+Only the root folder (`0`) can be transferred.
 
 Folders can only be moved across users by users with administrative
 permissions.
@@ -24,13 +27,13 @@ asynchronously.
 
 There is currently no way to check for when this operation is finished.
 
-The destination folder&#x27;s name will be in the format &#x60;{User}&#x27;s Files and
-Folders&#x60;, where &#x60;{User}&#x60; is the display name of the user.
+The destination folder's name will be in the format `{User}'s Files and
+Folders`, where `{User}` is the display name of the user.
 
-To make this API call your application will need to have the &quot;Read and write
-all files and folders stored in Box&quot; scope enabled.
+To make this API call your application will need to have the "Read and write
+all files and folders stored in Box" scope enabled.
 
-Please make sure the destination user has access to &#x60;Relay&#x60; or &#x60;Relay Lite&#x60;,
+Please make sure the destination user has access to `Relay` or `Relay Lite`,
 and has access to the files and folders involved in the workflows being
 transferred.
 
@@ -46,12 +49,13 @@ See the endpoint docs at
 ### Arguments
 
 - userId `string`
-  - The ID of the user.
-  - Used as `user_id` in path `path` of the API call
+  - The ID of the user. Example: "12345"
 - requestBody `TransferOwnedFolderRequestBodyArg`
-  - Used as requestBody for the API call
-- queryParams `undefined | TransferOwnedFolderQueryParamsArg`
-  - Used as queryParams for the API call
+  - Request body of transferOwnedFolder method
+- queryParams `TransferOwnedFolderQueryParamsArg`
+  - Query parameters of transferOwnedFolder method
+- headers `TransferOwnedFolderHeadersArg`
+  - Headers of transferOwnedFolder method
 
 
 ### Returns

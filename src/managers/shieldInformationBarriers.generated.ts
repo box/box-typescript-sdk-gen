@@ -7,6 +7,8 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -14,14 +16,46 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetShieldInformationBarrierByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetShieldInformationBarrierByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField = "pending" | "disabled";
 export interface CreateShieldInformationBarrierChangeStatusRequestBodyArg {
     readonly id: string;
     readonly status: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField;
 }
+export class CreateShieldInformationBarrierChangeStatusHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateShieldInformationBarrierChangeStatusHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetShieldInformationBarriersQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
+}
+export class GetShieldInformationBarriersHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetShieldInformationBarriersHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class CreateShieldInformationBarrierHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateShieldInformationBarrierHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class ShieldInformationBarriersManager {
     readonly auth?: Authentication;
@@ -29,20 +63,35 @@ export class ShieldInformationBarriersManager {
     constructor(fields: Omit<ShieldInformationBarriersManager, "getShieldInformationBarrierById" | "createShieldInformationBarrierChangeStatus" | "getShieldInformationBarriers" | "createShieldInformationBarrier">) {
         Object.assign(this, fields);
     }
-    async getShieldInformationBarrierById(shieldInformationBarrierId: string): Promise<ShieldInformationBarrier> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/", shieldInformationBarrierId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getShieldInformationBarrierById(shieldInformationBarrierId: string, headers: GetShieldInformationBarrierByIdHeadersArg = new GetShieldInformationBarrierByIdHeadersArg({})): Promise<ShieldInformationBarrier> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/", shieldInformationBarrierId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeShieldInformationBarrier(deserializeJson(response.text));
     }
-    async createShieldInformationBarrierChangeStatus(requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg): Promise<ShieldInformationBarrier> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/change_status") as string, { method: "POST", body: serializeJson(serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createShieldInformationBarrierChangeStatus(requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg, headers: CreateShieldInformationBarrierChangeStatusHeadersArg = new CreateShieldInformationBarrierChangeStatusHeadersArg({})): Promise<ShieldInformationBarrier> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers/change_status") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeShieldInformationBarrier(deserializeJson(response.text));
     }
-    async getShieldInformationBarriers(queryParams: undefined | GetShieldInformationBarriersQueryParamsArg = {} satisfies GetShieldInformationBarriersQueryParamsArg): Promise<undefined> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "GET", params: prepareParams(serializeGetShieldInformationBarriersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getShieldInformationBarriers(queryParams: GetShieldInformationBarriersQueryParamsArg = {} satisfies GetShieldInformationBarriersQueryParamsArg, headers: GetShieldInformationBarriersHeadersArg = new GetShieldInformationBarriersHeadersArg({})): Promise<undefined> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
-    async createShieldInformationBarrier(requestBody: ShieldInformationBarrier): Promise<ShieldInformationBarrier> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "POST", body: serializeJson(serializeShieldInformationBarrier(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createShieldInformationBarrier(requestBody: ShieldInformationBarrier, headers: CreateShieldInformationBarrierHeadersArg = new CreateShieldInformationBarrierHeadersArg({})): Promise<ShieldInformationBarrier> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barriers") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeShieldInformationBarrier(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeShieldInformationBarrier(deserializeJson(response.text));
     }
 }
@@ -68,12 +117,4 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
     const id: string = val.id;
     const status: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField = deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(val.status);
     return { id: id, status: status } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg;
-}
-export function serializeGetShieldInformationBarriersQueryParamsArg(val: GetShieldInformationBarriersQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit };
-}
-export function deserializeGetShieldInformationBarriersQueryParamsArg(val: any): GetShieldInformationBarriersQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { marker: marker, limit: limit } satisfies GetShieldInformationBarriersQueryParamsArg;
 }

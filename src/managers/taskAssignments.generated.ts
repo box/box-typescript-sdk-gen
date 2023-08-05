@@ -10,6 +10,8 @@ import { TaskAssignment } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -17,6 +19,14 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetTaskAssignmentsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetTaskAssignmentsHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateTaskAssignmentRequestBodyArgTaskFieldTypeField = "task";
 export interface CreateTaskAssignmentRequestBodyArgTaskField {
     readonly id: string;
@@ -30,10 +40,42 @@ export interface CreateTaskAssignmentRequestBodyArg {
     readonly task: CreateTaskAssignmentRequestBodyArgTaskField;
     readonly assignTo: CreateTaskAssignmentRequestBodyArgAssignToField;
 }
+export class CreateTaskAssignmentHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateTaskAssignmentHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetTaskAssignmentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField = "completed" | "incomplete" | "approved" | "rejected";
 export interface UpdateTaskAssignmentByIdRequestBodyArg {
     readonly message?: string;
     readonly resolutionState?: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField;
+}
+export class UpdateTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateTaskAssignmentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteTaskAssignmentByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteTaskAssignmentByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class TaskAssignmentsManager {
     readonly auth?: Authentication;
@@ -41,25 +83,40 @@ export class TaskAssignmentsManager {
     constructor(fields: Omit<TaskAssignmentsManager, "getTaskAssignments" | "createTaskAssignment" | "getTaskAssignmentById" | "updateTaskAssignmentById" | "deleteTaskAssignmentById">) {
         Object.assign(this, fields);
     }
-    async getTaskAssignments(taskId: string): Promise<TaskAssignments> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId, "/assignments") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getTaskAssignments(taskId: string, headers: GetTaskAssignmentsHeadersArg = new GetTaskAssignmentsHeadersArg({})): Promise<TaskAssignments> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId, "/assignments") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTaskAssignments(deserializeJson(response.text));
     }
-    async createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg): Promise<TaskAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments") as string, { method: "POST", body: serializeJson(serializeCreateTaskAssignmentRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createTaskAssignment(requestBody: CreateTaskAssignmentRequestBodyArg, headers: CreateTaskAssignmentHeadersArg = new CreateTaskAssignmentHeadersArg({})): Promise<TaskAssignment> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateTaskAssignmentRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTaskAssignment(deserializeJson(response.text));
     }
-    async getTaskAssignmentById(taskAssignmentId: string): Promise<TaskAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getTaskAssignmentById(taskAssignmentId: string, headers: GetTaskAssignmentByIdHeadersArg = new GetTaskAssignmentByIdHeadersArg({})): Promise<TaskAssignment> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTaskAssignment(deserializeJson(response.text));
     }
-    async updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg): Promise<TaskAssignment> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "PUT", body: serializeJson(serializeUpdateTaskAssignmentByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg, headers: UpdateTaskAssignmentByIdHeadersArg = new UpdateTaskAssignmentByIdHeadersArg({})): Promise<TaskAssignment> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateTaskAssignmentByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTaskAssignment(deserializeJson(response.text));
     }
-    async deleteTaskAssignmentById(taskAssignmentId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteTaskAssignmentById(taskAssignmentId: string, headers: DeleteTaskAssignmentByIdHeadersArg = new DeleteTaskAssignmentByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(val: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField): Json {

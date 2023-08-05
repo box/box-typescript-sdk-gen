@@ -1,10 +1,14 @@
 # SessionTerminationManager
 
+
+- [Create jobs to terminate users session](#create-jobs-to-terminate-users-session)
+- [Create jobs to terminate user group session](#create-jobs-to-terminate-user-group-session)
+
 ## Create jobs to terminate users session
 
 Validates the roles and permissions of the user,
 and creates asynchronous jobs
-to terminate the user&#x27;s sessions.
+to terminate the user's sessions.
 Returns the status for the POST request.
 
 This operation is performed by calling function `createUserTerminateSession`.
@@ -17,7 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateUserTerminateSessionRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createUserTerminateSession method
+- headers `CreateUserTerminateSessionHeadersArg`
+  - Headers of createUserTerminateSession method
 
 
 ### Returns
@@ -31,7 +37,7 @@ Returns a message about the request status.
 
 Validates the roles and permissions of the group,
 and creates asynchronous jobs
-to terminate the group&#x27;s sessions.
+to terminate the group's sessions.
 Returns the status for the POST request.
 
 This operation is performed by calling function `createGroupTerminateSession`.
@@ -44,7 +50,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateGroupTerminateSessionRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createGroupTerminateSession method
+- headers `CreateGroupTerminateSessionHeadersArg`
+  - Headers of createGroupTerminateSession method
 
 
 ### Returns

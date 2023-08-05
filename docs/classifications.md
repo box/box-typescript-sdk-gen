@@ -1,5 +1,10 @@
 # ClassificationsManager
 
+
+- [List all classifications](#list-all-classifications)
+- [Delete all classifications](#delete-all-classifications)
+- [Add initial classifications](#add-initial-classifications)
+
 ## List all classifications
 
 Retrieves the classification metadata template and lists all the
@@ -7,7 +12,7 @@ classifications available to this enterprise.
 
 This API can also be called by including the enterprise ID in the
 URL explicitly, for example
-&#x60;/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema&#x60;.
+`/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
 This operation is performed by calling function `getMetadataTemplateEnterpriseSecurityClassificationSchema`.
 
@@ -16,13 +21,18 @@ See the endpoint docs at
 
 *Currently we don't have an example for calling `getMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests*
 
+### Arguments
+
+- headers `GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
+  - Headers of getMetadataTemplateEnterpriseSecurityClassificationSchema method
+
 
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
 
-Returns the &#x60;securityClassification&#x60; metadata template, which contains
-a &#x60;Box__Security__Classification__Key&#x60; field that lists all the
+Returns the `securityClassification` metadata template, which contains
+a `Box__Security__Classification__Key` field that lists all the
 classifications available to this enterprise.
 
 
@@ -37,6 +47,19 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema/).
 
 *Currently we don't have an example for calling `deleteMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests*
+
+### Arguments
+
+- headers `DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
+  - Headers of deleteMetadataTemplateEnterpriseSecurityClassificationSchema method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the metadata
+template for classifications is successfully deleted.
 
 
 ## Add initial classifications
@@ -59,15 +82,17 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateMetadataTemplateSchemaClassificationRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createMetadataTemplateSchemaClassification method
+- headers `CreateMetadataTemplateSchemaClassificationHeadersArg`
+  - Headers of createMetadataTemplateSchemaClassification method
 
 
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
 
-Returns a new &#x60;securityClassification&#x60; metadata template, which
-contains a &#x60;Box__Security__Classification__Key&#x60; field that lists all
+Returns a new `securityClassification` metadata template, which
+contains a `Box__Security__Classification__Key` field that lists all
 the classifications available to this enterprise.
 
 

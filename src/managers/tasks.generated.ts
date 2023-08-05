@@ -10,6 +10,8 @@ import { Task } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -17,10 +19,18 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetFileTasksHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileTasksHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateTaskRequestBodyArgItemFieldTypeField = "file";
 export interface CreateTaskRequestBodyArgItemField {
-    readonly id: string;
-    readonly type: CreateTaskRequestBodyArgItemFieldTypeField;
+    readonly id?: string;
+    readonly type?: CreateTaskRequestBodyArgItemFieldTypeField;
 }
 export type CreateTaskRequestBodyArgActionField = "review" | "complete";
 export type CreateTaskRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
@@ -31,6 +41,22 @@ export interface CreateTaskRequestBodyArg {
     readonly dueAt?: string;
     readonly completionRule?: CreateTaskRequestBodyArgCompletionRuleField;
 }
+export class CreateTaskHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateTaskHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class GetTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetTaskByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateTaskByIdRequestBodyArgActionField = "review" | "complete";
 export type UpdateTaskByIdRequestBodyArgCompletionRuleField = "all_assignees" | "any_assignee";
 export interface UpdateTaskByIdRequestBodyArg {
@@ -39,31 +65,62 @@ export interface UpdateTaskByIdRequestBodyArg {
     readonly dueAt?: string;
     readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
 }
+export class UpdateTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateTaskByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteTaskByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteTaskByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class TasksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<TasksManager, "getFileTasks" | "createTask" | "getTaskById" | "updateTaskById" | "deleteTaskById">) {
         Object.assign(this, fields);
     }
-    async getFileTasks(fileId: string): Promise<Tasks> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/tasks") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileTasks(fileId: string, headers: GetFileTasksHeadersArg = new GetFileTasksHeadersArg({})): Promise<Tasks> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/tasks") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTasks(deserializeJson(response.text));
     }
-    async createTask(requestBody: CreateTaskRequestBodyArg): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", body: serializeJson(serializeCreateTaskRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createTask(requestBody: CreateTaskRequestBodyArg, headers: CreateTaskHeadersArg = new CreateTaskHeadersArg({})): Promise<Task> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateTaskRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
-    async getTaskById(taskId: string): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getTaskById(taskId: string, headers: GetTaskByIdHeadersArg = new GetTaskByIdHeadersArg({})): Promise<Task> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
-    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg): Promise<Task> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", body: serializeJson(serializeUpdateTaskByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg, headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})): Promise<Task> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateTaskByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
-    async deleteTaskById(taskId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteTaskById(taskId: string, headers: DeleteTaskByIdHeadersArg = new DeleteTaskByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeCreateTaskRequestBodyArgItemFieldTypeField(val: CreateTaskRequestBodyArgItemFieldTypeField): Json {
@@ -79,11 +136,11 @@ export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(val: any):
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTaskRequestBodyArgItemField(val: CreateTaskRequestBodyArgItemField): Json {
-    return { ["id"]: val.id, ["type"]: serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
+    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
 }
 export function deserializeCreateTaskRequestBodyArgItemField(val: any): CreateTaskRequestBodyArgItemField {
-    const id: string = val.id;
-    const type: CreateTaskRequestBodyArgItemFieldTypeField = deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
+    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const type: undefined | CreateTaskRequestBodyArgItemFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateTaskRequestBodyArgItemField;
 }
 export function serializeCreateTaskRequestBodyArgActionField(val: CreateTaskRequestBodyArgActionField): Json {

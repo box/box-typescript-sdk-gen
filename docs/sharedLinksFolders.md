@@ -1,5 +1,12 @@
 # SharedLinksFoldersManager
 
+
+- [Find folder for shared link](#find-folder-for-shared-link)
+- [Get shared link for folder](#get-shared-link-for-folder)
+- [Add shared link to folder](#add-shared-link-to-folder)
+- [Update shared link on folder](#update-shared-link-on-folder)
+- [Remove shared link from folder](#remove-shared-link-from-folder)
+
 ## Find folder for shared link
 
 Return the folder represented by a shared link.
@@ -19,10 +26,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetSharedItemFoldersQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetSharedItemFoldersQueryParamsArg`
+  - Query parameters of getSharedItemFolders method
 - headers `GetSharedItemFoldersHeadersArg`
-  - Used as headers for the API call
+  - Headers of getSharedItemFolders method
 
 
 ### Returns
@@ -47,10 +54,11 @@ See the endpoint docs at
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.  The root folder of a Box account is always represented by the ID &#x60;0&#x60;.
-  - Used as `folder_id` in path `path` of the API call
+  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetFolderGetSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFolderGetSharedLink method
+- headers `GetFolderGetSharedLinkHeadersArg`
+  - Headers of getFolderGetSharedLink method
 
 
 ### Returns
@@ -75,12 +83,13 @@ See the endpoint docs at
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.  The root folder of a Box account is always represented by the ID &#x60;0&#x60;.
-  - Used as `folder_id` in path `path` of the API call
+  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `UpdateFolderAddSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFolderAddSharedLink method
 - queryParams `UpdateFolderAddSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFolderAddSharedLink method
+- headers `UpdateFolderAddSharedLinkHeadersArg`
+  - Headers of updateFolderAddSharedLink method
 
 
 ### Returns
@@ -105,12 +114,13 @@ See the endpoint docs at
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.  The root folder of a Box account is always represented by the ID &#x60;0&#x60;.
-  - Used as `folder_id` in path `path` of the API call
+  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `UpdateFolderUpdateSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFolderUpdateSharedLink method
 - queryParams `UpdateFolderUpdateSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFolderUpdateSharedLink method
+- headers `UpdateFolderUpdateSharedLinkHeadersArg`
+  - Headers of updateFolderUpdateSharedLink method
 
 
 ### Returns
@@ -135,12 +145,13 @@ See the endpoint docs at
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/folder/123&#x60; the &#x60;folder_id&#x60; is &#x60;123&#x60;.  The root folder of a Box account is always represented by the ID &#x60;0&#x60;.
-  - Used as `folder_id` in path `path` of the API call
+  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `UpdateFolderRemoveSharedLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateFolderRemoveSharedLink method
 - queryParams `UpdateFolderRemoveSharedLinkQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of updateFolderRemoveSharedLink method
+- headers `UpdateFolderRemoveSharedLinkHeadersArg`
+  - Headers of updateFolderRemoveSharedLink method
 
 
 ### Returns

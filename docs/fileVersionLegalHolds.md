@@ -1,5 +1,9 @@
 # FileVersionLegalHoldsManager
 
+
+- [Get file version legal hold](#get-file-version-legal-hold)
+- [List file version legal holds](#list-file-version-legal-holds)
+
 ## Get file version legal hold
 
 Retrieves information about the legal hold policies
@@ -15,8 +19,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileVersionLegalHoldId `string`
-  - The ID of the file version legal hold
-  - Used as `file_version_legal_hold_id` in path `path` of the API call
+  - The ID of the file version legal hold Example: "2348213"
+- headers `GetFileVersionLegalHoldByIdHeadersArg`
+  - Headers of getFileVersionLegalHoldById method
 
 
 ### Returns
@@ -38,13 +43,13 @@ Instead, this API will only return file versions held in the legacy
 architecture. Two new endpoints will available to request any file versions
 held in the new architecture.
 
-For file versions held in the new architecture, the &#x60;GET
-/legal_hold_policy_assignments/:id/file_versions_on_hold&#x60; API can be used to
+For file versions held in the new architecture, the `GET
+/legal_hold_policy_assignments/:id/file_versions_on_hold` API can be used to
 return all past file versions available for this policy assignment, and the
-&#x60;GET /legal_hold_policy_assignments/:id/files_on_hold&#x60; API can be used to
+`GET /legal_hold_policy_assignments/:id/files_on_hold` API can be used to
 return any current (latest) versions of a file under legal hold.
 
-The &#x60;GET /legal_hold_policy_assignments?policy_id&#x3D;{id}&#x60; API can be used to
+The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
 find a list of policy assignments for a given policy ID.
 
 Once the re-architecture is completed this API will be deprecated.
@@ -59,7 +64,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetFileVersionLegalHoldsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getFileVersionLegalHolds method
+- headers `GetFileVersionLegalHoldsHeadersArg`
+  - Headers of getFileVersionLegalHolds method
 
 
 ### Returns

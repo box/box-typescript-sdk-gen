@@ -1,5 +1,14 @@
 # MetadataTemplatesManager
 
+
+- [Find metadata template by instance ID](#find-metadata-template-by-instance-id)
+- [Get metadata template by name](#get-metadata-template-by-name)
+- [Remove metadata template](#remove-metadata-template)
+- [Get metadata template by ID](#get-metadata-template-by-id)
+- [List all global metadata templates](#list-all-global-metadata-templates)
+- [List all metadata templates for enterprise](#list-all-metadata-templates-for-enterprise)
+- [Create metadata template](#create-metadata-template)
+
 ## Find metadata template by instance ID
 
 Finds a metadata template by searching for the ID of an instance of the
@@ -15,7 +24,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetMetadataTemplatesQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getMetadataTemplates method
+- headers `GetMetadataTemplatesHeadersArg`
+  - Headers of getMetadataTemplates method
 
 
 ### Returns
@@ -28,9 +39,9 @@ instance ID.
 
 ## Get metadata template by name
 
-Retrieves a metadata template by its &#x60;scope&#x60; and &#x60;templateKey&#x60; values.
+Retrieves a metadata template by its `scope` and `templateKey` values.
 
-To find the &#x60;scope&#x60; and &#x60;templateKey&#x60; for a template, list all templates for
+To find the `scope` and `templateKey` for a template, list all templates for
 an enterprise or globally, or list all templates applied to a file or folder.
 
 This operation is performed by calling function `getMetadataTemplateSchema`.
@@ -43,19 +54,19 @@ See the endpoint docs at
 ### Arguments
 
 - scope `GetMetadataTemplateSchemaScopeArg`
-  - The scope of the metadata template
-  - Used as `scope` in path `path` of the API call
+  - The scope of the metadata template Example: "global"
 - templateKey `string`
-  - The name of the metadata template
-  - Used as `template_key` in path `path` of the API call
+  - The name of the metadata template Example: "properties"
+- headers `GetMetadataTemplateSchemaHeadersArg`
+  - Headers of getMetadataTemplateSchema method
 
 
 ### Returns
 
 This function returns a value of type `MetadataTemplate`.
 
-Returns the metadata template matching the &#x60;scope&#x60;
-and &#x60;template&#x60; name.
+Returns the metadata template matching the `scope`
+and `template` name.
 
 
 ## Remove metadata template
@@ -73,11 +84,19 @@ See the endpoint docs at
 ### Arguments
 
 - scope `DeleteMetadataTemplateSchemaScopeArg`
-  - The scope of the metadata template
-  - Used as `scope` in path `path` of the API call
+  - The scope of the metadata template Example: "global"
 - templateKey `string`
-  - The name of the metadata template
-  - Used as `template_key` in path `path` of the API call
+  - The name of the metadata template Example: "properties"
+- headers `DeleteMetadataTemplateSchemaHeadersArg`
+  - Headers of deleteMetadataTemplateSchema method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the metadata
+template is successfully deleted.
 
 
 ## Get metadata template by ID
@@ -94,8 +113,9 @@ See the endpoint docs at
 ### Arguments
 
 - templateId `string`
-  - The ID of the template
-  - Used as `template_id` in path `path` of the API call
+  - The ID of the template Example: "f7a9891f"
+- headers `GetMetadataTemplateByIdHeadersArg`
+  - Headers of getMetadataTemplateById method
 
 
 ### Returns
@@ -119,8 +139,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetMetadataTemplateGlobalQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetMetadataTemplateGlobalQueryParamsArg`
+  - Query parameters of getMetadataTemplateGlobal method
+- headers `GetMetadataTemplateGlobalHeadersArg`
+  - Headers of getMetadataTemplateGlobal method
 
 
 ### Returns
@@ -134,7 +156,7 @@ and their corresponding schema.
 ## List all metadata templates for enterprise
 
 Used to retrieve all metadata templates created to be used specifically within
-the user&#x27;s enterprise
+the user's enterprise
 
 This operation is performed by calling function `getMetadataTemplateEnterprise`.
 
@@ -145,8 +167,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetMetadataTemplateEnterpriseQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetMetadataTemplateEnterpriseQueryParamsArg`
+  - Query parameters of getMetadataTemplateEnterprise method
+- headers `GetMetadataTemplateEnterpriseHeadersArg`
+  - Headers of getMetadataTemplateEnterprise method
 
 
 ### Returns
@@ -172,7 +196,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateMetadataTemplateSchemaRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createMetadataTemplateSchema method
+- headers `CreateMetadataTemplateSchemaHeadersArg`
+  - Headers of createMetadataTemplateSchema method
 
 
 ### Returns

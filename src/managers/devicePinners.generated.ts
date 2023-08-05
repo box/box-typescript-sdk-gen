@@ -10,17 +10,42 @@ import { DevicePinners } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-import { isJson } from "../json.js";
+export class GetDevicePinnerByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetDevicePinnerByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteDevicePinnerByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteDevicePinnerByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type GetEnterpriseDevicePinnersQueryParamsArgDirectionField = "ASC" | "DESC";
 export interface GetEnterpriseDevicePinnersQueryParamsArg {
     readonly marker?: string;
     readonly limit?: number;
     readonly direction?: GetEnterpriseDevicePinnersQueryParamsArgDirectionField;
+}
+export class GetEnterpriseDevicePinnersHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetEnterpriseDevicePinnersHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class DevicePinnersManager {
     readonly auth?: Authentication;
@@ -28,40 +53,28 @@ export class DevicePinnersManager {
     constructor(fields: Omit<DevicePinnersManager, "getDevicePinnerById" | "deleteDevicePinnerById" | "getEnterpriseDevicePinners">) {
         Object.assign(this, fields);
     }
-    async getDevicePinnerById(devicePinnerId: string): Promise<DevicePinner> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getDevicePinnerById(devicePinnerId: string, headers: GetDevicePinnerByIdHeadersArg = new GetDevicePinnerByIdHeadersArg({})): Promise<DevicePinner> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeDevicePinner(deserializeJson(response.text));
     }
-    async deleteDevicePinnerById(devicePinnerId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteDevicePinnerById(devicePinnerId: string, headers: DeleteDevicePinnerByIdHeadersArg = new DeleteDevicePinnerByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/device_pinners/", devicePinnerId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async getEnterpriseDevicePinners(enterpriseId: string, queryParams: undefined | GetEnterpriseDevicePinnersQueryParamsArg = {} satisfies GetEnterpriseDevicePinnersQueryParamsArg): Promise<DevicePinners> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/enterprises/", enterpriseId, "/device_pinners") as string, { method: "GET", params: prepareParams(serializeGetEnterpriseDevicePinnersQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getEnterpriseDevicePinners(enterpriseId: string, queryParams: GetEnterpriseDevicePinnersQueryParamsArg = {} satisfies GetEnterpriseDevicePinnersQueryParamsArg, headers: GetEnterpriseDevicePinnersHeadersArg = new GetEnterpriseDevicePinnersHeadersArg({})): Promise<DevicePinners> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["marker"]: toString(queryParams.marker), ["limit"]: toString(queryParams.limit), ["direction"]: toString(queryParams.direction) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/enterprises/", enterpriseId, "/device_pinners") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeDevicePinners(deserializeJson(response.text));
     }
-}
-export function serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField): Json {
-    return val;
-}
-export function deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val: any): GetEnterpriseDevicePinnersQueryParamsArgDirectionField {
-    if (!isJson(val, "string")) {
-        throw "Expecting a string for \"GetEnterpriseDevicePinnersQueryParamsArgDirectionField\"";
-    }
-    if (val == "ASC") {
-        return "ASC";
-    }
-    if (val == "DESC") {
-        return "DESC";
-    }
-    throw "".concat("Invalid value: ", val) as string;
-}
-export function serializeGetEnterpriseDevicePinnersQueryParamsArg(val: GetEnterpriseDevicePinnersQueryParamsArg): Json {
-    return { ["marker"]: val.marker, ["limit"]: val.limit, ["direction"]: val.direction == void 0 ? void 0 : serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val.direction) };
-}
-export function deserializeGetEnterpriseDevicePinnersQueryParamsArg(val: any): GetEnterpriseDevicePinnersQueryParamsArg {
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const direction: undefined | GetEnterpriseDevicePinnersQueryParamsArgDirectionField = val.direction == void 0 ? void 0 : deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(val.direction);
-    return { marker: marker, limit: limit, direction: direction } satisfies GetEnterpriseDevicePinnersQueryParamsArg;
 }

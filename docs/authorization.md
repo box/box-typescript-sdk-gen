@@ -1,12 +1,15 @@
 # AuthorizationManager
 
+
+- [Authorize user](#authorize-user)
+
 ## Authorize user
 
 Authorize a user by sending them through the [Box](https://box.com)
 website and request their permission to act on their behalf.
 
 This is the first step when authenticating a user using
-OAuth 2.0. To request a user&#x27;s authorization to use the Box APIs
+OAuth 2.0. To request a user's authorization to use the Box APIs
 on their behalf you will need to send a user to the URL with this
 format.
 
@@ -20,7 +23,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetAuthorizeQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getAuthorize method
+- headers `GetAuthorizeHeadersArg`
+  - Headers of getAuthorize method
 
 
 ### Returns

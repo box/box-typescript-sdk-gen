@@ -1,5 +1,11 @@
 # CollaborationAllowlistEntriesManager
 
+
+- [List allowed collaboration domains](#list-allowed-collaboration-domains)
+- [Add domain to list of allowed collaboration domains](#add-domain-to-list-of-allowed-collaboration-domains)
+- [Get allowed collaboration domain](#get-allowed-collaboration-domain)
+- [Remove domain from list of allowed collaboration domains](#remove-domain-from-list-of-allowed-collaboration-domains)
+
 ## List allowed collaboration domains
 
 Returns the list domains that have been deemed safe to create collaborations
@@ -14,8 +20,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetCollaborationWhitelistEntriesQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetCollaborationWhitelistEntriesQueryParamsArg`
+  - Query parameters of getCollaborationWhitelistEntries method
+- headers `GetCollaborationWhitelistEntriesHeadersArg`
+  - Headers of getCollaborationWhitelistEntries method
 
 
 ### Returns
@@ -40,7 +48,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateCollaborationWhitelistEntryRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createCollaborationWhitelistEntry method
+- headers `CreateCollaborationWhitelistEntryHeadersArg`
+  - Headers of createCollaborationWhitelistEntry method
 
 
 ### Returns
@@ -65,8 +75,9 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationWhitelistEntryId `string`
-  - The ID of the entry in the list.
-  - Used as `collaboration_whitelist_entry_id` in path `path` of the API call
+  - The ID of the entry in the list. Example: "213123"
+- headers `GetCollaborationWhitelistEntryByIdHeadersArg`
+  - Headers of getCollaborationWhitelistEntryById method
 
 
 ### Returns
@@ -91,7 +102,16 @@ See the endpoint docs at
 ### Arguments
 
 - collaborationWhitelistEntryId `string`
-  - The ID of the entry in the list.
-  - Used as `collaboration_whitelist_entry_id` in path `path` of the API call
+  - The ID of the entry in the list. Example: "213123"
+- headers `DeleteCollaborationWhitelistEntryByIdHeadersArg`
+  - Headers of deleteCollaborationWhitelistEntryById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+A blank response is returned if the entry was
+successfully deleted.
 
 

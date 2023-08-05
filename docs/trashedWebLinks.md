@@ -1,5 +1,10 @@
 # TrashedWebLinksManager
 
+
+- [Restore web link](#restore-web-link)
+- [Get trashed web link](#get-trashed-web-link)
+- [Permanently remove web link](#permanently-remove-web-link)
+
 ## Restore web link
 
 Restores a web link that has been moved to the trash.
@@ -17,12 +22,13 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - requestBody `CreateWebLinkByIdRequestBodyArg`
-  - Used as requestBody for the API call
-- queryParams `undefined | CreateWebLinkByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - Request body of createWebLinkById method
+- queryParams `CreateWebLinkByIdQueryParamsArg`
+  - Query parameters of createWebLinkById method
+- headers `CreateWebLinkByIdHeadersArg`
+  - Headers of createWebLinkById method
 
 
 ### Returns
@@ -46,10 +52,11 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
-- queryParams `undefined | GetWebLinkTrashQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the web link. Example: "12345"
+- queryParams `GetWebLinkTrashQueryParamsArg`
+  - Query parameters of getWebLinkTrash method
+- headers `GetWebLinkTrashHeadersArg`
+  - Headers of getWebLinkTrash method
 
 
 ### Returns
@@ -76,7 +83,16 @@ See the endpoint docs at
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
+- headers `DeleteWebLinkTrashHeadersArg`
+  - Headers of deleteWebLinkTrash method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the web link was
+permanently deleted.
 
 

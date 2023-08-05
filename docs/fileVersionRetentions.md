@@ -1,5 +1,9 @@
 # FileVersionRetentionsManager
 
+
+- [List file version retentions](#list-file-version-retentions)
+- [Get retention on file](#get-retention-on-file)
+
 ## List file version retentions
 
 Retrieves all file version retentions for the given enterprise.
@@ -13,8 +17,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetFileVersionRetentionsQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetFileVersionRetentionsQueryParamsArg`
+  - Query parameters of getFileVersionRetentions method
+- headers `GetFileVersionRetentionsHeadersArg`
+  - Headers of getFileVersionRetentions method
 
 
 ### Returns
@@ -38,8 +44,9 @@ See the endpoint docs at
 ### Arguments
 
 - fileVersionRetentionId `string`
-  - The ID of the file version retention
-  - Used as `file_version_retention_id` in path `path` of the API call
+  - The ID of the file version retention Example: "3424234"
+- headers `GetFileVersionRetentionByIdHeadersArg`
+  - Headers of getFileVersionRetentionById method
 
 
 ### Returns

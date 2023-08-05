@@ -44,8 +44,20 @@ export function listConcat<T>(a: readonly T[], b: readonly T[]): T[] {
   return [...a, ...b];
 }
 
+export function generateByteBuffer(size: number): Buffer {
+  return crypto.randomBytes(size);
+}
+
+export function generateByteStreamFromBuffer(buffer: Buffer): Readable {
+  return Readable.from(buffer);
+}
+
 export function generateByteStream(size: number): Readable {
   return Readable.from(crypto.randomBytes(size));
+}
+
+export function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean {
+  return Buffer.compare(buffer1, buffer2) === 0;
 }
 
 export function decodeBase64ByteStream(data: string): Readable {
@@ -118,20 +130,22 @@ export async function reduceIterator<T, U>(
   return result;
 }
 
-export function prepareParams(obj: any): Record<string, string> {
-  if (!obj || typeof obj !== 'object') {
+export function prepareParams(map: {
+  readonly [key: string]: undefined | string;
+}): { readonly [key: string]: string } {
+  if (!map || typeof map !== 'object') {
     throw new Error('Expecting obj to be an object in prepareParams');
   }
   return Object.fromEntries(
-    Object.entries(obj)
-      .map<[string, string | null | undefined]>(([key, value]) => {
-        if (typeof value === 'string' || value == null) {
-          return [key, value];
-        }
-        return [key, String(value)];
-      })
-      .filter<[string, string]>(
-        (entry): entry is [string, string] => typeof entry[1] === 'string'
-      )
+    Object.entries(map).filter<[string, string]>(
+      (entry): entry is [string, string] => typeof entry[1] === 'string'
+    )
   );
+}
+
+export function toString(value: any): string {
+  if (typeof value === 'string' || value == null) {
+    return value;
+  }
+  return String(value);
 }

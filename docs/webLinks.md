@@ -1,5 +1,11 @@
 # WebLinksManager
 
+
+- [Create web link](#create-web-link)
+- [Get web link](#get-web-link)
+- [Update web link](#update-web-link)
+- [Remove web link](#remove-web-link)
+
 ## Create web link
 
 Creates a web link object within a folder.
@@ -17,7 +23,9 @@ await client.webLinks.createWebLink({ url: url, parent: parent, name: name, desc
 ### Arguments
 
 - requestBody `CreateWebLinkRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createWebLink method
+- headers `CreateWebLinkHeadersArg`
+  - Headers of createWebLink method
 
 
 ### Returns
@@ -44,10 +52,9 @@ await client.webLinks.getWebLinkById(weblink.id)
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
-- headers `undefined | GetWebLinkByIdHeadersArg`
-  - Used as headers for the API call
+  - The ID of the web link. Example: "12345"
+- headers `GetWebLinkByIdHeadersArg`
+  - Headers of getWebLinkById method
 
 
 ### Returns
@@ -74,10 +81,11 @@ await client.webLinks.updateWebLinkById(weblink.id, { name: updatedName, sharedL
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
 - requestBody `UpdateWebLinkByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateWebLinkById method
+- headers `UpdateWebLinkByIdHeadersArg`
+  - Headers of updateWebLinkById method
 
 
 ### Returns
@@ -104,7 +112,16 @@ await client.webLinks.deleteWebLinkById(weblink.id)
 ### Arguments
 
 - webLinkId `string`
-  - The ID of the web link.
-  - Used as `web_link_id` in path `path` of the API call
+  - The ID of the web link. Example: "12345"
+- headers `DeleteWebLinkByIdHeadersArg`
+  - Headers of deleteWebLinkById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+An empty response will be returned when the web link
+was successfully deleted.
 
 

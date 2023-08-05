@@ -7,6 +7,8 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -19,6 +21,14 @@ export interface GetWorkflowsQueryParamsArg {
     readonly triggerType?: string;
     readonly limit?: number;
     readonly marker?: string;
+}
+export class GetWorkflowsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetWorkflowsHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateWorkflowStartRequestBodyArgTypeField = "workflow_parameters";
 export interface CreateWorkflowStartRequestBodyArgFlowField {
@@ -48,30 +58,37 @@ export interface CreateWorkflowStartRequestBodyArg {
     readonly folder: CreateWorkflowStartRequestBodyArgFolderField;
     readonly outcomes?: readonly CreateWorkflowStartRequestBodyArgOutcomesField[];
 }
+export class CreateWorkflowStartHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateWorkflowStartHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class WorkflowsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<WorkflowsManager, "getWorkflows" | "createWorkflowStart">) {
         Object.assign(this, fields);
     }
-    async getWorkflows(queryParams: GetWorkflowsQueryParamsArg): Promise<Workflows> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows") as string, { method: "GET", params: prepareParams(serializeGetWorkflowsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getWorkflows(queryParams: GetWorkflowsQueryParamsArg, headers: GetWorkflowsHeadersArg = new GetWorkflowsHeadersArg({})): Promise<Workflows> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["folder_id"]: toString(queryParams.folderId), ["trigger_type"]: toString(queryParams.triggerType), ["limit"]: toString(queryParams.limit), ["marker"]: toString(queryParams.marker) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWorkflows(deserializeJson(response.text));
     }
-    async createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows/", workflowId, "/start") as string, { method: "POST", body: serializeJson(serializeCreateWorkflowStartRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async createWorkflowStart(workflowId: string, requestBody: CreateWorkflowStartRequestBodyArg, headers: CreateWorkflowStartHeadersArg = new CreateWorkflowStartHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/workflows/", workflowId, "/start") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateWorkflowStartRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-}
-export function serializeGetWorkflowsQueryParamsArg(val: GetWorkflowsQueryParamsArg): Json {
-    return { ["folder_id"]: val.folderId, ["trigger_type"]: val.triggerType, ["limit"]: val.limit, ["marker"]: val.marker };
-}
-export function deserializeGetWorkflowsQueryParamsArg(val: any): GetWorkflowsQueryParamsArg {
-    const folderId: string = val.folder_id;
-    const triggerType: undefined | string = isJson(val.trigger_type, "string") ? val.trigger_type : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    return { folderId: folderId, triggerType: triggerType, limit: limit, marker: marker } satisfies GetWorkflowsQueryParamsArg;
 }
 export function serializeCreateWorkflowStartRequestBodyArgTypeField(val: CreateWorkflowStartRequestBodyArgTypeField): Json {
     return val;

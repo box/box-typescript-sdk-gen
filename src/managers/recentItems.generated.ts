@@ -7,16 +7,25 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-import { isJson } from "../json.js";
 export interface GetRecentItemsQueryParamsArg {
     readonly fields?: string;
     readonly limit?: number;
     readonly marker?: string;
+}
+export class GetRecentItemsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetRecentItemsHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class RecentItemsManager {
     readonly auth?: Authentication;
@@ -24,17 +33,14 @@ export class RecentItemsManager {
     constructor(fields: Omit<RecentItemsManager, "getRecentItems">) {
         Object.assign(this, fields);
     }
-    async getRecentItems(queryParams: undefined | GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg): Promise<RecentItems> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: prepareParams(serializeGetRecentItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getRecentItems(queryParams: GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg, headers: GetRecentItemsHeadersArg = new GetRecentItemsHeadersArg({})): Promise<RecentItems> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["limit"]: toString(queryParams.limit), ["marker"]: toString(queryParams.marker) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/recent_items") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRecentItems(deserializeJson(response.text));
     }
-}
-export function serializeGetRecentItemsQueryParamsArg(val: GetRecentItemsQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["limit"]: val.limit, ["marker"]: val.marker };
-}
-export function deserializeGetRecentItemsQueryParamsArg(val: any): GetRecentItemsQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    const marker: undefined | string = isJson(val.marker, "string") ? val.marker : void 0;
-    return { fields: fields, limit: limit, marker: marker } satisfies GetRecentItemsQueryParamsArg;
 }

@@ -1,10 +1,14 @@
 # CollectionsManager
 
+
+- [List all collections](#list-all-collections)
+- [List collection items](#list-collection-items)
+
 ## List all collections
 
 Retrieves all collections for a given user.
 
-Currently, only the &#x60;favorites&#x60; collection
+Currently, only the `favorites` collection
 is supported.
 
 This operation is performed by calling function `getCollections`.
@@ -16,8 +20,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetCollectionsQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetCollectionsQueryParamsArg`
+  - Query parameters of getCollections method
+- headers `GetCollectionsHeadersArg`
+  - Headers of getCollections method
 
 
 ### Returns
@@ -42,10 +48,11 @@ See the endpoint docs at
 ### Arguments
 
 - collectionId `string`
-  - The ID of the collection.
-  - Used as `collection_id` in path `path` of the API call
-- queryParams `undefined | GetCollectionItemsQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the collection. Example: "926489"
+- queryParams `GetCollectionItemsQueryParamsArg`
+  - Query parameters of getCollectionItems method
+- headers `GetCollectionItemsHeadersArg`
+  - Headers of getCollectionItems method
 
 
 ### Returns

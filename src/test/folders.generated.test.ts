@@ -1,5 +1,3 @@
-import { serializeGetFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
-import { deserializeGetFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
 import { serializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { deserializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { serializeCreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";

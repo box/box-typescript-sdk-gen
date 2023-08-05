@@ -1,5 +1,10 @@
 # FileClassificationsManager
 
+
+- [Get classification on file](#get-classification-on-file)
+- [Add classification to file](#add-classification-to-file)
+- [Remove classification from file](#remove-classification-from-file)
+
 ## Get classification on file
 
 Retrieves the classification metadata instance that
@@ -7,7 +12,7 @@ has been applied to a file.
 
 This API can also be called by including the enterprise ID in the
 URL explicitly, for example
-&#x60;/files/:id//enterprise_12345/securityClassification-6VMVochwUWo&#x60;.
+`/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
 This operation is performed by calling function `getFileMetadataEnterpriseSecurityClassification6VmVochwUWo`.
 
@@ -19,16 +24,17 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- headers `GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
+  - Headers of getFileMetadataEnterpriseSecurityClassification6VmVochwUWo method
 
 
 ### Returns
 
 This function returns a value of type `Classification`.
 
-Returns an instance of the &#x60;securityClassification&#x60; metadata
-template, which contains a &#x60;Box__Security__Classification__Key&#x60;
+Returns an instance of the `securityClassification` metadata
+template, which contains a `Box__Security__Classification__Key`
 field that lists all the classifications available to this
 enterprise.
 
@@ -40,7 +46,7 @@ classification to add.
 
 This API can also be called by including the enterprise ID in the
 URL explicitly, for example
-&#x60;/files/:id//enterprise_12345/securityClassification-6VMVochwUWo&#x60;.
+`/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
 This operation is performed by calling function `createFileMetadataEnterpriseSecurityClassification`.
 
@@ -52,10 +58,11 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createFileMetadataEnterpriseSecurityClassification method
+- headers `CreateFileMetadataEnterpriseSecurityClassificationHeadersArg`
+  - Headers of createFileMetadataEnterpriseSecurityClassification method
 
 
 ### Returns
@@ -72,7 +79,7 @@ Removes any classifications from a file.
 
 This API can also be called by including the enterprise ID in the
 URL explicitly, for example
-&#x60;/files/:id//enterprise_12345/securityClassification-6VMVochwUWo&#x60;.
+`/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
 This operation is performed by calling function `deleteFileMetadataEnterpriseSecurityClassification`.
 
@@ -84,7 +91,16 @@ See the endpoint docs at
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL &#x60;https://*.app.box.com/files/123&#x60; the &#x60;file_id&#x60; is &#x60;123&#x60;.
-  - Used as `file_id` in path `path` of the API call
+  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- headers `DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg`
+  - Headers of deleteFileMetadataEnterpriseSecurityClassification method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the classification is
+successfully deleted.
 
 

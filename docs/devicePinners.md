@@ -1,5 +1,10 @@
 # DevicePinnersManager
 
+
+- [Get device pin](#get-device-pin)
+- [Remove device pin](#remove-device-pin)
+- [List enterprise device pins](#list-enterprise-device-pins)
+
 ## Get device pin
 
 Retrieves information about an individual device pin.
@@ -14,8 +19,9 @@ See the endpoint docs at
 ### Arguments
 
 - devicePinnerId `string`
-  - The ID of the device pin
-  - Used as `device_pinner_id` in path `path` of the API call
+  - The ID of the device pin Example: "2324234"
+- headers `GetDevicePinnerByIdHeadersArg`
+  - Headers of getDevicePinnerById method
 
 
 ### Returns
@@ -39,8 +45,16 @@ See the endpoint docs at
 ### Arguments
 
 - devicePinnerId `string`
-  - The ID of the device pin
-  - Used as `device_pinner_id` in path `path` of the API call
+  - The ID of the device pin Example: "2324234"
+- headers `DeleteDevicePinnerByIdHeadersArg`
+  - Headers of deleteDevicePinnerById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the pin has been deleted.
 
 
 ## List enterprise device pins
@@ -48,7 +62,7 @@ See the endpoint docs at
 Retrieves all the device pins within an enterprise.
 
 The user must have admin privileges, and the application
-needs the &quot;manage enterprise&quot; scope to make this call.
+needs the "manage enterprise" scope to make this call.
 
 This operation is performed by calling function `getEnterpriseDevicePinners`.
 
@@ -60,10 +74,11 @@ See the endpoint docs at
 ### Arguments
 
 - enterpriseId `string`
-  - The ID of the enterprise
-  - Used as `enterprise_id` in path `path` of the API call
-- queryParams `undefined | GetEnterpriseDevicePinnersQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the enterprise Example: "3442311"
+- queryParams `GetEnterpriseDevicePinnersQueryParamsArg`
+  - Query parameters of getEnterpriseDevicePinners method
+- headers `GetEnterpriseDevicePinnersHeadersArg`
+  - Headers of getEnterpriseDevicePinners method
 
 
 ### Returns

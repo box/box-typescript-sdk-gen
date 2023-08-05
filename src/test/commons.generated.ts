@@ -18,7 +18,6 @@ import { generateByteStream } from "../utils.js";
 import { Client } from "../client.generated.js";
 import { JwtAuth } from "../jwtAuth.js";
 import { JwtConfig } from "../jwtAuth.js";
-import { Readable } from "stream";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
 const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });

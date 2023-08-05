@@ -10,21 +10,38 @@ import { Items } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
-import { isJson } from "../json.js";
 export interface GetCollectionsQueryParamsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
 }
+export class GetCollectionsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetCollectionsHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface GetCollectionItemsQueryParamsArg {
     readonly fields?: string;
     readonly offset?: number;
     readonly limit?: number;
+}
+export class GetCollectionItemsHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetCollectionItemsHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class CollectionsManager {
     readonly auth?: Authentication;
@@ -32,30 +49,24 @@ export class CollectionsManager {
     constructor(fields: Omit<CollectionsManager, "getCollections" | "getCollectionItems">) {
         Object.assign(this, fields);
     }
-    async getCollections(queryParams: undefined | GetCollectionsQueryParamsArg = {} satisfies GetCollectionsQueryParamsArg): Promise<Collections> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: prepareParams(serializeGetCollectionsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getCollections(queryParams: GetCollectionsQueryParamsArg = {} satisfies GetCollectionsQueryParamsArg, headers: GetCollectionsHeadersArg = new GetCollectionsHeadersArg({})): Promise<Collections> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCollections(deserializeJson(response.text));
     }
-    async getCollectionItems(collectionId: string, queryParams: undefined | GetCollectionItemsQueryParamsArg = {} satisfies GetCollectionItemsQueryParamsArg): Promise<Items> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: prepareParams(serializeGetCollectionItemsQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getCollectionItems(collectionId: string, queryParams: GetCollectionItemsQueryParamsArg = {} satisfies GetCollectionItemsQueryParamsArg, headers: GetCollectionItemsHeadersArg = new GetCollectionItemsHeadersArg({})): Promise<Items> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["fields"]: toString(queryParams.fields), ["offset"]: toString(queryParams.offset), ["limit"]: toString(queryParams.limit) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/collections/", collectionId, "/items") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeItems(deserializeJson(response.text));
     }
-}
-export function serializeGetCollectionsQueryParamsArg(val: GetCollectionsQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["offset"]: val.offset, ["limit"]: val.limit };
-}
-export function deserializeGetCollectionsQueryParamsArg(val: any): GetCollectionsQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { fields: fields, offset: offset, limit: limit } satisfies GetCollectionsQueryParamsArg;
-}
-export function serializeGetCollectionItemsQueryParamsArg(val: GetCollectionItemsQueryParamsArg): Json {
-    return { ["fields"]: val.fields, ["offset"]: val.offset, ["limit"]: val.limit };
-}
-export function deserializeGetCollectionItemsQueryParamsArg(val: any): GetCollectionItemsQueryParamsArg {
-    const fields: undefined | string = isJson(val.fields, "string") ? val.fields : void 0;
-    const offset: undefined | number = isJson(val.offset, "number") ? val.offset : void 0;
-    const limit: undefined | number = isJson(val.limit, "number") ? val.limit : void 0;
-    return { fields: fields, offset: offset, limit: limit } satisfies GetCollectionItemsQueryParamsArg;
 }

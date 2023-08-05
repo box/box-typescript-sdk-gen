@@ -7,6 +7,8 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -14,6 +16,14 @@ import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
 import { isJson } from "../json.js";
+export class GetFileWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField = "default";
 export interface UpdateFileWatermarkRequestBodyArgWatermarkField {
     readonly imprint: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField;
@@ -21,23 +31,48 @@ export interface UpdateFileWatermarkRequestBodyArgWatermarkField {
 export interface UpdateFileWatermarkRequestBodyArg {
     readonly watermark: UpdateFileWatermarkRequestBodyArgWatermarkField;
 }
+export class UpdateFileWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFileWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFileWatermarkHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFileWatermarkHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export class FileWatermarksManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
     constructor(fields: Omit<FileWatermarksManager, "getFileWatermark" | "updateFileWatermark" | "deleteFileWatermark">) {
         Object.assign(this, fields);
     }
-    async getFileWatermark(fileId: string): Promise<Watermark> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileWatermark(fileId: string, headers: GetFileWatermarkHeadersArg = new GetFileWatermarkHeadersArg({})): Promise<Watermark> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWatermark(deserializeJson(response.text));
     }
-    async updateFileWatermark(fileId: string, requestBody: UpdateFileWatermarkRequestBodyArg): Promise<Watermark> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", body: serializeJson(serializeUpdateFileWatermarkRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFileWatermark(fileId: string, requestBody: UpdateFileWatermarkRequestBodyArg, headers: UpdateFileWatermarkHeadersArg = new UpdateFileWatermarkHeadersArg({})): Promise<Watermark> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateFileWatermarkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWatermark(deserializeJson(response.text));
     }
-    async deleteFileWatermark(fileId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFileWatermark(fileId: string, headers: DeleteFileWatermarkHeadersArg = new DeleteFileWatermarkHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/watermark") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
 }
 export function serializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(val: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField): Json {

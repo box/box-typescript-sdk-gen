@@ -4,18 +4,24 @@ import { ClientError } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
-import { isJson } from "../json.js";
-import { Json } from "../json.js";
 export interface DownloadFileQueryParamsArg {
     readonly version?: string;
     readonly accessToken?: string;
 }
-export interface DownloadFileHeadersArg {
+export class DownloadFileHeadersArg {
     readonly range?: string;
     readonly boxapi?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DownloadFileHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class DownloadsManager {
     readonly auth?: Authentication;
@@ -23,24 +29,14 @@ export class DownloadsManager {
     constructor(fields: Omit<DownloadsManager, "downloadFile">) {
         Object.assign(this, fields);
     }
-    async downloadFile(fileId: string, queryParams: undefined | DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: undefined | DownloadFileHeadersArg = {} satisfies DownloadFileHeadersArg): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: prepareParams(serializeDownloadFileQueryParamsArg(queryParams)), headers: prepareParams(serializeDownloadFileHeadersArg(headers)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async downloadFile(fileId: string, queryParams: DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg, headers: DownloadFileHeadersArg = new DownloadFileHeadersArg({})): Promise<ByteStream> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["version"]: toString(queryParams.version), ["access_token"]: toString(queryParams.accessToken) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{ ["range"]: toString(headers.range), ["boxapi"]: toString(headers.boxapi) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/content") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "binary", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return response.content;
     }
-}
-export function serializeDownloadFileQueryParamsArg(val: DownloadFileQueryParamsArg): Json {
-    return { ["version"]: val.version, ["access_token"]: val.accessToken };
-}
-export function deserializeDownloadFileQueryParamsArg(val: any): DownloadFileQueryParamsArg {
-    const version: undefined | string = isJson(val.version, "string") ? val.version : void 0;
-    const accessToken: undefined | string = isJson(val.access_token, "string") ? val.access_token : void 0;
-    return { version: version, accessToken: accessToken } satisfies DownloadFileQueryParamsArg;
-}
-export function serializeDownloadFileHeadersArg(val: DownloadFileHeadersArg): Json {
-    return { ["range"]: val.range, ["boxapi"]: val.boxapi };
-}
-export function deserializeDownloadFileHeadersArg(val: any): DownloadFileHeadersArg {
-    const range: undefined | string = isJson(val.range, "string") ? val.range : void 0;
-    const boxapi: undefined | string = isJson(val.boxapi, "string") ? val.boxapi : void 0;
-    return { range: range, boxapi: boxapi } satisfies DownloadFileHeadersArg;
 }

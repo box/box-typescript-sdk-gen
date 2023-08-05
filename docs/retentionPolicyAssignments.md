@@ -1,5 +1,13 @@
 # RetentionPolicyAssignmentsManager
 
+
+- [List retention policy assignments](#list-retention-policy-assignments)
+- [Assign retention policy](#assign-retention-policy)
+- [Get retention policy assignment](#get-retention-policy-assignment)
+- [Remove retention policy assignment](#remove-retention-policy-assignment)
+- [Get files under retention](#get-files-under-retention)
+- [Get file versions under retention](#get-file-versions-under-retention)
+
 ## List retention policy assignments
 
 Returns a list of all retention policy assignments associated with a specified
@@ -15,10 +23,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyId `string`
-  - The ID of the retention policy.
-  - Used as `retention_policy_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentsQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the retention policy. Example: "982312"
+- queryParams `GetRetentionPolicyAssignmentsQueryParamsArg`
+  - Query parameters of getRetentionPolicyAssignments method
+- headers `GetRetentionPolicyAssignmentsHeadersArg`
+  - Headers of getRetentionPolicyAssignments method
 
 
 ### Returns
@@ -43,7 +52,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateRetentionPolicyAssignmentRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createRetentionPolicyAssignment method
+- headers `CreateRetentionPolicyAssignmentHeadersArg`
+  - Headers of createRetentionPolicyAssignment method
 
 
 ### Returns
@@ -67,10 +78,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
-  - The ID of the retention policy assignment.
-  - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the retention policy assignment. Example: "1233123"
+- queryParams `GetRetentionPolicyAssignmentByIdQueryParamsArg`
+  - Query parameters of getRetentionPolicyAssignmentById method
+- headers `GetRetentionPolicyAssignmentByIdHeadersArg`
+  - Headers of getRetentionPolicyAssignmentById method
 
 
 ### Returns
@@ -95,8 +107,17 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
-  - The ID of the retention policy assignment.
-  - Used as `retention_policy_assignment_id` in path `path` of the API call
+  - The ID of the retention policy assignment. Example: "1233123"
+- headers `DeleteRetentionPolicyAssignmentByIdHeadersArg`
+  - Headers of deleteRetentionPolicyAssignmentById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the policy assignment
+is successfully deleted.
 
 
 ## Get files under retention
@@ -113,10 +134,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
-  - The ID of the retention policy assignment.
-  - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the retention policy assignment. Example: "1233123"
+- queryParams `GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg`
+  - Query parameters of getRetentionPolicyAssignmentFileUnderRetention method
+- headers `GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg`
+  - Headers of getRetentionPolicyAssignmentFileUnderRetention method
 
 
 ### Returns
@@ -142,10 +164,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
-  - The ID of the retention policy assignment.
-  - Used as `retention_policy_assignment_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the retention policy assignment. Example: "1233123"
+- queryParams `GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg`
+  - Query parameters of getRetentionPolicyAssignmentFileVersionUnderRetention method
+- headers `GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg`
+  - Headers of getRetentionPolicyAssignmentFileVersionUnderRetention method
 
 
 ### Returns

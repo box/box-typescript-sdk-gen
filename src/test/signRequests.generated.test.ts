@@ -2,8 +2,6 @@ import { serializeFolderBaseTypeField } from "../schemas.generated.js";
 import { deserializeFolderBaseTypeField } from "../schemas.generated.js";
 import { serializeFileBaseTypeField } from "../schemas.generated.js";
 import { deserializeFileBaseTypeField } from "../schemas.generated.js";
-import { serializeDeleteFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
-import { deserializeDeleteFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
 import { serializeSignRequestCreateRequest } from "../schemas.generated.js";
 import { deserializeSignRequestCreateRequest } from "../schemas.generated.js";
 import { serializeSignRequestCreateSigner } from "../schemas.generated.js";

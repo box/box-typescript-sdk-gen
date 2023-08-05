@@ -1,5 +1,11 @@
 # ShieldInformationBarrierSegmentMembersManager
 
+
+- [Get shield information barrier segment member by ID](#get-shield-information-barrier-segment-member-by-id)
+- [Delete shield information barrier segment member by ID](#delete-shield-information-barrier-segment-member-by-id)
+- [List shield information barrier segment members](#list-shield-information-barrier-segment-members)
+- [Create shield information barrier segment member](#create-shield-information-barrier-segment-member)
+
 ## Get shield information barrier segment member by ID
 
 Retrieves a shield information barrier
@@ -15,8 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentMemberId `string`
-  - The ID of the shield information barrier segment Member.
-  - Used as `shield_information_barrier_segment_member_id` in path `path` of the API call
+  - The ID of the shield information barrier segment Member. Example: "7815"
+- headers `GetShieldInformationBarrierSegmentMemberByIdHeadersArg`
+  - Headers of getShieldInformationBarrierSegmentMemberById method
 
 
 ### Returns
@@ -41,8 +48,17 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentMemberId `string`
-  - The ID of the shield information barrier segment Member.
-  - Used as `shield_information_barrier_segment_member_id` in path `path` of the API call
+  - The ID of the shield information barrier segment Member. Example: "7815"
+- headers `DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg`
+  - Headers of deleteShieldInformationBarrierSegmentMemberById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response if the
+segment member was deleted successfully.
 
 
 ## List shield information barrier segment members
@@ -60,7 +76,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetShieldInformationBarrierSegmentMembersQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getShieldInformationBarrierSegmentMembers method
+- headers `GetShieldInformationBarrierSegmentMembersHeadersArg`
+  - Headers of getShieldInformationBarrierSegmentMembers method
 
 
 ### Returns
@@ -85,7 +103,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateShieldInformationBarrierSegmentMemberRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrierSegmentMember method
+- headers `CreateShieldInformationBarrierSegmentMemberHeadersArg`
+  - Headers of createShieldInformationBarrierSegmentMember method
 
 
 ### Returns

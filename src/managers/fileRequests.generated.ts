@@ -13,15 +13,46 @@ import { FileRequestCopyRequest } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
-import { isJson } from "../json.js";
-export interface UpdateFileRequestByIdHeadersArg {
+export class GetFileRequestByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetFileRequestByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class UpdateFileRequestByIdHeadersArg {
     readonly ifMatch?: string;
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateFileRequestByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class DeleteFileRequestByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: DeleteFileRequestByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export class CreateFileRequestCopyHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateFileRequestCopyHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class FileRequestsManager {
     readonly auth?: Authentication;
@@ -29,27 +60,32 @@ export class FileRequestsManager {
     constructor(fields: Omit<FileRequestsManager, "getFileRequestById" | "updateFileRequestById" | "deleteFileRequestById" | "createFileRequestCopy">) {
         Object.assign(this, fields);
     }
-    async getFileRequestById(fileRequestId: string): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "GET", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getFileRequestById(fileRequestId: string, headers: GetFileRequestByIdHeadersArg = new GetFileRequestByIdHeadersArg({})): Promise<FileRequest> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
-    async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: undefined | UpdateFileRequestByIdHeadersArg = {} satisfies UpdateFileRequestByIdHeadersArg): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: prepareParams(serializeUpdateFileRequestByIdHeadersArg(headers)), body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateFileRequestById(fileRequestId: string, requestBody: FileRequestUpdateRequest, headers: UpdateFileRequestByIdHeadersArg = new UpdateFileRequestByIdHeadersArg({})): Promise<FileRequest> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{ ["if-match"]: toString(headers.ifMatch) }, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeFileRequestUpdateRequest(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
-    async deleteFileRequestById(fileRequestId: string): Promise<any> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "DELETE", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
-        return response.content;
+    async deleteFileRequestById(fileRequestId: string, headers: DeleteFileRequestByIdHeadersArg = new DeleteFileRequestByIdHeadersArg({})): Promise<undefined> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return void 0;
     }
-    async createFileRequestCopy(fileRequestId: string, requestBody: FileRequestCopyRequest): Promise<FileRequest> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId, "/copy") as string, { method: "POST", body: serializeJson(serializeFileRequestCopyRequest(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createFileRequestCopy(fileRequestId: string, requestBody: FileRequestCopyRequest, headers: CreateFileRequestCopyHeadersArg = new CreateFileRequestCopyHeadersArg({})): Promise<FileRequest> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/file_requests/", fileRequestId, "/copy") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeFileRequestCopyRequest(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileRequest(deserializeJson(response.text));
     }
-}
-export function serializeUpdateFileRequestByIdHeadersArg(val: UpdateFileRequestByIdHeadersArg): Json {
-    return { ["if-match"]: val.ifMatch };
-}
-export function deserializeUpdateFileRequestByIdHeadersArg(val: any): UpdateFileRequestByIdHeadersArg {
-    const ifMatch: undefined | string = isJson(val["if-match"], "string") ? val["if-match"] : void 0;
-    return { ifMatch: ifMatch } satisfies UpdateFileRequestByIdHeadersArg;
 }

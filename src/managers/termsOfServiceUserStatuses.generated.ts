@@ -10,6 +10,8 @@ import { TermsOfServiceUserStatus } from "../schemas.generated.js";
 import { Authentication } from "../auth.js";
 import { NetworkSession } from "../network.js";
 import { prepareParams } from "../utils.js";
+import { toString } from "../utils.js";
+import { ByteStream } from "../utils.js";
 import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
@@ -20,6 +22,14 @@ import { isJson } from "../json.js";
 export interface GetTermOfServiceUserStatusesQueryParamsArg {
     readonly tosId: string;
     readonly userId?: string;
+}
+export class GetTermOfServiceUserStatusesHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: GetTermOfServiceUserStatusesHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export type CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField = "terms_of_service";
 export interface CreateTermOfServiceUserStatusRequestBodyArgTosField {
@@ -36,8 +46,24 @@ export interface CreateTermOfServiceUserStatusRequestBodyArg {
     readonly user: CreateTermOfServiceUserStatusRequestBodyArgUserField;
     readonly isAccepted: boolean;
 }
+export class CreateTermOfServiceUserStatusHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: CreateTermOfServiceUserStatusHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export interface UpdateTermOfServiceUserStatusByIdRequestBodyArg {
     readonly isAccepted: boolean;
+}
+export class UpdateTermOfServiceUserStatusByIdHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateTermOfServiceUserStatusByIdHeadersArg) {
+        Object.assign(this, fields);
+    }
 }
 export class TermsOfServiceUserStatusesManager {
     readonly auth?: Authentication;
@@ -45,26 +71,30 @@ export class TermsOfServiceUserStatusesManager {
     constructor(fields: Omit<TermsOfServiceUserStatusesManager, "getTermOfServiceUserStatuses" | "createTermOfServiceUserStatus" | "updateTermOfServiceUserStatusById">) {
         Object.assign(this, fields);
     }
-    async getTermOfServiceUserStatuses(queryParams: GetTermOfServiceUserStatusesQueryParamsArg): Promise<TermsOfServiceUserStatuses> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "GET", params: prepareParams(serializeGetTermOfServiceUserStatusesQueryParamsArg(queryParams)), auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async getTermOfServiceUserStatuses(queryParams: GetTermOfServiceUserStatusesQueryParamsArg, headers: GetTermOfServiceUserStatusesHeadersArg = new GetTermOfServiceUserStatusesHeadersArg({})): Promise<TermsOfServiceUserStatuses> {
+        const queryParamsMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ["tos_id"]: toString(queryParams.tosId), ["user_id"]: toString(queryParams.userId) });
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfServiceUserStatuses(deserializeJson(response.text));
     }
-    async createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg): Promise<TermsOfServiceUserStatus> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "POST", body: serializeJson(serializeCreateTermOfServiceUserStatusRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async createTermOfServiceUserStatus(requestBody: CreateTermOfServiceUserStatusRequestBodyArg, headers: CreateTermOfServiceUserStatusHeadersArg = new CreateTermOfServiceUserStatusHeadersArg({})): Promise<TermsOfServiceUserStatus> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateTermOfServiceUserStatusRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
     }
-    async updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg): Promise<TermsOfServiceUserStatus> {
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses/", termsOfServiceUserStatusId) as string, { method: "PUT", body: serializeJson(serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(requestBody)), contentType: "application/json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+    async updateTermOfServiceUserStatusById(termsOfServiceUserStatusId: string, requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg, headers: UpdateTermOfServiceUserStatusByIdHeadersArg = new UpdateTermOfServiceUserStatusByIdHeadersArg({})): Promise<TermsOfServiceUserStatus> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/terms_of_service_user_statuses/", termsOfServiceUserStatusId) as string, { method: "PUT", headers: headersMap, body: serializeJson(serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
     }
-}
-export function serializeGetTermOfServiceUserStatusesQueryParamsArg(val: GetTermOfServiceUserStatusesQueryParamsArg): Json {
-    return { ["tos_id"]: val.tosId, ["user_id"]: val.userId };
-}
-export function deserializeGetTermOfServiceUserStatusesQueryParamsArg(val: any): GetTermOfServiceUserStatusesQueryParamsArg {
-    const tosId: string = val.tos_id;
-    const userId: undefined | string = isJson(val.user_id, "string") ? val.user_id : void 0;
-    return { tosId: tosId, userId: userId } satisfies GetTermOfServiceUserStatusesQueryParamsArg;
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField): Json {
     return val;

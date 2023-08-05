@@ -1,5 +1,12 @@
 # RetentionPoliciesManager
 
+
+- [List retention policies](#list-retention-policies)
+- [Create retention policy](#create-retention-policy)
+- [Get retention policy](#get-retention-policy)
+- [Update retention policy](#update-retention-policy)
+- [Delete retention policy](#delete-retention-policy)
+
 ## List retention policies
 
 Retrieves all of the retention policies for an enterprise.
@@ -13,8 +20,10 @@ See the endpoint docs at
 
 ### Arguments
 
-- queryParams `undefined | GetRetentionPoliciesQueryParamsArg`
-  - Used as queryParams for the API call
+- queryParams `GetRetentionPoliciesQueryParamsArg`
+  - Query parameters of getRetentionPolicies method
+- headers `GetRetentionPoliciesHeadersArg`
+  - Headers of getRetentionPolicies method
 
 
 ### Returns
@@ -38,7 +47,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateRetentionPolicyRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createRetentionPolicy method
+- headers `CreateRetentionPolicyHeadersArg`
+  - Headers of createRetentionPolicy method
 
 
 ### Returns
@@ -62,10 +73,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyId `string`
-  - The ID of the retention policy.
-  - Used as `retention_policy_id` in path `path` of the API call
-- queryParams `undefined | GetRetentionPolicyByIdQueryParamsArg`
-  - Used as queryParams for the API call
+  - The ID of the retention policy. Example: "982312"
+- queryParams `GetRetentionPolicyByIdQueryParamsArg`
+  - Query parameters of getRetentionPolicyById method
+- headers `GetRetentionPolicyByIdHeadersArg`
+  - Headers of getRetentionPolicyById method
 
 
 ### Returns
@@ -89,10 +101,11 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyId `string`
-  - The ID of the retention policy.
-  - Used as `retention_policy_id` in path `path` of the API call
+  - The ID of the retention policy. Example: "982312"
 - requestBody `UpdateRetentionPolicyByIdRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of updateRetentionPolicyById method
+- headers `UpdateRetentionPolicyByIdHeadersArg`
+  - Headers of updateRetentionPolicyById method
 
 
 ### Returns
@@ -116,7 +129,15 @@ See the endpoint docs at
 ### Arguments
 
 - retentionPolicyId `string`
-  - The ID of the retention policy.
-  - Used as `retention_policy_id` in path `path` of the API call
+  - The ID of the retention policy. Example: "982312"
+- headers `DeleteRetentionPolicyByIdHeadersArg`
+  - Headers of deleteRetentionPolicyById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the policy has been deleted.
 
 

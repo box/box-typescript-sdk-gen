@@ -1,5 +1,3 @@
-import { serializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
-import { deserializeGetUserMeQueryParamsArg } from "../managers/users.generated.js";
 import { serializeUserFull } from "../schemas.generated.js";
 import { deserializeUserFull } from "../schemas.generated.js";
 import { GetUserMeQueryParamsArg } from "../managers/users.generated.js";

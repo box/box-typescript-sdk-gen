@@ -1,5 +1,11 @@
 # ShieldInformationBarrierSegmentRestrictionsManager
 
+
+- [Get shield information barrier segment restriction by ID](#get-shield-information-barrier-segment-restriction-by-id)
+- [Delete shield information barrier segment restriction by ID](#delete-shield-information-barrier-segment-restriction-by-id)
+- [List shield information barrier segment restrictions](#list-shield-information-barrier-segment-restrictions)
+- [Create shield information barrier segment restriction](#create-shield-information-barrier-segment-restriction)
+
 ## Get shield information barrier segment restriction by ID
 
 Retrieves a shield information barrier segment
@@ -15,8 +21,9 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentRestrictionId `string`
-  - The ID of the shield information barrier segment Restriction.
-  - Used as `shield_information_barrier_segment_restriction_id` in path `path` of the API call
+  - The ID of the shield information barrier segment Restriction. Example: "4563"
+- headers `GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
+  - Headers of getShieldInformationBarrierSegmentRestrictionById method
 
 
 ### Returns
@@ -42,8 +49,16 @@ See the endpoint docs at
 ### Arguments
 
 - shieldInformationBarrierSegmentRestrictionId `string`
-  - The ID of the shield information barrier segment Restriction.
-  - Used as `shield_information_barrier_segment_restriction_id` in path `path` of the API call
+  - The ID of the shield information barrier segment Restriction. Example: "4563"
+- headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
+  - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
+
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Empty body in response
 
 
 ## List shield information barrier segment restrictions
@@ -61,7 +76,9 @@ See the endpoint docs at
 ### Arguments
 
 - queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg`
-  - Used as queryParams for the API call
+  - Query parameters of getShieldInformationBarrierSegmentRestrictions method
+- headers `GetShieldInformationBarrierSegmentRestrictionsHeadersArg`
+  - Headers of getShieldInformationBarrierSegmentRestrictions method
 
 
 ### Returns
@@ -87,7 +104,9 @@ See the endpoint docs at
 ### Arguments
 
 - requestBody `CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg`
-  - Used as requestBody for the API call
+  - Request body of createShieldInformationBarrierSegmentRestriction method
+- headers `CreateShieldInformationBarrierSegmentRestrictionHeadersArg`
+  - Headers of createShieldInformationBarrierSegmentRestriction method
 
 
 ### Returns
