@@ -19,7 +19,7 @@
     "start": "echo \"Error: no start specified\" && exit 1",
     "test": "jest"
   },
-  "license": "Apache-2.0, http://www.apache.org/licenses/LICENSE-2.0",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/box/box-typescript-sdk-gen.git"
