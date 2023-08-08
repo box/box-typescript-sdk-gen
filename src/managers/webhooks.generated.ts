@@ -115,7 +115,7 @@ export class WebhooksManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/webhooks/", webhookId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebhook(deserializeJson(response.text));
     }
-    async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg, headers: UpdateWebhookByIdHeadersArg = new UpdateWebhookByIdHeadersArg({})): Promise<Webhook> {
+    async updateWebhookById(webhookId: string, requestBody: UpdateWebhookByIdRequestBodyArg = {} satisfies UpdateWebhookByIdRequestBodyArg, headers: UpdateWebhookByIdHeadersArg = new UpdateWebhookByIdHeadersArg({})): Promise<Webhook> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });

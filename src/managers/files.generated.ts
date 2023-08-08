@@ -140,7 +140,7 @@ export class FilesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg, queryParams: UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg, headers: UpdateFileByIdHeadersArg = new UpdateFileByIdHeadersArg({})): Promise<FileFull> {
+    async updateFileById(fileId: string, requestBody: UpdateFileByIdRequestBodyArg = {} satisfies UpdateFileByIdRequestBodyArg, queryParams: UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg, headers: UpdateFileByIdHeadersArg = new UpdateFileByIdHeadersArg({})): Promise<FileFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

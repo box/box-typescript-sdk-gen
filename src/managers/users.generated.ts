@@ -196,7 +196,7 @@ export class UsersManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg, headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})): Promise<UserFull> {
+    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg = {} satisfies UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg, headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})): Promise<UserFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

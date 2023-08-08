@@ -115,7 +115,7 @@ export class CommentsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
-    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg, headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})): Promise<CommentFull> {
+    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg = {} satisfies UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg, headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})): Promise<CommentFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

@@ -32,8 +32,8 @@ object with the `token` set to the developer token and construct the client with
 <!-- sample x_auth init_with_dev_token -->
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { DeveloperTokenAuth } = require('BoxSDK/lib/developerTokenAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { DeveloperTokenAuth } = require('box-sdk-gen/lib/developerTokenAuth.js');
 
 const auth = new DeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
 const client = new Client({ auth });
@@ -66,8 +66,8 @@ Service Account. Call one of static `JwtAuth` method:
 or `JwtConfig.fromConfigJsonString(configJsonString)` and pass JSON config file content as string.
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('BoxSDK/lib/jwtAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { JwtAuth, JwtConfig } = require('box-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new JwtAuth({ config: jwtConfig });
@@ -80,8 +80,8 @@ console.log(`My user ID is ${me.id}`);
 Otherwise, you'll need to provide the necessary configuration fields directly to the `JwtConfig` constructor:
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('BoxSDK/lib/jwtAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { JwtAuth, JwtConfig } = require('box-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -109,8 +109,8 @@ Clients for making calls as an App User can be created with the same JSON JWT co
 a user ID you want to authenticate.
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('BoxSDK/lib/jwtAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { JwtAuth, JwtConfig } = require('box-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new JwtAuth({ config: jwtConfig });
@@ -123,8 +123,8 @@ constructor as in the above examples, similarly to creating a Service Account cl
 `userId` instead of `enterpriseId` when constructing the auth config instance:
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('BoxSDK/lib/jwtAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { JwtAuth, JwtConfig } = require('box-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -153,8 +153,8 @@ and secret with enterprise or user ID, which allows you to work using service or
 You can use `CCGAuth` to initialize a client object the same way as for other authentication types:
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { CcgAuth } = require('BoxSDK/lib/ccgAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { CcgAuth } = require('box-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   userId: 'YOUR_USER_ID',
@@ -179,8 +179,8 @@ are not accessible in any other account by default, and vice versa.
 To obtain service account you will have to provide enterprise ID with client id and secret:
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { CcgAuth } = require('BoxSDK/lib/ccgAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { CcgAuth } = require('box-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   enterpriseId: 'YOUR_ENTERPRISE_ID',
@@ -200,8 +200,8 @@ select `Generate user access tokens`. Do not forget to re-authorize application 
 To obtain user account you will have to provide user ID with client id and secret.
 
 ```js
-const { Client } = require('BoxSDK/lib/client.generated.js');
-const { CcgAuth } = require('BoxSDK/lib/ccgAuth.js');
+const { Client } = require('box-sdk-gen/lib/client.generated.js');
+const { CcgAuth } = require('box-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   userId: 'YOUR_USER_ID',
@@ -246,7 +246,7 @@ browser or web view) in order to obtain an auth code.
 <!-- sample get_authorize -->
 
 ```js
-const { OAuth, OAuthConfig } = require('BoxSDK/lib/oauth.js');
+const { OAuth, OAuthConfig } = require('box-sdk-gen/lib/oauth.js');
 
 const config = {
   clientId: 'OAUTH_CLIENT_ID',

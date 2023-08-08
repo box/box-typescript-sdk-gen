@@ -115,7 +115,7 @@ export class UploadsManager {
         const response: FetchResponse = await fetch("".concat("https://upload.box.com/api/2.0/files/content") as string, { method: "POST", params: queryParamsMap, headers: headersMap, multipartData: [{ partName: "attributes", body: serializeJson(serializeUploadFileRequestBodyArgAttributesField(requestBody.attributes)) } satisfies MultipartItem, { partName: "file", fileStream: requestBody.file, contentType: requestBody.fileContentType, fileName: requestBody.fileFileName } satisfies MultipartItem], contentType: "multipart/form-data", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFiles(deserializeJson(response.text));
     }
-    async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg, headers: PreflightFileUploadHeadersArg = new PreflightFileUploadHeadersArg({})): Promise<UploadUrl> {
+    async preflightFileUpload(requestBody: PreflightFileUploadRequestBodyArg = {} satisfies PreflightFileUploadRequestBodyArg, headers: PreflightFileUploadHeadersArg = new PreflightFileUploadHeadersArg({})): Promise<UploadUrl> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -108,7 +108,7 @@ export class TasksManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
-    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg, headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})): Promise<Task> {
+    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg = {} satisfies UpdateTaskByIdRequestBodyArg, headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})): Promise<Task> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });

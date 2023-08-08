@@ -79,7 +79,7 @@ export class FileMetadataManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/metadata/", scope, "/", templateKey) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeMetadataFull(deserializeJson(response.text));
     }
-    async createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg, headers: CreateFileMetadataByIdHeadersArg = new CreateFileMetadataByIdHeadersArg({})): Promise<Metadata> {
+    async createFileMetadataById(fileId: string, scope: CreateFileMetadataByIdScopeArg, templateKey: string, requestBody: CreateFileMetadataByIdRequestBodyArg = {} satisfies CreateFileMetadataByIdRequestBodyArg, headers: CreateFileMetadataByIdHeadersArg = new CreateFileMetadataByIdHeadersArg({})): Promise<Metadata> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });

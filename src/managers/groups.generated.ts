@@ -133,7 +133,7 @@ export class GroupsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/groups/", groupId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupFull(deserializeJson(response.text));
     }
-    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg, queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg, headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({})): Promise<GroupFull> {
+    async updateGroupById(groupId: string, requestBody: UpdateGroupByIdRequestBodyArg = {} satisfies UpdateGroupByIdRequestBodyArg, queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg, headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({})): Promise<GroupFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

@@ -95,7 +95,7 @@ export class WebLinksManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/web_links/", webLinkId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeWebLink(deserializeJson(response.text));
     }
-    async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg, headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({})): Promise<WebLink> {
+    async updateWebLinkById(webLinkId: string, requestBody: UpdateWebLinkByIdRequestBodyArg = {} satisfies UpdateWebLinkByIdRequestBodyArg, headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({})): Promise<WebLink> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });

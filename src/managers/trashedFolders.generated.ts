@@ -62,7 +62,7 @@ export class TrashedFoldersManager {
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg, headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg({})): Promise<TrashFolderRestored> {
+    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg = {} satisfies RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg, headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg({})): Promise<TrashFolderRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

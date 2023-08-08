@@ -1,15 +1,29 @@
 {
-  "name": "BoxSDK",
-  "version": "2.0.0",
+  "name": "box-sdk-gen",
+  "author": "Box <oss@box.com>",
+  "version": "0.1.0",
   "description": "[Box Platform](https://box.dev) provides functionality to provide access to content stored within [Box](https://box.com). It provides endpoints for basic manipulation of files and folders, management of users within an enterprise, as well as more complex topics such as legal holds and retention policies.",
-  "main": "dist/index.generated.js",
+  "keywords": [
+    "box",
+    "sdk",
+    "api",
+    "rest",
+    "boxsdk"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "./lib/client.generated.js",
   "scripts": {
     "build": "tsc",
     "start": "echo \"Error: no start specified\" && exit 1",
     "test": "jest"
   },
-  "author": "",
   "license": "Apache-2.0, http://www.apache.org/licenses/LICENSE-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/box/box-typescript-sdk-gen.git"
+  },
   "dependencies": {
     "form-data": "^4.0.0",
     "jsonwebtoken": "^9.0.0",
@@ -25,5 +39,8 @@
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
     "typescript": "*"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }

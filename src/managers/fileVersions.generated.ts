@@ -105,7 +105,7 @@ export class FileVersionsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionFull(deserializeJson(response.text));
     }
-    async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg, headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg({})): Promise<FileVersionFull> {
+    async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg = {} satisfies UpdateFileVersionByIdRequestBodyArg, headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg({})): Promise<FileVersionFull> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -119,7 +119,7 @@ export class FileVersionsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
-    async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg, headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg({})): Promise<FileVersionFull> {
+    async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg = {} satisfies PromoteFileVersionRequestBodyArg, queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg, headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg({})): Promise<FileVersionFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

@@ -62,7 +62,7 @@ export class TrashedFilesManager {
     constructor(fields: Omit<TrashedFilesManager, "restoreFileFromTrash" | "getFileTrash" | "deleteFileTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg, headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg({})): Promise<TrashFileRestored> {
+    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg = {} satisfies RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg, headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg({})): Promise<TrashFileRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });

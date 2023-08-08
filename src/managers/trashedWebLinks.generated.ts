@@ -62,7 +62,7 @@ export class TrashedWebLinksManager {
     constructor(fields: Omit<TrashedWebLinksManager, "createWebLinkById" | "getWebLinkTrash" | "deleteWebLinkTrash">) {
         Object.assign(this, fields);
     }
-    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams: CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg, headers: CreateWebLinkByIdHeadersArg = new CreateWebLinkByIdHeadersArg({})): Promise<TrashWebLinkRestored> {
+    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg = {} satisfies CreateWebLinkByIdRequestBodyArg, queryParams: CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg, headers: CreateWebLinkByIdHeadersArg = new CreateWebLinkByIdHeadersArg({})): Promise<TrashWebLinkRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
