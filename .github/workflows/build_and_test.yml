@@ -23,7 +23,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: Build and test
-        run: npm run test
+        run: npm run test -- --coverage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JWT_CONFIG_BASE_64: ${{ secrets.JWT_CONFIG_BASE_64 }}
