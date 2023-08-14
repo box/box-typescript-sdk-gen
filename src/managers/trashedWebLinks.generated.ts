@@ -16,9 +16,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
-import { isJson } from "../json.js";
+import { Json } from "../json.js";
 export interface CreateWebLinkByIdRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -62,7 +61,7 @@ export class TrashedWebLinksManager {
     constructor(fields: Omit<TrashedWebLinksManager, "createWebLinkById" | "getWebLinkTrash" | "deleteWebLinkTrash">) {
         Object.assign(this, fields);
     }
-    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg, queryParams: CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg, headers: CreateWebLinkByIdHeadersArg = new CreateWebLinkByIdHeadersArg({})): Promise<TrashWebLinkRestored> {
+    async createWebLinkById(webLinkId: string, requestBody: CreateWebLinkByIdRequestBodyArg = {} satisfies CreateWebLinkByIdRequestBodyArg, queryParams: CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg, headers: CreateWebLinkByIdHeadersArg = new CreateWebLinkByIdHeadersArg({})): Promise<TrashWebLinkRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -91,17 +90,17 @@ export class TrashedWebLinksManager {
     }
 }
 export function serializeCreateWebLinkByIdRequestBodyArgParentField(val: CreateWebLinkByIdRequestBodyArgParentField): Json {
-    return { ["id"]: val.id };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeCreateWebLinkByIdRequestBodyArgParentField(val: any): CreateWebLinkByIdRequestBodyArgParentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { id: id } satisfies CreateWebLinkByIdRequestBodyArgParentField;
 }
 export function serializeCreateWebLinkByIdRequestBodyArg(val: CreateWebLinkByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeCreateWebLinkByIdRequestBodyArgParentField(val.parent) };
+    return { ["name"]: val.name == void 0 ? void 0 : val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeCreateWebLinkByIdRequestBodyArgParentField(val.parent) };
 }
 export function deserializeCreateWebLinkByIdRequestBodyArg(val: any): CreateWebLinkByIdRequestBodyArg {
-    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    const name: undefined | string = val.name == void 0 ? void 0 : val.name;
     const parent: undefined | CreateWebLinkByIdRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeCreateWebLinkByIdRequestBodyArgParentField(val.parent);
     return { name: name, parent: parent } satisfies CreateWebLinkByIdRequestBodyArg;
 }

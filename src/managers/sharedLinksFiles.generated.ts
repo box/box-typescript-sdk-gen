@@ -136,7 +136,7 @@ export class SharedLinksFilesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#get_shared_link") as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async updateFileAddSharedLink(fileId: string, requestBody: UpdateFileAddSharedLinkRequestBodyArg, queryParams: UpdateFileAddSharedLinkQueryParamsArg, headers: UpdateFileAddSharedLinkHeadersArg = new UpdateFileAddSharedLinkHeadersArg({})): Promise<FileFull> {
+    async updateFileAddSharedLink(fileId: string, requestBody: UpdateFileAddSharedLinkRequestBodyArg = {} satisfies UpdateFileAddSharedLinkRequestBodyArg, queryParams: UpdateFileAddSharedLinkQueryParamsArg, headers: UpdateFileAddSharedLinkHeadersArg = new UpdateFileAddSharedLinkHeadersArg({})): Promise<FileFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -146,7 +146,7 @@ export class SharedLinksFilesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#add_shared_link") as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFileAddSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async updateFileUpdateSharedLink(fileId: string, requestBody: UpdateFileUpdateSharedLinkRequestBodyArg, queryParams: UpdateFileUpdateSharedLinkQueryParamsArg, headers: UpdateFileUpdateSharedLinkHeadersArg = new UpdateFileUpdateSharedLinkHeadersArg({})): Promise<FileFull> {
+    async updateFileUpdateSharedLink(fileId: string, requestBody: UpdateFileUpdateSharedLinkRequestBodyArg = {} satisfies UpdateFileUpdateSharedLinkRequestBodyArg, queryParams: UpdateFileUpdateSharedLinkQueryParamsArg, headers: UpdateFileUpdateSharedLinkHeadersArg = new UpdateFileUpdateSharedLinkHeadersArg({})): Promise<FileFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -156,7 +156,7 @@ export class SharedLinksFilesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "#update_shared_link") as string, { method: "PUT", params: queryParamsMap, headers: headersMap, body: serializeJson(serializeUpdateFileUpdateSharedLinkRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileFull(deserializeJson(response.text));
     }
-    async updateFileRemoveSharedLink(fileId: string, requestBody: UpdateFileRemoveSharedLinkRequestBodyArg, queryParams: UpdateFileRemoveSharedLinkQueryParamsArg, headers: UpdateFileRemoveSharedLinkHeadersArg = new UpdateFileRemoveSharedLinkHeadersArg({})): Promise<FileFull> {
+    async updateFileRemoveSharedLink(fileId: string, requestBody: UpdateFileRemoveSharedLinkRequestBodyArg = {} satisfies UpdateFileRemoveSharedLinkRequestBodyArg, queryParams: UpdateFileRemoveSharedLinkQueryParamsArg, headers: UpdateFileRemoveSharedLinkHeadersArg = new UpdateFileRemoveSharedLinkHeadersArg({})): Promise<FileFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -186,22 +186,22 @@ export function deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldA
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val: UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField): Json {
-    return { ["can_download"]: val.canDownload, ["can_preview"]: val.canPreview, ["can_edit"]: val.canEdit };
+    return { ["can_download"]: val.canDownload == void 0 ? void 0 : val.canDownload, ["can_preview"]: val.canPreview == void 0 ? void 0 : val.canPreview, ["can_edit"]: val.canEdit == void 0 ? void 0 : val.canEdit };
 }
 export function deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val: any): UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
-    const canDownload: undefined | boolean = isJson(val.can_download, "boolean") ? val.can_download : void 0;
-    const canPreview: undefined | boolean = isJson(val.can_preview, "boolean") ? val.can_preview : void 0;
-    const canEdit: undefined | boolean = isJson(val.can_edit, "boolean") ? val.can_edit : void 0;
+    const canDownload: undefined | boolean = val.can_download == void 0 ? void 0 : val.can_download;
+    const canPreview: undefined | boolean = val.can_preview == void 0 ? void 0 : val.can_preview;
+    const canEdit: undefined | boolean = val.can_edit == void 0 ? void 0 : val.can_edit;
     return { canDownload: canDownload, canPreview: canPreview, canEdit: canEdit } satisfies UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
 export function serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkField(val: UpdateFileAddSharedLinkRequestBodyArgSharedLinkField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanity_name"]: val.vanityName, ["unshared_at"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
+    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password == void 0 ? void 0 : val.password, ["vanity_name"]: val.vanityName == void 0 ? void 0 : val.vanityName, ["unshared_at"]: val.unsharedAt == void 0 ? void 0 : val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
 }
 export function deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkField(val: any): UpdateFileAddSharedLinkRequestBodyArgSharedLinkField {
     const access: undefined | UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField = val.access == void 0 ? void 0 : deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access);
-    const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
-    const vanityName: undefined | string = isJson(val.vanity_name, "string") ? val.vanity_name : void 0;
-    const unsharedAt: undefined | string = isJson(val.unshared_at, "string") ? val.unshared_at : void 0;
+    const password: undefined | string = val.password == void 0 ? void 0 : val.password;
+    const vanityName: undefined | string = val.vanity_name == void 0 ? void 0 : val.vanity_name;
+    const unsharedAt: undefined | string = val.unshared_at == void 0 ? void 0 : val.unshared_at;
     const permissions: undefined | UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions);
     return { access: access, password: password, vanityName: vanityName, unsharedAt: unsharedAt, permissions: permissions } satisfies UpdateFileAddSharedLinkRequestBodyArgSharedLinkField;
 }
@@ -231,22 +231,22 @@ export function deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFie
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val: UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField): Json {
-    return { ["can_download"]: val.canDownload, ["can_preview"]: val.canPreview, ["can_edit"]: val.canEdit };
+    return { ["can_download"]: val.canDownload == void 0 ? void 0 : val.canDownload, ["can_preview"]: val.canPreview == void 0 ? void 0 : val.canPreview, ["can_edit"]: val.canEdit == void 0 ? void 0 : val.canEdit };
 }
 export function deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val: any): UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField {
-    const canDownload: undefined | boolean = isJson(val.can_download, "boolean") ? val.can_download : void 0;
-    const canPreview: undefined | boolean = isJson(val.can_preview, "boolean") ? val.can_preview : void 0;
-    const canEdit: undefined | boolean = isJson(val.can_edit, "boolean") ? val.can_edit : void 0;
+    const canDownload: undefined | boolean = val.can_download == void 0 ? void 0 : val.can_download;
+    const canPreview: undefined | boolean = val.can_preview == void 0 ? void 0 : val.can_preview;
+    const canEdit: undefined | boolean = val.can_edit == void 0 ? void 0 : val.can_edit;
     return { canDownload: canDownload, canPreview: canPreview, canEdit: canEdit } satisfies UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField;
 }
 export function serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField(val: UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField): Json {
-    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password, ["vanity_name"]: val.vanityName, ["unshared_at"]: val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
+    return { ["access"]: val.access == void 0 ? void 0 : serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access), ["password"]: val.password == void 0 ? void 0 : val.password, ["vanity_name"]: val.vanityName == void 0 ? void 0 : val.vanityName, ["unshared_at"]: val.unsharedAt == void 0 ? void 0 : val.unsharedAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions) };
 }
 export function deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField(val: any): UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField {
     const access: undefined | UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField = val.access == void 0 ? void 0 : deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(val.access);
-    const password: undefined | string = isJson(val.password, "string") ? val.password : void 0;
-    const vanityName: undefined | string = isJson(val.vanity_name, "string") ? val.vanity_name : void 0;
-    const unsharedAt: undefined | string = isJson(val.unshared_at, "string") ? val.unshared_at : void 0;
+    const password: undefined | string = val.password == void 0 ? void 0 : val.password;
+    const vanityName: undefined | string = val.vanity_name == void 0 ? void 0 : val.vanity_name;
+    const unsharedAt: undefined | string = val.unshared_at == void 0 ? void 0 : val.unshared_at;
     const permissions: undefined | UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField = val.permissions == void 0 ? void 0 : deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(val.permissions);
     return { access: access, password: password, vanityName: vanityName, unsharedAt: unsharedAt, permissions: permissions } satisfies UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField;
 }

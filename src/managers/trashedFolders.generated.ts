@@ -16,9 +16,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
-import { isJson } from "../json.js";
+import { Json } from "../json.js";
 export interface RestoreFolderFromTrashRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -62,7 +61,7 @@ export class TrashedFoldersManager {
     constructor(fields: Omit<TrashedFoldersManager, "restoreFolderFromTrash" | "getFolderTrash" | "deleteFolderTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg, headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg({})): Promise<TrashFolderRestored> {
+    async restoreFolderFromTrash(folderId: string, requestBody: RestoreFolderFromTrashRequestBodyArg = {} satisfies RestoreFolderFromTrashRequestBodyArg, queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg, headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg({})): Promise<TrashFolderRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -91,17 +90,17 @@ export class TrashedFoldersManager {
     }
 }
 export function serializeRestoreFolderFromTrashRequestBodyArgParentField(val: RestoreFolderFromTrashRequestBodyArgParentField): Json {
-    return { ["id"]: val.id };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreFolderFromTrashRequestBodyArgParentField(val: any): RestoreFolderFromTrashRequestBodyArgParentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { id: id } satisfies RestoreFolderFromTrashRequestBodyArgParentField;
 }
 export function serializeRestoreFolderFromTrashRequestBodyArg(val: RestoreFolderFromTrashRequestBodyArg): Json {
-    return { ["name"]: val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent) };
+    return { ["name"]: val.name == void 0 ? void 0 : val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent) };
 }
 export function deserializeRestoreFolderFromTrashRequestBodyArg(val: any): RestoreFolderFromTrashRequestBodyArg {
-    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    const name: undefined | string = val.name == void 0 ? void 0 : val.name;
     const parent: undefined | RestoreFolderFromTrashRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent);
     return { name: name, parent: parent } satisfies RestoreFolderFromTrashRequestBodyArg;
 }

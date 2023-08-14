@@ -18,7 +18,6 @@ import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
-import { isJson } from "../json.js";
 export class GetShieldInformationBarrierSegmentByIdHeadersArg {
     readonly extraHeaders?: {
         readonly [key: string]: undefined | string;
@@ -86,7 +85,7 @@ export class ShieldInformationBarrierSegmentsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/shield_information_barrier_segments/", shieldInformationBarrierSegmentId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeShieldInformationBarrierSegment(deserializeJson(response.text));
     }
-    async updateShieldInformationBarrierSegmentById(shieldInformationBarrierSegmentId: string, requestBody: UpdateShieldInformationBarrierSegmentByIdRequestBodyArg, headers: UpdateShieldInformationBarrierSegmentByIdHeadersArg = new UpdateShieldInformationBarrierSegmentByIdHeadersArg({})): Promise<ShieldInformationBarrierSegment> {
+    async updateShieldInformationBarrierSegmentById(shieldInformationBarrierSegmentId: string, requestBody: UpdateShieldInformationBarrierSegmentByIdRequestBodyArg = {} satisfies UpdateShieldInformationBarrierSegmentByIdRequestBodyArg, headers: UpdateShieldInformationBarrierSegmentByIdHeadersArg = new UpdateShieldInformationBarrierSegmentByIdHeadersArg({})): Promise<ShieldInformationBarrierSegment> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -119,19 +118,19 @@ export class ShieldInformationBarrierSegmentsManager {
     }
 }
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg(val: UpdateShieldInformationBarrierSegmentByIdRequestBodyArg): Json {
-    return { ["name"]: val.name, ["description"]: val.description };
+    return { ["name"]: val.name == void 0 ? void 0 : val.name, ["description"]: val.description == void 0 ? void 0 : val.description };
 }
 export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg(val: any): UpdateShieldInformationBarrierSegmentByIdRequestBodyArg {
-    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
     return { name: name, description: description } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBodyArg;
 }
 export function serializeCreateShieldInformationBarrierSegmentRequestBodyArg(val: CreateShieldInformationBarrierSegmentRequestBodyArg): Json {
-    return { ["shield_information_barrier"]: serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["name"]: val.name, ["description"]: val.description };
+    return { ["shield_information_barrier"]: serializeShieldInformationBarrierBase(val.shieldInformationBarrier), ["name"]: val.name, ["description"]: val.description == void 0 ? void 0 : val.description };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRequestBodyArg(val: any): CreateShieldInformationBarrierSegmentRequestBodyArg {
     const shieldInformationBarrier: ShieldInformationBarrierBase = deserializeShieldInformationBarrierBase(val.shield_information_barrier);
     const name: string = val.name;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
     return { shieldInformationBarrier: shieldInformationBarrier, name: name, description: description } satisfies CreateShieldInformationBarrierSegmentRequestBodyArg;
 }

@@ -136,10 +136,10 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField(val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type) };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type) };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField(val: any): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField;
 }
@@ -156,10 +156,10 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField(val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField(val.type) };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField(val.type) };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField(val: any): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField;
 }

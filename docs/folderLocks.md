@@ -17,7 +17,10 @@ This operation is performed by calling function `getFolderLocks`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folder-locks/).
 
-*Currently we don't have an example for calling `getFolderLocks` in integration tests*
+<!-- sample get_folder_locks -->
+```ts
+await client.folderLocks.getFolderLocks({ folderId: folder.id } satisfies GetFolderLocksQueryParamsArg)
+```
 
 ### Arguments
 
@@ -48,7 +51,10 @@ This operation is performed by calling function `createFolderLock`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folder-locks/).
 
-*Currently we don't have an example for calling `createFolderLock` in integration tests*
+<!-- sample post_folder_locks -->
+```ts
+await client.folderLocks.createFolderLock({ folder: { id: folder.id, type: "folder" } satisfies CreateFolderLockRequestBodyArgFolderField, lockedOperations: { move: true, delete: true } satisfies CreateFolderLockRequestBodyArgLockedOperationsField } satisfies CreateFolderLockRequestBodyArg)
+```
 
 ### Arguments
 
@@ -78,7 +84,10 @@ This operation is performed by calling function `deleteFolderLockById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folder-locks-id/).
 
-*Currently we don't have an example for calling `deleteFolderLockById` in integration tests*
+<!-- sample delete_folder_locks_id -->
+```ts
+await client.folderLocks.deleteFolderLockById(folderLock.id)
+```
 
 ### Arguments
 

@@ -15,7 +15,10 @@ This operation is performed by calling function `getUserEmailAliases`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users-id-email-aliases/).
 
-*Currently we don't have an example for calling `getUserEmailAliases` in integration tests*
+<!-- sample get_users_id_email_aliases -->
+```ts
+await client.emailAliases.getUserEmailAliases(newUser.id)
+```
 
 ### Arguments
 
@@ -41,7 +44,10 @@ This operation is performed by calling function `createUserEmailAlias`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-users-id-email-aliases/).
 
-*Currently we don't have an example for calling `createUserEmailAlias` in integration tests*
+<!-- sample post_users_id_email_aliases -->
+```ts
+await client.emailAliases.createUserEmailAlias(newUser.id, { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBodyArg)
+```
 
 ### Arguments
 
@@ -69,7 +75,10 @@ This operation is performed by calling function `deleteUserEmailAliasById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-users-id-email-aliases-id/).
 
-*Currently we don't have an example for calling `deleteUserEmailAliasById` in integration tests*
+<!-- sample delete_users_id_email_aliases_id -->
+```ts
+await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id)
+```
 
 ### Arguments
 

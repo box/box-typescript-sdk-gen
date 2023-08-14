@@ -54,13 +54,9 @@ export class CreateIntegrationMappingSlackHeadersArg {
         Object.assign(this, fields);
     }
 }
-export interface UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField {
-}
-export interface UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField {
-}
 export interface UpdateIntegrationMappingSlackByIdRequestBodyArg {
-    readonly boxItem?: UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField;
-    readonly options?: UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField;
+    readonly boxItem?: IntegrationMappingBoxItemSlack;
+    readonly options?: IntegrationMappingSlackOptions;
 }
 export class UpdateIntegrationMappingSlackByIdHeadersArg {
     readonly extraHeaders?: {
@@ -101,7 +97,7 @@ export class IntegrationMappingsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/integration_mappings/slack") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeIntegrationMappingSlackCreateRequest(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeIntegrationMapping(deserializeJson(response.text));
     }
-    async updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg, headers: UpdateIntegrationMappingSlackByIdHeadersArg = new UpdateIntegrationMappingSlackByIdHeadersArg({})): Promise<IntegrationMapping> {
+    async updateIntegrationMappingSlackById(integrationMappingId: string, requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg = {} satisfies UpdateIntegrationMappingSlackByIdRequestBodyArg, headers: UpdateIntegrationMappingSlackByIdHeadersArg = new UpdateIntegrationMappingSlackByIdHeadersArg({})): Promise<IntegrationMapping> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -116,23 +112,11 @@ export class IntegrationMappingsManager {
         return void 0;
     }
 }
-export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val: UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField): Json {
-    return {};
-}
-export function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val: any): UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField {
-    return {} satisfies UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField;
-}
-export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val: UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField): Json {
-    return {};
-}
-export function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val: any): UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField {
-    return {} satisfies UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField;
-}
 export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(val: UpdateIntegrationMappingSlackByIdRequestBodyArg): Json {
-    return { ["box_item"]: val.boxItem == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.boxItem), ["options"]: val.options == void 0 ? void 0 : serializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val.options) };
+    return { ["box_item"]: val.boxItem == void 0 ? void 0 : serializeIntegrationMappingBoxItemSlack(val.boxItem), ["options"]: val.options == void 0 ? void 0 : serializeIntegrationMappingSlackOptions(val.options) };
 }
 export function deserializeUpdateIntegrationMappingSlackByIdRequestBodyArg(val: any): UpdateIntegrationMappingSlackByIdRequestBodyArg {
-    const boxItem: undefined | UpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField = val.box_item == void 0 ? void 0 : deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgBoxItemField(val.box_item);
-    const options: undefined | UpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField = val.options == void 0 ? void 0 : deserializeUpdateIntegrationMappingSlackByIdRequestBodyArgOptionsField(val.options);
+    const boxItem: undefined | IntegrationMappingBoxItemSlack = val.box_item == void 0 ? void 0 : deserializeIntegrationMappingBoxItemSlack(val.box_item);
+    const options: undefined | IntegrationMappingSlackOptions = val.options == void 0 ? void 0 : deserializeIntegrationMappingSlackOptions(val.options);
     return { boxItem: boxItem, options: options } satisfies UpdateIntegrationMappingSlackByIdRequestBodyArg;
 }

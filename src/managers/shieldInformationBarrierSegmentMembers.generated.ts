@@ -134,10 +134,10 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type) };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type) };
 }
 export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(val: any): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
 }

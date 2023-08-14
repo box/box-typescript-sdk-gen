@@ -18,7 +18,6 @@ import { FetchResponse } from "../fetch.js";
 import { deserializeJson } from "../json.js";
 import { Json } from "../json.js";
 import { serializeJson } from "../json.js";
-import { isJson } from "../json.js";
 export interface GetLegalHoldPoliciesQueryParamsArg {
     readonly policyName?: string;
     readonly fields?: string;
@@ -107,7 +106,7 @@ export class LegalHoldPoliciesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/legal_hold_policies/", legalHoldPolicyId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeLegalHoldPolicy(deserializeJson(response.text));
     }
-    async updateLegalHoldPolicyById(legalHoldPolicyId: string, requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg, headers: UpdateLegalHoldPolicyByIdHeadersArg = new UpdateLegalHoldPolicyByIdHeadersArg({})): Promise<LegalHoldPolicy> {
+    async updateLegalHoldPolicyById(legalHoldPolicyId: string, requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg = {} satisfies UpdateLegalHoldPolicyByIdRequestBodyArg, headers: UpdateLegalHoldPolicyByIdHeadersArg = new UpdateLegalHoldPolicyByIdHeadersArg({})): Promise<LegalHoldPolicy> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -123,22 +122,22 @@ export class LegalHoldPoliciesManager {
     }
 }
 export function serializeCreateLegalHoldPolicyRequestBodyArg(val: CreateLegalHoldPolicyRequestBodyArg): Json {
-    return { ["policy_name"]: val.policyName, ["description"]: val.description, ["filter_started_at"]: val.filterStartedAt, ["filter_ended_at"]: val.filterEndedAt, ["is_ongoing"]: val.isOngoing };
+    return { ["policy_name"]: val.policyName, ["description"]: val.description == void 0 ? void 0 : val.description, ["filter_started_at"]: val.filterStartedAt == void 0 ? void 0 : val.filterStartedAt, ["filter_ended_at"]: val.filterEndedAt == void 0 ? void 0 : val.filterEndedAt, ["is_ongoing"]: val.isOngoing == void 0 ? void 0 : val.isOngoing };
 }
 export function deserializeCreateLegalHoldPolicyRequestBodyArg(val: any): CreateLegalHoldPolicyRequestBodyArg {
     const policyName: string = val.policy_name;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const filterStartedAt: undefined | string = isJson(val.filter_started_at, "string") ? val.filter_started_at : void 0;
-    const filterEndedAt: undefined | string = isJson(val.filter_ended_at, "string") ? val.filter_ended_at : void 0;
-    const isOngoing: undefined | boolean = isJson(val.is_ongoing, "boolean") ? val.is_ongoing : void 0;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
+    const filterStartedAt: undefined | string = val.filter_started_at == void 0 ? void 0 : val.filter_started_at;
+    const filterEndedAt: undefined | string = val.filter_ended_at == void 0 ? void 0 : val.filter_ended_at;
+    const isOngoing: undefined | boolean = val.is_ongoing == void 0 ? void 0 : val.is_ongoing;
     return { policyName: policyName, description: description, filterStartedAt: filterStartedAt, filterEndedAt: filterEndedAt, isOngoing: isOngoing } satisfies CreateLegalHoldPolicyRequestBodyArg;
 }
 export function serializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: UpdateLegalHoldPolicyByIdRequestBodyArg): Json {
-    return { ["policy_name"]: val.policyName, ["description"]: val.description, ["release_notes"]: val.releaseNotes };
+    return { ["policy_name"]: val.policyName == void 0 ? void 0 : val.policyName, ["description"]: val.description == void 0 ? void 0 : val.description, ["release_notes"]: val.releaseNotes == void 0 ? void 0 : val.releaseNotes };
 }
 export function deserializeUpdateLegalHoldPolicyByIdRequestBodyArg(val: any): UpdateLegalHoldPolicyByIdRequestBodyArg {
-    const policyName: undefined | string = isJson(val.policy_name, "string") ? val.policy_name : void 0;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
-    const releaseNotes: undefined | string = isJson(val.release_notes, "string") ? val.release_notes : void 0;
+    const policyName: undefined | string = val.policy_name == void 0 ? void 0 : val.policy_name;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
+    const releaseNotes: undefined | string = val.release_notes == void 0 ? void 0 : val.release_notes;
     return { policyName: policyName, description: description, releaseNotes: releaseNotes } satisfies UpdateLegalHoldPolicyByIdRequestBodyArg;
 }

@@ -50,13 +50,13 @@ export interface CreateGroupMembershipRequestBodyArgGroupField {
     readonly id: string;
 }
 export type CreateGroupMembershipRequestBodyArgRoleField = "member" | "admin";
-export interface CreateGroupMembershipRequestBodyArgConfigurablePermissionsField {
-}
 export interface CreateGroupMembershipRequestBodyArg {
     readonly user: CreateGroupMembershipRequestBodyArgUserField;
     readonly group: CreateGroupMembershipRequestBodyArgGroupField;
     readonly role?: CreateGroupMembershipRequestBodyArgRoleField;
-    readonly configurablePermissions?: CreateGroupMembershipRequestBodyArgConfigurablePermissionsField;
+    readonly configurablePermissions?: {
+        readonly [key: string]: boolean;
+    };
 }
 export interface CreateGroupMembershipQueryParamsArg {
     readonly fields?: string;
@@ -81,11 +81,11 @@ export class GetGroupMembershipByIdHeadersArg {
     }
 }
 export type UpdateGroupMembershipByIdRequestBodyArgRoleField = "member" | "admin";
-export interface UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField {
-}
 export interface UpdateGroupMembershipByIdRequestBodyArg {
     readonly role?: UpdateGroupMembershipByIdRequestBodyArgRoleField;
-    readonly configurablePermissions?: UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField;
+    readonly configurablePermissions?: {
+        readonly [key: string]: boolean;
+    };
 }
 export interface UpdateGroupMembershipByIdQueryParamsArg {
     readonly fields?: string;
@@ -152,7 +152,7 @@ export class MembershipsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/group_memberships/", groupMembershipId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeGroupMembership(deserializeJson(response.text));
     }
-    async updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg, queryParams: UpdateGroupMembershipByIdQueryParamsArg = {} satisfies UpdateGroupMembershipByIdQueryParamsArg, headers: UpdateGroupMembershipByIdHeadersArg = new UpdateGroupMembershipByIdHeadersArg({})): Promise<GroupMembership> {
+    async updateGroupMembershipById(groupMembershipId: string, requestBody: UpdateGroupMembershipByIdRequestBodyArg = {} satisfies UpdateGroupMembershipByIdRequestBodyArg, queryParams: UpdateGroupMembershipByIdQueryParamsArg = {} satisfies UpdateGroupMembershipByIdQueryParamsArg, headers: UpdateGroupMembershipByIdHeadersArg = new UpdateGroupMembershipByIdHeadersArg({})): Promise<GroupMembership> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -199,20 +199,16 @@ export function deserializeCreateGroupMembershipRequestBodyArgRoleField(val: any
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeCreateGroupMembershipRequestBodyArgConfigurablePermissionsField(val: CreateGroupMembershipRequestBodyArgConfigurablePermissionsField): Json {
-    return {};
-}
-export function deserializeCreateGroupMembershipRequestBodyArgConfigurablePermissionsField(val: any): CreateGroupMembershipRequestBodyArgConfigurablePermissionsField {
-    return {} satisfies CreateGroupMembershipRequestBodyArgConfigurablePermissionsField;
-}
 export function serializeCreateGroupMembershipRequestBodyArg(val: CreateGroupMembershipRequestBodyArg): Json {
-    return { ["user"]: serializeCreateGroupMembershipRequestBodyArgUserField(val.user), ["group"]: serializeCreateGroupMembershipRequestBodyArgGroupField(val.group), ["role"]: val.role == void 0 ? void 0 : serializeCreateGroupMembershipRequestBodyArgRoleField(val.role), ["configurable_permissions"]: val.configurablePermissions == void 0 ? void 0 : serializeCreateGroupMembershipRequestBodyArgConfigurablePermissionsField(val.configurablePermissions) };
+    return { ["user"]: serializeCreateGroupMembershipRequestBodyArgUserField(val.user), ["group"]: serializeCreateGroupMembershipRequestBodyArgGroupField(val.group), ["role"]: val.role == void 0 ? void 0 : serializeCreateGroupMembershipRequestBodyArgRoleField(val.role), ["configurable_permissions"]: val.configurablePermissions == void 0 ? void 0 : val.configurablePermissions };
 }
 export function deserializeCreateGroupMembershipRequestBodyArg(val: any): CreateGroupMembershipRequestBodyArg {
     const user: CreateGroupMembershipRequestBodyArgUserField = deserializeCreateGroupMembershipRequestBodyArgUserField(val.user);
     const group: CreateGroupMembershipRequestBodyArgGroupField = deserializeCreateGroupMembershipRequestBodyArgGroupField(val.group);
     const role: undefined | CreateGroupMembershipRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeCreateGroupMembershipRequestBodyArgRoleField(val.role);
-    const configurablePermissions: undefined | CreateGroupMembershipRequestBodyArgConfigurablePermissionsField = val.configurable_permissions == void 0 ? void 0 : deserializeCreateGroupMembershipRequestBodyArgConfigurablePermissionsField(val.configurable_permissions);
+    const configurablePermissions: undefined | {
+        readonly [key: string]: boolean;
+    } = val.configurable_permissions == void 0 ? void 0 : val.configurable_permissions;
     return { user: user, group: group, role: role, configurablePermissions: configurablePermissions } satisfies CreateGroupMembershipRequestBodyArg;
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val: UpdateGroupMembershipByIdRequestBodyArgRoleField): Json {
@@ -230,17 +226,13 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val:
     }
     throw "".concat("Invalid value: ", val) as string;
 }
-export function serializeUpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField(val: UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField): Json {
-    return {};
-}
-export function deserializeUpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField(val: any): UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField {
-    return {} satisfies UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField;
-}
 export function serializeUpdateGroupMembershipByIdRequestBodyArg(val: UpdateGroupMembershipByIdRequestBodyArg): Json {
-    return { ["role"]: val.role == void 0 ? void 0 : serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val.role), ["configurable_permissions"]: val.configurablePermissions == void 0 ? void 0 : serializeUpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField(val.configurablePermissions) };
+    return { ["role"]: val.role == void 0 ? void 0 : serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val.role), ["configurable_permissions"]: val.configurablePermissions == void 0 ? void 0 : val.configurablePermissions };
 }
 export function deserializeUpdateGroupMembershipByIdRequestBodyArg(val: any): UpdateGroupMembershipByIdRequestBodyArg {
     const role: undefined | UpdateGroupMembershipByIdRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val.role);
-    const configurablePermissions: undefined | UpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField = val.configurable_permissions == void 0 ? void 0 : deserializeUpdateGroupMembershipByIdRequestBodyArgConfigurablePermissionsField(val.configurable_permissions);
+    const configurablePermissions: undefined | {
+        readonly [key: string]: boolean;
+    } = val.configurable_permissions == void 0 ? void 0 : val.configurable_permissions;
     return { role: role, configurablePermissions: configurablePermissions } satisfies UpdateGroupMembershipByIdRequestBodyArg;
 }

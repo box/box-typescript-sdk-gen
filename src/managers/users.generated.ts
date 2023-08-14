@@ -196,7 +196,7 @@ export class UsersManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserFull(deserializeJson(response.text));
     }
-    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg, headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})): Promise<UserFull> {
+    async updateUserById(userId: string, requestBody: UpdateUserByIdRequestBodyArg = {} satisfies UpdateUserByIdRequestBodyArg, queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg, headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})): Promise<UserFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -254,31 +254,31 @@ export function deserializeCreateUserRequestBodyArgStatusField(val: any): Create
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateUserRequestBodyArg(val: CreateUserRequestBodyArg): Json {
-    return { ["name"]: val.name, ["login"]: val.login, ["is_platform_access_only"]: val.isPlatformAccessOnly, ["role"]: val.role == void 0 ? void 0 : serializeCreateUserRequestBodyArgRoleField(val.role), ["language"]: val.language, ["is_sync_enabled"]: val.isSyncEnabled, ["job_title"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["space_amount"]: val.spaceAmount, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
+    return { ["name"]: val.name, ["login"]: val.login == void 0 ? void 0 : val.login, ["is_platform_access_only"]: val.isPlatformAccessOnly == void 0 ? void 0 : val.isPlatformAccessOnly, ["role"]: val.role == void 0 ? void 0 : serializeCreateUserRequestBodyArgRoleField(val.role), ["language"]: val.language == void 0 ? void 0 : val.language, ["is_sync_enabled"]: val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled, ["job_title"]: val.jobTitle == void 0 ? void 0 : val.jobTitle, ["phone"]: val.phone == void 0 ? void 0 : val.phone, ["address"]: val.address == void 0 ? void 0 : val.address, ["space_amount"]: val.spaceAmount == void 0 ? void 0 : val.spaceAmount, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
-        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification, ["status"]: val.status == void 0 ? void 0 : serializeCreateUserRequestBodyArgStatusField(val.status), ["external_app_user_id"]: val.externalAppUserId };
+        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers, ["timezone"]: val.timezone == void 0 ? void 0 : val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted == void 0 ? void 0 : val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits == void 0 ? void 0 : val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification == void 0 ? void 0 : val.isExemptFromLoginVerification, ["status"]: val.status == void 0 ? void 0 : serializeCreateUserRequestBodyArgStatusField(val.status), ["external_app_user_id"]: val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId };
 }
 export function deserializeCreateUserRequestBodyArg(val: any): CreateUserRequestBodyArg {
     const name: string = val.name;
-    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
-    const isPlatformAccessOnly: undefined | boolean = isJson(val.is_platform_access_only, "boolean") ? val.is_platform_access_only : void 0;
+    const login: undefined | string = val.login == void 0 ? void 0 : val.login;
+    const isPlatformAccessOnly: undefined | boolean = val.is_platform_access_only == void 0 ? void 0 : val.is_platform_access_only;
     const role: undefined | CreateUserRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeCreateUserRequestBodyArgRoleField(val.role);
-    const language: undefined | string = isJson(val.language, "string") ? val.language : void 0;
-    const isSyncEnabled: undefined | boolean = isJson(val.is_sync_enabled, "boolean") ? val.is_sync_enabled : void 0;
-    const jobTitle: undefined | string = isJson(val.job_title, "string") ? val.job_title : void 0;
-    const phone: undefined | string = isJson(val.phone, "string") ? val.phone : void 0;
-    const address: undefined | string = isJson(val.address, "string") ? val.address : void 0;
-    const spaceAmount: undefined | number = isJson(val.space_amount, "number") ? val.space_amount : void 0;
-    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
+    const language: undefined | string = val.language == void 0 ? void 0 : val.language;
+    const isSyncEnabled: undefined | boolean = val.is_sync_enabled == void 0 ? void 0 : val.is_sync_enabled;
+    const jobTitle: undefined | string = val.job_title == void 0 ? void 0 : val.job_title;
+    const phone: undefined | string = val.phone == void 0 ? void 0 : val.phone;
+    const address: undefined | string = val.address == void 0 ? void 0 : val.address;
+    const spaceAmount: undefined | number = val.space_amount == void 0 ? void 0 : val.space_amount;
+    const trackingCodes: undefined | readonly TrackingCode[] = val.tracking_codes == void 0 ? void 0 : isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
         return deserializeTrackingCode(itm);
-    }) as readonly any[] : void 0;
-    const canSeeManagedUsers: undefined | boolean = isJson(val.can_see_managed_users, "boolean") ? val.can_see_managed_users : void 0;
-    const timezone: undefined | string = isJson(val.timezone, "string") ? val.timezone : void 0;
-    const isExternalCollabRestricted: undefined | boolean = isJson(val.is_external_collab_restricted, "boolean") ? val.is_external_collab_restricted : void 0;
-    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.is_exempt_from_device_limits, "boolean") ? val.is_exempt_from_device_limits : void 0;
-    const isExemptFromLoginVerification: undefined | boolean = isJson(val.is_exempt_from_login_verification, "boolean") ? val.is_exempt_from_login_verification : void 0;
+    }) as readonly any[] : [];
+    const canSeeManagedUsers: undefined | boolean = val.can_see_managed_users == void 0 ? void 0 : val.can_see_managed_users;
+    const timezone: undefined | string = val.timezone == void 0 ? void 0 : val.timezone;
+    const isExternalCollabRestricted: undefined | boolean = val.is_external_collab_restricted == void 0 ? void 0 : val.is_external_collab_restricted;
+    const isExemptFromDeviceLimits: undefined | boolean = val.is_exempt_from_device_limits == void 0 ? void 0 : val.is_exempt_from_device_limits;
+    const isExemptFromLoginVerification: undefined | boolean = val.is_exempt_from_login_verification == void 0 ? void 0 : val.is_exempt_from_login_verification;
     const status: undefined | CreateUserRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeCreateUserRequestBodyArgStatusField(val.status);
-    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
+    const externalAppUserId: undefined | string = val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
     return { name: name, login: login, isPlatformAccessOnly: isPlatformAccessOnly, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, spaceAmount: spaceAmount, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, status: status, externalAppUserId: externalAppUserId } satisfies CreateUserRequestBodyArg;
 }
 export function serializeUpdateUserByIdRequestBodyArgRoleField(val: UpdateUserByIdRequestBodyArgRoleField): Json {
@@ -318,40 +318,40 @@ export function deserializeUpdateUserByIdRequestBodyArgStatusField(val: any): Up
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: UpdateUserByIdRequestBodyArgNotificationEmailField): Json {
-    return { ["email"]: val.email };
+    return { ["email"]: val.email == void 0 ? void 0 : val.email };
 }
 export function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val: any): UpdateUserByIdRequestBodyArgNotificationEmailField {
-    const email: undefined | string = isJson(val.email, "string") ? val.email : void 0;
+    const email: undefined | string = val.email == void 0 ? void 0 : val.email;
     return { email: email } satisfies UpdateUserByIdRequestBodyArgNotificationEmailField;
 }
 export function serializeUpdateUserByIdRequestBodyArg(val: UpdateUserByIdRequestBodyArg): Json {
-    return { ["enterprise"]: val.enterprise, ["notify"]: val.notify, ["name"]: val.name, ["login"]: val.login, ["role"]: val.role == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgRoleField(val.role), ["language"]: val.language, ["is_sync_enabled"]: val.isSyncEnabled, ["job_title"]: val.jobTitle, ["phone"]: val.phone, ["address"]: val.address, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
+    return { ["enterprise"]: val.enterprise == void 0 ? void 0 : val.enterprise, ["notify"]: val.notify == void 0 ? void 0 : val.notify, ["name"]: val.name == void 0 ? void 0 : val.name, ["login"]: val.login == void 0 ? void 0 : val.login, ["role"]: val.role == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgRoleField(val.role), ["language"]: val.language == void 0 ? void 0 : val.language, ["is_sync_enabled"]: val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled, ["job_title"]: val.jobTitle == void 0 ? void 0 : val.jobTitle, ["phone"]: val.phone == void 0 ? void 0 : val.phone, ["address"]: val.address == void 0 ? void 0 : val.address, ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
-        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers, ["timezone"]: val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification, ["is_password_reset_required"]: val.isPasswordResetRequired, ["status"]: val.status == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgStatusField(val.status), ["space_amount"]: val.spaceAmount, ["notification_email"]: val.notificationEmail == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notificationEmail), ["external_app_user_id"]: val.externalAppUserId };
+        }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers, ["timezone"]: val.timezone == void 0 ? void 0 : val.timezone, ["is_external_collab_restricted"]: val.isExternalCollabRestricted == void 0 ? void 0 : val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits == void 0 ? void 0 : val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification == void 0 ? void 0 : val.isExemptFromLoginVerification, ["is_password_reset_required"]: val.isPasswordResetRequired == void 0 ? void 0 : val.isPasswordResetRequired, ["status"]: val.status == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgStatusField(val.status), ["space_amount"]: val.spaceAmount == void 0 ? void 0 : val.spaceAmount, ["notification_email"]: val.notificationEmail == void 0 ? void 0 : serializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notificationEmail), ["external_app_user_id"]: val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId };
 }
 export function deserializeUpdateUserByIdRequestBodyArg(val: any): UpdateUserByIdRequestBodyArg {
-    const enterprise: undefined | string = isJson(val.enterprise, "string") ? val.enterprise : void 0;
-    const notify: undefined | boolean = isJson(val.notify, "boolean") ? val.notify : void 0;
-    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
-    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
+    const enterprise: undefined | string = val.enterprise == void 0 ? void 0 : val.enterprise;
+    const notify: undefined | boolean = val.notify == void 0 ? void 0 : val.notify;
+    const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+    const login: undefined | string = val.login == void 0 ? void 0 : val.login;
     const role: undefined | UpdateUserByIdRequestBodyArgRoleField = val.role == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgRoleField(val.role);
-    const language: undefined | string = isJson(val.language, "string") ? val.language : void 0;
-    const isSyncEnabled: undefined | boolean = isJson(val.is_sync_enabled, "boolean") ? val.is_sync_enabled : void 0;
-    const jobTitle: undefined | string = isJson(val.job_title, "string") ? val.job_title : void 0;
-    const phone: undefined | string = isJson(val.phone, "string") ? val.phone : void 0;
-    const address: undefined | string = isJson(val.address, "string") ? val.address : void 0;
-    const trackingCodes: undefined | readonly TrackingCode[] = isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
+    const language: undefined | string = val.language == void 0 ? void 0 : val.language;
+    const isSyncEnabled: undefined | boolean = val.is_sync_enabled == void 0 ? void 0 : val.is_sync_enabled;
+    const jobTitle: undefined | string = val.job_title == void 0 ? void 0 : val.job_title;
+    const phone: undefined | string = val.phone == void 0 ? void 0 : val.phone;
+    const address: undefined | string = val.address == void 0 ? void 0 : val.address;
+    const trackingCodes: undefined | readonly TrackingCode[] = val.tracking_codes == void 0 ? void 0 : isJson(val.tracking_codes, "array") ? val.tracking_codes.map(function (itm: Json): any {
         return deserializeTrackingCode(itm);
-    }) as readonly any[] : void 0;
-    const canSeeManagedUsers: undefined | boolean = isJson(val.can_see_managed_users, "boolean") ? val.can_see_managed_users : void 0;
-    const timezone: undefined | string = isJson(val.timezone, "string") ? val.timezone : void 0;
-    const isExternalCollabRestricted: undefined | boolean = isJson(val.is_external_collab_restricted, "boolean") ? val.is_external_collab_restricted : void 0;
-    const isExemptFromDeviceLimits: undefined | boolean = isJson(val.is_exempt_from_device_limits, "boolean") ? val.is_exempt_from_device_limits : void 0;
-    const isExemptFromLoginVerification: undefined | boolean = isJson(val.is_exempt_from_login_verification, "boolean") ? val.is_exempt_from_login_verification : void 0;
-    const isPasswordResetRequired: undefined | boolean = isJson(val.is_password_reset_required, "boolean") ? val.is_password_reset_required : void 0;
+    }) as readonly any[] : [];
+    const canSeeManagedUsers: undefined | boolean = val.can_see_managed_users == void 0 ? void 0 : val.can_see_managed_users;
+    const timezone: undefined | string = val.timezone == void 0 ? void 0 : val.timezone;
+    const isExternalCollabRestricted: undefined | boolean = val.is_external_collab_restricted == void 0 ? void 0 : val.is_external_collab_restricted;
+    const isExemptFromDeviceLimits: undefined | boolean = val.is_exempt_from_device_limits == void 0 ? void 0 : val.is_exempt_from_device_limits;
+    const isExemptFromLoginVerification: undefined | boolean = val.is_exempt_from_login_verification == void 0 ? void 0 : val.is_exempt_from_login_verification;
+    const isPasswordResetRequired: undefined | boolean = val.is_password_reset_required == void 0 ? void 0 : val.is_password_reset_required;
     const status: undefined | UpdateUserByIdRequestBodyArgStatusField = val.status == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgStatusField(val.status);
-    const spaceAmount: undefined | number = isJson(val.space_amount, "number") ? val.space_amount : void 0;
+    const spaceAmount: undefined | number = val.space_amount == void 0 ? void 0 : val.space_amount;
     const notificationEmail: undefined | UpdateUserByIdRequestBodyArgNotificationEmailField = val.notification_email == void 0 ? void 0 : deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(val.notification_email);
-    const externalAppUserId: undefined | string = isJson(val.external_app_user_id, "string") ? val.external_app_user_id : void 0;
+    const externalAppUserId: undefined | string = val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
     return { enterprise: enterprise, notify: notify, name: name, login: login, role: role, language: language, isSyncEnabled: isSyncEnabled, jobTitle: jobTitle, phone: phone, address: address, trackingCodes: trackingCodes, canSeeManagedUsers: canSeeManagedUsers, timezone: timezone, isExternalCollabRestricted: isExternalCollabRestricted, isExemptFromDeviceLimits: isExemptFromDeviceLimits, isExemptFromLoginVerification: isExemptFromLoginVerification, isPasswordResetRequired: isPasswordResetRequired, status: status, spaceAmount: spaceAmount, notificationEmail: notificationEmail, externalAppUserId: externalAppUserId } satisfies UpdateUserByIdRequestBodyArg;
 }

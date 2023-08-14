@@ -25,8 +25,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
 export class CreateMetadataQueryExecuteReadHeadersArg {
     readonly extraHeaders?: {
         readonly [key: string]: undefined | string;

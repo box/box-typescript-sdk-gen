@@ -115,7 +115,7 @@ export class CommentsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/comments/", commentId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeCommentFull(deserializeJson(response.text));
     }
-    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg, headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})): Promise<CommentFull> {
+    async updateCommentById(commentId: string, requestBody: UpdateCommentByIdRequestBodyArg = {} satisfies UpdateCommentByIdRequestBodyArg, queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg, headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})): Promise<CommentFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -144,10 +144,10 @@ export class CommentsManager {
     }
 }
 export function serializeUpdateCommentByIdRequestBodyArg(val: UpdateCommentByIdRequestBodyArg): Json {
-    return { ["message"]: val.message };
+    return { ["message"]: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeUpdateCommentByIdRequestBodyArg(val: any): UpdateCommentByIdRequestBodyArg {
-    const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
+    const message: undefined | string = val.message == void 0 ? void 0 : val.message;
     return { message: message } satisfies UpdateCommentByIdRequestBodyArg;
 }
 export function serializeCreateCommentRequestBodyArgItemFieldTypeField(val: CreateCommentRequestBodyArgItemFieldTypeField): Json {
@@ -174,11 +174,11 @@ export function deserializeCreateCommentRequestBodyArgItemField(val: any): Creat
     return { id: id, type: type } satisfies CreateCommentRequestBodyArgItemField;
 }
 export function serializeCreateCommentRequestBodyArg(val: CreateCommentRequestBodyArg): Json {
-    return { ["message"]: val.message, ["tagged_message"]: val.taggedMessage, ["item"]: serializeCreateCommentRequestBodyArgItemField(val.item) };
+    return { ["message"]: val.message, ["tagged_message"]: val.taggedMessage == void 0 ? void 0 : val.taggedMessage, ["item"]: serializeCreateCommentRequestBodyArgItemField(val.item) };
 }
 export function deserializeCreateCommentRequestBodyArg(val: any): CreateCommentRequestBodyArg {
     const message: string = val.message;
-    const taggedMessage: undefined | string = isJson(val.tagged_message, "string") ? val.tagged_message : void 0;
+    const taggedMessage: undefined | string = val.tagged_message == void 0 ? void 0 : val.tagged_message;
     const item: CreateCommentRequestBodyArgItemField = deserializeCreateCommentRequestBodyArgItemField(val.item);
     return { message: message, taggedMessage: taggedMessage, item: item } satisfies CreateCommentRequestBodyArg;
 }

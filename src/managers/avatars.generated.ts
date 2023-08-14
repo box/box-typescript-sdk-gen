@@ -61,7 +61,7 @@ export class AvatarsManager {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
-        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", headers: headersMap, multipartData: [{ partName: "pic", fileStream: requestBody.pic, contentType: requestBody.picContentType, fileName: requestBody.picFileName } satisfies MultipartItem], contentType: "multipart/form-data", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/users/", userId, "/avatar") as string, { method: "POST", headers: headersMap, multipartData: [{ partName: "pic", fileStream: requestBody.pic, fileName: requestBody.picFileName, contentType: requestBody.picContentType } satisfies MultipartItem], contentType: "multipart/form-data", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeUserAvatar(deserializeJson(response.text));
     }
     async deleteUserAvatar(userId: string, headers: DeleteUserAvatarHeadersArg = new DeleteUserAvatarHeadersArg({})): Promise<undefined> {
