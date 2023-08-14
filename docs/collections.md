@@ -16,7 +16,10 @@ This operation is performed by calling function `getCollections`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collections/).
 
-*Currently we don't have an example for calling `getCollections` in integration tests*
+<!-- sample get_collections -->
+```ts
+await client.collections.getCollections()
+```
 
 ### Arguments
 
@@ -43,7 +46,10 @@ This operation is performed by calling function `getCollectionItems`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collections-id-items/).
 
-*Currently we don't have an example for calling `getCollectionItems` in integration tests*
+<!-- sample get_collections_id_items -->
+```ts
+await client.collections.getCollectionItems(favouriteCollection.id)
+```
 
 ### Arguments
 

@@ -191,24 +191,24 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignTo
     return { type: type, id: id } satisfies CreateRetentionPolicyAssignmentRequestBodyArgAssignToField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(val: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField): Json {
-    return { ["field"]: val.field, ["value"]: val.value };
+    return { ["field"]: val.field == void 0 ? void 0 : val.field, ["value"]: val.value == void 0 ? void 0 : val.value };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(val: any): CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
-    const field: undefined | string = isJson(val.field, "string") ? val.field : void 0;
-    const value: undefined | string = isJson(val.value, "string") ? val.value : void 0;
+    const field: undefined | string = val.field == void 0 ? void 0 : val.field;
+    const value: undefined | string = val.value == void 0 ? void 0 : val.value;
     return { field: field, value: value } satisfies CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyArg(val: CreateRetentionPolicyAssignmentRequestBodyArg): Json {
     return { ["policy_id"]: val.policyId, ["assign_to"]: serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assignTo), ["filter_fields"]: val.filterFields == void 0 ? void 0 : val.filterFields.map(function (item: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField): any {
             return serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(item);
-        }) as readonly any[], ["start_date_field"]: val.startDateField };
+        }) as readonly any[], ["start_date_field"]: val.startDateField == void 0 ? void 0 : val.startDateField };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(val: any): CreateRetentionPolicyAssignmentRequestBodyArg {
     const policyId: string = val.policy_id;
     const assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField = deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(val.assign_to);
-    const filterFields: undefined | readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[] = isJson(val.filter_fields, "array") ? val.filter_fields.map(function (itm: Json): any {
+    const filterFields: undefined | readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[] = val.filter_fields == void 0 ? void 0 : isJson(val.filter_fields, "array") ? val.filter_fields.map(function (itm: Json): any {
         return deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(itm);
-    }) as readonly any[] : void 0;
-    const startDateField: undefined | string = isJson(val.start_date_field, "string") ? val.start_date_field : void 0;
+    }) as readonly any[] : [];
+    const startDateField: undefined | string = val.start_date_field == void 0 ? void 0 : val.start_date_field;
     return { policyId: policyId, assignTo: assignTo, filterFields: filterFields, startDateField: startDateField } satisfies CreateRetentionPolicyAssignmentRequestBodyArg;
 }

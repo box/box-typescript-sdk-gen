@@ -3,6 +3,7 @@
 
 - [Find metadata template by instance ID](#find-metadata-template-by-instance-id)
 - [Get metadata template by name](#get-metadata-template-by-name)
+- [Update metadata template](#update-metadata-template)
 - [Remove metadata template](#remove-metadata-template)
 - [Get metadata template by ID](#get-metadata-template-by-id)
 - [List all global metadata templates](#list-all-global-metadata-templates)
@@ -49,7 +50,10 @@ This operation is performed by calling function `getMetadataTemplateSchema`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-id-id-schema/).
 
-*Currently we don't have an example for calling `getMetadataTemplateSchema` in integration tests*
+<!-- sample get_metadata_templates_id_id_schema -->
+```ts
+await client.metadataTemplates.getMetadataTemplateSchema("enterprise" as GetMetadataTemplateSchemaScopeArg, template.templateKey)
+```
 
 ### Arguments
 
@@ -69,6 +73,43 @@ Returns the metadata template matching the `scope`
 and `template` name.
 
 
+## Update metadata template
+
+Updates a metadata template.
+
+The metadata template can only be updated if the template
+already exists.
+
+The update is applied atomically. If any errors occur during the
+application of the operations, the metadata template will not be changed.
+
+This operation is performed by calling function `updateMetadataTemplateSchema`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-metadata-templates-id-id-schema/).
+
+*Currently we don't have an example for calling `updateMetadataTemplateSchema` in integration tests*
+
+### Arguments
+
+- scope `UpdateMetadataTemplateSchemaScopeArg`
+  - The scope of the metadata template Example: "global"
+- templateKey `string`
+  - The name of the metadata template Example: "properties"
+- requestBody `readonly UpdateMetadataTemplateSchemaRequestBodyArg[]`
+  - Request body of updateMetadataTemplateSchema method
+- headers `UpdateMetadataTemplateSchemaHeadersArg`
+  - Headers of updateMetadataTemplateSchema method
+
+
+### Returns
+
+This function returns a value of type `MetadataTemplate`.
+
+Returns the updated metadata template, with the
+custom template data included.
+
+
 ## Remove metadata template
 
 Delete a metadata template and its instances.
@@ -79,7 +120,10 @@ This operation is performed by calling function `deleteMetadataTemplateSchema`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-templates-id-id-schema/).
 
-*Currently we don't have an example for calling `deleteMetadataTemplateSchema` in integration tests*
+<!-- sample delete_metadata_templates_id_id_schema -->
+```ts
+await client.metadataTemplates.deleteMetadataTemplateSchema("enterprise" as DeleteMetadataTemplateSchemaScopeArg, template.templateKey)
+```
 
 ### Arguments
 
@@ -108,7 +152,10 @@ This operation is performed by calling function `getMetadataTemplateById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-id/).
 
-*Currently we don't have an example for calling `getMetadataTemplateById` in integration tests*
+<!-- sample get_metadata_templates_id -->
+```ts
+await client.metadataTemplates.getMetadataTemplateById(template.id)
+```
 
 ### Arguments
 
@@ -135,7 +182,10 @@ This operation is performed by calling function `getMetadataTemplateGlobal`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-global/).
 
-*Currently we don't have an example for calling `getMetadataTemplateGlobal` in integration tests*
+<!-- sample get_metadata_templates_global -->
+```ts
+await client.metadataTemplates.getMetadataTemplateGlobal()
+```
 
 ### Arguments
 
@@ -163,7 +213,10 @@ This operation is performed by calling function `getMetadataTemplateEnterprise`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise/).
 
-*Currently we don't have an example for calling `getMetadataTemplateEnterprise` in integration tests*
+<!-- sample get_metadata_templates_enterprise -->
+```ts
+await client.metadataTemplates.getMetadataTemplateEnterprise()
+```
 
 ### Arguments
 
@@ -191,7 +244,10 @@ This operation is performed by calling function `createMetadataTemplateSchema`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-templates-schema/).
 
-*Currently we don't have an example for calling `createMetadataTemplateSchema` in integration tests*
+<!-- sample post_metadata_templates_schema -->
+```ts
+await client.metadataTemplates.createMetadataTemplateSchema({ scope: "enterprise", displayName: templateKey, templateKey: templateKey, fields: [{ type: "string", key: "testName", displayName: "testName" }] } satisfies CreateMetadataTemplateSchemaRequestBodyArg)
+```
 
 ### Arguments
 

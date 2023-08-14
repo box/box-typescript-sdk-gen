@@ -104,7 +104,7 @@ export class TaskAssignmentsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/task_assignments/", taskAssignmentId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTaskAssignment(deserializeJson(response.text));
     }
-    async updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg, headers: UpdateTaskAssignmentByIdHeadersArg = new UpdateTaskAssignmentByIdHeadersArg({})): Promise<TaskAssignment> {
+    async updateTaskAssignmentById(taskAssignmentId: string, requestBody: UpdateTaskAssignmentByIdRequestBodyArg = {} satisfies UpdateTaskAssignmentByIdRequestBodyArg, headers: UpdateTaskAssignmentByIdHeadersArg = new UpdateTaskAssignmentByIdHeadersArg({})): Promise<TaskAssignment> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -140,11 +140,11 @@ export function deserializeCreateTaskAssignmentRequestBodyArgTaskField(val: any)
     return { id: id, type: type } satisfies CreateTaskAssignmentRequestBodyArgTaskField;
 }
 export function serializeCreateTaskAssignmentRequestBodyArgAssignToField(val: CreateTaskAssignmentRequestBodyArgAssignToField): Json {
-    return { ["id"]: val.id, ["login"]: val.login };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["login"]: val.login == void 0 ? void 0 : val.login };
 }
 export function deserializeCreateTaskAssignmentRequestBodyArgAssignToField(val: any): CreateTaskAssignmentRequestBodyArgAssignToField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
-    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+    const login: undefined | string = val.login == void 0 ? void 0 : val.login;
     return { id: id, login: login } satisfies CreateTaskAssignmentRequestBodyArgAssignToField;
 }
 export function serializeCreateTaskAssignmentRequestBodyArg(val: CreateTaskAssignmentRequestBodyArg): Json {
@@ -177,10 +177,10 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionState
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyArg(val: UpdateTaskAssignmentByIdRequestBodyArg): Json {
-    return { ["message"]: val.message, ["resolution_state"]: val.resolutionState == void 0 ? void 0 : serializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState) };
+    return { ["message"]: val.message == void 0 ? void 0 : val.message, ["resolution_state"]: val.resolutionState == void 0 ? void 0 : serializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolutionState) };
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBodyArg(val: any): UpdateTaskAssignmentByIdRequestBodyArg {
-    const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
+    const message: undefined | string = val.message == void 0 ? void 0 : val.message;
     const resolutionState: undefined | UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField = val.resolution_state == void 0 ? void 0 : deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(val.resolution_state);
     return { message: message, resolutionState: resolutionState } satisfies UpdateTaskAssignmentByIdRequestBodyArg;
 }

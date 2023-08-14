@@ -13,9 +13,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
-import { isJson } from "../json.js";
+import { Json } from "../json.js";
 export interface CreateInviteRequestBodyArgEnterpriseField {
     readonly id: string;
 }
@@ -83,10 +82,10 @@ export function deserializeCreateInviteRequestBodyArgEnterpriseField(val: any): 
     return { id: id } satisfies CreateInviteRequestBodyArgEnterpriseField;
 }
 export function serializeCreateInviteRequestBodyArgActionableByField(val: CreateInviteRequestBodyArgActionableByField): Json {
-    return { ["login"]: val.login };
+    return { ["login"]: val.login == void 0 ? void 0 : val.login };
 }
 export function deserializeCreateInviteRequestBodyArgActionableByField(val: any): CreateInviteRequestBodyArgActionableByField {
-    const login: undefined | string = isJson(val.login, "string") ? val.login : void 0;
+    const login: undefined | string = val.login == void 0 ? void 0 : val.login;
     return { login: login } satisfies CreateInviteRequestBodyArgActionableByField;
 }
 export function serializeCreateInviteRequestBodyArg(val: CreateInviteRequestBodyArg): Json {

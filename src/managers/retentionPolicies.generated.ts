@@ -133,7 +133,7 @@ export class RetentionPoliciesManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/retention_policies/", retentionPolicyId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeRetentionPolicy(deserializeJson(response.text));
     }
-    async updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg, headers: UpdateRetentionPolicyByIdHeadersArg = new UpdateRetentionPolicyByIdHeadersArg({})): Promise<RetentionPolicy> {
+    async updateRetentionPolicyById(retentionPolicyId: string, requestBody: UpdateRetentionPolicyByIdRequestBodyArg = {} satisfies UpdateRetentionPolicyByIdRequestBodyArg, headers: UpdateRetentionPolicyByIdHeadersArg = new UpdateRetentionPolicyByIdHeadersArg({})): Promise<RetentionPolicy> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -194,22 +194,22 @@ export function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateRetentionPolicyRequestBodyArg(val: CreateRetentionPolicyRequestBodyArg): Json {
-    return { ["policy_name"]: val.policyName, ["description"]: val.description, ["policy_type"]: serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val.policyType), ["disposition_action"]: serializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val.dispositionAction), ["retention_length"]: val.retentionLength, ["retention_type"]: val.retentionType == void 0 ? void 0 : serializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val.retentionType), ["can_owner_extend_retention"]: val.canOwnerExtendRetention, ["are_owners_notified"]: val.areOwnersNotified, ["custom_notification_recipients"]: val.customNotificationRecipients == void 0 ? void 0 : val.customNotificationRecipients.map(function (item: UserMini): any {
+    return { ["policy_name"]: val.policyName, ["description"]: val.description == void 0 ? void 0 : val.description, ["policy_type"]: serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val.policyType), ["disposition_action"]: serializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val.dispositionAction), ["retention_length"]: val.retentionLength == void 0 ? void 0 : val.retentionLength, ["retention_type"]: val.retentionType == void 0 ? void 0 : serializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val.retentionType), ["can_owner_extend_retention"]: val.canOwnerExtendRetention == void 0 ? void 0 : val.canOwnerExtendRetention, ["are_owners_notified"]: val.areOwnersNotified == void 0 ? void 0 : val.areOwnersNotified, ["custom_notification_recipients"]: val.customNotificationRecipients == void 0 ? void 0 : val.customNotificationRecipients.map(function (item: UserMini): any {
             return serializeUserMini(item);
         }) as readonly any[] };
 }
 export function deserializeCreateRetentionPolicyRequestBodyArg(val: any): CreateRetentionPolicyRequestBodyArg {
     const policyName: string = val.policy_name;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
     const policyType: CreateRetentionPolicyRequestBodyArgPolicyTypeField = deserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(val.policy_type);
     const dispositionAction: CreateRetentionPolicyRequestBodyArgDispositionActionField = deserializeCreateRetentionPolicyRequestBodyArgDispositionActionField(val.disposition_action);
-    const retentionLength: undefined | string = isJson(val.retention_length, "string") ? val.retention_length : void 0;
+    const retentionLength: undefined | string = val.retention_length == void 0 ? void 0 : val.retention_length;
     const retentionType: undefined | CreateRetentionPolicyRequestBodyArgRetentionTypeField = val.retention_type == void 0 ? void 0 : deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(val.retention_type);
-    const canOwnerExtendRetention: undefined | boolean = isJson(val.can_owner_extend_retention, "boolean") ? val.can_owner_extend_retention : void 0;
-    const areOwnersNotified: undefined | boolean = isJson(val.are_owners_notified, "boolean") ? val.are_owners_notified : void 0;
-    const customNotificationRecipients: undefined | readonly UserMini[] = isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: Json): any {
+    const canOwnerExtendRetention: undefined | boolean = val.can_owner_extend_retention == void 0 ? void 0 : val.can_owner_extend_retention;
+    const areOwnersNotified: undefined | boolean = val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
+    const customNotificationRecipients: undefined | readonly UserMini[] = val.custom_notification_recipients == void 0 ? void 0 : isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: Json): any {
         return deserializeUserMini(itm);
-    }) as readonly any[] : void 0;
+    }) as readonly any[] : [];
     return { policyName: policyName, description: description, policyType: policyType, dispositionAction: dispositionAction, retentionLength: retentionLength, retentionType: retentionType, canOwnerExtendRetention: canOwnerExtendRetention, areOwnersNotified: areOwnersNotified, customNotificationRecipients: customNotificationRecipients } satisfies CreateRetentionPolicyRequestBodyArg;
 }
 export function serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField): Json {
@@ -228,21 +228,21 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionAct
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateRetentionPolicyByIdRequestBodyArg(val: UpdateRetentionPolicyByIdRequestBodyArg): Json {
-    return { ["policy_name"]: val.policyName, ["description"]: val.description, ["disposition_action"]: val.dispositionAction == void 0 ? void 0 : serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val.dispositionAction), ["retention_type"]: val.retentionType, ["retention_length"]: val.retentionLength, ["status"]: val.status, ["can_owner_extend_retention"]: val.canOwnerExtendRetention, ["are_owners_notified"]: val.areOwnersNotified, ["custom_notification_recipients"]: val.customNotificationRecipients == void 0 ? void 0 : val.customNotificationRecipients.map(function (item: UserMini): any {
+    return { ["policy_name"]: val.policyName == void 0 ? void 0 : val.policyName, ["description"]: val.description == void 0 ? void 0 : val.description, ["disposition_action"]: val.dispositionAction == void 0 ? void 0 : serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val.dispositionAction), ["retention_type"]: val.retentionType == void 0 ? void 0 : val.retentionType, ["retention_length"]: val.retentionLength == void 0 ? void 0 : val.retentionLength, ["status"]: val.status == void 0 ? void 0 : val.status, ["can_owner_extend_retention"]: val.canOwnerExtendRetention == void 0 ? void 0 : val.canOwnerExtendRetention, ["are_owners_notified"]: val.areOwnersNotified == void 0 ? void 0 : val.areOwnersNotified, ["custom_notification_recipients"]: val.customNotificationRecipients == void 0 ? void 0 : val.customNotificationRecipients.map(function (item: UserMini): any {
             return serializeUserMini(item);
         }) as readonly any[] };
 }
 export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(val: any): UpdateRetentionPolicyByIdRequestBodyArg {
-    const policyName: undefined | string = isJson(val.policy_name, "string") ? val.policy_name : void 0;
-    const description: undefined | string = isJson(val.description, "string") ? val.description : void 0;
+    const policyName: undefined | string = val.policy_name == void 0 ? void 0 : val.policy_name;
+    const description: undefined | string = val.description == void 0 ? void 0 : val.description;
     const dispositionAction: undefined | UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField = val.disposition_action == void 0 ? void 0 : deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(val.disposition_action);
-    const retentionType: undefined | string = isJson(val.retention_type, "string") ? val.retention_type : void 0;
-    const retentionLength: undefined | string = isJson(val.retention_length, "string") ? val.retention_length : void 0;
-    const status: undefined | string = isJson(val.status, "string") ? val.status : void 0;
-    const canOwnerExtendRetention: undefined | boolean = isJson(val.can_owner_extend_retention, "boolean") ? val.can_owner_extend_retention : void 0;
-    const areOwnersNotified: undefined | boolean = isJson(val.are_owners_notified, "boolean") ? val.are_owners_notified : void 0;
-    const customNotificationRecipients: undefined | readonly UserMini[] = isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: Json): any {
+    const retentionType: undefined | string = val.retention_type == void 0 ? void 0 : val.retention_type;
+    const retentionLength: undefined | string = val.retention_length == void 0 ? void 0 : val.retention_length;
+    const status: undefined | string = val.status == void 0 ? void 0 : val.status;
+    const canOwnerExtendRetention: undefined | boolean = val.can_owner_extend_retention == void 0 ? void 0 : val.can_owner_extend_retention;
+    const areOwnersNotified: undefined | boolean = val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
+    const customNotificationRecipients: undefined | readonly UserMini[] = val.custom_notification_recipients == void 0 ? void 0 : isJson(val.custom_notification_recipients, "array") ? val.custom_notification_recipients.map(function (itm: Json): any {
         return deserializeUserMini(itm);
-    }) as readonly any[] : void 0;
+    }) as readonly any[] : [];
     return { policyName: policyName, description: description, dispositionAction: dispositionAction, retentionType: retentionType, retentionLength: retentionLength, status: status, canOwnerExtendRetention: canOwnerExtendRetention, areOwnersNotified: areOwnersNotified, customNotificationRecipients: customNotificationRecipients } satisfies UpdateRetentionPolicyByIdRequestBodyArg;
 }

@@ -26,7 +26,10 @@ This operation is performed by calling function `restoreFolderFromTrash`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folders-id/).
 
-*Currently we don't have an example for calling `restoreFolderFromTrash` in integration tests*
+<!-- sample post_folders_id -->
+```ts
+await client.trashedFolders.restoreFolderFromTrash(folder.id)
+```
 
 ### Arguments
 
@@ -66,7 +69,10 @@ This operation is performed by calling function `getFolderTrash`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-trash/).
 
-*Currently we don't have an example for calling `getFolderTrash` in integration tests*
+<!-- sample get_folders_id_trash -->
+```ts
+await client.trashedFolders.getFolderTrash(folder.id)
+```
 
 ### Arguments
 
@@ -97,7 +103,10 @@ This operation is performed by calling function `deleteFolderTrash`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folders-id-trash/).
 
-*Currently we don't have an example for calling `deleteFolderTrash` in integration tests*
+<!-- sample delete_folders_id_trash -->
+```ts
+await client.trashedFolders.deleteFolderTrash(folder.id)
+```
 
 ### Arguments
 

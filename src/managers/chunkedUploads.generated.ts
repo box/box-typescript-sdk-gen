@@ -25,8 +25,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
+import { Json } from "../json.js";
 import { isJson } from "../json.js";
 export interface CreateFileUploadSessionRequestBodyArg {
     readonly folderId: string;
@@ -174,11 +174,11 @@ export function deserializeCreateFileUploadSessionRequestBodyArg(val: any): Crea
     return { folderId: folderId, fileSize: fileSize, fileName: fileName } satisfies CreateFileUploadSessionRequestBodyArg;
 }
 export function serializeCreateFileUploadSessionForExistingFileRequestBodyArg(val: CreateFileUploadSessionForExistingFileRequestBodyArg): Json {
-    return { ["file_size"]: val.fileSize, ["file_name"]: val.fileName };
+    return { ["file_size"]: val.fileSize, ["file_name"]: val.fileName == void 0 ? void 0 : val.fileName };
 }
 export function deserializeCreateFileUploadSessionForExistingFileRequestBodyArg(val: any): CreateFileUploadSessionForExistingFileRequestBodyArg {
     const fileSize: number = val.file_size;
-    const fileName: undefined | string = isJson(val.file_name, "string") ? val.file_name : void 0;
+    const fileName: undefined | string = val.file_name == void 0 ? void 0 : val.file_name;
     return { fileSize: fileSize, fileName: fileName } satisfies CreateFileUploadSessionForExistingFileRequestBodyArg;
 }
 export function serializeCreateFileUploadSessionCommitRequestBodyArg(val: CreateFileUploadSessionCommitRequestBodyArg): Json {
@@ -187,8 +187,8 @@ export function serializeCreateFileUploadSessionCommitRequestBodyArg(val: Create
         }) as readonly any[] };
 }
 export function deserializeCreateFileUploadSessionCommitRequestBodyArg(val: any): CreateFileUploadSessionCommitRequestBodyArg {
-    const parts: readonly UploadPart[] = val.parts.map(function (itm: Json): any {
+    const parts: readonly UploadPart[] = isJson(val.parts, "array") ? val.parts.map(function (itm: Json): any {
         return deserializeUploadPart(itm);
-    }) as readonly any[];
+    }) as readonly any[] : [];
     return { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg;
 }

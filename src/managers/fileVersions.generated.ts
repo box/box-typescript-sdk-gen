@@ -105,7 +105,7 @@ export class FileVersionsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "GET", params: queryParamsMap, headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeFileVersionFull(deserializeJson(response.text));
     }
-    async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg, headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg({})): Promise<FileVersionFull> {
+    async updateFileVersionById(fileId: string, fileVersionId: string, requestBody: UpdateFileVersionByIdRequestBodyArg = {} satisfies UpdateFileVersionByIdRequestBodyArg, headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg({})): Promise<FileVersionFull> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -119,7 +119,7 @@ export class FileVersionsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/files/", fileId, "/versions/", fileVersionId) as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
-    async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg, queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg, headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg({})): Promise<FileVersionFull> {
+    async promoteFileVersion(fileId: string, requestBody: PromoteFileVersionRequestBodyArg = {} satisfies PromoteFileVersionRequestBodyArg, queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg, headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg({})): Promise<FileVersionFull> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -131,10 +131,10 @@ export class FileVersionsManager {
     }
 }
 export function serializeUpdateFileVersionByIdRequestBodyArg(val: UpdateFileVersionByIdRequestBodyArg): Json {
-    return { ["trashed_at"]: val.trashedAt };
+    return { ["trashed_at"]: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
 export function deserializeUpdateFileVersionByIdRequestBodyArg(val: any): UpdateFileVersionByIdRequestBodyArg {
-    const trashedAt: undefined | string = isJson(val.trashed_at, "string") ? val.trashed_at : void 0;
+    const trashedAt: undefined | string = val.trashed_at == void 0 ? void 0 : val.trashed_at;
     return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBodyArg;
 }
 export function serializePromoteFileVersionRequestBodyArgTypeField(val: PromoteFileVersionRequestBodyArgTypeField): Json {
@@ -150,10 +150,10 @@ export function deserializePromoteFileVersionRequestBodyArgTypeField(val: any): 
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializePromoteFileVersionRequestBodyArg(val: PromoteFileVersionRequestBodyArg): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializePromoteFileVersionRequestBodyArgTypeField(val.type) };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializePromoteFileVersionRequestBodyArgTypeField(val.type) };
 }
 export function deserializePromoteFileVersionRequestBodyArg(val: any): PromoteFileVersionRequestBodyArg {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | PromoteFileVersionRequestBodyArgTypeField = val.type == void 0 ? void 0 : deserializePromoteFileVersionRequestBodyArgTypeField(val.type);
     return { id: id, type: type } satisfies PromoteFileVersionRequestBodyArg;
 }

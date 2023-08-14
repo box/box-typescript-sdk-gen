@@ -108,7 +108,7 @@ export class TasksManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/tasks/", taskId) as string, { method: "GET", headers: headersMap, responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeTask(deserializeJson(response.text));
     }
-    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg, headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})): Promise<Task> {
+    async updateTaskById(taskId: string, requestBody: UpdateTaskByIdRequestBodyArg = {} satisfies UpdateTaskByIdRequestBodyArg, headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})): Promise<Task> {
         const headersMap: {
             readonly [key: string]: string;
         } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -136,10 +136,10 @@ export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(val: any):
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTaskRequestBodyArgItemField(val: CreateTaskRequestBodyArgItemField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type) };
 }
 export function deserializeCreateTaskRequestBodyArgItemField(val: any): CreateTaskRequestBodyArgItemField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | CreateTaskRequestBodyArgItemFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
     return { id: id, type: type } satisfies CreateTaskRequestBodyArgItemField;
 }
@@ -174,13 +174,13 @@ export function deserializeCreateTaskRequestBodyArgCompletionRuleField(val: any)
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateTaskRequestBodyArg(val: CreateTaskRequestBodyArg): Json {
-    return { ["item"]: serializeCreateTaskRequestBodyArgItemField(val.item), ["action"]: val.action == void 0 ? void 0 : serializeCreateTaskRequestBodyArgActionField(val.action), ["message"]: val.message, ["due_at"]: val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeCreateTaskRequestBodyArgCompletionRuleField(val.completionRule) };
+    return { ["item"]: serializeCreateTaskRequestBodyArgItemField(val.item), ["action"]: val.action == void 0 ? void 0 : serializeCreateTaskRequestBodyArgActionField(val.action), ["message"]: val.message == void 0 ? void 0 : val.message, ["due_at"]: val.dueAt == void 0 ? void 0 : val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeCreateTaskRequestBodyArgCompletionRuleField(val.completionRule) };
 }
 export function deserializeCreateTaskRequestBodyArg(val: any): CreateTaskRequestBodyArg {
     const item: CreateTaskRequestBodyArgItemField = deserializeCreateTaskRequestBodyArgItemField(val.item);
     const action: undefined | CreateTaskRequestBodyArgActionField = val.action == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgActionField(val.action);
-    const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
-    const dueAt: undefined | string = isJson(val.due_at, "string") ? val.due_at : void 0;
+    const message: undefined | string = val.message == void 0 ? void 0 : val.message;
+    const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
     const completionRule: undefined | CreateTaskRequestBodyArgCompletionRuleField = val.completion_rule == void 0 ? void 0 : deserializeCreateTaskRequestBodyArgCompletionRuleField(val.completion_rule);
     return { item: item, action: action, message: message, dueAt: dueAt, completionRule: completionRule } satisfies CreateTaskRequestBodyArg;
 }
@@ -215,12 +215,12 @@ export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val: 
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateTaskByIdRequestBodyArg(val: UpdateTaskByIdRequestBodyArg): Json {
-    return { ["action"]: val.action == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgActionField(val.action), ["message"]: val.message, ["due_at"]: val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completionRule) };
+    return { ["action"]: val.action == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgActionField(val.action), ["message"]: val.message == void 0 ? void 0 : val.message, ["due_at"]: val.dueAt == void 0 ? void 0 : val.dueAt, ["completion_rule"]: val.completionRule == void 0 ? void 0 : serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completionRule) };
 }
 export function deserializeUpdateTaskByIdRequestBodyArg(val: any): UpdateTaskByIdRequestBodyArg {
     const action: undefined | UpdateTaskByIdRequestBodyArgActionField = val.action == void 0 ? void 0 : deserializeUpdateTaskByIdRequestBodyArgActionField(val.action);
-    const message: undefined | string = isJson(val.message, "string") ? val.message : void 0;
-    const dueAt: undefined | string = isJson(val.due_at, "string") ? val.due_at : void 0;
+    const message: undefined | string = val.message == void 0 ? void 0 : val.message;
+    const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
     const completionRule: undefined | UpdateTaskByIdRequestBodyArgCompletionRuleField = val.completion_rule == void 0 ? void 0 : deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(val.completion_rule);
     return { action: action, message: message, dueAt: dueAt, completionRule: completionRule } satisfies UpdateTaskByIdRequestBodyArg;
 }

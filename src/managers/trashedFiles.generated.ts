@@ -16,9 +16,8 @@ import { fetch } from "../fetch.js";
 import { FetchOptions } from "../fetch.js";
 import { FetchResponse } from "../fetch.js";
 import { serializeJson } from "../json.js";
-import { Json } from "../json.js";
 import { deserializeJson } from "../json.js";
-import { isJson } from "../json.js";
+import { Json } from "../json.js";
 export interface RestoreFileFromTrashRequestBodyArgParentField {
     readonly id?: string;
 }
@@ -62,7 +61,7 @@ export class TrashedFilesManager {
     constructor(fields: Omit<TrashedFilesManager, "restoreFileFromTrash" | "getFileTrash" | "deleteFileTrash">) {
         Object.assign(this, fields);
     }
-    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg, headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg({})): Promise<TrashFileRestored> {
+    async restoreFileFromTrash(fileId: string, requestBody: RestoreFileFromTrashRequestBodyArg = {} satisfies RestoreFileFromTrashRequestBodyArg, queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg, headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg({})): Promise<TrashFileRestored> {
         const queryParamsMap: {
             readonly [key: string]: string;
         } = prepareParams({ ["fields"]: toString(queryParams.fields) });
@@ -91,17 +90,17 @@ export class TrashedFilesManager {
     }
 }
 export function serializeRestoreFileFromTrashRequestBodyArgParentField(val: RestoreFileFromTrashRequestBodyArgParentField): Json {
-    return { ["id"]: val.id };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreFileFromTrashRequestBodyArgParentField(val: any): RestoreFileFromTrashRequestBodyArgParentField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { id: id } satisfies RestoreFileFromTrashRequestBodyArgParentField;
 }
 export function serializeRestoreFileFromTrashRequestBodyArg(val: RestoreFileFromTrashRequestBodyArg): Json {
-    return { ["name"]: val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeRestoreFileFromTrashRequestBodyArgParentField(val.parent) };
+    return { ["name"]: val.name == void 0 ? void 0 : val.name, ["parent"]: val.parent == void 0 ? void 0 : serializeRestoreFileFromTrashRequestBodyArgParentField(val.parent) };
 }
 export function deserializeRestoreFileFromTrashRequestBodyArg(val: any): RestoreFileFromTrashRequestBodyArg {
-    const name: undefined | string = isJson(val.name, "string") ? val.name : void 0;
+    const name: undefined | string = val.name == void 0 ? void 0 : val.name;
     const parent: undefined | RestoreFileFromTrashRequestBodyArgParentField = val.parent == void 0 ? void 0 : deserializeRestoreFileFromTrashRequestBodyArgParentField(val.parent);
     return { name: name, parent: parent } satisfies RestoreFileFromTrashRequestBodyArg;
 }

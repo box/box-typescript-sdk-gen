@@ -32,6 +32,62 @@ export class DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeaders
         Object.assign(this, fields);
     }
 }
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField {
+    readonly classificationDefinition?: string;
+    readonly colorId?: number;
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField {
+    readonly key: string;
+    readonly classification?: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField;
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg {
+    readonly op: string;
+    readonly fieldKey: string;
+    readonly data: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField;
+}
+export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField {
+    readonly classificationDefinition?: string;
+    readonly colorId?: number;
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField {
+    readonly key: string;
+    readonly classification?: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField;
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg {
+    readonly op: string;
+    readonly fieldKey: string;
+    readonly enumOptionKey: string;
+    readonly data: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField;
+}
+export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
+export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg {
+    readonly op: string;
+    readonly fieldKey: string;
+    readonly enumOptionKey: string;
+}
+export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg {
+    readonly extraHeaders?: {
+        readonly [key: string]: undefined | string;
+    } = {};
+    constructor(fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg) {
+        Object.assign(this, fields);
+    }
+}
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = "enterprise";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = "securityClassification-6VMVochwUWo";
 export type CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField = "Classification";
@@ -75,7 +131,7 @@ export class CreateMetadataTemplateSchemaClassificationHeadersArg {
 export class ClassificationsManager {
     readonly auth?: Authentication;
     readonly networkSession?: NetworkSession;
-    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "createMetadataTemplateSchemaClassification">) {
+    constructor(fields: Omit<ClassificationsManager, "getMetadataTemplateEnterpriseSecurityClassificationSchema" | "deleteMetadataTemplateEnterpriseSecurityClassificationSchema" | "updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd" | "updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate" | "updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete" | "createMetadataTemplateSchemaClassification">) {
         Object.assign(this, fields);
     }
     async getMetadataTemplateEnterpriseSecurityClassificationSchema(headers: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg = new GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg({})): Promise<ClassificationTemplate> {
@@ -92,6 +148,27 @@ export class ClassificationsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema") as string, { method: "DELETE", headers: headersMap, responseFormat: void 0, auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return void 0;
     }
+    async updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd(requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg[], headers: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg = new UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg({})): Promise<ClassificationTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add") as string, { method: "PUT", headers: headersMap, body: serializeJson(requestBody.map(serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg) as readonly any[]), contentType: "application/json-patch+json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeClassificationTemplate(deserializeJson(response.text));
+    }
+    async updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate(requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg[], headers: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg = new UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg({})): Promise<ClassificationTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update") as string, { method: "PUT", headers: headersMap, body: serializeJson(requestBody.map(serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg) as readonly any[]), contentType: "application/json-patch+json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeClassificationTemplate(deserializeJson(response.text));
+    }
+    async updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete(requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg[], headers: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg = new UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg({})): Promise<ClassificationTemplate> {
+        const headersMap: {
+            readonly [key: string]: string;
+        } = prepareParams({ ...{}, ...headers.extraHeaders });
+        const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#delete") as string, { method: "PUT", headers: headersMap, body: serializeJson(requestBody.map(serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg) as readonly any[]), contentType: "application/json-patch+json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
+        return deserializeClassificationTemplate(deserializeJson(response.text));
+    }
     async createMetadataTemplateSchemaClassification(requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg, headers: CreateMetadataTemplateSchemaClassificationHeadersArg = new CreateMetadataTemplateSchemaClassificationHeadersArg({})): Promise<ClassificationTemplate> {
         const headersMap: {
             readonly [key: string]: string;
@@ -99,6 +176,66 @@ export class ClassificationsManager {
         const response: FetchResponse = await fetch("".concat("https://api.box.com/2.0/metadata_templates/schema#classifications") as string, { method: "POST", headers: headersMap, body: serializeJson(serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(requestBody)), contentType: "application/json", responseFormat: "json", auth: this.auth, networkSession: this.networkSession } satisfies FetchOptions) as FetchResponse;
         return deserializeClassificationTemplate(deserializeJson(response.text));
     }
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField): Json {
+    return { ["classificationDefinition"]: val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition, ["colorID"]: val.colorId == void 0 ? void 0 : val.colorId };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField {
+    const classificationDefinition: undefined | string = val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition;
+    const colorId: undefined | number = val.colorID == void 0 ? void 0 : val.colorID;
+    return { classificationDefinition: classificationDefinition, colorId: colorId } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField): Json {
+    return { ["key"]: val.key, ["classification"]: val.classification == void 0 ? void 0 : serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField(val.classification) };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField {
+    const key: string = val.key;
+    const classification: undefined | UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField = val.classification == void 0 ? void 0 : deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField(val.classification);
+    return { key: key, classification: classification } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg): Json {
+    return { ["op"]: val.op, ["fieldKey"]: val.fieldKey, ["data"]: serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField(val.data) };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg {
+    const op: string = val.op;
+    const fieldKey: string = val.fieldKey;
+    const data: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField = deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField(val.data);
+    return { op: op, fieldKey: fieldKey, data: data } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField): Json {
+    return { ["classificationDefinition"]: val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition, ["colorID"]: val.colorId == void 0 ? void 0 : val.colorId };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField {
+    const classificationDefinition: undefined | string = val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition;
+    const colorId: undefined | number = val.colorID == void 0 ? void 0 : val.colorID;
+    return { classificationDefinition: classificationDefinition, colorId: colorId } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField): Json {
+    return { ["key"]: val.key, ["classification"]: val.classification == void 0 ? void 0 : serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField(val.classification) };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField {
+    const key: string = val.key;
+    const classification: undefined | UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField = val.classification == void 0 ? void 0 : deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField(val.classification);
+    return { key: key, classification: classification } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg): Json {
+    return { ["op"]: val.op, ["fieldKey"]: val.fieldKey, ["enumOptionKey"]: val.enumOptionKey, ["data"]: serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField(val.data) };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg {
+    const op: string = val.op;
+    const fieldKey: string = val.fieldKey;
+    const enumOptionKey: string = val.enumOptionKey;
+    const data: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField = deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField(val.data);
+    return { op: op, fieldKey: fieldKey, enumOptionKey: enumOptionKey, data: data } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg;
+}
+export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg(val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg): Json {
+    return { ["op"]: val.op, ["fieldKey"]: val.fieldKey, ["enumOptionKey"]: val.enumOptionKey };
+}
+export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg(val: any): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg {
+    const op: string = val.op;
+    const fieldKey: string = val.fieldKey;
+    const enumOptionKey: string = val.enumOptionKey;
+    return { op: op, fieldKey: fieldKey, enumOptionKey: enumOptionKey } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField): Json {
     return val;
@@ -173,11 +310,11 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField): Json {
-    return { ["classificationDefinition"]: val.classificationDefinition, ["colorID"]: val.colorId };
+    return { ["classificationDefinition"]: val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition, ["colorID"]: val.colorId == void 0 ? void 0 : val.colorId };
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField(val: any): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField {
-    const classificationDefinition: undefined | string = isJson(val.classificationDefinition, "string") ? val.classificationDefinition : void 0;
-    const colorId: undefined | number = isJson(val.colorID, "number") ? val.colorID : void 0;
+    const classificationDefinition: undefined | string = val.classificationDefinition == void 0 ? void 0 : val.classificationDefinition;
+    const colorId: undefined | number = val.colorID == void 0 ? void 0 : val.colorID;
     return { classificationDefinition: classificationDefinition, colorId: colorId } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField): Json {
@@ -188,15 +325,15 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     return { classification: classification } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField): Json {
-    return { ["key"]: val.key, ["staticConfig"]: val.staticConfig == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(val.staticConfig) };
+    return { ["key"]: val.key == void 0 ? void 0 : val.key, ["staticConfig"]: val.staticConfig == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(val.staticConfig) };
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(val: any): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField {
-    const key: undefined | string = isJson(val.key, "string") ? val.key : void 0;
+    const key: undefined | string = val.key == void 0 ? void 0 : val.key;
     const staticConfig: undefined | CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField = val.staticConfig == void 0 ? void 0 : deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(val.staticConfig);
     return { key: key, staticConfig: staticConfig } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField): Json {
-    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField(val.type), ["key"]: val.key == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField(val.key), ["displayName"]: val.displayName == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField(val.displayName), ["hidden"]: val.hidden, ["options"]: val.options == void 0 ? void 0 : val.options.map(function (item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField): any {
+    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField(val.type), ["key"]: val.key == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField(val.key), ["displayName"]: val.displayName == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField(val.displayName), ["hidden"]: val.hidden == void 0 ? void 0 : val.hidden, ["options"]: val.options == void 0 ? void 0 : val.options.map(function (item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(item);
         }) as readonly any[] };
 }
@@ -204,14 +341,14 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     const type: undefined | CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField(val.type);
     const key: undefined | CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField = val.key == void 0 ? void 0 : deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField(val.key);
     const displayName: undefined | CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField = val.displayName == void 0 ? void 0 : deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField(val.displayName);
-    const hidden: undefined | boolean = isJson(val.hidden, "boolean") ? val.hidden : void 0;
-    const options: undefined | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField[] = isJson(val.options, "array") ? val.options.map(function (itm: Json): any {
+    const hidden: undefined | boolean = val.hidden == void 0 ? void 0 : val.hidden;
+    const options: undefined | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField[] = val.options == void 0 ? void 0 : isJson(val.options, "array") ? val.options.map(function (itm: Json): any {
         return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(itm);
-    }) as readonly any[] : void 0;
+    }) as readonly any[] : [];
     return { type: type, key: key, displayName: displayName, hidden: hidden, options: options } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField;
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(val: CreateMetadataTemplateSchemaClassificationRequestBodyArg): Json {
-    return { ["scope"]: serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val.scope), ["templateKey"]: val.templateKey == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField(val.templateKey), ["displayName"]: serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField(val.displayName), ["hidden"]: val.hidden, ["copyInstanceOnItemCopy"]: val.copyInstanceOnItemCopy, ["fields"]: val.fields == void 0 ? void 0 : val.fields.map(function (item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField): any {
+    return { ["scope"]: serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val.scope), ["templateKey"]: val.templateKey == void 0 ? void 0 : serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField(val.templateKey), ["displayName"]: serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField(val.displayName), ["hidden"]: val.hidden == void 0 ? void 0 : val.hidden, ["copyInstanceOnItemCopy"]: val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy, ["fields"]: val.fields == void 0 ? void 0 : val.fields.map(function (item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(item);
         }) as readonly any[] };
 }
@@ -219,10 +356,10 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     const scope: CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField = deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(val.scope);
     const templateKey: undefined | CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField = val.templateKey == void 0 ? void 0 : deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField(val.templateKey);
     const displayName: CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField = deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField(val.displayName);
-    const hidden: undefined | boolean = isJson(val.hidden, "boolean") ? val.hidden : void 0;
-    const copyInstanceOnItemCopy: undefined | boolean = isJson(val.copyInstanceOnItemCopy, "boolean") ? val.copyInstanceOnItemCopy : void 0;
-    const fields: undefined | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[] = isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
+    const hidden: undefined | boolean = val.hidden == void 0 ? void 0 : val.hidden;
+    const copyInstanceOnItemCopy: undefined | boolean = val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+    const fields: undefined | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[] = val.fields == void 0 ? void 0 : isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
         return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(itm);
-    }) as readonly any[] : void 0;
+    }) as readonly any[] : [];
     return { scope: scope, templateKey: templateKey, displayName: displayName, hidden: hidden, copyInstanceOnItemCopy: copyInstanceOnItemCopy, fields: fields } satisfies CreateMetadataTemplateSchemaClassificationRequestBodyArg;
 }

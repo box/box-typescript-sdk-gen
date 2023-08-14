@@ -103,11 +103,11 @@ export function deserializeCreateWorkflowStartRequestBodyArgTypeField(val: any):
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateWorkflowStartRequestBodyArgFlowField(val: CreateWorkflowStartRequestBodyArgFlowField): Json {
-    return { ["type"]: val.type, ["id"]: val.id };
+    return { ["type"]: val.type == void 0 ? void 0 : val.type, ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeCreateWorkflowStartRequestBodyArgFlowField(val: any): CreateWorkflowStartRequestBodyArgFlowField {
-    const type: undefined | string = isJson(val.type, "string") ? val.type : void 0;
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const type: undefined | string = val.type == void 0 ? void 0 : val.type;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { type: type, id: id } satisfies CreateWorkflowStartRequestBodyArgFlowField;
 }
 export function serializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(val: CreateWorkflowStartRequestBodyArgFilesFieldTypeField): Json {
@@ -123,11 +123,11 @@ export function deserializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateWorkflowStartRequestBodyArgFilesField(val: CreateWorkflowStartRequestBodyArgFilesField): Json {
-    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(val.type), ["id"]: val.id };
+    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(val.type), ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeCreateWorkflowStartRequestBodyArgFilesField(val: any): CreateWorkflowStartRequestBodyArgFilesField {
     const type: undefined | CreateWorkflowStartRequestBodyArgFilesFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(val.type);
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { type: type, id: id } satisfies CreateWorkflowStartRequestBodyArgFilesField;
 }
 export function serializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(val: CreateWorkflowStartRequestBodyArgFolderFieldTypeField): Json {
@@ -143,11 +143,11 @@ export function deserializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateWorkflowStartRequestBodyArgFolderField(val: CreateWorkflowStartRequestBodyArgFolderField): Json {
-    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(val.type), ["id"]: val.id };
+    return { ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(val.type), ["id"]: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeCreateWorkflowStartRequestBodyArgFolderField(val: any): CreateWorkflowStartRequestBodyArgFolderField {
     const type: undefined | CreateWorkflowStartRequestBodyArgFolderFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(val.type);
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     return { type: type, id: id } satisfies CreateWorkflowStartRequestBodyArgFolderField;
 }
 export function serializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(val: CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField): Json {
@@ -163,12 +163,12 @@ export function deserializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeFie
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeCreateWorkflowStartRequestBodyArgOutcomesField(val: CreateWorkflowStartRequestBodyArgOutcomesField): Json {
-    return { ["id"]: val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(val.type), ["parameter"]: val.parameter };
+    return { ["id"]: val.id == void 0 ? void 0 : val.id, ["type"]: val.type == void 0 ? void 0 : serializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(val.type), ["parameter"]: val.parameter == void 0 ? void 0 : val.parameter };
 }
 export function deserializeCreateWorkflowStartRequestBodyArgOutcomesField(val: any): CreateWorkflowStartRequestBodyArgOutcomesField {
-    const id: undefined | string = isJson(val.id, "string") ? val.id : void 0;
+    const id: undefined | string = val.id == void 0 ? void 0 : val.id;
     const type: undefined | CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField = val.type == void 0 ? void 0 : deserializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(val.type);
-    const parameter: undefined | string = isJson(val.parameter, "string") ? val.parameter : void 0;
+    const parameter: undefined | string = val.parameter == void 0 ? void 0 : val.parameter;
     return { id: id, type: type, parameter: parameter } satisfies CreateWorkflowStartRequestBodyArgOutcomesField;
 }
 export function serializeCreateWorkflowStartRequestBodyArg(val: CreateWorkflowStartRequestBodyArg): Json {
@@ -181,12 +181,12 @@ export function serializeCreateWorkflowStartRequestBodyArg(val: CreateWorkflowSt
 export function deserializeCreateWorkflowStartRequestBodyArg(val: any): CreateWorkflowStartRequestBodyArg {
     const type: undefined | CreateWorkflowStartRequestBodyArgTypeField = val.type == void 0 ? void 0 : deserializeCreateWorkflowStartRequestBodyArgTypeField(val.type);
     const flow: CreateWorkflowStartRequestBodyArgFlowField = deserializeCreateWorkflowStartRequestBodyArgFlowField(val.flow);
-    const files: readonly CreateWorkflowStartRequestBodyArgFilesField[] = val.files.map(function (itm: Json): any {
+    const files: readonly CreateWorkflowStartRequestBodyArgFilesField[] = isJson(val.files, "array") ? val.files.map(function (itm: Json): any {
         return deserializeCreateWorkflowStartRequestBodyArgFilesField(itm);
-    }) as readonly any[];
+    }) as readonly any[] : [];
     const folder: CreateWorkflowStartRequestBodyArgFolderField = deserializeCreateWorkflowStartRequestBodyArgFolderField(val.folder);
-    const outcomes: undefined | readonly CreateWorkflowStartRequestBodyArgOutcomesField[] = isJson(val.outcomes, "array") ? val.outcomes.map(function (itm: Json): any {
+    const outcomes: undefined | readonly CreateWorkflowStartRequestBodyArgOutcomesField[] = val.outcomes == void 0 ? void 0 : isJson(val.outcomes, "array") ? val.outcomes.map(function (itm: Json): any {
         return deserializeCreateWorkflowStartRequestBodyArgOutcomesField(itm);
-    }) as readonly any[] : void 0;
+    }) as readonly any[] : [];
     return { type: type, flow: flow, files: files, folder: folder, outcomes: outcomes } satisfies CreateWorkflowStartRequestBodyArg;
 }
