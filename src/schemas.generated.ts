@@ -2544,6 +2544,14 @@ export type SignRequestSigner = SignRequestCreateSigner & {
     /**
      * URL to direct a signer to for signing */
     readonly embedUrl?: string;
+    /**
+     * This URL is specifically designed for
+     * signing documents within an HTML `iframe` tag.
+     * It will be returned in the response
+     * only if the `embed_url_external_user_id`
+     * parameter was passed in the
+     * `create sign request` call. */
+    readonly iframeableEmbedUrl?: string;
 };
 export interface SignRequestBase {
     readonly isDocumentPreparationNeeded?: boolean;
@@ -10429,7 +10437,7 @@ export function serializeSignRequestSigner(val: SignRequestSigner): Json {
     }
     return { ...base, ...{ ["has_viewed_document"]: val.hasViewedDocument == void 0 ? void 0 : val.hasViewedDocument, ["signer_decision"]: val.signerDecision == void 0 ? void 0 : serializeSignRequestSignerSignerDecisionField(val.signerDecision), ["inputs"]: val.inputs == void 0 ? void 0 : val.inputs.map(function (item: SignRequestSignerInput): any {
                 return serializeSignRequestSignerInput(item);
-            }) as readonly any[], ["embed_url"]: val.embedUrl == void 0 ? void 0 : val.embedUrl } };
+            }) as readonly any[], ["embed_url"]: val.embedUrl == void 0 ? void 0 : val.embedUrl, ["iframeable_embed_url"]: val.iframeableEmbedUrl == void 0 ? void 0 : val.iframeableEmbedUrl } };
 }
 export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     const hasViewedDocument: undefined | boolean = val.has_viewed_document == void 0 ? void 0 : val.has_viewed_document;
@@ -10438,6 +10446,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
         return deserializeSignRequestSignerInput(itm);
     }) as readonly any[] : [];
     const embedUrl: undefined | string = val.embed_url == void 0 ? void 0 : val.embed_url;
+    const iframeableEmbedUrl: undefined | string = val.iframeable_embed_url == void 0 ? void 0 : val.iframeable_embed_url;
     const email: string = val.email;
     const role: undefined | SignRequestCreateSignerRoleField = val.role == void 0 ? void 0 : deserializeSignRequestCreateSignerRoleField(val.role);
     const isInPerson: undefined | boolean = val.is_in_person == void 0 ? void 0 : val.is_in_person;
@@ -10448,7 +10457,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     const loginRequired: undefined | boolean = val.login_required == void 0 ? void 0 : val.login_required;
     const verificationPhoneNumber: undefined | string = val.verification_phone_number == void 0 ? void 0 : val.verification_phone_number;
     const password: undefined | string = val.password == void 0 ? void 0 : val.password;
-    return { hasViewedDocument: hasViewedDocument, signerDecision: signerDecision, inputs: inputs, embedUrl: embedUrl, email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestSigner;
+    return { hasViewedDocument: hasViewedDocument, signerDecision: signerDecision, inputs: inputs, embedUrl: embedUrl, iframeableEmbedUrl: iframeableEmbedUrl, email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestSigner;
 }
 export function serializeSignRequestBase(val: SignRequestBase): Json {
     return { ["is_document_preparation_needed"]: val.isDocumentPreparationNeeded == void 0 ? void 0 : val.isDocumentPreparationNeeded, ["redirect_url"]: val.redirectUrl == void 0 ? void 0 : val.redirectUrl, ["declined_redirect_url"]: val.declinedRedirectUrl == void 0 ? void 0 : val.declinedRedirectUrl, ["are_text_signatures_enabled"]: val.areTextSignaturesEnabled == void 0 ? void 0 : val.areTextSignaturesEnabled, ["email_subject"]: val.emailSubject == void 0 ? void 0 : val.emailSubject, ["email_message"]: val.emailMessage == void 0 ? void 0 : val.emailMessage, ["are_reminders_enabled"]: val.areRemindersEnabled == void 0 ? void 0 : val.areRemindersEnabled, ["parent_folder"]: serializeFolderMini(val.parentFolder), ["name"]: val.name == void 0 ? void 0 : val.name, ["prefill_tags"]: val.prefillTags == void 0 ? void 0 : val.prefillTags.map(function (item: SignRequestPrefillTag): any {
