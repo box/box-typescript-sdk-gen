@@ -10,6 +10,8 @@
 ## List storage policy assignments
 
 Fetches all the storage policy assignment for an enterprise or user.
+Only a Primary Admin can access this endpoint. The user
+needs to generate a token for an account to authenticate this request.
 
 This operation is performed by calling function `getStoragePolicyAssignments`.
 
@@ -37,6 +39,8 @@ the enterprise or user.
 ## Assign storage policy
 
 Creates a storage policy assignment for an enterprise or user.
+Only a Primary Admin can access this endpoint. The user
+needs to generate a token for an account to authenticate this request.
 
 This operation is performed by calling function `createStoragePolicyAssignment`.
 
@@ -62,7 +66,7 @@ Returns the new storage policy assignment created.
 
 ## Get storage policy assignment
 
-Fetches a specific storage policy assignment.
+Fetches a specific storage policy assignment. Only a Primary Admin can access this endpoint. The user needs to generate a token for an account to authenticate this request.
 
 This operation is performed by calling function `getStoragePolicyAssignmentById`.
 
@@ -88,7 +92,7 @@ Returns a storage policy assignment object.
 
 ## Update storage policy assignment
 
-Updates a specific storage policy assignment.
+Updates a specific storage policy assignment. Only a Primary Admin can access this endpoint. The user needs to generate a token for an account to authenticate this request.
 
 This operation is performed by calling function `updateStoragePolicyAssignmentById`.
 
@@ -124,6 +128,9 @@ storage policy.
 
 There is a rate limit for calling this endpoint of only
 twice per user in a 24 hour time frame.
+
+Only a Primary Admin can access this endpoint. The user
+needs to generate a token for an account to authenticate this request.
 
 This operation is performed by calling function `deleteStoragePolicyAssignmentById`.
 
