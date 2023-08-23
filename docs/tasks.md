@@ -17,7 +17,10 @@ This operation is performed by calling function `getFileTasks`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-tasks/).
 
-*Currently we don't have an example for calling `getFileTasks` in integration tests*
+<!-- sample get_files_id_tasks -->
+```ts
+await client.tasks.getFileTasks(file.id)
+```
 
 ### Arguments
 
@@ -47,7 +50,10 @@ This operation is performed by calling function `createTask`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-tasks/).
 
-*Currently we don't have an example for calling `createTask` in integration tests*
+<!-- sample post_tasks -->
+```ts
+await client.tasks.createTask({ item: { type: "file" as CreateTaskRequestBodyArgItemFieldTypeField, id: file.id } satisfies CreateTaskRequestBodyArgItemField, message: "test message", dueAt: "2035-01-01T00:00:00Z", action: "review" as CreateTaskRequestBodyArgActionField, completionRule: "all_assignees" as CreateTaskRequestBodyArgCompletionRuleField } satisfies CreateTaskRequestBodyArg)
+```
 
 ### Arguments
 
@@ -73,7 +79,10 @@ This operation is performed by calling function `getTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-tasks-id/).
 
-*Currently we don't have an example for calling `getTaskById` in integration tests*
+<!-- sample get_tasks_id -->
+```ts
+await client.tasks.getTaskById(task.id)
+```
 
 ### Arguments
 
@@ -100,7 +109,10 @@ This operation is performed by calling function `updateTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-tasks-id/).
 
-*Currently we don't have an example for calling `updateTaskById` in integration tests*
+<!-- sample put_tasks_id -->
+```ts
+await client.tasks.updateTaskById(task.id, { message: "updated message" } satisfies UpdateTaskByIdRequestBodyArg)
+```
 
 ### Arguments
 
@@ -128,7 +140,10 @@ This operation is performed by calling function `deleteTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-tasks-id/).
 
-*Currently we don't have an example for calling `deleteTaskById` in integration tests*
+<!-- sample delete_tasks_id -->
+```ts
+await client.tasks.deleteTaskById(task.id)
+```
 
 ### Arguments
 
