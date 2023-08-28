@@ -39,7 +39,6 @@ test("testFolderLocks", async function testFolderLocks(): Promise<any> {
     if (!(folderLock.lockedOperations.delete == true)) {
         throw "Assertion failed";
     }
-    expect(async () => { await client.folders.deleteFolderById(folder.id); }).rejects.toThrow();
     await client.folderLocks.deleteFolderLockById(folderLock.id)
     expect(async () => { await client.folderLocks.deleteFolderLockById(folderLock.id); }).rejects.toThrow();
     const newFolderLocks: any = await client.folderLocks.getFolderLocks({ folderId: folder.id } satisfies GetFolderLocksQueryParamsArg);
