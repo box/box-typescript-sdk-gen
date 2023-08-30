@@ -69,7 +69,7 @@ import { IntegrationMappingsManager } from "./managers/integrationMappings.gener
 import { Authentication } from "./auth.js";
 import { NetworkSession } from "./network.js";
 export class Client {
-    readonly auth?: Authentication;
+    readonly auth!: Authentication;
     readonly networkSession?: NetworkSession = {} satisfies NetworkSession;
     readonly authorization: AuthorizationManager;
     readonly files: FilesManager;
