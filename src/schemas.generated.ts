@@ -2809,37 +2809,19 @@ export type MetadataFieldFilterFloat = {
 export type MetadataFieldFilterMultiSelect = {
     readonly [key: string]: readonly string[];
 };
+export interface MetadataFieldFilterFloatRangeMapValue {
+    readonly lt?: number;
+    readonly gt?: number;
+}
 export type MetadataFieldFilterFloatRange = {
-    readonly [key: string]: {
-        /**
-         * Specifies the (inclusive) upper bound for the metadata field
-         * value. The value of a field must be lower than (`lt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly lt?: number;
-        /**
-         * Specifies the (inclusive) lower bound for the metadata field
-         * value. The value of a field must be greater than (`gt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly gt?: number;
-    };
+    readonly [key: string]: MetadataFieldFilterFloatRangeMapValue;
 };
+export interface MetadataFieldFilterDateRangeMapValue {
+    readonly lt?: string;
+    readonly gt?: string;
+}
 export type MetadataFieldFilterDateRange = {
-    readonly [key: string]: {
-        /**
-         * Specifies the (inclusive) upper bound for the metadata field
-         * value. The value of a field must be lower than (`lt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly lt?: string;
-        /**
-         * Specifies the (inclusive) lower bound for the metadata field
-         * value. The value of a field must be greater than (`gt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly gt?: string;
-    };
+    readonly [key: string]: MetadataFieldFilterDateRangeMapValue;
 };
 export function serializePostOAuth2TokenGrantTypeField(val: PostOAuth2TokenGrantTypeField): Json {
     return val;
@@ -11141,26 +11123,38 @@ export function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilter
 export function deserializeMetadataFieldFilterMultiSelect(val: any): MetadataFieldFilterMultiSelect {
     return val;
 }
+export function serializeMetadataFieldFilterFloatRangeMapValue(val: MetadataFieldFilterFloatRangeMapValue): Json {
+    return { ["lt"]: val.lt == void 0 ? void 0 : val.lt, ["gt"]: val.gt == void 0 ? void 0 : val.gt };
+}
+export function deserializeMetadataFieldFilterFloatRangeMapValue(val: any): MetadataFieldFilterFloatRangeMapValue {
+    const lt: undefined | number = val.lt == void 0 ? void 0 : val.lt;
+    const gt: undefined | number = val.gt == void 0 ? void 0 : val.gt;
+    return { lt: lt, gt: gt } satisfies MetadataFieldFilterFloatRangeMapValue;
+}
 export function serializeMetadataFieldFilterFloatRange(val: MetadataFieldFilterFloatRange): Json {
     return Object.fromEntries(Object.entries(val).map(([k, v]: [
         string,
         any
-    ]) => [k, function (v: any): any {
-            return { ["lt"]: v.lt == void 0 ? void 0 : v.lt, ["gt"]: v.gt == void 0 ? void 0 : v.gt };
-        }(v)])) as {
+    ]) => [k, serializeMetadataFieldFilterFloatRangeMapValue(v)])) as {
         readonly [key: string]: any;
     };
 }
 export function deserializeMetadataFieldFilterFloatRange(val: any): MetadataFieldFilterFloatRange {
     return val;
 }
+export function serializeMetadataFieldFilterDateRangeMapValue(val: MetadataFieldFilterDateRangeMapValue): Json {
+    return { ["lt"]: val.lt == void 0 ? void 0 : val.lt, ["gt"]: val.gt == void 0 ? void 0 : val.gt };
+}
+export function deserializeMetadataFieldFilterDateRangeMapValue(val: any): MetadataFieldFilterDateRangeMapValue {
+    const lt: undefined | string = val.lt == void 0 ? void 0 : val.lt;
+    const gt: undefined | string = val.gt == void 0 ? void 0 : val.gt;
+    return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRangeMapValue;
+}
 export function serializeMetadataFieldFilterDateRange(val: MetadataFieldFilterDateRange): Json {
     return Object.fromEntries(Object.entries(val).map(([k, v]: [
         string,
         any
-    ]) => [k, function (v: any): any {
-            return { ["lt"]: v.lt == void 0 ? void 0 : v.lt, ["gt"]: v.gt == void 0 ? void 0 : v.gt };
-        }(v)])) as {
+    ]) => [k, serializeMetadataFieldFilterDateRangeMapValue(v)])) as {
         readonly [key: string]: any;
     };
 }
