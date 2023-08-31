@@ -1,6 +1,5 @@
 # SignTemplatesManager
 
-
 - [List Box Sign templates](#list-box-sign-templates)
 - [Get Box Sign template by ID](#get-box-sign-template-by-id)
 
@@ -13,7 +12,7 @@ This operation is performed by calling function `getSignTemplates`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-sign-templates/).
 
-*Currently we don't have an example for calling `getSignTemplates` in integration tests*
+_Currently we don't have an example for calling `getSignTemplates` in integration tests_
 
 ### Arguments
 
@@ -22,13 +21,11 @@ See the endpoint docs at
 - headers `GetSignTemplatesHeadersArg`
   - Headers of getSignTemplates method
 
-
 ### Returns
 
 This function returns a value of type `SignTemplates`.
 
 Returns a collection of templates.
-
 
 ## Get Box Sign template by ID
 
@@ -39,7 +36,7 @@ This operation is performed by calling function `getSignTemplateById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-sign-templates-id/).
 
-*Currently we don't have an example for calling `getSignTemplateById` in integration tests*
+_Currently we don't have an example for calling `getSignTemplateById` in integration tests_
 
 ### Arguments
 
@@ -48,11 +45,8 @@ See the endpoint docs at
 - headers `GetSignTemplateByIdHeadersArg`
   - Headers of getSignTemplateById method
 
-
 ### Returns
 
 This function returns a value of type `SignTemplate`.
 
 Returns details of a template.
-
-

@@ -1,6 +1,5 @@
 # MembershipsManager
 
-
 - [List user's groups](#list-users-groups)
 - [List members of group](#list-members-of-group)
 - [Add user to group](#add-user-to-group)
@@ -20,8 +19,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users-id-memberships/).
 
 <!-- sample get_users_id_memberships -->
+
 ```ts
-await client.memberships.getUserMemberships(user.id)
+await client.memberships.getUserMemberships(user.id);
 ```
 
 ### Arguments
@@ -33,14 +33,12 @@ await client.memberships.getUserMemberships(user.id)
 - headers `GetUserMembershipsHeadersArg`
   - Headers of getUserMemberships method
 
-
 ### Returns
 
 This function returns a value of type `GroupMemberships`.
 
 Returns a collection of membership objects. If there are no
 memberships, an empty collection will be returned.
-
 
 ## List members of group
 
@@ -54,8 +52,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-groups-id-memberships/).
 
 <!-- sample get_groups_id_memberships -->
+
 ```ts
-await client.memberships.getGroupMemberships(group.id)
+await client.memberships.getGroupMemberships(group.id);
 ```
 
 ### Arguments
@@ -67,14 +66,12 @@ await client.memberships.getGroupMemberships(group.id)
 - headers `GetGroupMembershipsHeadersArg`
   - Headers of getGroupMemberships method
 
-
 ### Returns
 
 This function returns a value of type `GroupMemberships`.
 
 Returns a collection of membership objects. If there are no
 memberships, an empty collection will be returned.
-
 
 ## Add user to group
 
@@ -87,8 +84,12 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-group-memberships/).
 
 <!-- sample post_group_memberships -->
+
 ```ts
-await client.memberships.createGroupMembership({ user: user, group: group } satisfies CreateGroupMembershipRequestBodyArg)
+await client.memberships.createGroupMembership({
+  user: user,
+  group: group,
+} satisfies CreateGroupMembershipRequestBodyArg);
 ```
 
 ### Arguments
@@ -100,13 +101,11 @@ await client.memberships.createGroupMembership({ user: user, group: group } sati
 - headers `CreateGroupMembershipHeadersArg`
   - Headers of createGroupMembership method
 
-
 ### Returns
 
 This function returns a value of type `GroupMembership`.
 
 Returns a new group membership object.
-
 
 ## Get group membership
 
@@ -120,8 +119,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-group-memberships-id/).
 
 <!-- sample get_group_memberships_id -->
+
 ```ts
-await client.memberships.getGroupMembershipById(groupMembership.id)
+await client.memberships.getGroupMembershipById(groupMembership.id);
 ```
 
 ### Arguments
@@ -133,13 +133,11 @@ await client.memberships.getGroupMembershipById(groupMembership.id)
 - headers `GetGroupMembershipByIdHeadersArg`
   - Headers of getGroupMembershipById method
 
-
 ### Returns
 
 This function returns a value of type `GroupMembership`.
 
 Returns the group membership object.
-
 
 ## Update group membership
 
@@ -153,8 +151,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-group-memberships-id/).
 
 <!-- sample put_group_memberships_id -->
+
 ```ts
-await client.memberships.updateGroupMembershipById(groupMembership.id, { role: "admin" as UpdateGroupMembershipByIdRequestBodyArgRoleField } satisfies UpdateGroupMembershipByIdRequestBodyArg)
+await client.memberships.updateGroupMembershipById(groupMembership.id, {
+  role: 'admin' as UpdateGroupMembershipByIdRequestBodyArgRoleField,
+} satisfies UpdateGroupMembershipByIdRequestBodyArg);
 ```
 
 ### Arguments
@@ -168,13 +169,11 @@ await client.memberships.updateGroupMembershipById(groupMembership.id, { role: "
 - headers `UpdateGroupMembershipByIdHeadersArg`
   - Headers of updateGroupMembershipById method
 
-
 ### Returns
 
 This function returns a value of type `GroupMembership`.
 
 Returns a new group membership object.
-
 
 ## Remove user from group
 
@@ -188,8 +187,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-group-memberships-id/).
 
 <!-- sample delete_group_memberships_id -->
+
 ```ts
-await client.memberships.deleteGroupMembershipById(groupMembership.id)
+await client.memberships.deleteGroupMembershipById(groupMembership.id);
 ```
 
 ### Arguments
@@ -199,12 +199,9 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id)
 - headers `DeleteGroupMembershipByIdHeadersArg`
   - Headers of deleteGroupMembershipById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the membership was
 successfully deleted.
-
-

@@ -1,8 +1,17 @@
+import { serializeUser } from "../schemas.generated.js";
+import { deserializeUser } from "../schemas.generated.js";
 import { serializeCreateUserRequestBodyArg } from "../managers/users.generated.js";
 import { deserializeCreateUserRequestBodyArg } from "../managers/users.generated.js";
+import { serializeEmailAliases } from "../schemas.generated.js";
+import { deserializeEmailAliases } from "../schemas.generated.js";
+import { serializeEmailAlias } from "../schemas.generated.js";
+import { deserializeEmailAlias } from "../schemas.generated.js";
 import { serializeCreateUserEmailAliasRequestBodyArg } from "../managers/emailAliases.generated.js";
 import { deserializeCreateUserEmailAliasRequestBodyArg } from "../managers/emailAliases.generated.js";
+import { User } from "../schemas.generated.js";
 import { CreateUserRequestBodyArg } from "../managers/users.generated.js";
+import { EmailAliases } from "../schemas.generated.js";
+import { EmailAlias } from "../schemas.generated.js";
 import { CreateUserEmailAliasRequestBodyArg } from "../managers/emailAliases.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";

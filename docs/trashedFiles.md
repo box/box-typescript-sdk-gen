@@ -1,6 +1,5 @@
 # TrashedFilesManager
 
-
 - [Restore file](#restore-file)
 - [Get trashed file](#get-trashed-file)
 - [Permanently remove file](#permanently-remove-file)
@@ -18,14 +17,15 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id/).
 
 <!-- sample post_files_id -->
+
 ```ts
-await client.trashedFiles.restoreFileFromTrash(file.id)
+await client.trashedFiles.restoreFileFromTrash(file.id);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `RestoreFileFromTrashRequestBodyArg`
   - Request body of restoreFileFromTrash method
 - queryParams `RestoreFileFromTrashQueryParamsArg`
@@ -33,13 +33,11 @@ await client.trashedFiles.restoreFileFromTrash(file.id)
 - headers `RestoreFileFromTrashHeadersArg`
   - Headers of restoreFileFromTrash method
 
-
 ### Returns
 
 This function returns a value of type `TrashFileRestored`.
 
 Returns a file object when the file has been restored.
-
 
 ## Get trashed file
 
@@ -61,19 +59,19 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-trash/).
 
 <!-- sample get_files_id_trash -->
+
 ```ts
-await client.trashedFiles.getFileTrash(file.id)
+await client.trashedFiles.getFileTrash(file.id);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileTrashQueryParamsArg`
   - Query parameters of getFileTrash method
 - headers `GetFileTrashHeadersArg`
   - Headers of getFileTrash method
-
 
 ### Returns
 
@@ -82,7 +80,6 @@ This function returns a value of type `TrashFile`.
 Returns the file that was trashed,
 including information about when the it
 was moved to the trash.
-
 
 ## Permanently remove file
 
@@ -95,17 +92,17 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-trash/).
 
 <!-- sample delete_files_id_trash -->
+
 ```ts
-await client.trashedFiles.deleteFileTrash(file.id)
+await client.trashedFiles.deleteFileTrash(file.id);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileTrashHeadersArg`
   - Headers of deleteFileTrash method
-
 
 ### Returns
 
@@ -113,5 +110,3 @@ This function returns a value of type `undefined`.
 
 Returns an empty response when the file was
 permanently deleted.
-
-

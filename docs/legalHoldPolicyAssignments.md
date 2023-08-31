@@ -1,6 +1,5 @@
 # LegalHoldPolicyAssignmentsManager
 
-
 - [List legal hold policy assignments](#list-legal-hold-policy-assignments)
 - [Assign legal hold policy](#assign-legal-hold-policy)
 - [Get legal hold policy assignment](#get-legal-hold-policy-assignment)
@@ -17,7 +16,7 @@ This operation is performed by calling function `getLegalHoldPolicyAssignments`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicyAssignments` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicyAssignments` in integration tests_
 
 ### Arguments
 
@@ -26,13 +25,11 @@ See the endpoint docs at
 - headers `GetLegalHoldPolicyAssignmentsHeadersArg`
   - Headers of getLegalHoldPolicyAssignments method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicyAssignments`.
 
 Returns a list of legal hold policy assignments.
-
 
 ## Assign legal hold policy
 
@@ -43,7 +40,7 @@ This operation is performed by calling function `createLegalHoldPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-legal-hold-policy-assignments/).
 
-*Currently we don't have an example for calling `createLegalHoldPolicyAssignment` in integration tests*
+_Currently we don't have an example for calling `createLegalHoldPolicyAssignment` in integration tests_
 
 ### Arguments
 
@@ -52,13 +49,11 @@ See the endpoint docs at
 - headers `CreateLegalHoldPolicyAssignmentHeadersArg`
   - Headers of createLegalHoldPolicyAssignment method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicyAssignment`.
 
 Returns a new legal hold policy assignment.
-
 
 ## Get legal hold policy assignment
 
@@ -69,7 +64,7 @@ This operation is performed by calling function `getLegalHoldPolicyAssignmentByI
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicyAssignmentById` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicyAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -78,13 +73,11 @@ See the endpoint docs at
 - headers `GetLegalHoldPolicyAssignmentByIdHeadersArg`
   - Headers of getLegalHoldPolicyAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicyAssignment`.
 
 Returns a legal hold policy object.
-
 
 ## Unassign legal hold policy
 
@@ -98,7 +91,7 @@ This operation is performed by calling function `deleteLegalHoldPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-legal-hold-policy-assignments-id/).
 
-*Currently we don't have an example for calling `deleteLegalHoldPolicyAssignmentById` in integration tests*
+_Currently we don't have an example for calling `deleteLegalHoldPolicyAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -107,14 +100,12 @@ See the endpoint docs at
 - headers `DeleteLegalHoldPolicyAssignmentByIdHeadersArg`
   - Headers of deleteLegalHoldPolicyAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the assignment was
 successfully deleted.
-
 
 ## List current file versions for legal hold policy assignment
 
@@ -140,7 +131,7 @@ This operation is performed by calling function `getLegalHoldPolicyAssignmentFil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id-files-on-hold/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFileOnHold` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFileOnHold` in integration tests_
 
 ### Arguments
 
@@ -151,14 +142,12 @@ See the endpoint docs at
 - headers `GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg`
   - Headers of getLegalHoldPolicyAssignmentFileOnHold method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionLegalHolds`.
 
 Returns the list of current file versions held under legal hold for a
 specific legal hold policy assignment.
-
 
 ## List previous file versions for legal hold policy assignment
 
@@ -184,7 +173,7 @@ This operation is performed by calling function `getLegalHoldPolicyAssignmentFil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id-file-versions-on-hold/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFileVersionOnHold` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFileVersionOnHold` in integration tests_
 
 ### Arguments
 
@@ -195,12 +184,9 @@ See the endpoint docs at
 - headers `GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg`
   - Headers of getLegalHoldPolicyAssignmentFileVersionOnHold method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionLegalHolds`.
 
 Returns the list of previous file versions held under legal hold for a
 specific legal hold policy assignment.
-
-

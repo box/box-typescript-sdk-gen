@@ -1,6 +1,5 @@
 # ZipDownloadsManager
 
-
 - [Create zip download](#create-zip-download)
 - [Download zip archive](#download-zip-archive)
 - [Get zip download status](#get-zip-download-status)
@@ -29,7 +28,7 @@ This operation is performed by calling function `createZipDownload`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-zip-downloads/).
 
-*Currently we don't have an example for calling `createZipDownload` in integration tests*
+_Currently we don't have an example for calling `createZipDownload` in integration tests_
 
 ### Arguments
 
@@ -38,7 +37,6 @@ See the endpoint docs at
 - headers `CreateZipDownloadHeadersArg`
   - Headers of createZipDownload method
 
-
 ### Returns
 
 This function returns a value of type `ZipDownload`.
@@ -46,7 +44,6 @@ This function returns a value of type `ZipDownload`.
 If the `zip` archive is ready to be downloaded, the API will return a
 response that will include a `download_url`, a `status_url`, as well as
 any conflicts that might have occurred when creating the request.
-
 
 ## Download zip archive
 
@@ -69,7 +66,7 @@ This operation is performed by calling function `getZipDownloadContent`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-zip-downloads-id-content/).
 
-*Currently we don't have an example for calling `getZipDownloadContent` in integration tests*
+_Currently we don't have an example for calling `getZipDownloadContent` in integration tests_
 
 ### Arguments
 
@@ -78,14 +75,12 @@ See the endpoint docs at
 - headers `GetZipDownloadContentHeadersArg`
   - Headers of getZipDownloadContent method
 
-
 ### Returns
 
 This function returns a value of type `ByteStream`.
 
 Returns the content of the items requested for this download, formatted as
 a stream of files and folders in a `zip` archive.
-
 
 ## Get zip download status
 
@@ -107,7 +102,7 @@ This operation is performed by calling function `getZipDownloadStatus`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-zip-downloads-id-status/).
 
-*Currently we don't have an example for calling `getZipDownloadStatus` in integration tests*
+_Currently we don't have an example for calling `getZipDownloadStatus` in integration tests_
 
 ### Arguments
 
@@ -116,11 +111,8 @@ See the endpoint docs at
 - headers `GetZipDownloadStatusHeadersArg`
   - Headers of getZipDownloadStatus method
 
-
 ### Returns
 
 This function returns a value of type `ZipDownloadStatus`.
 
 Returns the status of the `zip` archive that is being downloaded.
-
-

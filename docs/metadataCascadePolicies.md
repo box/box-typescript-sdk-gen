@@ -1,6 +1,5 @@
 # MetadataCascadePoliciesManager
 
-
 - [List metadata cascade policies](#list-metadata-cascade-policies)
 - [Create metadata cascade policy](#create-metadata-cascade-policy)
 - [Get metadata cascade policy](#get-metadata-cascade-policy)
@@ -18,7 +17,7 @@ This operation is performed by calling function `getMetadataCascadePolicies`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-cascade-policies/).
 
-*Currently we don't have an example for calling `getMetadataCascadePolicies` in integration tests*
+_Currently we don't have an example for calling `getMetadataCascadePolicies` in integration tests_
 
 ### Arguments
 
@@ -27,13 +26,11 @@ See the endpoint docs at
 - headers `GetMetadataCascadePoliciesHeadersArg`
   - Headers of getMetadataCascadePolicies method
 
-
 ### Returns
 
 This function returns a value of type `MetadataCascadePolicies`.
 
 Returns a list of metadata cascade policies
-
 
 ## Create metadata cascade policy
 
@@ -49,7 +46,7 @@ This operation is performed by calling function `createMetadataCascadePolicy`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-cascade-policies/).
 
-*Currently we don't have an example for calling `createMetadataCascadePolicy` in integration tests*
+_Currently we don't have an example for calling `createMetadataCascadePolicy` in integration tests_
 
 ### Arguments
 
@@ -58,13 +55,11 @@ See the endpoint docs at
 - headers `CreateMetadataCascadePolicyHeadersArg`
   - Headers of createMetadataCascadePolicy method
 
-
 ### Returns
 
 This function returns a value of type `MetadataCascadePolicy`.
 
 Returns a new of metadata cascade policy
-
 
 ## Get metadata cascade policy
 
@@ -75,7 +70,7 @@ This operation is performed by calling function `getMetadataCascadePolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-cascade-policies-id/).
 
-*Currently we don't have an example for calling `getMetadataCascadePolicyById` in integration tests*
+_Currently we don't have an example for calling `getMetadataCascadePolicyById` in integration tests_
 
 ### Arguments
 
@@ -84,13 +79,11 @@ See the endpoint docs at
 - headers `GetMetadataCascadePolicyByIdHeadersArg`
   - Headers of getMetadataCascadePolicyById method
 
-
 ### Returns
 
 This function returns a value of type `MetadataCascadePolicy`.
 
 Returns a metadata cascade policy
-
 
 ## Remove metadata cascade policy
 
@@ -101,7 +94,7 @@ This operation is performed by calling function `deleteMetadataCascadePolicyById
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-cascade-policies-id/).
 
-*Currently we don't have an example for calling `deleteMetadataCascadePolicyById` in integration tests*
+_Currently we don't have an example for calling `deleteMetadataCascadePolicyById` in integration tests_
 
 ### Arguments
 
@@ -110,14 +103,12 @@ See the endpoint docs at
 - headers `DeleteMetadataCascadePolicyByIdHeadersArg`
   - Headers of deleteMetadataCascadePolicyById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the policy
 is successfully deleted.
-
 
 ## Force-apply metadata cascade policy to folder
 
@@ -131,7 +122,7 @@ This operation is performed by calling function `createMetadataCascadePolicyAppl
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-cascade-policies-id-apply/).
 
-*Currently we don't have an example for calling `createMetadataCascadePolicyApply` in integration tests*
+_Currently we don't have an example for calling `createMetadataCascadePolicyApply` in integration tests_
 
 ### Arguments
 
@@ -141,7 +132,6 @@ See the endpoint docs at
   - Request body of createMetadataCascadePolicyApply method
 - headers `CreateMetadataCascadePolicyApplyHeadersArg`
   - Headers of createMetadataCascadePolicyApply method
-
 
 ### Returns
 
@@ -153,5 +143,3 @@ cascade operation will be performed asynchronously.
 The API call will return directly, before the cascade operation
 is complete. There is currently no API to check for the status of this
 operation.
-
-

@@ -1,6 +1,5 @@
 # WebhooksManager
 
-
 - [List all webhooks](#list-all-webhooks)
 - [Create webhook](#create-webhook)
 - [Get webhook](#get-webhook)
@@ -22,8 +21,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-webhooks/).
 
 <!-- sample get_webhooks -->
+
 ```ts
-await client.webhooks.getWebhooks()
+await client.webhooks.getWebhooks();
 ```
 
 ### Arguments
@@ -33,13 +33,11 @@ await client.webhooks.getWebhooks()
 - headers `GetWebhooksHeadersArg`
   - Headers of getWebhooks method
 
-
 ### Returns
 
 This function returns a value of type `Webhooks`.
 
 Returns a list of webhooks.
-
 
 ## Create webhook
 
@@ -51,8 +49,16 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-webhooks/).
 
 <!-- sample post_webhooks -->
+
 ```ts
-await client.webhooks.createWebhook({ target: { id: folder.id, type: "folder" as CreateWebhookRequestBodyArgTargetFieldTypeField } satisfies CreateWebhookRequestBodyArgTargetField, address: "https://example.com/new-webhook", triggers: ["FILE.UPLOADED"] } satisfies CreateWebhookRequestBodyArg)
+await client.webhooks.createWebhook({
+  target: {
+    id: folder.id,
+    type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
+  } satisfies CreateWebhookRequestBodyArgTargetField,
+  address: 'https://example.com/new-webhook',
+  triggers: ['FILE.UPLOADED'],
+} satisfies CreateWebhookRequestBodyArg);
 ```
 
 ### Arguments
@@ -62,13 +68,11 @@ await client.webhooks.createWebhook({ target: { id: folder.id, type: "folder" as
 - headers `CreateWebhookHeadersArg`
   - Headers of createWebhook method
 
-
 ### Returns
 
 This function returns a value of type `Webhook`.
 
 Returns the new webhook object.
-
 
 ## Get webhook
 
@@ -80,8 +84,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-webhooks-id/).
 
 <!-- sample get_webhooks_id -->
+
 ```ts
-await client.webhooks.getWebhookById(webhook.id)
+await client.webhooks.getWebhookById(webhook.id);
 ```
 
 ### Arguments
@@ -91,13 +96,11 @@ await client.webhooks.getWebhookById(webhook.id)
 - headers `GetWebhookByIdHeadersArg`
   - Headers of getWebhookById method
 
-
 ### Returns
 
 This function returns a value of type `Webhook`.
 
 Returns a webhook object
-
 
 ## Update webhook
 
@@ -109,8 +112,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-webhooks-id/).
 
 <!-- sample put_webhooks_id -->
+
 ```ts
-await client.webhooks.updateWebhookById(webhook.id, { address: "https://example.com/updated-webhook" } satisfies UpdateWebhookByIdRequestBodyArg)
+await client.webhooks.updateWebhookById(webhook.id, {
+  address: 'https://example.com/updated-webhook',
+} satisfies UpdateWebhookByIdRequestBodyArg);
 ```
 
 ### Arguments
@@ -122,13 +128,11 @@ await client.webhooks.updateWebhookById(webhook.id, { address: "https://example.
 - headers `UpdateWebhookByIdHeadersArg`
   - Headers of updateWebhookById method
 
-
 ### Returns
 
 This function returns a value of type `Webhook`.
 
 Returns the new webhook object.
-
 
 ## Remove webhook
 
@@ -140,8 +144,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-webhooks-id/).
 
 <!-- sample delete_webhooks_id -->
+
 ```ts
-await client.webhooks.deleteWebhookById(webhook.id)
+await client.webhooks.deleteWebhookById(webhook.id);
 ```
 
 ### Arguments
@@ -151,12 +156,9 @@ await client.webhooks.deleteWebhookById(webhook.id)
 - headers `DeleteWebhookByIdHeadersArg`
   - Headers of deleteWebhookById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 An empty response will be returned when the webhook
 was successfully deleted.
-
-

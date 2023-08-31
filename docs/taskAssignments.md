@@ -1,6 +1,5 @@
 # TaskAssignmentsManager
 
-
 - [List task assignments](#list-task-assignments)
 - [Assign task](#assign-task)
 - [Get task assignment](#get-task-assignment)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getTaskAssignments`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-tasks-id-assignments/).
 
-*Currently we don't have an example for calling `getTaskAssignments` in integration tests*
+_Currently we don't have an example for calling `getTaskAssignments` in integration tests_
 
 ### Arguments
 
@@ -25,14 +24,12 @@ See the endpoint docs at
 - headers `GetTaskAssignmentsHeadersArg`
   - Headers of getTaskAssignments method
 
-
 ### Returns
 
 This function returns a value of type `TaskAssignments`.
 
 Returns a collection of task assignment defining what task on
 a file has been assigned to which users and by who.
-
 
 ## Assign task
 
@@ -46,7 +43,7 @@ This operation is performed by calling function `createTaskAssignment`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-task-assignments/).
 
-*Currently we don't have an example for calling `createTaskAssignment` in integration tests*
+_Currently we don't have an example for calling `createTaskAssignment` in integration tests_
 
 ### Arguments
 
@@ -55,13 +52,11 @@ See the endpoint docs at
 - headers `CreateTaskAssignmentHeadersArg`
   - Headers of createTaskAssignment method
 
-
 ### Returns
 
 This function returns a value of type `TaskAssignment`.
 
 Returns a new task assignment object.
-
 
 ## Get task assignment
 
@@ -72,7 +67,7 @@ This operation is performed by calling function `getTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-task-assignments-id/).
 
-*Currently we don't have an example for calling `getTaskAssignmentById` in integration tests*
+_Currently we don't have an example for calling `getTaskAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -81,14 +76,12 @@ See the endpoint docs at
 - headers `GetTaskAssignmentByIdHeadersArg`
   - Headers of getTaskAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `TaskAssignment`.
 
 Returns a task assignment, specifying who the task has been assigned to
 and by whom.
-
 
 ## Update task assignment
 
@@ -100,7 +93,7 @@ This operation is performed by calling function `updateTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-task-assignments-id/).
 
-*Currently we don't have an example for calling `updateTaskAssignmentById` in integration tests*
+_Currently we don't have an example for calling `updateTaskAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -111,13 +104,11 @@ See the endpoint docs at
 - headers `UpdateTaskAssignmentByIdHeadersArg`
   - Headers of updateTaskAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `TaskAssignment`.
 
 Returns the updated task assignment object.
-
 
 ## Unassign task
 
@@ -128,7 +119,7 @@ This operation is performed by calling function `deleteTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-task-assignments-id/).
 
-*Currently we don't have an example for calling `deleteTaskAssignmentById` in integration tests*
+_Currently we don't have an example for calling `deleteTaskAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -137,12 +128,9 @@ See the endpoint docs at
 - headers `DeleteTaskAssignmentByIdHeadersArg`
   - Headers of deleteTaskAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the task
 assignment was successfully deleted.
-
-

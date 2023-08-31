@@ -1,6 +1,5 @@
 # TrashedFoldersManager
 
-
 - [Restore folder](#restore-folder)
 - [Get trashed folder](#get-trashed-folder)
 - [Permanently remove folder](#permanently-remove-folder)
@@ -27,14 +26,15 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folders-id/).
 
 <!-- sample post_folders_id -->
+
 ```ts
-await client.trashedFolders.restoreFolderFromTrash(folder.id)
+await client.trashedFolders.restoreFolderFromTrash(folder.id);
 ```
 
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `RestoreFolderFromTrashRequestBodyArg`
   - Request body of restoreFolderFromTrash method
 - queryParams `RestoreFolderFromTrashQueryParamsArg`
@@ -42,13 +42,11 @@ await client.trashedFolders.restoreFolderFromTrash(folder.id)
 - headers `RestoreFolderFromTrashHeadersArg`
   - Headers of restoreFolderFromTrash method
 
-
 ### Returns
 
 This function returns a value of type `TrashFolderRestored`.
 
 Returns a folder object when the folder has been restored.
-
 
 ## Get trashed folder
 
@@ -70,19 +68,19 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-trash/).
 
 <!-- sample get_folders_id_trash -->
+
 ```ts
-await client.trashedFolders.getFolderTrash(folder.id)
+await client.trashedFolders.getFolderTrash(folder.id);
 ```
 
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetFolderTrashQueryParamsArg`
   - Query parameters of getFolderTrash method
 - headers `GetFolderTrashHeadersArg`
   - Headers of getFolderTrash method
-
 
 ### Returns
 
@@ -91,7 +89,6 @@ This function returns a value of type `TrashFolder`.
 Returns the folder that was trashed,
 including information about when the it
 was moved to the trash.
-
 
 ## Permanently remove folder
 
@@ -104,17 +101,17 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folders-id-trash/).
 
 <!-- sample delete_folders_id_trash -->
+
 ```ts
-await client.trashedFolders.deleteFolderTrash(folder.id)
+await client.trashedFolders.deleteFolderTrash(folder.id);
 ```
 
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - headers `DeleteFolderTrashHeadersArg`
   - Headers of deleteFolderTrash method
-
 
 ### Returns
 
@@ -122,5 +119,3 @@ This function returns a value of type `undefined`.
 
 Returns an empty response when the folder was
 permanently deleted.
-
-

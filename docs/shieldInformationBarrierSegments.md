@@ -1,6 +1,5 @@
 # ShieldInformationBarrierSegmentsManager
 
-
 - [Get shield information barrier segment with specified ID](#get-shield-information-barrier-segment-with-specified-id)
 - [Update shield information barrier segment with specified ID](#update-shield-information-barrier-segment-with-specified-id)
 - [Delete shield information barrier segment](#delete-shield-information-barrier-segment)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segments-id/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegmentById` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegmentById` in integration tests_
 
 ### Arguments
 
@@ -25,13 +24,11 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentByIdHeadersArg`
   - Headers of getShieldInformationBarrierSegmentById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegment`.
 
 Returns the shield information barrier segment object.
-
 
 ## Update shield information barrier segment with specified ID
 
@@ -42,7 +39,7 @@ This operation is performed by calling function `updateShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-shield-information-barrier-segments-id/).
 
-*Currently we don't have an example for calling `updateShieldInformationBarrierSegmentById` in integration tests*
+_Currently we don't have an example for calling `updateShieldInformationBarrierSegmentById` in integration tests_
 
 ### Arguments
 
@@ -53,13 +50,11 @@ See the endpoint docs at
 - headers `UpdateShieldInformationBarrierSegmentByIdHeadersArg`
   - Headers of updateShieldInformationBarrierSegmentById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegment`.
 
 Returns the updated shield information barrier segment object.
-
 
 ## Delete shield information barrier segment
 
@@ -71,7 +66,7 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segments-id/).
 
-*Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentById` in integration tests*
+_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentById` in integration tests_
 
 ### Arguments
 
@@ -80,13 +75,11 @@ See the endpoint docs at
 - headers `DeleteShieldInformationBarrierSegmentByIdHeadersArg`
   - Headers of deleteShieldInformationBarrierSegmentById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Empty body in response
-
 
 ## List shield information barrier segments
 
@@ -98,7 +91,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segments/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegments` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegments` in integration tests_
 
 ### Arguments
 
@@ -107,13 +100,11 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentsHeadersArg`
   - Headers of getShieldInformationBarrierSegments method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns a paginated list of shield information barrier segment objects.
-
 
 ## Create shield information barrier segment
 
@@ -124,7 +115,7 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segments/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrierSegment` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrierSegment` in integration tests_
 
 ### Arguments
 
@@ -133,11 +124,8 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierSegmentHeadersArg`
   - Headers of createShieldInformationBarrierSegment method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegment`.
 
 Returns a new shield information barrier segment object.
-
-

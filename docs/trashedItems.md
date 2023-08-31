@@ -1,6 +1,5 @@
 # TrashedItemsManager
 
-
 - [List trashed items](#list-trashed-items)
 
 ## List trashed items
@@ -20,7 +19,7 @@ This operation is performed by calling function `getFolderTrashItems`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-trash-items/).
 
-*Currently we don't have an example for calling `getFolderTrashItems` in integration tests*
+_Currently we don't have an example for calling `getFolderTrashItems` in integration tests_
 
 ### Arguments
 
@@ -29,11 +28,8 @@ See the endpoint docs at
 - headers `GetFolderTrashItemsHeadersArg`
   - Headers of getFolderTrashItems method
 
-
 ### Returns
 
 This function returns a value of type `Items`.
 
 Returns a list of items that have been deleted
-
-

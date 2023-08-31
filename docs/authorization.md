@@ -1,6 +1,5 @@
 # AuthorizationManager
 
-
 - [Authorize user](#authorize-user)
 
 ## Authorize user
@@ -18,7 +17,7 @@ This operation is performed by calling function `getAuthorize`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-authorize/).
 
-*Currently we don't have an example for calling `getAuthorize` in integration tests*
+_Currently we don't have an example for calling `getAuthorize` in integration tests_
 
 ### Arguments
 
@@ -27,11 +26,8 @@ See the endpoint docs at
 - headers `GetAuthorizeHeadersArg`
   - Headers of getAuthorize method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Does not return any data, but rather should be used in the browser.
-
-

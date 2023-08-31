@@ -1,6 +1,5 @@
 # RetentionPolicyAssignmentsManager
 
-
 - [List retention policy assignments](#list-retention-policy-assignments)
 - [Assign retention policy](#assign-retention-policy)
 - [Get retention policy assignment](#get-retention-policy-assignment)
@@ -18,7 +17,7 @@ This operation is performed by calling function `getRetentionPolicyAssignments`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policies-id-assignments/).
 
-*Currently we don't have an example for calling `getRetentionPolicyAssignments` in integration tests*
+_Currently we don't have an example for calling `getRetentionPolicyAssignments` in integration tests_
 
 ### Arguments
 
@@ -29,14 +28,12 @@ See the endpoint docs at
 - headers `GetRetentionPolicyAssignmentsHeadersArg`
   - Headers of getRetentionPolicyAssignments method
 
-
 ### Returns
 
 This function returns a value of type `RetentionPolicyAssignments`.
 
 Returns a list of the retention policy assignments associated with the
 specified retention policy.
-
 
 ## Assign retention policy
 
@@ -47,7 +44,7 @@ This operation is performed by calling function `createRetentionPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-retention-policy-assignments/).
 
-*Currently we don't have an example for calling `createRetentionPolicyAssignment` in integration tests*
+_Currently we don't have an example for calling `createRetentionPolicyAssignment` in integration tests_
 
 ### Arguments
 
@@ -56,13 +53,11 @@ See the endpoint docs at
 - headers `CreateRetentionPolicyAssignmentHeadersArg`
   - Headers of createRetentionPolicyAssignment method
 
-
 ### Returns
 
 This function returns a value of type `RetentionPolicyAssignment`.
 
 Returns a new retention policy assignment object.
-
 
 ## Get retention policy assignment
 
@@ -73,7 +68,7 @@ This operation is performed by calling function `getRetentionPolicyAssignmentByI
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id/).
 
-*Currently we don't have an example for calling `getRetentionPolicyAssignmentById` in integration tests*
+_Currently we don't have an example for calling `getRetentionPolicyAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -84,13 +79,11 @@ See the endpoint docs at
 - headers `GetRetentionPolicyAssignmentByIdHeadersArg`
   - Headers of getRetentionPolicyAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `RetentionPolicyAssignment`.
 
 Returns the retention policy assignment object.
-
 
 ## Remove retention policy assignment
 
@@ -102,7 +95,7 @@ This operation is performed by calling function `deleteRetentionPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-retention-policy-assignments-id/).
 
-*Currently we don't have an example for calling `deleteRetentionPolicyAssignmentById` in integration tests*
+_Currently we don't have an example for calling `deleteRetentionPolicyAssignmentById` in integration tests_
 
 ### Arguments
 
@@ -111,14 +104,12 @@ See the endpoint docs at
 - headers `DeleteRetentionPolicyAssignmentByIdHeadersArg`
   - Headers of deleteRetentionPolicyAssignmentById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the policy assignment
 is successfully deleted.
-
 
 ## Get files under retention
 
@@ -129,7 +120,7 @@ This operation is performed by calling function `getRetentionPolicyAssignmentFil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-files-under-retention/).
 
-*Currently we don't have an example for calling `getRetentionPolicyAssignmentFileUnderRetention` in integration tests*
+_Currently we don't have an example for calling `getRetentionPolicyAssignmentFileUnderRetention` in integration tests_
 
 ### Arguments
 
@@ -140,14 +131,12 @@ See the endpoint docs at
 - headers `GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg`
   - Headers of getRetentionPolicyAssignmentFileUnderRetention method
 
-
 ### Returns
 
 This function returns a value of type `FilesUnderRetention`.
 
 Returns a list of files under retention that are associated with the
 specified retention policy assignment.
-
 
 ## Get file versions under retention
 
@@ -159,7 +148,7 @@ This operation is performed by calling function `getRetentionPolicyAssignmentFil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-file-versions-under-retention/).
 
-*Currently we don't have an example for calling `getRetentionPolicyAssignmentFileVersionUnderRetention` in integration tests*
+_Currently we don't have an example for calling `getRetentionPolicyAssignmentFileVersionUnderRetention` in integration tests_
 
 ### Arguments
 
@@ -170,12 +159,9 @@ See the endpoint docs at
 - headers `GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg`
   - Headers of getRetentionPolicyAssignmentFileVersionUnderRetention method
 
-
 ### Returns
 
 This function returns a value of type `FilesUnderRetention`.
 
 Returns a list of file versions under retention that are associated with
 the specified retention policy assignment.
-
-

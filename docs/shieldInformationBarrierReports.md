@@ -1,6 +1,5 @@
 # ShieldInformationBarrierReportsManager
 
-
 - [List shield information barrier reports](#list-shield-information-barrier-reports)
 - [Create shield information barrier report](#create-shield-information-barrier-report)
 - [Get shield information barrier report by ID](#get-shield-information-barrier-report-by-id)
@@ -14,7 +13,7 @@ This operation is performed by calling function `getShieldInformationBarrierRepo
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierReports` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierReports` in integration tests_
 
 ### Arguments
 
@@ -23,13 +22,11 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierReportsHeadersArg`
   - Headers of getShieldInformationBarrierReports method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns a paginated list of shield information barrier report objects.
-
 
 ## Create shield information barrier report
 
@@ -40,7 +37,7 @@ This operation is performed by calling function `createShieldInformationBarrierR
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-reports/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrierReport` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrierReport` in integration tests_
 
 ### Arguments
 
@@ -49,13 +46,11 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierReportHeadersArg`
   - Headers of createShieldInformationBarrierReport method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierReport`.
 
 Returns the shield information barrier report information object.
-
 
 ## Get shield information barrier report by ID
 
@@ -66,7 +61,7 @@ This operation is performed by calling function `getShieldInformationBarrierRepo
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports-id/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierReportById` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierReportById` in integration tests_
 
 ### Arguments
 
@@ -75,11 +70,8 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierReportByIdHeadersArg`
   - Headers of getShieldInformationBarrierReportById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierReport`.
 
-Returns the  shield information barrier report object.
-
-
+Returns the shield information barrier report object.

@@ -1,6 +1,5 @@
 # SharedLinksWebLinksManager
 
-
 - [Find web link for shared link](#find-web-link-for-shared-link)
 - [Get shared link for web link](#get-shared-link-for-web-link)
 - [Add shared link to web link](#add-shared-link-to-web-link)
@@ -22,7 +21,7 @@ This operation is performed by calling function `getSharedItemWebLinks`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items-web-links/).
 
-*Currently we don't have an example for calling `getSharedItemWebLinks` in integration tests*
+_Currently we don't have an example for calling `getSharedItemWebLinks` in integration tests_
 
 ### Arguments
 
@@ -31,14 +30,12 @@ See the endpoint docs at
 - headers `GetSharedItemWebLinksHeadersArg`
   - Headers of getSharedItemWebLinks method
 
-
 ### Returns
 
 This function returns a value of type `WebLink`.
 
 Returns a full file resource if the shared link is valid and
 the user has access to it.
-
 
 ## Get shared link for web link
 
@@ -49,7 +46,7 @@ This operation is performed by calling function `getWebLinkGetSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-web-links-id-get-shared-link/).
 
-*Currently we don't have an example for calling `getWebLinkGetSharedLink` in integration tests*
+_Currently we don't have an example for calling `getWebLinkGetSharedLink` in integration tests_
 
 ### Arguments
 
@@ -60,14 +57,12 @@ See the endpoint docs at
 - headers `GetWebLinkGetSharedLinkHeadersArg`
   - Headers of getWebLinkGetSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `WebLink`.
 
 Returns the base representation of a web link with the
 additional shared link information.
-
 
 ## Add shared link to web link
 
@@ -78,7 +73,7 @@ This operation is performed by calling function `updateWebLinkAddSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-add-shared-link/).
 
-*Currently we don't have an example for calling `updateWebLinkAddSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateWebLinkAddSharedLink` in integration tests_
 
 ### Arguments
 
@@ -91,14 +86,12 @@ See the endpoint docs at
 - headers `UpdateWebLinkAddSharedLinkHeadersArg`
   - Headers of updateWebLinkAddSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `WebLink`.
 
 Returns the base representation of a web link with a new shared
 link attached.
-
 
 ## Update shared link on web link
 
@@ -109,7 +102,7 @@ This operation is performed by calling function `updateWebLinkUpdateSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-update-shared-link/).
 
-*Currently we don't have an example for calling `updateWebLinkUpdateSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateWebLinkUpdateSharedLink` in integration tests_
 
 ### Arguments
 
@@ -122,14 +115,12 @@ See the endpoint docs at
 - headers `UpdateWebLinkUpdateSharedLinkHeadersArg`
   - Headers of updateWebLinkUpdateSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `WebLink`.
 
 Returns a basic representation of the web link, with the updated shared
 link attached.
-
 
 ## Remove shared link from web link
 
@@ -140,7 +131,7 @@ This operation is performed by calling function `updateWebLinkRemoveSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-remove-shared-link/).
 
-*Currently we don't have an example for calling `updateWebLinkRemoveSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateWebLinkRemoveSharedLink` in integration tests_
 
 ### Arguments
 
@@ -153,12 +144,9 @@ See the endpoint docs at
 - headers `UpdateWebLinkRemoveSharedLinkHeadersArg`
   - Headers of updateWebLinkRemoveSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `WebLink`.
 
 Returns a basic representation of a web link, with the
 shared link removed.
-
-

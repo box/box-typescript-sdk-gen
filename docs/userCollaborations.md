@@ -1,6 +1,5 @@
 # UserCollaborationsManager
 
-
 - [Get collaboration](#get-collaboration)
 - [Update collaboration](#update-collaboration)
 - [Remove collaboration](#remove-collaboration)
@@ -15,7 +14,7 @@ This operation is performed by calling function `getCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaborations-id/).
 
-*Currently we don't have an example for calling `getCollaborationById` in integration tests*
+_Currently we don't have an example for calling `getCollaborationById` in integration tests_
 
 ### Arguments
 
@@ -26,13 +25,11 @@ See the endpoint docs at
 - headers `GetCollaborationByIdHeadersArg`
   - Headers of getCollaborationById method
 
-
 ### Returns
 
 This function returns a value of type `Collaboration`.
 
 Returns a collaboration object.
-
 
 ## Update collaboration
 
@@ -45,7 +42,7 @@ This operation is performed by calling function `updateCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-collaborations-id/).
 
-*Currently we don't have an example for calling `updateCollaborationById` in integration tests*
+_Currently we don't have an example for calling `updateCollaborationById` in integration tests_
 
 ### Arguments
 
@@ -56,7 +53,6 @@ See the endpoint docs at
 - headers `UpdateCollaborationByIdHeadersArg`
   - Headers of updateCollaborationById method
 
-
 ### Returns
 
 This function returns a value of type `Collaboration`.
@@ -64,7 +60,6 @@ This function returns a value of type `Collaboration`.
 Returns an updated collaboration object unless the owner has changed.If the role is changed to `owner`, the collaboration is deleted
 and a new collaboration is created. The previous `owner` of
 the old collaboration will be a `co-owner` on the new collaboration.
-
 
 ## Remove collaboration
 
@@ -75,7 +70,7 @@ This operation is performed by calling function `deleteCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaborations-id/).
 
-*Currently we don't have an example for calling `deleteCollaborationById` in integration tests*
+_Currently we don't have an example for calling `deleteCollaborationById` in integration tests_
 
 ### Arguments
 
@@ -84,14 +79,12 @@ See the endpoint docs at
 - headers `DeleteCollaborationByIdHeadersArg`
   - Headers of deleteCollaborationById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the collaboration was
 successfully deleted.
-
 
 ## Create collaboration
 
@@ -106,16 +99,17 @@ this endpoint is dependent on the group's ability to be invited.
 
 If collaboration is in `pending` status, the following fields
 are redacted:
+
 - `login` and `name` are hidden if a collaboration was created
-using `user_id`,
--  `name` is hidden if a collaboration was created using `login`.
+  using `user_id`,
+- `name` is hidden if a collaboration was created using `login`.
 
 This operation is performed by calling function `createCollaboration`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaborations/).
 
-*Currently we don't have an example for calling `createCollaboration` in integration tests*
+_Currently we don't have an example for calling `createCollaboration` in integration tests_
 
 ### Arguments
 
@@ -126,11 +120,8 @@ See the endpoint docs at
 - headers `CreateCollaborationHeadersArg`
   - Headers of createCollaboration method
 
-
 ### Returns
 
 This function returns a value of type `Collaboration`.
 
 Returns a new collaboration object.
-
-

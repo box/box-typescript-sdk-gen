@@ -1,6 +1,5 @@
 # UsersManager
 
-
 - [List enterprise users](#list-enterprise-users)
 - [Create user](#create-user)
 - [Get current user](#get-current-user)
@@ -23,8 +22,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users/).
 
 <!-- sample get_users -->
+
 ```ts
-await client.users.getUsers()
+await client.users.getUsers();
 ```
 
 ### Arguments
@@ -34,13 +34,11 @@ await client.users.getUsers()
 - headers `GetUsersHeadersArg`
   - Headers of getUsers method
 
-
 ### Returns
 
 This function returns a value of type `Users`.
 
 Returns all of the users in the enterprise.
-
 
 ## Create user
 
@@ -54,8 +52,13 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-users/).
 
 <!-- sample post_users -->
+
 ```ts
-await client.users.createUser({ name: userName, login: userLogin, isPlatformAccessOnly: true } satisfies CreateUserRequestBodyArg)
+await client.users.createUser({
+  name: userName,
+  login: userLogin,
+  isPlatformAccessOnly: true,
+} satisfies CreateUserRequestBodyArg);
 ```
 
 ### Arguments
@@ -67,13 +70,11 @@ await client.users.createUser({ name: userName, login: userLogin, isPlatformAcce
 - headers `CreateUserHeadersArg`
   - Headers of createUser method
 
-
 ### Returns
 
 This function returns a value of type `User`.
 
 Returns a user object for the newly created user.
-
 
 ## Get current user
 
@@ -94,8 +95,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users-me/).
 
 <!-- sample get_users_me -->
+
 ```ts
-await client.users.getUserMe()
+await client.users.getUserMe();
 ```
 
 ### Arguments
@@ -105,13 +107,11 @@ await client.users.getUserMe()
 - headers `GetUserMeHeadersArg`
   - Headers of getUserMe method
 
-
 ### Returns
 
 This function returns a value of type `UserFull`.
 
 Returns a single user object.
-
 
 ## Get user
 
@@ -133,8 +133,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users-id/).
 
 <!-- sample get_users_id -->
+
 ```ts
-await client.users.getUserById(user.id)
+await client.users.getUserById(user.id);
 ```
 
 ### Arguments
@@ -146,7 +147,6 @@ await client.users.getUserById(user.id)
 - headers `GetUserByIdHeadersArg`
   - Headers of getUserById method
 
-
 ### Returns
 
 This function returns a value of type `UserFull`.
@@ -157,7 +157,6 @@ Not all available fields are returned by default. Use the
 [fields](#param-fields) query parameter to explicitly request
 any specific fields using the [fields](#get-users-id--request--fields)
 parameter.
-
 
 ## Update user
 
@@ -171,8 +170,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-users-id/).
 
 <!-- sample put_users_id -->
+
 ```ts
-await client.users.updateUserById(user.id, { name: updatedUserName } satisfies UpdateUserByIdRequestBodyArg)
+await client.users.updateUserById(user.id, {
+  name: updatedUserName,
+} satisfies UpdateUserByIdRequestBodyArg);
 ```
 
 ### Arguments
@@ -186,13 +188,11 @@ await client.users.updateUserById(user.id, { name: updatedUserName } satisfies U
 - headers `UpdateUserByIdHeadersArg`
   - Headers of updateUserById method
 
-
 ### Returns
 
 This function returns a value of type `UserFull`.
 
 Returns the updated user object.
-
 
 ## Delete user
 
@@ -207,8 +207,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-users-id/).
 
 <!-- sample delete_users_id -->
+
 ```ts
-await client.users.deleteUserById(user.id)
+await client.users.deleteUserById(user.id);
 ```
 
 ### Arguments
@@ -220,11 +221,8 @@ await client.users.deleteUserById(user.id)
 - headers `DeleteUserByIdHeadersArg`
   - Headers of deleteUserById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Removes the user and returns an empty response.
-
-

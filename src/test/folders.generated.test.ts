@@ -1,3 +1,5 @@
+import { serializeFolderFull } from "../schemas.generated.js";
+import { deserializeFolderFull } from "../schemas.generated.js";
 import { serializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { deserializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { serializeCreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
@@ -10,6 +12,9 @@ import { serializeCopyFolderRequestBodyArgParentField } from "../managers/folder
 import { deserializeCopyFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
 import { serializeUpdateFolderByIdRequestBodyArgParentField } from "../managers/folders.generated.js";
 import { deserializeUpdateFolderByIdRequestBodyArgParentField } from "../managers/folders.generated.js";
+import { serializeItems } from "../schemas.generated.js";
+import { deserializeItems } from "../schemas.generated.js";
+import { FolderFull } from "../schemas.generated.js";
 import { GetFolderByIdQueryParamsArg } from "../managers/folders.generated.js";
 import { CreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { CreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
@@ -17,6 +22,7 @@ import { UpdateFolderByIdRequestBodyArg } from "../managers/folders.generated.js
 import { CopyFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { CopyFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
 import { UpdateFolderByIdRequestBodyArgParentField } from "../managers/folders.generated.js";
+import { Items } from "../schemas.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";
 import { getUuid } from "../utils.js";

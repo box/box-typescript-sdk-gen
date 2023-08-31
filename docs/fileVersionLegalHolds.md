@@ -1,6 +1,5 @@
 # FileVersionLegalHoldsManager
 
-
 - [Get file version legal hold](#get-file-version-legal-hold)
 - [List file version legal holds](#list-file-version-legal-holds)
 
@@ -14,7 +13,7 @@ This operation is performed by calling function `getFileVersionLegalHoldById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-legal-holds-id/).
 
-*Currently we don't have an example for calling `getFileVersionLegalHoldById` in integration tests*
+_Currently we don't have an example for calling `getFileVersionLegalHoldById` in integration tests_
 
 ### Arguments
 
@@ -23,13 +22,11 @@ See the endpoint docs at
 - headers `GetFileVersionLegalHoldByIdHeadersArg`
   - Headers of getFileVersionLegalHoldById method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionLegalHold`.
 
 Returns the legal hold policy assignments for the file version.
-
 
 ## List file version legal holds
 
@@ -59,7 +56,7 @@ This operation is performed by calling function `getFileVersionLegalHolds`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-legal-holds/).
 
-*Currently we don't have an example for calling `getFileVersionLegalHolds` in integration tests*
+_Currently we don't have an example for calling `getFileVersionLegalHolds` in integration tests_
 
 ### Arguments
 
@@ -68,12 +65,9 @@ See the endpoint docs at
 - headers `GetFileVersionLegalHoldsHeadersArg`
   - Headers of getFileVersionLegalHolds method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionLegalHolds`.
 
 Returns the list of file version legal holds for a specific legal
 hold policy.
-
-

@@ -1,6 +1,5 @@
 # ListCollaborationsManager
 
-
 - [List file collaborations](#list-file-collaborations)
 - [List folder collaborations](#list-folder-collaborations)
 - [List pending collaborations](#list-pending-collaborations)
@@ -17,17 +16,16 @@ This operation is performed by calling function `getFileCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-collaborations/).
 
-*Currently we don't have an example for calling `getFileCollaborations` in integration tests*
+_Currently we don't have an example for calling `getFileCollaborations` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileCollaborationsQueryParamsArg`
   - Query parameters of getFileCollaborations method
 - headers `GetFileCollaborationsHeadersArg`
   - Headers of getFileCollaborations method
-
 
 ### Returns
 
@@ -40,7 +38,6 @@ This list includes pending collaborations, for which the `status`
 is set to `pending`, indicating invitations that have been sent but not
 yet accepted.
 
-
 ## List folder collaborations
 
 Retrieves a list of pending and active collaborations for a
@@ -52,17 +49,16 @@ This operation is performed by calling function `getFolderCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-collaborations/).
 
-*Currently we don't have an example for calling `getFolderCollaborations` in integration tests*
+_Currently we don't have an example for calling `getFolderCollaborations` in integration tests_
 
 ### Arguments
 
 - folderId `string`
-  - The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
 - queryParams `GetFolderCollaborationsQueryParamsArg`
   - Query parameters of getFolderCollaborations method
 - headers `GetFolderCollaborationsHeadersArg`
   - Headers of getFolderCollaborations method
-
 
 ### Returns
 
@@ -75,7 +71,6 @@ This list includes pending collaborations, for which the `status`
 is set to `pending`, indicating invitations that have been sent but not
 yet accepted.
 
-
 ## List pending collaborations
 
 Retrieves all pending collaboration invites for this user.
@@ -85,7 +80,7 @@ This operation is performed by calling function `getCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaborations/).
 
-*Currently we don't have an example for calling `getCollaborations` in integration tests*
+_Currently we don't have an example for calling `getCollaborations` in integration tests_
 
 ### Arguments
 
@@ -93,7 +88,6 @@ See the endpoint docs at
   - Query parameters of getCollaborations method
 - headers `GetCollaborationsHeadersArg`
   - Headers of getCollaborations method
-
 
 ### Returns
 
@@ -103,7 +97,6 @@ Returns a collection of pending collaboration objects.
 
 If the user has no pending collaborations, the collection
 will be empty.
-
 
 ## List group collaborations
 
@@ -118,7 +111,7 @@ This operation is performed by calling function `getGroupCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-groups-id-collaborations/).
 
-*Currently we don't have an example for calling `getGroupCollaborations` in integration tests*
+_Currently we don't have an example for calling `getGroupCollaborations` in integration tests_
 
 ### Arguments
 
@@ -129,12 +122,9 @@ See the endpoint docs at
 - headers `GetGroupCollaborationsHeadersArg`
   - Headers of getGroupCollaborations method
 
-
 ### Returns
 
 This function returns a value of type `Collaborations`.
 
 Returns a collection of collaboration objects. If there are no
 collaborations, an empty collection will be returned.
-
-

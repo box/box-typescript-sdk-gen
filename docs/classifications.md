@@ -1,6 +1,5 @@
 # ClassificationsManager
 
-
 - [List all classifications](#list-all-classifications)
 - [Delete all classifications](#delete-all-classifications)
 - [Add classification](#add-classification)
@@ -22,13 +21,12 @@ This operation is performed by calling function `getMetadataTemplateEnterpriseSe
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema/).
 
-*Currently we don't have an example for calling `getMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests*
+_Currently we don't have an example for calling `getMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests_
 
 ### Arguments
 
 - headers `GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
   - Headers of getMetadataTemplateEnterpriseSecurityClassificationSchema method
-
 
 ### Returns
 
@@ -37,7 +35,6 @@ This function returns a value of type `ClassificationTemplate`.
 Returns the `securityClassification` metadata template, which contains
 a `Box__Security__Classification__Key` field that lists all the
 classifications available to this enterprise.
-
 
 ## Delete all classifications
 
@@ -49,13 +46,12 @@ This operation is performed by calling function `deleteMetadataTemplateEnterpris
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema/).
 
-*Currently we don't have an example for calling `deleteMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests*
+_Currently we don't have an example for calling `deleteMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests_
 
 ### Arguments
 
 - headers `DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
   - Headers of deleteMetadataTemplateEnterpriseSecurityClassificationSchema method
-
 
 ### Returns
 
@@ -63,7 +59,6 @@ This function returns a value of type `undefined`.
 
 Returns an empty response when the metadata
 template for classifications is successfully deleted.
-
 
 ## Add classification
 
@@ -79,7 +74,7 @@ This operation is performed by calling function `updateMetadataTemplateEnterpris
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-add/).
 
-*Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd` in integration tests*
+_Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd` in integration tests_
 
 ### Arguments
 
@@ -88,7 +83,6 @@ See the endpoint docs at
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd method
 
-
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
@@ -96,7 +90,6 @@ This function returns a value of type `ClassificationTemplate`.
 Returns the updated `securityClassification` metadata template, which
 contains a `Box__Security__Classification__Key` field that lists all
 the classifications available to this enterprise.
-
 
 ## Update classification
 
@@ -112,7 +105,7 @@ This operation is performed by calling function `updateMetadataTemplateEnterpris
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-update/).
 
-*Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate` in integration tests*
+_Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate` in integration tests_
 
 ### Arguments
 
@@ -121,7 +114,6 @@ See the endpoint docs at
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate method
 
-
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
@@ -129,7 +121,6 @@ This function returns a value of type `ClassificationTemplate`.
 Returns the updated `securityClassification` metadata template, which
 contains a `Box__Security__Classification__Key` field that lists all
 the classifications available to this enterprise.
-
 
 ## Delete classification
 
@@ -145,7 +136,7 @@ This operation is performed by calling function `updateMetadataTemplateEnterpris
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-delete/).
 
-*Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete` in integration tests*
+_Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete` in integration tests_
 
 ### Arguments
 
@@ -154,7 +145,6 @@ See the endpoint docs at
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete method
 
-
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
@@ -162,7 +152,6 @@ This function returns a value of type `ClassificationTemplate`.
 Returns the updated `securityClassification` metadata template, which
 contains a `Box__Security__Classification__Key` field that lists all
 the classifications available to this enterprise.
-
 
 ## Add initial classifications
 
@@ -179,7 +168,7 @@ This operation is performed by calling function `createMetadataTemplateSchemaCla
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-templates-schema-classifications/).
 
-*Currently we don't have an example for calling `createMetadataTemplateSchemaClassification` in integration tests*
+_Currently we don't have an example for calling `createMetadataTemplateSchemaClassification` in integration tests_
 
 ### Arguments
 
@@ -188,7 +177,6 @@ See the endpoint docs at
 - headers `CreateMetadataTemplateSchemaClassificationHeadersArg`
   - Headers of createMetadataTemplateSchemaClassification method
 
-
 ### Returns
 
 This function returns a value of type `ClassificationTemplate`.
@@ -196,5 +184,3 @@ This function returns a value of type `ClassificationTemplate`.
 Returns a new `securityClassification` metadata template, which
 contains a `Box__Security__Classification__Key` field that lists all
 the classifications available to this enterprise.
-
-

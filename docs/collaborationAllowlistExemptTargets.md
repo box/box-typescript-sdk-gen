@@ -1,6 +1,5 @@
 # CollaborationAllowlistExemptTargetsManager
 
-
 - [List users exempt from collaboration domain restrictions](#list-users-exempt-from-collaboration-domain-restrictions)
 - [Create user exemption from collaboration domain restrictions](#create-user-exemption-from-collaboration-domain-restrictions)
 - [Get user exempt from collaboration domain restrictions](#get-user-exempt-from-collaboration-domain-restrictions)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getCollaborationWhitelistExempt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets/).
 
-*Currently we don't have an example for calling `getCollaborationWhitelistExemptTargets` in integration tests*
+_Currently we don't have an example for calling `getCollaborationWhitelistExemptTargets` in integration tests_
 
 ### Arguments
 
@@ -25,13 +24,11 @@ See the endpoint docs at
 - headers `GetCollaborationWhitelistExemptTargetsHeadersArg`
   - Headers of getCollaborationWhitelistExemptTargets method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistExemptTargets`.
 
 Returns a collection of user exemptions.
-
 
 ## Create user exemption from collaboration domain restrictions
 
@@ -43,7 +40,7 @@ This operation is performed by calling function `createCollaborationWhitelistExe
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaboration-whitelist-exempt-targets/).
 
-*Currently we don't have an example for calling `createCollaborationWhitelistExemptTarget` in integration tests*
+_Currently we don't have an example for calling `createCollaborationWhitelistExemptTarget` in integration tests_
 
 ### Arguments
 
@@ -52,13 +49,11 @@ See the endpoint docs at
 - headers `CreateCollaborationWhitelistExemptTargetHeadersArg`
   - Headers of createCollaborationWhitelistExemptTarget method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistExemptTarget`.
 
 Returns a new exemption entry.
-
 
 ## Get user exempt from collaboration domain restrictions
 
@@ -70,7 +65,7 @@ This operation is performed by calling function `getCollaborationWhitelistExempt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets-id/).
 
-*Currently we don't have an example for calling `getCollaborationWhitelistExemptTargetById` in integration tests*
+_Currently we don't have an example for calling `getCollaborationWhitelistExemptTargetById` in integration tests_
 
 ### Arguments
 
@@ -79,13 +74,11 @@ See the endpoint docs at
 - headers `GetCollaborationWhitelistExemptTargetByIdHeadersArg`
   - Headers of getCollaborationWhitelistExemptTargetById method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistExemptTarget`.
 
 Returns the user's exempted from the list of collaboration domains.
-
 
 ## Remove user from list of users exempt from domain restrictions
 
@@ -97,7 +90,7 @@ This operation is performed by calling function `deleteCollaborationWhitelistExe
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-exempt-targets-id/).
 
-*Currently we don't have an example for calling `deleteCollaborationWhitelistExemptTargetById` in integration tests*
+_Currently we don't have an example for calling `deleteCollaborationWhitelistExemptTargetById` in integration tests_
 
 ### Arguments
 
@@ -106,12 +99,9 @@ See the endpoint docs at
 - headers `DeleteCollaborationWhitelistExemptTargetByIdHeadersArg`
   - Headers of deleteCollaborationWhitelistExemptTargetById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the exemption was
 successfully deleted.
-
-
