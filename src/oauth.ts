@@ -134,7 +134,7 @@ export class OAuth implements Authentication {
   /**
    * Get the access token for the app user.  If the token is not cached or is expired, a new one will be fetched.
    * @param networkSession An object to keep network session state
-   * @returns {Promise<string>} A promise resolving to the access token.
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (!this.token) {
@@ -148,7 +148,8 @@ export class OAuth implements Authentication {
   /**
    * Get a new access token for the app user.
    * @param networkSession An object to keep network session state
-   * @returns {Promise<string>} A promise resolving to the access token.
+   * @param refreshToken Refresh token, which can be used to obtain a new access token
+   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
    */
   async refreshToken(
     networkSession?: NetworkSession,
