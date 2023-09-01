@@ -107,28 +107,3 @@ export type FileScope =
   | 'item_preview'
   | 'item_rename'
   | 'item_share';
-
-export interface AccessToken {
-  /**
-   * The requested access token. */
-  readonly access_token?: string;
-  /**
-   * The time in seconds in seconds by which this token will expire. */
-  readonly expires_in?: number;
-  /**
-   * The type of access token returned. */
-  readonly token_type?: 'bearer';
-  /**
-   * The permissions that this access token permits,
-   * providing a list of resources (files, folders, etc)
-   * and the scopes permitted for each of those resources. */
-  readonly restricted_to?: FileScope[];
-  /**
-   * The refresh token for this access token, which can be used
-   * to request a new access token when the current one expires. */
-  readonly refresh_token?: string;
-  /**
-   * The type of downscoped access token returned. This is only
-   * returned if an access token has been downscoped. */
-  readonly issued_token_type?: 'urn:ietf:params:oauth:token-type:access_token';
-}

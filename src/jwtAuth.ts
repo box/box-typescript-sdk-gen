@@ -1,9 +1,9 @@
 import {
-  AccessToken,
   TokenRequest,
   TokenRequestBoxSubjectType,
   TokenRequestGrantType,
 } from './authSchemas.js';
+import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
 import { readFileSync } from 'fs';
 import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
@@ -131,7 +131,7 @@ export class JwtConfig {
  */
 export class JwtAuth implements Authentication {
   config: JwtConfig;
-  token?: string;
+  token?: AccessToken;
   subjectId: string;
   subjectType: string;
 
@@ -151,7 +151,7 @@ export class JwtAuth implements Authentication {
    * Get the access token for the app user.  If the token is not cached or is expired, a new one will be fetched.
    * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async retrieveToken(networkSession?: NetworkSession): Promise<string> {
+  async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (!this.token) {
       await this.refreshToken(networkSession);
     }
@@ -164,7 +164,7 @@ export class JwtAuth implements Authentication {
    */
   async refreshToken(
     networkSession?: NetworkSession
-  ): Promise<string | undefined> {
+  ): Promise<AccessToken | undefined> {
     const expInSec = Math.floor(Date.now() / 1000) + 30;
     const claims = {
       exp: expInSec,
@@ -202,8 +202,7 @@ export class JwtAuth implements Authentication {
     };
 
     const response = (await fetch(BOX_JWT_AUDIENCE, params)) as FetchResponse;
-    const tokenResponse = JSON.parse(response.text) as AccessToken;
-    this.token = tokenResponse.access_token;
+    this.token = deserializeAccessToken(JSON.parse(response.text));
     return this.token;
   }
 

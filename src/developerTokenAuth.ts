@@ -1,11 +1,12 @@
 import { Authentication } from './auth';
+import { AccessToken } from './schemas.generated.js';
 import { NetworkSession } from './network';
 
 export class DeveloperTokenAuth implements Authentication {
-  token: string;
+  token: AccessToken;
 
   constructor({ token }: { token: string }) {
-    this.token = token;
+    this.token = { accessToken: token } satisfies AccessToken;
   }
 
   async retrieveToken(networkSession?: NetworkSession) {
