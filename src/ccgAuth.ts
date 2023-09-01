@@ -36,14 +36,26 @@ export class CcgAuth implements Authentication {
     }
   }
 
-  async retrieveToken(networkSession?: NetworkSession) {
+  /**
+   * Get the access token for the app user.  If the token is not cached or is expired, a new one will be fetched.
+   * @param networkSession An object to keep network session state
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
+   */
+  async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (!this.token) {
       await this.refreshToken(networkSession);
     }
     return this.token!;
   }
 
-  async refreshToken(networkSession?: NetworkSession) {
+  /**
+   * Get a new access token for the app user.
+   * @param networkSession An object to keep network session state
+   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
+   */
+  async refreshToken(
+    networkSession?: NetworkSession
+  ): Promise<AccessToken | undefined> {
     const requestBody = {
       grant_type: 'client_credentials' as TokenRequestGrantType,
       client_id: this.config.clientId,
