@@ -1,3 +1,9 @@
+import { serializeUserFull } from "../schemas.generated.js";
+import { deserializeUserFull } from "../schemas.generated.js";
+import { serializeUserAvatar } from "../schemas.generated.js";
+import { deserializeUserAvatar } from "../schemas.generated.js";
+import { UserFull } from "../schemas.generated.js";
+import { UserAvatar } from "../schemas.generated.js";
 import { CreateUserAvatarRequestBodyArg } from "../managers/avatars.generated.js";
 import { decodeBase64ByteStream } from "../utils.js";
 import { decodeBase64 } from "../utils.js";

@@ -1,6 +1,5 @@
 # ShieldInformationBarrierSegmentRestrictionsManager
 
-
 - [Get shield information barrier segment restriction by ID](#get-shield-information-barrier-segment-restriction-by-id)
 - [Delete shield information barrier segment restriction by ID](#delete-shield-information-barrier-segment-restriction-by-id)
 - [List shield information barrier segment restrictions](#list-shield-information-barrier-segment-restrictions)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions-id/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictionById` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictionById` in integration tests_
 
 ### Arguments
 
@@ -25,14 +24,12 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
   - Headers of getShieldInformationBarrierSegmentRestrictionById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegmentRestriction`.
 
 Returns the shield information barrier segment
 restriction object.
-
 
 ## Delete shield information barrier segment restriction by ID
 
@@ -44,7 +41,7 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-restrictions-id/).
 
-*Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentRestrictionById` in integration tests*
+_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentRestrictionById` in integration tests_
 
 ### Arguments
 
@@ -53,13 +50,11 @@ See the endpoint docs at
 - headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
   - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Empty body in response
-
 
 ## List shield information barrier segment restrictions
 
@@ -71,7 +66,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictions` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictions` in integration tests_
 
 ### Arguments
 
@@ -80,14 +75,12 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentRestrictionsHeadersArg`
   - Headers of getShieldInformationBarrierSegmentRestrictions method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns a paginated list of
 shield information barrier segment restriction objects.
-
 
 ## Create shield information barrier segment restriction
 
@@ -99,7 +92,7 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-restrictions/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrierSegmentRestriction` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrierSegmentRestriction` in integration tests_
 
 ### Arguments
 
@@ -108,12 +101,9 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierSegmentRestrictionHeadersArg`
   - Headers of createShieldInformationBarrierSegmentRestriction method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegmentRestriction`.
 
 Returns the newly created Shield
 Information Barrier Segment Restriction object.
-
-

@@ -117,9 +117,9 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
       'Content-Type': contentType,
       ...headers,
       ...(options.auth && {
-        Authorization: `Bearer ${await options.auth.retrieveToken(
-          options.networkSession
-        )}`,
+        Authorization: `Bearer ${
+          (await options.auth.retrieveToken(options.networkSession)).accessToken
+        }`,
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,

@@ -1,6 +1,5 @@
 # ShieldInformationBarrierSegmentMembersManager
 
-
 - [Get shield information barrier segment member by ID](#get-shield-information-barrier-segment-member-by-id)
 - [Delete shield information barrier segment member by ID](#delete-shield-information-barrier-segment-member-by-id)
 - [List shield information barrier segment members](#list-shield-information-barrier-segment-members)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members-id/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegmentMemberById` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegmentMemberById` in integration tests_
 
 ### Arguments
 
@@ -25,13 +24,11 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentMemberByIdHeadersArg`
   - Headers of getShieldInformationBarrierSegmentMemberById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegmentMember`.
 
 Returns the shield information barrier segment member object.
-
 
 ## Delete shield information barrier segment member by ID
 
@@ -43,7 +40,7 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-members-id/).
 
-*Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentMemberById` in integration tests*
+_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentMemberById` in integration tests_
 
 ### Arguments
 
@@ -52,14 +49,12 @@ See the endpoint docs at
 - headers `DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg`
   - Headers of deleteShieldInformationBarrierSegmentMemberById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response if the
 segment member was deleted successfully.
-
 
 ## List shield information barrier segment members
 
@@ -71,7 +66,7 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierSegmentMembers` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierSegmentMembers` in integration tests_
 
 ### Arguments
 
@@ -80,14 +75,12 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierSegmentMembersHeadersArg`
   - Headers of getShieldInformationBarrierSegmentMembers method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns a paginated list of
 shield information barrier segment member objects.
-
 
 ## Create shield information barrier segment member
 
@@ -98,7 +91,7 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-members/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrierSegmentMember` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrierSegmentMember` in integration tests_
 
 ### Arguments
 
@@ -107,11 +100,8 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierSegmentMemberHeadersArg`
   - Headers of createShieldInformationBarrierSegmentMember method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrierSegmentMember`.
 
 Returns a new shield information barrier segment Member object.
-
-

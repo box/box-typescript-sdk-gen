@@ -1,6 +1,5 @@
 # GroupsManager
 
-
 - [List groups for enterprise](#list-groups-for-enterprise)
 - [Create group](#create-group)
 - [Get group](#get-group)
@@ -18,8 +17,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-groups/).
 
 <!-- sample get_groups -->
+
 ```ts
-await client.groups.getGroups()
+await client.groups.getGroups();
 ```
 
 ### Arguments
@@ -29,14 +29,12 @@ await client.groups.getGroups()
 - headers `GetGroupsHeadersArg`
   - Headers of getGroups method
 
-
 ### Returns
 
 This function returns a value of type `Groups`.
 
 Returns a collection of group objects. If there are no groups, an
 empty collection will be returned.
-
 
 ## Create group
 
@@ -49,8 +47,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-groups/).
 
 <!-- sample post_groups -->
+
 ```ts
-await client.groups.createGroup({ name: getUuid() } satisfies CreateGroupRequestBodyArg)
+await client.groups.createGroup({
+  name: getUuid(),
+} satisfies CreateGroupRequestBodyArg);
 ```
 
 ### Arguments
@@ -62,13 +63,11 @@ await client.groups.createGroup({ name: getUuid() } satisfies CreateGroupRequest
 - headers `CreateGroupHeadersArg`
   - Headers of createGroup method
 
-
 ### Returns
 
 This function returns a value of type `Group`.
 
 Returns the new group object.
-
 
 ## Get group
 
@@ -82,8 +81,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-groups-id/).
 
 <!-- sample get_groups_id -->
+
 ```ts
-await client.groups.getGroupById(group.id)
+await client.groups.getGroupById(group.id);
 ```
 
 ### Arguments
@@ -95,13 +95,11 @@ await client.groups.getGroupById(group.id)
 - headers `GetGroupByIdHeadersArg`
   - Headers of getGroupById method
 
-
 ### Returns
 
 This function returns a value of type `GroupFull`.
 
 Returns the group object
-
 
 ## Update group
 
@@ -115,8 +113,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-groups-id/).
 
 <!-- sample put_groups_id -->
+
 ```ts
-await client.groups.updateGroupById(group.id, { name: updatedGroupName } satisfies UpdateGroupByIdRequestBodyArg)
+await client.groups.updateGroupById(group.id, {
+  name: updatedGroupName,
+} satisfies UpdateGroupByIdRequestBodyArg);
 ```
 
 ### Arguments
@@ -130,13 +131,11 @@ await client.groups.updateGroupById(group.id, { name: updatedGroupName } satisfi
 - headers `UpdateGroupByIdHeadersArg`
   - Headers of updateGroupById method
 
-
 ### Returns
 
 This function returns a value of type `GroupFull`.
 
 Returns the updated group object.
-
 
 ## Remove group
 
@@ -149,8 +148,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-groups-id/).
 
 <!-- sample delete_groups_id -->
+
 ```ts
-await client.groups.deleteGroupById(group.id)
+await client.groups.deleteGroupById(group.id);
 ```
 
 ### Arguments
@@ -160,12 +160,9 @@ await client.groups.deleteGroupById(group.id)
 - headers `DeleteGroupByIdHeadersArg`
   - Headers of deleteGroupById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the group was
 successfully deleted.
-
-

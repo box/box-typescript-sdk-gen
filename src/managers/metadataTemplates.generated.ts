@@ -281,11 +281,11 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(val
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeUpdateMetadataTemplateSchemaRequestBodyArg(val: UpdateMetadataTemplateSchemaRequestBodyArg): Json {
-    return { ["op"]: serializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(val.op), ["data"]: val.data == void 0 ? void 0 : val.data, ["fieldKey"]: val.fieldKey == void 0 ? void 0 : val.fieldKey, ["fieldKeys"]: val.fieldKeys == void 0 ? void 0 : val.fieldKeys.map(function (item: string): string {
+    return { ["op"]: serializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(val.op), ["data"]: val.data == void 0 ? void 0 : val.data, ["fieldKey"]: val.fieldKey == void 0 ? void 0 : val.fieldKey, ["fieldKeys"]: val.fieldKeys == void 0 ? void 0 : val.fieldKeys.map(function (item: string): any {
             return item;
-        }) as readonly any[], ["enumOptionKey"]: val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey, ["enumOptionKeys"]: val.enumOptionKeys == void 0 ? void 0 : val.enumOptionKeys.map(function (item: string): string {
+        }) as readonly any[], ["enumOptionKey"]: val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey, ["enumOptionKeys"]: val.enumOptionKeys == void 0 ? void 0 : val.enumOptionKeys.map(function (item: string): any {
             return item;
-        }) as readonly any[], ["multiSelectOptionKey"]: val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey, ["multiSelectOptionKeys"]: val.multiSelectOptionKeys == void 0 ? void 0 : val.multiSelectOptionKeys.map(function (item: string): string {
+        }) as readonly any[], ["multiSelectOptionKey"]: val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey, ["multiSelectOptionKeys"]: val.multiSelectOptionKeys == void 0 ? void 0 : val.multiSelectOptionKeys.map(function (item: string): any {
             return item;
         }) as readonly any[] };
 }
@@ -295,15 +295,15 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(val: any):
         readonly [key: string]: string;
     } = val.data == void 0 ? void 0 : val.data;
     const fieldKey: undefined | string = val.fieldKey == void 0 ? void 0 : val.fieldKey;
-    const fieldKeys: undefined | readonly string[] = val.fieldKeys == void 0 ? void 0 : isJson(val.fieldKeys, "array") ? val.fieldKeys.map(function (itm: Json): Json {
+    const fieldKeys: undefined | readonly string[] = val.fieldKeys == void 0 ? void 0 : isJson(val.fieldKeys, "array") ? val.fieldKeys.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const enumOptionKey: undefined | string = val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey;
-    const enumOptionKeys: undefined | readonly string[] = val.enumOptionKeys == void 0 ? void 0 : isJson(val.enumOptionKeys, "array") ? val.enumOptionKeys.map(function (itm: Json): Json {
+    const enumOptionKeys: undefined | readonly string[] = val.enumOptionKeys == void 0 ? void 0 : isJson(val.enumOptionKeys, "array") ? val.enumOptionKeys.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const multiSelectOptionKey: undefined | string = val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey;
-    const multiSelectOptionKeys: undefined | readonly string[] = val.multiSelectOptionKeys == void 0 ? void 0 : isJson(val.multiSelectOptionKeys, "array") ? val.multiSelectOptionKeys.map(function (itm: Json): Json {
+    const multiSelectOptionKeys: undefined | readonly string[] = val.multiSelectOptionKeys == void 0 ? void 0 : isJson(val.multiSelectOptionKeys, "array") ? val.multiSelectOptionKeys.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     return { op: op, data: data, fieldKey: fieldKey, fieldKeys: fieldKeys, enumOptionKey: enumOptionKey, enumOptionKeys: enumOptionKeys, multiSelectOptionKey: multiSelectOptionKey, multiSelectOptionKeys: multiSelectOptionKeys } satisfies UpdateMetadataTemplateSchemaRequestBodyArg;

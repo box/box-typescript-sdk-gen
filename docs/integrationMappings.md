@@ -1,6 +1,5 @@
 # IntegrationMappingsManager
 
-
 - [List Slack integration mappings](#list-slack-integration-mappings)
 - [Create Slack integration mapping](#create-slack-integration-mapping)
 - [Update Slack integration mapping](#update-slack-integration-mapping)
@@ -18,7 +17,7 @@ This operation is performed by calling function `getIntegrationMappingSlack`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-integration-mappings-slack/).
 
-*Currently we don't have an example for calling `getIntegrationMappingSlack` in integration tests*
+_Currently we don't have an example for calling `getIntegrationMappingSlack` in integration tests_
 
 ### Arguments
 
@@ -27,13 +26,11 @@ See the endpoint docs at
 - headers `GetIntegrationMappingSlackHeadersArg`
   - Headers of getIntegrationMappingSlack method
 
-
 ### Returns
 
 This function returns a value of type `IntegrationMappings`.
 
 Returns a collection of integration mappings
-
 
 ## Create Slack integration mapping
 
@@ -48,7 +45,7 @@ This operation is performed by calling function `createIntegrationMappingSlack`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-integration-mappings-slack/).
 
-*Currently we don't have an example for calling `createIntegrationMappingSlack` in integration tests*
+_Currently we don't have an example for calling `createIntegrationMappingSlack` in integration tests_
 
 ### Arguments
 
@@ -57,13 +54,11 @@ See the endpoint docs at
 - headers `CreateIntegrationMappingSlackHeadersArg`
   - Headers of createIntegrationMappingSlack method
 
-
 ### Returns
 
 This function returns a value of type `IntegrationMapping`.
 
 Returns the created integration mapping.
-
 
 ## Update Slack integration mapping
 
@@ -78,7 +73,7 @@ This operation is performed by calling function `updateIntegrationMappingSlackBy
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-integration-mappings-slack-id/).
 
-*Currently we don't have an example for calling `updateIntegrationMappingSlackById` in integration tests*
+_Currently we don't have an example for calling `updateIntegrationMappingSlackById` in integration tests_
 
 ### Arguments
 
@@ -89,18 +84,15 @@ See the endpoint docs at
 - headers `UpdateIntegrationMappingSlackByIdHeadersArg`
   - Headers of updateIntegrationMappingSlackById method
 
-
 ### Returns
 
 This function returns a value of type `IntegrationMapping`.
 
 Returns the updated integration mapping object.
 
-
 ## Delete Slack integration mapping
 
 Deletes a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
-
 
 You need Admin or Co-Admin role to
 use this endpoint.
@@ -110,7 +102,7 @@ This operation is performed by calling function `deleteIntegrationMappingSlackBy
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-integration-mappings-slack-id/).
 
-*Currently we don't have an example for calling `deleteIntegrationMappingSlackById` in integration tests*
+_Currently we don't have an example for calling `deleteIntegrationMappingSlackById` in integration tests_
 
 ### Arguments
 
@@ -119,11 +111,8 @@ See the endpoint docs at
 - headers `DeleteIntegrationMappingSlackByIdHeadersArg`
   - Headers of deleteIntegrationMappingSlackById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Empty body in response
-
-

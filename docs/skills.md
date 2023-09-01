@@ -1,6 +1,5 @@
 # SkillsManager
 
-
 - [List Box Skill cards on file](#list-box-skill-cards-on-file)
 - [Create Box Skill cards on file](#create-box-skill-cards-on-file)
 - [Update Box Skill cards on file](#update-box-skill-cards-on-file)
@@ -16,15 +15,14 @@ This operation is performed by calling function `getFileMetadataGlobalBoxSkillsC
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata-global-box-skills-cards/).
 
-*Currently we don't have an example for calling `getFileMetadataGlobalBoxSkillsCards` in integration tests*
+_Currently we don't have an example for calling `getFileMetadataGlobalBoxSkillsCards` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataGlobalBoxSkillsCardsHeadersArg`
   - Headers of getFileMetadataGlobalBoxSkillsCards method
-
 
 ### Returns
 
@@ -35,7 +33,6 @@ Returns all the metadata associated with a file.
 This API does not support pagination and will therefore always return
 all of the metadata associated to the file.
 
-
 ## Create Box Skill cards on file
 
 Applies one or more Box Skills metadata cards to a file.
@@ -45,17 +42,16 @@ This operation is performed by calling function `createFileMetadataGlobalBoxSkil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id-metadata-global-box-skills-cards/).
 
-*Currently we don't have an example for calling `createFileMetadataGlobalBoxSkillsCard` in integration tests*
+_Currently we don't have an example for calling `createFileMetadataGlobalBoxSkillsCard` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg`
   - Request body of createFileMetadataGlobalBoxSkillsCard method
 - headers `CreateFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of createFileMetadataGlobalBoxSkillsCard method
-
 
 ### Returns
 
@@ -63,7 +59,6 @@ This function returns a value of type `SkillCardsMetadata`.
 
 Returns the instance of the template that was applied to the file,
 including the data that was applied to the template.
-
 
 ## Update Box Skill cards on file
 
@@ -74,17 +69,16 @@ This operation is performed by calling function `updateFileMetadataGlobalBoxSkil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-metadata-global-box-skills-cards/).
 
-*Currently we don't have an example for calling `updateFileMetadataGlobalBoxSkillsCard` in integration tests*
+_Currently we don't have an example for calling `updateFileMetadataGlobalBoxSkillsCard` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `readonly UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg[]`
   - Request body of updateFileMetadataGlobalBoxSkillsCard method
 - headers `UpdateFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of updateFileMetadataGlobalBoxSkillsCard method
-
 
 ### Returns
 
@@ -92,7 +86,6 @@ This function returns a value of type `SkillCardsMetadata`.
 
 Returns the updated metadata template, with the
 custom template data included.
-
 
 ## Remove Box Skill cards from file
 
@@ -103,15 +96,14 @@ This operation is performed by calling function `deleteFileMetadataGlobalBoxSkil
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-metadata-global-box-skills-cards/).
 
-*Currently we don't have an example for calling `deleteFileMetadataGlobalBoxSkillsCard` in integration tests*
+_Currently we don't have an example for calling `deleteFileMetadataGlobalBoxSkillsCard` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of deleteFileMetadataGlobalBoxSkillsCard method
-
 
 ### Returns
 
@@ -119,7 +111,6 @@ This function returns a value of type `undefined`.
 
 Returns an empty response when the cards are
 successfully deleted.
-
 
 ## Update all Box Skill cards on file
 
@@ -131,7 +122,7 @@ This operation is performed by calling function `updateSkillInvocationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-skill-invocations-id/).
 
-*Currently we don't have an example for calling `updateSkillInvocationById` in integration tests*
+_Currently we don't have an example for calling `updateSkillInvocationById` in integration tests_
 
 ### Arguments
 
@@ -142,11 +133,8 @@ See the endpoint docs at
 - headers `UpdateSkillInvocationByIdHeadersArg`
   - Headers of updateSkillInvocationById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the card has been successfully updated.
-
-

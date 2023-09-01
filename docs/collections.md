@@ -1,6 +1,5 @@
 # CollectionsManager
 
-
 - [List all collections](#list-all-collections)
 - [List collection items](#list-collection-items)
 
@@ -17,8 +16,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collections/).
 
 <!-- sample get_collections -->
+
 ```ts
-await client.collections.getCollections()
+await client.collections.getCollections();
 ```
 
 ### Arguments
@@ -28,13 +28,11 @@ await client.collections.getCollections()
 - headers `GetCollectionsHeadersArg`
   - Headers of getCollections method
 
-
 ### Returns
 
 This function returns a value of type `Collections`.
 
 Returns all collections for the given user
-
 
 ## List collection items
 
@@ -47,8 +45,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collections-id-items/).
 
 <!-- sample get_collections_id_items -->
+
 ```ts
-await client.collections.getCollectionItems(favouriteCollection.id)
+await client.collections.getCollectionItems(favouriteCollection.id);
 ```
 
 ### Arguments
@@ -60,11 +59,8 @@ await client.collections.getCollectionItems(favouriteCollection.id)
 - headers `GetCollectionItemsHeadersArg`
   - Headers of getCollectionItems method
 
-
 ### Returns
 
 This function returns a value of type `Items`.
 
 Returns an array of items in the collection.
-
-

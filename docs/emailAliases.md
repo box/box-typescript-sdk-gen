@@ -1,6 +1,5 @@
 # EmailAliasesManager
 
-
 - [List user's email aliases](#list-users-email-aliases)
 - [Create email alias](#create-email-alias)
 - [Remove email alias](#remove-email-alias)
@@ -16,8 +15,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-users-id-email-aliases/).
 
 <!-- sample get_users_id_email_aliases -->
+
 ```ts
-await client.emailAliases.getUserEmailAliases(newUser.id)
+await client.emailAliases.getUserEmailAliases(newUser.id);
 ```
 
 ### Arguments
@@ -27,13 +27,11 @@ await client.emailAliases.getUserEmailAliases(newUser.id)
 - headers `GetUserEmailAliasesHeadersArg`
   - Headers of getUserEmailAliases method
 
-
 ### Returns
 
 This function returns a value of type `EmailAliases`.
 
 Returns a collection of email aliases.
-
 
 ## Create email alias
 
@@ -45,8 +43,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-users-id-email-aliases/).
 
 <!-- sample post_users_id_email_aliases -->
+
 ```ts
-await client.emailAliases.createUserEmailAlias(newUser.id, { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBodyArg)
+await client.emailAliases.createUserEmailAlias(newUser.id, {
+  email: newAliasEmail,
+} satisfies CreateUserEmailAliasRequestBodyArg);
 ```
 
 ### Arguments
@@ -58,13 +59,11 @@ await client.emailAliases.createUserEmailAlias(newUser.id, { email: newAliasEmai
 - headers `CreateUserEmailAliasHeadersArg`
   - Headers of createUserEmailAlias method
 
-
 ### Returns
 
 This function returns a value of type `EmailAlias`.
 
 Returns the newly created email alias object.
-
 
 ## Remove email alias
 
@@ -76,8 +75,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-users-id-email-aliases-id/).
 
 <!-- sample delete_users_id_email_aliases_id -->
+
 ```ts
-await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id)
+await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id);
 ```
 
 ### Arguments
@@ -89,11 +89,8 @@ await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id)
 - headers `DeleteUserEmailAliasByIdHeadersArg`
   - Headers of deleteUserEmailAliasById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Removes the alias and returns an empty response.
-
-

@@ -275,7 +275,7 @@ export function deserializeUpdateFileByIdRequestBodyArgCollectionsField(val: any
 export function serializeUpdateFileByIdRequestBodyArg(val: UpdateFileByIdRequestBodyArg): Json {
     return { ["name"]: val.name == void 0 ? void 0 : val.name, ["description"]: val.description == void 0 ? void 0 : val.description, ["parent"]: val.parent == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgParentField(val.parent), ["shared_link"]: val.sharedLink == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink), ["lock"]: val.lock == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgLockField(val.lock), ["disposition_at"]: val.dispositionAt == void 0 ? void 0 : val.dispositionAt, ["permissions"]: val.permissions == void 0 ? void 0 : serializeUpdateFileByIdRequestBodyArgPermissionsField(val.permissions), ["collections"]: val.collections == void 0 ? void 0 : val.collections.map(function (item: UpdateFileByIdRequestBodyArgCollectionsField): any {
             return serializeUpdateFileByIdRequestBodyArgCollectionsField(item);
-        }) as readonly any[], ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): string {
+        }) as readonly any[], ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): any {
             return item;
         }) as readonly any[] };
 }
@@ -290,7 +290,7 @@ export function deserializeUpdateFileByIdRequestBodyArg(val: any): UpdateFileByI
     const collections: undefined | readonly UpdateFileByIdRequestBodyArgCollectionsField[] = val.collections == void 0 ? void 0 : isJson(val.collections, "array") ? val.collections.map(function (itm: Json): any {
         return deserializeUpdateFileByIdRequestBodyArgCollectionsField(itm);
     }) as readonly any[] : [];
-    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): Json {
+    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     return { name: name, description: description, parent: parent, sharedLink: sharedLink, lock: lock, dispositionAt: dispositionAt, permissions: permissions, collections: collections, tags: tags } satisfies UpdateFileByIdRequestBodyArg;

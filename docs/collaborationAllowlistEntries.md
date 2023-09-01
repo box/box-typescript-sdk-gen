@@ -1,6 +1,5 @@
 # CollaborationAllowlistEntriesManager
 
-
 - [List allowed collaboration domains](#list-allowed-collaboration-domains)
 - [Add domain to list of allowed collaboration domains](#add-domain-to-list-of-allowed-collaboration-domains)
 - [Get allowed collaboration domain](#get-allowed-collaboration-domain)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getCollaborationWhitelistEntrie
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries/).
 
-*Currently we don't have an example for calling `getCollaborationWhitelistEntries` in integration tests*
+_Currently we don't have an example for calling `getCollaborationWhitelistEntries` in integration tests_
 
 ### Arguments
 
@@ -25,13 +24,11 @@ See the endpoint docs at
 - headers `GetCollaborationWhitelistEntriesHeadersArg`
   - Headers of getCollaborationWhitelistEntries method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistEntries`.
 
 Returns a collection of domains that are allowed for collaboration.
-
 
 ## Add domain to list of allowed collaboration domains
 
@@ -43,7 +40,7 @@ This operation is performed by calling function `createCollaborationWhitelistEnt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaboration-whitelist-entries/).
 
-*Currently we don't have an example for calling `createCollaborationWhitelistEntry` in integration tests*
+_Currently we don't have an example for calling `createCollaborationWhitelistEntry` in integration tests_
 
 ### Arguments
 
@@ -52,13 +49,11 @@ See the endpoint docs at
 - headers `CreateCollaborationWhitelistEntryHeadersArg`
   - Headers of createCollaborationWhitelistEntry method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistEntry`.
 
 Returns a new entry on the list of allowed domains.
-
 
 ## Get allowed collaboration domain
 
@@ -70,7 +65,7 @@ This operation is performed by calling function `getCollaborationWhitelistEntryB
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries-id/).
 
-*Currently we don't have an example for calling `getCollaborationWhitelistEntryById` in integration tests*
+_Currently we don't have an example for calling `getCollaborationWhitelistEntryById` in integration tests_
 
 ### Arguments
 
@@ -79,13 +74,11 @@ See the endpoint docs at
 - headers `GetCollaborationWhitelistEntryByIdHeadersArg`
   - Headers of getCollaborationWhitelistEntryById method
 
-
 ### Returns
 
 This function returns a value of type `CollaborationAllowlistEntry`.
 
 Returns an entry on the list of allowed domains.
-
 
 ## Remove domain from list of allowed collaboration domains
 
@@ -97,7 +90,7 @@ This operation is performed by calling function `deleteCollaborationWhitelistEnt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-entries-id/).
 
-*Currently we don't have an example for calling `deleteCollaborationWhitelistEntryById` in integration tests*
+_Currently we don't have an example for calling `deleteCollaborationWhitelistEntryById` in integration tests_
 
 ### Arguments
 
@@ -106,12 +99,9 @@ See the endpoint docs at
 - headers `DeleteCollaborationWhitelistEntryByIdHeadersArg`
   - Headers of deleteCollaborationWhitelistEntryById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the entry was
 successfully deleted.
-
-

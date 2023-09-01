@@ -1,6 +1,5 @@
 # FolderLocksManager
 
-
 - [List folder locks](#list-folder-locks)
 - [Create folder lock](#create-folder-lock)
 - [Delete folder lock](#delete-folder-lock)
@@ -18,8 +17,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folder-locks/).
 
 <!-- sample get_folder_locks -->
+
 ```ts
-await client.folderLocks.getFolderLocks({ folderId: folder.id } satisfies GetFolderLocksQueryParamsArg)
+await client.folderLocks.getFolderLocks({
+  folderId: folder.id,
+} satisfies GetFolderLocksQueryParamsArg);
 ```
 
 ### Arguments
@@ -29,14 +31,12 @@ await client.folderLocks.getFolderLocks({ folderId: folder.id } satisfies GetFol
 - headers `GetFolderLocksHeadersArg`
   - Headers of getFolderLocks method
 
-
 ### Returns
 
 This function returns a value of type `FolderLocks`.
 
 Returns details for all folder locks applied to the folder, including the
 lock type and user that applied the lock.
-
 
 ## Create folder lock
 
@@ -52,8 +52,18 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folder-locks/).
 
 <!-- sample post_folder_locks -->
+
 ```ts
-await client.folderLocks.createFolderLock({ folder: { id: folder.id, type: "folder" } satisfies CreateFolderLockRequestBodyArgFolderField, lockedOperations: { move: true, delete: true } satisfies CreateFolderLockRequestBodyArgLockedOperationsField } satisfies CreateFolderLockRequestBodyArg)
+await client.folderLocks.createFolderLock({
+  folder: {
+    id: folder.id,
+    type: 'folder',
+  } satisfies CreateFolderLockRequestBodyArgFolderField,
+  lockedOperations: {
+    move: true,
+    delete: true,
+  } satisfies CreateFolderLockRequestBodyArgLockedOperationsField,
+} satisfies CreateFolderLockRequestBodyArg);
 ```
 
 ### Arguments
@@ -63,14 +73,12 @@ await client.folderLocks.createFolderLock({ folder: { id: folder.id, type: "fold
 - headers `CreateFolderLockHeadersArg`
   - Headers of createFolderLock method
 
-
 ### Returns
 
 This function returns a value of type `FolderLock`.
 
 Returns the instance of the folder lock that was applied to the folder,
 including the user that applied the lock and the operations set.
-
 
 ## Delete folder lock
 
@@ -85,8 +93,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folder-locks-id/).
 
 <!-- sample delete_folder_locks_id -->
+
 ```ts
-await client.folderLocks.deleteFolderLockById(folderLock.id)
+await client.folderLocks.deleteFolderLockById(folderLock.id);
 ```
 
 ### Arguments
@@ -96,11 +105,8 @@ await client.folderLocks.deleteFolderLockById(folderLock.id)
 - headers `DeleteFolderLockByIdHeadersArg`
   - Headers of deleteFolderLockById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the folder lock is successfully deleted.
-
-

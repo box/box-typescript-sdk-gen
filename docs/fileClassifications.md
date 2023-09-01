@@ -1,6 +1,5 @@
 # FileClassificationsManager
 
-
 - [Get classification on file](#get-classification-on-file)
 - [Add classification to file](#add-classification-to-file)
 - [Update classification on file](#update-classification-on-file)
@@ -20,15 +19,14 @@ This operation is performed by calling function `getFileMetadataEnterpriseSecuri
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-*Currently we don't have an example for calling `getFileMetadataEnterpriseSecurityClassification6VmVochwUWo` in integration tests*
+_Currently we don't have an example for calling `getFileMetadataEnterpriseSecurityClassification6VmVochwUWo` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
   - Headers of getFileMetadataEnterpriseSecurityClassification6VmVochwUWo method
-
 
 ### Returns
 
@@ -38,7 +36,6 @@ Returns an instance of the `securityClassification` metadata
 template, which contains a `Box__Security__Classification__Key`
 field that lists all the classifications available to this
 enterprise.
-
 
 ## Add classification to file
 
@@ -54,17 +51,16 @@ This operation is performed by calling function `createFileMetadataEnterpriseSec
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-*Currently we don't have an example for calling `createFileMetadataEnterpriseSecurityClassification` in integration tests*
+_Currently we don't have an example for calling `createFileMetadataEnterpriseSecurityClassification` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg`
   - Request body of createFileMetadataEnterpriseSecurityClassification method
 - headers `CreateFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of createFileMetadataEnterpriseSecurityClassification method
-
 
 ### Returns
 
@@ -72,7 +68,6 @@ This function returns a value of type `Classification`.
 
 Returns the classification template instance
 that was applied to the file.
-
 
 ## Update classification on file
 
@@ -87,24 +82,22 @@ This operation is performed by calling function `updateFileMetadataEnterpriseSec
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-*Currently we don't have an example for calling `updateFileMetadataEnterpriseSecurityClassification` in integration tests*
+_Currently we don't have an example for calling `updateFileMetadataEnterpriseSecurityClassification` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `readonly UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg[]`
   - Request body of updateFileMetadataEnterpriseSecurityClassification method
 - headers `UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of updateFileMetadataEnterpriseSecurityClassification method
-
 
 ### Returns
 
 This function returns a value of type `Classification`.
 
 Returns the updated classification metadata template instance.
-
 
 ## Remove classification from file
 
@@ -119,15 +112,14 @@ This operation is performed by calling function `deleteFileMetadataEnterpriseSec
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-*Currently we don't have an example for calling `deleteFileMetadataEnterpriseSecurityClassification` in integration tests*
+_Currently we don't have an example for calling `deleteFileMetadataEnterpriseSecurityClassification` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of deleteFileMetadataEnterpriseSecurityClassification method
-
 
 ### Returns
 
@@ -135,5 +127,3 @@ This function returns a value of type `undefined`.
 
 Returns an empty response when the classification is
 successfully deleted.
-
-

@@ -2544,6 +2544,14 @@ export type SignRequestSigner = SignRequestCreateSigner & {
     /**
      * URL to direct a signer to for signing */
     readonly embedUrl?: string;
+    /**
+     * This URL is specifically designed for
+     * signing documents within an HTML `iframe` tag.
+     * It will be returned in the response
+     * only if the `embed_url_external_user_id`
+     * parameter was passed in the
+     * `create sign request` call. */
+    readonly iframeableEmbedUrl?: string;
 };
 export interface SignRequestBase {
     readonly isDocumentPreparationNeeded?: boolean;
@@ -2801,37 +2809,19 @@ export type MetadataFieldFilterFloat = {
 export type MetadataFieldFilterMultiSelect = {
     readonly [key: string]: readonly string[];
 };
+export interface MetadataFieldFilterFloatRangeMapValue {
+    readonly lt?: number;
+    readonly gt?: number;
+}
 export type MetadataFieldFilterFloatRange = {
-    readonly [key: string]: {
-        /**
-         * Specifies the (inclusive) upper bound for the metadata field
-         * value. The value of a field must be lower than (`lt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly lt?: number;
-        /**
-         * Specifies the (inclusive) lower bound for the metadata field
-         * value. The value of a field must be greater than (`gt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly gt?: number;
-    };
+    readonly [key: string]: MetadataFieldFilterFloatRangeMapValue;
 };
+export interface MetadataFieldFilterDateRangeMapValue {
+    readonly lt?: string;
+    readonly gt?: string;
+}
 export type MetadataFieldFilterDateRange = {
-    readonly [key: string]: {
-        /**
-         * Specifies the (inclusive) upper bound for the metadata field
-         * value. The value of a field must be lower than (`lt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly lt?: string;
-        /**
-         * Specifies the (inclusive) lower bound for the metadata field
-         * value. The value of a field must be greater than (`gt`) or
-         * equal to this value for the search query to match this
-         * template. */
-        readonly gt?: string;
-    };
+    readonly [key: string]: MetadataFieldFilterDateRangeMapValue;
 };
 export function serializePostOAuth2TokenGrantTypeField(val: PostOAuth2TokenGrantTypeField): Json {
     return val;
@@ -3009,7 +2999,7 @@ export function deserializeMetadataQueryOrderByField(val: any): MetadataQueryOrd
 export function serializeMetadataQuery(val: MetadataQuery): Json {
     return { ["from"]: val.from, ["query"]: val.query == void 0 ? void 0 : val.query, ["query_params"]: val.queryParams == void 0 ? void 0 : val.queryParams, ["ancestor_folder_id"]: val.ancestorFolderId, ["order_by"]: val.orderBy == void 0 ? void 0 : val.orderBy.map(function (item: MetadataQueryOrderByField): any {
             return serializeMetadataQueryOrderByField(item);
-        }) as readonly any[], ["limit"]: val.limit == void 0 ? void 0 : val.limit, ["marker"]: val.marker == void 0 ? void 0 : val.marker, ["fields"]: val.fields == void 0 ? void 0 : val.fields.map(function (item: string): string {
+        }) as readonly any[], ["limit"]: val.limit == void 0 ? void 0 : val.limit, ["marker"]: val.marker == void 0 ? void 0 : val.marker, ["fields"]: val.fields == void 0 ? void 0 : val.fields.map(function (item: string): any {
             return item;
         }) as readonly any[] };
 }
@@ -3025,7 +3015,7 @@ export function deserializeMetadataQuery(val: any): MetadataQuery {
     }) as readonly any[] : [];
     const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
     const marker: undefined | string = val.marker == void 0 ? void 0 : val.marker;
-    const fields: undefined | readonly string[] = val.fields == void 0 ? void 0 : isJson(val.fields, "array") ? val.fields.map(function (itm: Json): Json {
+    const fields: undefined | readonly string[] = val.fields == void 0 ? void 0 : isJson(val.fields, "array") ? val.fields.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     return { from: from, query: query, queryParams: queryParams, ancestorFolderId: ancestorFolderId, orderBy: orderBy, limit: limit, marker: marker, fields: fields } satisfies MetadataQuery;
@@ -6862,7 +6852,7 @@ export function serializeFileFull(val: FileFull): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FileFull\"";
     }
-    return { ...base, ...{ ["version_number"]: val.versionNumber == void 0 ? void 0 : val.versionNumber, ["comment_count"]: val.commentCount == void 0 ? void 0 : val.commentCount, ["permissions"]: val.permissions == void 0 ? void 0 : serializeFileFullPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): string {
+    return { ...base, ...{ ["version_number"]: val.versionNumber == void 0 ? void 0 : val.versionNumber, ["comment_count"]: val.commentCount == void 0 ? void 0 : val.commentCount, ["permissions"]: val.permissions == void 0 ? void 0 : serializeFileFullPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): any {
                 return item;
             }) as readonly any[], ["lock"]: val.lock == void 0 ? void 0 : serializeFileFullLockField(val.lock), ["extension"]: val.extension == void 0 ? void 0 : val.extension, ["is_package"]: val.isPackage == void 0 ? void 0 : val.isPackage, ["expiring_embed_link"]: val.expiringEmbedLink == void 0 ? void 0 : serializeFileFullExpiringEmbedLinkField(val.expiringEmbedLink), ["watermark_info"]: val.watermarkInfo == void 0 ? void 0 : serializeFileFullWatermarkInfoField(val.watermarkInfo), ["is_accessible_via_shared_link"]: val.isAccessibleViaSharedLink == void 0 ? void 0 : val.isAccessibleViaSharedLink, ["allowed_invitee_roles"]: val.allowedInviteeRoles == void 0 ? void 0 : val.allowedInviteeRoles.map(function (item: FileFullAllowedInviteeRolesField): any {
                 return serializeFileFullAllowedInviteeRolesField(item);
@@ -6874,7 +6864,7 @@ export function deserializeFileFull(val: any): FileFull {
     const versionNumber: undefined | string = val.version_number == void 0 ? void 0 : val.version_number;
     const commentCount: undefined | number = val.comment_count == void 0 ? void 0 : val.comment_count;
     const permissions: undefined | FileFullPermissionsField = val.permissions == void 0 ? void 0 : deserializeFileFullPermissionsField(val.permissions);
-    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): Json {
+    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const lock: undefined | FileFullLockField = val.lock == void 0 ? void 0 : deserializeFileFullLockField(val.lock);
@@ -8682,7 +8672,7 @@ export function serializeFolderFull(val: FolderFull): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"FolderFull\"";
     }
-    return { ...base, ...{ ["sync_state"]: val.syncState == void 0 ? void 0 : serializeFolderFullSyncStateField(val.syncState), ["has_collaborations"]: val.hasCollaborations == void 0 ? void 0 : val.hasCollaborations, ["permissions"]: val.permissions == void 0 ? void 0 : serializeFolderFullPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): string {
+    return { ...base, ...{ ["sync_state"]: val.syncState == void 0 ? void 0 : serializeFolderFullSyncStateField(val.syncState), ["has_collaborations"]: val.hasCollaborations == void 0 ? void 0 : val.hasCollaborations, ["permissions"]: val.permissions == void 0 ? void 0 : serializeFolderFullPermissionsField(val.permissions), ["tags"]: val.tags == void 0 ? void 0 : val.tags.map(function (item: string): any {
                 return item;
             }) as readonly any[], ["can_non_owners_invite"]: val.canNonOwnersInvite == void 0 ? void 0 : val.canNonOwnersInvite, ["is_externally_owned"]: val.isExternallyOwned == void 0 ? void 0 : val.isExternallyOwned, ["metadata"]: val.metadata == void 0 ? void 0 : serializeFolderFullMetadataField(val.metadata), ["is_collaboration_restricted_to_enterprise"]: val.isCollaborationRestrictedToEnterprise == void 0 ? void 0 : val.isCollaborationRestrictedToEnterprise, ["allowed_shared_link_access_levels"]: val.allowedSharedLinkAccessLevels == void 0 ? void 0 : val.allowedSharedLinkAccessLevels.map(function (item: FolderFullAllowedSharedLinkAccessLevelsField): any {
                 return serializeFolderFullAllowedSharedLinkAccessLevelsField(item);
@@ -8694,7 +8684,7 @@ export function deserializeFolderFull(val: any): FolderFull {
     const syncState: undefined | FolderFullSyncStateField = val.sync_state == void 0 ? void 0 : deserializeFolderFullSyncStateField(val.sync_state);
     const hasCollaborations: undefined | boolean = val.has_collaborations == void 0 ? void 0 : val.has_collaborations;
     const permissions: undefined | FolderFullPermissionsField = val.permissions == void 0 ? void 0 : deserializeFolderFullPermissionsField(val.permissions);
-    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): Json {
+    const tags: undefined | readonly string[] = val.tags == void 0 ? void 0 : isJson(val.tags, "array") ? val.tags.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const canNonOwnersInvite: undefined | boolean = val.can_non_owners_invite == void 0 ? void 0 : val.can_non_owners_invite;
@@ -9654,7 +9644,7 @@ export function deserializeZipDownloadNameConflictsField(val: any): ZipDownloadN
     return { id: id, type: type, originalName: originalName, downloadName: downloadName } satisfies ZipDownloadNameConflictsField;
 }
 export function serializeZipDownload(val: ZipDownload): Json {
-    return { ["download_url"]: val.downloadUrl == void 0 ? void 0 : val.downloadUrl, ["status_url"]: val.statusUrl == void 0 ? void 0 : val.statusUrl, ["expires_at"]: val.expiresAt == void 0 ? void 0 : val.expiresAt, ["name_conflicts"]: val.nameConflicts == void 0 ? void 0 : val.nameConflicts.map(function (item: readonly ZipDownloadNameConflictsField[]): readonly any[] {
+    return { ["download_url"]: val.downloadUrl == void 0 ? void 0 : val.downloadUrl, ["status_url"]: val.statusUrl == void 0 ? void 0 : val.statusUrl, ["expires_at"]: val.expiresAt == void 0 ? void 0 : val.expiresAt, ["name_conflicts"]: val.nameConflicts == void 0 ? void 0 : val.nameConflicts.map(function (item: readonly ZipDownloadNameConflictsField[]): any {
             return item.map(function (item: ZipDownloadNameConflictsField): any {
                 return serializeZipDownloadNameConflictsField(item);
             }) as readonly any[];
@@ -10429,7 +10419,7 @@ export function serializeSignRequestSigner(val: SignRequestSigner): Json {
     }
     return { ...base, ...{ ["has_viewed_document"]: val.hasViewedDocument == void 0 ? void 0 : val.hasViewedDocument, ["signer_decision"]: val.signerDecision == void 0 ? void 0 : serializeSignRequestSignerSignerDecisionField(val.signerDecision), ["inputs"]: val.inputs == void 0 ? void 0 : val.inputs.map(function (item: SignRequestSignerInput): any {
                 return serializeSignRequestSignerInput(item);
-            }) as readonly any[], ["embed_url"]: val.embedUrl == void 0 ? void 0 : val.embedUrl } };
+            }) as readonly any[], ["embed_url"]: val.embedUrl == void 0 ? void 0 : val.embedUrl, ["iframeable_embed_url"]: val.iframeableEmbedUrl == void 0 ? void 0 : val.iframeableEmbedUrl } };
 }
 export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     const hasViewedDocument: undefined | boolean = val.has_viewed_document == void 0 ? void 0 : val.has_viewed_document;
@@ -10438,6 +10428,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
         return deserializeSignRequestSignerInput(itm);
     }) as readonly any[] : [];
     const embedUrl: undefined | string = val.embed_url == void 0 ? void 0 : val.embed_url;
+    const iframeableEmbedUrl: undefined | string = val.iframeable_embed_url == void 0 ? void 0 : val.iframeable_embed_url;
     const email: string = val.email;
     const role: undefined | SignRequestCreateSignerRoleField = val.role == void 0 ? void 0 : deserializeSignRequestCreateSignerRoleField(val.role);
     const isInPerson: undefined | boolean = val.is_in_person == void 0 ? void 0 : val.is_in_person;
@@ -10448,7 +10439,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     const loginRequired: undefined | boolean = val.login_required == void 0 ? void 0 : val.login_required;
     const verificationPhoneNumber: undefined | string = val.verification_phone_number == void 0 ? void 0 : val.verification_phone_number;
     const password: undefined | string = val.password == void 0 ? void 0 : val.password;
-    return { hasViewedDocument: hasViewedDocument, signerDecision: signerDecision, inputs: inputs, embedUrl: embedUrl, email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestSigner;
+    return { hasViewedDocument: hasViewedDocument, signerDecision: signerDecision, inputs: inputs, embedUrl: embedUrl, iframeableEmbedUrl: iframeableEmbedUrl, email: email, role: role, isInPerson: isInPerson, order: order, embedUrlExternalUserId: embedUrlExternalUserId, redirectUrl: redirectUrl, declinedRedirectUrl: declinedRedirectUrl, loginRequired: loginRequired, verificationPhoneNumber: verificationPhoneNumber, password: password } satisfies SignRequestSigner;
 }
 export function serializeSignRequestBase(val: SignRequestBase): Json {
     return { ["is_document_preparation_needed"]: val.isDocumentPreparationNeeded == void 0 ? void 0 : val.isDocumentPreparationNeeded, ["redirect_url"]: val.redirectUrl == void 0 ? void 0 : val.redirectUrl, ["declined_redirect_url"]: val.declinedRedirectUrl == void 0 ? void 0 : val.declinedRedirectUrl, ["are_text_signatures_enabled"]: val.areTextSignaturesEnabled == void 0 ? void 0 : val.areTextSignaturesEnabled, ["email_subject"]: val.emailSubject == void 0 ? void 0 : val.emailSubject, ["email_message"]: val.emailMessage == void 0 ? void 0 : val.emailMessage, ["are_reminders_enabled"]: val.areRemindersEnabled == void 0 ? void 0 : val.areRemindersEnabled, ["parent_folder"]: serializeFolderMini(val.parentFolder), ["name"]: val.name == void 0 ? void 0 : val.name, ["prefill_tags"]: val.prefillTags == void 0 ? void 0 : val.prefillTags.map(function (item: SignRequestPrefillTag): any {
@@ -10739,7 +10730,7 @@ export function serializeTemplateSignerInput(val: TemplateSignerInput): Json {
     if (!isJson(base, "object")) {
         throw "Expecting an object for \"TemplateSignerInput\"";
     }
-    return { ...base, ...{ ["type"]: val.type == void 0 ? void 0 : serializeTemplateSignerInputTypeField(val.type), ["content_type"]: val.contentType == void 0 ? void 0 : serializeTemplateSignerInputContentTypeField(val.contentType), ["is_required"]: val.isRequired == void 0 ? void 0 : val.isRequired, ["page_index"]: val.pageIndex, ["document_id"]: val.documentId == void 0 ? void 0 : val.documentId, ["dropdown_choices"]: val.dropdownChoices == void 0 ? void 0 : val.dropdownChoices.map(function (item: string): string {
+    return { ...base, ...{ ["type"]: val.type == void 0 ? void 0 : serializeTemplateSignerInputTypeField(val.type), ["content_type"]: val.contentType == void 0 ? void 0 : serializeTemplateSignerInputContentTypeField(val.contentType), ["is_required"]: val.isRequired == void 0 ? void 0 : val.isRequired, ["page_index"]: val.pageIndex, ["document_id"]: val.documentId == void 0 ? void 0 : val.documentId, ["dropdown_choices"]: val.dropdownChoices == void 0 ? void 0 : val.dropdownChoices.map(function (item: string): any {
                 return item;
             }) as readonly any[], ["group_id"]: val.groupId == void 0 ? void 0 : val.groupId, ["coordinates"]: val.coordinates == void 0 ? void 0 : serializeTemplateSignerInputCoordinatesField(val.coordinates), ["dimensions"]: val.dimensions == void 0 ? void 0 : serializeTemplateSignerInputDimensionsField(val.dimensions) } };
 }
@@ -10749,7 +10740,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     const isRequired: undefined | boolean = val.is_required == void 0 ? void 0 : val.is_required;
     const pageIndex: number = val.page_index;
     const documentId: undefined | string = val.document_id == void 0 ? void 0 : val.document_id;
-    const dropdownChoices: undefined | readonly string[] = val.dropdown_choices == void 0 ? void 0 : isJson(val.dropdown_choices, "array") ? val.dropdown_choices.map(function (itm: Json): Json {
+    const dropdownChoices: undefined | readonly string[] = val.dropdown_choices == void 0 ? void 0 : isJson(val.dropdown_choices, "array") ? val.dropdown_choices.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const groupId: undefined | string = val.group_id == void 0 ? void 0 : val.group_id;
@@ -10834,7 +10825,7 @@ export function deserializeSignTemplateAdditionalInfoFieldRequiredFieldSignersFi
     throw "".concat("Invalid value: ", val) as string;
 }
 export function serializeSignTemplateAdditionalInfoFieldRequiredField(val: SignTemplateAdditionalInfoFieldRequiredField): Json {
-    return { ["signers"]: val.signers == void 0 ? void 0 : val.signers.map(function (item: readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[]): readonly any[] {
+    return { ["signers"]: val.signers == void 0 ? void 0 : val.signers.map(function (item: readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[]): any {
             return item.map(function (item: SignTemplateAdditionalInfoFieldRequiredFieldSignersField): any {
                 return serializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(item);
             }) as readonly any[];
@@ -11032,7 +11023,7 @@ export function serializeUserFull(val: UserFull): Json {
     }
     return { ...base, ...{ ["role"]: val.role == void 0 ? void 0 : serializeUserFullRoleField(val.role), ["tracking_codes"]: val.trackingCodes == void 0 ? void 0 : val.trackingCodes.map(function (item: TrackingCode): any {
                 return serializeTrackingCode(item);
-            }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers, ["is_sync_enabled"]: val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled, ["is_external_collab_restricted"]: val.isExternalCollabRestricted == void 0 ? void 0 : val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits == void 0 ? void 0 : val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification == void 0 ? void 0 : val.isExemptFromLoginVerification, ["enterprise"]: val.enterprise == void 0 ? void 0 : serializeUserFullEnterpriseField(val.enterprise), ["my_tags"]: val.myTags == void 0 ? void 0 : val.myTags.map(function (item: string): string {
+            }) as readonly any[], ["can_see_managed_users"]: val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers, ["is_sync_enabled"]: val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled, ["is_external_collab_restricted"]: val.isExternalCollabRestricted == void 0 ? void 0 : val.isExternalCollabRestricted, ["is_exempt_from_device_limits"]: val.isExemptFromDeviceLimits == void 0 ? void 0 : val.isExemptFromDeviceLimits, ["is_exempt_from_login_verification"]: val.isExemptFromLoginVerification == void 0 ? void 0 : val.isExemptFromLoginVerification, ["enterprise"]: val.enterprise == void 0 ? void 0 : serializeUserFullEnterpriseField(val.enterprise), ["my_tags"]: val.myTags == void 0 ? void 0 : val.myTags.map(function (item: string): any {
                 return item;
             }) as readonly any[], ["hostname"]: val.hostname == void 0 ? void 0 : val.hostname, ["is_platform_access_only"]: val.isPlatformAccessOnly == void 0 ? void 0 : val.isPlatformAccessOnly, ["external_app_user_id"]: val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId } };
 }
@@ -11047,7 +11038,7 @@ export function deserializeUserFull(val: any): UserFull {
     const isExemptFromDeviceLimits: undefined | boolean = val.is_exempt_from_device_limits == void 0 ? void 0 : val.is_exempt_from_device_limits;
     const isExemptFromLoginVerification: undefined | boolean = val.is_exempt_from_login_verification == void 0 ? void 0 : val.is_exempt_from_login_verification;
     const enterprise: undefined | UserFullEnterpriseField = val.enterprise == void 0 ? void 0 : deserializeUserFullEnterpriseField(val.enterprise);
-    const myTags: undefined | readonly string[] = val.my_tags == void 0 ? void 0 : isJson(val.my_tags, "array") ? val.my_tags.map(function (itm: Json): Json {
+    const myTags: undefined | readonly string[] = val.my_tags == void 0 ? void 0 : isJson(val.my_tags, "array") ? val.my_tags.map(function (itm: Json): any {
         return itm;
     }) as readonly any[] : [];
     const hostname: undefined | string = val.hostname == void 0 ? void 0 : val.hostname;
@@ -11121,8 +11112,8 @@ export function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilter
     return Object.fromEntries(Object.entries(val).map(([k, v]: [
         string,
         any
-    ]) => [k, function (v: any): readonly any[] {
-            return v.map(function (item: string): string {
+    ]) => [k, function (v: any): any {
+            return v.map(function (item: string): any {
                 return item;
             }) as readonly any[];
         }(v)])) as {
@@ -11132,30 +11123,38 @@ export function serializeMetadataFieldFilterMultiSelect(val: MetadataFieldFilter
 export function deserializeMetadataFieldFilterMultiSelect(val: any): MetadataFieldFilterMultiSelect {
     return val;
 }
+export function serializeMetadataFieldFilterFloatRangeMapValue(val: MetadataFieldFilterFloatRangeMapValue): Json {
+    return { ["lt"]: val.lt == void 0 ? void 0 : val.lt, ["gt"]: val.gt == void 0 ? void 0 : val.gt };
+}
+export function deserializeMetadataFieldFilterFloatRangeMapValue(val: any): MetadataFieldFilterFloatRangeMapValue {
+    const lt: undefined | number = val.lt == void 0 ? void 0 : val.lt;
+    const gt: undefined | number = val.gt == void 0 ? void 0 : val.gt;
+    return { lt: lt, gt: gt } satisfies MetadataFieldFilterFloatRangeMapValue;
+}
 export function serializeMetadataFieldFilterFloatRange(val: MetadataFieldFilterFloatRange): Json {
     return Object.fromEntries(Object.entries(val).map(([k, v]: [
         string,
         any
-    ]) => [k, function (v: any): {
-            readonly [key: string]: any;
-        } {
-            return { ["lt"]: v.lt == void 0 ? void 0 : v.lt, ["gt"]: v.gt == void 0 ? void 0 : v.gt };
-        }(v)])) as {
+    ]) => [k, serializeMetadataFieldFilterFloatRangeMapValue(v)])) as {
         readonly [key: string]: any;
     };
 }
 export function deserializeMetadataFieldFilterFloatRange(val: any): MetadataFieldFilterFloatRange {
     return val;
 }
+export function serializeMetadataFieldFilterDateRangeMapValue(val: MetadataFieldFilterDateRangeMapValue): Json {
+    return { ["lt"]: val.lt == void 0 ? void 0 : val.lt, ["gt"]: val.gt == void 0 ? void 0 : val.gt };
+}
+export function deserializeMetadataFieldFilterDateRangeMapValue(val: any): MetadataFieldFilterDateRangeMapValue {
+    const lt: undefined | string = val.lt == void 0 ? void 0 : val.lt;
+    const gt: undefined | string = val.gt == void 0 ? void 0 : val.gt;
+    return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRangeMapValue;
+}
 export function serializeMetadataFieldFilterDateRange(val: MetadataFieldFilterDateRange): Json {
     return Object.fromEntries(Object.entries(val).map(([k, v]: [
         string,
         any
-    ]) => [k, function (v: any): {
-            readonly [key: string]: any;
-        } {
-            return { ["lt"]: v.lt == void 0 ? void 0 : v.lt, ["gt"]: v.gt == void 0 ? void 0 : v.gt };
-        }(v)])) as {
+    ]) => [k, serializeMetadataFieldFilterDateRangeMapValue(v)])) as {
         readonly [key: string]: any;
     };
 }

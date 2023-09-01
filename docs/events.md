@@ -1,6 +1,5 @@
 # EventsManager
 
-
 - [List user and enterprise events](#list-user-and-enterprise-events)
 - [Get events long poll endpoint](#get-events-long-poll-endpoint)
 
@@ -21,7 +20,7 @@ This operation is performed by calling function `getEvents`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-events/).
 
-*Currently we don't have an example for calling `getEvents` in integration tests*
+_Currently we don't have an example for calling `getEvents` in integration tests_
 
 ### Arguments
 
@@ -29,7 +28,6 @@ See the endpoint docs at
   - Query parameters of getEvents method
 - headers `GetEventsHeadersArg`
   - Headers of getEvents method
-
 
 ### Returns
 
@@ -42,7 +40,6 @@ including a list of event objects. The response includes a
 `chunk_size` parameter indicating how many events were returned in this
 chunk, as well as the next `stream_position` that can be
 queried.
-
 
 ## Get events long poll endpoint
 
@@ -85,13 +82,12 @@ This operation is performed by calling function `getEventsWithLongPolling`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/options-events/).
 
-*Currently we don't have an example for calling `getEventsWithLongPolling` in integration tests*
+_Currently we don't have an example for calling `getEventsWithLongPolling` in integration tests_
 
 ### Arguments
 
 - headers `GetEventsWithLongPollingHeadersArg`
   - Headers of getEventsWithLongPolling method
-
 
 ### Returns
 
@@ -99,5 +95,3 @@ This function returns a value of type `RealtimeServers`.
 
 Returns a paginated array of servers that can be used
 instead of the regular endpoints for long-polling events.
-
-

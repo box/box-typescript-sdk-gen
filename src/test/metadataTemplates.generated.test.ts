@@ -1,11 +1,17 @@
+import { serializeMetadataTemplate } from "../schemas.generated.js";
+import { deserializeMetadataTemplate } from "../schemas.generated.js";
 import { serializeCreateMetadataTemplateSchemaRequestBodyArg } from "../managers/metadataTemplates.generated.js";
 import { deserializeCreateMetadataTemplateSchemaRequestBodyArg } from "../managers/metadataTemplates.generated.js";
 import { serializeGetMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
 import { deserializeGetMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
+import { serializeMetadataTemplates } from "../schemas.generated.js";
+import { deserializeMetadataTemplates } from "../schemas.generated.js";
 import { serializeDeleteMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
 import { deserializeDeleteMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
+import { MetadataTemplate } from "../schemas.generated.js";
 import { CreateMetadataTemplateSchemaRequestBodyArg } from "../managers/metadataTemplates.generated.js";
 import { GetMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
+import { MetadataTemplates } from "../schemas.generated.js";
 import { DeleteMetadataTemplateSchemaScopeArg } from "../managers/metadataTemplates.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";

@@ -1,6 +1,5 @@
 # MetadataTemplatesManager
 
-
 - [Find metadata template by instance ID](#find-metadata-template-by-instance-id)
 - [Get metadata template by name](#get-metadata-template-by-name)
 - [Update metadata template](#update-metadata-template)
@@ -20,7 +19,7 @@ This operation is performed by calling function `getMetadataTemplates`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates/).
 
-*Currently we don't have an example for calling `getMetadataTemplates` in integration tests*
+_Currently we don't have an example for calling `getMetadataTemplates` in integration tests_
 
 ### Arguments
 
@@ -29,14 +28,12 @@ See the endpoint docs at
 - headers `GetMetadataTemplatesHeadersArg`
   - Headers of getMetadataTemplates method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplates`.
 
 Returns a list containing the 1 metadata template that matches the
 instance ID.
-
 
 ## Get metadata template by name
 
@@ -51,8 +48,12 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-id-id-schema/).
 
 <!-- sample get_metadata_templates_id_id_schema -->
+
 ```ts
-await client.metadataTemplates.getMetadataTemplateSchema("enterprise" as GetMetadataTemplateSchemaScopeArg, template.templateKey)
+await client.metadataTemplates.getMetadataTemplateSchema(
+  'enterprise' as GetMetadataTemplateSchemaScopeArg,
+  template.templateKey
+);
 ```
 
 ### Arguments
@@ -64,14 +65,12 @@ await client.metadataTemplates.getMetadataTemplateSchema("enterprise" as GetMeta
 - headers `GetMetadataTemplateSchemaHeadersArg`
   - Headers of getMetadataTemplateSchema method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplate`.
 
 Returns the metadata template matching the `scope`
 and `template` name.
-
 
 ## Update metadata template
 
@@ -88,7 +87,7 @@ This operation is performed by calling function `updateMetadataTemplateSchema`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-id-id-schema/).
 
-*Currently we don't have an example for calling `updateMetadataTemplateSchema` in integration tests*
+_Currently we don't have an example for calling `updateMetadataTemplateSchema` in integration tests_
 
 ### Arguments
 
@@ -101,14 +100,12 @@ See the endpoint docs at
 - headers `UpdateMetadataTemplateSchemaHeadersArg`
   - Headers of updateMetadataTemplateSchema method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplate`.
 
 Returns the updated metadata template, with the
 custom template data included.
-
 
 ## Remove metadata template
 
@@ -121,8 +118,12 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-templates-id-id-schema/).
 
 <!-- sample delete_metadata_templates_id_id_schema -->
+
 ```ts
-await client.metadataTemplates.deleteMetadataTemplateSchema("enterprise" as DeleteMetadataTemplateSchemaScopeArg, template.templateKey)
+await client.metadataTemplates.deleteMetadataTemplateSchema(
+  'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
+  template.templateKey
+);
 ```
 
 ### Arguments
@@ -134,14 +135,12 @@ await client.metadataTemplates.deleteMetadataTemplateSchema("enterprise" as Dele
 - headers `DeleteMetadataTemplateSchemaHeadersArg`
   - Headers of deleteMetadataTemplateSchema method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the metadata
 template is successfully deleted.
-
 
 ## Get metadata template by ID
 
@@ -153,8 +152,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-id/).
 
 <!-- sample get_metadata_templates_id -->
+
 ```ts
-await client.metadataTemplates.getMetadataTemplateById(template.id)
+await client.metadataTemplates.getMetadataTemplateById(template.id);
 ```
 
 ### Arguments
@@ -164,13 +164,11 @@ await client.metadataTemplates.getMetadataTemplateById(template.id)
 - headers `GetMetadataTemplateByIdHeadersArg`
   - Headers of getMetadataTemplateById method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplate`.
 
 Returns the metadata template that matches the ID.
-
 
 ## List all global metadata templates
 
@@ -183,8 +181,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-global/).
 
 <!-- sample get_metadata_templates_global -->
+
 ```ts
-await client.metadataTemplates.getMetadataTemplateGlobal()
+await client.metadataTemplates.getMetadataTemplateGlobal();
 ```
 
 ### Arguments
@@ -194,14 +193,12 @@ await client.metadataTemplates.getMetadataTemplateGlobal()
 - headers `GetMetadataTemplateGlobalHeadersArg`
   - Headers of getMetadataTemplateGlobal method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplates`.
 
 Returns all of the metadata templates available to all enterprises
 and their corresponding schema.
-
 
 ## List all metadata templates for enterprise
 
@@ -214,8 +211,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise/).
 
 <!-- sample get_metadata_templates_enterprise -->
+
 ```ts
-await client.metadataTemplates.getMetadataTemplateEnterprise()
+await client.metadataTemplates.getMetadataTemplateEnterprise();
 ```
 
 ### Arguments
@@ -225,14 +223,12 @@ await client.metadataTemplates.getMetadataTemplateEnterprise()
 - headers `GetMetadataTemplateEnterpriseHeadersArg`
   - Headers of getMetadataTemplateEnterprise method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplates`.
 
 Returns all of the metadata templates within an enterprise
 and their corresponding schema.
-
 
 ## Create metadata template
 
@@ -245,8 +241,14 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-templates-schema/).
 
 <!-- sample post_metadata_templates_schema -->
+
 ```ts
-await client.metadataTemplates.createMetadataTemplateSchema({ scope: "enterprise", displayName: templateKey, templateKey: templateKey, fields: [{ type: "string", key: "testName", displayName: "testName" }] } satisfies CreateMetadataTemplateSchemaRequestBodyArg)
+await client.metadataTemplates.createMetadataTemplateSchema({
+  scope: 'enterprise',
+  displayName: templateKey,
+  templateKey: templateKey,
+  fields: [{ type: 'string', key: 'testName', displayName: 'testName' }],
+} satisfies CreateMetadataTemplateSchemaRequestBodyArg);
 ```
 
 ### Arguments
@@ -256,11 +258,8 @@ await client.metadataTemplates.createMetadataTemplateSchema({ scope: "enterprise
 - headers `CreateMetadataTemplateSchemaHeadersArg`
   - Headers of createMetadataTemplateSchema method
 
-
 ### Returns
 
 This function returns a value of type `MetadataTemplate`.
 
 The schema representing the metadata template created.
-
-

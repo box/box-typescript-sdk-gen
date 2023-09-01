@@ -1,11 +1,8 @@
-import {
-  AccessToken,
-  TokenRequest,
-  TokenRequestGrantType,
-} from './authSchemas.js';
 import { Authentication } from './auth.js';
+import { TokenRequest, TokenRequestGrantType } from './authSchemas.js';
+import { FetchOptions, FetchResponse, fetch } from './fetch.js';
 import { NetworkSession } from './network.js';
-import { fetch, FetchOptions, FetchResponse } from './fetch.js';
+import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
 
 const BOX_OAUTH2_AUTH_URL = 'https://account.box.com/api/oauth2/authorize';
 const BOX_OAUTH2_TOKEN_URL = 'https://api.box.com/oauth2/token';
@@ -126,12 +123,12 @@ export class OAuth implements Authentication {
       params
     )) as FetchResponse;
 
-    const tokenResponse = JSON.parse(response.text) as AccessToken;
+    const tokenResponse = JSON.parse(response.text);
     if (!isValidOAuthTokenResponse(tokenResponse)) {
       throw new Error('Invalid token response');
     }
-    this.token = tokenResponse;
-    return this.token!.access_token!;
+    this.token = deserializeAccessToken(tokenResponse);
+    return this.token!.accessToken!;
   }
 
   /**
@@ -139,13 +136,13 @@ export class OAuth implements Authentication {
    * @param networkSession An object to keep network session state
    * @returns {Promise<string>} A promise resolving to the access token.
    */
-  async retrieveToken(networkSession?: NetworkSession): Promise<string> {
+  async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (!this.token) {
       throw Error(
         'Access and refresh tokens not available. Authenticate before making any API call first.'
       );
     }
-    return this.token.access_token as string;
+    return this.token;
   }
 
   /**
@@ -154,13 +151,14 @@ export class OAuth implements Authentication {
    * @returns {Promise<string>} A promise resolving to the access token.
    */
   async refreshToken(
-    networkSession?: NetworkSession
-  ): Promise<string | undefined> {
+    networkSession?: NetworkSession,
+    refreshToken?: string
+  ): Promise<AccessToken | undefined> {
     const requestBody: TokenRequest = {
       grant_type: BOX_REFRESH_TOKEN_GRANT_TYPE,
       client_id: this.config.clientId,
       client_secret: this.config.clientSecret,
-      refresh_token: this.token!.refresh_token,
+      refresh_token: refreshToken ?? this.token!.refreshToken,
     };
     const params: FetchOptions = {
       method: 'POST',
@@ -176,7 +174,7 @@ export class OAuth implements Authentication {
       BOX_OAUTH2_TOKEN_URL,
       params
     )) as FetchResponse;
-    this.token = JSON.parse(response.text) as AccessToken;
-    return this.token.access_token;
+    this.token = deserializeAccessToken(JSON.parse(response.text));
+    return this.token;
   }
 }

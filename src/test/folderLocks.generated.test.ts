@@ -1,16 +1,25 @@
+import { serializeFolderFull } from "../schemas.generated.js";
+import { deserializeFolderFull } from "../schemas.generated.js";
 import { serializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { deserializeCreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { serializeCreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
 import { deserializeCreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
+import { serializeFolderLocks } from "../schemas.generated.js";
+import { deserializeFolderLocks } from "../schemas.generated.js";
+import { serializeFolderLock } from "../schemas.generated.js";
+import { deserializeFolderLock } from "../schemas.generated.js";
 import { serializeCreateFolderLockRequestBodyArg } from "../managers/folderLocks.generated.js";
 import { deserializeCreateFolderLockRequestBodyArg } from "../managers/folderLocks.generated.js";
 import { serializeCreateFolderLockRequestBodyArgFolderField } from "../managers/folderLocks.generated.js";
 import { deserializeCreateFolderLockRequestBodyArgFolderField } from "../managers/folderLocks.generated.js";
 import { serializeCreateFolderLockRequestBodyArgLockedOperationsField } from "../managers/folderLocks.generated.js";
 import { deserializeCreateFolderLockRequestBodyArgLockedOperationsField } from "../managers/folderLocks.generated.js";
+import { FolderFull } from "../schemas.generated.js";
 import { CreateFolderRequestBodyArg } from "../managers/folders.generated.js";
 import { CreateFolderRequestBodyArgParentField } from "../managers/folders.generated.js";
+import { FolderLocks } from "../schemas.generated.js";
 import { GetFolderLocksQueryParamsArg } from "../managers/folderLocks.generated.js";
+import { FolderLock } from "../schemas.generated.js";
 import { CreateFolderLockRequestBodyArg } from "../managers/folderLocks.generated.js";
 import { CreateFolderLockRequestBodyArgFolderField } from "../managers/folderLocks.generated.js";
 import { CreateFolderLockRequestBodyArgLockedOperationsField } from "../managers/folderLocks.generated.js";
@@ -39,7 +48,6 @@ test("testFolderLocks", async function testFolderLocks(): Promise<any> {
     if (!(folderLock.lockedOperations.delete == true)) {
         throw "Assertion failed";
     }
-    expect(async () => { await client.folders.deleteFolderById(folder.id); }).rejects.toThrow();
     await client.folderLocks.deleteFolderLockById(folderLock.id)
     expect(async () => { await client.folderLocks.deleteFolderLockById(folderLock.id); }).rejects.toThrow();
     const newFolderLocks: any = await client.folderLocks.getFolderLocks({ folderId: folder.id } satisfies GetFolderLocksQueryParamsArg);

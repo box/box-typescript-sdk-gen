@@ -1,6 +1,5 @@
 # DevicePinnersManager
 
-
 - [Get device pin](#get-device-pin)
 - [Remove device pin](#remove-device-pin)
 - [List enterprise device pins](#list-enterprise-device-pins)
@@ -14,7 +13,7 @@ This operation is performed by calling function `getDevicePinnerById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-device-pinners-id/).
 
-*Currently we don't have an example for calling `getDevicePinnerById` in integration tests*
+_Currently we don't have an example for calling `getDevicePinnerById` in integration tests_
 
 ### Arguments
 
@@ -23,13 +22,11 @@ See the endpoint docs at
 - headers `GetDevicePinnerByIdHeadersArg`
   - Headers of getDevicePinnerById method
 
-
 ### Returns
 
 This function returns a value of type `DevicePinner`.
 
 Returns information about a single device pin.
-
 
 ## Remove device pin
 
@@ -40,7 +37,7 @@ This operation is performed by calling function `deleteDevicePinnerById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-device-pinners-id/).
 
-*Currently we don't have an example for calling `deleteDevicePinnerById` in integration tests*
+_Currently we don't have an example for calling `deleteDevicePinnerById` in integration tests_
 
 ### Arguments
 
@@ -49,13 +46,11 @@ See the endpoint docs at
 - headers `DeleteDevicePinnerByIdHeadersArg`
   - Headers of deleteDevicePinnerById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the pin has been deleted.
-
 
 ## List enterprise device pins
 
@@ -69,7 +64,7 @@ This operation is performed by calling function `getEnterpriseDevicePinners`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-enterprises-id-device-pinners/).
 
-*Currently we don't have an example for calling `getEnterpriseDevicePinners` in integration tests*
+_Currently we don't have an example for calling `getEnterpriseDevicePinners` in integration tests_
 
 ### Arguments
 
@@ -80,11 +75,8 @@ See the endpoint docs at
 - headers `GetEnterpriseDevicePinnersHeadersArg`
   - Headers of getEnterpriseDevicePinners method
 
-
 ### Returns
 
 This function returns a value of type `DevicePinners`.
 
 Returns a list of device pins for a given enterprise.
-
-

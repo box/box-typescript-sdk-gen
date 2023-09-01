@@ -1,3 +1,6 @@
+import { serializeRecentItems } from "../schemas.generated.js";
+import { deserializeRecentItems } from "../schemas.generated.js";
+import { RecentItems } from "../schemas.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";
 import { getUuid } from "../utils.js";

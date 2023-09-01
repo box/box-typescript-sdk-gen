@@ -1,12 +1,12 @@
-import { fetch, FetchOptions, FetchResponse } from './fetch.js';
+import { Authentication } from './auth';
 import {
-  AccessToken,
   TokenRequest,
   TokenRequestBoxSubjectType,
   TokenRequestGrantType,
 } from './authSchemas';
-import { Authentication } from './auth';
+import { FetchOptions, FetchResponse, fetch } from './fetch.js';
 import { NetworkSession } from './network';
+import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
 
 export type CcgConfig = {
   clientId: string;
@@ -17,7 +17,7 @@ export type CcgConfig = {
 
 export class CcgAuth implements Authentication {
   config: CcgConfig;
-  token?: string;
+  token?: AccessToken;
   subjectId: string;
   subjectType: string;
 
@@ -61,8 +61,7 @@ export class CcgAuth implements Authentication {
       networkSession: networkSession,
     } as FetchOptions)) as FetchResponse;
 
-    const tokenResponse = JSON.parse(response.text) as AccessToken;
-    this.token = tokenResponse.access_token;
+    this.token = deserializeAccessToken(JSON.parse(response.text));
     return this.token;
   }
 

@@ -1,6 +1,5 @@
 # FileVersionRetentionsManager
 
-
 - [List file version retentions](#list-file-version-retentions)
 - [Get retention on file](#get-retention-on-file)
 
@@ -13,7 +12,7 @@ This operation is performed by calling function `getFileVersionRetentions`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-retentions/).
 
-*Currently we don't have an example for calling `getFileVersionRetentions` in integration tests*
+_Currently we don't have an example for calling `getFileVersionRetentions` in integration tests_
 
 ### Arguments
 
@@ -22,13 +21,11 @@ See the endpoint docs at
 - headers `GetFileVersionRetentionsHeadersArg`
   - Headers of getFileVersionRetentions method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionRetentions`.
 
 Returns a list of all file version retentions for the enterprise.
-
 
 ## Get retention on file
 
@@ -39,7 +36,7 @@ This operation is performed by calling function `getFileVersionRetentionById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-retentions-id/).
 
-*Currently we don't have an example for calling `getFileVersionRetentionById` in integration tests*
+_Currently we don't have an example for calling `getFileVersionRetentionById` in integration tests_
 
 ### Arguments
 
@@ -48,11 +45,8 @@ See the endpoint docs at
 - headers `GetFileVersionRetentionByIdHeadersArg`
   - Headers of getFileVersionRetentionById method
 
-
 ### Returns
 
 This function returns a value of type `FileVersionRetention`.
 
 Returns a file version retention object.
-
-

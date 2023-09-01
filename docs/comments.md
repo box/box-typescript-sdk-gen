@@ -1,6 +1,5 @@
 # CommentsManager
 
-
 - [List file comments](#list-file-comments)
 - [Get comment](#get-comment)
 - [Update comment](#update-comment)
@@ -17,19 +16,19 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-comments/).
 
 <!-- sample get_files_id_comments -->
+
 ```ts
-await client.comments.getFileComments(fileId)
+await client.comments.getFileComments(fileId);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileCommentsQueryParamsArg`
   - Query parameters of getFileComments method
 - headers `GetFileCommentsHeadersArg`
   - Headers of getFileComments method
-
 
 ### Returns
 
@@ -37,7 +36,6 @@ This function returns a value of type `Comments`.
 
 Returns a collection of comment objects. If there are no
 comments on this file an empty collection will be returned.
-
 
 ## Get comment
 
@@ -50,8 +48,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-comments-id/).
 
 <!-- sample get_comments_id -->
+
 ```ts
-await client.comments.getCommentById(newComment.id)
+await client.comments.getCommentById(newComment.id);
 ```
 
 ### Arguments
@@ -63,13 +62,11 @@ await client.comments.getCommentById(newComment.id)
 - headers `GetCommentByIdHeadersArg`
   - Headers of getCommentById method
 
-
 ### Returns
 
 This function returns a value of type `CommentFull`.
 
 Returns a full comment object.
-
 
 ## Update comment
 
@@ -81,8 +78,11 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-comments-id/).
 
 <!-- sample put_comments_id -->
+
 ```ts
-await client.comments.updateCommentById(newReplyComment.id, { message: newMessage } satisfies UpdateCommentByIdRequestBodyArg)
+await client.comments.updateCommentById(newReplyComment.id, {
+  message: newMessage,
+} satisfies UpdateCommentByIdRequestBodyArg);
 ```
 
 ### Arguments
@@ -96,13 +96,11 @@ await client.comments.updateCommentById(newReplyComment.id, { message: newMessag
 - headers `UpdateCommentByIdHeadersArg`
   - Headers of updateCommentById method
 
-
 ### Returns
 
 This function returns a value of type `CommentFull`.
 
 Returns the updated comment object.
-
 
 ## Remove comment
 
@@ -114,8 +112,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-comments-id/).
 
 <!-- sample delete_comments_id -->
+
 ```ts
-await client.comments.deleteCommentById(newComment.id)
+await client.comments.deleteCommentById(newComment.id);
 ```
 
 ### Arguments
@@ -125,13 +124,11 @@ await client.comments.deleteCommentById(newComment.id)
 - headers `DeleteCommentByIdHeadersArg`
   - Headers of deleteCommentById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the comment has been deleted.
-
 
 ## Create comment
 
@@ -144,8 +141,15 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-comments/).
 
 <!-- sample post_comments -->
+
 ```ts
-await client.comments.createComment({ message: message, item: { id: newComment.id, type: "comment" as CreateCommentRequestBodyArgItemFieldTypeField } satisfies CreateCommentRequestBodyArgItemField } satisfies CreateCommentRequestBodyArg)
+await client.comments.createComment({
+  message: message,
+  item: {
+    id: newComment.id,
+    type: 'comment' as CreateCommentRequestBodyArgItemFieldTypeField,
+  } satisfies CreateCommentRequestBodyArgItemField,
+} satisfies CreateCommentRequestBodyArg);
 ```
 
 ### Arguments
@@ -157,7 +161,6 @@ await client.comments.createComment({ message: message, item: { id: newComment.i
 - headers `CreateCommentHeadersArg`
   - Headers of createComment method
 
-
 ### Returns
 
 This function returns a value of type `Comment`.
@@ -167,5 +170,3 @@ Returns the newly created comment object.
 Not all available fields are returned by default. Use the
 [fields](#param-fields) query parameter to explicitly request
 any specific fields.
-
-

@@ -1,6 +1,5 @@
 # WorkflowsManager
 
-
 - [List workflows](#list-workflows)
 - [Starts workflow based on request body](#starts-workflow-based-on-request-body)
 
@@ -17,7 +16,7 @@ This operation is performed by calling function `getWorkflows`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-workflows/).
 
-*Currently we don't have an example for calling `getWorkflows` in integration tests*
+_Currently we don't have an example for calling `getWorkflows` in integration tests_
 
 ### Arguments
 
@@ -26,13 +25,11 @@ See the endpoint docs at
 - headers `GetWorkflowsHeadersArg`
   - Headers of getWorkflows method
 
-
 ### Returns
 
 This function returns a value of type `Workflows`.
 
 Returns the workflow.
-
 
 ## Starts workflow based on request body
 
@@ -46,7 +43,7 @@ This operation is performed by calling function `createWorkflowStart`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-workflows-id-start/).
 
-*Currently we don't have an example for calling `createWorkflowStart` in integration tests*
+_Currently we don't have an example for calling `createWorkflowStart` in integration tests_
 
 ### Arguments
 
@@ -57,11 +54,8 @@ See the endpoint docs at
 - headers `CreateWorkflowStartHeadersArg`
   - Headers of createWorkflowStart method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Starts the workflow.
-
-

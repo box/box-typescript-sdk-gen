@@ -1,6 +1,5 @@
 # LegalHoldPoliciesManager
 
-
 - [List all legal hold policies](#list-all-legal-hold-policies)
 - [Create legal hold policy](#create-legal-hold-policy)
 - [Get legal hold policy](#get-legal-hold-policy)
@@ -17,7 +16,7 @@ This operation is performed by calling function `getLegalHoldPolicies`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policies/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicies` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicies` in integration tests_
 
 ### Arguments
 
@@ -26,13 +25,11 @@ See the endpoint docs at
 - headers `GetLegalHoldPoliciesHeadersArg`
   - Headers of getLegalHoldPolicies method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicies`.
 
 Returns a list of legal hold policies.
-
 
 ## Create legal hold policy
 
@@ -43,7 +40,7 @@ This operation is performed by calling function `createLegalHoldPolicy`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-legal-hold-policies/).
 
-*Currently we don't have an example for calling `createLegalHoldPolicy` in integration tests*
+_Currently we don't have an example for calling `createLegalHoldPolicy` in integration tests_
 
 ### Arguments
 
@@ -52,13 +49,11 @@ See the endpoint docs at
 - headers `CreateLegalHoldPolicyHeadersArg`
   - Headers of createLegalHoldPolicy method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicy`.
 
 Returns a new legal hold policy object.
-
 
 ## Get legal hold policy
 
@@ -69,7 +64,7 @@ This operation is performed by calling function `getLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policies-id/).
 
-*Currently we don't have an example for calling `getLegalHoldPolicyById` in integration tests*
+_Currently we don't have an example for calling `getLegalHoldPolicyById` in integration tests_
 
 ### Arguments
 
@@ -78,13 +73,11 @@ See the endpoint docs at
 - headers `GetLegalHoldPolicyByIdHeadersArg`
   - Headers of getLegalHoldPolicyById method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicy`.
 
 Returns a legal hold policy object.
-
 
 ## Update legal hold policy
 
@@ -95,7 +88,7 @@ This operation is performed by calling function `updateLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-legal-hold-policies-id/).
 
-*Currently we don't have an example for calling `updateLegalHoldPolicyById` in integration tests*
+_Currently we don't have an example for calling `updateLegalHoldPolicyById` in integration tests_
 
 ### Arguments
 
@@ -106,13 +99,11 @@ See the endpoint docs at
 - headers `UpdateLegalHoldPolicyByIdHeadersArg`
   - Headers of updateLegalHoldPolicyById method
 
-
 ### Returns
 
 This function returns a value of type `LegalHoldPolicy`.
 
 Returns a new legal hold policy object.
-
 
 ## Remove legal hold policy
 
@@ -126,7 +117,7 @@ This operation is performed by calling function `deleteLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-legal-hold-policies-id/).
 
-*Currently we don't have an example for calling `deleteLegalHoldPolicyById` in integration tests*
+_Currently we don't have an example for calling `deleteLegalHoldPolicyById` in integration tests_
 
 ### Arguments
 
@@ -135,12 +126,9 @@ See the endpoint docs at
 - headers `DeleteLegalHoldPolicyByIdHeadersArg`
   - Headers of deleteLegalHoldPolicyById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 A blank response is returned if the policy was
 successfully deleted.
-
-

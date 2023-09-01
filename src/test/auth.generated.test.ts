@@ -1,6 +1,7 @@
 import { serializeUserFull } from "../schemas.generated.js";
 import { deserializeUserFull } from "../schemas.generated.js";
 import { GetUserMeQueryParamsArg } from "../managers/users.generated.js";
+import { AccessToken } from "../schemas.generated.js";
 import { decodeBase64 } from "../utils.js";
 import { getEnvVar } from "../utils.js";
 import { Client } from "../client.generated.js";
@@ -58,7 +59,7 @@ test("test_developer_token_auth", async function test_developer_token_auth(): Pr
     const auth: any = new JwtAuth({ config: jwtConfig });
     auth.asUser(userId)
     const token: any = await auth.retrieveToken();
-    const devAuth: any = new DeveloperTokenAuth({ token: token });
+    const devAuth: any = new DeveloperTokenAuth({ token: token.accessToken });
     const client: any = new Client({ auth: devAuth });
     const currentUser: any = await client.users.getUserMe();
     if (!(currentUser.id == userId)) {

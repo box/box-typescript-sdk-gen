@@ -1,6 +1,5 @@
 # FileMetadataManager
 
-
 - [List metadata instances on file](#list-metadata-instances-on-file)
 - [Get metadata instance on file](#get-metadata-instance-on-file)
 - [Create metadata instance on file](#create-metadata-instance-on-file)
@@ -17,17 +16,17 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata/).
 
 <!-- sample get_files_id_metadata -->
+
 ```ts
-await client.fileMetadata.getFileMetadata(fileId)
+await client.fileMetadata.getFileMetadata(fileId);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataHeadersArg`
   - Headers of getFileMetadata method
-
 
 ### Returns
 
@@ -37,7 +36,6 @@ Returns all the metadata associated with a file.
 
 This API does not support pagination and will therefore always return
 all of the metadata associated to the file.
-
 
 ## Get metadata instance on file
 
@@ -50,21 +48,21 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata-id-id/).
 
 <!-- sample get_files_id_metadata_id_id -->
+
 ```ts
-await client.fileMetadata.getFileMetadataById(fileId, scope, template)
+await client.fileMetadata.getFileMetadataById(fileId, scope, template);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `GetFileMetadataByIdScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
 - headers `GetFileMetadataByIdHeadersArg`
   - Headers of getFileMetadataById method
-
 
 ### Returns
 
@@ -73,7 +71,6 @@ This function returns a value of type `MetadataFull`.
 An instance of the metadata template that includes
 additional "key:value" pairs defined by the user or
 an application.
-
 
 ## Create metadata instance on file
 
@@ -89,14 +86,15 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id-metadata-id-id/).
 
 <!-- sample post_files_id_metadata_id_id -->
+
 ```ts
-await client.fileMetadata.createFileMetadataById(fileId, scope, template, data)
+await client.fileMetadata.createFileMetadataById(fileId, scope, template, data);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `CreateFileMetadataByIdScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
@@ -106,14 +104,12 @@ await client.fileMetadata.createFileMetadataById(fileId, scope, template, data)
 - headers `CreateFileMetadataByIdHeadersArg`
   - Headers of createFileMetadataById method
 
-
 ### Returns
 
 This function returns a value of type `Metadata`.
 
 Returns the instance of the template that was applied to the file,
 including the data that was applied to the template.
-
 
 ## Update metadata instance on file
 
@@ -132,14 +128,21 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-metadata-id-id/).
 
 <!-- sample put_files_id_metadata_id_id -->
+
 ```ts
-await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [{ op: "replace" as UpdateFileMetadataByIdRequestBodyArgOpField, path: "/abc", value: newValue } satisfies UpdateFileMetadataByIdRequestBodyArg])
+await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [
+  {
+    op: 'replace' as UpdateFileMetadataByIdRequestBodyArgOpField,
+    path: '/abc',
+    value: newValue,
+  } satisfies UpdateFileMetadataByIdRequestBodyArg,
+]);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `UpdateFileMetadataByIdScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
@@ -149,14 +152,12 @@ await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [{ op:
 - headers `UpdateFileMetadataByIdHeadersArg`
   - Headers of updateFileMetadataById method
 
-
 ### Returns
 
 This function returns a value of type `Metadata`.
 
 Returns the updated metadata template instance, with the
 custom template data included.
-
 
 ## Remove metadata instance from file
 
@@ -168,14 +169,15 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-metadata-id-id/).
 
 <!-- sample delete_files_id_metadata_id_id -->
+
 ```ts
-await client.fileMetadata.deleteFileMetadataById(fileId, scope, template)
+await client.fileMetadata.deleteFileMetadataById(fileId, scope, template);
 ```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `DeleteFileMetadataByIdScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
@@ -183,12 +185,9 @@ await client.fileMetadata.deleteFileMetadataById(fileId, scope, template)
 - headers `DeleteFileMetadataByIdHeadersArg`
   - Headers of deleteFileMetadataById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the metadata is
 successfully deleted.
-
-

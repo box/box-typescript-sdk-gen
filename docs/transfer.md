@@ -1,6 +1,5 @@
 # TransferManager
 
-
 - [Transfer owned folders](#transfer-owned-folders)
 
 ## Transfer owned folders
@@ -44,7 +43,7 @@ This operation is performed by calling function `transferOwnedFolder`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-users-id-folders-0/).
 
-*Currently we don't have an example for calling `transferOwnedFolder` in integration tests*
+_Currently we don't have an example for calling `transferOwnedFolder` in integration tests_
 
 ### Arguments
 
@@ -57,12 +56,9 @@ See the endpoint docs at
 - headers `TransferOwnedFolderHeadersArg`
   - Headers of transferOwnedFolder method
 
-
 ### Returns
 
 This function returns a value of type `FolderFull`.
 
 Returns the information for the newly created
 destination folder.
-
-

@@ -16,6 +16,13 @@ export function hexToBase64(data: string): string {
 
 export { Buffer, Readable as ByteStream };
 
+type AsyncIterator2<T, TReturn = any, TNext = undefined> = AsyncIterator<
+  T,
+  TReturn,
+  TNext
+>;
+export type { AsyncIterator2 as AsyncIterator };
+
 export class Hash {
   #hash: crypto.Hash;
 
@@ -58,6 +65,10 @@ export function generateByteStream(size: number): Readable {
 
 export function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean {
   return Buffer.compare(buffer1, buffer2) === 0;
+}
+
+export function bufferLength(buffer: Buffer): number {
+  return buffer.length;
 }
 
 export function decodeBase64ByteStream(data: string): Readable {

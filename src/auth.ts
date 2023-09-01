@@ -1,6 +1,9 @@
 import { NetworkSession } from './network';
+import { AccessToken } from './schemas.generated.js';
 
 export interface Authentication {
-  retrieveToken: (networkSession?: NetworkSession) => Promise<string>;
-  refreshToken: (networkSession?: NetworkSession) => Promise<string | void>;
+  retrieveToken: (networkSession?: NetworkSession) => Promise<AccessToken>;
+  refreshToken: (
+    networkSession?: NetworkSession
+  ) => Promise<AccessToken | void>;
 }

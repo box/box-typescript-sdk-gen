@@ -1,21 +1,34 @@
+import { serializeFile } from "../schemas.generated.js";
+import { deserializeFile } from "../schemas.generated.js";
+import { serializeFiles } from "../schemas.generated.js";
+import { deserializeFiles } from "../schemas.generated.js";
 import { serializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { deserializeUploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
 import { serializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
 import { deserializeGetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
+import { serializeFileFull } from "../schemas.generated.js";
+import { deserializeFileFull } from "../schemas.generated.js";
+import { serializeTrashFile } from "../schemas.generated.js";
+import { deserializeTrashFile } from "../schemas.generated.js";
 import { serializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { deserializeUpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { serializeCopyFileRequestBodyArg } from "../managers/files.generated.js";
 import { deserializeCopyFileRequestBodyArg } from "../managers/files.generated.js";
 import { serializeCopyFileRequestBodyArgParentField } from "../managers/files.generated.js";
 import { deserializeCopyFileRequestBodyArgParentField } from "../managers/files.generated.js";
+import { File } from "../schemas.generated.js";
+import { Files } from "../schemas.generated.js";
 import { UploadFileRequestBodyArg } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesField } from "../managers/uploads.generated.js";
 import { UploadFileRequestBodyArgAttributesFieldParentField } from "../managers/uploads.generated.js";
+import { ByteStream } from "../utils.js";
 import { GetFileThumbnailByIdExtensionArg } from "../managers/files.generated.js";
+import { FileFull } from "../schemas.generated.js";
 import { GetFileByIdQueryParamsArg } from "../managers/files.generated.js";
 import { GetFileByIdHeadersArg } from "../managers/files.generated.js";
+import { TrashFile } from "../schemas.generated.js";
 import { UpdateFileByIdRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArg } from "../managers/files.generated.js";
 import { CopyFileRequestBodyArgParentField } from "../managers/files.generated.js";
@@ -31,7 +44,7 @@ import { uploadNewFile } from "./commons.generated.js";
 const jwtConfig: any = JwtConfig.fromConfigJsonString(decodeBase64(getEnvVar("JWT_CONFIG_BASE_64")));
 const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
-export async function uploadFile(fileName: any, fileStream: any): Promise<any> {
+export async function uploadFile(fileName: any, fileStream: any): Promise<File> {
     const uploadedFiles: any = await client.uploads.uploadFile({ attributes: { name: fileName, parent: { id: "0" } satisfies UploadFileRequestBodyArgAttributesFieldParentField } satisfies UploadFileRequestBodyArgAttributesField, file: fileStream } satisfies UploadFileRequestBodyArg);
     return uploadedFiles.entries[0];
 }

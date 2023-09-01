@@ -1,6 +1,5 @@
 # TasksManager
 
-
 - [List tasks on file](#list-tasks-on-file)
 - [Create task](#create-task)
 - [Get task](#get-task)
@@ -17,15 +16,18 @@ This operation is performed by calling function `getFileTasks`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-tasks/).
 
-*Currently we don't have an example for calling `getFileTasks` in integration tests*
+<!-- sample get_files_id_tasks -->
+
+```ts
+await client.tasks.getFileTasks(file.id);
+```
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileTasksHeadersArg`
   - Headers of getFileTasks method
-
 
 ### Returns
 
@@ -35,7 +37,6 @@ Returns a list of tasks on a file.
 
 If there are no tasks on this file an empty collection is returned
 instead.
-
 
 ## Create task
 
@@ -47,7 +48,21 @@ This operation is performed by calling function `createTask`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-tasks/).
 
-*Currently we don't have an example for calling `createTask` in integration tests*
+<!-- sample post_tasks -->
+
+```ts
+await client.tasks.createTask({
+  item: {
+    type: 'file' as CreateTaskRequestBodyArgItemFieldTypeField,
+    id: file.id,
+  } satisfies CreateTaskRequestBodyArgItemField,
+  message: 'test message',
+  dueAt: '2035-01-01T00:00:00Z',
+  action: 'review' as CreateTaskRequestBodyArgActionField,
+  completionRule:
+    'all_assignees' as CreateTaskRequestBodyArgCompletionRuleField,
+} satisfies CreateTaskRequestBodyArg);
+```
 
 ### Arguments
 
@@ -56,13 +71,11 @@ See the endpoint docs at
 - headers `CreateTaskHeadersArg`
   - Headers of createTask method
 
-
 ### Returns
 
 This function returns a value of type `Task`.
 
 Returns the newly created task.
-
 
 ## Get task
 
@@ -73,7 +86,11 @@ This operation is performed by calling function `getTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-tasks-id/).
 
-*Currently we don't have an example for calling `getTaskById` in integration tests*
+<!-- sample get_tasks_id -->
+
+```ts
+await client.tasks.getTaskById(task.id);
+```
 
 ### Arguments
 
@@ -82,13 +99,11 @@ See the endpoint docs at
 - headers `GetTaskByIdHeadersArg`
   - Headers of getTaskById method
 
-
 ### Returns
 
 This function returns a value of type `Task`.
 
 Returns a task object.
-
 
 ## Update task
 
@@ -100,7 +115,13 @@ This operation is performed by calling function `updateTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-tasks-id/).
 
-*Currently we don't have an example for calling `updateTaskById` in integration tests*
+<!-- sample put_tasks_id -->
+
+```ts
+await client.tasks.updateTaskById(task.id, {
+  message: 'updated message',
+} satisfies UpdateTaskByIdRequestBodyArg);
+```
 
 ### Arguments
 
@@ -111,13 +132,11 @@ See the endpoint docs at
 - headers `UpdateTaskByIdHeadersArg`
   - Headers of updateTaskById method
 
-
 ### Returns
 
 This function returns a value of type `Task`.
 
 Returns the updated task object
-
 
 ## Remove task
 
@@ -128,7 +147,11 @@ This operation is performed by calling function `deleteTaskById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-tasks-id/).
 
-*Currently we don't have an example for calling `deleteTaskById` in integration tests*
+<!-- sample delete_tasks_id -->
+
+```ts
+await client.tasks.deleteTaskById(task.id);
+```
 
 ### Arguments
 
@@ -137,11 +160,8 @@ See the endpoint docs at
 - headers `DeleteTaskByIdHeadersArg`
   - Headers of deleteTaskById method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
 
 Returns an empty response when the task was successfully deleted.
-
-

@@ -1,6 +1,5 @@
 # ShieldInformationBarriersManager
 
-
 - [Get shield information barrier with specified ID](#get-shield-information-barrier-with-specified-id)
 - [Add changed status of shield information barrier with specified ID](#add-changed-status-of-shield-information-barrier-with-specified-id)
 - [List shield information barriers](#list-shield-information-barriers)
@@ -15,7 +14,7 @@ This operation is performed by calling function `getShieldInformationBarrierById
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barriers-id/).
 
-*Currently we don't have an example for calling `getShieldInformationBarrierById` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarrierById` in integration tests_
 
 ### Arguments
 
@@ -24,13 +23,11 @@ See the endpoint docs at
 - headers `GetShieldInformationBarrierByIdHeadersArg`
   - Headers of getShieldInformationBarrierById method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrier`.
 
 Returns the shield information barrier object.
-
 
 ## Add changed status of shield information barrier with specified ID
 
@@ -41,7 +38,7 @@ This operation is performed by calling function `createShieldInformationBarrierC
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barriers-change-status/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrierChangeStatus` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrierChangeStatus` in integration tests_
 
 ### Arguments
 
@@ -50,13 +47,11 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierChangeStatusHeadersArg`
   - Headers of createShieldInformationBarrierChangeStatus method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrier`.
 
 Returns the updated shield information barrier object.
-
 
 ## List shield information barriers
 
@@ -68,7 +63,7 @@ This operation is performed by calling function `getShieldInformationBarriers`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barriers/).
 
-*Currently we don't have an example for calling `getShieldInformationBarriers` in integration tests*
+_Currently we don't have an example for calling `getShieldInformationBarriers` in integration tests_
 
 ### Arguments
 
@@ -77,7 +72,6 @@ See the endpoint docs at
 - headers `GetShieldInformationBarriersHeadersArg`
   - Headers of getShieldInformationBarriers method
 
-
 ### Returns
 
 This function returns a value of type `undefined`.
@@ -85,7 +79,6 @@ This function returns a value of type `undefined`.
 Returns a paginated list of
 shield information barrier objects,
 empty list if currently no barrier.
-
 
 ## Create shield information barrier
 
@@ -98,7 +91,7 @@ This operation is performed by calling function `createShieldInformationBarrier`
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barriers/).
 
-*Currently we don't have an example for calling `createShieldInformationBarrier` in integration tests*
+_Currently we don't have an example for calling `createShieldInformationBarrier` in integration tests_
 
 ### Arguments
 
@@ -107,11 +100,8 @@ See the endpoint docs at
 - headers `CreateShieldInformationBarrierHeadersArg`
   - Headers of createShieldInformationBarrier method
 
-
 ### Returns
 
 This function returns a value of type `ShieldInformationBarrier`.
 
 Returns a new shield information barrier object.
-
-

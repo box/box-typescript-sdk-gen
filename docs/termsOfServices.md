@@ -1,6 +1,5 @@
 # TermsOfServicesManager
 
-
 - [List terms of services](#list-terms-of-services)
 - [Create terms of service](#create-terms-of-service)
 - [Get terms of service](#get-terms-of-service)
@@ -16,7 +15,7 @@ This operation is performed by calling function `getTermOfServices`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-terms-of-services/).
 
-*Currently we don't have an example for calling `getTermOfServices` in integration tests*
+_Currently we don't have an example for calling `getTermOfServices` in integration tests_
 
 ### Arguments
 
@@ -25,14 +24,12 @@ See the endpoint docs at
 - headers `GetTermOfServicesHeadersArg`
   - Headers of getTermOfServices method
 
-
 ### Returns
 
 This function returns a value of type `TermsOfServices`.
 
 Returns a collection of terms of service text and settings for the
 enterprise.
-
 
 ## Create terms of service
 
@@ -44,7 +41,7 @@ This operation is performed by calling function `createTermOfService`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-terms-of-services/).
 
-*Currently we don't have an example for calling `createTermOfService` in integration tests*
+_Currently we don't have an example for calling `createTermOfService` in integration tests_
 
 ### Arguments
 
@@ -53,13 +50,11 @@ See the endpoint docs at
 - headers `CreateTermOfServiceHeadersArg`
   - Headers of createTermOfService method
 
-
 ### Returns
 
 This function returns a value of type `Task`.
 
 Returns a new task object
-
 
 ## Get terms of service
 
@@ -70,7 +65,7 @@ This operation is performed by calling function `getTermOfServiceById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-terms-of-services-id/).
 
-*Currently we don't have an example for calling `getTermOfServiceById` in integration tests*
+_Currently we don't have an example for calling `getTermOfServiceById` in integration tests_
 
 ### Arguments
 
@@ -79,13 +74,11 @@ See the endpoint docs at
 - headers `GetTermOfServiceByIdHeadersArg`
   - Headers of getTermOfServiceById method
 
-
 ### Returns
 
 This function returns a value of type `TermsOfService`.
 
 Returns a terms of service object.
-
 
 ## Update terms of service
 
@@ -96,7 +89,7 @@ This operation is performed by calling function `updateTermOfServiceById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-terms-of-services-id/).
 
-*Currently we don't have an example for calling `updateTermOfServiceById` in integration tests*
+_Currently we don't have an example for calling `updateTermOfServiceById` in integration tests_
 
 ### Arguments
 
@@ -107,11 +100,8 @@ See the endpoint docs at
 - headers `UpdateTermOfServiceByIdHeadersArg`
   - Headers of updateTermOfServiceById method
 
-
 ### Returns
 
 This function returns a value of type `TermsOfService`.
 
 Returns an updated terms of service object.
-
-

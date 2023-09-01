@@ -1,6 +1,5 @@
 # SharedLinksFilesManager
 
-
 - [Find file for shared link](#find-file-for-shared-link)
 - [Get shared link for file](#get-shared-link-for-file)
 - [Add shared link to file](#add-shared-link-to-file)
@@ -25,7 +24,7 @@ This operation is performed by calling function `getSharedItems`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items/).
 
-*Currently we don't have an example for calling `getSharedItems` in integration tests*
+_Currently we don't have an example for calling `getSharedItems` in integration tests_
 
 ### Arguments
 
@@ -34,14 +33,12 @@ See the endpoint docs at
 - headers `GetSharedItemsHeadersArg`
   - Headers of getSharedItems method
 
-
 ### Returns
 
 This function returns a value of type `FileFull`.
 
 Returns a full file resource if the shared link is valid and
 the user has access to it.
-
 
 ## Get shared link for file
 
@@ -52,17 +49,16 @@ This operation is performed by calling function `getFileGetSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-get-shared-link/).
 
-*Currently we don't have an example for calling `getFileGetSharedLink` in integration tests*
+_Currently we don't have an example for calling `getFileGetSharedLink` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileGetSharedLinkQueryParamsArg`
   - Query parameters of getFileGetSharedLink method
 - headers `GetFileGetSharedLinkHeadersArg`
   - Headers of getFileGetSharedLink method
-
 
 ### Returns
 
@@ -70,7 +66,6 @@ This function returns a value of type `FileFull`.
 
 Returns the base representation of a file with the
 additional shared link information.
-
 
 ## Add shared link to file
 
@@ -81,12 +76,12 @@ This operation is performed by calling function `updateFileAddSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-add-shared-link/).
 
-*Currently we don't have an example for calling `updateFileAddSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateFileAddSharedLink` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileAddSharedLinkRequestBodyArg`
   - Request body of updateFileAddSharedLink method
 - queryParams `UpdateFileAddSharedLinkQueryParamsArg`
@@ -94,14 +89,12 @@ See the endpoint docs at
 - headers `UpdateFileAddSharedLinkHeadersArg`
   - Headers of updateFileAddSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `FileFull`.
 
 Returns the base representation of a file with a new shared
 link attached.
-
 
 ## Update shared link on file
 
@@ -112,12 +105,12 @@ This operation is performed by calling function `updateFileUpdateSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-update-shared-link/).
 
-*Currently we don't have an example for calling `updateFileUpdateSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateFileUpdateSharedLink` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileUpdateSharedLinkRequestBodyArg`
   - Request body of updateFileUpdateSharedLink method
 - queryParams `UpdateFileUpdateSharedLinkQueryParamsArg`
@@ -125,14 +118,12 @@ See the endpoint docs at
 - headers `UpdateFileUpdateSharedLinkHeadersArg`
   - Headers of updateFileUpdateSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `FileFull`.
 
 Returns a basic representation of the file, with the updated shared
 link attached.
-
 
 ## Remove shared link from file
 
@@ -143,12 +134,12 @@ This operation is performed by calling function `updateFileRemoveSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-remove-shared-link/).
 
-*Currently we don't have an example for calling `updateFileRemoveSharedLink` in integration tests*
+_Currently we don't have an example for calling `updateFileRemoveSharedLink` in integration tests_
 
 ### Arguments
 
 - fileId `string`
-  - The unique identifier that represents a file.  The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `UpdateFileRemoveSharedLinkRequestBodyArg`
   - Request body of updateFileRemoveSharedLink method
 - queryParams `UpdateFileRemoveSharedLinkQueryParamsArg`
@@ -156,11 +147,8 @@ See the endpoint docs at
 - headers `UpdateFileRemoveSharedLinkHeadersArg`
   - Headers of updateFileRemoveSharedLink method
 
-
 ### Returns
 
 This function returns a value of type `FileFull`.
 
 Returns a basic representation of a file, with the shared link removed.
-
-

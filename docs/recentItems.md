@@ -1,6 +1,5 @@
 # RecentItemsManager
 
-
 - [List recently accessed items](#list-recently-accessed-items)
 
 ## List recently accessed items
@@ -15,8 +14,9 @@ See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-recent-items/).
 
 <!-- sample get_recent_items -->
+
 ```ts
-await client.recentItems.getRecentItems()
+await client.recentItems.getRecentItems();
 ```
 
 ### Arguments
@@ -26,11 +26,8 @@ await client.recentItems.getRecentItems()
 - headers `GetRecentItemsHeadersArg`
   - Headers of getRecentItems method
 
-
 ### Returns
 
 This function returns a value of type `RecentItems`.
 
 Returns a list recent items access by a user.
-
-

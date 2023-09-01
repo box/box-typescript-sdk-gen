@@ -1,9 +1,15 @@
+import { serializeFolderFull } from "../schemas.generated.js";
+import { deserializeFolderFull } from "../schemas.generated.js";
+import { serializeWebLink } from "../schemas.generated.js";
+import { deserializeWebLink } from "../schemas.generated.js";
 import { serializeCreateWebLinkRequestBodyArg } from "../managers/webLinks.generated.js";
 import { deserializeCreateWebLinkRequestBodyArg } from "../managers/webLinks.generated.js";
 import { serializeUpdateWebLinkByIdRequestBodyArg } from "../managers/webLinks.generated.js";
 import { deserializeUpdateWebLinkByIdRequestBodyArg } from "../managers/webLinks.generated.js";
 import { serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from "../managers/webLinks.generated.js";
 import { deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from "../managers/webLinks.generated.js";
+import { FolderFull } from "../schemas.generated.js";
+import { WebLink } from "../schemas.generated.js";
 import { CreateWebLinkRequestBodyArg } from "../managers/webLinks.generated.js";
 import { UpdateWebLinkByIdRequestBodyArg } from "../managers/webLinks.generated.js";
 import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from "../managers/webLinks.generated.js";

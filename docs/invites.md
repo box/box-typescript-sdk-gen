@@ -1,6 +1,5 @@
 # InvitesManager
 
-
 - [Create user invite](#create-user-invite)
 - [Get user invite status](#get-user-invite-status)
 
@@ -21,7 +20,7 @@ This operation is performed by calling function `createInvite`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-invites/).
 
-*Currently we don't have an example for calling `createInvite` in integration tests*
+_Currently we don't have an example for calling `createInvite` in integration tests_
 
 ### Arguments
 
@@ -32,13 +31,11 @@ See the endpoint docs at
 - headers `CreateInviteHeadersArg`
   - Headers of createInvite method
 
-
 ### Returns
 
 This function returns a value of type `Invite`.
 
 Returns a new invite object.
-
 
 ## Get user invite status
 
@@ -49,7 +46,7 @@ This operation is performed by calling function `getInviteById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-invites-id/).
 
-*Currently we don't have an example for calling `getInviteById` in integration tests*
+_Currently we don't have an example for calling `getInviteById` in integration tests_
 
 ### Arguments
 
@@ -60,11 +57,8 @@ See the endpoint docs at
 - headers `GetInviteByIdHeadersArg`
   - Headers of getInviteById method
 
-
 ### Returns
 
 This function returns a value of type `Invite`.
 
 Returns an invite object
-
-
