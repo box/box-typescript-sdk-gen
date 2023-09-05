@@ -825,7 +825,7 @@ export interface UserAvatar {
 }
 export type UserBaseTypeField = 'user';
 export interface UserBase {
-  readonly id?: string;
+  readonly id: string;
   readonly type: UserBaseTypeField;
 }
 export type UserIntegrationMappings = UserBase & {
@@ -7865,13 +7865,10 @@ export function deserializeUserBaseTypeField(val: any): UserBaseTypeField {
   throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeUserBase(val: UserBase): Json {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: serializeUserBaseTypeField(val.type),
-  };
+  return { ['id']: val.id, ['type']: serializeUserBaseTypeField(val.type) };
 }
 export function deserializeUserBase(val: any): UserBase {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return { id: id, type: type } satisfies UserBase;
 }
@@ -7895,7 +7892,7 @@ export function deserializeUserIntegrationMappings(
 ): UserIntegrationMappings {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     name: name,
@@ -7920,7 +7917,7 @@ export function serializeUserCollaborations(val: UserCollaborations): Json {
 export function deserializeUserCollaborations(val: any): UserCollaborations {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     name: name,
@@ -7945,7 +7942,7 @@ export function serializeUserMini(val: UserMini): Json {
 export function deserializeUserMini(val: any): UserMini {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return { name: name, login: login, id: id, type: type } satisfies UserMini;
 }
@@ -8114,7 +8111,7 @@ export function deserializeUser(val: any): User {
       : deserializeUserNotificationEmailField(val.notification_email);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     createdAt: createdAt,
@@ -20266,7 +20263,7 @@ export function deserializeUserFull(val: any): UserFull {
       : deserializeUserNotificationEmailField(val.notification_email);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     role: role,
