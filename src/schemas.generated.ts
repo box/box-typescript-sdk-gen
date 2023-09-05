@@ -196,35 +196,6 @@ export interface CollaborationAllowlistEntries {
   readonly prevMarker?: number;
   readonly entries?: readonly CollaborationAllowlistEntry[];
 }
-export type CollaborationAllowlistExemptTargetTypeField =
-  'collaboration_whitelist';
-export type CollaborationAllowlistExemptTargetEnterpriseFieldTypeField =
-  'enterprise';
-export interface CollaborationAllowlistExemptTargetEnterpriseField {
-  readonly id?: string;
-  readonly type?: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
-  readonly name?: string;
-}
-export type CollaborationAllowlistExemptTargetUserFieldTypeField = 'enterprise';
-export interface CollaborationAllowlistExemptTargetUserField {
-  readonly id?: string;
-  readonly type?: CollaborationAllowlistExemptTargetUserFieldTypeField;
-  readonly name?: string;
-}
-export interface CollaborationAllowlistExemptTarget {
-  readonly id?: string;
-  readonly type?: CollaborationAllowlistExemptTargetTypeField;
-  readonly enterprise?: CollaborationAllowlistExemptTargetEnterpriseField;
-  readonly user?: CollaborationAllowlistExemptTargetUserField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
-}
-export interface CollaborationAllowlistExemptTargets {
-  readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
-  readonly entries?: readonly CollaborationAllowlistExemptTarget[];
-}
 export type CollectionTypeField = 'collection';
 export type CollectionNameField = 'Favorites';
 export type CollectionCollectionTypeField = 'favorites';
@@ -1758,6 +1729,29 @@ export interface Comments {
   readonly offset?: number;
   readonly order?: readonly CommentsOrderField[];
   readonly entries?: readonly Comment[];
+}
+export type CollaborationAllowlistExemptTargetTypeField =
+  'collaboration_whitelist_exempt_target';
+export type CollaborationAllowlistExemptTargetEnterpriseFieldTypeField =
+  'enterprise';
+export interface CollaborationAllowlistExemptTargetEnterpriseField {
+  readonly id?: string;
+  readonly type?: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField;
+  readonly name?: string;
+}
+export interface CollaborationAllowlistExemptTarget {
+  readonly id?: string;
+  readonly type?: CollaborationAllowlistExemptTargetTypeField;
+  readonly enterprise?: CollaborationAllowlistExemptTargetEnterpriseField;
+  readonly user?: UserMini;
+  readonly createdAt?: string;
+  readonly modifiedAt?: string;
+}
+export interface CollaborationAllowlistExemptTargets {
+  readonly limit?: number;
+  readonly nextMarker?: number;
+  readonly prevMarker?: number;
+  readonly entries?: readonly CollaborationAllowlistExemptTarget[];
 }
 export type ShieldInformationBarrierSegmentRestriction =
   ShieldInformationBarrierSegmentRestrictionMini & {
@@ -4580,214 +4574,6 @@ export function deserializeCollaborationAllowlistEntries(
     prevMarker: prevMarker,
     entries: entries,
   } satisfies CollaborationAllowlistEntries;
-}
-export function serializeCollaborationAllowlistExemptTargetTypeField(
-  val: CollaborationAllowlistExemptTargetTypeField
-): Json {
-  return val;
-}
-export function deserializeCollaborationAllowlistExemptTargetTypeField(
-  val: any
-): CollaborationAllowlistExemptTargetTypeField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "CollaborationAllowlistExemptTargetTypeField"';
-  }
-  if (val == 'collaboration_whitelist') {
-    return 'collaboration_whitelist';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
-  val: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField
-): Json {
-  return val;
-}
-export function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
-  val: any
-): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "CollaborationAllowlistExemptTargetEnterpriseFieldTypeField"';
-  }
-  if (val == 'enterprise') {
-    return 'enterprise';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: CollaborationAllowlistExemptTargetEnterpriseField
-): Json {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
-            val.type
-          ),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-  };
-}
-export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: any
-): CollaborationAllowlistExemptTargetEnterpriseField {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type:
-    | undefined
-    | CollaborationAllowlistExemptTargetEnterpriseFieldTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
-          val.type
-        );
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  return {
-    id: id,
-    type: type,
-    name: name,
-  } satisfies CollaborationAllowlistExemptTargetEnterpriseField;
-}
-export function serializeCollaborationAllowlistExemptTargetUserFieldTypeField(
-  val: CollaborationAllowlistExemptTargetUserFieldTypeField
-): Json {
-  return val;
-}
-export function deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(
-  val: any
-): CollaborationAllowlistExemptTargetUserFieldTypeField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "CollaborationAllowlistExemptTargetUserFieldTypeField"';
-  }
-  if (val == 'enterprise') {
-    return 'enterprise';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeCollaborationAllowlistExemptTargetUserField(
-  val: CollaborationAllowlistExemptTargetUserField
-): Json {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeCollaborationAllowlistExemptTargetUserFieldTypeField(
-            val.type
-          ),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-  };
-}
-export function deserializeCollaborationAllowlistExemptTargetUserField(
-  val: any
-): CollaborationAllowlistExemptTargetUserField {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | CollaborationAllowlistExemptTargetUserFieldTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeCollaborationAllowlistExemptTargetUserFieldTypeField(
-          val.type
-        );
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  return {
-    id: id,
-    type: type,
-    name: name,
-  } satisfies CollaborationAllowlistExemptTargetUserField;
-}
-export function serializeCollaborationAllowlistExemptTarget(
-  val: CollaborationAllowlistExemptTarget
-): Json {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeCollaborationAllowlistExemptTargetTypeField(val.type),
-    ['enterprise']:
-      val.enterprise == void 0
-        ? void 0
-        : serializeCollaborationAllowlistExemptTargetEnterpriseField(
-            val.enterprise
-          ),
-    ['user']:
-      val.user == void 0
-        ? void 0
-        : serializeCollaborationAllowlistExemptTargetUserField(val.user),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-  };
-}
-export function deserializeCollaborationAllowlistExemptTarget(
-  val: any
-): CollaborationAllowlistExemptTarget {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | CollaborationAllowlistExemptTargetTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeCollaborationAllowlistExemptTargetTypeField(val.type);
-  const enterprise:
-    | undefined
-    | CollaborationAllowlistExemptTargetEnterpriseField =
-    val.enterprise == void 0
-      ? void 0
-      : deserializeCollaborationAllowlistExemptTargetEnterpriseField(
-          val.enterprise
-        );
-  const user: undefined | CollaborationAllowlistExemptTargetUserField =
-    val.user == void 0
-      ? void 0
-      : deserializeCollaborationAllowlistExemptTargetUserField(val.user);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  return {
-    id: id,
-    type: type,
-    enterprise: enterprise,
-    user: user,
-    createdAt: createdAt,
-    modifiedAt: modifiedAt,
-  } satisfies CollaborationAllowlistExemptTarget;
-}
-export function serializeCollaborationAllowlistExemptTargets(
-  val: CollaborationAllowlistExemptTargets
-): Json {
-  return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries.map(function (
-            item: CollaborationAllowlistExemptTarget
-          ): any {
-            return serializeCollaborationAllowlistExemptTarget(item);
-          }) as readonly any[]),
-  };
-}
-export function deserializeCollaborationAllowlistExemptTargets(
-  val: any
-): CollaborationAllowlistExemptTargets {
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
-  const entries: undefined | readonly CollaborationAllowlistExemptTarget[] =
-    val.entries == void 0
-      ? void 0
-      : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
-          return deserializeCollaborationAllowlistExemptTarget(itm);
-        }) as readonly any[])
-      : [];
-  return {
-    limit: limit,
-    nextMarker: nextMarker,
-    prevMarker: prevMarker,
-    entries: entries,
-  } satisfies CollaborationAllowlistExemptTargets;
 }
 export function serializeCollectionTypeField(val: CollectionTypeField): Json {
   return val;
@@ -12419,6 +12205,162 @@ export function deserializeComments(val: any): Comments {
     order: order,
     entries: entries,
   } satisfies Comments;
+}
+export function serializeCollaborationAllowlistExemptTargetTypeField(
+  val: CollaborationAllowlistExemptTargetTypeField
+): Json {
+  return val;
+}
+export function deserializeCollaborationAllowlistExemptTargetTypeField(
+  val: any
+): CollaborationAllowlistExemptTargetTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "CollaborationAllowlistExemptTargetTypeField"';
+  }
+  if (val == 'collaboration_whitelist_exempt_target') {
+    return 'collaboration_whitelist_exempt_target';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
+  val: CollaborationAllowlistExemptTargetEnterpriseFieldTypeField
+): Json {
+  return val;
+}
+export function deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
+  val: any
+): CollaborationAllowlistExemptTargetEnterpriseFieldTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "CollaborationAllowlistExemptTargetEnterpriseFieldTypeField"';
+  }
+  if (val == 'enterprise') {
+    return 'enterprise';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
+  val: CollaborationAllowlistExemptTargetEnterpriseField
+): Json {
+  return {
+    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
+            val.type
+          ),
+    ['name']: val.name == void 0 ? void 0 : val.name,
+  };
+}
+export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
+  val: any
+): CollaborationAllowlistExemptTargetEnterpriseField {
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const type:
+    | undefined
+    | CollaborationAllowlistExemptTargetEnterpriseFieldTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCollaborationAllowlistExemptTargetEnterpriseFieldTypeField(
+          val.type
+        );
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  return {
+    id: id,
+    type: type,
+    name: name,
+  } satisfies CollaborationAllowlistExemptTargetEnterpriseField;
+}
+export function serializeCollaborationAllowlistExemptTarget(
+  val: CollaborationAllowlistExemptTarget
+): Json {
+  return {
+    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCollaborationAllowlistExemptTargetTypeField(val.type),
+    ['enterprise']:
+      val.enterprise == void 0
+        ? void 0
+        : serializeCollaborationAllowlistExemptTargetEnterpriseField(
+            val.enterprise
+          ),
+    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+  };
+}
+export function deserializeCollaborationAllowlistExemptTarget(
+  val: any
+): CollaborationAllowlistExemptTarget {
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const type: undefined | CollaborationAllowlistExemptTargetTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCollaborationAllowlistExemptTargetTypeField(val.type);
+  const enterprise:
+    | undefined
+    | CollaborationAllowlistExemptTargetEnterpriseField =
+    val.enterprise == void 0
+      ? void 0
+      : deserializeCollaborationAllowlistExemptTargetEnterpriseField(
+          val.enterprise
+        );
+  const user: undefined | UserMini =
+    val.user == void 0 ? void 0 : deserializeUserMini(val.user);
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const modifiedAt: undefined | string =
+    val.modified_at == void 0 ? void 0 : val.modified_at;
+  return {
+    id: id,
+    type: type,
+    enterprise: enterprise,
+    user: user,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+  } satisfies CollaborationAllowlistExemptTarget;
+}
+export function serializeCollaborationAllowlistExemptTargets(
+  val: CollaborationAllowlistExemptTargets
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (
+            item: CollaborationAllowlistExemptTarget
+          ): any {
+            return serializeCollaborationAllowlistExemptTarget(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeCollaborationAllowlistExemptTargets(
+  val: any
+): CollaborationAllowlistExemptTargets {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | number =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const prevMarker: undefined | number =
+    val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  const entries: undefined | readonly CollaborationAllowlistExemptTarget[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries.map(function (itm: Json): any {
+          return deserializeCollaborationAllowlistExemptTarget(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    prevMarker: prevMarker,
+    entries: entries,
+  } satisfies CollaborationAllowlistExemptTargets;
 }
 export function serializeShieldInformationBarrierSegmentRestriction(
   val: ShieldInformationBarrierSegmentRestriction

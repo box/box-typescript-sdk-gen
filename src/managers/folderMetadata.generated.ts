@@ -2,10 +2,13 @@ import { serializeMetadatas } from '../schemas.generated.js';
 import { deserializeMetadatas } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeMetadataFull } from '../schemas.generated.js';
+import { deserializeMetadataFull } from '../schemas.generated.js';
 import { serializeMetadata } from '../schemas.generated.js';
 import { deserializeMetadata } from '../schemas.generated.js';
 import { Metadatas } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { MetadataFull } from '../schemas.generated.js';
 import { Metadata } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
@@ -124,7 +127,7 @@ export class FolderMetadataManager {
     headers: GetFolderMetadataByIdHeadersArg = new GetFolderMetadataByIdHeadersArg(
       {}
     )
-  ): Promise<Metadata> {
+  ): Promise<MetadataFull> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -145,7 +148,7 @@ export class FolderMetadataManager {
         networkSession: this.networkSession,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(deserializeJson(response.text));
+    return deserializeMetadataFull(deserializeJson(response.text));
   }
   async createFolderMetadataById(
     folderId: string,

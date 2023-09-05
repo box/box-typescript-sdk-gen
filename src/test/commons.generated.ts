@@ -35,7 +35,7 @@ const auth: any = new JwtAuth({ config: jwtConfig });
 const client: any = new Client({ auth: auth });
 export async function uploadNewFile(): Promise<File> {
   const newFileName: any = ''.concat(getUuid(), '.pdf') as string;
-  const fileContentStream: any = generateByteStream(1048576);
+  const fileContentStream: any = generateByteStream(1024 * 1024);
   const uploadedFiles: any = await client.uploads.uploadFile({
     attributes: {
       name: newFileName,
