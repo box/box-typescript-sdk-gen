@@ -12,6 +12,8 @@ import { serializeCreateWebhookRequestBodyArgTargetField } from '../managers/web
 import { deserializeCreateWebhookRequestBodyArgTargetField } from '../managers/webhooks.generated.js';
 import { serializeCreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
 import { deserializeCreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
+import { serializeCreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
+import { deserializeCreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
 import { serializeWebhooks } from '../schemas.generated.js';
 import { deserializeWebhooks } from '../schemas.generated.js';
 import { serializeUpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
@@ -23,6 +25,7 @@ import { Webhook } from '../schemas.generated.js';
 import { CreateWebhookRequestBodyArg } from '../managers/webhooks.generated.js';
 import { CreateWebhookRequestBodyArgTargetField } from '../managers/webhooks.generated.js';
 import { CreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
+import { CreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
 import { Webhooks } from '../schemas.generated.js';
 import { UpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
 import { decodeBase64 } from '../utils.js';
@@ -47,7 +50,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
       type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
     } satisfies CreateWebhookRequestBodyArgTargetField,
     address: 'https://example.com/new-webhook',
-    triggers: ['FILE.UPLOADED'],
+    triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyArgTriggersField],
   } satisfies CreateWebhookRequestBodyArg);
   if (!(webhook.target.id == folder.id)) {
     throw 'Assertion failed';

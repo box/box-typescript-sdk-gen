@@ -2,6 +2,10 @@ import { serializeMetadataTemplate } from '../schemas.generated.js';
 import { deserializeMetadataTemplate } from '../schemas.generated.js';
 import { serializeCreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
 import { serializeGetMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { deserializeGetMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataTemplates } from '../schemas.generated.js';
@@ -10,6 +14,8 @@ import { serializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metad
 import { deserializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
 import { GetMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { MetadataTemplates } from '../schemas.generated.js';
 import { DeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
@@ -31,7 +37,13 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
       scope: 'enterprise',
       displayName: templateKey,
       templateKey: templateKey,
-      fields: [{ type: 'string', key: 'testName', displayName: 'testName' }],
+      fields: [
+        {
+          type: 'string' as CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField,
+          key: 'testName',
+          displayName: 'testName',
+        } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField,
+      ],
     } satisfies CreateMetadataTemplateSchemaRequestBodyArg);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';

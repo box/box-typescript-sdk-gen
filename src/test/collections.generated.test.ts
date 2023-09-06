@@ -12,6 +12,8 @@ import { serializeCreateFolderRequestBodyArgParentField } from '../managers/fold
 import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { serializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
 import { deserializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
+import { serializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
+import { deserializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
 import { Collections } from '../schemas.generated.js';
 import { Collection } from '../schemas.generated.js';
 import { Items } from '../schemas.generated.js';
@@ -19,6 +21,7 @@ import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { UpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
+import { UpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
@@ -41,7 +44,11 @@ test('testCollections', async function testCollections(): Promise<any> {
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
   await client.folders.updateFolderById(folder.id, {
-    collections: [{ id: favouriteCollection.id }],
+    collections: [
+      {
+        id: favouriteCollection.id,
+      } satisfies UpdateFolderByIdRequestBodyArgCollectionsField,
+    ],
   } satisfies UpdateFolderByIdRequestBodyArg);
   const collectionItemsAfterUpdate: any =
     await client.collections.getCollectionItems(favouriteCollection.id);
