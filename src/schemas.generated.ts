@@ -3111,6 +3111,7 @@ export type TemplateSignerInputTypeField =
   | 'date'
   | 'text'
   | 'checkbox'
+  | 'attachment'
   | 'radio'
   | 'dropdown';
 export type TemplateSignerInputContentTypeField =
@@ -3165,6 +3166,9 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
   /**
    * The size of the input. */
   readonly dimensions?: TemplateSignerInputDimensionsField;
+  /**
+   * The label field is used especially for text, attachment, radio, and checkbox type inputs. */
+  readonly label?: string;
 };
 export type TemplateSignerRoleField =
   | 'signer'
@@ -19341,6 +19345,9 @@ export function deserializeTemplateSignerInputTypeField(
   if (val == 'checkbox') {
     return 'checkbox';
   }
+  if (val == 'attachment') {
+    return 'attachment';
+  }
   if (val == 'radio') {
     return 'radio';
   }
@@ -19474,6 +19481,7 @@ export function serializeTemplateSignerInput(val: TemplateSignerInput): Json {
         val.dimensions == void 0
           ? void 0
           : serializeTemplateSignerInputDimensionsField(val.dimensions),
+      ['label']: val.label == void 0 ? void 0 : val.label,
     },
   };
 }
@@ -19509,6 +19517,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.dimensions == void 0
       ? void 0
       : deserializeTemplateSignerInputDimensionsField(val.dimensions);
+  const label: undefined | string = val.label == void 0 ? void 0 : val.label;
   const documentTagId: undefined | string =
     val.document_tag_id == void 0 ? void 0 : val.document_tag_id;
   const textValue: undefined | string =
@@ -19527,6 +19536,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     groupId: groupId,
     coordinates: coordinates,
     dimensions: dimensions,
+    label: label,
     documentTagId: documentTagId,
     textValue: textValue,
     checkboxValue: checkboxValue,
