@@ -15,7 +15,11 @@ This operation is performed by calling function `getCollaborationWhitelistExempt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets/).
 
-_Currently we don't have an example for calling `getCollaborationWhitelistExemptTargets` in integration tests_
+<!-- sample get_collaboration_whitelist_exempt_targets -->
+
+```ts
+await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargets();
+```
 
 ### Arguments
 
@@ -40,7 +44,17 @@ This operation is performed by calling function `createCollaborationWhitelistExe
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaboration-whitelist-exempt-targets/).
 
-_Currently we don't have an example for calling `createCollaborationWhitelistExemptTarget` in integration tests_
+<!-- sample post_collaboration_whitelist_exempt_targets -->
+
+```ts
+await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExemptTarget(
+  {
+    user: {
+      id: user.id,
+    } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField,
+  } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArg
+);
+```
 
 ### Arguments
 
@@ -65,7 +79,13 @@ This operation is performed by calling function `getCollaborationWhitelistExempt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets-id/).
 
-_Currently we don't have an example for calling `getCollaborationWhitelistExemptTargetById` in integration tests_
+<!-- sample get_collaboration_whitelist_exempt_targets_id -->
+
+```ts
+await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
+  exemptTarget.id
+);
+```
 
 ### Arguments
 
@@ -90,7 +110,13 @@ This operation is performed by calling function `deleteCollaborationWhitelistExe
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-exempt-targets-id/).
 
-_Currently we don't have an example for calling `deleteCollaborationWhitelistExemptTargetById` in integration tests_
+<!-- sample delete_collaboration_whitelist_exempt_targets_id -->
+
+```ts
+await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
+  exemptTarget.id
+);
+```
 
 ### Arguments
 

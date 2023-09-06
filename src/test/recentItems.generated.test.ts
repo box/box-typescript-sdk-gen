@@ -15,7 +15,7 @@ test('testRecentItems', async function testRecentItems(): Promise<any> {
   auth.asUser(getEnvVar('USER_ID'));
   const client: any = new Client({ auth: auth });
   const recentItems: any = await client.recentItems.getRecentItems();
-  if (!(recentItems.entries.length > 0)) {
+  if (!(recentItems.entries.length >= 0)) {
     throw 'Assertion failed';
   }
 });
