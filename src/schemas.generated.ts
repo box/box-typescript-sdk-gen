@@ -3177,6 +3177,7 @@ export interface TemplateSigner {
   readonly isInPerson?: boolean;
   readonly order?: number;
 }
+export type SignTemplateTypeField = 'sign-template';
 export type SignTemplateAdditionalInfoFieldNonEditableField =
   | 'email_subject'
   | 'email_message'
@@ -3207,6 +3208,7 @@ export interface SignTemplateCustomBrandingField {
   readonly emailFooterText?: string;
 }
 export interface SignTemplate {
+  readonly type?: SignTemplateTypeField;
   readonly id?: string;
   readonly name?: string;
   readonly emailSubject?: string;
@@ -19591,6 +19593,22 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
     order: order,
   } satisfies TemplateSigner;
 }
+export function serializeSignTemplateTypeField(
+  val: SignTemplateTypeField
+): Json {
+  return val;
+}
+export function deserializeSignTemplateTypeField(
+  val: any
+): SignTemplateTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "SignTemplateTypeField"';
+  }
+  if (val == 'sign-template') {
+    return 'sign-template';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeSignTemplateAdditionalInfoFieldNonEditableField(
   val: SignTemplateAdditionalInfoFieldNonEditableField
 ): Json {
@@ -19796,6 +19814,8 @@ export function deserializeSignTemplateCustomBrandingField(
 }
 export function serializeSignTemplate(val: SignTemplate): Json {
   return {
+    ['type']:
+      val.type == void 0 ? void 0 : serializeSignTemplateTypeField(val.type),
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['email_subject']: val.emailSubject == void 0 ? void 0 : val.emailSubject,
@@ -19844,6 +19864,8 @@ export function serializeSignTemplate(val: SignTemplate): Json {
   };
 }
 export function deserializeSignTemplate(val: any): SignTemplate {
+  const type: undefined | SignTemplateTypeField =
+    val.type == void 0 ? void 0 : deserializeSignTemplateTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const emailSubject: undefined | string =
@@ -19897,6 +19919,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
       ? void 0
       : deserializeSignTemplateCustomBrandingField(val.custom_branding);
   return {
+    type: type,
     id: id,
     name: name,
     emailSubject: emailSubject,
