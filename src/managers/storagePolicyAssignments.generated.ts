@@ -239,6 +239,25 @@ export class StoragePolicyAssignmentsManager {
     return void 0;
   }
 }
+export function serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
+  val: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField
+): Json {
+  return val;
+}
+export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
+  val: any
+): GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField"';
+  }
+  if (val == 'user') {
+    return 'user';
+  }
+  if (val == 'enterprise') {
+    return 'enterprise';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
   val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField
 ): Json {

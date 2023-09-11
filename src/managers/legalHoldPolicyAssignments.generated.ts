@@ -299,6 +299,31 @@ export class LegalHoldPolicyAssignmentsManager {
     return deserializeFileVersionLegalHolds(deserializeJson(response.text));
   }
 }
+export function serializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(
+  val: GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField
+): Json {
+  return val;
+}
+export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(
+  val: any
+): GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField"';
+  }
+  if (val == 'file') {
+    return 'file';
+  }
+  if (val == 'file_version') {
+    return 'file_version';
+  }
+  if (val == 'folder') {
+    return 'folder';
+  }
+  if (val == 'user') {
+    return 'user';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
   val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField
 ): Json {

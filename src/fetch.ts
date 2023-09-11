@@ -40,7 +40,12 @@ export interface FetchOptions {
   /**
    * Request body
    */
-  readonly body?: string | Readable;
+  readonly body?: string;
+
+  /**
+   * Stream of a file
+   */
+  readonly fileStream?: ByteStream;
 
   /**
    * Parts of multipart data
@@ -85,10 +90,16 @@ export interface FetchResponse {
 }
 
 async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
-  const { method = 'GET', headers = {}, params = {}, body } = options;
+  const {
+    method = 'GET',
+    headers = {},
+    params = {},
+    body,
+    fileStream,
+  } = options;
   let fetchOptions = {} as RequestInit;
   let contentType = options.contentType ?? 'application/json';
-  let requestBody: any = body;
+  let requestBody: any = fileStream ?? body;
 
   if (options.multipartData) {
     const formData = new FormData();

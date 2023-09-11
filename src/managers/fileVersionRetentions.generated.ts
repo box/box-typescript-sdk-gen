@@ -17,6 +17,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export type GetFileVersionRetentionsQueryParamsArgDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
@@ -115,4 +116,23 @@ export class FileVersionRetentionsManager {
     )) as FetchResponse;
     return deserializeFileVersionRetention(deserializeJson(response.text));
   }
+}
+export function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
+  val: GetFileVersionRetentionsQueryParamsArgDispositionActionField
+): Json {
+  return val;
+}
+export function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
+  val: any
+): GetFileVersionRetentionsQueryParamsArgDispositionActionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFileVersionRetentionsQueryParamsArgDispositionActionField"';
+  }
+  if (val == 'permanently_delete') {
+    return 'permanently_delete';
+  }
+  if (val == 'remove_retention') {
+    return 'remove_retention';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

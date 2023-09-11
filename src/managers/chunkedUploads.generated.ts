@@ -239,7 +239,7 @@ export class ChunkedUploadsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: requestBody,
+        fileStream: requestBody,
         contentType: 'application/octet-stream',
         responseFormat: 'json',
         auth: this.auth,

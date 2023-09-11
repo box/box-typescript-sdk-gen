@@ -14,6 +14,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export type GetFolderTrashItemsQueryParamsArgDirectionField = 'ASC' | 'DESC';
 export type GetFolderTrashItemsQueryParamsArgSortField =
   | 'name'
@@ -75,4 +76,45 @@ export class TrashedItemsManager {
     )) as FetchResponse;
     return deserializeItems(deserializeJson(response.text));
   }
+}
+export function serializeGetFolderTrashItemsQueryParamsArgDirectionField(
+  val: GetFolderTrashItemsQueryParamsArgDirectionField
+): Json {
+  return val;
+}
+export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(
+  val: any
+): GetFolderTrashItemsQueryParamsArgDirectionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgDirectionField"';
+  }
+  if (val == 'ASC') {
+    return 'ASC';
+  }
+  if (val == 'DESC') {
+    return 'DESC';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetFolderTrashItemsQueryParamsArgSortField(
+  val: GetFolderTrashItemsQueryParamsArgSortField
+): Json {
+  return val;
+}
+export function deserializeGetFolderTrashItemsQueryParamsArgSortField(
+  val: any
+): GetFolderTrashItemsQueryParamsArgSortField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgSortField"';
+  }
+  if (val == 'name') {
+    return 'name';
+  }
+  if (val == 'date') {
+    return 'date';
+  }
+  if (val == 'size') {
+    return 'size';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

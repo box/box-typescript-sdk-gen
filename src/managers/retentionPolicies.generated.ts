@@ -265,6 +265,25 @@ export class RetentionPoliciesManager {
     return void 0;
   }
 }
+export function serializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(
+  val: GetRetentionPoliciesQueryParamsArgPolicyTypeField
+): Json {
+  return val;
+}
+export function deserializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(
+  val: any
+): GetRetentionPoliciesQueryParamsArgPolicyTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetRetentionPoliciesQueryParamsArgPolicyTypeField"';
+  }
+  if (val == 'finite') {
+    return 'finite';
+  }
+  if (val == 'indefinite') {
+    return 'indefinite';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
   val: CreateRetentionPolicyRequestBodyArgPolicyTypeField
 ): Json {

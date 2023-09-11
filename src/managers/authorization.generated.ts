@@ -12,6 +12,8 @@ import { ByteStream } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
+import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export type GetAuthorizeQueryParamsArgResponseTypeField = 'code';
 export interface GetAuthorizeQueryParamsArg {
   readonly responseType: GetAuthorizeQueryParamsArgResponseTypeField;
@@ -63,4 +65,20 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export function serializeGetAuthorizeQueryParamsArgResponseTypeField(
+  val: GetAuthorizeQueryParamsArgResponseTypeField
+): Json {
+  return val;
+}
+export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(
+  val: any
+): GetAuthorizeQueryParamsArgResponseTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetAuthorizeQueryParamsArgResponseTypeField"';
+  }
+  if (val == 'code') {
+    return 'code';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

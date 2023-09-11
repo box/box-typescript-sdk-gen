@@ -337,6 +337,28 @@ export class UsersManager {
     return void 0;
   }
 }
+export function serializeGetUsersQueryParamsArgUserTypeField(
+  val: GetUsersQueryParamsArgUserTypeField
+): Json {
+  return val;
+}
+export function deserializeGetUsersQueryParamsArgUserTypeField(
+  val: any
+): GetUsersQueryParamsArgUserTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetUsersQueryParamsArgUserTypeField"';
+  }
+  if (val == 'all') {
+    return 'all';
+  }
+  if (val == 'managed') {
+    return 'managed';
+  }
+  if (val == 'external') {
+    return 'external';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateUserRequestBodyArgRoleField(
   val: CreateUserRequestBodyArgRoleField
 ): Json {

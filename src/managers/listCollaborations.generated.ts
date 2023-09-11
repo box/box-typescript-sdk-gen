@@ -14,6 +14,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export interface GetFileCollaborationsQueryParamsArg {
   readonly fields?: string;
   readonly limit?: number;
@@ -204,4 +205,20 @@ export class ListCollaborationsManager {
     )) as FetchResponse;
     return deserializeCollaborations(deserializeJson(response.text));
   }
+}
+export function serializeGetCollaborationsQueryParamsArgStatusField(
+  val: GetCollaborationsQueryParamsArgStatusField
+): Json {
+  return val;
+}
+export function deserializeGetCollaborationsQueryParamsArgStatusField(
+  val: any
+): GetCollaborationsQueryParamsArgStatusField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetCollaborationsQueryParamsArgStatusField"';
+  }
+  if (val == 'pending') {
+    return 'pending';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

@@ -194,6 +194,25 @@ export class TermsOfServicesManager {
     return deserializeTermsOfService(deserializeJson(response.text));
   }
 }
+export function serializeGetTermOfServicesQueryParamsArgTosTypeField(
+  val: GetTermOfServicesQueryParamsArgTosTypeField
+): Json {
+  return val;
+}
+export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(
+  val: any
+): GetTermOfServicesQueryParamsArgTosTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetTermOfServicesQueryParamsArgTosTypeField"';
+  }
+  if (val == 'external') {
+    return 'external';
+  }
+  if (val == 'managed') {
+    return 'managed';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateTermOfServiceRequestBodyArgStatusField(
   val: CreateTermOfServiceRequestBodyArgStatusField
 ): Json {

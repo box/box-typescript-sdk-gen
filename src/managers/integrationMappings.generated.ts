@@ -27,6 +27,7 @@ import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
+import { isJson } from '../json.js';
 export type GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField =
   'channel';
 export type GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField = 'folder';
@@ -200,6 +201,38 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export function serializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(
+  val: GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField
+): Json {
+  return val;
+}
+export function deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(
+  val: any
+): GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField"';
+  }
+  if (val == 'channel') {
+    return 'channel';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(
+  val: GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField
+): Json {
+  return val;
+}
+export function deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(
+  val: any
+): GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField"';
+  }
+  if (val == 'folder') {
+    return 'folder';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(
   val: UpdateIntegrationMappingSlackByIdRequestBodyArg

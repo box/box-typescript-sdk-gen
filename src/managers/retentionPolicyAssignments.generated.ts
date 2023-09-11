@@ -311,6 +311,28 @@ export class RetentionPolicyAssignmentsManager {
     return deserializeFilesUnderRetention(deserializeJson(response.text));
   }
 }
+export function serializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(
+  val: GetRetentionPolicyAssignmentsQueryParamsArgTypeField
+): Json {
+  return val;
+}
+export function deserializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(
+  val: any
+): GetRetentionPolicyAssignmentsQueryParamsArgTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsArgTypeField"';
+  }
+  if (val == 'folder') {
+    return 'folder';
+  }
+  if (val == 'enterprise') {
+    return 'enterprise';
+  }
+  if (val == 'metadata_template') {
+    return 'metadata_template';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
   val: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField
 ): Json {

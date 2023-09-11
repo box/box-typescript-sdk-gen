@@ -17,6 +17,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export class GetDevicePinnerByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -144,4 +145,23 @@ export class DevicePinnersManager {
     )) as FetchResponse;
     return deserializeDevicePinners(deserializeJson(response.text));
   }
+}
+export function serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(
+  val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField
+): Json {
+  return val;
+}
+export function deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(
+  val: any
+): GetEnterpriseDevicePinnersQueryParamsArgDirectionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsArgDirectionField"';
+  }
+  if (val == 'ASC') {
+    return 'ASC';
+  }
+  if (val == 'DESC') {
+    return 'DESC';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

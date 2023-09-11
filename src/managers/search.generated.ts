@@ -27,6 +27,7 @@ import { FetchResponse } from '../fetch.js';
 import { serializeJson } from '../json.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { isJson } from '../json.js';
 export class CreateMetadataQueryExecuteReadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -204,4 +205,124 @@ export class SearchManager {
       deserializeJson(response.text)
     );
   }
+}
+export function serializeGetMetadataQueryIndicesQueryParamsArgScopeField(
+  val: GetMetadataQueryIndicesQueryParamsArgScopeField
+): Json {
+  return val;
+}
+export function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(
+  val: any
+): GetMetadataQueryIndicesQueryParamsArgScopeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetMetadataQueryIndicesQueryParamsArgScopeField"';
+  }
+  if (val == 'global') {
+    return 'global';
+  }
+  if (val == 'enterprise') {
+    return 'enterprise';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgScopeField(
+  val: GetSearchQueryParamsArgScopeField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgScopeField(
+  val: any
+): GetSearchQueryParamsArgScopeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgScopeField"';
+  }
+  if (val == 'user_content') {
+    return 'user_content';
+  }
+  if (val == 'enterprise_content') {
+    return 'enterprise_content';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgTypeField(
+  val: GetSearchQueryParamsArgTypeField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgTypeField(
+  val: any
+): GetSearchQueryParamsArgTypeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgTypeField"';
+  }
+  if (val == 'file') {
+    return 'file';
+  }
+  if (val == 'folder') {
+    return 'folder';
+  }
+  if (val == 'web_link') {
+    return 'web_link';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgTrashContentField(
+  val: GetSearchQueryParamsArgTrashContentField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgTrashContentField(
+  val: any
+): GetSearchQueryParamsArgTrashContentField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgTrashContentField"';
+  }
+  if (val == 'non_trashed_only') {
+    return 'non_trashed_only';
+  }
+  if (val == 'trashed_only') {
+    return 'trashed_only';
+  }
+  if (val == 'all_items') {
+    return 'all_items';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgSortField(
+  val: GetSearchQueryParamsArgSortField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgSortField(
+  val: any
+): GetSearchQueryParamsArgSortField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgSortField"';
+  }
+  if (val == 'modified_at') {
+    return 'modified_at';
+  }
+  if (val == 'relevance') {
+    return 'relevance';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgDirectionField(
+  val: GetSearchQueryParamsArgDirectionField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgDirectionField(
+  val: any
+): GetSearchQueryParamsArgDirectionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgDirectionField"';
+  }
+  if (val == 'DESC') {
+    return 'DESC';
+  }
+  if (val == 'ASC') {
+    return 'ASC';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }

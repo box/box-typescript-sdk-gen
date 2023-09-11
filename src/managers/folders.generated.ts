@@ -390,6 +390,50 @@ export class FoldersManager {
     return deserializeFolderFull(deserializeJson(response.text));
   }
 }
+export function serializeGetFolderByIdQueryParamsArgSortField(
+  val: GetFolderByIdQueryParamsArgSortField
+): Json {
+  return val;
+}
+export function deserializeGetFolderByIdQueryParamsArgSortField(
+  val: any
+): GetFolderByIdQueryParamsArgSortField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderByIdQueryParamsArgSortField"';
+  }
+  if (val == 'id') {
+    return 'id';
+  }
+  if (val == 'name') {
+    return 'name';
+  }
+  if (val == 'date') {
+    return 'date';
+  }
+  if (val == 'size') {
+    return 'size';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetFolderByIdQueryParamsArgDirectionField(
+  val: GetFolderByIdQueryParamsArgDirectionField
+): Json {
+  return val;
+}
+export function deserializeGetFolderByIdQueryParamsArgDirectionField(
+  val: any
+): GetFolderByIdQueryParamsArgDirectionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderByIdQueryParamsArgDirectionField"';
+  }
+  if (val == 'ASC') {
+    return 'ASC';
+  }
+  if (val == 'DESC') {
+    return 'DESC';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
 export function serializeUpdateFolderByIdRequestBodyArgSyncStateField(
   val: UpdateFolderByIdRequestBodyArgSyncStateField
 ): Json {
@@ -703,6 +747,50 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
     collections: collections,
     canNonOwnersViewCollaborators: canNonOwnersViewCollaborators,
   } satisfies UpdateFolderByIdRequestBodyArg;
+}
+export function serializeGetFolderItemsQueryParamsArgSortField(
+  val: GetFolderItemsQueryParamsArgSortField
+): Json {
+  return val;
+}
+export function deserializeGetFolderItemsQueryParamsArgSortField(
+  val: any
+): GetFolderItemsQueryParamsArgSortField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderItemsQueryParamsArgSortField"';
+  }
+  if (val == 'id') {
+    return 'id';
+  }
+  if (val == 'name') {
+    return 'name';
+  }
+  if (val == 'date') {
+    return 'date';
+  }
+  if (val == 'size') {
+    return 'size';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetFolderItemsQueryParamsArgDirectionField(
+  val: GetFolderItemsQueryParamsArgDirectionField
+): Json {
+  return val;
+}
+export function deserializeGetFolderItemsQueryParamsArgDirectionField(
+  val: any
+): GetFolderItemsQueryParamsArgDirectionField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetFolderItemsQueryParamsArgDirectionField"';
+  }
+  if (val == 'ASC') {
+    return 'ASC';
+  }
+  if (val == 'DESC') {
+    return 'DESC';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeCreateFolderRequestBodyArgParentField(
   val: CreateFolderRequestBodyArgParentField
