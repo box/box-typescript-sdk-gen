@@ -1,0 +1,24 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["./src/"],
+	"exclude": ["**/test/**/*"],
+    "out": "docs/typedoc",
+	"entryPointStrategy": "expand",
+	"categorizeByGroup": true,
+	"excludePrivate": true,
+	"githubPages": true,
+	"hideGenerator": true,
+	"titleLink": "http://opensource.box.com/box-typescript-sdk-gen/",
+	"navigationLinks": {
+		
+	},
+	"visibilityFilters": {
+		"protected": true,
+		"private": true,
+		"inherited": true,
+		"external": true
+	},
+	"sort": [
+		"source-order"
+	]
+}
