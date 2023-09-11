@@ -3,6 +3,7 @@ import { TokenRequest, TokenRequestGrantType } from './authSchemas.js';
 import { FetchOptions, FetchResponse, fetch } from './fetch.js';
 import { NetworkSession } from './network.js';
 import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
+import { InMemoryTokenStorage, TokenStorage } from './tokenStorage';
 
 const BOX_OAUTH2_AUTH_URL = 'https://account.box.com/api/oauth2/authorize';
 const BOX_OAUTH2_TOKEN_URL = 'https://api.box.com/oauth2/token';
@@ -41,9 +42,16 @@ function isValidOAuthTokenResponse(responseBody: Record<string, any>) {
  *  A class managing the configuration for OAuth authentication.
  * @typedef {Object} OAuthConfig
  */
-export interface OAuthConfig {
+export class OAuthConfig {
   clientId: string;
   clientSecret: string;
+  tokenStorage?: TokenStorage;
+
+  constructor(fields: OAuthConfig) {
+    this.clientId = fields.clientId;
+    this.clientSecret = fields.clientSecret;
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
+  }
 }
 
 /**
@@ -53,10 +61,11 @@ export interface OAuthConfig {
  */
 export class OAuth implements Authentication {
   config: OAuthConfig;
-  token?: AccessToken;
+  tokenStorage: TokenStorage;
 
   constructor({ config }: { config: OAuthConfig }) {
     this.config = config;
+    this.tokenStorage = config.tokenStorage!;
   }
 
   /**
@@ -101,7 +110,7 @@ export class OAuth implements Authentication {
   async getTokensAuthorizationCodeGrant(
     authorizationCode: string,
     networkSession?: NetworkSession
-  ): Promise<string> {
+  ): Promise<AccessToken> {
     const requestBody: TokenRequest = {
       grant_type: BOX_OAUTH2_GRANT_TYPE,
       code: authorizationCode,
@@ -127,8 +136,9 @@ export class OAuth implements Authentication {
     if (!isValidOAuthTokenResponse(tokenResponse)) {
       throw new Error('Invalid token response');
     }
-    this.token = deserializeAccessToken(tokenResponse);
-    return this.token!.accessToken!;
+    const token = deserializeAccessToken(tokenResponse);
+    await this.tokenStorage.store(token);
+    return token;
   }
 
   /**
@@ -137,12 +147,13 @@ export class OAuth implements Authentication {
    * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    if (!this.token) {
+    const token = await this.tokenStorage.get();
+    if (!token) {
       throw Error(
         'Access and refresh tokens not available. Authenticate before making any API call first.'
       );
     }
-    return this.token;
+    return token;
   }
 
   /**
@@ -155,11 +166,18 @@ export class OAuth implements Authentication {
     networkSession?: NetworkSession,
     refreshToken?: string
   ): Promise<AccessToken | undefined> {
+    const oldToken = await this.tokenStorage.get();
+    const tokenUsedForRefresh = refreshToken ?? oldToken?.refreshToken;
+
+    if (!tokenUsedForRefresh) {
+      throw Error('No refresh token is available.');
+    }
+
     const requestBody: TokenRequest = {
       grant_type: BOX_REFRESH_TOKEN_GRANT_TYPE,
       client_id: this.config.clientId,
       client_secret: this.config.clientSecret,
-      refresh_token: refreshToken ?? this.token!.refreshToken,
+      refresh_token: tokenUsedForRefresh,
     };
     const params: FetchOptions = {
       method: 'POST',
@@ -175,7 +193,9 @@ export class OAuth implements Authentication {
       BOX_OAUTH2_TOKEN_URL,
       params
     )) as FetchResponse;
-    this.token = deserializeAccessToken(JSON.parse(response.text));
-    return this.token;
+
+    const newToken = deserializeAccessToken(JSON.parse(response.text));
+    await this.tokenStorage.store(newToken);
+    return newToken;
   }
 }

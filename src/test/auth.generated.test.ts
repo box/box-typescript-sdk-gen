@@ -16,20 +16,20 @@ import { UserFull } from '../schemas.generated.js';
 test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   const userId: any = getEnvVar('USER_ID');
   const enterpriseId: any = getEnvVar('ENTERPRISE_ID');
-  const ccgConfig: any = {
+  const ccgConfig: any = new CcgConfig({
     clientId: getEnvVar('CLIENT_ID'),
     clientSecret: getEnvVar('CLIENT_SECRET'),
     enterpriseId: enterpriseId,
     userId: userId,
-  } satisfies CcgConfig;
+  });
   const auth: any = new CcgAuth({ config: ccgConfig });
   const client: any = new Client({ auth: auth });
-  auth.asUser(userId);
+  await auth.asUser(userId);
   const currentUser: any = await client.users.getUserMe();
   if (!(currentUser.id == userId)) {
     throw 'Assertion failed';
   }
-  auth.asEnterprise(enterpriseId);
+  await auth.asEnterprise(enterpriseId);
   const newUser: any = await client.users.getUserMe({
     fields: 'enterprise',
   } satisfies GetUserMeQueryParamsArg);
@@ -84,10 +84,10 @@ test('test_developer_token_auth', async function test_developer_token_auth(): Pr
   }
 });
 test('test_oauth_auth', function test_oauth_auth(): any {
-  const config: any = {
+  const config: any = new OAuthConfig({
     clientId: 'OAUTH_CLIENT_ID',
     clientSecret: 'OAUTH_CLIENT_SECRET',
-  } satisfies OAuthConfig;
+  });
   const auth: any = new OAuth({ config: config });
   const authUrl: any = auth.getAuthorizeUrl();
   const expectedAuthUrl: any =
