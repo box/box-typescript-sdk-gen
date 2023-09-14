@@ -2477,7 +2477,7 @@ export interface SearchResultsWithSharedLinks {
   readonly totalCount?: number;
   readonly limit?: number;
   readonly offset?: number;
-  readonly type?: SearchResultsWithSharedLinksTypeField;
+  readonly type: SearchResultsWithSharedLinksTypeField;
   readonly entries?: readonly SearchResultWithSharedLink[];
 }
 export type SearchResultsTypeField = 'search_results_items';
@@ -2485,7 +2485,7 @@ export interface SearchResults {
   readonly totalCount?: number;
   readonly limit?: number;
   readonly offset?: number;
-  readonly type?: SearchResultsTypeField;
+  readonly type: SearchResultsTypeField;
   readonly entries?: readonly FileOrFolderOrWebLink[];
 }
 export type SearchResultsOrSearchResultsWithSharedLinks =
@@ -15659,10 +15659,7 @@ export function serializeSearchResultsWithSharedLinks(
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['offset']: val.offset == void 0 ? void 0 : val.offset,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeSearchResultsWithSharedLinksTypeField(val.type),
+    ['type']: serializeSearchResultsWithSharedLinksTypeField(val.type),
     ['entries']:
       val.entries == void 0
         ? void 0
@@ -15678,10 +15675,8 @@ export function deserializeSearchResultsWithSharedLinks(
     val.total_count == void 0 ? void 0 : val.total_count;
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
-  const type: undefined | SearchResultsWithSharedLinksTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeSearchResultsWithSharedLinksTypeField(val.type);
+  const type: SearchResultsWithSharedLinksTypeField =
+    deserializeSearchResultsWithSharedLinksTypeField(val.type);
   const entries: undefined | readonly SearchResultWithSharedLink[] =
     val.entries == void 0
       ? void 0
@@ -15719,8 +15714,7 @@ export function serializeSearchResults(val: SearchResults): Json {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['offset']: val.offset == void 0 ? void 0 : val.offset,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeSearchResultsTypeField(val.type),
+    ['type']: serializeSearchResultsTypeField(val.type),
     ['entries']:
       val.entries == void 0
         ? void 0
@@ -15734,8 +15728,9 @@ export function deserializeSearchResults(val: any): SearchResults {
     val.total_count == void 0 ? void 0 : val.total_count;
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
-  const type: undefined | SearchResultsTypeField =
-    val.type == void 0 ? void 0 : deserializeSearchResultsTypeField(val.type);
+  const type: SearchResultsTypeField = deserializeSearchResultsTypeField(
+    val.type
+  );
   const entries: undefined | readonly FileOrFolderOrWebLink[] =
     val.entries == void 0
       ? void 0
@@ -15755,12 +15750,27 @@ export function deserializeSearchResults(val: any): SearchResults {
 export function serializeSearchResultsOrSearchResultsWithSharedLinks(
   val: SearchResultsOrSearchResultsWithSharedLinks
 ): Json {
-  throw "Can't serialize SearchResultsOrSearchResultsWithSharedLinks";
+  if (val.type == 'search_results_items') {
+    return serializeSearchResults(val);
+  }
+  if (val.type == 'search_results_with_shared_links') {
+    return serializeSearchResultsWithSharedLinks(val);
+  }
+  throw 'unknown type';
 }
 export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
   val: any
 ): SearchResultsOrSearchResultsWithSharedLinks {
-  throw "Can't deserialize SearchResultsOrSearchResultsWithSharedLinks";
+  if (!isJson(val, 'object')) {
+    throw 'Expecting an object for "SearchResultsOrSearchResultsWithSharedLinks"';
+  }
+  if (val.type == 'search_results_items') {
+    return deserializeSearchResults(val);
+  }
+  if (val.type == 'search_results_with_shared_links') {
+    return deserializeSearchResultsWithSharedLinks(val);
+  }
+  throw 'unknown type';
 }
 export function serializeRecentItemInteractionTypeField(
   val: RecentItemInteractionTypeField
