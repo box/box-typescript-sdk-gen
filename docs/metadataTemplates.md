@@ -247,7 +247,13 @@ await client.metadataTemplates.createMetadataTemplateSchema({
   scope: 'enterprise',
   displayName: templateKey,
   templateKey: templateKey,
-  fields: [{ type: 'string', key: 'testName', displayName: 'testName' }],
+  fields: [
+    {
+      type: 'string' as CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField,
+      key: 'testName',
+      displayName: 'testName',
+    } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField,
+  ],
 } satisfies CreateMetadataTemplateSchemaRequestBodyArg);
 ```
 

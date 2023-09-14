@@ -15,7 +15,11 @@ This operation is performed by calling function `getCollaborationWhitelistEntrie
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries/).
 
-_Currently we don't have an example for calling `getCollaborationWhitelistEntries` in integration tests_
+<!-- sample get_collaboration_whitelist_entries -->
+
+```ts
+await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
+```
 
 ### Arguments
 
@@ -40,7 +44,14 @@ This operation is performed by calling function `createCollaborationWhitelistEnt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaboration-whitelist-entries/).
 
-_Currently we don't have an example for calling `createCollaborationWhitelistEntry` in integration tests_
+<!-- sample post_collaboration_whitelist_entries -->
+
+```ts
+await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
+  direction: direction,
+  domain: domain,
+} satisfies CreateCollaborationWhitelistEntryRequestBodyArg);
+```
 
 ### Arguments
 
@@ -65,7 +76,13 @@ This operation is performed by calling function `getCollaborationWhitelistEntryB
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries-id/).
 
-_Currently we don't have an example for calling `getCollaborationWhitelistEntryById` in integration tests_
+<!-- sample get_collaboration_whitelist_entries_id -->
+
+```ts
+await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
+  entry.id
+);
+```
 
 ### Arguments
 
@@ -90,7 +107,13 @@ This operation is performed by calling function `deleteCollaborationWhitelistEnt
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-entries-id/).
 
-_Currently we don't have an example for calling `deleteCollaborationWhitelistEntryById` in integration tests_
+<!-- sample delete_collaboration_whitelist_entries_id -->
+
+```ts
+await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
+  entry.id
+);
+```
 
 ### Arguments
 

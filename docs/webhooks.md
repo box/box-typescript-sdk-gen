@@ -57,7 +57,7 @@ await client.webhooks.createWebhook({
     type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
   } satisfies CreateWebhookRequestBodyArgTargetField,
   address: 'https://example.com/new-webhook',
-  triggers: ['FILE.UPLOADED'],
+  triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyArgTriggersField],
 } satisfies CreateWebhookRequestBodyArg);
 ```
 

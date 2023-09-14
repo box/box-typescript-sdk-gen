@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { PassThrough, Readable } from 'stream';
+import { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 
 export function getUuid() {
@@ -15,19 +15,17 @@ export function hexToBase64(data: string): string {
 }
 
 export { Buffer, Readable as ByteStream };
+export type Iterator<T> = AsyncIterator<T>;
 
-type AsyncIterator2<T, TReturn = any, TNext = undefined> = AsyncIterator<
-  T,
-  TReturn,
-  TNext
->;
-export type { AsyncIterator2 as AsyncIterator };
+export type HashName = 'sha1';
 
 export class Hash {
   #hash: crypto.Hash;
+  algorithm: HashName;
 
-  constructor(hash: crypto.Hash) {
-    this.#hash = hash;
+  constructor({ algorithm }: { algorithm: HashName }) {
+    this.algorithm = algorithm;
+    this.#hash = crypto.createHash(algorithm);
   }
 
   updateHash(data: Buffer) {
@@ -37,10 +35,6 @@ export class Hash {
   digestHash(encoding: 'base64'): string {
     return this.#hash.digest(encoding);
   }
-}
-
-export function createHash(algorithm: 'sha1'): Hash {
-  return new Hash(crypto.createHash(algorithm));
 }
 
 export function getEnvVar(name: string) {
@@ -83,18 +77,10 @@ export async function readByteStream(byteStream: Readable) {
   return Buffer.concat(buffers);
 }
 
-export async function cloneByteStream(
-  readableStream: Readable
-): Promise<[Readable, Readable]> {
-  const clone1 = readableStream.pipe(new PassThrough());
-  const clone2 = readableStream.pipe(new PassThrough());
-  return [clone1, clone2];
-}
-
 export async function* iterateChunks(
   stream: Readable,
   chunkSize: number
-): AsyncIterator<Readable> {
+): Iterator<Readable> {
   let buffers: Buffer[] = [];
   let totalSize = 0;
   for await (const data of stream) {
@@ -126,7 +112,7 @@ export async function* iterateChunks(
 }
 
 export async function reduceIterator<T, U>(
-  iterator: AsyncIterator<T>,
+  iterator: Iterator<T>,
   reducer: (accumulator: U, current: T) => Promise<U>,
   initialValue: U
 ): Promise<U> {

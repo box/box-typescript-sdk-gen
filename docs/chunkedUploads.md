@@ -9,6 +9,8 @@ This is a manager for chunked uploads (allowed for files at least 20MB).
 - [Remove upload session](#remove-upload-session)
 - [List parts](#list-parts)
 - [Commit upload session](#commit-upload-session)
+- [](#)
+- [](#)
 
 ## Create upload session
 
@@ -19,15 +21,7 @@ This operation is performed by calling function `createFileUploadSession`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-upload-sessions/).
 
-<!-- sample post_files_upload_sessions -->
-
-```ts
-await client.chunkedUploads.createFileUploadSession({
-  fileName: fileName,
-  fileSize: fileSize,
-  folderId: folderId,
-} satisfies CreateFileUploadSessionRequestBodyArg);
-```
+_Currently we don't have an example for calling `createFileUploadSession` in integration tests_
 
 ### Arguments
 
@@ -77,11 +71,7 @@ This operation is performed by calling function `getFileUploadSessionById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-upload-sessions-id/).
 
-<!-- sample get_files_upload_sessions_id -->
-
-```ts
-await client.chunkedUploads.getFileUploadSessionById(uploadSessionId);
-```
+_Currently we don't have an example for calling `getFileUploadSessionById` in integration tests_
 
 ### Arguments
 
@@ -105,15 +95,7 @@ This operation is performed by calling function `uploadFilePart`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-upload-sessions-id/).
 
-<!-- sample put_files_upload_sessions_id -->
-
-```ts
-await client.chunkedUploads.uploadFilePart(
-  uploadSessionId,
-  uploadedChunk,
-  new UploadFilePartHeadersArg({ digest: digest, contentRange: contentRange })
-);
-```
+_Currently we don't have an example for calling `uploadFilePart` in integration tests_
 
 ### Arguments
 
@@ -167,11 +149,7 @@ This operation is performed by calling function `getFileUploadSessionParts`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-upload-sessions-id-parts/).
 
-<!-- sample get_files_upload_sessions_id_parts -->
-
-```ts
-await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId);
-```
+_Currently we don't have an example for calling `getFileUploadSessionParts` in integration tests_
 
 ### Arguments
 
@@ -198,15 +176,7 @@ This operation is performed by calling function `createFileUploadSessionCommit`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-upload-sessions-id-commit/).
 
-<!-- sample post_files_upload_sessions_id_commit -->
-
-```ts
-await client.chunkedUploads.createFileUploadSessionCommit(
-  uploadSessionId,
-  { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg,
-  new CreateFileUploadSessionCommitHeadersArg({ digest: digest })
-);
-```
+_Currently we don't have an example for calling `createFileUploadSessionCommit` in integration tests_
 
 ### Arguments
 
@@ -226,3 +196,48 @@ Returns the file object in a list.Returns when all chunks have been uploaded but
 Inspect the upload session to get more information about the
 progress of processing the chunks, then retry committing the file
 when all chunks have processed.
+
+##
+
+This operation is performed by calling function `reducer`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference//).
+
+_Currently we don't have an example for calling `reducer` in integration tests_
+
+### Arguments
+
+- acc `PartAccumulator`
+  -
+- chunk `ByteStream`
+  -
+
+##
+
+This operation is performed by calling function `uploadBigFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference//).
+
+<!-- sample  -->
+
+```ts
+await client.chunkedUploads.uploadBigFile(
+  fileByteStream,
+  fileName,
+  fileSize,
+  parentFolderId
+);
+```
+
+### Arguments
+
+- file `ByteStream`
+  - The stream of the file to upload.
+- fileName `string`
+  - The name of the file, which will be used for storage in Box.
+- fileSize `number`
+  - The total size of the file for the chunked upload in bytes.
+- parentFolderId `string`
+  - The ID of the folder where the file should be uploaded.

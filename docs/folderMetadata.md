@@ -16,7 +16,11 @@ This operation is performed by calling function `getFolderMetadata`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-metadata/).
 
-_Currently we don't have an example for calling `getFolderMetadata` in integration tests_
+<!-- sample get_folders_id_metadata -->
+
+```ts
+await client.folderMetadata.getFolderMetadata(folder.id);
+```
 
 ### Arguments
 
@@ -44,7 +48,11 @@ This operation is performed by calling function `getFolderMetadataById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-metadata-id-id/).
 
-_Currently we don't have an example for calling `getFolderMetadataById` in integration tests_
+<!-- sample get_folders_id_metadata_id_id -->
+
+```ts
+await client.folderMetadata.getFolderMetadataById(folder.id, scope, template);
+```
 
 ### Arguments
 
@@ -59,7 +67,7 @@ _Currently we don't have an example for calling `getFolderMetadataById` in integ
 
 ### Returns
 
-This function returns a value of type `Metadata`.
+This function returns a value of type `MetadataFull`.
 
 An instance of the metadata template that includes
 additional "key:value" pairs defined by the user or
@@ -82,7 +90,16 @@ This operation is performed by calling function `createFolderMetadataById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folders-id-metadata-id-id/).
 
-_Currently we don't have an example for calling `createFolderMetadataById` in integration tests_
+<!-- sample post_folders_id_metadata_id_id -->
+
+```ts
+await client.folderMetadata.createFolderMetadataById(
+  folder.id,
+  scope,
+  template,
+  data
+);
+```
 
 ### Arguments
 
@@ -120,7 +137,22 @@ This operation is performed by calling function `updateFolderMetadataById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id-metadata-id-id/).
 
-_Currently we don't have an example for calling `updateFolderMetadataById` in integration tests_
+<!-- sample put_folders_id_metadata_id_id -->
+
+```ts
+await client.folderMetadata.updateFolderMetadataById(
+  folder.id,
+  scope,
+  template,
+  [
+    {
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyArgOpField,
+      path: '/abc',
+      value: newValue,
+    } satisfies UpdateFolderMetadataByIdRequestBodyArg,
+  ]
+);
+```
 
 ### Arguments
 
@@ -151,7 +183,15 @@ This operation is performed by calling function `deleteFolderMetadataById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folders-id-metadata-id-id/).
 
-_Currently we don't have an example for calling `deleteFolderMetadataById` in integration tests_
+<!-- sample delete_folders_id_metadata_id_id -->
+
+```ts
+await client.folderMetadata.deleteFolderMetadataById(
+  folder.id,
+  scope,
+  template
+);
+```
 
 ### Arguments
 

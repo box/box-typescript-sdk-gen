@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { Authentication } from './auth';
 import { NetworkSession } from './network';
 import { fetch, FetchResponse } from './fetch.js';
+import { InMemoryTokenStorage, TokenStorage } from './tokenStorage';
 
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =
@@ -66,6 +67,7 @@ export class JwtConfig {
   enterpriseId?: string;
   userId?: string;
   jwtAlgorithm?: jwt.Algorithm;
+  tokenStorage?: TokenStorage;
 
   constructor(
     fields: Omit<JwtConfig, 'fromConfigJsonString' | 'fromConfigFile'>
@@ -75,14 +77,20 @@ export class JwtConfig {
     }
     Object.assign(this, fields);
     this.jwtAlgorithm = fields.jwtAlgorithm ?? 'RS256';
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
   }
 
   /**
    * Create a JwtConfig instance from a JSON string.
    * @param {string} configJsonString The JSON string to parse.
+   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided,
+   *  the token will be stored in memory.
    * @returns {JwtConfig} The JwtConfig instance.
    */
-  static fromConfigJsonString(configJsonString: string): JwtConfig {
+  static fromConfigJsonString(
+    configJsonString: string,
+    tokenStorage?: TokenStorage
+  ): JwtConfig {
     let config;
     try {
       config = JSON.parse(configJsonString);
@@ -108,19 +116,25 @@ export class JwtConfig {
       jwtKeyId: config['boxAppSettings']['appAuth']['publicKeyID'],
       privateKey: config['boxAppSettings']['appAuth']['privateKey'],
       privateKeyPassphrase: config['boxAppSettings']['appAuth']['passphrase'],
+      tokenStorage: tokenStorage,
     });
   }
 
   /**
    * Create a JwtConfig instance from a JSON file.
    * @param {string} configFilePath The path to the JSON file.
+   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided,
+   *  the token will be stored in memory.
    * @returns {JwtConfig} The JwtConfig instance.
    * @throws {Error} If the file cannot be read.  If the file is not valid JSON.
    * If the file is missing required fields.
    */
-  static fromConfigFile(configFilePath: string): JwtConfig {
+  static fromConfigFile(
+    configFilePath: string,
+    tokenStorage?: TokenStorage
+  ): JwtConfig {
     const config = readFileSync(configFilePath, 'utf8');
-    return JwtConfig.fromConfigJsonString(config);
+    return JwtConfig.fromConfigJsonString(config, tokenStorage);
   }
 }
 
@@ -134,9 +148,11 @@ export class JwtAuth implements Authentication {
   token?: AccessToken;
   subjectId: string;
   subjectType: string;
+  tokenStorage: TokenStorage;
 
   constructor({ config }: Pick<JwtAuth, 'config'>) {
     this.config = config;
+    this.tokenStorage = config.tokenStorage!;
 
     if (this.config.enterpriseId) {
       this.subjectId = this.config.enterpriseId!;
@@ -153,10 +169,11 @@ export class JwtAuth implements Authentication {
    * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    if (!this.token) {
-      await this.refreshToken(networkSession);
+    const token = await this.tokenStorage.get();
+    if (!token) {
+      return (await this.refreshToken(networkSession))!;
     }
-    return this.token!;
+    return token;
   }
 
   /**
@@ -204,27 +221,28 @@ export class JwtAuth implements Authentication {
     };
 
     const response = (await fetch(BOX_JWT_AUDIENCE, params)) as FetchResponse;
-    this.token = deserializeAccessToken(JSON.parse(response.text));
-    return this.token;
+    const newToken = deserializeAccessToken(JSON.parse(response.text));
+    await this.tokenStorage.store(newToken);
+    return newToken;
   }
 
   /**
    * Set authentication as user. The new token will be automatically fetched with a next API call.
    * @param {string} userId The ID of the user to authenticate as
    */
-  asUser(userId: string) {
+  async asUser(userId: string) {
     this.subjectId = userId;
     this.subjectType = 'user' as TokenRequestBoxSubjectType;
-    this.token = undefined;
+    await this.tokenStorage.clear();
   }
 
   /**
    * Set authentication as enterprise. The new token will be automatically fetched with a next API call.
    * @param {string} enterpriseId The ID of the enterprise to authenticate as
    */
-  asEnterprise(enterpriseId: string) {
+  async asEnterprise(enterpriseId: string) {
     this.subjectId = enterpriseId;
     this.subjectType = 'enterprise' as TokenRequestBoxSubjectType;
-    this.token = undefined;
+    await this.tokenStorage.clear();
   }
 }

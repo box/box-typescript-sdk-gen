@@ -271,3 +271,34 @@ You need to provide the auth code to the SDK to obtain an access token, then you
 ```js
 await oauth.getTokensAuthorizationCodeGrant('code');
 ```
+
+# Token storage
+
+## In-memory token storage
+
+By default, the SDK stores the access token in volatile memory. When rerunning your application,
+the access token won't be reused from the previous run; a new token has to be obtained again.
+To use in-memory token storage, you don't need to do anything more than
+create an Auth class using AuthConfig, for example, for OAuth:
+
+```js
+const config = {
+  clientId: 'OAUTH_CLIENT_ID',
+  clientSecret: 'OAUTH_CLIENT_SECRET',
+};
+const oauth = new OAuth({ config: config });
+```
+
+## Custom storage
+
+You can also provide a custom token storage class. All you need to do is create a class that implements `TokenStorage`
+interface and pass an instance of your class to the AuthConfig constructor.
+
+```js
+const config = {
+  clientId: 'OAUTH_CLIENT_ID',
+  clientSecret: 'OAUTH_CLIENT_SECRET',
+  tokenStorage: new MyCustomTokenStorage(),
+};
+const oauth = new OAuth({ config: config });
+```
