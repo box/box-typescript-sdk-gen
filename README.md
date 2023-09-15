@@ -54,14 +54,14 @@ Using `Client` object you can access managers, which allow you to perform some o
 The example below demonstrates how to authenticate with Developer Token and print names of all items inside a root folder.
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
-  DeveloperTokenAuth,
+  BoxDeveloperTokenAuth,
 } = require('box-typescript-sdk-gen/lib/developerTokenAuth.js');
 
 async function main(token) {
-  let auth = new DeveloperTokenAuth({ token });
-  let client = new Client({ auth });
+  let auth = new BoxDeveloperTokenAuth({ token });
+  let client = new BoxClient({ auth });
   let entries = (await client.folders.getFolderItems('0')).entries;
   entries.forEach((entry) => console.log(entry));
 }

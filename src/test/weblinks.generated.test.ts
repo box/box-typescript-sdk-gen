@@ -16,14 +16,14 @@ import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webL
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('test_create_get_delete_weblink', async function test_create_get_delete_weblink(): Promise<any> {
   const url: any = 'https://www.box.com';
   const parent: any = await client.folders.getFolderById('0');

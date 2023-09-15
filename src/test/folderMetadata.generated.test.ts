@@ -26,12 +26,12 @@ import { decodeBase64 } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
-test('folderMetadata', async function folderMetadata(): Promise<any> {
-  const client: any = new Client({
-    auth: new JwtAuth({
+test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
+  const client: any = new BoxClient({
+    auth: new BoxJwtAuth({
       config: JwtConfig.fromConfigJsonString(
         decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
       ),
@@ -49,7 +49,7 @@ test('folderMetadata', async function folderMetadata(): Promise<any> {
   }
   const scope: any = 'global';
   const template: any = 'properties';
-  const data: any = { abc: 'xyz' };
+  const data: any = { ['abc']: 'xyz' };
   const createdMetadata: any =
     await client.folderMetadata.createFolderMetadataById(
       folder.id,

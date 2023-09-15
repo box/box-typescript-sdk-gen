@@ -141,16 +141,16 @@ export class JwtConfig {
 /**
  * A class that manages the retrieval and storage of access tokens for a given app user.
  * @param {JwtConfig} config The JwtConfig instance.
- * @typedef {Object} JwtAuth
+ * @typedef {Object} BoxJwtAuth
  */
-export class JwtAuth implements Authentication {
+export class BoxJwtAuth implements Authentication {
   config: JwtConfig;
   token?: AccessToken;
   subjectId: string;
   subjectType: string;
   tokenStorage: TokenStorage;
 
-  constructor({ config }: Pick<JwtAuth, 'config'>) {
+  constructor({ config }: Pick<BoxJwtAuth, 'config'>) {
     this.config = config;
     this.tokenStorage = config.tokenStorage!;
 

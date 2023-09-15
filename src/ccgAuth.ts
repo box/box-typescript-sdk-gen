@@ -25,14 +25,14 @@ export class CcgConfig {
   }
 }
 
-export class CcgAuth implements Authentication {
+export class BoxCcgAuth implements Authentication {
   config: CcgConfig;
   token?: AccessToken;
   subjectId: string;
   subjectType: string;
   tokenStorage: TokenStorage;
 
-  constructor({ config }: Pick<CcgAuth, 'config'>) {
+  constructor({ config }: Pick<BoxCcgAuth, 'config'>) {
     if (!config.enterpriseId && !config.userId) {
       throw new Error('Enterprise ID or User ID is needed');
     }

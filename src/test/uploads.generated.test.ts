@@ -21,14 +21,14 @@ import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { readByteStream } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('test_upload_file_and_file_version', async function test_upload_file_and_file_version(): Promise<any> {
   const newFileName: any = getUuid();
   const fileContentStream: any = generateByteStream(1048576);

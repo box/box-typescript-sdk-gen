@@ -12,6 +12,10 @@ import { serializeGroupMembership } from '../schemas.generated.js';
 import { deserializeGroupMembership } from '../schemas.generated.js';
 import { serializeCreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
 import { deserializeCreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
+import { serializeCreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
+import { deserializeCreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
+import { serializeCreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
+import { deserializeCreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
 import { serializeUpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
 import { deserializeUpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
 import { serializeUpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
@@ -23,19 +27,21 @@ import { Group } from '../schemas.generated.js';
 import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { GroupMembership } from '../schemas.generated.js';
 import { CreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
+import { CreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
+import { CreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
 import { UpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
 import { UpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('testMemberships', async function testMemberships(): Promise<any> {
   const user: any = await client.users.createUser({
     name: getUuid(),
@@ -57,8 +63,12 @@ test('testMemberships', async function testMemberships(): Promise<any> {
     throw 'Assertion failed';
   }
   const groupMembership: any = await client.memberships.createGroupMembership({
-    user: user,
-    group: group,
+    user: {
+      id: user.id,
+    } satisfies CreateGroupMembershipRequestBodyArgUserField,
+    group: {
+      id: group.id,
+    } satisfies CreateGroupMembershipRequestBodyArgGroupField,
   } satisfies CreateGroupMembershipRequestBodyArg);
   if (!(groupMembership.user.id == user.id)) {
     throw 'Assertion failed';
@@ -69,7 +79,9 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   if (!(groupMembership.role == 'member')) {
     throw 'Assertion failed';
   }
-  if (!(await client.memberships.getGroupMembershipById(groupMembership.id))) {
+  const getGroupMembership: any =
+    await client.memberships.getGroupMembershipById(groupMembership.id);
+  if (!(getGroupMembership.id == groupMembership.id)) {
     throw 'Assertion failed';
   }
   const updatedGroupMembership: any =

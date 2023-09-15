@@ -34,14 +34,14 @@ import { SignRequestCreateRequest } from '../schemas.generated.js';
 import { SignRequestCreateSigner } from '../schemas.generated.js';
 import { FolderMini } from '../schemas.generated.js';
 import { FileBase } from '../schemas.generated.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('test_create_get_cancel_and_list_sign_request', async function test_create_get_cancel_and_list_sign_request(): Promise<any> {
   const signerEmail: any = ''.concat(getUuid(), '@box.com') as string;
   const fileToSign: any = await uploadNewFile();

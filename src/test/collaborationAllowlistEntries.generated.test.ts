@@ -10,11 +10,11 @@ import { CreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/col
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
-const client: any = new Client({
-  auth: new JwtAuth({
+const client: any = new BoxClient({
+  auth: new BoxJwtAuth({
     config: JwtConfig.fromConfigJsonString(
       decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
     ),

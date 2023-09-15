@@ -59,7 +59,7 @@ export class OAuthConfig {
  * @param {OAuthConfig} config The OAuthConfig instance.
  * @typedef {Object} OAuthConfig
  */
-export class OAuth implements Authentication {
+export class BoxOAuth implements Authentication {
   config: OAuthConfig;
   tokenStorage: TokenStorage;
 

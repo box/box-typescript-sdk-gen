@@ -68,7 +68,7 @@ import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
 import { Authentication } from './auth.js';
 import { NetworkSession } from './network.js';
-export class Client {
+export class BoxClient {
   readonly auth!: Authentication;
   readonly networkSession?: NetworkSession = {} satisfies NetworkSession;
   readonly authorization: AuthorizationManager;
@@ -141,7 +141,7 @@ export class Client {
   readonly integrationMappings: IntegrationMappingsManager;
   constructor(
     fields: Omit<
-      Client,
+      BoxClient,
       | 'authorization'
       | 'files'
       | 'trashedFiles'

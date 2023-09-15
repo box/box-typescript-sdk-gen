@@ -22,14 +22,14 @@ import { DeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTempla
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('testMetadataTemplates', async function testMetadataTemplates(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
   const template: any =
@@ -60,15 +60,17 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(template.fields[0].displayName == 'testName')) {
     throw 'Assertion failed';
   }
-  if (!(await client.metadataTemplates.getMetadataTemplateById(template.id))) {
+  const getMetadataTemplate: any =
+    await client.metadataTemplates.getMetadataTemplateById(template.id);
+  if (!(getMetadataTemplate.id == template.id)) {
     throw 'Assertion failed';
   }
-  if (
-    !(await client.metadataTemplates.getMetadataTemplateSchema(
+  const getMetadataTemplateSchema: any =
+    await client.metadataTemplates.getMetadataTemplateSchema(
       'enterprise' as GetMetadataTemplateSchemaScopeArg,
       template.templateKey
-    ))
-  ) {
+    );
+  if (!(getMetadataTemplateSchema.id == template.id)) {
     throw 'Assertion failed';
   }
   const enterpriseMetadataTemplates: any =
