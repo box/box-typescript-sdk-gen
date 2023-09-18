@@ -21,7 +21,7 @@ export class CcgConfig {
     this.clientSecret = fields.clientSecret;
     this.enterpriseId = fields.enterpriseId;
     this.userId = fields.userId;
-    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage({});
   }
 }
 
@@ -64,11 +64,9 @@ export class BoxCcgAuth implements Authentication {
   /**
    * Get a new access token for the app user.
    * @param networkSession An object to keep network session state
-   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
-  async refreshToken(
-    networkSession?: NetworkSession
-  ): Promise<AccessToken | undefined> {
+  async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const requestBody = {
       grant_type: 'client_credentials' as TokenRequestGrantType,
       client_id: this.config.clientId,

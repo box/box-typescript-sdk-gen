@@ -77,7 +77,7 @@ export class JwtConfig {
     }
     Object.assign(this, fields);
     this.jwtAlgorithm = fields.jwtAlgorithm ?? 'RS256';
-    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage({});
   }
 
   /**
@@ -179,11 +179,9 @@ export class BoxJwtAuth implements Authentication {
   /**
    * Get a new access token for the app user.
    * @param networkSession An object to keep network session state
-   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
-  async refreshToken(
-    networkSession?: NetworkSession
-  ): Promise<AccessToken | undefined> {
+  async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const expInSec = Math.floor(Date.now() / 1000) + 30;
     const claims = {
       exp: expInSec,

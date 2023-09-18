@@ -9,7 +9,7 @@ import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 import { BoxCcgAuth } from '../ccgAuth.js';
 import { CcgConfig } from '../ccgAuth.js';
-import { BoxDeveloperTokenAuth } from '../developerTokenAuth.js';
+import { BoxDeveloperTokenAuth } from '../developerTokenAuth.generated.js';
 import { BoxOAuth } from '../oauth.js';
 import { OAuthConfig } from '../oauth.js';
 import { UserFull } from '../schemas.generated.js';

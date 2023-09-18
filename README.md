@@ -57,7 +57,7 @@ The example below demonstrates how to authenticate with Developer Token and prin
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxDeveloperTokenAuth,
-} = require('box-typescript-sdk-gen/lib/developerTokenAuth.js');
+} = require('box-typescript-sdk-gen/lib/developerTokenAuth.generated.js');
 
 async function main(token) {
   let auth = new BoxDeveloperTokenAuth({ token });
