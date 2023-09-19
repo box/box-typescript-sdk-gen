@@ -2506,8 +2506,8 @@ export interface RecentItem {
 }
 export interface RecentItems {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly RecentItem[];
 }
 export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
@@ -15851,9 +15851,9 @@ export function serializeRecentItems(val: RecentItems): Json {
 }
 export function deserializeRecentItems(val: any): RecentItems {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly RecentItem[] =
     val.entries == void 0
