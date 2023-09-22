@@ -26,19 +26,19 @@ and can only be used with your own account. Therefore, they're only useful for
 testing an app and aren't suitable for production. You can obtain a developer
 token from your application's [developer console][dev_console] page.
 
-To create a `Client` with a developer token, construct an `DeveloperTokenAuth`
+To create a `BoxClient` with a developer token, construct an `BoxDeveloperTokenAuth`
 object with the `token` set to the developer token and construct the client with that.
 
 <!-- sample x_auth init_with_dev_token -->
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
-  DeveloperTokenAuth,
-} = require('box-typescript-sdk-gen/lib/developerTokenAuth.js');
+  BoxDeveloperTokenAuth,
+} = require('box-typescript-sdk-gen/lib/developerTokenAuth.generated.js');
 
-const auth = new DeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
-const client = new Client({ auth });
+const auth = new BoxDeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
+const client = new BoxClient({ auth });
 
 const me = await client.users.getUserMe();
 console.log(`My user ID is ${me.id}`);
@@ -63,17 +63,20 @@ not accessible in any other account by default, and vice versa.
 If you generated your public and private keys automatically through the
 [Box Developer Console][dev_console], you can use the JSON file created there
 to configure your SDK instance and create a client to make calls as the
-Service Account. Call one of static `JwtAuth` method:
+Service Account. Call one of static `BoxJwtAuth` method:
 `JwtConfig.fromConfigFile(configFilePath)` and pass JSON file local path
 or `JwtConfig.fromConfigJsonString(configJsonString)` and pass JSON config file content as string.
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const {
+  BoxJwtAuth,
+  JwtConfig,
+} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
-const jwtAuth = new JwtAuth({ config: jwtConfig });
-const client = new Client({ auth: jwtAuth });
+const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
+const client = new BoxClient({ auth: jwtAuth });
 
 const me = await client.users.getUserMe();
 console.log(`My user ID is ${me.id}`);
@@ -82,8 +85,11 @@ console.log(`My user ID is ${me.id}`);
 Otherwise, you'll need to provide the necessary configuration fields directly to the `JwtConfig` constructor:
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const {
+  BoxJwtAuth,
+  JwtConfig,
+} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -93,8 +99,8 @@ const jwtConfig = new JwtConfig({
   privateKeyPassphrase: 'PASSPHRASE',
   enterpriseId: 'YOUR_ENTERPRISE_ID',
 });
-const jwtAuth = new JwtAuth({ config: jwtConfig });
-const serviceAccountClient = new Client({ auth: jwtAuth });
+const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
+const serviceAccountClient = new BoxClient({ auth: jwtAuth });
 ```
 
 ### Authenticate user
@@ -111,13 +117,16 @@ Clients for making calls as an App User can be created with the same JSON JWT co
 a user ID you want to authenticate.
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const {
+  BoxJwtAuth,
+  JwtConfig,
+} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
-const jwtAuth = new JwtAuth({ config: jwtConfig });
+const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
 jwtAuth.asUser('USER_ID');
-const userClient = new Client({ auth: jwtAuth });
+const userClient = new BoxClient({ auth: jwtAuth });
 ```
 
 Alternatively, clients for making calls as an App User can be created with the same `JwtConfig`
@@ -125,8 +134,11 @@ constructor as in the above examples, similarly to creating a Service Account cl
 `userId` instead of `enterpriseId` when constructing the auth config instance:
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { JwtAuth, JwtConfig } = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const {
+  BoxJwtAuth,
+  JwtConfig,
+} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -136,8 +148,8 @@ const jwtConfig = new JwtConfig({
   privateKeyPassphrase: 'PASSPHRASE',
   userId: 'USER_ID',
 });
-const jwtAuth = new JwtAuth({ config: jwtConfig });
-const userClient = new Client({ auth: jwtAuth });
+const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
+const userClient = new BoxClient({ auth: jwtAuth });
 ```
 
 [jwt_guide]: https://developer.box.com/guides/authentication/jwt/jwt-setup/
@@ -155,16 +167,16 @@ and secret with enterprise or user ID, which allows you to work using service or
 You can use `CCGAuth` to initialize a client object the same way as for other authentication types:
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { CcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   userId: 'YOUR_USER_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
 };
-const ccgAuth = new CcgAuth({ config: ccgConfig });
-const client = new Client({ auth: ccgAuth });
+const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
+const client = new BoxClient({ auth: ccgAuth });
 
 const me = await client.users.getUserMe();
 console.log(`My user ID is ${me.id}`);
@@ -181,16 +193,16 @@ are not accessible in any other account by default, and vice versa.
 To obtain service account you will have to provide enterprise ID with client id and secret:
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { CcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   enterpriseId: 'YOUR_ENTERPRISE_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
 };
-const ccgAuth = new CcgAuth({ config: ccgConfig });
-const client = new Client({ auth: ccgAuth });
+const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
+const client = new BoxClient({ auth: ccgAuth });
 ```
 
 ### Obtaining User token
@@ -202,16 +214,16 @@ select `Generate user access tokens`. Do not forget to re-authorize application 
 To obtain user account you will have to provide user ID with client id and secret.
 
 ```js
-const { Client } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { CcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
+const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
 const ccgConfig = {
   userId: 'YOUR_USER_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
 };
-const ccgAuth = new CcgAuth({ config: ccgConfig });
-const client = new Client({ auth: ccgAuth });
+const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
+const client = new BoxClient({ auth: ccgAuth });
 ```
 
 ### Switching between Service Account and User
@@ -248,13 +260,16 @@ browser or web view) in order to obtain an auth code.
 <!-- sample get_authorize -->
 
 ```js
-const { OAuth, OAuthConfig } = require('box-typescript-sdk-gen/lib/oauth.js');
+const {
+  BoxOAuth,
+  OAuthConfig,
+} = require('box-typescript-sdk-gen/lib/oauth.js');
 
 const config = {
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
 };
-const oauth = new OAuth({ config: config });
+const oauth = new BoxOAuth({ config: config });
 
 // the URL to redirect the user to
 var authorize_url = oauth.getAuthorizeUrl();
@@ -286,7 +301,7 @@ const config = {
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
 };
-const oauth = new OAuth({ config: config });
+const oauth = new BoxOAuth({ config: config });
 ```
 
 ## Custom storage
@@ -300,5 +315,5 @@ const config = {
   clientSecret: 'OAUTH_CLIENT_SECRET',
   tokenStorage: new MyCustomTokenStorage(),
 };
-const oauth = new OAuth({ config: config });
+const oauth = new BoxOAuth({ config: config });
 ```

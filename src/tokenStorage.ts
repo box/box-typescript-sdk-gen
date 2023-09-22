@@ -9,6 +9,8 @@ export interface TokenStorage {
 export class InMemoryTokenStorage implements TokenStorage {
   token?: AccessToken;
 
+  constructor(fields: {}) {}
+
   async store(token: AccessToken) {
     this.token = token;
   }

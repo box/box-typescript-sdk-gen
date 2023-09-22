@@ -50,7 +50,7 @@ export class OAuthConfig {
   constructor(fields: OAuthConfig) {
     this.clientId = fields.clientId;
     this.clientSecret = fields.clientSecret;
-    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage({});
   }
 }
 
@@ -59,7 +59,7 @@ export class OAuthConfig {
  * @param {OAuthConfig} config The OAuthConfig instance.
  * @typedef {Object} OAuthConfig
  */
-export class OAuth implements Authentication {
+export class BoxOAuth implements Authentication {
   config: OAuthConfig;
   tokenStorage: TokenStorage;
 
@@ -160,12 +160,12 @@ export class OAuth implements Authentication {
    * Get a new access token for the app user.
    * @param networkSession An object to keep network session state
    * @param refreshToken Refresh token, which can be used to obtain a new access token
-   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async refreshToken(
     networkSession?: NetworkSession,
     refreshToken?: string
-  ): Promise<AccessToken | undefined> {
+  ): Promise<AccessToken> {
     const oldToken = await this.tokenStorage.get();
     const tokenUsedForRefresh = refreshToken ?? oldToken?.refreshToken;
 

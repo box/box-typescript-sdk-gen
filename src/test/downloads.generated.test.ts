@@ -20,14 +20,14 @@ import { generateByteBuffer } from '../utils.js';
 import { generateByteStreamFromBuffer } from '../utils.js';
 import { bufferEquals } from '../utils.js';
 import { readByteStream } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 test('test_download_file', async function test_download_file(): Promise<any> {
   const newFileName: any = getUuid();
   const fileBuffer: any = generateByteBuffer(1048576);

@@ -77,7 +77,7 @@ export class JwtConfig {
     }
     Object.assign(this, fields);
     this.jwtAlgorithm = fields.jwtAlgorithm ?? 'RS256';
-    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage();
+    this.tokenStorage = fields.tokenStorage ?? new InMemoryTokenStorage({});
   }
 
   /**
@@ -141,16 +141,16 @@ export class JwtConfig {
 /**
  * A class that manages the retrieval and storage of access tokens for a given app user.
  * @param {JwtConfig} config The JwtConfig instance.
- * @typedef {Object} JwtAuth
+ * @typedef {Object} BoxJwtAuth
  */
-export class JwtAuth implements Authentication {
+export class BoxJwtAuth implements Authentication {
   config: JwtConfig;
   token?: AccessToken;
   subjectId: string;
   subjectType: string;
   tokenStorage: TokenStorage;
 
-  constructor({ config }: Pick<JwtAuth, 'config'>) {
+  constructor({ config }: Pick<BoxJwtAuth, 'config'>) {
     this.config = config;
     this.tokenStorage = config.tokenStorage!;
 
@@ -179,11 +179,9 @@ export class JwtAuth implements Authentication {
   /**
    * Get a new access token for the app user.
    * @param networkSession An object to keep network session state
-   * @returns {Promise<AccessToken | undefined>} A promise resolving to the access token.
+   * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
-  async refreshToken(
-    networkSession?: NetworkSession
-  ): Promise<AccessToken | undefined> {
+  async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const expInSec = Math.floor(Date.now() / 1000) + 30;
     const claims = {
       exp: expInSec,

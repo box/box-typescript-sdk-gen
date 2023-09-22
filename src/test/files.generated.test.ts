@@ -23,7 +23,6 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { ByteStream } from '../utils.js';
 import { GetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { GetFileByIdQueryParamsArg } from '../managers/files.generated.js';
@@ -37,18 +36,20 @@ import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { readByteStream } from '../utils.js';
-import { Client } from '../client.generated.js';
-import { JwtAuth } from '../jwtAuth.js';
+import { bufferEquals } from '../utils.js';
+import { BoxClient } from '../client.generated.js';
+import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 import { uploadNewFile } from './commons.generated.js';
+import { ByteStream } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
-const auth: any = new JwtAuth({ config: jwtConfig });
-const client: any = new Client({ auth: auth });
+const auth: any = new BoxJwtAuth({ config: jwtConfig });
+const client: any = new BoxClient({ auth: auth });
 export async function uploadFile(
-  fileName: any,
-  fileStream: any
+  fileName: string,
+  fileStream: ByteStream
 ): Promise<File> {
   const uploadedFiles: any = await client.uploads.uploadFile({
     attributes: {
@@ -70,10 +71,15 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
   );
   if (
     !!(
-      (await client.files.getFileThumbnailById(
-        thumbnailFile.id,
-        'png' as GetFileThumbnailByIdExtensionArg
-      )) == (await readByteStream(thumbnailContentStream))
+      bufferEquals(
+        await readByteStream(
+          await client.files.getFileThumbnailById(
+            thumbnailFile.id,
+            'png' as GetFileThumbnailByIdExtensionArg
+          )
+        ),
+        await readByteStream(thumbnailContentStream)
+      ) == true
     )
   ) {
     throw 'Assertion failed';

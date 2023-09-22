@@ -87,8 +87,10 @@ See the endpoint docs at
 
 ```ts
 await client.memberships.createGroupMembership({
-  user: user,
-  group: group,
+  user: { id: user.id } satisfies CreateGroupMembershipRequestBodyArgUserField,
+  group: {
+    id: group.id,
+  } satisfies CreateGroupMembershipRequestBodyArgGroupField,
 } satisfies CreateGroupMembershipRequestBodyArg);
 ```
 
