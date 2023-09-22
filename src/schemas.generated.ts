@@ -353,8 +353,8 @@ export type IntegrationMappingMini = IntegrationMappingBase & {
 };
 export type GroupBaseTypeField = 'group';
 export interface GroupBase {
-  readonly id?: string;
-  readonly type?: GroupBaseTypeField;
+  readonly id: string;
+  readonly type: GroupBaseTypeField;
 }
 export type GroupMiniGroupTypeField = 'managed_group' | 'all_users_group';
 export type GroupMini = GroupBase & {
@@ -844,6 +844,7 @@ export type UserCollaborations = UserBase & {
    * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
   readonly login?: string;
 };
+export type GroupMiniOrUserCollaborations = GroupMini | UserCollaborations;
 export type UserMini = UserBase & {
   /**
    * The display name of this user */
@@ -2573,7 +2574,7 @@ export interface Collaboration {
   readonly id?: string;
   readonly type?: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
-  readonly accessibleBy?: UserCollaborations;
+  readonly accessibleBy?: GroupMiniOrUserCollaborations;
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
   readonly expiresAt?: string;
@@ -5435,16 +5436,11 @@ export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
   throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeGroupBase(val: GroupBase): Json {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeGroupBaseTypeField(val.type),
-  };
+  return { ['id']: val.id, ['type']: serializeGroupBaseTypeField(val.type) };
 }
 export function deserializeGroupBase(val: any): GroupBase {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | GroupBaseTypeField =
-    val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return { id: id, type: type } satisfies GroupBase;
 }
 export function serializeGroupMiniGroupTypeField(
@@ -5488,9 +5484,8 @@ export function deserializeGroupMini(val: any): GroupMini {
     val.group_type == void 0
       ? void 0
       : deserializeGroupMiniGroupTypeField(val.group_type);
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | GroupBaseTypeField =
-    val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return {
     name: name,
     groupType: groupType,
@@ -5605,9 +5600,8 @@ export function deserializeGroup(val: any): Group {
     val.group_type == void 0
       ? void 0
       : deserializeGroupMiniGroupTypeField(val.group_type);
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | GroupBaseTypeField =
-    val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return {
     createdAt: createdAt,
     modifiedAt: modifiedAt,
@@ -5747,9 +5741,8 @@ export function deserializeGroupFull(val: any): GroupFull {
     val.group_type == void 0
       ? void 0
       : deserializeGroupMiniGroupTypeField(val.group_type);
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | GroupBaseTypeField =
-    val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return {
     provenance: provenance,
     externalSyncIdentifier: externalSyncIdentifier,
@@ -7931,6 +7924,31 @@ export function deserializeUserCollaborations(val: any): UserCollaborations {
     id: id,
     type: type,
   } satisfies UserCollaborations;
+}
+export function serializeGroupMiniOrUserCollaborations(
+  val: GroupMiniOrUserCollaborations
+): Json {
+  if (val.type == 'group') {
+    return serializeGroupMini(val);
+  }
+  if (val.type == 'user') {
+    return serializeUserCollaborations(val);
+  }
+  throw 'unknown type';
+}
+export function deserializeGroupMiniOrUserCollaborations(
+  val: any
+): GroupMiniOrUserCollaborations {
+  if (!isJson(val, 'object')) {
+    throw 'Expecting an object for "GroupMiniOrUserCollaborations"';
+  }
+  if (val.type == 'group') {
+    return deserializeGroupMini(val);
+  }
+  if (val.type == 'user') {
+    return deserializeUserCollaborations(val);
+  }
+  throw 'unknown type';
 }
 export function serializeUserMini(val: UserMini): Json {
   const base: any = serializeUserBase(val);
@@ -16268,7 +16286,7 @@ export function serializeCollaboration(val: Collaboration): Json {
     ['accessible_by']:
       val.accessibleBy == void 0
         ? void 0
-        : serializeUserCollaborations(val.accessibleBy),
+        : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
     ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
@@ -16299,10 +16317,10 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
-  const accessibleBy: undefined | UserCollaborations =
+  const accessibleBy: undefined | GroupMiniOrUserCollaborations =
     val.accessible_by == void 0
       ? void 0
-      : deserializeUserCollaborations(val.accessible_by);
+      : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
   const inviteEmail: undefined | string =
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
