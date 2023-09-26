@@ -1,6 +1,11 @@
-import * as crypto from 'crypto';
 import { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
+
+export function isBrowser() {
+  return (
+    typeof window === 'object' && typeof document === 'object' && window.crypto
+  );
+}
 
 export function getUuid() {
   return uuidv4();
@@ -17,22 +22,67 @@ export function hexToBase64(data: string): string {
 export { Buffer, Readable as ByteStream };
 export type Iterator<T> = AsyncIterator<T>;
 
+// Function to convert a hexadecimal string to base64
+export function hexStrToBase64(hex: string) {
+  const hexString = hex.toString(); // Ensure the input is a string
+  const hexBytes = new Uint8Array(hexString.length / 2);
+
+  // Convert the hexadecimal string to bytes
+  for (let i = 0; i < hexString.length; i += 2) {
+    hexBytes[i / 2] = parseInt(hexString.substr(i, 2), 16);
+  }
+
+  // Encode the bytes as base64
+  const base64 = btoa(String.fromCharCode.apply(null, Array.from(hexBytes)));
+
+  return base64;
+}
+
 export type HashName = 'sha1';
 
 export class Hash {
-  #hash: crypto.Hash;
+  #hash: any;
+  #chunks: Uint8Array; // In browser environment, we need to buffer the chunks until we get the hash object
   algorithm: HashName;
 
   constructor({ algorithm }: { algorithm: HashName }) {
     this.algorithm = algorithm;
-    this.#hash = crypto.createHash(algorithm);
+    this.#chunks = new Uint8Array();
+    if (isBrowser()) {
+      this.#hash = undefined;
+      return;
+    }
+    this.#hash = eval('require')('crypto').createHash(algorithm);
   }
 
   updateHash(data: Buffer) {
+    if (isBrowser()) {
+      let dataBuffer =
+        typeof data === 'string' ? new TextEncoder().encode(data) : data;
+      let newChunks = new Uint8Array(this.#chunks.length + dataBuffer.length);
+      newChunks.set(this.#chunks);
+      newChunks.set(dataBuffer, this.#chunks.length);
+      this.#chunks = newChunks;
+      return;
+    }
     this.#hash.update(data);
   }
 
-  digestHash(encoding: 'base64'): string {
+  async digestHash(encoding: 'base64'): Promise<string> {
+    if (isBrowser()) {
+      this.#hash = await window.crypto.subtle.digest(
+        this.algorithm,
+        this.#chunks
+      );
+      const hashArray = Array.from(new Uint8Array(this.#hash));
+      const hashHex = hashArray
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('');
+      if (encoding === 'base64') {
+        return hexStrToBase64(hashHex);
+      }
+      return hashHex;
+    }
     return this.#hash.digest(encoding);
   }
 }
@@ -46,6 +96,12 @@ export function listConcat<T>(a: readonly T[], b: readonly T[]): T[] {
 }
 
 export function generateByteBuffer(size: number): Buffer {
+  if (isBrowser()) {
+    const buffer = new Uint8Array(size);
+    window.crypto.getRandomValues(buffer);
+    return Buffer.from(buffer);
+  }
+  const crypto = eval('require')('crypto');
   return crypto.randomBytes(size);
 }
 
@@ -54,7 +110,7 @@ export function generateByteStreamFromBuffer(buffer: Buffer): Readable {
 }
 
 export function generateByteStream(size: number): Readable {
-  return Readable.from(crypto.randomBytes(size));
+  return Readable.from(generateByteBuffer(size));
 }
 
 export function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean {

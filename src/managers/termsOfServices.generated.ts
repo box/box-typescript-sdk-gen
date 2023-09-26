@@ -98,7 +98,9 @@ export class TermsOfServicesManager {
   ): Promise<TermsOfServices> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['tos_type']: toString(queryParams.tosType) });
+    } = prepareParams({
+      ['tos_type']: toString(queryParams.tosType) as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -152,7 +154,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/terms_of_services/',
-        termsOfServiceId
+        toString(termsOfServiceId) as string
       ) as string,
       {
         method: 'GET',
@@ -177,7 +179,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/terms_of_services/',
-        termsOfServiceId
+        toString(termsOfServiceId) as string
       ) as string,
       {
         method: 'PUT',

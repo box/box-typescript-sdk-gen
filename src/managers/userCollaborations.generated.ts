@@ -17,7 +17,7 @@ import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetCollaborationByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetCollaborationByIdHeadersArg {
   readonly extraHeaders?: {
@@ -93,7 +93,7 @@ export interface CreateCollaborationRequestBodyArg {
   readonly expiresAt?: string;
 }
 export interface CreateCollaborationQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly notify?: boolean;
 }
 export class CreateCollaborationHeadersArg {
@@ -127,14 +127,16 @@ export class UserCollaborationsManager {
   ): Promise<Collaboration> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collaborations/',
-        collaborationId
+        toString(collaborationId) as string
       ) as string,
       {
         method: 'GET',
@@ -160,7 +162,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collaborations/',
-        collaborationId
+        toString(collaborationId) as string
       ) as string,
       {
         method: 'PUT',
@@ -188,7 +190,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collaborations/',
-        collaborationId
+        toString(collaborationId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -210,8 +212,8 @@ export class UserCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['notify']: toString(queryParams.notify),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['notify']: toString(queryParams.notify) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

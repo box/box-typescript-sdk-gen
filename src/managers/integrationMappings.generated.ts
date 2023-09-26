@@ -99,13 +99,15 @@ export class IntegrationMappingsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
-      ['partner_item_type']: toString(queryParams.partnerItemType),
-      ['partner_item_id']: toString(queryParams.partnerItemId),
-      ['box_item_id']: toString(queryParams.boxItemId),
-      ['box_item_type']: toString(queryParams.boxItemType),
-      ['is_manually_created']: toString(queryParams.isManuallyCreated),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['partner_item_type']: toString(queryParams.partnerItemType) as string,
+      ['partner_item_id']: toString(queryParams.partnerItemId) as string,
+      ['box_item_id']: toString(queryParams.boxItemId) as string,
+      ['box_item_type']: toString(queryParams.boxItemType) as string,
+      ['is_manually_created']: toString(
+        queryParams.isManuallyCreated
+      ) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -161,7 +163,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/integration_mappings/slack/',
-        integrationMappingId
+        toString(integrationMappingId) as string
       ) as string,
       {
         method: 'PUT',
@@ -189,7 +191,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/integration_mappings/slack/',
-        integrationMappingId
+        toString(integrationMappingId) as string
       ) as string,
       {
         method: 'DELETE',

@@ -24,7 +24,7 @@ import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetGroupsQueryParamsArg {
   readonly filterTerm?: string;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
@@ -53,7 +53,7 @@ export interface CreateGroupRequestBodyArg {
   readonly memberViewabilityLevel?: CreateGroupRequestBodyArgMemberViewabilityLevelField;
 }
 export interface CreateGroupQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateGroupHeadersArg {
   readonly extraHeaders?: {
@@ -64,7 +64,7 @@ export class CreateGroupHeadersArg {
   }
 }
 export interface GetGroupByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetGroupByIdHeadersArg {
   readonly extraHeaders?: {
@@ -91,7 +91,7 @@ export interface UpdateGroupByIdRequestBodyArg {
   readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
 }
 export interface UpdateGroupByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateGroupByIdHeadersArg {
   readonly extraHeaders?: {
@@ -131,10 +131,10 @@ export class GroupsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['filter_term']: toString(queryParams.filterTerm),
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['filter_term']: toString(queryParams.filterTerm) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -159,7 +159,9 @@ export class GroupsManager {
   ): Promise<Group> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -185,12 +187,17 @@ export class GroupsManager {
   ): Promise<GroupFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups/', groupId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/groups/',
+        toString(groupId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -210,12 +217,17 @@ export class GroupsManager {
   ): Promise<GroupFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups/', groupId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/groups/',
+        toString(groupId) as string
+      ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
@@ -239,7 +251,10 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups/', groupId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/groups/',
+        toString(groupId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,

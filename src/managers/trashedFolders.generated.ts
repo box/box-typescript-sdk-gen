@@ -26,7 +26,7 @@ export interface RestoreFolderFromTrashRequestBodyArg {
   readonly parent?: RestoreFolderFromTrashRequestBodyArgParentField;
 }
 export interface RestoreFolderFromTrashQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class RestoreFolderFromTrashHeadersArg {
   readonly extraHeaders?: {
@@ -37,7 +37,7 @@ export class RestoreFolderFromTrashHeadersArg {
   }
 }
 export interface GetFolderTrashQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetFolderTrashHeadersArg {
   readonly extraHeaders?: {
@@ -76,12 +76,17 @@ export class TrashedFoldersManager {
   ): Promise<TrashFolderRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/folders/', folderId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/folders/',
+        toString(folderId) as string
+      ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -104,14 +109,16 @@ export class TrashedFoldersManager {
   ): Promise<TrashFolder> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/trash'
       ) as string,
       {
@@ -135,7 +142,7 @@ export class TrashedFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/trash'
       ) as string,
       {

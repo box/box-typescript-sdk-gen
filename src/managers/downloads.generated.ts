@@ -37,20 +37,24 @@ export class DownloadsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['version']: toString(queryParams.version),
-      ['access_token']: toString(queryParams.accessToken),
+      ['version']: toString(queryParams.version) as string,
+      ['access_token']: toString(queryParams.accessToken) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ...{
-        ['range']: toString(headers.range),
-        ['boxapi']: toString(headers.boxapi),
+        ['range']: toString(headers.range) as string,
+        ['boxapi']: toString(headers.boxapi) as string,
       },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId, '/content') as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string,
+        '/content'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,

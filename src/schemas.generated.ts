@@ -3609,7 +3609,7 @@ export function deserializeZipDownloadRequestItemsField(
 }
 export function serializeZipDownloadRequest(val: ZipDownloadRequest): Json {
   return {
-    ['items']: val.items.map(function (
+    ['items']: val.items?.map(function (
       item: ZipDownloadRequestItemsField
     ): any {
       return serializeZipDownloadRequestItemsField(item);
@@ -3623,7 +3623,7 @@ export function deserializeZipDownloadRequest(val: any): ZipDownloadRequest {
     val.items,
     'array'
   )
-    ? (val.items.map(function (itm: Json): any {
+    ? (val.items?.map(function (itm: Json): any {
         return deserializeZipDownloadRequestItemsField(itm);
       }) as readonly any[])
     : [];
@@ -3687,7 +3687,7 @@ export function serializeMetadataQuery(val: MetadataQuery): Json {
     ['order_by']:
       val.orderBy == void 0
         ? void 0
-        : (val.orderBy.map(function (item: MetadataQueryOrderByField): any {
+        : (val.orderBy?.map(function (item: MetadataQueryOrderByField): any {
             return serializeMetadataQueryOrderByField(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -3695,7 +3695,7 @@ export function serializeMetadataQuery(val: MetadataQuery): Json {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: string): any {
+        : (val.fields?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
   };
@@ -3713,7 +3713,7 @@ export function deserializeMetadataQuery(val: any): MetadataQuery {
     val.order_by == void 0
       ? void 0
       : isJson(val.order_by, 'array')
-      ? (val.order_by.map(function (itm: Json): any {
+      ? (val.order_by?.map(function (itm: Json): any {
           return deserializeMetadataQueryOrderByField(itm);
         }) as readonly any[])
       : [];
@@ -3723,7 +3723,7 @@ export function deserializeMetadataQuery(val: any): MetadataQuery {
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -4294,7 +4294,7 @@ export function serializeClassificationTemplateFieldsField(
     ['options']:
       val.options == void 0
         ? void 0
-        : (val.options.map(function (
+        : (val.options?.map(function (
             item: ClassificationTemplateFieldsFieldOptionsField
           ): any {
             return serializeClassificationTemplateFieldsFieldOptionsField(item);
@@ -4329,7 +4329,7 @@ export function deserializeClassificationTemplateFieldsField(
     val.options == void 0
       ? void 0
       : isJson(val.options, 'array')
-      ? (val.options.map(function (itm: Json): any {
+      ? (val.options?.map(function (itm: Json): any {
           return deserializeClassificationTemplateFieldsFieldOptionsField(itm);
         }) as readonly any[])
       : [];
@@ -4365,7 +4365,7 @@ export function serializeClassificationTemplate(
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (
+        : (val.fields?.map(function (
             item: ClassificationTemplateFieldsField
           ): any {
             return serializeClassificationTemplateFieldsField(item);
@@ -4395,7 +4395,7 @@ export function deserializeClassificationTemplate(
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return deserializeClassificationTemplateFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -4554,7 +4554,7 @@ export function serializeCollaborationAllowlistEntries(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: CollaborationAllowlistEntry): any {
+        : (val.entries?.map(function (item: CollaborationAllowlistEntry): any {
             return serializeCollaborationAllowlistEntry(item);
           }) as readonly any[]),
   };
@@ -4571,7 +4571,7 @@ export function deserializeCollaborationAllowlistEntries(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeCollaborationAllowlistEntry(itm);
         }) as readonly any[])
       : [];
@@ -4700,13 +4700,13 @@ export function serializeCollections(val: Collections): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CollectionsOrderField): any {
+        : (val.order?.map(function (item: CollectionsOrderField): any {
             return serializeCollectionsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Collection): any {
+        : (val.entries?.map(function (item: Collection): any {
             return serializeCollection(item);
           }) as readonly any[]),
   };
@@ -4720,7 +4720,7 @@ export function deserializeCollections(val: any): Collections {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeCollectionsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -4728,7 +4728,7 @@ export function deserializeCollections(val: any): Collections {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeCollection(itm);
         }) as readonly any[])
       : [];
@@ -4808,7 +4808,7 @@ export function serializeEmailAliases(val: EmailAliases): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: EmailAlias): any {
+        : (val.entries?.map(function (item: EmailAlias): any {
             return serializeEmailAlias(item);
           }) as readonly any[]),
   };
@@ -4820,7 +4820,7 @@ export function deserializeEmailAliases(val: any): EmailAliases {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeEmailAlias(itm);
         }) as readonly any[])
       : [];
@@ -5066,7 +5066,7 @@ export function serializeAccessToken(val: AccessToken): Json {
     ['restricted_to']:
       val.restrictedTo == void 0
         ? void 0
-        : (val.restrictedTo.map(function (item: FileScope): any {
+        : (val.restrictedTo?.map(function (item: FileScope): any {
             return serializeFileScope(item);
           }) as readonly any[]),
     ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
@@ -5089,7 +5089,7 @@ export function deserializeAccessToken(val: any): AccessToken {
     val.restricted_to == void 0
       ? void 0
       : isJson(val.restricted_to, 'array')
-      ? (val.restricted_to.map(function (itm: Json): any {
+      ? (val.restricted_to?.map(function (itm: Json): any {
           return deserializeFileScope(itm);
         }) as readonly any[])
       : [];
@@ -5116,7 +5116,7 @@ export function serializeFilesUnderRetention(val: FilesUnderRetention): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileMini): any {
+        : (val.entries?.map(function (item: FileMini): any {
             return serializeFileMini(item);
           }) as readonly any[]),
   };
@@ -5131,7 +5131,7 @@ export function deserializeFilesUnderRetention(val: any): FilesUnderRetention {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -5178,7 +5178,7 @@ export function serializeConflictErrorContextInfoField(
     ['conflicts']:
       val.conflicts == void 0
         ? void 0
-        : (val.conflicts.map(function (item: FileConflict): any {
+        : (val.conflicts?.map(function (item: FileConflict): any {
             return serializeFileConflict(item);
           }) as readonly any[]),
   };
@@ -5190,7 +5190,7 @@ export function deserializeConflictErrorContextInfoField(
     val.conflicts == void 0
       ? void 0
       : isJson(val.conflicts, 'array')
-      ? (val.conflicts.map(function (itm: Json): any {
+      ? (val.conflicts?.map(function (itm: Json): any {
           return deserializeFileConflict(itm);
         }) as readonly any[])
       : [];
@@ -5537,13 +5537,13 @@ export function serializeGroups(val: Groups): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: GroupsOrderField): any {
+        : (val.order?.map(function (item: GroupsOrderField): any {
             return serializeGroupsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: GroupMini): any {
+        : (val.entries?.map(function (item: GroupMini): any {
             return serializeGroupMini(item);
           }) as readonly any[]),
   };
@@ -5557,7 +5557,7 @@ export function deserializeGroups(val: any): Groups {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeGroupsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -5565,7 +5565,7 @@ export function deserializeGroups(val: any): Groups {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeGroupMini(itm);
         }) as readonly any[])
       : [];
@@ -5838,7 +5838,9 @@ export function serializeLegalHoldPolicyAssignments(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: LegalHoldPolicyAssignmentBase): any {
+        : (val.entries?.map(function (
+            item: LegalHoldPolicyAssignmentBase
+          ): any {
             return serializeLegalHoldPolicyAssignmentBase(item);
           }) as readonly any[]),
   };
@@ -5855,7 +5857,7 @@ export function deserializeLegalHoldPolicyAssignments(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeLegalHoldPolicyAssignmentBase(itm);
         }) as readonly any[])
       : [];
@@ -5900,7 +5902,7 @@ export function serializeMetadatas(val: Metadatas): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Metadata): any {
+        : (val.entries?.map(function (item: Metadata): any {
             return serializeMetadata(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -5911,7 +5913,7 @@ export function deserializeMetadatas(val: any): Metadatas {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeMetadata(itm);
         }) as readonly any[])
       : [];
@@ -6148,7 +6150,7 @@ export function serializeMetadataCascadePolicies(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: MetadataCascadePolicy): any {
+        : (val.entries?.map(function (item: MetadataCascadePolicy): any {
             return serializeMetadataCascadePolicy(item);
           }) as readonly any[]),
   };
@@ -6165,7 +6167,7 @@ export function deserializeMetadataCascadePolicies(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeMetadataCascadePolicy(itm);
         }) as readonly any[])
       : [];
@@ -6255,7 +6257,7 @@ export function serializeMetadataQueryIndex(val: MetadataQueryIndex): Json {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: MetadataQueryIndexFieldsField): any {
+        : (val.fields?.map(function (item: MetadataQueryIndexFieldsField): any {
             return serializeMetadataQueryIndexFieldsField(item);
           }) as readonly any[]),
   };
@@ -6269,7 +6271,7 @@ export function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex {
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return deserializeMetadataQueryIndexFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -6285,7 +6287,7 @@ export function serializeMetadataQueryIndices(val: MetadataQueryIndices): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: MetadataQueryIndex): any {
+        : (val.entries?.map(function (item: MetadataQueryIndex): any {
             return serializeMetadataQueryIndex(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -6299,7 +6301,7 @@ export function deserializeMetadataQueryIndices(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeMetadataQueryIndex(itm);
         }) as readonly any[])
       : [];
@@ -6383,7 +6385,7 @@ export function serializeMetadataTemplateFieldsField(
     ['options']:
       val.options == void 0
         ? void 0
-        : (val.options.map(function (
+        : (val.options?.map(function (
             item: MetadataTemplateFieldsFieldOptionsField
           ): any {
             return serializeMetadataTemplateFieldsFieldOptionsField(item);
@@ -6408,7 +6410,7 @@ export function deserializeMetadataTemplateFieldsField(
     val.options == void 0
       ? void 0
       : isJson(val.options, 'array')
-      ? (val.options.map(function (itm: Json): any {
+      ? (val.options?.map(function (itm: Json): any {
           return deserializeMetadataTemplateFieldsFieldOptionsField(itm);
         }) as readonly any[])
       : [];
@@ -6434,7 +6436,7 @@ export function serializeMetadataTemplate(val: MetadataTemplate): Json {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: MetadataTemplateFieldsField): any {
+        : (val.fields?.map(function (item: MetadataTemplateFieldsField): any {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
     ['copyInstanceOnItemCopy']:
@@ -6459,7 +6461,7 @@ export function deserializeMetadataTemplate(val: any): MetadataTemplate {
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return deserializeMetadataTemplateFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -6484,7 +6486,7 @@ export function serializeMetadataTemplates(val: MetadataTemplates): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: MetadataTemplate): any {
+        : (val.entries?.map(function (item: MetadataTemplate): any {
             return serializeMetadataTemplate(item);
           }) as readonly any[]),
   };
@@ -6499,7 +6501,7 @@ export function deserializeMetadataTemplates(val: any): MetadataTemplates {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeMetadataTemplate(itm);
         }) as readonly any[])
       : [];
@@ -6541,7 +6543,7 @@ export function serializeRealtimeServers(val: RealtimeServers): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RealtimeServer): any {
+        : (val.entries?.map(function (item: RealtimeServer): any {
             return serializeRealtimeServer(item);
           }) as readonly any[]),
   };
@@ -6553,7 +6555,7 @@ export function deserializeRealtimeServers(val: any): RealtimeServers {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeRealtimeServer(itm);
         }) as readonly any[])
       : [];
@@ -6655,7 +6657,7 @@ export function serializeRetentionPolicies(val: RetentionPolicies): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RetentionPolicyMini): any {
+        : (val.entries?.map(function (item: RetentionPolicyMini): any {
             return serializeRetentionPolicyMini(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -6667,7 +6669,7 @@ export function deserializeRetentionPolicies(val: any): RetentionPolicies {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeRetentionPolicyMini(itm);
         }) as readonly any[])
       : [];
@@ -6759,7 +6761,7 @@ export function serializeFileVersionRetentions(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersionRetention): any {
+        : (val.entries?.map(function (item: FileVersionRetention): any {
             return serializeFileVersionRetention(item);
           }) as readonly any[]),
   };
@@ -6776,7 +6778,7 @@ export function deserializeFileVersionRetentions(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileVersionRetention(itm);
         }) as readonly any[])
       : [];
@@ -6826,7 +6828,9 @@ export function serializeRetentionPolicyAssignments(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RetentionPolicyAssignmentBase): any {
+        : (val.entries?.map(function (
+            item: RetentionPolicyAssignmentBase
+          ): any {
             return serializeRetentionPolicyAssignmentBase(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -6840,7 +6844,7 @@ export function deserializeRetentionPolicyAssignments(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeRetentionPolicyAssignmentBase(itm);
         }) as readonly any[])
       : [];
@@ -7278,7 +7282,7 @@ export function serializeStoragePolicyAssignments(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: StoragePolicyAssignment): any {
+        : (val.entries?.map(function (item: StoragePolicyAssignment): any {
             return serializeStoragePolicyAssignment(item);
           }) as readonly any[]),
   };
@@ -7295,7 +7299,7 @@ export function deserializeStoragePolicyAssignments(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeStoragePolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -7330,7 +7334,7 @@ export function serializeStoragePolicies(val: StoragePolicies): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: StoragePolicy): any {
+        : (val.entries?.map(function (item: StoragePolicy): any {
             return serializeStoragePolicy(item);
           }) as readonly any[]),
   };
@@ -7345,7 +7349,7 @@ export function deserializeStoragePolicies(val: any): StoragePolicies {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeStoragePolicy(itm);
         }) as readonly any[])
       : [];
@@ -7536,7 +7540,7 @@ export function serializeTermsOfServices(val: TermsOfServices): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TermsOfService): any {
+        : (val.entries?.map(function (item: TermsOfService): any {
             return serializeTermsOfService(item);
           }) as readonly any[]),
   };
@@ -7548,7 +7552,7 @@ export function deserializeTermsOfServices(val: any): TermsOfServices {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeTermsOfService(itm);
         }) as readonly any[])
       : [];
@@ -7659,13 +7663,13 @@ export function serializeUploadParts(val: UploadParts): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: UploadPartsOrderField): any {
+        : (val.order?.map(function (item: UploadPartsOrderField): any {
             return serializeUploadPartsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: UploadPart): any {
+        : (val.entries?.map(function (item: UploadPart): any {
             return serializeUploadPart(item);
           }) as readonly any[]),
   };
@@ -7679,7 +7683,7 @@ export function deserializeUploadParts(val: any): UploadParts {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeUploadPartsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -7687,7 +7691,7 @@ export function deserializeUploadParts(val: any): UploadParts {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeUploadPart(itm);
         }) as readonly any[])
       : [];
@@ -8201,13 +8205,13 @@ export function serializeUsers(val: Users): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: UsersOrderField): any {
+        : (val.order?.map(function (item: UsersOrderField): any {
             return serializeUsersOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: User): any {
+        : (val.entries?.map(function (item: User): any {
             return serializeUser(item);
           }) as readonly any[]),
   };
@@ -8221,7 +8225,7 @@ export function deserializeUsers(val: any): Users {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeUsersOrderField(itm);
         }) as readonly any[])
       : [];
@@ -8229,7 +8233,7 @@ export function deserializeUsers(val: any): Users {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeUser(itm);
         }) as readonly any[])
       : [];
@@ -8262,7 +8266,7 @@ export function serializeTrashWebLinkRestoredPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -8272,7 +8276,7 @@ export function deserializeTrashWebLinkRestoredPathCollectionField(
 ): TrashWebLinkRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -8416,7 +8420,7 @@ export function serializeTrashFolderRestoredPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -8426,7 +8430,7 @@ export function deserializeTrashFolderRestoredPathCollectionField(
 ): TrashFolderRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -8587,7 +8591,7 @@ export function serializeTrashFileRestoredPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -8597,7 +8601,7 @@ export function deserializeTrashFileRestoredPathCollectionField(
 ): TrashFileRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -8798,7 +8802,7 @@ export function serializeTrashWebLinkPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: TrashWebLinkPathCollectionFieldEntriesField
     ): any {
       return serializeTrashWebLinkPathCollectionFieldEntriesField(item);
@@ -8811,7 +8815,7 @@ export function deserializeTrashWebLinkPathCollectionField(
   const totalCount: number = val.total_count;
   const entries: readonly TrashWebLinkPathCollectionFieldEntriesField[] =
     isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeTrashWebLinkPathCollectionFieldEntriesField(itm);
         }) as readonly any[])
       : [];
@@ -9005,7 +9009,7 @@ export function serializeTrashFolderPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: TrashFolderPathCollectionFieldEntriesField
     ): any {
       return serializeTrashFolderPathCollectionFieldEntriesField(item);
@@ -9020,7 +9024,7 @@ export function deserializeTrashFolderPathCollectionField(
     val.entries,
     'array'
   )
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeTrashFolderPathCollectionFieldEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -9206,7 +9210,7 @@ export function serializeTrashFilePathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: TrashFilePathCollectionFieldEntriesField
     ): any {
       return serializeTrashFilePathCollectionFieldEntriesField(item);
@@ -9221,7 +9225,7 @@ export function deserializeTrashFilePathCollectionField(
     val.entries,
     'array'
   )
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeTrashFilePathCollectionFieldEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -9414,7 +9418,7 @@ export function serializeTermsOfServiceUserStatuses(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TermsOfServiceUserStatus): any {
+        : (val.entries?.map(function (item: TermsOfServiceUserStatus): any {
             return serializeTermsOfServiceUserStatus(item);
           }) as readonly any[]),
   };
@@ -9428,7 +9432,7 @@ export function deserializeTermsOfServiceUserStatuses(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeTermsOfServiceUserStatus(itm);
         }) as readonly any[])
       : [];
@@ -9539,7 +9543,7 @@ export function serializeTaskAssignments(val: TaskAssignments): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TaskAssignment): any {
+        : (val.entries?.map(function (item: TaskAssignment): any {
             return serializeTaskAssignment(item);
           }) as readonly any[]),
   };
@@ -9551,7 +9555,7 @@ export function deserializeTaskAssignments(val: any): TaskAssignments {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeTaskAssignment(itm);
         }) as readonly any[])
       : [];
@@ -9671,7 +9675,7 @@ export function serializeTasks(val: Tasks): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Task): any {
+        : (val.entries?.map(function (item: Task): any {
             return serializeTask(item);
           }) as readonly any[]),
   };
@@ -9683,7 +9687,7 @@ export function deserializeTasks(val: any): Tasks {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeTask(itm);
         }) as readonly any[])
       : [];
@@ -9789,7 +9793,7 @@ export function serializeRetentionPolicyAssignment(
     ['filter_fields']:
       val.filterFields == void 0
         ? void 0
-        : (val.filterFields.map(function (
+        : (val.filterFields?.map(function (
             item: RetentionPolicyAssignmentFilterFieldsField
           ): any {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
@@ -9823,7 +9827,7 @@ export function deserializeRetentionPolicyAssignment(
     val.filter_fields == void 0
       ? void 0
       : isJson(val.filter_fields, 'array')
-      ? (val.filter_fields.map(function (itm: Json): any {
+      ? (val.filter_fields?.map(function (itm: Json): any {
           return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -9959,7 +9963,7 @@ export function serializeRetentionPolicy(val: RetentionPolicy): Json {
       ['custom_notification_recipients']:
         val.customNotificationRecipients == void 0
           ? void 0
-          : (val.customNotificationRecipients.map(function (
+          : (val.customNotificationRecipients?.map(function (
               item: UserMini
             ): any {
               return serializeUserMini(item);
@@ -10002,7 +10006,7 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
     val.custom_notification_recipients == void 0
       ? void 0
       : isJson(val.custom_notification_recipients, 'array')
-      ? (val.custom_notification_recipients.map(function (itm: Json): any {
+      ? (val.custom_notification_recipients?.map(function (itm: Json): any {
           return deserializeUserMini(itm);
         }) as readonly any[])
       : [];
@@ -10181,7 +10185,7 @@ export function serializeLegalHoldPolicies(val: LegalHoldPolicies): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: LegalHoldPolicy): any {
+        : (val.entries?.map(function (item: LegalHoldPolicy): any {
             return serializeLegalHoldPolicy(item);
           }) as readonly any[]),
   };
@@ -10196,7 +10200,7 @@ export function deserializeLegalHoldPolicies(val: any): LegalHoldPolicies {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeLegalHoldPolicy(itm);
         }) as readonly any[])
       : [];
@@ -10423,13 +10427,13 @@ export function serializeGroupMemberships(val: GroupMemberships): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: GroupMembershipsOrderField): any {
+        : (val.order?.map(function (item: GroupMembershipsOrderField): any {
             return serializeGroupMembershipsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: GroupMembership): any {
+        : (val.entries?.map(function (item: GroupMembership): any {
             return serializeGroupMembership(item);
           }) as readonly any[]),
   };
@@ -10443,7 +10447,7 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeGroupMembershipsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -10451,7 +10455,7 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeGroupMembership(itm);
         }) as readonly any[])
       : [];
@@ -10580,13 +10584,13 @@ export function serializeFileVersions(val: FileVersions): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: FileVersionsOrderField): any {
+        : (val.order?.map(function (item: FileVersionsOrderField): any {
             return serializeFileVersionsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersion): any {
+        : (val.entries?.map(function (item: FileVersion): any {
             return serializeFileVersion(item);
           }) as readonly any[]),
   };
@@ -10600,7 +10604,7 @@ export function deserializeFileVersions(val: any): FileVersions {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeFileVersionsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -10608,7 +10612,7 @@ export function deserializeFileVersions(val: any): FileVersions {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileVersion(itm);
         }) as readonly any[])
       : [];
@@ -10790,7 +10794,7 @@ export function serializeFilePathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -10800,7 +10804,7 @@ export function deserializeFilePathCollectionField(
 ): FilePathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -11278,7 +11282,7 @@ export function serializeFileFullExpiringEmbedLinkField(
     ['restricted_to']:
       val.restrictedTo == void 0
         ? void 0
-        : (val.restrictedTo.map(function (item: FileScope): any {
+        : (val.restrictedTo?.map(function (item: FileScope): any {
             return serializeFileScope(item);
           }) as readonly any[]),
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -11299,7 +11303,7 @@ export function deserializeFileFullExpiringEmbedLinkField(
     val.restricted_to == void 0
       ? void 0
       : isJson(val.restricted_to, 'array')
-      ? (val.restricted_to.map(function (itm: Json): any {
+      ? (val.restricted_to?.map(function (itm: Json): any {
           return deserializeFileScope(itm);
         }) as readonly any[])
       : [];
@@ -11559,7 +11563,7 @@ export function serializeFileFullRepresentationsField(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (
+        : (val.entries?.map(function (
             item: FileFullRepresentationsFieldEntriesField
           ): any {
             return serializeFileFullRepresentationsFieldEntriesField(item);
@@ -11575,7 +11579,7 @@ export function deserializeFileFullRepresentationsField(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileFullRepresentationsFieldEntriesField(itm);
         }) as readonly any[])
       : [];
@@ -11643,7 +11647,7 @@ export function serializeFileFull(val: FileFull): Json {
       ['tags']:
         val.tags == void 0
           ? void 0
-          : (val.tags.map(function (item: string): any {
+          : (val.tags?.map(function (item: string): any {
               return item;
             }) as readonly any[]),
       ['lock']:
@@ -11665,7 +11669,7 @@ export function serializeFileFull(val: FileFull): Json {
       ['allowed_invitee_roles']:
         val.allowedInviteeRoles == void 0
           ? void 0
-          : (val.allowedInviteeRoles.map(function (
+          : (val.allowedInviteeRoles?.map(function (
               item: FileFullAllowedInviteeRolesField
             ): any {
               return serializeFileFullAllowedInviteeRolesField(item);
@@ -11694,7 +11698,7 @@ export function serializeFileFull(val: FileFull): Json {
       ['shared_link_permission_options']:
         val.sharedLinkPermissionOptions == void 0
           ? void 0
-          : (val.sharedLinkPermissionOptions.map(function (
+          : (val.sharedLinkPermissionOptions?.map(function (
               item: FileFullSharedLinkPermissionOptionsField
             ): any {
               return serializeFileFullSharedLinkPermissionOptionsField(item);
@@ -11715,7 +11719,7 @@ export function deserializeFileFull(val: any): FileFull {
     val.tags == void 0
       ? void 0
       : isJson(val.tags, 'array')
-      ? (val.tags.map(function (itm: Json): any {
+      ? (val.tags?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -11743,7 +11747,7 @@ export function deserializeFileFull(val: any): FileFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : isJson(val.allowed_invitee_roles, 'array')
-      ? (val.allowed_invitee_roles.map(function (itm: Json): any {
+      ? (val.allowed_invitee_roles?.map(function (itm: Json): any {
           return deserializeFileFullAllowedInviteeRolesField(itm);
         }) as readonly any[])
       : [];
@@ -11775,7 +11779,7 @@ export function deserializeFileFull(val: any): FileFull {
     val.shared_link_permission_options == void 0
       ? void 0
       : isJson(val.shared_link_permission_options, 'array')
-      ? (val.shared_link_permission_options.map(function (itm: Json): any {
+      ? (val.shared_link_permission_options?.map(function (itm: Json): any {
           return deserializeFileFullSharedLinkPermissionOptionsField(itm);
         }) as readonly any[])
       : [];
@@ -11876,7 +11880,7 @@ export function serializeFiles(val: Files): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: File): any {
+        : (val.entries?.map(function (item: File): any {
             return serializeFile(item);
           }) as readonly any[]),
   };
@@ -11888,7 +11892,7 @@ export function deserializeFiles(val: any): Files {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFile(itm);
         }) as readonly any[])
       : [];
@@ -12002,7 +12006,7 @@ export function serializeDevicePinners(val: DevicePinners): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: DevicePinner): any {
+        : (val.entries?.map(function (item: DevicePinner): any {
             return serializeDevicePinner(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -12010,7 +12014,7 @@ export function serializeDevicePinners(val: DevicePinners): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: DevicePinnersOrderField): any {
+        : (val.order?.map(function (item: DevicePinnersOrderField): any {
             return serializeDevicePinnersOrderField(item);
           }) as readonly any[]),
   };
@@ -12020,7 +12024,7 @@ export function deserializeDevicePinners(val: any): DevicePinners {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeDevicePinner(itm);
         }) as readonly any[])
       : [];
@@ -12031,7 +12035,7 @@ export function deserializeDevicePinners(val: any): DevicePinners {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeDevicePinnersOrderField(itm);
         }) as readonly any[])
       : [];
@@ -12187,13 +12191,13 @@ export function serializeComments(val: Comments): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CommentsOrderField): any {
+        : (val.order?.map(function (item: CommentsOrderField): any {
             return serializeCommentsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Comment): any {
+        : (val.entries?.map(function (item: Comment): any {
             return serializeComment(item);
           }) as readonly any[]),
   };
@@ -12207,7 +12211,7 @@ export function deserializeComments(val: any): Comments {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeCommentsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -12215,7 +12219,7 @@ export function deserializeComments(val: any): Comments {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeComment(itm);
         }) as readonly any[])
       : [];
@@ -12353,7 +12357,7 @@ export function serializeCollaborationAllowlistExemptTargets(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (
+        : (val.entries?.map(function (
             item: CollaborationAllowlistExemptTarget
           ): any {
             return serializeCollaborationAllowlistExemptTarget(item);
@@ -12372,7 +12376,7 @@ export function deserializeCollaborationAllowlistExemptTargets(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeCollaborationAllowlistExemptTarget(itm);
         }) as readonly any[])
       : [];
@@ -12846,7 +12850,7 @@ export function serializeFolderLocks(val: FolderLocks): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FolderLock): any {
+        : (val.entries?.map(function (item: FolderLock): any {
             return serializeFolderLock(item);
           }) as readonly any[]),
   };
@@ -12861,7 +12865,7 @@ export function deserializeFolderLocks(val: any): FolderLocks {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFolderLock(itm);
         }) as readonly any[])
       : [];
@@ -12990,7 +12994,7 @@ export function serializeWebhooks(val: Webhooks): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: WebhookMini): any {
+        : (val.entries?.map(function (item: WebhookMini): any {
             return serializeWebhookMini(item);
           }) as readonly any[]),
   };
@@ -13005,7 +13009,7 @@ export function deserializeWebhooks(val: any): Webhooks {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeWebhookMini(itm);
         }) as readonly any[])
       : [];
@@ -13162,7 +13166,7 @@ export function serializeWebhook(val: Webhook): Json {
       ['triggers']:
         val.triggers == void 0
           ? void 0
-          : (val.triggers.map(function (item: WebhookTriggersField): any {
+          : (val.triggers?.map(function (item: WebhookTriggersField): any {
               return serializeWebhookTriggersField(item);
             }) as readonly any[]),
     },
@@ -13179,7 +13183,7 @@ export function deserializeWebhook(val: any): Webhook {
     val.triggers == void 0
       ? void 0
       : isJson(val.triggers, 'array')
-      ? (val.triggers.map(function (itm: Json): any {
+      ? (val.triggers?.map(function (itm: Json): any {
           return deserializeWebhookTriggersField(itm);
         }) as readonly any[])
       : [];
@@ -13333,13 +13337,13 @@ export function serializeItems(val: Items): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: ItemsOrderField): any {
+        : (val.order?.map(function (item: ItemsOrderField): any {
             return serializeItemsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (
+        : (val.entries?.map(function (
             item: FileMiniOrFolderMiniOrWebLinkMini
           ): any {
             return serializeFileMiniOrFolderMiniOrWebLinkMini(item);
@@ -13355,7 +13359,7 @@ export function deserializeItems(val: any): Items {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeItemsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -13363,7 +13367,7 @@ export function deserializeItems(val: any): Items {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileMiniOrFolderMiniOrWebLinkMini(itm);
         }) as readonly any[])
       : [];
@@ -13380,7 +13384,7 @@ export function serializeFolderPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -13390,7 +13394,7 @@ export function deserializeFolderPathCollectionField(
 ): FolderPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -14246,7 +14250,7 @@ export function serializeEvents(val: Events): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Event): any {
+        : (val.entries?.map(function (item: Event): any {
             return serializeEvent(item);
           }) as readonly any[]),
   };
@@ -14260,7 +14264,7 @@ export function deserializeEvents(val: any): Events {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeEvent(itm);
         }) as readonly any[])
       : [];
@@ -14296,7 +14300,7 @@ export function serializeMetadataQueryResults(val: MetadataQueryResults): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileOrFolder): any {
+        : (val.entries?.map(function (item: FileOrFolder): any {
             return serializeFileOrFolder(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14310,7 +14314,7 @@ export function deserializeMetadataQueryResults(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileOrFolder(itm);
         }) as readonly any[])
       : [];
@@ -15082,7 +15086,7 @@ export function serializeFolderFull(val: FolderFull): Json {
       ['tags']:
         val.tags == void 0
           ? void 0
-          : (val.tags.map(function (item: string): any {
+          : (val.tags?.map(function (item: string): any {
               return item;
             }) as readonly any[]),
       ['can_non_owners_invite']:
@@ -15100,7 +15104,7 @@ export function serializeFolderFull(val: FolderFull): Json {
       ['allowed_shared_link_access_levels']:
         val.allowedSharedLinkAccessLevels == void 0
           ? void 0
-          : (val.allowedSharedLinkAccessLevels.map(function (
+          : (val.allowedSharedLinkAccessLevels?.map(function (
               item: FolderFullAllowedSharedLinkAccessLevelsField
             ): any {
               return serializeFolderFullAllowedSharedLinkAccessLevelsField(
@@ -15110,7 +15114,7 @@ export function serializeFolderFull(val: FolderFull): Json {
       ['allowed_invitee_roles']:
         val.allowedInviteeRoles == void 0
           ? void 0
-          : (val.allowedInviteeRoles.map(function (
+          : (val.allowedInviteeRoles?.map(function (
               item: FolderFullAllowedInviteeRolesField
             ): any {
               return serializeFolderFullAllowedInviteeRolesField(item);
@@ -15149,7 +15153,7 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.tags == void 0
       ? void 0
       : isJson(val.tags, 'array')
-      ? (val.tags.map(function (itm: Json): any {
+      ? (val.tags?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -15171,7 +15175,7 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.allowed_shared_link_access_levels == void 0
       ? void 0
       : isJson(val.allowed_shared_link_access_levels, 'array')
-      ? (val.allowed_shared_link_access_levels.map(function (itm: Json): any {
+      ? (val.allowed_shared_link_access_levels?.map(function (itm: Json): any {
           return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
         }) as readonly any[])
       : [];
@@ -15181,7 +15185,7 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : isJson(val.allowed_invitee_roles, 'array')
-      ? (val.allowed_invitee_roles.map(function (itm: Json): any {
+      ? (val.allowed_invitee_roles?.map(function (itm: Json): any {
           return deserializeFolderFullAllowedInviteeRolesField(itm);
         }) as readonly any[])
       : [];
@@ -15295,7 +15299,7 @@ export function serializeWebLinkPathCollectionField(
 ): Json {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries?.map(function (item: FolderMini): any {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -15305,7 +15309,7 @@ export function deserializeWebLinkPathCollectionField(
 ): WebLinkPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = isJson(val.entries, 'array')
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -15681,7 +15685,7 @@ export function serializeSearchResultsWithSharedLinks(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
+        : (val.entries?.map(function (item: SearchResultWithSharedLink): any {
             return serializeSearchResultWithSharedLink(item);
           }) as readonly any[]),
   };
@@ -15699,7 +15703,7 @@ export function deserializeSearchResultsWithSharedLinks(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeSearchResultWithSharedLink(itm);
         }) as readonly any[])
       : [];
@@ -15736,7 +15740,7 @@ export function serializeSearchResults(val: SearchResults): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileOrFolderOrWebLink): any {
+        : (val.entries?.map(function (item: FileOrFolderOrWebLink): any {
             return serializeFileOrFolderOrWebLink(item);
           }) as readonly any[]),
   };
@@ -15753,7 +15757,7 @@ export function deserializeSearchResults(val: any): SearchResults {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileOrFolderOrWebLink(itm);
         }) as readonly any[])
       : [];
@@ -15862,7 +15866,7 @@ export function serializeRecentItems(val: RecentItems): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RecentItem): any {
+        : (val.entries?.map(function (item: RecentItem): any {
             return serializeRecentItem(item);
           }) as readonly any[]),
   };
@@ -15877,7 +15881,7 @@ export function deserializeRecentItems(val: any): RecentItems {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeRecentItem(itm);
         }) as readonly any[])
       : [];
@@ -15976,7 +15980,7 @@ export function serializeFileVersionLegalHold(val: FileVersionLegalHold): Json {
     ['legal_hold_policy_assignments']:
       val.legalHoldPolicyAssignments == void 0
         ? void 0
-        : (val.legalHoldPolicyAssignments.map(function (
+        : (val.legalHoldPolicyAssignments?.map(function (
             item: LegalHoldPolicyAssignment
           ): any {
             return serializeLegalHoldPolicyAssignment(item);
@@ -16004,7 +16008,7 @@ export function deserializeFileVersionLegalHold(
     val.legal_hold_policy_assignments == void 0
       ? void 0
       : isJson(val.legal_hold_policy_assignments, 'array')
-      ? (val.legal_hold_policy_assignments.map(function (itm: Json): any {
+      ? (val.legal_hold_policy_assignments?.map(function (itm: Json): any {
           return deserializeLegalHoldPolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -16029,7 +16033,7 @@ export function serializeFileVersionLegalHolds(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersionLegalHold): any {
+        : (val.entries?.map(function (item: FileVersionLegalHold): any {
             return serializeFileVersionLegalHold(item);
           }) as readonly any[]),
   };
@@ -16046,7 +16050,7 @@ export function deserializeFileVersionLegalHolds(
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeFileVersionLegalHold(itm);
         }) as readonly any[])
       : [];
@@ -16413,13 +16417,13 @@ export function serializeCollaborations(val: Collaborations): Json {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CollaborationsOrderField): any {
+        : (val.order?.map(function (item: CollaborationsOrderField): any {
             return serializeCollaborationsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Collaboration): any {
+        : (val.entries?.map(function (item: Collaboration): any {
             return serializeCollaboration(item);
           }) as readonly any[]),
   };
@@ -16433,7 +16437,7 @@ export function deserializeCollaborations(val: any): Collaborations {
     val.order == void 0
       ? void 0
       : isJson(val.order, 'array')
-      ? (val.order.map(function (itm: Json): any {
+      ? (val.order?.map(function (itm: Json): any {
           return deserializeCollaborationsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -16441,7 +16445,7 @@ export function deserializeCollaborations(val: any): Collaborations {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeCollaboration(itm);
         }) as readonly any[])
       : [];
@@ -16662,7 +16666,7 @@ export function serializeWorkflowFlowsFieldTriggerField(
     ['scope']:
       val.scope == void 0
         ? void 0
-        : (val.scope.map(function (
+        : (val.scope?.map(function (
             item: WorkflowFlowsFieldTriggerFieldScopeField
           ): any {
             return serializeWorkflowFlowsFieldTriggerFieldScopeField(item);
@@ -16688,7 +16692,7 @@ export function deserializeWorkflowFlowsFieldTriggerField(
     val.scope == void 0
       ? void 0
       : isJson(val.scope, 'array')
-      ? (val.scope.map(function (itm: Json): any {
+      ? (val.scope?.map(function (itm: Json): any {
           return deserializeWorkflowFlowsFieldTriggerFieldScopeField(itm);
         }) as readonly any[])
       : [];
@@ -16961,7 +16965,7 @@ export function serializeWorkflowFlowsFieldOutcomesField(
     ['if_rejected']:
       val.ifRejected == void 0
         ? void 0
-        : (val.ifRejected.map(function (
+        : (val.ifRejected?.map(function (
             item: WorkflowFlowsFieldOutcomesFieldIfRejectedField
           ): any {
             return serializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(
@@ -16991,7 +16995,7 @@ export function deserializeWorkflowFlowsFieldOutcomesField(
     val.if_rejected == void 0
       ? void 0
       : isJson(val.if_rejected, 'array')
-      ? (val.if_rejected.map(function (itm: Json): any {
+      ? (val.if_rejected?.map(function (itm: Json): any {
           return deserializeWorkflowFlowsFieldOutcomesFieldIfRejectedField(itm);
         }) as readonly any[])
       : [];
@@ -17017,7 +17021,7 @@ export function serializeWorkflowFlowsField(val: WorkflowFlowsField): Json {
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
-        : (val.outcomes.map(function (
+        : (val.outcomes?.map(function (
             item: WorkflowFlowsFieldOutcomesField
           ): any {
             return serializeWorkflowFlowsFieldOutcomesField(item);
@@ -17041,7 +17045,7 @@ export function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField {
     val.outcomes == void 0
       ? void 0
       : isJson(val.outcomes, 'array')
-      ? (val.outcomes.map(function (itm: Json): any {
+      ? (val.outcomes?.map(function (itm: Json): any {
           return deserializeWorkflowFlowsFieldOutcomesField(itm);
         }) as readonly any[])
       : [];
@@ -17069,7 +17073,7 @@ export function serializeWorkflow(val: Workflow): Json {
       ['flows']:
         val.flows == void 0
           ? void 0
-          : (val.flows.map(function (item: WorkflowFlowsField): any {
+          : (val.flows?.map(function (item: WorkflowFlowsField): any {
               return serializeWorkflowFlowsField(item);
             }) as readonly any[]),
     },
@@ -17080,7 +17084,7 @@ export function deserializeWorkflow(val: any): Workflow {
     val.flows == void 0
       ? void 0
       : isJson(val.flows, 'array')
-      ? (val.flows.map(function (itm: Json): any {
+      ? (val.flows?.map(function (itm: Json): any {
           return deserializeWorkflowFlowsField(itm);
         }) as readonly any[])
       : [];
@@ -17109,7 +17113,7 @@ export function serializeWorkflows(val: Workflows): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Workflow): any {
+        : (val.entries?.map(function (item: Workflow): any {
             return serializeWorkflow(item);
           }) as readonly any[]),
   };
@@ -17124,7 +17128,7 @@ export function deserializeWorkflows(val: any): Workflows {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeWorkflow(itm);
         }) as readonly any[])
       : [];
@@ -17165,7 +17169,7 @@ export function deserializeWorkflowFull(val: any): WorkflowFull {
     val.flows == void 0
       ? void 0
       : isJson(val.flows, 'array')
-      ? (val.flows.map(function (itm: Json): any {
+      ? (val.flows?.map(function (itm: Json): any {
           return deserializeWorkflowFlowsField(itm);
         }) as readonly any[])
       : [];
@@ -17249,10 +17253,10 @@ export function serializeZipDownload(val: ZipDownload): Json {
     ['name_conflicts']:
       val.nameConflicts == void 0
         ? void 0
-        : (val.nameConflicts.map(function (
+        : (val.nameConflicts?.map(function (
             item: readonly ZipDownloadNameConflictsField[]
           ): any {
-            return item.map(function (
+            return item?.map(function (
               item: ZipDownloadNameConflictsField
             ): any {
               return serializeZipDownloadNameConflictsField(item);
@@ -17273,9 +17277,9 @@ export function deserializeZipDownload(val: any): ZipDownload {
     val.name_conflicts == void 0
       ? void 0
       : isJson(val.name_conflicts, 'array')
-      ? (val.name_conflicts.map(function (itm: Json): any {
+      ? (val.name_conflicts?.map(function (itm: Json): any {
           return isJson(itm, 'array')
-            ? (itm.map(function (itm: Json): any {
+            ? (itm?.map(function (itm: Json): any {
                 return deserializeZipDownloadNameConflictsField(itm);
               }) as readonly any[])
             : [];
@@ -17485,7 +17489,7 @@ export function serializeKeywordSkillCard(val: KeywordSkillCard): Json {
         : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeKeywordSkillCardSkillField(val.skill),
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: KeywordSkillCardEntriesField
     ): any {
       return serializeKeywordSkillCardEntriesField(item);
@@ -17512,7 +17516,7 @@ export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
     val.entries,
     'array'
   )
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeKeywordSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -17704,7 +17708,7 @@ export function serializeIntegrationMappings(val: IntegrationMappings): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: IntegrationMapping): any {
+        : (val.entries?.map(function (item: IntegrationMapping): any {
             return serializeIntegrationMapping(item);
           }) as readonly any[]),
   };
@@ -17719,7 +17723,7 @@ export function deserializeIntegrationMappings(val: any): IntegrationMappings {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeIntegrationMapping(itm);
         }) as readonly any[])
       : [];
@@ -17933,7 +17937,7 @@ export function serializeTimelineSkillCardEntriesField(
     ['appears']:
       val.appears == void 0
         ? void 0
-        : (val.appears.map(function (
+        : (val.appears?.map(function (
             item: TimelineSkillCardEntriesFieldAppearsField
           ): any {
             return serializeTimelineSkillCardEntriesFieldAppearsField(item);
@@ -17951,7 +17955,7 @@ export function deserializeTimelineSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : isJson(val.appears, 'array')
-      ? (val.appears.map(function (itm: Json): any {
+      ? (val.appears?.map(function (itm: Json): any {
           return deserializeTimelineSkillCardEntriesFieldAppearsField(itm);
         }) as readonly any[])
       : [];
@@ -17977,7 +17981,7 @@ export function serializeTimelineSkillCard(val: TimelineSkillCard): Json {
     ['skill']: serializeTimelineSkillCardSkillField(val.skill),
     ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: TimelineSkillCardEntriesField
     ): any {
       return serializeTimelineSkillCardEntriesField(item);
@@ -18005,7 +18009,7 @@ export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
     val.entries,
     'array'
   )
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeTimelineSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -18153,7 +18157,7 @@ export function serializeTranscriptSkillCardEntriesField(
     ['appears']:
       val.appears == void 0
         ? void 0
-        : (val.appears.map(function (
+        : (val.appears?.map(function (
             item: TranscriptSkillCardEntriesFieldAppearsField
           ): any {
             return serializeTranscriptSkillCardEntriesFieldAppearsField(item);
@@ -18170,7 +18174,7 @@ export function deserializeTranscriptSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : isJson(val.appears, 'array')
-      ? (val.appears.map(function (itm: Json): any {
+      ? (val.appears?.map(function (itm: Json): any {
           return deserializeTranscriptSkillCardEntriesFieldAppearsField(itm);
         }) as readonly any[])
       : [];
@@ -18193,7 +18197,7 @@ export function serializeTranscriptSkillCard(val: TranscriptSkillCard): Json {
     ['skill']: serializeTranscriptSkillCardSkillField(val.skill),
     ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
-    ['entries']: val.entries.map(function (
+    ['entries']: val.entries?.map(function (
       item: TranscriptSkillCardEntriesField
     ): any {
       return serializeTranscriptSkillCardEntriesField(item);
@@ -18221,7 +18225,7 @@ export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
     val.entries,
     'array'
   )
-    ? (val.entries.map(function (itm: Json): any {
+    ? (val.entries?.map(function (itm: Json): any {
         return deserializeTranscriptSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -18463,7 +18467,7 @@ export function serializeSkillCardsMetadata(val: SkillCardsMetadata): Json {
     ['cards']:
       val.cards == void 0
         ? void 0
-        : (val.cards.map(function (
+        : (val.cards?.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
           ): any {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
@@ -18492,7 +18496,7 @@ export function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata {
     val.cards == void 0
       ? void 0
       : isJson(val.cards, 'array')
-      ? (val.cards.map(function (itm: Json): any {
+      ? (val.cards?.map(function (itm: Json): any {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );
@@ -18819,7 +18823,7 @@ export function serializeSignRequestSigner(val: SignRequestSigner): Json {
       ['inputs']:
         val.inputs == void 0
           ? void 0
-          : (val.inputs.map(function (item: SignRequestSignerInput): any {
+          : (val.inputs?.map(function (item: SignRequestSignerInput): any {
               return serializeSignRequestSignerInput(item);
             }) as readonly any[]),
       ['embed_url']: val.embedUrl == void 0 ? void 0 : val.embedUrl,
@@ -18839,7 +18843,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     val.inputs == void 0
       ? void 0
       : isJson(val.inputs, 'array')
-      ? (val.inputs.map(function (itm: Json): any {
+      ? (val.inputs?.map(function (itm: Json): any {
           return deserializeSignRequestSignerInput(itm);
         }) as readonly any[])
       : [];
@@ -18911,7 +18915,7 @@ export function serializeSignRequestBase(val: SignRequestBase): Json {
     ['prefill_tags']:
       val.prefillTags == void 0
         ? void 0
-        : (val.prefillTags.map(function (item: SignRequestPrefillTag): any {
+        : (val.prefillTags?.map(function (item: SignRequestPrefillTag): any {
             return serializeSignRequestPrefillTag(item);
           }) as readonly any[]),
     ['days_valid']: val.daysValid == void 0 ? void 0 : val.daysValid,
@@ -18948,7 +18952,7 @@ export function deserializeSignRequestBase(val: any): SignRequestBase {
     val.prefill_tags == void 0
       ? void 0
       : isJson(val.prefill_tags, 'array')
-      ? (val.prefill_tags.map(function (itm: Json): any {
+      ? (val.prefill_tags?.map(function (itm: Json): any {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -19049,7 +19053,7 @@ export function serializeSignRequestSignFilesField(
     ['files']:
       val.files == void 0
         ? void 0
-        : (val.files.map(function (item: FileMini): any {
+        : (val.files?.map(function (item: FileMini): any {
             return serializeFileMini(item);
           }) as readonly any[]),
     ['is_ready_for_download']:
@@ -19063,7 +19067,7 @@ export function deserializeSignRequestSignFilesField(
     val.files == void 0
       ? void 0
       : isJson(val.files, 'array')
-      ? (val.files.map(function (itm: Json): any {
+      ? (val.files?.map(function (itm: Json): any {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -19087,13 +19091,13 @@ export function serializeSignRequest(val: SignRequest): Json {
       ['source_files']:
         val.sourceFiles == void 0
           ? void 0
-          : (val.sourceFiles.map(function (item: FileBase): any {
+          : (val.sourceFiles?.map(function (item: FileBase): any {
               return serializeFileBase(item);
             }) as readonly any[]),
       ['signers']:
         val.signers == void 0
           ? void 0
-          : (val.signers.map(function (item: SignRequestSigner): any {
+          : (val.signers?.map(function (item: SignRequestSigner): any {
               return serializeSignRequestSigner(item);
             }) as readonly any[]),
       ['signature_color']:
@@ -19122,7 +19126,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.source_files == void 0
       ? void 0
       : isJson(val.source_files, 'array')
-      ? (val.source_files.map(function (itm: Json): any {
+      ? (val.source_files?.map(function (itm: Json): any {
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
@@ -19130,7 +19134,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.signers == void 0
       ? void 0
       : isJson(val.signers, 'array')
-      ? (val.signers.map(function (itm: Json): any {
+      ? (val.signers?.map(function (itm: Json): any {
           return deserializeSignRequestSigner(itm);
         }) as readonly any[])
       : [];
@@ -19175,7 +19179,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.prefill_tags == void 0
       ? void 0
       : isJson(val.prefill_tags, 'array')
-      ? (val.prefill_tags.map(function (itm: Json): any {
+      ? (val.prefill_tags?.map(function (itm: Json): any {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -19224,7 +19228,7 @@ export function serializeSignRequests(val: SignRequests): Json {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SignRequest): any {
+        : (val.entries?.map(function (item: SignRequest): any {
             return serializeSignRequest(item);
           }) as readonly any[]),
   };
@@ -19239,7 +19243,7 @@ export function deserializeSignRequests(val: any): SignRequests {
     val.entries == void 0
       ? void 0
       : isJson(val.entries, 'array')
-      ? (val.entries.map(function (itm: Json): any {
+      ? (val.entries?.map(function (itm: Json): any {
           return deserializeSignRequest(itm);
         }) as readonly any[])
       : [];
@@ -19263,10 +19267,10 @@ export function serializeSignRequestCreateRequest(
       ['source_files']:
         val.sourceFiles == void 0
           ? void 0
-          : (val.sourceFiles.map(function (item: FileBase): any {
+          : (val.sourceFiles?.map(function (item: FileBase): any {
               return serializeFileBase(item);
             }) as readonly any[]),
-      ['signers']: val.signers.map(function (
+      ['signers']: val.signers?.map(function (
         item: SignRequestCreateSigner
       ): any {
         return serializeSignRequestCreateSigner(item);
@@ -19281,7 +19285,7 @@ export function deserializeSignRequestCreateRequest(
     val.source_files == void 0
       ? void 0
       : isJson(val.source_files, 'array')
-      ? (val.source_files.map(function (itm: Json): any {
+      ? (val.source_files?.map(function (itm: Json): any {
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
@@ -19289,7 +19293,7 @@ export function deserializeSignRequestCreateRequest(
     val.signers,
     'array'
   )
-    ? (val.signers.map(function (itm: Json): any {
+    ? (val.signers?.map(function (itm: Json): any {
         return deserializeSignRequestCreateSigner(itm);
       }) as readonly any[])
     : [];
@@ -19317,7 +19321,7 @@ export function deserializeSignRequestCreateRequest(
     val.prefill_tags == void 0
       ? void 0
       : isJson(val.prefill_tags, 'array')
-      ? (val.prefill_tags.map(function (itm: Json): any {
+      ? (val.prefill_tags?.map(function (itm: Json): any {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -19497,7 +19501,7 @@ export function serializeTemplateSignerInput(val: TemplateSignerInput): Json {
       ['dropdown_choices']:
         val.dropdownChoices == void 0
           ? void 0
-          : (val.dropdownChoices.map(function (item: string): any {
+          : (val.dropdownChoices?.map(function (item: string): any {
               return item;
             }) as readonly any[]),
       ['group_id']: val.groupId == void 0 ? void 0 : val.groupId,
@@ -19531,7 +19535,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.dropdown_choices == void 0
       ? void 0
       : isJson(val.dropdown_choices, 'array')
-      ? (val.dropdown_choices.map(function (itm: Json): any {
+      ? (val.dropdown_choices?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -19598,7 +19602,7 @@ export function serializeTemplateSigner(val: TemplateSigner): Json {
     ['inputs']:
       val.inputs == void 0
         ? void 0
-        : (val.inputs.map(function (item: TemplateSignerInput): any {
+        : (val.inputs?.map(function (item: TemplateSignerInput): any {
             return serializeTemplateSignerInput(item);
           }) as readonly any[]),
     ['email']: val.email == void 0 ? void 0 : val.email,
@@ -19613,7 +19617,7 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
     val.inputs == void 0
       ? void 0
       : isJson(val.inputs, 'array')
-      ? (val.inputs.map(function (itm: Json): any {
+      ? (val.inputs?.map(function (itm: Json): any {
           return deserializeTemplateSignerInput(itm);
         }) as readonly any[])
       : [];
@@ -19701,10 +19705,10 @@ export function serializeSignTemplateAdditionalInfoFieldRequiredField(
     ['signers']:
       val.signers == void 0
         ? void 0
-        : (val.signers.map(function (
+        : (val.signers?.map(function (
             item: readonly SignTemplateAdditionalInfoFieldRequiredFieldSignersField[]
           ): any {
-            return item.map(function (
+            return item?.map(function (
               item: SignTemplateAdditionalInfoFieldRequiredFieldSignersField
             ): any {
               return serializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(
@@ -19723,9 +19727,9 @@ export function deserializeSignTemplateAdditionalInfoFieldRequiredField(
     val.signers == void 0
       ? void 0
       : isJson(val.signers, 'array')
-      ? (val.signers.map(function (itm: Json): any {
+      ? (val.signers?.map(function (itm: Json): any {
           return isJson(itm, 'array')
-            ? (itm.map(function (itm: Json): any {
+            ? (itm?.map(function (itm: Json): any {
                 return deserializeSignTemplateAdditionalInfoFieldRequiredFieldSignersField(
                   itm
                 );
@@ -19744,7 +19748,7 @@ export function serializeSignTemplateAdditionalInfoField(
     ['non_editable']:
       val.nonEditable == void 0
         ? void 0
-        : (val.nonEditable.map(function (
+        : (val.nonEditable?.map(function (
             item: SignTemplateAdditionalInfoFieldNonEditableField
           ): any {
             return serializeSignTemplateAdditionalInfoFieldNonEditableField(
@@ -19766,7 +19770,7 @@ export function deserializeSignTemplateAdditionalInfoField(
     val.non_editable == void 0
       ? void 0
       : isJson(val.non_editable, 'array')
-      ? (val.non_editable.map(function (itm: Json): any {
+      ? (val.non_editable?.map(function (itm: Json): any {
           return deserializeSignTemplateAdditionalInfoFieldNonEditableField(
             itm
           );
@@ -19866,7 +19870,7 @@ export function serializeSignTemplate(val: SignTemplate): Json {
     ['source_files']:
       val.sourceFiles == void 0
         ? void 0
-        : (val.sourceFiles.map(function (item: FileMini): any {
+        : (val.sourceFiles?.map(function (item: FileMini): any {
             return serializeFileMini(item);
           }) as readonly any[]),
     ['are_fields_locked']:
@@ -19884,7 +19888,7 @@ export function serializeSignTemplate(val: SignTemplate): Json {
     ['signers']:
       val.signers == void 0
         ? void 0
-        : (val.signers.map(function (item: TemplateSigner): any {
+        : (val.signers?.map(function (item: TemplateSigner): any {
             return serializeTemplateSigner(item);
           }) as readonly any[]),
     ['additional_info']:
@@ -19920,7 +19924,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     val.source_files == void 0
       ? void 0
       : isJson(val.source_files, 'array')
-      ? (val.source_files.map(function (itm: Json): any {
+      ? (val.source_files?.map(function (itm: Json): any {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -19940,7 +19944,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     val.signers == void 0
       ? void 0
       : isJson(val.signers, 'array')
-      ? (val.signers.map(function (itm: Json): any {
+      ? (val.signers?.map(function (itm: Json): any {
           return deserializeTemplateSigner(itm);
         }) as readonly any[])
       : [];
@@ -20211,7 +20215,7 @@ export function serializeUserFull(val: UserFull): Json {
       ['tracking_codes']:
         val.trackingCodes == void 0
           ? void 0
-          : (val.trackingCodes.map(function (item: TrackingCode): any {
+          : (val.trackingCodes?.map(function (item: TrackingCode): any {
               return serializeTrackingCode(item);
             }) as readonly any[]),
       ['can_see_managed_users']:
@@ -20237,7 +20241,7 @@ export function serializeUserFull(val: UserFull): Json {
       ['my_tags']:
         val.myTags == void 0
           ? void 0
-          : (val.myTags.map(function (item: string): any {
+          : (val.myTags?.map(function (item: string): any {
               return item;
             }) as readonly any[]),
       ['hostname']: val.hostname == void 0 ? void 0 : val.hostname,
@@ -20255,7 +20259,7 @@ export function deserializeUserFull(val: any): UserFull {
     val.tracking_codes == void 0
       ? void 0
       : isJson(val.tracking_codes, 'array')
-      ? (val.tracking_codes.map(function (itm: Json): any {
+      ? (val.tracking_codes?.map(function (itm: Json): any {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
@@ -20283,7 +20287,7 @@ export function deserializeUserFull(val: any): UserFull {
     val.my_tags == void 0
       ? void 0
       : isJson(val.my_tags, 'array')
-      ? (val.my_tags.map(function (itm: Json): any {
+      ? (val.my_tags?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -20447,7 +20451,7 @@ export function serializeMetadataFieldFilterMultiSelect(
     Object.entries(val).map(([k, v]: [string, any]) => [
       k,
       (function (v: any): any {
-        return v.map(function (item: string): any {
+        return v?.map(function (item: string): any {
           return item;
         }) as readonly any[];
       })(v),

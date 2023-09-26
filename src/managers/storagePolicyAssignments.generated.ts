@@ -116,9 +116,9 @@ export class StoragePolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['resolved_for_type']: toString(queryParams.resolvedForType),
-      ['resolved_for_id']: toString(queryParams.resolvedForId),
+      ['marker']: toString(queryParams.marker) as string,
+      ['resolved_for_type']: toString(queryParams.resolvedForType) as string,
+      ['resolved_for_id']: toString(queryParams.resolvedForId) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -173,7 +173,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/storage_policy_assignments/',
-        storagePolicyAssignmentId
+        toString(storagePolicyAssignmentId) as string
       ) as string,
       {
         method: 'GET',
@@ -198,7 +198,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/storage_policy_assignments/',
-        storagePolicyAssignmentId
+        toString(storagePolicyAssignmentId) as string
       ) as string,
       {
         method: 'PUT',
@@ -226,7 +226,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/storage_policy_assignments/',
-        storagePolicyAssignmentId
+        toString(storagePolicyAssignmentId) as string
       ) as string,
       {
         method: 'DELETE',

@@ -108,7 +108,11 @@ export class TasksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId, '/tasks') as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string,
+        '/tasks'
+      ) as string,
       {
         method: 'GET',
         headers: headersMap,
@@ -148,7 +152,10 @@ export class TasksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/tasks/', taskId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/tasks/',
+        toString(taskId) as string
+      ) as string,
       {
         method: 'GET',
         headers: headersMap,
@@ -168,7 +175,10 @@ export class TasksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/tasks/', taskId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/tasks/',
+        toString(taskId) as string
+      ) as string,
       {
         method: 'PUT',
         headers: headersMap,
@@ -189,7 +199,10 @@ export class TasksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/tasks/', taskId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/tasks/',
+        toString(taskId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,

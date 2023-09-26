@@ -221,7 +221,7 @@ export class ClassificationsManager {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg
           ) as readonly any[]
         ),
@@ -250,7 +250,7 @@ export class ClassificationsManager {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg
           ) as readonly any[]
         ),
@@ -279,7 +279,7 @@ export class ClassificationsManager {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
           ) as readonly any[]
         ),
@@ -713,7 +713,7 @@ export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyAr
     ['options']:
       val.options == void 0
         ? void 0
-        : (val.options.map(function (
+        : (val.options?.map(function (
             item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField
           ): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(
@@ -757,7 +757,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     val.options == void 0
       ? void 0
       : isJson(val.options, 'array')
-      ? (val.options.map(function (itm: Json): any {
+      ? (val.options?.map(function (itm: Json): any {
           return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(
             itm
           );
@@ -797,7 +797,7 @@ export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyAr
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (
+        : (val.fields?.map(function (
             item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField
           ): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(
@@ -835,7 +835,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(
             itm
           );

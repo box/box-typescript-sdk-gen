@@ -31,7 +31,7 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   }
   await auth.asEnterprise(enterpriseId);
   const newUser: any = await client.users.getUserMe({
-    fields: 'enterprise',
+    fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParamsArg);
   if (
     !(!(newUser.enterprise == void 0) && newUser.enterprise.id == enterpriseId)
@@ -57,7 +57,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   }
   await auth.asEnterprise(enterpriseId);
   const newUser: any = await client.users.getUserMe({
-    fields: 'enterprise',
+    fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParamsArg);
   if (
     !(!(newUser.enterprise == void 0) && newUser.enterprise.id == enterpriseId)

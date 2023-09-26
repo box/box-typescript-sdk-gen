@@ -20,7 +20,7 @@ import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetFileVersionsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
@@ -33,7 +33,7 @@ export class GetFileVersionsHeadersArg {
   }
 }
 export interface GetFileVersionByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetFileVersionByIdHeadersArg {
   readonly extraHeaders?: {
@@ -69,7 +69,7 @@ export interface PromoteFileVersionRequestBodyArg {
   readonly type?: PromoteFileVersionRequestBodyArgTypeField;
 }
 export interface PromoteFileVersionQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class PromoteFileVersionHeadersArg {
   readonly extraHeaders?: {
@@ -102,9 +102,9 @@ export class FileVersionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -112,7 +112,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/versions'
       ) as string,
       {
@@ -134,16 +134,18 @@ export class FileVersionsManager {
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/versions/',
-        fileVersionId
+        toString(fileVersionId) as string
       ) as string,
       {
         method: 'GET',
@@ -170,9 +172,9 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/versions/',
-        fileVersionId
+        toString(fileVersionId) as string
       ) as string,
       {
         method: 'PUT',
@@ -198,15 +200,15 @@ export class FileVersionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/versions/',
-        fileVersionId
+        toString(fileVersionId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -226,14 +228,16 @@ export class FileVersionsManager {
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/versions/current'
       ) as string,
       {

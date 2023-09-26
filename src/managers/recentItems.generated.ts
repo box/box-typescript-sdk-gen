@@ -15,7 +15,7 @@ import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
 export interface GetRecentItemsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
@@ -40,9 +40,9 @@ export class RecentItemsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['marker']: toString(queryParams.marker),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

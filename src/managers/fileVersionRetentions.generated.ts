@@ -67,14 +67,14 @@ export class FileVersionRetentionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['file_id']: toString(queryParams.fileId),
-      ['file_version_id']: toString(queryParams.fileVersionId),
-      ['policy_id']: toString(queryParams.policyId),
-      ['disposition_action']: toString(queryParams.dispositionAction),
-      ['disposition_before']: toString(queryParams.dispositionBefore),
-      ['disposition_after']: toString(queryParams.dispositionAfter),
-      ['limit']: toString(queryParams.limit),
-      ['marker']: toString(queryParams.marker),
+      ['file_id']: toString(queryParams.fileId) as string,
+      ['file_version_id']: toString(queryParams.fileVersionId) as string,
+      ['policy_id']: toString(queryParams.policyId) as string,
+      ['disposition_action']: toString(queryParams.dispositionAction) as string,
+      ['disposition_before']: toString(queryParams.dispositionBefore) as string,
+      ['disposition_after']: toString(queryParams.dispositionAfter) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -104,7 +104,7 @@ export class FileVersionRetentionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_version_retentions/',
-        fileVersionRetentionId
+        toString(fileVersionRetentionId) as string
       ) as string,
       {
         method: 'GET',

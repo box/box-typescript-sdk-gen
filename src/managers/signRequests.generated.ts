@@ -90,7 +90,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/sign_requests/',
-        signRequestId,
+        toString(signRequestId) as string,
         '/cancel'
       ) as string,
       {
@@ -113,7 +113,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/sign_requests/',
-        signRequestId,
+        toString(signRequestId) as string,
         '/resend'
       ) as string,
       {
@@ -136,7 +136,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/sign_requests/',
-        signRequestId
+        toString(signRequestId) as string
       ) as string,
       {
         method: 'GET',
@@ -155,8 +155,8 @@ export class SignRequestsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

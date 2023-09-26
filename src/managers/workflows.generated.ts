@@ -81,10 +81,10 @@ export class WorkflowsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['folder_id']: toString(queryParams.folderId),
-      ['trigger_type']: toString(queryParams.triggerType),
-      ['limit']: toString(queryParams.limit),
-      ['marker']: toString(queryParams.marker),
+      ['folder_id']: toString(queryParams.folderId) as string,
+      ['trigger_type']: toString(queryParams.triggerType) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -115,7 +115,7 @@ export class WorkflowsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/workflows/',
-        workflowId,
+        toString(workflowId) as string,
         '/start'
       ) as string,
       {
@@ -316,7 +316,7 @@ export function serializeCreateWorkflowStartRequestBodyArg(
         ? void 0
         : serializeCreateWorkflowStartRequestBodyArgTypeField(val.type),
     ['flow']: serializeCreateWorkflowStartRequestBodyArgFlowField(val.flow),
-    ['files']: val.files.map(function (
+    ['files']: val.files?.map(function (
       item: CreateWorkflowStartRequestBodyArgFilesField
     ): any {
       return serializeCreateWorkflowStartRequestBodyArgFilesField(item);
@@ -327,7 +327,7 @@ export function serializeCreateWorkflowStartRequestBodyArg(
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
-        : (val.outcomes.map(function (
+        : (val.outcomes?.map(function (
             item: CreateWorkflowStartRequestBodyArgOutcomesField
           ): any {
             return serializeCreateWorkflowStartRequestBodyArgOutcomesField(
@@ -349,7 +349,7 @@ export function deserializeCreateWorkflowStartRequestBodyArg(
     val.files,
     'array'
   )
-    ? (val.files.map(function (itm: Json): any {
+    ? (val.files?.map(function (itm: Json): any {
         return deserializeCreateWorkflowStartRequestBodyArgFilesField(itm);
       }) as readonly any[])
     : [];
@@ -361,7 +361,7 @@ export function deserializeCreateWorkflowStartRequestBodyArg(
     val.outcomes == void 0
       ? void 0
       : isJson(val.outcomes, 'array')
-      ? (val.outcomes.map(function (itm: Json): any {
+      ? (val.outcomes?.map(function (itm: Json): any {
           return deserializeCreateWorkflowStartRequestBodyArgOutcomesField(itm);
         }) as readonly any[])
       : [];

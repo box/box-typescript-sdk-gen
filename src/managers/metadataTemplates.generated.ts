@@ -175,7 +175,9 @@ export class MetadataTemplatesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['metadata_instance_id']: toString(queryParams.metadataInstanceId),
+      ['metadata_instance_id']: toString(
+        queryParams.metadataInstanceId
+      ) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -206,9 +208,9 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_templates/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey,
+        toString(templateKey) as string,
         '/schema'
       ) as string,
       {
@@ -235,16 +237,16 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_templates/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey,
+        toString(templateKey) as string,
         '/schema'
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateMetadataTemplateSchemaRequestBodyArg
           ) as readonly any[]
         ),
@@ -269,9 +271,9 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_templates/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey,
+        toString(templateKey) as string,
         '/schema'
       ) as string,
       {
@@ -296,7 +298,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_templates/',
-        templateId
+        toString(templateId) as string
       ) as string,
       {
         method: 'GET',
@@ -317,8 +319,8 @@ export class MetadataTemplatesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -345,8 +347,8 @@ export class MetadataTemplatesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -492,14 +494,14 @@ export function serializeUpdateMetadataTemplateSchemaRequestBodyArg(
     ['fieldKeys']:
       val.fieldKeys == void 0
         ? void 0
-        : (val.fieldKeys.map(function (item: string): any {
+        : (val.fieldKeys?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
     ['enumOptionKey']: val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey,
     ['enumOptionKeys']:
       val.enumOptionKeys == void 0
         ? void 0
-        : (val.enumOptionKeys.map(function (item: string): any {
+        : (val.enumOptionKeys?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
     ['multiSelectOptionKey']:
@@ -507,7 +509,7 @@ export function serializeUpdateMetadataTemplateSchemaRequestBodyArg(
     ['multiSelectOptionKeys']:
       val.multiSelectOptionKeys == void 0
         ? void 0
-        : (val.multiSelectOptionKeys.map(function (item: string): any {
+        : (val.multiSelectOptionKeys?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
   };
@@ -528,7 +530,7 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(
     val.fieldKeys == void 0
       ? void 0
       : isJson(val.fieldKeys, 'array')
-      ? (val.fieldKeys.map(function (itm: Json): any {
+      ? (val.fieldKeys?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -538,7 +540,7 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(
     val.enumOptionKeys == void 0
       ? void 0
       : isJson(val.enumOptionKeys, 'array')
-      ? (val.enumOptionKeys.map(function (itm: Json): any {
+      ? (val.enumOptionKeys?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -548,7 +550,7 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(
     val.multiSelectOptionKeys == void 0
       ? void 0
       : isJson(val.multiSelectOptionKeys, 'array')
-      ? (val.multiSelectOptionKeys.map(function (itm: Json): any {
+      ? (val.multiSelectOptionKeys?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -638,7 +640,7 @@ export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
     ['options']:
       val.options == void 0
         ? void 0
-        : (val.options.map(function (
+        : (val.options?.map(function (
             item: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField
           ): any {
             return serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
@@ -666,7 +668,7 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField
     val.options == void 0
       ? void 0
       : isJson(val.options, 'array')
-      ? (val.options.map(function (itm: Json): any {
+      ? (val.options?.map(function (itm: Json): any {
           return deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
             itm
           );
@@ -692,7 +694,7 @@ export function serializeCreateMetadataTemplateSchemaRequestBodyArg(
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (
+        : (val.fields?.map(function (
             item: CreateMetadataTemplateSchemaRequestBodyArgFieldsField
           ): any {
             return serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
@@ -720,7 +722,7 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArg(
     val.fields == void 0
       ? void 0
       : isJson(val.fields, 'array')
-      ? (val.fields.map(function (itm: Json): any {
+      ? (val.fields?.map(function (itm: Json): any {
           return deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
             itm
           );

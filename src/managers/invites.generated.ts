@@ -26,7 +26,7 @@ export interface CreateInviteRequestBodyArg {
   readonly actionableBy: CreateInviteRequestBodyArgActionableByField;
 }
 export interface CreateInviteQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateInviteHeadersArg {
   readonly extraHeaders?: {
@@ -37,7 +37,7 @@ export class CreateInviteHeadersArg {
   }
 }
 export interface GetInviteByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetInviteByIdHeadersArg {
   readonly extraHeaders?: {
@@ -60,7 +60,9 @@ export class InvitesManager {
   ): Promise<Invite> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -86,12 +88,17 @@ export class InvitesManager {
   ): Promise<Invite> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/invites/', inviteId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/invites/',
+        toString(inviteId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,

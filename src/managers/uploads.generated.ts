@@ -33,7 +33,7 @@ export interface UploadFileVersionRequestBodyArg {
   readonly fileContentType?: string;
 }
 export interface UploadFileVersionQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UploadFileVersionHeadersArg {
   readonly ifMatch?: string;
@@ -61,7 +61,7 @@ export interface UploadFileRequestBodyArg {
   readonly fileContentType?: string;
 }
 export interface UploadFileQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UploadFileHeadersArg {
   readonly contentMd5?: string;
@@ -107,20 +107,22 @@ export class UploadsManager {
   ): Promise<Files> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ...{
-        ['if-match']: toString(headers.ifMatch),
-        ['content-md5']: toString(headers.contentMd5),
+        ['if-match']: toString(headers.ifMatch) as string,
+        ['content-md5']: toString(headers.contentMd5) as string,
       },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/content'
       ) as string,
       {
@@ -158,11 +160,13 @@ export class UploadsManager {
   ): Promise<Files> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['content-md5']: toString(headers.contentMd5) },
+      ...{ ['content-md5']: toString(headers.contentMd5) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(

@@ -43,11 +43,11 @@ export class AuthorizationManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['response_type']: toString(queryParams.responseType),
-      ['client_id']: toString(queryParams.clientId),
-      ['redirect_uri']: toString(queryParams.redirectUri),
-      ['state']: toString(queryParams.state),
-      ['scope']: toString(queryParams.scope),
+      ['response_type']: toString(queryParams.responseType) as string,
+      ['client_id']: toString(queryParams.clientId) as string,
+      ['redirect_uri']: toString(queryParams.redirectUri) as string,
+      ['state']: toString(queryParams.state) as string,
+      ['scope']: toString(queryParams.scope) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

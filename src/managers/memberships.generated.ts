@@ -59,7 +59,7 @@ export interface CreateGroupMembershipRequestBodyArg {
   };
 }
 export interface CreateGroupMembershipQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateGroupMembershipHeadersArg {
   readonly extraHeaders?: {
@@ -70,7 +70,7 @@ export class CreateGroupMembershipHeadersArg {
   }
 }
 export interface GetGroupMembershipByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetGroupMembershipByIdHeadersArg {
   readonly extraHeaders?: {
@@ -90,7 +90,7 @@ export interface UpdateGroupMembershipByIdRequestBodyArg {
   };
 }
 export interface UpdateGroupMembershipByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateGroupMembershipByIdHeadersArg {
   readonly extraHeaders?: {
@@ -132,8 +132,8 @@ export class MembershipsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -141,7 +141,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/users/',
-        userId,
+        toString(userId) as string,
         '/memberships'
       ) as string,
       {
@@ -165,8 +165,8 @@ export class MembershipsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -174,7 +174,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/groups/',
-        groupId,
+        toString(groupId) as string,
         '/memberships'
       ) as string,
       {
@@ -197,7 +197,9 @@ export class MembershipsManager {
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -227,14 +229,16 @@ export class MembershipsManager {
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/group_memberships/',
-        groupMembershipId
+        toString(groupMembershipId) as string
       ) as string,
       {
         method: 'GET',
@@ -257,14 +261,16 @@ export class MembershipsManager {
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/group_memberships/',
-        groupMembershipId
+        toString(groupMembershipId) as string
       ) as string,
       {
         method: 'PUT',
@@ -293,7 +299,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/group_memberships/',
-        groupMembershipId
+        toString(groupMembershipId) as string
       ) as string,
       {
         method: 'DELETE',

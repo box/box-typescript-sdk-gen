@@ -74,7 +74,9 @@ export class FolderLocksManager {
   ): Promise<FolderLocks> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['folder_id']: toString(queryParams.folderId) });
+    } = prepareParams({
+      ['folder_id']: toString(queryParams.folderId) as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -126,7 +128,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folder_locks/',
-        folderLockId
+        toString(folderLockId) as string
       ) as string,
       {
         method: 'DELETE',

@@ -99,7 +99,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/shield_information_barrier_segments/',
-        shieldInformationBarrierSegmentId
+        toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
         method: 'GET',
@@ -126,7 +126,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/shield_information_barrier_segments/',
-        shieldInformationBarrierSegmentId
+        toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
         method: 'PUT',
@@ -158,7 +158,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/shield_information_barrier_segments/',
-        shieldInformationBarrierSegmentId
+        toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -181,9 +181,9 @@ export class ShieldInformationBarrierSegmentsManager {
     } = prepareParams({
       ['shield_information_barrier_id']: toString(
         queryParams.shieldInformationBarrierId
-      ),
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

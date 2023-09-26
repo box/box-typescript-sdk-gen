@@ -69,7 +69,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/watermark'
       ) as string,
       {
@@ -95,7 +95,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/watermark'
       ) as string,
       {
@@ -124,7 +124,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/watermark'
       ) as string,
       {

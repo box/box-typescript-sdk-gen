@@ -70,7 +70,7 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/users/',
-        userId,
+        toString(userId) as string,
         '/email_aliases'
       ) as string,
       {
@@ -96,7 +96,7 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/users/',
-        userId,
+        toString(userId) as string,
         '/email_aliases'
       ) as string,
       {
@@ -126,9 +126,9 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/users/',
-        userId,
+        toString(userId) as string,
         '/email_aliases/',
-        emailAliasId
+        toString(emailAliasId) as string
       ) as string,
       {
         method: 'DELETE',
