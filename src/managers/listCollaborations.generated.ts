@@ -16,7 +16,7 @@ import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetFileCollaborationsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
@@ -29,7 +29,7 @@ export class GetFileCollaborationsHeadersArg {
   }
 }
 export interface GetFolderCollaborationsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetFolderCollaborationsHeadersArg {
   readonly extraHeaders?: {
@@ -42,7 +42,7 @@ export class GetFolderCollaborationsHeadersArg {
 export type GetCollaborationsQueryParamsArgStatusField = 'pending';
 export interface GetCollaborationsQueryParamsArg {
   readonly status: GetCollaborationsQueryParamsArgStatusField;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
@@ -90,9 +90,9 @@ export class ListCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['marker']: toString(queryParams.marker),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -100,7 +100,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/collaborations'
       ) as string,
       {
@@ -123,14 +123,16 @@ export class ListCollaborationsManager {
   ): Promise<Collaborations> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/collaborations'
       ) as string,
       {
@@ -151,10 +153,10 @@ export class ListCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['status']: toString(queryParams.status),
-      ['fields']: toString(queryParams.fields),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
+      ['status']: toString(queryParams.status) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -182,8 +184,8 @@ export class ListCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -191,7 +193,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/groups/',
-        groupId,
+        toString(groupId) as string,
         '/collaborations'
       ) as string,
       {

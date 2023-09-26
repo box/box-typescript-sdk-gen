@@ -26,7 +26,7 @@ export type GetFolderByIdQueryParamsArgSortField =
   | 'size';
 export type GetFolderByIdQueryParamsArgDirectionField = 'ASC' | 'DESC';
 export interface GetFolderByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly sort?: GetFolderByIdQueryParamsArgSortField;
   readonly direction?: GetFolderByIdQueryParamsArgDirectionField;
   readonly offset?: number;
@@ -87,7 +87,7 @@ export interface UpdateFolderByIdRequestBodyArg {
   readonly canNonOwnersViewCollaborators?: boolean;
 }
 export interface UpdateFolderByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateFolderByIdHeadersArg {
   readonly ifMatch?: string;
@@ -117,7 +117,7 @@ export type GetFolderItemsQueryParamsArgSortField =
   | 'size';
 export type GetFolderItemsQueryParamsArgDirectionField = 'ASC' | 'DESC';
 export interface GetFolderItemsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly usemarker?: boolean;
   readonly marker?: string;
   readonly offset?: number;
@@ -154,7 +154,7 @@ export interface CreateFolderRequestBodyArg {
   readonly syncState?: CreateFolderRequestBodyArgSyncStateField;
 }
 export interface CreateFolderQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateFolderHeadersArg {
   readonly extraHeaders?: {
@@ -172,7 +172,7 @@ export interface CopyFolderRequestBodyArg {
   readonly parent: CopyFolderRequestBodyArgParentField;
 }
 export interface CopyFolderQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CopyFolderHeadersArg {
   readonly extraHeaders?: {
@@ -206,23 +206,26 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['sort']: toString(queryParams.sort),
-      ['direction']: toString(queryParams.direction),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['sort']: toString(queryParams.sort) as string,
+      ['direction']: toString(queryParams.direction) as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ...{
-        ['if-none-match']: toString(headers.ifNoneMatch),
-        ['boxapi']: toString(headers.boxapi),
+        ['if-none-match']: toString(headers.ifNoneMatch) as string,
+        ['boxapi']: toString(headers.boxapi) as string,
       },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/folders/', folderId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/folders/',
+        toString(folderId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -242,15 +245,20 @@ export class FoldersManager {
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/folders/', folderId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/folders/',
+        toString(folderId) as string
+      ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
@@ -273,15 +281,20 @@ export class FoldersManager {
   ): Promise<undefined> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['recursive']: toString(queryParams.recursive) });
+    } = prepareParams({
+      ['recursive']: toString(queryParams.recursive) as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/folders/', folderId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/folders/',
+        toString(folderId) as string
+      ) as string,
       {
         method: 'DELETE',
         params: queryParamsMap,
@@ -301,24 +314,24 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['usemarker']: toString(queryParams.usemarker),
-      ['marker']: toString(queryParams.marker),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
-      ['sort']: toString(queryParams.sort),
-      ['direction']: toString(queryParams.direction),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['usemarker']: toString(queryParams.usemarker) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['sort']: toString(queryParams.sort) as string,
+      ['direction']: toString(queryParams.direction) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['boxapi']: toString(headers.boxapi) },
+      ...{ ['boxapi']: toString(headers.boxapi) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/items'
       ) as string,
       {
@@ -339,7 +352,9 @@ export class FoldersManager {
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -366,14 +381,16 @@ export class FoldersManager {
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/copy'
       ) as string,
       {
@@ -654,7 +671,7 @@ export function serializeUpdateFolderByIdRequestBodyArg(
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags.map(function (item: string): any {
+        : (val.tags?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
     ['is_collaboration_restricted_to_enterprise']:
@@ -664,7 +681,7 @@ export function serializeUpdateFolderByIdRequestBodyArg(
     ['collections']:
       val.collections == void 0
         ? void 0
-        : (val.collections.map(function (
+        : (val.collections?.map(function (
             item: UpdateFolderByIdRequestBodyArgCollectionsField
           ): any {
             return serializeUpdateFolderByIdRequestBodyArgCollectionsField(
@@ -711,7 +728,7 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
     val.tags == void 0
       ? void 0
       : isJson(val.tags, 'array')
-      ? (val.tags.map(function (itm: Json): any {
+      ? (val.tags?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -725,7 +742,7 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
     val.collections == void 0
       ? void 0
       : isJson(val.collections, 'array')
-      ? (val.collections.map(function (itm: Json): any {
+      ? (val.collections?.map(function (itm: Json): any {
           return deserializeUpdateFolderByIdRequestBodyArgCollectionsField(itm);
         }) as readonly any[])
       : [];

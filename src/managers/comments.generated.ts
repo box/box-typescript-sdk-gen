@@ -23,7 +23,7 @@ import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetFileCommentsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
@@ -36,7 +36,7 @@ export class GetFileCommentsHeadersArg {
   }
 }
 export interface GetCommentByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetCommentByIdHeadersArg {
   readonly extraHeaders?: {
@@ -50,7 +50,7 @@ export interface UpdateCommentByIdRequestBodyArg {
   readonly message?: string;
 }
 export interface UpdateCommentByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateCommentByIdHeadersArg {
   readonly extraHeaders?: {
@@ -79,7 +79,7 @@ export interface CreateCommentRequestBodyArg {
   readonly item: CreateCommentRequestBodyArgItemField;
 }
 export interface CreateCommentQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateCommentHeadersArg {
   readonly extraHeaders?: {
@@ -112,9 +112,9 @@ export class CommentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -122,7 +122,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/comments'
       ) as string,
       {
@@ -143,12 +143,17 @@ export class CommentsManager {
   ): Promise<CommentFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/comments/', commentId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/comments/',
+        toString(commentId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -168,12 +173,17 @@ export class CommentsManager {
   ): Promise<CommentFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/comments/', commentId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/comments/',
+        toString(commentId) as string
+      ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
@@ -197,7 +207,10 @@ export class CommentsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/comments/', commentId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/comments/',
+        toString(commentId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,
@@ -215,7 +228,9 @@ export class CommentsManager {
   ): Promise<Comment> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

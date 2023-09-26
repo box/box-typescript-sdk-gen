@@ -29,7 +29,7 @@ export interface GetRetentionPoliciesQueryParamsArg {
   readonly policyName?: string;
   readonly policyType?: GetRetentionPoliciesQueryParamsArgPolicyTypeField;
   readonly createdByUserId?: string;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
@@ -70,7 +70,7 @@ export class CreateRetentionPolicyHeadersArg {
   }
 }
 export interface GetRetentionPolicyByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
@@ -134,12 +134,12 @@ export class RetentionPoliciesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['policy_name']: toString(queryParams.policyName),
-      ['policy_type']: toString(queryParams.policyType),
-      ['created_by_user_id']: toString(queryParams.createdByUserId),
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['marker']: toString(queryParams.marker),
+      ['policy_name']: toString(queryParams.policyName) as string,
+      ['policy_type']: toString(queryParams.policyType) as string,
+      ['created_by_user_id']: toString(queryParams.createdByUserId) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -191,14 +191,16 @@ export class RetentionPoliciesManager {
   ): Promise<RetentionPolicy> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policies/',
-        retentionPolicyId
+        toString(retentionPolicyId) as string
       ) as string,
       {
         method: 'GET',
@@ -224,7 +226,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policies/',
-        retentionPolicyId
+        toString(retentionPolicyId) as string
       ) as string,
       {
         method: 'PUT',
@@ -252,7 +254,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policies/',
-        retentionPolicyId
+        toString(retentionPolicyId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -372,7 +374,9 @@ export function serializeCreateRetentionPolicyRequestBodyArg(
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
         ? void 0
-        : (val.customNotificationRecipients.map(function (item: UserMini): any {
+        : (val.customNotificationRecipients?.map(function (
+            item: UserMini
+          ): any {
             return serializeUserMini(item);
           }) as readonly any[]),
   };
@@ -411,7 +415,7 @@ export function deserializeCreateRetentionPolicyRequestBodyArg(
     val.custom_notification_recipients == void 0
       ? void 0
       : isJson(val.custom_notification_recipients, 'array')
-      ? (val.custom_notification_recipients.map(function (itm: Json): any {
+      ? (val.custom_notification_recipients?.map(function (itm: Json): any {
           return deserializeUserMini(itm);
         }) as readonly any[])
       : [];
@@ -472,7 +476,9 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
         ? void 0
-        : (val.customNotificationRecipients.map(function (item: UserMini): any {
+        : (val.customNotificationRecipients?.map(function (
+            item: UserMini
+          ): any {
             return serializeUserMini(item);
           }) as readonly any[]),
   };
@@ -507,7 +513,7 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
     val.custom_notification_recipients == void 0
       ? void 0
       : isJson(val.custom_notification_recipients, 'array')
-      ? (val.custom_notification_recipients.map(function (itm: Json): any {
+      ? (val.custom_notification_recipients?.map(function (itm: Json): any {
           return deserializeUserMini(itm);
         }) as readonly any[])
       : [];

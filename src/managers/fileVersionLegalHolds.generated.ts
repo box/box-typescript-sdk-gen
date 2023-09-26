@@ -61,7 +61,7 @@ export class FileVersionLegalHoldsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_version_legal_holds/',
-        fileVersionLegalHoldId
+        toString(fileVersionLegalHoldId) as string
       ) as string,
       {
         method: 'GET',
@@ -82,9 +82,9 @@ export class FileVersionLegalHoldsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['policy_id']: toString(queryParams.policyId),
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['policy_id']: toString(queryParams.policyId) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

@@ -18,7 +18,7 @@ import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
 export interface GetStoragePoliciesQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly marker?: string;
   readonly limit?: number;
 }
@@ -56,9 +56,9 @@ export class StoragePoliciesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -88,7 +88,7 @@ export class StoragePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/storage_policies/',
-        storagePolicyId
+        toString(storagePolicyId) as string
       ) as string,
       {
         method: 'GET',

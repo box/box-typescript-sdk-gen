@@ -63,7 +63,11 @@ export class AvatarsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId, '/avatar') as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string,
+        '/avatar'
+      ) as string,
       {
         method: 'GET',
         headers: headersMap,
@@ -83,7 +87,11 @@ export class AvatarsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId, '/avatar') as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string,
+        '/avatar'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -111,7 +119,11 @@ export class AvatarsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId, '/avatar') as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string,
+        '/avatar'
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,

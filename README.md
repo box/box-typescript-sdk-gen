@@ -24,7 +24,7 @@ Embrace the new generation of Box SDKs and unlock the full potential of the Box 
 - [Installing](#installing)
 - [Getting Started](#getting-started)
 - [Questions, Bugs, and Feature Requests?](#questions-bugs-and-feature-requests)
-  - [Copyright and License](#copyright-and-license)
+- [Copyright and License](#copyright-and-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

@@ -28,7 +28,7 @@ export type GetRetentionPolicyAssignmentsQueryParamsArgTypeField =
   | 'metadata_template';
 export interface GetRetentionPolicyAssignmentsQueryParamsArg {
   readonly type?: GetRetentionPolicyAssignmentsQueryParamsArgTypeField;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly marker?: string;
   readonly limit?: number;
 }
@@ -65,7 +65,7 @@ export class CreateRetentionPolicyAssignmentHeadersArg {
   }
 }
 export interface GetRetentionPolicyAssignmentByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetRetentionPolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
@@ -137,10 +137,10 @@ export class RetentionPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['type']: toString(queryParams.type),
-      ['fields']: toString(queryParams.fields),
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['type']: toString(queryParams.type) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -148,7 +148,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policies/',
-        retentionPolicyId,
+        toString(retentionPolicyId) as string,
         '/assignments'
       ) as string,
       {
@@ -200,14 +200,16 @@ export class RetentionPolicyAssignmentsManager {
   ): Promise<RetentionPolicyAssignment> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policy_assignments/',
-        retentionPolicyAssignmentId
+        toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
         method: 'GET',
@@ -232,7 +234,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policy_assignments/',
-        retentionPolicyAssignmentId
+        toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -254,8 +256,8 @@ export class RetentionPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -263,7 +265,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policy_assignments/',
-        retentionPolicyAssignmentId,
+        toString(retentionPolicyAssignmentId) as string,
         '/files_under_retention'
       ) as string,
       {
@@ -287,8 +289,8 @@ export class RetentionPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -296,7 +298,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/retention_policy_assignments/',
-        retentionPolicyAssignmentId,
+        toString(retentionPolicyAssignmentId) as string,
         '/file_versions_under_retention'
       ) as string,
       {
@@ -409,7 +411,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyArg(
     ['filter_fields']:
       val.filterFields == void 0
         ? void 0
-        : (val.filterFields.map(function (
+        : (val.filterFields?.map(function (
             item: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField
           ): any {
             return serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
@@ -434,7 +436,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(
     val.filter_fields == void 0
       ? void 0
       : isJson(val.filter_fields, 'array')
-      ? (val.filter_fields.map(function (itm: Json): any {
+      ? (val.filter_fields?.map(function (itm: Json): any {
           return deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
             itm
           );

@@ -89,8 +89,8 @@ export class TermsOfServiceUserStatusesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['tos_id']: toString(queryParams.tosId),
-      ['user_id']: toString(queryParams.userId),
+      ['tos_id']: toString(queryParams.tosId) as string,
+      ['user_id']: toString(queryParams.userId) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -152,7 +152,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/terms_of_service_user_statuses/',
-        termsOfServiceUserStatusId
+        toString(termsOfServiceUserStatusId) as string
       ) as string,
       {
         method: 'PUT',

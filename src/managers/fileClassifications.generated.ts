@@ -94,7 +94,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
@@ -120,7 +120,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
@@ -152,14 +152,14 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
           ) as readonly any[]
         ),
@@ -183,7 +183,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {

@@ -84,7 +84,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/shield_information_barriers/',
-        shieldInformationBarrierId
+        toString(shieldInformationBarrierId) as string
       ) as string,
       {
         method: 'GET',
@@ -134,8 +134,8 @@ export class ShieldInformationBarriersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

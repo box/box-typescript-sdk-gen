@@ -89,7 +89,7 @@ export class ZipDownloadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://dl.boxcloud.com/2.0/zip_downloads/',
-        zipDownloadId,
+        toString(zipDownloadId) as string,
         '/content'
       ) as string,
       {
@@ -114,7 +114,7 @@ export class ZipDownloadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/zip_downloads/',
-        zipDownloadId,
+        toString(zipDownloadId) as string,
         '/status'
       ) as string,
       {

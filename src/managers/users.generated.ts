@@ -33,7 +33,7 @@ export interface GetUsersQueryParamsArg {
   readonly filterTerm?: string;
   readonly userType?: GetUsersQueryParamsArgUserTypeField;
   readonly externalAppUserId?: string;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
   readonly usemarker?: boolean;
@@ -74,7 +74,7 @@ export interface CreateUserRequestBodyArg {
   readonly externalAppUserId?: string;
 }
 export interface CreateUserQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CreateUserHeadersArg {
   readonly extraHeaders?: {
@@ -85,7 +85,7 @@ export class CreateUserHeadersArg {
   }
 }
 export interface GetUserMeQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetUserMeHeadersArg {
   readonly extraHeaders?: {
@@ -96,7 +96,7 @@ export class GetUserMeHeadersArg {
   }
 }
 export interface GetUserByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetUserByIdHeadersArg {
   readonly extraHeaders?: {
@@ -139,7 +139,7 @@ export interface UpdateUserByIdRequestBodyArg {
   readonly externalAppUserId?: string;
 }
 export interface UpdateUserByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateUserByIdHeadersArg {
   readonly extraHeaders?: {
@@ -184,14 +184,16 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['filter_term']: toString(queryParams.filterTerm),
-      ['user_type']: toString(queryParams.userType),
-      ['external_app_user_id']: toString(queryParams.externalAppUserId),
-      ['fields']: toString(queryParams.fields),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
-      ['usemarker']: toString(queryParams.usemarker),
-      ['marker']: toString(queryParams.marker),
+      ['filter_term']: toString(queryParams.filterTerm) as string,
+      ['user_type']: toString(queryParams.userType) as string,
+      ['external_app_user_id']: toString(
+        queryParams.externalAppUserId
+      ) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['usemarker']: toString(queryParams.usemarker) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -216,7 +218,9 @@ export class UsersManager {
   ): Promise<User> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -241,7 +245,9 @@ export class UsersManager {
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -265,12 +271,17 @@ export class UsersManager {
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -290,12 +301,17 @@ export class UsersManager {
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string
+      ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
@@ -317,14 +333,17 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['notify']: toString(queryParams.notify),
-      ['force']: toString(queryParams.force),
+      ['notify']: toString(queryParams.notify) as string,
+      ['force']: toString(queryParams.force) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/', userId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/users/',
+        toString(userId) as string
+      ) as string,
       {
         method: 'DELETE',
         params: queryParamsMap,
@@ -425,7 +444,7 @@ export function serializeCreateUserRequestBodyArg(
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes.map(function (item: TrackingCode): any {
+        : (val.trackingCodes?.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -479,7 +498,7 @@ export function deserializeCreateUserRequestBodyArg(
     val.tracking_codes == void 0
       ? void 0
       : isJson(val.tracking_codes, 'array')
-      ? (val.tracking_codes.map(function (itm: Json): any {
+      ? (val.tracking_codes?.map(function (itm: Json): any {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
@@ -604,7 +623,7 @@ export function serializeUpdateUserByIdRequestBodyArg(
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes.map(function (item: TrackingCode): any {
+        : (val.trackingCodes?.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -667,7 +686,7 @@ export function deserializeUpdateUserByIdRequestBodyArg(
     val.tracking_codes == void 0
       ? void 0
       : isJson(val.tracking_codes, 'array')
-      ? (val.tracking_codes.map(function (itm: Json): any {
+      ? (val.tracking_codes?.map(function (itm: Json): any {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];

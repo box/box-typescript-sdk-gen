@@ -106,7 +106,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/tasks/',
-        taskId,
+        toString(taskId) as string,
         '/assignments'
       ) as string,
       {
@@ -156,7 +156,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/task_assignments/',
-        taskAssignmentId
+        toString(taskAssignmentId) as string
       ) as string,
       {
         method: 'GET',
@@ -181,7 +181,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/task_assignments/',
-        taskAssignmentId
+        toString(taskAssignmentId) as string
       ) as string,
       {
         method: 'PUT',
@@ -209,7 +209,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/task_assignments/',
-        taskAssignmentId
+        toString(taskAssignmentId) as string
       ) as string,
       {
         method: 'DELETE',

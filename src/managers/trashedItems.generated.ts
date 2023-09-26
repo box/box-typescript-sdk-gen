@@ -21,7 +21,7 @@ export type GetFolderTrashItemsQueryParamsArgSortField =
   | 'date'
   | 'size';
 export interface GetFolderTrashItemsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
   readonly usemarker?: boolean;
@@ -52,13 +52,13 @@ export class TrashedItemsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['limit']: toString(queryParams.limit),
-      ['offset']: toString(queryParams.offset),
-      ['usemarker']: toString(queryParams.usemarker),
-      ['marker']: toString(queryParams.marker),
-      ['direction']: toString(queryParams.direction),
-      ['sort']: toString(queryParams.sort),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['usemarker']: toString(queryParams.usemarker) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['direction']: toString(queryParams.direction) as string,
+      ['sort']: toString(queryParams.sort) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

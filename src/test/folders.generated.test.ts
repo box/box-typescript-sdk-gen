@@ -45,7 +45,7 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
 });
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
   const rootFolder: any = await client.folders.getFolderById('0', {
-    fields: 'has_collaborations,tags',
+    fields: ['has_collaborations' as '', 'tags' as ''],
   } satisfies GetFolderByIdQueryParamsArg);
   if (!(rootFolder.id == '0')) {
     throw 'Assertion failed';

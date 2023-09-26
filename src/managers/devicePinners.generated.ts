@@ -75,7 +75,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/device_pinners/',
-        devicePinnerId
+        toString(devicePinnerId) as string
       ) as string,
       {
         method: 'GET',
@@ -99,7 +99,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/device_pinners/',
-        devicePinnerId
+        toString(devicePinnerId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -121,9 +121,9 @@ export class DevicePinnersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
-      ['direction']: toString(queryParams.direction),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['direction']: toString(queryParams.direction) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -131,7 +131,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/enterprises/',
-        enterpriseId,
+        toString(enterpriseId) as string,
         '/device_pinners'
       ) as string,
       {

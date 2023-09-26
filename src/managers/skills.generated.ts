@@ -127,7 +127,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
       {
@@ -153,7 +153,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
       {
@@ -185,14 +185,14 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg
           ) as readonly any[]
         ),
@@ -216,7 +216,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
       {
@@ -242,7 +242,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/skill_invocations/',
-        skillId
+        toString(skillId) as string
       ) as string,
       {
         method: 'PUT',
@@ -263,7 +263,7 @@ export function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
   val: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg
 ): Json {
   return {
-    ['cards']: val.cards.map(function (
+    ['cards']: val.cards?.map(function (
       item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
     ): any {
       return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
@@ -277,7 +277,7 @@ export function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
 ): CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
   const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
     isJson(val.cards, 'array')
-      ? (val.cards.map(function (itm: Json): any {
+      ? (val.cards?.map(function (itm: Json): any {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );
@@ -383,7 +383,7 @@ export function serializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(
     ['cards']:
       val.cards == void 0
         ? void 0
-        : (val.cards.map(function (
+        : (val.cards?.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
           ): any {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
@@ -401,7 +401,7 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(
     val.cards == void 0
       ? void 0
       : isJson(val.cards, 'array')
-      ? (val.cards.map(function (itm: Json): any {
+      ? (val.cards?.map(function (itm: Json): any {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );

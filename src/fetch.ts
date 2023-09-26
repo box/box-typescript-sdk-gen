@@ -1,10 +1,9 @@
-import { createHash } from 'crypto';
 import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
 import { Authentication } from './auth';
 import { NetworkSession, getRetryTimeout } from './network';
-import { ByteStream } from './utils';
+import { ByteStream, isBrowser } from './utils';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -106,7 +105,7 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
     for (const item of options.multipartData) {
       if (item.fileStream) {
         const buffer = await readStream(item.fileStream);
-        headers['content-md5'] = calculateMD5Hash(buffer);
+        headers['content-md5'] = await calculateMD5Hash(buffer);
         formData.append(item.partName, buffer, {
           filename: item.fileName ?? 'file',
           contentType: item.contentType ?? 'application/octet-stream',
@@ -202,19 +201,49 @@ export async function fetch(
     );
   }
 
-  const responseBytesBuffer = await response.buffer();
+  let responseBytesBuffer: any;
+  let readable: Readable;
+  // The browser fetch API does not support response.buffer() and Readable.from()
+  if (isBrowser()) {
+    responseBytesBuffer = await response.arrayBuffer();
+    readable = new Readable({
+      read(size) {
+        const uint8Array = new Uint8Array(responseBytesBuffer);
+        this.push(uint8Array);
+        this.push(null);
+      },
+    });
+  } else {
+    responseBytesBuffer = await response.buffer();
+    readable = Readable.from(responseBytesBuffer);
+  }
   return {
     status: response.status,
     text: new TextDecoder().decode(responseBytesBuffer),
-    content: Readable.from(responseBytesBuffer),
+    content: readable,
   };
 }
 
-function calculateMD5Hash(data: string | Buffer): string {
+async function calculateMD5Hash(data: string | Buffer): Promise<string> {
   /**
    * Calculate the SHA1 hash of the data
    */
-  return createHash('sha1').update(data).digest('hex');
+  let createHash: any;
+  // Browser environment
+  if (isBrowser()) {
+    let dataBuffer =
+      typeof data === 'string' ? new TextEncoder().encode(data) : data;
+    let hashBuffer = await window.crypto.subtle.digest('SHA-1', dataBuffer);
+    let hashArray = Array.from(new Uint8Array(hashBuffer));
+    let hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
+  } else {
+    // Node environment
+    createHash = eval('require')('crypto').createHash;
+    return createHash('sha1').update(data).digest('hex');
+  }
 }
 
 async function readStream(fileStream: Readable): Promise<Buffer> {

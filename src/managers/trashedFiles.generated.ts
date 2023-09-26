@@ -26,7 +26,7 @@ export interface RestoreFileFromTrashRequestBodyArg {
   readonly parent?: RestoreFileFromTrashRequestBodyArgParentField;
 }
 export interface RestoreFileFromTrashQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class RestoreFileFromTrashHeadersArg {
   readonly extraHeaders?: {
@@ -37,7 +37,7 @@ export class RestoreFileFromTrashHeadersArg {
   }
 }
 export interface GetFileTrashQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetFileTrashHeadersArg {
   readonly extraHeaders?: {
@@ -76,12 +76,17 @@ export class TrashedFilesManager {
   ): Promise<TrashFileRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string
+      ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -104,12 +109,18 @@ export class TrashedFilesManager {
   ): Promise<TrashFile> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId, '/trash') as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string,
+        '/trash'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -129,7 +140,11 @@ export class TrashedFilesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId, '/trash') as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string,
+        '/trash'
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,

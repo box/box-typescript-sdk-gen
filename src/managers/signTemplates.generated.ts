@@ -55,8 +55,8 @@ export class SignTemplatesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -86,7 +86,7 @@ export class SignTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/sign_templates/',
-        templateId
+        toString(templateId) as string
       ) as string,
       {
         method: 'GET',

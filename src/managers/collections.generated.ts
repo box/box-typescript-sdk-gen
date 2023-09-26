@@ -18,7 +18,7 @@ import { FetchResponse } from '../fetch.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
 export interface GetCollectionsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
@@ -31,7 +31,7 @@ export class GetCollectionsHeadersArg {
   }
 }
 export interface GetCollectionItemsQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
@@ -58,9 +58,9 @@ export class CollectionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -86,9 +86,9 @@ export class CollectionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['offset']: toString(queryParams.offset),
-      ['limit']: toString(queryParams.limit),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -96,7 +96,7 @@ export class CollectionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collections/',
-        collectionId,
+        toString(collectionId) as string,
         '/items'
       ) as string,
       {

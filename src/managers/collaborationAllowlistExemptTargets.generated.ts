@@ -83,8 +83,8 @@ export class CollaborationAllowlistExemptTargetsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -149,7 +149,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collaboration_whitelist_exempt_targets/',
-        collaborationWhitelistExemptTargetId
+        toString(collaborationWhitelistExemptTargetId) as string
       ) as string,
       {
         method: 'GET',
@@ -175,7 +175,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/collaboration_whitelist_exempt_targets/',
-        collaborationWhitelistExemptTargetId
+        toString(collaborationWhitelistExemptTargetId) as string
       ) as string,
       {
         method: 'DELETE',

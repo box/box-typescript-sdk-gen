@@ -22,7 +22,7 @@ export interface TransferOwnedFolderRequestBodyArg {
   readonly ownedBy: TransferOwnedFolderRequestBodyArgOwnedByField;
 }
 export interface TransferOwnedFolderQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly notify?: boolean;
 }
 export class TransferOwnedFolderHeadersArg {
@@ -50,8 +50,8 @@ export class TransferManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: toString(queryParams.fields),
-      ['notify']: toString(queryParams.notify),
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['notify']: toString(queryParams.notify) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -59,7 +59,7 @@ export class TransferManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/users/',
-        userId,
+        toString(userId) as string,
         '/folders/0'
       ) as string,
       {

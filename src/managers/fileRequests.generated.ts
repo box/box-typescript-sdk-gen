@@ -78,7 +78,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_requests/',
-        fileRequestId
+        toString(fileRequestId) as string
       ) as string,
       {
         method: 'GET',
@@ -100,13 +100,13 @@ export class FileRequestsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_requests/',
-        fileRequestId
+        toString(fileRequestId) as string
       ) as string,
       {
         method: 'PUT',
@@ -132,7 +132,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_requests/',
-        fileRequestId
+        toString(fileRequestId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -157,7 +157,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/file_requests/',
-        fileRequestId,
+        toString(fileRequestId) as string,
         '/copy'
       ) as string,
       {

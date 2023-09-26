@@ -94,7 +94,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
@@ -120,7 +120,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
@@ -152,14 +152,14 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
           ) as readonly any[]
         ),
@@ -183,7 +183,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/folders/',
-        folderId,
+        toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {

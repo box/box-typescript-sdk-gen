@@ -33,7 +33,7 @@ export interface GetLegalHoldPolicyAssignmentsQueryParamsArg {
   readonly assignToId?: string;
   readonly marker?: string;
   readonly limit?: number;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetLegalHoldPolicyAssignmentsHeadersArg {
   readonly extraHeaders?: {
@@ -80,7 +80,7 @@ export class DeleteLegalHoldPolicyAssignmentByIdHeadersArg {
 export interface GetLegalHoldPolicyAssignmentFileOnHoldQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg {
   readonly extraHeaders?: {
@@ -93,7 +93,7 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg {
 export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg {
   readonly extraHeaders?: {
@@ -128,12 +128,12 @@ export class LegalHoldPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['policy_id']: toString(queryParams.policyId),
-      ['assign_to_type']: toString(queryParams.assignToType),
-      ['assign_to_id']: toString(queryParams.assignToId),
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
-      ['fields']: toString(queryParams.fields),
+      ['policy_id']: toString(queryParams.policyId) as string,
+      ['assign_to_type']: toString(queryParams.assignToType) as string,
+      ['assign_to_id']: toString(queryParams.assignToId) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -194,7 +194,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/legal_hold_policy_assignments/',
-        legalHoldPolicyAssignmentId
+        toString(legalHoldPolicyAssignmentId) as string
       ) as string,
       {
         method: 'GET',
@@ -218,7 +218,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/legal_hold_policy_assignments/',
-        legalHoldPolicyAssignmentId
+        toString(legalHoldPolicyAssignmentId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -240,9 +240,9 @@ export class LegalHoldPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
-      ['fields']: toString(queryParams.fields),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -250,7 +250,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/legal_hold_policy_assignments/',
-        legalHoldPolicyAssignmentId,
+        toString(legalHoldPolicyAssignmentId) as string,
         '/files_on_hold'
       ) as string,
       {
@@ -274,9 +274,9 @@ export class LegalHoldPolicyAssignmentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
-      ['fields']: toString(queryParams.fields),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -284,7 +284,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/legal_hold_policy_assignments/',
-        legalHoldPolicyAssignmentId,
+        toString(legalHoldPolicyAssignmentId) as string,
         '/file_versions_on_hold'
       ) as string,
       {

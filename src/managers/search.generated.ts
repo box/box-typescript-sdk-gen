@@ -54,6 +54,12 @@ export class GetMetadataQueryIndicesHeadersArg {
 export type GetSearchQueryParamsArgScopeField =
   | 'user_content'
   | 'enterprise_content';
+export type GetSearchQueryParamsArgContentTypesField =
+  | 'name'
+  | 'description'
+  | 'file_content'
+  | 'comments'
+  | 'tag';
 export type GetSearchQueryParamsArgTypeField = 'file' | 'folder' | 'web_link';
 export type GetSearchQueryParamsArgTrashContentField =
   | 'non_trashed_only'
@@ -64,25 +70,25 @@ export type GetSearchQueryParamsArgDirectionField = 'DESC' | 'ASC';
 export interface GetSearchQueryParamsArg {
   readonly query?: string;
   readonly scope?: GetSearchQueryParamsArgScopeField;
-  readonly fileExtensions?: string;
-  readonly createdAtRange?: string;
-  readonly updatedAtRange?: string;
-  readonly sizeRange?: string;
-  readonly ownerUserIds?: string;
-  readonly recentUpdaterUserIds?: string;
-  readonly ancestorFolderIds?: string;
-  readonly contentTypes?: string;
+  readonly fileExtensions?: readonly string[];
+  readonly createdAtRange?: readonly string[];
+  readonly updatedAtRange?: readonly string[];
+  readonly sizeRange?: readonly number[];
+  readonly ownerUserIds?: readonly string[];
+  readonly recentUpdaterUserIds?: readonly string[];
+  readonly ancestorFolderIds?: readonly string[];
+  readonly contentTypes?: readonly GetSearchQueryParamsArgContentTypesField[];
   readonly type?: GetSearchQueryParamsArgTypeField;
   readonly trashContent?: GetSearchQueryParamsArgTrashContentField;
-  readonly mdfilters?: string;
+  readonly mdfilters?: readonly MetadataFilter[];
   readonly sort?: GetSearchQueryParamsArgSortField;
   readonly direction?: GetSearchQueryParamsArgDirectionField;
   readonly limit?: number;
   readonly includeRecentSharedLinks?: boolean;
-  readonly fields?: string;
+  readonly fields?: readonly string[];
   readonly offset?: number;
-  readonly deletedUserIds?: string;
-  readonly deletedAtRange?: string;
+  readonly deletedUserIds?: readonly string[];
+  readonly deletedAtRange?: readonly string[];
 }
 export class GetSearchHeadersArg {
   readonly extraHeaders?: {
@@ -137,8 +143,8 @@ export class SearchManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['scope']: toString(queryParams.scope),
-      ['template_key']: toString(queryParams.templateKey),
+      ['scope']: toString(queryParams.scope) as string,
+      ['template_key']: toString(queryParams.templateKey) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -163,29 +169,49 @@ export class SearchManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['query']: toString(queryParams.query),
-      ['scope']: toString(queryParams.scope),
-      ['file_extensions']: toString(queryParams.fileExtensions),
-      ['created_at_range']: toString(queryParams.createdAtRange),
-      ['updated_at_range']: toString(queryParams.updatedAtRange),
-      ['size_range']: toString(queryParams.sizeRange),
-      ['owner_user_ids']: toString(queryParams.ownerUserIds),
-      ['recent_updater_user_ids']: toString(queryParams.recentUpdaterUserIds),
-      ['ancestor_folder_ids']: toString(queryParams.ancestorFolderIds),
-      ['content_types']: toString(queryParams.contentTypes),
-      ['type']: toString(queryParams.type),
-      ['trash_content']: toString(queryParams.trashContent),
-      ['mdfilters']: toString(queryParams.mdfilters),
-      ['sort']: toString(queryParams.sort),
-      ['direction']: toString(queryParams.direction),
-      ['limit']: toString(queryParams.limit),
+      ['query']: toString(queryParams.query) as string,
+      ['scope']: toString(queryParams.scope) as string,
+      ['file_extensions']: queryParams.fileExtensions
+        ?.map(toString)
+        .join(',') as string,
+      ['created_at_range']: queryParams.createdAtRange
+        ?.map(toString)
+        .join(',') as string,
+      ['updated_at_range']: queryParams.updatedAtRange
+        ?.map(toString)
+        .join(',') as string,
+      ['size_range']: queryParams.sizeRange?.map(toString).join(',') as string,
+      ['owner_user_ids']: queryParams.ownerUserIds
+        ?.map(toString)
+        .join(',') as string,
+      ['recent_updater_user_ids']: queryParams.recentUpdaterUserIds
+        ?.map(toString)
+        .join(',') as string,
+      ['ancestor_folder_ids']: queryParams.ancestorFolderIds
+        ?.map(toString)
+        .join(',') as string,
+      ['content_types']: queryParams.contentTypes
+        ?.map(toString)
+        .join(',') as string,
+      ['type']: toString(queryParams.type) as string,
+      ['trash_content']: toString(queryParams.trashContent) as string,
+      ['mdfilters']: queryParams.mdfilters
+        ? serializeJson(queryParams.mdfilters?.map(serializeMetadataFilter))
+        : undefined,
+      ['sort']: toString(queryParams.sort) as string,
+      ['direction']: toString(queryParams.direction) as string,
+      ['limit']: toString(queryParams.limit) as string,
       ['include_recent_shared_links']: toString(
         queryParams.includeRecentSharedLinks
-      ),
-      ['fields']: toString(queryParams.fields),
-      ['offset']: toString(queryParams.offset),
-      ['deleted_user_ids']: toString(queryParams.deletedUserIds),
-      ['deleted_at_range']: toString(queryParams.deletedAtRange),
+      ) as string,
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['offset']: toString(queryParams.offset) as string,
+      ['deleted_user_ids']: queryParams.deletedUserIds
+        ?.map(toString)
+        .join(',') as string,
+      ['deleted_at_range']: queryParams.deletedAtRange
+        ?.map(toString)
+        .join(',') as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -241,6 +267,34 @@ export function deserializeGetSearchQueryParamsArgScopeField(
   }
   if (val == 'enterprise_content') {
     return 'enterprise_content';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeGetSearchQueryParamsArgContentTypesField(
+  val: GetSearchQueryParamsArgContentTypesField
+): Json {
+  return val;
+}
+export function deserializeGetSearchQueryParamsArgContentTypesField(
+  val: any
+): GetSearchQueryParamsArgContentTypesField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "GetSearchQueryParamsArgContentTypesField"';
+  }
+  if (val == 'name') {
+    return 'name';
+  }
+  if (val == 'description') {
+    return 'description';
+  }
+  if (val == 'file_content') {
+    return 'file_content';
+  }
+  if (val == 'comments') {
+    return 'comments';
+  }
+  if (val == 'tag') {
+    return 'tag';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }

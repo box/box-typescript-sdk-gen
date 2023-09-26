@@ -17,7 +17,7 @@ import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetSharedItemWebLinksQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetSharedItemWebLinksHeadersArg {
   readonly ifNoneMatch?: string;
@@ -132,13 +132,15 @@ export class SharedLinksWebLinksManager {
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ...{
-        ['if-none-match']: toString(headers.ifNoneMatch),
-        ['boxapi']: toString(headers.boxapi),
+        ['if-none-match']: toString(headers.ifNoneMatch) as string,
+        ['boxapi']: toString(headers.boxapi) as string,
       },
       ...headers.extraHeaders,
     });
@@ -164,14 +166,14 @@ export class SharedLinksWebLinksManager {
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/web_links/',
-        webLinkId,
+        toString(webLinkId) as string,
         '#get_shared_link'
       ) as string,
       {
@@ -195,14 +197,14 @@ export class SharedLinksWebLinksManager {
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/web_links/',
-        webLinkId,
+        toString(webLinkId) as string,
         '#add_shared_link'
       ) as string,
       {
@@ -230,14 +232,14 @@ export class SharedLinksWebLinksManager {
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/web_links/',
-        webLinkId,
+        toString(webLinkId) as string,
         '#update_shared_link'
       ) as string,
       {
@@ -265,14 +267,14 @@ export class SharedLinksWebLinksManager {
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/web_links/',
-        webLinkId,
+        toString(webLinkId) as string,
         '#remove_shared_link'
       ) as string,
       {

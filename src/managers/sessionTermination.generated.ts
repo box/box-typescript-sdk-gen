@@ -105,10 +105,10 @@ export function serializeCreateUserTerminateSessionRequestBodyArg(
   val: CreateUserTerminateSessionRequestBodyArg
 ): Json {
   return {
-    ['user_ids']: val.userIds.map(function (item: string): any {
+    ['user_ids']: val.userIds?.map(function (item: string): any {
       return item;
     }) as readonly any[],
-    ['user_logins']: val.userLogins.map(function (item: string): any {
+    ['user_logins']: val.userLogins?.map(function (item: string): any {
       return item;
     }) as readonly any[],
   };
@@ -117,12 +117,12 @@ export function deserializeCreateUserTerminateSessionRequestBodyArg(
   val: any
 ): CreateUserTerminateSessionRequestBodyArg {
   const userIds: readonly string[] = isJson(val.user_ids, 'array')
-    ? (val.user_ids.map(function (itm: Json): any {
+    ? (val.user_ids?.map(function (itm: Json): any {
         return itm;
       }) as readonly any[])
     : [];
   const userLogins: readonly string[] = isJson(val.user_logins, 'array')
-    ? (val.user_logins.map(function (itm: Json): any {
+    ? (val.user_logins?.map(function (itm: Json): any {
         return itm;
       }) as readonly any[])
     : [];
@@ -135,7 +135,7 @@ export function serializeCreateGroupTerminateSessionRequestBodyArg(
   val: CreateGroupTerminateSessionRequestBodyArg
 ): Json {
   return {
-    ['group_ids']: val.groupIds.map(function (item: string): any {
+    ['group_ids']: val.groupIds?.map(function (item: string): any {
       return item;
     }) as readonly any[],
   };
@@ -144,7 +144,7 @@ export function deserializeCreateGroupTerminateSessionRequestBodyArg(
   val: any
 ): CreateGroupTerminateSessionRequestBodyArg {
   const groupIds: readonly string[] = isJson(val.group_ids, 'array')
-    ? (val.group_ids.map(function (itm: Json): any {
+    ? (val.group_ids?.map(function (itm: Json): any {
         return itm;
       }) as readonly any[])
     : [];

@@ -105,10 +105,12 @@ export class MetadataCascadePoliciesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['folder_id']: toString(queryParams.folderId),
-      ['owner_enterprise_id']: toString(queryParams.ownerEnterpriseId),
-      ['marker']: toString(queryParams.marker),
-      ['offset']: toString(queryParams.offset),
+      ['folder_id']: toString(queryParams.folderId) as string,
+      ['owner_enterprise_id']: toString(
+        queryParams.ownerEnterpriseId
+      ) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['offset']: toString(queryParams.offset) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -163,7 +165,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_cascade_policies/',
-        metadataCascadePolicyId
+        toString(metadataCascadePolicyId) as string
       ) as string,
       {
         method: 'GET',
@@ -187,7 +189,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_cascade_policies/',
-        metadataCascadePolicyId
+        toString(metadataCascadePolicyId) as string
       ) as string,
       {
         method: 'DELETE',
@@ -212,7 +214,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/metadata_cascade_policies/',
-        metadataCascadePolicyId,
+        toString(metadataCascadePolicyId) as string,
         '/apply'
       ) as string,
       {

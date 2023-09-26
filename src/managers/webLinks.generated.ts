@@ -120,11 +120,14 @@ export class WebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['boxapi']: toString(headers.boxapi) },
+      ...{ ['boxapi']: toString(headers.boxapi) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/web_links/', webLinkId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/web_links/',
+        toString(webLinkId) as string
+      ) as string,
       {
         method: 'GET',
         headers: headersMap,
@@ -144,7 +147,10 @@ export class WebLinksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/web_links/', webLinkId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/web_links/',
+        toString(webLinkId) as string
+      ) as string,
       {
         method: 'PUT',
         headers: headersMap,
@@ -167,7 +173,10 @@ export class WebLinksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/web_links/', webLinkId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/web_links/',
+        toString(webLinkId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,

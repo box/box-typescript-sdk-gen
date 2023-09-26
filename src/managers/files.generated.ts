@@ -17,7 +17,7 @@ import { Json } from '../json.js';
 import { serializeJson } from '../json.js';
 import { isJson } from '../json.js';
 export interface GetFileByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class GetFileByIdHeadersArg {
   readonly ifNoneMatch?: string;
@@ -75,7 +75,7 @@ export interface UpdateFileByIdRequestBodyArg {
   readonly tags?: readonly string[];
 }
 export interface UpdateFileByIdQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class UpdateFileByIdHeadersArg {
   readonly ifMatch?: string;
@@ -104,7 +104,7 @@ export interface CopyFileRequestBodyArg {
   readonly parent: CopyFileRequestBodyArgParentField;
 }
 export interface CopyFileQueryParamsArg {
-  readonly fields?: string;
+  readonly fields?: readonly string[];
 }
 export class CopyFileHeadersArg {
   readonly extraHeaders?: {
@@ -151,19 +151,24 @@ export class FilesManager {
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ...{
-        ['if-none-match']: toString(headers.ifNoneMatch),
-        ['boxapi']: toString(headers.boxapi),
-        ['x-rep-hints']: toString(headers.xRepHints),
+        ['if-none-match']: toString(headers.ifNoneMatch) as string,
+        ['boxapi']: toString(headers.boxapi) as string,
+        ['x-rep-hints']: toString(headers.xRepHints) as string,
       },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -183,15 +188,20 @@ export class FilesManager {
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string
+      ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
@@ -212,11 +222,14 @@ export class FilesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) },
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,
@@ -235,12 +248,18 @@ export class FilesManager {
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
-    } = prepareParams({ ['fields']: toString(queryParams.fields) });
+    } = prepareParams({
+      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/files/', fileId, '/copy') as string,
+      ''.concat(
+        'https://api.box.com/2.0/files/',
+        toString(fileId) as string,
+        '/copy'
+      ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -265,10 +284,10 @@ export class FilesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['min_height']: toString(queryParams.minHeight),
-      ['min_width']: toString(queryParams.minWidth),
-      ['max_height']: toString(queryParams.maxHeight),
-      ['max_width']: toString(queryParams.maxWidth),
+      ['min_height']: toString(queryParams.minHeight) as string,
+      ['min_width']: toString(queryParams.minWidth) as string,
+      ['max_height']: toString(queryParams.maxHeight) as string,
+      ['max_width']: toString(queryParams.maxWidth) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -276,9 +295,9 @@ export class FilesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/thumbnail.',
-        extension
+        toString(extension) as string
       ) as string,
       {
         method: 'GET',
@@ -534,7 +553,7 @@ export function serializeUpdateFileByIdRequestBodyArg(
     ['collections']:
       val.collections == void 0
         ? void 0
-        : (val.collections.map(function (
+        : (val.collections?.map(function (
             item: UpdateFileByIdRequestBodyArgCollectionsField
           ): any {
             return serializeUpdateFileByIdRequestBodyArgCollectionsField(item);
@@ -542,7 +561,7 @@ export function serializeUpdateFileByIdRequestBodyArg(
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags.map(function (item: string): any {
+        : (val.tags?.map(function (item: string): any {
             return item;
           }) as readonly any[]),
   };
@@ -579,7 +598,7 @@ export function deserializeUpdateFileByIdRequestBodyArg(
     val.collections == void 0
       ? void 0
       : isJson(val.collections, 'array')
-      ? (val.collections.map(function (itm: Json): any {
+      ? (val.collections?.map(function (itm: Json): any {
           return deserializeUpdateFileByIdRequestBodyArgCollectionsField(itm);
         }) as readonly any[])
       : [];
@@ -587,7 +606,7 @@ export function deserializeUpdateFileByIdRequestBodyArg(
     val.tags == void 0
       ? void 0
       : isJson(val.tags, 'array')
-      ? (val.tags.map(function (itm: Json): any {
+      ? (val.tags?.map(function (itm: Json): any {
           return itm;
         }) as readonly any[])
       : [];

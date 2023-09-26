@@ -189,8 +189,8 @@ export class WebhooksManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['marker']: toString(queryParams.marker),
-      ['limit']: toString(queryParams.limit),
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -237,7 +237,10 @@ export class WebhooksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/webhooks/', webhookId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/webhooks/',
+        toString(webhookId) as string
+      ) as string,
       {
         method: 'GET',
         headers: headersMap,
@@ -257,7 +260,10 @@ export class WebhooksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/webhooks/', webhookId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/webhooks/',
+        toString(webhookId) as string
+      ) as string,
       {
         method: 'PUT',
         headers: headersMap,
@@ -280,7 +286,10 @@ export class WebhooksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/webhooks/', webhookId) as string,
+      ''.concat(
+        'https://api.box.com/2.0/webhooks/',
+        toString(webhookId) as string
+      ) as string,
       {
         method: 'DELETE',
         headers: headersMap,
@@ -474,7 +483,7 @@ export function serializeCreateWebhookRequestBodyArg(
   return {
     ['target']: serializeCreateWebhookRequestBodyArgTargetField(val.target),
     ['address']: val.address,
-    ['triggers']: val.triggers.map(function (
+    ['triggers']: val.triggers?.map(function (
       item: CreateWebhookRequestBodyArgTriggersField
     ): any {
       return serializeCreateWebhookRequestBodyArgTriggersField(item);
@@ -491,7 +500,7 @@ export function deserializeCreateWebhookRequestBodyArg(
     val.triggers,
     'array'
   )
-    ? (val.triggers.map(function (itm: Json): any {
+    ? (val.triggers?.map(function (itm: Json): any {
         return deserializeCreateWebhookRequestBodyArgTriggersField(itm);
       }) as readonly any[])
     : [];
@@ -693,7 +702,7 @@ export function serializeUpdateWebhookByIdRequestBodyArg(
     ['triggers']:
       val.triggers == void 0
         ? void 0
-        : (val.triggers.map(function (
+        : (val.triggers?.map(function (
             item: UpdateWebhookByIdRequestBodyArgTriggersField
           ): any {
             return serializeUpdateWebhookByIdRequestBodyArgTriggersField(item);
@@ -715,7 +724,7 @@ export function deserializeUpdateWebhookByIdRequestBodyArg(
     val.triggers == void 0
       ? void 0
       : isJson(val.triggers, 'array')
-      ? (val.triggers.map(function (itm: Json): any {
+      ? (val.triggers?.map(function (itm: Json): any {
           return deserializeUpdateWebhookByIdRequestBodyArgTriggersField(itm);
         }) as readonly any[])
       : [];

@@ -107,7 +107,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata'
       ) as string,
       {
@@ -134,11 +134,11 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey
+        toString(templateKey) as string
       ) as string,
       {
         method: 'GET',
@@ -165,11 +165,11 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey
+        toString(templateKey) as string
       ) as string,
       {
         method: 'POST',
@@ -200,17 +200,17 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey
+        toString(templateKey) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
         body: serializeJson(
-          requestBody.map(
+          requestBody?.map(
             serializeUpdateFileMetadataByIdRequestBodyArg
           ) as readonly any[]
         ),
@@ -236,11 +236,11 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         'https://api.box.com/2.0/files/',
-        fileId,
+        toString(fileId) as string,
         '/metadata/',
-        scope,
+        toString(scope) as string,
         '/',
-        templateKey
+        toString(templateKey) as string
       ) as string,
       {
         method: 'DELETE',
