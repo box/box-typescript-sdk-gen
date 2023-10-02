@@ -37,6 +37,7 @@ import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
@@ -76,7 +77,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   if (!(groupMembership.group.id == group.id)) {
     throw 'Assertion failed';
   }
-  if (!(groupMembership.role == 'member')) {
+  if (!((toString(groupMembership.role) as string) == 'member')) {
     throw 'Assertion failed';
   }
   const getGroupMembership: any =
@@ -91,7 +92,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   if (!(updatedGroupMembership.id == groupMembership.id)) {
     throw 'Assertion failed';
   }
-  if (!(updatedGroupMembership.role == 'admin')) {
+  if (!((toString(updatedGroupMembership.role) as string) == 'admin')) {
     throw 'Assertion failed';
   }
   await client.memberships.deleteGroupMembershipById(groupMembership.id);

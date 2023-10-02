@@ -34,6 +34,7 @@ import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
@@ -55,7 +56,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
   if (!(webhook.target.id == folder.id)) {
     throw 'Assertion failed';
   }
-  if (!(webhook.target.type == 'folder')) {
+  if (!((toString(webhook.target.type) as string) == 'folder')) {
     throw 'Assertion failed';
   }
   if (!(webhook.triggers.length == ['FILE.UPLOADED'].length)) {

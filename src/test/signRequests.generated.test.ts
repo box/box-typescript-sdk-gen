@@ -37,6 +37,7 @@ import { FileBase } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
@@ -83,7 +84,7 @@ test('test_create_get_cancel_and_list_sign_request', async function test_create_
   const cancelledSignRequest: any = await client.signRequests.cancelSignRequest(
     createdSignRequest.id
   );
-  if (!(cancelledSignRequest.status == 'cancelled')) {
+  if (!((toString(cancelledSignRequest.status) as string) == 'cancelled')) {
     throw 'Assertion failed';
   }
   const signRequests: any = await client.signRequests.getSignRequests();
