@@ -28,6 +28,7 @@ import { generateByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
@@ -56,7 +57,7 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
     throw 'Assertion failed';
   }
   const fromApiAfterTrashed: any = await client.files.getFileById(file.id);
-  if (!(fromApiAfterTrashed.itemStatus == 'trashed')) {
+  if (!((toString(fromApiAfterTrashed.itemStatus) as string) == 'trashed')) {
     throw 'Assertion failed';
   }
   const restoredFile: any = await client.trashedFiles.restoreFileFromTrash(
@@ -69,7 +70,7 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
   if (!(restoredFile.name == fromApiAfterRestore.name)) {
     throw 'Assertion failed';
   }
-  if (!(fromApiAfterRestore.itemStatus == 'active')) {
+  if (!((toString(fromApiAfterRestore.itemStatus) as string) == 'active')) {
     throw 'Assertion failed';
   }
   await client.files.deleteFileById(file.id);

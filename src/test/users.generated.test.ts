@@ -19,6 +19,7 @@ import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const jwtConfig: any = JwtConfig.fromConfigJsonString(
   decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
 );
@@ -32,7 +33,7 @@ test('test_get_users', async function test_get_users(): Promise<any> {
 });
 test('test_get_user_me', async function test_get_user_me(): Promise<any> {
   const currentUser: any = await client.users.getUserMe();
-  if (!(currentUser.type == 'user')) {
+  if (!((toString(currentUser.type) as string) == 'user')) {
     throw 'Assertion failed';
   }
 });

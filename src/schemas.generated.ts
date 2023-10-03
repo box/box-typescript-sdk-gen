@@ -81,8 +81,6 @@ export interface FileRequestCopyRequestFolderField {
   readonly id: string;
 }
 export type FileRequestCopyRequest = FileRequestUpdateRequest & {
-  /**
-   * The folder to associate the new file request to. */
   readonly folder: FileRequestCopyRequestFolderField;
 };
 export type ClientErrorTypeField = 'error';
@@ -250,18 +248,11 @@ export interface FileVersionBase {
   readonly type: FileVersionBaseTypeField;
 }
 export type FileVersionMini = FileVersionBase & {
-  /**
-   * The SHA1 hash of this version of the file. */
   readonly sha1?: string;
 };
 export type FileMini = FileBase & {
   readonly sequenceId?: string;
-  /**
-   * The name of the file */
   readonly name?: string;
-  /**
-   * The SHA1 hash of the file. This can be used to compare the contents
-   * of a file on Box with a local file. */
   readonly sha1?: string;
   readonly fileVersion?: FileVersionMini;
 };
@@ -311,23 +302,7 @@ export interface FolderBase {
   readonly type: FolderBaseTypeField;
 }
 export type FolderMini = FolderBase & {
-  /**
-   * The name of the folder. */
   readonly name?: string;
-  /**
-   * A numeric identifier that represents the most recent user event
-   * that has been applied to this item.
-   *
-   * This can be used in combination with the `GET /events`-endpoint
-   * to filter out user events that would have occurred before this
-   * identifier was read.
-   *
-   * An example would be where a Box Drive-like application
-   * would fetch an item via the API, and then listen to incoming
-   * user events for changes to the item. The application would
-   * ignore any user events where the `sequence_id` in the event
-   * is smaller than or equal to the `sequence_id` in the originally
-   * fetched resource. */
   readonly sequenceId?: string;
 };
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
@@ -338,17 +313,9 @@ export interface IntegrationMappingBase {
 export type IntegrationMappingMiniPartnerItemTypeField = 'channel';
 export type IntegrationMappingMiniBoxItemTypeField = 'folder';
 export type IntegrationMappingMini = IntegrationMappingBase & {
-  /**
-   * ID of the mapped partner item */
   readonly partnerItemId?: string;
-  /**
-   * Domain-specific type of the mapped partner item */
   readonly partnerItemType?: IntegrationMappingMiniPartnerItemTypeField;
-  /**
-   * ID of the Box item mapped to the object referenced in `partner_item_id` */
   readonly boxItemId?: string;
-  /**
-   * Type of the Box object referenced in `box_item_id` */
   readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
 };
 export type GroupBaseTypeField = 'group';
@@ -358,11 +325,7 @@ export interface GroupBase {
 }
 export type GroupMiniGroupTypeField = 'managed_group' | 'all_users_group';
 export type GroupMini = GroupBase & {
-  /**
-   * The name of the group */
   readonly name?: string;
-  /**
-   * The type of the group. */
   readonly groupType?: GroupMiniGroupTypeField;
 };
 export type GroupsOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -378,11 +341,7 @@ export interface Groups {
   readonly entries?: readonly GroupMini[];
 }
 export type Group = GroupMini & {
-  /**
-   * When the group object was created */
   readonly createdAt?: string;
-  /**
-   * When the group object was last modified */
   readonly modifiedAt?: string;
 };
 export type GroupFullInvitabilityLevelField =
@@ -397,48 +356,10 @@ export interface GroupFullPermissionsField {
   readonly canInviteAsCollaborator?: boolean;
 }
 export type GroupFull = Group & {
-  /**
-   * Keeps track of which external source this group is
-   * coming from (e.g. "Active Directory", "Google Groups",
-   * "Facebook Groups").  Setting this will
-   * also prevent Box users from editing the group name
-   * and its members directly via the Box web application.
-   * This is desirable for one-way syncing of groups. */
   readonly provenance?: string;
-  /**
-   * An arbitrary identifier that can be used by
-   * external group sync tools to link this Box Group to
-   * an external group. Example values of this field
-   * could be an Active Directory Object ID or a Google
-   * Group ID.  We recommend you use of this field in
-   * order to avoid issues when group names are updated in
-   * either Box or external systems. */
   readonly externalSyncIdentifier?: string;
-  /**
-   * Human readable description of the group. */
   readonly description?: string;
-  /**
-   * Specifies who can invite the group to collaborate
-   * on items.
-   *
-   * When set to `admins_only` the enterprise admin, co-admins,
-   * and the group's admin can invite the group.
-   *
-   * When set to `admins_and_members` all the admins listed
-   * above and group members can invite the group.
-   *
-   * When set to `all_managed_users` all managed users in the
-   * enterprise can invite the group. */
   readonly invitabilityLevel?: GroupFullInvitabilityLevelField;
-  /**
-   * Specifies who can view the members of the group
-   * (Get Memberships for Group).
-   *
-   * * `admins_only` - the enterprise admin, co-admins, group's
-   *   group admin
-   * * `admins_and_members` - all admins and group members
-   * * `all_managed_users` - all managed users in the
-   *   enterprise */
   readonly memberViewabilityLevel?: GroupFullMemberViewabilityLevelField;
   readonly permissions?: GroupFullPermissionsField;
 };
@@ -471,21 +392,9 @@ export interface Metadatas {
   readonly limit?: number;
 }
 export type MetadataFull = Metadata & {
-  /**
-   * Whether the user can edit this metadata instance. */
   readonly canEdit?: boolean;
-  /**
-   * A UUID to identify the metadata instance. */
   readonly id?: string;
-  /**
-   * A unique identifier for the "type" of this instance. This is an
-   * internal system property and should not be used by a client
-   * application. */
   readonly type?: string;
-  /**
-   * The last-known version of the template of the object. This is an
-   * internal system property and should not be used by a client
-   * application. */
   readonly typeVersion?: number;
   readonly extraData?: {
     readonly [key: string]: string;
@@ -591,25 +500,8 @@ export type RetentionPolicyMiniDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
 export type RetentionPolicyMini = RetentionPolicyBase & {
-  /**
-   * The name given to the retention policy. */
   readonly policyName?: string;
-  /**
-   * The length of the retention policy. This value
-   * specifies the duration in days that the retention
-   * policy will be active for after being assigned to
-   * content.  If the policy has a `policy_type` of
-   * `indefinite`, the `retention_length` will also be
-   * `indefinite`. */
   readonly retentionLength?: string;
-  /**
-   * The disposition action of the retention policy.
-   * This action can be `permanently_delete`, which
-   * will cause the content retained by the policy
-   * to be permanently deleted, or `remove_retention`,
-   * which will lift the retention policy from the content,
-   * allowing it to be deleted by users,
-   * once the retention policy has expired. */
   readonly dispositionAction?: RetentionPolicyMiniDispositionActionField;
 };
 export interface RetentionPolicies {
@@ -685,13 +577,7 @@ export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegment
 }
 export type ShieldInformationBarrierSegmentRestrictionMini =
   ShieldInformationBarrierSegmentRestrictionBase & {
-    /**
-     * The `type` and `id` of the
-     * requested shield information barrier segment. */
     readonly shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
-    /**
-     * The `type` and `id` of the
-     * restricted shield information barrier segment. */
     readonly restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
   };
 export interface SessionTerminationMessage {
@@ -717,8 +603,6 @@ export interface StoragePolicyAssignments {
   readonly entries?: readonly StoragePolicyAssignment[];
 }
 export type StoragePolicy = StoragePolicyMini & {
-  /**
-   * A descriptive name of the region */
   readonly name?: string;
 };
 export interface StoragePolicies {
@@ -741,22 +625,11 @@ export interface TermsOfServiceEnterpriseField {
 }
 export type TermsOfServiceTosTypeField = 'managed' | 'external';
 export type TermsOfService = TermsOfServiceBase & {
-  /**
-   * Whether these terms are enabled or not */
   readonly status?: TermsOfServiceStatusField;
   readonly enterprise?: TermsOfServiceEnterpriseField;
-  /**
-   * Whether to apply these terms to managed users or external users */
   readonly tosType?: TermsOfServiceTosTypeField;
-  /**
-   * The text for your terms and conditions. This text could be
-   * empty if the `status` is set to `disabled`. */
   readonly text?: string;
-  /**
-   * When the legal item was created */
   readonly createdAt?: string;
-  /**
-   * When the legal item was modified. */
   readonly modifiedAt?: string;
 };
 export interface TermsOfServices {
@@ -774,8 +647,6 @@ export interface UploadPartMini {
   readonly size?: number;
 }
 export type UploadPart = UploadPartMini & {
-  /**
-   * The SHA1 hash of the chunk. */
   readonly sha1?: string;
 };
 export type UploadPartsOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -829,28 +700,16 @@ export interface UserBase {
   readonly type: UserBaseTypeField;
 }
 export type UserIntegrationMappings = UserBase & {
-  /**
-   * The display name of this user */
   readonly name?: string;
-  /**
-   * The primary email address of this user */
   readonly login?: string;
 };
 export type UserCollaborations = UserBase & {
-  /**
-   * The display name of this user. If the collaboration status is `pending`, an empty string is returned. */
   readonly name?: string;
-  /**
-   * The primary email address of this user. If the collaboration status is `pending`, an empty string is returned. */
   readonly login?: string;
 };
 export type GroupMiniOrUserCollaborations = GroupMini | UserCollaborations;
 export type UserMini = UserBase & {
-  /**
-   * The display name of this user */
   readonly name?: string;
-  /**
-   * The primary email address of this user */
   readonly login?: string;
 };
 export type EventSourceItemTypeField = 'file' | 'folder';
@@ -875,48 +734,18 @@ export interface UserNotificationEmailField {
   readonly isConfirmed?: boolean;
 }
 export type User = UserMini & {
-  /**
-   * When the user object was created */
   readonly createdAt?: string;
-  /**
-   * When the user object was last modified */
   readonly modifiedAt?: string;
-  /**
-   * The language of the user, formatted in modified version of the
-   * [ISO 639-1](/guides/api-calls/language-codes) format. */
   readonly language?: string;
-  /**
-   * The user's timezone */
   readonly timezone?: string;
-  /**
-   * The user’s total available space amount in bytes */
   readonly spaceAmount?: number;
-  /**
-   * The amount of space in use by the user */
   readonly spaceUsed?: number;
-  /**
-   * The maximum individual file size in bytes the user can have */
   readonly maxUploadSize?: number;
-  /**
-   * The user's account status */
   readonly status?: UserStatusField;
-  /**
-   * The user’s job title */
   readonly jobTitle?: string;
-  /**
-   * The user’s phone number */
   readonly phone?: string;
-  /**
-   * The user’s address */
   readonly address?: string;
-  /**
-   * URL of the user’s avatar image */
   readonly avatarUrl?: string;
-  /**
-   * An alternate notification email address to which email
-   * notifications are sent. When it's confirmed, this will be
-   * the email address to which notifications are sent instead of
-   * to the primary email address. */
   readonly notificationEmail?: UserNotificationEmailField;
 };
 export type UsersOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -1219,62 +1048,16 @@ export interface RetentionPolicyAssignmentCountsField {
   readonly metadataTemplate?: number;
 }
 export type RetentionPolicy = RetentionPolicyMini & {
-  /**
-   * The additional text description of the retention policy. */
   readonly description?: string;
-  /**
-   * The type of the retention policy. A retention
-   * policy type can either be `finite`, where a
-   * specific amount of time to retain the content is known
-   * upfront, or `indefinite`, where the amount of time
-   * to retain the content is still unknown. */
   readonly policyType?: RetentionPolicyPolicyTypeField;
-  /**
-   * Specifies the retention type:
-   *
-   * * `modifiable`: You can modify the retention policy. For example,
-   *  you can add or remove folders, shorten or lengthen
-   *  the policy duration, or delete the assignment.
-   *  Use this type if your retention policy
-   *  is not related to any regulatory purposes.
-   *
-   * * `non-modifiable`: You can modify the retention policy
-   *  only in a limited way: add a folder, lengthen the duration,
-   *  retire the policy, change the disposition action
-   *  or notification settings. You cannot perform other actions,
-   *  such as deleting the assignment or shortening the
-   *  policy duration. Use this type to ensure
-   *  compliance with regulatory retention policies. */
   readonly retentionType?: RetentionPolicyRetentionTypeField;
-  /**
-   * The status of the retention policy. The status of
-   * a policy will be `active`, unless explicitly retired by an
-   * administrator, in which case the status will be `retired`.
-   * Once a policy has been retired, it cannot become
-   * active again. */
   readonly status?: RetentionPolicyStatusField;
   readonly createdBy?: UserMini;
-  /**
-   * When the retention policy object was created. */
   readonly createdAt?: string;
-  /**
-   * When the retention policy object was last modified. */
   readonly modifiedAt?: string;
-  /**
-   * Determines if the owner of items under the policy
-   * can extend the retention when the original
-   * retention duration is about to end. */
   readonly canOwnerExtendRetention?: boolean;
-  /**
-   * Determines if owners and co-owners of items
-   * under the policy are notified when
-   * the retention duration is about to end. */
   readonly areOwnersNotified?: boolean;
-  /**
-   * A list of users notified when the retention policy duration is about to end. */
   readonly customNotificationRecipients?: readonly UserMini[];
-  /**
-   * Counts the retention policy assignments for each item type. */
   readonly assignmentCounts?: RetentionPolicyAssignmentCountsField;
 };
 export type LegalHoldPolicyStatusField =
@@ -1289,49 +1072,16 @@ export interface LegalHoldPolicyAssignmentCountsField {
   readonly fileVersion?: number;
 }
 export type LegalHoldPolicy = LegalHoldPolicyMini & {
-  /**
-   * Name of the legal hold policy. */
   readonly policyName?: string;
-  /**
-   * Description of the legal hold policy. Optional
-   * property with a 500 character limit. */
   readonly description?: string;
-  /**
-   * * 'active' - the policy is not in a transition state
-   * * 'applying' - that the policy is in the process of
-   *   being applied
-   * * 'releasing' - that the process is in the process
-   *   of being released
-   * * 'released' - the policy is no longer active */
   readonly status?: LegalHoldPolicyStatusField;
-  /**
-   * Counts of assignments within this a legal hold policy by item type */
   readonly assignmentCounts?: LegalHoldPolicyAssignmentCountsField;
   readonly createdBy?: UserMini;
-  /**
-   * When the legal hold policy object was created */
   readonly createdAt?: string;
-  /**
-   * When the legal hold policy object was modified.
-   * Does not update when assignments are added or removed. */
   readonly modifiedAt?: string;
-  /**
-   * When the policy release request was sent. (Because
-   * it can take time for a policy to fully delete, this
-   * isn't quite the same time that the policy is fully deleted).
-   *
-   * If `null`, the policy was not deleted. */
   readonly deletedAt?: string;
-  /**
-   * User-specified, optional date filter applies to
-   * Custodian assignments only */
   readonly filterStartedAt?: string;
-  /**
-   * User-specified, optional date filter applies to
-   * Custodian assignments only */
   readonly filterEndedAt?: string;
-  /**
-   * Optional notes about why the policy was created. */
   readonly releaseNotes?: string;
 };
 export interface LegalHoldPolicies {
@@ -1381,29 +1131,15 @@ export interface GroupMemberships {
   readonly entries?: readonly GroupMembership[];
 }
 export type FileVersion = FileVersionMini & {
-  /**
-   * The name of the file version */
   readonly name?: string;
-  /**
-   * Size of the file version in bytes */
   readonly size?: number;
-  /**
-   * When the file version object was created */
   readonly createdAt?: string;
-  /**
-   * When the file version object was last updated */
   readonly modifiedAt?: string;
   readonly modifiedBy?: UserMini;
-  /**
-   * When the file version object was trashed. */
   readonly trashedAt?: string;
   readonly trashedBy?: UserMini;
-  /**
-   * When the file version was restored from the trash. */
   readonly restoredAt?: string;
   readonly restoredBy?: UserMini;
-  /**
-   * When the file version object will be permanently deleted. */
   readonly purgedAt?: string;
   readonly uploaderDisplayName?: string;
 };
@@ -1420,8 +1156,6 @@ export interface FileVersions {
   readonly entries?: readonly FileVersion[];
 }
 export type FileVersionFull = FileVersion & {
-  /**
-   * The version number of this file version */
   readonly versionNumber?: string;
 };
 export type FileRequestTypeField = 'file_request';
@@ -1481,46 +1215,20 @@ export interface FileSharedLinkField {
 }
 export type FileItemStatusField = 'active' | 'trashed' | 'deleted';
 export type File = FileMini & {
-  /**
-   * The optional description of this file */
   readonly description?: string;
-  /**
-   * The file size in bytes. Be careful parsing this integer as it can
-   * get very large and cause an integer overflow. */
   readonly size?: number;
   readonly pathCollection?: FilePathCollectionField;
-  /**
-   * The date and time when the file was created on Box. */
   readonly createdAt?: string;
-  /**
-   * The date and time when the file was last updated on Box. */
   readonly modifiedAt?: string;
-  /**
-   * The time at which this file was put in the trash. */
   readonly trashedAt?: string;
-  /**
-   * The time at which this file is expected to be purged
-   * from the trash. */
   readonly purgedAt?: string;
-  /**
-   * The date and time at which this file was originally
-   * created, which might be before it was uploaded to Box. */
   readonly contentCreatedAt?: string;
-  /**
-   * The date and time at which this file was last updated,
-   * which might be before it was uploaded to Box. */
   readonly contentModifiedAt?: string;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: FileSharedLinkField;
   readonly parent?: FolderMini;
-  /**
-   * Defines if this item has been deleted or not.
-   *
-   * * `active` when the item has is not in the trash
-   * * `trashed` when the item has been moved to the trash but not deleted
-   * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus?: FileItemStatusField;
 };
 export interface FileFullPermissionsField {
@@ -1617,54 +1325,25 @@ export type FileFullSharedLinkPermissionOptionsField =
   | 'can_download'
   | 'can_edit';
 export type FileFull = File & {
-  /**
-   * The version number of this file */
   readonly versionNumber?: string;
-  /**
-   * The number of comments on this file */
   readonly commentCount?: number;
   readonly permissions?: FileFullPermissionsField;
   readonly tags?: readonly string[];
   readonly lock?: FileFullLockField;
-  /**
-   * Indicates the (optional) file extension for this file. By default,
-   * this is set to an empty string. */
   readonly extension?: string;
-  /**
-   * Indicates if the file is a package. Packages are commonly used
-   * by Mac Applications and can include iWork files. */
   readonly isPackage?: boolean;
   readonly expiringEmbedLink?: FileFullExpiringEmbedLinkField;
   readonly watermarkInfo?: FileFullWatermarkInfoField;
-  /**
-   * Specifies if the file can be accessed
-   * via the direct shared link or a shared link
-   * to a parent folder. */
   readonly isAccessibleViaSharedLink?: boolean;
-  /**
-   * A list of the types of roles that user can be invited at
-   * when sharing this file. */
   readonly allowedInviteeRoles?: readonly FileFullAllowedInviteeRolesField[];
-  /**
-   * Specifies if this file is owned by a user outside of the
-   * authenticated enterprise. */
   readonly isExternallyOwned?: boolean;
-  /**
-   * Specifies if this file has any other collaborators. */
   readonly hasCollaborations?: boolean;
   readonly metadata?: FileFullMetadataField;
-  /**
-   * When the file will automatically be deleted */
   readonly expiresAt?: string;
   readonly representations?: FileFullRepresentationsField;
   readonly classification?: FileFullClassificationField;
   readonly uploaderDisplayName?: string;
-  /**
-   * The retention expiration timestamp for the given file */
   readonly dispositionAt?: string;
-  /**
-   * A list of the types of roles that user can be invited at
-   * when sharing this file. */
   readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
 };
 export interface Files {
@@ -1695,28 +1374,14 @@ export interface CommentItemField {
   readonly type?: string;
 }
 export type Comment = CommentBase & {
-  /**
-   * Whether or not this comment is a reply to another
-   * comment */
   readonly isReplyComment?: boolean;
-  /**
-   * The text of the comment, as provided by the user */
   readonly message?: string;
   readonly createdBy?: UserMini;
-  /**
-   * The time this comment was created */
   readonly createdAt?: string;
-  /**
-   * The time this comment was last modified */
   readonly modifiedAt?: string;
   readonly item?: CommentItemField;
 };
 export type CommentFull = Comment & {
-  /**
-   * The string representing the comment text with
-   * @mentions included. @mention format is @[id:username]
-   * where `id` is user's Box ID and `username` is
-   * their display name. */
   readonly taggedMessage?: string;
 };
 export type CommentsOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -1757,16 +1422,8 @@ export interface CollaborationAllowlistExemptTargets {
 export type ShieldInformationBarrierSegmentRestriction =
   ShieldInformationBarrierSegmentRestrictionMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-    /**
-     * ISO date time string when this
-     * shield information barrier
-     * Segment Restriction object was created. */
     readonly createdAt?: string;
     readonly createdBy?: UserBase;
-    /**
-     * ISO date time string when this
-     * shield information barrier segment
-     * Restriction was updated. */
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
   };
@@ -1783,18 +1440,9 @@ export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSe
 export type ShieldInformationBarrierSegmentMember =
   ShieldInformationBarrierSegmentMemberMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-    /**
-     * The `type` and `id` of the requested
-     * shield information barrier segment. */
     readonly shieldInformationBarrierSegment?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
-    /**
-     * ISO date time string when this shield
-     * information barrier object was created. */
     readonly createdAt?: string;
     readonly createdBy?: UserBase;
-    /**
-     * ISO date time string when this
-     * shield information barrier segment Member was updated. */
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
   };
@@ -1916,16 +1564,8 @@ export type WebhookTriggersField =
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export type Webhook = WebhookMini & {
   readonly createdBy?: UserMini;
-  /**
-   * A timestamp identifying the time that
-   * the webhook was created. */
   readonly createdAt?: string;
-  /**
-   * The URL that is notified by this webhook */
   readonly address?: string;
-  /**
-   * An array of event names that this webhook is
-   * to be triggered for */
   readonly triggers?: readonly WebhookTriggersField[];
 };
 export type WebLinkBaseTypeField = 'web_link';
@@ -1935,12 +1575,8 @@ export interface WebLinkBase {
   readonly etag?: string;
 }
 export type WebLinkMini = WebLinkBase & {
-  /**
-   * The URL this web link points to */
   readonly url?: string;
   readonly sequenceId?: string;
-  /**
-   * The name of the web link */
   readonly name?: string;
 };
 export type FileMiniOrFolderMiniOrWebLinkMini =
@@ -2002,50 +1638,21 @@ export interface FolderFolderUploadEmailField {
 }
 export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
 export type Folder = FolderMini & {
-  /**
-   * The date and time when the folder was created. This value may
-   * be `null` for some folders such as the root folder or the trash
-   * folder. */
   readonly createdAt?: string;
-  /**
-   * The date and time when the folder was last updated. This value may
-   * be `null` for some folders such as the root folder or the trash
-   * folder. */
   readonly modifiedAt?: string;
   readonly description?: string;
-  /**
-   * The folder size in bytes.
-   *
-   * Be careful parsing this integer as its
-   * value can get very large. */
   readonly size?: number;
   readonly pathCollection?: FolderPathCollectionField;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
-  /**
-   * The time at which this folder was put in the trash. */
   readonly trashedAt?: string;
-  /**
-   * The time at which this folder is expected to be purged
-   * from the trash. */
   readonly purgedAt?: string;
-  /**
-   * The date and time at which this folder was originally
-   * created. */
   readonly contentCreatedAt?: string;
-  /**
-   * The date and time at which this folder was last updated. */
   readonly contentModifiedAt?: string;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: FolderSharedLinkField;
   readonly folderUploadEmail?: FolderFolderUploadEmailField;
   readonly parent?: FolderMini;
-  /**
-   * Defines if this item has been deleted or not.
-   *
-   * * `active` when the item has is not in the trash
-   * * `trashed` when the item has been moved to the trash but not deleted
-   * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus?: FolderItemStatusField;
   readonly itemCollection?: Items;
 };
@@ -2360,42 +1967,17 @@ export interface FolderFullClassificationField {
 }
 export type FolderFull = Folder & {
   readonly syncState?: FolderFullSyncStateField;
-  /**
-   * Specifies if this folder has any other collaborators. */
   readonly hasCollaborations?: boolean;
   readonly permissions?: FolderFullPermissionsField;
   readonly tags?: readonly string[];
   readonly canNonOwnersInvite?: boolean;
-  /**
-   * Specifies if this folder is owned by a user outside of the
-   * authenticated enterprise. */
   readonly isExternallyOwned?: boolean;
   readonly metadata?: FolderFullMetadataField;
   readonly isCollaborationRestrictedToEnterprise?: boolean;
-  /**
-   * A list of access levels that are available
-   * for this folder.
-   *
-   * For some folders, like the root folder, this will always
-   * be an empty list as sharing is not allowed at that level. */
   readonly allowedSharedLinkAccessLevels?: readonly FolderFullAllowedSharedLinkAccessLevelsField[];
-  /**
-   * A list of the types of roles that user can be invited at
-   * when sharing this folder. */
   readonly allowedInviteeRoles?: readonly FolderFullAllowedInviteeRolesField[];
   readonly watermarkInfo?: FolderFullWatermarkInfoField;
-  /**
-   * Specifies if the folder can be accessed
-   * with the direct shared link or a shared link
-   * to a parent folder. */
   readonly isAccessibleViaSharedLink?: boolean;
-  /**
-   * Specifies if collaborators who are not owners
-   * of this folder are restricted from viewing other
-   * collaborations on this folder.
-   *
-   * It also restricts non-owners from inviting new
-   * collaborators. */
   readonly canNonOwnersViewCollaborators?: boolean;
   readonly classification?: FolderFullClassificationField;
 };
@@ -2438,32 +2020,16 @@ export interface WebLinkSharedLinkField {
 export type WebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
 export type WebLink = WebLinkMini & {
   readonly parent?: FolderMini;
-  /**
-   * The description accompanying the web link. This is
-   * visible within the Box web application. */
   readonly description?: string;
   readonly pathCollection?: WebLinkPathCollectionField;
-  /**
-   * When this file was created on Box’s servers. */
   readonly createdAt?: string;
-  /**
-   * When this file was last updated on the Box
-   * servers. */
   readonly modifiedAt?: string;
-  /**
-   * When this file was moved to the trash. */
   readonly trashedAt?: string;
-  /**
-   * When this file will be permanently deleted. */
   readonly purgedAt?: string;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: WebLinkSharedLinkField;
-  /**
-   * Whether this item is deleted or not. Values include `active`,
-   * `trashed` if the file has been moved to the trash, and `deleted` if
-   * the file has been permanently deleted */
   readonly itemStatus?: WebLinkItemStatusField;
 };
 export type FileOrFolderOrWebLink = File | Folder | WebLink;
@@ -2515,16 +2081,7 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
   readonly legalHoldPolicy?: LegalHoldPolicyMini;
   readonly assignedTo?: FileOrFolderOrWebLink;
   readonly assignedBy?: UserMini;
-  /**
-   * When the legal hold policy assignment object was
-   * created */
   readonly assignedAt?: string;
-  /**
-   * When the assignment release request was sent.
-   * (Because it can take time for an assignment to fully
-   * delete, this isn't quite the same time that the
-   * assignment is fully deleted). If null, Assignment
-   * was not deleted. */
   readonly deletedAt?: string;
 };
 export type FileVersionLegalHoldTypeField = 'file_version_legal_hold';
@@ -2698,8 +2255,6 @@ export interface WorkflowFlowsField {
   readonly createdBy?: UserBase;
 }
 export type Workflow = WorkflowMini & {
-  /**
-   * A list of flows assigned to a workflow. */
   readonly flows?: readonly WorkflowFlowsField[];
 };
 export interface Workflows {
@@ -2709,11 +2264,7 @@ export interface Workflows {
   readonly entries?: readonly Workflow[];
 }
 export type WorkflowFull = Workflow & {
-  /**
-   * The date and time when the workflow was created on Box */
   readonly createdAt?: string;
-  /**
-   * The date and time when the workflow was last updated on Box */
   readonly modifiedAt?: string;
   readonly createdBy?: UserBase;
   readonly modifiedBy?: UserBase;
@@ -2778,39 +2329,15 @@ export interface IntegrationMappingPartnerItemSlack {
   readonly slackOrgId?: string;
 }
 export type IntegrationMappingTypeField = 'integration_mapping';
-export interface IntegrationMappingOptionsField {}
 export type IntegrationMapping = IntegrationMappingBase & {
-  /**
-   * Mapping type */
   readonly type: IntegrationMappingTypeField;
-  /**
-   * Mapped item object for Slack */
   readonly partnerItem: IntegrationMappingPartnerItemSlack;
-  /**
-   * The Box folder, to which the object from the
-   * partner app domain (referenced in `partner_item_id`) is mapped */
   readonly boxItem: FolderMini;
-  /**
-   * Identifies whether the mapping has
-   * been manually set
-   * (as opposed to being automatically created) */
   readonly isManuallyCreated?: boolean;
-  /**
-   * Integration mapping options for Slack */
-  readonly options?: IntegrationMappingOptionsField;
-  /**
-   * An object representing the user who
-   * created the integration mapping */
+  readonly options?: IntegrationMappingSlackOptions;
   readonly createdBy?: UserIntegrationMappings;
-  /**
-   * The user who
-   * last modified the integration mapping */
   readonly modifiedBy?: UserIntegrationMappings;
-  /**
-   * When the integration mapping object was created */
   readonly createdAt?: string;
-  /**
-   * When the integration mapping object was last modified */
   readonly modifiedAt?: string;
 };
 export interface IntegrationMappings {
@@ -2987,14 +2514,8 @@ export type SignRequestSignerInputContentTypeField =
   | 'checkbox'
   | 'attachment';
 export type SignRequestSignerInput = SignRequestPrefillTag & {
-  /**
-   * Type of input */
   readonly type?: SignRequestSignerInputTypeField;
-  /**
-   * Content type of input */
   readonly contentType?: SignRequestSignerInputContentTypeField;
-  /**
-   * Index of page that the input is on */
   readonly pageIndex: number;
 };
 export type SignRequestSignerSignerDecisionFieldTypeField =
@@ -3005,23 +2526,10 @@ export interface SignRequestSignerSignerDecisionField {
   readonly finalizedAt?: string;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
-  /**
-   * Set to `true` if the signer views the document */
   readonly hasViewedDocument?: boolean;
-  /**
-   * Final decision made by the signer */
   readonly signerDecision?: SignRequestSignerSignerDecisionField;
   readonly inputs?: readonly SignRequestSignerInput[];
-  /**
-   * URL to direct a signer to for signing */
   readonly embedUrl?: string;
-  /**
-   * This URL is specifically designed for
-   * signing documents within an HTML `iframe` tag.
-   * It will be returned in the response
-   * only if the `embed_url_external_user_id`
-   * parameter was passed in the
-   * `create sign request` call. */
   readonly iframeableEmbedUrl?: string;
 };
 export interface SignRequestBase {
@@ -3059,37 +2567,15 @@ export interface SignRequestSignFilesField {
   readonly isReadyForDownload?: boolean;
 }
 export type SignRequest = SignRequestBase & {
-  /**
-   * object type */
   readonly type?: SignRequestTypeField;
-  /**
-   * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
   readonly sourceFiles?: readonly FileBase[];
-  /**
-   * Array of signers for the sign request */
   readonly signers?: readonly SignRequestSigner[];
-  /**
-   * Force a specific color for the signature (blue, black, or red). */
   readonly signatureColor?: string;
-  /**
-   * Sign request ID */
   readonly id?: string;
-  /**
-   * This URL is returned if `is_document_preparation_needed` is
-   * set to `true` in the request. It is used to prepare the sign request
-   * via UI. The sign request is not sent until preparation is complete. */
   readonly prepareUrl?: string;
   readonly signingLog?: FileMini;
-  /**
-   * Describes the status of the sign request */
   readonly status?: SignRequestStatusField;
-  /**
-   * List of files that will be signed, which are copies of the original
-   * source files. A new version of these files are created as signers sign
-   * and can be downloaded at any point in the signing process. */
   readonly signFiles?: SignRequestSignFilesField;
-  /**
-   * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
   readonly autoExpireAt?: string;
 };
 export interface SignRequests {
@@ -3099,12 +2585,7 @@ export interface SignRequests {
   readonly entries?: readonly SignRequest[];
 }
 export type SignRequestCreateRequest = SignRequestBase & {
-  /**
-   * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
   readonly sourceFiles?: readonly FileBase[];
-  /**
-   * Array of signers for the sign request. 35 is the
-   * max number of signers permitted. */
   readonly signers: readonly SignRequestCreateSigner[];
 };
 export type TemplateSignerInputTypeField =
@@ -3140,35 +2621,15 @@ export interface TemplateSignerInputDimensionsField {
   readonly height?: number;
 }
 export type TemplateSignerInput = SignRequestPrefillTag & {
-  /**
-   * Type of input */
   readonly type?: TemplateSignerInputTypeField;
-  /**
-   * Content type of input */
   readonly contentType?: TemplateSignerInputContentTypeField;
-  /**
-   * Whether or not the input is required. */
   readonly isRequired?: boolean;
-  /**
-   * Index of page that the input is on. */
   readonly pageIndex: number;
-  /**
-   * Document identifier. */
   readonly documentId?: string;
-  /**
-   * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
   readonly dropdownChoices?: readonly string[];
-  /**
-   * When the input is of type `radio` they can be grouped to gather with this identifier. */
   readonly groupId?: string;
-  /**
-   * Where the input is located on a page. */
   readonly coordinates?: TemplateSignerInputCoordinatesField;
-  /**
-   * The size of the input. */
   readonly dimensions?: TemplateSignerInputDimensionsField;
-  /**
-   * The label field is used especially for text, attachment, radio, and checkbox type inputs. */
   readonly label?: string;
 };
 export type TemplateSignerRoleField =
@@ -3245,18 +2706,10 @@ export type ShieldInformationBarrierReportStatusField =
 export type ShieldInformationBarrierReport =
   ShieldInformationBarrierReportBase & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
-    /**
-     * Status of the shield information report */
     readonly status?: ShieldInformationBarrierReportStatusField;
     readonly details?: ShieldInformationBarrierReportDetails;
-    /**
-     * ISO date time string when this
-     * shield information barrier report object was created. */
     readonly createdAt?: string;
     readonly createdBy?: UserBase;
-    /**
-     * ISO date time string when this
-     * shield information barrier report was updated. */
     readonly updatedAt?: string;
   };
 export type TrackingCodeTypeField = 'tracking_code';
@@ -3273,59 +2726,19 @@ export interface UserFullEnterpriseField {
   readonly name?: string;
 }
 export type UserFull = User & {
-  /**
-   * The user’s enterprise role */
   readonly role?: UserFullRoleField;
-  /**
-   * Tracking codes allow an admin to generate reports from the
-   * admin console and assign an attribute to a specific group
-   * of users. This setting must be enabled for an enterprise
-   * before it can be used. */
   readonly trackingCodes?: readonly TrackingCode[];
-  /**
-   * Whether the user can see other enterprise users in their contact list */
   readonly canSeeManagedUsers?: boolean;
-  /**
-   * Whether the user can use Box Sync */
   readonly isSyncEnabled?: boolean;
-  /**
-   * Whether the user is allowed to collaborate with users outside their
-   * enterprise */
   readonly isExternalCollabRestricted?: boolean;
-  /**
-   * Whether to exempt the user from Enterprise device limits */
   readonly isExemptFromDeviceLimits?: boolean;
-  /**
-   * Whether the user must use two-factor authentication */
   readonly isExemptFromLoginVerification?: boolean;
   readonly enterprise?: UserFullEnterpriseField;
-  /**
-   * Tags for all files and folders owned by the user. Values returned
-   * will only contain tags that were set by the requester. */
   readonly myTags?: readonly string[];
-  /**
-   * The root (protocol, subdomain, domain) of any links that need to be
-   * generated for the user */
   readonly hostname?: string;
-  /**
-   * Whether the user is an App User */
   readonly isPlatformAccessOnly?: boolean;
-  /**
-   * An external identifier for an app user, which can be used to look up
-   * the user. This can be used to tie user IDs from external identity
-   * providers to Box users. */
   readonly externalAppUserId?: string;
 };
-export type MetadataFilterScopeField =
-  | 'global'
-  | 'enterprise'
-  | 'enterprise_{enterprise_id}';
-export interface MetadataFilterFiltersField {}
-export interface MetadataFilter {
-  readonly scope?: MetadataFilterScopeField;
-  readonly templateKey?: string;
-  readonly filters?: MetadataFilterFiltersField;
-}
 export type MetadataFieldFilterString = {
   readonly [key: string]: string;
 };
@@ -3349,6 +2762,21 @@ export interface MetadataFieldFilterDateRangeMapValue {
 export type MetadataFieldFilterDateRange = {
   readonly [key: string]: MetadataFieldFilterDateRangeMapValue;
 };
+export type MetadataFilterScopeField =
+  | 'global'
+  | 'enterprise'
+  | 'enterprise_{enterprise_id}';
+export type MetadataFilterFiltersField =
+  | MetadataFieldFilterString
+  | MetadataFieldFilterFloat
+  | MetadataFieldFilterMultiSelect
+  | MetadataFieldFilterFloatRange
+  | MetadataFieldFilterDateRange;
+export interface MetadataFilter {
+  readonly scope?: MetadataFilterScopeField;
+  readonly templateKey?: string;
+  readonly filters?: MetadataFilterFiltersField;
+}
 export function serializePostOAuth2TokenGrantTypeField(
   val: PostOAuth2TokenGrantTypeField
 ): Json {
@@ -17611,16 +17039,6 @@ export function deserializeIntegrationMappingTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeIntegrationMappingOptionsField(
-  val: IntegrationMappingOptionsField
-): Json {
-  return {};
-}
-export function deserializeIntegrationMappingOptionsField(
-  val: any
-): IntegrationMappingOptionsField {
-  return {} satisfies IntegrationMappingOptionsField;
-}
 export function serializeIntegrationMapping(val: IntegrationMapping): Json {
   const base: any = serializeIntegrationMappingBase(val);
   if (!isJson(base, 'object')) {
@@ -17639,7 +17057,7 @@ export function serializeIntegrationMapping(val: IntegrationMapping): Json {
       ['options']:
         val.options == void 0
           ? void 0
-          : serializeIntegrationMappingOptionsField(val.options),
+          : serializeIntegrationMappingSlackOptions(val.options),
       ['created_by']:
         val.createdBy == void 0
           ? void 0
@@ -17661,10 +17079,10 @@ export function deserializeIntegrationMapping(val: any): IntegrationMapping {
   const boxItem: FolderMini = deserializeFolderMini(val.box_item);
   const isManuallyCreated: undefined | boolean =
     val.is_manually_created == void 0 ? void 0 : val.is_manually_created;
-  const options: undefined | IntegrationMappingOptionsField =
+  const options: undefined | IntegrationMappingSlackOptions =
     val.options == void 0
       ? void 0
-      : deserializeIntegrationMappingOptionsField(val.options);
+      : deserializeIntegrationMappingSlackOptions(val.options);
   const createdBy: undefined | UserIntegrationMappings =
     val.created_by == void 0
       ? void 0
@@ -20362,68 +19780,6 @@ export function deserializeUserFull(val: any): UserFull {
     type: type,
   } satisfies UserFull;
 }
-export function serializeMetadataFilterScopeField(
-  val: MetadataFilterScopeField
-): Json {
-  return val;
-}
-export function deserializeMetadataFilterScopeField(
-  val: any
-): MetadataFilterScopeField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "MetadataFilterScopeField"';
-  }
-  if (val == 'global') {
-    return 'global';
-  }
-  if (val == 'enterprise') {
-    return 'enterprise';
-  }
-  if (val == 'enterprise_{enterprise_id}') {
-    return 'enterprise_{enterprise_id}';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeMetadataFilterFiltersField(
-  val: MetadataFilterFiltersField
-): Json {
-  return {};
-}
-export function deserializeMetadataFilterFiltersField(
-  val: any
-): MetadataFilterFiltersField {
-  return {} satisfies MetadataFilterFiltersField;
-}
-export function serializeMetadataFilter(val: MetadataFilter): Json {
-  return {
-    ['scope']:
-      val.scope == void 0
-        ? void 0
-        : serializeMetadataFilterScopeField(val.scope),
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
-    ['filters']:
-      val.filters == void 0
-        ? void 0
-        : serializeMetadataFilterFiltersField(val.filters),
-  };
-}
-export function deserializeMetadataFilter(val: any): MetadataFilter {
-  const scope: undefined | MetadataFilterScopeField =
-    val.scope == void 0
-      ? void 0
-      : deserializeMetadataFilterScopeField(val.scope);
-  const templateKey: undefined | string =
-    val.templateKey == void 0 ? void 0 : val.templateKey;
-  const filters: undefined | MetadataFilterFiltersField =
-    val.filters == void 0
-      ? void 0
-      : deserializeMetadataFilterFiltersField(val.filters);
-  return {
-    scope: scope,
-    templateKey: templateKey,
-    filters: filters,
-  } satisfies MetadataFilter;
-}
 export function serializeMetadataFieldFilterString(
   val: MetadataFieldFilterString
 ): Json {
@@ -20528,4 +19884,66 @@ export function deserializeMetadataFieldFilterDateRange(
   val: any
 ): MetadataFieldFilterDateRange {
   return val;
+}
+export function serializeMetadataFilterScopeField(
+  val: MetadataFilterScopeField
+): Json {
+  return val;
+}
+export function deserializeMetadataFilterScopeField(
+  val: any
+): MetadataFilterScopeField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "MetadataFilterScopeField"';
+  }
+  if (val == 'global') {
+    return 'global';
+  }
+  if (val == 'enterprise') {
+    return 'enterprise';
+  }
+  if (val == 'enterprise_{enterprise_id}') {
+    return 'enterprise_{enterprise_id}';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeMetadataFilterFiltersField(
+  val: MetadataFilterFiltersField
+): Json {
+  throw "Can't serialize MetadataFilterFiltersField";
+}
+export function deserializeMetadataFilterFiltersField(
+  val: any
+): MetadataFilterFiltersField {
+  throw "Can't deserialize MetadataFilterFiltersField";
+}
+export function serializeMetadataFilter(val: MetadataFilter): Json {
+  return {
+    ['scope']:
+      val.scope == void 0
+        ? void 0
+        : serializeMetadataFilterScopeField(val.scope),
+    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['filters']:
+      val.filters == void 0
+        ? void 0
+        : serializeMetadataFilterFiltersField(val.filters),
+  };
+}
+export function deserializeMetadataFilter(val: any): MetadataFilter {
+  const scope: undefined | MetadataFilterScopeField =
+    val.scope == void 0
+      ? void 0
+      : deserializeMetadataFilterScopeField(val.scope);
+  const templateKey: undefined | string =
+    val.templateKey == void 0 ? void 0 : val.templateKey;
+  const filters: undefined | MetadataFilterFiltersField =
+    val.filters == void 0
+      ? void 0
+      : deserializeMetadataFilterFiltersField(val.filters);
+  return {
+    scope: scope,
+    templateKey: templateKey,
+    filters: filters,
+  } satisfies MetadataFilter;
 }

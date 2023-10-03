@@ -22,6 +22,7 @@ import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { toString } from '../utils.js';
 const client: any = new BoxClient({
   auth: new BoxJwtAuth({
     config: JwtConfig.fromConfigJsonString(
@@ -48,7 +49,12 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
         } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField,
       } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArg
     );
-  if (!(newExemptTarget.type == 'collaboration_whitelist_exempt_target')) {
+  if (
+    !(
+      (toString(newExemptTarget.type) as string) ==
+      'collaboration_whitelist_exempt_target'
+    )
+  ) {
     throw 'Assertion failed';
   }
   if (!(newExemptTarget.user.id == user.id)) {

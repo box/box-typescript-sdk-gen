@@ -5,10 +5,14 @@ import { deserializeUserAvatar } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { UserAvatar } from '../schemas.generated.js';
 import { CreateUserAvatarRequestBodyArg } from '../managers/avatars.generated.js';
-import { decodeBase64ByteStream } from '../utils.js';
+import { ByteStream } from '../utils.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
+import { bufferEquals } from '../utils.js';
+import { readByteStream } from '../utils.js';
+import { generateByteBuffer } from '../utils.js';
+import { decodeBase64ByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
@@ -35,7 +39,13 @@ test('testAvatars', async function testAvatars(): Promise<any> {
   if (!!(createdAvatar.picUrls.preview == void 0)) {
     throw 'Assertion failed';
   }
-  if (!(await client.avatars.getUserAvatar(user.id))) {
+  const response: any = await client.avatars.getUserAvatar(user.id);
+  if (
+    !(
+      bufferEquals(await readByteStream(response), generateByteBuffer(0)) ==
+      false
+    )
+  ) {
     throw 'Assertion failed';
   }
   await client.avatars.deleteUserAvatar(user.id);
