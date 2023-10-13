@@ -47,9 +47,9 @@ assignees: mwwoda, mhagmajer, arjankowski, lukaszsocha2, bartlomiejleszczynski, 
 
 Typescript SDK: <!-- Replace with the version of the Typescript SDK you're using. -->
 Platform: <!-- Replace with the platform you're using (e.g. Node.js, Javascript (Browser), etc.) -->
-Node.js (if applicabe): <!-- Replace with the version of Node.js your application is running on. -->
+Node.js (if applicable): <!-- Replace with the version of Node.js your application is running on. -->
 
-[sdk-docs]: https://github.com/box/box-ts-sdk-generated/tree/main/docs
+[sdk-docs]: https://github.com/box/box-typescript-sdk-gen/tree/main/docs
 [api-docs]: https://developer.box.com/docs
 [dev-forums]: https://community.box.com/t5/Platform-and-Development-Forum/bd-p/DeveloperForum
-[github-repo]: https://github.com/box/box-ts-sdk-generated/search?type=Issues
+[github-repo]: https://github.com/box/box-typescript-sdk-gen/search?type=Issues

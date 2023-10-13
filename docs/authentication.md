@@ -317,3 +317,11 @@ const config = {
 };
 const oauth = new BoxOAuth({ config: config });
 ```
+
+# Setting as-user header
+
+Use the code below to set the as-user header for your current client
+
+```js
+client.networkSession!.setAsUserId('id');
+```

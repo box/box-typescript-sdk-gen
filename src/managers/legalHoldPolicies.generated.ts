@@ -28,7 +28,11 @@ export class GetLegalHoldPoliciesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPoliciesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetLegalHoldPoliciesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetLegalHoldPoliciesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -43,7 +47,11 @@ export class CreateLegalHoldPolicyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateLegalHoldPolicyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateLegalHoldPolicyHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateLegalHoldPolicyHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -51,7 +59,11 @@ export class GetLegalHoldPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -64,7 +76,11 @@ export class UpdateLegalHoldPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateLegalHoldPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -72,7 +88,11 @@ export class DeleteLegalHoldPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteLegalHoldPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

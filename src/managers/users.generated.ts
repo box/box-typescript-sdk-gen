@@ -43,7 +43,11 @@ export class GetUsersHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUsersHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUsersHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUsersHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -80,7 +84,11 @@ export class CreateUserHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateUserHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateUserHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateUserHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -91,7 +99,11 @@ export class GetUserMeHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUserMeHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUserMeHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUserMeHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -102,7 +114,11 @@ export class GetUserByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUserByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUserByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUserByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -145,7 +161,11 @@ export class UpdateUserByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateUserByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateUserByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateUserByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -157,7 +177,11 @@ export class DeleteUserByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteUserByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteUserByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteUserByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

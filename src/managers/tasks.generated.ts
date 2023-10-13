@@ -23,7 +23,11 @@ export class GetFileTasksHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileTasksHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileTasksHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileTasksHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -47,7 +51,11 @@ export class CreateTaskHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateTaskHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateTaskHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateTaskHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -55,7 +63,11 @@ export class GetTaskByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTaskByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTaskByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTaskByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -73,7 +85,11 @@ export class UpdateTaskByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateTaskByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateTaskByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateTaskByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -81,7 +97,11 @@ export class DeleteTaskByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteTaskByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteTaskByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteTaskByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

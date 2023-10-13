@@ -28,7 +28,11 @@ export class GetFileVersionsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileVersionsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileVersionsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -39,7 +43,11 @@ export class GetFileVersionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileVersionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileVersionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -50,7 +58,11 @@ export class UpdateFileVersionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileVersionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileVersionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileVersionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -59,7 +71,11 @@ export class DeleteFileVersionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileVersionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileVersionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileVersionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -75,7 +91,11 @@ export class PromoteFileVersionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: PromoteFileVersionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<PromoteFileVersionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<PromoteFileVersionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

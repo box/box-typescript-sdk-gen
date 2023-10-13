@@ -19,7 +19,11 @@ export class GetUserAvatarHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUserAvatarHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUserAvatarHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUserAvatarHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -32,7 +36,11 @@ export class CreateUserAvatarHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateUserAvatarHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateUserAvatarHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateUserAvatarHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -40,7 +48,11 @@ export class DeleteUserAvatarHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteUserAvatarHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteUserAvatarHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteUserAvatarHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

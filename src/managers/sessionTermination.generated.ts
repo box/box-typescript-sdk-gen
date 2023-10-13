@@ -24,7 +24,11 @@ export class CreateUserTerminateSessionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateUserTerminateSessionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateUserTerminateSessionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateUserTerminateSessionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +39,11 @@ export class CreateGroupTerminateSessionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateGroupTerminateSessionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateGroupTerminateSessionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateGroupTerminateSessionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

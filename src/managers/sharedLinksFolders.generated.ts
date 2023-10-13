@@ -25,7 +25,11 @@ export class GetSharedItemFoldersHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSharedItemFoldersHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSharedItemFoldersHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSharedItemFoldersHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -36,7 +40,11 @@ export class GetFolderGetSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderGetSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderGetSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderGetSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -66,7 +74,11 @@ export class UpdateFolderAddSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFolderAddSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFolderAddSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderAddSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -94,7 +106,11 @@ export class UpdateFolderUpdateSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFolderUpdateSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFolderUpdateSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderUpdateSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -109,7 +125,11 @@ export class UpdateFolderRemoveSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFolderRemoveSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFolderRemoveSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderRemoveSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -32,7 +32,11 @@ export class GetTermOfServicesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTermOfServicesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTermOfServicesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTermOfServicesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -51,7 +55,11 @@ export class CreateTermOfServiceHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateTermOfServiceHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateTermOfServiceHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateTermOfServiceHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -59,7 +67,11 @@ export class GetTermOfServiceByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTermOfServiceByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTermOfServiceByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTermOfServiceByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -74,7 +86,11 @@ export class UpdateTermOfServiceByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateTermOfServiceByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateTermOfServiceByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateTermOfServiceByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

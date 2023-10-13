@@ -21,7 +21,17 @@ export class GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg
+    fields:
+      | Omit<
+          GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -31,7 +41,17 @@ export class DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeaders
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg
+    fields:
+      | Omit<
+          DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -54,7 +74,17 @@ export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHead
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg
+    fields:
+      | Omit<
+          UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -78,7 +108,17 @@ export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateH
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg
+    fields:
+      | Omit<
+          UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -93,7 +133,17 @@ export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteH
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg
+    fields:
+      | Omit<
+          UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -140,7 +190,19 @@ export class CreateMetadataTemplateSchemaClassificationHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateMetadataTemplateSchemaClassificationHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          CreateMetadataTemplateSchemaClassificationHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            CreateMetadataTemplateSchemaClassificationHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

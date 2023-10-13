@@ -33,7 +33,11 @@ export class GetFolderTrashItemsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderTrashItemsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderTrashItemsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderTrashItemsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -27,7 +27,11 @@ export class GetTermOfServiceUserStatusesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTermOfServiceUserStatusesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTermOfServiceUserStatusesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTermOfServiceUserStatusesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -52,7 +56,11 @@ export class CreateTermOfServiceUserStatusHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateTermOfServiceUserStatusHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateTermOfServiceUserStatusHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateTermOfServiceUserStatusHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -63,7 +71,13 @@ export class UpdateTermOfServiceUserStatusByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateTermOfServiceUserStatusByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateTermOfServiceUserStatusByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<UpdateTermOfServiceUserStatusByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

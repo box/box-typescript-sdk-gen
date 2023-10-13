@@ -25,7 +25,11 @@ export class CreateZipDownloadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateZipDownloadHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateZipDownloadHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateZipDownloadHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -33,7 +37,11 @@ export class GetZipDownloadContentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetZipDownloadContentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetZipDownloadContentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetZipDownloadContentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -41,7 +49,11 @@ export class GetZipDownloadStatusHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetZipDownloadStatusHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetZipDownloadStatusHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetZipDownloadStatusHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

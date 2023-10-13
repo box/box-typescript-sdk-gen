@@ -31,7 +31,11 @@ export class GetStoragePolicyAssignmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetStoragePolicyAssignmentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetStoragePolicyAssignmentsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyAssignmentsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -55,7 +59,11 @@ export class CreateStoragePolicyAssignmentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateStoragePolicyAssignmentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateStoragePolicyAssignmentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateStoragePolicyAssignmentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -63,7 +71,11 @@ export class GetStoragePolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetStoragePolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -80,7 +92,13 @@ export class UpdateStoragePolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateStoragePolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<UpdateStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -88,7 +106,13 @@ export class DeleteStoragePolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteStoragePolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

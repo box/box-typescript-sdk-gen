@@ -29,7 +29,11 @@ export class TransferOwnedFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: TransferOwnedFolderHeadersArg) {
+  constructor(
+    fields:
+      | Omit<TransferOwnedFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<TransferOwnedFolderHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

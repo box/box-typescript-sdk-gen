@@ -26,7 +26,11 @@ export class GetFileByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -82,7 +86,11 @@ export class UpdateFileByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -91,7 +99,11 @@ export class DeleteFileByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -110,7 +122,11 @@ export class CopyFileHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CopyFileHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CopyFileHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CopyFileHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -125,7 +141,11 @@ export class GetFileThumbnailByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileThumbnailByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileThumbnailByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileThumbnailByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -26,7 +26,11 @@ export class GetWorkflowsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetWorkflowsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetWorkflowsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetWorkflowsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -62,7 +66,11 @@ export class CreateWorkflowStartHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateWorkflowStartHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateWorkflowStartHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateWorkflowStartHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

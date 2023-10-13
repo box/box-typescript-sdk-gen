@@ -38,7 +38,11 @@ export class GetFolderByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -94,7 +98,11 @@ export class UpdateFolderByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFolderByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFolderByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -106,7 +114,11 @@ export class DeleteFolderByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFolderByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFolderByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -130,7 +142,11 @@ export class GetFolderItemsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderItemsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderItemsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderItemsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -160,7 +176,11 @@ export class CreateFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFolderHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFolderHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -178,7 +198,11 @@ export class CopyFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CopyFolderHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CopyFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CopyFolderHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

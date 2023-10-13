@@ -23,7 +23,11 @@ export class GetRecentItemsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRecentItemsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRecentItemsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRecentItemsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

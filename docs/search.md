@@ -18,7 +18,16 @@ This operation is performed by calling function `createMetadataQueryExecuteRead`
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-queries-execute-read/).
 
-_Currently we don't have an example for calling `createMetadataQueryExecuteRead` in integration tests_
+<!-- sample post_metadata_queries_execute_read -->
+
+```ts
+await client.search.createMetadataQueryExecuteRead({
+  ancestorFolderId: '0',
+  from: searchFrom,
+  query: 'testName >= :value',
+  queryParams: { ['value']: '0.0' },
+} satisfies MetadataQuery);
+```
 
 ### Arguments
 
@@ -42,7 +51,14 @@ This operation is performed by calling function `getMetadataQueryIndices`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-query-indices/).
 
-_Currently we don't have an example for calling `getMetadataQueryIndices` in integration tests_
+<!-- sample get_metadata_query_indices -->
+
+```ts
+await client.search.getMetadataQueryIndices({
+  scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsArgScopeField,
+  templateKey: templateKey,
+} satisfies GetMetadataQueryIndicesQueryParamsArg);
+```
 
 ### Arguments
 
@@ -67,7 +83,16 @@ This operation is performed by calling function `getSearch`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-search/).
 
-_Currently we don't have an example for calling `getSearch` in integration tests_
+<!-- sample get_search -->
+
+```ts
+await client.search.getSearch({
+  ancestorFolderIds: ['0' as ''],
+  query: keyword,
+  trashContent: 'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
+  includeRecentSharedLinks: true,
+} satisfies GetSearchQueryParamsArg);
+```
 
 ### Arguments
 

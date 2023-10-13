@@ -133,6 +133,9 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,
+      ...(options.networkSession?.asUserId && {
+        'As-User': options.networkSession!.asUserId!,
+      }),
     },
     body: requestBody,
   };

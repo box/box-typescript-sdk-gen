@@ -44,7 +44,11 @@ export class GetIntegrationMappingSlackHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetIntegrationMappingSlackHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetIntegrationMappingSlackHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetIntegrationMappingSlackHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -52,7 +56,11 @@ export class CreateIntegrationMappingSlackHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateIntegrationMappingSlackHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateIntegrationMappingSlackHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateIntegrationMappingSlackHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -64,7 +72,13 @@ export class UpdateIntegrationMappingSlackByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateIntegrationMappingSlackByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateIntegrationMappingSlackByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<UpdateIntegrationMappingSlackByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -72,7 +86,13 @@ export class DeleteIntegrationMappingSlackByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteIntegrationMappingSlackByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteIntegrationMappingSlackByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteIntegrationMappingSlackByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

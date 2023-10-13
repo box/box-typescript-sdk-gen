@@ -26,7 +26,11 @@ export class GetCollectionsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollectionsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollectionsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetCollectionsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -39,7 +43,11 @@ export class GetCollectionItemsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollectionItemsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollectionItemsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetCollectionItemsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

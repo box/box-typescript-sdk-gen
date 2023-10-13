@@ -1,4 +1,15 @@
-export class NetworkSession {}
+export class NetworkSession {
+  asUserId?: string;
+
+  constructor(fields: Omit<NetworkSession, 'setAsUser'>) {
+    Object.assign(this, fields);
+  }
+
+  // To be rewritten as immutable after making client immutable
+  setAsUser(asUserId: string) {
+    this.asUserId = asUserId;
+  }
+}
 
 // Retry intervals are between 50% and 150% of the exponentially increasing base amount
 const RETRY_RANDOMIZATION_FACTOR = 0.5;

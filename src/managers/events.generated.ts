@@ -148,7 +148,11 @@ export class GetEventsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetEventsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetEventsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetEventsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -156,7 +160,11 @@ export class GetEventsWithLongPollingHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetEventsWithLongPollingHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetEventsWithLongPollingHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetEventsWithLongPollingHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

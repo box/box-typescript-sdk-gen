@@ -25,7 +25,11 @@ export class GetFileRequestByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileRequestByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileRequestByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileRequestByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +38,11 @@ export class UpdateFileRequestByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileRequestByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileRequestByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileRequestByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -42,7 +50,11 @@ export class DeleteFileRequestByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileRequestByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileRequestByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileRequestByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -50,7 +62,11 @@ export class CreateFileRequestCopyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileRequestCopyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileRequestCopyHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileRequestCopyHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

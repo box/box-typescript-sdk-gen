@@ -10,8 +10,8 @@ import { JwtConfig } from '../jwtAuth.js';
 import { BoxCcgAuth } from '../ccgAuth.js';
 import { CcgConfig } from '../ccgAuth.js';
 import { BoxDeveloperTokenAuth } from '../developerTokenAuth.generated.js';
-import { BoxOAuth } from '../oauth.js';
-import { OAuthConfig } from '../oauth.js';
+import { BoxOAuth } from '../oauth.generated.js';
+import { OAuthConfig } from '../oauth.generated.js';
 import { UserFull } from '../schemas.generated.js';
 test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   const userId: any = getEnvVar('USER_ID');

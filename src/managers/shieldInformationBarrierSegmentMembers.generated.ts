@@ -26,7 +26,19 @@ export class GetShieldInformationBarrierSegmentMemberByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarrierSegmentMemberByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          GetShieldInformationBarrierSegmentMemberByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetShieldInformationBarrierSegmentMemberByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +47,17 @@ export class DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg
+    fields:
+      | Omit<
+          DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -49,7 +71,19 @@ export class GetShieldInformationBarrierSegmentMembersHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarrierSegmentMembersHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          GetShieldInformationBarrierSegmentMembersHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetShieldInformationBarrierSegmentMembersHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -71,7 +105,19 @@ export class CreateShieldInformationBarrierSegmentMemberHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateShieldInformationBarrierSegmentMemberHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          CreateShieldInformationBarrierSegmentMemberHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            CreateShieldInformationBarrierSegmentMemberHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

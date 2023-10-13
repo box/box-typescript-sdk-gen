@@ -23,7 +23,13 @@ export class GetFileMetadataGlobalBoxSkillsCardsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileMetadataGlobalBoxSkillsCardsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileMetadataGlobalBoxSkillsCardsHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetFileMetadataGlobalBoxSkillsCardsHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +40,13 @@ export class CreateFileMetadataGlobalBoxSkillsCardHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileMetadataGlobalBoxSkillsCardHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -49,7 +61,13 @@ export class UpdateFileMetadataGlobalBoxSkillsCardHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileMetadataGlobalBoxSkillsCardHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<UpdateFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -57,7 +75,13 @@ export class DeleteFileMetadataGlobalBoxSkillsCardHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteFileMetadataGlobalBoxSkillsCardHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -96,7 +120,11 @@ export class UpdateSkillInvocationByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateSkillInvocationByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateSkillInvocationByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateSkillInvocationByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -25,7 +25,11 @@ export class GetSharedItemsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSharedItemsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSharedItemsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSharedItemsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -36,7 +40,11 @@ export class GetFileGetSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileGetSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileGetSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileGetSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -66,7 +74,11 @@ export class UpdateFileAddSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileAddSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileAddSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileAddSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -94,7 +106,11 @@ export class UpdateFileUpdateSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileUpdateSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileUpdateSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileUpdateSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -109,7 +125,11 @@ export class UpdateFileRemoveSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileRemoveSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileRemoveSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileRemoveSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

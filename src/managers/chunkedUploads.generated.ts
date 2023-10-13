@@ -55,7 +55,11 @@ export class CreateFileUploadSessionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileUploadSessionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -67,7 +71,13 @@ export class CreateFileUploadSessionForExistingFileHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionForExistingFileHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionForExistingFileHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateFileUploadSessionForExistingFileHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -75,7 +85,11 @@ export class GetFileUploadSessionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileUploadSessionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileUploadSessionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileUploadSessionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -85,7 +99,11 @@ export class UploadFilePartHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UploadFilePartHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UploadFilePartHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UploadFilePartHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -93,7 +111,11 @@ export class DeleteFileUploadSessionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileUploadSessionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileUploadSessionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileUploadSessionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -105,7 +127,11 @@ export class GetFileUploadSessionPartsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileUploadSessionPartsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileUploadSessionPartsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileUploadSessionPartsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -119,7 +145,11 @@ export class CreateFileUploadSessionCommitHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionCommitHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionCommitHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileUploadSessionCommitHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

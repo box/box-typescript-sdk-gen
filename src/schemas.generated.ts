@@ -2140,6 +2140,7 @@ export interface Collaboration {
   readonly createdBy?: UserCollaborations;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
+  readonly isAccessOnly?: boolean;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }
 export type CollaborationsOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -2524,6 +2525,7 @@ export type SignRequestSignerSignerDecisionFieldTypeField =
 export interface SignRequestSignerSignerDecisionField {
   readonly type?: SignRequestSignerSignerDecisionFieldTypeField;
   readonly finalizedAt?: string;
+  readonly additionalInfo?: string;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
   readonly hasViewedDocument?: boolean;
@@ -15735,6 +15737,7 @@ export function serializeCollaboration(val: Collaboration): Json {
         : serializeUserCollaborations(val.createdBy),
     ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
     ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
         ? void 0
@@ -15773,6 +15776,8 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.created_at == void 0 ? void 0 : val.created_at;
   const modifiedAt: undefined | string =
     val.modified_at == void 0 ? void 0 : val.modified_at;
+  const isAccessOnly: undefined | boolean =
+    val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const acceptanceRequirementsStatus:
     | undefined
     | CollaborationAcceptanceRequirementsStatusField =
@@ -15794,6 +15799,7 @@ export function deserializeCollaboration(val: any): Collaboration {
     createdBy: createdBy,
     createdAt: createdAt,
     modifiedAt: modifiedAt,
+    isAccessOnly: isAccessOnly,
     acceptanceRequirementsStatus: acceptanceRequirementsStatus,
   } satisfies Collaboration;
 }
@@ -18208,6 +18214,8 @@ export function serializeSignRequestSignerSignerDecisionField(
         ? void 0
         : serializeSignRequestSignerSignerDecisionFieldTypeField(val.type),
     ['finalized_at']: val.finalizedAt == void 0 ? void 0 : val.finalizedAt,
+    ['additional_info']:
+      val.additionalInfo == void 0 ? void 0 : val.additionalInfo,
   };
 }
 export function deserializeSignRequestSignerSignerDecisionField(
@@ -18219,9 +18227,12 @@ export function deserializeSignRequestSignerSignerDecisionField(
       : deserializeSignRequestSignerSignerDecisionFieldTypeField(val.type);
   const finalizedAt: undefined | string =
     val.finalized_at == void 0 ? void 0 : val.finalized_at;
+  const additionalInfo: undefined | string =
+    val.additional_info == void 0 ? void 0 : val.additional_info;
   return {
     type: type,
     finalizedAt: finalizedAt,
+    additionalInfo: additionalInfo,
   } satisfies SignRequestSignerSignerDecisionField;
 }
 export function serializeSignRequestSigner(val: SignRequestSigner): Json {

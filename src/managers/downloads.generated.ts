@@ -19,7 +19,11 @@ export class DownloadFileHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DownloadFileHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DownloadFileHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DownloadFileHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

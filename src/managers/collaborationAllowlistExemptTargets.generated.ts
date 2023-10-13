@@ -26,7 +26,13 @@ export class GetCollaborationWhitelistExemptTargetsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationWhitelistExemptTargetsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollaborationWhitelistExemptTargetsHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetCollaborationWhitelistExemptTargetsHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -40,7 +46,16 @@ export class CreateCollaborationWhitelistExemptTargetHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateCollaborationWhitelistExemptTargetHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateCollaborationWhitelistExemptTargetHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<
+            CreateCollaborationWhitelistExemptTargetHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -48,7 +63,19 @@ export class GetCollaborationWhitelistExemptTargetByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationWhitelistExemptTargetByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          GetCollaborationWhitelistExemptTargetByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetCollaborationWhitelistExemptTargetByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -56,7 +83,19 @@ export class DeleteCollaborationWhitelistExemptTargetByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteCollaborationWhitelistExemptTargetByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          DeleteCollaborationWhitelistExemptTargetByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            DeleteCollaborationWhitelistExemptTargetByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

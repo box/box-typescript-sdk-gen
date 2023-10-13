@@ -22,7 +22,11 @@ export class GetDevicePinnerByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetDevicePinnerByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetDevicePinnerByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetDevicePinnerByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -30,7 +34,11 @@ export class DeleteDevicePinnerByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteDevicePinnerByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteDevicePinnerByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteDevicePinnerByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -46,7 +54,11 @@ export class GetEnterpriseDevicePinnersHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetEnterpriseDevicePinnersHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetEnterpriseDevicePinnersHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetEnterpriseDevicePinnersHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

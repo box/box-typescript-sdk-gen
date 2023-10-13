@@ -31,7 +31,11 @@ export class GetFileCommentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileCommentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileCommentsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileCommentsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -42,7 +46,11 @@ export class GetCommentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCommentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCommentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetCommentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -56,7 +64,11 @@ export class UpdateCommentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateCommentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateCommentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateCommentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -64,7 +76,11 @@ export class DeleteCommentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteCommentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteCommentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteCommentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -85,7 +101,11 @@ export class CreateCommentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateCommentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateCommentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateCommentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

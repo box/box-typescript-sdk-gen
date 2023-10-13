@@ -37,7 +37,11 @@ export class GetRetentionPoliciesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPoliciesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPoliciesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPoliciesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -65,7 +69,11 @@ export class CreateRetentionPolicyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateRetentionPolicyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateRetentionPolicyHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateRetentionPolicyHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -76,17 +84,18 @@ export class GetRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField =
-  | 'permanently_delete'
-  | 'remove_retention';
 export interface UpdateRetentionPolicyByIdRequestBodyArg {
   readonly policyName?: string;
   readonly description?: string;
-  readonly dispositionAction?: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
+  readonly dispositionAction?: string;
   readonly retentionType?: string;
   readonly retentionLength?: string;
   readonly status?: string;
@@ -98,7 +107,11 @@ export class UpdateRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -106,7 +119,11 @@ export class DeleteRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -431,25 +448,6 @@ export function deserializeCreateRetentionPolicyRequestBodyArg(
     customNotificationRecipients: customNotificationRecipients,
   } satisfies CreateRetentionPolicyRequestBodyArg;
 }
-export function serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-  val: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField
-): Json {
-  return val;
-}
-export function deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-  val: any
-): UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField"';
-  }
-  if (val == 'permanently_delete') {
-    return 'permanently_delete';
-  }
-  if (val == 'remove_retention') {
-    return 'remove_retention';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
 export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
   val: UpdateRetentionPolicyByIdRequestBodyArg
 ): Json {
@@ -457,11 +455,7 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['disposition_action']:
-      val.dispositionAction == void 0
-        ? void 0
-        : serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-            val.dispositionAction
-          ),
+      val.dispositionAction == void 0 ? void 0 : val.dispositionAction,
     ['retention_type']:
       val.retentionType == void 0 ? void 0 : val.retentionType,
     ['retention_length']:
@@ -490,14 +484,8 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
     val.policy_name == void 0 ? void 0 : val.policy_name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const dispositionAction:
-    | undefined
-    | UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField =
-    val.disposition_action == void 0
-      ? void 0
-      : deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-          val.disposition_action
-        );
+  const dispositionAction: undefined | string =
+    val.disposition_action == void 0 ? void 0 : val.disposition_action;
   const retentionType: undefined | string =
     val.retention_type == void 0 ? void 0 : val.retention_type;
   const retentionLength: undefined | string =
