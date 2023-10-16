@@ -1,11 +1,14 @@
-import { serializeShieldInformationBarrierReport } from '../schemas.generated.js';
-import { deserializeShieldInformationBarrierReport } from '../schemas.generated.js';
+import { serializeShieldInformationBarrierReports } from '../schemas.generated.js';
+import { deserializeShieldInformationBarrierReports } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeShieldInformationBarrierReport } from '../schemas.generated.js';
+import { deserializeShieldInformationBarrierReport } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierReference } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierReference } from '../schemas.generated.js';
-import { ShieldInformationBarrierReport } from '../schemas.generated.js';
+import { ShieldInformationBarrierReports } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { ShieldInformationBarrierReport } from '../schemas.generated.js';
 import { ShieldInformationBarrierReference } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
@@ -15,9 +18,9 @@ import { ByteStream } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
+import { serializeJson } from '../json.js';
 export interface GetShieldInformationBarrierReportsQueryParamsArg {
   readonly shieldInformationBarrierId: string;
   readonly marker?: string;
@@ -83,7 +86,7 @@ export class ShieldInformationBarrierReportsManager {
     headers: GetShieldInformationBarrierReportsHeadersArg = new GetShieldInformationBarrierReportsHeadersArg(
       {}
     )
-  ): Promise<undefined> {
+  ): Promise<ShieldInformationBarrierReports> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -109,7 +112,9 @@ export class ShieldInformationBarrierReportsManager {
         networkSession: this.networkSession,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return void 0;
+    return deserializeShieldInformationBarrierReports(
+      deserializeJson(response.text)
+    );
   }
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,

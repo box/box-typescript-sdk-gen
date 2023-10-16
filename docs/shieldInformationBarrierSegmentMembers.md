@@ -77,7 +77,7 @@ _Currently we don't have an example for calling `getShieldInformationBarrierSegm
 
 ### Returns
 
-This function returns a value of type `undefined`.
+This function returns a value of type `ShieldInformationBarrierSegmentMembers`.
 
 Returns a paginated list of
 shield information barrier segment member objects.
@@ -104,4 +104,4 @@ _Currently we don't have an example for calling `createShieldInformationBarrierS
 
 This function returns a value of type `ShieldInformationBarrierSegmentMember`.
 
-Returns a new shield information barrier segment Member object.
+Returns a new shield information barrier segment member object.

@@ -2,12 +2,15 @@ import { serializeShieldInformationBarrierSegmentMember } from '../schemas.gener
 import { deserializeShieldInformationBarrierSegmentMember } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
+import { deserializeShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { serializeUserBase } from '../schemas.generated.js';
 import { deserializeUserBase } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegmentMember } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { ShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { UserBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
@@ -190,7 +193,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     headers: GetShieldInformationBarrierSegmentMembersHeadersArg = new GetShieldInformationBarrierSegmentMembersHeadersArg(
       {}
     )
-  ): Promise<undefined> {
+  ): Promise<ShieldInformationBarrierSegmentMembers> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -216,7 +219,9 @@ export class ShieldInformationBarrierSegmentMembersManager {
         networkSession: this.networkSession,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return void 0;
+    return deserializeShieldInformationBarrierSegmentMembers(
+      deserializeJson(response.text)
+    );
   }
   async createShieldInformationBarrierSegmentMember(
     requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg,

@@ -6,10 +6,13 @@ import { serializeRetentionPolicy } from '../schemas.generated.js';
 import { deserializeRetentionPolicy } from '../schemas.generated.js';
 import { serializeUserMini } from '../schemas.generated.js';
 import { deserializeUserMini } from '../schemas.generated.js';
+import { serializeUserBase } from '../schemas.generated.js';
+import { deserializeUserBase } from '../schemas.generated.js';
 import { RetentionPolicies } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { RetentionPolicy } from '../schemas.generated.js';
 import { UserMini } from '../schemas.generated.js';
+import { UserBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -53,7 +56,7 @@ export type CreateRetentionPolicyRequestBodyArgDispositionActionField =
   | 'remove_retention';
 export type CreateRetentionPolicyRequestBodyArgRetentionTypeField =
   | 'modifiable'
-  | 'non-modifiable';
+  | 'non_modifiable';
 export interface CreateRetentionPolicyRequestBodyArg {
   readonly policyName: string;
   readonly description?: string;
@@ -101,7 +104,7 @@ export interface UpdateRetentionPolicyByIdRequestBodyArg {
   readonly status?: string;
   readonly canOwnerExtendRetention?: boolean;
   readonly areOwnersNotified?: boolean;
-  readonly customNotificationRecipients?: readonly UserMini[];
+  readonly customNotificationRecipients?: readonly UserBase[];
 }
 export class UpdateRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
@@ -355,8 +358,8 @@ export function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField
   if (val == 'modifiable') {
     return 'modifiable';
   }
-  if (val == 'non-modifiable') {
-    return 'non-modifiable';
+  if (val == 'non_modifiable') {
+    return 'non_modifiable';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -471,9 +474,9 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
       val.customNotificationRecipients == void 0
         ? void 0
         : (val.customNotificationRecipients?.map(function (
-            item: UserMini
+            item: UserBase
           ): any {
-            return serializeUserMini(item);
+            return serializeUserBase(item);
           }) as readonly any[]),
   };
 }
@@ -497,12 +500,12 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
       : val.can_owner_extend_retention;
   const areOwnersNotified: undefined | boolean =
     val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
-  const customNotificationRecipients: undefined | readonly UserMini[] =
+  const customNotificationRecipients: undefined | readonly UserBase[] =
     val.custom_notification_recipients == void 0
       ? void 0
       : isJson(val.custom_notification_recipients, 'array')
       ? (val.custom_notification_recipients?.map(function (itm: Json): any {
-          return deserializeUserMini(itm);
+          return deserializeUserBase(itm);
         }) as readonly any[])
       : [];
   return {

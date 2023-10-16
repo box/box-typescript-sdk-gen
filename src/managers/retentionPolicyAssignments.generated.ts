@@ -48,7 +48,7 @@ export type CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField 
   'enterprise' | 'folder' | 'metadata_template';
 export interface CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
   readonly type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
-  readonly id: string;
+  readonly id?: string;
 }
 export interface CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
   readonly field?: string;
@@ -405,7 +405,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFi
       serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
         val.type
       ),
-    ['id']: val.id,
+    ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
@@ -415,7 +415,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignTo
     deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
       val.type
     );
-  const id: string = val.id;
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,

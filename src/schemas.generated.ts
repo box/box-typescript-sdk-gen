@@ -302,8 +302,8 @@ export interface FolderBase {
   readonly type: FolderBaseTypeField;
 }
 export type FolderMini = FolderBase & {
-  readonly name?: string;
   readonly sequenceId?: string;
+  readonly name?: string;
 };
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
 export interface IntegrationMappingBase {
@@ -531,11 +531,6 @@ export interface RetentionPolicyAssignmentBase {
   readonly id: string;
   readonly type: RetentionPolicyAssignmentBaseTypeField;
 }
-export interface RetentionPolicyAssignments {
-  readonly entries?: readonly RetentionPolicyAssignmentBase[];
-  readonly limit?: number;
-  readonly nextMarker?: string;
-}
 export type ShieldInformationBarrierBaseTypeField =
   'shield_information_barrier';
 export interface ShieldInformationBarrierBase {
@@ -635,11 +630,6 @@ export type TermsOfService = TermsOfServiceBase & {
 export interface TermsOfServices {
   readonly totalCount?: number;
   readonly entries?: readonly TermsOfService[];
-}
-export interface SignTemplates {
-  readonly limit?: number;
-  readonly nextMarker?: string;
-  readonly prevMarker?: string;
 }
 export interface UploadPartMini {
   readonly partId?: string;
@@ -1039,8 +1029,13 @@ export interface RetentionPolicyAssignment {
   readonly assignedAt?: string;
   readonly startDateField?: string;
 }
+export interface RetentionPolicyAssignments {
+  readonly entries?: readonly RetentionPolicyAssignment[];
+  readonly limit?: number;
+  readonly nextMarker?: string;
+}
 export type RetentionPolicyPolicyTypeField = 'finite' | 'indefinite';
-export type RetentionPolicyRetentionTypeField = 'modifiable' | 'non-modifiable';
+export type RetentionPolicyRetentionTypeField = 'modifiable' | 'non_modifiable';
 export type RetentionPolicyStatusField = 'active' | 'retired';
 export interface RetentionPolicyAssignmentCountsField {
   readonly enterprise?: number;
@@ -1427,6 +1422,11 @@ export type ShieldInformationBarrierSegmentRestriction =
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
   };
+export interface ShieldInformationBarrierSegmentRestrictions {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly entries?: readonly ShieldInformationBarrierSegmentRestriction[];
+}
 export type ShieldInformationBarrierSegmentMemberMini =
   ShieldInformationBarrierSegmentMemberBase & {
     readonly user?: UserBase;
@@ -1446,6 +1446,11 @@ export type ShieldInformationBarrierSegmentMember =
     readonly updatedAt?: string;
     readonly updatedBy?: UserBase;
   };
+export interface ShieldInformationBarrierSegmentMembers {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly entries?: readonly ShieldInformationBarrierSegmentMember[];
+}
 export type ShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegment {
@@ -1458,6 +1463,11 @@ export interface ShieldInformationBarrierSegment {
   readonly createdBy?: UserBase;
   readonly updatedAt?: string;
   readonly updatedBy?: UserBase;
+}
+export interface ShieldInformationBarrierSegments {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly entries?: readonly ShieldInformationBarrierSegment[];
 }
 export type ShieldInformationBarrierTypeField = 'shield_information_barrier';
 export type ShieldInformationBarrierStatusField =
@@ -1477,6 +1487,11 @@ export interface ShieldInformationBarrier {
   readonly updatedBy?: UserBase;
   readonly enabledAt?: string;
   readonly enabledBy?: UserBase;
+}
+export interface ShieldInformationBarriers {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly entries?: readonly ShieldInformationBarrier[];
 }
 export interface FolderLockLockedOperationsField {
   readonly move: boolean;
@@ -2135,12 +2150,12 @@ export interface Collaboration {
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
   readonly expiresAt?: string;
+  readonly isAccessOnly?: boolean;
   readonly status?: CollaborationStatusField;
   readonly acknowledgedAt?: string;
   readonly createdBy?: UserCollaborations;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
-  readonly isAccessOnly?: boolean;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }
 export type CollaborationsOrderFieldDirectionField = 'ASC' | 'DESC';
@@ -2343,8 +2358,7 @@ export type IntegrationMapping = IntegrationMappingBase & {
 };
 export interface IntegrationMappings {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
   readonly entries?: readonly IntegrationMapping[];
 }
 export type IntegrationMappingBoxItemSlackTypeField = 'folder';
@@ -2478,7 +2492,7 @@ export type SignRequestCreateSignerRoleField =
   | 'approver'
   | 'final_copy_reader';
 export interface SignRequestCreateSigner {
-  readonly email: string;
+  readonly email?: string;
   readonly role?: SignRequestCreateSignerRoleField;
   readonly isInPerson?: boolean;
   readonly order?: number;
@@ -2499,21 +2513,25 @@ export type SignRequestSignerInputTypeField =
   | 'signature'
   | 'date'
   | 'text'
-  | 'checkbox';
+  | 'checkbox'
+  | 'radio'
+  | 'dropdown';
 export type SignRequestSignerInputContentTypeField =
+  | 'signature'
   | 'initial'
   | 'stamp'
-  | 'signature'
-  | 'company'
-  | 'title'
-  | 'email'
+  | 'date'
+  | 'checkbox'
+  | 'text'
   | 'full_name'
   | 'first_name'
   | 'last_name'
-  | 'text'
-  | 'date'
-  | 'checkbox'
-  | 'attachment';
+  | 'company'
+  | 'title'
+  | 'email'
+  | 'attachment'
+  | 'radio'
+  | 'dropdown';
 export type SignRequestSignerInput = SignRequestPrefillTag & {
   readonly type?: SignRequestSignerInputTypeField;
   readonly contentType?: SignRequestSignerInputContentTypeField;
@@ -2582,12 +2600,16 @@ export type SignRequest = SignRequestBase & {
 };
 export interface SignRequests {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
   readonly entries?: readonly SignRequest[];
 }
+export type SignRequestCreateRequestSignatureColorField =
+  | 'blue'
+  | 'black'
+  | 'red';
 export type SignRequestCreateRequest = SignRequestBase & {
   readonly sourceFiles?: readonly FileBase[];
+  readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
   readonly signers: readonly SignRequestCreateSigner[];
 };
 export type TemplateSignerInputTypeField =
@@ -2694,6 +2716,12 @@ export interface SignTemplate {
   readonly readySignLink?: SignTemplateReadySignLinkField;
   readonly customBranding?: SignTemplateCustomBrandingField;
 }
+export interface SignTemplates {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
+  readonly entries?: readonly SignTemplate[];
+}
 export interface ShieldInformationBarrierReportDetailsDetailsField {
   readonly folderId?: string;
 }
@@ -2714,6 +2742,11 @@ export type ShieldInformationBarrierReport =
     readonly createdBy?: UserBase;
     readonly updatedAt?: string;
   };
+export interface ShieldInformationBarrierReports {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly entries?: readonly ShieldInformationBarrierReport[];
+}
 export type TrackingCodeTypeField = 'tracking_code';
 export interface TrackingCode {
   readonly type?: TrackingCodeTypeField;
@@ -4692,21 +4725,21 @@ export function serializeFolderMini(val: FolderMini): Json {
   return {
     ...base,
     ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
       ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
+      ['name']: val.name == void 0 ? void 0 : val.name,
     },
   };
 }
 export function deserializeFolderMini(val: any): FolderMini {
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const id: string = val.id;
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
   return {
-    name: name,
     sequenceId: sequenceId,
+    name: name,
     id: id,
     etag: etag,
     type: type,
@@ -6251,42 +6284,6 @@ export function deserializeRetentionPolicyAssignmentBase(
     deserializeRetentionPolicyAssignmentBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
 }
-export function serializeRetentionPolicyAssignments(
-  val: RetentionPolicyAssignments
-): Json {
-  return {
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries?.map(function (
-            item: RetentionPolicyAssignmentBase
-          ): any {
-            return serializeRetentionPolicyAssignmentBase(item);
-          }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-  };
-}
-export function deserializeRetentionPolicyAssignments(
-  val: any
-): RetentionPolicyAssignments {
-  const entries: undefined | readonly RetentionPolicyAssignmentBase[] =
-    val.entries == void 0
-      ? void 0
-      : isJson(val.entries, 'array')
-      ? (val.entries?.map(function (itm: Json): any {
-          return deserializeRetentionPolicyAssignmentBase(itm);
-        }) as readonly any[])
-      : [];
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | string =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  return {
-    entries: entries,
-    limit: limit,
-    nextMarker: nextMarker,
-  } satisfies RetentionPolicyAssignments;
-}
 export function serializeShieldInformationBarrierBaseTypeField(
   val: ShieldInformationBarrierBaseTypeField
 ): Json {
@@ -6987,25 +6984,6 @@ export function deserializeTermsOfServices(val: any): TermsOfServices {
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies TermsOfServices;
-}
-export function serializeSignTemplates(val: SignTemplates): Json {
-  return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
-  };
-}
-export function deserializeSignTemplates(val: any): SignTemplates {
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | string =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | string =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
-  return {
-    limit: limit,
-    nextMarker: nextMarker,
-    prevMarker: prevMarker,
-  } satisfies SignTemplates;
 }
 export function serializeUploadPartMini(val: UploadPartMini): Json {
   return {
@@ -9278,6 +9256,40 @@ export function deserializeRetentionPolicyAssignment(
     startDateField: startDateField,
   } satisfies RetentionPolicyAssignment;
 }
+export function serializeRetentionPolicyAssignments(
+  val: RetentionPolicyAssignments
+): Json {
+  return {
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (item: RetentionPolicyAssignment): any {
+            return serializeRetentionPolicyAssignment(item);
+          }) as readonly any[]),
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+  };
+}
+export function deserializeRetentionPolicyAssignments(
+  val: any
+): RetentionPolicyAssignments {
+  const entries: undefined | readonly RetentionPolicyAssignment[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeRetentionPolicyAssignment(itm);
+        }) as readonly any[])
+      : [];
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  return {
+    entries: entries,
+    limit: limit,
+    nextMarker: nextMarker,
+  } satisfies RetentionPolicyAssignments;
+}
 export function serializeRetentionPolicyPolicyTypeField(
   val: RetentionPolicyPolicyTypeField
 ): Json {
@@ -9311,8 +9323,8 @@ export function deserializeRetentionPolicyRetentionTypeField(
   if (val == 'modifiable') {
     return 'modifiable';
   }
-  if (val == 'non-modifiable') {
-    return 'non-modifiable';
+  if (val == 'non_modifiable') {
+    return 'non_modifiable';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -11885,6 +11897,44 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
     id: id,
   } satisfies ShieldInformationBarrierSegmentRestriction;
 }
+export function serializeShieldInformationBarrierSegmentRestrictions(
+  val: ShieldInformationBarrierSegmentRestrictions
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (
+            item: ShieldInformationBarrierSegmentRestriction
+          ): any {
+            return serializeShieldInformationBarrierSegmentRestriction(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeShieldInformationBarrierSegmentRestrictions(
+  val: any
+): ShieldInformationBarrierSegmentRestrictions {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const entries:
+    | undefined
+    | readonly ShieldInformationBarrierSegmentRestriction[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeShieldInformationBarrierSegmentRestriction(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    entries: entries,
+  } satisfies ShieldInformationBarrierSegmentRestrictions;
+}
 export function serializeShieldInformationBarrierSegmentMemberMini(
   val: ShieldInformationBarrierSegmentMemberMini
 ): Json {
@@ -12030,6 +12080,42 @@ export function deserializeShieldInformationBarrierSegmentMember(
     type: type,
   } satisfies ShieldInformationBarrierSegmentMember;
 }
+export function serializeShieldInformationBarrierSegmentMembers(
+  val: ShieldInformationBarrierSegmentMembers
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (
+            item: ShieldInformationBarrierSegmentMember
+          ): any {
+            return serializeShieldInformationBarrierSegmentMember(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeShieldInformationBarrierSegmentMembers(
+  val: any
+): ShieldInformationBarrierSegmentMembers {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const entries: undefined | readonly ShieldInformationBarrierSegmentMember[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeShieldInformationBarrierSegmentMember(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    entries: entries,
+  } satisfies ShieldInformationBarrierSegmentMembers;
+}
 export function serializeShieldInformationBarrierSegmentTypeField(
   val: ShieldInformationBarrierSegmentTypeField
 ): Json {
@@ -12103,6 +12189,42 @@ export function deserializeShieldInformationBarrierSegment(
     updatedAt: updatedAt,
     updatedBy: updatedBy,
   } satisfies ShieldInformationBarrierSegment;
+}
+export function serializeShieldInformationBarrierSegments(
+  val: ShieldInformationBarrierSegments
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (
+            item: ShieldInformationBarrierSegment
+          ): any {
+            return serializeShieldInformationBarrierSegment(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeShieldInformationBarrierSegments(
+  val: any
+): ShieldInformationBarrierSegments {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const entries: undefined | readonly ShieldInformationBarrierSegment[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeShieldInformationBarrierSegment(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    entries: entries,
+  } satisfies ShieldInformationBarrierSegments;
 }
 export function serializeShieldInformationBarrierTypeField(
   val: ShieldInformationBarrierTypeField
@@ -12216,6 +12338,40 @@ export function deserializeShieldInformationBarrier(
     enabledAt: enabledAt,
     enabledBy: enabledBy,
   } satisfies ShieldInformationBarrier;
+}
+export function serializeShieldInformationBarriers(
+  val: ShieldInformationBarriers
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (item: ShieldInformationBarrier): any {
+            return serializeShieldInformationBarrier(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeShieldInformationBarriers(
+  val: any
+): ShieldInformationBarriers {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const entries: undefined | readonly ShieldInformationBarrier[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeShieldInformationBarrier(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    entries: entries,
+  } satisfies ShieldInformationBarriers;
 }
 export function serializeFolderLockLockedOperationsField(
   val: FolderLockLockedOperationsField
@@ -13154,9 +13310,9 @@ export function deserializeFolder(val: any): Folder {
     val.item_collection == void 0
       ? void 0
       : deserializeItems(val.item_collection);
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const id: string = val.id;
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
@@ -13178,8 +13334,8 @@ export function deserializeFolder(val: any): Folder {
     parent: parent,
     itemStatus: itemStatus,
     itemCollection: itemCollection,
-    name: name,
     sequenceId: sequenceId,
+    name: name,
     id: id,
     etag: etag,
     type: type,
@@ -14678,9 +14834,9 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.item_collection == void 0
       ? void 0
       : deserializeItems(val.item_collection);
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const id: string = val.id;
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
@@ -14717,8 +14873,8 @@ export function deserializeFolderFull(val: any): FolderFull {
     parent: parent,
     itemStatus: itemStatus,
     itemCollection: itemCollection,
-    name: name,
     sequenceId: sequenceId,
+    name: name,
     id: id,
     etag: etag,
     type: type,
@@ -15725,6 +15881,7 @@ export function serializeCollaboration(val: Collaboration): Json {
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
     ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['status']:
       val.status == void 0
         ? void 0
@@ -15737,7 +15894,6 @@ export function serializeCollaboration(val: Collaboration): Json {
         : serializeUserCollaborations(val.createdBy),
     ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
     ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
         ? void 0
@@ -15762,6 +15918,8 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
   const expiresAt: undefined | string =
     val.expires_at == void 0 ? void 0 : val.expires_at;
+  const isAccessOnly: undefined | boolean =
+    val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const status: undefined | CollaborationStatusField =
     val.status == void 0
       ? void 0
@@ -15776,8 +15934,6 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.created_at == void 0 ? void 0 : val.created_at;
   const modifiedAt: undefined | string =
     val.modified_at == void 0 ? void 0 : val.modified_at;
-  const isAccessOnly: undefined | boolean =
-    val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const acceptanceRequirementsStatus:
     | undefined
     | CollaborationAcceptanceRequirementsStatusField =
@@ -15794,12 +15950,12 @@ export function deserializeCollaboration(val: any): Collaboration {
     inviteEmail: inviteEmail,
     role: role,
     expiresAt: expiresAt,
+    isAccessOnly: isAccessOnly,
     status: status,
     acknowledgedAt: acknowledgedAt,
     createdBy: createdBy,
     createdAt: createdAt,
     modifiedAt: modifiedAt,
-    isAccessOnly: isAccessOnly,
     acceptanceRequirementsStatus: acceptanceRequirementsStatus,
   } satisfies Collaboration;
 }
@@ -17128,7 +17284,6 @@ export function serializeIntegrationMappings(val: IntegrationMappings): Json {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
@@ -17139,10 +17294,8 @@ export function serializeIntegrationMappings(val: IntegrationMappings): Json {
 }
 export function deserializeIntegrationMappings(val: any): IntegrationMappings {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly IntegrationMapping[] =
     val.entries == void 0
       ? void 0
@@ -17154,7 +17307,6 @@ export function deserializeIntegrationMappings(val: any): IntegrationMappings {
   return {
     limit: limit,
     nextMarker: nextMarker,
-    prevMarker: prevMarker,
     entries: entries,
   } satisfies IntegrationMappings;
 }
@@ -17964,7 +18116,7 @@ export function serializeSignRequestCreateSigner(
   val: SignRequestCreateSigner
 ): Json {
   return {
-    ['email']: val.email,
+    ['email']: val.email == void 0 ? void 0 : val.email,
     ['role']:
       val.role == void 0
         ? void 0
@@ -17990,7 +18142,7 @@ export function serializeSignRequestCreateSigner(
 export function deserializeSignRequestCreateSigner(
   val: any
 ): SignRequestCreateSigner {
-  const email: string = val.email;
+  const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   const role: undefined | SignRequestCreateSignerRoleField =
     val.role == void 0
       ? void 0
@@ -18080,6 +18232,12 @@ export function deserializeSignRequestSignerInputTypeField(
   if (val == 'checkbox') {
     return 'checkbox';
   }
+  if (val == 'radio') {
+    return 'radio';
+  }
+  if (val == 'dropdown') {
+    return 'dropdown';
+  }
   throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeSignRequestSignerInputContentTypeField(
@@ -18093,23 +18251,23 @@ export function deserializeSignRequestSignerInputContentTypeField(
   if (!isJson(val, 'string')) {
     throw 'Expecting a string for "SignRequestSignerInputContentTypeField"';
   }
+  if (val == 'signature') {
+    return 'signature';
+  }
   if (val == 'initial') {
     return 'initial';
   }
   if (val == 'stamp') {
     return 'stamp';
   }
-  if (val == 'signature') {
-    return 'signature';
+  if (val == 'date') {
+    return 'date';
   }
-  if (val == 'company') {
-    return 'company';
+  if (val == 'checkbox') {
+    return 'checkbox';
   }
-  if (val == 'title') {
-    return 'title';
-  }
-  if (val == 'email') {
-    return 'email';
+  if (val == 'text') {
+    return 'text';
   }
   if (val == 'full_name') {
     return 'full_name';
@@ -18120,17 +18278,23 @@ export function deserializeSignRequestSignerInputContentTypeField(
   if (val == 'last_name') {
     return 'last_name';
   }
-  if (val == 'text') {
-    return 'text';
+  if (val == 'company') {
+    return 'company';
   }
-  if (val == 'date') {
-    return 'date';
+  if (val == 'title') {
+    return 'title';
   }
-  if (val == 'checkbox') {
-    return 'checkbox';
+  if (val == 'email') {
+    return 'email';
   }
   if (val == 'attachment') {
     return 'attachment';
+  }
+  if (val == 'radio') {
+    return 'radio';
+  }
+  if (val == 'dropdown') {
+    return 'dropdown';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -18280,7 +18444,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     val.embed_url == void 0 ? void 0 : val.embed_url;
   const iframeableEmbedUrl: undefined | string =
     val.iframeable_embed_url == void 0 ? void 0 : val.iframeable_embed_url;
-  const email: string = val.email;
+  const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   const role: undefined | SignRequestCreateSignerRoleField =
     val.role == void 0
       ? void 0
@@ -18653,7 +18817,6 @@ export function serializeSignRequests(val: SignRequests): Json {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
@@ -18664,10 +18827,8 @@ export function serializeSignRequests(val: SignRequests): Json {
 }
 export function deserializeSignRequests(val: any): SignRequests {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly SignRequest[] =
     val.entries == void 0
       ? void 0
@@ -18679,9 +18840,30 @@ export function deserializeSignRequests(val: any): SignRequests {
   return {
     limit: limit,
     nextMarker: nextMarker,
-    prevMarker: prevMarker,
     entries: entries,
   } satisfies SignRequests;
+}
+export function serializeSignRequestCreateRequestSignatureColorField(
+  val: SignRequestCreateRequestSignatureColorField
+): Json {
+  return val;
+}
+export function deserializeSignRequestCreateRequestSignatureColorField(
+  val: any
+): SignRequestCreateRequestSignatureColorField {
+  if (!isJson(val, 'string')) {
+    throw 'Expecting a string for "SignRequestCreateRequestSignatureColorField"';
+  }
+  if (val == 'blue') {
+    return 'blue';
+  }
+  if (val == 'black') {
+    return 'black';
+  }
+  if (val == 'red') {
+    return 'red';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeSignRequestCreateRequest(
   val: SignRequestCreateRequest
@@ -18699,6 +18881,12 @@ export function serializeSignRequestCreateRequest(
           : (val.sourceFiles?.map(function (item: FileBase): any {
               return serializeFileBase(item);
             }) as readonly any[]),
+      ['signature_color']:
+        val.signatureColor == void 0
+          ? void 0
+          : serializeSignRequestCreateRequestSignatureColorField(
+              val.signatureColor
+            ),
       ['signers']: val.signers?.map(function (
         item: SignRequestCreateSigner
       ): any {
@@ -18718,6 +18906,14 @@ export function deserializeSignRequestCreateRequest(
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
+  const signatureColor:
+    | undefined
+    | SignRequestCreateRequestSignatureColorField =
+    val.signature_color == void 0
+      ? void 0
+      : deserializeSignRequestCreateRequestSignatureColorField(
+          val.signature_color
+        );
   const signers: readonly SignRequestCreateSigner[] = isJson(
     val.signers,
     'array'
@@ -18766,6 +18962,7 @@ export function deserializeSignRequestCreateRequest(
     val.template_id == void 0 ? void 0 : val.template_id;
   return {
     sourceFiles: sourceFiles,
+    signatureColor: signatureColor,
     signers: signers,
     isDocumentPreparationNeeded: isDocumentPreparationNeeded,
     redirectUrl: redirectUrl,
@@ -19409,6 +19606,40 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     customBranding: customBranding,
   } satisfies SignTemplate;
 }
+export function serializeSignTemplates(val: SignTemplates): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (item: SignTemplate): any {
+            return serializeSignTemplate(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeSignTemplates(val: any): SignTemplates {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const prevMarker: undefined | string =
+    val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  const entries: undefined | readonly SignTemplate[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeSignTemplate(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    prevMarker: prevMarker,
+    entries: entries,
+  } satisfies SignTemplates;
+}
 export function serializeShieldInformationBarrierReportDetailsDetailsField(
   val: ShieldInformationBarrierReportDetailsDetailsField
 ): Json {
@@ -19542,6 +19773,42 @@ export function deserializeShieldInformationBarrierReport(
     id: id,
     type: type,
   } satisfies ShieldInformationBarrierReport;
+}
+export function serializeShieldInformationBarrierReports(
+  val: ShieldInformationBarrierReports
+): Json {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries?.map(function (
+            item: ShieldInformationBarrierReport
+          ): any {
+            return serializeShieldInformationBarrierReport(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeShieldInformationBarrierReports(
+  val: any
+): ShieldInformationBarrierReports {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const entries: undefined | readonly ShieldInformationBarrierReport[] =
+    val.entries == void 0
+      ? void 0
+      : isJson(val.entries, 'array')
+      ? (val.entries?.map(function (itm: Json): any {
+          return deserializeShieldInformationBarrierReport(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    entries: entries,
+  } satisfies ShieldInformationBarrierReports;
 }
 export function serializeTrackingCodeTypeField(
   val: TrackingCodeTypeField
