@@ -50,7 +50,7 @@ See the endpoint docs at
 <!-- sample get_comments_id -->
 
 ```ts
-await client.comments.getCommentById(newComment.id);
+await client.comments.getCommentById(newComment.id!);
 ```
 
 ### Arguments
@@ -80,7 +80,7 @@ See the endpoint docs at
 <!-- sample put_comments_id -->
 
 ```ts
-await client.comments.updateCommentById(newReplyComment.id, {
+await client.comments.updateCommentById(newReplyComment.id!, {
   message: newMessage,
 } satisfies UpdateCommentByIdRequestBodyArg);
 ```
@@ -114,7 +114,7 @@ See the endpoint docs at
 <!-- sample delete_comments_id -->
 
 ```ts
-await client.comments.deleteCommentById(newComment.id);
+await client.comments.deleteCommentById(newComment.id!);
 ```
 
 ### Arguments
@@ -146,7 +146,7 @@ See the endpoint docs at
 await client.comments.createComment({
   message: message,
   item: {
-    id: newComment.id,
+    id: newComment.id!,
     type: 'comment' as CreateCommentRequestBodyArgItemFieldTypeField,
   } satisfies CreateCommentRequestBodyArgItemField,
 } satisfies CreateCommentRequestBodyArg);

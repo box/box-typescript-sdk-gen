@@ -47,7 +47,7 @@ See the endpoint docs at
 <!-- sample get_collections_id_items -->
 
 ```ts
-await client.collections.getCollectionItems(favouriteCollection.id);
+await client.collections.getCollectionItems(favouriteCollection.id!);
 ```
 
 ### Arguments

@@ -14,6 +14,7 @@ import { serializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.gen
 import { deserializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
 import { serializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
 import { deserializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { Collections } from '../schemas.generated.js';
 import { Collection } from '../schemas.generated.js';
 import { Items } from '../schemas.generated.js';
@@ -22,24 +23,16 @@ import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { UpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
 import { UpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testCollections', async function testCollections(): Promise<any> {
-  const collections: any = await client.collections.getCollections();
-  const favouriteCollection: any = collections.entries[0];
-  const collectionItems: any = await client.collections.getCollectionItems(
-    favouriteCollection.id
+  const collections: Collections = await client.collections.getCollections();
+  const favouriteCollection: Collection = collections.entries![0];
+  const collectionItems: Items = await client.collections.getCollectionItems(
+    favouriteCollection.id!
   );
-  const folder: any = await client.folders.createFolder({
+  const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
@@ -50,12 +43,12 @@ test('testCollections', async function testCollections(): Promise<any> {
       } satisfies UpdateFolderByIdRequestBodyArgCollectionsField,
     ],
   } satisfies UpdateFolderByIdRequestBodyArg);
-  const collectionItemsAfterUpdate: any =
-    await client.collections.getCollectionItems(favouriteCollection.id);
+  const collectionItemsAfterUpdate: Items =
+    await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
     !(
-      collectionItemsAfterUpdate.entries.length ==
-      collectionItems.entries.length + 1
+      collectionItemsAfterUpdate.entries!.length ==
+      collectionItems.entries!.length + 1
     )
   ) {
     throw 'Assertion failed';
@@ -63,12 +56,12 @@ test('testCollections', async function testCollections(): Promise<any> {
   await client.folders.updateFolderById(folder.id, {
     collections: [],
   } satisfies UpdateFolderByIdRequestBodyArg);
-  const collectionItemsAfterRemove: any =
-    await client.collections.getCollectionItems(favouriteCollection.id);
+  const collectionItemsAfterRemove: Items =
+    await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
     !(
-      collectionItemsAfterRemove.entries.length ==
-      collectionItems.entries.length
+      collectionItemsAfterRemove.entries!.length ==
+      collectionItems.entries!.length
     )
   ) {
     throw 'Assertion failed';

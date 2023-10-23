@@ -12,6 +12,7 @@ import { serializeMetadataTemplates } from '../schemas.generated.js';
 import { deserializeMetadataTemplates } from '../schemas.generated.js';
 import { serializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { deserializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
@@ -19,17 +20,9 @@ import { CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '
 import { GetMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { MetadataTemplates } from '../schemas.generated.js';
 import { DeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: any = getDefaultClient();
 test('testMetadataTemplates', async function testMetadataTemplates(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
   const template: any =

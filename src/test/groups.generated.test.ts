@@ -8,40 +8,33 @@ import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
 import { serializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
 import { deserializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { Groups } from '../schemas.generated.js';
 import { Group } from '../schemas.generated.js';
 import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { GroupFull } from '../schemas.generated.js';
 import { GetGroupByIdQueryParamsArg } from '../managers/groups.generated.js';
 import { UpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('test_get_groups', async function test_get_groups(): Promise<any> {
-  const groups: any = await client.groups.getGroups();
-  if (!(groups.totalCount >= 0)) {
+  const groups: Groups = await client.groups.getGroups();
+  if (!(groups.totalCount! >= 0)) {
     throw 'Assertion failed';
   }
 });
 test('test_create_get_delete_group', async function test_create_get_delete_group(): Promise<any> {
-  const groupName: any = getUuid();
-  const groupDescription: any = 'Group description';
-  const group: any = await client.groups.createGroup({
+  const groupName: string = getUuid();
+  const groupDescription: string = 'Group description';
+  const group: Group = await client.groups.createGroup({
     name: groupName,
     description: groupDescription,
   } satisfies CreateGroupRequestBodyArg);
   if (!(group.name == groupName)) {
     throw 'Assertion failed';
   }
-  const groupById: any = await client.groups.getGroupById(group.id, {
+  const groupById: GroupFull = await client.groups.getGroupById(group.id, {
     fields: ['id' as '', 'name' as '', 'description' as '', 'group_type' as ''],
   } satisfies GetGroupByIdQueryParamsArg);
   if (!(groupById.id == group.id)) {
@@ -50,10 +43,11 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
   if (!(groupById.description == groupDescription)) {
     throw 'Assertion failed';
   }
-  const updatedGroupName: any = getUuid();
-  const updatedGroup: any = await client.groups.updateGroupById(group.id, {
-    name: updatedGroupName,
-  } satisfies UpdateGroupByIdRequestBodyArg);
+  const updatedGroupName: string = getUuid();
+  const updatedGroup: GroupFull = await client.groups.updateGroupById(
+    group.id,
+    { name: updatedGroupName } satisfies UpdateGroupByIdRequestBodyArg
+  );
   if (!(updatedGroup.name == updatedGroupName)) {
     throw 'Assertion failed';
   }

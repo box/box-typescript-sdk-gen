@@ -123,7 +123,7 @@ See the endpoint docs at
 <!-- sample get_group_memberships_id -->
 
 ```ts
-await client.memberships.getGroupMembershipById(groupMembership.id);
+await client.memberships.getGroupMembershipById(groupMembership.id!);
 ```
 
 ### Arguments
@@ -155,7 +155,7 @@ See the endpoint docs at
 <!-- sample put_group_memberships_id -->
 
 ```ts
-await client.memberships.updateGroupMembershipById(groupMembership.id, {
+await client.memberships.updateGroupMembershipById(groupMembership.id!, {
   role: 'admin' as UpdateGroupMembershipByIdRequestBodyArgRoleField,
 } satisfies UpdateGroupMembershipByIdRequestBodyArg);
 ```
@@ -191,7 +191,7 @@ See the endpoint docs at
 <!-- sample delete_group_memberships_id -->
 
 ```ts
-await client.memberships.deleteGroupMembershipById(groupMembership.id);
+await client.memberships.deleteGroupMembershipById(groupMembership.id!);
 ```
 
 ### Arguments

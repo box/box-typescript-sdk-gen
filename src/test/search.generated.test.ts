@@ -32,6 +32,7 @@ import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { serializeGetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
 import { deserializeGetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
@@ -52,19 +53,11 @@ import { GetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/sea
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { GetSearchQueryParamsArg } from '../managers/search.generated.js';
 import { GetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+const client: any = getDefaultClient();
 test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQueryExecuteRead(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
   const template: any =
@@ -92,7 +85,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: any = files.entries[0];
+  const file: any = files.entries![0];
   const metadata: any = await client.fileMetadata.createFileMetadataById(
     file.id,
     'enterprise' as CreateFileMetadataByIdScopeArg,
@@ -106,7 +99,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     throw 'Assertion failed';
   }
   const searchFrom: any = ''.concat(
-    template.scope,
+    template.scope!,
     '.',
     template.templateKey
   ) as string;
@@ -116,7 +109,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     query: 'testName >= :value',
     queryParams: { ['value']: '0.0' },
   } satisfies MetadataQuery);
-  if (!(query.entries.length >= 0)) {
+  if (!(query.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplateSchema(
@@ -147,7 +140,7 @@ test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices()
     scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsArgScopeField,
     templateKey: templateKey,
   } satisfies GetMetadataQueryIndicesQueryParamsArg);
-  if (!(indices.entries.length >= 0)) {
+  if (!(indices.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplateSchema(
@@ -163,7 +156,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
     trashContent:
       'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
   } satisfies GetSearchQueryParamsArg);
-  if (!(search.entries.length >= 0)) {
+  if (!(search.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   if (!((toString(search.type) as string) == 'search_results_items')) {
@@ -176,7 +169,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
       'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
     includeRecentSharedLinks: true,
   } satisfies GetSearchQueryParamsArg);
-  if (!(searchWithSharedLink.entries.length >= 0)) {
+  if (!(searchWithSharedLink.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   if (

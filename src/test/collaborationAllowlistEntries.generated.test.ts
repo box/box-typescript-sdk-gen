@@ -4,26 +4,16 @@ import { serializeCollaborationAllowlistEntry } from '../schemas.generated.js';
 import { deserializeCollaborationAllowlistEntry } from '../schemas.generated.js';
 import { serializeCreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
 import { deserializeCreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { CollaborationAllowlistEntries } from '../schemas.generated.js';
 import { CollaborationAllowlistEntry } from '../schemas.generated.js';
 import { CreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
-import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const client: any = new BoxClient({
-  auth: new BoxJwtAuth({
-    config: JwtConfig.fromConfigJsonString(
-      decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-    ),
-  }),
-});
+import { getDefaultClient } from './commons.generated.js';
+const client: any = getDefaultClient();
 test('collaborationAllowlistEntries', async function collaborationAllowlistEntries(): Promise<any> {
   const allowlist: any =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
-  if (!(allowlist.entries.length >= 0)) {
+  if (!(allowlist.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   const direction: any = 'inbound';
@@ -46,7 +36,7 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
   }
   const entry: any =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-      newEntry.id
+      newEntry.id!
     );
   if (!(entry.id == newEntry.id)) {
     throw 'Assertion failed';
@@ -58,11 +48,11 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
     throw 'Assertion failed';
   }
   await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
-    entry.id
+    entry.id!
   );
   expect(async () => {
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-      entry.id
+      entry.id!
     );
   }).rejects.toThrow();
 });

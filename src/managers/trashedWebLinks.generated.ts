@@ -18,24 +18,24 @@ import { FetchResponse } from '../fetch.js';
 import { serializeJson } from '../json.js';
 import { deserializeJson } from '../json.js';
 import { Json } from '../json.js';
-export interface CreateWebLinkByIdRequestBodyArgParentField {
+export interface RestoreWeblinkFromTrashRequestBodyArgParentField {
   readonly id?: string;
 }
-export interface CreateWebLinkByIdRequestBodyArg {
+export interface RestoreWeblinkFromTrashRequestBodyArg {
   readonly name?: string;
-  readonly parent?: CreateWebLinkByIdRequestBodyArgParentField;
+  readonly parent?: RestoreWeblinkFromTrashRequestBodyArgParentField;
 }
-export interface CreateWebLinkByIdQueryParamsArg {
+export interface RestoreWeblinkFromTrashQueryParamsArg {
   readonly fields?: readonly string[];
 }
-export class CreateWebLinkByIdHeadersArg {
+export class RestoreWeblinkFromTrashHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateWebLinkByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateWebLinkByIdHeadersArg, 'extraHeaders'>>
+      | Omit<RestoreWeblinkFromTrashHeadersArg, 'extraHeaders'>
+      | Partial<Pick<RestoreWeblinkFromTrashHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -73,16 +73,18 @@ export class TrashedWebLinksManager {
   constructor(
     fields: Omit<
       TrashedWebLinksManager,
-      'createWebLinkById' | 'getWebLinkTrash' | 'deleteWebLinkTrash'
+      'restoreWeblinkFromTrash' | 'getWebLinkTrash' | 'deleteWebLinkTrash'
     >
   ) {
     Object.assign(this, fields);
   }
-  async createWebLinkById(
+  async restoreWeblinkFromTrash(
     webLinkId: string,
-    requestBody: CreateWebLinkByIdRequestBodyArg = {} satisfies CreateWebLinkByIdRequestBodyArg,
-    queryParams: CreateWebLinkByIdQueryParamsArg = {} satisfies CreateWebLinkByIdQueryParamsArg,
-    headers: CreateWebLinkByIdHeadersArg = new CreateWebLinkByIdHeadersArg({})
+    requestBody: RestoreWeblinkFromTrashRequestBodyArg = {} satisfies RestoreWeblinkFromTrashRequestBodyArg,
+    queryParams: RestoreWeblinkFromTrashQueryParamsArg = {} satisfies RestoreWeblinkFromTrashQueryParamsArg,
+    headers: RestoreWeblinkFromTrashHeadersArg = new RestoreWeblinkFromTrashHeadersArg(
+      {}
+    )
   ): Promise<TrashWebLinkRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -102,7 +104,7 @@ export class TrashedWebLinksManager {
         params: queryParamsMap,
         headers: headersMap,
         body: serializeJson(
-          serializeCreateWebLinkByIdRequestBodyArg(requestBody)
+          serializeRestoreWeblinkFromTrashRequestBodyArg(requestBody)
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -166,38 +168,38 @@ export class TrashedWebLinksManager {
     return void 0;
   }
 }
-export function serializeCreateWebLinkByIdRequestBodyArgParentField(
-  val: CreateWebLinkByIdRequestBodyArgParentField
+export function serializeRestoreWeblinkFromTrashRequestBodyArgParentField(
+  val: RestoreWeblinkFromTrashRequestBodyArgParentField
 ): Json {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeCreateWebLinkByIdRequestBodyArgParentField(
+export function deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(
   val: any
-): CreateWebLinkByIdRequestBodyArgParentField {
+): RestoreWeblinkFromTrashRequestBodyArgParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies CreateWebLinkByIdRequestBodyArgParentField;
+  return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyArgParentField;
 }
-export function serializeCreateWebLinkByIdRequestBodyArg(
-  val: CreateWebLinkByIdRequestBodyArg
+export function serializeRestoreWeblinkFromTrashRequestBodyArg(
+  val: RestoreWeblinkFromTrashRequestBodyArg
 ): Json {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeCreateWebLinkByIdRequestBodyArgParentField(val.parent),
+        : serializeRestoreWeblinkFromTrashRequestBodyArgParentField(val.parent),
   };
 }
-export function deserializeCreateWebLinkByIdRequestBodyArg(
+export function deserializeRestoreWeblinkFromTrashRequestBodyArg(
   val: any
-): CreateWebLinkByIdRequestBodyArg {
+): RestoreWeblinkFromTrashRequestBodyArg {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const parent: undefined | CreateWebLinkByIdRequestBodyArgParentField =
+  const parent: undefined | RestoreWeblinkFromTrashRequestBodyArgParentField =
     val.parent == void 0
       ? void 0
-      : deserializeCreateWebLinkByIdRequestBodyArgParentField(val.parent);
+      : deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(val.parent);
   return {
     name: name,
     parent: parent,
-  } satisfies CreateWebLinkByIdRequestBodyArg;
+  } satisfies RestoreWeblinkFromTrashRequestBodyArg;
 }

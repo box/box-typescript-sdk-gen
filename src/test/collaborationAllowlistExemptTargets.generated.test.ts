@@ -10,38 +10,29 @@ import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg } from 
 import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { CollaborationAllowlistExemptTargets } from '../schemas.generated.js';
 import { User } from '../schemas.generated.js';
 import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { CollaborationAllowlistExemptTarget } from '../schemas.generated.js';
 import { CreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
-const client: any = new BoxClient({
-  auth: new BoxJwtAuth({
-    config: JwtConfig.fromConfigJsonString(
-      decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-    ),
-  }),
-});
+const client: BoxClient = getDefaultClient();
 test('collaborationAllowlistExemptTargets', async function collaborationAllowlistExemptTargets(): Promise<any> {
-  const exemptTargets: any =
+  const exemptTargets: CollaborationAllowlistExemptTargets =
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargets();
-  if (!(exemptTargets.entries.length >= 0)) {
+  if (!(exemptTargets.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
-  const user: any = await client.users.createUser({
+  const user: User = await client.users.createUser({
     name: getUuid(),
     login: ''.concat(getUuid(), '@boxdemo.com') as string,
     isPlatformAccessOnly: true,
   } satisfies CreateUserRequestBodyArg);
-  const newExemptTarget: any =
+  const newExemptTarget: CollaborationAllowlistExemptTarget =
     await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExemptTarget(
       {
         user: {
@@ -57,25 +48,25 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
   ) {
     throw 'Assertion failed';
   }
-  if (!(newExemptTarget.user.id == user.id)) {
+  if (!(newExemptTarget.user!.id == user.id)) {
     throw 'Assertion failed';
   }
-  const exemptTarget: any =
+  const exemptTarget: CollaborationAllowlistExemptTarget =
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
-      newExemptTarget.id
+      newExemptTarget.id!
     );
   if (!(exemptTarget.id == newExemptTarget.id)) {
     throw 'Assertion failed';
   }
-  if (!(exemptTarget.user.id == user.id)) {
+  if (!(exemptTarget.user!.id == user.id)) {
     throw 'Assertion failed';
   }
   await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
-    exemptTarget.id
+    exemptTarget.id!
   );
   expect(async () => {
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
-      exemptTarget.id
+      exemptTarget.id!
     );
   }).rejects.toThrow();
   await client.users.deleteUserById(user.id);

@@ -55,7 +55,7 @@ See the endpoint docs at
 ```ts
 await client.fileVersions.getFileVersionById(
   file.id,
-  fileVersions.entries[0].id
+  fileVersions.entries![0].id
 );
 ```
 
@@ -127,7 +127,7 @@ See the endpoint docs at
 ```ts
 await client.fileVersions.deleteFileVersionById(
   file.id,
-  fileVersionsRestored.entries[0].id
+  fileVersionsRestored.entries![0].id
 );
 ```
 
@@ -175,7 +175,7 @@ See the endpoint docs at
 
 ```ts
 await client.fileVersions.promoteFileVersion(file.id, {
-  id: fileVersions.entries[0].id,
+  id: fileVersions.entries![0].id,
   type: 'file_version' as PromoteFileVersionRequestBodyArgTypeField,
 } satisfies PromoteFileVersionRequestBodyArg);
 ```

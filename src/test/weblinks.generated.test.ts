@@ -8,22 +8,15 @@ import { serializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.g
 import { deserializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
 import { serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
 import { deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
 import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: any = getDefaultClient();
 test('test_create_get_delete_weblink', async function test_create_get_delete_weblink(): Promise<any> {
   const url: any = 'https://www.box.com';
   const parent: any = await client.folders.getFolderById('0');
@@ -40,7 +33,7 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   if (!(weblink.url == url)) {
     throw 'Assertion failed';
   }
-  if (!(weblink.parent.id == parent.id)) {
+  if (!(weblink.parent!.id == parent.id)) {
     throw 'Assertion failed';
   }
   if (!(weblink.name == name)) {
@@ -70,7 +63,7 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   if (!(updatedWeblink.name == updatedName)) {
     throw 'Assertion failed';
   }
-  if (!(updatedWeblink.sharedLink.access == sharedAccess)) {
+  if (!(updatedWeblink.sharedLink!.access == sharedAccess)) {
     throw 'Assertion failed';
   }
   await client.webLinks.deleteWebLinkById(weblink.id);

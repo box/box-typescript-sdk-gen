@@ -14,6 +14,7 @@ import { serializeUpdateFileMetadataByIdRequestBodyArg } from '../managers/fileM
 import { deserializeUpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
 import { serializeUpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
 import { deserializeUpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -23,21 +24,11 @@ import { Metadata } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { UpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
 import { UpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
-import { decodeBase64 } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
+const client: any = getDefaultClient();
 test('testFileMetadata', async function testFileMetadata(): Promise<any> {
-  const client: any = new BoxClient({
-    auth: new BoxJwtAuth({
-      config: JwtConfig.fromConfigJsonString(
-        decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-      ),
-    }),
-  });
   const uploadedFiles: any = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
@@ -47,9 +38,9 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(256),
   } satisfies UploadFileRequestBodyArg);
-  const fileId: any = uploadedFiles.entries[0].id;
+  const fileId: any = uploadedFiles.entries![0].id;
   const fileMetadata: any = await client.fileMetadata.getFileMetadata(fileId);
-  if (!(fileMetadata.entries.length == 0)) {
+  if (!(fileMetadata.entries!.length == 0)) {
     throw 'Assertion failed';
   }
   const scope: any = 'global';
@@ -75,7 +66,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
     scope,
     template
   );
-  if (!(receivedMetadata.extraData.abc == data.abc)) {
+  if (!(receivedMetadata.extraData!.abc == data.abc)) {
     throw 'Assertion failed';
   }
   const newValue: any = 'bar';
@@ -93,7 +84,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   );
   const receivedUpdatedMetadata: any =
     await client.fileMetadata.getFileMetadataById(fileId, scope, template);
-  if (!(receivedUpdatedMetadata.extraData.abc == newValue)) {
+  if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
     throw 'Assertion failed';
   }
   await client.fileMetadata.deleteFileMetadataById(fileId, scope, template);

@@ -80,7 +80,7 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-  entry.id
+  entry.id!
 );
 ```
 
@@ -111,7 +111,7 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
-  entry.id
+  entry.id!
 );
 ```
 

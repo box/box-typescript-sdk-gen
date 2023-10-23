@@ -11,23 +11,27 @@ Restores a web link that has been moved to the trash.
 An optional new parent ID can be provided to restore the web link to in case
 the original folder has been deleted.
 
-This operation is performed by calling function `createWebLinkById`.
+This operation is performed by calling function `restoreWeblinkFromTrash`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-web-links-id/).
 
-_Currently we don't have an example for calling `createWebLinkById` in integration tests_
+<!-- sample post_web_links_id -->
+
+```ts
+await client.trashedWebLinks.restoreWeblinkFromTrash(weblink.id);
+```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `CreateWebLinkByIdRequestBodyArg`
-  - Request body of createWebLinkById method
-- queryParams `CreateWebLinkByIdQueryParamsArg`
-  - Query parameters of createWebLinkById method
-- headers `CreateWebLinkByIdHeadersArg`
-  - Headers of createWebLinkById method
+- requestBody `RestoreWeblinkFromTrashRequestBodyArg`
+  - Request body of restoreWeblinkFromTrash method
+- queryParams `RestoreWeblinkFromTrashQueryParamsArg`
+  - Query parameters of restoreWeblinkFromTrash method
+- headers `RestoreWeblinkFromTrashHeadersArg`
+  - Headers of restoreWeblinkFromTrash method
 
 ### Returns
 
@@ -44,7 +48,11 @@ This operation is performed by calling function `getWebLinkTrash`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-web-links-id-trash/).
 
-_Currently we don't have an example for calling `getWebLinkTrash` in integration tests_
+<!-- sample get_web_links_id_trash -->
+
+```ts
+await client.trashedWebLinks.getWebLinkTrash(weblink.id);
+```
 
 ### Arguments
 
@@ -73,7 +81,11 @@ This operation is performed by calling function `deleteWebLinkTrash`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-web-links-id-trash/).
 
-_Currently we don't have an example for calling `deleteWebLinkTrash` in integration tests_
+<!-- sample delete_web_links_id_trash -->
+
+```ts
+await client.trashedWebLinks.deleteWebLinkTrash(weblink.id);
+```
 
 ### Arguments
 

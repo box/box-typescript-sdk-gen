@@ -18,6 +18,7 @@ import { serializeCopyFileRequestBodyArg } from '../managers/files.generated.js'
 import { deserializeCopyFileRequestBodyArg } from '../managers/files.generated.js';
 import { serializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { File } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
@@ -31,27 +32,19 @@ import { TrashFile } from '../schemas.generated.js';
 import { UpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
 import { CopyFileRequestBodyArg } from '../managers/files.generated.js';
 import { CopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { readByteStream } from '../utils.js';
 import { bufferEquals } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-import { uploadNewFile } from './commons.generated.js';
 import { ByteStream } from '../utils.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { uploadNewFile } from './commons.generated.js';
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 export async function uploadFile(
   fileName: string,
   fileStream: ByteStream
 ): Promise<File> {
-  const uploadedFiles: any = await client.uploads.uploadFile({
+  const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
       parent: {
@@ -60,12 +53,12 @@ export async function uploadFile(
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileStream,
   } satisfies UploadFileRequestBodyArg);
-  return uploadedFiles.entries[0];
+  return uploadedFiles.entries![0];
 }
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
-  const thumbnailFileName: any = getUuid();
-  const thumbnailContentStream: any = generateByteStream(1048576);
-  const thumbnailFile: any = await uploadFile(
+  const thumbnailFileName: string = getUuid();
+  const thumbnailContentStream: ByteStream = generateByteStream(1048576);
+  const thumbnailFile: File = await uploadFile(
     thumbnailFileName,
     thumbnailContentStream
   );
@@ -87,10 +80,10 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
   await client.files.deleteFileById(thumbnailFile.id);
 });
 test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): Promise<any> {
-  const newFileName: any = getUuid();
-  const fileContent: any = generateByteStream(1048576);
-  const uploadedFile: any = await uploadFile(newFileName, fileContent);
-  const file: any = await client.files.getFileById(uploadedFile.id, {
+  const newFileName: string = getUuid();
+  const fileContent: ByteStream = generateByteStream(1048576);
+  const uploadedFile: File = await uploadFile(newFileName, fileContent);
+  const file: FileFull = await client.files.getFileById(uploadedFile.id, {
     fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
   } satisfies GetFileByIdQueryParamsArg);
   if (!(file.isExternallyOwned == false)) {
@@ -102,10 +95,13 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
   await client.files.deleteFileById(file.id);
 });
 test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): Promise<any> {
-  const newFileName: any = getUuid();
-  const updatedContentStream: any = generateByteStream(1048576);
-  const uploadedFile: any = await uploadFile(newFileName, updatedContentStream);
-  const file: any = await client.files.getFileById(uploadedFile.id);
+  const newFileName: string = getUuid();
+  const updatedContentStream: ByteStream = generateByteStream(1048576);
+  const uploadedFile: File = await uploadFile(
+    newFileName,
+    updatedContentStream
+  );
+  const file: FileFull = await client.files.getFileById(uploadedFile.id);
   expect(async () => {
     await client.files.getFileById(
       uploadedFile.id,
@@ -119,7 +115,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
     throw 'Assertion failed';
   }
   await client.files.deleteFileById(uploadedFile.id);
-  const trashedFile: any = await client.trashedFiles.getFileTrash(
+  const trashedFile: TrashFile = await client.trashedFiles.getFileTrash(
     uploadedFile.id
   );
   if (!(file.id == trashedFile.id)) {
@@ -127,12 +123,15 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   }
 });
 test('testUpdateFile', async function testUpdateFile(): Promise<any> {
-  const fileToUpdate: any = await uploadNewFile();
-  const updatedName: any = getUuid();
-  const updatedFile: any = await client.files.updateFileById(fileToUpdate.id, {
-    name: updatedName,
-    description: 'Updated description',
-  } satisfies UpdateFileByIdRequestBodyArg);
+  const fileToUpdate: File = await uploadNewFile();
+  const updatedName: string = getUuid();
+  const updatedFile: FileFull = await client.files.updateFileById(
+    fileToUpdate.id,
+    {
+      name: updatedName,
+      description: 'Updated description',
+    } satisfies UpdateFileByIdRequestBodyArg
+  );
   if (!(updatedFile.name == updatedName)) {
     throw 'Assertion failed';
   }
@@ -142,13 +141,13 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
   await client.files.deleteFileById(updatedFile.id);
 });
 test('testCopyFile', async function testCopyFile(): Promise<any> {
-  const fileOrigin: any = await uploadNewFile();
-  const copiedFileName: any = getUuid();
-  const copiedFile: any = await client.files.copyFile(fileOrigin.id, {
+  const fileOrigin: File = await uploadNewFile();
+  const copiedFileName: string = getUuid();
+  const copiedFile: FileFull = await client.files.copyFile(fileOrigin.id, {
     parent: { id: '0' } satisfies CopyFileRequestBodyArgParentField,
     name: copiedFileName,
   } satisfies CopyFileRequestBodyArg);
-  if (!(copiedFile.parent.id == '0')) {
+  if (!(copiedFile.parent!.id == '0')) {
     throw 'Assertion failed';
   }
   if (!(copiedFile.name == copiedFileName)) {

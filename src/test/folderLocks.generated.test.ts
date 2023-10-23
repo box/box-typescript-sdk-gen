@@ -14,6 +14,7 @@ import { serializeCreateFolderLockRequestBodyArgFolderField } from '../managers/
 import { deserializeCreateFolderLockRequestBodyArgFolderField } from '../managers/folderLocks.generated.js';
 import { serializeCreateFolderLockRequestBodyArgLockedOperationsField } from '../managers/folderLocks.generated.js';
 import { deserializeCreateFolderLockRequestBodyArgLockedOperationsField } from '../managers/folderLocks.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
@@ -23,29 +24,21 @@ import { FolderLock } from '../schemas.generated.js';
 import { CreateFolderLockRequestBodyArg } from '../managers/folderLocks.generated.js';
 import { CreateFolderLockRequestBodyArgFolderField } from '../managers/folderLocks.generated.js';
 import { CreateFolderLockRequestBodyArgLockedOperationsField } from '../managers/folderLocks.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testFolderLocks', async function testFolderLocks(): Promise<any> {
-  const folder: any = await client.folders.createFolder({
+  const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
-  const folderLocks: any = await client.folderLocks.getFolderLocks({
+  const folderLocks: FolderLocks = await client.folderLocks.getFolderLocks({
     folderId: folder.id,
   } satisfies GetFolderLocksQueryParamsArg);
-  if (!(folderLocks.entries.length == 0)) {
+  if (!(folderLocks.entries!.length == 0)) {
     throw 'Assertion failed';
   }
-  const folderLock: any = await client.folderLocks.createFolderLock({
+  const folderLock: FolderLock = await client.folderLocks.createFolderLock({
     folder: {
       id: folder.id,
       type: 'folder',
@@ -55,23 +48,23 @@ test('testFolderLocks', async function testFolderLocks(): Promise<any> {
       delete: true,
     } satisfies CreateFolderLockRequestBodyArgLockedOperationsField,
   } satisfies CreateFolderLockRequestBodyArg);
-  if (!(folderLock.folder.id == folder.id)) {
+  if (!(folderLock.folder!.id == folder.id)) {
     throw 'Assertion failed';
   }
-  if (!(folderLock.lockedOperations.move == true)) {
+  if (!(folderLock.lockedOperations!.move == true)) {
     throw 'Assertion failed';
   }
-  if (!(folderLock.lockedOperations.delete == true)) {
+  if (!(folderLock.lockedOperations!.delete == true)) {
     throw 'Assertion failed';
   }
-  await client.folderLocks.deleteFolderLockById(folderLock.id);
+  await client.folderLocks.deleteFolderLockById(folderLock.id!);
   expect(async () => {
-    await client.folderLocks.deleteFolderLockById(folderLock.id);
+    await client.folderLocks.deleteFolderLockById(folderLock.id!);
   }).rejects.toThrow();
-  const newFolderLocks: any = await client.folderLocks.getFolderLocks({
+  const newFolderLocks: FolderLocks = await client.folderLocks.getFolderLocks({
     folderId: folder.id,
   } satisfies GetFolderLocksQueryParamsArg);
-  if (!(newFolderLocks.entries.length == 0)) {
+  if (!(newFolderLocks.entries!.length == 0)) {
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(folder.id);

@@ -12,7 +12,13 @@ This operation is performed by calling function `getSignTemplates`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-sign-templates/).
 
-_Currently we don't have an example for calling `getSignTemplates` in integration tests_
+<!-- sample get_sign_templates -->
+
+```ts
+await client.signTemplates.getSignTemplates({
+  limit: 2,
+} satisfies GetSignTemplatesQueryParamsArg);
+```
 
 ### Arguments
 
@@ -36,7 +42,11 @@ This operation is performed by calling function `getSignTemplateById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-sign-templates-id/).
 
-_Currently we don't have an example for calling `getSignTemplateById` in integration tests_
+<!-- sample get_sign_templates_id -->
+
+```ts
+await client.signTemplates.getSignTemplateById(signTemplates.entries![0].id!);
+```
 
 ### Arguments
 

@@ -86,7 +86,7 @@ See the endpoint docs at
 <!-- sample get_webhooks_id -->
 
 ```ts
-await client.webhooks.getWebhookById(webhook.id);
+await client.webhooks.getWebhookById(webhook.id!);
 ```
 
 ### Arguments
@@ -114,7 +114,7 @@ See the endpoint docs at
 <!-- sample put_webhooks_id -->
 
 ```ts
-await client.webhooks.updateWebhookById(webhook.id, {
+await client.webhooks.updateWebhookById(webhook.id!, {
   address: 'https://example.com/updated-webhook',
 } satisfies UpdateWebhookByIdRequestBodyArg);
 ```
@@ -146,7 +146,7 @@ See the endpoint docs at
 <!-- sample delete_webhooks_id -->
 
 ```ts
-await client.webhooks.deleteWebhookById(webhook.id);
+await client.webhooks.deleteWebhookById(webhook.id!);
 ```
 
 ### Arguments

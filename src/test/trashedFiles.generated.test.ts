@@ -12,6 +12,7 @@ import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeTrashFileRestored } from '../schemas.generated.js';
 import { deserializeTrashFileRestored } from '../schemas.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
@@ -21,24 +22,16 @@ import { File } from '../schemas.generated.js';
 import { TrashFile } from '../schemas.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { TrashFileRestored } from '../schemas.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+const client: BoxClient = getDefaultClient();
 test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
-  const fileSize: any = 1024 * 1024;
-  const fileName: any = getUuid();
-  const fileByteStream: any = generateByteStream(fileSize);
-  const files: any = await client.uploads.uploadFile({
+  const fileSize: number = 1024 * 1024;
+  const fileName: string = getUuid();
+  const fileByteStream: ByteStream = generateByteStream(fileSize);
+  const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
       parent: {
@@ -47,23 +40,22 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileByteStream,
   } satisfies UploadFileRequestBodyArg);
-  const file: any = files.entries[0];
+  const file: File = files.entries![0];
   await client.files.deleteFileById(file.id);
-  const fromTrash: any = await client.trashedFiles.getFileTrash(file.id);
+  const fromTrash: TrashFile = await client.trashedFiles.getFileTrash(file.id);
   if (!(fromTrash.id == file.id)) {
     throw 'Assertion failed';
   }
   if (!(fromTrash.name == file.name)) {
     throw 'Assertion failed';
   }
-  const fromApiAfterTrashed: any = await client.files.getFileById(file.id);
+  const fromApiAfterTrashed: FileFull = await client.files.getFileById(file.id);
   if (!((toString(fromApiAfterTrashed.itemStatus) as string) == 'trashed')) {
     throw 'Assertion failed';
   }
-  const restoredFile: any = await client.trashedFiles.restoreFileFromTrash(
-    file.id
-  );
-  const fromApiAfterRestore: any = await client.files.getFileById(file.id);
+  const restoredFile: TrashFileRestored =
+    await client.trashedFiles.restoreFileFromTrash(file.id);
+  const fromApiAfterRestore: FileFull = await client.files.getFileById(file.id);
   if (!(restoredFile.id == fromApiAfterRestore.id)) {
     throw 'Assertion failed';
   }
