@@ -8,29 +8,24 @@ import { serializeTrashFolder } from '../schemas.generated.js';
 import { deserializeTrashFolder } from '../schemas.generated.js';
 import { serializeTrashFolderRestored } from '../schemas.generated.js';
 import { deserializeTrashFolderRestored } from '../schemas.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { TrashFolder } from '../schemas.generated.js';
 import { TrashFolderRestored } from '../schemas.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
-  const folder: any = await client.folders.createFolder({
+  const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
   await client.folders.deleteFolderById(folder.id);
-  const fromTrash: any = await client.trashedFolders.getFolderTrash(folder.id);
+  const fromTrash: TrashFolder = await client.trashedFolders.getFolderTrash(
+    folder.id
+  );
   if (!(fromTrash.id == folder.id)) {
     throw 'Assertion failed';
   }
@@ -40,9 +35,9 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
   expect(async () => {
     await client.folders.getFolderById(folder.id);
   }).rejects.toThrow();
-  const restoredFolder: any =
+  const restoredFolder: TrashFolderRestored =
     await client.trashedFolders.restoreFolderFromTrash(folder.id);
-  const fromApi: any = await client.folders.getFolderById(folder.id);
+  const fromApi: FolderFull = await client.folders.getFolderById(folder.id);
   if (!(restoredFolder.id == fromApi.id)) {
     throw 'Assertion failed';
   }

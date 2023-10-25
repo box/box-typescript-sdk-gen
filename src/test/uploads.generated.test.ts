@@ -8,6 +8,7 @@ import { serializeFile } from '../schemas.generated.js';
 import { deserializeFile } from '../schemas.generated.js';
 import { serializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
@@ -16,23 +17,15 @@ import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/
 import { File } from '../schemas.generated.js';
 import { UploadFileVersionRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { readByteStream } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('test_upload_file_and_file_version', async function test_upload_file_and_file_version(): Promise<any> {
-  const newFileName: any = getUuid();
-  const fileContentStream: any = generateByteStream(1048576);
-  const uploadedFiles: any = await client.uploads.uploadFile({
+  const newFileName: string = getUuid();
+  const fileContentStream: ByteStream = generateByteStream(1048576);
+  const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: newFileName,
       parent: {
@@ -41,13 +34,13 @@ test('test_upload_file_and_file_version', async function test_upload_file_and_fi
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileContentStream,
   } satisfies UploadFileRequestBodyArg);
-  const uploadedFile: any = uploadedFiles.entries[0];
+  const uploadedFile: File = uploadedFiles.entries![0];
   if (!(uploadedFile.name == newFileName)) {
     throw 'Assertion failed';
   }
-  const newFileVersionName: any = getUuid();
-  const newFileContentStream: any = generateByteStream(1048576);
-  const uploadedFilesVersion: any = await client.uploads.uploadFileVersion(
+  const newFileVersionName: string = getUuid();
+  const newFileContentStream: ByteStream = generateByteStream(1048576);
+  const uploadedFilesVersion: Files = await client.uploads.uploadFileVersion(
     uploadedFile.id,
     {
       attributes: {
@@ -56,7 +49,7 @@ test('test_upload_file_and_file_version', async function test_upload_file_and_fi
       file: newFileContentStream,
     } satisfies UploadFileVersionRequestBodyArg
   );
-  const newFileVersion: any = uploadedFilesVersion.entries[0];
+  const newFileVersion: File = uploadedFilesVersion.entries![0];
   if (!(newFileVersion.name == newFileVersionName)) {
     throw 'Assertion failed';
   }

@@ -20,7 +20,7 @@ export function hexToBase64(data: string): string {
 }
 
 export { Buffer, Readable as ByteStream };
-export type Iterator<T> = AsyncIterator<T>;
+export type Iterator<T = any> = AsyncIterator<T>;
 
 // Function to convert a hexadecimal string to base64
 export function hexStrToBase64(hex: string) {
@@ -201,4 +201,10 @@ export function toString(value: any): string {
     return value;
   }
   return String(value);
+}
+
+export function getUrlParams(params: Record<string, any>) {
+  return new URLSearchParams(
+    Object.entries(params).map(([key, value]) => [key, toString(value)])
+  ).toString();
 }

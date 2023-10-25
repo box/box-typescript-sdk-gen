@@ -32,7 +32,11 @@ export class GetMetadataCascadePoliciesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataCascadePoliciesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataCascadePoliciesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataCascadePoliciesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -48,7 +52,11 @@ export class CreateMetadataCascadePolicyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateMetadataCascadePolicyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateMetadataCascadePolicyHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateMetadataCascadePolicyHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -56,7 +64,11 @@ export class GetMetadataCascadePolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataCascadePolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataCascadePolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataCascadePolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -64,7 +76,11 @@ export class DeleteMetadataCascadePolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteMetadataCascadePolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteMetadataCascadePolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteMetadataCascadePolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -77,7 +93,13 @@ export class CreateMetadataCascadePolicyApplyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateMetadataCascadePolicyApplyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateMetadataCascadePolicyApplyHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateMetadataCascadePolicyApplyHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

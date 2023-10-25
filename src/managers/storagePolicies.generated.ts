@@ -26,7 +26,11 @@ export class GetStoragePoliciesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetStoragePoliciesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetStoragePoliciesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetStoragePoliciesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +38,11 @@ export class GetStoragePolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetStoragePolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetStoragePolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

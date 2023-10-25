@@ -18,6 +18,7 @@ import { serializePromoteFileVersionRequestBodyArgTypeField } from '../managers/
 import { deserializePromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -30,22 +31,14 @@ import { FileVersionFull } from '../schemas.generated.js';
 import { PromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
 import { PromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
 import { FileFull } from '../schemas.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListGetRestoreDeleteFileVersion(): Promise<any> {
-  const oldName: any = getUuid();
-  const newName: any = getUuid();
-  const files: any = await client.uploads.uploadFile({
+  const oldName: string = getUuid();
+  const newName: string = getUuid();
+  const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: oldName,
       parent: {
@@ -54,54 +47,56 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: any = files.entries[0];
+  const file: File = files.entries![0];
   if (!(file.name == oldName)) {
     throw 'Assertion failed';
   }
   if (!(file.size == 10)) {
     throw 'Assertion failed';
   }
-  const newFiles: any = await client.uploads.uploadFileVersion(file.id, {
+  const newFiles: Files = await client.uploads.uploadFileVersion(file.id, {
     attributes: {
       name: newName,
     } satisfies UploadFileVersionRequestBodyArgAttributesField,
     file: generateByteStream(20),
   } satisfies UploadFileVersionRequestBodyArg);
-  const newFile: any = newFiles.entries[0];
+  const newFile: File = newFiles.entries![0];
   if (!(newFile.name == newName)) {
     throw 'Assertion failed';
   }
   if (!(newFile.size == 20)) {
     throw 'Assertion failed';
   }
-  const fileVersions: any = await client.fileVersions.getFileVersions(file.id);
+  const fileVersions: FileVersions = await client.fileVersions.getFileVersions(
+    file.id
+  );
   if (!(fileVersions.totalCount == 1)) {
     throw 'Assertion failed';
   }
-  const fileVersion: any = await client.fileVersions.getFileVersionById(
-    file.id,
-    fileVersions.entries[0].id
-  );
-  if (!(fileVersion.id == fileVersions.entries[0].id)) {
+  const fileVersion: FileVersionFull =
+    await client.fileVersions.getFileVersionById(
+      file.id,
+      fileVersions.entries![0].id
+    );
+  if (!(fileVersion.id == fileVersions.entries![0].id)) {
     throw 'Assertion failed';
   }
   await client.fileVersions.promoteFileVersion(file.id, {
-    id: fileVersions.entries[0].id,
+    id: fileVersions.entries![0].id,
     type: 'file_version' as PromoteFileVersionRequestBodyArgTypeField,
   } satisfies PromoteFileVersionRequestBodyArg);
-  const fileRestored: any = await client.files.getFileById(file.id);
+  const fileRestored: FileFull = await client.files.getFileById(file.id);
   if (!(fileRestored.name == oldName)) {
     throw 'Assertion failed';
   }
   if (!(fileRestored.size == 10)) {
     throw 'Assertion failed';
   }
-  const fileVersionsRestored: any = await client.fileVersions.getFileVersions(
-    file.id
-  );
+  const fileVersionsRestored: FileVersions =
+    await client.fileVersions.getFileVersions(file.id);
   await client.fileVersions.deleteFileVersionById(
     file.id,
-    fileVersionsRestored.entries[0].id
+    fileVersionsRestored.entries![0].id
   );
   await client.fileVersions.getFileVersions(file.id);
   await client.files.deleteFileById(file.id);

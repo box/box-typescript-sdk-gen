@@ -32,7 +32,11 @@ export class CreateMetadataQueryExecuteReadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateMetadataQueryExecuteReadHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateMetadataQueryExecuteReadHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateMetadataQueryExecuteReadHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -47,7 +51,11 @@ export class GetMetadataQueryIndicesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataQueryIndicesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataQueryIndicesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataQueryIndicesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -94,7 +102,11 @@ export class GetSearchHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSearchHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSearchHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSearchHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { Authentication } from './auth';
 import { NetworkSession } from './network';
 import { fetch, FetchResponse } from './fetch.js';
-import { InMemoryTokenStorage, TokenStorage } from './tokenStorage';
+import { InMemoryTokenStorage, TokenStorage } from './tokenStorage.generated';
 
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =

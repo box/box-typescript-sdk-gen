@@ -27,7 +27,13 @@ export class GetCollaborationWhitelistEntriesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationWhitelistEntriesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollaborationWhitelistEntriesHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetCollaborationWhitelistEntriesHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -43,7 +49,13 @@ export class CreateCollaborationWhitelistEntryHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateCollaborationWhitelistEntryHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateCollaborationWhitelistEntryHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateCollaborationWhitelistEntryHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -51,7 +63,13 @@ export class GetCollaborationWhitelistEntryByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationWhitelistEntryByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollaborationWhitelistEntryByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetCollaborationWhitelistEntryByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -59,7 +77,13 @@ export class DeleteCollaborationWhitelistEntryByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteCollaborationWhitelistEntryByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteCollaborationWhitelistEntryByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteCollaborationWhitelistEntryByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -26,7 +26,11 @@ export class GetAuthorizeHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetAuthorizeHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetAuthorizeHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetAuthorizeHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -77,7 +77,7 @@ See the endpoint docs at
 <!-- sample delete_users_id_email_aliases_id -->
 
 ```ts
-await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id);
+await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id!);
 ```
 
 ### Arguments

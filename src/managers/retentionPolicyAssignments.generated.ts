@@ -36,7 +36,11 @@ export class GetRetentionPolicyAssignmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPolicyAssignmentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPolicyAssignmentsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyAssignmentsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -44,7 +48,7 @@ export type CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField 
   'enterprise' | 'folder' | 'metadata_template';
 export interface CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
   readonly type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
-  readonly id: string;
+  readonly id?: string;
 }
 export interface CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
   readonly field?: string;
@@ -60,7 +64,11 @@ export class CreateRetentionPolicyAssignmentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateRetentionPolicyAssignmentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateRetentionPolicyAssignmentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateRetentionPolicyAssignmentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -71,7 +79,13 @@ export class GetRetentionPolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -79,7 +93,13 @@ export class DeleteRetentionPolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteRetentionPolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -92,7 +112,17 @@ export class GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg
+    fields:
+      | Omit<
+          GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -106,7 +136,17 @@ export class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg
+    fields:
+      | Omit<
+          GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -365,7 +405,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFi
       serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
         val.type
       ),
-    ['id']: val.id,
+    ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
@@ -375,7 +415,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignTo
     deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
       val.type
     );
-  const id: string = val.id;
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,

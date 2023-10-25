@@ -23,7 +23,11 @@ export class GetTaskAssignmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTaskAssignmentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTaskAssignmentsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTaskAssignmentsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -44,7 +48,11 @@ export class CreateTaskAssignmentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateTaskAssignmentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateTaskAssignmentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateTaskAssignmentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -52,7 +60,11 @@ export class GetTaskAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetTaskAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetTaskAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetTaskAssignmentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -69,7 +81,11 @@ export class UpdateTaskAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateTaskAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateTaskAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateTaskAssignmentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -77,7 +93,11 @@ export class DeleteTaskAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteTaskAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteTaskAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteTaskAssignmentByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -32,7 +32,11 @@ export class CreateInviteHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateInviteHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateInviteHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateInviteHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -43,7 +47,11 @@ export class GetInviteByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetInviteByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetInviteByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetInviteByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

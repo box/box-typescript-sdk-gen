@@ -25,7 +25,11 @@ export class GetFolderLocksHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderLocksHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderLocksHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderLocksHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -45,7 +49,11 @@ export class CreateFolderLockHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFolderLockHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFolderLockHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFolderLockHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -53,7 +61,11 @@ export class DeleteFolderLockByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFolderLockByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFolderLockByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderLockByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

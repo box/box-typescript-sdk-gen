@@ -39,7 +39,11 @@ export class GetLegalHoldPolicyAssignmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPolicyAssignmentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetLegalHoldPolicyAssignmentsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetLegalHoldPolicyAssignmentsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -57,7 +61,11 @@ export class CreateLegalHoldPolicyAssignmentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateLegalHoldPolicyAssignmentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateLegalHoldPolicyAssignmentHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateLegalHoldPolicyAssignmentHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -65,7 +73,13 @@ export class GetLegalHoldPolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetLegalHoldPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetLegalHoldPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -73,7 +87,13 @@ export class DeleteLegalHoldPolicyAssignmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteLegalHoldPolicyAssignmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteLegalHoldPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<DeleteLegalHoldPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -86,7 +106,13 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetLegalHoldPolicyAssignmentFileOnHoldHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -99,7 +125,19 @@ export class GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }

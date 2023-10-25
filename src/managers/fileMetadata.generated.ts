@@ -26,7 +26,11 @@ export class GetFileMetadataHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileMetadataHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileMetadataHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileMetadataHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +39,11 @@ export class GetFileMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -47,7 +55,11 @@ export class CreateFileMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -69,7 +81,11 @@ export class UpdateFileMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -78,7 +94,11 @@ export class DeleteFileMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -27,7 +27,11 @@ export class GetUserMembershipsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUserMembershipsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUserMembershipsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUserMembershipsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -39,7 +43,11 @@ export class GetGroupMembershipsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetGroupMembershipsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetGroupMembershipsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetGroupMembershipsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -65,7 +73,11 @@ export class CreateGroupMembershipHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateGroupMembershipHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateGroupMembershipHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateGroupMembershipHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -76,7 +88,11 @@ export class GetGroupMembershipByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetGroupMembershipByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetGroupMembershipByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -96,7 +112,11 @@ export class UpdateGroupMembershipByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateGroupMembershipByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateGroupMembershipByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -104,7 +124,11 @@ export class DeleteGroupMembershipByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteGroupMembershipByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteGroupMembershipByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

@@ -32,7 +32,11 @@ export class RestoreFolderFromTrashHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: RestoreFolderFromTrashHeadersArg) {
+  constructor(
+    fields:
+      | Omit<RestoreFolderFromTrashHeadersArg, 'extraHeaders'>
+      | Partial<Pick<RestoreFolderFromTrashHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -43,7 +47,11 @@ export class GetFolderTrashHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderTrashHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderTrashHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderTrashHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -51,7 +59,11 @@ export class DeleteFolderTrashHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFolderTrashHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFolderTrashHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderTrashHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

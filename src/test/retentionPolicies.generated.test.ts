@@ -19,21 +19,14 @@ import { CreateRetentionPolicyRequestBodyArgDispositionActionField } from '../ma
 import { CreateRetentionPolicyRequestBodyArgRetentionTypeField } from '../managers/retentionPolicies.generated.js';
 import { RetentionPolicies } from '../schemas.generated.js';
 import { UpdateRetentionPolicyByIdRequestBodyArg } from '../managers/retentionPolicies.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdateGetDeleteRetentionPolicy(): Promise<any> {
-  const retentionPolicyName: any = getUuid();
-  const retentionDescription: any = 'test description';
-  const retentionPolicy: any =
+  const retentionPolicyName: string = getUuid();
+  const retentionDescription: string = 'test description';
+  const retentionPolicy: RetentionPolicy =
     await client.retentionPolicies.createRetentionPolicy({
       policyName: retentionPolicyName,
       policyType:
@@ -53,18 +46,18 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
   if (!(retentionPolicy.description == retentionDescription)) {
     throw 'Assertion failed';
   }
-  const retentionPolicyById: any =
+  const retentionPolicyById: RetentionPolicy =
     await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
   if (!(retentionPolicyById.id == retentionPolicy.id)) {
     throw 'Assertion failed';
   }
-  const retentionPolicies: any =
+  const retentionPolicies: RetentionPolicies =
     await client.retentionPolicies.getRetentionPolicies();
-  if (!(retentionPolicies.entries.length > 0)) {
+  if (!(retentionPolicies.entries!.length > 0)) {
     throw 'Assertion failed';
   }
-  const updatedRetentionPolicyName: any = getUuid();
-  const updatedRetentionPolicy: any =
+  const updatedRetentionPolicyName: string = getUuid();
+  const updatedRetentionPolicy: RetentionPolicy =
     await client.retentionPolicies.updateRetentionPolicyById(
       retentionPolicy.id,
       {

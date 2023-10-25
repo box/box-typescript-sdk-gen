@@ -26,7 +26,11 @@ export class GetFolderMetadataHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderMetadataHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderMetadataHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderMetadataHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +39,11 @@ export class GetFolderMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -47,7 +55,11 @@ export class CreateFolderMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFolderMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFolderMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -69,7 +81,11 @@ export class UpdateFolderMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFolderMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFolderMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -78,7 +94,11 @@ export class DeleteFolderMetadataByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFolderMetadataByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFolderMetadataByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

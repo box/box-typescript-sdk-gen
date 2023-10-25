@@ -2,8 +2,14 @@ import { serializeShieldInformationBarrier } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrier } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeShieldInformationBarriers } from '../schemas.generated.js';
+import { deserializeShieldInformationBarriers } from '../schemas.generated.js';
+import { serializeEnterpriseBase } from '../schemas.generated.js';
+import { deserializeEnterpriseBase } from '../schemas.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { ShieldInformationBarriers } from '../schemas.generated.js';
+import { EnterpriseBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -20,7 +26,11 @@ export class GetShieldInformationBarrierByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarrierByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetShieldInformationBarrierByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetShieldInformationBarrierByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +44,19 @@ export class CreateShieldInformationBarrierChangeStatusHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateShieldInformationBarrierChangeStatusHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          CreateShieldInformationBarrierChangeStatusHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            CreateShieldInformationBarrierChangeStatusHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -46,15 +68,26 @@ export class GetShieldInformationBarriersHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarriersHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetShieldInformationBarriersHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetShieldInformationBarriersHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateShieldInformationBarrierRequestBodyArg {
+  readonly enterprise: EnterpriseBase;
 }
 export class CreateShieldInformationBarrierHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateShieldInformationBarrierHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateShieldInformationBarrierHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateShieldInformationBarrierHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -130,7 +163,7 @@ export class ShieldInformationBarriersManager {
     headers: GetShieldInformationBarriersHeadersArg = new GetShieldInformationBarriersHeadersArg(
       {}
     )
-  ): Promise<undefined> {
+  ): Promise<ShieldInformationBarriers> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -153,10 +186,10 @@ export class ShieldInformationBarriersManager {
         networkSession: this.networkSession,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return void 0;
+    return deserializeShieldInformationBarriers(deserializeJson(response.text));
   }
   async createShieldInformationBarrier(
-    requestBody: ShieldInformationBarrier,
+    requestBody: CreateShieldInformationBarrierRequestBodyArg,
     headers: CreateShieldInformationBarrierHeadersArg = new CreateShieldInformationBarrierHeadersArg(
       {}
     )
@@ -171,7 +204,9 @@ export class ShieldInformationBarriersManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeShieldInformationBarrier(requestBody)),
+        body: serializeJson(
+          serializeCreateShieldInformationBarrierRequestBodyArg(requestBody)
+        ),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -223,4 +258,17 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
     id: id,
     status: status,
   } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg;
+}
+export function serializeCreateShieldInformationBarrierRequestBodyArg(
+  val: CreateShieldInformationBarrierRequestBodyArg
+): Json {
+  return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
+}
+export function deserializeCreateShieldInformationBarrierRequestBodyArg(
+  val: any
+): CreateShieldInformationBarrierRequestBodyArg {
+  const enterprise: EnterpriseBase = deserializeEnterpriseBase(val.enterprise);
+  return {
+    enterprise: enterprise,
+  } satisfies CreateShieldInformationBarrierRequestBodyArg;
 }

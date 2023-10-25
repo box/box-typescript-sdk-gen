@@ -41,7 +41,11 @@ export class UploadFileVersionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UploadFileVersionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UploadFileVersionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UploadFileVersionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -68,7 +72,11 @@ export class UploadFileHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UploadFileHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UploadFileHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UploadFileHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -84,7 +92,11 @@ export class PreflightFileUploadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: PreflightFileUploadHeadersArg) {
+  constructor(
+    fields:
+      | Omit<PreflightFileUploadHeadersArg, 'extraHeaders'>
+      | Partial<Pick<PreflightFileUploadHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

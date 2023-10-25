@@ -89,7 +89,7 @@ See the endpoint docs at
 <!-- sample get_tasks_id -->
 
 ```ts
-await client.tasks.getTaskById(task.id);
+await client.tasks.getTaskById(task.id!);
 ```
 
 ### Arguments
@@ -118,7 +118,7 @@ See the endpoint docs at
 <!-- sample put_tasks_id -->
 
 ```ts
-await client.tasks.updateTaskById(task.id, {
+await client.tasks.updateTaskById(task.id!, {
   message: 'updated message',
 } satisfies UpdateTaskByIdRequestBodyArg);
 ```
@@ -150,7 +150,7 @@ See the endpoint docs at
 <!-- sample delete_tasks_id -->
 
 ```ts
-await client.tasks.deleteTaskById(task.id);
+await client.tasks.deleteTaskById(task.id!);
 ```
 
 ### Arguments

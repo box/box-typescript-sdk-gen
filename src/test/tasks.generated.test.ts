@@ -22,6 +22,7 @@ import { serializeTasks } from '../schemas.generated.js';
 import { deserializeTasks } from '../schemas.generated.js';
 import { serializeUpdateTaskByIdRequestBodyArg } from '../managers/tasks.generated.js';
 import { deserializeUpdateTaskByIdRequestBodyArg } from '../managers/tasks.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -35,20 +36,12 @@ import { CreateTaskRequestBodyArgActionField } from '../managers/tasks.generated
 import { CreateTaskRequestBodyArgCompletionRuleField } from '../managers/tasks.generated.js';
 import { Tasks } from '../schemas.generated.js';
 import { UpdateTaskByIdRequestBodyArg } from '../managers/tasks.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTask(): Promise<any> {
-  const files: any = await client.uploads.uploadFile({
+  const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
       parent: {
@@ -57,8 +50,8 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: any = files.entries[0];
-  const task: any = await client.tasks.createTask({
+  const file: File = files.entries![0];
+  const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyArgItemFieldTypeField,
       id: file.id,
@@ -72,24 +65,24 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
   if (!(task.message == 'test message')) {
     throw 'Assertion failed';
   }
-  if (!(task.item.id == file.id)) {
+  if (!(task.item!.id == file.id)) {
     throw 'Assertion failed';
   }
-  const taskById: any = await client.tasks.getTaskById(task.id);
+  const taskById: Task = await client.tasks.getTaskById(task.id!);
   if (!(taskById.id == task.id)) {
     throw 'Assertion failed';
   }
-  const taskOnFile: any = await client.tasks.getFileTasks(file.id);
+  const taskOnFile: Tasks = await client.tasks.getFileTasks(file.id);
   if (!(taskOnFile.totalCount == 1)) {
     throw 'Assertion failed';
   }
-  const updatedTask: any = await client.tasks.updateTaskById(task.id, {
+  const updatedTask: Task = await client.tasks.updateTaskById(task.id!, {
     message: 'updated message',
   } satisfies UpdateTaskByIdRequestBodyArg);
   if (!(updatedTask.message == 'updated message')) {
     throw 'Assertion failed';
   }
-  await client.tasks.deleteTaskById(task.id);
+  await client.tasks.deleteTaskById(task.id!);
   await client.files.deleteFileById(file.id);
 });
 export {};

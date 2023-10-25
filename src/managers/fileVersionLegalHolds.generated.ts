@@ -21,7 +21,11 @@ export class GetFileVersionLegalHoldByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileVersionLegalHoldByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileVersionLegalHoldByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionLegalHoldByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +38,11 @@ export class GetFileVersionLegalHoldsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileVersionLegalHoldsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileVersionLegalHoldsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionLegalHoldsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

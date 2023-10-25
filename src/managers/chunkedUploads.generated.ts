@@ -55,7 +55,11 @@ export class CreateFileUploadSessionHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileUploadSessionHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -67,7 +71,13 @@ export class CreateFileUploadSessionForExistingFileHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionForExistingFileHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionForExistingFileHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateFileUploadSessionForExistingFileHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -75,7 +85,11 @@ export class GetFileUploadSessionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileUploadSessionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileUploadSessionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileUploadSessionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -85,7 +99,11 @@ export class UploadFilePartHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UploadFilePartHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UploadFilePartHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UploadFilePartHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -93,7 +111,11 @@ export class DeleteFileUploadSessionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileUploadSessionByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileUploadSessionByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileUploadSessionByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -105,7 +127,11 @@ export class GetFileUploadSessionPartsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileUploadSessionPartsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileUploadSessionPartsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileUploadSessionPartsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -119,7 +145,11 @@ export class CreateFileUploadSessionCommitHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateFileUploadSessionCommitHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateFileUploadSessionCommitHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateFileUploadSessionCommitHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -148,8 +178,10 @@ export class ChunkedUploadsManager {
       {}
     )
   ): Promise<UploadSession> {
-    const headersMap: any = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: any = (await fetch(
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions'
       ) as string,
@@ -174,8 +206,10 @@ export class ChunkedUploadsManager {
       {}
     )
   ): Promise<UploadSession> {
-    const headersMap: any = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: any = (await fetch(
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/',
         toString(fileId) as string,
@@ -203,8 +237,10 @@ export class ChunkedUploadsManager {
       {}
     )
   ): Promise<UploadSession> {
-    const headersMap: any = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: any = (await fetch(
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
@@ -224,14 +260,16 @@ export class ChunkedUploadsManager {
     requestBody: ByteStream,
     headers: UploadFilePartHeadersArg
   ): Promise<UploadedPart> {
-    const headersMap: any = prepareParams({
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
       ...{
         ['digest']: toString(headers.digest) as string,
         ['content-range']: toString(headers.contentRange) as string,
       },
       ...headers.extraHeaders,
     });
-    const response: any = (await fetch(
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
@@ -254,8 +292,10 @@ export class ChunkedUploadsManager {
       {}
     )
   ): Promise<undefined> {
-    const headersMap: any = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: any = (await fetch(
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
@@ -277,12 +317,16 @@ export class ChunkedUploadsManager {
       {}
     )
   ): Promise<UploadParts> {
-    const queryParamsMap: any = prepareParams({
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
       ['offset']: toString(queryParams.offset) as string,
       ['limit']: toString(queryParams.limit) as string,
     });
-    const headersMap: any = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: any = (await fetch(
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
@@ -304,7 +348,9 @@ export class ChunkedUploadsManager {
     requestBody: CreateFileUploadSessionCommitRequestBodyArg,
     headers: CreateFileUploadSessionCommitHeadersArg
   ): Promise<Files> {
-    const headersMap: any = prepareParams({
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
       ...{
         ['digest']: toString(headers.digest) as string,
         ['if-match']: toString(headers.ifMatch) as string,
@@ -312,7 +358,7 @@ export class ChunkedUploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: any = (await fetch(
+    const response: FetchResponse = (await fetch(
       ''.concat(
         'https://upload.box.com/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
@@ -333,17 +379,17 @@ export class ChunkedUploadsManager {
     return deserializeFiles(deserializeJson(response.text));
   }
   async reducer(acc: PartAccumulator, chunk: ByteStream): Promise<any> {
-    const lastIndex: any = acc.lastIndex;
-    const parts: any = acc.parts;
-    const chunkBuffer: any = await readByteStream(chunk);
-    const hash: any = new Hash({ algorithm: 'sha1' as HashName });
+    const lastIndex: number = acc.lastIndex;
+    const parts: readonly UploadPart[] = acc.parts;
+    const chunkBuffer: Buffer = await readByteStream(chunk);
+    const hash: Hash = new Hash({ algorithm: 'sha1' as HashName });
     hash.updateHash(chunkBuffer);
-    const sha1: any = await hash.digestHash('base64');
-    const digest: any = ''.concat('sha=', sha1) as string;
-    const chunkSize: any = bufferLength(chunkBuffer);
-    const bytesStart: any = lastIndex + 1;
-    const bytesEnd: any = lastIndex + chunkSize;
-    const contentRange: any = ''.concat(
+    const sha1: string = await hash.digestHash('base64');
+    const digest: string = ''.concat('sha=', sha1) as string;
+    const chunkSize: number = bufferLength(chunkBuffer);
+    const bytesStart: number = lastIndex + 1;
+    const bytesEnd: number = lastIndex + chunkSize;
+    const contentRange: string = ''.concat(
       'bytes ',
       toString(bytesStart) as string,
       '-',
@@ -351,7 +397,7 @@ export class ChunkedUploadsManager {
       '/',
       toString(acc.fileSize) as string
     ) as string;
-    const uploadedPart: any = await this.uploadFilePart(
+    const uploadedPart: UploadedPart = await this.uploadFilePart(
       acc.uploadSessionId,
       generateByteStreamFromBuffer(chunkBuffer),
       new UploadFilePartHeadersArg({
@@ -359,8 +405,8 @@ export class ChunkedUploadsManager {
         contentRange: contentRange,
       })
     );
-    const part: any = uploadedPart.part;
-    const partSha1: any = hexToBase64(part.sha1);
+    const part: UploadPart = uploadedPart.part!;
+    const partSha1: string = hexToBase64(part.sha1!);
     if (!(partSha1 == sha1)) {
       throw 'Assertion failed';
     }
@@ -385,23 +431,23 @@ export class ChunkedUploadsManager {
     fileSize: number,
     parentFolderId: string
   ): Promise<any> {
-    const uploadSession: any = await this.createFileUploadSession({
+    const uploadSession: UploadSession = await this.createFileUploadSession({
       fileName: fileName,
       fileSize: fileSize,
       folderId: parentFolderId,
     } satisfies CreateFileUploadSessionRequestBodyArg);
-    const uploadSessionId: any = uploadSession.id;
-    const partSize: any = uploadSession.partSize;
-    const totalParts: any = uploadSession.totalParts;
+    const uploadSessionId: string = uploadSession.id!;
+    const partSize: number = uploadSession.partSize!;
+    const totalParts: number = uploadSession.totalParts!;
     if (!(partSize * totalParts >= fileSize)) {
       throw 'Assertion failed';
     }
     if (!(uploadSession.numPartsProcessed == 0)) {
       throw 'Assertion failed';
     }
-    const fileHash: any = new Hash({ algorithm: 'sha1' as HashName });
-    const chunksIterator: any = iterateChunks(file, partSize);
-    const results: any = await reduceIterator(
+    const fileHash: Hash = new Hash({ algorithm: 'sha1' as HashName });
+    const chunksIterator: Iterator = iterateChunks(file, partSize);
+    const results: PartAccumulator = await reduceIterator(
       chunksIterator,
       this.reducer.bind(this),
       {
@@ -412,27 +458,26 @@ export class ChunkedUploadsManager {
         fileHash: fileHash,
       } satisfies PartAccumulator
     );
-    const parts: any = results.parts;
-    const processedSessionParts: any = await this.getFileUploadSessionParts(
-      uploadSessionId
-    );
-    if (!(processedSessionParts.totalCount == totalParts)) {
+    const parts: readonly UploadPart[] = results.parts;
+    const processedSessionParts: UploadParts =
+      await this.getFileUploadSessionParts(uploadSessionId);
+    if (!(processedSessionParts.totalCount! == totalParts)) {
       throw 'Assertion failed';
     }
-    const processedSession: any = await this.getFileUploadSessionById(
+    const processedSession: UploadSession = await this.getFileUploadSessionById(
       uploadSessionId
     );
     if (!(processedSession.numPartsProcessed == totalParts)) {
       throw 'Assertion failed';
     }
-    const sha1: any = await fileHash.digestHash('base64');
-    const digest: any = ''.concat('sha=', sha1) as string;
-    const committedSession: any = await this.createFileUploadSessionCommit(
+    const sha1: string = await fileHash.digestHash('base64');
+    const digest: string = ''.concat('sha=', sha1) as string;
+    const committedSession: Files = await this.createFileUploadSessionCommit(
       uploadSessionId,
       { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg,
       new CreateFileUploadSessionCommitHeadersArg({ digest: digest })
     );
-    return committedSession.entries[0];
+    return committedSession.entries![0];
   }
 }
 export function serializeCreateFileUploadSessionRequestBodyArg(

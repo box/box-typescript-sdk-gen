@@ -24,7 +24,11 @@ export class GetFileCollaborationsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileCollaborationsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileCollaborationsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileCollaborationsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +39,11 @@ export class GetFolderCollaborationsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFolderCollaborationsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFolderCollaborationsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFolderCollaborationsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -50,7 +58,11 @@ export class GetCollaborationsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollaborationsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetCollaborationsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -62,7 +74,11 @@ export class GetGroupCollaborationsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetGroupCollaborationsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetGroupCollaborationsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetGroupCollaborationsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

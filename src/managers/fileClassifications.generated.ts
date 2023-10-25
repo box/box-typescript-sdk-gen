@@ -21,7 +21,17 @@ export class GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersAr
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg
+    fields:
+      | Omit<
+          GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -34,7 +44,17 @@ export class CreateFileMetadataEnterpriseSecurityClassificationHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: CreateFileMetadataEnterpriseSecurityClassificationHeadersArg
+    fields:
+      | Omit<
+          CreateFileMetadataEnterpriseSecurityClassificationHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            CreateFileMetadataEnterpriseSecurityClassificationHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -53,7 +73,17 @@ export class UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg
+    fields:
+      | Omit<
+          UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }
@@ -63,7 +93,17 @@ export class DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg
+    fields:
+      | Omit<
+          DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg,
+            'extraHeaders'
+          >
+        >
   ) {
     Object.assign(this, fields);
   }

@@ -7,7 +7,7 @@ import {
 import { FetchOptions, FetchResponse, fetch } from './fetch.js';
 import { NetworkSession } from './network';
 import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
-import { InMemoryTokenStorage, TokenStorage } from './tokenStorage';
+import { InMemoryTokenStorage, TokenStorage } from './tokenStorage.generated';
 
 export class CcgConfig {
   clientId: string;

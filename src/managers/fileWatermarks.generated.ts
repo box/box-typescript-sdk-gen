@@ -20,7 +20,11 @@ export class GetFileWatermarkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetFileWatermarkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetFileWatermarkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetFileWatermarkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -36,7 +40,11 @@ export class UpdateFileWatermarkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateFileWatermarkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateFileWatermarkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateFileWatermarkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -44,7 +52,11 @@ export class DeleteFileWatermarkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteFileWatermarkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteFileWatermarkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteFileWatermarkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

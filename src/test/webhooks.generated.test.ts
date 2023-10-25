@@ -18,6 +18,7 @@ import { serializeWebhooks } from '../schemas.generated.js';
 import { deserializeWebhooks } from '../schemas.generated.js';
 import { serializeUpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
 import { deserializeUpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
@@ -28,24 +29,16 @@ import { CreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/web
 import { CreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
 import { Webhooks } from '../schemas.generated.js';
 import { UpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+const client: BoxClient = getDefaultClient();
 test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
-  const folder: any = await client.folders.createFolder({
+  const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
-  const webhook: any = await client.webhooks.createWebhook({
+  const webhook: Webhook = await client.webhooks.createWebhook({
     target: {
       id: folder.id,
       type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
@@ -53,34 +46,36 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     address: 'https://example.com/new-webhook',
     triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyArgTriggersField],
   } satisfies CreateWebhookRequestBodyArg);
-  if (!(webhook.target.id == folder.id)) {
+  if (!(webhook.target!.id == folder.id)) {
     throw 'Assertion failed';
   }
-  if (!((toString(webhook.target.type) as string) == 'folder')) {
+  if (!((toString(webhook.target!.type) as string) == 'folder')) {
     throw 'Assertion failed';
   }
-  if (!(webhook.triggers.length == ['FILE.UPLOADED'].length)) {
+  if (!(webhook.triggers!.length == ['FILE.UPLOADED'].length)) {
     throw 'Assertion failed';
   }
   if (!(webhook.address == 'https://example.com/new-webhook')) {
     throw 'Assertion failed';
   }
-  const webhooks: any = await client.webhooks.getWebhooks();
-  if (!(webhooks.entries.length > 0)) {
+  const webhooks: Webhooks = await client.webhooks.getWebhooks();
+  if (!(webhooks.entries!.length > 0)) {
     throw 'Assertion failed';
   }
-  const webhookFromApi: any = await client.webhooks.getWebhookById(webhook.id);
+  const webhookFromApi: Webhook = await client.webhooks.getWebhookById(
+    webhook.id!
+  );
   if (!(webhook.id == webhookFromApi.id)) {
     throw 'Assertion failed';
   }
-  if (!(webhook.target.id == webhookFromApi.target.id)) {
+  if (!(webhook.target!.id == webhookFromApi.target!.id)) {
     throw 'Assertion failed';
   }
   if (!(webhook.address == webhookFromApi.address)) {
     throw 'Assertion failed';
   }
-  const updatedWebhook: any = await client.webhooks.updateWebhookById(
-    webhook.id,
+  const updatedWebhook: Webhook = await client.webhooks.updateWebhookById(
+    webhook.id!,
     {
       address: 'https://example.com/updated-webhook',
     } satisfies UpdateWebhookByIdRequestBodyArg
@@ -91,9 +86,9 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
   if (!(updatedWebhook.address == 'https://example.com/updated-webhook')) {
     throw 'Assertion failed';
   }
-  await client.webhooks.deleteWebhookById(webhook.id);
+  await client.webhooks.deleteWebhookById(webhook.id!);
   expect(async () => {
-    await client.webhooks.deleteWebhookById(webhook.id);
+    await client.webhooks.deleteWebhookById(webhook.id!);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);
 });

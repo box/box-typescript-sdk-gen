@@ -88,7 +88,12 @@ See the endpoint docs at
 <!-- sample post_files_id_metadata_id_id -->
 
 ```ts
-await client.fileMetadata.createFileMetadataById(fileId, scope, template, data);
+await client.fileMetadata.createFileMetadataById(
+  file.id,
+  'enterprise' as CreateFileMetadataByIdScopeArg,
+  templateKey,
+  { ['testName']: 1 }
+);
 ```
 
 ### Arguments

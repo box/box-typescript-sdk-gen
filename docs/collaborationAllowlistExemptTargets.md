@@ -83,7 +83,7 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
-  exemptTarget.id
+  exemptTarget.id!
 );
 ```
 
@@ -114,7 +114,7 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
-  exemptTarget.id
+  exemptTarget.id!
 );
 ```
 

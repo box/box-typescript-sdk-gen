@@ -25,7 +25,11 @@ export class CancelSignRequestHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CancelSignRequestHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CancelSignRequestHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CancelSignRequestHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -33,7 +37,11 @@ export class ResendSignRequestHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: ResendSignRequestHeadersArg) {
+  constructor(
+    fields:
+      | Omit<ResendSignRequestHeadersArg, 'extraHeaders'>
+      | Partial<Pick<ResendSignRequestHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -41,7 +49,11 @@ export class GetSignRequestByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSignRequestByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSignRequestByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSignRequestByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -53,7 +65,11 @@ export class GetSignRequestsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSignRequestsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSignRequestsHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSignRequestsHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -61,7 +77,11 @@ export class CreateSignRequestHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateSignRequestHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateSignRequestHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateSignRequestHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

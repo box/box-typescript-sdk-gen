@@ -6,10 +6,13 @@ import { serializeRetentionPolicy } from '../schemas.generated.js';
 import { deserializeRetentionPolicy } from '../schemas.generated.js';
 import { serializeUserMini } from '../schemas.generated.js';
 import { deserializeUserMini } from '../schemas.generated.js';
+import { serializeUserBase } from '../schemas.generated.js';
+import { deserializeUserBase } from '../schemas.generated.js';
 import { RetentionPolicies } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { RetentionPolicy } from '../schemas.generated.js';
 import { UserMini } from '../schemas.generated.js';
+import { UserBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -37,7 +40,11 @@ export class GetRetentionPoliciesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPoliciesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPoliciesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPoliciesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -49,7 +56,7 @@ export type CreateRetentionPolicyRequestBodyArgDispositionActionField =
   | 'remove_retention';
 export type CreateRetentionPolicyRequestBodyArgRetentionTypeField =
   | 'modifiable'
-  | 'non-modifiable';
+  | 'non_modifiable';
 export interface CreateRetentionPolicyRequestBodyArg {
   readonly policyName: string;
   readonly description?: string;
@@ -65,7 +72,11 @@ export class CreateRetentionPolicyHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateRetentionPolicyHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateRetentionPolicyHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateRetentionPolicyHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -76,29 +87,34 @@ export class GetRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField =
-  | 'permanently_delete'
-  | 'remove_retention';
 export interface UpdateRetentionPolicyByIdRequestBodyArg {
   readonly policyName?: string;
   readonly description?: string;
-  readonly dispositionAction?: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField;
+  readonly dispositionAction?: string;
   readonly retentionType?: string;
   readonly retentionLength?: string;
   readonly status?: string;
   readonly canOwnerExtendRetention?: boolean;
   readonly areOwnersNotified?: boolean;
-  readonly customNotificationRecipients?: readonly UserMini[];
+  readonly customNotificationRecipients?: readonly UserBase[];
 }
 export class UpdateRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -106,7 +122,11 @@ export class DeleteRetentionPolicyByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteRetentionPolicyByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -338,8 +358,8 @@ export function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField
   if (val == 'modifiable') {
     return 'modifiable';
   }
-  if (val == 'non-modifiable') {
-    return 'non-modifiable';
+  if (val == 'non_modifiable') {
+    return 'non_modifiable';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -431,25 +451,6 @@ export function deserializeCreateRetentionPolicyRequestBodyArg(
     customNotificationRecipients: customNotificationRecipients,
   } satisfies CreateRetentionPolicyRequestBodyArg;
 }
-export function serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-  val: UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField
-): Json {
-  return val;
-}
-export function deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-  val: any
-): UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField {
-  if (!isJson(val, 'string')) {
-    throw 'Expecting a string for "UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField"';
-  }
-  if (val == 'permanently_delete') {
-    return 'permanently_delete';
-  }
-  if (val == 'remove_retention') {
-    return 'remove_retention';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
 export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
   val: UpdateRetentionPolicyByIdRequestBodyArg
 ): Json {
@@ -457,11 +458,7 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['disposition_action']:
-      val.dispositionAction == void 0
-        ? void 0
-        : serializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-            val.dispositionAction
-          ),
+      val.dispositionAction == void 0 ? void 0 : val.dispositionAction,
     ['retention_type']:
       val.retentionType == void 0 ? void 0 : val.retentionType,
     ['retention_length']:
@@ -477,9 +474,9 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
       val.customNotificationRecipients == void 0
         ? void 0
         : (val.customNotificationRecipients?.map(function (
-            item: UserMini
+            item: UserBase
           ): any {
-            return serializeUserMini(item);
+            return serializeUserBase(item);
           }) as readonly any[]),
   };
 }
@@ -490,14 +487,8 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
     val.policy_name == void 0 ? void 0 : val.policy_name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const dispositionAction:
-    | undefined
-    | UpdateRetentionPolicyByIdRequestBodyArgDispositionActionField =
-    val.disposition_action == void 0
-      ? void 0
-      : deserializeUpdateRetentionPolicyByIdRequestBodyArgDispositionActionField(
-          val.disposition_action
-        );
+  const dispositionAction: undefined | string =
+    val.disposition_action == void 0 ? void 0 : val.disposition_action;
   const retentionType: undefined | string =
     val.retention_type == void 0 ? void 0 : val.retention_type;
   const retentionLength: undefined | string =
@@ -509,12 +500,12 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
       : val.can_owner_extend_retention;
   const areOwnersNotified: undefined | boolean =
     val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
-  const customNotificationRecipients: undefined | readonly UserMini[] =
+  const customNotificationRecipients: undefined | readonly UserBase[] =
     val.custom_notification_recipients == void 0
       ? void 0
       : isJson(val.custom_notification_recipients, 'array')
       ? (val.custom_notification_recipients?.map(function (itm: Json): any {
-          return deserializeUserMini(itm);
+          return deserializeUserBase(itm);
         }) as readonly any[])
       : [];
   return {

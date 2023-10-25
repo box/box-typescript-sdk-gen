@@ -23,7 +23,11 @@ export class GetCollaborationByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetCollaborationByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetCollaborationByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetCollaborationByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -50,7 +54,11 @@ export class UpdateCollaborationByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateCollaborationByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateCollaborationByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateCollaborationByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -58,7 +66,11 @@ export class DeleteCollaborationByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteCollaborationByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteCollaborationByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteCollaborationByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -89,6 +101,7 @@ export interface CreateCollaborationRequestBodyArg {
   readonly item: CreateCollaborationRequestBodyArgItemField;
   readonly accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField;
   readonly role: CreateCollaborationRequestBodyArgRoleField;
+  readonly isAccessOnly?: boolean;
   readonly canViewPath?: boolean;
   readonly expiresAt?: string;
 }
@@ -100,7 +113,11 @@ export class CreateCollaborationHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateCollaborationHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateCollaborationHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateCollaborationHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -465,6 +482,7 @@ export function serializeCreateCollaborationRequestBodyArg(
         val.accessibleBy
       ),
     ['role']: serializeCreateCollaborationRequestBodyArgRoleField(val.role),
+    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
     ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
   };
@@ -480,6 +498,8 @@ export function deserializeCreateCollaborationRequestBodyArg(
     );
   const role: CreateCollaborationRequestBodyArgRoleField =
     deserializeCreateCollaborationRequestBodyArgRoleField(val.role);
+  const isAccessOnly: undefined | boolean =
+    val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const canViewPath: undefined | boolean =
     val.can_view_path == void 0 ? void 0 : val.can_view_path;
   const expiresAt: undefined | string =
@@ -488,6 +508,7 @@ export function deserializeCreateCollaborationRequestBodyArg(
     item: item,
     accessibleBy: accessibleBy,
     role: role,
+    isAccessOnly: isAccessOnly,
     canViewPath: canViewPath,
     expiresAt: expiresAt,
   } satisfies CreateCollaborationRequestBodyArg;

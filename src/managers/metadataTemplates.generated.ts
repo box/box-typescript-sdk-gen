@@ -26,7 +26,11 @@ export class GetMetadataTemplatesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataTemplatesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataTemplatesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplatesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -35,7 +39,11 @@ export class GetMetadataTemplateSchemaHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataTemplateSchemaHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -70,7 +78,11 @@ export class UpdateMetadataTemplateSchemaHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateMetadataTemplateSchemaHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -79,7 +91,11 @@ export class DeleteMetadataTemplateSchemaHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteMetadataTemplateSchemaHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -87,7 +103,11 @@ export class GetMetadataTemplateByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataTemplateByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataTemplateByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -99,7 +119,11 @@ export class GetMetadataTemplateGlobalHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataTemplateGlobalHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataTemplateGlobalHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateGlobalHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -111,7 +135,11 @@ export class GetMetadataTemplateEnterpriseHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetMetadataTemplateEnterpriseHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetMetadataTemplateEnterpriseHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateEnterpriseHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -144,7 +172,11 @@ export class CreateMetadataTemplateSchemaHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateMetadataTemplateSchemaHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

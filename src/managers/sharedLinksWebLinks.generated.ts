@@ -25,7 +25,11 @@ export class GetSharedItemWebLinksHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSharedItemWebLinksHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSharedItemWebLinksHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSharedItemWebLinksHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -36,7 +40,11 @@ export class GetWebLinkGetSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetWebLinkGetSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetWebLinkGetSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetWebLinkGetSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -64,7 +72,11 @@ export class UpdateWebLinkAddSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateWebLinkAddSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateWebLinkAddSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateWebLinkAddSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -92,7 +104,11 @@ export class UpdateWebLinkUpdateSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateWebLinkUpdateSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateWebLinkUpdateSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateWebLinkUpdateSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -107,7 +123,11 @@ export class UpdateWebLinkRemoveSharedLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateWebLinkRemoveSharedLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateWebLinkRemoveSharedLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateWebLinkRemoveSharedLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

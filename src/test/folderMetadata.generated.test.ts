@@ -14,6 +14,7 @@ import { serializeUpdateFolderMetadataByIdRequestBodyArg } from '../managers/fol
 import { deserializeUpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
 import { serializeUpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
 import { deserializeUpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
@@ -22,21 +23,10 @@ import { Metadata } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { UpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
 import { UpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { generateByteStream } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
+const client: any = getDefaultClient();
 test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
-  const client: any = new BoxClient({
-    auth: new BoxJwtAuth({
-      config: JwtConfig.fromConfigJsonString(
-        decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-      ),
-    }),
-  });
   const folder: any = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
@@ -44,7 +34,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const folderMetadata: any = await client.folderMetadata.getFolderMetadata(
     folder.id
   );
-  if (!(folderMetadata.entries.length == 0)) {
+  if (!(folderMetadata.entries!.length == 0)) {
     throw 'Assertion failed';
   }
   const scope: any = 'global';
@@ -72,7 +62,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       scope,
       template
     );
-  if (!(receivedMetadata.extraData.abc == data.abc)) {
+  if (!(receivedMetadata.extraData!.abc == data.abc)) {
     throw 'Assertion failed';
   }
   const newValue: any = 'bar';
@@ -95,7 +85,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       scope,
       template
     );
-  if (!(receivedUpdatedMetadata.extraData.abc == newValue)) {
+  if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
     throw 'Assertion failed';
   }
   await client.folderMetadata.deleteFolderMetadataById(

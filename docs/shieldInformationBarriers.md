@@ -7,7 +7,7 @@
 
 ## Get shield information barrier with specified ID
 
-Get shield information barrier based on provided ID..
+Get shield information barrier based on provided ID.
 
 This operation is performed by calling function `getShieldInformationBarrierById`.
 
@@ -74,7 +74,7 @@ _Currently we don't have an example for calling `getShieldInformationBarriers` i
 
 ### Returns
 
-This function returns a value of type `undefined`.
+This function returns a value of type `ShieldInformationBarriers`.
 
 Returns a paginated list of
 shield information barrier objects,
@@ -95,7 +95,7 @@ _Currently we don't have an example for calling `createShieldInformationBarrier`
 
 ### Arguments
 
-- requestBody `ShieldInformationBarrier`
+- requestBody `CreateShieldInformationBarrierRequestBodyArg`
   - Request body of createShieldInformationBarrier method
 - headers `CreateShieldInformationBarrierHeadersArg`
   - Headers of createShieldInformationBarrier method

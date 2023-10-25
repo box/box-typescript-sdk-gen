@@ -27,7 +27,11 @@ export class GetWebhooksHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetWebhooksHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetWebhooksHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetWebhooksHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -86,7 +90,11 @@ export class CreateWebhookHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateWebhookHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateWebhookHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateWebhookHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -94,7 +102,11 @@ export class GetWebhookByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetWebhookByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetWebhookByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetWebhookByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -155,7 +167,11 @@ export class UpdateWebhookByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateWebhookByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateWebhookByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateWebhookByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -163,7 +179,11 @@ export class DeleteWebhookByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteWebhookByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteWebhookByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteWebhookByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

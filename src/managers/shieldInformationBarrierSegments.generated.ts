@@ -2,10 +2,13 @@ import { serializeShieldInformationBarrierSegment } from '../schemas.generated.j
 import { deserializeShieldInformationBarrierSegment } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeShieldInformationBarrierSegments } from '../schemas.generated.js';
+import { deserializeShieldInformationBarrierSegments } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegment } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { ShieldInformationBarrierSegments } from '../schemas.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
@@ -22,7 +25,13 @@ export class GetShieldInformationBarrierSegmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarrierSegmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetShieldInformationBarrierSegmentByIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetShieldInformationBarrierSegmentByIdHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -34,7 +43,19 @@ export class UpdateShieldInformationBarrierSegmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateShieldInformationBarrierSegmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          UpdateShieldInformationBarrierSegmentByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            UpdateShieldInformationBarrierSegmentByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -42,7 +63,19 @@ export class DeleteShieldInformationBarrierSegmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteShieldInformationBarrierSegmentByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<
+          DeleteShieldInformationBarrierSegmentByIdHeadersArg,
+          'extraHeaders'
+        >
+      | Partial<
+          Pick<
+            DeleteShieldInformationBarrierSegmentByIdHeadersArg,
+            'extraHeaders'
+          >
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -55,7 +88,13 @@ export class GetShieldInformationBarrierSegmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetShieldInformationBarrierSegmentsHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetShieldInformationBarrierSegmentsHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetShieldInformationBarrierSegmentsHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -68,7 +107,13 @@ export class CreateShieldInformationBarrierSegmentHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateShieldInformationBarrierSegmentHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateShieldInformationBarrierSegmentHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<CreateShieldInformationBarrierSegmentHeadersArg, 'extraHeaders'>
+        >
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -175,7 +220,7 @@ export class ShieldInformationBarrierSegmentsManager {
     headers: GetShieldInformationBarrierSegmentsHeadersArg = new GetShieldInformationBarrierSegmentsHeadersArg(
       {}
     )
-  ): Promise<undefined> {
+  ): Promise<ShieldInformationBarrierSegments> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -201,7 +246,9 @@ export class ShieldInformationBarrierSegmentsManager {
         networkSession: this.networkSession,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return void 0;
+    return deserializeShieldInformationBarrierSegments(
+      deserializeJson(response.text)
+    );
   }
   async createShieldInformationBarrierSegment(
     requestBody: CreateShieldInformationBarrierSegmentRequestBodyArg,

@@ -29,7 +29,11 @@ export class CreateWebLinkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateWebLinkHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateWebLinkHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateWebLinkHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -38,7 +42,11 @@ export class GetWebLinkByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetWebLinkByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetWebLinkByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetWebLinkByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -66,7 +74,11 @@ export class UpdateWebLinkByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: UpdateWebLinkByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<UpdateWebLinkByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateWebLinkByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -74,7 +86,11 @@ export class DeleteWebLinkByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteWebLinkByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteWebLinkByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteWebLinkByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

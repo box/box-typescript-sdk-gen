@@ -95,7 +95,7 @@ See the endpoint docs at
 <!-- sample delete_folder_locks_id -->
 
 ```ts
-await client.folderLocks.deleteFolderLockById(folderLock.id);
+await client.folderLocks.deleteFolderLockById(folderLock.id!);
 ```
 
 ### Arguments

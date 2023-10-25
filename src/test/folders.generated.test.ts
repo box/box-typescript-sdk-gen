@@ -14,6 +14,7 @@ import { serializeUpdateFolderByIdRequestBodyArgParentField } from '../managers/
 import { deserializeUpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { serializeItems } from '../schemas.generated.js';
 import { deserializeItems } from '../schemas.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { GetFolderByIdQueryParamsArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
@@ -23,19 +24,11 @@ import { CopyFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CopyFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { UpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { Items } from '../schemas.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
-const jwtConfig: any = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: any = new BoxJwtAuth({ config: jwtConfig });
-const client: any = new BoxClient({ auth: auth });
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('test_get_folder_info', async function test_get_folder_info(): Promise<any> {
-  const rootFolder: any = await client.folders.getFolderById('0');
+  const rootFolder: FolderFull = await client.folders.getFolderById('0');
   if (!(rootFolder.id == '0')) {
     throw 'Assertion failed';
   }
@@ -44,7 +37,7 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
   }
 });
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
-  const rootFolder: any = await client.folders.getFolderById('0', {
+  const rootFolder: FolderFull = await client.folders.getFolderById('0', {
     fields: ['has_collaborations' as '', 'tags' as ''],
   } satisfies GetFolderByIdQueryParamsArg);
   if (!(rootFolder.id == '0')) {
@@ -53,18 +46,20 @@ test('test_get_folder_full_info_with_extra_fields', async function test_get_fold
   if (!(rootFolder.hasCollaborations == false)) {
     throw 'Assertion failed';
   }
-  const tagsLength: any = rootFolder.tags.length;
+  const tagsLength: number = rootFolder.tags!.length;
   if (!(tagsLength == 0)) {
     throw 'Assertion failed';
   }
 });
 test('test_create_and_delete_folder', async function test_create_and_delete_folder(): Promise<any> {
-  const newFolderName: any = getUuid();
-  const newFolder: any = await client.folders.createFolder({
+  const newFolderName: string = getUuid();
+  const newFolder: FolderFull = await client.folders.createFolder({
     name: newFolderName,
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
-  const createdFolder: any = await client.folders.getFolderById(newFolder.id);
+  const createdFolder: FolderFull = await client.folders.getFolderById(
+    newFolder.id
+  );
   if (!(createdFolder.name == newFolderName)) {
     throw 'Assertion failed';
   }
@@ -74,13 +69,13 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
   }).rejects.toThrow();
 });
 test('test_update_folder', async function test_update_folder(): Promise<any> {
-  const folderToUpdateName: any = getUuid();
-  const folderToUpdate: any = await client.folders.createFolder({
+  const folderToUpdateName: string = getUuid();
+  const folderToUpdate: FolderFull = await client.folders.createFolder({
     name: folderToUpdateName,
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
-  const updatedName: any = getUuid();
-  const updatedFolder: any = await client.folders.updateFolderById(
+  const updatedName: string = getUuid();
+  const updatedFolder: FolderFull = await client.folders.updateFolderById(
     folderToUpdate.id,
     {
       name: updatedName,
@@ -96,21 +91,24 @@ test('test_update_folder', async function test_update_folder(): Promise<any> {
   await client.folders.deleteFolderById(updatedFolder.id);
 });
 test('test_copy_move_folder_and_list_folder_items', async function test_copy_move_folder_and_list_folder_items(): Promise<any> {
-  const folderOriginName: any = getUuid();
-  const folderOrigin: any = await client.folders.createFolder({
+  const folderOriginName: string = getUuid();
+  const folderOrigin: FolderFull = await client.folders.createFolder({
     name: folderOriginName,
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
-  const copiedFolderName: any = getUuid();
-  const copiedFolder: any = await client.folders.copyFolder(folderOrigin.id, {
-    parent: { id: '0' } satisfies CopyFolderRequestBodyArgParentField,
-    name: copiedFolderName,
-  } satisfies CopyFolderRequestBodyArg);
-  if (!(copiedFolder.parent.id == '0')) {
+  const copiedFolderName: string = getUuid();
+  const copiedFolder: FolderFull = await client.folders.copyFolder(
+    folderOrigin.id,
+    {
+      parent: { id: '0' } satisfies CopyFolderRequestBodyArgParentField,
+      name: copiedFolderName,
+    } satisfies CopyFolderRequestBodyArg
+  );
+  if (!(copiedFolder.parent!.id == '0')) {
     throw 'Assertion failed';
   }
-  const movedFolderName: any = getUuid();
-  const movedFolder: any = await client.folders.updateFolderById(
+  const movedFolderName: string = getUuid();
+  const movedFolder: FolderFull = await client.folders.updateFolderById(
     copiedFolder.id,
     {
       parent: {
@@ -119,14 +117,16 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
       name: movedFolderName,
     } satisfies UpdateFolderByIdRequestBodyArg
   );
-  if (!(movedFolder.parent.id == folderOrigin.id)) {
+  if (!(movedFolder.parent!.id == folderOrigin.id)) {
     throw 'Assertion failed';
   }
-  const folderItems: any = await client.folders.getFolderItems(folderOrigin.id);
-  if (!(folderItems.entries[0].id == movedFolder.id)) {
+  const folderItems: Items = await client.folders.getFolderItems(
+    folderOrigin.id
+  );
+  if (!(folderItems.entries![0].id == movedFolder.id)) {
     throw 'Assertion failed';
   }
-  if (!(folderItems.entries[0].name == movedFolderName)) {
+  if (!(folderItems.entries![0].name == movedFolderName)) {
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(movedFolder.id);

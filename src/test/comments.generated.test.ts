@@ -16,6 +16,7 @@ import { serializeCreateCommentRequestBodyArgItemFieldTypeField } from '../manag
 import { deserializeCreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { serializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
 import { deserializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
@@ -27,24 +28,16 @@ import { CreateCommentRequestBodyArg } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemField } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { UpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
-import { decodeBase64 } from '../utils.js';
 import { generateByteStream } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
+const client: BoxClient = getDefaultClient();
 test('comments', async function comments(): Promise<any> {
-  const jwtConfig: any = JwtConfig.fromConfigJsonString(
-    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-  );
-  const auth: any = new BoxJwtAuth({ config: jwtConfig });
-  const client: any = new BoxClient({ auth: auth });
-  const fileSize: any = 256;
-  const fileName: any = getUuid();
-  const fileByteStream: any = generateByteStream(fileSize);
-  const parentId: any = '0';
-  const uploadedFiles: any = await client.uploads.uploadFile({
+  const fileSize: number = 256;
+  const fileName: string = getUuid();
+  const fileByteStream: ByteStream = generateByteStream(fileSize);
+  const parentId: string = '0';
+  const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
       parent: {
@@ -53,13 +46,13 @@ test('comments', async function comments(): Promise<any> {
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileByteStream,
   } satisfies UploadFileRequestBodyArg);
-  const fileId: any = uploadedFiles.entries[0].id;
-  const comments: any = await client.comments.getFileComments(fileId);
+  const fileId: string = uploadedFiles.entries![0].id;
+  const comments: Comments = await client.comments.getFileComments(fileId);
   if (!(comments.totalCount == 0)) {
     throw 'Assertion failed';
   }
-  const message: any = 'Hello there!';
-  const newComment: any = await client.comments.createComment({
+  const message: string = 'Hello there!';
+  const newComment: Comment = await client.comments.createComment({
     message: message,
     item: {
       id: fileId,
@@ -72,13 +65,13 @@ test('comments', async function comments(): Promise<any> {
   if (!(newComment.isReplyComment == false)) {
     throw 'Assertion failed';
   }
-  if (!(newComment.item.id == fileId)) {
+  if (!(newComment.item!.id == fileId)) {
     throw 'Assertion failed';
   }
-  const newReplyComment: any = await client.comments.createComment({
+  const newReplyComment: Comment = await client.comments.createComment({
     message: message,
     item: {
-      id: newComment.id,
+      id: newComment.id!,
       type: 'comment' as CreateCommentRequestBodyArgItemFieldTypeField,
     } satisfies CreateCommentRequestBodyArgItemField,
   } satisfies CreateCommentRequestBodyArg);
@@ -88,23 +81,23 @@ test('comments', async function comments(): Promise<any> {
   if (!(newReplyComment.isReplyComment == true)) {
     throw 'Assertion failed';
   }
-  const newMessage: any = 'Hi!';
-  await client.comments.updateCommentById(newReplyComment.id, {
+  const newMessage: string = 'Hi!';
+  await client.comments.updateCommentById(newReplyComment.id!, {
     message: newMessage,
   } satisfies UpdateCommentByIdRequestBodyArg);
-  const newComments: any = await client.comments.getFileComments(fileId);
+  const newComments: Comments = await client.comments.getFileComments(fileId);
   if (!(newComments.totalCount == 2)) {
     throw 'Assertion failed';
   }
-  if (!(newComments.entries[1].message == newMessage)) {
+  if (!(newComments.entries![1].message == newMessage)) {
     throw 'Assertion failed';
   }
-  if (!!((await client.comments.getCommentById(newComment.id)) == void 0)) {
+  if (!!((await client.comments.getCommentById(newComment.id!)) == void 0)) {
     throw 'Assertion failed';
   }
-  await client.comments.deleteCommentById(newComment.id);
+  await client.comments.deleteCommentById(newComment.id!);
   expect(async () => {
-    await client.comments.getCommentById(newComment.id);
+    await client.comments.getCommentById(newComment.id!);
   }).rejects.toThrow();
   await client.files.deleteFileById(fileId);
 });

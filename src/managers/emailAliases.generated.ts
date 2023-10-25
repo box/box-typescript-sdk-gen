@@ -22,7 +22,11 @@ export class GetUserEmailAliasesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetUserEmailAliasesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetUserEmailAliasesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetUserEmailAliasesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -33,7 +37,11 @@ export class CreateUserEmailAliasHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: CreateUserEmailAliasHeadersArg) {
+  constructor(
+    fields:
+      | Omit<CreateUserEmailAliasHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateUserEmailAliasHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -41,7 +49,11 @@ export class DeleteUserEmailAliasByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: DeleteUserEmailAliasByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<DeleteUserEmailAliasByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteUserEmailAliasByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }

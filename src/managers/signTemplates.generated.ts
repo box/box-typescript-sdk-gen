@@ -25,7 +25,11 @@ export class GetSignTemplatesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSignTemplatesHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSignTemplatesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSignTemplatesHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
@@ -33,7 +37,11 @@ export class GetSignTemplateByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
-  constructor(fields: GetSignTemplateByIdHeadersArg) {
+  constructor(
+    fields:
+      | Omit<GetSignTemplateByIdHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetSignTemplateByIdHeadersArg, 'extraHeaders'>>
+  ) {
     Object.assign(this, fields);
   }
 }
