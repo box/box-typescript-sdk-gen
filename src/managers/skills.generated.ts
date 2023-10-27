@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -147,7 +148,8 @@ export class SkillsManager {
     fileId: string,
     headers: GetFileMetadataGlobalBoxSkillsCardsHeadersArg = new GetFileMetadataGlobalBoxSkillsCardsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SkillCardsMetadata> {
     const headersMap: {
       readonly [key: string]: string;
@@ -164,6 +166,7 @@ export class SkillsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(deserializeJson(response.text));
@@ -173,7 +176,8 @@ export class SkillsManager {
     requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg,
     headers: CreateFileMetadataGlobalBoxSkillsCardHeadersArg = new CreateFileMetadataGlobalBoxSkillsCardHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SkillCardsMetadata> {
     const headersMap: {
       readonly [key: string]: string;
@@ -196,6 +200,7 @@ export class SkillsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(deserializeJson(response.text));
@@ -205,7 +210,8 @@ export class SkillsManager {
     requestBody: readonly UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg[],
     headers: UpdateFileMetadataGlobalBoxSkillsCardHeadersArg = new UpdateFileMetadataGlobalBoxSkillsCardHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SkillCardsMetadata> {
     const headersMap: {
       readonly [key: string]: string;
@@ -228,6 +234,7 @@ export class SkillsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(deserializeJson(response.text));
@@ -236,7 +243,8 @@ export class SkillsManager {
     fileId: string,
     headers: DeleteFileMetadataGlobalBoxSkillsCardHeadersArg = new DeleteFileMetadataGlobalBoxSkillsCardHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -253,6 +261,7 @@ export class SkillsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -262,7 +271,8 @@ export class SkillsManager {
     requestBody: UpdateSkillInvocationByIdRequestBodyArg,
     headers: UpdateSkillInvocationByIdHeadersArg = new UpdateSkillInvocationByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -282,6 +292,7 @@ export class SkillsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

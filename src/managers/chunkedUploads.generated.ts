@@ -24,6 +24,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -176,7 +177,8 @@ export class ChunkedUploadsManager {
     requestBody: CreateFileUploadSessionRequestBodyArg,
     headers: CreateFileUploadSessionHeadersArg = new CreateFileUploadSessionHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<UploadSession> {
     const headersMap: {
       readonly [key: string]: string;
@@ -195,6 +197,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadSession(deserializeJson(response.text));
@@ -204,7 +207,8 @@ export class ChunkedUploadsManager {
     requestBody: CreateFileUploadSessionForExistingFileRequestBodyArg,
     headers: CreateFileUploadSessionForExistingFileHeadersArg = new CreateFileUploadSessionForExistingFileHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<UploadSession> {
     const headersMap: {
       readonly [key: string]: string;
@@ -227,6 +231,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadSession(deserializeJson(response.text));
@@ -235,7 +240,8 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     headers: GetFileUploadSessionByIdHeadersArg = new GetFileUploadSessionByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<UploadSession> {
     const headersMap: {
       readonly [key: string]: string;
@@ -251,6 +257,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadSession(deserializeJson(response.text));
@@ -258,7 +265,8 @@ export class ChunkedUploadsManager {
   async uploadFilePart(
     uploadSessionId: string,
     requestBody: ByteStream,
-    headers: UploadFilePartHeadersArg
+    headers: UploadFilePartHeadersArg,
+    cancellationToken?: CancellationToken
   ): Promise<UploadedPart> {
     const headersMap: {
       readonly [key: string]: string;
@@ -282,6 +290,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadedPart(deserializeJson(response.text));
@@ -290,7 +299,8 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     headers: DeleteFileUploadSessionByIdHeadersArg = new DeleteFileUploadSessionByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -306,6 +316,7 @@ export class ChunkedUploadsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -315,7 +326,8 @@ export class ChunkedUploadsManager {
     queryParams: GetFileUploadSessionPartsQueryParamsArg = {} satisfies GetFileUploadSessionPartsQueryParamsArg,
     headers: GetFileUploadSessionPartsHeadersArg = new GetFileUploadSessionPartsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<UploadParts> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -339,6 +351,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadParts(deserializeJson(response.text));
@@ -346,7 +359,8 @@ export class ChunkedUploadsManager {
   async createFileUploadSessionCommit(
     uploadSessionId: string,
     requestBody: CreateFileUploadSessionCommitRequestBodyArg,
-    headers: CreateFileUploadSessionCommitHeadersArg
+    headers: CreateFileUploadSessionCommitHeadersArg,
+    cancellationToken?: CancellationToken
   ): Promise<Files> {
     const headersMap: {
       readonly [key: string]: string;
@@ -374,6 +388,7 @@ export class ChunkedUploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFiles(deserializeJson(response.text));

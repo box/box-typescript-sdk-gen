@@ -27,6 +27,8 @@ _Currently we don't have an example for calling `getMetadataTemplateEnterpriseSe
 
 - headers `GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
   - Headers of getMetadataTemplateEnterpriseSecurityClassificationSchema method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -52,6 +54,8 @@ _Currently we don't have an example for calling `deleteMetadataTemplateEnterpris
 
 - headers `DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
   - Headers of deleteMetadataTemplateEnterpriseSecurityClassificationSchema method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -82,6 +86,8 @@ _Currently we don't have an example for calling `updateMetadataTemplateEnterpris
   - Request body of updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd method
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -113,6 +119,8 @@ _Currently we don't have an example for calling `updateMetadataTemplateEnterpris
   - Request body of updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate method
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -144,6 +152,8 @@ _Currently we don't have an example for calling `updateMetadataTemplateEnterpris
   - Request body of updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete method
 - headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg`
   - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -176,6 +186,8 @@ _Currently we don't have an example for calling `createMetadataTemplateSchemaCla
   - Request body of createMetadataTemplateSchemaClassification method
 - headers `CreateMetadataTemplateSchemaClassificationHeadersArg`
   - Headers of createMetadataTemplateSchemaClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

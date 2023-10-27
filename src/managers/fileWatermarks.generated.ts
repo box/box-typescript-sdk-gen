@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -73,7 +74,8 @@ export class FileWatermarksManager {
   }
   async getFileWatermark(
     fileId: string,
-    headers: GetFileWatermarkHeadersArg = new GetFileWatermarkHeadersArg({})
+    headers: GetFileWatermarkHeadersArg = new GetFileWatermarkHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Watermark> {
     const headersMap: {
       readonly [key: string]: string;
@@ -90,6 +92,7 @@ export class FileWatermarksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWatermark(deserializeJson(response.text));
@@ -99,7 +102,8 @@ export class FileWatermarksManager {
     requestBody: UpdateFileWatermarkRequestBodyArg,
     headers: UpdateFileWatermarkHeadersArg = new UpdateFileWatermarkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Watermark> {
     const headersMap: {
       readonly [key: string]: string;
@@ -120,6 +124,7 @@ export class FileWatermarksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWatermark(deserializeJson(response.text));
@@ -128,7 +133,8 @@ export class FileWatermarksManager {
     fileId: string,
     headers: DeleteFileWatermarkHeadersArg = new DeleteFileWatermarkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -145,6 +151,7 @@ export class FileWatermarksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -119,7 +120,8 @@ export class FileMetadataManager {
   }
   async getFileMetadata(
     fileId: string,
-    headers: GetFileMetadataHeadersArg = new GetFileMetadataHeadersArg({})
+    headers: GetFileMetadataHeadersArg = new GetFileMetadataHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Metadatas> {
     const headersMap: {
       readonly [key: string]: string;
@@ -136,6 +138,7 @@ export class FileMetadataManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadatas(deserializeJson(response.text));
@@ -146,7 +149,8 @@ export class FileMetadataManager {
     templateKey: string,
     headers: GetFileMetadataByIdHeadersArg = new GetFileMetadataByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
     const headersMap: {
       readonly [key: string]: string;
@@ -166,6 +170,7 @@ export class FileMetadataManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataFull(deserializeJson(response.text));
@@ -177,7 +182,8 @@ export class FileMetadataManager {
     requestBody: CreateFileMetadataByIdRequestBodyArg,
     headers: CreateFileMetadataByIdHeadersArg = new CreateFileMetadataByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Metadata> {
     const headersMap: {
       readonly [key: string]: string;
@@ -201,6 +207,7 @@ export class FileMetadataManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadata(deserializeJson(response.text));
@@ -212,7 +219,8 @@ export class FileMetadataManager {
     requestBody: readonly UpdateFileMetadataByIdRequestBodyArg[],
     headers: UpdateFileMetadataByIdHeadersArg = new UpdateFileMetadataByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Metadata> {
     const headersMap: {
       readonly [key: string]: string;
@@ -238,6 +246,7 @@ export class FileMetadataManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadata(deserializeJson(response.text));
@@ -248,7 +257,8 @@ export class FileMetadataManager {
     templateKey: string,
     headers: DeleteFileMetadataByIdHeadersArg = new DeleteFileMetadataByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -268,6 +278,7 @@ export class FileMetadataManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

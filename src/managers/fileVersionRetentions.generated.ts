@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -70,7 +71,8 @@ export class FileVersionRetentionsManager {
     queryParams: GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg,
     headers: GetFileVersionRetentionsHeadersArg = new GetFileVersionRetentionsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionRetentions> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -96,6 +98,7 @@ export class FileVersionRetentionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionRetentions(deserializeJson(response.text));
@@ -104,7 +107,8 @@ export class FileVersionRetentionsManager {
     fileVersionRetentionId: string,
     headers: GetFileVersionRetentionByIdHeadersArg = new GetFileVersionRetentionByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionRetention> {
     const headersMap: {
       readonly [key: string]: string;
@@ -120,6 +124,7 @@ export class FileVersionRetentionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionRetention(deserializeJson(response.text));

@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `getFileMetadataGlobalBoxSkillsC
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataGlobalBoxSkillsCardsHeadersArg`
   - Headers of getFileMetadataGlobalBoxSkillsCards method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -52,6 +54,8 @@ _Currently we don't have an example for calling `createFileMetadataGlobalBoxSkil
   - Request body of createFileMetadataGlobalBoxSkillsCard method
 - headers `CreateFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of createFileMetadataGlobalBoxSkillsCard method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -79,6 +83,8 @@ _Currently we don't have an example for calling `updateFileMetadataGlobalBoxSkil
   - Request body of updateFileMetadataGlobalBoxSkillsCard method
 - headers `UpdateFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of updateFileMetadataGlobalBoxSkillsCard method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -104,6 +110,8 @@ _Currently we don't have an example for calling `deleteFileMetadataGlobalBoxSkil
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileMetadataGlobalBoxSkillsCardHeadersArg`
   - Headers of deleteFileMetadataGlobalBoxSkillsCard method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -132,6 +140,8 @@ _Currently we don't have an example for calling `updateSkillInvocationById` in i
   - Request body of updateSkillInvocationById method
 - headers `UpdateSkillInvocationByIdHeadersArg`
   - Headers of updateSkillInvocationById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

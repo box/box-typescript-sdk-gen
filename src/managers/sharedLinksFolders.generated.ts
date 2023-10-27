@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -150,7 +151,8 @@ export class SharedLinksFoldersManager {
   }
   async getSharedItemFolders(
     queryParams: GetSharedItemFoldersQueryParamsArg = {} satisfies GetSharedItemFoldersQueryParamsArg,
-    headers: GetSharedItemFoldersHeadersArg
+    headers: GetSharedItemFoldersHeadersArg,
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -175,6 +177,7 @@ export class SharedLinksFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -184,7 +187,8 @@ export class SharedLinksFoldersManager {
     queryParams: GetFolderGetSharedLinkQueryParamsArg,
     headers: GetFolderGetSharedLinkHeadersArg = new GetFolderGetSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -205,6 +209,7 @@ export class SharedLinksFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -215,7 +220,8 @@ export class SharedLinksFoldersManager {
     queryParams: UpdateFolderAddSharedLinkQueryParamsArg,
     headers: UpdateFolderAddSharedLinkHeadersArg = new UpdateFolderAddSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -240,6 +246,7 @@ export class SharedLinksFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -250,7 +257,8 @@ export class SharedLinksFoldersManager {
     queryParams: UpdateFolderUpdateSharedLinkQueryParamsArg,
     headers: UpdateFolderUpdateSharedLinkHeadersArg = new UpdateFolderUpdateSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -275,6 +283,7 @@ export class SharedLinksFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -285,7 +294,8 @@ export class SharedLinksFoldersManager {
     queryParams: UpdateFolderRemoveSharedLinkQueryParamsArg,
     headers: UpdateFolderRemoveSharedLinkHeadersArg = new UpdateFolderRemoveSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -310,6 +320,7 @@ export class SharedLinksFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));

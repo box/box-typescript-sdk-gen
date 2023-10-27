@@ -32,6 +32,8 @@ await client.memberships.getUserMemberships(user.id);
   - Query parameters of getUserMemberships method
 - headers `GetUserMembershipsHeadersArg`
   - Headers of getUserMemberships method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -65,6 +67,8 @@ await client.memberships.getGroupMemberships(group.id);
   - Query parameters of getGroupMemberships method
 - headers `GetGroupMembershipsHeadersArg`
   - Headers of getGroupMemberships method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -102,6 +106,8 @@ await client.memberships.createGroupMembership({
   - Query parameters of createGroupMembership method
 - headers `CreateGroupMembershipHeadersArg`
   - Headers of createGroupMembership method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -134,6 +140,8 @@ await client.memberships.getGroupMembershipById(groupMembership.id!);
   - Query parameters of getGroupMembershipById method
 - headers `GetGroupMembershipByIdHeadersArg`
   - Headers of getGroupMembershipById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -170,6 +178,8 @@ await client.memberships.updateGroupMembershipById(groupMembership.id!, {
   - Query parameters of updateGroupMembershipById method
 - headers `UpdateGroupMembershipByIdHeadersArg`
   - Headers of updateGroupMembershipById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -200,6 +210,8 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id!);
   - The ID of the group membership. Example: "434534"
 - headers `DeleteGroupMembershipByIdHeadersArg`
   - Headers of deleteGroupMembershipById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

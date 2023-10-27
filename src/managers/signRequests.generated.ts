@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -102,7 +103,8 @@ export class SignRequestsManager {
   }
   async cancelSignRequest(
     signRequestId: string,
-    headers: CancelSignRequestHeadersArg = new CancelSignRequestHeadersArg({})
+    headers: CancelSignRequestHeadersArg = new CancelSignRequestHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -119,13 +121,15 @@ export class SignRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignRequest(deserializeJson(response.text));
   }
   async resendSignRequest(
     signRequestId: string,
-    headers: ResendSignRequestHeadersArg = new ResendSignRequestHeadersArg({})
+    headers: ResendSignRequestHeadersArg = new ResendSignRequestHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -142,13 +146,17 @@ export class SignRequestsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
   }
   async getSignRequestById(
     signRequestId: string,
-    headers: GetSignRequestByIdHeadersArg = new GetSignRequestByIdHeadersArg({})
+    headers: GetSignRequestByIdHeadersArg = new GetSignRequestByIdHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -164,13 +172,15 @@ export class SignRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignRequest(deserializeJson(response.text));
   }
   async getSignRequests(
     queryParams: GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg,
-    headers: GetSignRequestsHeadersArg = new GetSignRequestsHeadersArg({})
+    headers: GetSignRequestsHeadersArg = new GetSignRequestsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<SignRequests> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -190,13 +200,15 @@ export class SignRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignRequests(deserializeJson(response.text));
   }
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
-    headers: CreateSignRequestHeadersArg = new CreateSignRequestHeadersArg({})
+    headers: CreateSignRequestHeadersArg = new CreateSignRequestHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -211,6 +223,7 @@ export class SignRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignRequest(deserializeJson(response.text));

@@ -2,8 +2,8 @@ import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
 import { Authentication } from './auth';
-import { NetworkSession, getRetryTimeout } from './network';
-import { ByteStream, isBrowser } from './utils';
+import { getRetryTimeout, NetworkSession } from './network';
+import { ByteStream, CancellationToken, isBrowser } from './utils';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
@@ -69,6 +69,11 @@ export interface FetchOptions {
    *
    */
   readonly networkSession?: NetworkSession;
+
+  /**
+   * Token used for request cancellation
+   */
+  readonly cancellationToken?: CancellationToken;
 }
 
 export interface FetchResponse {
@@ -138,6 +143,7 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
       }),
     },
     body: requestBody,
+    signal: options.cancellationToken as RequestInit['signal'],
   };
 
   return fetchOptions;

@@ -29,6 +29,8 @@ _Currently we don't have an example for calling `getSharedItemWebLinks` in integ
   - Query parameters of getSharedItemWebLinks method
 - headers `GetSharedItemWebLinksHeadersArg`
   - Headers of getSharedItemWebLinks method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -56,6 +58,8 @@ _Currently we don't have an example for calling `getWebLinkGetSharedLink` in int
   - Query parameters of getWebLinkGetSharedLink method
 - headers `GetWebLinkGetSharedLinkHeadersArg`
   - Headers of getWebLinkGetSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -85,6 +89,8 @@ _Currently we don't have an example for calling `updateWebLinkAddSharedLink` in 
   - Query parameters of updateWebLinkAddSharedLink method
 - headers `UpdateWebLinkAddSharedLinkHeadersArg`
   - Headers of updateWebLinkAddSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -114,6 +120,8 @@ _Currently we don't have an example for calling `updateWebLinkUpdateSharedLink` 
   - Query parameters of updateWebLinkUpdateSharedLink method
 - headers `UpdateWebLinkUpdateSharedLinkHeadersArg`
   - Headers of updateWebLinkUpdateSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -143,6 +151,8 @@ _Currently we don't have an example for calling `updateWebLinkRemoveSharedLink` 
   - Query parameters of updateWebLinkRemoveSharedLink method
 - headers `UpdateWebLinkRemoveSharedLinkHeadersArg`
   - Headers of updateWebLinkRemoveSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -27,6 +27,8 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
   - Query parameters of getCollaborationWhitelistExemptTargets method
 - headers `GetCollaborationWhitelistExemptTargetsHeadersArg`
   - Headers of getCollaborationWhitelistExemptTargets method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -62,6 +64,8 @@ await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExe
   - Request body of createCollaborationWhitelistExemptTarget method
 - headers `CreateCollaborationWhitelistExemptTargetHeadersArg`
   - Headers of createCollaborationWhitelistExemptTarget method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -93,6 +97,8 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
   - The ID of the exemption to the list. Example: "984923"
 - headers `GetCollaborationWhitelistExemptTargetByIdHeadersArg`
   - Headers of getCollaborationWhitelistExemptTargetById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -124,6 +130,8 @@ await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExe
   - The ID of the exemption to the list. Example: "984923"
 - headers `DeleteCollaborationWhitelistExemptTargetByIdHeadersArg`
   - Headers of deleteCollaborationWhitelistExemptTargetById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

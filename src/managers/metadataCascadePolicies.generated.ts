@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -122,7 +123,8 @@ export class MetadataCascadePoliciesManager {
     queryParams: GetMetadataCascadePoliciesQueryParamsArg,
     headers: GetMetadataCascadePoliciesHeadersArg = new GetMetadataCascadePoliciesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicies> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -146,6 +148,7 @@ export class MetadataCascadePoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataCascadePolicies(deserializeJson(response.text));
@@ -154,7 +157,8 @@ export class MetadataCascadePoliciesManager {
     requestBody: CreateMetadataCascadePolicyRequestBodyArg,
     headers: CreateMetadataCascadePolicyHeadersArg = new CreateMetadataCascadePolicyHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -171,6 +175,7 @@ export class MetadataCascadePoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataCascadePolicy(deserializeJson(response.text));
@@ -179,7 +184,8 @@ export class MetadataCascadePoliciesManager {
     metadataCascadePolicyId: string,
     headers: GetMetadataCascadePolicyByIdHeadersArg = new GetMetadataCascadePolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -195,6 +201,7 @@ export class MetadataCascadePoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataCascadePolicy(deserializeJson(response.text));
@@ -203,7 +210,8 @@ export class MetadataCascadePoliciesManager {
     metadataCascadePolicyId: string,
     headers: DeleteMetadataCascadePolicyByIdHeadersArg = new DeleteMetadataCascadePolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -219,6 +227,7 @@ export class MetadataCascadePoliciesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -228,7 +237,8 @@ export class MetadataCascadePoliciesManager {
     requestBody: CreateMetadataCascadePolicyApplyRequestBodyArg,
     headers: CreateMetadataCascadePolicyApplyHeadersArg = new CreateMetadataCascadePolicyApplyHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -249,6 +259,7 @@ export class MetadataCascadePoliciesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

@@ -27,6 +27,8 @@ await client.fileMetadata.getFileMetadata(fileId);
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataHeadersArg`
   - Headers of getFileMetadata method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -63,6 +65,8 @@ await client.fileMetadata.getFileMetadataById(fileId, scope, template);
   - The name of the metadata template Example: "properties"
 - headers `GetFileMetadataByIdHeadersArg`
   - Headers of getFileMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -108,6 +112,8 @@ await client.fileMetadata.createFileMetadataById(
   - Request body of createFileMetadataById method
 - headers `CreateFileMetadataByIdHeadersArg`
   - Headers of createFileMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -156,6 +162,8 @@ await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [
   - Request body of updateFileMetadataById method
 - headers `UpdateFileMetadataByIdHeadersArg`
   - Headers of updateFileMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -189,6 +197,8 @@ await client.fileMetadata.deleteFileMetadataById(fileId, scope, template);
   - The name of the metadata template Example: "properties"
 - headers `DeleteFileMetadataByIdHeadersArg`
   - Headers of deleteFileMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

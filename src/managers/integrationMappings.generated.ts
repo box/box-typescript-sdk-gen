@@ -21,6 +21,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -114,7 +115,8 @@ export class IntegrationMappingsManager {
     queryParams: GetIntegrationMappingSlackQueryParamsArg = {} satisfies GetIntegrationMappingSlackQueryParamsArg,
     headers: GetIntegrationMappingSlackHeadersArg = new GetIntegrationMappingSlackHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<IntegrationMappings> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -141,6 +143,7 @@ export class IntegrationMappingsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeIntegrationMappings(deserializeJson(response.text));
@@ -149,7 +152,8 @@ export class IntegrationMappingsManager {
     requestBody: IntegrationMappingSlackCreateRequest,
     headers: CreateIntegrationMappingSlackHeadersArg = new CreateIntegrationMappingSlackHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<IntegrationMapping> {
     const headersMap: {
       readonly [key: string]: string;
@@ -166,6 +170,7 @@ export class IntegrationMappingsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeIntegrationMapping(deserializeJson(response.text));
@@ -175,7 +180,8 @@ export class IntegrationMappingsManager {
     requestBody: UpdateIntegrationMappingSlackByIdRequestBodyArg = {} satisfies UpdateIntegrationMappingSlackByIdRequestBodyArg,
     headers: UpdateIntegrationMappingSlackByIdHeadersArg = new UpdateIntegrationMappingSlackByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<IntegrationMapping> {
     const headersMap: {
       readonly [key: string]: string;
@@ -195,6 +201,7 @@ export class IntegrationMappingsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeIntegrationMapping(deserializeJson(response.text));
@@ -203,7 +210,8 @@ export class IntegrationMappingsManager {
     integrationMappingId: string,
     headers: DeleteIntegrationMappingSlackByIdHeadersArg = new DeleteIntegrationMappingSlackByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -219,6 +227,7 @@ export class IntegrationMappingsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

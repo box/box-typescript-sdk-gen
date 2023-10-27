@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -118,7 +119,10 @@ export class TaskAssignmentsManager {
   }
   async getTaskAssignments(
     taskId: string,
-    headers: GetTaskAssignmentsHeadersArg = new GetTaskAssignmentsHeadersArg({})
+    headers: GetTaskAssignmentsHeadersArg = new GetTaskAssignmentsHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TaskAssignments> {
     const headersMap: {
       readonly [key: string]: string;
@@ -135,6 +139,7 @@ export class TaskAssignmentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTaskAssignments(deserializeJson(response.text));
@@ -143,7 +148,8 @@ export class TaskAssignmentsManager {
     requestBody: CreateTaskAssignmentRequestBodyArg,
     headers: CreateTaskAssignmentHeadersArg = new CreateTaskAssignmentHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
     const headersMap: {
       readonly [key: string]: string;
@@ -160,6 +166,7 @@ export class TaskAssignmentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTaskAssignment(deserializeJson(response.text));
@@ -168,7 +175,8 @@ export class TaskAssignmentsManager {
     taskAssignmentId: string,
     headers: GetTaskAssignmentByIdHeadersArg = new GetTaskAssignmentByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
     const headersMap: {
       readonly [key: string]: string;
@@ -184,6 +192,7 @@ export class TaskAssignmentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTaskAssignment(deserializeJson(response.text));
@@ -193,7 +202,8 @@ export class TaskAssignmentsManager {
     requestBody: UpdateTaskAssignmentByIdRequestBodyArg = {} satisfies UpdateTaskAssignmentByIdRequestBodyArg,
     headers: UpdateTaskAssignmentByIdHeadersArg = new UpdateTaskAssignmentByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
     const headersMap: {
       readonly [key: string]: string;
@@ -213,6 +223,7 @@ export class TaskAssignmentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTaskAssignment(deserializeJson(response.text));
@@ -221,7 +232,8 @@ export class TaskAssignmentsManager {
     taskAssignmentId: string,
     headers: DeleteTaskAssignmentByIdHeadersArg = new DeleteTaskAssignmentByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -237,6 +249,7 @@ export class TaskAssignmentsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

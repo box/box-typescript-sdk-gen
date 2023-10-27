@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -84,7 +85,8 @@ export class TrashedFoldersManager {
     queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg,
     headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TrashFolderRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -110,6 +112,7 @@ export class TrashedFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashFolderRestored(deserializeJson(response.text));
@@ -117,7 +120,8 @@ export class TrashedFoldersManager {
   async getFolderTrash(
     folderId: string,
     queryParams: GetFolderTrashQueryParamsArg = {} satisfies GetFolderTrashQueryParamsArg,
-    headers: GetFolderTrashHeadersArg = new GetFolderTrashHeadersArg({})
+    headers: GetFolderTrashHeadersArg = new GetFolderTrashHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<TrashFolder> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -140,13 +144,15 @@ export class TrashedFoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashFolder(deserializeJson(response.text));
   }
   async deleteFolderTrash(
     folderId: string,
-    headers: DeleteFolderTrashHeadersArg = new DeleteFolderTrashHeadersArg({})
+    headers: DeleteFolderTrashHeadersArg = new DeleteFolderTrashHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -163,6 +169,7 @@ export class TrashedFoldersManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

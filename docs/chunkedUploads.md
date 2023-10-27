@@ -29,6 +29,8 @@ _Currently we don't have an example for calling `createFileUploadSession` in int
   - Request body of createFileUploadSession method
 - headers `CreateFileUploadSessionHeadersArg`
   - Headers of createFileUploadSession method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -55,6 +57,8 @@ _Currently we don't have an example for calling `createFileUploadSessionForExist
   - Request body of createFileUploadSessionForExistingFile method
 - headers `CreateFileUploadSessionForExistingFileHeadersArg`
   - Headers of createFileUploadSessionForExistingFile method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -79,6 +83,8 @@ _Currently we don't have an example for calling `getFileUploadSessionById` in in
   - The ID of the upload session. Example: "D5E3F7A"
 - headers `GetFileUploadSessionByIdHeadersArg`
   - Headers of getFileUploadSessionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -105,6 +111,8 @@ _Currently we don't have an example for calling `uploadFilePart` in integration 
   - Request body of uploadFilePart method
 - headers `UploadFilePartHeadersArg`
   - Headers of uploadFilePart method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -131,6 +139,8 @@ _Currently we don't have an example for calling `deleteFileUploadSessionById` in
   - The ID of the upload session. Example: "D5E3F7A"
 - headers `DeleteFileUploadSessionByIdHeadersArg`
   - Headers of deleteFileUploadSessionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -159,6 +169,8 @@ _Currently we don't have an example for calling `getFileUploadSessionParts` in i
   - Query parameters of getFileUploadSessionParts method
 - headers `GetFileUploadSessionPartsHeadersArg`
   - Headers of getFileUploadSessionParts method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -186,6 +198,8 @@ _Currently we don't have an example for calling `createFileUploadSessionCommit` 
   - Request body of createFileUploadSessionCommit method
 - headers `CreateFileUploadSessionCommitHeadersArg`
   - Headers of createFileUploadSessionCommit method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

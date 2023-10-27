@@ -27,6 +27,8 @@ _Currently we don't have an example for calling `getFolderMetadataEnterpriseSecu
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - headers `GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
   - Headers of getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -61,6 +63,8 @@ _Currently we don't have an example for calling `createFolderMetadataEnterpriseS
   - Request body of createFolderMetadataEnterpriseSecurityClassification method
 - headers `CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of createFolderMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -92,6 +96,8 @@ _Currently we don't have an example for calling `updateFolderMetadataEnterpriseS
   - Request body of updateFolderMetadataEnterpriseSecurityClassification method
 - headers `UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of updateFolderMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -120,6 +126,8 @@ _Currently we don't have an example for calling `deleteFolderMetadataEnterpriseS
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - headers `DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of deleteFolderMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

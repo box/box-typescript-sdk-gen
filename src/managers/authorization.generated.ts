@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -42,7 +43,8 @@ export class AuthorizationManager {
   }
   async getAuthorize(
     queryParams: GetAuthorizeQueryParamsArg,
-    headers: GetAuthorizeHeadersArg = new GetAuthorizeHeadersArg({})
+    headers: GetAuthorizeHeadersArg = new GetAuthorizeHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -65,6 +67,7 @@ export class AuthorizationManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

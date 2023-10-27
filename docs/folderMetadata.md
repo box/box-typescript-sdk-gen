@@ -28,6 +28,8 @@ await client.folderMetadata.getFolderMetadata(folder.id);
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - headers `GetFolderMetadataHeadersArg`
   - Headers of getFolderMetadata method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -64,6 +66,8 @@ await client.folderMetadata.getFolderMetadataById(folder.id, scope, template);
   - The name of the metadata template Example: "properties"
 - headers `GetFolderMetadataByIdHeadersArg`
   - Headers of getFolderMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -113,6 +117,8 @@ await client.folderMetadata.createFolderMetadataById(
   - Request body of createFolderMetadataById method
 - headers `CreateFolderMetadataByIdHeadersArg`
   - Headers of createFolderMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -166,6 +172,8 @@ await client.folderMetadata.updateFolderMetadataById(
   - Request body of updateFolderMetadataById method
 - headers `UpdateFolderMetadataByIdHeadersArg`
   - Headers of updateFolderMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -203,6 +211,8 @@ await client.folderMetadata.deleteFolderMetadataById(
   - The name of the metadata template Example: "properties"
 - headers `DeleteFolderMetadataByIdHeadersArg`
   - Headers of deleteFolderMetadataById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

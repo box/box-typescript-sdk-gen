@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -98,7 +99,8 @@ export class TermsOfServiceUserStatusesManager {
     queryParams: GetTermOfServiceUserStatusesQueryParamsArg,
     headers: GetTermOfServiceUserStatusesHeadersArg = new GetTermOfServiceUserStatusesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatuses> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -120,6 +122,7 @@ export class TermsOfServiceUserStatusesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatuses(
@@ -130,7 +133,8 @@ export class TermsOfServiceUserStatusesManager {
     requestBody: CreateTermOfServiceUserStatusRequestBodyArg,
     headers: CreateTermOfServiceUserStatusHeadersArg = new CreateTermOfServiceUserStatusHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatus> {
     const headersMap: {
       readonly [key: string]: string;
@@ -149,6 +153,7 @@ export class TermsOfServiceUserStatusesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
@@ -158,7 +163,8 @@ export class TermsOfServiceUserStatusesManager {
     requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg,
     headers: UpdateTermOfServiceUserStatusByIdHeadersArg = new UpdateTermOfServiceUserStatusByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatus> {
     const headersMap: {
       readonly [key: string]: string;
@@ -178,6 +184,7 @@ export class TermsOfServiceUserStatusesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));

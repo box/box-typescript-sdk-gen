@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -64,7 +65,8 @@ export class InvitesManager {
   async createInvite(
     requestBody: CreateInviteRequestBodyArg,
     queryParams: CreateInviteQueryParamsArg = {} satisfies CreateInviteQueryParamsArg,
-    headers: CreateInviteHeadersArg = new CreateInviteHeadersArg({})
+    headers: CreateInviteHeadersArg = new CreateInviteHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Invite> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -85,6 +87,7 @@ export class InvitesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeInvite(deserializeJson(response.text));
@@ -92,7 +95,8 @@ export class InvitesManager {
   async getInviteById(
     inviteId: string,
     queryParams: GetInviteByIdQueryParamsArg = {} satisfies GetInviteByIdQueryParamsArg,
-    headers: GetInviteByIdHeadersArg = new GetInviteByIdHeadersArg({})
+    headers: GetInviteByIdHeadersArg = new GetInviteByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Invite> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -114,6 +118,7 @@ export class InvitesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeInvite(deserializeJson(response.text));

@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -61,7 +62,8 @@ export class FileVersionLegalHoldsManager {
     fileVersionLegalHoldId: string,
     headers: GetFileVersionLegalHoldByIdHeadersArg = new GetFileVersionLegalHoldByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionLegalHold> {
     const headersMap: {
       readonly [key: string]: string;
@@ -77,6 +79,7 @@ export class FileVersionLegalHoldsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionLegalHold(deserializeJson(response.text));
@@ -85,7 +88,8 @@ export class FileVersionLegalHoldsManager {
     queryParams: GetFileVersionLegalHoldsQueryParamsArg,
     headers: GetFileVersionLegalHoldsHeadersArg = new GetFileVersionLegalHoldsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionLegalHolds> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -106,6 +110,7 @@ export class FileVersionLegalHoldsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionLegalHolds(deserializeJson(response.text));

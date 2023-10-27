@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -62,7 +63,8 @@ export class SessionTerminationManager {
     requestBody: CreateUserTerminateSessionRequestBodyArg,
     headers: CreateUserTerminateSessionHeadersArg = new CreateUserTerminateSessionHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SessionTerminationMessage> {
     const headersMap: {
       readonly [key: string]: string;
@@ -79,6 +81,7 @@ export class SessionTerminationManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSessionTerminationMessage(deserializeJson(response.text));
@@ -87,7 +90,8 @@ export class SessionTerminationManager {
     requestBody: CreateGroupTerminateSessionRequestBodyArg,
     headers: CreateGroupTerminateSessionHeadersArg = new CreateGroupTerminateSessionHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SessionTerminationMessage> {
     const headersMap: {
       readonly [key: string]: string;
@@ -104,6 +108,7 @@ export class SessionTerminationManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSessionTerminationMessage(deserializeJson(response.text));

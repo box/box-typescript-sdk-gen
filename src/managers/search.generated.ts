@@ -21,6 +21,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -125,7 +126,8 @@ export class SearchManager {
     requestBody: MetadataQuery,
     headers: CreateMetadataQueryExecuteReadHeadersArg = new CreateMetadataQueryExecuteReadHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataQueryResults> {
     const headersMap: {
       readonly [key: string]: string;
@@ -142,6 +144,7 @@ export class SearchManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataQueryResults(deserializeJson(response.text));
@@ -150,7 +153,8 @@ export class SearchManager {
     queryParams: GetMetadataQueryIndicesQueryParamsArg,
     headers: GetMetadataQueryIndicesHeadersArg = new GetMetadataQueryIndicesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataQueryIndices> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -170,13 +174,15 @@ export class SearchManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataQueryIndices(deserializeJson(response.text));
   }
   async getSearch(
     queryParams: GetSearchQueryParamsArg = {} satisfies GetSearchQueryParamsArg,
-    headers: GetSearchHeadersArg = new GetSearchHeadersArg({})
+    headers: GetSearchHeadersArg = new GetSearchHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -237,6 +243,7 @@ export class SearchManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSearchResultsOrSearchResultsWithSharedLinks(

@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -148,7 +149,8 @@ export class SharedLinksWebLinksManager {
   }
   async getSharedItemWebLinks(
     queryParams: GetSharedItemWebLinksQueryParamsArg = {} satisfies GetSharedItemWebLinksQueryParamsArg,
-    headers: GetSharedItemWebLinksHeadersArg
+    headers: GetSharedItemWebLinksHeadersArg,
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -173,6 +175,7 @@ export class SharedLinksWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
@@ -182,7 +185,8 @@ export class SharedLinksWebLinksManager {
     queryParams: GetWebLinkGetSharedLinkQueryParamsArg,
     headers: GetWebLinkGetSharedLinkHeadersArg = new GetWebLinkGetSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -203,6 +207,7 @@ export class SharedLinksWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
@@ -213,7 +218,8 @@ export class SharedLinksWebLinksManager {
     queryParams: UpdateWebLinkAddSharedLinkQueryParamsArg,
     headers: UpdateWebLinkAddSharedLinkHeadersArg = new UpdateWebLinkAddSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -238,6 +244,7 @@ export class SharedLinksWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
@@ -248,7 +255,8 @@ export class SharedLinksWebLinksManager {
     queryParams: UpdateWebLinkUpdateSharedLinkQueryParamsArg,
     headers: UpdateWebLinkUpdateSharedLinkHeadersArg = new UpdateWebLinkUpdateSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -273,6 +281,7 @@ export class SharedLinksWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
@@ -283,7 +292,8 @@ export class SharedLinksWebLinksManager {
     queryParams: UpdateWebLinkRemoveSharedLinkQueryParamsArg,
     headers: UpdateWebLinkRemoveSharedLinkHeadersArg = new UpdateWebLinkRemoveSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -308,6 +318,7 @@ export class SharedLinksWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));

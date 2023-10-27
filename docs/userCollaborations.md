@@ -24,6 +24,8 @@ _Currently we don't have an example for calling `getCollaborationById` in integr
   - Query parameters of getCollaborationById method
 - headers `GetCollaborationByIdHeadersArg`
   - Headers of getCollaborationById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -52,6 +54,8 @@ _Currently we don't have an example for calling `updateCollaborationById` in int
   - Request body of updateCollaborationById method
 - headers `UpdateCollaborationByIdHeadersArg`
   - Headers of updateCollaborationById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -78,6 +82,8 @@ _Currently we don't have an example for calling `deleteCollaborationById` in int
   - The ID of the collaboration Example: "1234"
 - headers `DeleteCollaborationByIdHeadersArg`
   - Headers of deleteCollaborationById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -119,6 +125,8 @@ _Currently we don't have an example for calling `createCollaboration` in integra
   - Query parameters of createCollaboration method
 - headers `CreateCollaborationHeadersArg`
   - Headers of createCollaboration method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

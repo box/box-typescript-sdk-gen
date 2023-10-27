@@ -32,6 +32,8 @@ _Currently we don't have an example for calling `getSharedItems` in integration 
   - Query parameters of getSharedItems method
 - headers `GetSharedItemsHeadersArg`
   - Headers of getSharedItems method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -59,6 +61,8 @@ _Currently we don't have an example for calling `getFileGetSharedLink` in integr
   - Query parameters of getFileGetSharedLink method
 - headers `GetFileGetSharedLinkHeadersArg`
   - Headers of getFileGetSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -88,6 +92,8 @@ _Currently we don't have an example for calling `updateFileAddSharedLink` in int
   - Query parameters of updateFileAddSharedLink method
 - headers `UpdateFileAddSharedLinkHeadersArg`
   - Headers of updateFileAddSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -117,6 +123,8 @@ _Currently we don't have an example for calling `updateFileUpdateSharedLink` in 
   - Query parameters of updateFileUpdateSharedLink method
 - headers `UpdateFileUpdateSharedLinkHeadersArg`
   - Headers of updateFileUpdateSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -146,6 +154,8 @@ _Currently we don't have an example for calling `updateFileRemoveSharedLink` in 
   - Query parameters of updateFileRemoveSharedLink method
 - headers `UpdateFileRemoveSharedLinkHeadersArg`
   - Headers of updateFileRemoveSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

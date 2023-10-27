@@ -35,6 +35,8 @@ await client.search.createMetadataQueryExecuteRead({
   - Request body of createMetadataQueryExecuteRead method
 - headers `CreateMetadataQueryExecuteReadHeadersArg`
   - Headers of createMetadataQueryExecuteRead method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -66,6 +68,8 @@ await client.search.getMetadataQueryIndices({
   - Query parameters of getMetadataQueryIndices method
 - headers `GetMetadataQueryIndicesHeadersArg`
   - Headers of getMetadataQueryIndices method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -100,6 +104,8 @@ await client.search.getSearch({
   - Query parameters of getSearch method
 - headers `GetSearchHeadersArg`
   - Headers of getSearch method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

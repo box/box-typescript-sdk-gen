@@ -40,7 +40,7 @@ export interface PostOAuth2Revoke {
   readonly clientSecret?: string;
   readonly token?: string;
 }
-export type ZipDownloadRequestItemsFieldTypeField = 'file' | 'folder.';
+export type ZipDownloadRequestItemsFieldTypeField = 'file' | 'folder';
 export interface ZipDownloadRequestItemsField {
   readonly type: ZipDownloadRequestItemsFieldTypeField;
   readonly id: string;
@@ -2298,7 +2298,10 @@ export interface ZipDownload {
   readonly expiresAt?: string;
   readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
 }
-export type ZipDownloadStatusStateField = 'in_progress' | 'failed' | 'success';
+export type ZipDownloadStatusStateField =
+  | 'in_progress'
+  | 'failed'
+  | 'succeeded';
 export interface ZipDownloadStatus {
   readonly totalFileCount?: number;
   readonly downloadedFileCount?: number;
@@ -3049,8 +3052,8 @@ export function deserializeZipDownloadRequestItemsFieldTypeField(
   if (val == 'file') {
     return 'file';
   }
-  if (val == 'folder.') {
-    return 'folder.';
+  if (val == 'folder') {
+    return 'folder';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -16899,8 +16902,8 @@ export function deserializeZipDownloadStatusStateField(
   if (val == 'failed') {
     return 'failed';
   }
-  if (val == 'success') {
-    return 'success';
+  if (val == 'succeeded') {
+    return 'succeeded';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }

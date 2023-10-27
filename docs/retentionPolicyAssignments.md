@@ -27,6 +27,8 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignments` 
   - Query parameters of getRetentionPolicyAssignments method
 - headers `GetRetentionPolicyAssignmentsHeadersArg`
   - Headers of getRetentionPolicyAssignments method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -52,6 +54,8 @@ _Currently we don't have an example for calling `createRetentionPolicyAssignment
   - Request body of createRetentionPolicyAssignment method
 - headers `CreateRetentionPolicyAssignmentHeadersArg`
   - Headers of createRetentionPolicyAssignment method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -78,6 +82,8 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignmentByI
   - Query parameters of getRetentionPolicyAssignmentById method
 - headers `GetRetentionPolicyAssignmentByIdHeadersArg`
   - Headers of getRetentionPolicyAssignmentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -103,6 +109,8 @@ _Currently we don't have an example for calling `deleteRetentionPolicyAssignment
   - The ID of the retention policy assignment. Example: "1233123"
 - headers `DeleteRetentionPolicyAssignmentByIdHeadersArg`
   - Headers of deleteRetentionPolicyAssignmentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -130,6 +138,8 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignmentFil
   - Query parameters of getRetentionPolicyAssignmentFileUnderRetention method
 - headers `GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg`
   - Headers of getRetentionPolicyAssignmentFileUnderRetention method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -158,6 +168,8 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignmentFil
   - Query parameters of getRetentionPolicyAssignmentFileVersionUnderRetention method
 - headers `GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg`
   - Headers of getRetentionPolicyAssignmentFileVersionUnderRetention method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

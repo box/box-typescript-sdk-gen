@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -150,7 +151,8 @@ export class SharedLinksFilesManager {
   }
   async getSharedItems(
     queryParams: GetSharedItemsQueryParamsArg = {} satisfies GetSharedItemsQueryParamsArg,
-    headers: GetSharedItemsHeadersArg
+    headers: GetSharedItemsHeadersArg,
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -175,6 +177,7 @@ export class SharedLinksFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -184,7 +187,8 @@ export class SharedLinksFilesManager {
     queryParams: GetFileGetSharedLinkQueryParamsArg,
     headers: GetFileGetSharedLinkHeadersArg = new GetFileGetSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -205,6 +209,7 @@ export class SharedLinksFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -215,7 +220,8 @@ export class SharedLinksFilesManager {
     queryParams: UpdateFileAddSharedLinkQueryParamsArg,
     headers: UpdateFileAddSharedLinkHeadersArg = new UpdateFileAddSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -240,6 +246,7 @@ export class SharedLinksFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -250,7 +257,8 @@ export class SharedLinksFilesManager {
     queryParams: UpdateFileUpdateSharedLinkQueryParamsArg,
     headers: UpdateFileUpdateSharedLinkHeadersArg = new UpdateFileUpdateSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -275,6 +283,7 @@ export class SharedLinksFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -285,7 +294,8 @@ export class SharedLinksFilesManager {
     queryParams: UpdateFileRemoveSharedLinkQueryParamsArg,
     headers: UpdateFileRemoveSharedLinkHeadersArg = new UpdateFileRemoveSharedLinkHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -310,6 +320,7 @@ export class SharedLinksFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));

@@ -28,6 +28,8 @@ await client.groups.getGroups();
   - Query parameters of getGroups method
 - headers `GetGroupsHeadersArg`
   - Headers of getGroups method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -62,6 +64,8 @@ await client.groups.createGroup({
   - Query parameters of createGroup method
 - headers `CreateGroupHeadersArg`
   - Headers of createGroup method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -94,6 +98,8 @@ await client.groups.getGroupById(group.id);
   - Query parameters of getGroupById method
 - headers `GetGroupByIdHeadersArg`
   - Headers of getGroupById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -130,6 +136,8 @@ await client.groups.updateGroupById(group.id, {
   - Query parameters of updateGroupById method
 - headers `UpdateGroupByIdHeadersArg`
   - Headers of updateGroupById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -159,6 +167,8 @@ await client.groups.deleteGroupById(group.id);
   - The ID of the group. Example: "57645"
 - headers `DeleteGroupByIdHeadersArg`
   - Headers of deleteGroupById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

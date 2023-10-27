@@ -32,6 +32,8 @@ await client.webhooks.getWebhooks();
   - Query parameters of getWebhooks method
 - headers `GetWebhooksHeadersArg`
   - Headers of getWebhooks method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -67,6 +69,8 @@ await client.webhooks.createWebhook({
   - Request body of createWebhook method
 - headers `CreateWebhookHeadersArg`
   - Headers of createWebhook method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -95,6 +99,8 @@ await client.webhooks.getWebhookById(webhook.id!);
   - The ID of the webhook. Example: "3321123"
 - headers `GetWebhookByIdHeadersArg`
   - Headers of getWebhookById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -127,6 +133,8 @@ await client.webhooks.updateWebhookById(webhook.id!, {
   - Request body of updateWebhookById method
 - headers `UpdateWebhookByIdHeadersArg`
   - Headers of updateWebhookById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -155,6 +163,8 @@ await client.webhooks.deleteWebhookById(webhook.id!);
   - The ID of the webhook. Example: "3321123"
 - headers `DeleteWebhookByIdHeadersArg`
   - Headers of deleteWebhookById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

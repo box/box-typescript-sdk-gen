@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `getShieldInformationBarrierSegm
   - The ID of the shield information barrier segment Restriction. Example: "4563"
 - headers `GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
   - Headers of getShieldInformationBarrierSegmentRestrictionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -49,6 +51,8 @@ _Currently we don't have an example for calling `deleteShieldInformationBarrierS
   - The ID of the shield information barrier segment Restriction. Example: "4563"
 - headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
   - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -74,6 +78,8 @@ _Currently we don't have an example for calling `getShieldInformationBarrierSegm
   - Query parameters of getShieldInformationBarrierSegmentRestrictions method
 - headers `GetShieldInformationBarrierSegmentRestrictionsHeadersArg`
   - Headers of getShieldInformationBarrierSegmentRestrictions method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -100,6 +106,8 @@ _Currently we don't have an example for calling `createShieldInformationBarrierS
   - Request body of createShieldInformationBarrierSegmentRestriction method
 - headers `CreateShieldInformationBarrierSegmentRestrictionHeadersArg`
   - Headers of createShieldInformationBarrierSegmentRestriction method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

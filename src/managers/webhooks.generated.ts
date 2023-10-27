@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -204,7 +205,8 @@ export class WebhooksManager {
   }
   async getWebhooks(
     queryParams: GetWebhooksQueryParamsArg = {} satisfies GetWebhooksQueryParamsArg,
-    headers: GetWebhooksHeadersArg = new GetWebhooksHeadersArg({})
+    headers: GetWebhooksHeadersArg = new GetWebhooksHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Webhooks> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -224,13 +226,15 @@ export class WebhooksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebhooks(deserializeJson(response.text));
   }
   async createWebhook(
     requestBody: CreateWebhookRequestBodyArg,
-    headers: CreateWebhookHeadersArg = new CreateWebhookHeadersArg({})
+    headers: CreateWebhookHeadersArg = new CreateWebhookHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Webhook> {
     const headersMap: {
       readonly [key: string]: string;
@@ -245,13 +249,15 @@ export class WebhooksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebhook(deserializeJson(response.text));
   }
   async getWebhookById(
     webhookId: string,
-    headers: GetWebhookByIdHeadersArg = new GetWebhookByIdHeadersArg({})
+    headers: GetWebhookByIdHeadersArg = new GetWebhookByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Webhook> {
     const headersMap: {
       readonly [key: string]: string;
@@ -267,6 +273,7 @@ export class WebhooksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebhook(deserializeJson(response.text));
@@ -274,7 +281,8 @@ export class WebhooksManager {
   async updateWebhookById(
     webhookId: string,
     requestBody: UpdateWebhookByIdRequestBodyArg = {} satisfies UpdateWebhookByIdRequestBodyArg,
-    headers: UpdateWebhookByIdHeadersArg = new UpdateWebhookByIdHeadersArg({})
+    headers: UpdateWebhookByIdHeadersArg = new UpdateWebhookByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Webhook> {
     const headersMap: {
       readonly [key: string]: string;
@@ -294,13 +302,15 @@ export class WebhooksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebhook(deserializeJson(response.text));
   }
   async deleteWebhookById(
     webhookId: string,
-    headers: DeleteWebhookByIdHeadersArg = new DeleteWebhookByIdHeadersArg({})
+    headers: DeleteWebhookByIdHeadersArg = new DeleteWebhookByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -316,6 +326,7 @@ export class WebhooksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

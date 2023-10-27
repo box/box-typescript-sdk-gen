@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -117,7 +118,8 @@ export class FileVersionsManager {
   async getFileVersions(
     fileId: string,
     queryParams: GetFileVersionsQueryParamsArg = {} satisfies GetFileVersionsQueryParamsArg,
-    headers: GetFileVersionsHeadersArg = new GetFileVersionsHeadersArg({})
+    headers: GetFileVersionsHeadersArg = new GetFileVersionsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersions> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -142,6 +144,7 @@ export class FileVersionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersions(deserializeJson(response.text));
@@ -150,7 +153,10 @@ export class FileVersionsManager {
     fileId: string,
     fileVersionId: string,
     queryParams: GetFileVersionByIdQueryParamsArg = {} satisfies GetFileVersionByIdQueryParamsArg,
-    headers: GetFileVersionByIdHeadersArg = new GetFileVersionByIdHeadersArg({})
+    headers: GetFileVersionByIdHeadersArg = new GetFileVersionByIdHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -174,6 +180,7 @@ export class FileVersionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionFull(deserializeJson(response.text));
@@ -184,7 +191,8 @@ export class FileVersionsManager {
     requestBody: UpdateFileVersionByIdRequestBodyArg = {} satisfies UpdateFileVersionByIdRequestBodyArg,
     headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
     const headersMap: {
       readonly [key: string]: string;
@@ -206,6 +214,7 @@ export class FileVersionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionFull(deserializeJson(response.text));
@@ -215,7 +224,8 @@ export class FileVersionsManager {
     fileVersionId: string,
     headers: DeleteFileVersionByIdHeadersArg = new DeleteFileVersionByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -236,6 +246,7 @@ export class FileVersionsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -244,7 +255,10 @@ export class FileVersionsManager {
     fileId: string,
     requestBody: PromoteFileVersionRequestBodyArg = {} satisfies PromoteFileVersionRequestBodyArg,
     queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg,
-    headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg({})
+    headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -271,6 +285,7 @@ export class FileVersionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileVersionFull(deserializeJson(response.text));

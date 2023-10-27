@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -122,7 +123,8 @@ export class TasksManager {
   }
   async getFileTasks(
     fileId: string,
-    headers: GetFileTasksHeadersArg = new GetFileTasksHeadersArg({})
+    headers: GetFileTasksHeadersArg = new GetFileTasksHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Tasks> {
     const headersMap: {
       readonly [key: string]: string;
@@ -139,13 +141,15 @@ export class TasksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTasks(deserializeJson(response.text));
   }
   async createTask(
     requestBody: CreateTaskRequestBodyArg,
-    headers: CreateTaskHeadersArg = new CreateTaskHeadersArg({})
+    headers: CreateTaskHeadersArg = new CreateTaskHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
@@ -160,13 +164,15 @@ export class TasksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTask(deserializeJson(response.text));
   }
   async getTaskById(
     taskId: string,
-    headers: GetTaskByIdHeadersArg = new GetTaskByIdHeadersArg({})
+    headers: GetTaskByIdHeadersArg = new GetTaskByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
@@ -182,6 +188,7 @@ export class TasksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTask(deserializeJson(response.text));
@@ -189,7 +196,8 @@ export class TasksManager {
   async updateTaskById(
     taskId: string,
     requestBody: UpdateTaskByIdRequestBodyArg = {} satisfies UpdateTaskByIdRequestBodyArg,
-    headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({})
+    headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
@@ -207,13 +215,15 @@ export class TasksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTask(deserializeJson(response.text));
   }
   async deleteTaskById(
     taskId: string,
-    headers: DeleteTaskByIdHeadersArg = new DeleteTaskByIdHeadersArg({})
+    headers: DeleteTaskByIdHeadersArg = new DeleteTaskByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -229,6 +239,7 @@ export class TasksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

@@ -30,6 +30,8 @@ await client.folderLocks.getFolderLocks({
   - Query parameters of getFolderLocks method
 - headers `GetFolderLocksHeadersArg`
   - Headers of getFolderLocks method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -72,6 +74,8 @@ await client.folderLocks.createFolderLock({
   - Request body of createFolderLock method
 - headers `CreateFolderLockHeadersArg`
   - Headers of createFolderLock method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -104,6 +108,8 @@ await client.folderLocks.deleteFolderLockById(folderLock.id!);
   - The ID of the folder lock. Example: "12345"
 - headers `DeleteFolderLockByIdHeadersArg`
   - Headers of deleteFolderLockById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

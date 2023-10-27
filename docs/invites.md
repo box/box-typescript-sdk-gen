@@ -30,6 +30,8 @@ _Currently we don't have an example for calling `createInvite` in integration te
   - Query parameters of createInvite method
 - headers `CreateInviteHeadersArg`
   - Headers of createInvite method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -56,6 +58,8 @@ _Currently we don't have an example for calling `getInviteById` in integration t
   - Query parameters of getInviteById method
 - headers `GetInviteByIdHeadersArg`
   - Headers of getInviteById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

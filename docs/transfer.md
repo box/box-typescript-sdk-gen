@@ -55,6 +55,8 @@ _Currently we don't have an example for calling `transferOwnedFolder` in integra
   - Query parameters of transferOwnedFolder method
 - headers `TransferOwnedFolderHeadersArg`
   - Headers of transferOwnedFolder method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

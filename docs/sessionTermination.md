@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `createUserTerminateSession` in 
   - Request body of createUserTerminateSession method
 - headers `CreateUserTerminateSessionHeadersArg`
   - Headers of createUserTerminateSession method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -50,6 +52,8 @@ _Currently we don't have an example for calling `createGroupTerminateSession` in
   - Request body of createGroupTerminateSession method
 - headers `CreateGroupTerminateSessionHeadersArg`
   - Headers of createGroupTerminateSession method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
