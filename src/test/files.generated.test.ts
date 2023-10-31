@@ -57,7 +57,7 @@ export async function uploadFile(
 }
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
   const thumbnailFileName: string = getUuid();
-  const thumbnailContentStream: ByteStream = generateByteStream(1048576);
+  const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);
   const thumbnailFile: File = await uploadFile(
     thumbnailFileName,
     thumbnailContentStream
@@ -81,8 +81,8 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
 });
 test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): Promise<any> {
   const newFileName: string = getUuid();
-  const fileContent: ByteStream = generateByteStream(1048576);
-  const uploadedFile: File = await uploadFile(newFileName, fileContent);
+  const fileStream: ByteStream = generateByteStream(1024 * 1024);
+  const uploadedFile: File = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
     fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
   } satisfies GetFileByIdQueryParamsArg);
@@ -96,7 +96,7 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
 });
 test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): Promise<any> {
   const newFileName: string = getUuid();
-  const updatedContentStream: ByteStream = generateByteStream(1048576);
+  const updatedContentStream: ByteStream = generateByteStream(1024 * 1024);
   const uploadedFile: File = await uploadFile(
     newFileName,
     updatedContentStream

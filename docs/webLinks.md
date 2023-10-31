@@ -19,7 +19,7 @@ See the endpoint docs at
 ```ts
 await client.webLinks.createWebLink({
   url: url,
-  parent: parent,
+  parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
   name: name,
   description: description,
 } satisfies CreateWebLinkRequestBodyArg);

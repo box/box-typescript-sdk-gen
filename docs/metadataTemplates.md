@@ -54,7 +54,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.getMetadataTemplateSchema(
   'enterprise' as GetMetadataTemplateSchemaScopeArg,
-  template.templateKey
+  template.templateKey!
 );
 ```
 
@@ -162,7 +162,7 @@ See the endpoint docs at
 <!-- sample get_metadata_templates_id -->
 
 ```ts
-await client.metadataTemplates.getMetadataTemplateById(template.id);
+await client.metadataTemplates.getMetadataTemplateById(template.id!);
 ```
 
 ### Arguments

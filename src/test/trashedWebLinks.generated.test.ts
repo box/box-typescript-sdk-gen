@@ -10,24 +10,17 @@ import { serializeTrashWebLink } from '../schemas.generated.js';
 import { deserializeTrashWebLink } from '../schemas.generated.js';
 import { serializeTrashWebLinkRestored } from '../schemas.generated.js';
 import { deserializeTrashWebLinkRestored } from '../schemas.generated.js';
+import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
 import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
 import { CreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
 import { TrashWebLink } from '../schemas.generated.js';
 import { TrashWebLinkRestored } from '../schemas.generated.js';
-import { decodeBase64 } from '../utils.js';
-import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
-import { BoxClient } from '../client.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
-const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
-  decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
-);
-const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
-const client: BoxClient = new BoxClient({ auth: auth });
+const client: BoxClient = getDefaultClient();
 test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
   const url: string = 'https://www.box.com';
   const parent: FolderFull = await client.folders.getFolderById('0');

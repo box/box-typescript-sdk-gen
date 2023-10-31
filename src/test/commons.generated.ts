@@ -26,20 +26,25 @@ import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
-import { BoxCcgAuth } from '../ccgAuth.js';
-import { CcgConfig } from '../ccgAuth.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
-export function getClientWithJwtAuth(): BoxClient {
+export function getJwtAuth(): BoxJwtAuth {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
     decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
-  const client: BoxClient = new BoxClient({ auth: auth });
-  return client;
+  return auth;
+}
+export async function getDefaultClientAsUser(
+  userId: string
+): Promise<BoxClient> {
+  const auth: BoxJwtAuth = getJwtAuth();
+  await auth.asUser(userId);
+  return new BoxClient({ auth: auth });
 }
 export function getDefaultClient(): BoxClient {
-  return getClientWithJwtAuth();
+  const client: BoxClient = new BoxClient({ auth: getJwtAuth() });
+  return client;
 }
 export async function createNewFolder(): Promise<FolderFull> {
   const client: BoxClient = getDefaultClient();
@@ -63,14 +68,4 @@ export async function uploadNewFile(): Promise<File> {
     file: fileContentStream,
   } satisfies UploadFileRequestBodyArg);
   return uploadedFiles.entries![0];
-}
-export function getClientWithCcgAuth(): BoxClient {
-  const ccgConfig: CcgConfig = new CcgConfig({
-    clientId: getEnvVar('CLIENT_ID'),
-    clientSecret: getEnvVar('CLIENT_SECRET'),
-    enterpriseId: getEnvVar('ENTERPRISE_ID'),
-  });
-  const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
-  const client: BoxClient = new BoxClient({ auth: auth });
-  return client;
 }

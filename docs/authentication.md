@@ -13,6 +13,12 @@
     - [Obtaining User token](#obtaining-user-token)
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
   - [OAuth 2.0 Auth](#oauth-20-auth)
+    - [Authentication with OAuth2](#authentication-with-oauth2)
+    - [Downscoping tokens](#downscoping-tokens)
+- [Token storage](#token-storage)
+  - [In-memory token storage](#in-memory-token-storage)
+  - [Custom storage](#custom-storage)
+- [Setting as-user header](#setting-as-user-header)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -246,6 +252,8 @@ to authenticate as User with provided ID. The new token will be automatically fe
 
 ## OAuth 2.0 Auth
 
+### Authentication with OAuth2
+
 If your application needs to integrate with existing Box users who will provide
 their login credentials to grant your application access to their account, you
 will need to go through the standard OAuth2 login flow. A detailed guide for
@@ -285,6 +293,35 @@ You need to provide the auth code to the SDK to obtain an access token, then you
 
 ```js
 await oauth.getTokensAuthorizationCodeGrant('code');
+```
+
+### Revoking tokens
+
+Access tokens for a client can be revoked when needed. As this removes the client's way of authenticating this client can no
+longer be used after this call. This method is only available for OAuth2 clients.
+
+To revoke current client's tokens in the storage use the following code:
+
+<!-- sample post_oauth2_revoke -->
+
+```js
+await oauth.revokeTokens();
+// client's tokens have been revoked
+```
+
+### Downscoping tokens
+
+You can exchange a client's access token for one with a lower scope, in order
+to restrict the permissions for a child client or to pass to a less secure
+location (e.g. a browser-based app). This method is only available for OAuth2 clients.
+
+For example to exchange the client's token for one with scopes to upload and delete items, but not to view their contents, which would be suitable for an less-trusted server-side process; use the following code:
+
+<!-- sample post_oauth2_token downscope_token -->
+
+```js
+let accessToken = await oauth.downscopeToken(['item_upload', 'item_delete']);
+// accessToken contains the new downscoped access token
 ```
 
 # Token storage
