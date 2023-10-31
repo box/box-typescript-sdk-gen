@@ -23,7 +23,7 @@ import { getDefaultClient } from './commons.generated.js';
 const client: BoxClient = getDefaultClient();
 test('test_download_file', async function test_download_file(): Promise<any> {
   const newFileName: string = getUuid();
-  const fileBuffer: Buffer = generateByteBuffer(1048576);
+  const fileBuffer: Buffer = generateByteBuffer(1024 * 1024);
   const fileContentStream: ByteStream =
     generateByteStreamFromBuffer(fileBuffer);
   const uploadedFiles: Files = await client.uploads.uploadFile({

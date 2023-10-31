@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -69,7 +70,8 @@ export class AvatarsManager {
   }
   async getUserAvatar(
     userId: string,
-    headers: GetUserAvatarHeadersArg = new GetUserAvatarHeadersArg({})
+    headers: GetUserAvatarHeadersArg = new GetUserAvatarHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const headersMap: {
       readonly [key: string]: string;
@@ -86,6 +88,7 @@ export class AvatarsManager {
         responseFormat: 'binary',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return response.content;
@@ -93,7 +96,8 @@ export class AvatarsManager {
   async createUserAvatar(
     userId: string,
     requestBody: CreateUserAvatarRequestBodyArg,
-    headers: CreateUserAvatarHeadersArg = new CreateUserAvatarHeadersArg({})
+    headers: CreateUserAvatarHeadersArg = new CreateUserAvatarHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<UserAvatar> {
     const headersMap: {
       readonly [key: string]: string;
@@ -119,13 +123,15 @@ export class AvatarsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUserAvatar(deserializeJson(response.text));
   }
   async deleteUserAvatar(
     userId: string,
-    headers: DeleteUserAvatarHeadersArg = new DeleteUserAvatarHeadersArg({})
+    headers: DeleteUserAvatarHeadersArg = new DeleteUserAvatarHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -142,6 +148,7 @@ export class AvatarsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

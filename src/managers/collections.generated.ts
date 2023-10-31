@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -61,7 +62,8 @@ export class CollectionsManager {
   }
   async getCollections(
     queryParams: GetCollectionsQueryParamsArg = {} satisfies GetCollectionsQueryParamsArg,
-    headers: GetCollectionsHeadersArg = new GetCollectionsHeadersArg({})
+    headers: GetCollectionsHeadersArg = new GetCollectionsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Collections> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -82,6 +84,7 @@ export class CollectionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollections(deserializeJson(response.text));
@@ -89,7 +92,10 @@ export class CollectionsManager {
   async getCollectionItems(
     collectionId: string,
     queryParams: GetCollectionItemsQueryParamsArg = {} satisfies GetCollectionItemsQueryParamsArg,
-    headers: GetCollectionItemsHeadersArg = new GetCollectionItemsHeadersArg({})
+    headers: GetCollectionItemsHeadersArg = new GetCollectionItemsHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Items> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -114,6 +120,7 @@ export class CollectionsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeItems(deserializeJson(response.text));

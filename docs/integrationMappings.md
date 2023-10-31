@@ -25,6 +25,8 @@ _Currently we don't have an example for calling `getIntegrationMappingSlack` in 
   - Query parameters of getIntegrationMappingSlack method
 - headers `GetIntegrationMappingSlackHeadersArg`
   - Headers of getIntegrationMappingSlack method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -53,6 +55,8 @@ _Currently we don't have an example for calling `createIntegrationMappingSlack` 
   - Request body of createIntegrationMappingSlack method
 - headers `CreateIntegrationMappingSlackHeadersArg`
   - Headers of createIntegrationMappingSlack method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -83,6 +87,8 @@ _Currently we don't have an example for calling `updateIntegrationMappingSlackBy
   - Request body of updateIntegrationMappingSlackById method
 - headers `UpdateIntegrationMappingSlackByIdHeadersArg`
   - Headers of updateIntegrationMappingSlackById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -110,6 +116,8 @@ _Currently we don't have an example for calling `deleteIntegrationMappingSlackBy
   - An ID of an integration mapping Example: "11235432"
 - headers `DeleteIntegrationMappingSlackByIdHeadersArg`
   - Headers of deleteIntegrationMappingSlackById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

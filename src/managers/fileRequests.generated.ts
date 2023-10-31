@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -86,7 +87,10 @@ export class FileRequestsManager {
   }
   async getFileRequestById(
     fileRequestId: string,
-    headers: GetFileRequestByIdHeadersArg = new GetFileRequestByIdHeadersArg({})
+    headers: GetFileRequestByIdHeadersArg = new GetFileRequestByIdHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -102,6 +106,7 @@ export class FileRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileRequest(deserializeJson(response.text));
@@ -111,7 +116,8 @@ export class FileRequestsManager {
     requestBody: FileRequestUpdateRequest,
     headers: UpdateFileRequestByIdHeadersArg = new UpdateFileRequestByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -132,6 +138,7 @@ export class FileRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileRequest(deserializeJson(response.text));
@@ -140,7 +147,8 @@ export class FileRequestsManager {
     fileRequestId: string,
     headers: DeleteFileRequestByIdHeadersArg = new DeleteFileRequestByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -156,6 +164,7 @@ export class FileRequestsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -165,7 +174,8 @@ export class FileRequestsManager {
     requestBody: FileRequestCopyRequest,
     headers: CreateFileRequestCopyHeadersArg = new CreateFileRequestCopyHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
     const headersMap: {
       readonly [key: string]: string;
@@ -184,6 +194,7 @@ export class FileRequestsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileRequest(deserializeJson(response.text));

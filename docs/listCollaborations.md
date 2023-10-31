@@ -26,6 +26,8 @@ _Currently we don't have an example for calling `getFileCollaborations` in integ
   - Query parameters of getFileCollaborations method
 - headers `GetFileCollaborationsHeadersArg`
   - Headers of getFileCollaborations method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -59,6 +61,8 @@ _Currently we don't have an example for calling `getFolderCollaborations` in int
   - Query parameters of getFolderCollaborations method
 - headers `GetFolderCollaborationsHeadersArg`
   - Headers of getFolderCollaborations method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -88,6 +92,8 @@ _Currently we don't have an example for calling `getCollaborations` in integrati
   - Query parameters of getCollaborations method
 - headers `GetCollaborationsHeadersArg`
   - Headers of getCollaborations method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -121,6 +127,8 @@ _Currently we don't have an example for calling `getGroupCollaborations` in inte
   - Query parameters of getGroupCollaborations method
 - headers `GetGroupCollaborationsHeadersArg`
   - Headers of getGroupCollaborations method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -24,6 +24,8 @@ _Currently we don't have an example for calling `getWorkflows` in integration te
   - Query parameters of getWorkflows method
 - headers `GetWorkflowsHeadersArg`
   - Headers of getWorkflows method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -53,6 +55,8 @@ _Currently we don't have an example for calling `createWorkflowStart` in integra
   - Request body of createWorkflowStart method
 - headers `CreateWorkflowStartHeadersArg`
   - Headers of createWorkflowStart method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -29,6 +29,8 @@ _Currently we don't have an example for calling `getSharedItemFolders` in integr
   - Query parameters of getSharedItemFolders method
 - headers `GetSharedItemFoldersHeadersArg`
   - Headers of getSharedItemFolders method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -56,6 +58,8 @@ _Currently we don't have an example for calling `getFolderGetSharedLink` in inte
   - Query parameters of getFolderGetSharedLink method
 - headers `GetFolderGetSharedLinkHeadersArg`
   - Headers of getFolderGetSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -85,6 +89,8 @@ _Currently we don't have an example for calling `updateFolderAddSharedLink` in i
   - Query parameters of updateFolderAddSharedLink method
 - headers `UpdateFolderAddSharedLinkHeadersArg`
   - Headers of updateFolderAddSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -114,6 +120,8 @@ _Currently we don't have an example for calling `updateFolderUpdateSharedLink` i
   - Query parameters of updateFolderUpdateSharedLink method
 - headers `UpdateFolderUpdateSharedLinkHeadersArg`
   - Headers of updateFolderUpdateSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -143,6 +151,8 @@ _Currently we don't have an example for calling `updateFolderRemoveSharedLink` i
   - Query parameters of updateFolderRemoveSharedLink method
 - headers `UpdateFolderRemoveSharedLinkHeadersArg`
   - Headers of updateFolderRemoveSharedLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

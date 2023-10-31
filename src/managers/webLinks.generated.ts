@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -110,7 +111,8 @@ export class WebLinksManager {
   }
   async createWebLink(
     requestBody: CreateWebLinkRequestBodyArg,
-    headers: CreateWebLinkHeadersArg = new CreateWebLinkHeadersArg({})
+    headers: CreateWebLinkHeadersArg = new CreateWebLinkHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
       readonly [key: string]: string;
@@ -125,13 +127,15 @@ export class WebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
   }
   async getWebLinkById(
     webLinkId: string,
-    headers: GetWebLinkByIdHeadersArg = new GetWebLinkByIdHeadersArg({})
+    headers: GetWebLinkByIdHeadersArg = new GetWebLinkByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
       readonly [key: string]: string;
@@ -150,6 +154,7 @@ export class WebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
@@ -157,7 +162,8 @@ export class WebLinksManager {
   async updateWebLinkById(
     webLinkId: string,
     requestBody: UpdateWebLinkByIdRequestBodyArg = {} satisfies UpdateWebLinkByIdRequestBodyArg,
-    headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({})
+    headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
       readonly [key: string]: string;
@@ -177,13 +183,15 @@ export class WebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWebLink(deserializeJson(response.text));
   }
   async deleteWebLinkById(
     webLinkId: string,
-    headers: DeleteWebLinkByIdHeadersArg = new DeleteWebLinkByIdHeadersArg({})
+    headers: DeleteWebLinkByIdHeadersArg = new DeleteWebLinkByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -199,6 +207,7 @@ export class WebLinksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

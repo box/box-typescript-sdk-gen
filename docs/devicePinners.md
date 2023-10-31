@@ -21,6 +21,8 @@ _Currently we don't have an example for calling `getDevicePinnerById` in integra
   - The ID of the device pin Example: "2324234"
 - headers `GetDevicePinnerByIdHeadersArg`
   - Headers of getDevicePinnerById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -45,6 +47,8 @@ _Currently we don't have an example for calling `deleteDevicePinnerById` in inte
   - The ID of the device pin Example: "2324234"
 - headers `DeleteDevicePinnerByIdHeadersArg`
   - Headers of deleteDevicePinnerById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -74,6 +78,8 @@ _Currently we don't have an example for calling `getEnterpriseDevicePinners` in 
   - Query parameters of getEnterpriseDevicePinners method
 - headers `GetEnterpriseDevicePinnersHeadersArg`
   - Headers of getEnterpriseDevicePinners method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

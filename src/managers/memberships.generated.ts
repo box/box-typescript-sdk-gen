@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -151,7 +152,10 @@ export class MembershipsManager {
   async getUserMemberships(
     userId: string,
     queryParams: GetUserMembershipsQueryParamsArg = {} satisfies GetUserMembershipsQueryParamsArg,
-    headers: GetUserMembershipsHeadersArg = new GetUserMembershipsHeadersArg({})
+    headers: GetUserMembershipsHeadersArg = new GetUserMembershipsHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -175,6 +179,7 @@ export class MembershipsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupMemberships(deserializeJson(response.text));
@@ -184,7 +189,8 @@ export class MembershipsManager {
     queryParams: GetGroupMembershipsQueryParamsArg = {} satisfies GetGroupMembershipsQueryParamsArg,
     headers: GetGroupMembershipsHeadersArg = new GetGroupMembershipsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -208,6 +214,7 @@ export class MembershipsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupMemberships(deserializeJson(response.text));
@@ -217,7 +224,8 @@ export class MembershipsManager {
     queryParams: CreateGroupMembershipQueryParamsArg = {} satisfies CreateGroupMembershipQueryParamsArg,
     headers: CreateGroupMembershipHeadersArg = new CreateGroupMembershipHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -240,6 +248,7 @@ export class MembershipsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupMembership(deserializeJson(response.text));
@@ -249,7 +258,8 @@ export class MembershipsManager {
     queryParams: GetGroupMembershipByIdQueryParamsArg = {} satisfies GetGroupMembershipByIdQueryParamsArg,
     headers: GetGroupMembershipByIdHeadersArg = new GetGroupMembershipByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -271,6 +281,7 @@ export class MembershipsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupMembership(deserializeJson(response.text));
@@ -281,7 +292,8 @@ export class MembershipsManager {
     queryParams: UpdateGroupMembershipByIdQueryParamsArg = {} satisfies UpdateGroupMembershipByIdQueryParamsArg,
     headers: UpdateGroupMembershipByIdHeadersArg = new UpdateGroupMembershipByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -307,6 +319,7 @@ export class MembershipsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupMembership(deserializeJson(response.text));
@@ -315,7 +328,8 @@ export class MembershipsManager {
     groupMembershipId: string,
     headers: DeleteGroupMembershipByIdHeadersArg = new DeleteGroupMembershipByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -331,6 +345,7 @@ export class MembershipsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

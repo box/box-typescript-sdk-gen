@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -140,7 +141,8 @@ export class UserCollaborationsManager {
     queryParams: GetCollaborationByIdQueryParamsArg = {} satisfies GetCollaborationByIdQueryParamsArg,
     headers: GetCollaborationByIdHeadersArg = new GetCollaborationByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -162,6 +164,7 @@ export class UserCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaboration(deserializeJson(response.text));
@@ -171,7 +174,8 @@ export class UserCollaborationsManager {
     requestBody: UpdateCollaborationByIdRequestBodyArg,
     headers: UpdateCollaborationByIdHeadersArg = new UpdateCollaborationByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
     const headersMap: {
       readonly [key: string]: string;
@@ -191,6 +195,7 @@ export class UserCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaboration(deserializeJson(response.text));
@@ -199,7 +204,8 @@ export class UserCollaborationsManager {
     collaborationId: string,
     headers: DeleteCollaborationByIdHeadersArg = new DeleteCollaborationByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -215,6 +221,7 @@ export class UserCollaborationsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -224,7 +231,8 @@ export class UserCollaborationsManager {
     queryParams: CreateCollaborationQueryParamsArg = {} satisfies CreateCollaborationQueryParamsArg,
     headers: CreateCollaborationHeadersArg = new CreateCollaborationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -248,6 +256,7 @@ export class UserCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaboration(deserializeJson(response.text));

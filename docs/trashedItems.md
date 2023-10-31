@@ -27,6 +27,8 @@ _Currently we don't have an example for calling `getFolderTrashItems` in integra
   - Query parameters of getFolderTrashItems method
 - headers `GetFolderTrashItemsHeadersArg`
   - Headers of getFolderTrashItems method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

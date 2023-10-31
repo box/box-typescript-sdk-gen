@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `getTermOfServiceUserStatuses` i
   - Query parameters of getTermOfServiceUserStatuses method
 - headers `GetTermOfServiceUserStatusesHeadersArg`
   - Headers of getTermOfServiceUserStatuses method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -47,6 +49,8 @@ _Currently we don't have an example for calling `createTermOfServiceUserStatus` 
   - Request body of createTermOfServiceUserStatus method
 - headers `CreateTermOfServiceUserStatusHeadersArg`
   - Headers of createTermOfServiceUserStatus method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -73,6 +77,8 @@ _Currently we don't have an example for calling `updateTermOfServiceUserStatusBy
   - Request body of updateTermOfServiceUserStatusById method
 - headers `UpdateTermOfServiceUserStatusByIdHeadersArg`
   - Headers of updateTermOfServiceUserStatusById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

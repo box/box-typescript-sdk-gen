@@ -27,6 +27,8 @@ _Currently we don't have an example for calling `getFileMetadataEnterpriseSecuri
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
   - Headers of getFileMetadataEnterpriseSecurityClassification6VmVochwUWo method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -61,6 +63,8 @@ _Currently we don't have an example for calling `createFileMetadataEnterpriseSec
   - Request body of createFileMetadataEnterpriseSecurityClassification method
 - headers `CreateFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of createFileMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -92,6 +96,8 @@ _Currently we don't have an example for calling `updateFileMetadataEnterpriseSec
   - Request body of updateFileMetadataEnterpriseSecurityClassification method
 - headers `UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of updateFileMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -120,6 +126,8 @@ _Currently we don't have an example for calling `deleteFileMetadataEnterpriseSec
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg`
   - Headers of deleteFileMetadataEnterpriseSecurityClassification method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

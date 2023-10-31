@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -178,7 +179,8 @@ export class EventsManager {
   }
   async getEvents(
     queryParams: GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg,
-    headers: GetEventsHeadersArg = new GetEventsHeadersArg({})
+    headers: GetEventsHeadersArg = new GetEventsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Events> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -202,6 +204,7 @@ export class EventsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeEvents(deserializeJson(response.text));
@@ -209,7 +212,8 @@ export class EventsManager {
   async getEventsWithLongPolling(
     headers: GetEventsWithLongPollingHeadersArg = new GetEventsWithLongPollingHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<RealtimeServers> {
     const headersMap: {
       readonly [key: string]: string;
@@ -222,6 +226,7 @@ export class EventsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRealtimeServers(deserializeJson(response.text));

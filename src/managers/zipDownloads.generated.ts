@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -70,7 +71,8 @@ export class ZipDownloadsManager {
   }
   async createZipDownload(
     requestBody: ZipDownloadRequest,
-    headers: CreateZipDownloadHeadersArg = new CreateZipDownloadHeadersArg({})
+    headers: CreateZipDownloadHeadersArg = new CreateZipDownloadHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<ZipDownload> {
     const headersMap: {
       readonly [key: string]: string;
@@ -85,6 +87,7 @@ export class ZipDownloadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeZipDownload(deserializeJson(response.text));
@@ -93,7 +96,8 @@ export class ZipDownloadsManager {
     zipDownloadId: string,
     headers: GetZipDownloadContentHeadersArg = new GetZipDownloadContentHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const headersMap: {
       readonly [key: string]: string;
@@ -110,6 +114,7 @@ export class ZipDownloadsManager {
         responseFormat: 'binary',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return response.content;
@@ -118,7 +123,8 @@ export class ZipDownloadsManager {
     zipDownloadId: string,
     headers: GetZipDownloadStatusHeadersArg = new GetZipDownloadStatusHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ZipDownloadStatus> {
     const headersMap: {
       readonly [key: string]: string;
@@ -135,6 +141,7 @@ export class ZipDownloadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeZipDownloadStatus(deserializeJson(response.text));

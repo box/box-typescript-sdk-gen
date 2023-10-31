@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -84,7 +85,8 @@ export class TrashedFilesManager {
     queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg,
     headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TrashFileRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -110,6 +112,7 @@ export class TrashedFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashFileRestored(deserializeJson(response.text));
@@ -117,7 +120,8 @@ export class TrashedFilesManager {
   async getFileTrash(
     fileId: string,
     queryParams: GetFileTrashQueryParamsArg = {} satisfies GetFileTrashQueryParamsArg,
-    headers: GetFileTrashHeadersArg = new GetFileTrashHeadersArg({})
+    headers: GetFileTrashHeadersArg = new GetFileTrashHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<TrashFile> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -140,13 +144,15 @@ export class TrashedFilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashFile(deserializeJson(response.text));
   }
   async deleteFileTrash(
     fileId: string,
-    headers: DeleteFileTrashHeadersArg = new DeleteFileTrashHeadersArg({})
+    headers: DeleteFileTrashHeadersArg = new DeleteFileTrashHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -163,6 +169,7 @@ export class TrashedFilesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

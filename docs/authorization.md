@@ -25,6 +25,8 @@ _Currently we don't have an example for calling `getAuthorize` in integration te
   - Query parameters of getAuthorize method
 - headers `GetAuthorizeHeadersArg`
   - Headers of getAuthorize method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -126,7 +127,8 @@ export class FileClassificationsManager {
     fileId: string,
     headers: GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg = new GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -143,6 +145,7 @@ export class FileClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -152,7 +155,8 @@ export class FileClassificationsManager {
     requestBody: CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg = {} satisfies CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg,
     headers: CreateFileMetadataEnterpriseSecurityClassificationHeadersArg = new CreateFileMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -175,6 +179,7 @@ export class FileClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -184,7 +189,8 @@ export class FileClassificationsManager {
     requestBody: readonly UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg[],
     headers: UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg = new UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -207,6 +213,7 @@ export class FileClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -215,7 +222,8 @@ export class FileClassificationsManager {
     fileId: string,
     headers: DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg = new DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -232,6 +240,7 @@ export class FileClassificationsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

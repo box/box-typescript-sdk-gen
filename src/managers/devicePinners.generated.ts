@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -79,7 +80,8 @@ export class DevicePinnersManager {
     devicePinnerId: string,
     headers: GetDevicePinnerByIdHeadersArg = new GetDevicePinnerByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<DevicePinner> {
     const headersMap: {
       readonly [key: string]: string;
@@ -95,6 +97,7 @@ export class DevicePinnersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeDevicePinner(deserializeJson(response.text));
@@ -103,7 +106,8 @@ export class DevicePinnersManager {
     devicePinnerId: string,
     headers: DeleteDevicePinnerByIdHeadersArg = new DeleteDevicePinnerByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -119,6 +123,7 @@ export class DevicePinnersManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -128,7 +133,8 @@ export class DevicePinnersManager {
     queryParams: GetEnterpriseDevicePinnersQueryParamsArg = {} satisfies GetEnterpriseDevicePinnersQueryParamsArg,
     headers: GetEnterpriseDevicePinnersHeadersArg = new GetEnterpriseDevicePinnersHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<DevicePinners> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -153,6 +159,7 @@ export class DevicePinnersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeDevicePinners(deserializeJson(response.text));

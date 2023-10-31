@@ -19,7 +19,7 @@ See the endpoint docs at
 ```ts
 await client.webLinks.createWebLink({
   url: url,
-  parent: parent,
+  parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
   name: name,
   description: description,
 } satisfies CreateWebLinkRequestBodyArg);
@@ -31,6 +31,8 @@ await client.webLinks.createWebLink({
   - Request body of createWebLink method
 - headers `CreateWebLinkHeadersArg`
   - Headers of createWebLink method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -59,6 +61,8 @@ await client.webLinks.getWebLinkById(weblink.id);
   - The ID of the web link. Example: "12345"
 - headers `GetWebLinkByIdHeadersArg`
   - Headers of getWebLinkById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -95,6 +99,8 @@ await client.webLinks.updateWebLinkById(weblink.id, {
   - Request body of updateWebLinkById method
 - headers `UpdateWebLinkByIdHeadersArg`
   - Headers of updateWebLinkById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -123,6 +129,8 @@ await client.webLinks.deleteWebLinkById(weblink.id);
   - The ID of the web link. Example: "12345"
 - headers `DeleteWebLinkByIdHeadersArg`
   - Headers of deleteWebLinkById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

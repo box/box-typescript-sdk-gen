@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -84,7 +85,8 @@ export class TrashedWebLinksManager {
     queryParams: RestoreWeblinkFromTrashQueryParamsArg = {} satisfies RestoreWeblinkFromTrashQueryParamsArg,
     headers: RestoreWeblinkFromTrashHeadersArg = new RestoreWeblinkFromTrashHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TrashWebLinkRestored> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -110,6 +112,7 @@ export class TrashedWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashWebLinkRestored(deserializeJson(response.text));
@@ -117,7 +120,8 @@ export class TrashedWebLinksManager {
   async getWebLinkTrash(
     webLinkId: string,
     queryParams: GetWebLinkTrashQueryParamsArg = {} satisfies GetWebLinkTrashQueryParamsArg,
-    headers: GetWebLinkTrashHeadersArg = new GetWebLinkTrashHeadersArg({})
+    headers: GetWebLinkTrashHeadersArg = new GetWebLinkTrashHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<TrashWebLink> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -140,13 +144,17 @@ export class TrashedWebLinksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTrashWebLink(deserializeJson(response.text));
   }
   async deleteWebLinkTrash(
     webLinkId: string,
-    headers: DeleteWebLinkTrashHeadersArg = new DeleteWebLinkTrashHeadersArg({})
+    headers: DeleteWebLinkTrashHeadersArg = new DeleteWebLinkTrashHeadersArg(
+      {}
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -163,6 +171,7 @@ export class TrashedWebLinksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

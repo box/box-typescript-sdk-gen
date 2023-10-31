@@ -4,6 +4,8 @@ import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
 import { serializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
 import { deserializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
 import { serializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
 import { deserializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
 import { serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
@@ -12,6 +14,7 @@ import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
 import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
 import { getUuid } from '../utils.js';
@@ -26,7 +29,7 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   const password: any = 'super-secret-password';
   const weblink: any = await client.webLinks.createWebLink({
     url: url,
-    parent: parent,
+    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
     name: name,
     description: description,
   } satisfies CreateWebLinkRequestBodyArg);
@@ -63,12 +66,12 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   if (!(updatedWeblink.name == updatedName)) {
     throw 'Assertion failed';
   }
-  if (!(updatedWeblink.sharedLink!.access == sharedAccess)) {
+  if (!(updatedWeblink.sharedLink!.access! == sharedAccess)) {
     throw 'Assertion failed';
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
   const deletedWeblink: any = await client.webLinks.getWebLinkById(weblink.id);
-  if (!(deletedWeblink.itemStatus == 'trashed')) {
+  if (!(deletedWeblink.itemStatus! == 'trashed')) {
     throw 'Assertion failed';
   }
 });

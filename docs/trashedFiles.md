@@ -32,6 +32,8 @@ await client.trashedFiles.restoreFileFromTrash(file.id);
   - Query parameters of restoreFileFromTrash method
 - headers `RestoreFileFromTrashHeadersArg`
   - Headers of restoreFileFromTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -72,6 +74,8 @@ await client.trashedFiles.getFileTrash(file.id);
   - Query parameters of getFileTrash method
 - headers `GetFileTrashHeadersArg`
   - Headers of getFileTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -103,6 +107,8 @@ await client.trashedFiles.deleteFileTrash(file.id);
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `DeleteFileTrashHeadersArg`
   - Headers of deleteFileTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

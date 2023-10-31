@@ -29,6 +29,8 @@ await client.comments.getFileComments(fileId);
   - Query parameters of getFileComments method
 - headers `GetFileCommentsHeadersArg`
   - Headers of getFileComments method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -61,6 +63,8 @@ await client.comments.getCommentById(newComment.id!);
   - Query parameters of getCommentById method
 - headers `GetCommentByIdHeadersArg`
   - Headers of getCommentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -95,6 +99,8 @@ await client.comments.updateCommentById(newReplyComment.id!, {
   - Query parameters of updateCommentById method
 - headers `UpdateCommentByIdHeadersArg`
   - Headers of updateCommentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -123,6 +129,8 @@ await client.comments.deleteCommentById(newComment.id!);
   - The ID of the comment. Example: "12345"
 - headers `DeleteCommentByIdHeadersArg`
   - Headers of deleteCommentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -160,6 +168,8 @@ await client.comments.createComment({
   - Query parameters of createComment method
 - headers `CreateCommentHeadersArg`
   - Headers of createComment method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

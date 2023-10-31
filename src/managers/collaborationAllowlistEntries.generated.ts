@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -105,7 +106,8 @@ export class CollaborationAllowlistEntriesManager {
     queryParams: GetCollaborationWhitelistEntriesQueryParamsArg = {} satisfies GetCollaborationWhitelistEntriesQueryParamsArg,
     headers: GetCollaborationWhitelistEntriesHeadersArg = new GetCollaborationWhitelistEntriesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntries> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -127,6 +129,7 @@ export class CollaborationAllowlistEntriesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntries(
@@ -137,7 +140,8 @@ export class CollaborationAllowlistEntriesManager {
     requestBody: CreateCollaborationWhitelistEntryRequestBodyArg,
     headers: CreateCollaborationWhitelistEntryHeadersArg = new CreateCollaborationWhitelistEntryHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntry> {
     const headersMap: {
       readonly [key: string]: string;
@@ -156,6 +160,7 @@ export class CollaborationAllowlistEntriesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(
@@ -166,7 +171,8 @@ export class CollaborationAllowlistEntriesManager {
     collaborationWhitelistEntryId: string,
     headers: GetCollaborationWhitelistEntryByIdHeadersArg = new GetCollaborationWhitelistEntryByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntry> {
     const headersMap: {
       readonly [key: string]: string;
@@ -182,6 +188,7 @@ export class CollaborationAllowlistEntriesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(
@@ -192,7 +199,8 @@ export class CollaborationAllowlistEntriesManager {
     collaborationWhitelistEntryId: string,
     headers: DeleteCollaborationWhitelistEntryByIdHeadersArg = new DeleteCollaborationWhitelistEntryByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -208,6 +216,7 @@ export class CollaborationAllowlistEntriesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

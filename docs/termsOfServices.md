@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `getTermOfServices` in integrati
   - Query parameters of getTermOfServices method
 - headers `GetTermOfServicesHeadersArg`
   - Headers of getTermOfServices method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -49,6 +51,8 @@ _Currently we don't have an example for calling `createTermOfService` in integra
   - Request body of createTermOfService method
 - headers `CreateTermOfServiceHeadersArg`
   - Headers of createTermOfService method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -73,6 +77,8 @@ _Currently we don't have an example for calling `getTermOfServiceById` in integr
   - The ID of the terms of service. Example: "324234"
 - headers `GetTermOfServiceByIdHeadersArg`
   - Headers of getTermOfServiceById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -99,6 +105,8 @@ _Currently we don't have an example for calling `updateTermOfServiceById` in int
   - Request body of updateTermOfServiceById method
 - headers `UpdateTermOfServiceByIdHeadersArg`
   - Headers of updateTermOfServiceById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

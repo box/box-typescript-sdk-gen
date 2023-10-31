@@ -18,6 +18,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -203,7 +204,8 @@ export class UsersManager {
   }
   async getUsers(
     queryParams: GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg,
-    headers: GetUsersHeadersArg = new GetUsersHeadersArg({})
+    headers: GetUsersHeadersArg = new GetUsersHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Users> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -231,6 +233,7 @@ export class UsersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUsers(deserializeJson(response.text));
@@ -238,7 +241,8 @@ export class UsersManager {
   async createUser(
     requestBody: CreateUserRequestBodyArg,
     queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg,
-    headers: CreateUserHeadersArg = new CreateUserHeadersArg({})
+    headers: CreateUserHeadersArg = new CreateUserHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<User> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -259,13 +263,15 @@ export class UsersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUser(deserializeJson(response.text));
   }
   async getUserMe(
     queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg,
-    headers: GetUserMeHeadersArg = new GetUserMeHeadersArg({})
+    headers: GetUserMeHeadersArg = new GetUserMeHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -284,6 +290,7 @@ export class UsersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUserFull(deserializeJson(response.text));
@@ -291,7 +298,8 @@ export class UsersManager {
   async getUserById(
     userId: string,
     queryParams: GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg,
-    headers: GetUserByIdHeadersArg = new GetUserByIdHeadersArg({})
+    headers: GetUserByIdHeadersArg = new GetUserByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -313,6 +321,7 @@ export class UsersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUserFull(deserializeJson(response.text));
@@ -321,7 +330,8 @@ export class UsersManager {
     userId: string,
     requestBody: UpdateUserByIdRequestBodyArg = {} satisfies UpdateUserByIdRequestBodyArg,
     queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg,
-    headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({})
+    headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -345,6 +355,7 @@ export class UsersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUserFull(deserializeJson(response.text));
@@ -352,7 +363,8 @@ export class UsersManager {
   async deleteUserById(
     userId: string,
     queryParams: DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg,
-    headers: DeleteUserByIdHeadersArg = new DeleteUserByIdHeadersArg({})
+    headers: DeleteUserByIdHeadersArg = new DeleteUserByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -375,6 +387,7 @@ export class UsersManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

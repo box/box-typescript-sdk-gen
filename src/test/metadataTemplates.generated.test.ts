@@ -47,43 +47,43 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(template.fields.length == 1)) {
     throw 'Assertion failed';
   }
-  if (!(template.fields[0].key == 'testName')) {
+  if (!(template.fields![0].key == 'testName')) {
     throw 'Assertion failed';
   }
-  if (!(template.fields[0].displayName == 'testName')) {
+  if (!(template.fields![0].displayName == 'testName')) {
     throw 'Assertion failed';
   }
   const getMetadataTemplate: any =
-    await client.metadataTemplates.getMetadataTemplateById(template.id);
+    await client.metadataTemplates.getMetadataTemplateById(template.id!);
   if (!(getMetadataTemplate.id == template.id)) {
     throw 'Assertion failed';
   }
   const getMetadataTemplateSchema: any =
     await client.metadataTemplates.getMetadataTemplateSchema(
       'enterprise' as GetMetadataTemplateSchemaScopeArg,
-      template.templateKey
+      template.templateKey!
     );
   if (!(getMetadataTemplateSchema.id == template.id)) {
     throw 'Assertion failed';
   }
   const enterpriseMetadataTemplates: any =
     await client.metadataTemplates.getMetadataTemplateEnterprise();
-  if (!(enterpriseMetadataTemplates.entries.length > 0)) {
+  if (!(enterpriseMetadataTemplates.entries!.length > 0)) {
     throw 'Assertion failed';
   }
   const globalMetadataTemplates: any =
     await client.metadataTemplates.getMetadataTemplateGlobal();
-  if (!(globalMetadataTemplates.entries.length > 0)) {
+  if (!(globalMetadataTemplates.entries!.length > 0)) {
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplateSchema(
     'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
-    template.templateKey
+    template.templateKey!
   );
   expect(async () => {
     await client.metadataTemplates.deleteMetadataTemplateSchema(
       'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
-      template.templateKey
+      template.templateKey!
     );
   }).rejects.toThrow();
 });

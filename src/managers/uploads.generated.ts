@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -115,7 +116,8 @@ export class UploadsManager {
     fileId: string,
     requestBody: UploadFileVersionRequestBodyArg,
     queryParams: UploadFileVersionQueryParamsArg = {} satisfies UploadFileVersionQueryParamsArg,
-    headers: UploadFileVersionHeadersArg = new UploadFileVersionHeadersArg({})
+    headers: UploadFileVersionHeadersArg = new UploadFileVersionHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Files> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -161,6 +163,7 @@ export class UploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFiles(deserializeJson(response.text));
@@ -168,7 +171,8 @@ export class UploadsManager {
   async uploadFile(
     requestBody: UploadFileRequestBodyArg,
     queryParams: UploadFileQueryParamsArg = {} satisfies UploadFileQueryParamsArg,
-    headers: UploadFileHeadersArg = new UploadFileHeadersArg({})
+    headers: UploadFileHeadersArg = new UploadFileHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Files> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -207,6 +211,7 @@ export class UploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFiles(deserializeJson(response.text));
@@ -215,7 +220,8 @@ export class UploadsManager {
     requestBody: PreflightFileUploadRequestBodyArg = {} satisfies PreflightFileUploadRequestBodyArg,
     headers: PreflightFileUploadHeadersArg = new PreflightFileUploadHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<UploadUrl> {
     const headersMap: {
       readonly [key: string]: string;
@@ -232,6 +238,7 @@ export class UploadsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeUploadUrl(deserializeJson(response.text));

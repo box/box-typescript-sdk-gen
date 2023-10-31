@@ -27,6 +27,8 @@ await client.retentionPolicies.getRetentionPolicies();
   - Query parameters of getRetentionPolicies method
 - headers `GetRetentionPoliciesHeadersArg`
   - Headers of getRetentionPolicies method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -66,6 +68,8 @@ await client.retentionPolicies.createRetentionPolicy({
   - Request body of createRetentionPolicy method
 - headers `CreateRetentionPolicyHeadersArg`
   - Headers of createRetentionPolicy method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -96,6 +100,8 @@ await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
   - Query parameters of getRetentionPolicyById method
 - headers `GetRetentionPolicyByIdHeadersArg`
   - Headers of getRetentionPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -128,6 +134,8 @@ await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
   - Request body of updateRetentionPolicyById method
 - headers `UpdateRetentionPolicyByIdHeadersArg`
   - Headers of updateRetentionPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -156,6 +164,8 @@ await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
   - The ID of the retention policy. Example: "982312"
 - headers `DeleteRetentionPolicyByIdHeadersArg`
   - Headers of deleteRetentionPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

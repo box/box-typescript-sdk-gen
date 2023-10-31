@@ -28,6 +28,8 @@ await client.tasks.getFileTasks(file.id);
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - headers `GetFileTasksHeadersArg`
   - Headers of getFileTasks method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -70,6 +72,8 @@ await client.tasks.createTask({
   - Request body of createTask method
 - headers `CreateTaskHeadersArg`
   - Headers of createTask method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -98,6 +102,8 @@ await client.tasks.getTaskById(task.id!);
   - The ID of the task. Example: "12345"
 - headers `GetTaskByIdHeadersArg`
   - Headers of getTaskById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -131,6 +137,8 @@ await client.tasks.updateTaskById(task.id!, {
   - Request body of updateTaskById method
 - headers `UpdateTaskByIdHeadersArg`
   - Headers of updateTaskById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -159,6 +167,8 @@ await client.tasks.deleteTaskById(task.id!);
   - The ID of the task. Example: "12345"
 - headers `DeleteTaskByIdHeadersArg`
   - Headers of deleteTaskById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

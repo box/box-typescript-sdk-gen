@@ -33,6 +33,8 @@ await client.users.getUsers();
   - Query parameters of getUsers method
 - headers `GetUsersHeadersArg`
   - Headers of getUsers method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -69,6 +71,8 @@ await client.users.createUser({
   - Query parameters of createUser method
 - headers `CreateUserHeadersArg`
   - Headers of createUser method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -106,6 +110,8 @@ await client.users.getUserMe();
   - Query parameters of getUserMe method
 - headers `GetUserMeHeadersArg`
   - Headers of getUserMe method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -146,6 +152,8 @@ await client.users.getUserById(user.id);
   - Query parameters of getUserById method
 - headers `GetUserByIdHeadersArg`
   - Headers of getUserById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -187,6 +195,8 @@ await client.users.updateUserById(user.id, {
   - Query parameters of updateUserById method
 - headers `UpdateUserByIdHeadersArg`
   - Headers of updateUserById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -220,6 +230,8 @@ await client.users.deleteUserById(user.id);
   - Query parameters of deleteUserById method
 - headers `DeleteUserByIdHeadersArg`
   - Headers of deleteUserById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

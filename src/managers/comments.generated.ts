@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -127,7 +128,8 @@ export class CommentsManager {
   async getFileComments(
     fileId: string,
     queryParams: GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg,
-    headers: GetFileCommentsHeadersArg = new GetFileCommentsHeadersArg({})
+    headers: GetFileCommentsHeadersArg = new GetFileCommentsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Comments> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -152,6 +154,7 @@ export class CommentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeComments(deserializeJson(response.text));
@@ -159,7 +162,8 @@ export class CommentsManager {
   async getCommentById(
     commentId: string,
     queryParams: GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg,
-    headers: GetCommentByIdHeadersArg = new GetCommentByIdHeadersArg({})
+    headers: GetCommentByIdHeadersArg = new GetCommentByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -181,6 +185,7 @@ export class CommentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCommentFull(deserializeJson(response.text));
@@ -189,7 +194,8 @@ export class CommentsManager {
     commentId: string,
     requestBody: UpdateCommentByIdRequestBodyArg = {} satisfies UpdateCommentByIdRequestBodyArg,
     queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg,
-    headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({})
+    headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -215,13 +221,15 @@ export class CommentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCommentFull(deserializeJson(response.text));
   }
   async deleteCommentById(
     commentId: string,
-    headers: DeleteCommentByIdHeadersArg = new DeleteCommentByIdHeadersArg({})
+    headers: DeleteCommentByIdHeadersArg = new DeleteCommentByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -237,6 +245,7 @@ export class CommentsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -244,7 +253,8 @@ export class CommentsManager {
   async createComment(
     requestBody: CreateCommentRequestBodyArg,
     queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg,
-    headers: CreateCommentHeadersArg = new CreateCommentHeadersArg({})
+    headers: CreateCommentHeadersArg = new CreateCommentHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Comment> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -265,6 +275,7 @@ export class CommentsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeComment(deserializeJson(response.text));

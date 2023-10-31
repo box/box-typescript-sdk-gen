@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -109,7 +110,8 @@ export class ShieldInformationBarriersManager {
     shieldInformationBarrierId: string,
     headers: GetShieldInformationBarrierByIdHeadersArg = new GetShieldInformationBarrierByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrier> {
     const headersMap: {
       readonly [key: string]: string;
@@ -125,6 +127,7 @@ export class ShieldInformationBarriersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(deserializeJson(response.text));
@@ -133,7 +136,8 @@ export class ShieldInformationBarriersManager {
     requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg,
     headers: CreateShieldInformationBarrierChangeStatusHeadersArg = new CreateShieldInformationBarrierChangeStatusHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrier> {
     const headersMap: {
       readonly [key: string]: string;
@@ -154,6 +158,7 @@ export class ShieldInformationBarriersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(deserializeJson(response.text));
@@ -162,7 +167,8 @@ export class ShieldInformationBarriersManager {
     queryParams: GetShieldInformationBarriersQueryParamsArg = {} satisfies GetShieldInformationBarriersQueryParamsArg,
     headers: GetShieldInformationBarriersHeadersArg = new GetShieldInformationBarriersHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarriers> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -184,6 +190,7 @@ export class ShieldInformationBarriersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarriers(deserializeJson(response.text));
@@ -192,7 +199,8 @@ export class ShieldInformationBarriersManager {
     requestBody: CreateShieldInformationBarrierRequestBodyArg,
     headers: CreateShieldInformationBarrierHeadersArg = new CreateShieldInformationBarrierHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrier> {
     const headersMap: {
       readonly [key: string]: string;
@@ -211,6 +219,7 @@ export class ShieldInformationBarriersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(deserializeJson(response.text));

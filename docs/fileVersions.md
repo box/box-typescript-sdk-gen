@@ -32,6 +32,8 @@ await client.fileVersions.getFileVersions(file.id);
   - Query parameters of getFileVersions method
 - headers `GetFileVersionsHeadersArg`
   - Headers of getFileVersions method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -69,6 +71,8 @@ await client.fileVersions.getFileVersionById(
   - Query parameters of getFileVersionById method
 - headers `GetFileVersionByIdHeadersArg`
   - Headers of getFileVersionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -104,6 +108,8 @@ _Currently we don't have an example for calling `updateFileVersionById` in integ
   - Request body of updateFileVersionById method
 - headers `UpdateFileVersionByIdHeadersArg`
   - Headers of updateFileVersionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -139,6 +145,8 @@ await client.fileVersions.deleteFileVersionById(
   - The ID of the file version Example: "1234"
 - headers `DeleteFileVersionByIdHeadersArg`
   - Headers of deleteFileVersionById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -190,6 +198,8 @@ await client.fileVersions.promoteFileVersion(file.id, {
   - Query parameters of promoteFileVersion method
 - headers `PromoteFileVersionHeadersArg`
   - Headers of promoteFileVersion method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -23,6 +23,8 @@ _Currently we don't have an example for calling `getTaskAssignments` in integrat
   - The ID of the task. Example: "12345"
 - headers `GetTaskAssignmentsHeadersArg`
   - Headers of getTaskAssignments method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -51,6 +53,8 @@ _Currently we don't have an example for calling `createTaskAssignment` in integr
   - Request body of createTaskAssignment method
 - headers `CreateTaskAssignmentHeadersArg`
   - Headers of createTaskAssignment method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -75,6 +79,8 @@ _Currently we don't have an example for calling `getTaskAssignmentById` in integ
   - The ID of the task assignment. Example: "12345"
 - headers `GetTaskAssignmentByIdHeadersArg`
   - Headers of getTaskAssignmentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -103,6 +109,8 @@ _Currently we don't have an example for calling `updateTaskAssignmentById` in in
   - Request body of updateTaskAssignmentById method
 - headers `UpdateTaskAssignmentByIdHeadersArg`
   - Headers of updateTaskAssignmentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -127,6 +135,8 @@ _Currently we don't have an example for calling `deleteTaskAssignmentById` in in
   - The ID of the task assignment. Example: "12345"
 - headers `DeleteTaskAssignmentByIdHeadersArg`
   - Headers of deleteTaskAssignmentById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

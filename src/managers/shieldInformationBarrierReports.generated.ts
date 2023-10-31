@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -85,7 +86,8 @@ export class ShieldInformationBarrierReportsManager {
     queryParams: GetShieldInformationBarrierReportsQueryParamsArg,
     headers: GetShieldInformationBarrierReportsHeadersArg = new GetShieldInformationBarrierReportsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReports> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -110,6 +112,7 @@ export class ShieldInformationBarrierReportsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReports(
@@ -120,7 +123,8 @@ export class ShieldInformationBarrierReportsManager {
     requestBody: ShieldInformationBarrierReference,
     headers: CreateShieldInformationBarrierReportHeadersArg = new CreateShieldInformationBarrierReportHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReport> {
     const headersMap: {
       readonly [key: string]: string;
@@ -139,6 +143,7 @@ export class ShieldInformationBarrierReportsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReport(
@@ -149,7 +154,8 @@ export class ShieldInformationBarrierReportsManager {
     shieldInformationBarrierReportId: string,
     headers: GetShieldInformationBarrierReportByIdHeadersArg = new GetShieldInformationBarrierReportByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReport> {
     const headersMap: {
       readonly [key: string]: string;
@@ -165,6 +171,7 @@ export class ShieldInformationBarrierReportsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReport(

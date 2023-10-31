@@ -27,6 +27,8 @@ await client.collections.getCollections();
   - Query parameters of getCollections method
 - headers `GetCollectionsHeadersArg`
   - Headers of getCollections method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -58,6 +60,8 @@ await client.collections.getCollectionItems(favouriteCollection.id!);
   - Query parameters of getCollectionItems method
 - headers `GetCollectionItemsHeadersArg`
   - Headers of getCollectionItems method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

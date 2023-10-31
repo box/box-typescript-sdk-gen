@@ -81,7 +81,9 @@ test('test_create_get_cancel_and_list_sign_request', async function test_create_
   }
   const signRequests: SignRequests =
     await client.signRequests.getSignRequests();
-  if (!(signRequests.entries![0].type == 'sign-request')) {
+  if (
+    !((toString(signRequests.entries![0].type!) as string) == 'sign-request')
+  ) {
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(destinationFolder.id, {

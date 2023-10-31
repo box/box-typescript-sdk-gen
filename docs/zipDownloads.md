@@ -36,6 +36,8 @@ _Currently we don't have an example for calling `createZipDownload` in integrati
   - Request body of createZipDownload method
 - headers `CreateZipDownloadHeadersArg`
   - Headers of createZipDownload method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -74,6 +76,8 @@ _Currently we don't have an example for calling `getZipDownloadContent` in integ
   - The unique identifier that represent this `zip` archive. Example: "Lu6fA9Ob-jyysp3AAvMF4AkLEwZwAYbL=tgj2zIC=eK9RvJnJbjJl9rNh2qBgHDpyOCAOhpM=vajg2mKq8Mdd"
 - headers `GetZipDownloadContentHeadersArg`
   - Headers of getZipDownloadContent method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -110,6 +114,8 @@ _Currently we don't have an example for calling `getZipDownloadStatus` in integr
   - The unique identifier that represent this `zip` archive. Example: "Lu6fA9Ob-jyysp3AAvMF4AkLEwZwAYbL=tgj2zIC=eK9RvJnJbjJl9rNh2qBgHDpyOCAOhpM=vajg2mKq8Mdd"
 - headers `GetZipDownloadStatusHeadersArg`
   - Headers of getZipDownloadStatus method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

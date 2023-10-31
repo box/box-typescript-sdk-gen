@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -146,7 +147,8 @@ export class GroupsManager {
   }
   async getGroups(
     queryParams: GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg,
-    headers: GetGroupsHeadersArg = new GetGroupsHeadersArg({})
+    headers: GetGroupsHeadersArg = new GetGroupsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Groups> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -168,6 +170,7 @@ export class GroupsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroups(deserializeJson(response.text));
@@ -175,7 +178,8 @@ export class GroupsManager {
   async createGroup(
     requestBody: CreateGroupRequestBodyArg,
     queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg,
-    headers: CreateGroupHeadersArg = new CreateGroupHeadersArg({})
+    headers: CreateGroupHeadersArg = new CreateGroupHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Group> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -196,6 +200,7 @@ export class GroupsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroup(deserializeJson(response.text));
@@ -203,7 +208,8 @@ export class GroupsManager {
   async getGroupById(
     groupId: string,
     queryParams: GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg,
-    headers: GetGroupByIdHeadersArg = new GetGroupByIdHeadersArg({})
+    headers: GetGroupByIdHeadersArg = new GetGroupByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -225,6 +231,7 @@ export class GroupsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupFull(deserializeJson(response.text));
@@ -233,7 +240,8 @@ export class GroupsManager {
     groupId: string,
     requestBody: UpdateGroupByIdRequestBodyArg = {} satisfies UpdateGroupByIdRequestBodyArg,
     queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg,
-    headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({})
+    headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -259,13 +267,15 @@ export class GroupsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeGroupFull(deserializeJson(response.text));
   }
   async deleteGroupById(
     groupId: string,
-    headers: DeleteGroupByIdHeadersArg = new DeleteGroupByIdHeadersArg({})
+    headers: DeleteGroupByIdHeadersArg = new DeleteGroupByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -281,6 +291,7 @@ export class GroupsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

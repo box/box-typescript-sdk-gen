@@ -40,7 +40,7 @@ export interface PostOAuth2Revoke {
   readonly clientSecret?: string;
   readonly token?: string;
 }
-export type ZipDownloadRequestItemsFieldTypeField = 'file' | 'folder.';
+export type ZipDownloadRequestItemsFieldTypeField = 'file' | 'folder';
 export interface ZipDownloadRequestItemsField {
   readonly type: ZipDownloadRequestItemsFieldTypeField;
   readonly id: string;
@@ -1156,8 +1156,8 @@ export type FileVersionFull = FileVersion & {
 export type FileRequestTypeField = 'file_request';
 export type FileRequestStatusField = 'active' | 'inactive';
 export interface FileRequest {
-  readonly id?: string;
-  readonly type?: FileRequestTypeField;
+  readonly id: string;
+  readonly type: FileRequestTypeField;
   readonly title?: string;
   readonly description?: string;
   readonly status?: FileRequestStatusField;
@@ -2298,7 +2298,10 @@ export interface ZipDownload {
   readonly expiresAt?: string;
   readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
 }
-export type ZipDownloadStatusStateField = 'in_progress' | 'failed' | 'success';
+export type ZipDownloadStatusStateField =
+  | 'in_progress'
+  | 'failed'
+  | 'succeeded';
 export interface ZipDownloadStatus {
   readonly totalFileCount?: number;
   readonly downloadedFileCount?: number;
@@ -3049,8 +3052,8 @@ export function deserializeZipDownloadRequestItemsFieldTypeField(
   if (val == 'file') {
     return 'file';
   }
-  if (val == 'folder.') {
-    return 'folder.';
+  if (val == 'folder') {
+    return 'folder';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
@@ -10160,9 +10163,8 @@ export function deserializeFileRequestStatusField(
 }
 export function serializeFileRequest(val: FileRequest): Json {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeFileRequestTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeFileRequestTypeField(val.type),
     ['title']: val.title == void 0 ? void 0 : val.title,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['status']:
@@ -10186,9 +10188,8 @@ export function serializeFileRequest(val: FileRequest): Json {
   };
 }
 export function deserializeFileRequest(val: any): FileRequest {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | FileRequestTypeField =
-    val.type == void 0 ? void 0 : deserializeFileRequestTypeField(val.type);
+  const id: string = val.id;
+  const type: FileRequestTypeField = deserializeFileRequestTypeField(val.type);
   const title: undefined | string = val.title == void 0 ? void 0 : val.title;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
@@ -16899,8 +16900,8 @@ export function deserializeZipDownloadStatusStateField(
   if (val == 'failed') {
     return 'failed';
   }
-  if (val == 'success') {
-    return 'success';
+  if (val == 'succeeded') {
+    return 'succeeded';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }

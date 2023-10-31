@@ -24,6 +24,8 @@ _Currently we don't have an example for calling `getLegalHoldPolicies` in integr
   - Query parameters of getLegalHoldPolicies method
 - headers `GetLegalHoldPoliciesHeadersArg`
   - Headers of getLegalHoldPolicies method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -48,6 +50,8 @@ _Currently we don't have an example for calling `createLegalHoldPolicy` in integ
   - Request body of createLegalHoldPolicy method
 - headers `CreateLegalHoldPolicyHeadersArg`
   - Headers of createLegalHoldPolicy method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -72,6 +76,8 @@ _Currently we don't have an example for calling `getLegalHoldPolicyById` in inte
   - The ID of the legal hold policy Example: "324432"
 - headers `GetLegalHoldPolicyByIdHeadersArg`
   - Headers of getLegalHoldPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -98,6 +104,8 @@ _Currently we don't have an example for calling `updateLegalHoldPolicyById` in i
   - Request body of updateLegalHoldPolicyById method
 - headers `UpdateLegalHoldPolicyByIdHeadersArg`
   - Headers of updateLegalHoldPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -125,6 +133,8 @@ _Currently we don't have an example for calling `deleteLegalHoldPolicyById` in i
   - The ID of the legal hold policy Example: "324432"
 - headers `DeleteLegalHoldPolicyByIdHeadersArg`
   - Headers of deleteLegalHoldPolicyById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -225,7 +226,8 @@ export class FoldersManager {
   async getFolderById(
     folderId: string,
     queryParams: GetFolderByIdQueryParamsArg = {} satisfies GetFolderByIdQueryParamsArg,
-    headers: GetFolderByIdHeadersArg = new GetFolderByIdHeadersArg({})
+    headers: GetFolderByIdHeadersArg = new GetFolderByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -257,6 +259,7 @@ export class FoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -265,7 +268,8 @@ export class FoldersManager {
     folderId: string,
     requestBody: UpdateFolderByIdRequestBodyArg = {} satisfies UpdateFolderByIdRequestBodyArg,
     queryParams: UpdateFolderByIdQueryParamsArg = {} satisfies UpdateFolderByIdQueryParamsArg,
-    headers: UpdateFolderByIdHeadersArg = new UpdateFolderByIdHeadersArg({})
+    headers: UpdateFolderByIdHeadersArg = new UpdateFolderByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -294,6 +298,7 @@ export class FoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -301,7 +306,8 @@ export class FoldersManager {
   async deleteFolderById(
     folderId: string,
     queryParams: DeleteFolderByIdQueryParamsArg = {} satisfies DeleteFolderByIdQueryParamsArg,
-    headers: DeleteFolderByIdHeadersArg = new DeleteFolderByIdHeadersArg({})
+    headers: DeleteFolderByIdHeadersArg = new DeleteFolderByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -326,6 +332,7 @@ export class FoldersManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -333,7 +340,8 @@ export class FoldersManager {
   async getFolderItems(
     folderId: string,
     queryParams: GetFolderItemsQueryParamsArg = {} satisfies GetFolderItemsQueryParamsArg,
-    headers: GetFolderItemsHeadersArg = new GetFolderItemsHeadersArg({})
+    headers: GetFolderItemsHeadersArg = new GetFolderItemsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Items> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -365,6 +373,7 @@ export class FoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeItems(deserializeJson(response.text));
@@ -372,7 +381,8 @@ export class FoldersManager {
   async createFolder(
     requestBody: CreateFolderRequestBodyArg,
     queryParams: CreateFolderQueryParamsArg = {} satisfies CreateFolderQueryParamsArg,
-    headers: CreateFolderHeadersArg = new CreateFolderHeadersArg({})
+    headers: CreateFolderHeadersArg = new CreateFolderHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -393,6 +403,7 @@ export class FoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));
@@ -401,7 +412,8 @@ export class FoldersManager {
     folderId: string,
     requestBody: CopyFolderRequestBodyArg,
     queryParams: CopyFolderQueryParamsArg = {} satisfies CopyFolderQueryParamsArg,
-    headers: CopyFolderHeadersArg = new CopyFolderHeadersArg({})
+    headers: CopyFolderHeadersArg = new CopyFolderHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -426,6 +438,7 @@ export class FoldersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderFull(deserializeJson(response.text));

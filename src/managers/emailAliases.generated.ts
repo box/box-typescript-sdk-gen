@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -74,7 +75,8 @@ export class EmailAliasesManager {
     userId: string,
     headers: GetUserEmailAliasesHeadersArg = new GetUserEmailAliasesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<EmailAliases> {
     const headersMap: {
       readonly [key: string]: string;
@@ -91,6 +93,7 @@ export class EmailAliasesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeEmailAliases(deserializeJson(response.text));
@@ -100,7 +103,8 @@ export class EmailAliasesManager {
     requestBody: CreateUserEmailAliasRequestBodyArg,
     headers: CreateUserEmailAliasHeadersArg = new CreateUserEmailAliasHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<EmailAlias> {
     const headersMap: {
       readonly [key: string]: string;
@@ -121,6 +125,7 @@ export class EmailAliasesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeEmailAlias(deserializeJson(response.text));
@@ -130,7 +135,8 @@ export class EmailAliasesManager {
     emailAliasId: string,
     headers: DeleteUserEmailAliasByIdHeadersArg = new DeleteUserEmailAliasByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -148,6 +154,7 @@ export class EmailAliasesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

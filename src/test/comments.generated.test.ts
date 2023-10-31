@@ -16,6 +16,8 @@ import { serializeCreateCommentRequestBodyArgItemFieldTypeField } from '../manag
 import { deserializeCreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { serializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
 import { deserializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
+import { serializeCommentFull } from '../schemas.generated.js';
+import { deserializeCommentFull } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
@@ -28,6 +30,7 @@ import { CreateCommentRequestBodyArg } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemField } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { UpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
+import { CommentFull } from '../schemas.generated.js';
 import { generateByteStream } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -92,7 +95,10 @@ test('comments', async function comments(): Promise<any> {
   if (!(newComments.entries![1].message == newMessage)) {
     throw 'Assertion failed';
   }
-  if (!!((await client.comments.getCommentById(newComment.id!)) == void 0)) {
+  const receivedComment: CommentFull = await client.comments.getCommentById(
+    newComment.id!
+  );
+  if (!(receivedComment.message! == newComment.message!)) {
     throw 'Assertion failed';
   }
   await client.comments.deleteCommentById(newComment.id!);

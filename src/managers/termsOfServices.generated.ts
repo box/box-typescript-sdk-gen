@@ -15,6 +15,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -110,7 +111,8 @@ export class TermsOfServicesManager {
   }
   async getTermOfServices(
     queryParams: GetTermOfServicesQueryParamsArg = {} satisfies GetTermOfServicesQueryParamsArg,
-    headers: GetTermOfServicesHeadersArg = new GetTermOfServicesHeadersArg({})
+    headers: GetTermOfServicesHeadersArg = new GetTermOfServicesHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfServices> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -129,6 +131,7 @@ export class TermsOfServicesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfServices(deserializeJson(response.text));
@@ -137,7 +140,8 @@ export class TermsOfServicesManager {
     requestBody: CreateTermOfServiceRequestBodyArg,
     headers: CreateTermOfServiceHeadersArg = new CreateTermOfServiceHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
@@ -154,6 +158,7 @@ export class TermsOfServicesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTask(deserializeJson(response.text));
@@ -162,7 +167,8 @@ export class TermsOfServicesManager {
     termsOfServiceId: string,
     headers: GetTermOfServiceByIdHeadersArg = new GetTermOfServiceByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
     const headersMap: {
       readonly [key: string]: string;
@@ -178,6 +184,7 @@ export class TermsOfServicesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfService(deserializeJson(response.text));
@@ -187,7 +194,8 @@ export class TermsOfServicesManager {
     requestBody: UpdateTermOfServiceByIdRequestBodyArg,
     headers: UpdateTermOfServiceByIdHeadersArg = new UpdateTermOfServiceByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
     const headersMap: {
       readonly [key: string]: string;
@@ -207,6 +215,7 @@ export class TermsOfServicesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeTermsOfService(deserializeJson(response.text));

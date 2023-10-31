@@ -18,6 +18,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -142,7 +143,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     shieldInformationBarrierSegmentMemberId: string,
     headers: GetShieldInformationBarrierSegmentMemberByIdHeadersArg = new GetShieldInformationBarrierSegmentMemberByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegmentMember> {
     const headersMap: {
       readonly [key: string]: string;
@@ -158,6 +160,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegmentMember(
@@ -168,7 +171,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     shieldInformationBarrierSegmentMemberId: string,
     headers: DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg = new DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -184,6 +188,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -192,7 +197,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     queryParams: GetShieldInformationBarrierSegmentMembersQueryParamsArg,
     headers: GetShieldInformationBarrierSegmentMembersHeadersArg = new GetShieldInformationBarrierSegmentMembersHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegmentMembers> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -217,6 +223,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegmentMembers(
@@ -227,7 +234,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg,
     headers: CreateShieldInformationBarrierSegmentMemberHeadersArg = new CreateShieldInformationBarrierSegmentMemberHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegmentMember> {
     const headersMap: {
       readonly [key: string]: string;
@@ -248,6 +256,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegmentMember(

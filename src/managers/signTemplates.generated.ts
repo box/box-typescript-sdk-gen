@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -58,7 +59,8 @@ export class SignTemplatesManager {
   }
   async getSignTemplates(
     queryParams: GetSignTemplatesQueryParamsArg = {} satisfies GetSignTemplatesQueryParamsArg,
-    headers: GetSignTemplatesHeadersArg = new GetSignTemplatesHeadersArg({})
+    headers: GetSignTemplatesHeadersArg = new GetSignTemplatesHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<SignTemplates> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -78,6 +80,7 @@ export class SignTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignTemplates(deserializeJson(response.text));
@@ -86,7 +89,8 @@ export class SignTemplatesManager {
     templateId: string,
     headers: GetSignTemplateByIdHeadersArg = new GetSignTemplateByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<SignTemplate> {
     const headersMap: {
       readonly [key: string]: string;
@@ -102,6 +106,7 @@ export class SignTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSignTemplate(deserializeJson(response.text));

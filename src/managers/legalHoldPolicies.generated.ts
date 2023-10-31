@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -115,7 +116,8 @@ export class LegalHoldPoliciesManager {
     queryParams: GetLegalHoldPoliciesQueryParamsArg = {} satisfies GetLegalHoldPoliciesQueryParamsArg,
     headers: GetLegalHoldPoliciesHeadersArg = new GetLegalHoldPoliciesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicies> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -137,6 +139,7 @@ export class LegalHoldPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeLegalHoldPolicies(deserializeJson(response.text));
@@ -145,7 +148,8 @@ export class LegalHoldPoliciesManager {
     requestBody: CreateLegalHoldPolicyRequestBodyArg,
     headers: CreateLegalHoldPolicyHeadersArg = new CreateLegalHoldPolicyHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -162,6 +166,7 @@ export class LegalHoldPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(deserializeJson(response.text));
@@ -170,7 +175,8 @@ export class LegalHoldPoliciesManager {
     legalHoldPolicyId: string,
     headers: GetLegalHoldPolicyByIdHeadersArg = new GetLegalHoldPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -186,6 +192,7 @@ export class LegalHoldPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(deserializeJson(response.text));
@@ -195,7 +202,8 @@ export class LegalHoldPoliciesManager {
     requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg = {} satisfies UpdateLegalHoldPolicyByIdRequestBodyArg,
     headers: UpdateLegalHoldPolicyByIdHeadersArg = new UpdateLegalHoldPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -215,6 +223,7 @@ export class LegalHoldPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(deserializeJson(response.text));
@@ -223,7 +232,8 @@ export class LegalHoldPoliciesManager {
     legalHoldPolicyId: string,
     headers: DeleteLegalHoldPolicyByIdHeadersArg = new DeleteLegalHoldPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -239,6 +249,7 @@ export class LegalHoldPoliciesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

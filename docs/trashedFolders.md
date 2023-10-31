@@ -41,6 +41,8 @@ await client.trashedFolders.restoreFolderFromTrash(folder.id);
   - Query parameters of restoreFolderFromTrash method
 - headers `RestoreFolderFromTrashHeadersArg`
   - Headers of restoreFolderFromTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -81,6 +83,8 @@ await client.trashedFolders.getFolderTrash(folder.id);
   - Query parameters of getFolderTrash method
 - headers `GetFolderTrashHeadersArg`
   - Headers of getFolderTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -112,6 +116,8 @@ await client.trashedFolders.deleteFolderTrash(folder.id);
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - headers `DeleteFolderTrashHeadersArg`
   - Headers of deleteFolderTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

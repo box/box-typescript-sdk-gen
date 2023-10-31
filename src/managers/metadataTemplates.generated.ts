@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -202,7 +203,8 @@ export class MetadataTemplatesManager {
     queryParams: GetMetadataTemplatesQueryParamsArg,
     headers: GetMetadataTemplatesHeadersArg = new GetMetadataTemplatesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -223,6 +225,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplates(deserializeJson(response.text));
@@ -232,7 +235,8 @@ export class MetadataTemplatesManager {
     templateKey: string,
     headers: GetMetadataTemplateSchemaHeadersArg = new GetMetadataTemplateSchemaHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
     const headersMap: {
       readonly [key: string]: string;
@@ -251,6 +255,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplate(deserializeJson(response.text));
@@ -261,7 +266,8 @@ export class MetadataTemplatesManager {
     requestBody: readonly UpdateMetadataTemplateSchemaRequestBodyArg[],
     headers: UpdateMetadataTemplateSchemaHeadersArg = new UpdateMetadataTemplateSchemaHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
     const headersMap: {
       readonly [key: string]: string;
@@ -286,6 +292,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplate(deserializeJson(response.text));
@@ -295,7 +302,8 @@ export class MetadataTemplatesManager {
     templateKey: string,
     headers: DeleteMetadataTemplateSchemaHeadersArg = new DeleteMetadataTemplateSchemaHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -314,6 +322,7 @@ export class MetadataTemplatesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -322,7 +331,8 @@ export class MetadataTemplatesManager {
     templateId: string,
     headers: GetMetadataTemplateByIdHeadersArg = new GetMetadataTemplateByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
     const headersMap: {
       readonly [key: string]: string;
@@ -338,6 +348,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplate(deserializeJson(response.text));
@@ -346,7 +357,8 @@ export class MetadataTemplatesManager {
     queryParams: GetMetadataTemplateGlobalQueryParamsArg = {} satisfies GetMetadataTemplateGlobalQueryParamsArg,
     headers: GetMetadataTemplateGlobalHeadersArg = new GetMetadataTemplateGlobalHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -366,6 +378,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplates(deserializeJson(response.text));
@@ -374,7 +387,8 @@ export class MetadataTemplatesManager {
     queryParams: GetMetadataTemplateEnterpriseQueryParamsArg = {} satisfies GetMetadataTemplateEnterpriseQueryParamsArg,
     headers: GetMetadataTemplateEnterpriseHeadersArg = new GetMetadataTemplateEnterpriseHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -396,6 +410,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplates(deserializeJson(response.text));
@@ -404,7 +419,8 @@ export class MetadataTemplatesManager {
     requestBody: CreateMetadataTemplateSchemaRequestBodyArg,
     headers: CreateMetadataTemplateSchemaHeadersArg = new CreateMetadataTemplateSchemaHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
     const headersMap: {
       readonly [key: string]: string;
@@ -421,6 +437,7 @@ export class MetadataTemplatesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataTemplate(deserializeJson(response.text));

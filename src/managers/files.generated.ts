@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -167,7 +168,8 @@ export class FilesManager {
   async getFileById(
     fileId: string,
     queryParams: GetFileByIdQueryParamsArg = {} satisfies GetFileByIdQueryParamsArg,
-    headers: GetFileByIdHeadersArg = new GetFileByIdHeadersArg({})
+    headers: GetFileByIdHeadersArg = new GetFileByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -196,6 +198,7 @@ export class FilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -204,7 +207,8 @@ export class FilesManager {
     fileId: string,
     requestBody: UpdateFileByIdRequestBodyArg = {} satisfies UpdateFileByIdRequestBodyArg,
     queryParams: UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg,
-    headers: UpdateFileByIdHeadersArg = new UpdateFileByIdHeadersArg({})
+    headers: UpdateFileByIdHeadersArg = new UpdateFileByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -231,13 +235,15 @@ export class FilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
   }
   async deleteFileById(
     fileId: string,
-    headers: DeleteFileByIdHeadersArg = new DeleteFileByIdHeadersArg({})
+    headers: DeleteFileByIdHeadersArg = new DeleteFileByIdHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -256,6 +262,7 @@ export class FilesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;
@@ -264,7 +271,8 @@ export class FilesManager {
     fileId: string,
     requestBody: CopyFileRequestBodyArg,
     queryParams: CopyFileQueryParamsArg = {} satisfies CopyFileQueryParamsArg,
-    headers: CopyFileHeadersArg = new CopyFileHeadersArg({})
+    headers: CopyFileHeadersArg = new CopyFileHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -289,6 +297,7 @@ export class FilesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFileFull(deserializeJson(response.text));
@@ -299,7 +308,8 @@ export class FilesManager {
     queryParams: GetFileThumbnailByIdQueryParamsArg = {} satisfies GetFileThumbnailByIdQueryParamsArg,
     headers: GetFileThumbnailByIdHeadersArg = new GetFileThumbnailByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -326,6 +336,7 @@ export class FilesManager {
         responseFormat: 'binary',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return response.content;

@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -126,7 +127,8 @@ export class FolderClassificationsManager {
     folderId: string,
     headers: GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg = new GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -143,6 +145,7 @@ export class FolderClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -152,7 +155,8 @@ export class FolderClassificationsManager {
     requestBody: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg = {} satisfies CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg,
     headers: CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg = new CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -175,6 +179,7 @@ export class FolderClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -184,7 +189,8 @@ export class FolderClassificationsManager {
     requestBody: readonly UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg[],
     headers: UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg = new UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Classification> {
     const headersMap: {
       readonly [key: string]: string;
@@ -207,6 +213,7 @@ export class FolderClassificationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassification(deserializeJson(response.text));
@@ -215,7 +222,8 @@ export class FolderClassificationsManager {
     folderId: string,
     headers: DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg = new DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -232,6 +240,7 @@ export class FolderClassificationsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

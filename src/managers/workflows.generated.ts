@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -84,7 +85,8 @@ export class WorkflowsManager {
   }
   async getWorkflows(
     queryParams: GetWorkflowsQueryParamsArg,
-    headers: GetWorkflowsHeadersArg = new GetWorkflowsHeadersArg({})
+    headers: GetWorkflowsHeadersArg = new GetWorkflowsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Workflows> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -106,6 +108,7 @@ export class WorkflowsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeWorkflows(deserializeJson(response.text));
@@ -115,7 +118,8 @@ export class WorkflowsManager {
     requestBody: CreateWorkflowStartRequestBodyArg,
     headers: CreateWorkflowStartHeadersArg = new CreateWorkflowStartHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -136,6 +140,7 @@ export class WorkflowsManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

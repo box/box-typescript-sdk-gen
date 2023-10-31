@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -101,7 +102,8 @@ export class ListCollaborationsManager {
     queryParams: GetFileCollaborationsQueryParamsArg = {} satisfies GetFileCollaborationsQueryParamsArg,
     headers: GetFileCollaborationsHeadersArg = new GetFileCollaborationsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -126,6 +128,7 @@ export class ListCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborations(deserializeJson(response.text));
@@ -135,7 +138,8 @@ export class ListCollaborationsManager {
     queryParams: GetFolderCollaborationsQueryParamsArg = {} satisfies GetFolderCollaborationsQueryParamsArg,
     headers: GetFolderCollaborationsHeadersArg = new GetFolderCollaborationsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -158,13 +162,15 @@ export class ListCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborations(deserializeJson(response.text));
   }
   async getCollaborations(
     queryParams: GetCollaborationsQueryParamsArg,
-    headers: GetCollaborationsHeadersArg = new GetCollaborationsHeadersArg({})
+    headers: GetCollaborationsHeadersArg = new GetCollaborationsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -186,6 +192,7 @@ export class ListCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborations(deserializeJson(response.text));
@@ -195,7 +202,8 @@ export class ListCollaborationsManager {
     queryParams: GetGroupCollaborationsQueryParamsArg = {} satisfies GetGroupCollaborationsQueryParamsArg,
     headers: GetGroupCollaborationsHeadersArg = new GetGroupCollaborationsHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -219,6 +227,7 @@ export class ListCollaborationsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeCollaborations(deserializeJson(response.text));

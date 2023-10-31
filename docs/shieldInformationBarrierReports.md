@@ -21,6 +21,8 @@ _Currently we don't have an example for calling `getShieldInformationBarrierRepo
   - Query parameters of getShieldInformationBarrierReports method
 - headers `GetShieldInformationBarrierReportsHeadersArg`
   - Headers of getShieldInformationBarrierReports method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -45,6 +47,8 @@ _Currently we don't have an example for calling `createShieldInformationBarrierR
   - Request body of createShieldInformationBarrierReport method
 - headers `CreateShieldInformationBarrierReportHeadersArg`
   - Headers of createShieldInformationBarrierReport method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -69,6 +73,8 @@ _Currently we don't have an example for calling `getShieldInformationBarrierRepo
   - The ID of the shield information barrier Report. Example: "3423"
 - headers `GetShieldInformationBarrierReportByIdHeadersArg`
   - Headers of getShieldInformationBarrierReportById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

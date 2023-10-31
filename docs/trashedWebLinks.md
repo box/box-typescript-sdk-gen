@@ -32,6 +32,8 @@ await client.trashedWebLinks.restoreWeblinkFromTrash(weblink.id);
   - Query parameters of restoreWeblinkFromTrash method
 - headers `RestoreWeblinkFromTrashHeadersArg`
   - Headers of restoreWeblinkFromTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -62,6 +64,8 @@ await client.trashedWebLinks.getWebLinkTrash(weblink.id);
   - Query parameters of getWebLinkTrash method
 - headers `GetWebLinkTrashHeadersArg`
   - Headers of getWebLinkTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 
@@ -93,6 +97,8 @@ await client.trashedWebLinks.deleteWebLinkTrash(weblink.id);
   - The ID of the web link. Example: "12345"
 - headers `DeleteWebLinkTrashHeadersArg`
   - Headers of deleteWebLinkTrash method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
 ### Returns
 

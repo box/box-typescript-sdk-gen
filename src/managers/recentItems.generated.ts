@@ -9,6 +9,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -39,7 +40,8 @@ export class RecentItemsManager {
   }
   async getRecentItems(
     queryParams: GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg,
-    headers: GetRecentItemsHeadersArg = new GetRecentItemsHeadersArg({})
+    headers: GetRecentItemsHeadersArg = new GetRecentItemsHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<RecentItems> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -60,6 +62,7 @@ export class RecentItemsManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRecentItems(deserializeJson(response.text));

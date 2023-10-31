@@ -12,6 +12,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -82,7 +83,8 @@ export class FolderLocksManager {
   }
   async getFolderLocks(
     queryParams: GetFolderLocksQueryParamsArg,
-    headers: GetFolderLocksHeadersArg = new GetFolderLocksHeadersArg({})
+    headers: GetFolderLocksHeadersArg = new GetFolderLocksHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderLocks> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -101,13 +103,15 @@ export class FolderLocksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderLocks(deserializeJson(response.text));
   }
   async createFolderLock(
     requestBody: CreateFolderLockRequestBodyArg,
-    headers: CreateFolderLockHeadersArg = new CreateFolderLockHeadersArg({})
+    headers: CreateFolderLockHeadersArg = new CreateFolderLockHeadersArg({}),
+    cancellationToken?: CancellationToken
   ): Promise<FolderLock> {
     const headersMap: {
       readonly [key: string]: string;
@@ -124,6 +128,7 @@ export class FolderLocksManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeFolderLock(deserializeJson(response.text));
@@ -132,7 +137,8 @@ export class FolderLocksManager {
     folderLockId: string,
     headers: DeleteFolderLockByIdHeadersArg = new DeleteFolderLockByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -148,6 +154,7 @@ export class FolderLocksManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

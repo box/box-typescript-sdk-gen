@@ -18,6 +18,7 @@ import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
+import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
@@ -149,7 +150,8 @@ export class RetentionPoliciesManager {
     queryParams: GetRetentionPoliciesQueryParamsArg = {} satisfies GetRetentionPoliciesQueryParamsArg,
     headers: GetRetentionPoliciesHeadersArg = new GetRetentionPoliciesHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<RetentionPolicies> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -173,6 +175,7 @@ export class RetentionPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRetentionPolicies(deserializeJson(response.text));
@@ -181,7 +184,8 @@ export class RetentionPoliciesManager {
     requestBody: CreateRetentionPolicyRequestBodyArg,
     headers: CreateRetentionPolicyHeadersArg = new CreateRetentionPolicyHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -198,6 +202,7 @@ export class RetentionPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRetentionPolicy(deserializeJson(response.text));
@@ -207,7 +212,8 @@ export class RetentionPoliciesManager {
     queryParams: GetRetentionPolicyByIdQueryParamsArg = {} satisfies GetRetentionPolicyByIdQueryParamsArg,
     headers: GetRetentionPolicyByIdHeadersArg = new GetRetentionPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -229,6 +235,7 @@ export class RetentionPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRetentionPolicy(deserializeJson(response.text));
@@ -238,7 +245,8 @@ export class RetentionPoliciesManager {
     requestBody: UpdateRetentionPolicyByIdRequestBodyArg = {} satisfies UpdateRetentionPolicyByIdRequestBodyArg,
     headers: UpdateRetentionPolicyByIdHeadersArg = new UpdateRetentionPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
     const headersMap: {
       readonly [key: string]: string;
@@ -258,6 +266,7 @@ export class RetentionPoliciesManager {
         responseFormat: 'json',
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeRetentionPolicy(deserializeJson(response.text));
@@ -266,7 +275,8 @@ export class RetentionPoliciesManager {
     retentionPolicyId: string,
     headers: DeleteRetentionPolicyByIdHeadersArg = new DeleteRetentionPolicyByIdHeadersArg(
       {}
-    )
+    ),
+    cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
       readonly [key: string]: string;
@@ -282,6 +292,7 @@ export class RetentionPoliciesManager {
         responseFormat: void 0,
         auth: this.auth,
         networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
     return void 0;

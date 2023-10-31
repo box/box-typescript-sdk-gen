@@ -20,6 +20,7 @@ export function hexToBase64(data: string): string {
 }
 
 export { Buffer, Readable as ByteStream };
+export type { CancellationToken };
 export type Iterator<T = any> = AsyncIterator<T>;
 
 // Function to convert a hexadecimal string to base64
@@ -207,4 +208,16 @@ export function getUrlParams(params: Record<string, any>) {
   return new URLSearchParams(
     Object.entries(params).map(([key, value]) => [key, toString(value)])
   ).toString();
+}
+
+type CancellationToken = AbortSignal;
+
+/**
+ * Creates a cancellation token that will be cancelled after a given delay in ms.
+ *
+ * @param {number} delay Delay in ms.
+ * @returns {CancellationToken} Cancellation token.
+ */
+export function createTokenAndCancelAfter(delay: number): CancellationToken {
+  return AbortSignal.timeout(delay);
 }
