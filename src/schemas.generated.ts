@@ -1156,8 +1156,8 @@ export type FileVersionFull = FileVersion & {
 export type FileRequestTypeField = 'file_request';
 export type FileRequestStatusField = 'active' | 'inactive';
 export interface FileRequest {
-  readonly id?: string;
-  readonly type?: FileRequestTypeField;
+  readonly id: string;
+  readonly type: FileRequestTypeField;
   readonly title?: string;
   readonly description?: string;
   readonly status?: FileRequestStatusField;
@@ -10163,9 +10163,8 @@ export function deserializeFileRequestStatusField(
 }
 export function serializeFileRequest(val: FileRequest): Json {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeFileRequestTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeFileRequestTypeField(val.type),
     ['title']: val.title == void 0 ? void 0 : val.title,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['status']:
@@ -10189,9 +10188,8 @@ export function serializeFileRequest(val: FileRequest): Json {
   };
 }
 export function deserializeFileRequest(val: any): FileRequest {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | FileRequestTypeField =
-    val.type == void 0 ? void 0 : deserializeFileRequestTypeField(val.type);
+  const id: string = val.id;
+  const type: FileRequestTypeField = deserializeFileRequestTypeField(val.type);
   const title: undefined | string = val.title == void 0 ? void 0 : val.title;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
