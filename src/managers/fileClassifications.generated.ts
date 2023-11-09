@@ -13,10 +13,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -148,7 +152,7 @@ export class FileClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async createFileMetadataEnterpriseSecurityClassification(
     fileId: string,
@@ -170,10 +174,8 @@ export class FileClassificationsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -182,7 +184,7 @@ export class FileClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async updateFileMetadataEnterpriseSecurityClassification(
     fileId: string,
@@ -204,11 +206,9 @@ export class FileClassificationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -216,7 +216,7 @@ export class FileClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async deleteFileMetadataEnterpriseSecurityClassification(
     fileId: string,
@@ -248,7 +248,7 @@ export class FileClassificationsManager {
 }
 export function serializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
   val: CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
       val.boxSecurityClassificationKey == void 0
@@ -269,13 +269,13 @@ export function deserializeCreateFileMetadataEnterpriseSecurityClassificationReq
 }
 export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
   val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
   val: any
 ): UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField"';
   }
   if (val == 'replace') {
@@ -285,13 +285,13 @@ export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationReq
 }
 export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
   val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
   val: any
 ): UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField"';
   }
   if (val == '/Box__Security__Classification__Key') {
@@ -301,7 +301,7 @@ export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationReq
 }
 export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
   val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']:
       val.op == void 0

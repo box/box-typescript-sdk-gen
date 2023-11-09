@@ -13,11 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetCollectionsQueryParamsArg {
   readonly fields?: readonly string[];
   readonly offset?: number;
@@ -68,7 +74,9 @@ export class CollectionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['offset']: toString(queryParams.offset) as string,
       ['limit']: toString(queryParams.limit) as string,
     });
@@ -87,7 +95,7 @@ export class CollectionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollections(deserializeJson(response.text));
+    return deserializeCollections(response.data);
   }
   async getCollectionItems(
     collectionId: string,
@@ -100,7 +108,9 @@ export class CollectionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['offset']: toString(queryParams.offset) as string,
       ['limit']: toString(queryParams.limit) as string,
     });
@@ -123,6 +133,6 @@ export class CollectionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeItems(deserializeJson(response.text));
+    return deserializeItems(response.data);
   }
 }

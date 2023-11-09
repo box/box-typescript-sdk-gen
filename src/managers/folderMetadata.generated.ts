@@ -19,10 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFolderMetadataHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -141,7 +145,7 @@ export class FolderMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadatas(deserializeJson(response.text));
+    return deserializeMetadatas(response.data);
   }
   async getFolderMetadataById(
     folderId: string,
@@ -173,7 +177,7 @@ export class FolderMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataFull(deserializeJson(response.text));
+    return deserializeMetadataFull(response.data);
   }
   async createFolderMetadataById(
     folderId: string,
@@ -200,9 +204,7 @@ export class FolderMetadataManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFolderMetadataByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateFolderMetadataByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -210,7 +212,7 @@ export class FolderMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(deserializeJson(response.text));
+    return deserializeMetadata(response.data);
   }
   async updateFolderMetadataById(
     folderId: string,
@@ -237,11 +239,9 @@ export class FolderMetadataManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateFolderMetadataByIdRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateFolderMetadataByIdRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -249,7 +249,7 @@ export class FolderMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(deserializeJson(response.text));
+    return deserializeMetadata(response.data);
   }
   async deleteFolderMetadataById(
     folderId: string,
@@ -286,13 +286,13 @@ export class FolderMetadataManager {
 }
 export function serializeGetFolderMetadataByIdScopeArg(
   val: GetFolderMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderMetadataByIdScopeArg(
   val: any
 ): GetFolderMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -305,13 +305,13 @@ export function deserializeGetFolderMetadataByIdScopeArg(
 }
 export function serializeCreateFolderMetadataByIdScopeArg(
   val: CreateFolderMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFolderMetadataByIdScopeArg(
   val: any
 ): CreateFolderMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateFolderMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -324,7 +324,7 @@ export function deserializeCreateFolderMetadataByIdScopeArg(
 }
 export function serializeCreateFolderMetadataByIdRequestBodyArg(
   val: CreateFolderMetadataByIdRequestBodyArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFolderMetadataByIdRequestBodyArg(
@@ -334,13 +334,13 @@ export function deserializeCreateFolderMetadataByIdRequestBodyArg(
 }
 export function serializeUpdateFolderMetadataByIdScopeArg(
   val: UpdateFolderMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdScopeArg(
   val: any
 ): UpdateFolderMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -353,13 +353,13 @@ export function deserializeUpdateFolderMetadataByIdScopeArg(
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyArgOpField(
   val: UpdateFolderMetadataByIdRequestBodyArgOpField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdRequestBodyArgOpField(
   val: any
 ): UpdateFolderMetadataByIdRequestBodyArgOpField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderMetadataByIdRequestBodyArgOpField"';
   }
   if (val == 'add') {
@@ -384,7 +384,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyArgOpField(
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyArg(
   val: UpdateFolderMetadataByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']:
       val.op == void 0
@@ -414,13 +414,13 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyArg(
 }
 export function serializeDeleteFolderMetadataByIdScopeArg(
   val: DeleteFolderMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeDeleteFolderMetadataByIdScopeArg(
   val: any
 ): DeleteFolderMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "DeleteFolderMetadataByIdScopeArg"';
   }
   if (val == 'global') {

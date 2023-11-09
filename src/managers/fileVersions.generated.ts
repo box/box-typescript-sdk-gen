@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetFileVersionsQueryParamsArg {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -124,7 +128,9 @@ export class FileVersionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['limit']: toString(queryParams.limit) as string,
       ['offset']: toString(queryParams.offset) as string,
     });
@@ -147,7 +153,7 @@ export class FileVersionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersions(deserializeJson(response.text));
+    return deserializeFileVersions(response.data);
   }
   async getFileVersionById(
     fileId: string,
@@ -161,7 +167,9 @@ export class FileVersionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -183,7 +191,7 @@ export class FileVersionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionFull(deserializeJson(response.text));
+    return deserializeFileVersionFull(response.data);
   }
   async updateFileVersionById(
     fileId: string,
@@ -207,9 +215,7 @@ export class FileVersionsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateFileVersionByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateFileVersionByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -217,7 +223,7 @@ export class FileVersionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionFull(deserializeJson(response.text));
+    return deserializeFileVersionFull(response.data);
   }
   async deleteFileVersionById(
     fileId: string,
@@ -263,7 +269,9 @@ export class FileVersionsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -278,9 +286,7 @@ export class FileVersionsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializePromoteFileVersionRequestBodyArg(requestBody)
-        ),
+        data: serializePromoteFileVersionRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -288,12 +294,12 @@ export class FileVersionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionFull(deserializeJson(response.text));
+    return deserializeFileVersionFull(response.data);
   }
 }
 export function serializeUpdateFileVersionByIdRequestBodyArg(
   val: UpdateFileVersionByIdRequestBodyArg
-): Json {
+): SerializedData {
   return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
 export function deserializeUpdateFileVersionByIdRequestBodyArg(
@@ -305,13 +311,13 @@ export function deserializeUpdateFileVersionByIdRequestBodyArg(
 }
 export function serializePromoteFileVersionRequestBodyArgTypeField(
   val: PromoteFileVersionRequestBodyArgTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializePromoteFileVersionRequestBodyArgTypeField(
   val: any
 ): PromoteFileVersionRequestBodyArgTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "PromoteFileVersionRequestBodyArgTypeField"';
   }
   if (val == 'file_version') {
@@ -321,7 +327,7 @@ export function deserializePromoteFileVersionRequestBodyArgTypeField(
 }
 export function serializePromoteFileVersionRequestBodyArg(
   val: PromoteFileVersionRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:

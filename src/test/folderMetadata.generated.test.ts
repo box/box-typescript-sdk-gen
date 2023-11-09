@@ -25,6 +25,13 @@ import { UpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetada
 import { UpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const folder: any = await client.folders.createFolder({

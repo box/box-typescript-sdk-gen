@@ -77,14 +77,12 @@ export class BoxCcgAuth implements Authentication {
 
     const response = (await fetch('https://api.box.com/oauth2/token', {
       method: 'POST',
-      body: new URLSearchParams(
-        requestBody as unknown as Record<string, string>
-      ).toString(),
+      data: requestBody as Record<string, any>,
       contentType: 'application/x-www-form-urlencoded',
       networkSession: networkSession,
     } as FetchOptions)) as FetchResponse;
 
-    const newToken = deserializeAccessToken(JSON.parse(response.text));
+    const newToken = deserializeAccessToken(response.data);
     await this.tokenStorage.store(newToken);
     return newToken;
   }

@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetCollaborationWhitelistEntriesQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
@@ -132,9 +136,7 @@ export class CollaborationAllowlistEntriesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistEntries(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistEntries(response.data);
   }
   async createCollaborationWhitelistEntry(
     requestBody: CreateCollaborationWhitelistEntryRequestBodyArg,
@@ -153,8 +155,8 @@ export class CollaborationAllowlistEntriesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateCollaborationWhitelistEntryRequestBodyArg(requestBody)
+        data: serializeCreateCollaborationWhitelistEntryRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -163,9 +165,7 @@ export class CollaborationAllowlistEntriesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistEntry(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistEntry(response.data);
   }
   async getCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
@@ -191,9 +191,7 @@ export class CollaborationAllowlistEntriesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistEntry(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistEntry(response.data);
   }
   async deleteCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
@@ -224,13 +222,13 @@ export class CollaborationAllowlistEntriesManager {
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(
   val: CreateCollaborationWhitelistEntryRequestBodyArgDirectionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationWhitelistEntryRequestBodyArgDirectionField(
   val: any
 ): CreateCollaborationWhitelistEntryRequestBodyArgDirectionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateCollaborationWhitelistEntryRequestBodyArgDirectionField"';
   }
   if (val == 'inbound') {
@@ -246,7 +244,7 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyArgDirect
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyArg(
   val: CreateCollaborationWhitelistEntryRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['domain']: val.domain,
     ['direction']:

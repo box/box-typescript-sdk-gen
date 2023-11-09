@@ -16,10 +16,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetTaskAssignmentsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -142,7 +146,7 @@ export class TaskAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTaskAssignments(deserializeJson(response.text));
+    return deserializeTaskAssignments(response.data);
   }
   async createTaskAssignment(
     requestBody: CreateTaskAssignmentRequestBodyArg,
@@ -159,9 +163,7 @@ export class TaskAssignmentsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateTaskAssignmentRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateTaskAssignmentRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -169,7 +171,7 @@ export class TaskAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTaskAssignment(deserializeJson(response.text));
+    return deserializeTaskAssignment(response.data);
   }
   async getTaskAssignmentById(
     taskAssignmentId: string,
@@ -195,7 +197,7 @@ export class TaskAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTaskAssignment(deserializeJson(response.text));
+    return deserializeTaskAssignment(response.data);
   }
   async updateTaskAssignmentById(
     taskAssignmentId: string,
@@ -216,9 +218,7 @@ export class TaskAssignmentsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateTaskAssignmentByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateTaskAssignmentByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -226,7 +226,7 @@ export class TaskAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTaskAssignment(deserializeJson(response.text));
+    return deserializeTaskAssignment(response.data);
   }
   async deleteTaskAssignmentById(
     taskAssignmentId: string,
@@ -257,13 +257,13 @@ export class TaskAssignmentsManager {
 }
 export function serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(
   val: CreateTaskAssignmentRequestBodyArgTaskFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(
   val: any
 ): CreateTaskAssignmentRequestBodyArgTaskFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTaskAssignmentRequestBodyArgTaskFieldTypeField"';
   }
   if (val == 'task') {
@@ -273,7 +273,7 @@ export function deserializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(
 }
 export function serializeCreateTaskAssignmentRequestBodyArgTaskField(
   val: CreateTaskAssignmentRequestBodyArgTaskField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeCreateTaskAssignmentRequestBodyArgTaskFieldTypeField(
@@ -294,7 +294,7 @@ export function deserializeCreateTaskAssignmentRequestBodyArgTaskField(
 }
 export function serializeCreateTaskAssignmentRequestBodyArgAssignToField(
   val: CreateTaskAssignmentRequestBodyArgAssignToField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['login']: val.login == void 0 ? void 0 : val.login,
@@ -312,7 +312,7 @@ export function deserializeCreateTaskAssignmentRequestBodyArgAssignToField(
 }
 export function serializeCreateTaskAssignmentRequestBodyArg(
   val: CreateTaskAssignmentRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['task']: serializeCreateTaskAssignmentRequestBodyArgTaskField(val.task),
     ['assign_to']: serializeCreateTaskAssignmentRequestBodyArgAssignToField(
@@ -334,13 +334,13 @@ export function deserializeCreateTaskAssignmentRequestBodyArg(
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(
   val: UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionStateField(
   val: any
 ): UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyArgResolutionStateField"';
   }
   if (val == 'completed') {
@@ -359,7 +359,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyArgResolutionState
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyArg(
   val: UpdateTaskAssignmentByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['message']: val.message == void 0 ? void 0 : val.message,
     ['resolution_state']:

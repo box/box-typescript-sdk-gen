@@ -16,13 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetGroupsQueryParamsArg {
   readonly filterTerm?: string;
   readonly fields?: readonly string[];
@@ -154,7 +158,9 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({
       ['filter_term']: toString(queryParams.filterTerm) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['limit']: toString(queryParams.limit) as string,
       ['offset']: toString(queryParams.offset) as string,
     });
@@ -173,7 +179,7 @@ export class GroupsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroups(deserializeJson(response.text));
+    return deserializeGroups(response.data);
   }
   async createGroup(
     requestBody: CreateGroupRequestBodyArg,
@@ -184,7 +190,9 @@ export class GroupsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -195,7 +203,7 @@ export class GroupsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCreateGroupRequestBodyArg(requestBody)),
+        data: serializeCreateGroupRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -203,7 +211,7 @@ export class GroupsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroup(deserializeJson(response.text));
+    return deserializeGroup(response.data);
   }
   async getGroupById(
     groupId: string,
@@ -214,7 +222,9 @@ export class GroupsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -234,7 +244,7 @@ export class GroupsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupFull(deserializeJson(response.text));
+    return deserializeGroupFull(response.data);
   }
   async updateGroupById(
     groupId: string,
@@ -246,7 +256,9 @@ export class GroupsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -260,9 +272,7 @@ export class GroupsManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateGroupByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateGroupByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -270,7 +280,7 @@ export class GroupsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupFull(deserializeJson(response.text));
+    return deserializeGroupFull(response.data);
   }
   async deleteGroupById(
     groupId: string,
@@ -299,13 +309,13 @@ export class GroupsManager {
 }
 export function serializeCreateGroupRequestBodyArgInvitabilityLevelField(
   val: CreateGroupRequestBodyArgInvitabilityLevelField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateGroupRequestBodyArgInvitabilityLevelField(
   val: any
 ): CreateGroupRequestBodyArgInvitabilityLevelField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateGroupRequestBodyArgInvitabilityLevelField"';
   }
   if (val == 'admins_only') {
@@ -321,13 +331,13 @@ export function deserializeCreateGroupRequestBodyArgInvitabilityLevelField(
 }
 export function serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
   val: CreateGroupRequestBodyArgMemberViewabilityLevelField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
   val: any
 ): CreateGroupRequestBodyArgMemberViewabilityLevelField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateGroupRequestBodyArgMemberViewabilityLevelField"';
   }
   if (val == 'admins_only') {
@@ -343,7 +353,7 @@ export function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
 }
 export function serializeCreateGroupRequestBodyArg(
   val: CreateGroupRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
@@ -405,13 +415,13 @@ export function deserializeCreateGroupRequestBodyArg(
 }
 export function serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
   val: UpdateGroupByIdRequestBodyArgInvitabilityLevelField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
   val: any
 ): UpdateGroupByIdRequestBodyArgInvitabilityLevelField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateGroupByIdRequestBodyArgInvitabilityLevelField"';
   }
   if (val == 'admins_only') {
@@ -427,13 +437,13 @@ export function deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
 }
 export function serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
   val: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
   val: any
 ): UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField"';
   }
   if (val == 'admins_only') {
@@ -449,7 +459,7 @@ export function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelFi
 }
 export function serializeUpdateGroupByIdRequestBodyArg(
   val: UpdateGroupByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,

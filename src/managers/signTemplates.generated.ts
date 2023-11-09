@@ -13,11 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetSignTemplatesQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
@@ -83,7 +89,7 @@ export class SignTemplatesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignTemplates(deserializeJson(response.text));
+    return deserializeSignTemplates(response.data);
   }
   async getSignTemplateById(
     templateId: string,
@@ -109,6 +115,6 @@ export class SignTemplatesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignTemplate(deserializeJson(response.text));
+    return deserializeSignTemplate(response.data);
   }
 }

@@ -10,12 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface TransferOwnedFolderRequestBodyArgOwnedByField {
   readonly id: string;
 }
@@ -56,7 +61,9 @@ export class TransferManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['notify']: toString(queryParams.notify) as string,
     });
     const headersMap: {
@@ -72,9 +79,7 @@ export class TransferManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeTransferOwnedFolderRequestBodyArg(requestBody)
-        ),
+        data: serializeTransferOwnedFolderRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -82,12 +87,12 @@ export class TransferManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFolderFull(deserializeJson(response.text));
+    return deserializeFolderFull(response.data);
   }
 }
 export function serializeTransferOwnedFolderRequestBodyArgOwnedByField(
   val: TransferOwnedFolderRequestBodyArgOwnedByField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeTransferOwnedFolderRequestBodyArgOwnedByField(
@@ -98,7 +103,7 @@ export function deserializeTransferOwnedFolderRequestBodyArgOwnedByField(
 }
 export function serializeTransferOwnedFolderRequestBodyArg(
   val: TransferOwnedFolderRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['owned_by']: serializeTransferOwnedFolderRequestBodyArgOwnedByField(
       val.ownedBy

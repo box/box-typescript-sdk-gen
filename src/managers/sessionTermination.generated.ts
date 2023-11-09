@@ -13,10 +13,13 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface CreateUserTerminateSessionRequestBodyArg {
   readonly userIds: readonly string[];
   readonly userLogins: readonly string[];
@@ -74,9 +77,7 @@ export class SessionTerminationManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateUserTerminateSessionRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateUserTerminateSessionRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -84,7 +85,7 @@ export class SessionTerminationManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSessionTerminationMessage(deserializeJson(response.text));
+    return deserializeSessionTerminationMessage(response.data);
   }
   async createGroupTerminateSession(
     requestBody: CreateGroupTerminateSessionRequestBodyArg,
@@ -101,9 +102,7 @@ export class SessionTerminationManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateGroupTerminateSessionRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateGroupTerminateSessionRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -111,17 +110,17 @@ export class SessionTerminationManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSessionTerminationMessage(deserializeJson(response.text));
+    return deserializeSessionTerminationMessage(response.data);
   }
 }
 export function serializeCreateUserTerminateSessionRequestBodyArg(
   val: CreateUserTerminateSessionRequestBodyArg
-): Json {
+): SerializedData {
   return {
-    ['user_ids']: val.userIds?.map(function (item: string): any {
+    ['user_ids']: val.userIds.map(function (item: string): any {
       return item;
     }) as readonly any[],
-    ['user_logins']: val.userLogins?.map(function (item: string): any {
+    ['user_logins']: val.userLogins.map(function (item: string): any {
       return item;
     }) as readonly any[],
   };
@@ -129,13 +128,13 @@ export function serializeCreateUserTerminateSessionRequestBodyArg(
 export function deserializeCreateUserTerminateSessionRequestBodyArg(
   val: any
 ): CreateUserTerminateSessionRequestBodyArg {
-  const userIds: readonly string[] = isJson(val.user_ids, 'array')
-    ? (val.user_ids?.map(function (itm: Json): any {
+  const userIds: readonly string[] = sdIsList(val.user_ids)
+    ? (val.user_ids.map(function (itm: SerializedData): any {
         return itm;
       }) as readonly any[])
     : [];
-  const userLogins: readonly string[] = isJson(val.user_logins, 'array')
-    ? (val.user_logins?.map(function (itm: Json): any {
+  const userLogins: readonly string[] = sdIsList(val.user_logins)
+    ? (val.user_logins.map(function (itm: SerializedData): any {
         return itm;
       }) as readonly any[])
     : [];
@@ -146,9 +145,9 @@ export function deserializeCreateUserTerminateSessionRequestBodyArg(
 }
 export function serializeCreateGroupTerminateSessionRequestBodyArg(
   val: CreateGroupTerminateSessionRequestBodyArg
-): Json {
+): SerializedData {
   return {
-    ['group_ids']: val.groupIds?.map(function (item: string): any {
+    ['group_ids']: val.groupIds.map(function (item: string): any {
       return item;
     }) as readonly any[],
   };
@@ -156,8 +155,8 @@ export function serializeCreateGroupTerminateSessionRequestBodyArg(
 export function deserializeCreateGroupTerminateSessionRequestBodyArg(
   val: any
 ): CreateGroupTerminateSessionRequestBodyArg {
-  const groupIds: readonly string[] = isJson(val.group_ids, 'array')
-    ? (val.group_ids?.map(function (itm: Json): any {
+  const groupIds: readonly string[] = sdIsList(val.group_ids)
+    ? (val.group_ids.map(function (itm: SerializedData): any {
         return itm;
       }) as readonly any[])
     : [];

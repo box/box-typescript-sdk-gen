@@ -13,12 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetFileVersionRetentionsQueryParamsArgDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
@@ -101,7 +106,7 @@ export class FileVersionRetentionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionRetentions(deserializeJson(response.text));
+    return deserializeFileVersionRetentions(response.data);
   }
   async getFileVersionRetentionById(
     fileVersionRetentionId: string,
@@ -127,18 +132,18 @@ export class FileVersionRetentionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionRetention(deserializeJson(response.text));
+    return deserializeFileVersionRetention(response.data);
   }
 }
 export function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
   val: GetFileVersionRetentionsQueryParamsArgDispositionActionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
   val: any
 ): GetFileVersionRetentionsQueryParamsArgDispositionActionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFileVersionRetentionsQueryParamsArgDispositionActionField"';
   }
   if (val == 'permanently_delete') {

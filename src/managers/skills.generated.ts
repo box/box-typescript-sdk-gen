@@ -16,10 +16,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileMetadataGlobalBoxSkillsCardsHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -169,7 +173,7 @@ export class SkillsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSkillCardsMetadata(deserializeJson(response.text));
+    return deserializeSkillCardsMetadata(response.data);
   }
   async createFileMetadataGlobalBoxSkillsCard(
     fileId: string,
@@ -191,10 +195,8 @@ export class SkillsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -203,7 +205,7 @@ export class SkillsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSkillCardsMetadata(deserializeJson(response.text));
+    return deserializeSkillCardsMetadata(response.data);
   }
   async updateFileMetadataGlobalBoxSkillsCard(
     fileId: string,
@@ -225,11 +227,9 @@ export class SkillsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -237,7 +237,7 @@ export class SkillsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSkillCardsMetadata(deserializeJson(response.text));
+    return deserializeSkillCardsMetadata(response.data);
   }
   async deleteFileMetadataGlobalBoxSkillsCard(
     fileId: string,
@@ -285,9 +285,7 @@ export class SkillsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateSkillInvocationByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateSkillInvocationByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: void 0,
         auth: this.auth,
@@ -300,9 +298,9 @@ export class SkillsManager {
 }
 export function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
   val: CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg
-): Json {
+): SerializedData {
   return {
-    ['cards']: val.cards?.map(function (
+    ['cards']: val.cards.map(function (
       item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
     ): any {
       return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
@@ -315,8 +313,8 @@ export function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
   val: any
 ): CreateFileMetadataGlobalBoxSkillsCardRequestBodyArg {
   const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
-    isJson(val.cards, 'array')
-      ? (val.cards?.map(function (itm: Json): any {
+    sdIsList(val.cards)
+      ? (val.cards.map(function (itm: SerializedData): any {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );
@@ -328,13 +326,13 @@ export function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
 }
 export function serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOpField(
   val: UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOpField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOpField(
   val: any
 ): UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOpField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOpField"';
   }
   if (val == 'replace') {
@@ -344,7 +342,7 @@ export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArgOp
 }
 export function serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
   val: UpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']:
       val.op == void 0
@@ -389,13 +387,13 @@ export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyArg(
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgStatusField(
   val: UpdateSkillInvocationByIdRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateSkillInvocationByIdRequestBodyArgStatusField(
   val: any
 ): UpdateSkillInvocationByIdRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyArgStatusField"';
   }
   if (val == 'invoked') {
@@ -417,12 +415,12 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgStatusField(
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(
   val: UpdateSkillInvocationByIdRequestBodyArgMetadataField
-): Json {
+): SerializedData {
   return {
     ['cards']:
       val.cards == void 0
         ? void 0
-        : (val.cards?.map(function (
+        : (val.cards.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
           ): any {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
@@ -439,8 +437,8 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(
     | readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
     val.cards == void 0
       ? void 0
-      : isJson(val.cards, 'array')
-      ? (val.cards?.map(function (itm: Json): any {
+      : sdIsList(val.cards)
+      ? (val.cards.map(function (itm: SerializedData): any {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );
@@ -452,13 +450,13 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgMetadataField(
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgFileFieldTypeField(
   val: UpdateSkillInvocationByIdRequestBodyArgFileFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileFieldTypeField(
   val: any
 ): UpdateSkillInvocationByIdRequestBodyArgFileFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyArgFileFieldTypeField"';
   }
   if (val == 'file') {
@@ -468,7 +466,7 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileFieldTypeF
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgFileField(
   val: UpdateSkillInvocationByIdRequestBodyArgFileField
-): Json {
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -498,13 +496,13 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileField(
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgFileVersionFieldTypeField(
   val: UpdateSkillInvocationByIdRequestBodyArgFileVersionFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileVersionFieldTypeField(
   val: any
 ): UpdateSkillInvocationByIdRequestBodyArgFileVersionFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyArgFileVersionFieldTypeField"';
   }
   if (val == 'file_version') {
@@ -514,7 +512,7 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileVersionFie
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgFileVersionField(
   val: UpdateSkillInvocationByIdRequestBodyArgFileVersionField
-): Json {
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -544,7 +542,7 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgFileVersionFie
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArgUsageField(
   val: UpdateSkillInvocationByIdRequestBodyArgUsageField
-): Json {
+): SerializedData {
   return {
     ['unit']: val.unit == void 0 ? void 0 : val.unit,
     ['value']: val.value == void 0 ? void 0 : val.value,
@@ -562,7 +560,7 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyArgUsageField(
 }
 export function serializeUpdateSkillInvocationByIdRequestBodyArg(
   val: UpdateSkillInvocationByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['status']: serializeUpdateSkillInvocationByIdRequestBodyArgStatusField(
       val.status

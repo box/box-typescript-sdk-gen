@@ -13,10 +13,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileWatermarkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -95,7 +99,7 @@ export class FileWatermarksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWatermark(deserializeJson(response.text));
+    return deserializeWatermark(response.data);
   }
   async updateFileWatermark(
     fileId: string,
@@ -117,9 +121,7 @@ export class FileWatermarksManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateFileWatermarkRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateFileWatermarkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -127,7 +129,7 @@ export class FileWatermarksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWatermark(deserializeJson(response.text));
+    return deserializeWatermark(response.data);
   }
   async deleteFileWatermark(
     fileId: string,
@@ -159,13 +161,13 @@ export class FileWatermarksManager {
 }
 export function serializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(
   val: UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(
   val: any
 ): UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField"';
   }
   if (val == 'default') {
@@ -175,7 +177,7 @@ export function deserializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprin
 }
 export function serializeUpdateFileWatermarkRequestBodyArgWatermarkField(
   val: UpdateFileWatermarkRequestBodyArgWatermarkField
-): Json {
+): SerializedData {
   return {
     ['imprint']:
       serializeUpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField(
@@ -196,7 +198,7 @@ export function deserializeUpdateFileWatermarkRequestBodyArgWatermarkField(
 }
 export function serializeUpdateFileWatermarkRequestBodyArg(
   val: UpdateFileWatermarkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['watermark']: serializeUpdateFileWatermarkRequestBodyArgWatermarkField(
       val.watermark

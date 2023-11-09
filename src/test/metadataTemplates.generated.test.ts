@@ -22,6 +22,13 @@ import { MetadataTemplates } from '../schemas.generated.js';
 import { DeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('testMetadataTemplates', async function testMetadataTemplates(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;

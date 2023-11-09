@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetUserMembershipsQueryParamsArg {
   readonly limit?: number;
   readonly offset?: number;
@@ -182,7 +186,7 @@ export class MembershipsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupMemberships(deserializeJson(response.text));
+    return deserializeGroupMemberships(response.data);
   }
   async getGroupMemberships(
     groupId: string,
@@ -217,7 +221,7 @@ export class MembershipsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupMemberships(deserializeJson(response.text));
+    return deserializeGroupMemberships(response.data);
   }
   async createGroupMembership(
     requestBody: CreateGroupMembershipRequestBodyArg,
@@ -230,7 +234,9 @@ export class MembershipsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -241,9 +247,7 @@ export class MembershipsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateGroupMembershipRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateGroupMembershipRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -251,7 +255,7 @@ export class MembershipsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupMembership(deserializeJson(response.text));
+    return deserializeGroupMembership(response.data);
   }
   async getGroupMembershipById(
     groupMembershipId: string,
@@ -264,7 +268,9 @@ export class MembershipsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -284,7 +290,7 @@ export class MembershipsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupMembership(deserializeJson(response.text));
+    return deserializeGroupMembership(response.data);
   }
   async updateGroupMembershipById(
     groupMembershipId: string,
@@ -298,7 +304,9 @@ export class MembershipsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -312,9 +320,7 @@ export class MembershipsManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateGroupMembershipByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateGroupMembershipByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -322,7 +328,7 @@ export class MembershipsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroupMembership(deserializeJson(response.text));
+    return deserializeGroupMembership(response.data);
   }
   async deleteGroupMembershipById(
     groupMembershipId: string,
@@ -353,7 +359,7 @@ export class MembershipsManager {
 }
 export function serializeCreateGroupMembershipRequestBodyArgUserField(
   val: CreateGroupMembershipRequestBodyArgUserField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyArgUserField(
@@ -364,7 +370,7 @@ export function deserializeCreateGroupMembershipRequestBodyArgUserField(
 }
 export function serializeCreateGroupMembershipRequestBodyArgGroupField(
   val: CreateGroupMembershipRequestBodyArgGroupField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyArgGroupField(
@@ -375,13 +381,13 @@ export function deserializeCreateGroupMembershipRequestBodyArgGroupField(
 }
 export function serializeCreateGroupMembershipRequestBodyArgRoleField(
   val: CreateGroupMembershipRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateGroupMembershipRequestBodyArgRoleField(
   val: any
 ): CreateGroupMembershipRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateGroupMembershipRequestBodyArgRoleField"';
   }
   if (val == 'member') {
@@ -394,7 +400,7 @@ export function deserializeCreateGroupMembershipRequestBodyArgRoleField(
 }
 export function serializeCreateGroupMembershipRequestBodyArg(
   val: CreateGroupMembershipRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['user']: serializeCreateGroupMembershipRequestBodyArgUserField(val.user),
     ['group']: serializeCreateGroupMembershipRequestBodyArgGroupField(
@@ -438,13 +444,13 @@ export function deserializeCreateGroupMembershipRequestBodyArg(
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
   val: UpdateGroupMembershipByIdRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
   val: any
 ): UpdateGroupMembershipByIdRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateGroupMembershipByIdRequestBodyArgRoleField"';
   }
   if (val == 'member') {
@@ -457,7 +463,7 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyArg(
   val: UpdateGroupMembershipByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['role']:
       val.role == void 0

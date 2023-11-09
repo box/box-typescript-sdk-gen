@@ -10,12 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface CreateInviteRequestBodyArgEnterpriseField {
   readonly id: string;
 }
@@ -71,7 +76,9 @@ export class InvitesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -82,7 +89,7 @@ export class InvitesManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCreateInviteRequestBodyArg(requestBody)),
+        data: serializeCreateInviteRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -90,7 +97,7 @@ export class InvitesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeInvite(deserializeJson(response.text));
+    return deserializeInvite(response.data);
   }
   async getInviteById(
     inviteId: string,
@@ -101,7 +108,9 @@ export class InvitesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -121,12 +130,12 @@ export class InvitesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeInvite(deserializeJson(response.text));
+    return deserializeInvite(response.data);
   }
 }
 export function serializeCreateInviteRequestBodyArgEnterpriseField(
   val: CreateInviteRequestBodyArgEnterpriseField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateInviteRequestBodyArgEnterpriseField(
@@ -137,7 +146,7 @@ export function deserializeCreateInviteRequestBodyArgEnterpriseField(
 }
 export function serializeCreateInviteRequestBodyArgActionableByField(
   val: CreateInviteRequestBodyArgActionableByField
-): Json {
+): SerializedData {
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
 export function deserializeCreateInviteRequestBodyArgActionableByField(
@@ -148,7 +157,7 @@ export function deserializeCreateInviteRequestBodyArgActionableByField(
 }
 export function serializeCreateInviteRequestBodyArg(
   val: CreateInviteRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['enterprise']: serializeCreateInviteRequestBodyArgEnterpriseField(
       val.enterprise

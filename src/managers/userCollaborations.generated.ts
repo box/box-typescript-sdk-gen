@@ -10,13 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetCollaborationByIdQueryParamsArg {
   readonly fields?: readonly string[];
 }
@@ -147,7 +151,9 @@ export class UserCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -167,7 +173,7 @@ export class UserCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaboration(deserializeJson(response.text));
+    return deserializeCollaboration(response.data);
   }
   async updateCollaborationById(
     collaborationId: string,
@@ -188,9 +194,7 @@ export class UserCollaborationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateCollaborationByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateCollaborationByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -198,7 +202,7 @@ export class UserCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaboration(deserializeJson(response.text));
+    return deserializeCollaboration(response.data);
   }
   async deleteCollaborationById(
     collaborationId: string,
@@ -237,7 +241,9 @@ export class UserCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['notify']: toString(queryParams.notify) as string,
     });
     const headersMap: {
@@ -249,9 +255,7 @@ export class UserCollaborationsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateCollaborationRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateCollaborationRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -259,18 +263,18 @@ export class UserCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaboration(deserializeJson(response.text));
+    return deserializeCollaboration(response.data);
   }
 }
 export function serializeUpdateCollaborationByIdRequestBodyArgRoleField(
   val: UpdateCollaborationByIdRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyArgRoleField(
   val: any
 ): UpdateCollaborationByIdRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyArgRoleField"';
   }
   if (val == 'editor') {
@@ -301,13 +305,13 @@ export function deserializeUpdateCollaborationByIdRequestBodyArgRoleField(
 }
 export function serializeUpdateCollaborationByIdRequestBodyArgStatusField(
   val: UpdateCollaborationByIdRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyArgStatusField(
   val: any
 ): UpdateCollaborationByIdRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyArgStatusField"';
   }
   if (val == 'pending') {
@@ -323,7 +327,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyArgStatusField(
 }
 export function serializeUpdateCollaborationByIdRequestBodyArg(
   val: UpdateCollaborationByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['role']: serializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role),
     ['status']:
@@ -356,13 +360,13 @@ export function deserializeUpdateCollaborationByIdRequestBodyArg(
 }
 export function serializeCreateCollaborationRequestBodyArgItemFieldTypeField(
   val: CreateCollaborationRequestBodyArgItemFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(
   val: any
 ): CreateCollaborationRequestBodyArgItemFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateCollaborationRequestBodyArgItemFieldTypeField"';
   }
   if (val == 'file') {
@@ -375,7 +379,7 @@ export function deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(
 }
 export function serializeCreateCollaborationRequestBodyArgItemField(
   val: CreateCollaborationRequestBodyArgItemField
-): Json {
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -403,13 +407,13 @@ export function deserializeCreateCollaborationRequestBodyArgItemField(
 }
 export function serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
   val: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
   val: any
 ): CreateCollaborationRequestBodyArgAccessibleByFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateCollaborationRequestBodyArgAccessibleByFieldTypeField"';
   }
   if (val == 'user') {
@@ -422,7 +426,7 @@ export function deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTyp
 }
 export function serializeCreateCollaborationRequestBodyArgAccessibleByField(
   val: CreateCollaborationRequestBodyArgAccessibleByField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
@@ -449,13 +453,13 @@ export function deserializeCreateCollaborationRequestBodyArgAccessibleByField(
 }
 export function serializeCreateCollaborationRequestBodyArgRoleField(
   val: CreateCollaborationRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyArgRoleField(
   val: any
 ): CreateCollaborationRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateCollaborationRequestBodyArgRoleField"';
   }
   if (val == 'editor') {
@@ -483,7 +487,7 @@ export function deserializeCreateCollaborationRequestBodyArgRoleField(
 }
 export function serializeCreateCollaborationRequestBodyArg(
   val: CreateCollaborationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['item']: serializeCreateCollaborationRequestBodyArgItemField(val.item),
     ['accessible_by']:

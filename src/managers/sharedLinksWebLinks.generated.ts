@@ -10,13 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetSharedItemWebLinksQueryParamsArg {
   readonly fields?: readonly string[];
 }
@@ -155,7 +159,9 @@ export class SharedLinksWebLinksManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -178,7 +184,7 @@ export class SharedLinksWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async getWebLinkGetSharedLink(
     webLinkId: string,
@@ -210,7 +216,7 @@ export class SharedLinksWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async updateWebLinkAddSharedLink(
     webLinkId: string,
@@ -237,9 +243,7 @@ export class SharedLinksWebLinksManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateWebLinkAddSharedLinkRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateWebLinkAddSharedLinkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -247,7 +251,7 @@ export class SharedLinksWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async updateWebLinkUpdateSharedLink(
     webLinkId: string,
@@ -274,9 +278,7 @@ export class SharedLinksWebLinksManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateWebLinkUpdateSharedLinkRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateWebLinkUpdateSharedLinkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -284,7 +286,7 @@ export class SharedLinksWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async updateWebLinkRemoveSharedLink(
     webLinkId: string,
@@ -311,9 +313,7 @@ export class SharedLinksWebLinksManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateWebLinkRemoveSharedLinkRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateWebLinkRemoveSharedLinkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -321,18 +321,18 @@ export class SharedLinksWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
 }
 export function serializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(
   val: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField(
   val: any
 ): UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField"';
   }
   if (val == 'open') {
@@ -348,7 +348,7 @@ export function deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFie
 }
 export function serializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(
   val: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldPermissionsField
-): Json {
+): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
     ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
@@ -372,7 +372,7 @@ export function deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFie
 }
 export function serializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField(
   val: UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -426,7 +426,7 @@ export function deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFie
 }
 export function serializeUpdateWebLinkAddSharedLinkRequestBodyArg(
   val: UpdateWebLinkAddSharedLinkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
@@ -453,13 +453,13 @@ export function deserializeUpdateWebLinkAddSharedLinkRequestBodyArg(
 }
 export function serializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(
   val: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField(
   val: any
 ): UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField"';
   }
   if (val == 'open') {
@@ -475,7 +475,7 @@ export function deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLink
 }
 export function serializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField(
   val: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldPermissionsField
-): Json {
+): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
     ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
@@ -499,7 +499,7 @@ export function deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLink
 }
 export function serializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField(
   val: UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -553,7 +553,7 @@ export function deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLink
 }
 export function serializeUpdateWebLinkUpdateSharedLinkRequestBodyArg(
   val: UpdateWebLinkUpdateSharedLinkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
@@ -580,7 +580,7 @@ export function deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArg(
 }
 export function serializeUpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField(
   val: UpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {};
 }
 export function deserializeUpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLinkField(
@@ -590,7 +590,7 @@ export function deserializeUpdateWebLinkRemoveSharedLinkRequestBodyArgSharedLink
 }
 export function serializeUpdateWebLinkRemoveSharedLinkRequestBodyArg(
   val: UpdateWebLinkRemoveSharedLinkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0

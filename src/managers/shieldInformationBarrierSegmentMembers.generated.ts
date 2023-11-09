@@ -22,10 +22,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetShieldInformationBarrierSegmentMemberByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -163,9 +167,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMember(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegmentMember(response.data);
   }
   async deleteShieldInformationBarrierSegmentMemberById(
     shieldInformationBarrierSegmentMemberId: string,
@@ -226,9 +228,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMembers(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegmentMembers(response.data);
   }
   async createShieldInformationBarrierSegmentMember(
     requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg,
@@ -247,10 +247,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -259,20 +257,18 @@ export class ShieldInformationBarrierSegmentMembersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMember(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegmentMember(response.data);
   }
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
   val: any
 ): CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField"';
   }
   if (val == 'shield_information_barrier_segment_member') {
@@ -282,13 +278,13 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
   val: any
 ): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField"';
   }
   if (val == 'shield_information_barrier_segment') {
@@ -298,7 +294,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -328,7 +324,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['type']:
       val.type == void 0

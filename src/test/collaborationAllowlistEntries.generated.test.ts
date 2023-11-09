@@ -9,6 +9,13 @@ import { CollaborationAllowlistEntries } from '../schemas.generated.js';
 import { CollaborationAllowlistEntry } from '../schemas.generated.js';
 import { CreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('collaborationAllowlistEntries', async function collaborationAllowlistEntries(): Promise<any> {
   const allowlist: any =

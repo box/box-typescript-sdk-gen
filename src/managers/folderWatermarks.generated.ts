@@ -13,10 +13,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFolderWatermarkHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -97,7 +101,7 @@ export class FolderWatermarksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWatermark(deserializeJson(response.text));
+    return deserializeWatermark(response.data);
   }
   async updateFolderWatermark(
     folderId: string,
@@ -119,9 +123,7 @@ export class FolderWatermarksManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateFolderWatermarkRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateFolderWatermarkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -129,7 +131,7 @@ export class FolderWatermarksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWatermark(deserializeJson(response.text));
+    return deserializeWatermark(response.data);
   }
   async deleteFolderWatermark(
     folderId: string,
@@ -161,13 +163,13 @@ export class FolderWatermarksManager {
 }
 export function serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
   val: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
   val: any
 ): UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField"';
   }
   if (val == 'default') {
@@ -177,7 +179,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImpr
 }
 export function serializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
   val: UpdateFolderWatermarkRequestBodyArgWatermarkField
-): Json {
+): SerializedData {
   return {
     ['imprint']:
       serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
@@ -198,7 +200,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
 }
 export function serializeUpdateFolderWatermarkRequestBodyArg(
   val: UpdateFolderWatermarkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['watermark']: serializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
       val.watermark

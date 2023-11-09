@@ -13,10 +13,13 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -245,7 +248,7 @@ export class ClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassificationTemplate(deserializeJson(response.text));
+    return deserializeClassificationTemplate(response.data);
   }
   async deleteMetadataTemplateEnterpriseSecurityClassificationSchema(
     headers: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg = new DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg(
@@ -288,11 +291,9 @@ export class ClassificationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -300,7 +301,7 @@ export class ClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassificationTemplate(deserializeJson(response.text));
+    return deserializeClassificationTemplate(response.data);
   }
   async updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate(
     requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg[],
@@ -319,11 +320,9 @@ export class ClassificationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -331,7 +330,7 @@ export class ClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassificationTemplate(deserializeJson(response.text));
+    return deserializeClassificationTemplate(response.data);
   }
   async updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete(
     requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg[],
@@ -350,11 +349,9 @@ export class ClassificationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -362,7 +359,7 @@ export class ClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassificationTemplate(deserializeJson(response.text));
+    return deserializeClassificationTemplate(response.data);
   }
   async createMetadataTemplateSchemaClassification(
     requestBody: CreateMetadataTemplateSchemaClassificationRequestBodyArg,
@@ -381,10 +378,8 @@ export class ClassificationsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -393,12 +388,12 @@ export class ClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassificationTemplate(deserializeJson(response.text));
+    return deserializeClassificationTemplate(response.data);
   }
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataFieldClassificationField
-): Json {
+): SerializedData {
   return {
     ['classificationDefinition']:
       val.classificationDefinition == void 0
@@ -423,7 +418,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArgDataField
-): Json {
+): SerializedData {
   return {
     ['key']: val.key,
     ['classification']:
@@ -453,7 +448,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']: val.op,
     ['fieldKey']: val.fieldKey,
@@ -480,7 +475,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataFieldClassificationField
-): Json {
+): SerializedData {
   return {
     ['classificationDefinition']:
       val.classificationDefinition == void 0
@@ -505,7 +500,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArgDataField
-): Json {
+): SerializedData {
   return {
     ['key']: val.key,
     ['classification']:
@@ -535,7 +530,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']: val.op,
     ['fieldKey']: val.fieldKey,
@@ -565,7 +560,7 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg(
   val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']: val.op,
     ['fieldKey']: val.fieldKey,
@@ -586,13 +581,13 @@ export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificatio
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField"';
   }
   if (val == 'enterprise') {
@@ -602,13 +597,13 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgTemplateKeyField"';
   }
   if (val == 'securityClassification-6VMVochwUWo') {
@@ -618,13 +613,13 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgDisplayNameField"';
   }
   if (val == 'Classification') {
@@ -634,13 +629,13 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldTypeField"';
   }
   if (val == 'enum') {
@@ -650,13 +645,13 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldKeyField"';
   }
   if (val == 'Box__Security__Classification__Key') {
@@ -666,13 +661,13 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField(
   val: any
 ): CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldDisplayNameField"';
   }
   if (val == 'Classification') {
@@ -682,7 +677,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigFieldClassificationField
-): Json {
+): SerializedData {
   return {
     ['classificationDefinition']:
       val.classificationDefinition == void 0
@@ -707,7 +702,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsFieldStaticConfigField
-): Json {
+): SerializedData {
   return {
     ['classification']:
       val.classification == void 0
@@ -734,7 +729,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField
-): Json {
+): SerializedData {
   return {
     ['key']: val.key == void 0 ? void 0 : val.key,
     ['staticConfig']:
@@ -764,7 +759,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField
-): Json {
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -788,7 +783,7 @@ export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyAr
     ['options']:
       val.options == void 0
         ? void 0
-        : (val.options?.map(function (
+        : (val.options.map(function (
             item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField
           ): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(
@@ -831,8 +826,8 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField[] =
     val.options == void 0
       ? void 0
-      : isJson(val.options, 'array')
-      ? (val.options?.map(function (itm: Json): any {
+      : sdIsList(val.options)
+      ? (val.options.map(function (itm: SerializedData): any {
           return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsFieldOptionsField(
             itm
           );
@@ -848,7 +843,7 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
 }
 export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyArg(
   val: CreateMetadataTemplateSchemaClassificationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['scope']:
       serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgScopeField(
@@ -872,7 +867,7 @@ export function serializeCreateMetadataTemplateSchemaClassificationRequestBodyAr
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields?.map(function (
+        : (val.fields.map(function (
             item: CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField
           ): any {
             return serializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(
@@ -909,8 +904,8 @@ export function deserializeCreateMetadataTemplateSchemaClassificationRequestBody
     | readonly CreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField[] =
     val.fields == void 0
       ? void 0
-      : isJson(val.fields, 'array')
-      ? (val.fields?.map(function (itm: Json): any {
+      : sdIsList(val.fields)
+      ? (val.fields.map(function (itm: SerializedData): any {
           return deserializeCreateMetadataTemplateSchemaClassificationRequestBodyArgFieldsField(
             itm
           );

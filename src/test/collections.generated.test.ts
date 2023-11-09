@@ -25,6 +25,13 @@ import { UpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js
 import { UpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testCollections', async function testCollections(): Promise<any> {
   const collections: Collections = await client.collections.getCollections();

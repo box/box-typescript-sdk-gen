@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField =
   | 'user'
   | 'enterprise';
@@ -161,7 +165,7 @@ export class StoragePolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeStoragePolicyAssignments(deserializeJson(response.text));
+    return deserializeStoragePolicyAssignments(response.data);
   }
   async createStoragePolicyAssignment(
     requestBody: CreateStoragePolicyAssignmentRequestBodyArg,
@@ -178,9 +182,7 @@ export class StoragePolicyAssignmentsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateStoragePolicyAssignmentRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateStoragePolicyAssignmentRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -188,7 +190,7 @@ export class StoragePolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeStoragePolicyAssignment(deserializeJson(response.text));
+    return deserializeStoragePolicyAssignment(response.data);
   }
   async getStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
@@ -214,7 +216,7 @@ export class StoragePolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeStoragePolicyAssignment(deserializeJson(response.text));
+    return deserializeStoragePolicyAssignment(response.data);
   }
   async updateStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
@@ -235,8 +237,8 @@ export class StoragePolicyAssignmentsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(requestBody)
+        data: serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -245,7 +247,7 @@ export class StoragePolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeStoragePolicyAssignment(deserializeJson(response.text));
+    return deserializeStoragePolicyAssignment(response.data);
   }
   async deleteStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
@@ -276,13 +278,13 @@ export class StoragePolicyAssignmentsManager {
 }
 export function serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
   val: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
   val: any
 ): GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField"';
   }
   if (val == 'user') {
@@ -295,13 +297,13 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForT
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
   val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
   val: any
 ): CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField"';
   }
   if (val == 'storage_policy') {
@@ -311,7 +313,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePol
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
   val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
@@ -335,13 +337,13 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePol
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
   val: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
   val: any
 ): CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField"';
   }
   if (val == 'user') {
@@ -354,7 +356,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedTo
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(
   val: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
@@ -378,7 +380,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedTo
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyArg(
   val: CreateStoragePolicyAssignmentRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['storage_policy']:
       serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
@@ -408,13 +410,13 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArg(
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
   val: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
   val: any
 ): UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField"';
   }
   if (val == 'storage_policy') {
@@ -424,7 +426,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStorag
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(
   val: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
@@ -448,7 +450,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStorag
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(
   val: UpdateStoragePolicyAssignmentByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['storage_policy']:
       serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(

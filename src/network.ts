@@ -1,13 +1,19 @@
 export class NetworkSession {
-  asUserId?: string;
+  additionalHeaders?: { readonly [key: string]: string };
 
-  constructor(fields: Omit<NetworkSession, 'setAsUser'>) {
+  constructor(fields: Omit<NetworkSession, 'withAdditionalHeaders'>) {
     Object.assign(this, fields);
   }
 
-  // To be rewritten as immutable after making client immutable
-  setAsUser(asUserId: string) {
-    this.asUserId = asUserId;
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters,
+   * while also including additional headers to be attached to every API call.
+   * @param additionalHeaders Headers, which are appended to each API request
+   */
+  withAdditionalHeaders(additionalHeaders: { readonly [key: string]: string }) {
+    return new NetworkSession({
+      additionalHeaders: { ...this.additionalHeaders, ...additionalHeaders },
+    });
   }
 }
 

@@ -3,6 +3,7 @@
 - [Create zip download](#create-zip-download)
 - [Download zip archive](#download-zip-archive)
 - [Get zip download status](#get-zip-download-status)
+- [](#)
 
 ## Create zip download
 
@@ -28,7 +29,27 @@ This operation is performed by calling function `createZipDownload`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-zip-downloads/).
 
-_Currently we don't have an example for calling `createZipDownload` in integration tests_
+<!-- sample post_zip_downloads -->
+
+```ts
+await client.zipDownloads.createZipDownload({
+  items: [
+    {
+      id: file1.id,
+      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+    {
+      id: file2.id,
+      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+    {
+      id: folder1.id,
+      type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+  ],
+  downloadFileName: 'zip',
+} satisfies ZipDownloadRequest);
+```
 
 ### Arguments
 
@@ -68,12 +89,16 @@ This operation is performed by calling function `getZipDownloadContent`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-zip-downloads-id-content/).
 
-_Currently we don't have an example for calling `getZipDownloadContent` in integration tests_
+<!-- sample get_zip_downloads_id_content -->
+
+```ts
+await client.zipDownloads.getZipDownloadContent(zipDownload.downloadUrl!);
+```
 
 ### Arguments
 
-- zipDownloadId `string`
-  - The unique identifier that represent this `zip` archive. Example: "Lu6fA9Ob-jyysp3AAvMF4AkLEwZwAYbL=tgj2zIC=eK9RvJnJbjJl9rNh2qBgHDpyOCAOhpM=vajg2mKq8Mdd"
+- downloadUrl `string`
+  - The URL that can be used to download created `zip` archive. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content`
 - headers `GetZipDownloadContentHeadersArg`
   - Headers of getZipDownloadContent method
 - cancellationToken `undefined | CancellationToken`
@@ -106,12 +131,16 @@ This operation is performed by calling function `getZipDownloadStatus`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-zip-downloads-id-status/).
 
-_Currently we don't have an example for calling `getZipDownloadStatus` in integration tests_
+<!-- sample get_zip_downloads_id_status -->
+
+```ts
+await client.zipDownloads.getZipDownloadStatus(zipDownload.statusUrl!);
+```
 
 ### Arguments
 
-- zipDownloadId `string`
-  - The unique identifier that represent this `zip` archive. Example: "Lu6fA9Ob-jyysp3AAvMF4AkLEwZwAYbL=tgj2zIC=eK9RvJnJbjJl9rNh2qBgHDpyOCAOhpM=vajg2mKq8Mdd"
+- statusUrl `string`
+  - The URL that can be used to get the status of the `zip` archive being downloaded. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/status`
 - headers `GetZipDownloadStatusHeadersArg`
   - Headers of getZipDownloadStatus method
 - cancellationToken `undefined | CancellationToken`
@@ -122,3 +151,45 @@ _Currently we don't have an example for calling `getZipDownloadStatus` in integr
 This function returns a value of type `ZipDownloadStatus`.
 
 Returns the status of the `zip` archive that is being downloaded.
+
+##
+
+This operation is performed by calling function `downloadZip`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference//).
+
+<!-- sample  -->
+
+```ts
+await client.zipDownloads.downloadZip({
+  items: [
+    {
+      id: file1.id,
+      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+    {
+      id: file2.id,
+      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+    {
+      id: folder1.id,
+      type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+    } satisfies ZipDownloadRequestItemsField,
+  ],
+  downloadFileName: 'zip',
+} satisfies ZipDownloadRequest);
+```
+
+### Arguments
+
+- requestBody `ZipDownloadRequest`
+  - Zip download request body
+- headers `DownloadZipHeadersArg`
+  - Headers of zip download method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `ByteStream`.

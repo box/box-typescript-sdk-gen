@@ -22,13 +22,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField =
   'channel';
 export type GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField = 'folder';
@@ -146,7 +150,7 @@ export class IntegrationMappingsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeIntegrationMappings(deserializeJson(response.text));
+    return deserializeIntegrationMappings(response.data);
   }
   async createIntegrationMappingSlack(
     requestBody: IntegrationMappingSlackCreateRequest,
@@ -163,9 +167,7 @@ export class IntegrationMappingsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeIntegrationMappingSlackCreateRequest(requestBody)
-        ),
+        data: serializeIntegrationMappingSlackCreateRequest(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -173,7 +175,7 @@ export class IntegrationMappingsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeIntegrationMapping(deserializeJson(response.text));
+    return deserializeIntegrationMapping(response.data);
   }
   async updateIntegrationMappingSlackById(
     integrationMappingId: string,
@@ -194,8 +196,8 @@ export class IntegrationMappingsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(requestBody)
+        data: serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -204,7 +206,7 @@ export class IntegrationMappingsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeIntegrationMapping(deserializeJson(response.text));
+    return deserializeIntegrationMapping(response.data);
   }
   async deleteIntegrationMappingSlackById(
     integrationMappingId: string,
@@ -235,13 +237,13 @@ export class IntegrationMappingsManager {
 }
 export function serializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(
   val: GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField(
   val: any
 ): GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsArgPartnerItemTypeField"';
   }
   if (val == 'channel') {
@@ -251,13 +253,13 @@ export function deserializeGetIntegrationMappingSlackQueryParamsArgPartnerItemTy
 }
 export function serializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(
   val: GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeField(
   val: any
 ): GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsArgBoxItemTypeField"';
   }
   if (val == 'folder') {
@@ -267,7 +269,7 @@ export function deserializeGetIntegrationMappingSlackQueryParamsArgBoxItemTypeFi
 }
 export function serializeUpdateIntegrationMappingSlackByIdRequestBodyArg(
   val: UpdateIntegrationMappingSlackByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['box_item']:
       val.boxItem == void 0

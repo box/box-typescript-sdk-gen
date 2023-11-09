@@ -16,10 +16,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileTasksHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -144,7 +148,7 @@ export class TasksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTasks(deserializeJson(response.text));
+    return deserializeTasks(response.data);
   }
   async createTask(
     requestBody: CreateTaskRequestBodyArg,
@@ -159,7 +163,7 @@ export class TasksManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeCreateTaskRequestBodyArg(requestBody)),
+        data: serializeCreateTaskRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -167,7 +171,7 @@ export class TasksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTask(deserializeJson(response.text));
+    return deserializeTask(response.data);
   }
   async getTaskById(
     taskId: string,
@@ -191,7 +195,7 @@ export class TasksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTask(deserializeJson(response.text));
+    return deserializeTask(response.data);
   }
   async updateTaskById(
     taskId: string,
@@ -210,7 +214,7 @@ export class TasksManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(serializeUpdateTaskByIdRequestBodyArg(requestBody)),
+        data: serializeUpdateTaskByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -218,7 +222,7 @@ export class TasksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTask(deserializeJson(response.text));
+    return deserializeTask(response.data);
   }
   async deleteTaskById(
     taskId: string,
@@ -247,13 +251,13 @@ export class TasksManager {
 }
 export function serializeCreateTaskRequestBodyArgItemFieldTypeField(
   val: CreateTaskRequestBodyArgItemFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(
   val: any
 ): CreateTaskRequestBodyArgItemFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTaskRequestBodyArgItemFieldTypeField"';
   }
   if (val == 'file') {
@@ -263,7 +267,7 @@ export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(
 }
 export function serializeCreateTaskRequestBodyArgItemField(
   val: CreateTaskRequestBodyArgItemField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -284,13 +288,13 @@ export function deserializeCreateTaskRequestBodyArgItemField(
 }
 export function serializeCreateTaskRequestBodyArgActionField(
   val: CreateTaskRequestBodyArgActionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyArgActionField(
   val: any
 ): CreateTaskRequestBodyArgActionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTaskRequestBodyArgActionField"';
   }
   if (val == 'review') {
@@ -303,13 +307,13 @@ export function deserializeCreateTaskRequestBodyArgActionField(
 }
 export function serializeCreateTaskRequestBodyArgCompletionRuleField(
   val: CreateTaskRequestBodyArgCompletionRuleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyArgCompletionRuleField(
   val: any
 ): CreateTaskRequestBodyArgCompletionRuleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTaskRequestBodyArgCompletionRuleField"';
   }
   if (val == 'all_assignees') {
@@ -322,7 +326,7 @@ export function deserializeCreateTaskRequestBodyArgCompletionRuleField(
 }
 export function serializeCreateTaskRequestBodyArg(
   val: CreateTaskRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['item']: serializeCreateTaskRequestBodyArgItemField(val.item),
     ['action']:
@@ -369,13 +373,13 @@ export function deserializeCreateTaskRequestBodyArg(
 }
 export function serializeUpdateTaskByIdRequestBodyArgActionField(
   val: UpdateTaskByIdRequestBodyArgActionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyArgActionField(
   val: any
 ): UpdateTaskByIdRequestBodyArgActionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateTaskByIdRequestBodyArgActionField"';
   }
   if (val == 'review') {
@@ -388,13 +392,13 @@ export function deserializeUpdateTaskByIdRequestBodyArgActionField(
 }
 export function serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
   val: UpdateTaskByIdRequestBodyArgCompletionRuleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
   val: any
 ): UpdateTaskByIdRequestBodyArgCompletionRuleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateTaskByIdRequestBodyArgCompletionRuleField"';
   }
   if (val == 'all_assignees') {
@@ -407,7 +411,7 @@ export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
 }
 export function serializeUpdateTaskByIdRequestBodyArg(
   val: UpdateTaskByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['action']:
       val.action == void 0

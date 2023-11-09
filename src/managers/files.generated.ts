@@ -10,13 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetFileByIdQueryParamsArg {
   readonly fields?: readonly string[];
 }
@@ -174,7 +178,9 @@ export class FilesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -201,7 +207,7 @@ export class FilesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileFull(deserializeJson(response.text));
+    return deserializeFileFull(response.data);
   }
   async updateFileById(
     fileId: string,
@@ -213,7 +219,9 @@ export class FilesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -230,7 +238,7 @@ export class FilesManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeUpdateFileByIdRequestBodyArg(requestBody)),
+        data: serializeUpdateFileByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -238,7 +246,7 @@ export class FilesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileFull(deserializeJson(response.text));
+    return deserializeFileFull(response.data);
   }
   async deleteFileById(
     fileId: string,
@@ -277,7 +285,9 @@ export class FilesManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -292,7 +302,7 @@ export class FilesManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCopyFileRequestBodyArg(requestBody)),
+        data: serializeCopyFileRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -300,7 +310,7 @@ export class FilesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileFull(deserializeJson(response.text));
+    return deserializeFileFull(response.data);
   }
   async getFileThumbnailById(
     fileId: string,
@@ -344,7 +354,7 @@ export class FilesManager {
 }
 export function serializeUpdateFileByIdRequestBodyArgParentField(
   val: UpdateFileByIdRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFileByIdRequestBodyArgParentField(
@@ -355,13 +365,13 @@ export function deserializeUpdateFileByIdRequestBodyArgParentField(
 }
 export function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
   val: UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
   val: any
 ): UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField"';
   }
   if (val == 'open') {
@@ -377,7 +387,7 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessFiel
 }
 export function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(
   val: UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField
-): Json {
+): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
   };
@@ -393,7 +403,7 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermission
 }
 export function serializeUpdateFileByIdRequestBodyArgSharedLinkField(
   val: UpdateFileByIdRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -447,13 +457,13 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkField(
 }
 export function serializeUpdateFileByIdRequestBodyArgLockFieldAccessField(
   val: UpdateFileByIdRequestBodyArgLockFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(
   val: any
 ): UpdateFileByIdRequestBodyArgLockFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileByIdRequestBodyArgLockFieldAccessField"';
   }
   if (val == 'lock') {
@@ -463,7 +473,7 @@ export function deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(
 }
 export function serializeUpdateFileByIdRequestBodyArgLockField(
   val: UpdateFileByIdRequestBodyArgLockField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -493,13 +503,13 @@ export function deserializeUpdateFileByIdRequestBodyArgLockField(
 }
 export function serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
   val: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
   val: any
 ): UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField"';
   }
   if (val == 'open') {
@@ -512,7 +522,7 @@ export function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownlo
 }
 export function serializeUpdateFileByIdRequestBodyArgPermissionsField(
   val: UpdateFileByIdRequestBodyArgPermissionsField
-): Json {
+): SerializedData {
   return {
     ['can_download']:
       val.canDownload == void 0
@@ -539,7 +549,7 @@ export function deserializeUpdateFileByIdRequestBodyArgPermissionsField(
 }
 export function serializeUpdateFileByIdRequestBodyArgCollectionsField(
   val: UpdateFileByIdRequestBodyArgCollectionsField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -557,7 +567,7 @@ export function deserializeUpdateFileByIdRequestBodyArgCollectionsField(
 }
 export function serializeUpdateFileByIdRequestBodyArg(
   val: UpdateFileByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -584,7 +594,7 @@ export function serializeUpdateFileByIdRequestBodyArg(
     ['collections']:
       val.collections == void 0
         ? void 0
-        : (val.collections?.map(function (
+        : (val.collections.map(function (
             item: UpdateFileByIdRequestBodyArgCollectionsField
           ): any {
             return serializeUpdateFileByIdRequestBodyArgCollectionsField(item);
@@ -592,7 +602,7 @@ export function serializeUpdateFileByIdRequestBodyArg(
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags?.map(function (item: string): any {
+        : (val.tags.map(function (item: string): any {
             return item;
           }) as readonly any[]),
   };
@@ -628,16 +638,16 @@ export function deserializeUpdateFileByIdRequestBodyArg(
     | readonly UpdateFileByIdRequestBodyArgCollectionsField[] =
     val.collections == void 0
       ? void 0
-      : isJson(val.collections, 'array')
-      ? (val.collections?.map(function (itm: Json): any {
+      : sdIsList(val.collections)
+      ? (val.collections.map(function (itm: SerializedData): any {
           return deserializeUpdateFileByIdRequestBodyArgCollectionsField(itm);
         }) as readonly any[])
       : [];
   const tags: undefined | readonly string[] =
     val.tags == void 0
       ? void 0
-      : isJson(val.tags, 'array')
-      ? (val.tags?.map(function (itm: Json): any {
+      : sdIsList(val.tags)
+      ? (val.tags.map(function (itm: SerializedData): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -655,7 +665,7 @@ export function deserializeUpdateFileByIdRequestBodyArg(
 }
 export function serializeCopyFileRequestBodyArgParentField(
   val: CopyFileRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCopyFileRequestBodyArgParentField(
@@ -666,7 +676,7 @@ export function deserializeCopyFileRequestBodyArgParentField(
 }
 export function serializeCopyFileRequestBodyArg(
   val: CopyFileRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['version']: val.version == void 0 ? void 0 : val.version,
@@ -689,13 +699,13 @@ export function deserializeCopyFileRequestBodyArg(
 }
 export function serializeGetFileThumbnailByIdExtensionArg(
   val: GetFileThumbnailByIdExtensionArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFileThumbnailByIdExtensionArg(
   val: any
 ): GetFileThumbnailByIdExtensionArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFileThumbnailByIdExtensionArg"';
   }
   if (val == 'png') {

@@ -204,12 +204,6 @@ export function toString(value: any): string {
   return String(value);
 }
 
-export function getUrlParams(params: Record<string, any>) {
-  return new URLSearchParams(
-    Object.entries(params).map(([key, value]) => [key, toString(value)])
-  ).toString();
-}
-
 type CancellationToken = AbortSignal;
 
 /**

@@ -10,12 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetFileCollaborationsQueryParamsArg {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -108,7 +113,9 @@ export class ListCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['limit']: toString(queryParams.limit) as string,
       ['marker']: toString(queryParams.marker) as string,
     });
@@ -131,7 +138,7 @@ export class ListCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborations(deserializeJson(response.text));
+    return deserializeCollaborations(response.data);
   }
   async getFolderCollaborations(
     folderId: string,
@@ -144,7 +151,9 @@ export class ListCollaborationsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -165,7 +174,7 @@ export class ListCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborations(deserializeJson(response.text));
+    return deserializeCollaborations(response.data);
   }
   async getCollaborations(
     queryParams: GetCollaborationsQueryParamsArg,
@@ -176,7 +185,9 @@ export class ListCollaborationsManager {
       readonly [key: string]: string;
     } = prepareParams({
       ['status']: toString(queryParams.status) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['offset']: toString(queryParams.offset) as string,
       ['limit']: toString(queryParams.limit) as string,
     });
@@ -195,7 +206,7 @@ export class ListCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborations(deserializeJson(response.text));
+    return deserializeCollaborations(response.data);
   }
   async getGroupCollaborations(
     groupId: string,
@@ -230,18 +241,18 @@ export class ListCollaborationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborations(deserializeJson(response.text));
+    return deserializeCollaborations(response.data);
   }
 }
 export function serializeGetCollaborationsQueryParamsArgStatusField(
   val: GetCollaborationsQueryParamsArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetCollaborationsQueryParamsArgStatusField(
   val: any
 ): GetCollaborationsQueryParamsArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetCollaborationsQueryParamsArgStatusField"';
   }
   if (val == 'pending') {

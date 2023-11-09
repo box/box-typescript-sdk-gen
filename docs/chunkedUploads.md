@@ -255,3 +255,5 @@ await client.chunkedUploads.uploadBigFile(
   - The total size of the file for the chunked upload in bytes.
 - parentFolderId `string`
   - The ID of the folder where the file should be uploaded.
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.

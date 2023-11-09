@@ -16,13 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField =
   | 'file'
   | 'file_version'
@@ -173,7 +177,9 @@ export class LegalHoldPolicyAssignmentsManager {
       ['assign_to_id']: toString(queryParams.assignToId) as string,
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -192,9 +198,7 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignments(
-      deserializeJson(response.text)
-    );
+    return deserializeLegalHoldPolicyAssignments(response.data);
   }
   async createLegalHoldPolicyAssignment(
     requestBody: CreateLegalHoldPolicyAssignmentRequestBodyArg,
@@ -213,8 +217,8 @@ export class LegalHoldPolicyAssignmentsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(requestBody)
+        data: serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -223,7 +227,7 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignment(deserializeJson(response.text));
+    return deserializeLegalHoldPolicyAssignment(response.data);
   }
   async getLegalHoldPolicyAssignmentById(
     legalHoldPolicyAssignmentId: string,
@@ -249,7 +253,7 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignment(deserializeJson(response.text));
+    return deserializeLegalHoldPolicyAssignment(response.data);
   }
   async deleteLegalHoldPolicyAssignmentById(
     legalHoldPolicyAssignmentId: string,
@@ -290,7 +294,9 @@ export class LegalHoldPolicyAssignmentsManager {
     } = prepareParams({
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -311,7 +317,7 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionLegalHolds(deserializeJson(response.text));
+    return deserializeFileVersionLegalHolds(response.data);
   }
   async getLegalHoldPolicyAssignmentFileVersionOnHold(
     legalHoldPolicyAssignmentId: string,
@@ -326,7 +332,9 @@ export class LegalHoldPolicyAssignmentsManager {
     } = prepareParams({
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -347,18 +355,18 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionLegalHolds(deserializeJson(response.text));
+    return deserializeFileVersionLegalHolds(response.data);
   }
 }
 export function serializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(
   val: GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField(
   val: any
 ): GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTypeField"';
   }
   if (val == 'file') {
@@ -377,13 +385,13 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsArgAssignToTy
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
   val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
   val: any
 ): CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField"';
   }
   if (val == 'file') {
@@ -402,7 +410,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignTo
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField(
   val: CreateLegalHoldPolicyAssignmentRequestBodyArgAssignToField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
@@ -426,7 +434,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyArgAssignTo
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyArg(
   val: CreateLegalHoldPolicyAssignmentRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['policy_id']: val.policyId,
     ['assign_to']:

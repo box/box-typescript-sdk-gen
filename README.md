@@ -23,6 +23,10 @@ Embrace the new generation of Box SDKs and unlock the full potential of the Box 
 
 - [Installing](#installing)
 - [Getting Started](#getting-started)
+- [Integration Tests](#integration-tests)
+  - [Running integration tests locally](#running-integration-tests-locally)
+    - [Create Custom Application](#create-custom-application)
+    - [Export configuration](#export-configuration)
 - [Questions, Bugs, and Feature Requests?](#questions-bugs-and-feature-requests)
 - [Copyright and License](#copyright-and-license)
 
@@ -68,6 +72,29 @@ async function main(token) {
 
 main('INSERT YOUR DEVELOPER TOKEN HERE');
 ```
+
+# Integration Tests
+
+## Running integration tests locally
+
+### Create Custom Application
+
+To run integration tests locally you will need a `Custom App` created in the [Box Developer
+Console](https://app.box.com/developers/console) with `Server Authentication (with JWT)` selected as authentication method.
+Once created you can edit properties of the application:
+
+- In section `App Access Level` select `App + Enterprise Access`. You can enable all `Application Scopes`.
+- In section `Advanced Features` enable `Make API calls using the as-user header` and `Generate user access tokens`.
+
+Now select `Authorization` and submit application to be reviewed by account admin.
+
+### Export configuration
+
+1. Select `Configuration` tab and in the bottom in the section `App Settings`
+   download your app configuration settings as JSON.
+2. Encode configuration file to Base64, e.g. using command: `base64 -i path_to_json_file`
+3. Set environment variable: `JWT_CONFIG_BASE_64` with base64 encoded jwt configuration file
+4. Set environment variable: `BOX_FILE_REQUEST_ID` with ID of file request already created in the user account.
 
 # Questions, Bugs, and Feature Requests?
 
