@@ -19,13 +19,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetUsersQueryParamsArgUserTypeField =
   | 'all'
   | 'managed'
@@ -215,7 +219,9 @@ export class UsersManager {
       ['external_app_user_id']: toString(
         queryParams.externalAppUserId
       ) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['offset']: toString(queryParams.offset) as string,
       ['limit']: toString(queryParams.limit) as string,
       ['usemarker']: toString(queryParams.usemarker) as string,
@@ -236,7 +242,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUsers(deserializeJson(response.text));
+    return deserializeUsers(response.data);
   }
   async createUser(
     requestBody: CreateUserRequestBodyArg,
@@ -247,7 +253,9 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -258,7 +266,7 @@ export class UsersManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCreateUserRequestBodyArg(requestBody)),
+        data: serializeCreateUserRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -266,7 +274,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUser(deserializeJson(response.text));
+    return deserializeUser(response.data);
   }
   async getUserMe(
     queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg,
@@ -276,7 +284,9 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -293,7 +303,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUserFull(deserializeJson(response.text));
+    return deserializeUserFull(response.data);
   }
   async getUserById(
     userId: string,
@@ -304,7 +314,9 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -324,7 +336,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUserFull(deserializeJson(response.text));
+    return deserializeUserFull(response.data);
   }
   async updateUserById(
     userId: string,
@@ -336,7 +348,9 @@ export class UsersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -350,7 +364,7 @@ export class UsersManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeUpdateUserByIdRequestBodyArg(requestBody)),
+        data: serializeUpdateUserByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -358,7 +372,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUserFull(deserializeJson(response.text));
+    return deserializeUserFull(response.data);
   }
   async deleteUserById(
     userId: string,
@@ -395,13 +409,13 @@ export class UsersManager {
 }
 export function serializeGetUsersQueryParamsArgUserTypeField(
   val: GetUsersQueryParamsArgUserTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetUsersQueryParamsArgUserTypeField(
   val: any
 ): GetUsersQueryParamsArgUserTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetUsersQueryParamsArgUserTypeField"';
   }
   if (val == 'all') {
@@ -417,13 +431,13 @@ export function deserializeGetUsersQueryParamsArgUserTypeField(
 }
 export function serializeCreateUserRequestBodyArgRoleField(
   val: CreateUserRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateUserRequestBodyArgRoleField(
   val: any
 ): CreateUserRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateUserRequestBodyArgRoleField"';
   }
   if (val == 'coadmin') {
@@ -436,13 +450,13 @@ export function deserializeCreateUserRequestBodyArgRoleField(
 }
 export function serializeCreateUserRequestBodyArgStatusField(
   val: CreateUserRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateUserRequestBodyArgStatusField(
   val: any
 ): CreateUserRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateUserRequestBodyArgStatusField"';
   }
   if (val == 'active') {
@@ -461,7 +475,7 @@ export function deserializeCreateUserRequestBodyArgStatusField(
 }
 export function serializeCreateUserRequestBodyArg(
   val: CreateUserRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name,
     ['login']: val.login == void 0 ? void 0 : val.login,
@@ -481,7 +495,7 @@ export function serializeCreateUserRequestBodyArg(
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes?.map(function (item: TrackingCode): any {
+        : (val.trackingCodes.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -534,8 +548,8 @@ export function deserializeCreateUserRequestBodyArg(
   const trackingCodes: undefined | readonly TrackingCode[] =
     val.tracking_codes == void 0
       ? void 0
-      : isJson(val.tracking_codes, 'array')
-      ? (val.tracking_codes?.map(function (itm: Json): any {
+      : sdIsList(val.tracking_codes)
+      ? (val.tracking_codes.map(function (itm: SerializedData): any {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
@@ -584,13 +598,13 @@ export function deserializeCreateUserRequestBodyArg(
 }
 export function serializeUpdateUserByIdRequestBodyArgRoleField(
   val: UpdateUserByIdRequestBodyArgRoleField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyArgRoleField(
   val: any
 ): UpdateUserByIdRequestBodyArgRoleField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateUserByIdRequestBodyArgRoleField"';
   }
   if (val == 'coadmin') {
@@ -603,13 +617,13 @@ export function deserializeUpdateUserByIdRequestBodyArgRoleField(
 }
 export function serializeUpdateUserByIdRequestBodyArgStatusField(
   val: UpdateUserByIdRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyArgStatusField(
   val: any
 ): UpdateUserByIdRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateUserByIdRequestBodyArgStatusField"';
   }
   if (val == 'active') {
@@ -628,7 +642,7 @@ export function deserializeUpdateUserByIdRequestBodyArgStatusField(
 }
 export function serializeUpdateUserByIdRequestBodyArgNotificationEmailField(
   val: UpdateUserByIdRequestBodyArgNotificationEmailField
-): Json {
+): SerializedData {
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
 export function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(
@@ -641,7 +655,7 @@ export function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(
 }
 export function serializeUpdateUserByIdRequestBodyArg(
   val: UpdateUserByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
     ['notify']: val.notify == void 0 ? void 0 : val.notify,
@@ -660,7 +674,7 @@ export function serializeUpdateUserByIdRequestBodyArg(
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes?.map(function (item: TrackingCode): any {
+        : (val.trackingCodes.map(function (item: TrackingCode): any {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -722,8 +736,8 @@ export function deserializeUpdateUserByIdRequestBodyArg(
   const trackingCodes: undefined | readonly TrackingCode[] =
     val.tracking_codes == void 0
       ? void 0
-      : isJson(val.tracking_codes, 'array')
-      ? (val.tracking_codes?.map(function (itm: Json): any {
+      : sdIsList(val.tracking_codes)
+      ? (val.tracking_codes.map(function (itm: SerializedData): any {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];

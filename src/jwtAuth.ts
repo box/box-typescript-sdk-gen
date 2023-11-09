@@ -11,6 +11,7 @@ import { Authentication } from './auth';
 import { NetworkSession } from './network';
 import { fetch, FetchResponse } from './fetch.js';
 import { InMemoryTokenStorage, TokenStorage } from './tokenStorage.generated';
+import { jsonToSerializedData } from './json.js';
 
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =
@@ -210,16 +211,13 @@ export class BoxJwtAuth implements Authentication {
     };
     const params = {
       method: 'POST',
-      headers: {} as Record<string, any>,
-      body: new URLSearchParams(
-        requestBody as unknown as Record<string, string>
-      ).toString(),
+      data: requestBody as Record<string, any>,
       contentType: 'application/x-www-form-urlencoded',
       networkSession,
     };
 
     const response = (await fetch(BOX_JWT_AUDIENCE, params)) as FetchResponse;
-    const newToken = deserializeAccessToken(JSON.parse(response.text));
+    const newToken = deserializeAccessToken(response.data);
     await this.tokenStorage.store(newToken);
     return newToken;
   }

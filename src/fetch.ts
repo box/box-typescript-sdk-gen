@@ -2,6 +2,12 @@ import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
 import { Readable } from 'stream';
 import { Authentication } from './auth';
+import {
+  jsonToSerializedData,
+  sdToJson,
+  sdToUrlParams,
+  SerializedData,
+} from './json';
 import { getRetryTimeout, NetworkSession } from './network';
 import { ByteStream, CancellationToken, isBrowser } from './utils';
 
@@ -11,7 +17,7 @@ export const xBoxUaHeader = constructBoxUAHeader();
 
 export interface MultipartItem {
   readonly partName: string;
-  readonly body?: string;
+  readonly data?: SerializedData;
   readonly fileStream?: ByteStream;
   readonly fileName?: string;
   readonly contentType?: string;
@@ -37,9 +43,9 @@ export interface FetchOptions {
   };
 
   /**
-   * Request body
+   * Request body data
    */
-  readonly body?: string;
+  readonly data?: SerializedData;
 
   /**
    * Stream of a file
@@ -83,9 +89,9 @@ export interface FetchResponse {
   readonly status: number;
 
   /**
-   * Text representation of the response body
+   * Response body data
    */
-  readonly text: string;
+  readonly data: SerializedData;
 
   /**
    * Binary array buffer of response body
@@ -97,38 +103,64 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
   const {
     method = 'GET',
     headers = {},
-    params = {},
-    body,
+    contentType: contentTypeInput = 'application/json',
+    data,
     fileStream,
   } = options;
-  let fetchOptions = {} as RequestInit;
-  let contentType = options.contentType ?? 'application/json';
-  let requestBody: any = fileStream ?? body;
 
-  if (options.multipartData) {
-    const formData = new FormData();
-    for (const item of options.multipartData) {
-      if (item.fileStream) {
-        const buffer = await readStream(item.fileStream);
-        headers['content-md5'] = await calculateMD5Hash(buffer);
-        formData.append(item.partName, buffer, {
-          filename: item.fileName ?? 'file',
-          contentType: item.contentType ?? 'application/octet-stream',
-        });
-      } else if (item.body) {
-        formData.append(item.partName, item.body);
-      } else {
-        throw new Error('Multipart item must have either body or fileStream');
+  const { contentType, body } = await (async (): Promise<{
+    contentType: string;
+    body: Readable | string;
+  }> => {
+    if (options.multipartData) {
+      const formData = new FormData();
+      for (const item of options.multipartData) {
+        if (item.fileStream) {
+          const buffer = await readStream(item.fileStream);
+          headers['content-md5'] = await calculateMD5Hash(buffer);
+          formData.append(item.partName, buffer, {
+            filename: item.fileName ?? 'file',
+            contentType: item.contentType ?? 'application/octet-stream',
+          });
+        } else if (item.data) {
+          formData.append(item.partName, sdToJson(item.data));
+        } else {
+          throw new Error('Multipart item must have either body or fileStream');
+        }
       }
+
+      return {
+        contentType: `multipart/form-data; boundary=${formData.getBoundary()}`,
+        body: formData,
+      };
     }
 
-    contentType = `multipart/form-data; boundary=${formData.getBoundary()}`;
-    requestBody = formData;
-  }
+    const contentType = contentTypeInput;
+    switch (contentType) {
+      case 'application/json':
+      case 'application/json-patch+json':
+        return { contentType, body: sdToJson(data) };
 
-  fetchOptions = {
+      case 'application/x-www-form-urlencoded':
+        return { contentType, body: sdToUrlParams(data) };
+
+      case 'application/octet-stream':
+        if (!fileStream) {
+          throw new Error(
+            'fileStream required for application/octet-stream content type'
+          );
+        }
+        return { contentType, body: fileStream };
+
+      default:
+        throw new Error(`Unsupported content type : ${contentType}`);
+    }
+  })();
+
+  return {
     method,
     headers: {
+      ...options.networkSession?.additionalHeaders,
       'Content-Type': contentType,
       ...headers,
       ...(options.auth && {
@@ -138,15 +170,10 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,
-      ...(options.networkSession?.asUserId && {
-        'As-User': options.networkSession!.asUserId!,
-      }),
     },
-    body: requestBody,
+    body,
     signal: options.cancellationToken as RequestInit['signal'],
   };
-
-  return fetchOptions;
 }
 
 const DEFAULT_MAX_ATTEMPTS = 5;
@@ -160,7 +187,7 @@ export async function fetch(
   }
 ): Promise<FetchResponse> {
   const { params = {} } = options;
-  let fetchOptions = await createFetchOptions(options);
+  const fetchOptions = await createFetchOptions(options);
 
   const response = await nodeFetch(
     ''.concat(
@@ -210,27 +237,27 @@ export async function fetch(
     );
   }
 
-  let responseBytesBuffer: any;
-  let readable: Readable;
-  // The browser fetch API does not support response.buffer() and Readable.from()
-  if (isBrowser()) {
-    responseBytesBuffer = await response.arrayBuffer();
-    readable = new Readable({
-      read(size) {
-        const uint8Array = new Uint8Array(responseBytesBuffer);
-        this.push(uint8Array);
-        this.push(null);
-      },
-    });
-  } else {
-    responseBytesBuffer = await response.buffer();
-    readable = Readable.from(responseBytesBuffer);
-  }
-  return {
-    status: response.status,
-    text: new TextDecoder().decode(responseBytesBuffer),
-    content: readable,
-  };
+  const contentType = response.headers.get('content-type') ?? '';
+  const responseBytesBuffer = await response.arrayBuffer();
+
+  const data = ((): SerializedData => {
+    if (contentType.includes('application/json')) {
+      const text = new TextDecoder().decode(responseBytesBuffer);
+      return jsonToSerializedData(text);
+    }
+    return void 0;
+  })();
+
+  const content = new Readable({
+    read() {
+      this.push(new Uint8Array(responseBytesBuffer));
+      this.push(null);
+    },
+  });
+
+  const { status } = response;
+
+  return { status, data, content };
 }
 
 async function calculateMD5Hash(data: string | Buffer): Promise<string> {

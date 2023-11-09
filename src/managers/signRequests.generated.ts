@@ -19,9 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class CancelSignRequestHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -124,7 +129,7 @@ export class SignRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignRequest(deserializeJson(response.text));
+    return deserializeSignRequest(response.data);
   }
   async resendSignRequest(
     signRequestId: string,
@@ -175,7 +180,7 @@ export class SignRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignRequest(deserializeJson(response.text));
+    return deserializeSignRequest(response.data);
   }
   async getSignRequests(
     queryParams: GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg,
@@ -203,7 +208,7 @@ export class SignRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignRequests(deserializeJson(response.text));
+    return deserializeSignRequests(response.data);
   }
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
@@ -218,7 +223,7 @@ export class SignRequestsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeSignRequestCreateRequest(requestBody)),
+        data: serializeSignRequestCreateRequest(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -226,6 +231,6 @@ export class SignRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeSignRequest(deserializeJson(response.text));
+    return deserializeSignRequest(response.data);
   }
 }

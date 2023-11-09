@@ -1,56 +1,50 @@
-export type Json =
-  | readonly Json[]
-  | boolean
+export type SerializedData =
+  | undefined
   | null
+  | boolean
   | number
-  | { readonly [key: string]: Json | void }
-  | string;
+  | string
+  | SerializedDataList
+  | SerializedDataMap;
 
-export function serializeJson(value: Json): string {
-  return JSON.stringify(value);
-}
+type SerializedDataList = readonly SerializedData[];
+type SerializedDataMap = { readonly [key: string]: SerializedData | undefined };
 
-export function deserializeJson(text: string): Json {
+export function jsonToSerializedData(text: string): SerializedData {
   return JSON.parse(text);
 }
 
-export function isJson(value: Json | void, type: 'array'): value is Json[];
-export function isJson(value: Json | void, type: 'boolean'): value is boolean;
-export function isJson(value: Json | void, type: 'null'): value is null;
-export function isJson(value: Json | void, type: 'number'): value is number;
-export function isJson(
-  value: Json | void,
-  type: 'object'
-): value is { [key: string]: Json | void };
-export function isJson(value: Json | void, type: 'string'): value is string;
-export function isJson(
-  value: Json | void,
-  type: 'array' | 'boolean' | 'null' | 'number' | 'object' | 'string'
-) {
-  if (typeof value === 'undefined') {
-    return false;
+export function sdToJson(data: SerializedData): string {
+  return JSON.stringify(data);
+}
+
+export function sdToUrlParams(data: SerializedData): string {
+  if (!sdIsMap(data)) {
+    throw new Error('Expecting an object as an argument for sdToUrlParams');
   }
+  return new URLSearchParams(data as Record<string, string>).toString();
+}
 
-  switch (type) {
-    case 'array':
-      return Array.isArray(value);
+export function sdIsEmpty(data: SerializedData): data is undefined | null {
+  return data == null;
+}
 
-    case 'boolean':
-      return typeof value === 'boolean';
+export function sdIsBoolean(data: SerializedData): data is boolean {
+  return typeof data == 'boolean';
+}
 
-    case 'null':
-      return value === null;
+export function sdIsNumber(data: SerializedData): data is number {
+  return typeof data == 'number';
+}
 
-    case 'number':
-      return typeof value === 'number';
+export function sdIsString(data: SerializedData): data is string {
+  return typeof data == 'string';
+}
 
-    case 'object':
-      return value && typeof value === 'object' && !Array.isArray(value);
+export function sdIsList(data: SerializedData): data is SerializedDataList {
+  return Array.isArray(data);
+}
 
-    case 'string':
-      return typeof value === 'string';
-
-    default:
-      throw new Error(`Invalid type provided to isJSON: "${type}"`);
-  }
+export function sdIsMap(data: SerializedData): data is SerializedDataMap {
+  return typeof data === 'object' && data != null && !Array.isArray(data);
 }

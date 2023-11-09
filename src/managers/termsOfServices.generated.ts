@@ -16,13 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetTermOfServicesQueryParamsArgTosTypeField =
   | 'external'
   | 'managed';
@@ -134,7 +138,7 @@ export class TermsOfServicesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfServices(deserializeJson(response.text));
+    return deserializeTermsOfServices(response.data);
   }
   async createTermOfService(
     requestBody: CreateTermOfServiceRequestBodyArg,
@@ -151,9 +155,7 @@ export class TermsOfServicesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateTermOfServiceRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateTermOfServiceRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -161,7 +163,7 @@ export class TermsOfServicesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTask(deserializeJson(response.text));
+    return deserializeTask(response.data);
   }
   async getTermOfServiceById(
     termsOfServiceId: string,
@@ -187,7 +189,7 @@ export class TermsOfServicesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfService(deserializeJson(response.text));
+    return deserializeTermsOfService(response.data);
   }
   async updateTermOfServiceById(
     termsOfServiceId: string,
@@ -208,9 +210,7 @@ export class TermsOfServicesManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateTermOfServiceByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateTermOfServiceByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -218,18 +218,18 @@ export class TermsOfServicesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfService(deserializeJson(response.text));
+    return deserializeTermsOfService(response.data);
   }
 }
 export function serializeGetTermOfServicesQueryParamsArgTosTypeField(
   val: GetTermOfServicesQueryParamsArgTosTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(
   val: any
 ): GetTermOfServicesQueryParamsArgTosTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetTermOfServicesQueryParamsArgTosTypeField"';
   }
   if (val == 'external') {
@@ -242,13 +242,13 @@ export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(
 }
 export function serializeCreateTermOfServiceRequestBodyArgStatusField(
   val: CreateTermOfServiceRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTermOfServiceRequestBodyArgStatusField(
   val: any
 ): CreateTermOfServiceRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTermOfServiceRequestBodyArgStatusField"';
   }
   if (val == 'enabled') {
@@ -261,13 +261,13 @@ export function deserializeCreateTermOfServiceRequestBodyArgStatusField(
 }
 export function serializeCreateTermOfServiceRequestBodyArgTosTypeField(
   val: CreateTermOfServiceRequestBodyArgTosTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTermOfServiceRequestBodyArgTosTypeField(
   val: any
 ): CreateTermOfServiceRequestBodyArgTosTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTermOfServiceRequestBodyArgTosTypeField"';
   }
   if (val == 'external') {
@@ -280,7 +280,7 @@ export function deserializeCreateTermOfServiceRequestBodyArgTosTypeField(
 }
 export function serializeCreateTermOfServiceRequestBodyArg(
   val: CreateTermOfServiceRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['status']: serializeCreateTermOfServiceRequestBodyArgStatusField(
       val.status
@@ -310,13 +310,13 @@ export function deserializeCreateTermOfServiceRequestBodyArg(
 }
 export function serializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
   val: UpdateTermOfServiceByIdRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
   val: any
 ): UpdateTermOfServiceByIdRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateTermOfServiceByIdRequestBodyArgStatusField"';
   }
   if (val == 'enabled') {
@@ -329,7 +329,7 @@ export function deserializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
 }
 export function serializeUpdateTermOfServiceByIdRequestBodyArg(
   val: UpdateTermOfServiceByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['status']: serializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
       val.status

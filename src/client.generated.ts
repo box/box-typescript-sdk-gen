@@ -70,7 +70,7 @@ import { Authentication } from './auth.js';
 import { NetworkSession } from './network.js';
 export class BoxClient {
   readonly auth!: Authentication;
-  readonly networkSession?: NetworkSession = new NetworkSession({});
+  readonly networkSession: NetworkSession = new NetworkSession({});
   readonly authorization: AuthorizationManager;
   readonly files: FilesManager;
   readonly trashedFiles: TrashedFilesManager;
@@ -212,6 +212,9 @@ export class BoxClient {
           | 'signTemplates'
           | 'integrationMappings'
           | 'networkSession'
+          | 'withAsUserHeader'
+          | 'withSuppressedNotifications'
+          | 'withExtraHeaders'
         >
       | Partial<Pick<BoxClient, 'networkSession'>>
   ) {
@@ -493,6 +496,32 @@ export class BoxClient {
     this.integrationMappings = new IntegrationMappingsManager({
       auth: this.auth,
       networkSession: this.networkSession,
+    });
+  }
+  withAsUserHeader(userId: string): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withAdditionalHeaders({
+        ['As-User']: userId,
+      }),
+    });
+  }
+  withSuppressedNotifications(): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withAdditionalHeaders({
+        ['Box-Notifications']: 'off',
+      }),
+    });
+  }
+  withExtraHeaders(
+    extraHeaders: {
+      readonly [key: string]: string;
+    } = {}
+  ): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withAdditionalHeaders(extraHeaders),
     });
   }
 }

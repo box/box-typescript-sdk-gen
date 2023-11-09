@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetTermOfServiceUserStatusesQueryParamsArg {
   readonly tosId: string;
   readonly userId?: string;
@@ -125,9 +129,7 @@ export class TermsOfServiceUserStatusesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfServiceUserStatuses(
-      deserializeJson(response.text)
-    );
+    return deserializeTermsOfServiceUserStatuses(response.data);
   }
   async createTermOfServiceUserStatus(
     requestBody: CreateTermOfServiceUserStatusRequestBodyArg,
@@ -146,9 +148,7 @@ export class TermsOfServiceUserStatusesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateTermOfServiceUserStatusRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateTermOfServiceUserStatusRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -156,7 +156,7 @@ export class TermsOfServiceUserStatusesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
+    return deserializeTermsOfServiceUserStatus(response.data);
   }
   async updateTermOfServiceUserStatusById(
     termsOfServiceUserStatusId: string,
@@ -177,8 +177,8 @@ export class TermsOfServiceUserStatusesManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(requestBody)
+        data: serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -187,18 +187,18 @@ export class TermsOfServiceUserStatusesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTermsOfServiceUserStatus(deserializeJson(response.text));
+    return deserializeTermsOfServiceUserStatus(response.data);
   }
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
   val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
   val: any
 ): CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField"';
   }
   if (val == 'terms_of_service') {
@@ -208,7 +208,7 @@ export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTy
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
   val: CreateTermOfServiceUserStatusRequestBodyArgTosField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
@@ -232,13 +232,13 @@ export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
   val: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
   val: any
 ): CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField"';
   }
   if (val == 'user') {
@@ -248,7 +248,7 @@ export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldT
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserField(
   val: CreateTermOfServiceUserStatusRequestBodyArgUserField
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
@@ -272,7 +272,7 @@ export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(
 }
 export function serializeCreateTermOfServiceUserStatusRequestBodyArg(
   val: CreateTermOfServiceUserStatusRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['tos']: serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
       val.tos
@@ -299,7 +299,7 @@ export function deserializeCreateTermOfServiceUserStatusRequestBodyArg(
 }
 export function serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(
   val: UpdateTermOfServiceUserStatusByIdRequestBodyArg
-): Json {
+): SerializedData {
   return { ['is_accepted']: val.isAccepted };
 }
 export function deserializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(

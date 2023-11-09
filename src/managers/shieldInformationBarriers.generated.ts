@@ -19,10 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetShieldInformationBarrierByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -130,7 +134,7 @@ export class ShieldInformationBarriersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrier(deserializeJson(response.text));
+    return deserializeShieldInformationBarrier(response.data);
   }
   async createShieldInformationBarrierChangeStatus(
     requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg,
@@ -149,10 +153,8 @@ export class ShieldInformationBarriersManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -161,7 +163,7 @@ export class ShieldInformationBarriersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrier(deserializeJson(response.text));
+    return deserializeShieldInformationBarrier(response.data);
   }
   async getShieldInformationBarriers(
     queryParams: GetShieldInformationBarriersQueryParamsArg = {} satisfies GetShieldInformationBarriersQueryParamsArg,
@@ -193,7 +195,7 @@ export class ShieldInformationBarriersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarriers(deserializeJson(response.text));
+    return deserializeShieldInformationBarriers(response.data);
   }
   async createShieldInformationBarrier(
     requestBody: CreateShieldInformationBarrierRequestBodyArg,
@@ -212,8 +214,8 @@ export class ShieldInformationBarriersManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateShieldInformationBarrierRequestBodyArg(requestBody)
+        data: serializeCreateShieldInformationBarrierRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -222,18 +224,18 @@ export class ShieldInformationBarriersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrier(deserializeJson(response.text));
+    return deserializeShieldInformationBarrier(response.data);
   }
 }
 export function serializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
   val: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
   val: any
 ): CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField"';
   }
   if (val == 'pending') {
@@ -246,7 +248,7 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
 }
 export function serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
   val: CreateShieldInformationBarrierChangeStatusRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['id']: val.id,
     ['status']:
@@ -270,7 +272,7 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
 }
 export function serializeCreateShieldInformationBarrierRequestBodyArg(
   val: CreateShieldInformationBarrierRequestBodyArg
-): Json {
+): SerializedData {
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }
 export function deserializeCreateShieldInformationBarrierRequestBodyArg(

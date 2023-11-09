@@ -16,12 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetShieldInformationBarrierReportsQueryParamsArg {
   readonly shieldInformationBarrierId: string;
   readonly marker?: string;
@@ -115,9 +120,7 @@ export class ShieldInformationBarrierReportsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierReports(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierReports(response.data);
   }
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,
@@ -136,9 +139,7 @@ export class ShieldInformationBarrierReportsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeShieldInformationBarrierReference(requestBody)
-        ),
+        data: serializeShieldInformationBarrierReference(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -146,9 +147,7 @@ export class ShieldInformationBarrierReportsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierReport(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierReport(response.data);
   }
   async getShieldInformationBarrierReportById(
     shieldInformationBarrierReportId: string,
@@ -174,8 +173,6 @@ export class ShieldInformationBarrierReportsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierReport(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierReport(response.data);
   }
 }

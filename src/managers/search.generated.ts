@@ -25,10 +25,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdToJson } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class CreateMetadataQueryExecuteReadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -139,7 +143,7 @@ export class SearchManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeMetadataQuery(requestBody)),
+        data: serializeMetadataQuery(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -147,7 +151,7 @@ export class SearchManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataQueryResults(deserializeJson(response.text));
+    return deserializeMetadataQueryResults(response.data);
   }
   async getMetadataQueryIndices(
     queryParams: GetMetadataQueryIndicesQueryParamsArg,
@@ -177,7 +181,7 @@ export class SearchManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataQueryIndices(deserializeJson(response.text));
+    return deserializeMetadataQueryIndices(response.data);
   }
   async getSearch(
     queryParams: GetSearchQueryParamsArg = {} satisfies GetSearchQueryParamsArg,
@@ -190,31 +194,33 @@ export class SearchManager {
       ['query']: toString(queryParams.query) as string,
       ['scope']: toString(queryParams.scope) as string,
       ['file_extensions']: queryParams.fileExtensions
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.fileExtensions.map(toString).join(',')
+        : undefined,
       ['created_at_range']: queryParams.createdAtRange
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.createdAtRange.map(toString).join(',')
+        : undefined,
       ['updated_at_range']: queryParams.updatedAtRange
-        ?.map(toString)
-        .join(',') as string,
-      ['size_range']: queryParams.sizeRange?.map(toString).join(',') as string,
+        ? queryParams.updatedAtRange.map(toString).join(',')
+        : undefined,
+      ['size_range']: queryParams.sizeRange
+        ? queryParams.sizeRange.map(toString).join(',')
+        : undefined,
       ['owner_user_ids']: queryParams.ownerUserIds
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.ownerUserIds.map(toString).join(',')
+        : undefined,
       ['recent_updater_user_ids']: queryParams.recentUpdaterUserIds
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.recentUpdaterUserIds.map(toString).join(',')
+        : undefined,
       ['ancestor_folder_ids']: queryParams.ancestorFolderIds
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.ancestorFolderIds.map(toString).join(',')
+        : undefined,
       ['content_types']: queryParams.contentTypes
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.contentTypes.map(toString).join(',')
+        : undefined,
       ['type']: toString(queryParams.type) as string,
       ['trash_content']: toString(queryParams.trashContent) as string,
       ['mdfilters']: queryParams.mdfilters
-        ? serializeJson(queryParams.mdfilters?.map(serializeMetadataFilter))
+        ? sdToJson(queryParams.mdfilters.map(serializeMetadataFilter))
         : undefined,
       ['sort']: toString(queryParams.sort) as string,
       ['direction']: toString(queryParams.direction) as string,
@@ -222,14 +228,16 @@ export class SearchManager {
       ['include_recent_shared_links']: toString(
         queryParams.includeRecentSharedLinks
       ) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['offset']: toString(queryParams.offset) as string,
       ['deleted_user_ids']: queryParams.deletedUserIds
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.deletedUserIds.map(toString).join(',')
+        : undefined,
       ['deleted_at_range']: queryParams.deletedAtRange
-        ?.map(toString)
-        .join(',') as string,
+        ? queryParams.deletedAtRange.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -247,19 +255,19 @@ export class SearchManager {
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeSearchResultsOrSearchResultsWithSharedLinks(
-      deserializeJson(response.text)
+      response.data
     );
   }
 }
 export function serializeGetMetadataQueryIndicesQueryParamsArgScopeField(
   val: GetMetadataQueryIndicesQueryParamsArgScopeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(
   val: any
 ): GetMetadataQueryIndicesQueryParamsArgScopeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetMetadataQueryIndicesQueryParamsArgScopeField"';
   }
   if (val == 'global') {
@@ -272,13 +280,13 @@ export function deserializeGetMetadataQueryIndicesQueryParamsArgScopeField(
 }
 export function serializeGetSearchQueryParamsArgScopeField(
   val: GetSearchQueryParamsArgScopeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgScopeField(
   val: any
 ): GetSearchQueryParamsArgScopeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgScopeField"';
   }
   if (val == 'user_content') {
@@ -291,13 +299,13 @@ export function deserializeGetSearchQueryParamsArgScopeField(
 }
 export function serializeGetSearchQueryParamsArgContentTypesField(
   val: GetSearchQueryParamsArgContentTypesField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgContentTypesField(
   val: any
 ): GetSearchQueryParamsArgContentTypesField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgContentTypesField"';
   }
   if (val == 'name') {
@@ -319,13 +327,13 @@ export function deserializeGetSearchQueryParamsArgContentTypesField(
 }
 export function serializeGetSearchQueryParamsArgTypeField(
   val: GetSearchQueryParamsArgTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgTypeField(
   val: any
 ): GetSearchQueryParamsArgTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgTypeField"';
   }
   if (val == 'file') {
@@ -341,13 +349,13 @@ export function deserializeGetSearchQueryParamsArgTypeField(
 }
 export function serializeGetSearchQueryParamsArgTrashContentField(
   val: GetSearchQueryParamsArgTrashContentField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgTrashContentField(
   val: any
 ): GetSearchQueryParamsArgTrashContentField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgTrashContentField"';
   }
   if (val == 'non_trashed_only') {
@@ -363,13 +371,13 @@ export function deserializeGetSearchQueryParamsArgTrashContentField(
 }
 export function serializeGetSearchQueryParamsArgSortField(
   val: GetSearchQueryParamsArgSortField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgSortField(
   val: any
 ): GetSearchQueryParamsArgSortField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgSortField"';
   }
   if (val == 'modified_at') {
@@ -382,13 +390,13 @@ export function deserializeGetSearchQueryParamsArgSortField(
 }
 export function serializeGetSearchQueryParamsArgDirectionField(
   val: GetSearchQueryParamsArgDirectionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetSearchQueryParamsArgDirectionField(
   val: any
 ): GetSearchQueryParamsArgDirectionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetSearchQueryParamsArgDirectionField"';
   }
   if (val == 'DESC') {

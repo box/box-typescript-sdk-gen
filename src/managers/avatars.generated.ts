@@ -13,9 +13,15 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
+import { sdToJson } from '../json.js';
 import { MultipartItem } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetUserAvatarHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -126,7 +132,7 @@ export class AvatarsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUserAvatar(deserializeJson(response.text));
+    return deserializeUserAvatar(response.data);
   }
   async deleteUserAvatar(
     userId: string,

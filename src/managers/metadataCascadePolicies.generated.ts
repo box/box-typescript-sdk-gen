@@ -16,13 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetMetadataCascadePoliciesQueryParamsArg {
   readonly folderId: string;
   readonly ownerEnterpriseId?: string;
@@ -151,7 +155,7 @@ export class MetadataCascadePoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataCascadePolicies(deserializeJson(response.text));
+    return deserializeMetadataCascadePolicies(response.data);
   }
   async createMetadataCascadePolicy(
     requestBody: CreateMetadataCascadePolicyRequestBodyArg,
@@ -168,9 +172,7 @@ export class MetadataCascadePoliciesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateMetadataCascadePolicyRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateMetadataCascadePolicyRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -178,7 +180,7 @@ export class MetadataCascadePoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataCascadePolicy(deserializeJson(response.text));
+    return deserializeMetadataCascadePolicy(response.data);
   }
   async getMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
@@ -204,7 +206,7 @@ export class MetadataCascadePoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataCascadePolicy(deserializeJson(response.text));
+    return deserializeMetadataCascadePolicy(response.data);
   }
   async deleteMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
@@ -252,8 +254,8 @@ export class MetadataCascadePoliciesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateMetadataCascadePolicyApplyRequestBodyArg(requestBody)
+        data: serializeCreateMetadataCascadePolicyApplyRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: void 0,
@@ -267,13 +269,13 @@ export class MetadataCascadePoliciesManager {
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyArgScopeField(
   val: CreateMetadataCascadePolicyRequestBodyArgScopeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataCascadePolicyRequestBodyArgScopeField(
   val: any
 ): CreateMetadataCascadePolicyRequestBodyArgScopeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataCascadePolicyRequestBodyArgScopeField"';
   }
   if (val == 'global') {
@@ -286,7 +288,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyArgScopeField(
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyArg(
   val: CreateMetadataCascadePolicyRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['folder_id']: val.folderId,
     ['scope']: serializeCreateMetadataCascadePolicyRequestBodyArgScopeField(
@@ -310,13 +312,13 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyArg(
 }
 export function serializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(
   val: CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(
   val: any
 ): CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField"';
   }
   if (val == 'none') {
@@ -329,7 +331,7 @@ export function deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflic
 }
 export function serializeCreateMetadataCascadePolicyApplyRequestBodyArg(
   val: CreateMetadataCascadePolicyApplyRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['conflict_resolution']:
       serializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField(

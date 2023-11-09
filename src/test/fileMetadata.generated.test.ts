@@ -27,6 +27,13 @@ import { UpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMet
 import { generateByteStream } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   const uploadedFiles: any = await client.uploads.uploadFile({

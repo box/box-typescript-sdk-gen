@@ -19,10 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -166,9 +170,7 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentRestriction(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegmentRestriction(response.data);
   }
   async deleteShieldInformationBarrierSegmentRestrictionById(
     shieldInformationBarrierSegmentRestrictionId: string,
@@ -230,7 +232,7 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegmentRestrictions(
-      deserializeJson(response.text)
+      response.data
     );
   }
   async createShieldInformationBarrierSegmentRestriction(
@@ -250,10 +252,8 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -262,20 +262,18 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentRestriction(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegmentRestriction(response.data);
   }
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField(
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField"';
   }
   if (val == 'shield_information_barrier_segment_restriction') {
@@ -285,13 +283,13 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField"';
   }
   if (val == 'shield_information_barrier_segment') {
@@ -301,7 +299,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -331,13 +329,13 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField(
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField"';
   }
   if (val == 'shield_information_barrier_segment') {
@@ -347,7 +345,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -377,7 +375,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArg(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['type']:
       serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField(

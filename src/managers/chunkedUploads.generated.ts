@@ -28,6 +28,8 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
+import { SerializedData } from '../json.js';
+import { sdToJson } from '../json.js';
 import { generateByteStreamFromBuffer } from '../utils.js';
 import { hexToBase64 } from '../utils.js';
 import { iterateChunks } from '../utils.js';
@@ -36,10 +38,12 @@ import { reduceIterator } from '../utils.js';
 import { Hash } from '../utils.js';
 import { listConcat } from '../utils.js';
 import { bufferLength } from '../utils.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface PartAccumulator {
   readonly lastIndex: number;
   readonly parts: readonly UploadPart[];
@@ -190,9 +194,7 @@ export class ChunkedUploadsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileUploadSessionRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateFileUploadSessionRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -200,7 +202,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadSession(deserializeJson(response.text));
+    return deserializeUploadSession(response.data);
   }
   async createFileUploadSessionForExistingFile(
     fileId: string,
@@ -222,10 +224,8 @@ export class ChunkedUploadsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileUploadSessionForExistingFileRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateFileUploadSessionForExistingFileRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -234,7 +234,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadSession(deserializeJson(response.text));
+    return deserializeUploadSession(response.data);
   }
   async getFileUploadSessionById(
     uploadSessionId: string,
@@ -260,7 +260,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadSession(deserializeJson(response.text));
+    return deserializeUploadSession(response.data);
   }
   async uploadFilePart(
     uploadSessionId: string,
@@ -293,7 +293,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadedPart(deserializeJson(response.text));
+    return deserializeUploadedPart(response.data);
   }
   async deleteFileUploadSessionById(
     uploadSessionId: string,
@@ -354,7 +354,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadParts(deserializeJson(response.text));
+    return deserializeUploadParts(response.data);
   }
   async createFileUploadSessionCommit(
     uploadSessionId: string,
@@ -381,9 +381,7 @@ export class ChunkedUploadsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileUploadSessionCommitRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateFileUploadSessionCommitRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -391,7 +389,7 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFiles(deserializeJson(response.text));
+    return deserializeFiles(response.data);
   }
   async reducer(acc: PartAccumulator, chunk: ByteStream): Promise<any> {
     const lastIndex: number = acc.lastIndex;
@@ -444,13 +442,18 @@ export class ChunkedUploadsManager {
     file: ByteStream,
     fileName: string,
     fileSize: number,
-    parentFolderId: string
+    parentFolderId: string,
+    cancellationToken?: CancellationToken
   ): Promise<any> {
-    const uploadSession: UploadSession = await this.createFileUploadSession({
-      fileName: fileName,
-      fileSize: fileSize,
-      folderId: parentFolderId,
-    } satisfies CreateFileUploadSessionRequestBodyArg);
+    const uploadSession: UploadSession = await this.createFileUploadSession(
+      {
+        fileName: fileName,
+        fileSize: fileSize,
+        folderId: parentFolderId,
+      } satisfies CreateFileUploadSessionRequestBodyArg,
+      new CreateFileUploadSessionHeadersArg({}),
+      cancellationToken
+    );
     const uploadSessionId: string = uploadSession.id!;
     const partSize: number = uploadSession.partSize!;
     const totalParts: number = uploadSession.totalParts!;
@@ -475,12 +478,19 @@ export class ChunkedUploadsManager {
     );
     const parts: readonly UploadPart[] = results.parts;
     const processedSessionParts: UploadParts =
-      await this.getFileUploadSessionParts(uploadSessionId);
+      await this.getFileUploadSessionParts(
+        uploadSessionId,
+        {} satisfies GetFileUploadSessionPartsQueryParamsArg,
+        new GetFileUploadSessionPartsHeadersArg({}),
+        cancellationToken
+      );
     if (!(processedSessionParts.totalCount! == totalParts)) {
       throw 'Assertion failed';
     }
     const processedSession: UploadSession = await this.getFileUploadSessionById(
-      uploadSessionId
+      uploadSessionId,
+      new GetFileUploadSessionByIdHeadersArg({}),
+      cancellationToken
     );
     if (!(processedSession.numPartsProcessed == totalParts)) {
       throw 'Assertion failed';
@@ -490,14 +500,15 @@ export class ChunkedUploadsManager {
     const committedSession: Files = await this.createFileUploadSessionCommit(
       uploadSessionId,
       { parts: parts } satisfies CreateFileUploadSessionCommitRequestBodyArg,
-      new CreateFileUploadSessionCommitHeadersArg({ digest: digest })
+      new CreateFileUploadSessionCommitHeadersArg({ digest: digest }),
+      cancellationToken
     );
     return committedSession.entries![0];
   }
 }
 export function serializeCreateFileUploadSessionRequestBodyArg(
   val: CreateFileUploadSessionRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['folder_id']: val.folderId,
     ['file_size']: val.fileSize,
@@ -518,7 +529,7 @@ export function deserializeCreateFileUploadSessionRequestBodyArg(
 }
 export function serializeCreateFileUploadSessionForExistingFileRequestBodyArg(
   val: CreateFileUploadSessionForExistingFileRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['file_size']: val.fileSize,
     ['file_name']: val.fileName == void 0 ? void 0 : val.fileName,
@@ -537,9 +548,9 @@ export function deserializeCreateFileUploadSessionForExistingFileRequestBodyArg(
 }
 export function serializeCreateFileUploadSessionCommitRequestBodyArg(
   val: CreateFileUploadSessionCommitRequestBodyArg
-): Json {
+): SerializedData {
   return {
-    ['parts']: val.parts?.map(function (item: UploadPart): any {
+    ['parts']: val.parts.map(function (item: UploadPart): any {
       return serializeUploadPart(item);
     }) as readonly any[],
   };
@@ -547,8 +558,8 @@ export function serializeCreateFileUploadSessionCommitRequestBodyArg(
 export function deserializeCreateFileUploadSessionCommitRequestBodyArg(
   val: any
 ): CreateFileUploadSessionCommitRequestBodyArg {
-  const parts: readonly UploadPart[] = isJson(val.parts, 'array')
-    ? (val.parts?.map(function (itm: Json): any {
+  const parts: readonly UploadPart[] = sdIsList(val.parts)
+    ? (val.parts.map(function (itm: SerializedData): any {
         return deserializeUploadPart(itm);
       }) as readonly any[])
     : [];

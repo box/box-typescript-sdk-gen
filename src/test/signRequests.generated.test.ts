@@ -35,6 +35,14 @@ import { SignRequestCreateSigner } from '../schemas.generated.js';
 import { FolderMini } from '../schemas.generated.js';
 import { FileBase } from '../schemas.generated.js';
 import { toString } from '../utils.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('test_create_get_cancel_and_list_sign_request', async function test_create_get_cancel_and_list_sign_request(): Promise<any> {
   const signerEmail: string = ''.concat(getUuid(), '@box.com') as string;

@@ -10,12 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetFolderTrashItemsQueryParamsArgDirectionField = 'ASC' | 'DESC';
 export type GetFolderTrashItemsQueryParamsArgSortField =
   | 'name'
@@ -58,7 +63,9 @@ export class TrashedItemsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['limit']: toString(queryParams.limit) as string,
       ['offset']: toString(queryParams.offset) as string,
       ['usemarker']: toString(queryParams.usemarker) as string,
@@ -81,18 +88,18 @@ export class TrashedItemsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeItems(deserializeJson(response.text));
+    return deserializeItems(response.data);
   }
 }
 export function serializeGetFolderTrashItemsQueryParamsArgDirectionField(
   val: GetFolderTrashItemsQueryParamsArgDirectionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(
   val: any
 ): GetFolderTrashItemsQueryParamsArgDirectionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgDirectionField"';
   }
   if (val == 'ASC') {
@@ -105,13 +112,13 @@ export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(
 }
 export function serializeGetFolderTrashItemsQueryParamsArgSortField(
   val: GetFolderTrashItemsQueryParamsArgSortField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderTrashItemsQueryParamsArgSortField(
   val: any
 ): GetFolderTrashItemsQueryParamsArgSortField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgSortField"';
   }
   if (val == 'name') {

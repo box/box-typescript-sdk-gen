@@ -19,10 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileMetadataHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -141,7 +145,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadatas(deserializeJson(response.text));
+    return deserializeMetadatas(response.data);
   }
   async getFileMetadataById(
     fileId: string,
@@ -173,7 +177,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadataFull(deserializeJson(response.text));
+    return deserializeMetadataFull(response.data);
   }
   async createFileMetadataById(
     fileId: string,
@@ -200,9 +204,7 @@ export class FileMetadataManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFileMetadataByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateFileMetadataByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -210,7 +212,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(deserializeJson(response.text));
+    return deserializeMetadata(response.data);
   }
   async updateFileMetadataById(
     fileId: string,
@@ -237,11 +239,9 @@ export class FileMetadataManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateFileMetadataByIdRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateFileMetadataByIdRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -249,7 +249,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(deserializeJson(response.text));
+    return deserializeMetadata(response.data);
   }
   async deleteFileMetadataById(
     fileId: string,
@@ -286,13 +286,13 @@ export class FileMetadataManager {
 }
 export function serializeGetFileMetadataByIdScopeArg(
   val: GetFileMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFileMetadataByIdScopeArg(
   val: any
 ): GetFileMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFileMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -305,13 +305,13 @@ export function deserializeGetFileMetadataByIdScopeArg(
 }
 export function serializeCreateFileMetadataByIdScopeArg(
   val: CreateFileMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFileMetadataByIdScopeArg(
   val: any
 ): CreateFileMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateFileMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -324,7 +324,7 @@ export function deserializeCreateFileMetadataByIdScopeArg(
 }
 export function serializeCreateFileMetadataByIdRequestBodyArg(
   val: CreateFileMetadataByIdRequestBodyArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFileMetadataByIdRequestBodyArg(
@@ -334,13 +334,13 @@ export function deserializeCreateFileMetadataByIdRequestBodyArg(
 }
 export function serializeUpdateFileMetadataByIdScopeArg(
   val: UpdateFileMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdScopeArg(
   val: any
 ): UpdateFileMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataByIdScopeArg"';
   }
   if (val == 'global') {
@@ -353,13 +353,13 @@ export function deserializeUpdateFileMetadataByIdScopeArg(
 }
 export function serializeUpdateFileMetadataByIdRequestBodyArgOpField(
   val: UpdateFileMetadataByIdRequestBodyArgOpField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdRequestBodyArgOpField(
   val: any
 ): UpdateFileMetadataByIdRequestBodyArgOpField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataByIdRequestBodyArgOpField"';
   }
   if (val == 'add') {
@@ -384,7 +384,7 @@ export function deserializeUpdateFileMetadataByIdRequestBodyArgOpField(
 }
 export function serializeUpdateFileMetadataByIdRequestBodyArg(
   val: UpdateFileMetadataByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']:
       val.op == void 0
@@ -414,13 +414,13 @@ export function deserializeUpdateFileMetadataByIdRequestBodyArg(
 }
 export function serializeDeleteFileMetadataByIdScopeArg(
   val: DeleteFileMetadataByIdScopeArg
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeDeleteFileMetadataByIdScopeArg(
   val: any
 ): DeleteFileMetadataByIdScopeArg {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "DeleteFileMetadataByIdScopeArg"';
   }
   if (val == 'global') {

@@ -19,9 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetShieldInformationBarrierSegmentByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -157,9 +162,7 @@ export class ShieldInformationBarrierSegmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegment(response.data);
   }
   async updateShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
@@ -180,10 +183,8 @@ export class ShieldInformationBarrierSegmentsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg(
-            requestBody
-          )
+        data: serializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -192,9 +193,7 @@ export class ShieldInformationBarrierSegmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegment(response.data);
   }
   async deleteShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
@@ -255,9 +254,7 @@ export class ShieldInformationBarrierSegmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegments(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegments(response.data);
   }
   async createShieldInformationBarrierSegment(
     requestBody: CreateShieldInformationBarrierSegmentRequestBodyArg,
@@ -276,10 +273,8 @@ export class ShieldInformationBarrierSegmentsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateShieldInformationBarrierSegmentRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateShieldInformationBarrierSegmentRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -288,14 +283,12 @@ export class ShieldInformationBarrierSegmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(
-      deserializeJson(response.text)
-    );
+    return deserializeShieldInformationBarrierSegment(response.data);
   }
 }
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg(
   val: UpdateShieldInformationBarrierSegmentByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -314,7 +307,7 @@ export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBodyA
 }
 export function serializeCreateShieldInformationBarrierSegmentRequestBodyArg(
   val: CreateShieldInformationBarrierSegmentRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['shield_information_barrier']: serializeShieldInformationBarrierBase(
       val.shieldInformationBarrier

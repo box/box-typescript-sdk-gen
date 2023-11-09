@@ -13,12 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetLegalHoldPoliciesQueryParamsArg {
   readonly policyName?: string;
   readonly fields?: readonly string[];
@@ -123,7 +128,9 @@ export class LegalHoldPoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({
       ['policy_name']: toString(queryParams.policyName) as string,
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
     });
@@ -142,7 +149,7 @@ export class LegalHoldPoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicies(deserializeJson(response.text));
+    return deserializeLegalHoldPolicies(response.data);
   }
   async createLegalHoldPolicy(
     requestBody: CreateLegalHoldPolicyRequestBodyArg,
@@ -159,9 +166,7 @@ export class LegalHoldPoliciesManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateLegalHoldPolicyRequestBodyArg(requestBody)
-        ),
+        data: serializeCreateLegalHoldPolicyRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -169,7 +174,7 @@ export class LegalHoldPoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicy(deserializeJson(response.text));
+    return deserializeLegalHoldPolicy(response.data);
   }
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
@@ -195,7 +200,7 @@ export class LegalHoldPoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicy(deserializeJson(response.text));
+    return deserializeLegalHoldPolicy(response.data);
   }
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
@@ -216,9 +221,7 @@ export class LegalHoldPoliciesManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateLegalHoldPolicyByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateLegalHoldPolicyByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -226,7 +229,7 @@ export class LegalHoldPoliciesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeLegalHoldPolicy(deserializeJson(response.text));
+    return deserializeLegalHoldPolicy(response.data);
   }
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
@@ -257,7 +260,7 @@ export class LegalHoldPoliciesManager {
 }
 export function serializeCreateLegalHoldPolicyRequestBodyArg(
   val: CreateLegalHoldPolicyRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['policy_name']: val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -290,7 +293,7 @@ export function deserializeCreateLegalHoldPolicyRequestBodyArg(
 }
 export function serializeUpdateLegalHoldPolicyByIdRequestBodyArg(
   val: UpdateLegalHoldPolicyByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,

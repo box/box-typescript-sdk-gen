@@ -19,9 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdToJson } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class CreateZipDownloadHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -58,13 +63,28 @@ export class GetZipDownloadStatusHeadersArg {
     Object.assign(this, fields);
   }
 }
+export class DownloadZipHeadersArg {
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields:
+      | Omit<DownloadZipHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DownloadZipHeadersArg, 'extraHeaders'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
 export class ZipDownloadsManager {
   readonly auth?: Authentication;
   readonly networkSession?: NetworkSession;
   constructor(
     fields: Omit<
       ZipDownloadsManager,
-      'createZipDownload' | 'getZipDownloadContent' | 'getZipDownloadStatus'
+      | 'createZipDownload'
+      | 'getZipDownloadContent'
+      | 'getZipDownloadStatus'
+      | 'downloadZip'
     >
   ) {
     Object.assign(this, fields);
@@ -82,7 +102,7 @@ export class ZipDownloadsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeZipDownloadRequest(requestBody)),
+        data: serializeZipDownloadRequest(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -90,10 +110,10 @@ export class ZipDownloadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeZipDownload(deserializeJson(response.text));
+    return deserializeZipDownload(response.data);
   }
   async getZipDownloadContent(
-    zipDownloadId: string,
+    downloadUrl: string,
     headers: GetZipDownloadContentHeadersArg = new GetZipDownloadContentHeadersArg(
       {}
     ),
@@ -102,25 +122,18 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        'https://dl.boxcloud.com/2.0/zip_downloads/',
-        toString(zipDownloadId) as string,
-        '/content'
-      ) as string,
-      {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'binary',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+    const response: FetchResponse = (await fetch(downloadUrl, {
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'binary',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return response.content;
   }
   async getZipDownloadStatus(
-    zipDownloadId: string,
+    statusUrl: string,
     headers: GetZipDownloadStatusHeadersArg = new GetZipDownloadStatusHeadersArg(
       {}
     ),
@@ -129,21 +142,35 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        'https://api.box.com/2.0/zip_downloads/',
-        toString(zipDownloadId) as string,
-        '/status'
-      ) as string,
+    const response: FetchResponse = (await fetch(statusUrl, {
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeZipDownloadStatus(response.data);
+  }
+  async downloadZip(
+    requestBody: ZipDownloadRequest,
+    headers: DownloadZipHeadersArg = new DownloadZipHeadersArg({}),
+    cancellationToken?: CancellationToken
+  ): Promise<ByteStream> {
+    const zipDownloadSession: ZipDownload = await this.createZipDownload(
       {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeZipDownloadStatus(deserializeJson(response.text));
+        items: requestBody.items,
+        downloadFileName: requestBody.downloadFileName,
+      } satisfies ZipDownloadRequest,
+      new CreateZipDownloadHeadersArg({ extraHeaders: headers.extraHeaders }),
+      cancellationToken
+    );
+    return await this.getZipDownloadContent(
+      zipDownloadSession.downloadUrl!,
+      new GetZipDownloadContentHeadersArg({
+        extraHeaders: headers.extraHeaders,
+      }),
+      cancellationToken
+    );
   }
 }

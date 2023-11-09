@@ -16,13 +16,18 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { MultipartItem } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface UploadFileVersionRequestBodyArgAttributesField {
   readonly name: string;
   readonly contentModifiedAt?: string;
@@ -122,7 +127,9 @@ export class UploadsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -146,10 +153,8 @@ export class UploadsManager {
         multipartData: [
           {
             partName: 'attributes',
-            body: serializeJson(
-              serializeUploadFileVersionRequestBodyArgAttributesField(
-                requestBody.attributes
-              )
+            data: serializeUploadFileVersionRequestBodyArgAttributesField(
+              requestBody.attributes
             ),
           } satisfies MultipartItem,
           {
@@ -166,7 +171,7 @@ export class UploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFiles(deserializeJson(response.text));
+    return deserializeFiles(response.data);
   }
   async uploadFile(
     requestBody: UploadFileRequestBodyArg,
@@ -177,7 +182,9 @@ export class UploadsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -194,10 +201,8 @@ export class UploadsManager {
         multipartData: [
           {
             partName: 'attributes',
-            body: serializeJson(
-              serializeUploadFileRequestBodyArgAttributesField(
-                requestBody.attributes
-              )
+            data: serializeUploadFileRequestBodyArgAttributesField(
+              requestBody.attributes
             ),
           } satisfies MultipartItem,
           {
@@ -214,7 +219,7 @@ export class UploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFiles(deserializeJson(response.text));
+    return deserializeFiles(response.data);
   }
   async preflightFileUpload(
     requestBody: PreflightFileUploadRequestBodyArg = {} satisfies PreflightFileUploadRequestBodyArg,
@@ -231,9 +236,7 @@ export class UploadsManager {
       {
         method: 'OPTIONS',
         headers: headersMap,
-        body: serializeJson(
-          serializePreflightFileUploadRequestBodyArg(requestBody)
-        ),
+        data: serializePreflightFileUploadRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -241,12 +244,12 @@ export class UploadsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUploadUrl(deserializeJson(response.text));
+    return deserializeUploadUrl(response.data);
   }
 }
 export function serializeUploadFileVersionRequestBodyArgAttributesField(
   val: UploadFileVersionRequestBodyArgAttributesField
-): Json {
+): SerializedData {
   return {
     ['name']: val.name,
     ['content_modified_at']:
@@ -266,7 +269,7 @@ export function deserializeUploadFileVersionRequestBodyArgAttributesField(
 }
 export function serializeUploadFileRequestBodyArgAttributesFieldParentField(
   val: UploadFileRequestBodyArgAttributesFieldParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeUploadFileRequestBodyArgAttributesFieldParentField(
@@ -279,7 +282,7 @@ export function deserializeUploadFileRequestBodyArgAttributesFieldParentField(
 }
 export function serializeUploadFileRequestBodyArgAttributesField(
   val: UploadFileRequestBodyArgAttributesField
-): Json {
+): SerializedData {
   return {
     ['name']: val.name,
     ['parent']: serializeUploadFileRequestBodyArgAttributesFieldParentField(
@@ -310,7 +313,7 @@ export function deserializeUploadFileRequestBodyArgAttributesField(
 }
 export function serializePreflightFileUploadRequestBodyArgParentField(
   val: PreflightFileUploadRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializePreflightFileUploadRequestBodyArgParentField(
@@ -321,7 +324,7 @@ export function deserializePreflightFileUploadRequestBodyArgParentField(
 }
 export function serializePreflightFileUploadRequestBodyArg(
   val: PreflightFileUploadRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['size']: val.size == void 0 ? void 0 : val.size,

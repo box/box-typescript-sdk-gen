@@ -19,6 +19,13 @@ import { UpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.
 import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('test_create_get_delete_weblink', async function test_create_get_delete_weblink(): Promise<any> {
   const url: any = 'https://www.box.com';

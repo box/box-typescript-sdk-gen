@@ -1,9 +1,5 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { serializeFolderLocks } from '../schemas.generated.js';
 import { deserializeFolderLocks } from '../schemas.generated.js';
 import { serializeFolderLock } from '../schemas.generated.js';
@@ -16,8 +12,6 @@ import { serializeCreateFolderLockRequestBodyArgLockedOperationsField } from '..
 import { deserializeCreateFolderLockRequestBodyArgLockedOperationsField } from '../managers/folderLocks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { FolderLocks } from '../schemas.generated.js';
 import { GetFolderLocksQueryParamsArg } from '../managers/folderLocks.generated.js';
 import { FolderLock } from '../schemas.generated.js';
@@ -26,12 +20,17 @@ import { CreateFolderLockRequestBodyArgFolderField } from '../managers/folderLoc
 import { CreateFolderLockRequestBodyArgLockedOperationsField } from '../managers/folderLocks.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { createNewFolder } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testFolderLocks', async function testFolderLocks(): Promise<any> {
-  const folder: FolderFull = await client.folders.createFolder({
-    name: getUuid(),
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+  const folder: FolderFull = await createNewFolder();
   const folderLocks: FolderLocks = await client.folderLocks.getFolderLocks({
     folderId: folder.id,
   } satisfies GetFolderLocksQueryParamsArg);

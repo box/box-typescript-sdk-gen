@@ -13,12 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetCollaborationWhitelistExemptTargetsQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
@@ -144,9 +149,7 @@ export class CollaborationAllowlistExemptTargetsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTargets(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistExemptTargets(response.data);
   }
   async createCollaborationWhitelistExemptTarget(
     requestBody: CreateCollaborationWhitelistExemptTargetRequestBodyArg,
@@ -165,10 +168,8 @@ export class CollaborationAllowlistExemptTargetsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -177,9 +178,7 @@ export class CollaborationAllowlistExemptTargetsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTarget(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistExemptTarget(response.data);
   }
   async getCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
@@ -205,9 +204,7 @@ export class CollaborationAllowlistExemptTargetsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTarget(
-      deserializeJson(response.text)
-    );
+    return deserializeCollaborationAllowlistExemptTarget(response.data);
   }
   async deleteCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
@@ -238,7 +235,7 @@ export class CollaborationAllowlistExemptTargetsManager {
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField(
   val: CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField(
@@ -251,7 +248,7 @@ export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyAr
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg(
   val: CreateCollaborationWhitelistExemptTargetRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['user']:
       serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField(

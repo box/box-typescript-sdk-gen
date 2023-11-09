@@ -13,10 +13,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdToJson } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface CreateWebLinkRequestBodyArgParentField {
   readonly id: string;
 }
@@ -122,7 +126,7 @@ export class WebLinksManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeCreateWebLinkRequestBodyArg(requestBody)),
+        data: serializeCreateWebLinkRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -130,7 +134,7 @@ export class WebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async getWebLinkById(
     webLinkId: string,
@@ -157,7 +161,7 @@ export class WebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async updateWebLinkById(
     webLinkId: string,
@@ -176,9 +180,7 @@ export class WebLinksManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateWebLinkByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateWebLinkByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -186,7 +188,7 @@ export class WebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebLink(deserializeJson(response.text));
+    return deserializeWebLink(response.data);
   }
   async deleteWebLinkById(
     webLinkId: string,
@@ -215,7 +217,7 @@ export class WebLinksManager {
 }
 export function serializeCreateWebLinkRequestBodyArgParentField(
   val: CreateWebLinkRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateWebLinkRequestBodyArgParentField(
@@ -226,7 +228,7 @@ export function deserializeCreateWebLinkRequestBodyArgParentField(
 }
 export function serializeCreateWebLinkRequestBodyArg(
   val: CreateWebLinkRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['url']: val.url,
     ['parent']: serializeCreateWebLinkRequestBodyArgParentField(val.parent),
@@ -252,7 +254,7 @@ export function deserializeCreateWebLinkRequestBodyArg(
 }
 export function serializeUpdateWebLinkByIdRequestBodyArgParentField(
   val: UpdateWebLinkByIdRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateWebLinkByIdRequestBodyArgParentField(
@@ -263,13 +265,13 @@ export function deserializeUpdateWebLinkByIdRequestBodyArgParentField(
 }
 export function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
   val: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
   val: any
 ): UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField"';
   }
   if (val == 'open') {
@@ -285,7 +287,7 @@ export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessF
 }
 export function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
   val: UpdateWebLinkByIdRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -324,7 +326,7 @@ export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
 }
 export function serializeUpdateWebLinkByIdRequestBodyArg(
   val: UpdateWebLinkByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,
     ['parent']:

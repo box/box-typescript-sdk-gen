@@ -14,7 +14,11 @@ This operation is performed by calling function `getFileRequestById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-requests-id/).
 
-_Currently we don't have an example for calling `getFileRequestById` in integration tests_
+<!-- sample get_file_requests_id -->
+
+```ts
+await client.fileRequests.getFileRequestById(updatedFileRequest.id);
+```
 
 ### Arguments
 
@@ -41,7 +45,14 @@ This operation is performed by calling function `updateFileRequestById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-file-requests-id/).
 
-_Currently we don't have an example for calling `updateFileRequestById` in integration tests_
+<!-- sample put_file_requests_id -->
+
+```ts
+await client.fileRequests.updateFileRequestById(copiedFileRequest.id, {
+  title: 'updated title',
+  description: 'updated description',
+} satisfies FileRequestUpdateRequest);
+```
 
 ### Arguments
 
@@ -69,7 +80,11 @@ This operation is performed by calling function `deleteFileRequestById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-file-requests-id/).
 
-_Currently we don't have an example for calling `deleteFileRequestById` in integration tests_
+<!-- sample delete_file_requests_id -->
+
+```ts
+await client.fileRequests.deleteFileRequestById(updatedFileRequest.id);
+```
 
 ### Arguments
 
@@ -97,7 +112,16 @@ This operation is performed by calling function `createFileRequestCopy`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-file-requests-id-copy/).
 
-_Currently we don't have an example for calling `createFileRequestCopy` in integration tests_
+<!-- sample post_file_requests_id_copy -->
+
+```ts
+await client.fileRequests.createFileRequestCopy(fileRequestId, {
+  folder: {
+    id: fileRequest.folder.id,
+    type: 'folder' as FileRequestCopyRequestFolderFieldTypeField,
+  } satisfies FileRequestCopyRequestFolderField,
+} satisfies FileRequestCopyRequest);
+```
 
 ### Arguments
 

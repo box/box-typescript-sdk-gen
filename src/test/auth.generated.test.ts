@@ -18,6 +18,13 @@ import { OAuthConfig } from '../oauth.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');

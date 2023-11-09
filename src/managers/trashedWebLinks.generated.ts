@@ -13,12 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { serializeJson } from '../json.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface RestoreWeblinkFromTrashRequestBodyArgParentField {
   readonly id?: string;
 }
@@ -91,7 +96,9 @@ export class TrashedWebLinksManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -105,9 +112,7 @@ export class TrashedWebLinksManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeRestoreWeblinkFromTrashRequestBodyArg(requestBody)
-        ),
+        data: serializeRestoreWeblinkFromTrashRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -115,7 +120,7 @@ export class TrashedWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTrashWebLinkRestored(deserializeJson(response.text));
+    return deserializeTrashWebLinkRestored(response.data);
   }
   async getWebLinkTrash(
     webLinkId: string,
@@ -126,7 +131,9 @@ export class TrashedWebLinksManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -147,7 +154,7 @@ export class TrashedWebLinksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTrashWebLink(deserializeJson(response.text));
+    return deserializeTrashWebLink(response.data);
   }
   async deleteWebLinkTrash(
     webLinkId: string,
@@ -179,7 +186,7 @@ export class TrashedWebLinksManager {
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyArgParentField(
   val: RestoreWeblinkFromTrashRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(
@@ -190,7 +197,7 @@ export function deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyArg(
   val: RestoreWeblinkFromTrashRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']:

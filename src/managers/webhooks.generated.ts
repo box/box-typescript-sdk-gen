@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetWebhooksQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
@@ -229,7 +233,7 @@ export class WebhooksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebhooks(deserializeJson(response.text));
+    return deserializeWebhooks(response.data);
   }
   async createWebhook(
     requestBody: CreateWebhookRequestBodyArg,
@@ -244,7 +248,7 @@ export class WebhooksManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeCreateWebhookRequestBodyArg(requestBody)),
+        data: serializeCreateWebhookRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -252,7 +256,7 @@ export class WebhooksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebhook(deserializeJson(response.text));
+    return deserializeWebhook(response.data);
   }
   async getWebhookById(
     webhookId: string,
@@ -276,7 +280,7 @@ export class WebhooksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebhook(deserializeJson(response.text));
+    return deserializeWebhook(response.data);
   }
   async updateWebhookById(
     webhookId: string,
@@ -295,9 +299,7 @@ export class WebhooksManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateWebhookByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateWebhookByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -305,7 +307,7 @@ export class WebhooksManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeWebhook(deserializeJson(response.text));
+    return deserializeWebhook(response.data);
   }
   async deleteWebhookById(
     webhookId: string,
@@ -334,13 +336,13 @@ export class WebhooksManager {
 }
 export function serializeCreateWebhookRequestBodyArgTargetFieldTypeField(
   val: CreateWebhookRequestBodyArgTargetFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateWebhookRequestBodyArgTargetFieldTypeField(
   val: any
 ): CreateWebhookRequestBodyArgTargetFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateWebhookRequestBodyArgTargetFieldTypeField"';
   }
   if (val == 'file') {
@@ -353,7 +355,7 @@ export function deserializeCreateWebhookRequestBodyArgTargetFieldTypeField(
 }
 export function serializeCreateWebhookRequestBodyArgTargetField(
   val: CreateWebhookRequestBodyArgTargetField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -377,13 +379,13 @@ export function deserializeCreateWebhookRequestBodyArgTargetField(
 }
 export function serializeCreateWebhookRequestBodyArgTriggersField(
   val: CreateWebhookRequestBodyArgTriggersField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateWebhookRequestBodyArgTriggersField(
   val: any
 ): CreateWebhookRequestBodyArgTriggersField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateWebhookRequestBodyArgTriggersField"';
   }
   if (val == 'FILE.UPLOADED') {
@@ -510,11 +512,11 @@ export function deserializeCreateWebhookRequestBodyArgTriggersField(
 }
 export function serializeCreateWebhookRequestBodyArg(
   val: CreateWebhookRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['target']: serializeCreateWebhookRequestBodyArgTargetField(val.target),
     ['address']: val.address,
-    ['triggers']: val.triggers?.map(function (
+    ['triggers']: val.triggers.map(function (
       item: CreateWebhookRequestBodyArgTriggersField
     ): any {
       return serializeCreateWebhookRequestBodyArgTriggersField(item);
@@ -527,14 +529,12 @@ export function deserializeCreateWebhookRequestBodyArg(
   const target: CreateWebhookRequestBodyArgTargetField =
     deserializeCreateWebhookRequestBodyArgTargetField(val.target);
   const address: string = val.address;
-  const triggers: readonly CreateWebhookRequestBodyArgTriggersField[] = isJson(
-    val.triggers,
-    'array'
-  )
-    ? (val.triggers?.map(function (itm: Json): any {
-        return deserializeCreateWebhookRequestBodyArgTriggersField(itm);
-      }) as readonly any[])
-    : [];
+  const triggers: readonly CreateWebhookRequestBodyArgTriggersField[] =
+    sdIsList(val.triggers)
+      ? (val.triggers.map(function (itm: SerializedData): any {
+          return deserializeCreateWebhookRequestBodyArgTriggersField(itm);
+        }) as readonly any[])
+      : [];
   return {
     target: target,
     address: address,
@@ -543,13 +543,13 @@ export function deserializeCreateWebhookRequestBodyArg(
 }
 export function serializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(
   val: UpdateWebhookByIdRequestBodyArgTargetFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(
   val: any
 ): UpdateWebhookByIdRequestBodyArgTargetFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateWebhookByIdRequestBodyArgTargetFieldTypeField"';
   }
   if (val == 'file') {
@@ -562,7 +562,7 @@ export function deserializeUpdateWebhookByIdRequestBodyArgTargetFieldTypeField(
 }
 export function serializeUpdateWebhookByIdRequestBodyArgTargetField(
   val: UpdateWebhookByIdRequestBodyArgTargetField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -590,13 +590,13 @@ export function deserializeUpdateWebhookByIdRequestBodyArgTargetField(
 }
 export function serializeUpdateWebhookByIdRequestBodyArgTriggersField(
   val: UpdateWebhookByIdRequestBodyArgTriggersField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyArgTriggersField(
   val: any
 ): UpdateWebhookByIdRequestBodyArgTriggersField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateWebhookByIdRequestBodyArgTriggersField"';
   }
   if (val == 'FILE.UPLOADED') {
@@ -723,7 +723,7 @@ export function deserializeUpdateWebhookByIdRequestBodyArgTriggersField(
 }
 export function serializeUpdateWebhookByIdRequestBodyArg(
   val: UpdateWebhookByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['target']:
       val.target == void 0
@@ -733,7 +733,7 @@ export function serializeUpdateWebhookByIdRequestBodyArg(
     ['triggers']:
       val.triggers == void 0
         ? void 0
-        : (val.triggers?.map(function (
+        : (val.triggers.map(function (
             item: UpdateWebhookByIdRequestBodyArgTriggersField
           ): any {
             return serializeUpdateWebhookByIdRequestBodyArgTriggersField(item);
@@ -754,8 +754,8 @@ export function deserializeUpdateWebhookByIdRequestBodyArg(
     | readonly UpdateWebhookByIdRequestBodyArgTriggersField[] =
     val.triggers == void 0
       ? void 0
-      : isJson(val.triggers, 'array')
-      ? (val.triggers?.map(function (itm: Json): any {
+      : sdIsList(val.triggers)
+      ? (val.triggers.map(function (itm: SerializedData): any {
           return deserializeUpdateWebhookByIdRequestBodyArgTriggersField(itm);
         }) as readonly any[])
       : [];

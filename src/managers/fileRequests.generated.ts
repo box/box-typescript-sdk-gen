@@ -19,9 +19,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFileRequestByIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -109,7 +114,7 @@ export class FileRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileRequest(deserializeJson(response.text));
+    return deserializeFileRequest(response.data);
   }
   async updateFileRequestById(
     fileRequestId: string,
@@ -133,7 +138,7 @@ export class FileRequestsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(serializeFileRequestUpdateRequest(requestBody)),
+        data: serializeFileRequestUpdateRequest(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -141,7 +146,7 @@ export class FileRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileRequest(deserializeJson(response.text));
+    return deserializeFileRequest(response.data);
   }
   async deleteFileRequestById(
     fileRequestId: string,
@@ -189,7 +194,7 @@ export class FileRequestsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(serializeFileRequestCopyRequest(requestBody)),
+        data: serializeFileRequestCopyRequest(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -197,6 +202,6 @@ export class FileRequestsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileRequest(deserializeJson(response.text));
+    return deserializeFileRequest(response.data);
   }
 }

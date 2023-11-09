@@ -20,6 +20,14 @@ import { TrashWebLinkRestored } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
   const url: string = 'https://www.box.com';

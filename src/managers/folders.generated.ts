@@ -13,13 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetFolderByIdQueryParamsArgSortField =
   | 'id'
   | 'name'
@@ -232,7 +236,9 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['sort']: toString(queryParams.sort) as string,
       ['direction']: toString(queryParams.direction) as string,
       ['offset']: toString(queryParams.offset) as string,
@@ -262,7 +268,7 @@ export class FoldersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFolderFull(deserializeJson(response.text));
+    return deserializeFolderFull(response.data);
   }
   async updateFolderById(
     folderId: string,
@@ -274,7 +280,9 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -291,9 +299,7 @@ export class FoldersManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateFolderByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateFolderByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -301,7 +307,7 @@ export class FoldersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFolderFull(deserializeJson(response.text));
+    return deserializeFolderFull(response.data);
   }
   async deleteFolderById(
     folderId: string,
@@ -346,7 +352,9 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['usemarker']: toString(queryParams.usemarker) as string,
       ['marker']: toString(queryParams.marker) as string,
       ['offset']: toString(queryParams.offset) as string,
@@ -376,7 +384,7 @@ export class FoldersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeItems(deserializeJson(response.text));
+    return deserializeItems(response.data);
   }
   async createFolder(
     requestBody: CreateFolderRequestBodyArg,
@@ -387,7 +395,9 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -398,7 +408,7 @@ export class FoldersManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCreateFolderRequestBodyArg(requestBody)),
+        data: serializeCreateFolderRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -406,7 +416,7 @@ export class FoldersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFolderFull(deserializeJson(response.text));
+    return deserializeFolderFull(response.data);
   }
   async copyFolder(
     folderId: string,
@@ -418,7 +428,9 @@ export class FoldersManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -433,7 +445,7 @@ export class FoldersManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCopyFolderRequestBodyArg(requestBody)),
+        data: serializeCopyFolderRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -441,18 +453,18 @@ export class FoldersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFolderFull(deserializeJson(response.text));
+    return deserializeFolderFull(response.data);
   }
 }
 export function serializeGetFolderByIdQueryParamsArgSortField(
   val: GetFolderByIdQueryParamsArgSortField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsArgSortField(
   val: any
 ): GetFolderByIdQueryParamsArgSortField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderByIdQueryParamsArgSortField"';
   }
   if (val == 'id') {
@@ -471,13 +483,13 @@ export function deserializeGetFolderByIdQueryParamsArgSortField(
 }
 export function serializeGetFolderByIdQueryParamsArgDirectionField(
   val: GetFolderByIdQueryParamsArgDirectionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsArgDirectionField(
   val: any
 ): GetFolderByIdQueryParamsArgDirectionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderByIdQueryParamsArgDirectionField"';
   }
   if (val == 'ASC') {
@@ -490,13 +502,13 @@ export function deserializeGetFolderByIdQueryParamsArgDirectionField(
 }
 export function serializeUpdateFolderByIdRequestBodyArgSyncStateField(
   val: UpdateFolderByIdRequestBodyArgSyncStateField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodyArgSyncStateField(
   val: any
 ): UpdateFolderByIdRequestBodyArgSyncStateField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderByIdRequestBodyArgSyncStateField"';
   }
   if (val == 'synced') {
@@ -512,7 +524,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgSyncStateField(
 }
 export function serializeUpdateFolderByIdRequestBodyArgParentField(
   val: UpdateFolderByIdRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFolderByIdRequestBodyArgParentField(
@@ -523,13 +535,13 @@ export function deserializeUpdateFolderByIdRequestBodyArgParentField(
 }
 export function serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField(
   val: UpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField(
   val: any
 ): UpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderByIdRequestBodyArgSharedLinkFieldAccessField"';
   }
   if (val == 'open') {
@@ -545,7 +557,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldAccessFi
 }
 export function serializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField(
   val: UpdateFolderByIdRequestBodyArgSharedLinkFieldPermissionsField
-): Json {
+): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
   };
@@ -561,7 +573,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkFieldPermissi
 }
 export function serializeUpdateFolderByIdRequestBodyArgSharedLinkField(
   val: UpdateFolderByIdRequestBodyArgSharedLinkField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -615,13 +627,13 @@ export function deserializeUpdateFolderByIdRequestBodyArgSharedLinkField(
 }
 export function serializeUpdateFolderByIdRequestBodyArgFolderUploadEmailFieldAccessField(
   val: UpdateFolderByIdRequestBodyArgFolderUploadEmailFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodyArgFolderUploadEmailFieldAccessField(
   val: any
 ): UpdateFolderByIdRequestBodyArgFolderUploadEmailFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderByIdRequestBodyArgFolderUploadEmailFieldAccessField"';
   }
   if (val == 'open') {
@@ -634,7 +646,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgFolderUploadEmailFieldA
 }
 export function serializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(
   val: UpdateFolderByIdRequestBodyArgFolderUploadEmailField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -661,7 +673,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgFolderUploadEmailField(
 }
 export function serializeUpdateFolderByIdRequestBodyArgCollectionsField(
   val: UpdateFolderByIdRequestBodyArgCollectionsField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -679,7 +691,7 @@ export function deserializeUpdateFolderByIdRequestBodyArgCollectionsField(
 }
 export function serializeUpdateFolderByIdRequestBodyArg(
   val: UpdateFolderByIdRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -708,7 +720,7 @@ export function serializeUpdateFolderByIdRequestBodyArg(
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags?.map(function (item: string): any {
+        : (val.tags.map(function (item: string): any {
             return item;
           }) as readonly any[]),
     ['is_collaboration_restricted_to_enterprise']:
@@ -718,7 +730,7 @@ export function serializeUpdateFolderByIdRequestBodyArg(
     ['collections']:
       val.collections == void 0
         ? void 0
-        : (val.collections?.map(function (
+        : (val.collections.map(function (
             item: UpdateFolderByIdRequestBodyArgCollectionsField
           ): any {
             return serializeUpdateFolderByIdRequestBodyArgCollectionsField(
@@ -764,8 +776,8 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
   const tags: undefined | readonly string[] =
     val.tags == void 0
       ? void 0
-      : isJson(val.tags, 'array')
-      ? (val.tags?.map(function (itm: Json): any {
+      : sdIsList(val.tags)
+      ? (val.tags.map(function (itm: SerializedData): any {
           return itm;
         }) as readonly any[])
       : [];
@@ -778,8 +790,8 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
     | readonly UpdateFolderByIdRequestBodyArgCollectionsField[] =
     val.collections == void 0
       ? void 0
-      : isJson(val.collections, 'array')
-      ? (val.collections?.map(function (itm: Json): any {
+      : sdIsList(val.collections)
+      ? (val.collections.map(function (itm: SerializedData): any {
           return deserializeUpdateFolderByIdRequestBodyArgCollectionsField(itm);
         }) as readonly any[])
       : [];
@@ -804,13 +816,13 @@ export function deserializeUpdateFolderByIdRequestBodyArg(
 }
 export function serializeGetFolderItemsQueryParamsArgSortField(
   val: GetFolderItemsQueryParamsArgSortField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsArgSortField(
   val: any
 ): GetFolderItemsQueryParamsArgSortField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderItemsQueryParamsArgSortField"';
   }
   if (val == 'id') {
@@ -829,13 +841,13 @@ export function deserializeGetFolderItemsQueryParamsArgSortField(
 }
 export function serializeGetFolderItemsQueryParamsArgDirectionField(
   val: GetFolderItemsQueryParamsArgDirectionField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsArgDirectionField(
   val: any
 ): GetFolderItemsQueryParamsArgDirectionField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetFolderItemsQueryParamsArgDirectionField"';
   }
   if (val == 'ASC') {
@@ -848,7 +860,7 @@ export function deserializeGetFolderItemsQueryParamsArgDirectionField(
 }
 export function serializeCreateFolderRequestBodyArgParentField(
   val: CreateFolderRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateFolderRequestBodyArgParentField(
@@ -859,13 +871,13 @@ export function deserializeCreateFolderRequestBodyArgParentField(
 }
 export function serializeCreateFolderRequestBodyArgFolderUploadEmailFieldAccessField(
   val: CreateFolderRequestBodyArgFolderUploadEmailFieldAccessField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFolderRequestBodyArgFolderUploadEmailFieldAccessField(
   val: any
 ): CreateFolderRequestBodyArgFolderUploadEmailFieldAccessField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateFolderRequestBodyArgFolderUploadEmailFieldAccessField"';
   }
   if (val == 'open') {
@@ -878,7 +890,7 @@ export function deserializeCreateFolderRequestBodyArgFolderUploadEmailFieldAcces
 }
 export function serializeCreateFolderRequestBodyArgFolderUploadEmailField(
   val: CreateFolderRequestBodyArgFolderUploadEmailField
-): Json {
+): SerializedData {
   return {
     ['access']:
       val.access == void 0
@@ -905,13 +917,13 @@ export function deserializeCreateFolderRequestBodyArgFolderUploadEmailField(
 }
 export function serializeCreateFolderRequestBodyArgSyncStateField(
   val: CreateFolderRequestBodyArgSyncStateField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateFolderRequestBodyArgSyncStateField(
   val: any
 ): CreateFolderRequestBodyArgSyncStateField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateFolderRequestBodyArgSyncStateField"';
   }
   if (val == 'synced') {
@@ -927,7 +939,7 @@ export function deserializeCreateFolderRequestBodyArgSyncStateField(
 }
 export function serializeCreateFolderRequestBodyArg(
   val: CreateFolderRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name,
     ['parent']: serializeCreateFolderRequestBodyArgParentField(val.parent),
@@ -970,7 +982,7 @@ export function deserializeCreateFolderRequestBodyArg(
 }
 export function serializeCopyFolderRequestBodyArgParentField(
   val: CopyFolderRequestBodyArgParentField
-): Json {
+): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCopyFolderRequestBodyArgParentField(
@@ -981,7 +993,7 @@ export function deserializeCopyFolderRequestBodyArgParentField(
 }
 export function serializeCopyFolderRequestBodyArg(
   val: CopyFolderRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']: serializeCopyFolderRequestBodyArgParentField(val.parent),

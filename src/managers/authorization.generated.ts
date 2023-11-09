@@ -10,11 +10,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetAuthorizeQueryParamsArgResponseTypeField = 'code';
 export interface GetAuthorizeQueryParamsArg {
   readonly responseType: GetAuthorizeQueryParamsArgResponseTypeField;
@@ -75,13 +81,13 @@ export class AuthorizationManager {
 }
 export function serializeGetAuthorizeQueryParamsArgResponseTypeField(
   val: GetAuthorizeQueryParamsArgResponseTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(
   val: any
 ): GetAuthorizeQueryParamsArgResponseTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetAuthorizeQueryParamsArgResponseTypeField"';
   }
   if (val == 'code') {

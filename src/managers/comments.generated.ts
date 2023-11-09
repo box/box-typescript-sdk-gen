@@ -16,13 +16,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export interface GetFileCommentsQueryParamsArg {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -134,7 +138,9 @@ export class CommentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
       ['limit']: toString(queryParams.limit) as string,
       ['offset']: toString(queryParams.offset) as string,
     });
@@ -157,7 +163,7 @@ export class CommentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeComments(deserializeJson(response.text));
+    return deserializeComments(response.data);
   }
   async getCommentById(
     commentId: string,
@@ -168,7 +174,9 @@ export class CommentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -188,7 +196,7 @@ export class CommentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCommentFull(deserializeJson(response.text));
+    return deserializeCommentFull(response.data);
   }
   async updateCommentById(
     commentId: string,
@@ -200,7 +208,9 @@ export class CommentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -214,9 +224,7 @@ export class CommentsManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(
-          serializeUpdateCommentByIdRequestBodyArg(requestBody)
-        ),
+        data: serializeUpdateCommentByIdRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -224,7 +232,7 @@ export class CommentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeCommentFull(deserializeJson(response.text));
+    return deserializeCommentFull(response.data);
   }
   async deleteCommentById(
     commentId: string,
@@ -259,7 +267,9 @@ export class CommentsManager {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
-      ['fields']: queryParams.fields?.map(toString).join(',') as string,
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -270,7 +280,7 @@ export class CommentsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        body: serializeJson(serializeCreateCommentRequestBodyArg(requestBody)),
+        data: serializeCreateCommentRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -278,12 +288,12 @@ export class CommentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeComment(deserializeJson(response.text));
+    return deserializeComment(response.data);
   }
 }
 export function serializeUpdateCommentByIdRequestBodyArg(
   val: UpdateCommentByIdRequestBodyArg
-): Json {
+): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeUpdateCommentByIdRequestBodyArg(
@@ -295,13 +305,13 @@ export function deserializeUpdateCommentByIdRequestBodyArg(
 }
 export function serializeCreateCommentRequestBodyArgItemFieldTypeField(
   val: CreateCommentRequestBodyArgItemFieldTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeCreateCommentRequestBodyArgItemFieldTypeField(
   val: any
 ): CreateCommentRequestBodyArgItemFieldTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "CreateCommentRequestBodyArgItemFieldTypeField"';
   }
   if (val == 'file') {
@@ -314,7 +324,7 @@ export function deserializeCreateCommentRequestBodyArgItemFieldTypeField(
 }
 export function serializeCreateCommentRequestBodyArgItemField(
   val: CreateCommentRequestBodyArgItemField
-): Json {
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeCreateCommentRequestBodyArgItemFieldTypeField(val.type),
@@ -330,7 +340,7 @@ export function deserializeCreateCommentRequestBodyArgItemField(
 }
 export function serializeCreateCommentRequestBodyArg(
   val: CreateCommentRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['message']: val.message,
     ['tagged_message']:

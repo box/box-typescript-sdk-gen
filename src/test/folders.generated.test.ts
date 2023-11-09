@@ -26,6 +26,13 @@ import { UpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.g
 import { Items } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('test_get_folder_info', async function test_get_folder_info(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0');

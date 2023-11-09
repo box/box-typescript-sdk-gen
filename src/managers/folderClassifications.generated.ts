@@ -13,10 +13,14 @@ import { CancellationToken } from '../utils.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { serializeJson } from '../json.js';
-import { isJson } from '../json.js';
+import { sdToJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export class GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -148,7 +152,7 @@ export class FolderClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async createFolderMetadataEnterpriseSecurityClassification(
     folderId: string,
@@ -170,10 +174,8 @@ export class FolderClassificationsManager {
       {
         method: 'POST',
         headers: headersMap,
-        body: serializeJson(
-          serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
-            requestBody
-          )
+        data: serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
+          requestBody
         ),
         contentType: 'application/json',
         responseFormat: 'json',
@@ -182,7 +184,7 @@ export class FolderClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async updateFolderMetadataEnterpriseSecurityClassification(
     folderId: string,
@@ -204,11 +206,9 @@ export class FolderClassificationsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        body: serializeJson(
-          requestBody?.map(
-            serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
-          ) as readonly any[]
-        ),
+        data: requestBody.map(
+          serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
+        ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
         auth: this.auth,
@@ -216,7 +216,7 @@ export class FolderClassificationsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeClassification(deserializeJson(response.text));
+    return deserializeClassification(response.data);
   }
   async deleteFolderMetadataEnterpriseSecurityClassification(
     folderId: string,
@@ -248,7 +248,7 @@ export class FolderClassificationsManager {
 }
 export function serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
   val: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
       val.boxSecurityClassificationKey == void 0
@@ -269,13 +269,13 @@ export function deserializeCreateFolderMetadataEnterpriseSecurityClassificationR
 }
 export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
   val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
   val: any
 ): UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField"';
   }
   if (val == 'replace') {
@@ -285,13 +285,13 @@ export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationR
 }
 export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
   val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
   val: any
 ): UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField"';
   }
   if (val == '/Box__Security__Classification__Key') {
@@ -301,7 +301,7 @@ export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationR
 }
 export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
   val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
-): Json {
+): SerializedData {
   return {
     ['op']:
       val.op == void 0

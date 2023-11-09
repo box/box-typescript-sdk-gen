@@ -13,12 +13,17 @@ import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
 import { CancellationToken } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
-import { deserializeJson } from '../json.js';
-import { Json } from '../json.js';
-import { isJson } from '../json.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
 export type GetEventsQueryParamsArgStreamTypeField =
   | 'all'
   | 'changes'
@@ -188,7 +193,9 @@ export class EventsManager {
       ['stream_type']: toString(queryParams.streamType) as string,
       ['stream_position']: toString(queryParams.streamPosition) as string,
       ['limit']: toString(queryParams.limit) as string,
-      ['event_type']: queryParams.eventType?.map(toString).join(',') as string,
+      ['event_type']: queryParams.eventType
+        ? queryParams.eventType.map(toString).join(',')
+        : undefined,
       ['created_after']: toString(queryParams.createdAfter) as string,
       ['created_before']: toString(queryParams.createdBefore) as string,
     });
@@ -207,7 +214,7 @@ export class EventsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeEvents(deserializeJson(response.text));
+    return deserializeEvents(response.data);
   }
   async getEventsWithLongPolling(
     headers: GetEventsWithLongPollingHeadersArg = new GetEventsWithLongPollingHeadersArg(
@@ -229,18 +236,18 @@ export class EventsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeRealtimeServers(deserializeJson(response.text));
+    return deserializeRealtimeServers(response.data);
   }
 }
 export function serializeGetEventsQueryParamsArgStreamTypeField(
   val: GetEventsQueryParamsArgStreamTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetEventsQueryParamsArgStreamTypeField(
   val: any
 ): GetEventsQueryParamsArgStreamTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetEventsQueryParamsArgStreamTypeField"';
   }
   if (val == 'all') {
@@ -262,13 +269,13 @@ export function deserializeGetEventsQueryParamsArgStreamTypeField(
 }
 export function serializeGetEventsQueryParamsArgEventTypeField(
   val: GetEventsQueryParamsArgEventTypeField
-): Json {
+): SerializedData {
   return val;
 }
 export function deserializeGetEventsQueryParamsArgEventTypeField(
   val: any
 ): GetEventsQueryParamsArgEventTypeField {
-  if (!isJson(val, 'string')) {
+  if (!sdIsString(val)) {
     throw 'Expecting a string for "GetEventsQueryParamsArgEventTypeField"';
   }
   if (val == 'ACCESS_GRANTED') {

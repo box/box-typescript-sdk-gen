@@ -16,7 +16,11 @@ This operation is performed by calling function `getLegalHoldPolicies`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policies/).
 
-_Currently we don't have an example for calling `getLegalHoldPolicies` in integration tests_
+<!-- sample get_legal_hold_policies -->
+
+```ts
+await client.legalHoldPolicies.getLegalHoldPolicies();
+```
 
 ### Arguments
 
@@ -42,7 +46,15 @@ This operation is performed by calling function `createLegalHoldPolicy`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-legal-hold-policies/).
 
-_Currently we don't have an example for calling `createLegalHoldPolicy` in integration tests_
+<!-- sample post_legal_hold_policies -->
+
+```ts
+await client.legalHoldPolicies.createLegalHoldPolicy({
+  policyName: legalHoldPolicyName,
+  description: legalHoldDescription,
+  isOngoing: true,
+} satisfies CreateLegalHoldPolicyRequestBodyArg);
+```
 
 ### Arguments
 
@@ -68,7 +80,11 @@ This operation is performed by calling function `getLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policies-id/).
 
-_Currently we don't have an example for calling `getLegalHoldPolicyById` in integration tests_
+<!-- sample get_legal_hold_policies_id -->
+
+```ts
+await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
+```
 
 ### Arguments
 
@@ -94,7 +110,13 @@ This operation is performed by calling function `updateLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-legal-hold-policies-id/).
 
-_Currently we don't have an example for calling `updateLegalHoldPolicyById` in integration tests_
+<!-- sample put_legal_hold_policies_id -->
+
+```ts
+await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
+  policyName: updatedLegalHoldPolicyName,
+} satisfies UpdateLegalHoldPolicyByIdRequestBodyArg);
+```
 
 ### Arguments
 
@@ -125,7 +147,11 @@ This operation is performed by calling function `deleteLegalHoldPolicyById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-legal-hold-policies-id/).
 
-_Currently we don't have an example for calling `deleteLegalHoldPolicyById` in integration tests_
+<!-- sample delete_legal_hold_policies_id -->
+
+```ts
+await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
+```
 
 ### Arguments
 

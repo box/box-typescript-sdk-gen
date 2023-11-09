@@ -18,7 +18,6 @@
 - [Token storage](#token-storage)
   - [In-memory token storage](#in-memory-token-storage)
   - [Custom storage](#custom-storage)
-- [Setting as-user header](#setting-as-user-header)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -353,12 +352,4 @@ const config = {
   tokenStorage: new MyCustomTokenStorage(),
 };
 const oauth = new BoxOAuth({ config: config });
-```
-
-# Setting as-user header
-
-Use the code below to set the as-user header for your current client
-
-```js
-client.networkSession!.setAsUserId('id');
 ```
