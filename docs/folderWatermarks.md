@@ -13,7 +13,11 @@ This operation is performed by calling function `getFolderWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-watermark/).
 
-_Currently we don't have an example for calling `getFolderWatermark` in integration tests_
+<!-- sample get_folders_id_watermark -->
+
+```ts
+await client.folderWatermarks.getFolderWatermark(folder.id);
+```
 
 ### Arguments
 
@@ -40,7 +44,16 @@ This operation is performed by calling function `updateFolderWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id-watermark/).
 
-_Currently we don't have an example for calling `updateFolderWatermark` in integration tests_
+<!-- sample put_folders_id_watermark -->
+
+```ts
+await client.folderWatermarks.updateFolderWatermark(folder.id, {
+  watermark: {
+    imprint:
+      'default' as UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField,
+  } satisfies UpdateFolderWatermarkRequestBodyArgWatermarkField,
+} satisfies UpdateFolderWatermarkRequestBodyArg);
+```
 
 ### Arguments
 
@@ -70,7 +83,11 @@ This operation is performed by calling function `deleteFolderWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folders-id-watermark/).
 
-_Currently we don't have an example for calling `deleteFolderWatermark` in integration tests_
+<!-- sample delete_folders_id_watermark -->
+
+```ts
+await client.folderWatermarks.deleteFolderWatermark(folder.id);
+```
 
 ### Arguments
 
