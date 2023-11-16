@@ -4,8 +4,8 @@ import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generat
 import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -15,7 +15,7 @@ import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '.
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
@@ -61,7 +61,7 @@ export async function createNewFolder(): Promise<FolderFull> {
     parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
   } satisfies CreateFolderRequestBodyArg);
 }
-export async function uploadNewFile(): Promise<File> {
+export async function uploadNewFile(): Promise<FileFull> {
   const client: BoxClient = getDefaultClient();
   const newFileName: string = ''.concat(getUuid(), '.pdf') as string;
   const fileContentStream: ByteStream = generateByteStream(1024 * 1024);

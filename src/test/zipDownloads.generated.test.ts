@@ -1,5 +1,5 @@
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeZipDownloadRequest } from '../schemas.generated.js';
@@ -13,7 +13,7 @@ import { deserializeZipDownload } from '../schemas.generated.js';
 import { serializeZipDownloadStatus } from '../schemas.generated.js';
 import { deserializeZipDownloadStatus } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { ByteStream } from '../utils.js';
 import { ZipDownloadRequest } from '../schemas.generated.js';
@@ -38,8 +38,8 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testZipDownload', async function testZipDownload(): Promise<any> {
-  const file1: File = await uploadNewFile();
-  const file2: File = await uploadNewFile();
+  const file1: FileFull = await uploadNewFile();
+  const file2: FileFull = await uploadNewFile();
   const folder1: FolderFull = await createNewFolder();
   const zipStream: ByteStream = await client.zipDownloads.downloadZip({
     items: [
@@ -71,8 +71,8 @@ test('testZipDownload', async function testZipDownload(): Promise<any> {
   await client.folders.deleteFolderById(folder1.id);
 });
 test('testManualZipDownloadAndCheckStatus', async function testManualZipDownloadAndCheckStatus(): Promise<any> {
-  const file1: File = await uploadNewFile();
-  const file2: File = await uploadNewFile();
+  const file1: FileFull = await uploadNewFile();
+  const file2: FileFull = await uploadNewFile();
   const folder1: FolderFull = await createNewFolder();
   const zipDownload: ZipDownload = await client.zipDownloads.createZipDownload({
     items: [

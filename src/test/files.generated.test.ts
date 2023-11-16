@@ -1,5 +1,5 @@
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -8,8 +8,6 @@ import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { serializeGetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
 import { deserializeGetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
-import { serializeFileFull } from '../schemas.generated.js';
-import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeTrashFile } from '../schemas.generated.js';
 import { deserializeTrashFile } from '../schemas.generated.js';
 import { serializeUpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
@@ -19,13 +17,12 @@ import { deserializeCopyFileRequestBodyArg } from '../managers/files.generated.j
 import { serializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { GetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
-import { FileFull } from '../schemas.generated.js';
 import { GetFileByIdQueryParamsArg } from '../managers/files.generated.js';
 import { GetFileByIdHeadersArg } from '../managers/files.generated.js';
 import { TrashFile } from '../schemas.generated.js';
@@ -50,7 +47,7 @@ const client: BoxClient = getDefaultClient();
 export async function uploadFile(
   fileName: string,
   fileStream: ByteStream
-): Promise<File> {
+): Promise<FileFull> {
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
@@ -65,7 +62,7 @@ export async function uploadFile(
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
   const thumbnailFileName: string = getUuid();
   const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);
-  const thumbnailFile: File = await uploadFile(
+  const thumbnailFile: FileFull = await uploadFile(
     thumbnailFileName,
     thumbnailContentStream
   );
@@ -89,7 +86,7 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
 test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): Promise<any> {
   const newFileName: string = getUuid();
   const fileStream: ByteStream = generateByteStream(1024 * 1024);
-  const uploadedFile: File = await uploadFile(newFileName, fileStream);
+  const uploadedFile: FileFull = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
     fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
   } satisfies GetFileByIdQueryParamsArg);
@@ -104,7 +101,7 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
 test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): Promise<any> {
   const newFileName: string = getUuid();
   const updatedContentStream: ByteStream = generateByteStream(1024 * 1024);
-  const uploadedFile: File = await uploadFile(
+  const uploadedFile: FileFull = await uploadFile(
     newFileName,
     updatedContentStream
   );
@@ -130,7 +127,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   }
 });
 test('testUpdateFile', async function testUpdateFile(): Promise<any> {
-  const fileToUpdate: File = await uploadNewFile();
+  const fileToUpdate: FileFull = await uploadNewFile();
   const updatedName: string = getUuid();
   const updatedFile: FileFull = await client.files.updateFileById(
     fileToUpdate.id,
@@ -148,7 +145,7 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
   await client.files.deleteFileById(updatedFile.id);
 });
 test('testCopyFile', async function testCopyFile(): Promise<any> {
-  const fileOrigin: File = await uploadNewFile();
+  const fileOrigin: FileFull = await uploadNewFile();
   const copiedFileName: string = getUuid();
   const copiedFile: FileFull = await client.files.copyFile(fileOrigin.id, {
     parent: { id: '0' } satisfies CopyFileRequestBodyArgParentField,

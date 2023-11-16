@@ -6,8 +6,8 @@ import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { serializeComments } from '../schemas.generated.js';
 import { deserializeComments } from '../schemas.generated.js';
-import { serializeComment } from '../schemas.generated.js';
-import { deserializeComment } from '../schemas.generated.js';
+import { serializeCommentFull } from '../schemas.generated.js';
+import { deserializeCommentFull } from '../schemas.generated.js';
 import { serializeCreateCommentRequestBodyArg } from '../managers/comments.generated.js';
 import { deserializeCreateCommentRequestBodyArg } from '../managers/comments.generated.js';
 import { serializeCreateCommentRequestBodyArgItemField } from '../managers/comments.generated.js';
@@ -16,8 +16,6 @@ import { serializeCreateCommentRequestBodyArgItemFieldTypeField } from '../manag
 import { deserializeCreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { serializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
 import { deserializeUpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
-import { serializeCommentFull } from '../schemas.generated.js';
-import { deserializeCommentFull } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
@@ -25,12 +23,11 @@ import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { Comments } from '../schemas.generated.js';
-import { Comment } from '../schemas.generated.js';
+import { CommentFull } from '../schemas.generated.js';
 import { CreateCommentRequestBodyArg } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemField } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyArgItemFieldTypeField } from '../managers/comments.generated.js';
 import { UpdateCommentByIdRequestBodyArg } from '../managers/comments.generated.js';
-import { CommentFull } from '../schemas.generated.js';
 import { generateByteStream } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -62,7 +59,7 @@ test('comments', async function comments(): Promise<any> {
     throw 'Assertion failed';
   }
   const message: string = 'Hello there!';
-  const newComment: Comment = await client.comments.createComment({
+  const newComment: CommentFull = await client.comments.createComment({
     message: message,
     item: {
       id: fileId,
@@ -78,7 +75,7 @@ test('comments', async function comments(): Promise<any> {
   if (!(newComment.item!.id == fileId)) {
     throw 'Assertion failed';
   }
-  const newReplyComment: Comment = await client.comments.createComment({
+  const newReplyComment: CommentFull = await client.comments.createComment({
     message: message,
     item: {
       id: newComment.id!,

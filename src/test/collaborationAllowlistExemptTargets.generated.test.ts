@@ -1,7 +1,7 @@
 import { serializeCollaborationAllowlistExemptTargets } from '../schemas.generated.js';
 import { deserializeCollaborationAllowlistExemptTargets } from '../schemas.generated.js';
-import { serializeUser } from '../schemas.generated.js';
-import { deserializeUser } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas.generated.js';
+import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { serializeCollaborationAllowlistExemptTarget } from '../schemas.generated.js';
@@ -12,7 +12,7 @@ import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserFiel
 import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { CollaborationAllowlistExemptTargets } from '../schemas.generated.js';
-import { User } from '../schemas.generated.js';
+import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { CollaborationAllowlistExemptTarget } from '../schemas.generated.js';
 import { CreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
@@ -35,7 +35,7 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
   if (!(exemptTargets.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
-  const user: User = await client.users.createUser({
+  const user: UserFull = await client.users.createUser({
     name: getUuid(),
     login: ''.concat(getUuid(), '@boxdemo.com') as string,
     isPlatformAccessOnly: true,

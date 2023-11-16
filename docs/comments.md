@@ -173,7 +173,7 @@ await client.comments.createComment({
 
 ### Returns
 
-This function returns a value of type `Comment`.
+This function returns a value of type `CommentFull`.
 
 Returns the newly created comment object.
 

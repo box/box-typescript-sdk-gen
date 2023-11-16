@@ -2,13 +2,10 @@ import { serializeGroups } from '../schemas.generated.js';
 import { deserializeGroups } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
-import { serializeGroup } from '../schemas.generated.js';
-import { deserializeGroup } from '../schemas.generated.js';
 import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
 import { Groups } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
-import { Group } from '../schemas.generated.js';
 import { GroupFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
@@ -186,7 +183,7 @@ export class GroupsManager {
     queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg,
     headers: CreateGroupHeadersArg = new CreateGroupHeadersArg({}),
     cancellationToken?: CancellationToken
-  ): Promise<Group> {
+  ): Promise<GroupFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -211,7 +208,7 @@ export class GroupsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeGroup(response.data);
+    return deserializeGroupFull(response.data);
   }
   async getGroupById(
     groupId: string,

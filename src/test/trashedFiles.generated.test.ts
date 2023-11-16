@@ -4,12 +4,10 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
-import { serializeTrashFile } from '../schemas.generated.js';
-import { deserializeTrashFile } from '../schemas.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
+import { serializeTrashFile } from '../schemas.generated.js';
+import { deserializeTrashFile } from '../schemas.generated.js';
 import { serializeTrashFileRestored } from '../schemas.generated.js';
 import { deserializeTrashFileRestored } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -18,9 +16,8 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
-import { TrashFile } from '../schemas.generated.js';
 import { FileFull } from '../schemas.generated.js';
+import { TrashFile } from '../schemas.generated.js';
 import { TrashFileRestored } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
@@ -48,7 +45,7 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileByteStream,
   } satisfies UploadFileRequestBodyArg);
-  const file: File = files.entries![0];
+  const file: FileFull = files.entries![0];
   await client.files.deleteFileById(file.id);
   const fromTrash: TrashFile = await client.trashedFiles.getFileTrash(file.id);
   if (!(fromTrash.id == file.id)) {

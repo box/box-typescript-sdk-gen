@@ -4,12 +4,9 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeCommentFull } from '../schemas.generated.js';
 import { deserializeCommentFull } from '../schemas.generated.js';
-import { serializeComment } from '../schemas.generated.js';
-import { deserializeComment } from '../schemas.generated.js';
 import { Comments } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { CommentFull } from '../schemas.generated.js';
-import { Comment } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -263,7 +260,7 @@ export class CommentsManager {
     queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg,
     headers: CreateCommentHeadersArg = new CreateCommentHeadersArg({}),
     cancellationToken?: CancellationToken
-  ): Promise<Comment> {
+  ): Promise<CommentFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -288,7 +285,7 @@ export class CommentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeComment(response.data);
+    return deserializeCommentFull(response.data);
   }
 }
 export function serializeUpdateCommentByIdRequestBodyArg(

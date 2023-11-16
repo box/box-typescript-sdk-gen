@@ -4,8 +4,8 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeWatermark } from '../schemas.generated.js';
 import { deserializeWatermark } from '../schemas.generated.js';
 import { serializeUpdateFileWatermarkRequestBodyArg } from '../managers/fileWatermarks.generated.js';
@@ -19,7 +19,7 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { Watermark } from '../schemas.generated.js';
 import { UpdateFileWatermarkRequestBodyArg } from '../managers/fileWatermarks.generated.js';
 import { UpdateFileWatermarkRequestBodyArgWatermarkField } from '../managers/fileWatermarks.generated.js';
@@ -46,7 +46,7 @@ test('testCreateGetDeleteFileWatermark', async function testCreateGetDeleteFileW
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: File = uploadedFiles.entries![0];
+  const file: FileFull = uploadedFiles.entries![0];
   const createdWatermark: Watermark =
     await client.fileWatermarks.updateFileWatermark(file.id, {
       watermark: {

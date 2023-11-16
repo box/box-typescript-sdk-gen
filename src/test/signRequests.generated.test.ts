@@ -1,5 +1,5 @@
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeSignRequest } from '../schemas.generated.js';
@@ -19,7 +19,7 @@ import { deserializeFolderMini } from '../schemas.generated.js';
 import { serializeFileBase } from '../schemas.generated.js';
 import { deserializeFileBase } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { SignRequest } from '../schemas.generated.js';
 import { FolderBaseTypeField } from '../schemas.generated.js';
@@ -46,7 +46,7 @@ import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('test_create_get_cancel_and_list_sign_request', async function test_create_get_cancel_and_list_sign_request(): Promise<any> {
   const signerEmail: string = ''.concat(getUuid(), '@box.com') as string;
-  const fileToSign: File = await uploadNewFile();
+  const fileToSign: FileFull = await uploadNewFile();
   const destinationFolder: FolderFull = await createNewFolder();
   const createdSignRequest: SignRequest =
     await client.signRequests.createSignRequest({
