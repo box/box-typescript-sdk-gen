@@ -1080,8 +1080,8 @@ export interface InviteInvitedToField {
   readonly name?: string;
 }
 export interface Invite {
-  readonly id?: string;
-  readonly type?: InviteTypeField;
+  readonly id: string;
+  readonly type: InviteTypeField;
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
@@ -9608,8 +9608,8 @@ export function deserializeInviteInvitedToField(
 }
 export function serializeInvite(val: Invite): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : serializeInviteTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeInviteTypeField(val.type),
     ['invited_to']:
       val.invitedTo == void 0
         ? void 0
@@ -9624,9 +9624,8 @@ export function serializeInvite(val: Invite): SerializedData {
   };
 }
 export function deserializeInvite(val: any): Invite {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | InviteTypeField =
-    val.type == void 0 ? void 0 : deserializeInviteTypeField(val.type);
+  const id: string = val.id;
+  const type: InviteTypeField = deserializeInviteTypeField(val.type);
   const invitedTo: undefined | InviteInvitedToField =
     val.invited_to == void 0
       ? void 0
