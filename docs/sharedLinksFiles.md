@@ -24,7 +24,20 @@ This operation is performed by calling function `getSharedItems`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items/).
 
-_Currently we don't have an example for calling `getSharedItems` in integration tests_
+<!-- sample get_shared_items -->
+
+```ts
+await userClient.sharedLinksFiles.getSharedItems(
+  {} satisfies GetSharedItemsQueryParamsArg,
+  new GetSharedItemsHeadersArg({
+    boxapi: ''.concat(
+      'shared_link=',
+      fileFromApi.sharedLink!.url,
+      '&shared_link_password=incorrectPassword'
+    ) as string,
+  })
+);
+```
 
 ### Arguments
 
@@ -51,7 +64,13 @@ This operation is performed by calling function `getFileGetSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-get-shared-link/).
 
-_Currently we don't have an example for calling `getFileGetSharedLink` in integration tests_
+<!-- sample get_files_id#get_shared_link -->
+
+```ts
+await client.sharedLinksFiles.getFileGetSharedLink(fileId, {
+  fields: 'shared_link',
+} satisfies GetFileGetSharedLinkQueryParamsArg);
+```
 
 ### Arguments
 
@@ -80,7 +99,21 @@ This operation is performed by calling function `updateFileAddSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-add-shared-link/).
 
-_Currently we don't have an example for calling `updateFileAddSharedLink` in integration tests_
+<!-- sample put_files_id#add_shared_link -->
+
+```ts
+await client.sharedLinksFiles.updateFileAddSharedLink(
+  fileId,
+  {
+    sharedLink: {
+      access:
+        'open' as UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+      password: 'Secret123@',
+    } satisfies UpdateFileAddSharedLinkRequestBodyArgSharedLinkField,
+  } satisfies UpdateFileAddSharedLinkRequestBodyArg,
+  { fields: 'shared_link' } satisfies UpdateFileAddSharedLinkQueryParamsArg
+);
+```
 
 ### Arguments
 
@@ -111,7 +144,20 @@ This operation is performed by calling function `updateFileUpdateSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-update-shared-link/).
 
-_Currently we don't have an example for calling `updateFileUpdateSharedLink` in integration tests_
+<!-- sample put_files_id#update_shared_link -->
+
+```ts
+await client.sharedLinksFiles.updateFileUpdateSharedLink(
+  fileId,
+  {
+    sharedLink: {
+      access:
+        'collaborators' as UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+    } satisfies UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField,
+  } satisfies UpdateFileUpdateSharedLinkRequestBodyArg,
+  { fields: 'shared_link' } satisfies UpdateFileUpdateSharedLinkQueryParamsArg
+);
+```
 
 ### Arguments
 

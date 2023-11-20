@@ -16,17 +16,21 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
-This operation is performed by calling function `getMetadataTemplateEnterpriseSecurityClassificationSchema`.
+This operation is performed by calling function `getClassificationTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema/).
 
-_Currently we don't have an example for calling `getMetadataTemplateEnterpriseSecurityClassificationSchema` in integration tests_
+<!-- sample get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+
+```ts
+await client.classifications.getClassificationTemplate();
+```
 
 ### Arguments
 
-- headers `GetMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg`
-  - Headers of getMetadataTemplateEnterpriseSecurityClassificationSchema method
+- headers `GetClassificationTemplateHeadersArg`
+  - Headers of getClassificationTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -73,19 +77,38 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
-This operation is performed by calling function `updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd`.
+This operation is performed by calling function `addClassification`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-add/).
 
-_Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd` in integration tests_
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#add -->
+
+```ts
+await client.classifications.addClassification([
+  {
+    op: 'addEnumOption' as AddClassificationRequestBodyArgOpField,
+    fieldKey:
+      'Box__Security__Classification__Key' as AddClassificationRequestBodyArgFieldKeyField,
+    data: {
+      key: getUuid(),
+      staticConfig: {
+        classification: {
+          colorId: 3,
+          classificationDefinition: 'Some description',
+        } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
+      } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigField,
+    } satisfies AddClassificationRequestBodyArgDataField,
+  } satisfies AddClassificationRequestBodyArg,
+]);
+```
 
 ### Arguments
 
-- requestBody `readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddRequestBodyArg[]`
-  - Request body of updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd method
-- headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaAddHeadersArg`
-  - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaAdd method
+- requestBody `readonly AddClassificationRequestBodyArg[]`
+  - Request body of addClassification method
+- headers `AddClassificationHeadersArg`
+  - Headers of addClassification method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -106,19 +129,39 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
-This operation is performed by calling function `updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate`.
+This operation is performed by calling function `updateClassification`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-update/).
 
-_Currently we don't have an example for calling `updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate` in integration tests_
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#update -->
+
+```ts
+await client.classifications.updateClassification([
+  {
+    op: 'editEnumOption' as UpdateClassificationRequestBodyArgOpField,
+    fieldKey:
+      'Box__Security__Classification__Key' as UpdateClassificationRequestBodyArgFieldKeyField,
+    enumOptionKey: classification.key,
+    data: {
+      key: updatedClassificationName,
+      staticConfig: {
+        classification: {
+          colorId: 2,
+          classificationDefinition: updatedClassificationDescription,
+        } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
+      } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigField,
+    } satisfies UpdateClassificationRequestBodyArgDataField,
+  } satisfies UpdateClassificationRequestBodyArg,
+]);
+```
 
 ### Arguments
 
-- requestBody `readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateRequestBodyArg[]`
-  - Request body of updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate method
-- headers `UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdateHeadersArg`
-  - Headers of updateMetadataTemplateEnterpriseSecurityClassificationSchemaUpdate method
+- requestBody `readonly UpdateClassificationRequestBodyArg[]`
+  - Request body of updateClassification method
+- headers `UpdateClassificationHeadersArg`
+  - Headers of updateClassification method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -173,19 +216,19 @@ If an enterprise already has a classification, the template will already
 exist and instead an API call should be made to add additional
 classifications.
 
-This operation is performed by calling function `createMetadataTemplateSchemaClassification`.
+This operation is performed by calling function `createClassificationTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-templates-schema-classifications/).
 
-_Currently we don't have an example for calling `createMetadataTemplateSchemaClassification` in integration tests_
+_Currently we don't have an example for calling `createClassificationTemplate` in integration tests_
 
 ### Arguments
 
-- requestBody `CreateMetadataTemplateSchemaClassificationRequestBodyArg`
-  - Request body of createMetadataTemplateSchemaClassification method
-- headers `CreateMetadataTemplateSchemaClassificationHeadersArg`
-  - Headers of createMetadataTemplateSchemaClassification method
+- requestBody `CreateClassificationTemplateRequestBodyArg`
+  - Request body of createClassificationTemplate method
+- headers `CreateClassificationTemplateHeadersArg`
+  - Headers of createClassificationTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
