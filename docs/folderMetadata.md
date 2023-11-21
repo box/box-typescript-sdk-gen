@@ -122,7 +122,7 @@ await client.folderMetadata.createFolderMetadataById(
 
 ### Returns
 
-This function returns a value of type `Metadata`.
+This function returns a value of type `MetadataFull`.
 
 Returns the instance of the template that was applied to the folder,
 including the data that was applied to the template.
@@ -177,7 +177,7 @@ await client.folderMetadata.updateFolderMetadataById(
 
 ### Returns
 
-This function returns a value of type `Metadata`.
+This function returns a value of type `MetadataFull`.
 
 Returns the updated metadata template instance, with the
 custom template data included.

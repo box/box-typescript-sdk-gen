@@ -72,16 +72,16 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
   if (!((toString(collaboration.role!) as string) == 'editor')) {
     throw 'Assertion failed';
   }
-  const collaborationId: string = collaboration.id!;
+  const collaborationId: string = collaboration.id;
   const collaborationFromApi: Collaboration =
     await client.userCollaborations.getCollaborationById(collaborationId);
-  if (!(collaborationId == collaborationFromApi.id!)) {
+  if (!(collaborationId == collaborationFromApi.id)) {
     throw 'Assertion failed';
   }
   if (!((toString(collaborationFromApi.status!) as string) == 'accepted')) {
     throw 'Assertion failed';
   }
-  if (!((toString(collaborationFromApi.type!) as string) == 'collaboration')) {
+  if (!((toString(collaborationFromApi.type) as string) == 'collaboration')) {
     throw 'Assertion failed';
   }
   if (!(collaborationFromApi.inviteEmail == void 0)) {

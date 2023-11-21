@@ -464,7 +464,7 @@ export interface MetadataTemplateFieldsField {
   readonly id?: string;
 }
 export interface MetadataTemplate {
-  readonly id?: string;
+  readonly id: string;
   readonly type: MetadataTemplateTypeField;
   readonly scope?: string;
   readonly templateKey?: string;
@@ -1632,7 +1632,7 @@ export type WebLink = WebLinkMini & {
   readonly sharedLink?: WebLinkSharedLinkField;
   readonly itemStatus?: WebLinkItemStatusField;
 };
-export type FileMiniOrFolderMiniOrWebLink = FileMini | FolderMini | WebLink;
+export type FileFullOrFolderMiniOrWebLink = FileFull | FolderMini | WebLink;
 export type ItemsOrderFieldDirectionField = 'ASC' | 'DESC';
 export interface ItemsOrderField {
   readonly by?: string;
@@ -1643,7 +1643,7 @@ export interface Items {
   readonly limit?: number;
   readonly offset?: number;
   readonly order?: readonly ItemsOrderField[];
-  readonly entries?: readonly FileMiniOrFolderMiniOrWebLink[];
+  readonly entries?: readonly FileFullOrFolderMiniOrWebLink[];
 }
 export interface FolderPathCollectionField {
   readonly totalCount: number;
@@ -1863,50 +1863,6 @@ export interface Events {
   readonly entries?: readonly Event[];
 }
 export type FileOrFolderOrWebLink = File | Folder | WebLink;
-export interface SearchResultWithSharedLink {
-  readonly accessibleViaSharedLink?: string;
-  readonly item?: FileOrFolderOrWebLink;
-  readonly type?: string;
-}
-export type SearchResultsWithSharedLinksTypeField =
-  'search_results_with_shared_links';
-export interface SearchResultsWithSharedLinks {
-  readonly totalCount?: number;
-  readonly limit?: number;
-  readonly offset?: number;
-  readonly type: SearchResultsWithSharedLinksTypeField;
-  readonly entries?: readonly SearchResultWithSharedLink[];
-}
-export type SearchResultsTypeField = 'search_results_items';
-export interface SearchResults {
-  readonly totalCount?: number;
-  readonly limit?: number;
-  readonly offset?: number;
-  readonly type: SearchResultsTypeField;
-  readonly entries?: readonly FileOrFolderOrWebLink[];
-}
-export type SearchResultsOrSearchResultsWithSharedLinks =
-  | SearchResults
-  | SearchResultsWithSharedLinks;
-export type RecentItemInteractionTypeField =
-  | 'item_preview'
-  | 'item_upload'
-  | 'item_comment'
-  | 'item_open'
-  | 'item_modify';
-export interface RecentItem {
-  readonly type?: string;
-  readonly item?: FileOrFolderOrWebLink;
-  readonly interactionType?: RecentItemInteractionTypeField;
-  readonly interactedAt?: string;
-  readonly interactionSharedLink?: string;
-}
-export interface RecentItems {
-  readonly limit?: number;
-  readonly nextMarker?: string;
-  readonly prevMarker?: string;
-  readonly entries?: readonly RecentItem[];
-}
 export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
   readonly legalHoldPolicy?: LegalHoldPolicyMini;
   readonly assignedTo?: FileOrFolderOrWebLink;
@@ -1964,8 +1920,8 @@ export interface CollaborationAcceptanceRequirementsStatusField {
   readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusFieldTwoFactorAuthenticationRequirementField;
 }
 export interface Collaboration {
-  readonly id?: string;
-  readonly type?: CollaborationTypeField;
+  readonly id: string;
+  readonly type: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   readonly inviteEmail?: string;
@@ -2160,6 +2116,51 @@ export type FolderFull = Folder & {
   readonly canNonOwnersViewCollaborators?: boolean;
   readonly classification?: FolderFullClassificationField;
 };
+export type FileFullOrFolderFullOrWebLink = FileFull | FolderFull | WebLink;
+export interface SearchResultWithSharedLink {
+  readonly accessibleViaSharedLink?: string;
+  readonly item?: FileFullOrFolderFullOrWebLink;
+  readonly type?: string;
+}
+export type SearchResultsWithSharedLinksTypeField =
+  'search_results_with_shared_links';
+export interface SearchResultsWithSharedLinks {
+  readonly totalCount?: number;
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly type: SearchResultsWithSharedLinksTypeField;
+  readonly entries?: readonly SearchResultWithSharedLink[];
+}
+export type SearchResultsTypeField = 'search_results_items';
+export interface SearchResults {
+  readonly totalCount?: number;
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly type: SearchResultsTypeField;
+  readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
+}
+export type SearchResultsOrSearchResultsWithSharedLinks =
+  | SearchResults
+  | SearchResultsWithSharedLinks;
+export type RecentItemInteractionTypeField =
+  | 'item_preview'
+  | 'item_upload'
+  | 'item_comment'
+  | 'item_open'
+  | 'item_modify';
+export interface RecentItem {
+  readonly type?: string;
+  readonly item?: FileFullOrFolderFullOrWebLink;
+  readonly interactionType?: RecentItemInteractionTypeField;
+  readonly interactedAt?: string;
+  readonly interactionSharedLink?: string;
+}
+export interface RecentItems {
+  readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
+  readonly entries?: readonly RecentItem[];
+}
 export type WorkflowMiniTypeField = 'workflow';
 export interface WorkflowMini {
   readonly id?: string;
@@ -5849,7 +5850,7 @@ export function serializeMetadataTemplate(
   val: MetadataTemplate
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']: serializeMetadataTemplateTypeField(val.type),
     ['scope']: val.scope == void 0 ? void 0 : val.scope,
     ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
@@ -5868,7 +5869,7 @@ export function serializeMetadataTemplate(
   };
 }
 export function deserializeMetadataTemplate(val: any): MetadataTemplate {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const id: string = val.id;
   const type: MetadataTemplateTypeField = deserializeMetadataTemplateTypeField(
     val.type
   );
@@ -13075,11 +13076,11 @@ export function deserializeWebLink(val: any): WebLink {
     etag: etag,
   } satisfies WebLink;
 }
-export function serializeFileMiniOrFolderMiniOrWebLink(
-  val: FileMiniOrFolderMiniOrWebLink
+export function serializeFileFullOrFolderMiniOrWebLink(
+  val: FileFullOrFolderMiniOrWebLink
 ): SerializedData {
   if (val.type == 'file') {
-    return serializeFileMini(val);
+    return serializeFileFull(val);
   }
   if (val.type == 'folder') {
     return serializeFolderMini(val);
@@ -13089,14 +13090,14 @@ export function serializeFileMiniOrFolderMiniOrWebLink(
   }
   throw 'unknown type';
 }
-export function deserializeFileMiniOrFolderMiniOrWebLink(
+export function deserializeFileFullOrFolderMiniOrWebLink(
   val: any
-): FileMiniOrFolderMiniOrWebLink {
+): FileFullOrFolderMiniOrWebLink {
   if (!sdIsMap(val)) {
-    throw 'Expecting a map for "FileMiniOrFolderMiniOrWebLink"';
+    throw 'Expecting a map for "FileFullOrFolderMiniOrWebLink"';
   }
   if (val.type == 'file') {
-    return deserializeFileMini(val);
+    return deserializeFileFull(val);
   }
   if (val.type == 'folder') {
     return deserializeFolderMini(val);
@@ -13156,8 +13157,8 @@ export function serializeItems(val: Items): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileMiniOrFolderMiniOrWebLink): any {
-            return serializeFileMiniOrFolderMiniOrWebLink(item);
+        : (val.entries.map(function (item: FileFullOrFolderMiniOrWebLink): any {
+            return serializeFileFullOrFolderMiniOrWebLink(item);
           }) as readonly any[]),
   };
 }
@@ -13174,12 +13175,12 @@ export function deserializeItems(val: any): Items {
           return deserializeItemsOrderField(itm);
         }) as readonly any[])
       : [];
-  const entries: undefined | readonly FileMiniOrFolderMiniOrWebLink[] =
+  const entries: undefined | readonly FileFullOrFolderMiniOrWebLink[] =
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
       ? (val.entries.map(function (itm: SerializedData): any {
-          return deserializeFileMiniOrFolderMiniOrWebLink(itm);
+          return deserializeFileFullOrFolderMiniOrWebLink(itm);
         }) as readonly any[])
       : [];
   return {
@@ -14118,269 +14119,6 @@ export function deserializeFileOrFolderOrWebLink(
   }
   throw 'unknown type';
 }
-export function serializeSearchResultWithSharedLink(
-  val: SearchResultWithSharedLink
-): SerializedData {
-  return {
-    ['accessible_via_shared_link']:
-      val.accessibleViaSharedLink == void 0
-        ? void 0
-        : val.accessibleViaSharedLink,
-    ['item']:
-      val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
-    ['type']: val.type == void 0 ? void 0 : val.type,
-  };
-}
-export function deserializeSearchResultWithSharedLink(
-  val: any
-): SearchResultWithSharedLink {
-  const accessibleViaSharedLink: undefined | string =
-    val.accessible_via_shared_link == void 0
-      ? void 0
-      : val.accessible_via_shared_link;
-  const item: undefined | FileOrFolderOrWebLink =
-    val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
-  const type: undefined | string = val.type == void 0 ? void 0 : val.type;
-  return {
-    accessibleViaSharedLink: accessibleViaSharedLink,
-    item: item,
-    type: type,
-  } satisfies SearchResultWithSharedLink;
-}
-export function serializeSearchResultsWithSharedLinksTypeField(
-  val: SearchResultsWithSharedLinksTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeSearchResultsWithSharedLinksTypeField(
-  val: any
-): SearchResultsWithSharedLinksTypeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchResultsWithSharedLinksTypeField"';
-  }
-  if (val == 'search_results_with_shared_links') {
-    return 'search_results_with_shared_links';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeSearchResultsWithSharedLinks(
-  val: SearchResultsWithSharedLinks
-): SerializedData {
-  return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
-    ['type']: serializeSearchResultsWithSharedLinksTypeField(val.type),
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
-            return serializeSearchResultWithSharedLink(item);
-          }) as readonly any[]),
-  };
-}
-export function deserializeSearchResultsWithSharedLinks(
-  val: any
-): SearchResultsWithSharedLinks {
-  const totalCount: undefined | number =
-    val.total_count == void 0 ? void 0 : val.total_count;
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
-  const type: SearchResultsWithSharedLinksTypeField =
-    deserializeSearchResultsWithSharedLinksTypeField(val.type);
-  const entries: undefined | readonly SearchResultWithSharedLink[] =
-    val.entries == void 0
-      ? void 0
-      : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
-          return deserializeSearchResultWithSharedLink(itm);
-        }) as readonly any[])
-      : [];
-  return {
-    totalCount: totalCount,
-    limit: limit,
-    offset: offset,
-    type: type,
-    entries: entries,
-  } satisfies SearchResultsWithSharedLinks;
-}
-export function serializeSearchResultsTypeField(
-  val: SearchResultsTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeSearchResultsTypeField(
-  val: any
-): SearchResultsTypeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchResultsTypeField"';
-  }
-  if (val == 'search_results_items') {
-    return 'search_results_items';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeSearchResults(val: SearchResults): SerializedData {
-  return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
-    ['type']: serializeSearchResultsTypeField(val.type),
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries.map(function (item: FileOrFolderOrWebLink): any {
-            return serializeFileOrFolderOrWebLink(item);
-          }) as readonly any[]),
-  };
-}
-export function deserializeSearchResults(val: any): SearchResults {
-  const totalCount: undefined | number =
-    val.total_count == void 0 ? void 0 : val.total_count;
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
-  const type: SearchResultsTypeField = deserializeSearchResultsTypeField(
-    val.type
-  );
-  const entries: undefined | readonly FileOrFolderOrWebLink[] =
-    val.entries == void 0
-      ? void 0
-      : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
-          return deserializeFileOrFolderOrWebLink(itm);
-        }) as readonly any[])
-      : [];
-  return {
-    totalCount: totalCount,
-    limit: limit,
-    offset: offset,
-    type: type,
-    entries: entries,
-  } satisfies SearchResults;
-}
-export function serializeSearchResultsOrSearchResultsWithSharedLinks(
-  val: SearchResultsOrSearchResultsWithSharedLinks
-): SerializedData {
-  if (val.type == 'search_results_items') {
-    return serializeSearchResults(val);
-  }
-  if (val.type == 'search_results_with_shared_links') {
-    return serializeSearchResultsWithSharedLinks(val);
-  }
-  throw 'unknown type';
-}
-export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
-  val: any
-): SearchResultsOrSearchResultsWithSharedLinks {
-  if (!sdIsMap(val)) {
-    throw 'Expecting a map for "SearchResultsOrSearchResultsWithSharedLinks"';
-  }
-  if (val.type == 'search_results_items') {
-    return deserializeSearchResults(val);
-  }
-  if (val.type == 'search_results_with_shared_links') {
-    return deserializeSearchResultsWithSharedLinks(val);
-  }
-  throw 'unknown type';
-}
-export function serializeRecentItemInteractionTypeField(
-  val: RecentItemInteractionTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeRecentItemInteractionTypeField(
-  val: any
-): RecentItemInteractionTypeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "RecentItemInteractionTypeField"';
-  }
-  if (val == 'item_preview') {
-    return 'item_preview';
-  }
-  if (val == 'item_upload') {
-    return 'item_upload';
-  }
-  if (val == 'item_comment') {
-    return 'item_comment';
-  }
-  if (val == 'item_open') {
-    return 'item_open';
-  }
-  if (val == 'item_modify') {
-    return 'item_modify';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeRecentItem(val: RecentItem): SerializedData {
-  return {
-    ['type']: val.type == void 0 ? void 0 : val.type,
-    ['item']:
-      val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
-    ['interaction_type']:
-      val.interactionType == void 0
-        ? void 0
-        : serializeRecentItemInteractionTypeField(val.interactionType),
-    ['interacted_at']: val.interactedAt == void 0 ? void 0 : val.interactedAt,
-    ['interaction_shared_link']:
-      val.interactionSharedLink == void 0 ? void 0 : val.interactionSharedLink,
-  };
-}
-export function deserializeRecentItem(val: any): RecentItem {
-  const type: undefined | string = val.type == void 0 ? void 0 : val.type;
-  const item: undefined | FileOrFolderOrWebLink =
-    val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
-  const interactionType: undefined | RecentItemInteractionTypeField =
-    val.interaction_type == void 0
-      ? void 0
-      : deserializeRecentItemInteractionTypeField(val.interaction_type);
-  const interactedAt: undefined | string =
-    val.interacted_at == void 0 ? void 0 : val.interacted_at;
-  const interactionSharedLink: undefined | string =
-    val.interaction_shared_link == void 0
-      ? void 0
-      : val.interaction_shared_link;
-  return {
-    type: type,
-    item: item,
-    interactionType: interactionType,
-    interactedAt: interactedAt,
-    interactionSharedLink: interactionSharedLink,
-  } satisfies RecentItem;
-}
-export function serializeRecentItems(val: RecentItems): SerializedData {
-  return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries.map(function (item: RecentItem): any {
-            return serializeRecentItem(item);
-          }) as readonly any[]),
-  };
-}
-export function deserializeRecentItems(val: any): RecentItems {
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | string =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | string =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
-  const entries: undefined | readonly RecentItem[] =
-    val.entries == void 0
-      ? void 0
-      : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
-          return deserializeRecentItem(itm);
-        }) as readonly any[])
-      : [];
-  return {
-    limit: limit,
-    nextMarker: nextMarker,
-    prevMarker: prevMarker,
-    entries: entries,
-  } satisfies RecentItems;
-}
 export function serializeLegalHoldPolicyAssignment(
   val: LegalHoldPolicyAssignment
 ): SerializedData {
@@ -14813,9 +14551,8 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(
 }
 export function serializeCollaboration(val: Collaboration): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeCollaborationTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeCollaborationTypeField(val.type),
     ['item']:
       val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
     ['accessible_by']:
@@ -14848,9 +14585,10 @@ export function serializeCollaboration(val: Collaboration): SerializedData {
   };
 }
 export function deserializeCollaboration(val: any): Collaboration {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | CollaborationTypeField =
-    val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
+  const id: string = val.id;
+  const type: CollaborationTypeField = deserializeCollaborationTypeField(
+    val.type
+  );
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
   const accessibleBy: undefined | GroupMiniOrUserCollaborations =
@@ -16017,6 +15755,308 @@ export function deserializeFolderFull(val: any): FolderFull {
     etag: etag,
     type: type,
   } satisfies FolderFull;
+}
+export function serializeFileFullOrFolderFullOrWebLink(
+  val: FileFullOrFolderFullOrWebLink
+): SerializedData {
+  if (val.type == 'file') {
+    return serializeFileFull(val);
+  }
+  if (val.type == 'folder') {
+    return serializeFolderFull(val);
+  }
+  if (val.type == 'web_link') {
+    return serializeWebLink(val);
+  }
+  throw 'unknown type';
+}
+export function deserializeFileFullOrFolderFullOrWebLink(
+  val: any
+): FileFullOrFolderFullOrWebLink {
+  if (!sdIsMap(val)) {
+    throw 'Expecting a map for "FileFullOrFolderFullOrWebLink"';
+  }
+  if (val.type == 'file') {
+    return deserializeFileFull(val);
+  }
+  if (val.type == 'folder') {
+    return deserializeFolderFull(val);
+  }
+  if (val.type == 'web_link') {
+    return deserializeWebLink(val);
+  }
+  throw 'unknown type';
+}
+export function serializeSearchResultWithSharedLink(
+  val: SearchResultWithSharedLink
+): SerializedData {
+  return {
+    ['accessible_via_shared_link']:
+      val.accessibleViaSharedLink == void 0
+        ? void 0
+        : val.accessibleViaSharedLink,
+    ['item']:
+      val.item == void 0
+        ? void 0
+        : serializeFileFullOrFolderFullOrWebLink(val.item),
+    ['type']: val.type == void 0 ? void 0 : val.type,
+  };
+}
+export function deserializeSearchResultWithSharedLink(
+  val: any
+): SearchResultWithSharedLink {
+  const accessibleViaSharedLink: undefined | string =
+    val.accessible_via_shared_link == void 0
+      ? void 0
+      : val.accessible_via_shared_link;
+  const item: undefined | FileFullOrFolderFullOrWebLink =
+    val.item == void 0
+      ? void 0
+      : deserializeFileFullOrFolderFullOrWebLink(val.item);
+  const type: undefined | string = val.type == void 0 ? void 0 : val.type;
+  return {
+    accessibleViaSharedLink: accessibleViaSharedLink,
+    item: item,
+    type: type,
+  } satisfies SearchResultWithSharedLink;
+}
+export function serializeSearchResultsWithSharedLinksTypeField(
+  val: SearchResultsWithSharedLinksTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeSearchResultsWithSharedLinksTypeField(
+  val: any
+): SearchResultsWithSharedLinksTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "SearchResultsWithSharedLinksTypeField"';
+  }
+  if (val == 'search_results_with_shared_links') {
+    return 'search_results_with_shared_links';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeSearchResultsWithSharedLinks(
+  val: SearchResultsWithSharedLinks
+): SerializedData {
+  return {
+    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['type']: serializeSearchResultsWithSharedLinksTypeField(val.type),
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
+            return serializeSearchResultWithSharedLink(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeSearchResultsWithSharedLinks(
+  val: any
+): SearchResultsWithSharedLinks {
+  const totalCount: undefined | number =
+    val.total_count == void 0 ? void 0 : val.total_count;
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  const type: SearchResultsWithSharedLinksTypeField =
+    deserializeSearchResultsWithSharedLinksTypeField(val.type);
+  const entries: undefined | readonly SearchResultWithSharedLink[] =
+    val.entries == void 0
+      ? void 0
+      : sdIsList(val.entries)
+      ? (val.entries.map(function (itm: SerializedData): any {
+          return deserializeSearchResultWithSharedLink(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    totalCount: totalCount,
+    limit: limit,
+    offset: offset,
+    type: type,
+    entries: entries,
+  } satisfies SearchResultsWithSharedLinks;
+}
+export function serializeSearchResultsTypeField(
+  val: SearchResultsTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeSearchResultsTypeField(
+  val: any
+): SearchResultsTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "SearchResultsTypeField"';
+  }
+  if (val == 'search_results_items') {
+    return 'search_results_items';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeSearchResults(val: SearchResults): SerializedData {
+  return {
+    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['type']: serializeSearchResultsTypeField(val.type),
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (item: FileFullOrFolderFullOrWebLink): any {
+            return serializeFileFullOrFolderFullOrWebLink(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeSearchResults(val: any): SearchResults {
+  const totalCount: undefined | number =
+    val.total_count == void 0 ? void 0 : val.total_count;
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  const type: SearchResultsTypeField = deserializeSearchResultsTypeField(
+    val.type
+  );
+  const entries: undefined | readonly FileFullOrFolderFullOrWebLink[] =
+    val.entries == void 0
+      ? void 0
+      : sdIsList(val.entries)
+      ? (val.entries.map(function (itm: SerializedData): any {
+          return deserializeFileFullOrFolderFullOrWebLink(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    totalCount: totalCount,
+    limit: limit,
+    offset: offset,
+    type: type,
+    entries: entries,
+  } satisfies SearchResults;
+}
+export function serializeSearchResultsOrSearchResultsWithSharedLinks(
+  val: SearchResultsOrSearchResultsWithSharedLinks
+): SerializedData {
+  if (val.type == 'search_results_items') {
+    return serializeSearchResults(val);
+  }
+  if (val.type == 'search_results_with_shared_links') {
+    return serializeSearchResultsWithSharedLinks(val);
+  }
+  throw 'unknown type';
+}
+export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
+  val: any
+): SearchResultsOrSearchResultsWithSharedLinks {
+  if (!sdIsMap(val)) {
+    throw 'Expecting a map for "SearchResultsOrSearchResultsWithSharedLinks"';
+  }
+  if (val.type == 'search_results_items') {
+    return deserializeSearchResults(val);
+  }
+  if (val.type == 'search_results_with_shared_links') {
+    return deserializeSearchResultsWithSharedLinks(val);
+  }
+  throw 'unknown type';
+}
+export function serializeRecentItemInteractionTypeField(
+  val: RecentItemInteractionTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeRecentItemInteractionTypeField(
+  val: any
+): RecentItemInteractionTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "RecentItemInteractionTypeField"';
+  }
+  if (val == 'item_preview') {
+    return 'item_preview';
+  }
+  if (val == 'item_upload') {
+    return 'item_upload';
+  }
+  if (val == 'item_comment') {
+    return 'item_comment';
+  }
+  if (val == 'item_open') {
+    return 'item_open';
+  }
+  if (val == 'item_modify') {
+    return 'item_modify';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeRecentItem(val: RecentItem): SerializedData {
+  return {
+    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['item']:
+      val.item == void 0
+        ? void 0
+        : serializeFileFullOrFolderFullOrWebLink(val.item),
+    ['interaction_type']:
+      val.interactionType == void 0
+        ? void 0
+        : serializeRecentItemInteractionTypeField(val.interactionType),
+    ['interacted_at']: val.interactedAt == void 0 ? void 0 : val.interactedAt,
+    ['interaction_shared_link']:
+      val.interactionSharedLink == void 0 ? void 0 : val.interactionSharedLink,
+  };
+}
+export function deserializeRecentItem(val: any): RecentItem {
+  const type: undefined | string = val.type == void 0 ? void 0 : val.type;
+  const item: undefined | FileFullOrFolderFullOrWebLink =
+    val.item == void 0
+      ? void 0
+      : deserializeFileFullOrFolderFullOrWebLink(val.item);
+  const interactionType: undefined | RecentItemInteractionTypeField =
+    val.interaction_type == void 0
+      ? void 0
+      : deserializeRecentItemInteractionTypeField(val.interaction_type);
+  const interactedAt: undefined | string =
+    val.interacted_at == void 0 ? void 0 : val.interacted_at;
+  const interactionSharedLink: undefined | string =
+    val.interaction_shared_link == void 0
+      ? void 0
+      : val.interaction_shared_link;
+  return {
+    type: type,
+    item: item,
+    interactionType: interactionType,
+    interactedAt: interactedAt,
+    interactionSharedLink: interactionSharedLink,
+  } satisfies RecentItem;
+}
+export function serializeRecentItems(val: RecentItems): SerializedData {
+  return {
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (item: RecentItem): any {
+            return serializeRecentItem(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeRecentItems(val: any): RecentItems {
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  const prevMarker: undefined | string =
+    val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  const entries: undefined | readonly RecentItem[] =
+    val.entries == void 0
+      ? void 0
+      : sdIsList(val.entries)
+      ? (val.entries.map(function (itm: SerializedData): any {
+          return deserializeRecentItem(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    limit: limit,
+    nextMarker: nextMarker,
+    prevMarker: prevMarker,
+    entries: entries,
+  } satisfies RecentItems;
 }
 export function serializeWorkflowMiniTypeField(
   val: WorkflowMiniTypeField

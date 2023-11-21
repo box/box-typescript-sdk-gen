@@ -32,26 +32,6 @@ export class GetClassificationTemplateHeadersArg {
     Object.assign(this, fields);
   }
 }
-export class DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields:
-      | Omit<
-          DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg,
-            'extraHeaders'
-          >
-        >
-  ) {
-    Object.assign(this, fields);
-  }
-}
 export type AddClassificationRequestBodyArgOpField = 'addEnumOption';
 export type AddClassificationRequestBodyArgFieldKeyField =
   'Box__Security__Classification__Key';
@@ -115,35 +95,6 @@ export class UpdateClassificationHeadersArg {
     Object.assign(this, fields);
   }
 }
-export type UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField =
-  'removeEnumOption';
-export type UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField =
-  'Box__Security__Classification__Key';
-export interface UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg {
-  readonly op: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField;
-  readonly fieldKey: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField;
-  readonly enumOptionKey: string;
-}
-export class UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields:
-      | Omit<
-          UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg,
-            'extraHeaders'
-          >
-        >
-  ) {
-    Object.assign(this, fields);
-  }
-}
 export type CreateClassificationTemplateRequestBodyArgScopeField = 'enterprise';
 export type CreateClassificationTemplateRequestBodyArgTemplateKeyField =
   'securityClassification-6VMVochwUWo';
@@ -200,10 +151,8 @@ export class ClassificationsManager {
     fields: Omit<
       ClassificationsManager,
       | 'getClassificationTemplate'
-      | 'deleteMetadataTemplateEnterpriseSecurityClassificationSchema'
       | 'addClassification'
       | 'updateClassification'
-      | 'updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete'
       | 'createClassificationTemplate'
     >
   ) {
@@ -232,30 +181,6 @@ export class ClassificationsManager {
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeClassificationTemplate(response.data);
-  }
-  async deleteMetadataTemplateEnterpriseSecurityClassificationSchema(
-    headers: DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg = new DeleteMetadataTemplateEnterpriseSecurityClassificationSchemaHeadersArg(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<undefined> {
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        'https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema'
-      ) as string,
-      {
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return void 0;
   }
   async addClassification(
     requestBody: readonly AddClassificationRequestBodyArg[],
@@ -303,35 +228,6 @@ export class ClassificationsManager {
         headers: headersMap,
         data: requestBody.map(
           serializeUpdateClassificationRequestBodyArg
-        ) as readonly any[],
-        contentType: 'application/json-patch+json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeClassificationTemplate(response.data);
-  }
-  async updateMetadataTemplateEnterpriseSecurityClassificationSchemaDelete(
-    requestBody: readonly UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg[],
-    headers: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg = new UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteHeadersArg(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<ClassificationTemplate> {
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        'https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#delete'
-      ) as string,
-      {
-        method: 'PUT',
-        headers: headersMap,
-        data: requestBody.map(
-          serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -652,71 +548,6 @@ export function deserializeUpdateClassificationRequestBodyArg(
     enumOptionKey: enumOptionKey,
     data: data,
   } satisfies UpdateClassificationRequestBodyArg;
-}
-export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField(
-  val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField
-): SerializedData {
-  return val;
-}
-export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField(
-  val: any
-): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField"';
-  }
-  if (val == 'removeEnumOption') {
-    return 'removeEnumOption';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField(
-  val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField
-): SerializedData {
-  return val;
-}
-export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField(
-  val: any
-): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField"';
-  }
-  if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg(
-  val: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg
-): SerializedData {
-  return {
-    ['op']:
-      serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField(
-        val.op
-      ),
-    ['fieldKey']:
-      serializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField(
-        val.fieldKey
-      ),
-    ['enumOptionKey']: val.enumOptionKey,
-  };
-}
-export function deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg(
-  val: any
-): UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg {
-  const op: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField =
-    deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgOpField(
-      val.op
-    );
-  const fieldKey: UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField =
-    deserializeUpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArgFieldKeyField(
-      val.fieldKey
-    );
-  const enumOptionKey: string = val.enumOptionKey;
-  return {
-    op: op,
-    fieldKey: fieldKey,
-    enumOptionKey: enumOptionKey,
-  } satisfies UpdateMetadataTemplateEnterpriseSecurityClassificationSchemaDeleteRequestBodyArg;
 }
 export function serializeCreateClassificationTemplateRequestBodyArgScopeField(
   val: CreateClassificationTemplateRequestBodyArgScopeField

@@ -6,8 +6,6 @@ import { serializeCreateFolderRequestBodyArgParentField } from '../managers/fold
 import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { serializeMetadatas } from '../schemas.generated.js';
 import { deserializeMetadatas } from '../schemas.generated.js';
-import { serializeMetadata } from '../schemas.generated.js';
-import { deserializeMetadata } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
 import { serializeUpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
@@ -19,7 +17,6 @@ import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
 import { Metadatas } from '../schemas.generated.js';
-import { Metadata } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { UpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
 import { UpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';

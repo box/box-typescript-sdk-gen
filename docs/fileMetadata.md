@@ -117,7 +117,7 @@ await client.fileMetadata.createFileMetadataById(
 
 ### Returns
 
-This function returns a value of type `Metadata`.
+This function returns a value of type `MetadataFull`.
 
 Returns the instance of the template that was applied to the file,
 including the data that was applied to the template.
@@ -167,7 +167,7 @@ await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [
 
 ### Returns
 
-This function returns a value of type `Metadata`.
+This function returns a value of type `MetadataFull`.
 
 Returns the updated metadata template instance, with the
 custom template data included.

@@ -4,12 +4,9 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
-import { serializeMetadata } from '../schemas.generated.js';
-import { deserializeMetadata } from '../schemas.generated.js';
 import { Metadatas } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
-import { Metadata } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -188,7 +185,7 @@ export class FileMetadataManager {
       {}
     ),
     cancellationToken?: CancellationToken
-  ): Promise<Metadata> {
+  ): Promise<MetadataFull> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -212,7 +209,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(response.data);
+    return deserializeMetadataFull(response.data);
   }
   async updateFileMetadataById(
     fileId: string,
@@ -223,7 +220,7 @@ export class FileMetadataManager {
       {}
     ),
     cancellationToken?: CancellationToken
-  ): Promise<Metadata> {
+  ): Promise<MetadataFull> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -249,7 +246,7 @@ export class FileMetadataManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeMetadata(response.data);
+    return deserializeMetadataFull(response.data);
   }
   async deleteFileMetadataById(
     fileId: string,
