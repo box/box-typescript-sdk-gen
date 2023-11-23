@@ -14,7 +14,13 @@ This operation is performed by calling function `getShieldInformationBarrierById
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barriers-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierById` in integration tests_
+<!-- sample get_shield_information_barriers_id -->
+
+```ts
+await client.shieldInformationBarriers.getShieldInformationBarrierById(
+  barrierId
+);
+```
 
 ### Arguments
 
@@ -40,7 +46,17 @@ This operation is performed by calling function `createShieldInformationBarrierC
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barriers-change-status/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierChangeStatus` in integration tests_
+<!-- sample post_shield_information_barriers_change_status -->
+
+```ts
+await client.shieldInformationBarriers.createShieldInformationBarrierChangeStatus(
+  {
+    id: barrierId,
+    status:
+      'disabled' as CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField,
+  } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg
+);
+```
 
 ### Arguments
 
@@ -67,7 +83,11 @@ This operation is performed by calling function `getShieldInformationBarriers`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barriers/).
 
-_Currently we don't have an example for calling `getShieldInformationBarriers` in integration tests_
+<!-- sample get_shield_information_barriers -->
+
+```ts
+await client.shieldInformationBarriers.getShieldInformationBarriers();
+```
 
 ### Arguments
 
@@ -97,7 +117,16 @@ This operation is performed by calling function `createShieldInformationBarrier`
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barriers/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrier` in integration tests_
+<!-- sample post_shield_information_barriers -->
+
+```ts
+await client.shieldInformationBarriers.createShieldInformationBarrier({
+  enterprise: {
+    id: enterpriseId,
+    type: 'enterprise' as EnterpriseBaseTypeField,
+  } satisfies EnterpriseBase,
+} satisfies CreateShieldInformationBarrierRequestBodyArg);
+```
 
 ### Arguments
 

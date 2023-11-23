@@ -20,7 +20,18 @@ This operation is performed by calling function `createInvite`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-invites/).
 
-_Currently we don't have an example for calling `createInvite` in integration tests_
+<!-- sample post_invites -->
+
+```ts
+await client.invites.createInvite({
+  enterprise: {
+    id: currentUser.enterprise!.id!,
+  } satisfies CreateInviteRequestBodyArgEnterpriseField,
+  actionableBy: {
+    login: email,
+  } satisfies CreateInviteRequestBodyArgActionableByField,
+} satisfies CreateInviteRequestBodyArg);
+```
 
 ### Arguments
 
@@ -48,7 +59,11 @@ This operation is performed by calling function `getInviteById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-invites-id/).
 
-_Currently we don't have an example for calling `getInviteById` in integration tests_
+<!-- sample get_invites_id -->
+
+```ts
+await client.invites.getInviteById(invitation.id);
+```
 
 ### Arguments
 

@@ -410,13 +410,12 @@ export interface MetadataCascadePolicyParentField {
   readonly type?: MetadataCascadePolicyParentFieldTypeField;
   readonly id?: string;
 }
-export type MetadataCascadePolicyScopeField = 'global' | 'enterprise_*';
 export interface MetadataCascadePolicy {
-  readonly id?: string;
-  readonly type?: MetadataCascadePolicyTypeField;
+  readonly id: string;
+  readonly type: MetadataCascadePolicyTypeField;
   readonly ownerEnterprise?: MetadataCascadePolicyOwnerEnterpriseField;
   readonly parent?: MetadataCascadePolicyParentField;
-  readonly scope?: MetadataCascadePolicyScopeField;
+  readonly scope?: string;
   readonly templateKey?: string;
 }
 export interface MetadataCascadePolicies {
@@ -5479,34 +5478,12 @@ export function deserializeMetadataCascadePolicyParentField(
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies MetadataCascadePolicyParentField;
 }
-export function serializeMetadataCascadePolicyScopeField(
-  val: MetadataCascadePolicyScopeField
-): SerializedData {
-  return val;
-}
-export function deserializeMetadataCascadePolicyScopeField(
-  val: any
-): MetadataCascadePolicyScopeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "MetadataCascadePolicyScopeField"';
-  }
-  if (val == 'global') {
-    return 'global';
-  }
-  if (val == 'enterprise_*') {
-    return 'enterprise_*';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
 export function serializeMetadataCascadePolicy(
   val: MetadataCascadePolicy
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeMetadataCascadePolicyTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeMetadataCascadePolicyTypeField(val.type),
     ['owner_enterprise']:
       val.ownerEnterprise == void 0
         ? void 0
@@ -5517,21 +5494,16 @@ export function serializeMetadataCascadePolicy(
       val.parent == void 0
         ? void 0
         : serializeMetadataCascadePolicyParentField(val.parent),
-    ['scope']:
-      val.scope == void 0
-        ? void 0
-        : serializeMetadataCascadePolicyScopeField(val.scope),
+    ['scope']: val.scope == void 0 ? void 0 : val.scope,
     ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
   };
 }
 export function deserializeMetadataCascadePolicy(
   val: any
 ): MetadataCascadePolicy {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | MetadataCascadePolicyTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeMetadataCascadePolicyTypeField(val.type);
+  const id: string = val.id;
+  const type: MetadataCascadePolicyTypeField =
+    deserializeMetadataCascadePolicyTypeField(val.type);
   const ownerEnterprise: undefined | MetadataCascadePolicyOwnerEnterpriseField =
     val.owner_enterprise == void 0
       ? void 0
@@ -5542,10 +5514,7 @@ export function deserializeMetadataCascadePolicy(
     val.parent == void 0
       ? void 0
       : deserializeMetadataCascadePolicyParentField(val.parent);
-  const scope: undefined | MetadataCascadePolicyScopeField =
-    val.scope == void 0
-      ? void 0
-      : deserializeMetadataCascadePolicyScopeField(val.scope);
+  const scope: undefined | string = val.scope == void 0 ? void 0 : val.scope;
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
   return {

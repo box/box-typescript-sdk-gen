@@ -1,4 +1,5 @@
-import { Readable } from 'stream';
+import { Buffer } from 'buffer';
+import type { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 
 export function isBrowser() {
@@ -51,9 +52,9 @@ export class Hash {
     this.#chunks = new Uint8Array();
     if (isBrowser()) {
       this.#hash = undefined;
-      return;
+    } else {
+      this.#hash = eval('require')('crypto').createHash(algorithm);
     }
-    this.#hash = eval('require')('crypto').createHash(algorithm);
   }
 
   updateHash(data: Buffer) {
@@ -106,12 +107,21 @@ export function generateByteBuffer(size: number): Buffer {
   return crypto.randomBytes(size);
 }
 
-export function generateByteStreamFromBuffer(buffer: Buffer): Readable {
-  return Readable.from(buffer);
+export function generateByteStreamFromBuffer(
+  buffer: Buffer | ArrayBuffer
+): Readable {
+  return isBrowser()
+    ? new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(new Uint8Array(buffer));
+          controller.close();
+        },
+      })
+    : eval('require')('stream').Readable.from(Buffer.from(buffer));
 }
 
 export function generateByteStream(size: number): Readable {
-  return Readable.from(generateByteBuffer(size));
+  return generateByteStreamFromBuffer(generateByteBuffer(size));
 }
 
 export function bufferEquals(buffer1: Buffer, buffer2: Buffer): boolean {
@@ -123,7 +133,20 @@ export function bufferLength(buffer: Buffer): number {
 }
 
 export function decodeBase64ByteStream(data: string): Readable {
-  return Readable.from(Buffer.from(data, 'base64'));
+  return isBrowser()
+    ? new ReadableStream<Uint8Array>({
+        start(controller) {
+          const decodedStr = atob(data);
+          const buffer = new ArrayBuffer(decodedStr.length);
+          const array = new Uint8Array(buffer);
+          for (let i = 0; i < decodedStr.length; i++) {
+            array[i] = decodedStr.charCodeAt(i);
+          }
+          controller.enqueue(array);
+          controller.close();
+        },
+      })
+    : eval('require')('stream').Readable.from(Buffer.from(data, 'base64'));
 }
 
 export async function readByteStream(byteStream: Readable) {
@@ -155,7 +178,9 @@ export async function* iterateChunks(
 
     let start = 0;
     while (totalSize >= chunkSize) {
-      yield Readable.from(buffer.subarray(start, start + chunkSize));
+      yield generateByteStreamFromBuffer(
+        buffer.subarray(start, start + chunkSize)
+      );
       start += chunkSize;
       totalSize -= chunkSize;
     }
@@ -164,7 +189,7 @@ export async function* iterateChunks(
   }
 
   if (totalSize > 0) {
-    yield Readable.from(Buffer.concat(buffers));
+    yield generateByteStreamFromBuffer(Buffer.concat(buffers));
   }
 }
 

@@ -1,17 +1,16 @@
+import type * as jwt from 'jsonwebtoken';
+import { v4 as uuidv4 } from 'uuid';
+import { Authentication } from './auth';
 import {
   TokenRequest,
   TokenRequestBoxSubjectType,
   TokenRequestGrantType,
 } from './authSchemas.js';
-import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
-import { readFileSync } from 'fs';
-import jwt from 'jsonwebtoken';
-import { v4 as uuid } from 'uuid';
-import { Authentication } from './auth';
+import { FetchResponse, fetch } from './fetch.js';
 import { NetworkSession } from './network';
-import { fetch, FetchResponse } from './fetch.js';
+import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
 import { InMemoryTokenStorage, TokenStorage } from './tokenStorage.generated';
-import { jsonToSerializedData } from './json.js';
+import { isBrowser } from './utils.js';
 
 const BOX_JWT_AUDIENCE = 'https://api.box.com/oauth2/token';
 const BOX_JWT_GRANT_TYPE: TokenRequestGrantType =
@@ -134,6 +133,11 @@ export class JwtConfig {
     configFilePath: string,
     tokenStorage?: TokenStorage
   ): JwtConfig {
+    if (isBrowser()) {
+      throw new Error('JWT is unavailble in browser environment');
+    }
+
+    const { readFileSync } = eval('require')('fs');
     const config = readFileSync(configFilePath, 'utf8');
     return JwtConfig.fromConfigJsonString(config, tokenStorage);
   }
@@ -183,6 +187,10 @@ export class BoxJwtAuth implements Authentication {
    * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
+    if (isBrowser()) {
+      throw new Error('JWT is unavailble in browser environment');
+    }
+
     const expInSec = Math.floor(Date.now() / 1000) + 30;
     const claims = {
       exp: expInSec,
@@ -193,7 +201,7 @@ export class BoxJwtAuth implements Authentication {
       audience: BOX_JWT_AUDIENCE,
       subject: this.subjectId,
       issuer: this.config.clientId,
-      jwtid: uuid(),
+      jwtid: uuidv4(),
       keyid: this.config.jwtKeyId,
     };
     const keyParams = {
@@ -201,7 +209,11 @@ export class BoxJwtAuth implements Authentication {
       passphrase: this.config.privateKeyPassphrase,
     };
 
-    const assertion = jwt.sign(claims, keyParams, jwtOptions);
+    const assertion = eval('require')('jsonwebtoken').sign(
+      claims,
+      keyParams,
+      jwtOptions
+    );
 
     const requestBody: TokenRequest = {
       grant_type: BOX_JWT_GRANT_TYPE,

@@ -58,10 +58,7 @@ Using `Client` object you can access managers, which allow you to perform some o
 The example below demonstrates how to authenticate with Developer Token and print names of all items inside a root folder.
 
 ```js
-const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const {
-  BoxDeveloperTokenAuth,
-} = require('box-typescript-sdk-gen/lib/developerTokenAuth.generated.js');
+const { BoxClient, BoxDeveloperTokenAuth } = require('box-typescript-sdk-gen');
 
 async function main(token) {
   let auth = new BoxDeveloperTokenAuth({ token });
@@ -72,6 +69,14 @@ async function main(token) {
 
 main('INSERT YOUR DEVELOPER TOKEN HERE');
 ```
+
+In order to use in browser make sure you include the `lib/bundle.js` file and then you can access the classes like so:
+
+```js
+const { BoxClient, BoxDeveloperTokenAuth } = window['box-typescript-sdk-gen'];
+```
+
+See example.html for an example website using this SDK.
 
 # Integration Tests
 
@@ -94,7 +99,7 @@ Now select `Authorization` and submit application to be reviewed by account admi
    download your app configuration settings as JSON.
 2. Encode configuration file to Base64, e.g. using command: `base64 -i path_to_json_file`
 3. Set environment variable: `JWT_CONFIG_BASE_64` with base64 encoded jwt configuration file
-4. Set environment variable: `BOX_FILE_REQUEST_ID` with ID of file request already created in the user account.
+4. Set environment variable: `BOX_FILE_REQUEST_ID` with ID of file request already created in the user account, `BOX_EXTERNAL_USER_EMAIL` with email of free external user which not belongs to any enterprise.
 
 # Questions, Bugs, and Feature Requests?
 
