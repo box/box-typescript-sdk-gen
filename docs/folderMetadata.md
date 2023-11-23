@@ -53,7 +53,11 @@ See the endpoint docs at
 <!-- sample get_folders_id_metadata_id_id -->
 
 ```ts
-await client.folderMetadata.getFolderMetadataById(folder.id, scope, template);
+await client.folderMetadata.getFolderMetadataById(
+  folder.id,
+  'global' as GetFolderMetadataByIdScopeArg,
+  'properties'
+);
 ```
 
 ### Arguments
@@ -99,9 +103,9 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.createFolderMetadataById(
   folder.id,
-  scope,
-  template,
-  data
+  'global' as CreateFolderMetadataByIdScopeArg,
+  'properties',
+  { ['abc']: 'xyz' }
 );
 ```
 
@@ -148,8 +152,8 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.updateFolderMetadataById(
   folder.id,
-  scope,
-  template,
+  'global' as UpdateFolderMetadataByIdScopeArg,
+  'properties',
   [
     {
       op: 'replace' as UpdateFolderMetadataByIdRequestBodyArgOpField,
@@ -196,8 +200,8 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
-  scope,
-  template
+  'global' as DeleteFolderMetadataByIdScopeArg,
+  'properties'
 );
 ```
 

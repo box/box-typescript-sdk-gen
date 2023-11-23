@@ -1,11 +1,11 @@
 import { serializeMetadataTemplate } from '../schemas.generated.js';
 import { deserializeMetadataTemplate } from '../schemas.generated.js';
-import { serializeCreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -22,8 +22,8 @@ import { serializeMetadataQueryResults } from '../schemas.generated.js';
 import { deserializeMetadataQueryResults } from '../schemas.generated.js';
 import { serializeMetadataQuery } from '../schemas.generated.js';
 import { deserializeMetadataQuery } from '../schemas.generated.js';
-import { serializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeDeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
+import { serializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataQueryIndices } from '../schemas.generated.js';
 import { deserializeMetadataQueryIndices } from '../schemas.generated.js';
 import { serializeGetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/search.generated.js';
@@ -34,9 +34,9 @@ import { serializeGetSearchQueryParamsArgTrashContentField } from '../managers/s
 import { deserializeGetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
-import { CreateMetadataTemplateSchemaRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateSchemaRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
@@ -46,7 +46,7 @@ import { MetadataFull } from '../schemas.generated.js';
 import { CreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
 import { MetadataQueryResults } from '../schemas.generated.js';
 import { MetadataQuery } from '../schemas.generated.js';
-import { DeleteMetadataTemplateSchemaScopeArg } from '../managers/metadataTemplates.generated.js';
+import { DeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
 import { MetadataQueryIndices } from '../schemas.generated.js';
 import { GetMetadataQueryIndicesQueryParamsArg } from '../managers/search.generated.js';
 import { GetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/search.generated.js';
@@ -68,19 +68,18 @@ import { sdIsMap } from '../json.js';
 const client: any = getDefaultClient();
 test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQueryExecuteRead(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any =
-    await client.metadataTemplates.createMetadataTemplateSchema({
-      scope: 'enterprise',
-      displayName: templateKey,
-      templateKey: templateKey,
-      fields: [
-        {
-          type: 'float' as CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField,
-          key: 'testName',
-          displayName: 'testName',
-        } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField,
-      ],
-    } satisfies CreateMetadataTemplateSchemaRequestBodyArg);
+  const template: any = await client.metadataTemplates.createMetadataTemplate({
+    scope: 'enterprise',
+    displayName: templateKey,
+    templateKey: templateKey,
+    fields: [
+      {
+        type: 'float' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        key: 'testName',
+        displayName: 'testName',
+      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+    ],
+  } satisfies CreateMetadataTemplateRequestBodyArg);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';
   }
@@ -120,27 +119,26 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   if (!(query.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
-  await client.metadataTemplates.deleteMetadataTemplateSchema(
-    'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScopeArg,
     template.templateKey
   );
   await client.files.deleteFileById(file.id);
 });
 test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any =
-    await client.metadataTemplates.createMetadataTemplateSchema({
-      scope: 'enterprise',
-      displayName: templateKey,
-      templateKey: templateKey,
-      fields: [
-        {
-          type: 'string' as CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField,
-          key: 'testName',
-          displayName: 'testName',
-        } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField,
-      ],
-    } satisfies CreateMetadataTemplateSchemaRequestBodyArg);
+  const template: any = await client.metadataTemplates.createMetadataTemplate({
+    scope: 'enterprise',
+    displayName: templateKey,
+    templateKey: templateKey,
+    fields: [
+      {
+        type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        key: 'testName',
+        displayName: 'testName',
+      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+    ],
+  } satisfies CreateMetadataTemplateRequestBodyArg);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';
   }
@@ -151,8 +149,8 @@ test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices()
   if (!(indices.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
-  await client.metadataTemplates.deleteMetadataTemplateSchema(
-    'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScopeArg,
     template.templateKey
   );
 });

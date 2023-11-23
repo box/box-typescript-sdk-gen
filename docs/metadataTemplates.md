@@ -14,19 +14,25 @@
 Finds a metadata template by searching for the ID of an instance of the
 template.
 
-This operation is performed by calling function `getMetadataTemplates`.
+This operation is performed by calling function `getMetadataTemplatesByInstanceId`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates/).
 
-_Currently we don't have an example for calling `getMetadataTemplates` in integration tests_
+<!-- sample get_metadata_templates -->
+
+```ts
+await client.metadataTemplates.getMetadataTemplatesByInstanceId({
+  metadataInstanceId: createdMetadataInstance.id!,
+} satisfies GetMetadataTemplatesByInstanceIdQueryParamsArg);
+```
 
 ### Arguments
 
-- queryParams `GetMetadataTemplatesQueryParamsArg`
-  - Query parameters of getMetadataTemplates method
-- headers `GetMetadataTemplatesHeadersArg`
-  - Headers of getMetadataTemplates method
+- queryParams `GetMetadataTemplatesByInstanceIdQueryParamsArg`
+  - Query parameters of getMetadataTemplatesByInstanceId method
+- headers `GetMetadataTemplatesByInstanceIdHeadersArg`
+  - Headers of getMetadataTemplatesByInstanceId method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -44,7 +50,7 @@ Retrieves a metadata template by its `scope` and `templateKey` values.
 To find the `scope` and `templateKey` for a template, list all templates for
 an enterprise or globally, or list all templates applied to a file or folder.
 
-This operation is performed by calling function `getMetadataTemplateSchema`.
+This operation is performed by calling function `getMetadataTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-id-id-schema/).
@@ -52,20 +58,20 @@ See the endpoint docs at
 <!-- sample get_metadata_templates_id_id_schema -->
 
 ```ts
-await client.metadataTemplates.getMetadataTemplateSchema(
-  'enterprise' as GetMetadataTemplateSchemaScopeArg,
+await client.metadataTemplates.getMetadataTemplate(
+  'enterprise' as GetMetadataTemplateScopeArg,
   template.templateKey!
 );
 ```
 
 ### Arguments
 
-- scope `GetMetadataTemplateSchemaScopeArg`
+- scope `GetMetadataTemplateScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `GetMetadataTemplateSchemaHeadersArg`
-  - Headers of getMetadataTemplateSchema method
+- headers `GetMetadataTemplateHeadersArg`
+  - Headers of getMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -86,23 +92,37 @@ already exists.
 The update is applied atomically. If any errors occur during the
 application of the operations, the metadata template will not be changed.
 
-This operation is performed by calling function `updateMetadataTemplateSchema`.
+This operation is performed by calling function `updateMetadataTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-metadata-templates-id-id-schema/).
 
-_Currently we don't have an example for calling `updateMetadataTemplateSchema` in integration tests_
+<!-- sample put_metadata_templates_id_id_schema -->
+
+```ts
+await client.metadataTemplates.updateMetadataTemplate(
+  'enterprise' as UpdateMetadataTemplateScopeArg,
+  templateKey,
+  [
+    {
+      op: 'addField' as UpdateMetadataTemplateRequestBodyArgOpField,
+      fieldKey: 'newfieldname',
+      data: { ['type']: 'string', ['displayName']: 'newFieldName' },
+    } satisfies UpdateMetadataTemplateRequestBodyArg,
+  ]
+);
+```
 
 ### Arguments
 
-- scope `UpdateMetadataTemplateSchemaScopeArg`
+- scope `UpdateMetadataTemplateScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `readonly UpdateMetadataTemplateSchemaRequestBodyArg[]`
-  - Request body of updateMetadataTemplateSchema method
-- headers `UpdateMetadataTemplateSchemaHeadersArg`
-  - Headers of updateMetadataTemplateSchema method
+- requestBody `readonly UpdateMetadataTemplateRequestBodyArg[]`
+  - Request body of updateMetadataTemplate method
+- headers `UpdateMetadataTemplateHeadersArg`
+  - Headers of updateMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -118,7 +138,7 @@ custom template data included.
 Delete a metadata template and its instances.
 This deletion is permanent and can not be reversed.
 
-This operation is performed by calling function `deleteMetadataTemplateSchema`.
+This operation is performed by calling function `deleteMetadataTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-metadata-templates-id-id-schema/).
@@ -126,20 +146,20 @@ See the endpoint docs at
 <!-- sample delete_metadata_templates_id_id_schema -->
 
 ```ts
-await client.metadataTemplates.deleteMetadataTemplateSchema(
-  'enterprise' as DeleteMetadataTemplateSchemaScopeArg,
+await client.metadataTemplates.deleteMetadataTemplate(
+  'enterprise' as DeleteMetadataTemplateScopeArg,
   template.templateKey
 );
 ```
 
 ### Arguments
 
-- scope `DeleteMetadataTemplateSchemaScopeArg`
+- scope `DeleteMetadataTemplateScopeArg`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `DeleteMetadataTemplateSchemaHeadersArg`
-  - Headers of deleteMetadataTemplateSchema method
+- headers `DeleteMetadataTemplateHeadersArg`
+  - Headers of deleteMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -185,7 +205,7 @@ Returns the metadata template that matches the ID.
 Used to retrieve all generic, global metadata templates available to all
 enterprises using Box.
 
-This operation is performed by calling function `getMetadataTemplateGlobal`.
+This operation is performed by calling function `getGlobalMetadataTemplates`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-global/).
@@ -193,15 +213,15 @@ See the endpoint docs at
 <!-- sample get_metadata_templates_global -->
 
 ```ts
-await client.metadataTemplates.getMetadataTemplateGlobal();
+await client.metadataTemplates.getGlobalMetadataTemplates();
 ```
 
 ### Arguments
 
-- queryParams `GetMetadataTemplateGlobalQueryParamsArg`
-  - Query parameters of getMetadataTemplateGlobal method
-- headers `GetMetadataTemplateGlobalHeadersArg`
-  - Headers of getMetadataTemplateGlobal method
+- queryParams `GetGlobalMetadataTemplatesQueryParamsArg`
+  - Query parameters of getGlobalMetadataTemplates method
+- headers `GetGlobalMetadataTemplatesHeadersArg`
+  - Headers of getGlobalMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -217,7 +237,7 @@ and their corresponding schema.
 Used to retrieve all metadata templates created to be used specifically within
 the user's enterprise
 
-This operation is performed by calling function `getMetadataTemplateEnterprise`.
+This operation is performed by calling function `getEnterpriseMetadataTemplates`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise/).
@@ -225,15 +245,15 @@ See the endpoint docs at
 <!-- sample get_metadata_templates_enterprise -->
 
 ```ts
-await client.metadataTemplates.getMetadataTemplateEnterprise();
+await client.metadataTemplates.getEnterpriseMetadataTemplates();
 ```
 
 ### Arguments
 
-- queryParams `GetMetadataTemplateEnterpriseQueryParamsArg`
-  - Query parameters of getMetadataTemplateEnterprise method
-- headers `GetMetadataTemplateEnterpriseHeadersArg`
-  - Headers of getMetadataTemplateEnterprise method
+- queryParams `GetEnterpriseMetadataTemplatesQueryParamsArg`
+  - Query parameters of getEnterpriseMetadataTemplates method
+- headers `GetEnterpriseMetadataTemplatesHeadersArg`
+  - Headers of getEnterpriseMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -249,7 +269,7 @@ and their corresponding schema.
 Creates a new metadata template that can be applied to
 files and folders.
 
-This operation is performed by calling function `createMetadataTemplateSchema`.
+This operation is performed by calling function `createMetadataTemplate`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-templates-schema/).
@@ -257,26 +277,26 @@ See the endpoint docs at
 <!-- sample post_metadata_templates_schema -->
 
 ```ts
-await client.metadataTemplates.createMetadataTemplateSchema({
+await client.metadataTemplates.createMetadataTemplate({
   scope: 'enterprise',
   displayName: templateKey,
   templateKey: templateKey,
   fields: [
     {
-      type: 'string' as CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField,
+      type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
       key: 'testName',
       displayName: 'testName',
-    } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField,
+    } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
   ],
-} satisfies CreateMetadataTemplateSchemaRequestBodyArg);
+} satisfies CreateMetadataTemplateRequestBodyArg);
 ```
 
 ### Arguments
 
-- requestBody `CreateMetadataTemplateSchemaRequestBodyArg`
-  - Request body of createMetadataTemplateSchema method
-- headers `CreateMetadataTemplateSchemaHeadersArg`
-  - Headers of createMetadataTemplateSchema method
+- requestBody `CreateMetadataTemplateRequestBodyArg`
+  - Request body of createMetadataTemplate method
+- headers `CreateMetadataTemplateHeadersArg`
+  - Headers of createMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

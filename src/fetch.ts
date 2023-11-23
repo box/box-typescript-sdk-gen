@@ -1,6 +1,5 @@
-import FormData from 'form-data';
 import nodeFetch, { RequestInit } from 'node-fetch';
-import { Readable } from 'stream';
+import type { Readable } from 'stream';
 import { Authentication } from './auth';
 import {
   jsonToSerializedData,
@@ -9,10 +8,17 @@ import {
   SerializedData,
 } from './json';
 import { getRetryTimeout, NetworkSession } from './network';
-import { ByteStream, CancellationToken, isBrowser } from './utils';
+import {
+  ByteStream,
+  CancellationToken,
+  generateByteStreamFromBuffer,
+  isBrowser,
+} from './utils';
 
 const sdkVersion = '0.1.0';
-export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (Node ${process.version})`;
+export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
+  isBrowser() ? navigator.userAgent : `Node ${process.version}`
+})`;
 export const xBoxUaHeader = constructBoxUAHeader();
 
 export interface MultipartItem {
@@ -113,6 +119,9 @@ async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
     body: Readable | string;
   }> => {
     if (options.multipartData) {
+      const FormData = isBrowser()
+        ? window.FormData
+        : eval('require')('form-data');
       const formData = new FormData();
       for (const item of options.multipartData) {
         if (item.fileStream) {
@@ -248,13 +257,7 @@ export async function fetch(
     return void 0;
   })();
 
-  const content = new Readable({
-    read() {
-      this.push(new Uint8Array(responseBytesBuffer));
-      this.push(null);
-    },
-  });
-
+  const content = generateByteStreamFromBuffer(responseBytesBuffer);
   const { status } = response;
 
   return { status, data, content };
@@ -275,11 +278,11 @@ async function calculateMD5Hash(data: string | Buffer): Promise<string> {
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
     return hashHex;
-  } else {
-    // Node environment
-    createHash = eval('require')('crypto').createHash;
-    return createHash('sha1').update(data).digest('hex');
   }
+
+  // Node environment
+  createHash = eval('require')('crypto').createHash;
+  return createHash('sha1').update(data).digest('hex');
 }
 
 async function readStream(fileStream: Readable): Promise<Buffer> {
@@ -296,7 +299,9 @@ async function readStream(fileStream: Readable): Promise<Buffer> {
 function constructBoxUAHeader() {
   const analyticsIdentifiers = {
     agent: `box-javascript-generated-sdk/${sdkVersion}`,
-    env: `Node/${process.version.replace('v', '')}`,
+    env: isBrowser()
+      ? navigator.userAgent
+      : `Node/${process.version.replace('v', '')}`,
   } as Record<string, string>;
 
   return Object.keys(analyticsIdentifiers)

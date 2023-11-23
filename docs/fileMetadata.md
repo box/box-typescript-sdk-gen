@@ -18,7 +18,7 @@ See the endpoint docs at
 <!-- sample get_files_id_metadata -->
 
 ```ts
-await client.fileMetadata.getFileMetadata(fileId);
+await client.fileMetadata.getFileMetadata(file.id);
 ```
 
 ### Arguments
@@ -52,7 +52,11 @@ See the endpoint docs at
 <!-- sample get_files_id_metadata_id_id -->
 
 ```ts
-await client.fileMetadata.getFileMetadataById(fileId, scope, template);
+await client.fileMetadata.getFileMetadataById(
+  file.id,
+  'global' as GetFileMetadataByIdScopeArg,
+  'properties'
+);
 ```
 
 ### Arguments
@@ -141,13 +145,18 @@ See the endpoint docs at
 <!-- sample put_files_id_metadata_id_id -->
 
 ```ts
-await client.fileMetadata.updateFileMetadataById(fileId, scope, template, [
-  {
-    op: 'replace' as UpdateFileMetadataByIdRequestBodyArgOpField,
-    path: '/abc',
-    value: newValue,
-  } satisfies UpdateFileMetadataByIdRequestBodyArg,
-]);
+await client.fileMetadata.updateFileMetadataById(
+  file.id,
+  'global' as UpdateFileMetadataByIdScopeArg,
+  'properties',
+  [
+    {
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyArgOpField,
+      path: '/abc',
+      value: newValue,
+    } satisfies UpdateFileMetadataByIdRequestBodyArg,
+  ]
+);
 ```
 
 ### Arguments
@@ -184,7 +193,11 @@ See the endpoint docs at
 <!-- sample delete_files_id_metadata_id_id -->
 
 ```ts
-await client.fileMetadata.deleteFileMetadataById(fileId, scope, template);
+await client.fileMetadata.deleteFileMetadataById(
+  file.id,
+  'enterprise' as DeleteFileMetadataByIdScopeArg,
+  templateKey
+);
 ```
 
 ### Arguments

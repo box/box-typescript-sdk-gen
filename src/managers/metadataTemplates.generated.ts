@@ -24,36 +24,38 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetMetadataTemplatesQueryParamsArg {
+export interface GetMetadataTemplatesByInstanceIdQueryParamsArg {
   readonly metadataInstanceId: string;
 }
-export class GetMetadataTemplatesHeadersArg {
+export class GetMetadataTemplatesByInstanceIdHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplatesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplatesHeadersArg, 'extraHeaders'>>
+      | Omit<GetMetadataTemplatesByInstanceIdHeadersArg, 'extraHeaders'>
+      | Partial<
+          Pick<GetMetadataTemplatesByInstanceIdHeadersArg, 'extraHeaders'>
+        >
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetMetadataTemplateSchemaScopeArg = 'global' | 'enterprise';
-export class GetMetadataTemplateSchemaHeadersArg {
+export type GetMetadataTemplateScopeArg = 'global' | 'enterprise';
+export class GetMetadataTemplateHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+      | Omit<GetMetadataTemplateHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateMetadataTemplateSchemaScopeArg = 'global' | 'enterprise';
-export type UpdateMetadataTemplateSchemaRequestBodyArgOpField =
+export type UpdateMetadataTemplateScopeArg = 'global' | 'enterprise';
+export type UpdateMetadataTemplateRequestBodyArgOpField =
   | 'editTemplate'
   | 'addField'
   | 'reorderFields'
@@ -67,8 +69,8 @@ export type UpdateMetadataTemplateSchemaRequestBodyArgOpField =
   | 'removeEnumOption'
   | 'editMultiSelectOption'
   | 'removeMultiSelectOption';
-export interface UpdateMetadataTemplateSchemaRequestBodyArg {
-  readonly op: UpdateMetadataTemplateSchemaRequestBodyArgOpField;
+export interface UpdateMetadataTemplateRequestBodyArg {
+  readonly op: UpdateMetadataTemplateRequestBodyArgOpField;
   readonly data?: {
     readonly [key: string]: string;
   };
@@ -79,27 +81,27 @@ export interface UpdateMetadataTemplateSchemaRequestBodyArg {
   readonly multiSelectOptionKey?: string;
   readonly multiSelectOptionKeys?: readonly string[];
 }
-export class UpdateMetadataTemplateSchemaHeadersArg {
+export class UpdateMetadataTemplateHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateMetadataTemplateHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateMetadataTemplateHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type DeleteMetadataTemplateSchemaScopeArg = 'global' | 'enterprise';
-export class DeleteMetadataTemplateSchemaHeadersArg {
+export type DeleteMetadataTemplateScopeArg = 'global' | 'enterprise';
+export class DeleteMetadataTemplateHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteMetadataTemplateHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteMetadataTemplateHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -116,71 +118,71 @@ export class GetMetadataTemplateByIdHeadersArg {
     Object.assign(this, fields);
   }
 }
-export interface GetMetadataTemplateGlobalQueryParamsArg {
+export interface GetGlobalMetadataTemplatesQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetMetadataTemplateGlobalHeadersArg {
+export class GetGlobalMetadataTemplatesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplateGlobalHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateGlobalHeadersArg, 'extraHeaders'>>
+      | Omit<GetGlobalMetadataTemplatesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetGlobalMetadataTemplatesHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetMetadataTemplateEnterpriseQueryParamsArg {
+export interface GetEnterpriseMetadataTemplatesQueryParamsArg {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetMetadataTemplateEnterpriseHeadersArg {
+export class GetEnterpriseMetadataTemplatesHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplateEnterpriseHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateEnterpriseHeadersArg, 'extraHeaders'>>
+      | Omit<GetEnterpriseMetadataTemplatesHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetEnterpriseMetadataTemplatesHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField =
+export type CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField =
   | 'string'
   | 'float'
   | 'date'
   | 'enum'
   | 'multiSelect';
-export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField {
+export interface CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField {
   readonly key: string;
 }
-export interface CreateMetadataTemplateSchemaRequestBodyArgFieldsField {
-  readonly type: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField;
+export interface CreateMetadataTemplateRequestBodyArgFieldsField {
+  readonly type: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField;
   readonly key: string;
   readonly displayName: string;
   readonly description?: string;
   readonly hidden?: boolean;
-  readonly options?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField[];
+  readonly options?: readonly CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField[];
 }
-export interface CreateMetadataTemplateSchemaRequestBodyArg {
+export interface CreateMetadataTemplateRequestBodyArg {
   readonly scope: string;
   readonly templateKey?: string;
   readonly displayName: string;
   readonly hidden?: boolean;
-  readonly fields?: readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsField[];
+  readonly fields?: readonly CreateMetadataTemplateRequestBodyArgFieldsField[];
   readonly copyInstanceOnItemCopy?: boolean;
 }
-export class CreateMetadataTemplateSchemaHeadersArg {
+export class CreateMetadataTemplateHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataTemplateSchemaHeadersArg, 'extraHeaders'>>
+      | Omit<CreateMetadataTemplateHeadersArg, 'extraHeaders'>
+      | Partial<Pick<CreateMetadataTemplateHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -191,21 +193,21 @@ export class MetadataTemplatesManager {
   constructor(
     fields: Omit<
       MetadataTemplatesManager,
-      | 'getMetadataTemplates'
-      | 'getMetadataTemplateSchema'
-      | 'updateMetadataTemplateSchema'
-      | 'deleteMetadataTemplateSchema'
+      | 'getMetadataTemplatesByInstanceId'
+      | 'getMetadataTemplate'
+      | 'updateMetadataTemplate'
+      | 'deleteMetadataTemplate'
       | 'getMetadataTemplateById'
-      | 'getMetadataTemplateGlobal'
-      | 'getMetadataTemplateEnterprise'
-      | 'createMetadataTemplateSchema'
+      | 'getGlobalMetadataTemplates'
+      | 'getEnterpriseMetadataTemplates'
+      | 'createMetadataTemplate'
     >
   ) {
     Object.assign(this, fields);
   }
-  async getMetadataTemplates(
-    queryParams: GetMetadataTemplatesQueryParamsArg,
-    headers: GetMetadataTemplatesHeadersArg = new GetMetadataTemplatesHeadersArg(
+  async getMetadataTemplatesByInstanceId(
+    queryParams: GetMetadataTemplatesByInstanceIdQueryParamsArg,
+    headers: GetMetadataTemplatesByInstanceIdHeadersArg = new GetMetadataTemplatesByInstanceIdHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -234,10 +236,10 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplates(response.data);
   }
-  async getMetadataTemplateSchema(
-    scope: GetMetadataTemplateSchemaScopeArg,
+  async getMetadataTemplate(
+    scope: GetMetadataTemplateScopeArg,
     templateKey: string,
-    headers: GetMetadataTemplateSchemaHeadersArg = new GetMetadataTemplateSchemaHeadersArg(
+    headers: GetMetadataTemplateHeadersArg = new GetMetadataTemplateHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -264,11 +266,11 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplate(response.data);
   }
-  async updateMetadataTemplateSchema(
-    scope: UpdateMetadataTemplateSchemaScopeArg,
+  async updateMetadataTemplate(
+    scope: UpdateMetadataTemplateScopeArg,
     templateKey: string,
-    requestBody: readonly UpdateMetadataTemplateSchemaRequestBodyArg[],
-    headers: UpdateMetadataTemplateSchemaHeadersArg = new UpdateMetadataTemplateSchemaHeadersArg(
+    requestBody: readonly UpdateMetadataTemplateRequestBodyArg[],
+    headers: UpdateMetadataTemplateHeadersArg = new UpdateMetadataTemplateHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -288,7 +290,7 @@ export class MetadataTemplatesManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateMetadataTemplateSchemaRequestBodyArg
+          serializeUpdateMetadataTemplateRequestBodyArg
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -299,10 +301,10 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplate(response.data);
   }
-  async deleteMetadataTemplateSchema(
-    scope: DeleteMetadataTemplateSchemaScopeArg,
+  async deleteMetadataTemplate(
+    scope: DeleteMetadataTemplateScopeArg,
     templateKey: string,
-    headers: DeleteMetadataTemplateSchemaHeadersArg = new DeleteMetadataTemplateSchemaHeadersArg(
+    headers: DeleteMetadataTemplateHeadersArg = new DeleteMetadataTemplateHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -355,9 +357,9 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplate(response.data);
   }
-  async getMetadataTemplateGlobal(
-    queryParams: GetMetadataTemplateGlobalQueryParamsArg = {} satisfies GetMetadataTemplateGlobalQueryParamsArg,
-    headers: GetMetadataTemplateGlobalHeadersArg = new GetMetadataTemplateGlobalHeadersArg(
+  async getGlobalMetadataTemplates(
+    queryParams: GetGlobalMetadataTemplatesQueryParamsArg = {} satisfies GetGlobalMetadataTemplatesQueryParamsArg,
+    headers: GetGlobalMetadataTemplatesHeadersArg = new GetGlobalMetadataTemplatesHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -385,9 +387,9 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplates(response.data);
   }
-  async getMetadataTemplateEnterprise(
-    queryParams: GetMetadataTemplateEnterpriseQueryParamsArg = {} satisfies GetMetadataTemplateEnterpriseQueryParamsArg,
-    headers: GetMetadataTemplateEnterpriseHeadersArg = new GetMetadataTemplateEnterpriseHeadersArg(
+  async getEnterpriseMetadataTemplates(
+    queryParams: GetEnterpriseMetadataTemplatesQueryParamsArg = {} satisfies GetEnterpriseMetadataTemplatesQueryParamsArg,
+    headers: GetEnterpriseMetadataTemplatesHeadersArg = new GetEnterpriseMetadataTemplatesHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -417,9 +419,9 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplates(response.data);
   }
-  async createMetadataTemplateSchema(
-    requestBody: CreateMetadataTemplateSchemaRequestBodyArg,
-    headers: CreateMetadataTemplateSchemaHeadersArg = new CreateMetadataTemplateSchemaHeadersArg(
+  async createMetadataTemplate(
+    requestBody: CreateMetadataTemplateRequestBodyArg,
+    headers: CreateMetadataTemplateHeadersArg = new CreateMetadataTemplateHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -432,7 +434,7 @@ export class MetadataTemplatesManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateMetadataTemplateSchemaRequestBodyArg(requestBody),
+        data: serializeCreateMetadataTemplateRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -443,16 +445,16 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
 }
-export function serializeGetMetadataTemplateSchemaScopeArg(
-  val: GetMetadataTemplateSchemaScopeArg
+export function serializeGetMetadataTemplateScopeArg(
+  val: GetMetadataTemplateScopeArg
 ): SerializedData {
   return val;
 }
-export function deserializeGetMetadataTemplateSchemaScopeArg(
+export function deserializeGetMetadataTemplateScopeArg(
   val: any
-): GetMetadataTemplateSchemaScopeArg {
+): GetMetadataTemplateScopeArg {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetMetadataTemplateSchemaScopeArg"';
+    throw 'Expecting a string for "GetMetadataTemplateScopeArg"';
   }
   if (val == 'global') {
     return 'global';
@@ -462,16 +464,16 @@ export function deserializeGetMetadataTemplateSchemaScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateSchemaScopeArg(
-  val: UpdateMetadataTemplateSchemaScopeArg
+export function serializeUpdateMetadataTemplateScopeArg(
+  val: UpdateMetadataTemplateScopeArg
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateMetadataTemplateSchemaScopeArg(
+export function deserializeUpdateMetadataTemplateScopeArg(
   val: any
-): UpdateMetadataTemplateSchemaScopeArg {
+): UpdateMetadataTemplateScopeArg {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateSchemaScopeArg"';
+    throw 'Expecting a string for "UpdateMetadataTemplateScopeArg"';
   }
   if (val == 'global') {
     return 'global';
@@ -481,16 +483,16 @@ export function deserializeUpdateMetadataTemplateSchemaScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(
-  val: UpdateMetadataTemplateSchemaRequestBodyArgOpField
+export function serializeUpdateMetadataTemplateRequestBodyArgOpField(
+  val: UpdateMetadataTemplateRequestBodyArgOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(
+export function deserializeUpdateMetadataTemplateRequestBodyArgOpField(
   val: any
-): UpdateMetadataTemplateSchemaRequestBodyArgOpField {
+): UpdateMetadataTemplateRequestBodyArgOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateSchemaRequestBodyArgOpField"';
+    throw 'Expecting a string for "UpdateMetadataTemplateRequestBodyArgOpField"';
   }
   if (val == 'editTemplate') {
     return 'editTemplate';
@@ -533,11 +535,11 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateSchemaRequestBodyArg(
-  val: UpdateMetadataTemplateSchemaRequestBodyArg
+export function serializeUpdateMetadataTemplateRequestBodyArg(
+  val: UpdateMetadataTemplateRequestBodyArg
 ): SerializedData {
   return {
-    ['op']: serializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(val.op),
+    ['op']: serializeUpdateMetadataTemplateRequestBodyArgOpField(val.op),
     ['data']: val.data == void 0 ? void 0 : val.data,
     ['fieldKey']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
     ['fieldKeys']:
@@ -563,11 +565,11 @@ export function serializeUpdateMetadataTemplateSchemaRequestBodyArg(
           }) as readonly any[]),
   };
 }
-export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(
+export function deserializeUpdateMetadataTemplateRequestBodyArg(
   val: any
-): UpdateMetadataTemplateSchemaRequestBodyArg {
-  const op: UpdateMetadataTemplateSchemaRequestBodyArgOpField =
-    deserializeUpdateMetadataTemplateSchemaRequestBodyArgOpField(val.op);
+): UpdateMetadataTemplateRequestBodyArg {
+  const op: UpdateMetadataTemplateRequestBodyArgOpField =
+    deserializeUpdateMetadataTemplateRequestBodyArgOpField(val.op);
   const data:
     | undefined
     | {
@@ -612,18 +614,18 @@ export function deserializeUpdateMetadataTemplateSchemaRequestBodyArg(
     enumOptionKeys: enumOptionKeys,
     multiSelectOptionKey: multiSelectOptionKey,
     multiSelectOptionKeys: multiSelectOptionKeys,
-  } satisfies UpdateMetadataTemplateSchemaRequestBodyArg;
+  } satisfies UpdateMetadataTemplateRequestBodyArg;
 }
-export function serializeDeleteMetadataTemplateSchemaScopeArg(
-  val: DeleteMetadataTemplateSchemaScopeArg
+export function serializeDeleteMetadataTemplateScopeArg(
+  val: DeleteMetadataTemplateScopeArg
 ): SerializedData {
   return val;
 }
-export function deserializeDeleteMetadataTemplateSchemaScopeArg(
+export function deserializeDeleteMetadataTemplateScopeArg(
   val: any
-): DeleteMetadataTemplateSchemaScopeArg {
+): DeleteMetadataTemplateScopeArg {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteMetadataTemplateSchemaScopeArg"';
+    throw 'Expecting a string for "DeleteMetadataTemplateScopeArg"';
   }
   if (val == 'global') {
     return 'global';
@@ -633,16 +635,16 @@ export function deserializeDeleteMetadataTemplateSchemaScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField(
-  val: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField
+export function serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
+  val: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField(
+export function deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
   val: any
-): CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField {
+): CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField"';
+    throw 'Expecting a string for "CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField"';
   }
   if (val == 'string') {
     return 'string';
@@ -661,27 +663,26 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
-  val: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField
+export function serializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
+  val: CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField
 ): SerializedData {
   return { ['key']: val.key };
 }
-export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
+export function deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
   val: any
-): CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField {
+): CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField {
   const key: string = val.key;
   return {
     key: key,
-  } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField;
+  } satisfies CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField;
 }
-export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
-  val: CreateMetadataTemplateSchemaRequestBodyArgFieldsField
+export function serializeCreateMetadataTemplateRequestBodyArgFieldsField(
+  val: CreateMetadataTemplateRequestBodyArgFieldsField
 ): SerializedData {
   return {
-    ['type']:
-      serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField(
-        val.type
-      ),
+    ['type']: serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
+      val.type
+    ),
     ['key']: val.key,
     ['displayName']: val.displayName,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -690,19 +691,19 @@ export function serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
       val.options == void 0
         ? void 0
         : (val.options.map(function (
-            item: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField
+            item: CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField
           ): any {
-            return serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
+            return serializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
               item
             );
           }) as readonly any[]),
   };
 }
-export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
+export function deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
   val: any
-): CreateMetadataTemplateSchemaRequestBodyArgFieldsField {
-  const type: CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField =
-    deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldTypeField(
+): CreateMetadataTemplateRequestBodyArgFieldsField {
+  const type: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField =
+    deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
       val.type
     );
   const key: string = val.key;
@@ -713,12 +714,12 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField
     val.hidden == void 0 ? void 0 : val.hidden;
   const options:
     | undefined
-    | readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField[] =
+    | readonly CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField[] =
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
       ? (val.options.map(function (itm: SerializedData): any {
-          return deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsFieldOptionsField(
+          return deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
             itm
           );
         }) as readonly any[])
@@ -730,10 +731,10 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField
     description: description,
     hidden: hidden,
     options: options,
-  } satisfies CreateMetadataTemplateSchemaRequestBodyArgFieldsField;
+  } satisfies CreateMetadataTemplateRequestBodyArgFieldsField;
 }
-export function serializeCreateMetadataTemplateSchemaRequestBodyArg(
-  val: CreateMetadataTemplateSchemaRequestBodyArg
+export function serializeCreateMetadataTemplateRequestBodyArg(
+  val: CreateMetadataTemplateRequestBodyArg
 ): SerializedData {
   return {
     ['scope']: val.scope,
@@ -744,9 +745,9 @@ export function serializeCreateMetadataTemplateSchemaRequestBodyArg(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: CreateMetadataTemplateSchemaRequestBodyArgFieldsField
+            item: CreateMetadataTemplateRequestBodyArgFieldsField
           ): any {
-            return serializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
+            return serializeCreateMetadataTemplateRequestBodyArgFieldsField(
               item
             );
           }) as readonly any[]),
@@ -756,9 +757,9 @@ export function serializeCreateMetadataTemplateSchemaRequestBodyArg(
         : val.copyInstanceOnItemCopy,
   };
 }
-export function deserializeCreateMetadataTemplateSchemaRequestBodyArg(
+export function deserializeCreateMetadataTemplateRequestBodyArg(
   val: any
-): CreateMetadataTemplateSchemaRequestBodyArg {
+): CreateMetadataTemplateRequestBodyArg {
   const scope: string = val.scope;
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
@@ -767,12 +768,12 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArg(
     val.hidden == void 0 ? void 0 : val.hidden;
   const fields:
     | undefined
-    | readonly CreateMetadataTemplateSchemaRequestBodyArgFieldsField[] =
+    | readonly CreateMetadataTemplateRequestBodyArgFieldsField[] =
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
       ? (val.fields.map(function (itm: SerializedData): any {
-          return deserializeCreateMetadataTemplateSchemaRequestBodyArgFieldsField(
+          return deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
             itm
           );
         }) as readonly any[])
@@ -786,5 +787,5 @@ export function deserializeCreateMetadataTemplateSchemaRequestBodyArg(
     hidden: hidden,
     fields: fields,
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
-  } satisfies CreateMetadataTemplateSchemaRequestBodyArg;
+  } satisfies CreateMetadataTemplateRequestBodyArg;
 }
