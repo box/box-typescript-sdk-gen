@@ -43,7 +43,19 @@ This operation is performed by calling function `transferOwnedFolder`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-users-id-folders-0/).
 
-_Currently we don't have an example for calling `transferOwnedFolder` in integration tests_
+<!-- sample put_users_id_folders_0 -->
+
+```ts
+await client.transfer.transferOwnedFolder(
+  newUser.id,
+  {
+    ownedBy: {
+      id: currentUser.id,
+    } satisfies TransferOwnedFolderRequestBodyArgOwnedByField,
+  } satisfies TransferOwnedFolderRequestBodyArg,
+  { notify: false } satisfies TransferOwnedFolderQueryParamsArg
+);
+```
 
 ### Arguments
 

@@ -4,8 +4,8 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { ByteStream } from '../utils.js';
@@ -13,7 +13,7 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { UploadFileVersionRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { CancellationToken } from '../utils.js';
@@ -44,7 +44,7 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileContentStream,
   } satisfies UploadFileRequestBodyArg);
-  const uploadedFile: File = uploadedFiles.entries![0];
+  const uploadedFile: FileFull = uploadedFiles.entries![0];
   if (!(uploadedFile.name == newFileName)) {
     throw 'Assertion failed';
   }
@@ -59,7 +59,7 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
       file: newFileContentStream,
     } satisfies UploadFileVersionRequestBodyArg
   );
-  const newFileVersion: File = uploadedFilesVersion.entries![0];
+  const newFileVersion: FileFull = uploadedFilesVersion.entries![0];
   if (!(newFileVersion.name == newFileVersionName)) {
     throw 'Assertion failed';
   }

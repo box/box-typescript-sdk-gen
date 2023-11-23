@@ -36,7 +36,7 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
   if (!(legalHoldPolicy.description == legalHoldDescription)) {
     throw 'Assertion failed';
   }
-  const legalHoldPolicyId: string = legalHoldPolicy.id!;
+  const legalHoldPolicyId: string = legalHoldPolicy.id;
   const legalHoldPolicyById: LegalHoldPolicy =
     await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
   if (!(legalHoldPolicyById.id == legalHoldPolicyId)) {

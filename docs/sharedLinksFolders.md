@@ -21,7 +21,20 @@ This operation is performed by calling function `getSharedItemFolders`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items-folders/).
 
-_Currently we don't have an example for calling `getSharedItemFolders` in integration tests_
+<!-- sample get_shared_items#folders -->
+
+```ts
+await userClient.sharedLinksFolders.getSharedItemFolders(
+  {} satisfies GetSharedItemFoldersQueryParamsArg,
+  new GetSharedItemFoldersHeadersArg({
+    boxapi: ''.concat(
+      'shared_link=',
+      folderFromApi.sharedLink!.url,
+      '&shared_link_password=incorrectPassword'
+    ) as string,
+  })
+);
+```
 
 ### Arguments
 
@@ -48,7 +61,13 @@ This operation is performed by calling function `getFolderGetSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-get-shared-link/).
 
-_Currently we don't have an example for calling `getFolderGetSharedLink` in integration tests_
+<!-- sample get_folders_id#get_shared_link -->
+
+```ts
+await client.sharedLinksFolders.getFolderGetSharedLink(folder.id, {
+  fields: 'shared_link',
+} satisfies GetFolderGetSharedLinkQueryParamsArg);
+```
 
 ### Arguments
 
@@ -77,7 +96,21 @@ This operation is performed by calling function `updateFolderAddSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id-add-shared-link/).
 
-_Currently we don't have an example for calling `updateFolderAddSharedLink` in integration tests_
+<!-- sample put_folders_id#add_shared_link -->
+
+```ts
+await client.sharedLinksFolders.updateFolderAddSharedLink(
+  folder.id,
+  {
+    sharedLink: {
+      access:
+        'open' as UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+      password: 'Secret123@',
+    } satisfies UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField,
+  } satisfies UpdateFolderAddSharedLinkRequestBodyArg,
+  { fields: 'shared_link' } satisfies UpdateFolderAddSharedLinkQueryParamsArg
+);
+```
 
 ### Arguments
 
@@ -108,7 +141,20 @@ This operation is performed by calling function `updateFolderUpdateSharedLink`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id-update-shared-link/).
 
-_Currently we don't have an example for calling `updateFolderUpdateSharedLink` in integration tests_
+<!-- sample put_folders_id#update_shared_link -->
+
+```ts
+await client.sharedLinksFolders.updateFolderUpdateSharedLink(
+  folder.id,
+  {
+    sharedLink: {
+      access:
+        'collaborators' as UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+    } satisfies UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField,
+  } satisfies UpdateFolderUpdateSharedLinkRequestBodyArg,
+  { fields: 'shared_link' } satisfies UpdateFolderUpdateSharedLinkQueryParamsArg
+);
+```
 
 ### Arguments
 

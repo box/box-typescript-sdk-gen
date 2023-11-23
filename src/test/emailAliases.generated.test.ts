@@ -1,5 +1,5 @@
-import { serializeUser } from '../schemas.generated.js';
-import { deserializeUser } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas.generated.js';
+import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { serializeEmailAliases } from '../schemas.generated.js';
@@ -9,7 +9,7 @@ import { deserializeEmailAlias } from '../schemas.generated.js';
 import { serializeCreateUserEmailAliasRequestBodyArg } from '../managers/emailAliases.generated.js';
 import { deserializeCreateUserEmailAliasRequestBodyArg } from '../managers/emailAliases.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { User } from '../schemas.generated.js';
+import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { EmailAliases } from '../schemas.generated.js';
 import { EmailAlias } from '../schemas.generated.js';
@@ -27,7 +27,7 @@ const client: BoxClient = getDefaultClient();
 test('testEmailAliases', async function testEmailAliases(): Promise<any> {
   const newUserName: string = getUuid();
   const newUserLogin: string = ''.concat(getUuid(), '@boxdemo.com') as string;
-  const newUser: User = await client.users.createUser({
+  const newUser: UserFull = await client.users.createUser({
     name: newUserName,
     login: newUserLogin,
   } satisfies CreateUserRequestBodyArg);

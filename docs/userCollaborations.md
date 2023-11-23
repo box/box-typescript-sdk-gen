@@ -14,7 +14,11 @@ This operation is performed by calling function `getCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaborations-id/).
 
-_Currently we don't have an example for calling `getCollaborationById` in integration tests_
+<!-- sample get_collaborations_id -->
+
+```ts
+await client.userCollaborations.getCollaborationById(collaborationId);
+```
 
 ### Arguments
 
@@ -44,7 +48,13 @@ This operation is performed by calling function `updateCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-collaborations-id/).
 
-_Currently we don't have an example for calling `updateCollaborationById` in integration tests_
+<!-- sample put_collaborations_id -->
+
+```ts
+await client.userCollaborations.updateCollaborationById(collaborationId, {
+  role: 'viewer' as UpdateCollaborationByIdRequestBodyArgRoleField,
+} satisfies UpdateCollaborationByIdRequestBodyArg);
+```
 
 ### Arguments
 
@@ -74,7 +84,11 @@ This operation is performed by calling function `deleteCollaborationById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-collaborations-id/).
 
-_Currently we don't have an example for calling `deleteCollaborationById` in integration tests_
+<!-- sample delete_collaborations_id -->
+
+```ts
+await client.userCollaborations.deleteCollaborationById(collaborationId);
+```
 
 ### Arguments
 
@@ -115,7 +129,21 @@ This operation is performed by calling function `createCollaboration`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-collaborations/).
 
-_Currently we don't have an example for calling `createCollaboration` in integration tests_
+<!-- sample post_collaborations -->
+
+```ts
+await client.userCollaborations.createCollaboration({
+  item: {
+    type: 'folder' as CreateCollaborationRequestBodyArgItemFieldTypeField,
+    id: folder.id,
+  } satisfies CreateCollaborationRequestBodyArgItemField,
+  accessibleBy: {
+    type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
+    id: user.id,
+  } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
+  role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
+} satisfies CreateCollaborationRequestBodyArg);
+```
 
 ### Arguments
 

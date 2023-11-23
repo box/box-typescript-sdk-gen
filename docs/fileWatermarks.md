@@ -13,7 +13,11 @@ This operation is performed by calling function `getFileWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-watermark/).
 
-_Currently we don't have an example for calling `getFileWatermark` in integration tests_
+<!-- sample get_files_id_watermark -->
+
+```ts
+await client.fileWatermarks.getFileWatermark(file.id);
+```
 
 ### Arguments
 
@@ -40,7 +44,16 @@ This operation is performed by calling function `updateFileWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-watermark/).
 
-_Currently we don't have an example for calling `updateFileWatermark` in integration tests_
+<!-- sample put_files_id_watermark -->
+
+```ts
+await client.fileWatermarks.updateFileWatermark(file.id, {
+  watermark: {
+    imprint:
+      'default' as UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField,
+  } satisfies UpdateFileWatermarkRequestBodyArgWatermarkField,
+} satisfies UpdateFileWatermarkRequestBodyArg);
+```
 
 ### Arguments
 
@@ -70,7 +83,11 @@ This operation is performed by calling function `deleteFileWatermark`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-watermark/).
 
-_Currently we don't have an example for calling `deleteFileWatermark` in integration tests_
+<!-- sample delete_files_id_watermark -->
+
+```ts
+await client.fileWatermarks.deleteFileWatermark(file.id);
+```
 
 ### Arguments
 

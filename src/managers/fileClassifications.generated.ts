@@ -67,7 +67,7 @@ export class CreateFileMetadataEnterpriseSecurityClassificationHeadersArg {
 export type UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField =
   'replace';
 export type UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField =
-  '/Box__Security__Classification__Key';
+  'Box__Security__Classification__Key';
 export interface UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
   readonly op?: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField;
   readonly path?: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField;
@@ -294,8 +294,8 @@ export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationReq
   if (!sdIsString(val)) {
     throw 'Expecting a string for "UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField"';
   }
-  if (val == '/Box__Security__Classification__Key') {
-    return '/Box__Security__Classification__Key';
+  if (val == 'Box__Security__Classification__Key') {
+    return 'Box__Security__Classification__Key';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }

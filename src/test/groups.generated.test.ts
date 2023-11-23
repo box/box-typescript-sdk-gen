@@ -1,18 +1,15 @@
 import { serializeGroups } from '../schemas.generated.js';
 import { deserializeGroups } from '../schemas.generated.js';
-import { serializeGroup } from '../schemas.generated.js';
-import { deserializeGroup } from '../schemas.generated.js';
-import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
+import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
+import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { serializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
 import { deserializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Groups } from '../schemas.generated.js';
-import { Group } from '../schemas.generated.js';
-import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { GroupFull } from '../schemas.generated.js';
+import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { GetGroupByIdQueryParamsArg } from '../managers/groups.generated.js';
 import { UpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
 import { getUuid } from '../utils.js';
@@ -34,7 +31,7 @@ test('test_get_groups', async function test_get_groups(): Promise<any> {
 test('test_create_get_delete_group', async function test_create_get_delete_group(): Promise<any> {
   const groupName: string = getUuid();
   const groupDescription: string = 'Group description';
-  const group: Group = await client.groups.createGroup({
+  const group: GroupFull = await client.groups.createGroup({
     name: groupName,
     description: groupDescription,
   } satisfies CreateGroupRequestBodyArg);

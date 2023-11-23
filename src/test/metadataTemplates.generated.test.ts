@@ -61,7 +61,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
     throw 'Assertion failed';
   }
   const getMetadataTemplate: any =
-    await client.metadataTemplates.getMetadataTemplateById(template.id!);
+    await client.metadataTemplates.getMetadataTemplateById(template.id);
   if (!(getMetadataTemplate.id == template.id)) {
     throw 'Assertion failed';
   }

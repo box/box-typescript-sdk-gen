@@ -1,11 +1,11 @@
-import { serializeUser } from '../schemas.generated.js';
-import { deserializeUser } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas.generated.js';
+import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { serializeGroupMemberships } from '../schemas.generated.js';
 import { deserializeGroupMemberships } from '../schemas.generated.js';
-import { serializeGroup } from '../schemas.generated.js';
-import { deserializeGroup } from '../schemas.generated.js';
+import { serializeGroupFull } from '../schemas.generated.js';
+import { deserializeGroupFull } from '../schemas.generated.js';
 import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { serializeGroupMembership } from '../schemas.generated.js';
@@ -21,10 +21,10 @@ import { deserializeUpdateGroupMembershipByIdRequestBodyArg } from '../managers/
 import { serializeUpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
 import { deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { User } from '../schemas.generated.js';
+import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
 import { GroupMemberships } from '../schemas.generated.js';
-import { Group } from '../schemas.generated.js';
+import { GroupFull } from '../schemas.generated.js';
 import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
 import { GroupMembership } from '../schemas.generated.js';
 import { CreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
@@ -45,7 +45,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testMemberships', async function testMemberships(): Promise<any> {
-  const user: User = await client.users.createUser({
+  const user: UserFull = await client.users.createUser({
     name: getUuid(),
     login: ''.concat(getUuid(), '@boxdemo.com') as string,
   } satisfies CreateUserRequestBodyArg);
@@ -54,7 +54,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   if (!(userMemberships.totalCount == 0)) {
     throw 'Assertion failed';
   }
-  const group: Group = await client.groups.createGroup({
+  const group: GroupFull = await client.groups.createGroup({
     name: getUuid(),
   } satisfies CreateGroupRequestBodyArg);
   const groupMemberships: GroupMemberships =

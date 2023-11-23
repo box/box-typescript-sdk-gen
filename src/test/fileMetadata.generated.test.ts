@@ -6,8 +6,6 @@ import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { serializeMetadatas } from '../schemas.generated.js';
 import { deserializeMetadatas } from '../schemas.generated.js';
-import { serializeMetadata } from '../schemas.generated.js';
-import { deserializeMetadata } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
 import { serializeUpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
@@ -20,7 +18,6 @@ import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { Metadatas } from '../schemas.generated.js';
-import { Metadata } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { UpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
 import { UpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';

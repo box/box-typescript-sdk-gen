@@ -4,8 +4,8 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeTask } from '../schemas.generated.js';
 import { deserializeTask } from '../schemas.generated.js';
 import { serializeCreateTaskRequestBodyArg } from '../managers/tasks.generated.js';
@@ -27,7 +27,7 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { Task } from '../schemas.generated.js';
 import { CreateTaskRequestBodyArg } from '../managers/tasks.generated.js';
 import { CreateTaskRequestBodyArgItemField } from '../managers/tasks.generated.js';
@@ -57,7 +57,7 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: File = files.entries![0];
+  const file: FileFull = files.entries![0];
   const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyArgItemFieldTypeField,

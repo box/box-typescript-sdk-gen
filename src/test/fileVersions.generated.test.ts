@@ -4,8 +4,8 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeFileVersions } from '../schemas.generated.js';
@@ -16,21 +16,18 @@ import { serializePromoteFileVersionRequestBodyArg } from '../managers/fileVersi
 import { deserializePromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
 import { serializePromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
 import { deserializePromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
-import { serializeFileFull } from '../schemas.generated.js';
-import { deserializeFileFull } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { UploadFileVersionRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { FileVersions } from '../schemas.generated.js';
 import { FileVersionFull } from '../schemas.generated.js';
 import { PromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
 import { PromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
-import { FileFull } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -54,7 +51,7 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBodyArg);
-  const file: File = files.entries![0];
+  const file: FileFull = files.entries![0];
   if (!(file.name == oldName)) {
     throw 'Assertion failed';
   }
@@ -67,7 +64,7 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
     } satisfies UploadFileVersionRequestBodyArgAttributesField,
     file: generateByteStream(20),
   } satisfies UploadFileVersionRequestBodyArg);
-  const newFile: File = newFiles.entries![0];
+  const newFile: FileFull = newFiles.entries![0];
   if (!(newFile.name == newName)) {
     throw 'Assertion failed';
   }

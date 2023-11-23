@@ -2,17 +2,14 @@ import { serializeUsers } from '../schemas.generated.js';
 import { deserializeUsers } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
-import { serializeUser } from '../schemas.generated.js';
-import { deserializeUser } from '../schemas.generated.js';
-import { serializeTrackingCode } from '../schemas.generated.js';
-import { deserializeTrackingCode } from '../schemas.generated.js';
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
+import { serializeTrackingCode } from '../schemas.generated.js';
+import { deserializeTrackingCode } from '../schemas.generated.js';
 import { Users } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
-import { User } from '../schemas.generated.js';
-import { TrackingCode } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
+import { TrackingCode } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -249,7 +246,7 @@ export class UsersManager {
     queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg,
     headers: CreateUserHeadersArg = new CreateUserHeadersArg({}),
     cancellationToken?: CancellationToken
-  ): Promise<User> {
+  ): Promise<UserFull> {
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -274,7 +271,7 @@ export class UsersManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeUser(response.data);
+    return deserializeUserFull(response.data);
   }
   async getUserMe(
     queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg,

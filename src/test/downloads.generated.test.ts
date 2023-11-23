@@ -4,8 +4,8 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas.generated.js';
+import { deserializeFileFull } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Buffer } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -13,7 +13,7 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { File } from '../schemas.generated.js';
+import { FileFull } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteBuffer } from '../utils.js';
 import { generateByteStreamFromBuffer } from '../utils.js';
@@ -42,7 +42,7 @@ test('test_download_file', async function test_download_file(): Promise<any> {
     } satisfies UploadFileRequestBodyArgAttributesField,
     file: fileContentStream,
   } satisfies UploadFileRequestBodyArg);
-  const uploadedFile: File = uploadedFiles.entries![0];
+  const uploadedFile: FileFull = uploadedFiles.entries![0];
   const downloadedFileContent: ByteStream = await client.downloads.downloadFile(
     uploadedFile.id
   );
