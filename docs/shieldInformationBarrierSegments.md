@@ -15,7 +15,13 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segments-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentById` in integration tests_
+<!-- sample get_shield_information_barrier_segments_id -->
+
+```ts
+await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegmentById(
+  segmentId
+);
+```
 
 ### Arguments
 
@@ -41,7 +47,16 @@ This operation is performed by calling function `updateShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-shield-information-barrier-segments-id/).
 
-_Currently we don't have an example for calling `updateShieldInformationBarrierSegmentById` in integration tests_
+<!-- sample put_shield_information_barrier_segments_id -->
+
+```ts
+await client.shieldInformationBarrierSegments.updateShieldInformationBarrierSegmentById(
+  segmentId,
+  {
+    description: updatedSegmentDescription,
+  } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBodyArg
+);
+```
 
 ### Arguments
 
@@ -70,7 +85,13 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segments-id/).
 
-_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentById` in integration tests_
+<!-- sample delete_shield_information_barrier_segments_id -->
+
+```ts
+await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
+  segmentId
+);
+```
 
 ### Arguments
 
@@ -97,7 +118,15 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segments/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegments` in integration tests_
+<!-- sample get_shield_information_barrier_segments -->
+
+```ts
+await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegments(
+  {
+    shieldInformationBarrierId: barrierId,
+  } satisfies GetShieldInformationBarrierSegmentsQueryParamsArg
+);
+```
 
 ### Arguments
 
@@ -123,7 +152,20 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segments/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierSegment` in integration tests_
+<!-- sample post_shield_information_barrier_segments -->
+
+```ts
+await client.shieldInformationBarrierSegments.createShieldInformationBarrierSegment(
+  {
+    shieldInformationBarrier: {
+      id: barrierId,
+      type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
+    } satisfies ShieldInformationBarrierBase,
+    name: segmentName,
+    description: segmentDescription,
+  } satisfies CreateShieldInformationBarrierSegmentRequestBodyArg
+);
+```
 
 ### Arguments
 

@@ -103,9 +103,9 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.createFolderMetadataById(
   folder.id,
-  'global' as CreateFolderMetadataByIdScopeArg,
-  'properties',
-  { ['abc']: 'xyz' }
+  'enterprise' as CreateFolderMetadataByIdScopeArg,
+  templateKey,
+  data
 );
 ```
 
