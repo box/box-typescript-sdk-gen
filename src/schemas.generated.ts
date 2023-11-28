@@ -2494,7 +2494,6 @@ export interface SignRequestCreateSigner {
   readonly loginRequired?: boolean;
   readonly verificationPhoneNumber?: string;
   readonly password?: string;
-  readonly signerGroupId?: string;
 }
 export interface SignRequestPrefillTag {
   readonly documentTagId?: string;
@@ -2659,7 +2658,6 @@ export interface TemplateSigner {
   readonly role?: TemplateSignerRoleField;
   readonly isInPerson?: boolean;
   readonly order?: number;
-  readonly signerGroupId?: string;
 }
 export type SignTemplateTypeField = 'sign-template';
 export type SignTemplateAdditionalInfoFieldNonEditableField =
@@ -18125,8 +18123,6 @@ export function serializeSignRequestCreateSigner(
         ? void 0
         : val.verificationPhoneNumber,
     ['password']: val.password == void 0 ? void 0 : val.password,
-    ['signer_group_id']:
-      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeSignRequestCreateSigner(
@@ -18156,8 +18152,6 @@ export function deserializeSignRequestCreateSigner(
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
-  const signerGroupId: undefined | string =
-    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     email: email,
     role: role,
@@ -18169,7 +18163,6 @@ export function deserializeSignRequestCreateSigner(
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
-    signerGroupId: signerGroupId,
   } satisfies SignRequestCreateSigner;
 }
 export function serializeSignRequestPrefillTag(
@@ -18463,8 +18456,6 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
-  const signerGroupId: undefined | string =
-    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     hasViewedDocument: hasViewedDocument,
     signerDecision: signerDecision,
@@ -18481,7 +18472,6 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
-    signerGroupId: signerGroupId,
   } satisfies SignRequestSigner;
 }
 export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
@@ -19235,8 +19225,6 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
       val.role == void 0 ? void 0 : serializeTemplateSignerRoleField(val.role),
     ['is_in_person']: val.isInPerson == void 0 ? void 0 : val.isInPerson,
     ['order']: val.order == void 0 ? void 0 : val.order,
-    ['signer_group_id']:
-      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeTemplateSigner(val: any): TemplateSigner {
@@ -19254,15 +19242,12 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
   const isInPerson: undefined | boolean =
     val.is_in_person == void 0 ? void 0 : val.is_in_person;
   const order: undefined | number = val.order == void 0 ? void 0 : val.order;
-  const signerGroupId: undefined | string =
-    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     inputs: inputs,
     email: email,
     role: role,
     isInPerson: isInPerson,
     order: order,
-    signerGroupId: signerGroupId,
   } satisfies TemplateSigner;
 }
 export function serializeSignTemplateTypeField(
