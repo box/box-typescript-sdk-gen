@@ -15,7 +15,13 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictionById` in integration tests_
+<!-- sample get_shield_information_barrier_segment_restrictions_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
+  segmentRestrictionId
+);
+```
 
 ### Arguments
 
@@ -43,7 +49,13 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-restrictions-id/).
 
-_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentRestrictionById` in integration tests_
+<!-- sample delete_shield_information_barrier_segment_restrictions_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
+  segmentRestrictionId
+);
+```
 
 ### Arguments
 
@@ -70,7 +82,15 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictions` in integration tests_
+<!-- sample get_shield_information_barrier_segment_restrictions -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
+  {
+    shieldInformationBarrierSegmentId: segmentId,
+  } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg
+);
+```
 
 ### Arguments
 
@@ -98,7 +118,23 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-restrictions/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierSegmentRestriction` in integration tests_
+<!-- sample post_shield_information_barrier_segment_restrictions -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
+  {
+    restrictedSegment: {
+      id: segmentToRestrictId,
+      type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentFieldTypeField,
+    } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgRestrictedSegmentField,
+    shieldInformationBarrierSegment: {
+      id: segmentId,
+      type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentFieldTypeField,
+    } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgShieldInformationBarrierSegmentField,
+    type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyArgTypeField,
+  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg
+);
+```
 
 ### Arguments
 

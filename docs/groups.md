@@ -52,7 +52,7 @@ See the endpoint docs at
 
 ```ts
 await client.groups.createGroup({
-  name: getUuid(),
+  name: groupName,
 } satisfies CreateGroupRequestBodyArg);
 ```
 

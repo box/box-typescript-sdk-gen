@@ -15,7 +15,14 @@ This operation is performed by calling function `createUserTerminateSession`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-users-terminate-sessions/).
 
-_Currently we don't have an example for calling `createUserTerminateSession` in integration tests_
+<!-- sample post_users_terminate_sessions -->
+
+```ts
+await client.sessionTermination.createUserTerminateSession({
+  userIds: [getEnvVar('USER_ID')],
+  userLogins: [user.login!],
+} satisfies CreateUserTerminateSessionRequestBodyArg);
+```
 
 ### Arguments
 
@@ -44,7 +51,13 @@ This operation is performed by calling function `createGroupTerminateSession`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-groups-terminate-sessions/).
 
-_Currently we don't have an example for calling `createGroupTerminateSession` in integration tests_
+<!-- sample post_groups_terminate_sessions -->
+
+```ts
+await client.sessionTermination.createGroupTerminateSession({
+  groupIds: [group.id],
+} satisfies CreateGroupTerminateSessionRequestBodyArg);
+```
 
 ### Arguments
 

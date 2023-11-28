@@ -19,7 +19,11 @@ This operation is performed by calling function `getFolderTrashItems`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-trash-items/).
 
-_Currently we don't have an example for calling `getFolderTrashItems` in integration tests_
+<!-- sample get_folders_trash_items -->
+
+```ts
+await client.trashedItems.getFolderTrashItems();
+```
 
 ### Arguments
 

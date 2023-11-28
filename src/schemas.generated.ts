@@ -195,8 +195,8 @@ export interface CollaborationAllowlistEntry {
 }
 export interface CollaborationAllowlistEntries {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly CollaborationAllowlistEntry[];
 }
 export type CollectionTypeField = 'collection';
@@ -291,8 +291,8 @@ export interface AccessToken {
 }
 export interface FilesUnderRetention {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly FileMini[];
 }
 export type FileConflict = FileMini & {};
@@ -420,8 +420,8 @@ export interface MetadataCascadePolicy {
 }
 export interface MetadataCascadePolicies {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly MetadataCascadePolicy[];
 }
 export type MetadataQueryIndexStatusField = 'building' | 'active' | 'disabled';
@@ -474,8 +474,8 @@ export interface MetadataTemplate {
 }
 export interface MetadataTemplates {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly MetadataTemplate[];
 }
 export interface RealtimeServer {
@@ -514,8 +514,8 @@ export interface FileVersionRetention {
 }
 export interface FileVersionRetentions {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly FileVersionRetention[];
 }
 export type RetentionPolicyAssignmentBaseTypeField =
@@ -586,8 +586,8 @@ export interface StoragePolicyAssignment {
 }
 export interface StoragePolicyAssignments {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly StoragePolicyAssignment[];
 }
 export type StoragePolicy = StoragePolicyMini & {
@@ -595,8 +595,8 @@ export type StoragePolicy = StoragePolicyMini & {
 };
 export interface StoragePolicies {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly StoragePolicy[];
 }
 export type TermsOfServiceBaseTypeField = 'terms_of_service';
@@ -1067,8 +1067,8 @@ export type LegalHoldPolicy = LegalHoldPolicyMini & {
 };
 export interface LegalHoldPolicies {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly LegalHoldPolicy[];
 }
 export type InviteTypeField = 'invite';
@@ -1396,8 +1396,8 @@ export interface CollaborationAllowlistExemptTarget {
 }
 export interface CollaborationAllowlistExemptTargets {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly CollaborationAllowlistExemptTarget[];
 }
 export type ShieldInformationBarrierSegmentRestriction =
@@ -1493,10 +1493,9 @@ export interface FolderLock {
   readonly lockType?: string;
 }
 export interface FolderLocks {
-  readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
   readonly entries?: readonly FolderLock[];
+  readonly limit?: string;
+  readonly nextMarker?: string;
 }
 export interface WatermarkWatermarkField {
   readonly createdAt?: string;
@@ -1518,8 +1517,8 @@ export interface WebhookMini {
 }
 export interface Webhooks {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly WebhookMini[];
 }
 export type WebhookTriggersField =
@@ -1871,8 +1870,8 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
 };
 export interface LegalHoldPolicyAssignments {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly LegalHoldPolicyAssignment[];
 }
 export type FileVersionLegalHoldTypeField = 'file_version_legal_hold';
@@ -1886,8 +1885,8 @@ export interface FileVersionLegalHold {
 }
 export interface FileVersionLegalHolds {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly FileVersionLegalHold[];
 }
 export type CollaborationTypeField = 'collaboration';
@@ -2265,8 +2264,8 @@ export type Workflow = WorkflowMini & {
 };
 export interface Workflows {
   readonly limit?: number;
-  readonly nextMarker?: number;
-  readonly prevMarker?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
   readonly entries?: readonly Workflow[];
 }
 export type WorkflowFull = Workflow & {
@@ -2495,6 +2494,7 @@ export interface SignRequestCreateSigner {
   readonly loginRequired?: boolean;
   readonly verificationPhoneNumber?: string;
   readonly password?: string;
+  readonly signerGroupId?: string;
 }
 export interface SignRequestPrefillTag {
   readonly documentTagId?: string;
@@ -2659,6 +2659,7 @@ export interface TemplateSigner {
   readonly role?: TemplateSignerRoleField;
   readonly isInPerson?: boolean;
   readonly order?: number;
+  readonly signerGroupId?: string;
 }
 export type SignTemplateTypeField = 'sign-template';
 export type SignTemplateAdditionalInfoFieldNonEditableField =
@@ -4002,9 +4003,9 @@ export function deserializeCollaborationAllowlistEntries(
   val: any
 ): CollaborationAllowlistEntries {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly CollaborationAllowlistEntry[] =
     val.entries == void 0
@@ -4576,9 +4577,9 @@ export function serializeFilesUnderRetention(
 }
 export function deserializeFilesUnderRetention(val: any): FilesUnderRetention {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly FileMini[] =
     val.entries == void 0
@@ -5545,9 +5546,9 @@ export function deserializeMetadataCascadePolicies(
   val: any
 ): MetadataCascadePolicies {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly MetadataCascadePolicy[] =
     val.entries == void 0
@@ -5887,9 +5888,9 @@ export function serializeMetadataTemplates(
 }
 export function deserializeMetadataTemplates(val: any): MetadataTemplates {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly MetadataTemplate[] =
     val.entries == void 0
@@ -6140,9 +6141,9 @@ export function deserializeFileVersionRetentions(
   val: any
 ): FileVersionRetentions {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly FileVersionRetention[] =
     val.entries == void 0
@@ -6627,9 +6628,9 @@ export function deserializeStoragePolicyAssignments(
   val: any
 ): StoragePolicyAssignments {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly StoragePolicyAssignment[] =
     val.entries == void 0
@@ -6677,9 +6678,9 @@ export function serializeStoragePolicies(val: StoragePolicies): SerializedData {
 }
 export function deserializeStoragePolicies(val: any): StoragePolicies {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly StoragePolicy[] =
     val.entries == void 0
@@ -9506,9 +9507,9 @@ export function serializeLegalHoldPolicies(
 }
 export function deserializeLegalHoldPolicies(val: any): LegalHoldPolicies {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly LegalHoldPolicy[] =
     val.entries == void 0
@@ -11697,9 +11698,9 @@ export function deserializeCollaborationAllowlistExemptTargets(
   val: any
 ): CollaborationAllowlistExemptTargets {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly CollaborationAllowlistExemptTarget[] =
     val.entries == void 0
@@ -12317,23 +12318,17 @@ export function deserializeFolderLock(val: any): FolderLock {
 }
 export function serializeFolderLocks(val: FolderLocks): SerializedData {
   return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (item: FolderLock): any {
             return serializeFolderLock(item);
           }) as readonly any[]),
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
   };
 }
 export function deserializeFolderLocks(val: any): FolderLocks {
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
-    val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly FolderLock[] =
     val.entries == void 0
       ? void 0
@@ -12342,11 +12337,13 @@ export function deserializeFolderLocks(val: any): FolderLocks {
           return deserializeFolderLock(itm);
         }) as readonly any[])
       : [];
+  const limit: undefined | string = val.limit == void 0 ? void 0 : val.limit;
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
   return {
+    entries: entries,
     limit: limit,
     nextMarker: nextMarker,
-    prevMarker: prevMarker,
-    entries: entries,
   } satisfies FolderLocks;
 }
 export function serializeWatermarkWatermarkField(
@@ -12476,9 +12473,9 @@ export function serializeWebhooks(val: Webhooks): SerializedData {
 }
 export function deserializeWebhooks(val: any): Webhooks {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly WebhookMini[] =
     val.entries == void 0
@@ -14164,9 +14161,9 @@ export function deserializeLegalHoldPolicyAssignments(
   val: any
 ): LegalHoldPolicyAssignments {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly LegalHoldPolicyAssignment[] =
     val.entries == void 0
@@ -14280,9 +14277,9 @@ export function deserializeFileVersionLegalHolds(
   val: any
 ): FileVersionLegalHolds {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly FileVersionLegalHold[] =
     val.entries == void 0
@@ -16692,9 +16689,9 @@ export function serializeWorkflows(val: Workflows): SerializedData {
 }
 export function deserializeWorkflows(val: any): Workflows {
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | number =
+  const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
-  const prevMarker: undefined | number =
+  const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
   const entries: undefined | readonly Workflow[] =
     val.entries == void 0
@@ -18128,6 +18125,8 @@ export function serializeSignRequestCreateSigner(
         ? void 0
         : val.verificationPhoneNumber,
     ['password']: val.password == void 0 ? void 0 : val.password,
+    ['signer_group_id']:
+      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeSignRequestCreateSigner(
@@ -18157,6 +18156,8 @@ export function deserializeSignRequestCreateSigner(
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     email: email,
     role: role,
@@ -18168,6 +18169,7 @@ export function deserializeSignRequestCreateSigner(
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
+    signerGroupId: signerGroupId,
   } satisfies SignRequestCreateSigner;
 }
 export function serializeSignRequestPrefillTag(
@@ -18461,6 +18463,8 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     hasViewedDocument: hasViewedDocument,
     signerDecision: signerDecision,
@@ -18477,6 +18481,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
+    signerGroupId: signerGroupId,
   } satisfies SignRequestSigner;
 }
 export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
@@ -19230,6 +19235,8 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
       val.role == void 0 ? void 0 : serializeTemplateSignerRoleField(val.role),
     ['is_in_person']: val.isInPerson == void 0 ? void 0 : val.isInPerson,
     ['order']: val.order == void 0 ? void 0 : val.order,
+    ['signer_group_id']:
+      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeTemplateSigner(val: any): TemplateSigner {
@@ -19247,12 +19254,15 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
   const isInPerson: undefined | boolean =
     val.is_in_person == void 0 ? void 0 : val.is_in_person;
   const order: undefined | number = val.order == void 0 ? void 0 : val.order;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     inputs: inputs,
     email: email,
     role: role,
     isInPerson: isInPerson,
     order: order,
+    signerGroupId: signerGroupId,
   } satisfies TemplateSigner;
 }
 export function serializeSignTemplateTypeField(
