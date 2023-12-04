@@ -139,7 +139,7 @@ await client.userCollaborations.createCollaboration({
   } satisfies CreateCollaborationRequestBodyArgItemField,
   accessibleBy: {
     type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
-    id: user.id,
+    login: userLogin,
   } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
   role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
 } satisfies CreateCollaborationRequestBodyArg);

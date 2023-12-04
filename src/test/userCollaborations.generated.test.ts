@@ -101,4 +101,51 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
   await client.folders.deleteFolderById(folder.id);
   await client.users.deleteUserById(user.id);
 });
+test('testExternalUserCollaborations', async function testExternalUserCollaborations(): Promise<any> {
+  const userName: string = getUuid();
+  const userLogin: string = ''.concat(getUuid(), '@boxdemo.com') as string;
+  const folder: FolderFull = await createNewFolder();
+  const collaboration: Collaboration =
+    await client.userCollaborations.createCollaboration({
+      item: {
+        type: 'folder' as CreateCollaborationRequestBodyArgItemFieldTypeField,
+        id: folder.id,
+      } satisfies CreateCollaborationRequestBodyArgItemField,
+      accessibleBy: {
+        type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
+        login: userLogin,
+      } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
+      role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
+    } satisfies CreateCollaborationRequestBodyArg);
+  if (!((toString(collaboration.role!) as string) == 'editor')) {
+    throw 'Assertion failed';
+  }
+  const collaborationId: string = collaboration.id;
+  const collaborationFromApi: Collaboration =
+    await client.userCollaborations.getCollaborationById(collaborationId);
+  if (!(collaborationId == collaborationFromApi.id)) {
+    throw 'Assertion failed';
+  }
+  if (!((toString(collaborationFromApi.status!) as string) == 'pending')) {
+    throw 'Assertion failed';
+  }
+  if (!((toString(collaborationFromApi.type) as string) == 'collaboration')) {
+    throw 'Assertion failed';
+  }
+  if (!(collaborationFromApi.inviteEmail == userLogin)) {
+    throw 'Assertion failed';
+  }
+  const updatedCollaboration: Collaboration =
+    await client.userCollaborations.updateCollaborationById(collaborationId, {
+      role: 'viewer' as UpdateCollaborationByIdRequestBodyArgRoleField,
+    } satisfies UpdateCollaborationByIdRequestBodyArg);
+  if (!((toString(updatedCollaboration.role!) as string) == 'viewer')) {
+    throw 'Assertion failed';
+  }
+  await client.userCollaborations.deleteCollaborationById(collaborationId);
+  expect(async () => {
+    await client.userCollaborations.getCollaborationById(collaborationId);
+  }).rejects.toThrow();
+  await client.folders.deleteFolderById(folder.id);
+});
 export {};
