@@ -1001,8 +1001,8 @@ export interface RetentionPolicyAssignmentFilterFieldsField {
   readonly value?: string;
 }
 export interface RetentionPolicyAssignment {
-  readonly id?: string;
-  readonly type?: RetentionPolicyAssignmentTypeField;
+  readonly id: string;
+  readonly type: RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
@@ -9022,11 +9022,8 @@ export function serializeRetentionPolicyAssignment(
   val: RetentionPolicyAssignment
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeRetentionPolicyAssignmentTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeRetentionPolicyAssignmentTypeField(val.type),
     ['retention_policy']:
       val.retentionPolicy == void 0
         ? void 0
@@ -9053,11 +9050,9 @@ export function serializeRetentionPolicyAssignment(
 export function deserializeRetentionPolicyAssignment(
   val: any
 ): RetentionPolicyAssignment {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | RetentionPolicyAssignmentTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeRetentionPolicyAssignmentTypeField(val.type);
+  const id: string = val.id;
+  const type: RetentionPolicyAssignmentTypeField =
+    deserializeRetentionPolicyAssignmentTypeField(val.type);
   const retentionPolicy: undefined | RetentionPolicyMini =
     val.retention_policy == void 0
       ? void 0

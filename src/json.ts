@@ -22,7 +22,11 @@ export function sdToUrlParams(data: SerializedData): string {
   if (!sdIsMap(data)) {
     throw new Error('Expecting an object as an argument for sdToUrlParams');
   }
-  return new URLSearchParams(data as Record<string, string>).toString();
+  return new URLSearchParams(
+    Object.fromEntries(
+      Object.entries(data).filter(([key, value]) => value != null)
+    ) as Record<string, string>
+  ).toString();
 }
 
 export function sdIsEmpty(data: SerializedData): data is undefined | null {
