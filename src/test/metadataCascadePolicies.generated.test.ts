@@ -120,7 +120,7 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   if (!(policies.entries!.length == 1)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
+  await expect(async () => {
     await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
       cascadePolicyId,
       {
@@ -148,7 +148,7 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
     cascadePolicyId
   );
-  expect(async () => {
+  await expect(async () => {
     await client.metadataCascadePolicies.getMetadataCascadePolicyById(
       cascadePolicyId
     );

@@ -12,6 +12,36 @@ import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/up
 import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
+import { deserializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
+import { serializeAddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArg } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArg } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgScopeField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgScopeField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgDisplayNameField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgDisplayNameField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgTemplateKeyField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgTemplateKeyField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgFieldsField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgFieldsField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgFieldsFieldKeyField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgFieldsFieldKeyField } from '../managers/classifications.generated.js';
+import { serializeCreateClassificationTemplateRequestBodyArgFieldsFieldDisplayNameField } from '../managers/classifications.generated.js';
+import { deserializeCreateClassificationTemplateRequestBodyArgFieldsFieldDisplayNameField } from '../managers/classifications.generated.js';
 import { serializeShieldInformationBarrier } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrier } from '../schemas.generated.js';
 import { serializeShieldInformationBarriers } from '../schemas.generated.js';
@@ -22,6 +52,8 @@ import { serializeEnterpriseBase } from '../schemas.generated.js';
 import { deserializeEnterpriseBase } from '../schemas.generated.js';
 import { serializeEnterpriseBaseTypeField } from '../schemas.generated.js';
 import { deserializeEnterpriseBaseTypeField } from '../schemas.generated.js';
+import { serializeClassificationTemplate } from '../schemas.generated.js';
+import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
@@ -31,6 +63,21 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { ClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
+import { AddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArg } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgScopeField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgDisplayNameField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgTemplateKeyField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgFieldsField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgFieldsFieldKeyField } from '../managers/classifications.generated.js';
+import { CreateClassificationTemplateRequestBodyArgFieldsFieldDisplayNameField } from '../managers/classifications.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarriers } from '../schemas.generated.js';
 import { CreateShieldInformationBarrierRequestBodyArg } from '../managers/shieldInformationBarriers.generated.js';
@@ -41,6 +88,7 @@ import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
+import { ClassificationTemplate } from '../schemas.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.js';
 import { JwtConfig } from '../jwtAuth.js';
 import { SerializedData } from '../json.js';
@@ -90,6 +138,60 @@ export async function uploadNewFile(): Promise<FileFull> {
     file: fileContentStream,
   } satisfies UploadFileRequestBodyArg);
   return uploadedFiles.entries![0];
+}
+export async function getOrCreateClassification(
+  classificationTemplate: ClassificationTemplate
+): Promise<any> {
+  const client: BoxClient = getDefaultClient();
+  const classifications: readonly ClassificationTemplateFieldsFieldOptionsField[] =
+    classificationTemplate.fields[0].options;
+  const currentNumberOfClassifications: number = classifications.length;
+  if (currentNumberOfClassifications == 0) {
+    const classificationTemplateWithNewClassification: ClassificationTemplate =
+      await client.classifications.addClassification([
+        {
+          op: 'addEnumOption' as AddClassificationRequestBodyArgOpField,
+          fieldKey:
+            'Box__Security__Classification__Key' as AddClassificationRequestBodyArgFieldKeyField,
+          data: {
+            key: getUuid(),
+            staticConfig: {
+              classification: {
+                colorId: 3,
+                classificationDefinition: 'Some description',
+              } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
+            } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigField,
+          } satisfies AddClassificationRequestBodyArgDataField,
+        } satisfies AddClassificationRequestBodyArg,
+      ]);
+    return classificationTemplateWithNewClassification.fields[0].options[0];
+  }
+  return classifications[0];
+}
+export async function getOrCreateClassificationTemplate(): Promise<ClassificationTemplate> {
+  const client: BoxClient = getDefaultClient();
+  try {
+    return await client.classifications.getClassificationTemplate();
+  } catch (error) {
+    return await client.classifications.createClassificationTemplate({
+      scope:
+        'enterprise' as CreateClassificationTemplateRequestBodyArgScopeField,
+      displayName:
+        'Classification' as CreateClassificationTemplateRequestBodyArgDisplayNameField,
+      templateKey:
+        'securityClassification-6VMVochwUWo' as CreateClassificationTemplateRequestBodyArgTemplateKeyField,
+      fields: [
+        {
+          type: 'enum' as CreateClassificationTemplateRequestBodyArgFieldsFieldTypeField,
+          key: 'Box__Security__Classification__Key' as CreateClassificationTemplateRequestBodyArgFieldsFieldKeyField,
+          displayName:
+            'Classification' as CreateClassificationTemplateRequestBodyArgFieldsFieldDisplayNameField,
+          options: [],
+        } satisfies CreateClassificationTemplateRequestBodyArgFieldsField,
+      ],
+    } satisfies CreateClassificationTemplateRequestBodyArg);
+  } finally {
+  }
 }
 export async function getOrCreateShieldInformationBarrier(
   client: BoxClient,

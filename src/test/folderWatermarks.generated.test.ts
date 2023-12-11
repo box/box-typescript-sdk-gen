@@ -47,7 +47,7 @@ test('testCreateGetDeleteFolderWatermark', async function testCreateGetDeleteFol
     folder.id
   );
   await client.folderWatermarks.deleteFolderWatermark(folder.id);
-  expect(async () => {
+  await expect(async () => {
     await client.folderWatermarks.getFolderWatermark(folder.id);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);

@@ -199,7 +199,7 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
   await downscopedClient.files.updateFileById(file.id, {
     name: getUuid(),
   } satisfies UpdateFileByIdRequestBodyArg);
-  expect(async () => {
+  await expect(async () => {
     await downscopedClient.files.deleteFileById(file.id);
   }).rejects.toThrow();
   await parentClient.files.deleteFileById(file.id);

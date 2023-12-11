@@ -95,7 +95,7 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
     throw 'Assertion failed';
   }
   await client.userCollaborations.deleteCollaborationById(collaborationId);
-  expect(async () => {
+  await expect(async () => {
     await client.userCollaborations.getCollaborationById(collaborationId);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);
@@ -143,7 +143,7 @@ test('testExternalUserCollaborations', async function testExternalUserCollaborat
     throw 'Assertion failed';
   }
   await client.userCollaborations.deleteCollaborationById(collaborationId);
-  expect(async () => {
+  await expect(async () => {
     await client.userCollaborations.getCollaborationById(collaborationId);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);

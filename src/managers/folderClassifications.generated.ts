@@ -21,94 +21,61 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg {
+export class GetClassificationOnFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<GetClassificationOnFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<GetClassificationOnFolderHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
+export interface AddClassificationToFolderRequestBodyArg {
   readonly boxSecurityClassificationKey?: string;
 }
-export class CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg {
+export class AddClassificationToFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<AddClassificationToFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<AddClassificationToFolderHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField =
-  'replace';
-export type UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField =
-  'Box__Security__Classification__Key';
-export interface UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
-  readonly op?: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField;
-  readonly path?: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField;
-  readonly value?: string;
+export type UpdateClassificationOnFolderRequestBodyArgOpField = 'replace';
+export type UpdateClassificationOnFolderRequestBodyArgPathField =
+  '/Box__Security__Classification__Key';
+export interface UpdateClassificationOnFolderRequestBodyArg {
+  readonly op: UpdateClassificationOnFolderRequestBodyArgOpField;
+  readonly path: UpdateClassificationOnFolderRequestBodyArgPathField;
+  readonly value: string;
 }
-export class UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg {
+export class UpdateClassificationOnFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<UpdateClassificationOnFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<UpdateClassificationOnFolderHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg {
+export class DeleteClassificationFromFolderHeadersArg {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<DeleteClassificationFromFolderHeadersArg, 'extraHeaders'>
+      | Partial<Pick<DeleteClassificationFromFolderHeadersArg, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -119,17 +86,17 @@ export class FolderClassificationsManager {
   constructor(
     fields: Omit<
       FolderClassificationsManager,
-      | 'getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo'
-      | 'createFolderMetadataEnterpriseSecurityClassification'
-      | 'updateFolderMetadataEnterpriseSecurityClassification'
-      | 'deleteFolderMetadataEnterpriseSecurityClassification'
+      | 'getClassificationOnFolder'
+      | 'addClassificationToFolder'
+      | 'updateClassificationOnFolder'
+      | 'deleteClassificationFromFolder'
     >
   ) {
     Object.assign(this, fields);
   }
-  async getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo(
+  async getClassificationOnFolder(
     folderId: string,
-    headers: GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg = new GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg(
+    headers: GetClassificationOnFolderHeadersArg = new GetClassificationOnFolderHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -154,10 +121,10 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async createFolderMetadataEnterpriseSecurityClassification(
+  async addClassificationToFolder(
     folderId: string,
-    requestBody: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg = {} satisfies CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg,
-    headers: CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg = new CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg(
+    requestBody: AddClassificationToFolderRequestBodyArg = {} satisfies AddClassificationToFolderRequestBodyArg,
+    headers: AddClassificationToFolderHeadersArg = new AddClassificationToFolderHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -174,9 +141,7 @@ export class FolderClassificationsManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
-          requestBody
-        ),
+        data: serializeAddClassificationToFolderRequestBodyArg(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -186,10 +151,10 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async updateFolderMetadataEnterpriseSecurityClassification(
+  async updateClassificationOnFolder(
     folderId: string,
-    requestBody: readonly UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg[],
-    headers: UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg = new UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg(
+    requestBody: readonly UpdateClassificationOnFolderRequestBodyArg[],
+    headers: UpdateClassificationOnFolderHeadersArg = new UpdateClassificationOnFolderHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -207,7 +172,7 @@ export class FolderClassificationsManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
+          serializeUpdateClassificationOnFolderRequestBodyArg
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -218,9 +183,9 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async deleteFolderMetadataEnterpriseSecurityClassification(
+  async deleteClassificationFromFolder(
     folderId: string,
-    headers: DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg = new DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg(
+    headers: DeleteClassificationFromFolderHeadersArg = new DeleteClassificationFromFolderHeadersArg(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -246,8 +211,8 @@ export class FolderClassificationsManager {
     return void 0;
   }
 }
-export function serializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
-  val: CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
+export function serializeAddClassificationToFolderRequestBodyArg(
+  val: AddClassificationToFolderRequestBodyArg
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -256,91 +221,71 @@ export function serializeCreateFolderMetadataEnterpriseSecurityClassificationReq
         : val.boxSecurityClassificationKey,
   };
 }
-export function deserializeCreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
+export function deserializeAddClassificationToFolderRequestBodyArg(
   val: any
-): CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
+): AddClassificationToFolderRequestBodyArg {
   const boxSecurityClassificationKey: undefined | string =
     val.Box__Security__Classification__Key == void 0
       ? void 0
       : val.Box__Security__Classification__Key;
   return {
     boxSecurityClassificationKey: boxSecurityClassificationKey,
-  } satisfies CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg;
+  } satisfies AddClassificationToFolderRequestBodyArg;
 }
-export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-  val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField
+export function serializeUpdateClassificationOnFolderRequestBodyArgOpField(
+  val: UpdateClassificationOnFolderRequestBodyArgOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
+export function deserializeUpdateClassificationOnFolderRequestBodyArgOpField(
   val: any
-): UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField {
+): UpdateClassificationOnFolderRequestBodyArgOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField"';
+    throw 'Expecting a string for "UpdateClassificationOnFolderRequestBodyArgOpField"';
   }
   if (val == 'replace') {
     return 'replace';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-  val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField
+export function serializeUpdateClassificationOnFolderRequestBodyArgPathField(
+  val: UpdateClassificationOnFolderRequestBodyArgPathField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
+export function deserializeUpdateClassificationOnFolderRequestBodyArgPathField(
   val: any
-): UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField {
+): UpdateClassificationOnFolderRequestBodyArgPathField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField"';
+    throw 'Expecting a string for "UpdateClassificationOnFolderRequestBodyArgPathField"';
   }
-  if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+  if (val == '/Box__Security__Classification__Key') {
+    return '/Box__Security__Classification__Key';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
-  val: UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg
+export function serializeUpdateClassificationOnFolderRequestBodyArg(
+  val: UpdateClassificationOnFolderRequestBodyArg
 ): SerializedData {
   return {
-    ['op']:
-      val.op == void 0
-        ? void 0
-        : serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-            val.op
-          ),
-    ['path']:
-      val.path == void 0
-        ? void 0
-        : serializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-            val.path
-          ),
-    ['value']: val.value == void 0 ? void 0 : val.value,
+    ['op']: serializeUpdateClassificationOnFolderRequestBodyArgOpField(val.op),
+    ['path']: serializeUpdateClassificationOnFolderRequestBodyArgPathField(
+      val.path
+    ),
+    ['value']: val.value,
   };
 }
-export function deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg(
+export function deserializeUpdateClassificationOnFolderRequestBodyArg(
   val: any
-): UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg {
-  const op:
-    | undefined
-    | UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField =
-    val.op == void 0
-      ? void 0
-      : deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-          val.op
-        );
-  const path:
-    | undefined
-    | UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField =
-    val.path == void 0
-      ? void 0
-      : deserializeUpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-          val.path
-        );
-  const value: undefined | string = val.value == void 0 ? void 0 : val.value;
+): UpdateClassificationOnFolderRequestBodyArg {
+  const op: UpdateClassificationOnFolderRequestBodyArgOpField =
+    deserializeUpdateClassificationOnFolderRequestBodyArgOpField(val.op);
+  const path: UpdateClassificationOnFolderRequestBodyArgPathField =
+    deserializeUpdateClassificationOnFolderRequestBodyArgPathField(val.path);
+  const value: string = val.value;
   return {
     op: op,
     path: path,
     value: value,
-  } satisfies UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg;
+  } satisfies UpdateClassificationOnFolderRequestBodyArg;
 }

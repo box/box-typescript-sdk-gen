@@ -67,7 +67,7 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
   await client.trashedWebLinks.deleteWebLinkTrash(weblink.id);
-  expect(async () => {
+  await expect(async () => {
     await client.trashedWebLinks.getWebLinkTrash(weblink.id);
   }).rejects.toThrow();
 });

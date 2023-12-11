@@ -70,7 +70,7 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
   const fileName: string = getUuid();
   const fileByteStream: ByteStream = generateByteStream(fileSize);
   const cancellationToken: CancellationToken = createTokenAndCancelAfter(1);
-  expect(async () => {
+  await expect(async () => {
     await client.uploads.uploadFile(
       {
         attributes: {

@@ -105,7 +105,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
     segmentId
   );
-  expect(async () => {
+  await expect(async () => {
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegmentById(
       segmentId
     );

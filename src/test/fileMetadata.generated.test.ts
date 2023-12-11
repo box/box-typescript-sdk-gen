@@ -96,7 +96,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
     'global' as DeleteFileMetadataByIdScopeArg,
     'properties'
   );
-  expect(async () => {
+  await expect(async () => {
     await client.fileMetadata.getFileMetadataById(
       file.id,
       'global' as GetFileMetadataByIdScopeArg,

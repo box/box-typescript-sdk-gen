@@ -130,7 +130,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
   await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
     segmentRestrictionId
   );
-  expect(async () => {
+  await expect(async () => {
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
       segmentRestrictionId
     );

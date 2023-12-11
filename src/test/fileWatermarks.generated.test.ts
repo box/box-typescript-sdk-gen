@@ -58,7 +58,7 @@ test('testCreateGetDeleteFileWatermark', async function testCreateGetDeleteFileW
     file.id
   );
   await client.fileWatermarks.deleteFileWatermark(file.id);
-  expect(async () => {
+  await expect(async () => {
     await client.fileWatermarks.getFileWatermark(file.id);
   }).rejects.toThrow();
   await client.files.deleteFileById(file.id);

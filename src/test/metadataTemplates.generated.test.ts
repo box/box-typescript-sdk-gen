@@ -130,7 +130,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
     'enterprise' as DeleteMetadataTemplateScopeArg,
     template.templateKey!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.metadataTemplates.deleteMetadataTemplate(
       'enterprise' as DeleteMetadataTemplateScopeArg,
       template.templateKey!

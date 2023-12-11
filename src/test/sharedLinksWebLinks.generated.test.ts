@@ -92,7 +92,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
   if (!(webLinkId == webLinkFromSharedLinkPassword.id)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
+  await expect(async () => {
     await userClient.sharedLinksWebLinks.getSharedItemWebLinks(
       {} satisfies GetSharedItemWebLinksQueryParamsArg,
       new GetSharedItemWebLinksHeadersArg({

@@ -106,7 +106,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
     updatedContentStream
   );
   const file: FileFull = await client.files.getFileById(uploadedFile.id);
-  expect(async () => {
+  await expect(async () => {
     await client.files.getFileById(
       uploadedFile.id,
       { fields: ['name' as ''] } satisfies GetFileByIdQueryParamsArg,

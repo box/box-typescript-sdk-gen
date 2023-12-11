@@ -57,7 +57,7 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
   await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
     entry.id!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
       entry.id!
     );

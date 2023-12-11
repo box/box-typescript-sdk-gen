@@ -96,7 +96,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.memberships.deleteGroupMembershipById(groupMembership.id!);
-  expect(async () => {
+  await expect(async () => {
     await client.memberships.getGroupMembershipById(groupMembership.id!);
   }).rejects.toThrow();
   await client.groups.deleteGroupById(group.id);

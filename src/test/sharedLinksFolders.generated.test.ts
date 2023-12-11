@@ -85,7 +85,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   if (!(folder.id == folderFromSharedLinkPassword.id)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
+  await expect(async () => {
     await userClient.sharedLinksFolders.getSharedItemFolders(
       {} satisfies GetSharedItemFoldersQueryParamsArg,
       new GetSharedItemFoldersHeadersArg({

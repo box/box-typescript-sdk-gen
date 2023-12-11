@@ -69,7 +69,7 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
     throw 'Assertion failed';
   }
   await client.fileRequests.deleteFileRequestById(updatedFileRequest.id);
-  expect(async () => {
+  await expect(async () => {
     await client.fileRequests.getFileRequestById(updatedFileRequest.id);
   }).rejects.toThrow();
 });

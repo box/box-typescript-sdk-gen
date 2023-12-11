@@ -72,7 +72,7 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
   await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
     exemptTarget.id!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
       exemptTarget.id!
     );

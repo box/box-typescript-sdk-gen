@@ -71,7 +71,7 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(newFolder.id);
-  expect(async () => {
+  await expect(async () => {
     await client.folders.getFolderById(newFolder.id);
   }).rejects.toThrow();
 });

@@ -53,7 +53,7 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
   if (!(barriers.entries!.length == 1)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
+  await expect(async () => {
     await client.shieldInformationBarriers.createShieldInformationBarrierChangeStatus(
       {
         id: barrierId,

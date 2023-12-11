@@ -56,7 +56,7 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
     throw 'Assertion failed';
   }
   await client.groups.deleteGroupById(group.id);
-  expect(async () => {
+  await expect(async () => {
     await client.groups.getGroupById(group.id);
   }).rejects.toThrow();
 });

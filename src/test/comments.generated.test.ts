@@ -106,7 +106,7 @@ test('comments', async function comments(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.comments.deleteCommentById(newComment.id!);
-  expect(async () => {
+  await expect(async () => {
     await client.comments.getCommentById(newComment.id!);
   }).rejects.toThrow();
   await client.files.deleteFileById(fileId);

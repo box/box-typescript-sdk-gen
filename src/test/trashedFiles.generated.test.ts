@@ -72,7 +72,7 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
   }
   await client.files.deleteFileById(file.id);
   await client.trashedFiles.deleteFileTrash(file.id);
-  expect(async () => {
+  await expect(async () => {
     await client.trashedFiles.getFileTrash(file.id);
   }).rejects.toThrow();
 });

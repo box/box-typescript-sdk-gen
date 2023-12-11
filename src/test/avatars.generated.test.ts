@@ -54,7 +54,7 @@ test('testAvatars', async function testAvatars(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.avatars.deleteUserAvatar(user.id);
-  expect(async () => {
+  await expect(async () => {
     await client.avatars.getUserAvatar(user.id);
   }).rejects.toThrow();
 });

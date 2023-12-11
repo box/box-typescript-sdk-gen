@@ -100,7 +100,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
     'global' as DeleteFolderMetadataByIdScopeArg,
     'properties'
   );
-  expect(async () => {
+  await expect(async () => {
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScopeArg,

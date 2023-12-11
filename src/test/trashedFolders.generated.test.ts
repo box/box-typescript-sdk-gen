@@ -39,7 +39,7 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
   if (!(fromTrash.name == folder.name)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
+  await expect(async () => {
     await client.folders.getFolderById(folder.id);
   }).rejects.toThrow();
   const restoredFolder: TrashFolderRestored =
@@ -53,7 +53,7 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
   }
   await client.folders.deleteFolderById(folder.id);
   await client.trashedFolders.deleteFolderTrash(folder.id);
-  expect(async () => {
+  await expect(async () => {
     await client.trashedFolders.getFolderTrash(folder.id);
   }).rejects.toThrow();
 });
