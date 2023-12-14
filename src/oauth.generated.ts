@@ -27,7 +27,7 @@ export class OAuthConfig {
     Object.assign(this, fields);
   }
 }
-export interface GetAuthorizeUrlOptionsArg {
+export interface GetAuthorizeUrlOptions {
   readonly clientId?: string;
   readonly redirectUri?: string;
   readonly responseType?: string;
@@ -53,7 +53,7 @@ export class BoxOAuth implements Authentication {
     this.tokenStorage = this.config.tokenStorage;
   }
   getAuthorizeUrl(
-    options: GetAuthorizeUrlOptionsArg = {} satisfies GetAuthorizeUrlOptionsArg
+    options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions
   ): string {
     const params: {
       readonly [key: string]: any;
@@ -78,9 +78,9 @@ export class BoxOAuth implements Authentication {
     authorizationCode: string,
     networkSession?: NetworkSession
   ): Promise<AccessToken> {
-    const authManager: AuthorizationManager = new AuthorizationManager({
-      networkSession: networkSession,
-    });
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
     const token: AccessToken = await authManager.createOauth2Token({
       grantType: 'authorization_code',
       code: authorizationCode,
@@ -107,9 +107,9 @@ export class BoxOAuth implements Authentication {
       : !(oldToken == void 0)
       ? oldToken.refreshToken
       : void 0;
-    const authManager: AuthorizationManager = new AuthorizationManager({
-      networkSession: networkSession,
-    });
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
     const token: AccessToken = await authManager.createOauth2Token({
       grantType: 'refresh_token',
       clientId: this.config.clientId,
@@ -124,9 +124,9 @@ export class BoxOAuth implements Authentication {
     if (token == void 0) {
       return void 0;
     }
-    const authManager: AuthorizationManager = new AuthorizationManager({
-      networkSession: networkSession,
-    });
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
     await authManager.createOauth2Revoke({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
@@ -145,9 +145,9 @@ export class BoxOAuth implements Authentication {
     if (token == void 0 || token.accessToken == void 0) {
       throw 'No access token is available.';
     }
-    const authManager: AuthorizationManager = new AuthorizationManager({
-      networkSession: networkSession,
-    });
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
     const downscopedToken: AccessToken = await authManager.createOauth2Token({
       grantType: 'urn:ietf:params:oauth:grant-type:token-exchange',
       subjectToken: token.accessToken,
@@ -159,8 +159,8 @@ export class BoxOAuth implements Authentication {
     return downscopedToken;
   }
 }
-export function serializeGetAuthorizeUrlOptionsArg(
-  val: GetAuthorizeUrlOptionsArg
+export function serializeGetAuthorizeUrlOptions(
+  val: GetAuthorizeUrlOptions
 ): SerializedData {
   return {
     ['clientId']: val.clientId == void 0 ? void 0 : val.clientId,
@@ -170,9 +170,9 @@ export function serializeGetAuthorizeUrlOptionsArg(
     ['scope']: val.scope == void 0 ? void 0 : val.scope,
   };
 }
-export function deserializeGetAuthorizeUrlOptionsArg(
+export function deserializeGetAuthorizeUrlOptions(
   val: any
-): GetAuthorizeUrlOptionsArg {
+): GetAuthorizeUrlOptions {
   const clientId: undefined | string =
     val.clientId == void 0 ? void 0 : val.clientId;
   const redirectUri: undefined | string =
@@ -187,5 +187,5 @@ export function deserializeGetAuthorizeUrlOptionsArg(
     responseType: responseType,
     state: state,
     scope: scope,
-  } satisfies GetAuthorizeUrlOptionsArg;
+  } satisfies GetAuthorizeUrlOptions;
 }

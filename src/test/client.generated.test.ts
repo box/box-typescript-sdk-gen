@@ -1,10 +1,10 @@
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
@@ -22,7 +22,7 @@ test('testWithAsUserHeader', async function testWithAsUserHeader(): Promise<any>
   const createdUser: UserFull = await client.users.createUser({
     name: userName,
     isPlatformAccessOnly: true,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const asUserClient: BoxClient = client.withAsUserHeader(createdUser.id);
   const adminUser: UserFull = await client.users.getUserMe();
   if (!!((toString(adminUser.name) as string) == userName)) {
@@ -46,7 +46,7 @@ test('testWithExtraHeaders', async function testWithExtraHeaders(): Promise<any>
   const createdUser: UserFull = await client.users.createUser({
     name: userName,
     isPlatformAccessOnly: true,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const asUserClient: BoxClient = client.withExtraHeaders({
     ['As-User']: createdUser.id,
   });

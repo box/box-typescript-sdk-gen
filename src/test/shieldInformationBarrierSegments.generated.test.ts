@@ -2,25 +2,25 @@ import { serializeShieldInformationBarrier } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrier } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierSegment } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierSegment } from '../schemas.generated.js';
-import { serializeCreateShieldInformationBarrierSegmentRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
-import { deserializeCreateShieldInformationBarrierSegmentRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { serializeCreateShieldInformationBarrierSegmentRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { deserializeCreateShieldInformationBarrierSegmentRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { serializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierBase } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierBaseTypeField } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierBaseTypeField } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierSegments } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierSegments } from '../schemas.generated.js';
-import { serializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
-import { deserializeUpdateShieldInformationBarrierSegmentByIdRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { serializeUpdateShieldInformationBarrierSegmentByIdRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegment } from '../schemas.generated.js';
-import { CreateShieldInformationBarrierSegmentRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { CreateShieldInformationBarrierSegmentRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { ShieldInformationBarrierBaseTypeField } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegments } from '../schemas.generated.js';
-import { GetShieldInformationBarrierSegmentsQueryParamsArg } from '../managers/shieldInformationBarrierSegments.generated.js';
-import { UpdateShieldInformationBarrierSegmentByIdRequestBodyArg } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { GetShieldInformationBarrierSegmentsQueryParams } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { UpdateShieldInformationBarrierSegmentByIdRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
@@ -51,7 +51,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
         } satisfies ShieldInformationBarrierBase,
         name: segmentName,
         description: segmentDescription,
-      } satisfies CreateShieldInformationBarrierSegmentRequestBodyArg
+      } satisfies CreateShieldInformationBarrierSegmentRequestBody
     );
   if (!(segment.name! == segmentName)) {
     throw 'Assertion failed';
@@ -60,7 +60,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegments(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierSegmentsQueryParamsArg
+      } satisfies GetShieldInformationBarrierSegmentsQueryParams
     );
   if (!(segments.entries!.length > 0)) {
     throw 'Assertion failed';
@@ -97,7 +97,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
       segmentId,
       {
         description: updatedSegmentDescription,
-      } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBodyArg
+      } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody
     );
   if (!(updatedSegment.description! == updatedSegmentDescription)) {
     throw 'Assertion failed';

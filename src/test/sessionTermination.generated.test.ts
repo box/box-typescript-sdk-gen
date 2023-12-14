@@ -2,21 +2,21 @@ import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeSessionTerminationMessage } from '../schemas.generated.js';
 import { deserializeSessionTerminationMessage } from '../schemas.generated.js';
-import { serializeCreateUserTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
-import { deserializeCreateUserTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
+import { serializeCreateUserTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
+import { deserializeCreateUserTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
 import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
-import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { serializeCreateGroupTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
-import { deserializeCreateGroupTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
+import { serializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { deserializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { serializeCreateGroupTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
+import { deserializeCreateGroupTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { SessionTerminationMessage } from '../schemas.generated.js';
-import { CreateUserTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
+import { CreateUserTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
 import { GroupFull } from '../schemas.generated.js';
-import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { CreateGroupTerminateSessionRequestBodyArg } from '../managers/sessionTermination.generated.js';
+import { CreateGroupRequestBody } from '../managers/groups.generated.js';
+import { CreateGroupTerminateSessionRequestBody } from '../managers/sessionTermination.generated.js';
 import { getUuid } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -38,7 +38,7 @@ test('testSessionTerminationUser', async function testSessionTerminationUser(): 
     await client.sessionTermination.createUserTerminateSession({
       userIds: [getEnvVar('USER_ID')],
       userLogins: [user.login!],
-    } satisfies CreateUserTerminateSessionRequestBodyArg);
+    } satisfies CreateUserTerminateSessionRequestBody);
   if (
     !(
       result.message ==
@@ -52,11 +52,11 @@ test('testSessionTerminationGroup', async function testSessionTerminationGroup()
   const groupName: string = getUuid();
   const group: GroupFull = await client.groups.createGroup({
     name: groupName,
-  } satisfies CreateGroupRequestBodyArg);
+  } satisfies CreateGroupRequestBody);
   const result: SessionTerminationMessage =
     await client.sessionTermination.createGroupTerminateSession({
       groupIds: [group.id],
-    } satisfies CreateGroupTerminateSessionRequestBodyArg);
+    } satisfies CreateGroupTerminateSessionRequestBody);
   if (
     !(
       result.message ==

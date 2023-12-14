@@ -21,32 +21,36 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetRecentItemsQueryParamsArg {
+export interface GetRecentItemsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
-export class GetRecentItemsHeadersArg {
+export class GetRecentItemsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetRecentItemsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetRecentItemsHeadersArg, 'extraHeaders'>>
+      | Omit<GetRecentItemsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class RecentItemsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<RecentItemsManager, 'getRecentItems'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<RecentItemsManager, 'networkSession' | 'getRecentItems'>
+      | Partial<Pick<RecentItemsManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
   async getRecentItems(
-    queryParams: GetRecentItemsQueryParamsArg = {} satisfies GetRecentItemsQueryParamsArg,
-    headers: GetRecentItemsHeadersArg = new GetRecentItemsHeadersArg({}),
+    queryParams: GetRecentItemsQueryParams = {} satisfies GetRecentItemsQueryParams,
+    headers: GetRecentItemsHeaders = new GetRecentItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<RecentItems> {
     const queryParamsMap: {
@@ -62,7 +66,10 @@ export class RecentItemsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/recent_items') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/recent_items'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,

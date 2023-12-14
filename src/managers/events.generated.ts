@@ -24,13 +24,13 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetEventsQueryParamsArgStreamTypeField =
+export type GetEventsQueryParamsStreamTypeField =
   | 'all'
   | 'changes'
   | 'sync'
   | 'admin_logs'
   | 'admin_logs_streaming';
-export type GetEventsQueryParamsArgEventTypeField =
+export type GetEventsQueryParamsEventTypeField =
   | 'ACCESS_GRANTED'
   | 'ACCESS_REVOKED'
   | 'ADD_DEVICE_ASSOCIATION'
@@ -142,49 +142,54 @@ export type GetEventsQueryParamsArgEventTypeField =
   | 'USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE'
   | 'WATERMARK_LABEL_CREATE'
   | 'WATERMARK_LABEL_DELETE';
-export interface GetEventsQueryParamsArg {
-  readonly streamType?: GetEventsQueryParamsArgStreamTypeField;
+export interface GetEventsQueryParams {
+  readonly streamType?: GetEventsQueryParamsStreamTypeField;
   readonly streamPosition?: string;
   readonly limit?: number;
-  readonly eventType?: readonly GetEventsQueryParamsArgEventTypeField[];
+  readonly eventType?: readonly GetEventsQueryParamsEventTypeField[];
   readonly createdAfter?: string;
   readonly createdBefore?: string;
 }
-export class GetEventsHeadersArg {
+export class GetEventsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetEventsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetEventsHeadersArg, 'extraHeaders'>>
+      | Omit<GetEventsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetEventsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetEventsWithLongPollingHeadersArg {
+export class GetEventsWithLongPollingHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetEventsWithLongPollingHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetEventsWithLongPollingHeadersArg, 'extraHeaders'>>
+      | Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'>
+      | Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class EventsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<EventsManager, 'getEvents' | 'getEventsWithLongPolling'>
+    fields:
+      | Omit<
+          EventsManager,
+          'networkSession' | 'getEvents' | 'getEventsWithLongPolling'
+        >
+      | Partial<Pick<EventsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getEvents(
-    queryParams: GetEventsQueryParamsArg = {} satisfies GetEventsQueryParamsArg,
-    headers: GetEventsHeadersArg = new GetEventsHeadersArg({}),
+    queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,
+    headers: GetEventsHeaders = new GetEventsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Events> {
     const queryParamsMap: {
@@ -203,7 +208,7 @@ export class EventsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/events') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/events') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -217,7 +222,7 @@ export class EventsManager {
     return deserializeEvents(response.data);
   }
   async getEventsWithLongPolling(
-    headers: GetEventsWithLongPollingHeadersArg = new GetEventsWithLongPollingHeadersArg(
+    headers: GetEventsWithLongPollingHeaders = new GetEventsWithLongPollingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -226,7 +231,7 @@ export class EventsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/events') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/events') as string,
       {
         method: 'OPTIONS',
         headers: headersMap,
@@ -239,16 +244,16 @@ export class EventsManager {
     return deserializeRealtimeServers(response.data);
   }
 }
-export function serializeGetEventsQueryParamsArgStreamTypeField(
-  val: GetEventsQueryParamsArgStreamTypeField
+export function serializeGetEventsQueryParamsStreamTypeField(
+  val: GetEventsQueryParamsStreamTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetEventsQueryParamsArgStreamTypeField(
+export function deserializeGetEventsQueryParamsStreamTypeField(
   val: any
-): GetEventsQueryParamsArgStreamTypeField {
+): GetEventsQueryParamsStreamTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEventsQueryParamsArgStreamTypeField"';
+    throw 'Expecting a string for "GetEventsQueryParamsStreamTypeField"';
   }
   if (val == 'all') {
     return 'all';
@@ -267,16 +272,16 @@ export function deserializeGetEventsQueryParamsArgStreamTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetEventsQueryParamsArgEventTypeField(
-  val: GetEventsQueryParamsArgEventTypeField
+export function serializeGetEventsQueryParamsEventTypeField(
+  val: GetEventsQueryParamsEventTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetEventsQueryParamsArgEventTypeField(
+export function deserializeGetEventsQueryParamsEventTypeField(
   val: any
-): GetEventsQueryParamsArgEventTypeField {
+): GetEventsQueryParamsEventTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEventsQueryParamsArgEventTypeField"';
+    throw 'Expecting a string for "GetEventsQueryParamsEventTypeField"';
   }
   if (val == 'ACCESS_GRANTED') {
     return 'ACCESS_GRANTED';

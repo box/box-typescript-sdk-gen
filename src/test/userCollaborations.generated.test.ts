@@ -1,40 +1,40 @@
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeCollaboration } from '../schemas.generated.js';
 import { deserializeCollaboration } from '../schemas.generated.js';
-import { serializeCreateCollaborationRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { serializeCreateCollaborationRequestBodyArgItemField } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArgItemField } from '../managers/userCollaborations.generated.js';
-import { serializeCreateCollaborationRequestBodyArgItemFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArgItemFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { serializeCreateCollaborationRequestBodyArgAccessibleByField } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArgAccessibleByField } from '../managers/userCollaborations.generated.js';
-import { serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { serializeCreateCollaborationRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
-import { deserializeCreateCollaborationRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
-import { serializeUpdateCollaborationByIdRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { deserializeUpdateCollaborationByIdRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { serializeUpdateCollaborationByIdRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
-import { deserializeUpdateCollaborationByIdRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { serializeUpdateCollaborationByIdRequestBody } from '../managers/userCollaborations.generated.js';
+import { deserializeUpdateCollaborationByIdRequestBody } from '../managers/userCollaborations.generated.js';
+import { serializeUpdateCollaborationByIdRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { deserializeUpdateCollaborationByIdRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { Collaboration } from '../schemas.generated.js';
-import { CreateCollaborationRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { CreateCollaborationRequestBodyArgItemField } from '../managers/userCollaborations.generated.js';
-import { CreateCollaborationRequestBodyArgItemFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { CreateCollaborationRequestBodyArgAccessibleByField } from '../managers/userCollaborations.generated.js';
-import { CreateCollaborationRequestBodyArgAccessibleByFieldTypeField } from '../managers/userCollaborations.generated.js';
-import { CreateCollaborationRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
-import { UpdateCollaborationByIdRequestBodyArg } from '../managers/userCollaborations.generated.js';
-import { UpdateCollaborationByIdRequestBodyArgRoleField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { UpdateCollaborationByIdRequestBody } from '../managers/userCollaborations.generated.js';
+import { UpdateCollaborationByIdRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -55,20 +55,20 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
     name: userName,
     login: userLogin,
     isPlatformAccessOnly: true,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const folder: FolderFull = await createNewFolder();
   const collaboration: Collaboration =
     await client.userCollaborations.createCollaboration({
       item: {
-        type: 'folder' as CreateCollaborationRequestBodyArgItemFieldTypeField,
+        type: 'folder' as CreateCollaborationRequestBodyItemTypeField,
         id: folder.id,
-      } satisfies CreateCollaborationRequestBodyArgItemField,
+      } satisfies CreateCollaborationRequestBodyItemField,
       accessibleBy: {
-        type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
+        type: 'user' as CreateCollaborationRequestBodyAccessibleByTypeField,
         id: user.id,
-      } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
-      role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
-    } satisfies CreateCollaborationRequestBodyArg);
+      } satisfies CreateCollaborationRequestBodyAccessibleByField,
+      role: 'editor' as CreateCollaborationRequestBodyRoleField,
+    } satisfies CreateCollaborationRequestBody);
   if (!((toString(collaboration.role!) as string) == 'editor')) {
     throw 'Assertion failed';
   }
@@ -89,8 +89,8 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
   }
   const updatedCollaboration: Collaboration =
     await client.userCollaborations.updateCollaborationById(collaborationId, {
-      role: 'viewer' as UpdateCollaborationByIdRequestBodyArgRoleField,
-    } satisfies UpdateCollaborationByIdRequestBodyArg);
+      role: 'viewer' as UpdateCollaborationByIdRequestBodyRoleField,
+    } satisfies UpdateCollaborationByIdRequestBody);
   if (!((toString(updatedCollaboration.role!) as string) == 'viewer')) {
     throw 'Assertion failed';
   }
@@ -108,15 +108,15 @@ test('testExternalUserCollaborations', async function testExternalUserCollaborat
   const collaboration: Collaboration =
     await client.userCollaborations.createCollaboration({
       item: {
-        type: 'folder' as CreateCollaborationRequestBodyArgItemFieldTypeField,
+        type: 'folder' as CreateCollaborationRequestBodyItemTypeField,
         id: folder.id,
-      } satisfies CreateCollaborationRequestBodyArgItemField,
+      } satisfies CreateCollaborationRequestBodyItemField,
       accessibleBy: {
-        type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
+        type: 'user' as CreateCollaborationRequestBodyAccessibleByTypeField,
         login: userLogin,
-      } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
-      role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
-    } satisfies CreateCollaborationRequestBodyArg);
+      } satisfies CreateCollaborationRequestBodyAccessibleByField,
+      role: 'editor' as CreateCollaborationRequestBodyRoleField,
+    } satisfies CreateCollaborationRequestBody);
   if (!((toString(collaboration.role!) as string) == 'editor')) {
     throw 'Assertion failed';
   }
@@ -137,8 +137,8 @@ test('testExternalUserCollaborations', async function testExternalUserCollaborat
   }
   const updatedCollaboration: Collaboration =
     await client.userCollaborations.updateCollaborationById(collaborationId, {
-      role: 'viewer' as UpdateCollaborationByIdRequestBodyArgRoleField,
-    } satisfies UpdateCollaborationByIdRequestBodyArg);
+      role: 'viewer' as UpdateCollaborationByIdRequestBodyRoleField,
+    } satisfies UpdateCollaborationByIdRequestBody);
   if (!((toString(updatedCollaboration.role!) as string) == 'viewer')) {
     throw 'Assertion failed';
   }

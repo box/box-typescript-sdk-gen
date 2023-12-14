@@ -30,79 +30,82 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetAuthorizeQueryParamsArgResponseTypeField = 'code';
-export interface GetAuthorizeQueryParamsArg {
-  readonly responseType: GetAuthorizeQueryParamsArgResponseTypeField;
+export type GetAuthorizeQueryParamsResponseTypeField = 'code';
+export interface GetAuthorizeQueryParams {
+  readonly responseType: GetAuthorizeQueryParamsResponseTypeField;
   readonly clientId: string;
   readonly redirectUri?: string;
   readonly state?: string;
   readonly scope?: string;
 }
-export class GetAuthorizeHeadersArg {
+export class GetAuthorizeHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetAuthorizeHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetAuthorizeHeadersArg, 'extraHeaders'>>
+      | Omit<GetAuthorizeHeaders, 'extraHeaders'>
+      | Partial<Pick<GetAuthorizeHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2TokenHeadersArg {
+export class CreateOauth2TokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2TokenHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2TokenHeadersArg, 'extraHeaders'>>
+      | Omit<CreateOauth2TokenHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateOauth2TokenHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2TokenRefreshHeadersArg {
+export class CreateOauth2TokenRefreshHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2TokenRefreshHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2TokenRefreshHeadersArg, 'extraHeaders'>>
+      | Omit<CreateOauth2TokenRefreshHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateOauth2TokenRefreshHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2RevokeHeadersArg {
+export class CreateOauth2RevokeHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2RevokeHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2RevokeHeadersArg, 'extraHeaders'>>
+      | Omit<CreateOauth2RevokeHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateOauth2RevokeHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class AuthorizationManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      AuthorizationManager,
-      | 'getAuthorize'
-      | 'createOauth2Token'
-      | 'createOauth2TokenRefresh'
-      | 'createOauth2Revoke'
-    >
+    fields:
+      | Omit<
+          AuthorizationManager,
+          | 'networkSession'
+          | 'getAuthorize'
+          | 'createOauth2Token'
+          | 'createOauth2TokenRefresh'
+          | 'createOauth2Revoke'
+        >
+      | Partial<Pick<AuthorizationManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getAuthorize(
-    queryParams: GetAuthorizeQueryParamsArg,
-    headers: GetAuthorizeHeadersArg = new GetAuthorizeHeadersArg({}),
+    queryParams: GetAuthorizeQueryParams,
+    headers: GetAuthorizeHeaders = new GetAuthorizeHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
@@ -118,7 +121,7 @@ export class AuthorizationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://account.box.com/api/oauth2/authorize') as string,
+      ''.concat(this.networkSession.baseUrls.oauth2Url, '/authorize') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -133,7 +136,7 @@ export class AuthorizationManager {
   }
   async createOauth2Token(
     requestBody: PostOAuth2Token,
-    headers: CreateOauth2TokenHeadersArg = new CreateOauth2TokenHeadersArg({}),
+    headers: CreateOauth2TokenHeaders = new CreateOauth2TokenHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<AccessToken> {
     const headersMap: {
@@ -156,7 +159,7 @@ export class AuthorizationManager {
   }
   async createOauth2TokenRefresh(
     requestBody: PostOAuth2TokenRefreshAccessToken,
-    headers: CreateOauth2TokenRefreshHeadersArg = new CreateOauth2TokenRefreshHeadersArg(
+    headers: CreateOauth2TokenRefreshHeaders = new CreateOauth2TokenRefreshHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -181,9 +184,7 @@ export class AuthorizationManager {
   }
   async createOauth2Revoke(
     requestBody: PostOAuth2Revoke,
-    headers: CreateOauth2RevokeHeadersArg = new CreateOauth2RevokeHeadersArg(
-      {}
-    ),
+    headers: CreateOauth2RevokeHeaders = new CreateOauth2RevokeHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -205,16 +206,16 @@ export class AuthorizationManager {
     return void 0;
   }
 }
-export function serializeGetAuthorizeQueryParamsArgResponseTypeField(
-  val: GetAuthorizeQueryParamsArgResponseTypeField
+export function serializeGetAuthorizeQueryParamsResponseTypeField(
+  val: GetAuthorizeQueryParamsResponseTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(
+export function deserializeGetAuthorizeQueryParamsResponseTypeField(
   val: any
-): GetAuthorizeQueryParamsArgResponseTypeField {
+): GetAuthorizeQueryParamsResponseTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetAuthorizeQueryParamsArgResponseTypeField"';
+    throw 'Expecting a string for "GetAuthorizeQueryParamsResponseTypeField"';
   }
   if (val == 'code') {
     return 'code';

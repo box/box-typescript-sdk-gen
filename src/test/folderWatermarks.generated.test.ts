@@ -1,25 +1,25 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { serializeWatermark } from '../schemas.generated.js';
 import { deserializeWatermark } from '../schemas.generated.js';
-import { serializeUpdateFolderWatermarkRequestBodyArg } from '../managers/folderWatermarks.generated.js';
-import { deserializeUpdateFolderWatermarkRequestBodyArg } from '../managers/folderWatermarks.generated.js';
-import { serializeUpdateFolderWatermarkRequestBodyArgWatermarkField } from '../managers/folderWatermarks.generated.js';
-import { deserializeUpdateFolderWatermarkRequestBodyArgWatermarkField } from '../managers/folderWatermarks.generated.js';
-import { serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField } from '../managers/folderWatermarks.generated.js';
-import { deserializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField } from '../managers/folderWatermarks.generated.js';
+import { serializeUpdateFolderWatermarkRequestBody } from '../managers/folderWatermarks.generated.js';
+import { deserializeUpdateFolderWatermarkRequestBody } from '../managers/folderWatermarks.generated.js';
+import { serializeUpdateFolderWatermarkRequestBodyWatermarkField } from '../managers/folderWatermarks.generated.js';
+import { deserializeUpdateFolderWatermarkRequestBodyWatermarkField } from '../managers/folderWatermarks.generated.js';
+import { serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField } from '../managers/folderWatermarks.generated.js';
+import { deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField } from '../managers/folderWatermarks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { Watermark } from '../schemas.generated.js';
-import { UpdateFolderWatermarkRequestBodyArg } from '../managers/folderWatermarks.generated.js';
-import { UpdateFolderWatermarkRequestBodyArgWatermarkField } from '../managers/folderWatermarks.generated.js';
-import { UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField } from '../managers/folderWatermarks.generated.js';
+import { UpdateFolderWatermarkRequestBody } from '../managers/folderWatermarks.generated.js';
+import { UpdateFolderWatermarkRequestBodyWatermarkField } from '../managers/folderWatermarks.generated.js';
+import { UpdateFolderWatermarkRequestBodyWatermarkImprintField } from '../managers/folderWatermarks.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
@@ -34,15 +34,15 @@ test('testCreateGetDeleteFolderWatermark', async function testCreateGetDeleteFol
   const folderName: string = getUuid();
   const folder: FolderFull = await client.folders.createFolder({
     name: folderName,
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   const createdWatermark: Watermark =
     await client.folderWatermarks.updateFolderWatermark(folder.id, {
       watermark: {
         imprint:
-          'default' as UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField,
-      } satisfies UpdateFolderWatermarkRequestBodyArgWatermarkField,
-    } satisfies UpdateFolderWatermarkRequestBodyArg);
+          'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField,
+      } satisfies UpdateFolderWatermarkRequestBodyWatermarkField,
+    } satisfies UpdateFolderWatermarkRequestBody);
   const watermark: Watermark = await client.folderWatermarks.getFolderWatermark(
     folder.id
   );

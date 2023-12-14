@@ -22,61 +22,66 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetUserAvatarHeadersArg {
+export class GetUserAvatarHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUserAvatarHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUserAvatarHeadersArg, 'extraHeaders'>>
+      | Omit<GetUserAvatarHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUserAvatarHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateUserAvatarRequestBodyArg {
+export interface CreateUserAvatarRequestBody {
   readonly pic: ByteStream;
   readonly picFileName?: string;
   readonly picContentType?: string;
 }
-export class CreateUserAvatarHeadersArg {
+export class CreateUserAvatarHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateUserAvatarHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateUserAvatarHeadersArg, 'extraHeaders'>>
+      | Omit<CreateUserAvatarHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateUserAvatarHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteUserAvatarHeadersArg {
+export class DeleteUserAvatarHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteUserAvatarHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteUserAvatarHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteUserAvatarHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteUserAvatarHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class AvatarsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      AvatarsManager,
-      'getUserAvatar' | 'createUserAvatar' | 'deleteUserAvatar'
-    >
+    fields:
+      | Omit<
+          AvatarsManager,
+          | 'networkSession'
+          | 'getUserAvatar'
+          | 'createUserAvatar'
+          | 'deleteUserAvatar'
+        >
+      | Partial<Pick<AvatarsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getUserAvatar(
     userId: string,
-    headers: GetUserAvatarHeadersArg = new GetUserAvatarHeadersArg({}),
+    headers: GetUserAvatarHeaders = new GetUserAvatarHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const headersMap: {
@@ -84,7 +89,8 @@ export class AvatarsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
@@ -101,8 +107,8 @@ export class AvatarsManager {
   }
   async createUserAvatar(
     userId: string,
-    requestBody: CreateUserAvatarRequestBodyArg,
-    headers: CreateUserAvatarHeadersArg = new CreateUserAvatarHeadersArg({}),
+    requestBody: CreateUserAvatarRequestBody,
+    headers: CreateUserAvatarHeaders = new CreateUserAvatarHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserAvatar> {
     const headersMap: {
@@ -110,7 +116,8 @@ export class AvatarsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
@@ -136,7 +143,7 @@ export class AvatarsManager {
   }
   async deleteUserAvatar(
     userId: string,
-    headers: DeleteUserAvatarHeadersArg = new DeleteUserAvatarHeadersArg({}),
+    headers: DeleteUserAvatarHeaders = new DeleteUserAvatarHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -144,7 +151,8 @@ export class AvatarsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,

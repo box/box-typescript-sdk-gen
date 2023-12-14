@@ -21,41 +21,43 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface TransferOwnedFolderRequestBodyArgOwnedByField {
+export interface TransferOwnedFolderRequestBodyOwnedByField {
   readonly id: string;
 }
-export interface TransferOwnedFolderRequestBodyArg {
-  readonly ownedBy: TransferOwnedFolderRequestBodyArgOwnedByField;
+export interface TransferOwnedFolderRequestBody {
+  readonly ownedBy: TransferOwnedFolderRequestBodyOwnedByField;
 }
-export interface TransferOwnedFolderQueryParamsArg {
+export interface TransferOwnedFolderQueryParams {
   readonly fields?: readonly string[];
   readonly notify?: boolean;
 }
-export class TransferOwnedFolderHeadersArg {
+export class TransferOwnedFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<TransferOwnedFolderHeadersArg, 'extraHeaders'>
-      | Partial<Pick<TransferOwnedFolderHeadersArg, 'extraHeaders'>>
+      | Omit<TransferOwnedFolderHeaders, 'extraHeaders'>
+      | Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TransferManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<TransferManager, 'transferOwnedFolder'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<TransferManager, 'networkSession' | 'transferOwnedFolder'>
+      | Partial<Pick<TransferManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
   async transferOwnedFolder(
     userId: string,
-    requestBody: TransferOwnedFolderRequestBodyArg,
-    queryParams: TransferOwnedFolderQueryParamsArg = {} satisfies TransferOwnedFolderQueryParamsArg,
-    headers: TransferOwnedFolderHeadersArg = new TransferOwnedFolderHeadersArg(
-      {}
-    ),
+    requestBody: TransferOwnedFolderRequestBody,
+    queryParams: TransferOwnedFolderQueryParams = {} satisfies TransferOwnedFolderQueryParams,
+    headers: TransferOwnedFolderHeaders = new TransferOwnedFolderHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
@@ -71,7 +73,8 @@ export class TransferManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/folders/0'
       ) as string,
@@ -79,7 +82,7 @@ export class TransferManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeTransferOwnedFolderRequestBodyArg(requestBody),
+        data: serializeTransferOwnedFolderRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -90,30 +93,30 @@ export class TransferManager {
     return deserializeFolderFull(response.data);
   }
 }
-export function serializeTransferOwnedFolderRequestBodyArgOwnedByField(
-  val: TransferOwnedFolderRequestBodyArgOwnedByField
+export function serializeTransferOwnedFolderRequestBodyOwnedByField(
+  val: TransferOwnedFolderRequestBodyOwnedByField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeTransferOwnedFolderRequestBodyArgOwnedByField(
+export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
   val: any
-): TransferOwnedFolderRequestBodyArgOwnedByField {
+): TransferOwnedFolderRequestBodyOwnedByField {
   const id: string = val.id;
-  return { id: id } satisfies TransferOwnedFolderRequestBodyArgOwnedByField;
+  return { id: id } satisfies TransferOwnedFolderRequestBodyOwnedByField;
 }
-export function serializeTransferOwnedFolderRequestBodyArg(
-  val: TransferOwnedFolderRequestBodyArg
+export function serializeTransferOwnedFolderRequestBody(
+  val: TransferOwnedFolderRequestBody
 ): SerializedData {
   return {
-    ['owned_by']: serializeTransferOwnedFolderRequestBodyArgOwnedByField(
+    ['owned_by']: serializeTransferOwnedFolderRequestBodyOwnedByField(
       val.ownedBy
     ),
   };
 }
-export function deserializeTransferOwnedFolderRequestBodyArg(
+export function deserializeTransferOwnedFolderRequestBody(
   val: any
-): TransferOwnedFolderRequestBodyArg {
-  const ownedBy: TransferOwnedFolderRequestBodyArgOwnedByField =
-    deserializeTransferOwnedFolderRequestBodyArgOwnedByField(val.owned_by);
-  return { ownedBy: ownedBy } satisfies TransferOwnedFolderRequestBodyArg;
+): TransferOwnedFolderRequestBody {
+  const ownedBy: TransferOwnedFolderRequestBodyOwnedByField =
+    deserializeTransferOwnedFolderRequestBodyOwnedByField(val.owned_by);
+  return { ownedBy: ownedBy } satisfies TransferOwnedFolderRequestBody;
 }

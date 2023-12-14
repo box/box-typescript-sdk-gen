@@ -24,104 +24,105 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetLegalHoldPoliciesQueryParamsArg {
+export interface GetLegalHoldPoliciesQueryParams {
   readonly policyName?: string;
   readonly fields?: readonly string[];
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetLegalHoldPoliciesHeadersArg {
+export class GetLegalHoldPoliciesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetLegalHoldPoliciesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetLegalHoldPoliciesHeadersArg, 'extraHeaders'>>
+      | Omit<GetLegalHoldPoliciesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateLegalHoldPolicyRequestBodyArg {
+export interface CreateLegalHoldPolicyRequestBody {
   readonly policyName: string;
   readonly description?: string;
   readonly filterStartedAt?: string;
   readonly filterEndedAt?: string;
   readonly isOngoing?: boolean;
 }
-export class CreateLegalHoldPolicyHeadersArg {
+export class CreateLegalHoldPolicyHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateLegalHoldPolicyHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateLegalHoldPolicyHeadersArg, 'extraHeaders'>>
+      | Omit<CreateLegalHoldPolicyHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetLegalHoldPolicyByIdHeadersArg {
+export class GetLegalHoldPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateLegalHoldPolicyByIdRequestBodyArg {
+export interface UpdateLegalHoldPolicyByIdRequestBody {
   readonly policyName?: string;
   readonly description?: string;
   readonly releaseNotes?: string;
 }
-export class UpdateLegalHoldPolicyByIdHeadersArg {
+export class UpdateLegalHoldPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteLegalHoldPolicyByIdHeadersArg {
+export class DeleteLegalHoldPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteLegalHoldPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class LegalHoldPoliciesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      LegalHoldPoliciesManager,
-      | 'getLegalHoldPolicies'
-      | 'createLegalHoldPolicy'
-      | 'getLegalHoldPolicyById'
-      | 'updateLegalHoldPolicyById'
-      | 'deleteLegalHoldPolicyById'
-    >
+    fields:
+      | Omit<
+          LegalHoldPoliciesManager,
+          | 'networkSession'
+          | 'getLegalHoldPolicies'
+          | 'createLegalHoldPolicy'
+          | 'getLegalHoldPolicyById'
+          | 'updateLegalHoldPolicyById'
+          | 'deleteLegalHoldPolicyById'
+        >
+      | Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getLegalHoldPolicies(
-    queryParams: GetLegalHoldPoliciesQueryParamsArg = {} satisfies GetLegalHoldPoliciesQueryParamsArg,
-    headers: GetLegalHoldPoliciesHeadersArg = new GetLegalHoldPoliciesHeadersArg(
-      {}
-    ),
+    queryParams: GetLegalHoldPoliciesQueryParams = {} satisfies GetLegalHoldPoliciesQueryParams,
+    headers: GetLegalHoldPoliciesHeaders = new GetLegalHoldPoliciesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicies> {
     const queryParamsMap: {
@@ -138,7 +139,10 @@ export class LegalHoldPoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/legal_hold_policies') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/legal_hold_policies'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -152,8 +156,8 @@ export class LegalHoldPoliciesManager {
     return deserializeLegalHoldPolicies(response.data);
   }
   async createLegalHoldPolicy(
-    requestBody: CreateLegalHoldPolicyRequestBodyArg,
-    headers: CreateLegalHoldPolicyHeadersArg = new CreateLegalHoldPolicyHeadersArg(
+    requestBody: CreateLegalHoldPolicyRequestBody,
+    headers: CreateLegalHoldPolicyHeaders = new CreateLegalHoldPolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -162,11 +166,14 @@ export class LegalHoldPoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/legal_hold_policies') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/legal_hold_policies'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateLegalHoldPolicyRequestBodyArg(requestBody),
+        data: serializeCreateLegalHoldPolicyRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -178,7 +185,7 @@ export class LegalHoldPoliciesManager {
   }
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headers: GetLegalHoldPolicyByIdHeadersArg = new GetLegalHoldPolicyByIdHeadersArg(
+    headers: GetLegalHoldPolicyByIdHeaders = new GetLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -188,7 +195,8 @@ export class LegalHoldPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/legal_hold_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {
@@ -204,8 +212,8 @@ export class LegalHoldPoliciesManager {
   }
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    requestBody: UpdateLegalHoldPolicyByIdRequestBodyArg = {} satisfies UpdateLegalHoldPolicyByIdRequestBodyArg,
-    headers: UpdateLegalHoldPolicyByIdHeadersArg = new UpdateLegalHoldPolicyByIdHeadersArg(
+    requestBody: UpdateLegalHoldPolicyByIdRequestBody = {} satisfies UpdateLegalHoldPolicyByIdRequestBody,
+    headers: UpdateLegalHoldPolicyByIdHeaders = new UpdateLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -215,13 +223,14 @@ export class LegalHoldPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/legal_hold_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateLegalHoldPolicyByIdRequestBodyArg(requestBody),
+        data: serializeUpdateLegalHoldPolicyByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -233,7 +242,7 @@ export class LegalHoldPoliciesManager {
   }
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headers: DeleteLegalHoldPolicyByIdHeadersArg = new DeleteLegalHoldPolicyByIdHeadersArg(
+    headers: DeleteLegalHoldPolicyByIdHeaders = new DeleteLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -243,7 +252,8 @@ export class LegalHoldPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/legal_hold_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {
@@ -258,8 +268,8 @@ export class LegalHoldPoliciesManager {
     return void 0;
   }
 }
-export function serializeCreateLegalHoldPolicyRequestBodyArg(
-  val: CreateLegalHoldPolicyRequestBodyArg
+export function serializeCreateLegalHoldPolicyRequestBody(
+  val: CreateLegalHoldPolicyRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -271,9 +281,9 @@ export function serializeCreateLegalHoldPolicyRequestBodyArg(
     ['is_ongoing']: val.isOngoing == void 0 ? void 0 : val.isOngoing,
   };
 }
-export function deserializeCreateLegalHoldPolicyRequestBodyArg(
+export function deserializeCreateLegalHoldPolicyRequestBody(
   val: any
-): CreateLegalHoldPolicyRequestBodyArg {
+): CreateLegalHoldPolicyRequestBody {
   const policyName: string = val.policy_name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
@@ -289,10 +299,10 @@ export function deserializeCreateLegalHoldPolicyRequestBodyArg(
     filterStartedAt: filterStartedAt,
     filterEndedAt: filterEndedAt,
     isOngoing: isOngoing,
-  } satisfies CreateLegalHoldPolicyRequestBodyArg;
+  } satisfies CreateLegalHoldPolicyRequestBody;
 }
-export function serializeUpdateLegalHoldPolicyByIdRequestBodyArg(
-  val: UpdateLegalHoldPolicyByIdRequestBodyArg
+export function serializeUpdateLegalHoldPolicyByIdRequestBody(
+  val: UpdateLegalHoldPolicyByIdRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
@@ -300,9 +310,9 @@ export function serializeUpdateLegalHoldPolicyByIdRequestBodyArg(
     ['release_notes']: val.releaseNotes == void 0 ? void 0 : val.releaseNotes,
   };
 }
-export function deserializeUpdateLegalHoldPolicyByIdRequestBodyArg(
+export function deserializeUpdateLegalHoldPolicyByIdRequestBody(
   val: any
-): UpdateLegalHoldPolicyByIdRequestBodyArg {
+): UpdateLegalHoldPolicyByIdRequestBody {
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
   const description: undefined | string =
@@ -313,5 +323,5 @@ export function deserializeUpdateLegalHoldPolicyByIdRequestBodyArg(
     policyName: policyName,
     description: description,
     releaseNotes: releaseNotes,
-  } satisfies UpdateLegalHoldPolicyByIdRequestBodyArg;
+  } satisfies UpdateLegalHoldPolicyByIdRequestBody;
 }

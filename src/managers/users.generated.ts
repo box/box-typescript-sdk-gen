@@ -27,13 +27,10 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetUsersQueryParamsArgUserTypeField =
-  | 'all'
-  | 'managed'
-  | 'external';
-export interface GetUsersQueryParamsArg {
+export type GetUsersQueryParamsUserTypeField = 'all' | 'managed' | 'external';
+export interface GetUsersQueryParams {
   readonly filterTerm?: string;
-  readonly userType?: GetUsersQueryParamsArgUserTypeField;
+  readonly userType?: GetUsersQueryParamsUserTypeField;
   readonly externalAppUserId?: string;
   readonly fields?: readonly string[];
   readonly offset?: number;
@@ -41,29 +38,29 @@ export interface GetUsersQueryParamsArg {
   readonly usemarker?: boolean;
   readonly marker?: string;
 }
-export class GetUsersHeadersArg {
+export class GetUsersHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUsersHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUsersHeadersArg, 'extraHeaders'>>
+      | Omit<GetUsersHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUsersHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateUserRequestBodyArgRoleField = 'coadmin' | 'user';
-export type CreateUserRequestBodyArgStatusField =
+export type CreateUserRequestBodyRoleField = 'coadmin' | 'user';
+export type CreateUserRequestBodyStatusField =
   | 'active'
   | 'inactive'
   | 'cannot_delete_edit'
   | 'cannot_delete_edit_upload';
-export interface CreateUserRequestBodyArg {
+export interface CreateUserRequestBody {
   readonly name: string;
   readonly login?: string;
   readonly isPlatformAccessOnly?: boolean;
-  readonly role?: CreateUserRequestBodyArgRoleField;
+  readonly role?: CreateUserRequestBodyRoleField;
   readonly language?: string;
   readonly isSyncEnabled?: boolean;
   readonly jobTitle?: string;
@@ -76,69 +73,69 @@ export interface CreateUserRequestBodyArg {
   readonly isExternalCollabRestricted?: boolean;
   readonly isExemptFromDeviceLimits?: boolean;
   readonly isExemptFromLoginVerification?: boolean;
-  readonly status?: CreateUserRequestBodyArgStatusField;
+  readonly status?: CreateUserRequestBodyStatusField;
   readonly externalAppUserId?: string;
 }
-export interface CreateUserQueryParamsArg {
+export interface CreateUserQueryParams {
   readonly fields?: readonly string[];
 }
-export class CreateUserHeadersArg {
+export class CreateUserHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateUserHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateUserHeadersArg, 'extraHeaders'>>
+      | Omit<CreateUserHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateUserHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetUserMeQueryParamsArg {
+export interface GetUserMeQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetUserMeHeadersArg {
+export class GetUserMeHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUserMeHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUserMeHeadersArg, 'extraHeaders'>>
+      | Omit<GetUserMeHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetUserByIdQueryParamsArg {
+export interface GetUserByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetUserByIdHeadersArg {
+export class GetUserByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUserByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUserByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetUserByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateUserByIdRequestBodyArgRoleField = 'coadmin' | 'user';
-export type UpdateUserByIdRequestBodyArgStatusField =
+export type UpdateUserByIdRequestBodyRoleField = 'coadmin' | 'user';
+export type UpdateUserByIdRequestBodyStatusField =
   | 'active'
   | 'inactive'
   | 'cannot_delete_edit'
   | 'cannot_delete_edit_upload';
-export interface UpdateUserByIdRequestBodyArgNotificationEmailField {
+export interface UpdateUserByIdRequestBodyNotificationEmailField {
   readonly email?: string;
 }
-export interface UpdateUserByIdRequestBodyArg {
+export interface UpdateUserByIdRequestBody {
   readonly enterprise?: string;
   readonly notify?: boolean;
   readonly name?: string;
   readonly login?: string;
-  readonly role?: UpdateUserByIdRequestBodyArgRoleField;
+  readonly role?: UpdateUserByIdRequestBodyRoleField;
   readonly language?: string;
   readonly isSyncEnabled?: boolean;
   readonly jobTitle?: string;
@@ -151,61 +148,64 @@ export interface UpdateUserByIdRequestBodyArg {
   readonly isExemptFromDeviceLimits?: boolean;
   readonly isExemptFromLoginVerification?: boolean;
   readonly isPasswordResetRequired?: boolean;
-  readonly status?: UpdateUserByIdRequestBodyArgStatusField;
+  readonly status?: UpdateUserByIdRequestBodyStatusField;
   readonly spaceAmount?: number;
-  readonly notificationEmail?: UpdateUserByIdRequestBodyArgNotificationEmailField;
+  readonly notificationEmail?: UpdateUserByIdRequestBodyNotificationEmailField;
   readonly externalAppUserId?: string;
 }
-export interface UpdateUserByIdQueryParamsArg {
+export interface UpdateUserByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class UpdateUserByIdHeadersArg {
+export class UpdateUserByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateUserByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateUserByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateUserByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface DeleteUserByIdQueryParamsArg {
+export interface DeleteUserByIdQueryParams {
   readonly notify?: boolean;
   readonly force?: boolean;
 }
-export class DeleteUserByIdHeadersArg {
+export class DeleteUserByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteUserByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteUserByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteUserByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class UsersManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      UsersManager,
-      | 'getUsers'
-      | 'createUser'
-      | 'getUserMe'
-      | 'getUserById'
-      | 'updateUserById'
-      | 'deleteUserById'
-    >
+    fields:
+      | Omit<
+          UsersManager,
+          | 'networkSession'
+          | 'getUsers'
+          | 'createUser'
+          | 'getUserMe'
+          | 'getUserById'
+          | 'updateUserById'
+          | 'deleteUserById'
+        >
+      | Partial<Pick<UsersManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getUsers(
-    queryParams: GetUsersQueryParamsArg = {} satisfies GetUsersQueryParamsArg,
-    headers: GetUsersHeadersArg = new GetUsersHeadersArg({}),
+    queryParams: GetUsersQueryParams = {} satisfies GetUsersQueryParams,
+    headers: GetUsersHeaders = new GetUsersHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Users> {
     const queryParamsMap: {
@@ -228,7 +228,7 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/users') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -242,9 +242,9 @@ export class UsersManager {
     return deserializeUsers(response.data);
   }
   async createUser(
-    requestBody: CreateUserRequestBodyArg,
-    queryParams: CreateUserQueryParamsArg = {} satisfies CreateUserQueryParamsArg,
-    headers: CreateUserHeadersArg = new CreateUserHeadersArg({}),
+    requestBody: CreateUserRequestBody,
+    queryParams: CreateUserQueryParams = {} satisfies CreateUserQueryParams,
+    headers: CreateUserHeaders = new CreateUserHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
@@ -258,12 +258,12 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/users') as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCreateUserRequestBodyArg(requestBody),
+        data: serializeCreateUserRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -274,8 +274,8 @@ export class UsersManager {
     return deserializeUserFull(response.data);
   }
   async getUserMe(
-    queryParams: GetUserMeQueryParamsArg = {} satisfies GetUserMeQueryParamsArg,
-    headers: GetUserMeHeadersArg = new GetUserMeHeadersArg({}),
+    queryParams: GetUserMeQueryParams = {} satisfies GetUserMeQueryParams,
+    headers: GetUserMeHeaders = new GetUserMeHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
@@ -289,7 +289,7 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/me') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/users/me') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -304,8 +304,8 @@ export class UsersManager {
   }
   async getUserById(
     userId: string,
-    queryParams: GetUserByIdQueryParamsArg = {} satisfies GetUserByIdQueryParamsArg,
-    headers: GetUserByIdHeadersArg = new GetUserByIdHeadersArg({}),
+    queryParams: GetUserByIdQueryParams = {} satisfies GetUserByIdQueryParams,
+    headers: GetUserByIdHeaders = new GetUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
@@ -320,7 +320,8 @@ export class UsersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string
       ) as string,
       {
@@ -337,9 +338,9 @@ export class UsersManager {
   }
   async updateUserById(
     userId: string,
-    requestBody: UpdateUserByIdRequestBodyArg = {} satisfies UpdateUserByIdRequestBodyArg,
-    queryParams: UpdateUserByIdQueryParamsArg = {} satisfies UpdateUserByIdQueryParamsArg,
-    headers: UpdateUserByIdHeadersArg = new UpdateUserByIdHeadersArg({}),
+    requestBody: UpdateUserByIdRequestBody = {} satisfies UpdateUserByIdRequestBody,
+    queryParams: UpdateUserByIdQueryParams = {} satisfies UpdateUserByIdQueryParams,
+    headers: UpdateUserByIdHeaders = new UpdateUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
     const queryParamsMap: {
@@ -354,14 +355,15 @@ export class UsersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string
       ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateUserByIdRequestBodyArg(requestBody),
+        data: serializeUpdateUserByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -373,8 +375,8 @@ export class UsersManager {
   }
   async deleteUserById(
     userId: string,
-    queryParams: DeleteUserByIdQueryParamsArg = {} satisfies DeleteUserByIdQueryParamsArg,
-    headers: DeleteUserByIdHeadersArg = new DeleteUserByIdHeadersArg({}),
+    queryParams: DeleteUserByIdQueryParams = {} satisfies DeleteUserByIdQueryParams,
+    headers: DeleteUserByIdHeaders = new DeleteUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
@@ -388,7 +390,8 @@ export class UsersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string
       ) as string,
       {
@@ -404,16 +407,16 @@ export class UsersManager {
     return void 0;
   }
 }
-export function serializeGetUsersQueryParamsArgUserTypeField(
-  val: GetUsersQueryParamsArgUserTypeField
+export function serializeGetUsersQueryParamsUserTypeField(
+  val: GetUsersQueryParamsUserTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetUsersQueryParamsArgUserTypeField(
+export function deserializeGetUsersQueryParamsUserTypeField(
   val: any
-): GetUsersQueryParamsArgUserTypeField {
+): GetUsersQueryParamsUserTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetUsersQueryParamsArgUserTypeField"';
+    throw 'Expecting a string for "GetUsersQueryParamsUserTypeField"';
   }
   if (val == 'all') {
     return 'all';
@@ -426,16 +429,16 @@ export function deserializeGetUsersQueryParamsArgUserTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateUserRequestBodyArgRoleField(
-  val: CreateUserRequestBodyArgRoleField
+export function serializeCreateUserRequestBodyRoleField(
+  val: CreateUserRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateUserRequestBodyArgRoleField(
+export function deserializeCreateUserRequestBodyRoleField(
   val: any
-): CreateUserRequestBodyArgRoleField {
+): CreateUserRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateUserRequestBodyArgRoleField"';
+    throw 'Expecting a string for "CreateUserRequestBodyRoleField"';
   }
   if (val == 'coadmin') {
     return 'coadmin';
@@ -445,16 +448,16 @@ export function deserializeCreateUserRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateUserRequestBodyArgStatusField(
-  val: CreateUserRequestBodyArgStatusField
+export function serializeCreateUserRequestBodyStatusField(
+  val: CreateUserRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateUserRequestBodyArgStatusField(
+export function deserializeCreateUserRequestBodyStatusField(
   val: any
-): CreateUserRequestBodyArgStatusField {
+): CreateUserRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateUserRequestBodyArgStatusField"';
+    throw 'Expecting a string for "CreateUserRequestBodyStatusField"';
   }
   if (val == 'active') {
     return 'active';
@@ -470,8 +473,8 @@ export function deserializeCreateUserRequestBodyArgStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateUserRequestBodyArg(
-  val: CreateUserRequestBodyArg
+export function serializeCreateUserRequestBody(
+  val: CreateUserRequestBody
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -481,7 +484,7 @@ export function serializeCreateUserRequestBodyArg(
     ['role']:
       val.role == void 0
         ? void 0
-        : serializeCreateUserRequestBodyArgRoleField(val.role),
+        : serializeCreateUserRequestBodyRoleField(val.role),
     ['language']: val.language == void 0 ? void 0 : val.language,
     ['is_sync_enabled']:
       val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled,
@@ -513,24 +516,24 @@ export function serializeCreateUserRequestBodyArg(
     ['status']:
       val.status == void 0
         ? void 0
-        : serializeCreateUserRequestBodyArgStatusField(val.status),
+        : serializeCreateUserRequestBodyStatusField(val.status),
     ['external_app_user_id']:
       val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
   };
 }
-export function deserializeCreateUserRequestBodyArg(
+export function deserializeCreateUserRequestBody(
   val: any
-): CreateUserRequestBodyArg {
+): CreateUserRequestBody {
   const name: string = val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   const isPlatformAccessOnly: undefined | boolean =
     val.is_platform_access_only == void 0
       ? void 0
       : val.is_platform_access_only;
-  const role: undefined | CreateUserRequestBodyArgRoleField =
+  const role: undefined | CreateUserRequestBodyRoleField =
     val.role == void 0
       ? void 0
-      : deserializeCreateUserRequestBodyArgRoleField(val.role);
+      : deserializeCreateUserRequestBodyRoleField(val.role);
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
   const isSyncEnabled: undefined | boolean =
@@ -566,10 +569,10 @@ export function deserializeCreateUserRequestBodyArg(
     val.is_exempt_from_login_verification == void 0
       ? void 0
       : val.is_exempt_from_login_verification;
-  const status: undefined | CreateUserRequestBodyArgStatusField =
+  const status: undefined | CreateUserRequestBodyStatusField =
     val.status == void 0
       ? void 0
-      : deserializeCreateUserRequestBodyArgStatusField(val.status);
+      : deserializeCreateUserRequestBodyStatusField(val.status);
   const externalAppUserId: undefined | string =
     val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
   return {
@@ -591,18 +594,18 @@ export function deserializeCreateUserRequestBodyArg(
     isExemptFromLoginVerification: isExemptFromLoginVerification,
     status: status,
     externalAppUserId: externalAppUserId,
-  } satisfies CreateUserRequestBodyArg;
+  } satisfies CreateUserRequestBody;
 }
-export function serializeUpdateUserByIdRequestBodyArgRoleField(
-  val: UpdateUserByIdRequestBodyArgRoleField
+export function serializeUpdateUserByIdRequestBodyRoleField(
+  val: UpdateUserByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateUserByIdRequestBodyArgRoleField(
+export function deserializeUpdateUserByIdRequestBodyRoleField(
   val: any
-): UpdateUserByIdRequestBodyArgRoleField {
+): UpdateUserByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateUserByIdRequestBodyArgRoleField"';
+    throw 'Expecting a string for "UpdateUserByIdRequestBodyRoleField"';
   }
   if (val == 'coadmin') {
     return 'coadmin';
@@ -612,16 +615,16 @@ export function deserializeUpdateUserByIdRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateUserByIdRequestBodyArgStatusField(
-  val: UpdateUserByIdRequestBodyArgStatusField
+export function serializeUpdateUserByIdRequestBodyStatusField(
+  val: UpdateUserByIdRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateUserByIdRequestBodyArgStatusField(
+export function deserializeUpdateUserByIdRequestBodyStatusField(
   val: any
-): UpdateUserByIdRequestBodyArgStatusField {
+): UpdateUserByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateUserByIdRequestBodyArgStatusField"';
+    throw 'Expecting a string for "UpdateUserByIdRequestBodyStatusField"';
   }
   if (val == 'active') {
     return 'active';
@@ -637,21 +640,21 @@ export function deserializeUpdateUserByIdRequestBodyArgStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateUserByIdRequestBodyArgNotificationEmailField(
-  val: UpdateUserByIdRequestBodyArgNotificationEmailField
+export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
+  val: UpdateUserByIdRequestBodyNotificationEmailField
 ): SerializedData {
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
-export function deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(
+export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
   val: any
-): UpdateUserByIdRequestBodyArgNotificationEmailField {
+): UpdateUserByIdRequestBodyNotificationEmailField {
   const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   return {
     email: email,
-  } satisfies UpdateUserByIdRequestBodyArgNotificationEmailField;
+  } satisfies UpdateUserByIdRequestBodyNotificationEmailField;
 }
-export function serializeUpdateUserByIdRequestBodyArg(
-  val: UpdateUserByIdRequestBodyArg
+export function serializeUpdateUserByIdRequestBody(
+  val: UpdateUserByIdRequestBody
 ): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
@@ -661,7 +664,7 @@ export function serializeUpdateUserByIdRequestBodyArg(
     ['role']:
       val.role == void 0
         ? void 0
-        : serializeUpdateUserByIdRequestBodyArgRoleField(val.role),
+        : serializeUpdateUserByIdRequestBodyRoleField(val.role),
     ['language']: val.language == void 0 ? void 0 : val.language,
     ['is_sync_enabled']:
       val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled,
@@ -696,31 +699,31 @@ export function serializeUpdateUserByIdRequestBodyArg(
     ['status']:
       val.status == void 0
         ? void 0
-        : serializeUpdateUserByIdRequestBodyArgStatusField(val.status),
+        : serializeUpdateUserByIdRequestBodyStatusField(val.status),
     ['space_amount']: val.spaceAmount == void 0 ? void 0 : val.spaceAmount,
     ['notification_email']:
       val.notificationEmail == void 0
         ? void 0
-        : serializeUpdateUserByIdRequestBodyArgNotificationEmailField(
+        : serializeUpdateUserByIdRequestBodyNotificationEmailField(
             val.notificationEmail
           ),
     ['external_app_user_id']:
       val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
   };
 }
-export function deserializeUpdateUserByIdRequestBodyArg(
+export function deserializeUpdateUserByIdRequestBody(
   val: any
-): UpdateUserByIdRequestBodyArg {
+): UpdateUserByIdRequestBody {
   const enterprise: undefined | string =
     val.enterprise == void 0 ? void 0 : val.enterprise;
   const notify: undefined | boolean =
     val.notify == void 0 ? void 0 : val.notify;
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  const role: undefined | UpdateUserByIdRequestBodyArgRoleField =
+  const role: undefined | UpdateUserByIdRequestBodyRoleField =
     val.role == void 0
       ? void 0
-      : deserializeUpdateUserByIdRequestBodyArgRoleField(val.role);
+      : deserializeUpdateUserByIdRequestBodyRoleField(val.role);
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
   const isSyncEnabled: undefined | boolean =
@@ -758,18 +761,18 @@ export function deserializeUpdateUserByIdRequestBodyArg(
     val.is_password_reset_required == void 0
       ? void 0
       : val.is_password_reset_required;
-  const status: undefined | UpdateUserByIdRequestBodyArgStatusField =
+  const status: undefined | UpdateUserByIdRequestBodyStatusField =
     val.status == void 0
       ? void 0
-      : deserializeUpdateUserByIdRequestBodyArgStatusField(val.status);
+      : deserializeUpdateUserByIdRequestBodyStatusField(val.status);
   const spaceAmount: undefined | number =
     val.space_amount == void 0 ? void 0 : val.space_amount;
   const notificationEmail:
     | undefined
-    | UpdateUserByIdRequestBodyArgNotificationEmailField =
+    | UpdateUserByIdRequestBodyNotificationEmailField =
     val.notification_email == void 0
       ? void 0
-      : deserializeUpdateUserByIdRequestBodyArgNotificationEmailField(
+      : deserializeUpdateUserByIdRequestBodyNotificationEmailField(
           val.notification_email
         );
   const externalAppUserId: undefined | string =
@@ -796,5 +799,5 @@ export function deserializeUpdateUserByIdRequestBodyArg(
     spaceAmount: spaceAmount,
     notificationEmail: notificationEmail,
     externalAppUserId: externalAppUserId,
-  } satisfies UpdateUserByIdRequestBodyArg;
+  } satisfies UpdateUserByIdRequestBody;
 }

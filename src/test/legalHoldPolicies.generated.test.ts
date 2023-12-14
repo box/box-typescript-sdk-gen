@@ -1,15 +1,15 @@
 import { serializeLegalHoldPolicy } from '../schemas.generated.js';
 import { deserializeLegalHoldPolicy } from '../schemas.generated.js';
-import { serializeCreateLegalHoldPolicyRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
-import { deserializeCreateLegalHoldPolicyRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
+import { serializeCreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
+import { deserializeCreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { serializeLegalHoldPolicies } from '../schemas.generated.js';
 import { deserializeLegalHoldPolicies } from '../schemas.generated.js';
-import { serializeUpdateLegalHoldPolicyByIdRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
-import { deserializeUpdateLegalHoldPolicyByIdRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
+import { serializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
+import { deserializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { LegalHoldPolicy } from '../schemas.generated.js';
-import { CreateLegalHoldPolicyRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
+import { CreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { LegalHoldPolicies } from '../schemas.generated.js';
-import { UpdateLegalHoldPolicyByIdRequestBodyArg } from '../managers/legalHoldPolicies.generated.js';
+import { UpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { getUuid } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -29,7 +29,7 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
       policyName: legalHoldPolicyName,
       description: legalHoldDescription,
       isOngoing: true,
-    } satisfies CreateLegalHoldPolicyRequestBodyArg);
+    } satisfies CreateLegalHoldPolicyRequestBody);
   if (!(legalHoldPolicy.policyName == legalHoldPolicyName)) {
     throw 'Assertion failed';
   }
@@ -53,7 +53,7 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
       legalHoldPolicyId,
       {
         policyName: updatedLegalHoldPolicyName,
-      } satisfies UpdateLegalHoldPolicyByIdRequestBodyArg
+      } satisfies UpdateLegalHoldPolicyByIdRequestBody
     );
   if (!(updatedLegalHoldPolicy.policyName == updatedLegalHoldPolicyName)) {
     throw 'Assertion failed';

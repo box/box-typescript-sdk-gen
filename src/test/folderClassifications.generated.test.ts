@@ -1,45 +1,45 @@
-import { serializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
-import { deserializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
-import { serializeAddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { serializeAddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { serializeAddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { serializeAddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { serializeAddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { serializeAddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
-import { deserializeAddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
+import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
+import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
+import { serializeAddClassificationRequestBody } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBody } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { serializeAddClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
+import { deserializeAddClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeClassification } from '../schemas.generated.js';
 import { deserializeClassification } from '../schemas.generated.js';
-import { serializeAddClassificationToFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { deserializeAddClassificationToFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { serializeUpdateClassificationOnFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { deserializeUpdateClassificationOnFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { serializeUpdateClassificationOnFolderRequestBodyArgOpField } from '../managers/folderClassifications.generated.js';
-import { deserializeUpdateClassificationOnFolderRequestBodyArgOpField } from '../managers/folderClassifications.generated.js';
-import { serializeUpdateClassificationOnFolderRequestBodyArgPathField } from '../managers/folderClassifications.generated.js';
-import { deserializeUpdateClassificationOnFolderRequestBodyArgPathField } from '../managers/folderClassifications.generated.js';
+import { serializeAddClassificationToFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { deserializeAddClassificationToFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { serializeUpdateClassificationOnFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { deserializeUpdateClassificationOnFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { serializeUpdateClassificationOnFolderRequestBodyOpField } from '../managers/folderClassifications.generated.js';
+import { deserializeUpdateClassificationOnFolderRequestBodyOpField } from '../managers/folderClassifications.generated.js';
+import { serializeUpdateClassificationOnFolderRequestBodyPathField } from '../managers/folderClassifications.generated.js';
+import { deserializeUpdateClassificationOnFolderRequestBodyPathField } from '../managers/folderClassifications.generated.js';
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { ClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
-import { AddClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { AddClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { AddClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { AddClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { AddClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
+import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
+import { AddClassificationRequestBody } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { AddClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { Classification } from '../schemas.generated.js';
-import { AddClassificationToFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { UpdateClassificationOnFolderRequestBodyArg } from '../managers/folderClassifications.generated.js';
-import { UpdateClassificationOnFolderRequestBodyArgOpField } from '../managers/folderClassifications.generated.js';
-import { UpdateClassificationOnFolderRequestBodyArgPathField } from '../managers/folderClassifications.generated.js';
+import { AddClassificationToFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { UpdateClassificationOnFolderRequestBody } from '../managers/folderClassifications.generated.js';
+import { UpdateClassificationOnFolderRequestBodyOpField } from '../managers/folderClassifications.generated.js';
+import { UpdateClassificationOnFolderRequestBodyPathField } from '../managers/folderClassifications.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -57,26 +57,26 @@ const client: BoxClient = getDefaultClient();
 export async function getOrCreateSecondClassification(
   classificationTemplate: ClassificationTemplate
 ): Promise<any> {
-  const classifications: readonly ClassificationTemplateFieldsFieldOptionsField[] =
+  const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;
   const currentNumberOfClassifications: number = classifications.length;
   if (currentNumberOfClassifications == 1) {
     const classificationTemplateWithNewClassification: ClassificationTemplate =
       await client.classifications.addClassification([
         {
-          op: 'addEnumOption' as AddClassificationRequestBodyArgOpField,
+          op: 'addEnumOption' as AddClassificationRequestBodyOpField,
           fieldKey:
-            'Box__Security__Classification__Key' as AddClassificationRequestBodyArgFieldKeyField,
+            'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField,
           data: {
             key: getUuid(),
             staticConfig: {
               classification: {
                 colorId: 4,
                 classificationDefinition: 'Other description',
-              } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
-            } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigField,
-          } satisfies AddClassificationRequestBodyArgDataField,
-        } satisfies AddClassificationRequestBodyArg,
+              } satisfies AddClassificationRequestBodyDataStaticConfigClassificationField,
+            } satisfies AddClassificationRequestBodyDataStaticConfigField,
+          } satisfies AddClassificationRequestBodyDataField,
+        } satisfies AddClassificationRequestBody,
       ]);
     return classificationTemplateWithNewClassification.fields[0].options[1];
   }
@@ -95,7 +95,7 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
   const createdFolderClassification: Classification =
     await client.folderClassifications.addClassificationToFolder(folder.id, {
       boxSecurityClassificationKey: classification.key,
-    } satisfies AddClassificationToFolderRequestBodyArg);
+    } satisfies AddClassificationToFolderRequestBody);
   if (
     !(
       createdFolderClassification.boxSecurityClassificationKey ==
@@ -117,10 +117,10 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
   const updatedFolderClassification: Classification =
     await client.folderClassifications.updateClassificationOnFolder(folder.id, [
       {
-        op: 'replace' as UpdateClassificationOnFolderRequestBodyArgOpField,
-        path: '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyArgPathField,
+        op: 'replace' as UpdateClassificationOnFolderRequestBodyOpField,
+        path: '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField,
         value: secondClassification.key,
-      } satisfies UpdateClassificationOnFolderRequestBodyArg,
+      } satisfies UpdateClassificationOnFolderRequestBody,
     ]);
   if (
     !(

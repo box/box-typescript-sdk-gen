@@ -24,110 +24,113 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFileTasksHeadersArg {
+export class GetFileTasksHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileTasksHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileTasksHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileTasksHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileTasksHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateTaskRequestBodyArgItemFieldTypeField = 'file';
-export interface CreateTaskRequestBodyArgItemField {
+export type CreateTaskRequestBodyItemTypeField = 'file';
+export interface CreateTaskRequestBodyItemField {
   readonly id?: string;
-  readonly type?: CreateTaskRequestBodyArgItemFieldTypeField;
+  readonly type?: CreateTaskRequestBodyItemTypeField;
 }
-export type CreateTaskRequestBodyArgActionField = 'review' | 'complete';
-export type CreateTaskRequestBodyArgCompletionRuleField =
+export type CreateTaskRequestBodyActionField = 'review' | 'complete';
+export type CreateTaskRequestBodyCompletionRuleField =
   | 'all_assignees'
   | 'any_assignee';
-export interface CreateTaskRequestBodyArg {
-  readonly item: CreateTaskRequestBodyArgItemField;
-  readonly action?: CreateTaskRequestBodyArgActionField;
+export interface CreateTaskRequestBody {
+  readonly item: CreateTaskRequestBodyItemField;
+  readonly action?: CreateTaskRequestBodyActionField;
   readonly message?: string;
   readonly dueAt?: string;
-  readonly completionRule?: CreateTaskRequestBodyArgCompletionRuleField;
+  readonly completionRule?: CreateTaskRequestBodyCompletionRuleField;
 }
-export class CreateTaskHeadersArg {
+export class CreateTaskHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateTaskHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateTaskHeadersArg, 'extraHeaders'>>
+      | Omit<CreateTaskHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateTaskHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetTaskByIdHeadersArg {
+export class GetTaskByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetTaskByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetTaskByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetTaskByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTaskByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateTaskByIdRequestBodyArgActionField = 'review' | 'complete';
-export type UpdateTaskByIdRequestBodyArgCompletionRuleField =
+export type UpdateTaskByIdRequestBodyActionField = 'review' | 'complete';
+export type UpdateTaskByIdRequestBodyCompletionRuleField =
   | 'all_assignees'
   | 'any_assignee';
-export interface UpdateTaskByIdRequestBodyArg {
-  readonly action?: UpdateTaskByIdRequestBodyArgActionField;
+export interface UpdateTaskByIdRequestBody {
+  readonly action?: UpdateTaskByIdRequestBodyActionField;
   readonly message?: string;
   readonly dueAt?: string;
-  readonly completionRule?: UpdateTaskByIdRequestBodyArgCompletionRuleField;
+  readonly completionRule?: UpdateTaskByIdRequestBodyCompletionRuleField;
 }
-export class UpdateTaskByIdHeadersArg {
+export class UpdateTaskByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateTaskByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateTaskByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateTaskByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateTaskByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteTaskByIdHeadersArg {
+export class DeleteTaskByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteTaskByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteTaskByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteTaskByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteTaskByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TasksManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TasksManager,
-      | 'getFileTasks'
-      | 'createTask'
-      | 'getTaskById'
-      | 'updateTaskById'
-      | 'deleteTaskById'
-    >
+    fields:
+      | Omit<
+          TasksManager,
+          | 'networkSession'
+          | 'getFileTasks'
+          | 'createTask'
+          | 'getTaskById'
+          | 'updateTaskById'
+          | 'deleteTaskById'
+        >
+      | Partial<Pick<TasksManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileTasks(
     fileId: string,
-    headers: GetFileTasksHeadersArg = new GetFileTasksHeadersArg({}),
+    headers: GetFileTasksHeaders = new GetFileTasksHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Tasks> {
     const headersMap: {
@@ -135,7 +138,8 @@ export class TasksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/tasks'
       ) as string,
@@ -151,19 +155,19 @@ export class TasksManager {
     return deserializeTasks(response.data);
   }
   async createTask(
-    requestBody: CreateTaskRequestBodyArg,
-    headers: CreateTaskHeadersArg = new CreateTaskHeadersArg({}),
+    requestBody: CreateTaskRequestBody,
+    headers: CreateTaskHeaders = new CreateTaskHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/tasks') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/tasks') as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateTaskRequestBodyArg(requestBody),
+        data: serializeCreateTaskRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -175,7 +179,7 @@ export class TasksManager {
   }
   async getTaskById(
     taskId: string,
-    headers: GetTaskByIdHeadersArg = new GetTaskByIdHeadersArg({}),
+    headers: GetTaskByIdHeaders = new GetTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
@@ -183,7 +187,8 @@ export class TasksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/tasks/',
+        this.networkSession.baseUrls.baseUrl,
+        '/tasks/',
         toString(taskId) as string
       ) as string,
       {
@@ -199,8 +204,8 @@ export class TasksManager {
   }
   async updateTaskById(
     taskId: string,
-    requestBody: UpdateTaskByIdRequestBodyArg = {} satisfies UpdateTaskByIdRequestBodyArg,
-    headers: UpdateTaskByIdHeadersArg = new UpdateTaskByIdHeadersArg({}),
+    requestBody: UpdateTaskByIdRequestBody = {} satisfies UpdateTaskByIdRequestBody,
+    headers: UpdateTaskByIdHeaders = new UpdateTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
@@ -208,13 +213,14 @@ export class TasksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/tasks/',
+        this.networkSession.baseUrls.baseUrl,
+        '/tasks/',
         toString(taskId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateTaskByIdRequestBodyArg(requestBody),
+        data: serializeUpdateTaskByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -226,7 +232,7 @@ export class TasksManager {
   }
   async deleteTaskById(
     taskId: string,
-    headers: DeleteTaskByIdHeadersArg = new DeleteTaskByIdHeadersArg({}),
+    headers: DeleteTaskByIdHeaders = new DeleteTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -234,7 +240,8 @@ export class TasksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/tasks/',
+        this.networkSession.baseUrls.baseUrl,
+        '/tasks/',
         toString(taskId) as string
       ) as string,
       {
@@ -249,53 +256,53 @@ export class TasksManager {
     return void 0;
   }
 }
-export function serializeCreateTaskRequestBodyArgItemFieldTypeField(
-  val: CreateTaskRequestBodyArgItemFieldTypeField
+export function serializeCreateTaskRequestBodyItemTypeField(
+  val: CreateTaskRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTaskRequestBodyArgItemFieldTypeField(
+export function deserializeCreateTaskRequestBodyItemTypeField(
   val: any
-): CreateTaskRequestBodyArgItemFieldTypeField {
+): CreateTaskRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyArgItemFieldTypeField"';
+    throw 'Expecting a string for "CreateTaskRequestBodyItemTypeField"';
   }
   if (val == 'file') {
     return 'file';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTaskRequestBodyArgItemField(
-  val: CreateTaskRequestBodyArgItemField
+export function serializeCreateTaskRequestBodyItemField(
+  val: CreateTaskRequestBodyItemField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateTaskRequestBodyArgItemFieldTypeField(val.type),
+        : serializeCreateTaskRequestBodyItemTypeField(val.type),
   };
 }
-export function deserializeCreateTaskRequestBodyArgItemField(
+export function deserializeCreateTaskRequestBodyItemField(
   val: any
-): CreateTaskRequestBodyArgItemField {
+): CreateTaskRequestBodyItemField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | CreateTaskRequestBodyArgItemFieldTypeField =
+  const type: undefined | CreateTaskRequestBodyItemTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateTaskRequestBodyArgItemFieldTypeField(val.type);
-  return { id: id, type: type } satisfies CreateTaskRequestBodyArgItemField;
+      : deserializeCreateTaskRequestBodyItemTypeField(val.type);
+  return { id: id, type: type } satisfies CreateTaskRequestBodyItemField;
 }
-export function serializeCreateTaskRequestBodyArgActionField(
-  val: CreateTaskRequestBodyArgActionField
+export function serializeCreateTaskRequestBodyActionField(
+  val: CreateTaskRequestBodyActionField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTaskRequestBodyArgActionField(
+export function deserializeCreateTaskRequestBodyActionField(
   val: any
-): CreateTaskRequestBodyArgActionField {
+): CreateTaskRequestBodyActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyArgActionField"';
+    throw 'Expecting a string for "CreateTaskRequestBodyActionField"';
   }
   if (val == 'review') {
     return 'review';
@@ -305,16 +312,16 @@ export function deserializeCreateTaskRequestBodyArgActionField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTaskRequestBodyArgCompletionRuleField(
-  val: CreateTaskRequestBodyArgCompletionRuleField
+export function serializeCreateTaskRequestBodyCompletionRuleField(
+  val: CreateTaskRequestBodyCompletionRuleField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTaskRequestBodyArgCompletionRuleField(
+export function deserializeCreateTaskRequestBodyCompletionRuleField(
   val: any
-): CreateTaskRequestBodyArgCompletionRuleField {
+): CreateTaskRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyArgCompletionRuleField"';
+    throw 'Expecting a string for "CreateTaskRequestBodyCompletionRuleField"';
   }
   if (val == 'all_assignees') {
     return 'all_assignees';
@@ -324,43 +331,39 @@ export function deserializeCreateTaskRequestBodyArgCompletionRuleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTaskRequestBodyArg(
-  val: CreateTaskRequestBodyArg
+export function serializeCreateTaskRequestBody(
+  val: CreateTaskRequestBody
 ): SerializedData {
   return {
-    ['item']: serializeCreateTaskRequestBodyArgItemField(val.item),
+    ['item']: serializeCreateTaskRequestBodyItemField(val.item),
     ['action']:
       val.action == void 0
         ? void 0
-        : serializeCreateTaskRequestBodyArgActionField(val.action),
+        : serializeCreateTaskRequestBodyActionField(val.action),
     ['message']: val.message == void 0 ? void 0 : val.message,
     ['due_at']: val.dueAt == void 0 ? void 0 : val.dueAt,
     ['completion_rule']:
       val.completionRule == void 0
         ? void 0
-        : serializeCreateTaskRequestBodyArgCompletionRuleField(
-            val.completionRule
-          ),
+        : serializeCreateTaskRequestBodyCompletionRuleField(val.completionRule),
   };
 }
-export function deserializeCreateTaskRequestBodyArg(
+export function deserializeCreateTaskRequestBody(
   val: any
-): CreateTaskRequestBodyArg {
-  const item: CreateTaskRequestBodyArgItemField =
-    deserializeCreateTaskRequestBodyArgItemField(val.item);
-  const action: undefined | CreateTaskRequestBodyArgActionField =
+): CreateTaskRequestBody {
+  const item: CreateTaskRequestBodyItemField =
+    deserializeCreateTaskRequestBodyItemField(val.item);
+  const action: undefined | CreateTaskRequestBodyActionField =
     val.action == void 0
       ? void 0
-      : deserializeCreateTaskRequestBodyArgActionField(val.action);
+      : deserializeCreateTaskRequestBodyActionField(val.action);
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
-  const completionRule:
-    | undefined
-    | CreateTaskRequestBodyArgCompletionRuleField =
+  const completionRule: undefined | CreateTaskRequestBodyCompletionRuleField =
     val.completion_rule == void 0
       ? void 0
-      : deserializeCreateTaskRequestBodyArgCompletionRuleField(
+      : deserializeCreateTaskRequestBodyCompletionRuleField(
           val.completion_rule
         );
   return {
@@ -369,18 +372,18 @@ export function deserializeCreateTaskRequestBodyArg(
     message: message,
     dueAt: dueAt,
     completionRule: completionRule,
-  } satisfies CreateTaskRequestBodyArg;
+  } satisfies CreateTaskRequestBody;
 }
-export function serializeUpdateTaskByIdRequestBodyArgActionField(
-  val: UpdateTaskByIdRequestBodyArgActionField
+export function serializeUpdateTaskByIdRequestBodyActionField(
+  val: UpdateTaskByIdRequestBodyActionField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateTaskByIdRequestBodyArgActionField(
+export function deserializeUpdateTaskByIdRequestBodyActionField(
   val: any
-): UpdateTaskByIdRequestBodyArgActionField {
+): UpdateTaskByIdRequestBodyActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTaskByIdRequestBodyArgActionField"';
+    throw 'Expecting a string for "UpdateTaskByIdRequestBodyActionField"';
   }
   if (val == 'review') {
     return 'review';
@@ -390,16 +393,16 @@ export function deserializeUpdateTaskByIdRequestBodyArgActionField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
-  val: UpdateTaskByIdRequestBodyArgCompletionRuleField
+export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
+  val: UpdateTaskByIdRequestBodyCompletionRuleField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
+export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
   val: any
-): UpdateTaskByIdRequestBodyArgCompletionRuleField {
+): UpdateTaskByIdRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTaskByIdRequestBodyArgCompletionRuleField"';
+    throw 'Expecting a string for "UpdateTaskByIdRequestBodyCompletionRuleField"';
   }
   if (val == 'all_assignees') {
     return 'all_assignees';
@@ -409,40 +412,40 @@ export function deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateTaskByIdRequestBodyArg(
-  val: UpdateTaskByIdRequestBodyArg
+export function serializeUpdateTaskByIdRequestBody(
+  val: UpdateTaskByIdRequestBody
 ): SerializedData {
   return {
     ['action']:
       val.action == void 0
         ? void 0
-        : serializeUpdateTaskByIdRequestBodyArgActionField(val.action),
+        : serializeUpdateTaskByIdRequestBodyActionField(val.action),
     ['message']: val.message == void 0 ? void 0 : val.message,
     ['due_at']: val.dueAt == void 0 ? void 0 : val.dueAt,
     ['completion_rule']:
       val.completionRule == void 0
         ? void 0
-        : serializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
+        : serializeUpdateTaskByIdRequestBodyCompletionRuleField(
             val.completionRule
           ),
   };
 }
-export function deserializeUpdateTaskByIdRequestBodyArg(
+export function deserializeUpdateTaskByIdRequestBody(
   val: any
-): UpdateTaskByIdRequestBodyArg {
-  const action: undefined | UpdateTaskByIdRequestBodyArgActionField =
+): UpdateTaskByIdRequestBody {
+  const action: undefined | UpdateTaskByIdRequestBodyActionField =
     val.action == void 0
       ? void 0
-      : deserializeUpdateTaskByIdRequestBodyArgActionField(val.action);
+      : deserializeUpdateTaskByIdRequestBodyActionField(val.action);
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
   const completionRule:
     | undefined
-    | UpdateTaskByIdRequestBodyArgCompletionRuleField =
+    | UpdateTaskByIdRequestBodyCompletionRuleField =
     val.completion_rule == void 0
       ? void 0
-      : deserializeUpdateTaskByIdRequestBodyArgCompletionRuleField(
+      : deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
           val.completion_rule
         );
   return {
@@ -450,5 +453,5 @@ export function deserializeUpdateTaskByIdRequestBodyArg(
     message: message,
     dueAt: dueAt,
     completionRule: completionRule,
-  } satisfies UpdateTaskByIdRequestBodyArg;
+  } satisfies UpdateTaskByIdRequestBody;
 }

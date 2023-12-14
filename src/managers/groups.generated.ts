@@ -24,131 +24,134 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetGroupsQueryParamsArg {
+export interface GetGroupsQueryParams {
   readonly filterTerm?: string;
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetGroupsHeadersArg {
+export class GetGroupsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGroupsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGroupsHeadersArg, 'extraHeaders'>>
+      | Omit<GetGroupsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateGroupRequestBodyArgInvitabilityLevelField =
+export type CreateGroupRequestBodyInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
   | 'all_managed_users';
-export type CreateGroupRequestBodyArgMemberViewabilityLevelField =
+export type CreateGroupRequestBodyMemberViewabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
   | 'all_managed_users';
-export interface CreateGroupRequestBodyArg {
+export interface CreateGroupRequestBody {
   readonly name: string;
   readonly provenance?: string;
   readonly externalSyncIdentifier?: string;
   readonly description?: string;
-  readonly invitabilityLevel?: CreateGroupRequestBodyArgInvitabilityLevelField;
-  readonly memberViewabilityLevel?: CreateGroupRequestBodyArgMemberViewabilityLevelField;
+  readonly invitabilityLevel?: CreateGroupRequestBodyInvitabilityLevelField;
+  readonly memberViewabilityLevel?: CreateGroupRequestBodyMemberViewabilityLevelField;
 }
-export interface CreateGroupQueryParamsArg {
+export interface CreateGroupQueryParams {
   readonly fields?: readonly string[];
 }
-export class CreateGroupHeadersArg {
+export class CreateGroupHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateGroupHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateGroupHeadersArg, 'extraHeaders'>>
+      | Omit<CreateGroupHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetGroupByIdQueryParamsArg {
+export interface GetGroupByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetGroupByIdHeadersArg {
+export class GetGroupByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGroupByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGroupByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetGroupByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateGroupByIdRequestBodyArgInvitabilityLevelField =
+export type UpdateGroupByIdRequestBodyInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
   | 'all_managed_users';
-export type UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField =
+export type UpdateGroupByIdRequestBodyMemberViewabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
   | 'all_managed_users';
-export interface UpdateGroupByIdRequestBodyArg {
+export interface UpdateGroupByIdRequestBody {
   readonly name?: string;
   readonly provenance?: string;
   readonly externalSyncIdentifier?: string;
   readonly description?: string;
-  readonly invitabilityLevel?: UpdateGroupByIdRequestBodyArgInvitabilityLevelField;
-  readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField;
+  readonly invitabilityLevel?: UpdateGroupByIdRequestBodyInvitabilityLevelField;
+  readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyMemberViewabilityLevelField;
 }
-export interface UpdateGroupByIdQueryParamsArg {
+export interface UpdateGroupByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class UpdateGroupByIdHeadersArg {
+export class UpdateGroupByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateGroupByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateGroupByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateGroupByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteGroupByIdHeadersArg {
+export class DeleteGroupByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteGroupByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteGroupByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteGroupByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class GroupsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      GroupsManager,
-      | 'getGroups'
-      | 'createGroup'
-      | 'getGroupById'
-      | 'updateGroupById'
-      | 'deleteGroupById'
-    >
+    fields:
+      | Omit<
+          GroupsManager,
+          | 'networkSession'
+          | 'getGroups'
+          | 'createGroup'
+          | 'getGroupById'
+          | 'updateGroupById'
+          | 'deleteGroupById'
+        >
+      | Partial<Pick<GroupsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getGroups(
-    queryParams: GetGroupsQueryParamsArg = {} satisfies GetGroupsQueryParamsArg,
-    headers: GetGroupsHeadersArg = new GetGroupsHeadersArg({}),
+    queryParams: GetGroupsQueryParams = {} satisfies GetGroupsQueryParams,
+    headers: GetGroupsHeaders = new GetGroupsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Groups> {
     const queryParamsMap: {
@@ -165,7 +168,7 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/groups') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -179,9 +182,9 @@ export class GroupsManager {
     return deserializeGroups(response.data);
   }
   async createGroup(
-    requestBody: CreateGroupRequestBodyArg,
-    queryParams: CreateGroupQueryParamsArg = {} satisfies CreateGroupQueryParamsArg,
-    headers: CreateGroupHeadersArg = new CreateGroupHeadersArg({}),
+    requestBody: CreateGroupRequestBody,
+    queryParams: CreateGroupQueryParams = {} satisfies CreateGroupQueryParams,
+    headers: CreateGroupHeaders = new CreateGroupHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
     const queryParamsMap: {
@@ -195,12 +198,12 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/groups') as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCreateGroupRequestBodyArg(requestBody),
+        data: serializeCreateGroupRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -212,8 +215,8 @@ export class GroupsManager {
   }
   async getGroupById(
     groupId: string,
-    queryParams: GetGroupByIdQueryParamsArg = {} satisfies GetGroupByIdQueryParamsArg,
-    headers: GetGroupByIdHeadersArg = new GetGroupByIdHeadersArg({}),
+    queryParams: GetGroupByIdQueryParams = {} satisfies GetGroupByIdQueryParams,
+    headers: GetGroupByIdHeaders = new GetGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
     const queryParamsMap: {
@@ -228,7 +231,8 @@ export class GroupsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/groups/',
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/',
         toString(groupId) as string
       ) as string,
       {
@@ -245,9 +249,9 @@ export class GroupsManager {
   }
   async updateGroupById(
     groupId: string,
-    requestBody: UpdateGroupByIdRequestBodyArg = {} satisfies UpdateGroupByIdRequestBodyArg,
-    queryParams: UpdateGroupByIdQueryParamsArg = {} satisfies UpdateGroupByIdQueryParamsArg,
-    headers: UpdateGroupByIdHeadersArg = new UpdateGroupByIdHeadersArg({}),
+    requestBody: UpdateGroupByIdRequestBody = {} satisfies UpdateGroupByIdRequestBody,
+    queryParams: UpdateGroupByIdQueryParams = {} satisfies UpdateGroupByIdQueryParams,
+    headers: UpdateGroupByIdHeaders = new UpdateGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
     const queryParamsMap: {
@@ -262,14 +266,15 @@ export class GroupsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/groups/',
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/',
         toString(groupId) as string
       ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateGroupByIdRequestBodyArg(requestBody),
+        data: serializeUpdateGroupByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -281,7 +286,7 @@ export class GroupsManager {
   }
   async deleteGroupById(
     groupId: string,
-    headers: DeleteGroupByIdHeadersArg = new DeleteGroupByIdHeadersArg({}),
+    headers: DeleteGroupByIdHeaders = new DeleteGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -289,7 +294,8 @@ export class GroupsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/groups/',
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/',
         toString(groupId) as string
       ) as string,
       {
@@ -304,16 +310,16 @@ export class GroupsManager {
     return void 0;
   }
 }
-export function serializeCreateGroupRequestBodyArgInvitabilityLevelField(
-  val: CreateGroupRequestBodyArgInvitabilityLevelField
+export function serializeCreateGroupRequestBodyInvitabilityLevelField(
+  val: CreateGroupRequestBodyInvitabilityLevelField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateGroupRequestBodyArgInvitabilityLevelField(
+export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   val: any
-): CreateGroupRequestBodyArgInvitabilityLevelField {
+): CreateGroupRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupRequestBodyArgInvitabilityLevelField"';
+    throw 'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"';
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -326,16 +332,16 @@ export function deserializeCreateGroupRequestBodyArgInvitabilityLevelField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
-  val: CreateGroupRequestBodyArgMemberViewabilityLevelField
+export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
+  val: CreateGroupRequestBodyMemberViewabilityLevelField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
+export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: any
-): CreateGroupRequestBodyArgMemberViewabilityLevelField {
+): CreateGroupRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupRequestBodyArgMemberViewabilityLevelField"';
+    throw 'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"';
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -348,8 +354,8 @@ export function deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateGroupRequestBodyArg(
-  val: CreateGroupRequestBodyArg
+export function serializeCreateGroupRequestBody(
+  val: CreateGroupRequestBody
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -362,20 +368,20 @@ export function serializeCreateGroupRequestBodyArg(
     ['invitability_level']:
       val.invitabilityLevel == void 0
         ? void 0
-        : serializeCreateGroupRequestBodyArgInvitabilityLevelField(
+        : serializeCreateGroupRequestBodyInvitabilityLevelField(
             val.invitabilityLevel
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
         ? void 0
-        : serializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
+        : serializeCreateGroupRequestBodyMemberViewabilityLevelField(
             val.memberViewabilityLevel
           ),
   };
 }
-export function deserializeCreateGroupRequestBodyArg(
+export function deserializeCreateGroupRequestBody(
   val: any
-): CreateGroupRequestBodyArg {
+): CreateGroupRequestBody {
   const name: string = val.name;
   const provenance: undefined | string =
     val.provenance == void 0 ? void 0 : val.provenance;
@@ -387,18 +393,18 @@ export function deserializeCreateGroupRequestBodyArg(
     val.description == void 0 ? void 0 : val.description;
   const invitabilityLevel:
     | undefined
-    | CreateGroupRequestBodyArgInvitabilityLevelField =
+    | CreateGroupRequestBodyInvitabilityLevelField =
     val.invitability_level == void 0
       ? void 0
-      : deserializeCreateGroupRequestBodyArgInvitabilityLevelField(
+      : deserializeCreateGroupRequestBodyInvitabilityLevelField(
           val.invitability_level
         );
   const memberViewabilityLevel:
     | undefined
-    | CreateGroupRequestBodyArgMemberViewabilityLevelField =
+    | CreateGroupRequestBodyMemberViewabilityLevelField =
     val.member_viewability_level == void 0
       ? void 0
-      : deserializeCreateGroupRequestBodyArgMemberViewabilityLevelField(
+      : deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
           val.member_viewability_level
         );
   return {
@@ -408,18 +414,18 @@ export function deserializeCreateGroupRequestBodyArg(
     description: description,
     invitabilityLevel: invitabilityLevel,
     memberViewabilityLevel: memberViewabilityLevel,
-  } satisfies CreateGroupRequestBodyArg;
+  } satisfies CreateGroupRequestBody;
 }
-export function serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
-  val: UpdateGroupByIdRequestBodyArgInvitabilityLevelField
+export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
+  val: UpdateGroupByIdRequestBodyInvitabilityLevelField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
+export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   val: any
-): UpdateGroupByIdRequestBodyArgInvitabilityLevelField {
+): UpdateGroupByIdRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupByIdRequestBodyArgInvitabilityLevelField"';
+    throw 'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"';
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -432,16 +438,16 @@ export function deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
-  val: UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField
+export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
+  val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
+export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
   val: any
-): UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField {
+): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField"';
+    throw 'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"';
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -454,8 +460,8 @@ export function deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelFi
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateGroupByIdRequestBodyArg(
-  val: UpdateGroupByIdRequestBodyArg
+export function serializeUpdateGroupByIdRequestBody(
+  val: UpdateGroupByIdRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -468,20 +474,20 @@ export function serializeUpdateGroupByIdRequestBodyArg(
     ['invitability_level']:
       val.invitabilityLevel == void 0
         ? void 0
-        : serializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
+        : serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
             val.invitabilityLevel
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
         ? void 0
-        : serializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
+        : serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
             val.memberViewabilityLevel
           ),
   };
 }
-export function deserializeUpdateGroupByIdRequestBodyArg(
+export function deserializeUpdateGroupByIdRequestBody(
   val: any
-): UpdateGroupByIdRequestBodyArg {
+): UpdateGroupByIdRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const provenance: undefined | string =
     val.provenance == void 0 ? void 0 : val.provenance;
@@ -493,18 +499,18 @@ export function deserializeUpdateGroupByIdRequestBodyArg(
     val.description == void 0 ? void 0 : val.description;
   const invitabilityLevel:
     | undefined
-    | UpdateGroupByIdRequestBodyArgInvitabilityLevelField =
+    | UpdateGroupByIdRequestBodyInvitabilityLevelField =
     val.invitability_level == void 0
       ? void 0
-      : deserializeUpdateGroupByIdRequestBodyArgInvitabilityLevelField(
+      : deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
           val.invitability_level
         );
   const memberViewabilityLevel:
     | undefined
-    | UpdateGroupByIdRequestBodyArgMemberViewabilityLevelField =
+    | UpdateGroupByIdRequestBodyMemberViewabilityLevelField =
     val.member_viewability_level == void 0
       ? void 0
-      : deserializeUpdateGroupByIdRequestBodyArgMemberViewabilityLevelField(
+      : deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
           val.member_viewability_level
         );
   return {
@@ -514,5 +520,5 @@ export function deserializeUpdateGroupByIdRequestBodyArg(
     description: description,
     invitabilityLevel: invitabilityLevel,
     memberViewabilityLevel: memberViewabilityLevel,
-  } satisfies UpdateGroupByIdRequestBodyArg;
+  } satisfies UpdateGroupByIdRequestBody;
 }

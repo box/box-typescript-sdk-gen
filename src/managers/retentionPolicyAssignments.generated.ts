@@ -27,104 +27,104 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetRetentionPolicyAssignmentsQueryParamsArgTypeField =
+export type GetRetentionPolicyAssignmentsQueryParamsTypeField =
   | 'folder'
   | 'enterprise'
   | 'metadata_template';
-export interface GetRetentionPolicyAssignmentsQueryParamsArg {
-  readonly type?: GetRetentionPolicyAssignmentsQueryParamsArgTypeField;
+export interface GetRetentionPolicyAssignmentsQueryParams {
+  readonly type?: GetRetentionPolicyAssignmentsQueryParamsTypeField;
   readonly fields?: readonly string[];
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetRetentionPolicyAssignmentsHeadersArg {
+export class GetRetentionPolicyAssignmentsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetRetentionPolicyAssignmentsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPolicyAssignmentsHeadersArg, 'extraHeaders'>>
+      | Omit<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField =
-  'enterprise' | 'folder' | 'metadata_template';
-export interface CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
-  readonly type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField;
+export type CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
+  | 'enterprise'
+  | 'folder'
+  | 'metadata_template';
+export interface CreateRetentionPolicyAssignmentRequestBodyAssignToField {
+  readonly type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField;
   readonly id?: string;
 }
-export interface CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
+export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
   readonly field?: string;
   readonly value?: string;
 }
-export interface CreateRetentionPolicyAssignmentRequestBodyArg {
+export interface CreateRetentionPolicyAssignmentRequestBody {
   readonly policyId: string;
-  readonly assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField;
-  readonly filterFields?: readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[];
+  readonly assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField;
+  readonly filterFields?: readonly CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField[];
   readonly startDateField?: string;
 }
-export class CreateRetentionPolicyAssignmentHeadersArg {
+export class CreateRetentionPolicyAssignmentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateRetentionPolicyAssignmentHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateRetentionPolicyAssignmentHeadersArg, 'extraHeaders'>>
+      | Omit<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyAssignmentByIdQueryParamsArg {
+export interface GetRetentionPolicyAssignmentByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetRetentionPolicyAssignmentByIdHeadersArg {
+export class GetRetentionPolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-      | Partial<
-          Pick<GetRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-        >
+      | Omit<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteRetentionPolicyAssignmentByIdHeadersArg {
+export class DeleteRetentionPolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+      | Omit<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
       | Partial<
-          Pick<DeleteRetentionPolicyAssignmentByIdHeadersArg, 'extraHeaders'>
+          Pick<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg {
+export interface GetRetentionPolicyAssignmentFileUnderRetentionQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg {
+export class GetRetentionPolicyAssignmentFileUnderRetentionHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
       | Omit<
-          GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg,
+          GetRetentionPolicyAssignmentFileUnderRetentionHeaders,
           'extraHeaders'
         >
       | Partial<
           Pick<
-            GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg,
+            GetRetentionPolicyAssignmentFileUnderRetentionHeaders,
             'extraHeaders'
           >
         >
@@ -132,23 +132,23 @@ export class GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg {
+export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg {
+export class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
       | Omit<
-          GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg,
+          GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders,
           'extraHeaders'
         >
       | Partial<
           Pick<
-            GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg,
+            GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders,
             'extraHeaders'
           >
         >
@@ -158,24 +158,27 @@ export class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg {
 }
 export class RetentionPolicyAssignmentsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      RetentionPolicyAssignmentsManager,
-      | 'getRetentionPolicyAssignments'
-      | 'createRetentionPolicyAssignment'
-      | 'getRetentionPolicyAssignmentById'
-      | 'deleteRetentionPolicyAssignmentById'
-      | 'getRetentionPolicyAssignmentFileUnderRetention'
-      | 'getRetentionPolicyAssignmentFileVersionUnderRetention'
-    >
+    fields:
+      | Omit<
+          RetentionPolicyAssignmentsManager,
+          | 'networkSession'
+          | 'getRetentionPolicyAssignments'
+          | 'createRetentionPolicyAssignment'
+          | 'getRetentionPolicyAssignmentById'
+          | 'deleteRetentionPolicyAssignmentById'
+          | 'getRetentionPolicyAssignmentFileUnderRetention'
+          | 'getRetentionPolicyAssignmentFileVersionUnderRetention'
+        >
+      | Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getRetentionPolicyAssignments(
     retentionPolicyId: string,
-    queryParams: GetRetentionPolicyAssignmentsQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentsQueryParamsArg,
-    headers: GetRetentionPolicyAssignmentsHeadersArg = new GetRetentionPolicyAssignmentsHeadersArg(
+    queryParams: GetRetentionPolicyAssignmentsQueryParams = {} satisfies GetRetentionPolicyAssignmentsQueryParams,
+    headers: GetRetentionPolicyAssignmentsHeaders = new GetRetentionPolicyAssignmentsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -195,7 +198,8 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies/',
         toString(retentionPolicyId) as string,
         '/assignments'
       ) as string,
@@ -212,8 +216,8 @@ export class RetentionPolicyAssignmentsManager {
     return deserializeRetentionPolicyAssignments(response.data);
   }
   async createRetentionPolicyAssignment(
-    requestBody: CreateRetentionPolicyAssignmentRequestBodyArg,
-    headers: CreateRetentionPolicyAssignmentHeadersArg = new CreateRetentionPolicyAssignmentHeadersArg(
+    requestBody: CreateRetentionPolicyAssignmentRequestBody,
+    headers: CreateRetentionPolicyAssignmentHeaders = new CreateRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -223,14 +227,13 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policy_assignments'
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policy_assignments'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateRetentionPolicyAssignmentRequestBodyArg(
-          requestBody
-        ),
+        data: serializeCreateRetentionPolicyAssignmentRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -242,8 +245,8 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentByIdQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentByIdQueryParamsArg,
-    headers: GetRetentionPolicyAssignmentByIdHeadersArg = new GetRetentionPolicyAssignmentByIdHeadersArg(
+    queryParams: GetRetentionPolicyAssignmentByIdQueryParams = {} satisfies GetRetentionPolicyAssignmentByIdQueryParams,
+    headers: GetRetentionPolicyAssignmentByIdHeaders = new GetRetentionPolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -260,7 +263,8 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
@@ -277,7 +281,7 @@ export class RetentionPolicyAssignmentsManager {
   }
   async deleteRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    headers: DeleteRetentionPolicyAssignmentByIdHeadersArg = new DeleteRetentionPolicyAssignmentByIdHeadersArg(
+    headers: DeleteRetentionPolicyAssignmentByIdHeaders = new DeleteRetentionPolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -287,7 +291,8 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
@@ -303,8 +308,8 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getRetentionPolicyAssignmentFileUnderRetention(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg,
-    headers: GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg = new GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg(
+    queryParams: GetRetentionPolicyAssignmentFileUnderRetentionQueryParams = {} satisfies GetRetentionPolicyAssignmentFileUnderRetentionQueryParams,
+    headers: GetRetentionPolicyAssignmentFileUnderRetentionHeaders = new GetRetentionPolicyAssignmentFileUnderRetentionHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -320,7 +325,8 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string,
         '/files_under_retention'
       ) as string,
@@ -338,8 +344,8 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getRetentionPolicyAssignmentFileVersionUnderRetention(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg = {} satisfies GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg,
-    headers: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg = new GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg(
+    queryParams: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams = {} satisfies GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams,
+    headers: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders = new GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -355,7 +361,8 @@ export class RetentionPolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string,
         '/file_versions_under_retention'
       ) as string,
@@ -372,16 +379,16 @@ export class RetentionPolicyAssignmentsManager {
     return deserializeFilesUnderRetention(response.data);
   }
 }
-export function serializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(
-  val: GetRetentionPolicyAssignmentsQueryParamsArgTypeField
+export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
+  val: GetRetentionPolicyAssignmentsQueryParamsTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(
+export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   val: any
-): GetRetentionPolicyAssignmentsQueryParamsArgTypeField {
+): GetRetentionPolicyAssignmentsQueryParamsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsArgTypeField"';
+    throw 'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"';
   }
   if (val == 'folder') {
     return 'folder';
@@ -394,16 +401,16 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsArgTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
-  val: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField
+export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
+export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
   val: any
-): CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField {
+): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField"';
+    throw 'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"';
   }
   if (val == 'enterprise') {
     return 'enterprise';
@@ -416,64 +423,64 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignTo
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
-  val: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField
+export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToField
 ): SerializedData {
   return {
     ['type']:
-      serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
+      serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
         val.type
       ),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
+export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
   val: any
-): CreateRetentionPolicyAssignmentRequestBodyArgAssignToField {
-  const type: CreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField =
-    deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToFieldTypeField(
+): CreateRetentionPolicyAssignmentRequestBodyAssignToField {
+  const type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
+    deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
       val.type
     );
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateRetentionPolicyAssignmentRequestBodyArgAssignToField;
+  } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField;
 }
-export function serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
-  val: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField
+export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
+  val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
     ['value']: val.value == void 0 ? void 0 : val.value,
   };
 }
-export function deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
+export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
   val: any
-): CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField {
+): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
   const field: undefined | string = val.field == void 0 ? void 0 : val.field;
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   return {
     field: field,
     value: value,
-  } satisfies CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField;
+  } satisfies CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField;
 }
-export function serializeCreateRetentionPolicyAssignmentRequestBodyArg(
-  val: CreateRetentionPolicyAssignmentRequestBodyArg
+export function serializeCreateRetentionPolicyAssignmentRequestBody(
+  val: CreateRetentionPolicyAssignmentRequestBody
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,
     ['assign_to']:
-      serializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
+      serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
         val.assignTo
       ),
     ['filter_fields']:
       val.filterFields == void 0
         ? void 0
         : (val.filterFields.map(function (
-            item: CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField
+            item: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
           ): any {
-            return serializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
+            return serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
               item
             );
           }) as readonly any[]),
@@ -481,22 +488,22 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyArg(
       val.startDateField == void 0 ? void 0 : val.startDateField,
   };
 }
-export function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(
+export function deserializeCreateRetentionPolicyAssignmentRequestBody(
   val: any
-): CreateRetentionPolicyAssignmentRequestBodyArg {
+): CreateRetentionPolicyAssignmentRequestBody {
   const policyId: string = val.policy_id;
-  const assignTo: CreateRetentionPolicyAssignmentRequestBodyArgAssignToField =
-    deserializeCreateRetentionPolicyAssignmentRequestBodyArgAssignToField(
+  const assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField =
+    deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
       val.assign_to
     );
   const filterFields:
     | undefined
-    | readonly CreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField[] =
+    | readonly CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField[] =
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
       ? (val.filter_fields.map(function (itm: SerializedData): any {
-          return deserializeCreateRetentionPolicyAssignmentRequestBodyArgFilterFieldsField(
+          return deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
             itm
           );
         }) as readonly any[])
@@ -508,5 +515,5 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyArg(
     assignTo: assignTo,
     filterFields: filterFields,
     startDateField: startDateField,
-  } satisfies CreateRetentionPolicyAssignmentRequestBodyArg;
+  } satisfies CreateRetentionPolicyAssignmentRequestBody;
 }

@@ -2,15 +2,15 @@ import { serializeUsers } from '../schemas.generated.js';
 import { deserializeUsers } from '../schemas.generated.js';
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { serializeUpdateUserByIdRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeUpdateUserByIdRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { serializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
+import { deserializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Users } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { UpdateUserByIdRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
+import { UpdateUserByIdRequestBody } from '../managers/users.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
@@ -42,7 +42,7 @@ test('test_create_update_get_delete_user', async function test_create_update_get
     name: userName,
     login: userLogin,
     isPlatformAccessOnly: true,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   if (!(user.name == userName)) {
     throw 'Assertion failed';
   }
@@ -53,7 +53,7 @@ test('test_create_update_get_delete_user', async function test_create_update_get
   const updatedUserName: string = getUuid();
   const updatedUser: UserFull = await client.users.updateUserById(user.id, {
     name: updatedUserName,
-  } satisfies UpdateUserByIdRequestBodyArg);
+  } satisfies UpdateUserByIdRequestBody);
   if (!(updatedUser.name == updatedUserName)) {
     throw 'Assertion failed';
   }

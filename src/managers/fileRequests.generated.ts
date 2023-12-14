@@ -27,74 +27,75 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFileRequestByIdHeadersArg {
+export class GetFileRequestByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileRequestByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileRequestByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileRequestByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class UpdateFileRequestByIdHeadersArg {
+export class UpdateFileRequestByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFileRequestByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateFileRequestByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateFileRequestByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileRequestByIdHeadersArg {
+export class DeleteFileRequestByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileRequestByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFileRequestByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFileRequestByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateFileRequestCopyHeadersArg {
+export class CreateFileRequestCopyHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateFileRequestCopyHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateFileRequestCopyHeadersArg, 'extraHeaders'>>
+      | Omit<CreateFileRequestCopyHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FileRequestsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FileRequestsManager,
-      | 'getFileRequestById'
-      | 'updateFileRequestById'
-      | 'deleteFileRequestById'
-      | 'createFileRequestCopy'
-    >
+    fields:
+      | Omit<
+          FileRequestsManager,
+          | 'networkSession'
+          | 'getFileRequestById'
+          | 'updateFileRequestById'
+          | 'deleteFileRequestById'
+          | 'createFileRequestCopy'
+        >
+      | Partial<Pick<FileRequestsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileRequestById(
     fileRequestId: string,
-    headers: GetFileRequestByIdHeadersArg = new GetFileRequestByIdHeadersArg(
-      {}
-    ),
+    headers: GetFileRequestByIdHeaders = new GetFileRequestByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
     const headersMap: {
@@ -102,7 +103,8 @@ export class FileRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/file_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -119,7 +121,7 @@ export class FileRequestsManager {
   async updateFileRequestById(
     fileRequestId: string,
     requestBody: FileRequestUpdateRequest,
-    headers: UpdateFileRequestByIdHeadersArg = new UpdateFileRequestByIdHeadersArg(
+    headers: UpdateFileRequestByIdHeaders = new UpdateFileRequestByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -132,7 +134,8 @@ export class FileRequestsManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/file_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -150,7 +153,7 @@ export class FileRequestsManager {
   }
   async deleteFileRequestById(
     fileRequestId: string,
-    headers: DeleteFileRequestByIdHeadersArg = new DeleteFileRequestByIdHeadersArg(
+    headers: DeleteFileRequestByIdHeaders = new DeleteFileRequestByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -160,7 +163,8 @@ export class FileRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/file_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -177,7 +181,7 @@ export class FileRequestsManager {
   async createFileRequestCopy(
     fileRequestId: string,
     requestBody: FileRequestCopyRequest,
-    headers: CreateFileRequestCopyHeadersArg = new CreateFileRequestCopyHeadersArg(
+    headers: CreateFileRequestCopyHeaders = new CreateFileRequestCopyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -187,7 +191,8 @@ export class FileRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/file_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/file_requests/',
         toString(fileRequestId) as string,
         '/copy'
       ) as string,

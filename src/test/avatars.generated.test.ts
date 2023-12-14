@@ -5,7 +5,7 @@ import { deserializeUserAvatar } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { UserAvatar } from '../schemas.generated.js';
-import { CreateUserAvatarRequestBodyArg } from '../managers/avatars.generated.js';
+import { CreateUserAvatarRequestBody } from '../managers/avatars.generated.js';
 import { ByteStream } from '../utils.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -33,7 +33,7 @@ test('testAvatars', async function testAvatars(): Promise<any> {
       ),
       picContentType: 'image/png',
       picFileName: 'avatar.png',
-    } satisfies CreateUserAvatarRequestBodyArg
+    } satisfies CreateUserAvatarRequestBody
   );
   if (!!(createdAvatar.picUrls!.small == void 0)) {
     throw 'Assertion failed';

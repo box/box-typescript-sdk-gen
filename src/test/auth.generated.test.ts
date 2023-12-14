@@ -1,23 +1,23 @@
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
-import { serializeUpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
-import { deserializeUpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
+import { serializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { deserializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { GetUserMeQueryParamsArg } from '../managers/users.generated.js';
+import { GetUserMeQueryParams } from '../managers/users.generated.js';
 import { AccessToken } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
-import { UpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
+import { UpdateFileByIdRequestBody } from '../managers/files.generated.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getUuid } from '../utils.js';
@@ -72,7 +72,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   await auth.asEnterprise(enterpriseId);
   const newUser: UserFull = await client.users.getUserMe({
     fields: ['enterprise' as ''],
-  } satisfies GetUserMeQueryParamsArg);
+  } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
     throw 'Assertion failed';
   }
@@ -120,7 +120,7 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   await auth.asEnterprise(enterpriseId);
   const newUser: UserFull = await client.users.getUserMe({
     fields: ['enterprise' as ''],
-  } satisfies GetUserMeQueryParamsArg);
+  } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
     throw 'Assertion failed';
   }
@@ -175,12 +175,10 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
   const uploadedFiles: Files = await parentClient.uploads.uploadFile({
     attributes: {
       name: getUuid(),
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(1024 * 1024),
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
   const resourcePath: string = ''.concat(
     'https://api.box.com/2.0/files/',
@@ -198,7 +196,7 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
   });
   await downscopedClient.files.updateFileById(file.id, {
     name: getUuid(),
-  } satisfies UpdateFileByIdRequestBodyArg);
+  } satisfies UpdateFileByIdRequestBody);
   await expect(async () => {
     await downscopedClient.files.deleteFileById(file.id);
   }).rejects.toThrow();

@@ -66,9 +66,10 @@ export class BoxCcgAuth implements Authentication {
    * @returns {Promise<AccessToken>} A promise resolving to the access token.
    */
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    const newToken = await new AuthorizationManager({
-      networkSession,
-    }).createOauth2Token({
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const newToken = await authManager.createOauth2Token({
       grantType: 'client_credentials' satisfies TokenRequestGrantType,
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,

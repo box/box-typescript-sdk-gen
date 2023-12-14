@@ -4,15 +4,15 @@ import { serializeFileRequestCopyRequest } from '../schemas.generated.js';
 import { deserializeFileRequestCopyRequest } from '../schemas.generated.js';
 import { serializeFileRequestCopyRequestFolderField } from '../schemas.generated.js';
 import { deserializeFileRequestCopyRequestFolderField } from '../schemas.generated.js';
-import { serializeFileRequestCopyRequestFolderFieldTypeField } from '../schemas.generated.js';
-import { deserializeFileRequestCopyRequestFolderFieldTypeField } from '../schemas.generated.js';
+import { serializeFileRequestCopyRequestFolderTypeField } from '../schemas.generated.js';
+import { deserializeFileRequestCopyRequestFolderTypeField } from '../schemas.generated.js';
 import { serializeFileRequestUpdateRequest } from '../schemas.generated.js';
 import { deserializeFileRequestUpdateRequest } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileRequest } from '../schemas.generated.js';
 import { FileRequestCopyRequest } from '../schemas.generated.js';
 import { FileRequestCopyRequestFolderField } from '../schemas.generated.js';
-import { FileRequestCopyRequestFolderFieldTypeField } from '../schemas.generated.js';
+import { FileRequestCopyRequestFolderTypeField } from '../schemas.generated.js';
 import { FileRequestUpdateRequest } from '../schemas.generated.js';
 import { getEnvVar } from '../utils.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
@@ -42,7 +42,7 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
     await client.fileRequests.createFileRequestCopy(fileRequestId, {
       folder: {
         id: fileRequest.folder.id,
-        type: 'folder' as FileRequestCopyRequestFolderFieldTypeField,
+        type: 'folder' as FileRequestCopyRequestFolderTypeField,
       } satisfies FileRequestCopyRequestFolderField,
     } satisfies FileRequestCopyRequest);
   if (!!(copiedFileRequest.id == fileRequestId)) {

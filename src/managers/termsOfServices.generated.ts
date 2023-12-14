@@ -27,95 +27,92 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetTermOfServicesQueryParamsArgTosTypeField =
-  | 'external'
-  | 'managed';
-export interface GetTermOfServicesQueryParamsArg {
-  readonly tosType?: GetTermOfServicesQueryParamsArgTosTypeField;
+export type GetTermOfServicesQueryParamsTosTypeField = 'external' | 'managed';
+export interface GetTermOfServicesQueryParams {
+  readonly tosType?: GetTermOfServicesQueryParamsTosTypeField;
 }
-export class GetTermOfServicesHeadersArg {
+export class GetTermOfServicesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetTermOfServicesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetTermOfServicesHeadersArg, 'extraHeaders'>>
+      | Omit<GetTermOfServicesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTermOfServicesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateTermOfServiceRequestBodyArgStatusField =
-  | 'enabled'
-  | 'disabled';
-export type CreateTermOfServiceRequestBodyArgTosTypeField =
-  | 'external'
-  | 'managed';
-export interface CreateTermOfServiceRequestBodyArg {
-  readonly status: CreateTermOfServiceRequestBodyArgStatusField;
-  readonly tosType?: CreateTermOfServiceRequestBodyArgTosTypeField;
+export type CreateTermOfServiceRequestBodyStatusField = 'enabled' | 'disabled';
+export type CreateTermOfServiceRequestBodyTosTypeField = 'external' | 'managed';
+export interface CreateTermOfServiceRequestBody {
+  readonly status: CreateTermOfServiceRequestBodyStatusField;
+  readonly tosType?: CreateTermOfServiceRequestBodyTosTypeField;
   readonly text: string;
 }
-export class CreateTermOfServiceHeadersArg {
+export class CreateTermOfServiceHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateTermOfServiceHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateTermOfServiceHeadersArg, 'extraHeaders'>>
+      | Omit<CreateTermOfServiceHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateTermOfServiceHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetTermOfServiceByIdHeadersArg {
+export class GetTermOfServiceByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetTermOfServiceByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetTermOfServiceByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetTermOfServiceByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTermOfServiceByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateTermOfServiceByIdRequestBodyArgStatusField =
+export type UpdateTermOfServiceByIdRequestBodyStatusField =
   | 'enabled'
   | 'disabled';
-export interface UpdateTermOfServiceByIdRequestBodyArg {
-  readonly status: UpdateTermOfServiceByIdRequestBodyArgStatusField;
+export interface UpdateTermOfServiceByIdRequestBody {
+  readonly status: UpdateTermOfServiceByIdRequestBodyStatusField;
   readonly text: string;
 }
-export class UpdateTermOfServiceByIdHeadersArg {
+export class UpdateTermOfServiceByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateTermOfServiceByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateTermOfServiceByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateTermOfServiceByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateTermOfServiceByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TermsOfServicesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TermsOfServicesManager,
-      | 'getTermOfServices'
-      | 'createTermOfService'
-      | 'getTermOfServiceById'
-      | 'updateTermOfServiceById'
-    >
+    fields:
+      | Omit<
+          TermsOfServicesManager,
+          | 'networkSession'
+          | 'getTermOfServices'
+          | 'createTermOfService'
+          | 'getTermOfServiceById'
+          | 'updateTermOfServiceById'
+        >
+      | Partial<Pick<TermsOfServicesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getTermOfServices(
-    queryParams: GetTermOfServicesQueryParamsArg = {} satisfies GetTermOfServicesQueryParamsArg,
-    headers: GetTermOfServicesHeadersArg = new GetTermOfServicesHeadersArg({}),
+    queryParams: GetTermOfServicesQueryParams = {} satisfies GetTermOfServicesQueryParams,
+    headers: GetTermOfServicesHeaders = new GetTermOfServicesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfServices> {
     const queryParamsMap: {
@@ -127,7 +124,10 @@ export class TermsOfServicesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/terms_of_services') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_services'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -141,21 +141,22 @@ export class TermsOfServicesManager {
     return deserializeTermsOfServices(response.data);
   }
   async createTermOfService(
-    requestBody: CreateTermOfServiceRequestBodyArg,
-    headers: CreateTermOfServiceHeadersArg = new CreateTermOfServiceHeadersArg(
-      {}
-    ),
+    requestBody: CreateTermOfServiceRequestBody,
+    headers: CreateTermOfServiceHeaders = new CreateTermOfServiceHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/terms_of_services') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_services'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateTermOfServiceRequestBodyArg(requestBody),
+        data: serializeCreateTermOfServiceRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -167,9 +168,7 @@ export class TermsOfServicesManager {
   }
   async getTermOfServiceById(
     termsOfServiceId: string,
-    headers: GetTermOfServiceByIdHeadersArg = new GetTermOfServiceByIdHeadersArg(
-      {}
-    ),
+    headers: GetTermOfServiceByIdHeaders = new GetTermOfServiceByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
     const headersMap: {
@@ -177,7 +176,8 @@ export class TermsOfServicesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/terms_of_services/',
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_services/',
         toString(termsOfServiceId) as string
       ) as string,
       {
@@ -193,8 +193,8 @@ export class TermsOfServicesManager {
   }
   async updateTermOfServiceById(
     termsOfServiceId: string,
-    requestBody: UpdateTermOfServiceByIdRequestBodyArg,
-    headers: UpdateTermOfServiceByIdHeadersArg = new UpdateTermOfServiceByIdHeadersArg(
+    requestBody: UpdateTermOfServiceByIdRequestBody,
+    headers: UpdateTermOfServiceByIdHeaders = new UpdateTermOfServiceByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -204,13 +204,14 @@ export class TermsOfServicesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/terms_of_services/',
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_services/',
         toString(termsOfServiceId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateTermOfServiceByIdRequestBodyArg(requestBody),
+        data: serializeUpdateTermOfServiceByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -221,16 +222,16 @@ export class TermsOfServicesManager {
     return deserializeTermsOfService(response.data);
   }
 }
-export function serializeGetTermOfServicesQueryParamsArgTosTypeField(
-  val: GetTermOfServicesQueryParamsArgTosTypeField
+export function serializeGetTermOfServicesQueryParamsTosTypeField(
+  val: GetTermOfServicesQueryParamsTosTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(
+export function deserializeGetTermOfServicesQueryParamsTosTypeField(
   val: any
-): GetTermOfServicesQueryParamsArgTosTypeField {
+): GetTermOfServicesQueryParamsTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetTermOfServicesQueryParamsArgTosTypeField"';
+    throw 'Expecting a string for "GetTermOfServicesQueryParamsTosTypeField"';
   }
   if (val == 'external') {
     return 'external';
@@ -240,16 +241,16 @@ export function deserializeGetTermOfServicesQueryParamsArgTosTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTermOfServiceRequestBodyArgStatusField(
-  val: CreateTermOfServiceRequestBodyArgStatusField
+export function serializeCreateTermOfServiceRequestBodyStatusField(
+  val: CreateTermOfServiceRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTermOfServiceRequestBodyArgStatusField(
+export function deserializeCreateTermOfServiceRequestBodyStatusField(
   val: any
-): CreateTermOfServiceRequestBodyArgStatusField {
+): CreateTermOfServiceRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermOfServiceRequestBodyArgStatusField"';
+    throw 'Expecting a string for "CreateTermOfServiceRequestBodyStatusField"';
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -259,16 +260,16 @@ export function deserializeCreateTermOfServiceRequestBodyArgStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTermOfServiceRequestBodyArgTosTypeField(
-  val: CreateTermOfServiceRequestBodyArgTosTypeField
+export function serializeCreateTermOfServiceRequestBodyTosTypeField(
+  val: CreateTermOfServiceRequestBodyTosTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTermOfServiceRequestBodyArgTosTypeField(
+export function deserializeCreateTermOfServiceRequestBodyTosTypeField(
   val: any
-): CreateTermOfServiceRequestBodyArgTosTypeField {
+): CreateTermOfServiceRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermOfServiceRequestBodyArgTosTypeField"';
+    throw 'Expecting a string for "CreateTermOfServiceRequestBodyTosTypeField"';
   }
   if (val == 'external') {
     return 'external';
@@ -278,46 +279,44 @@ export function deserializeCreateTermOfServiceRequestBodyArgTosTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTermOfServiceRequestBodyArg(
-  val: CreateTermOfServiceRequestBodyArg
+export function serializeCreateTermOfServiceRequestBody(
+  val: CreateTermOfServiceRequestBody
 ): SerializedData {
   return {
-    ['status']: serializeCreateTermOfServiceRequestBodyArgStatusField(
-      val.status
-    ),
+    ['status']: serializeCreateTermOfServiceRequestBodyStatusField(val.status),
     ['tos_type']:
       val.tosType == void 0
         ? void 0
-        : serializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tosType),
+        : serializeCreateTermOfServiceRequestBodyTosTypeField(val.tosType),
     ['text']: val.text,
   };
 }
-export function deserializeCreateTermOfServiceRequestBodyArg(
+export function deserializeCreateTermOfServiceRequestBody(
   val: any
-): CreateTermOfServiceRequestBodyArg {
-  const status: CreateTermOfServiceRequestBodyArgStatusField =
-    deserializeCreateTermOfServiceRequestBodyArgStatusField(val.status);
-  const tosType: undefined | CreateTermOfServiceRequestBodyArgTosTypeField =
+): CreateTermOfServiceRequestBody {
+  const status: CreateTermOfServiceRequestBodyStatusField =
+    deserializeCreateTermOfServiceRequestBodyStatusField(val.status);
+  const tosType: undefined | CreateTermOfServiceRequestBodyTosTypeField =
     val.tos_type == void 0
       ? void 0
-      : deserializeCreateTermOfServiceRequestBodyArgTosTypeField(val.tos_type);
+      : deserializeCreateTermOfServiceRequestBodyTosTypeField(val.tos_type);
   const text: string = val.text;
   return {
     status: status,
     tosType: tosType,
     text: text,
-  } satisfies CreateTermOfServiceRequestBodyArg;
+  } satisfies CreateTermOfServiceRequestBody;
 }
-export function serializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
-  val: UpdateTermOfServiceByIdRequestBodyArgStatusField
+export function serializeUpdateTermOfServiceByIdRequestBodyStatusField(
+  val: UpdateTermOfServiceByIdRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
+export function deserializeUpdateTermOfServiceByIdRequestBodyStatusField(
   val: any
-): UpdateTermOfServiceByIdRequestBodyArgStatusField {
+): UpdateTermOfServiceByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTermOfServiceByIdRequestBodyArgStatusField"';
+    throw 'Expecting a string for "UpdateTermOfServiceByIdRequestBodyStatusField"';
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -327,24 +326,24 @@ export function deserializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateTermOfServiceByIdRequestBodyArg(
-  val: UpdateTermOfServiceByIdRequestBodyArg
+export function serializeUpdateTermOfServiceByIdRequestBody(
+  val: UpdateTermOfServiceByIdRequestBody
 ): SerializedData {
   return {
-    ['status']: serializeUpdateTermOfServiceByIdRequestBodyArgStatusField(
+    ['status']: serializeUpdateTermOfServiceByIdRequestBodyStatusField(
       val.status
     ),
     ['text']: val.text,
   };
 }
-export function deserializeUpdateTermOfServiceByIdRequestBodyArg(
+export function deserializeUpdateTermOfServiceByIdRequestBody(
   val: any
-): UpdateTermOfServiceByIdRequestBodyArg {
-  const status: UpdateTermOfServiceByIdRequestBodyArgStatusField =
-    deserializeUpdateTermOfServiceByIdRequestBodyArgStatusField(val.status);
+): UpdateTermOfServiceByIdRequestBody {
+  const status: UpdateTermOfServiceByIdRequestBodyStatusField =
+    deserializeUpdateTermOfServiceByIdRequestBodyStatusField(val.status);
   const text: string = val.text;
   return {
     status: status,
     text: text,
-  } satisfies UpdateTermOfServiceByIdRequestBodyArg;
+  } satisfies UpdateTermOfServiceByIdRequestBody;
 }

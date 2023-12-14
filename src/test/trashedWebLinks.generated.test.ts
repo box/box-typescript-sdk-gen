@@ -2,10 +2,10 @@ import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
-import { serializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { serializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
 import { serializeTrashWebLink } from '../schemas.generated.js';
 import { deserializeTrashWebLink } from '../schemas.generated.js';
 import { serializeTrashWebLinkRestored } from '../schemas.generated.js';
@@ -13,8 +13,8 @@ import { deserializeTrashWebLinkRestored } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
-import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { CreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
 import { TrashWebLink } from '../schemas.generated.js';
 import { TrashWebLinkRestored } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
@@ -36,10 +36,10 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
   const description: string = 'Weblink description';
   const weblink: WebLink = await client.webLinks.createWebLink({
     url: url,
-    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
+    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
     name: name,
     description: description,
-  } satisfies CreateWebLinkRequestBodyArg);
+  } satisfies CreateWebLinkRequestBody);
   await client.webLinks.deleteWebLinkById(weblink.id);
   const fromTrash: TrashWebLink = await client.trashedWebLinks.getWebLinkTrash(
     weblink.id

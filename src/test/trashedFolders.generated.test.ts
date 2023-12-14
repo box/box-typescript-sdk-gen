@@ -1,17 +1,17 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { serializeTrashFolder } from '../schemas.generated.js';
 import { deserializeTrashFolder } from '../schemas.generated.js';
 import { serializeTrashFolderRestored } from '../schemas.generated.js';
 import { deserializeTrashFolderRestored } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { TrashFolder } from '../schemas.generated.js';
 import { TrashFolderRestored } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
@@ -27,8 +27,8 @@ const client: BoxClient = getDefaultClient();
 test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   await client.folders.deleteFolderById(folder.id);
   const fromTrash: TrashFolder = await client.trashedFolders.getFolderTrash(
     folder.id

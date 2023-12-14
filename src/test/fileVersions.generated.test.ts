@@ -1,33 +1,33 @@
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
-import { serializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeFileVersions } from '../schemas.generated.js';
 import { deserializeFileVersions } from '../schemas.generated.js';
 import { serializeFileVersionFull } from '../schemas.generated.js';
 import { deserializeFileVersionFull } from '../schemas.generated.js';
-import { serializePromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
-import { deserializePromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
-import { serializePromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
-import { deserializePromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
+import { serializePromoteFileVersionRequestBody } from '../managers/fileVersions.generated.js';
+import { deserializePromoteFileVersionRequestBody } from '../managers/fileVersions.generated.js';
+import { serializePromoteFileVersionRequestBodyTypeField } from '../managers/fileVersions.generated.js';
+import { deserializePromoteFileVersionRequestBodyTypeField } from '../managers/fileVersions.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
-import { UploadFileVersionRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileVersionRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { FileVersions } from '../schemas.generated.js';
 import { FileVersionFull } from '../schemas.generated.js';
-import { PromoteFileVersionRequestBodyArg } from '../managers/fileVersions.generated.js';
-import { PromoteFileVersionRequestBodyArgTypeField } from '../managers/fileVersions.generated.js';
+import { PromoteFileVersionRequestBody } from '../managers/fileVersions.generated.js';
+import { PromoteFileVersionRequestBodyTypeField } from '../managers/fileVersions.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -45,12 +45,10 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: oldName,
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(10),
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const file: FileFull = files.entries![0];
   if (!(file.name == oldName)) {
     throw 'Assertion failed';
@@ -61,9 +59,9 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   const newFiles: Files = await client.uploads.uploadFileVersion(file.id, {
     attributes: {
       name: newName,
-    } satisfies UploadFileVersionRequestBodyArgAttributesField,
+    } satisfies UploadFileVersionRequestBodyAttributesField,
     file: generateByteStream(20),
-  } satisfies UploadFileVersionRequestBodyArg);
+  } satisfies UploadFileVersionRequestBody);
   const newFile: FileFull = newFiles.entries![0];
   if (!(newFile.name == newName)) {
     throw 'Assertion failed';
@@ -87,8 +85,8 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   }
   await client.fileVersions.promoteFileVersion(file.id, {
     id: fileVersions.entries![0].id,
-    type: 'file_version' as PromoteFileVersionRequestBodyArgTypeField,
-  } satisfies PromoteFileVersionRequestBodyArg);
+    type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
+  } satisfies PromoteFileVersionRequestBody);
   const fileRestored: FileFull = await client.files.getFileById(file.id);
   if (!(fileRestored.name == oldName)) {
     throw 'Assertion failed';

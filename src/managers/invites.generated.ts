@@ -21,56 +21,63 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface CreateInviteRequestBodyArgEnterpriseField {
+export interface CreateInviteRequestBodyEnterpriseField {
   readonly id: string;
 }
-export interface CreateInviteRequestBodyArgActionableByField {
+export interface CreateInviteRequestBodyActionableByField {
   readonly login?: string;
 }
-export interface CreateInviteRequestBodyArg {
-  readonly enterprise: CreateInviteRequestBodyArgEnterpriseField;
-  readonly actionableBy: CreateInviteRequestBodyArgActionableByField;
+export interface CreateInviteRequestBody {
+  readonly enterprise: CreateInviteRequestBodyEnterpriseField;
+  readonly actionableBy: CreateInviteRequestBodyActionableByField;
 }
-export interface CreateInviteQueryParamsArg {
+export interface CreateInviteQueryParams {
   readonly fields?: readonly string[];
 }
-export class CreateInviteHeadersArg {
+export class CreateInviteHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateInviteHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateInviteHeadersArg, 'extraHeaders'>>
+      | Omit<CreateInviteHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateInviteHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetInviteByIdQueryParamsArg {
+export interface GetInviteByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetInviteByIdHeadersArg {
+export class GetInviteByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetInviteByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetInviteByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetInviteByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetInviteByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class InvitesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<InvitesManager, 'createInvite' | 'getInviteById'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<
+          InvitesManager,
+          'networkSession' | 'createInvite' | 'getInviteById'
+        >
+      | Partial<Pick<InvitesManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
   async createInvite(
-    requestBody: CreateInviteRequestBodyArg,
-    queryParams: CreateInviteQueryParamsArg = {} satisfies CreateInviteQueryParamsArg,
-    headers: CreateInviteHeadersArg = new CreateInviteHeadersArg({}),
+    requestBody: CreateInviteRequestBody,
+    queryParams: CreateInviteQueryParams = {} satisfies CreateInviteQueryParams,
+    headers: CreateInviteHeaders = new CreateInviteHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Invite> {
     const queryParamsMap: {
@@ -84,12 +91,12 @@ export class InvitesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/invites') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/invites') as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCreateInviteRequestBodyArg(requestBody),
+        data: serializeCreateInviteRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -101,8 +108,8 @@ export class InvitesManager {
   }
   async getInviteById(
     inviteId: string,
-    queryParams: GetInviteByIdQueryParamsArg = {} satisfies GetInviteByIdQueryParamsArg,
-    headers: GetInviteByIdHeadersArg = new GetInviteByIdHeadersArg({}),
+    queryParams: GetInviteByIdQueryParams = {} satisfies GetInviteByIdQueryParams,
+    headers: GetInviteByIdHeaders = new GetInviteByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Invite> {
     const queryParamsMap: {
@@ -117,7 +124,8 @@ export class InvitesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/invites/',
+        this.networkSession.baseUrls.baseUrl,
+        '/invites/',
         toString(inviteId) as string
       ) as string,
       {
@@ -133,49 +141,49 @@ export class InvitesManager {
     return deserializeInvite(response.data);
   }
 }
-export function serializeCreateInviteRequestBodyArgEnterpriseField(
-  val: CreateInviteRequestBodyArgEnterpriseField
+export function serializeCreateInviteRequestBodyEnterpriseField(
+  val: CreateInviteRequestBodyEnterpriseField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeCreateInviteRequestBodyArgEnterpriseField(
+export function deserializeCreateInviteRequestBodyEnterpriseField(
   val: any
-): CreateInviteRequestBodyArgEnterpriseField {
+): CreateInviteRequestBodyEnterpriseField {
   const id: string = val.id;
-  return { id: id } satisfies CreateInviteRequestBodyArgEnterpriseField;
+  return { id: id } satisfies CreateInviteRequestBodyEnterpriseField;
 }
-export function serializeCreateInviteRequestBodyArgActionableByField(
-  val: CreateInviteRequestBodyArgActionableByField
+export function serializeCreateInviteRequestBodyActionableByField(
+  val: CreateInviteRequestBodyActionableByField
 ): SerializedData {
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
-export function deserializeCreateInviteRequestBodyArgActionableByField(
+export function deserializeCreateInviteRequestBodyActionableByField(
   val: any
-): CreateInviteRequestBodyArgActionableByField {
+): CreateInviteRequestBodyActionableByField {
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
-  return { login: login } satisfies CreateInviteRequestBodyArgActionableByField;
+  return { login: login } satisfies CreateInviteRequestBodyActionableByField;
 }
-export function serializeCreateInviteRequestBodyArg(
-  val: CreateInviteRequestBodyArg
+export function serializeCreateInviteRequestBody(
+  val: CreateInviteRequestBody
 ): SerializedData {
   return {
-    ['enterprise']: serializeCreateInviteRequestBodyArgEnterpriseField(
+    ['enterprise']: serializeCreateInviteRequestBodyEnterpriseField(
       val.enterprise
     ),
-    ['actionable_by']: serializeCreateInviteRequestBodyArgActionableByField(
+    ['actionable_by']: serializeCreateInviteRequestBodyActionableByField(
       val.actionableBy
     ),
   };
 }
-export function deserializeCreateInviteRequestBodyArg(
+export function deserializeCreateInviteRequestBody(
   val: any
-): CreateInviteRequestBodyArg {
-  const enterprise: CreateInviteRequestBodyArgEnterpriseField =
-    deserializeCreateInviteRequestBodyArgEnterpriseField(val.enterprise);
-  const actionableBy: CreateInviteRequestBodyArgActionableByField =
-    deserializeCreateInviteRequestBodyArgActionableByField(val.actionable_by);
+): CreateInviteRequestBody {
+  const enterprise: CreateInviteRequestBodyEnterpriseField =
+    deserializeCreateInviteRequestBodyEnterpriseField(val.enterprise);
+  const actionableBy: CreateInviteRequestBodyActionableByField =
+    deserializeCreateInviteRequestBodyActionableByField(val.actionable_by);
   return {
     enterprise: enterprise,
     actionableBy: actionableBy,
-  } satisfies CreateInviteRequestBodyArg;
+  } satisfies CreateInviteRequestBody;
 }

@@ -1,40 +1,40 @@
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeUpdateFileAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { serializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { serializeUpdateFileAddSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileAddSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUpdateFileAddSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileAddSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUpdateFileAddSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileAddSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
-import { serializeUpdateFileUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { serializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
-import { deserializeUpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUpdateFileUpdateSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileUpdateSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUpdateFileUpdateSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileUpdateSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { serializeUpdateFileUpdateSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeUpdateFileUpdateSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { UpdateFileAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileAddSharedLinkQueryParamsArg } from '../managers/sharedLinksFiles.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { UpdateFileAddSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileAddSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileAddSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileAddSharedLinkQueryParams } from '../managers/sharedLinksFiles.generated.js';
 import { FileFull } from '../schemas.generated.js';
-import { GetFileGetSharedLinkQueryParamsArg } from '../managers/sharedLinksFiles.generated.js';
-import { GetSharedItemsQueryParamsArg } from '../managers/sharedLinksFiles.generated.js';
-import { GetSharedItemsHeadersArg } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFiles.generated.js';
-import { UpdateFileUpdateSharedLinkQueryParamsArg } from '../managers/sharedLinksFiles.generated.js';
+import { GetFileGetSharedLinkQueryParams } from '../managers/sharedLinksFiles.generated.js';
+import { GetSharedItemsQueryParams } from '../managers/sharedLinksFiles.generated.js';
+import { GetSharedItemsHeaders } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileUpdateSharedLinkRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileUpdateSharedLinkRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileUpdateSharedLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { UpdateFileUpdateSharedLinkQueryParams } from '../managers/sharedLinksFiles.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -54,28 +54,26 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(10),
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const fileId: string = uploadedFiles.entries![0].id;
   await client.sharedLinksFiles.updateFileAddSharedLink(
     fileId,
     {
       sharedLink: {
         access:
-          'open' as UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+          'open' as UpdateFileAddSharedLinkRequestBodySharedLinkAccessField,
         password: 'Secret123@',
-      } satisfies UpdateFileAddSharedLinkRequestBodyArgSharedLinkField,
-    } satisfies UpdateFileAddSharedLinkRequestBodyArg,
-    { fields: 'shared_link' } satisfies UpdateFileAddSharedLinkQueryParamsArg
+      } satisfies UpdateFileAddSharedLinkRequestBodySharedLinkField,
+    } satisfies UpdateFileAddSharedLinkRequestBody,
+    { fields: 'shared_link' } satisfies UpdateFileAddSharedLinkQueryParams
   );
   const fileFromApi: FileFull =
     await client.sharedLinksFiles.getFileGetSharedLink(fileId, {
       fields: 'shared_link',
-    } satisfies GetFileGetSharedLinkQueryParamsArg);
+    } satisfies GetFileGetSharedLinkQueryParams);
   if (!((toString(fileFromApi.sharedLink!.access) as string) == 'open')) {
     throw 'Assertion failed';
   }
@@ -83,8 +81,8 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
   const fileFromSharedLinkPassword: FileFull =
     await userClient.sharedLinksFiles.getSharedItems(
-      {} satisfies GetSharedItemsQueryParamsArg,
-      new GetSharedItemsHeadersArg({
+      {} satisfies GetSharedItemsQueryParams,
+      new GetSharedItemsHeaders({
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
@@ -97,8 +95,8 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   }
   await expect(async () => {
     await userClient.sharedLinksFiles.getSharedItems(
-      {} satisfies GetSharedItemsQueryParamsArg,
-      new GetSharedItemsHeadersArg({
+      {} satisfies GetSharedItemsQueryParams,
+      new GetSharedItemsHeaders({
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
@@ -113,12 +111,10 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
       {
         sharedLink: {
           access:
-            'collaborators' as UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
-        } satisfies UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField,
-      } satisfies UpdateFileUpdateSharedLinkRequestBodyArg,
-      {
-        fields: 'shared_link',
-      } satisfies UpdateFileUpdateSharedLinkQueryParamsArg
+            'collaborators' as UpdateFileUpdateSharedLinkRequestBodySharedLinkAccessField,
+        } satisfies UpdateFileUpdateSharedLinkRequestBodySharedLinkField,
+      } satisfies UpdateFileUpdateSharedLinkRequestBody,
+      { fields: 'shared_link' } satisfies UpdateFileUpdateSharedLinkQueryParams
     );
   if (
     !((toString(updatedFile.sharedLink!.access) as string) == 'collaborators')

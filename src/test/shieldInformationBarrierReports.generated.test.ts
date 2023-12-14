@@ -11,7 +11,7 @@ import { deserializeShieldInformationBarrierBaseTypeField } from '../schemas.gen
 import { serializeShieldInformationBarrier } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarrierReports } from '../schemas.generated.js';
-import { GetShieldInformationBarrierReportsQueryParamsArg } from '../managers/shieldInformationBarrierReports.generated.js';
+import { GetShieldInformationBarrierReportsQueryParams } from '../managers/shieldInformationBarrierReports.generated.js';
 import { ShieldInformationBarrierReport } from '../schemas.generated.js';
 import { ShieldInformationBarrierReference } from '../schemas.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
@@ -52,7 +52,7 @@ test('shieldInformationBarrierReports', async function shieldInformationBarrierR
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierReportsQueryParamsArg
+      } satisfies GetShieldInformationBarrierReportsQueryParams
     );
   if (existingReports.entries!.length > 0) {
     return void 0;
@@ -85,7 +85,7 @@ test('shieldInformationBarrierReports', async function shieldInformationBarrierR
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierReportsQueryParamsArg
+      } satisfies GetShieldInformationBarrierReportsQueryParams
     );
   if (!(retrievedReports.entries!.length > 0)) {
     throw 'Assertion failed';

@@ -24,51 +24,56 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetCollectionsQueryParamsArg {
+export interface GetCollectionsQueryParams {
   readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
-export class GetCollectionsHeadersArg {
+export class GetCollectionsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetCollectionsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetCollectionsHeadersArg, 'extraHeaders'>>
+      | Omit<GetCollectionsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetCollectionItemsQueryParamsArg {
+export interface GetCollectionItemsQueryParams {
   readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
-export class GetCollectionItemsHeadersArg {
+export class GetCollectionItemsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetCollectionItemsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetCollectionItemsHeadersArg, 'extraHeaders'>>
+      | Omit<GetCollectionItemsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class CollectionsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<CollectionsManager, 'getCollections' | 'getCollectionItems'>
+    fields:
+      | Omit<
+          CollectionsManager,
+          'networkSession' | 'getCollections' | 'getCollectionItems'
+        >
+      | Partial<Pick<CollectionsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getCollections(
-    queryParams: GetCollectionsQueryParamsArg = {} satisfies GetCollectionsQueryParamsArg,
-    headers: GetCollectionsHeadersArg = new GetCollectionsHeadersArg({}),
+    queryParams: GetCollectionsQueryParams = {} satisfies GetCollectionsQueryParams,
+    headers: GetCollectionsHeaders = new GetCollectionsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collections> {
     const queryParamsMap: {
@@ -84,7 +89,7 @@ export class CollectionsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/collections') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/collections') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -99,10 +104,8 @@ export class CollectionsManager {
   }
   async getCollectionItems(
     collectionId: string,
-    queryParams: GetCollectionItemsQueryParamsArg = {} satisfies GetCollectionItemsQueryParamsArg,
-    headers: GetCollectionItemsHeadersArg = new GetCollectionItemsHeadersArg(
-      {}
-    ),
+    queryParams: GetCollectionItemsQueryParams = {} satisfies GetCollectionItemsQueryParams,
+    headers: GetCollectionItemsHeaders = new GetCollectionItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
     const queryParamsMap: {
@@ -119,7 +122,8 @@ export class CollectionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/collections/',
+        this.networkSession.baseUrls.baseUrl,
+        '/collections/',
         toString(collectionId) as string,
         '/items'
       ) as string,

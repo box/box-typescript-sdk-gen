@@ -24,38 +24,36 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetMetadataTemplatesByInstanceIdQueryParamsArg {
+export interface GetMetadataTemplatesByInstanceIdQueryParams {
   readonly metadataInstanceId: string;
 }
-export class GetMetadataTemplatesByInstanceIdHeadersArg {
+export class GetMetadataTemplatesByInstanceIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplatesByInstanceIdHeadersArg, 'extraHeaders'>
-      | Partial<
-          Pick<GetMetadataTemplatesByInstanceIdHeadersArg, 'extraHeaders'>
-        >
+      | Omit<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetMetadataTemplateScopeArg = 'global' | 'enterprise';
-export class GetMetadataTemplateHeadersArg {
+export type GetMetadataTemplateScope = 'global' | 'enterprise';
+export class GetMetadataTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplateHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateHeadersArg, 'extraHeaders'>>
+      | Omit<GetMetadataTemplateHeaders, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateMetadataTemplateScopeArg = 'global' | 'enterprise';
-export type UpdateMetadataTemplateRequestBodyArgOpField =
+export type UpdateMetadataTemplateScope = 'global' | 'enterprise';
+export type UpdateMetadataTemplateRequestBodyOpField =
   | 'editTemplate'
   | 'addField'
   | 'reorderFields'
@@ -69,8 +67,8 @@ export type UpdateMetadataTemplateRequestBodyArgOpField =
   | 'removeEnumOption'
   | 'editMultiSelectOption'
   | 'removeMultiSelectOption';
-export interface UpdateMetadataTemplateRequestBodyArg {
-  readonly op: UpdateMetadataTemplateRequestBodyArgOpField;
+export interface UpdateMetadataTemplateRequestBody {
+  readonly op: UpdateMetadataTemplateRequestBodyOpField;
   readonly data?: {
     readonly [key: string]: string;
   };
@@ -81,133 +79,136 @@ export interface UpdateMetadataTemplateRequestBodyArg {
   readonly multiSelectOptionKey?: string;
   readonly multiSelectOptionKeys?: readonly string[];
 }
-export class UpdateMetadataTemplateHeadersArg {
+export class UpdateMetadataTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateMetadataTemplateHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateMetadataTemplateHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateMetadataTemplateHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type DeleteMetadataTemplateScopeArg = 'global' | 'enterprise';
-export class DeleteMetadataTemplateHeadersArg {
+export type DeleteMetadataTemplateScope = 'global' | 'enterprise';
+export class DeleteMetadataTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteMetadataTemplateHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteMetadataTemplateHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteMetadataTemplateHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetMetadataTemplateByIdHeadersArg {
+export class GetMetadataTemplateByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetMetadataTemplateByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetMetadataTemplateByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetGlobalMetadataTemplatesQueryParamsArg {
+export interface GetGlobalMetadataTemplatesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetGlobalMetadataTemplatesHeadersArg {
+export class GetGlobalMetadataTemplatesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGlobalMetadataTemplatesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGlobalMetadataTemplatesHeadersArg, 'extraHeaders'>>
+      | Omit<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetEnterpriseMetadataTemplatesQueryParamsArg {
+export interface GetEnterpriseMetadataTemplatesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetEnterpriseMetadataTemplatesHeadersArg {
+export class GetEnterpriseMetadataTemplatesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetEnterpriseMetadataTemplatesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetEnterpriseMetadataTemplatesHeadersArg, 'extraHeaders'>>
+      | Omit<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField =
+export type CreateMetadataTemplateRequestBodyFieldsTypeField =
   | 'string'
   | 'float'
   | 'date'
   | 'enum'
   | 'multiSelect';
-export interface CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField {
+export interface CreateMetadataTemplateRequestBodyFieldsOptionsField {
   readonly key: string;
 }
-export interface CreateMetadataTemplateRequestBodyArgFieldsField {
-  readonly type: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField;
+export interface CreateMetadataTemplateRequestBodyFieldsField {
+  readonly type: CreateMetadataTemplateRequestBodyFieldsTypeField;
   readonly key: string;
   readonly displayName: string;
   readonly description?: string;
   readonly hidden?: boolean;
-  readonly options?: readonly CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField[];
+  readonly options?: readonly CreateMetadataTemplateRequestBodyFieldsOptionsField[];
 }
-export interface CreateMetadataTemplateRequestBodyArg {
+export interface CreateMetadataTemplateRequestBody {
   readonly scope: string;
   readonly templateKey?: string;
   readonly displayName: string;
   readonly hidden?: boolean;
-  readonly fields?: readonly CreateMetadataTemplateRequestBodyArgFieldsField[];
+  readonly fields?: readonly CreateMetadataTemplateRequestBodyFieldsField[];
   readonly copyInstanceOnItemCopy?: boolean;
 }
-export class CreateMetadataTemplateHeadersArg {
+export class CreateMetadataTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateMetadataTemplateHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataTemplateHeadersArg, 'extraHeaders'>>
+      | Omit<CreateMetadataTemplateHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class MetadataTemplatesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      MetadataTemplatesManager,
-      | 'getMetadataTemplatesByInstanceId'
-      | 'getMetadataTemplate'
-      | 'updateMetadataTemplate'
-      | 'deleteMetadataTemplate'
-      | 'getMetadataTemplateById'
-      | 'getGlobalMetadataTemplates'
-      | 'getEnterpriseMetadataTemplates'
-      | 'createMetadataTemplate'
-    >
+    fields:
+      | Omit<
+          MetadataTemplatesManager,
+          | 'networkSession'
+          | 'getMetadataTemplatesByInstanceId'
+          | 'getMetadataTemplate'
+          | 'updateMetadataTemplate'
+          | 'deleteMetadataTemplate'
+          | 'getMetadataTemplateById'
+          | 'getGlobalMetadataTemplates'
+          | 'getEnterpriseMetadataTemplates'
+          | 'createMetadataTemplate'
+        >
+      | Partial<Pick<MetadataTemplatesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getMetadataTemplatesByInstanceId(
-    queryParams: GetMetadataTemplatesByInstanceIdQueryParamsArg,
-    headers: GetMetadataTemplatesByInstanceIdHeadersArg = new GetMetadataTemplatesByInstanceIdHeadersArg(
+    queryParams: GetMetadataTemplatesByInstanceIdQueryParams,
+    headers: GetMetadataTemplatesByInstanceIdHeaders = new GetMetadataTemplatesByInstanceIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -223,7 +224,10 @@ export class MetadataTemplatesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/metadata_templates') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -237,11 +241,9 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplates(response.data);
   }
   async getMetadataTemplate(
-    scope: GetMetadataTemplateScopeArg,
+    scope: GetMetadataTemplateScope,
     templateKey: string,
-    headers: GetMetadataTemplateHeadersArg = new GetMetadataTemplateHeadersArg(
-      {}
-    ),
+    headers: GetMetadataTemplateHeaders = new GetMetadataTemplateHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
     const headersMap: {
@@ -249,7 +251,8 @@ export class MetadataTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/metadata_templates/',
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -267,10 +270,10 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
   async updateMetadataTemplate(
-    scope: UpdateMetadataTemplateScopeArg,
+    scope: UpdateMetadataTemplateScope,
     templateKey: string,
-    requestBody: readonly UpdateMetadataTemplateRequestBodyArg[],
-    headers: UpdateMetadataTemplateHeadersArg = new UpdateMetadataTemplateHeadersArg(
+    requestBody: readonly UpdateMetadataTemplateRequestBody[],
+    headers: UpdateMetadataTemplateHeaders = new UpdateMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -280,7 +283,8 @@ export class MetadataTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/metadata_templates/',
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -290,7 +294,7 @@ export class MetadataTemplatesManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateMetadataTemplateRequestBodyArg
+          serializeUpdateMetadataTemplateRequestBody
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -302,9 +306,9 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
   async deleteMetadataTemplate(
-    scope: DeleteMetadataTemplateScopeArg,
+    scope: DeleteMetadataTemplateScope,
     templateKey: string,
-    headers: DeleteMetadataTemplateHeadersArg = new DeleteMetadataTemplateHeadersArg(
+    headers: DeleteMetadataTemplateHeaders = new DeleteMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -314,7 +318,8 @@ export class MetadataTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/metadata_templates/',
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -333,7 +338,7 @@ export class MetadataTemplatesManager {
   }
   async getMetadataTemplateById(
     templateId: string,
-    headers: GetMetadataTemplateByIdHeadersArg = new GetMetadataTemplateByIdHeadersArg(
+    headers: GetMetadataTemplateByIdHeaders = new GetMetadataTemplateByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -343,7 +348,8 @@ export class MetadataTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/metadata_templates/',
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/',
         toString(templateId) as string
       ) as string,
       {
@@ -358,38 +364,8 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
   async getGlobalMetadataTemplates(
-    queryParams: GetGlobalMetadataTemplatesQueryParamsArg = {} satisfies GetGlobalMetadataTemplatesQueryParamsArg,
-    headers: GetGlobalMetadataTemplatesHeadersArg = new GetGlobalMetadataTemplatesHeadersArg(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<MetadataTemplates> {
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['marker']: toString(queryParams.marker) as string,
-      ['limit']: toString(queryParams.limit) as string,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/metadata_templates/global') as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeMetadataTemplates(response.data);
-  }
-  async getEnterpriseMetadataTemplates(
-    queryParams: GetEnterpriseMetadataTemplatesQueryParamsArg = {} satisfies GetEnterpriseMetadataTemplatesQueryParamsArg,
-    headers: GetEnterpriseMetadataTemplatesHeadersArg = new GetEnterpriseMetadataTemplatesHeadersArg(
+    queryParams: GetGlobalMetadataTemplatesQueryParams = {} satisfies GetGlobalMetadataTemplatesQueryParams,
+    headers: GetGlobalMetadataTemplatesHeaders = new GetGlobalMetadataTemplatesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -405,7 +381,41 @@ export class MetadataTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/metadata_templates/enterprise'
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/global'
+      ) as string,
+      {
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json',
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      } satisfies FetchOptions
+    )) as FetchResponse;
+    return deserializeMetadataTemplates(response.data);
+  }
+  async getEnterpriseMetadataTemplates(
+    queryParams: GetEnterpriseMetadataTemplatesQueryParams = {} satisfies GetEnterpriseMetadataTemplatesQueryParams,
+    headers: GetEnterpriseMetadataTemplatesHeaders = new GetEnterpriseMetadataTemplatesHeaders(
+      {}
+    ),
+    cancellationToken?: CancellationToken
+  ): Promise<MetadataTemplates> {
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/enterprise'
       ) as string,
       {
         method: 'GET',
@@ -420,8 +430,8 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplates(response.data);
   }
   async createMetadataTemplate(
-    requestBody: CreateMetadataTemplateRequestBodyArg,
-    headers: CreateMetadataTemplateHeadersArg = new CreateMetadataTemplateHeadersArg(
+    requestBody: CreateMetadataTemplateRequestBody,
+    headers: CreateMetadataTemplateHeaders = new CreateMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -430,11 +440,14 @@ export class MetadataTemplatesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/metadata_templates/schema') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/metadata_templates/schema'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateMetadataTemplateRequestBodyArg(requestBody),
+        data: serializeCreateMetadataTemplateRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -445,16 +458,16 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
 }
-export function serializeGetMetadataTemplateScopeArg(
-  val: GetMetadataTemplateScopeArg
+export function serializeGetMetadataTemplateScope(
+  val: GetMetadataTemplateScope
 ): SerializedData {
   return val;
 }
-export function deserializeGetMetadataTemplateScopeArg(
+export function deserializeGetMetadataTemplateScope(
   val: any
-): GetMetadataTemplateScopeArg {
+): GetMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetMetadataTemplateScopeArg"';
+    throw 'Expecting a string for "GetMetadataTemplateScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -464,16 +477,16 @@ export function deserializeGetMetadataTemplateScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateScopeArg(
-  val: UpdateMetadataTemplateScopeArg
+export function serializeUpdateMetadataTemplateScope(
+  val: UpdateMetadataTemplateScope
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateMetadataTemplateScopeArg(
+export function deserializeUpdateMetadataTemplateScope(
   val: any
-): UpdateMetadataTemplateScopeArg {
+): UpdateMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateScopeArg"';
+    throw 'Expecting a string for "UpdateMetadataTemplateScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -483,16 +496,16 @@ export function deserializeUpdateMetadataTemplateScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateRequestBodyArgOpField(
-  val: UpdateMetadataTemplateRequestBodyArgOpField
+export function serializeUpdateMetadataTemplateRequestBodyOpField(
+  val: UpdateMetadataTemplateRequestBodyOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateMetadataTemplateRequestBodyArgOpField(
+export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   val: any
-): UpdateMetadataTemplateRequestBodyArgOpField {
+): UpdateMetadataTemplateRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateRequestBodyArgOpField"';
+    throw 'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"';
   }
   if (val == 'editTemplate') {
     return 'editTemplate';
@@ -535,11 +548,11 @@ export function deserializeUpdateMetadataTemplateRequestBodyArgOpField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateMetadataTemplateRequestBodyArg(
-  val: UpdateMetadataTemplateRequestBodyArg
+export function serializeUpdateMetadataTemplateRequestBody(
+  val: UpdateMetadataTemplateRequestBody
 ): SerializedData {
   return {
-    ['op']: serializeUpdateMetadataTemplateRequestBodyArgOpField(val.op),
+    ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
     ['data']: val.data == void 0 ? void 0 : val.data,
     ['fieldKey']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
     ['fieldKeys']:
@@ -565,11 +578,11 @@ export function serializeUpdateMetadataTemplateRequestBodyArg(
           }) as readonly any[]),
   };
 }
-export function deserializeUpdateMetadataTemplateRequestBodyArg(
+export function deserializeUpdateMetadataTemplateRequestBody(
   val: any
-): UpdateMetadataTemplateRequestBodyArg {
-  const op: UpdateMetadataTemplateRequestBodyArgOpField =
-    deserializeUpdateMetadataTemplateRequestBodyArgOpField(val.op);
+): UpdateMetadataTemplateRequestBody {
+  const op: UpdateMetadataTemplateRequestBodyOpField =
+    deserializeUpdateMetadataTemplateRequestBodyOpField(val.op);
   const data:
     | undefined
     | {
@@ -614,18 +627,18 @@ export function deserializeUpdateMetadataTemplateRequestBodyArg(
     enumOptionKeys: enumOptionKeys,
     multiSelectOptionKey: multiSelectOptionKey,
     multiSelectOptionKeys: multiSelectOptionKeys,
-  } satisfies UpdateMetadataTemplateRequestBodyArg;
+  } satisfies UpdateMetadataTemplateRequestBody;
 }
-export function serializeDeleteMetadataTemplateScopeArg(
-  val: DeleteMetadataTemplateScopeArg
+export function serializeDeleteMetadataTemplateScope(
+  val: DeleteMetadataTemplateScope
 ): SerializedData {
   return val;
 }
-export function deserializeDeleteMetadataTemplateScopeArg(
+export function deserializeDeleteMetadataTemplateScope(
   val: any
-): DeleteMetadataTemplateScopeArg {
+): DeleteMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteMetadataTemplateScopeArg"';
+    throw 'Expecting a string for "DeleteMetadataTemplateScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -635,16 +648,16 @@ export function deserializeDeleteMetadataTemplateScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
-  val: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField
+export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
+  val: CreateMetadataTemplateRequestBodyFieldsTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
+export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: any
-): CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField {
+): CreateMetadataTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField"';
+    throw 'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"';
   }
   if (val == 'string') {
     return 'string';
@@ -663,24 +676,24 @@ export function deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeFi
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
-  val: CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField
+export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
+  val: CreateMetadataTemplateRequestBodyFieldsOptionsField
 ): SerializedData {
   return { ['key']: val.key };
 }
-export function deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
+export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   val: any
-): CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField {
+): CreateMetadataTemplateRequestBodyFieldsOptionsField {
   const key: string = val.key;
   return {
     key: key,
-  } satisfies CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField;
+  } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField;
 }
-export function serializeCreateMetadataTemplateRequestBodyArgFieldsField(
-  val: CreateMetadataTemplateRequestBodyArgFieldsField
+export function serializeCreateMetadataTemplateRequestBodyFieldsField(
+  val: CreateMetadataTemplateRequestBodyFieldsField
 ): SerializedData {
   return {
-    ['type']: serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
+    ['type']: serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
       val.type
     ),
     ['key']: val.key,
@@ -691,21 +704,19 @@ export function serializeCreateMetadataTemplateRequestBodyArgFieldsField(
       val.options == void 0
         ? void 0
         : (val.options.map(function (
-            item: CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField
+            item: CreateMetadataTemplateRequestBodyFieldsOptionsField
           ): any {
-            return serializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
+            return serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
               item
             );
           }) as readonly any[]),
   };
 }
-export function deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
+export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
   val: any
-): CreateMetadataTemplateRequestBodyArgFieldsField {
-  const type: CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField =
-    deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField(
-      val.type
-    );
+): CreateMetadataTemplateRequestBodyFieldsField {
+  const type: CreateMetadataTemplateRequestBodyFieldsTypeField =
+    deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(val.type);
   const key: string = val.key;
   const displayName: string = val.displayName;
   const description: undefined | string =
@@ -714,12 +725,12 @@ export function deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
     val.hidden == void 0 ? void 0 : val.hidden;
   const options:
     | undefined
-    | readonly CreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField[] =
+    | readonly CreateMetadataTemplateRequestBodyFieldsOptionsField[] =
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
       ? (val.options.map(function (itm: SerializedData): any {
-          return deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldOptionsField(
+          return deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
             itm
           );
         }) as readonly any[])
@@ -731,10 +742,10 @@ export function deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
     description: description,
     hidden: hidden,
     options: options,
-  } satisfies CreateMetadataTemplateRequestBodyArgFieldsField;
+  } satisfies CreateMetadataTemplateRequestBodyFieldsField;
 }
-export function serializeCreateMetadataTemplateRequestBodyArg(
-  val: CreateMetadataTemplateRequestBodyArg
+export function serializeCreateMetadataTemplateRequestBody(
+  val: CreateMetadataTemplateRequestBody
 ): SerializedData {
   return {
     ['scope']: val.scope,
@@ -745,11 +756,9 @@ export function serializeCreateMetadataTemplateRequestBodyArg(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: CreateMetadataTemplateRequestBodyArgFieldsField
+            item: CreateMetadataTemplateRequestBodyFieldsField
           ): any {
-            return serializeCreateMetadataTemplateRequestBodyArgFieldsField(
-              item
-            );
+            return serializeCreateMetadataTemplateRequestBodyFieldsField(item);
           }) as readonly any[]),
     ['copyInstanceOnItemCopy']:
       val.copyInstanceOnItemCopy == void 0
@@ -757,9 +766,9 @@ export function serializeCreateMetadataTemplateRequestBodyArg(
         : val.copyInstanceOnItemCopy,
   };
 }
-export function deserializeCreateMetadataTemplateRequestBodyArg(
+export function deserializeCreateMetadataTemplateRequestBody(
   val: any
-): CreateMetadataTemplateRequestBodyArg {
+): CreateMetadataTemplateRequestBody {
   const scope: string = val.scope;
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
@@ -768,14 +777,12 @@ export function deserializeCreateMetadataTemplateRequestBodyArg(
     val.hidden == void 0 ? void 0 : val.hidden;
   const fields:
     | undefined
-    | readonly CreateMetadataTemplateRequestBodyArgFieldsField[] =
+    | readonly CreateMetadataTemplateRequestBodyFieldsField[] =
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
       ? (val.fields.map(function (itm: SerializedData): any {
-          return deserializeCreateMetadataTemplateRequestBodyArgFieldsField(
-            itm
-          );
+          return deserializeCreateMetadataTemplateRequestBodyFieldsField(itm);
         }) as readonly any[])
       : [];
   const copyInstanceOnItemCopy: undefined | boolean =
@@ -787,5 +794,5 @@ export function deserializeCreateMetadataTemplateRequestBodyArg(
     hidden: hidden,
     fields: fields,
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
-  } satisfies CreateMetadataTemplateRequestBodyArg;
+  } satisfies CreateMetadataTemplateRequestBody;
 }

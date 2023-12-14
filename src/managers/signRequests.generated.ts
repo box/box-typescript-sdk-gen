@@ -27,88 +27,91 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class CancelSignRequestHeadersArg {
+export class CancelSignRequestHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CancelSignRequestHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CancelSignRequestHeadersArg, 'extraHeaders'>>
+      | Omit<CancelSignRequestHeaders, 'extraHeaders'>
+      | Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class ResendSignRequestHeadersArg {
+export class ResendSignRequestHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<ResendSignRequestHeadersArg, 'extraHeaders'>
-      | Partial<Pick<ResendSignRequestHeadersArg, 'extraHeaders'>>
+      | Omit<ResendSignRequestHeaders, 'extraHeaders'>
+      | Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetSignRequestByIdHeadersArg {
+export class GetSignRequestByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetSignRequestByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetSignRequestByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetSignRequestByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetSignRequestsQueryParamsArg {
+export interface GetSignRequestsQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetSignRequestsHeadersArg {
+export class GetSignRequestsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetSignRequestsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetSignRequestsHeadersArg, 'extraHeaders'>>
+      | Omit<GetSignRequestsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateSignRequestHeadersArg {
+export class CreateSignRequestHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateSignRequestHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateSignRequestHeadersArg, 'extraHeaders'>>
+      | Omit<CreateSignRequestHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class SignRequestsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      SignRequestsManager,
-      | 'cancelSignRequest'
-      | 'resendSignRequest'
-      | 'getSignRequestById'
-      | 'getSignRequests'
-      | 'createSignRequest'
-    >
+    fields:
+      | Omit<
+          SignRequestsManager,
+          | 'networkSession'
+          | 'cancelSignRequest'
+          | 'resendSignRequest'
+          | 'getSignRequestById'
+          | 'getSignRequests'
+          | 'createSignRequest'
+        >
+      | Partial<Pick<SignRequestsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async cancelSignRequest(
     signRequestId: string,
-    headers: CancelSignRequestHeadersArg = new CancelSignRequestHeadersArg({}),
+    headers: CancelSignRequestHeaders = new CancelSignRequestHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
@@ -116,7 +119,8 @@ export class SignRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/sign_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_requests/',
         toString(signRequestId) as string,
         '/cancel'
       ) as string,
@@ -133,7 +137,7 @@ export class SignRequestsManager {
   }
   async resendSignRequest(
     signRequestId: string,
-    headers: ResendSignRequestHeadersArg = new ResendSignRequestHeadersArg({}),
+    headers: ResendSignRequestHeaders = new ResendSignRequestHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -141,7 +145,8 @@ export class SignRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/sign_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_requests/',
         toString(signRequestId) as string,
         '/resend'
       ) as string,
@@ -158,9 +163,7 @@ export class SignRequestsManager {
   }
   async getSignRequestById(
     signRequestId: string,
-    headers: GetSignRequestByIdHeadersArg = new GetSignRequestByIdHeadersArg(
-      {}
-    ),
+    headers: GetSignRequestByIdHeaders = new GetSignRequestByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
@@ -168,7 +171,8 @@ export class SignRequestsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/sign_requests/',
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_requests/',
         toString(signRequestId) as string
       ) as string,
       {
@@ -183,8 +187,8 @@ export class SignRequestsManager {
     return deserializeSignRequest(response.data);
   }
   async getSignRequests(
-    queryParams: GetSignRequestsQueryParamsArg = {} satisfies GetSignRequestsQueryParamsArg,
-    headers: GetSignRequestsHeadersArg = new GetSignRequestsHeadersArg({}),
+    queryParams: GetSignRequestsQueryParams = {} satisfies GetSignRequestsQueryParams,
+    headers: GetSignRequestsHeaders = new GetSignRequestsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignRequests> {
     const queryParamsMap: {
@@ -197,7 +201,10 @@ export class SignRequestsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/sign_requests') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_requests'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -212,14 +219,17 @@ export class SignRequestsManager {
   }
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
-    headers: CreateSignRequestHeadersArg = new CreateSignRequestHeadersArg({}),
+    headers: CreateSignRequestHeaders = new CreateSignRequestHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignRequest> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/sign_requests') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_requests'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,

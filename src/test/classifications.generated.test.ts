@@ -1,27 +1,27 @@
-import { serializeUpdateClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
-import { serializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
-import { deserializeClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
+import { serializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
+import { serializeUpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { serializeUpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { serializeUpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { serializeUpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
+import { deserializeUpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
+import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
+import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { UpdateClassificationRequestBodyArg } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyArgOpField } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyArgFieldKeyField } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyArgDataField } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyArgDataFieldStaticConfigField } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField } from '../managers/classifications.generated.js';
-import { ClassificationTemplateFieldsFieldOptionsField } from '../schemas.generated.js';
+import { UpdateClassificationRequestBody } from '../managers/classifications.generated.js';
+import { UpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
+import { UpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
+import { UpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
+import { UpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
+import { UpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
+import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getOrCreateClassificationTemplate } from './commons.generated.js';
@@ -60,9 +60,9 @@ test('testClassifications', async function testClassifications(): Promise<any> {
   const classificationTemplateWithUpdatedClassification: ClassificationTemplate =
     await client.classifications.updateClassification([
       {
-        op: 'editEnumOption' as UpdateClassificationRequestBodyArgOpField,
+        op: 'editEnumOption' as UpdateClassificationRequestBodyOpField,
         fieldKey:
-          'Box__Security__Classification__Key' as UpdateClassificationRequestBodyArgFieldKeyField,
+          'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField,
         enumOptionKey: classification.key,
         data: {
           key: updatedClassificationName,
@@ -70,12 +70,12 @@ test('testClassifications', async function testClassifications(): Promise<any> {
             classification: {
               colorId: 2,
               classificationDefinition: updatedClassificationDescription,
-            } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
-          } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigField,
-        } satisfies UpdateClassificationRequestBodyArgDataField,
-      } satisfies UpdateClassificationRequestBodyArg,
+            } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField,
+          } satisfies UpdateClassificationRequestBodyDataStaticConfigField,
+        } satisfies UpdateClassificationRequestBodyDataField,
+      } satisfies UpdateClassificationRequestBody,
     ]);
-  const updatedClassifications: readonly ClassificationTemplateFieldsFieldOptionsField[] =
+  const updatedClassifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplateWithUpdatedClassification.fields[0].options;
   const updatedClassification: any = updatedClassifications[0];
   if (!(updatedClassification.key == updatedClassificationName)) {

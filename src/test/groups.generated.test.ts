@@ -2,16 +2,16 @@ import { serializeGroups } from '../schemas.generated.js';
 import { deserializeGroups } from '../schemas.generated.js';
 import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
-import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { serializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
-import { deserializeUpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
+import { serializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { deserializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { serializeUpdateGroupByIdRequestBody } from '../managers/groups.generated.js';
+import { deserializeUpdateGroupByIdRequestBody } from '../managers/groups.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Groups } from '../schemas.generated.js';
 import { GroupFull } from '../schemas.generated.js';
-import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { GetGroupByIdQueryParamsArg } from '../managers/groups.generated.js';
-import { UpdateGroupByIdRequestBodyArg } from '../managers/groups.generated.js';
+import { CreateGroupRequestBody } from '../managers/groups.generated.js';
+import { GetGroupByIdQueryParams } from '../managers/groups.generated.js';
+import { UpdateGroupByIdRequestBody } from '../managers/groups.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
@@ -34,13 +34,13 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
   const group: GroupFull = await client.groups.createGroup({
     name: groupName,
     description: groupDescription,
-  } satisfies CreateGroupRequestBodyArg);
+  } satisfies CreateGroupRequestBody);
   if (!(group.name == groupName)) {
     throw 'Assertion failed';
   }
   const groupById: GroupFull = await client.groups.getGroupById(group.id, {
     fields: ['id' as '', 'name' as '', 'description' as '', 'group_type' as ''],
-  } satisfies GetGroupByIdQueryParamsArg);
+  } satisfies GetGroupByIdQueryParams);
   if (!(groupById.id == group.id)) {
     throw 'Assertion failed';
   }
@@ -50,7 +50,7 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
   const updatedGroupName: string = getUuid();
   const updatedGroup: GroupFull = await client.groups.updateGroupById(
     group.id,
-    { name: updatedGroupName } satisfies UpdateGroupByIdRequestBodyArg
+    { name: updatedGroupName } satisfies UpdateGroupByIdRequestBody
   );
   if (!(updatedGroup.name == updatedGroupName)) {
     throw 'Assertion failed';

@@ -20,51 +20,55 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface CreateUserTerminateSessionRequestBodyArg {
+export interface CreateUserTerminateSessionRequestBody {
   readonly userIds: readonly string[];
   readonly userLogins: readonly string[];
 }
-export class CreateUserTerminateSessionHeadersArg {
+export class CreateUserTerminateSessionHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateUserTerminateSessionHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateUserTerminateSessionHeadersArg, 'extraHeaders'>>
+      | Omit<CreateUserTerminateSessionHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateUserTerminateSessionHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateGroupTerminateSessionRequestBodyArg {
+export interface CreateGroupTerminateSessionRequestBody {
   readonly groupIds: readonly string[];
 }
-export class CreateGroupTerminateSessionHeadersArg {
+export class CreateGroupTerminateSessionHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateGroupTerminateSessionHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateGroupTerminateSessionHeadersArg, 'extraHeaders'>>
+      | Omit<CreateGroupTerminateSessionHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateGroupTerminateSessionHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class SessionTerminationManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      SessionTerminationManager,
-      'createUserTerminateSession' | 'createGroupTerminateSession'
-    >
+    fields:
+      | Omit<
+          SessionTerminationManager,
+          | 'networkSession'
+          | 'createUserTerminateSession'
+          | 'createGroupTerminateSession'
+        >
+      | Partial<Pick<SessionTerminationManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async createUserTerminateSession(
-    requestBody: CreateUserTerminateSessionRequestBodyArg,
-    headers: CreateUserTerminateSessionHeadersArg = new CreateUserTerminateSessionHeadersArg(
+    requestBody: CreateUserTerminateSessionRequestBody,
+    headers: CreateUserTerminateSessionHeaders = new CreateUserTerminateSessionHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -73,11 +77,14 @@ export class SessionTerminationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/users/terminate_sessions') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/users/terminate_sessions'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateUserTerminateSessionRequestBodyArg(requestBody),
+        data: serializeCreateUserTerminateSessionRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -88,8 +95,8 @@ export class SessionTerminationManager {
     return deserializeSessionTerminationMessage(response.data);
   }
   async createGroupTerminateSession(
-    requestBody: CreateGroupTerminateSessionRequestBodyArg,
-    headers: CreateGroupTerminateSessionHeadersArg = new CreateGroupTerminateSessionHeadersArg(
+    requestBody: CreateGroupTerminateSessionRequestBody,
+    headers: CreateGroupTerminateSessionHeaders = new CreateGroupTerminateSessionHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -98,11 +105,14 @@ export class SessionTerminationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/groups/terminate_sessions') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/terminate_sessions'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateGroupTerminateSessionRequestBodyArg(requestBody),
+        data: serializeCreateGroupTerminateSessionRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -113,8 +123,8 @@ export class SessionTerminationManager {
     return deserializeSessionTerminationMessage(response.data);
   }
 }
-export function serializeCreateUserTerminateSessionRequestBodyArg(
-  val: CreateUserTerminateSessionRequestBodyArg
+export function serializeCreateUserTerminateSessionRequestBody(
+  val: CreateUserTerminateSessionRequestBody
 ): SerializedData {
   return {
     ['user_ids']: val.userIds.map(function (item: string): any {
@@ -125,9 +135,9 @@ export function serializeCreateUserTerminateSessionRequestBodyArg(
     }) as readonly any[],
   };
 }
-export function deserializeCreateUserTerminateSessionRequestBodyArg(
+export function deserializeCreateUserTerminateSessionRequestBody(
   val: any
-): CreateUserTerminateSessionRequestBodyArg {
+): CreateUserTerminateSessionRequestBody {
   const userIds: readonly string[] = sdIsList(val.user_ids)
     ? (val.user_ids.map(function (itm: SerializedData): any {
         return itm;
@@ -141,10 +151,10 @@ export function deserializeCreateUserTerminateSessionRequestBodyArg(
   return {
     userIds: userIds,
     userLogins: userLogins,
-  } satisfies CreateUserTerminateSessionRequestBodyArg;
+  } satisfies CreateUserTerminateSessionRequestBody;
 }
-export function serializeCreateGroupTerminateSessionRequestBodyArg(
-  val: CreateGroupTerminateSessionRequestBodyArg
+export function serializeCreateGroupTerminateSessionRequestBody(
+  val: CreateGroupTerminateSessionRequestBody
 ): SerializedData {
   return {
     ['group_ids']: val.groupIds.map(function (item: string): any {
@@ -152,9 +162,9 @@ export function serializeCreateGroupTerminateSessionRequestBodyArg(
     }) as readonly any[],
   };
 }
-export function deserializeCreateGroupTerminateSessionRequestBodyArg(
+export function deserializeCreateGroupTerminateSessionRequestBody(
   val: any
-): CreateGroupTerminateSessionRequestBodyArg {
+): CreateGroupTerminateSessionRequestBody {
   const groupIds: readonly string[] = sdIsList(val.group_ids)
     ? (val.group_ids.map(function (itm: SerializedData): any {
         return itm;
@@ -162,5 +172,5 @@ export function deserializeCreateGroupTerminateSessionRequestBodyArg(
     : [];
   return {
     groupIds: groupIds,
-  } satisfies CreateGroupTerminateSessionRequestBodyArg;
+  } satisfies CreateGroupTerminateSessionRequestBody;
 }

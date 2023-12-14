@@ -24,63 +24,64 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetUserEmailAliasesHeadersArg {
+export class GetUserEmailAliasesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUserEmailAliasesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUserEmailAliasesHeadersArg, 'extraHeaders'>>
+      | Omit<GetUserEmailAliasesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUserEmailAliasesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateUserEmailAliasRequestBodyArg {
+export interface CreateUserEmailAliasRequestBody {
   readonly email: string;
 }
-export class CreateUserEmailAliasHeadersArg {
+export class CreateUserEmailAliasHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateUserEmailAliasHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateUserEmailAliasHeadersArg, 'extraHeaders'>>
+      | Omit<CreateUserEmailAliasHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateUserEmailAliasHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteUserEmailAliasByIdHeadersArg {
+export class DeleteUserEmailAliasByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteUserEmailAliasByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteUserEmailAliasByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class EmailAliasesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      EmailAliasesManager,
-      | 'getUserEmailAliases'
-      | 'createUserEmailAlias'
-      | 'deleteUserEmailAliasById'
-    >
+    fields:
+      | Omit<
+          EmailAliasesManager,
+          | 'networkSession'
+          | 'getUserEmailAliases'
+          | 'createUserEmailAlias'
+          | 'deleteUserEmailAliasById'
+        >
+      | Partial<Pick<EmailAliasesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getUserEmailAliases(
     userId: string,
-    headers: GetUserEmailAliasesHeadersArg = new GetUserEmailAliasesHeadersArg(
-      {}
-    ),
+    headers: GetUserEmailAliasesHeaders = new GetUserEmailAliasesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<EmailAliases> {
     const headersMap: {
@@ -88,7 +89,8 @@ export class EmailAliasesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/email_aliases'
       ) as string,
@@ -105,10 +107,8 @@ export class EmailAliasesManager {
   }
   async createUserEmailAlias(
     userId: string,
-    requestBody: CreateUserEmailAliasRequestBodyArg,
-    headers: CreateUserEmailAliasHeadersArg = new CreateUserEmailAliasHeadersArg(
-      {}
-    ),
+    requestBody: CreateUserEmailAliasRequestBody,
+    headers: CreateUserEmailAliasHeaders = new CreateUserEmailAliasHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<EmailAlias> {
     const headersMap: {
@@ -116,14 +116,15 @@ export class EmailAliasesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/email_aliases'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateUserEmailAliasRequestBodyArg(requestBody),
+        data: serializeCreateUserEmailAliasRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -136,7 +137,7 @@ export class EmailAliasesManager {
   async deleteUserEmailAliasById(
     userId: string,
     emailAliasId: string,
-    headers: DeleteUserEmailAliasByIdHeadersArg = new DeleteUserEmailAliasByIdHeadersArg(
+    headers: DeleteUserEmailAliasByIdHeaders = new DeleteUserEmailAliasByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -146,7 +147,8 @@ export class EmailAliasesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/email_aliases/',
         toString(emailAliasId) as string
@@ -163,14 +165,14 @@ export class EmailAliasesManager {
     return void 0;
   }
 }
-export function serializeCreateUserEmailAliasRequestBodyArg(
-  val: CreateUserEmailAliasRequestBodyArg
+export function serializeCreateUserEmailAliasRequestBody(
+  val: CreateUserEmailAliasRequestBody
 ): SerializedData {
   return { ['email']: val.email };
 }
-export function deserializeCreateUserEmailAliasRequestBodyArg(
+export function deserializeCreateUserEmailAliasRequestBody(
   val: any
-): CreateUserEmailAliasRequestBodyArg {
+): CreateUserEmailAliasRequestBody {
   const email: string = val.email;
-  return { email: email } satisfies CreateUserEmailAliasRequestBodyArg;
+  return { email: email } satisfies CreateUserEmailAliasRequestBody;
 }

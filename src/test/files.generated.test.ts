@@ -2,33 +2,33 @@ import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { serializeGetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
-import { deserializeGetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { serializeGetFileThumbnailByIdExtension } from '../managers/files.generated.js';
+import { deserializeGetFileThumbnailByIdExtension } from '../managers/files.generated.js';
 import { serializeTrashFile } from '../schemas.generated.js';
 import { deserializeTrashFile } from '../schemas.generated.js';
-import { serializeUpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
-import { deserializeUpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
-import { serializeCopyFileRequestBodyArg } from '../managers/files.generated.js';
-import { deserializeCopyFileRequestBodyArg } from '../managers/files.generated.js';
-import { serializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
-import { deserializeCopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
+import { serializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { deserializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { serializeCopyFileRequestBody } from '../managers/files.generated.js';
+import { deserializeCopyFileRequestBody } from '../managers/files.generated.js';
+import { serializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
+import { deserializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { GetFileThumbnailByIdExtensionArg } from '../managers/files.generated.js';
-import { GetFileByIdQueryParamsArg } from '../managers/files.generated.js';
-import { GetFileByIdHeadersArg } from '../managers/files.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { GetFileThumbnailByIdExtension } from '../managers/files.generated.js';
+import { GetFileByIdQueryParams } from '../managers/files.generated.js';
+import { GetFileByIdHeaders } from '../managers/files.generated.js';
 import { TrashFile } from '../schemas.generated.js';
-import { UpdateFileByIdRequestBodyArg } from '../managers/files.generated.js';
-import { CopyFileRequestBodyArg } from '../managers/files.generated.js';
-import { CopyFileRequestBodyArgParentField } from '../managers/files.generated.js';
+import { UpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { CopyFileRequestBody } from '../managers/files.generated.js';
+import { CopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { readByteStream } from '../utils.js';
@@ -51,12 +51,10 @@ export async function uploadFile(
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: fileStream,
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   return uploadedFiles.entries![0];
 }
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
@@ -72,7 +70,7 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
         await readByteStream(
           await client.files.getFileThumbnailById(
             thumbnailFile.id,
-            'png' as GetFileThumbnailByIdExtensionArg
+            'png' as GetFileThumbnailByIdExtension
           )
         ),
         await readByteStream(thumbnailContentStream)
@@ -89,7 +87,7 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
   const uploadedFile: FileFull = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
     fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
-  } satisfies GetFileByIdQueryParamsArg);
+  } satisfies GetFileByIdQueryParams);
   if (!(file.isExternallyOwned == false)) {
     throw 'Assertion failed';
   }
@@ -109,10 +107,8 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   await expect(async () => {
     await client.files.getFileById(
       uploadedFile.id,
-      { fields: ['name' as ''] } satisfies GetFileByIdQueryParamsArg,
-      new GetFileByIdHeadersArg({
-        extraHeaders: { ['if-none-match']: file.etag },
-      })
+      { fields: ['name' as ''] } satisfies GetFileByIdQueryParams,
+      new GetFileByIdHeaders({ extraHeaders: { ['if-none-match']: file.etag } })
     );
   }).rejects.toThrow();
   if (!(file.name == newFileName)) {
@@ -134,7 +130,7 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
     {
       name: updatedName,
       description: 'Updated description',
-    } satisfies UpdateFileByIdRequestBodyArg
+    } satisfies UpdateFileByIdRequestBody
   );
   if (!(updatedFile.name == updatedName)) {
     throw 'Assertion failed';
@@ -148,9 +144,9 @@ test('testCopyFile', async function testCopyFile(): Promise<any> {
   const fileOrigin: FileFull = await uploadNewFile();
   const copiedFileName: string = getUuid();
   const copiedFile: FileFull = await client.files.copyFile(fileOrigin.id, {
-    parent: { id: '0' } satisfies CopyFileRequestBodyArgParentField,
+    parent: { id: '0' } satisfies CopyFileRequestBodyParentField,
     name: copiedFileName,
-  } satisfies CopyFileRequestBodyArg);
+  } satisfies CopyFileRequestBody);
   if (!(copiedFile.parent!.id == '0')) {
     throw 'Assertion failed';
   }

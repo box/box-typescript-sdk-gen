@@ -6,8 +6,8 @@ import { serializeZipDownloadRequest } from '../schemas.generated.js';
 import { deserializeZipDownloadRequest } from '../schemas.generated.js';
 import { serializeZipDownloadRequestItemsField } from '../schemas.generated.js';
 import { deserializeZipDownloadRequestItemsField } from '../schemas.generated.js';
-import { serializeZipDownloadRequestItemsFieldTypeField } from '../schemas.generated.js';
-import { deserializeZipDownloadRequestItemsFieldTypeField } from '../schemas.generated.js';
+import { serializeZipDownloadRequestItemsTypeField } from '../schemas.generated.js';
+import { deserializeZipDownloadRequestItemsTypeField } from '../schemas.generated.js';
 import { serializeZipDownload } from '../schemas.generated.js';
 import { deserializeZipDownload } from '../schemas.generated.js';
 import { serializeZipDownloadStatus } from '../schemas.generated.js';
@@ -18,7 +18,7 @@ import { FolderFull } from '../schemas.generated.js';
 import { ByteStream } from '../utils.js';
 import { ZipDownloadRequest } from '../schemas.generated.js';
 import { ZipDownloadRequestItemsField } from '../schemas.generated.js';
-import { ZipDownloadRequestItemsFieldTypeField } from '../schemas.generated.js';
+import { ZipDownloadRequestItemsTypeField } from '../schemas.generated.js';
 import { ZipDownload } from '../schemas.generated.js';
 import { ZipDownloadStatus } from '../schemas.generated.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -45,15 +45,15 @@ test('testZipDownload', async function testZipDownload(): Promise<any> {
     items: [
       {
         id: file1.id,
-        type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'file' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
       {
         id: file2.id,
-        type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'file' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
       {
         id: folder1.id,
-        type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'folder' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
     ],
     downloadFileName: 'zip',
@@ -78,15 +78,15 @@ test('testManualZipDownloadAndCheckStatus', async function testManualZipDownload
     items: [
       {
         id: file1.id,
-        type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'file' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
       {
         id: file2.id,
-        type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'file' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
       {
         id: folder1.id,
-        type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+        type: 'folder' as ZipDownloadRequestItemsTypeField,
       } satisfies ZipDownloadRequestItemsField,
     ],
     downloadFileName: 'zip',

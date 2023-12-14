@@ -24,71 +24,76 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface RestoreFolderFromTrashRequestBodyArgParentField {
+export interface RestoreFolderFromTrashRequestBodyParentField {
   readonly id?: string;
 }
-export interface RestoreFolderFromTrashRequestBodyArg {
+export interface RestoreFolderFromTrashRequestBody {
   readonly name?: string;
-  readonly parent?: RestoreFolderFromTrashRequestBodyArgParentField;
+  readonly parent?: RestoreFolderFromTrashRequestBodyParentField;
 }
-export interface RestoreFolderFromTrashQueryParamsArg {
+export interface RestoreFolderFromTrashQueryParams {
   readonly fields?: readonly string[];
 }
-export class RestoreFolderFromTrashHeadersArg {
+export class RestoreFolderFromTrashHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<RestoreFolderFromTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<RestoreFolderFromTrashHeadersArg, 'extraHeaders'>>
+      | Omit<RestoreFolderFromTrashHeaders, 'extraHeaders'>
+      | Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetFolderTrashQueryParamsArg {
+export interface GetFolderTrashQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFolderTrashHeadersArg {
+export class GetFolderTrashHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderTrashHeadersArg, 'extraHeaders'>>
+      | Omit<GetFolderTrashHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFolderTrashHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFolderTrashHeadersArg {
+export class DeleteFolderTrashHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFolderTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderTrashHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFolderTrashHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderTrashHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TrashedFoldersManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TrashedFoldersManager,
-      'restoreFolderFromTrash' | 'getFolderTrash' | 'deleteFolderTrash'
-    >
+    fields:
+      | Omit<
+          TrashedFoldersManager,
+          | 'networkSession'
+          | 'restoreFolderFromTrash'
+          | 'getFolderTrash'
+          | 'deleteFolderTrash'
+        >
+      | Partial<Pick<TrashedFoldersManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async restoreFolderFromTrash(
     folderId: string,
-    requestBody: RestoreFolderFromTrashRequestBodyArg = {} satisfies RestoreFolderFromTrashRequestBodyArg,
-    queryParams: RestoreFolderFromTrashQueryParamsArg = {} satisfies RestoreFolderFromTrashQueryParamsArg,
-    headers: RestoreFolderFromTrashHeadersArg = new RestoreFolderFromTrashHeadersArg(
+    requestBody: RestoreFolderFromTrashRequestBody = {} satisfies RestoreFolderFromTrashRequestBody,
+    queryParams: RestoreFolderFromTrashQueryParams = {} satisfies RestoreFolderFromTrashQueryParams,
+    headers: RestoreFolderFromTrashHeaders = new RestoreFolderFromTrashHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -105,14 +110,15 @@ export class TrashedFoldersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string
       ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeRestoreFolderFromTrashRequestBodyArg(requestBody),
+        data: serializeRestoreFolderFromTrashRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -124,8 +130,8 @@ export class TrashedFoldersManager {
   }
   async getFolderTrash(
     folderId: string,
-    queryParams: GetFolderTrashQueryParamsArg = {} satisfies GetFolderTrashQueryParamsArg,
-    headers: GetFolderTrashHeadersArg = new GetFolderTrashHeadersArg({}),
+    queryParams: GetFolderTrashQueryParams = {} satisfies GetFolderTrashQueryParams,
+    headers: GetFolderTrashHeaders = new GetFolderTrashHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TrashFolder> {
     const queryParamsMap: {
@@ -140,7 +146,8 @@ export class TrashedFoldersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/trash'
       ) as string,
@@ -158,7 +165,7 @@ export class TrashedFoldersManager {
   }
   async deleteFolderTrash(
     folderId: string,
-    headers: DeleteFolderTrashHeadersArg = new DeleteFolderTrashHeadersArg({}),
+    headers: DeleteFolderTrashHeaders = new DeleteFolderTrashHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -166,7 +173,8 @@ export class TrashedFoldersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/trash'
       ) as string,
@@ -182,38 +190,38 @@ export class TrashedFoldersManager {
     return void 0;
   }
 }
-export function serializeRestoreFolderFromTrashRequestBodyArgParentField(
-  val: RestoreFolderFromTrashRequestBodyArgParentField
+export function serializeRestoreFolderFromTrashRequestBodyParentField(
+  val: RestoreFolderFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeRestoreFolderFromTrashRequestBodyArgParentField(
+export function deserializeRestoreFolderFromTrashRequestBodyParentField(
   val: any
-): RestoreFolderFromTrashRequestBodyArgParentField {
+): RestoreFolderFromTrashRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies RestoreFolderFromTrashRequestBodyArgParentField;
+  return { id: id } satisfies RestoreFolderFromTrashRequestBodyParentField;
 }
-export function serializeRestoreFolderFromTrashRequestBodyArg(
-  val: RestoreFolderFromTrashRequestBodyArg
+export function serializeRestoreFolderFromTrashRequestBody(
+  val: RestoreFolderFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent),
+        : serializeRestoreFolderFromTrashRequestBodyParentField(val.parent),
   };
 }
-export function deserializeRestoreFolderFromTrashRequestBodyArg(
+export function deserializeRestoreFolderFromTrashRequestBody(
   val: any
-): RestoreFolderFromTrashRequestBodyArg {
+): RestoreFolderFromTrashRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const parent: undefined | RestoreFolderFromTrashRequestBodyArgParentField =
+  const parent: undefined | RestoreFolderFromTrashRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializeRestoreFolderFromTrashRequestBodyArgParentField(val.parent);
+      : deserializeRestoreFolderFromTrashRequestBodyParentField(val.parent);
   return {
     name: name,
     parent: parent,
-  } satisfies RestoreFolderFromTrashRequestBodyArg;
+  } satisfies RestoreFolderFromTrashRequestBody;
 }

@@ -4,28 +4,28 @@ import { serializeMetadatas } from '../schemas.generated.js';
 import { deserializeMetadatas } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
-import { serializeCreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { deserializeCreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { serializeGetFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { deserializeGetFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
-import { serializeDeleteFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { deserializeDeleteFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
+import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { serializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { Metadatas } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
-import { CreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { GetFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdRequestBodyArg } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdRequestBodyArgOpField } from '../managers/folderMetadata.generated.js';
-import { DeleteFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
+import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { GetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { DeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -50,7 +50,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const createdMetadata: any =
     await client.folderMetadata.createFolderMetadataById(
       folder.id,
-      'global' as CreateFolderMetadataByIdScopeArg,
+      'global' as CreateFolderMetadataByIdScope,
       'properties',
       { ['abc']: 'xyz' }
     );
@@ -66,7 +66,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const receivedMetadata: any =
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
-      'global' as GetFolderMetadataByIdScopeArg,
+      'global' as GetFolderMetadataByIdScope,
       'properties'
     );
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
@@ -76,20 +76,20 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const updatedMetadata: any =
     await client.folderMetadata.updateFolderMetadataById(
       folder.id,
-      'global' as UpdateFolderMetadataByIdScopeArg,
+      'global' as UpdateFolderMetadataByIdScope,
       'properties',
       [
         {
-          op: 'replace' as UpdateFolderMetadataByIdRequestBodyArgOpField,
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
           path: '/abc',
           value: newValue,
-        } satisfies UpdateFolderMetadataByIdRequestBodyArg,
+        } satisfies UpdateFolderMetadataByIdRequestBody,
       ]
     );
   const receivedUpdatedMetadata: any =
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
-      'global' as GetFolderMetadataByIdScopeArg,
+      'global' as GetFolderMetadataByIdScope,
       'properties'
     );
   if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
@@ -97,13 +97,13 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   }
   await client.folderMetadata.deleteFolderMetadataById(
     folder.id,
-    'global' as DeleteFolderMetadataByIdScopeArg,
+    'global' as DeleteFolderMetadataByIdScope,
     'properties'
   );
   await expect(async () => {
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
-      'global' as GetFolderMetadataByIdScopeArg,
+      'global' as GetFolderMetadataByIdScope,
       'properties'
     );
   }).rejects.toThrow();

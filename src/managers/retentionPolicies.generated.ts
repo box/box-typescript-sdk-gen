@@ -30,77 +30,77 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetRetentionPoliciesQueryParamsArgPolicyTypeField =
+export type GetRetentionPoliciesQueryParamsPolicyTypeField =
   | 'finite'
   | 'indefinite';
-export interface GetRetentionPoliciesQueryParamsArg {
+export interface GetRetentionPoliciesQueryParams {
   readonly policyName?: string;
-  readonly policyType?: GetRetentionPoliciesQueryParamsArgPolicyTypeField;
+  readonly policyType?: GetRetentionPoliciesQueryParamsPolicyTypeField;
   readonly createdByUserId?: string;
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
-export class GetRetentionPoliciesHeadersArg {
+export class GetRetentionPoliciesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetRetentionPoliciesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPoliciesHeadersArg, 'extraHeaders'>>
+      | Omit<GetRetentionPoliciesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateRetentionPolicyRequestBodyArgPolicyTypeField =
+export type CreateRetentionPolicyRequestBodyPolicyTypeField =
   | 'finite'
   | 'indefinite';
-export type CreateRetentionPolicyRequestBodyArgDispositionActionField =
+export type CreateRetentionPolicyRequestBodyDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
-export type CreateRetentionPolicyRequestBodyArgRetentionTypeField =
+export type CreateRetentionPolicyRequestBodyRetentionTypeField =
   | 'modifiable'
   | 'non_modifiable';
-export interface CreateRetentionPolicyRequestBodyArg {
+export interface CreateRetentionPolicyRequestBody {
   readonly policyName: string;
   readonly description?: string;
-  readonly policyType: CreateRetentionPolicyRequestBodyArgPolicyTypeField;
-  readonly dispositionAction: CreateRetentionPolicyRequestBodyArgDispositionActionField;
+  readonly policyType: CreateRetentionPolicyRequestBodyPolicyTypeField;
+  readonly dispositionAction: CreateRetentionPolicyRequestBodyDispositionActionField;
   readonly retentionLength?: string;
-  readonly retentionType?: CreateRetentionPolicyRequestBodyArgRetentionTypeField;
+  readonly retentionType?: CreateRetentionPolicyRequestBodyRetentionTypeField;
   readonly canOwnerExtendRetention?: boolean;
   readonly areOwnersNotified?: boolean;
   readonly customNotificationRecipients?: readonly UserMini[];
 }
-export class CreateRetentionPolicyHeadersArg {
+export class CreateRetentionPolicyHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateRetentionPolicyHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateRetentionPolicyHeadersArg, 'extraHeaders'>>
+      | Omit<CreateRetentionPolicyHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyByIdQueryParamsArg {
+export interface GetRetentionPolicyByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetRetentionPolicyByIdHeadersArg {
+export class GetRetentionPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetRetentionPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateRetentionPolicyByIdRequestBodyArg {
+export interface UpdateRetentionPolicyByIdRequestBody {
   readonly policyName?: string;
   readonly description?: string;
   readonly dispositionAction?: string;
@@ -111,50 +111,51 @@ export interface UpdateRetentionPolicyByIdRequestBodyArg {
   readonly areOwnersNotified?: boolean;
   readonly customNotificationRecipients?: readonly UserBase[];
 }
-export class UpdateRetentionPolicyByIdHeadersArg {
+export class UpdateRetentionPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteRetentionPolicyByIdHeadersArg {
+export class DeleteRetentionPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteRetentionPolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class RetentionPoliciesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      RetentionPoliciesManager,
-      | 'getRetentionPolicies'
-      | 'createRetentionPolicy'
-      | 'getRetentionPolicyById'
-      | 'updateRetentionPolicyById'
-      | 'deleteRetentionPolicyById'
-    >
+    fields:
+      | Omit<
+          RetentionPoliciesManager,
+          | 'networkSession'
+          | 'getRetentionPolicies'
+          | 'createRetentionPolicy'
+          | 'getRetentionPolicyById'
+          | 'updateRetentionPolicyById'
+          | 'deleteRetentionPolicyById'
+        >
+      | Partial<Pick<RetentionPoliciesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getRetentionPolicies(
-    queryParams: GetRetentionPoliciesQueryParamsArg = {} satisfies GetRetentionPoliciesQueryParamsArg,
-    headers: GetRetentionPoliciesHeadersArg = new GetRetentionPoliciesHeadersArg(
-      {}
-    ),
+    queryParams: GetRetentionPoliciesQueryParams = {} satisfies GetRetentionPoliciesQueryParams,
+    headers: GetRetentionPoliciesHeaders = new GetRetentionPoliciesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicies> {
     const queryParamsMap: {
@@ -173,7 +174,10 @@ export class RetentionPoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/retention_policies') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -187,8 +191,8 @@ export class RetentionPoliciesManager {
     return deserializeRetentionPolicies(response.data);
   }
   async createRetentionPolicy(
-    requestBody: CreateRetentionPolicyRequestBodyArg,
-    headers: CreateRetentionPolicyHeadersArg = new CreateRetentionPolicyHeadersArg(
+    requestBody: CreateRetentionPolicyRequestBody,
+    headers: CreateRetentionPolicyHeaders = new CreateRetentionPolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -197,11 +201,14 @@ export class RetentionPoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/retention_policies') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateRetentionPolicyRequestBodyArg(requestBody),
+        data: serializeCreateRetentionPolicyRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -213,8 +220,8 @@ export class RetentionPoliciesManager {
   }
   async getRetentionPolicyById(
     retentionPolicyId: string,
-    queryParams: GetRetentionPolicyByIdQueryParamsArg = {} satisfies GetRetentionPolicyByIdQueryParamsArg,
-    headers: GetRetentionPolicyByIdHeadersArg = new GetRetentionPolicyByIdHeadersArg(
+    queryParams: GetRetentionPolicyByIdQueryParams = {} satisfies GetRetentionPolicyByIdQueryParams,
+    headers: GetRetentionPolicyByIdHeaders = new GetRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -231,7 +238,8 @@ export class RetentionPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {
@@ -248,8 +256,8 @@ export class RetentionPoliciesManager {
   }
   async updateRetentionPolicyById(
     retentionPolicyId: string,
-    requestBody: UpdateRetentionPolicyByIdRequestBodyArg = {} satisfies UpdateRetentionPolicyByIdRequestBodyArg,
-    headers: UpdateRetentionPolicyByIdHeadersArg = new UpdateRetentionPolicyByIdHeadersArg(
+    requestBody: UpdateRetentionPolicyByIdRequestBody = {} satisfies UpdateRetentionPolicyByIdRequestBody,
+    headers: UpdateRetentionPolicyByIdHeaders = new UpdateRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -259,13 +267,14 @@ export class RetentionPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateRetentionPolicyByIdRequestBodyArg(requestBody),
+        data: serializeUpdateRetentionPolicyByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -277,7 +286,7 @@ export class RetentionPoliciesManager {
   }
   async deleteRetentionPolicyById(
     retentionPolicyId: string,
-    headers: DeleteRetentionPolicyByIdHeadersArg = new DeleteRetentionPolicyByIdHeadersArg(
+    headers: DeleteRetentionPolicyByIdHeaders = new DeleteRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -287,7 +296,8 @@ export class RetentionPoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/retention_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {
@@ -302,16 +312,16 @@ export class RetentionPoliciesManager {
     return void 0;
   }
 }
-export function serializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(
-  val: GetRetentionPoliciesQueryParamsArgPolicyTypeField
+export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
+  val: GetRetentionPoliciesQueryParamsPolicyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(
+export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   val: any
-): GetRetentionPoliciesQueryParamsArgPolicyTypeField {
+): GetRetentionPoliciesQueryParamsPolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetRetentionPoliciesQueryParamsArgPolicyTypeField"';
+    throw 'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"';
   }
   if (val == 'finite') {
     return 'finite';
@@ -321,16 +331,16 @@ export function deserializeGetRetentionPoliciesQueryParamsArgPolicyTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
-  val: CreateRetentionPolicyRequestBodyArgPolicyTypeField
+export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
+  val: CreateRetentionPolicyRequestBodyPolicyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
+export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: any
-): CreateRetentionPolicyRequestBodyArgPolicyTypeField {
+): CreateRetentionPolicyRequestBodyPolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyArgPolicyTypeField"';
+    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"';
   }
   if (val == 'finite') {
     return 'finite';
@@ -340,16 +350,16 @@ export function deserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyRequestBodyArgDispositionActionField(
-  val: CreateRetentionPolicyRequestBodyArgDispositionActionField
+export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
+  val: CreateRetentionPolicyRequestBodyDispositionActionField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateRetentionPolicyRequestBodyArgDispositionActionField(
+export function deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
   val: any
-): CreateRetentionPolicyRequestBodyArgDispositionActionField {
+): CreateRetentionPolicyRequestBodyDispositionActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyArgDispositionActionField"';
+    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"';
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';
@@ -359,16 +369,16 @@ export function deserializeCreateRetentionPolicyRequestBodyArgDispositionActionF
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(
-  val: CreateRetentionPolicyRequestBodyArgRetentionTypeField
+export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
+  val: CreateRetentionPolicyRequestBodyRetentionTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(
+export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: any
-): CreateRetentionPolicyRequestBodyArgRetentionTypeField {
+): CreateRetentionPolicyRequestBodyRetentionTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyArgRetentionTypeField"';
+    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"';
   }
   if (val == 'modifiable') {
     return 'modifiable';
@@ -378,18 +388,17 @@ export function deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateRetentionPolicyRequestBodyArg(
-  val: CreateRetentionPolicyRequestBodyArg
+export function serializeCreateRetentionPolicyRequestBody(
+  val: CreateRetentionPolicyRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
-    ['policy_type']:
-      serializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
-        val.policyType
-      ),
+    ['policy_type']: serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
+      val.policyType
+    ),
     ['disposition_action']:
-      serializeCreateRetentionPolicyRequestBodyArgDispositionActionField(
+      serializeCreateRetentionPolicyRequestBodyDispositionActionField(
         val.dispositionAction
       ),
     ['retention_length']:
@@ -397,7 +406,7 @@ export function serializeCreateRetentionPolicyRequestBodyArg(
     ['retention_type']:
       val.retentionType == void 0
         ? void 0
-        : serializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(
+        : serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
             val.retentionType
           ),
     ['can_owner_extend_retention']:
@@ -414,28 +423,26 @@ export function serializeCreateRetentionPolicyRequestBodyArg(
           }) as readonly any[]),
   };
 }
-export function deserializeCreateRetentionPolicyRequestBodyArg(
+export function deserializeCreateRetentionPolicyRequestBody(
   val: any
-): CreateRetentionPolicyRequestBodyArg {
+): CreateRetentionPolicyRequestBody {
   const policyName: string = val.policy_name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const policyType: CreateRetentionPolicyRequestBodyArgPolicyTypeField =
-    deserializeCreateRetentionPolicyRequestBodyArgPolicyTypeField(
-      val.policy_type
-    );
-  const dispositionAction: CreateRetentionPolicyRequestBodyArgDispositionActionField =
-    deserializeCreateRetentionPolicyRequestBodyArgDispositionActionField(
+  const policyType: CreateRetentionPolicyRequestBodyPolicyTypeField =
+    deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(val.policy_type);
+  const dispositionAction: CreateRetentionPolicyRequestBodyDispositionActionField =
+    deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
       val.disposition_action
     );
   const retentionLength: undefined | string =
     val.retention_length == void 0 ? void 0 : val.retention_length;
   const retentionType:
     | undefined
-    | CreateRetentionPolicyRequestBodyArgRetentionTypeField =
+    | CreateRetentionPolicyRequestBodyRetentionTypeField =
     val.retention_type == void 0
       ? void 0
-      : deserializeCreateRetentionPolicyRequestBodyArgRetentionTypeField(
+      : deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
           val.retention_type
         );
   const canOwnerExtendRetention: undefined | boolean =
@@ -464,10 +471,10 @@ export function deserializeCreateRetentionPolicyRequestBodyArg(
     canOwnerExtendRetention: canOwnerExtendRetention,
     areOwnersNotified: areOwnersNotified,
     customNotificationRecipients: customNotificationRecipients,
-  } satisfies CreateRetentionPolicyRequestBodyArg;
+  } satisfies CreateRetentionPolicyRequestBody;
 }
-export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
-  val: UpdateRetentionPolicyByIdRequestBodyArg
+export function serializeUpdateRetentionPolicyByIdRequestBody(
+  val: UpdateRetentionPolicyByIdRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
@@ -493,9 +500,9 @@ export function serializeUpdateRetentionPolicyByIdRequestBodyArg(
           }) as readonly any[]),
   };
 }
-export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
+export function deserializeUpdateRetentionPolicyByIdRequestBody(
   val: any
-): UpdateRetentionPolicyByIdRequestBodyArg {
+): UpdateRetentionPolicyByIdRequestBody {
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
   const description: undefined | string =
@@ -533,5 +540,5 @@ export function deserializeUpdateRetentionPolicyByIdRequestBodyArg(
     canOwnerExtendRetention: canOwnerExtendRetention,
     areOwnersNotified: areOwnersNotified,
     customNotificationRecipients: customNotificationRecipients,
-  } satisfies UpdateRetentionPolicyByIdRequestBodyArg;
+  } satisfies UpdateRetentionPolicyByIdRequestBody;
 }

@@ -1,58 +1,58 @@
 import { serializeMetadataTemplate } from '../schemas.generated.js';
 import { deserializeMetadataTemplate } from '../schemas.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
-import { serializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { serializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { serializeMetadataQueryResults } from '../schemas.generated.js';
 import { deserializeMetadataQueryResults } from '../schemas.generated.js';
 import { serializeMetadataQuery } from '../schemas.generated.js';
 import { deserializeMetadataQuery } from '../schemas.generated.js';
-import { serializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataQueryIndices } from '../schemas.generated.js';
 import { deserializeMetadataQueryIndices } from '../schemas.generated.js';
-import { serializeGetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/search.generated.js';
-import { deserializeGetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/search.generated.js';
+import { serializeGetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
+import { deserializeGetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
-import { serializeGetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
-import { deserializeGetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
+import { serializeGetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { deserializeGetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
-import { CreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
-import { CreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { CreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { MetadataQueryResults } from '../schemas.generated.js';
 import { MetadataQuery } from '../schemas.generated.js';
-import { DeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { MetadataQueryIndices } from '../schemas.generated.js';
-import { GetMetadataQueryIndicesQueryParamsArg } from '../managers/search.generated.js';
-import { GetMetadataQueryIndicesQueryParamsArgScopeField } from '../managers/search.generated.js';
+import { GetMetadataQueryIndicesQueryParams } from '../managers/search.generated.js';
+import { GetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
-import { GetSearchQueryParamsArg } from '../managers/search.generated.js';
-import { GetSearchQueryParamsArgTrashContentField } from '../managers/search.generated.js';
+import { GetSearchQueryParams } from '../managers/search.generated.js';
+import { GetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -74,28 +74,26 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     templateKey: templateKey,
     fields: [
       {
-        type: 'float' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
         key: 'testName',
         displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
-  } satisfies CreateMetadataTemplateRequestBodyArg);
+  } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';
   }
   const files: any = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(10),
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const file: any = files.entries![0];
   const metadata: any = await client.fileMetadata.createFileMetadataById(
     file.id,
-    'enterprise' as CreateFileMetadataByIdScopeArg,
+    'enterprise' as CreateFileMetadataByIdScope,
     templateKey,
     { ['testName']: 1 }
   );
@@ -120,7 +118,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplate(
-    'enterprise' as DeleteMetadataTemplateScopeArg,
+    'enterprise' as DeleteMetadataTemplateScope,
     template.templateKey
   );
   await client.files.deleteFileById(file.id);
@@ -133,24 +131,24 @@ test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices()
     templateKey: templateKey,
     fields: [
       {
-        type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
         key: 'testName',
         displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
-  } satisfies CreateMetadataTemplateRequestBodyArg);
+  } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';
   }
   const indices: any = await client.search.getMetadataQueryIndices({
-    scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsArgScopeField,
+    scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsScopeField,
     templateKey: templateKey,
-  } satisfies GetMetadataQueryIndicesQueryParamsArg);
+  } satisfies GetMetadataQueryIndicesQueryParams);
   if (!(indices.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplate(
-    'enterprise' as DeleteMetadataTemplateScopeArg,
+    'enterprise' as DeleteMetadataTemplateScope,
     template.templateKey
   );
 });
@@ -159,9 +157,8 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   const search: any = await client.search.getSearch({
     ancestorFolderIds: ['0' as ''],
     query: keyword,
-    trashContent:
-      'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
-  } satisfies GetSearchQueryParamsArg);
+    trashContent: 'non_trashed_only' as GetSearchQueryParamsTrashContentField,
+  } satisfies GetSearchQueryParams);
   if (!(search.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
@@ -171,10 +168,9 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   const searchWithSharedLink: any = await client.search.getSearch({
     ancestorFolderIds: ['0' as ''],
     query: keyword,
-    trashContent:
-      'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
+    trashContent: 'non_trashed_only' as GetSearchQueryParamsTrashContentField,
     includeRecentSharedLinks: true,
-  } satisfies GetSearchQueryParamsArg);
+  } satisfies GetSearchQueryParams);
   if (!(searchWithSharedLink.entries!.length >= 0)) {
     throw 'Assertion failed';
   }

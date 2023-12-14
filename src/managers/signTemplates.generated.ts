@@ -24,48 +24,50 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetSignTemplatesQueryParamsArg {
+export interface GetSignTemplatesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetSignTemplatesHeadersArg {
+export class GetSignTemplatesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetSignTemplatesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetSignTemplatesHeadersArg, 'extraHeaders'>>
+      | Omit<GetSignTemplatesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetSignTemplateByIdHeadersArg {
+export class GetSignTemplateByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetSignTemplateByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetSignTemplateByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetSignTemplateByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class SignTemplatesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      SignTemplatesManager,
-      'getSignTemplates' | 'getSignTemplateById'
-    >
+    fields:
+      | Omit<
+          SignTemplatesManager,
+          'networkSession' | 'getSignTemplates' | 'getSignTemplateById'
+        >
+      | Partial<Pick<SignTemplatesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getSignTemplates(
-    queryParams: GetSignTemplatesQueryParamsArg = {} satisfies GetSignTemplatesQueryParamsArg,
-    headers: GetSignTemplatesHeadersArg = new GetSignTemplatesHeadersArg({}),
+    queryParams: GetSignTemplatesQueryParams = {} satisfies GetSignTemplatesQueryParams,
+    headers: GetSignTemplatesHeaders = new GetSignTemplatesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignTemplates> {
     const queryParamsMap: {
@@ -78,7 +80,10 @@ export class SignTemplatesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/sign_templates') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_templates'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -93,9 +98,7 @@ export class SignTemplatesManager {
   }
   async getSignTemplateById(
     templateId: string,
-    headers: GetSignTemplateByIdHeadersArg = new GetSignTemplateByIdHeadersArg(
-      {}
-    ),
+    headers: GetSignTemplateByIdHeaders = new GetSignTemplateByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignTemplate> {
     const headersMap: {
@@ -103,7 +106,8 @@ export class SignTemplatesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/sign_templates/',
+        this.networkSession.baseUrls.baseUrl,
+        '/sign_templates/',
         toString(templateId) as string
       ) as string,
       {

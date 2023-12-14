@@ -214,9 +214,10 @@ export class BoxJwtAuth implements Authentication {
       jwtOptions
     );
 
-    const newToken = await new AuthorizationManager({
-      networkSession,
-    }).createOauth2Token({
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const newToken = await authManager.createOauth2Token({
       grantType: BOX_JWT_GRANT_TYPE,
       assertion,
       clientId: this.config.clientId,
