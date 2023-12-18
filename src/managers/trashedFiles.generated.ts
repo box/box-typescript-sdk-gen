@@ -46,29 +46,29 @@ export class RestoreFileFromTrashHeaders {
     Object.assign(this, fields);
   }
 }
-export interface GetFileTrashQueryParams {
+export interface GetTrashedFileByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFileTrashHeaders {
+export class GetTrashedFileByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileTrashHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileTrashHeaders, 'extraHeaders'>>
+      | Omit<GetTrashedFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTrashedFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileTrashHeaders {
+export class DeleteTrashedFileByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileTrashHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileTrashHeaders, 'extraHeaders'>>
+      | Omit<DeleteTrashedFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteTrashedFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -82,8 +82,8 @@ export class TrashedFilesManager {
           TrashedFilesManager,
           | 'networkSession'
           | 'restoreFileFromTrash'
-          | 'getFileTrash'
-          | 'deleteFileTrash'
+          | 'getTrashedFileById'
+          | 'deleteTrashedFileById'
         >
       | Partial<Pick<TrashedFilesManager, 'networkSession'>>
   ) {
@@ -126,10 +126,10 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFileRestored(response.data);
   }
-  async getFileTrash(
+  async getTrashedFileById(
     fileId: string,
-    queryParams: GetFileTrashQueryParams = {} satisfies GetFileTrashQueryParams,
-    headers: GetFileTrashHeaders = new GetFileTrashHeaders({}),
+    queryParams: GetTrashedFileByIdQueryParams = {} satisfies GetTrashedFileByIdQueryParams,
+    headers: GetTrashedFileByIdHeaders = new GetTrashedFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TrashFile> {
     const queryParamsMap: {
@@ -161,9 +161,11 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFile(response.data);
   }
-  async deleteFileTrash(
+  async deleteTrashedFileById(
     fileId: string,
-    headers: DeleteFileTrashHeaders = new DeleteFileTrashHeaders({}),
+    headers: DeleteTrashedFileByIdHeaders = new DeleteTrashedFileByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {

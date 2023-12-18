@@ -30,58 +30,58 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetAuthorizeQueryParamsResponseTypeField = 'code';
-export interface GetAuthorizeQueryParams {
-  readonly responseType: GetAuthorizeQueryParamsResponseTypeField;
+export type AuthorizeUserQueryParamsResponseTypeField = 'code';
+export interface AuthorizeUserQueryParams {
+  readonly responseType: AuthorizeUserQueryParamsResponseTypeField;
   readonly clientId: string;
   readonly redirectUri?: string;
   readonly state?: string;
   readonly scope?: string;
 }
-export class GetAuthorizeHeaders {
+export class AuthorizeUserHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetAuthorizeHeaders, 'extraHeaders'>
-      | Partial<Pick<GetAuthorizeHeaders, 'extraHeaders'>>
+      | Omit<AuthorizeUserHeaders, 'extraHeaders'>
+      | Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2TokenHeaders {
+export class RequestAccessTokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2TokenHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2TokenHeaders, 'extraHeaders'>>
+      | Omit<RequestAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2TokenRefreshHeaders {
+export class RefreshAccessTokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2TokenRefreshHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2TokenRefreshHeaders, 'extraHeaders'>>
+      | Omit<RefreshAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateOauth2RevokeHeaders {
+export class RevokeAccessTokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateOauth2RevokeHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateOauth2RevokeHeaders, 'extraHeaders'>>
+      | Omit<RevokeAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -94,18 +94,18 @@ export class AuthorizationManager {
       | Omit<
           AuthorizationManager,
           | 'networkSession'
-          | 'getAuthorize'
-          | 'createOauth2Token'
-          | 'createOauth2TokenRefresh'
-          | 'createOauth2Revoke'
+          | 'authorizeUser'
+          | 'requestAccessToken'
+          | 'refreshAccessToken'
+          | 'revokeAccessToken'
         >
       | Partial<Pick<AuthorizationManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getAuthorize(
-    queryParams: GetAuthorizeQueryParams,
-    headers: GetAuthorizeHeaders = new GetAuthorizeHeaders({}),
+  async authorizeUser(
+    queryParams: AuthorizeUserQueryParams,
+    headers: AuthorizeUserHeaders = new AuthorizeUserHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
@@ -134,9 +134,9 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return void 0;
   }
-  async createOauth2Token(
+  async requestAccessToken(
     requestBody: PostOAuth2Token,
-    headers: CreateOauth2TokenHeaders = new CreateOauth2TokenHeaders({}),
+    headers: RequestAccessTokenHeaders = new RequestAccessTokenHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<AccessToken> {
     const headersMap: {
@@ -157,11 +157,9 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return deserializeAccessToken(response.data);
   }
-  async createOauth2TokenRefresh(
+  async refreshAccessToken(
     requestBody: PostOAuth2TokenRefreshAccessToken,
-    headers: CreateOauth2TokenRefreshHeaders = new CreateOauth2TokenRefreshHeaders(
-      {}
-    ),
+    headers: RefreshAccessTokenHeaders = new RefreshAccessTokenHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<AccessToken> {
     const headersMap: {
@@ -182,9 +180,9 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return deserializeAccessToken(response.data);
   }
-  async createOauth2Revoke(
+  async revokeAccessToken(
     requestBody: PostOAuth2Revoke,
-    headers: CreateOauth2RevokeHeaders = new CreateOauth2RevokeHeaders({}),
+    headers: RevokeAccessTokenHeaders = new RevokeAccessTokenHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -206,16 +204,16 @@ export class AuthorizationManager {
     return void 0;
   }
 }
-export function serializeGetAuthorizeQueryParamsResponseTypeField(
-  val: GetAuthorizeQueryParamsResponseTypeField
+export function serializeAuthorizeUserQueryParamsResponseTypeField(
+  val: AuthorizeUserQueryParamsResponseTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetAuthorizeQueryParamsResponseTypeField(
+export function deserializeAuthorizeUserQueryParamsResponseTypeField(
   val: any
-): GetAuthorizeQueryParamsResponseTypeField {
+): AuthorizeUserQueryParamsResponseTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetAuthorizeQueryParamsResponseTypeField"';
+    throw 'Expecting a string for "AuthorizeUserQueryParamsResponseTypeField"';
   }
   if (val == 'code') {
     return 'code';

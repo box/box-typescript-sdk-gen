@@ -139,7 +139,7 @@ export async function uploadNewFile(): Promise<FileFull> {
 }
 export async function getOrCreateClassification(
   classificationTemplate: ClassificationTemplate
-): Promise<any> {
+): Promise<ClassificationTemplateFieldsOptionsField> {
   const client: BoxClient = getDefaultClient();
   const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;

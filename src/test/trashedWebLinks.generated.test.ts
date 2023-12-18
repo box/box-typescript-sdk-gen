@@ -41,9 +41,8 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
     description: description,
   } satisfies CreateWebLinkRequestBody);
   await client.webLinks.deleteWebLinkById(weblink.id);
-  const fromTrash: TrashWebLink = await client.trashedWebLinks.getWebLinkTrash(
-    weblink.id
-  );
+  const fromTrash: TrashWebLink =
+    await client.trashedWebLinks.getTrashedWebLinkById(weblink.id);
   if (!(fromTrash.id == weblink.id)) {
     throw 'Assertion failed';
   }
@@ -66,9 +65,9 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
-  await client.trashedWebLinks.deleteWebLinkTrash(weblink.id);
+  await client.trashedWebLinks.deleteTrashedWebLinkById(weblink.id);
   await expect(async () => {
-    await client.trashedWebLinks.getWebLinkTrash(weblink.id);
+    await client.trashedWebLinks.getTrashedWebLinkById(weblink.id);
   }).rejects.toThrow();
 });
 export {};

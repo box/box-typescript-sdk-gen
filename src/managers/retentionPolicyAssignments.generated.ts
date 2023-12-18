@@ -108,47 +108,41 @@ export class DeleteRetentionPolicyAssignmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyAssignmentFileUnderRetentionQueryParams {
+export interface GetFilesUnderRetentionPolicyAssignmentQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetRetentionPolicyAssignmentFileUnderRetentionHeaders {
+export class GetFilesUnderRetentionPolicyAssignmentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          GetRetentionPolicyAssignmentFileUnderRetentionHeaders,
-          'extraHeaders'
-        >
+      | Omit<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
       | Partial<
-          Pick<
-            GetRetentionPolicyAssignmentFileUnderRetentionHeaders,
-            'extraHeaders'
-          >
+          Pick<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams {
+export interface GetFileVersionsUnderRetentionPolicyAssignmentQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders {
+export class GetFileVersionsUnderRetentionPolicyAssignmentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
       | Omit<
-          GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders,
+          GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
           'extraHeaders'
         >
       | Partial<
           Pick<
-            GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders,
+            GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
             'extraHeaders'
           >
         >
@@ -168,8 +162,8 @@ export class RetentionPolicyAssignmentsManager {
           | 'createRetentionPolicyAssignment'
           | 'getRetentionPolicyAssignmentById'
           | 'deleteRetentionPolicyAssignmentById'
-          | 'getRetentionPolicyAssignmentFileUnderRetention'
-          | 'getRetentionPolicyAssignmentFileVersionUnderRetention'
+          | 'getFilesUnderRetentionPolicyAssignment'
+          | 'getFileVersionsUnderRetentionPolicyAssignment'
         >
       | Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
   ) {
@@ -306,10 +300,10 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return void 0;
   }
-  async getRetentionPolicyAssignmentFileUnderRetention(
+  async getFilesUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentFileUnderRetentionQueryParams = {} satisfies GetRetentionPolicyAssignmentFileUnderRetentionQueryParams,
-    headers: GetRetentionPolicyAssignmentFileUnderRetentionHeaders = new GetRetentionPolicyAssignmentFileUnderRetentionHeaders(
+    queryParams: GetFilesUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFilesUnderRetentionPolicyAssignmentQueryParams,
+    headers: GetFilesUnderRetentionPolicyAssignmentHeaders = new GetFilesUnderRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -342,10 +336,10 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeFilesUnderRetention(response.data);
   }
-  async getRetentionPolicyAssignmentFileVersionUnderRetention(
+  async getFileVersionsUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams = {} satisfies GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParams,
-    headers: GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders = new GetRetentionPolicyAssignmentFileVersionUnderRetentionHeaders(
+    queryParams: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFileVersionsUnderRetentionPolicyAssignmentQueryParams,
+    headers: GetFileVersionsUnderRetentionPolicyAssignmentHeaders = new GetFileVersionsUnderRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken

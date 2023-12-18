@@ -14,10 +14,10 @@ import { serializeCreateMetadataCascadePolicyRequestBodyScopeField } from '../ma
 import { deserializeCreateMetadataCascadePolicyRequestBodyScopeField } from '../managers/metadataCascadePolicies.generated.js';
 import { serializeMetadataCascadePolicies } from '../schemas.generated.js';
 import { deserializeMetadataCascadePolicies } from '../schemas.generated.js';
-import { serializeCreateMetadataCascadePolicyApplyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyApplyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
-import { serializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
 import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -30,8 +30,8 @@ import { CreateMetadataCascadePolicyRequestBody } from '../managers/metadataCasc
 import { CreateMetadataCascadePolicyRequestBodyScopeField } from '../managers/metadataCascadePolicies.generated.js';
 import { MetadataCascadePolicies } from '../schemas.generated.js';
 import { GetMetadataCascadePoliciesQueryParams } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateMetadataCascadePolicyApplyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { ApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { ApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
 import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { getUuid } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -120,12 +120,12 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
     throw 'Assertion failed';
   }
   await expect(async () => {
-    await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
+    await client.metadataCascadePolicies.applyMetadataCascadePolicy(
       cascadePolicyId,
       {
         conflictResolution:
-          'overwrite' as CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField,
-      } satisfies CreateMetadataCascadePolicyApplyRequestBody
+          'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
+      } satisfies ApplyMetadataCascadePolicyRequestBody
     );
   }).rejects.toThrow();
   const data: {
@@ -137,12 +137,12 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
     templateKey,
     data
   );
-  await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
+  await client.metadataCascadePolicies.applyMetadataCascadePolicy(
     cascadePolicyId,
     {
       conflictResolution:
-        'overwrite' as CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField,
-    } satisfies CreateMetadataCascadePolicyApplyRequestBody
+        'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
+    } satisfies ApplyMetadataCascadePolicyRequestBody
   );
   await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
     cascadePolicyId

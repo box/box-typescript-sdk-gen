@@ -30,8 +30,8 @@ import { serializeGetMetadataQueryIndicesQueryParamsScopeField } from '../manage
 import { deserializeGetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
-import { serializeGetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
-import { deserializeGetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -51,8 +51,8 @@ import { MetadataQueryIndices } from '../schemas.generated.js';
 import { GetMetadataQueryIndicesQueryParams } from '../managers/search.generated.js';
 import { GetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
-import { GetSearchQueryParams } from '../managers/search.generated.js';
-import { GetSearchQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { SearchForContentQueryParams } from '../managers/search.generated.js';
+import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -108,7 +108,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     '.',
     template.templateKey
   ) as string;
-  const query: any = await client.search.createMetadataQueryExecuteRead({
+  const query: any = await client.search.searchByMetadataQuery({
     ancestorFolderId: '0',
     from: searchFrom,
     query: 'testName >= :value',
@@ -154,23 +154,25 @@ test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices()
 });
 test('testGetSearch', async function testGetSearch(): Promise<any> {
   const keyword: any = 'test';
-  const search: any = await client.search.getSearch({
+  const search: any = await client.search.searchForContent({
     ancestorFolderIds: ['0' as ''],
     query: keyword,
-    trashContent: 'non_trashed_only' as GetSearchQueryParamsTrashContentField,
-  } satisfies GetSearchQueryParams);
+    trashContent:
+      'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
+  } satisfies SearchForContentQueryParams);
   if (!(search.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
   if (!((toString(search.type) as string) == 'search_results_items')) {
     throw 'Assertion failed';
   }
-  const searchWithSharedLink: any = await client.search.getSearch({
+  const searchWithSharedLink: any = await client.search.searchForContent({
     ancestorFolderIds: ['0' as ''],
     query: keyword,
-    trashContent: 'non_trashed_only' as GetSearchQueryParamsTrashContentField,
+    trashContent:
+      'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
     includeRecentSharedLinks: true,
-  } satisfies GetSearchQueryParams);
+  } satisfies SearchForContentQueryParams);
   if (!(searchWithSharedLink.entries!.length >= 0)) {
     throw 'Assertion failed';
   }

@@ -30,9 +30,8 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
     parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
   } satisfies CreateFolderRequestBody);
   await client.folders.deleteFolderById(folder.id);
-  const fromTrash: TrashFolder = await client.trashedFolders.getFolderTrash(
-    folder.id
-  );
+  const fromTrash: TrashFolder =
+    await client.trashedFolders.getTrashedFolderById(folder.id);
   if (!(fromTrash.id == folder.id)) {
     throw 'Assertion failed';
   }
@@ -52,9 +51,9 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(folder.id);
-  await client.trashedFolders.deleteFolderTrash(folder.id);
+  await client.trashedFolders.deleteTrashedFolderById(folder.id);
   await expect(async () => {
-    await client.trashedFolders.getFolderTrash(folder.id);
+    await client.trashedFolders.getTrashedFolderById(folder.id);
   }).rejects.toThrow();
 });
 export {};

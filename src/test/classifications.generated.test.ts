@@ -1,3 +1,5 @@
+import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
+import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { serializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
 import { deserializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
 import { serializeUpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
@@ -10,18 +12,16 @@ import { serializeUpdateClassificationRequestBodyDataStaticConfigField } from '.
 import { deserializeUpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
 import { serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
 import { deserializeUpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
-import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
-import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
+import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { UpdateClassificationRequestBody } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
-import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getOrCreateClassificationTemplate } from './commons.generated.js';
@@ -38,9 +38,8 @@ const client: BoxClient = getDefaultClient();
 test('testClassifications', async function testClassifications(): Promise<any> {
   const classificationTemplate: ClassificationTemplate =
     await getOrCreateClassificationTemplate();
-  const classification: any = await getOrCreateClassification(
-    classificationTemplate
-  );
+  const classification: ClassificationTemplateFieldsOptionsField =
+    await getOrCreateClassification(classificationTemplate);
   if (!!(classification.key == '')) {
     throw 'Assertion failed';
   }
@@ -77,7 +76,8 @@ test('testClassifications', async function testClassifications(): Promise<any> {
     ]);
   const updatedClassifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplateWithUpdatedClassification.fields[0].options;
-  const updatedClassification: any = updatedClassifications[0];
+  const updatedClassification: ClassificationTemplateFieldsOptionsField =
+    updatedClassifications[0];
   if (!(updatedClassification.key == updatedClassificationName)) {
     throw 'Assertion failed';
   }

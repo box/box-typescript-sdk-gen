@@ -115,7 +115,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
     throw 'Assertion failed';
   }
   await client.files.deleteFileById(uploadedFile.id);
-  const trashedFile: TrashFile = await client.trashedFiles.getFileTrash(
+  const trashedFile: TrashFile = await client.trashedFiles.getTrashedFileById(
     uploadedFile.id
   );
   if (!(file.id == trashedFile.id)) {

@@ -39,25 +39,22 @@ export class GetShieldInformationBarrierByIdHeaders {
     Object.assign(this, fields);
   }
 }
-export type CreateShieldInformationBarrierChangeStatusRequestBodyStatusField =
+export type UpdateShieldInformationBarrierStatusRequestBodyStatusField =
   | 'pending'
   | 'disabled';
-export interface CreateShieldInformationBarrierChangeStatusRequestBody {
+export interface UpdateShieldInformationBarrierStatusRequestBody {
   readonly id: string;
-  readonly status: CreateShieldInformationBarrierChangeStatusRequestBodyStatusField;
+  readonly status: UpdateShieldInformationBarrierStatusRequestBodyStatusField;
 }
-export class CreateShieldInformationBarrierChangeStatusHeaders {
+export class UpdateShieldInformationBarrierStatusHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateShieldInformationBarrierChangeStatusHeaders, 'extraHeaders'>
+      | Omit<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
       | Partial<
-          Pick<
-            CreateShieldInformationBarrierChangeStatusHeaders,
-            'extraHeaders'
-          >
+          Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
@@ -103,7 +100,7 @@ export class ShieldInformationBarriersManager {
           ShieldInformationBarriersManager,
           | 'networkSession'
           | 'getShieldInformationBarrierById'
-          | 'createShieldInformationBarrierChangeStatus'
+          | 'updateShieldInformationBarrierStatus'
           | 'getShieldInformationBarriers'
           | 'createShieldInformationBarrier'
         >
@@ -138,9 +135,9 @@ export class ShieldInformationBarriersManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(response.data);
   }
-  async createShieldInformationBarrierChangeStatus(
-    requestBody: CreateShieldInformationBarrierChangeStatusRequestBody,
-    headers: CreateShieldInformationBarrierChangeStatusHeaders = new CreateShieldInformationBarrierChangeStatusHeaders(
+  async updateShieldInformationBarrierStatus(
+    requestBody: UpdateShieldInformationBarrierStatusRequestBody,
+    headers: UpdateShieldInformationBarrierStatusHeaders = new UpdateShieldInformationBarrierStatusHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -156,7 +153,7 @@ export class ShieldInformationBarriersManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateShieldInformationBarrierChangeStatusRequestBody(
+        data: serializeUpdateShieldInformationBarrierStatusRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -230,16 +227,16 @@ export class ShieldInformationBarriersManager {
     return deserializeShieldInformationBarrier(response.data);
   }
 }
-export function serializeCreateShieldInformationBarrierChangeStatusRequestBodyStatusField(
-  val: CreateShieldInformationBarrierChangeStatusRequestBodyStatusField
+export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
+  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateShieldInformationBarrierChangeStatusRequestBodyStatusField(
+export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
   val: any
-): CreateShieldInformationBarrierChangeStatusRequestBodyStatusField {
+): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierChangeStatusRequestBodyStatusField"';
+    throw 'Expecting a string for "UpdateShieldInformationBarrierStatusRequestBodyStatusField"';
   }
   if (val == 'pending') {
     return 'pending';
@@ -249,29 +246,29 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateShieldInformationBarrierChangeStatusRequestBody(
-  val: CreateShieldInformationBarrierChangeStatusRequestBody
+export function serializeUpdateShieldInformationBarrierStatusRequestBody(
+  val: UpdateShieldInformationBarrierStatusRequestBody
 ): SerializedData {
   return {
     ['id']: val.id,
     ['status']:
-      serializeCreateShieldInformationBarrierChangeStatusRequestBodyStatusField(
+      serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
         val.status
       ),
   };
 }
-export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody(
+export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   val: any
-): CreateShieldInformationBarrierChangeStatusRequestBody {
+): UpdateShieldInformationBarrierStatusRequestBody {
   const id: string = val.id;
-  const status: CreateShieldInformationBarrierChangeStatusRequestBodyStatusField =
-    deserializeCreateShieldInformationBarrierChangeStatusRequestBodyStatusField(
+  const status: UpdateShieldInformationBarrierStatusRequestBodyStatusField =
+    deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
       val.status
     );
   return {
     id: id,
     status: status,
-  } satisfies CreateShieldInformationBarrierChangeStatusRequestBody;
+  } satisfies UpdateShieldInformationBarrierStatusRequestBody;
 }
 export function serializeCreateShieldInformationBarrierRequestBody(
   val: CreateShieldInformationBarrierRequestBody

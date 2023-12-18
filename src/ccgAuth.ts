@@ -69,7 +69,7 @@ export class BoxCcgAuth implements Authentication {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    const newToken = await authManager.createOauth2Token({
+    const newToken = await authManager.requestAccessToken({
       grantType: 'client_credentials' satisfies TokenRequestGrantType,
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,

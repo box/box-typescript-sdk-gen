@@ -20,33 +20,33 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface CreateUserTerminateSessionRequestBody {
+export interface TerminateUsersSessionsRequestBody {
   readonly userIds: readonly string[];
   readonly userLogins: readonly string[];
 }
-export class CreateUserTerminateSessionHeaders {
+export class TerminateUsersSessionsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateUserTerminateSessionHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateUserTerminateSessionHeaders, 'extraHeaders'>>
+      | Omit<TerminateUsersSessionsHeaders, 'extraHeaders'>
+      | Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateGroupTerminateSessionRequestBody {
+export interface TerminateGroupsSessionsRequestBody {
   readonly groupIds: readonly string[];
 }
-export class CreateGroupTerminateSessionHeaders {
+export class TerminateGroupsSessionsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateGroupTerminateSessionHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateGroupTerminateSessionHeaders, 'extraHeaders'>>
+      | Omit<TerminateGroupsSessionsHeaders, 'extraHeaders'>
+      | Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -59,16 +59,16 @@ export class SessionTerminationManager {
       | Omit<
           SessionTerminationManager,
           | 'networkSession'
-          | 'createUserTerminateSession'
-          | 'createGroupTerminateSession'
+          | 'terminateUsersSessions'
+          | 'terminateGroupsSessions'
         >
       | Partial<Pick<SessionTerminationManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async createUserTerminateSession(
-    requestBody: CreateUserTerminateSessionRequestBody,
-    headers: CreateUserTerminateSessionHeaders = new CreateUserTerminateSessionHeaders(
+  async terminateUsersSessions(
+    requestBody: TerminateUsersSessionsRequestBody,
+    headers: TerminateUsersSessionsHeaders = new TerminateUsersSessionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -84,7 +84,7 @@ export class SessionTerminationManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateUserTerminateSessionRequestBody(requestBody),
+        data: serializeTerminateUsersSessionsRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -94,9 +94,9 @@ export class SessionTerminationManager {
     )) as FetchResponse;
     return deserializeSessionTerminationMessage(response.data);
   }
-  async createGroupTerminateSession(
-    requestBody: CreateGroupTerminateSessionRequestBody,
-    headers: CreateGroupTerminateSessionHeaders = new CreateGroupTerminateSessionHeaders(
+  async terminateGroupsSessions(
+    requestBody: TerminateGroupsSessionsRequestBody,
+    headers: TerminateGroupsSessionsHeaders = new TerminateGroupsSessionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -112,7 +112,7 @@ export class SessionTerminationManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateGroupTerminateSessionRequestBody(requestBody),
+        data: serializeTerminateGroupsSessionsRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -123,8 +123,8 @@ export class SessionTerminationManager {
     return deserializeSessionTerminationMessage(response.data);
   }
 }
-export function serializeCreateUserTerminateSessionRequestBody(
-  val: CreateUserTerminateSessionRequestBody
+export function serializeTerminateUsersSessionsRequestBody(
+  val: TerminateUsersSessionsRequestBody
 ): SerializedData {
   return {
     ['user_ids']: val.userIds.map(function (item: string): any {
@@ -135,9 +135,9 @@ export function serializeCreateUserTerminateSessionRequestBody(
     }) as readonly any[],
   };
 }
-export function deserializeCreateUserTerminateSessionRequestBody(
+export function deserializeTerminateUsersSessionsRequestBody(
   val: any
-): CreateUserTerminateSessionRequestBody {
+): TerminateUsersSessionsRequestBody {
   const userIds: readonly string[] = sdIsList(val.user_ids)
     ? (val.user_ids.map(function (itm: SerializedData): any {
         return itm;
@@ -151,10 +151,10 @@ export function deserializeCreateUserTerminateSessionRequestBody(
   return {
     userIds: userIds,
     userLogins: userLogins,
-  } satisfies CreateUserTerminateSessionRequestBody;
+  } satisfies TerminateUsersSessionsRequestBody;
 }
-export function serializeCreateGroupTerminateSessionRequestBody(
-  val: CreateGroupTerminateSessionRequestBody
+export function serializeTerminateGroupsSessionsRequestBody(
+  val: TerminateGroupsSessionsRequestBody
 ): SerializedData {
   return {
     ['group_ids']: val.groupIds.map(function (item: string): any {
@@ -162,15 +162,13 @@ export function serializeCreateGroupTerminateSessionRequestBody(
     }) as readonly any[],
   };
 }
-export function deserializeCreateGroupTerminateSessionRequestBody(
+export function deserializeTerminateGroupsSessionsRequestBody(
   val: any
-): CreateGroupTerminateSessionRequestBody {
+): TerminateGroupsSessionsRequestBody {
   const groupIds: readonly string[] = sdIsList(val.group_ids)
     ? (val.group_ids.map(function (itm: SerializedData): any {
         return itm;
       }) as readonly any[])
     : [];
-  return {
-    groupIds: groupIds,
-  } satisfies CreateGroupTerminateSessionRequestBody;
+  return { groupIds: groupIds } satisfies TerminateGroupsSessionsRequestBody;
 }

@@ -18,7 +18,7 @@ const client: BoxClient = getDefaultClient();
 test('testListTrashedItems', async function testListTrashedItems(): Promise<any> {
   const file: FileFull = await uploadNewFile();
   await client.files.deleteFileById(file.id);
-  const trashedItems: Items = await client.trashedItems.getFolderTrashItems();
+  const trashedItems: Items = await client.trashedItems.getTrashedItems();
   if (!(trashedItems.entries!.length > 0)) {
     throw 'Assertion failed';
   }

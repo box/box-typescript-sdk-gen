@@ -33,66 +33,66 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetIntegrationMappingSlackQueryParamsPartnerItemTypeField =
+export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
   'channel';
-export type GetIntegrationMappingSlackQueryParamsBoxItemTypeField = 'folder';
-export interface GetIntegrationMappingSlackQueryParams {
+export type GetSlackIntegrationMappingQueryParamsBoxItemTypeField = 'folder';
+export interface GetSlackIntegrationMappingQueryParams {
   readonly marker?: string;
   readonly limit?: number;
-  readonly partnerItemType?: GetIntegrationMappingSlackQueryParamsPartnerItemTypeField;
+  readonly partnerItemType?: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField;
   readonly partnerItemId?: string;
   readonly boxItemId?: string;
-  readonly boxItemType?: GetIntegrationMappingSlackQueryParamsBoxItemTypeField;
+  readonly boxItemType?: GetSlackIntegrationMappingQueryParamsBoxItemTypeField;
   readonly isManuallyCreated?: boolean;
 }
-export class GetIntegrationMappingSlackHeaders {
+export class GetSlackIntegrationMappingHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetIntegrationMappingSlackHeaders, 'extraHeaders'>
-      | Partial<Pick<GetIntegrationMappingSlackHeaders, 'extraHeaders'>>
+      | Omit<GetSlackIntegrationMappingHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateIntegrationMappingSlackHeaders {
+export class CreateSlackIntegrationMappingHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateIntegrationMappingSlackHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateIntegrationMappingSlackHeaders, 'extraHeaders'>>
+      | Omit<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateIntegrationMappingSlackByIdRequestBody {
+export interface UpdateSlackIntegrationMappingByIdRequestBody {
   readonly boxItem?: IntegrationMappingBoxItemSlack;
   readonly options?: IntegrationMappingSlackOptions;
 }
-export class UpdateIntegrationMappingSlackByIdHeaders {
+export class UpdateSlackIntegrationMappingByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateIntegrationMappingSlackByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateIntegrationMappingSlackByIdHeaders, 'extraHeaders'>>
+      | Omit<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteIntegrationMappingSlackByIdHeaders {
+export class DeleteSlackIntegrationMappingByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteIntegrationMappingSlackByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteIntegrationMappingSlackByIdHeaders, 'extraHeaders'>>
+      | Omit<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -105,18 +105,18 @@ export class IntegrationMappingsManager {
       | Omit<
           IntegrationMappingsManager,
           | 'networkSession'
-          | 'getIntegrationMappingSlack'
-          | 'createIntegrationMappingSlack'
-          | 'updateIntegrationMappingSlackById'
-          | 'deleteIntegrationMappingSlackById'
+          | 'getSlackIntegrationMapping'
+          | 'createSlackIntegrationMapping'
+          | 'updateSlackIntegrationMappingById'
+          | 'deleteSlackIntegrationMappingById'
         >
       | Partial<Pick<IntegrationMappingsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getIntegrationMappingSlack(
-    queryParams: GetIntegrationMappingSlackQueryParams = {} satisfies GetIntegrationMappingSlackQueryParams,
-    headers: GetIntegrationMappingSlackHeaders = new GetIntegrationMappingSlackHeaders(
+  async getSlackIntegrationMapping(
+    queryParams: GetSlackIntegrationMappingQueryParams = {} satisfies GetSlackIntegrationMappingQueryParams,
+    headers: GetSlackIntegrationMappingHeaders = new GetSlackIntegrationMappingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -154,9 +154,9 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMappings(response.data);
   }
-  async createIntegrationMappingSlack(
+  async createSlackIntegrationMapping(
     requestBody: IntegrationMappingSlackCreateRequest,
-    headers: CreateIntegrationMappingSlackHeaders = new CreateIntegrationMappingSlackHeaders(
+    headers: CreateSlackIntegrationMappingHeaders = new CreateSlackIntegrationMappingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -182,10 +182,10 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMapping(response.data);
   }
-  async updateIntegrationMappingSlackById(
+  async updateSlackIntegrationMappingById(
     integrationMappingId: string,
-    requestBody: UpdateIntegrationMappingSlackByIdRequestBody = {} satisfies UpdateIntegrationMappingSlackByIdRequestBody,
-    headers: UpdateIntegrationMappingSlackByIdHeaders = new UpdateIntegrationMappingSlackByIdHeaders(
+    requestBody: UpdateSlackIntegrationMappingByIdRequestBody = {} satisfies UpdateSlackIntegrationMappingByIdRequestBody,
+    headers: UpdateSlackIntegrationMappingByIdHeaders = new UpdateSlackIntegrationMappingByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -202,7 +202,7 @@ export class IntegrationMappingsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateIntegrationMappingSlackByIdRequestBody(
+        data: serializeUpdateSlackIntegrationMappingByIdRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -214,9 +214,9 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMapping(response.data);
   }
-  async deleteIntegrationMappingSlackById(
+  async deleteSlackIntegrationMappingById(
     integrationMappingId: string,
-    headers: DeleteIntegrationMappingSlackByIdHeaders = new DeleteIntegrationMappingSlackByIdHeaders(
+    headers: DeleteSlackIntegrationMappingByIdHeaders = new DeleteSlackIntegrationMappingByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -242,40 +242,40 @@ export class IntegrationMappingsManager {
     return void 0;
   }
 }
-export function serializeGetIntegrationMappingSlackQueryParamsPartnerItemTypeField(
-  val: GetIntegrationMappingSlackQueryParamsPartnerItemTypeField
+export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
+  val: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetIntegrationMappingSlackQueryParamsPartnerItemTypeField(
+export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
   val: any
-): GetIntegrationMappingSlackQueryParamsPartnerItemTypeField {
+): GetSlackIntegrationMappingQueryParamsPartnerItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsPartnerItemTypeField"';
+    throw 'Expecting a string for "GetSlackIntegrationMappingQueryParamsPartnerItemTypeField"';
   }
   if (val == 'channel') {
     return 'channel';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetIntegrationMappingSlackQueryParamsBoxItemTypeField(
-  val: GetIntegrationMappingSlackQueryParamsBoxItemTypeField
+export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
+  val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetIntegrationMappingSlackQueryParamsBoxItemTypeField(
+export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
   val: any
-): GetIntegrationMappingSlackQueryParamsBoxItemTypeField {
+): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetIntegrationMappingSlackQueryParamsBoxItemTypeField"';
+    throw 'Expecting a string for "GetSlackIntegrationMappingQueryParamsBoxItemTypeField"';
   }
   if (val == 'folder') {
     return 'folder';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateIntegrationMappingSlackByIdRequestBody(
-  val: UpdateIntegrationMappingSlackByIdRequestBody
+export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
+  val: UpdateSlackIntegrationMappingByIdRequestBody
 ): SerializedData {
   return {
     ['box_item']:
@@ -288,9 +288,9 @@ export function serializeUpdateIntegrationMappingSlackByIdRequestBody(
         : serializeIntegrationMappingSlackOptions(val.options),
   };
 }
-export function deserializeUpdateIntegrationMappingSlackByIdRequestBody(
+export function deserializeUpdateSlackIntegrationMappingByIdRequestBody(
   val: any
-): UpdateIntegrationMappingSlackByIdRequestBody {
+): UpdateSlackIntegrationMappingByIdRequestBody {
   const boxItem: undefined | IntegrationMappingBoxItemSlack =
     val.box_item == void 0
       ? void 0
@@ -302,5 +302,5 @@ export function deserializeUpdateIntegrationMappingSlackByIdRequestBody(
   return {
     boxItem: boxItem,
     options: options,
-  } satisfies UpdateIntegrationMappingSlackByIdRequestBody;
+  } satisfies UpdateSlackIntegrationMappingByIdRequestBody;
 }

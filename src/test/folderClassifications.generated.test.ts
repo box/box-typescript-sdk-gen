@@ -56,7 +56,7 @@ import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 export async function getOrCreateSecondClassification(
   classificationTemplate: ClassificationTemplate
-): Promise<any> {
+): Promise<ClassificationTemplateFieldsOptionsField> {
   const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;
   const currentNumberOfClassifications: number = classifications.length;
@@ -85,9 +85,8 @@ export async function getOrCreateSecondClassification(
 test('testFolderClassifications', async function testFolderClassifications(): Promise<any> {
   const classificationTemplate: ClassificationTemplate =
     await getOrCreateClassificationTemplate();
-  const classification: any = await getOrCreateClassification(
-    classificationTemplate
-  );
+  const classification: ClassificationTemplateFieldsOptionsField =
+    await getOrCreateClassification(classificationTemplate);
   const folder: FolderFull = await createNewFolder();
   await expect(async () => {
     await client.folderClassifications.getClassificationOnFolder(folder.id);
@@ -111,9 +110,8 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
   ) {
     throw 'Assertion failed';
   }
-  const secondClassification: any = await getOrCreateSecondClassification(
-    classificationTemplate
-  );
+  const secondClassification: ClassificationTemplateFieldsOptionsField =
+    await getOrCreateSecondClassification(classificationTemplate);
   const updatedFolderClassification: Classification =
     await client.folderClassifications.updateClassificationOnFolder(folder.id, [
       {

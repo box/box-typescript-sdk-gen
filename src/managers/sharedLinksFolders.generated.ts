@@ -21,10 +21,10 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetSharedItemFoldersQueryParams {
+export interface FindFolderForSharedLinkQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetSharedItemFoldersHeaders {
+export class FindFolderForSharedLinkHeaders {
   readonly ifNoneMatch?: string;
   readonly boxapi!: string;
   readonly extraHeaders?: {
@@ -32,110 +32,110 @@ export class GetSharedItemFoldersHeaders {
   } = {};
   constructor(
     fields:
-      | Omit<GetSharedItemFoldersHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSharedItemFoldersHeaders, 'extraHeaders'>>
+      | Omit<FindFolderForSharedLinkHeaders, 'extraHeaders'>
+      | Partial<Pick<FindFolderForSharedLinkHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetFolderGetSharedLinkQueryParams {
+export interface GetSharedLinkForFolderQueryParams {
   readonly fields: string;
 }
-export class GetFolderGetSharedLinkHeaders {
+export class GetSharedLinkForFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderGetSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderGetSharedLinkHeaders, 'extraHeaders'>>
+      | Omit<GetSharedLinkForFolderHeaders, 'extraHeaders'>
+      | Partial<Pick<GetSharedLinkForFolderHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField =
+export type AddShareLinkToFolderRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
   | 'collaborators';
-export interface UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField {
+export interface AddShareLinkToFolderRequestBodySharedLinkPermissionsField {
   readonly canDownload?: boolean;
   readonly canPreview?: boolean;
   readonly canEdit?: boolean;
 }
-export interface UpdateFolderAddSharedLinkRequestBodySharedLinkField {
-  readonly access?: UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField;
+export interface AddShareLinkToFolderRequestBodySharedLinkField {
+  readonly access?: AddShareLinkToFolderRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
   readonly unsharedAt?: string;
-  readonly permissions?: UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField;
+  readonly permissions?: AddShareLinkToFolderRequestBodySharedLinkPermissionsField;
 }
-export interface UpdateFolderAddSharedLinkRequestBody {
-  readonly sharedLink?: UpdateFolderAddSharedLinkRequestBodySharedLinkField;
+export interface AddShareLinkToFolderRequestBody {
+  readonly sharedLink?: AddShareLinkToFolderRequestBodySharedLinkField;
 }
-export interface UpdateFolderAddSharedLinkQueryParams {
+export interface AddShareLinkToFolderQueryParams {
   readonly fields: string;
 }
-export class UpdateFolderAddSharedLinkHeaders {
+export class AddShareLinkToFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFolderAddSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderAddSharedLinkHeaders, 'extraHeaders'>>
+      | Omit<AddShareLinkToFolderHeaders, 'extraHeaders'>
+      | Partial<Pick<AddShareLinkToFolderHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField =
+export type UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
   | 'collaborators';
-export interface UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField {
+export interface UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField {
   readonly canDownload?: boolean;
   readonly canPreview?: boolean;
   readonly canEdit?: boolean;
 }
-export interface UpdateFolderUpdateSharedLinkRequestBodySharedLinkField {
-  readonly access?: UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField;
+export interface UpdateSharedLinkOnFolderRequestBodySharedLinkField {
+  readonly access?: UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
   readonly unsharedAt?: string;
-  readonly permissions?: UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField;
+  readonly permissions?: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField;
 }
-export interface UpdateFolderUpdateSharedLinkRequestBody {
-  readonly sharedLink?: UpdateFolderUpdateSharedLinkRequestBodySharedLinkField;
+export interface UpdateSharedLinkOnFolderRequestBody {
+  readonly sharedLink?: UpdateSharedLinkOnFolderRequestBodySharedLinkField;
 }
-export interface UpdateFolderUpdateSharedLinkQueryParams {
+export interface UpdateSharedLinkOnFolderQueryParams {
   readonly fields: string;
 }
-export class UpdateFolderUpdateSharedLinkHeaders {
+export class UpdateSharedLinkOnFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFolderUpdateSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderUpdateSharedLinkHeaders, 'extraHeaders'>>
+      | Omit<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateFolderRemoveSharedLinkRequestBodySharedLinkField {}
-export interface UpdateFolderRemoveSharedLinkRequestBody {
-  readonly sharedLink?: UpdateFolderRemoveSharedLinkRequestBodySharedLinkField;
+export interface RemoveSharedLinkFromFolderRequestBodySharedLinkField {}
+export interface RemoveSharedLinkFromFolderRequestBody {
+  readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField;
 }
-export interface UpdateFolderRemoveSharedLinkQueryParams {
+export interface RemoveSharedLinkFromFolderQueryParams {
   readonly fields: string;
 }
-export class UpdateFolderRemoveSharedLinkHeaders {
+export class RemoveSharedLinkFromFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFolderRemoveSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderRemoveSharedLinkHeaders, 'extraHeaders'>>
+      | Omit<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'>
+      | Partial<Pick<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -148,19 +148,19 @@ export class SharedLinksFoldersManager {
       | Omit<
           SharedLinksFoldersManager,
           | 'networkSession'
-          | 'getSharedItemFolders'
-          | 'getFolderGetSharedLink'
-          | 'updateFolderAddSharedLink'
-          | 'updateFolderUpdateSharedLink'
-          | 'updateFolderRemoveSharedLink'
+          | 'findFolderForSharedLink'
+          | 'getSharedLinkForFolder'
+          | 'addShareLinkToFolder'
+          | 'updateSharedLinkOnFolder'
+          | 'removeSharedLinkFromFolder'
         >
       | Partial<Pick<SharedLinksFoldersManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getSharedItemFolders(
-    queryParams: GetSharedItemFoldersQueryParams = {} satisfies GetSharedItemFoldersQueryParams,
-    headers: GetSharedItemFoldersHeaders,
+  async findFolderForSharedLink(
+    queryParams: FindFolderForSharedLinkQueryParams = {} satisfies FindFolderForSharedLinkQueryParams,
+    headers: FindFolderForSharedLinkHeaders,
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
@@ -196,10 +196,10 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
-  async getFolderGetSharedLink(
+  async getSharedLinkForFolder(
     folderId: string,
-    queryParams: GetFolderGetSharedLinkQueryParams,
-    headers: GetFolderGetSharedLinkHeaders = new GetFolderGetSharedLinkHeaders(
+    queryParams: GetSharedLinkForFolderQueryParams,
+    headers: GetSharedLinkForFolderHeaders = new GetSharedLinkForFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -229,13 +229,11 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
-  async updateFolderAddSharedLink(
+  async addShareLinkToFolder(
     folderId: string,
-    requestBody: UpdateFolderAddSharedLinkRequestBody = {} satisfies UpdateFolderAddSharedLinkRequestBody,
-    queryParams: UpdateFolderAddSharedLinkQueryParams,
-    headers: UpdateFolderAddSharedLinkHeaders = new UpdateFolderAddSharedLinkHeaders(
-      {}
-    ),
+    requestBody: AddShareLinkToFolderRequestBody = {} satisfies AddShareLinkToFolderRequestBody,
+    queryParams: AddShareLinkToFolderQueryParams,
+    headers: AddShareLinkToFolderHeaders = new AddShareLinkToFolderHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
     const queryParamsMap: {
@@ -255,7 +253,7 @@ export class SharedLinksFoldersManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateFolderAddSharedLinkRequestBody(requestBody),
+        data: serializeAddShareLinkToFolderRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -265,11 +263,11 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
-  async updateFolderUpdateSharedLink(
+  async updateSharedLinkOnFolder(
     folderId: string,
-    requestBody: UpdateFolderUpdateSharedLinkRequestBody = {} satisfies UpdateFolderUpdateSharedLinkRequestBody,
-    queryParams: UpdateFolderUpdateSharedLinkQueryParams,
-    headers: UpdateFolderUpdateSharedLinkHeaders = new UpdateFolderUpdateSharedLinkHeaders(
+    requestBody: UpdateSharedLinkOnFolderRequestBody = {} satisfies UpdateSharedLinkOnFolderRequestBody,
+    queryParams: UpdateSharedLinkOnFolderQueryParams,
+    headers: UpdateSharedLinkOnFolderHeaders = new UpdateSharedLinkOnFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -291,7 +289,7 @@ export class SharedLinksFoldersManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateFolderUpdateSharedLinkRequestBody(requestBody),
+        data: serializeUpdateSharedLinkOnFolderRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -301,11 +299,11 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
-  async updateFolderRemoveSharedLink(
+  async removeSharedLinkFromFolder(
     folderId: string,
-    requestBody: UpdateFolderRemoveSharedLinkRequestBody = {} satisfies UpdateFolderRemoveSharedLinkRequestBody,
-    queryParams: UpdateFolderRemoveSharedLinkQueryParams,
-    headers: UpdateFolderRemoveSharedLinkHeaders = new UpdateFolderRemoveSharedLinkHeaders(
+    requestBody: RemoveSharedLinkFromFolderRequestBody = {} satisfies RemoveSharedLinkFromFolderRequestBody,
+    queryParams: RemoveSharedLinkFromFolderQueryParams,
+    headers: RemoveSharedLinkFromFolderHeaders = new RemoveSharedLinkFromFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -327,7 +325,7 @@ export class SharedLinksFoldersManager {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateFolderRemoveSharedLinkRequestBody(requestBody),
+        data: serializeRemoveSharedLinkFromFolderRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -338,16 +336,16 @@ export class SharedLinksFoldersManager {
     return deserializeFolderFull(response.data);
   }
 }
-export function serializeUpdateFolderAddSharedLinkRequestBodySharedLinkAccessField(
-  val: UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField
+export function serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
+  val: AddShareLinkToFolderRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkAccessField(
+export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   val: any
-): UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField {
+): AddShareLinkToFolderRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField"';
+    throw 'Expecting a string for "AddShareLinkToFolderRequestBodySharedLinkAccessField"';
   }
   if (val == 'open') {
     return 'open';
@@ -360,8 +358,8 @@ export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkAccessF
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField(
-  val: UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField
+export function serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
+  val: AddShareLinkToFolderRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -369,9 +367,9 @@ export function serializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermissio
     ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
   };
 }
-export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField(
+export function deserializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
   val: any
-): UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField {
+): AddShareLinkToFolderRequestBodySharedLinkPermissionsField {
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
   const canPreview: undefined | boolean =
@@ -382,16 +380,16 @@ export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermiss
     canDownload: canDownload,
     canPreview: canPreview,
     canEdit: canEdit,
-  } satisfies UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField;
+  } satisfies AddShareLinkToFolderRequestBodySharedLinkPermissionsField;
 }
-export function serializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
-  val: UpdateFolderAddSharedLinkRequestBodySharedLinkField
+export function serializeAddShareLinkToFolderRequestBodySharedLinkField(
+  val: AddShareLinkToFolderRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
-        : serializeUpdateFolderAddSharedLinkRequestBodySharedLinkAccessField(
+        : serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
             val.access
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
@@ -400,20 +398,20 @@ export function serializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
     ['permissions']:
       val.permissions == void 0
         ? void 0
-        : serializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField(
+        : serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
             val.permissions
           ),
   };
 }
-export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
+export function deserializeAddShareLinkToFolderRequestBodySharedLinkField(
   val: any
-): UpdateFolderAddSharedLinkRequestBodySharedLinkField {
+): AddShareLinkToFolderRequestBodySharedLinkField {
   const access:
     | undefined
-    | UpdateFolderAddSharedLinkRequestBodySharedLinkAccessField =
+    | AddShareLinkToFolderRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
-      : deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkAccessField(
+      : deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
           val.access
         );
   const password: undefined | string =
@@ -424,10 +422,10 @@ export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
     val.unshared_at == void 0 ? void 0 : val.unshared_at;
   const permissions:
     | undefined
-    | UpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField =
+    | AddShareLinkToFolderRequestBodySharedLinkPermissionsField =
     val.permissions == void 0
       ? void 0
-      : deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkPermissionsField(
+      : deserializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
           val.permissions
         );
   return {
@@ -436,45 +434,41 @@ export function deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
     vanityName: vanityName,
     unsharedAt: unsharedAt,
     permissions: permissions,
-  } satisfies UpdateFolderAddSharedLinkRequestBodySharedLinkField;
+  } satisfies AddShareLinkToFolderRequestBodySharedLinkField;
 }
-export function serializeUpdateFolderAddSharedLinkRequestBody(
-  val: UpdateFolderAddSharedLinkRequestBody
+export function serializeAddShareLinkToFolderRequestBody(
+  val: AddShareLinkToFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
-        : serializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
+        : serializeAddShareLinkToFolderRequestBodySharedLinkField(
             val.sharedLink
           ),
   };
 }
-export function deserializeUpdateFolderAddSharedLinkRequestBody(
+export function deserializeAddShareLinkToFolderRequestBody(
   val: any
-): UpdateFolderAddSharedLinkRequestBody {
-  const sharedLink:
-    | undefined
-    | UpdateFolderAddSharedLinkRequestBodySharedLinkField =
+): AddShareLinkToFolderRequestBody {
+  const sharedLink: undefined | AddShareLinkToFolderRequestBodySharedLinkField =
     val.shared_link == void 0
       ? void 0
-      : deserializeUpdateFolderAddSharedLinkRequestBodySharedLinkField(
+      : deserializeAddShareLinkToFolderRequestBodySharedLinkField(
           val.shared_link
         );
-  return {
-    sharedLink: sharedLink,
-  } satisfies UpdateFolderAddSharedLinkRequestBody;
+  return { sharedLink: sharedLink } satisfies AddShareLinkToFolderRequestBody;
 }
-export function serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField(
-  val: UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField
+export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField(
+export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
   val: any
-): UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField {
+): UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField"';
+    throw 'Expecting a string for "UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField"';
   }
   if (val == 'open') {
     return 'open';
@@ -487,8 +481,8 @@ export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkAcce
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField(
-  val: UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField
+export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -496,9 +490,9 @@ export function serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPermis
     ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
   };
 }
-export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField(
+export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
   val: any
-): UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField {
+): UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField {
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
   const canPreview: undefined | boolean =
@@ -509,16 +503,16 @@ export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPerm
     canDownload: canDownload,
     canPreview: canPreview,
     canEdit: canEdit,
-  } satisfies UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField;
+  } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField;
 }
-export function serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkField(
-  val: UpdateFolderUpdateSharedLinkRequestBodySharedLinkField
+export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
-        : serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField(
+        : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
             val.access
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
@@ -527,20 +521,20 @@ export function serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkField(
     ['permissions']:
       val.permissions == void 0
         ? void 0
-        : serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField(
+        : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
             val.permissions
           ),
   };
 }
-export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkField(
+export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
   val: any
-): UpdateFolderUpdateSharedLinkRequestBodySharedLinkField {
+): UpdateSharedLinkOnFolderRequestBodySharedLinkField {
   const access:
     | undefined
-    | UpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField =
+    | UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
-      : deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkAccessField(
+      : deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
           val.access
         );
   const password: undefined | string =
@@ -551,10 +545,10 @@ export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkFiel
     val.unshared_at == void 0 ? void 0 : val.unshared_at;
   const permissions:
     | undefined
-    | UpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField =
+    | UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField =
     val.permissions == void 0
       ? void 0
-      : deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkPermissionsField(
+      : deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
           val.permissions
         );
   return {
@@ -563,69 +557,69 @@ export function deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkFiel
     vanityName: vanityName,
     unsharedAt: unsharedAt,
     permissions: permissions,
-  } satisfies UpdateFolderUpdateSharedLinkRequestBodySharedLinkField;
+  } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkField;
 }
-export function serializeUpdateFolderUpdateSharedLinkRequestBody(
-  val: UpdateFolderUpdateSharedLinkRequestBody
+export function serializeUpdateSharedLinkOnFolderRequestBody(
+  val: UpdateSharedLinkOnFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
-        : serializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkField(
+        : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
             val.sharedLink
           ),
   };
 }
-export function deserializeUpdateFolderUpdateSharedLinkRequestBody(
+export function deserializeUpdateSharedLinkOnFolderRequestBody(
   val: any
-): UpdateFolderUpdateSharedLinkRequestBody {
+): UpdateSharedLinkOnFolderRequestBody {
   const sharedLink:
     | undefined
-    | UpdateFolderUpdateSharedLinkRequestBodySharedLinkField =
+    | UpdateSharedLinkOnFolderRequestBodySharedLinkField =
     val.shared_link == void 0
       ? void 0
-      : deserializeUpdateFolderUpdateSharedLinkRequestBodySharedLinkField(
+      : deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
           val.shared_link
         );
   return {
     sharedLink: sharedLink,
-  } satisfies UpdateFolderUpdateSharedLinkRequestBody;
+  } satisfies UpdateSharedLinkOnFolderRequestBody;
 }
-export function serializeUpdateFolderRemoveSharedLinkRequestBodySharedLinkField(
-  val: UpdateFolderRemoveSharedLinkRequestBodySharedLinkField
+export function serializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
+  val: RemoveSharedLinkFromFolderRequestBodySharedLinkField
 ): SerializedData {
   return {};
 }
-export function deserializeUpdateFolderRemoveSharedLinkRequestBodySharedLinkField(
+export function deserializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
   val: any
-): UpdateFolderRemoveSharedLinkRequestBodySharedLinkField {
-  return {} satisfies UpdateFolderRemoveSharedLinkRequestBodySharedLinkField;
+): RemoveSharedLinkFromFolderRequestBodySharedLinkField {
+  return {} satisfies RemoveSharedLinkFromFolderRequestBodySharedLinkField;
 }
-export function serializeUpdateFolderRemoveSharedLinkRequestBody(
-  val: UpdateFolderRemoveSharedLinkRequestBody
+export function serializeRemoveSharedLinkFromFolderRequestBody(
+  val: RemoveSharedLinkFromFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
-        : serializeUpdateFolderRemoveSharedLinkRequestBodySharedLinkField(
+        : serializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
             val.sharedLink
           ),
   };
 }
-export function deserializeUpdateFolderRemoveSharedLinkRequestBody(
+export function deserializeRemoveSharedLinkFromFolderRequestBody(
   val: any
-): UpdateFolderRemoveSharedLinkRequestBody {
+): RemoveSharedLinkFromFolderRequestBody {
   const sharedLink:
     | undefined
-    | UpdateFolderRemoveSharedLinkRequestBodySharedLinkField =
+    | RemoveSharedLinkFromFolderRequestBodySharedLinkField =
     val.shared_link == void 0
       ? void 0
-      : deserializeUpdateFolderRemoveSharedLinkRequestBodySharedLinkField(
+      : deserializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
           val.shared_link
         );
   return {
     sharedLink: sharedLink,
-  } satisfies UpdateFolderRemoveSharedLinkRequestBody;
+  } satisfies RemoveSharedLinkFromFolderRequestBody;
 }

@@ -24,110 +24,102 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFileMetadataGlobalBoxSkillsCardsHeaders {
+export class GetBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileMetadataGlobalBoxSkillsCardsHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<GetFileMetadataGlobalBoxSkillsCardsHeaders, 'extraHeaders'>
-        >
+      | Omit<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateFileMetadataGlobalBoxSkillsCardRequestBody {
+export interface CreateBoxSkillCardsOnFileRequestBody {
   readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
 }
-export class CreateFileMetadataGlobalBoxSkillsCardHeaders {
+export class CreateBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<CreateFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-        >
+      | Omit<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField = 'replace';
-export interface UpdateFileMetadataGlobalBoxSkillsCardRequestBody {
-  readonly op?: UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField;
+export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace';
+export interface UpdateBoxSkillCardsOnFileRequestBody {
+  readonly op?: UpdateBoxSkillCardsOnFileRequestBodyOpField;
   readonly path?: string;
   readonly value?: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard;
 }
-export class UpdateFileMetadataGlobalBoxSkillsCardHeaders {
+export class UpdateBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<UpdateFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-        >
+      | Omit<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileMetadataGlobalBoxSkillsCardHeaders {
+export class DeleteBoxSkillCardsFromFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<DeleteFileMetadataGlobalBoxSkillsCardHeaders, 'extraHeaders'>
-        >
+      | Omit<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateSkillInvocationByIdRequestBodyStatusField =
+export type UpdateAllSkillCardsOnFileRequestBodyStatusField =
   | 'invoked'
   | 'processing'
   | 'success'
   | 'transient_failure'
   | 'permanent_failure';
-export interface UpdateSkillInvocationByIdRequestBodyMetadataField {
+export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
 }
-export type UpdateSkillInvocationByIdRequestBodyFileTypeField = 'file';
-export interface UpdateSkillInvocationByIdRequestBodyFileField {
-  readonly type?: UpdateSkillInvocationByIdRequestBodyFileTypeField;
+export type UpdateAllSkillCardsOnFileRequestBodyFileTypeField = 'file';
+export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
+  readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileTypeField;
   readonly id?: string;
 }
-export type UpdateSkillInvocationByIdRequestBodyFileVersionTypeField =
+export type UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
   'file_version';
-export interface UpdateSkillInvocationByIdRequestBodyFileVersionField {
-  readonly type?: UpdateSkillInvocationByIdRequestBodyFileVersionTypeField;
+export interface UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
+  readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField;
   readonly id?: string;
 }
-export interface UpdateSkillInvocationByIdRequestBodyUsageField {
+export interface UpdateAllSkillCardsOnFileRequestBodyUsageField {
   readonly unit?: string;
   readonly value?: number;
 }
-export interface UpdateSkillInvocationByIdRequestBody {
-  readonly status: UpdateSkillInvocationByIdRequestBodyStatusField;
-  readonly metadata: UpdateSkillInvocationByIdRequestBodyMetadataField;
-  readonly file: UpdateSkillInvocationByIdRequestBodyFileField;
-  readonly fileVersion?: UpdateSkillInvocationByIdRequestBodyFileVersionField;
-  readonly usage?: UpdateSkillInvocationByIdRequestBodyUsageField;
+export interface UpdateAllSkillCardsOnFileRequestBody {
+  readonly status: UpdateAllSkillCardsOnFileRequestBodyStatusField;
+  readonly metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField;
+  readonly file: UpdateAllSkillCardsOnFileRequestBodyFileField;
+  readonly fileVersion?: UpdateAllSkillCardsOnFileRequestBodyFileVersionField;
+  readonly usage?: UpdateAllSkillCardsOnFileRequestBodyUsageField;
 }
-export class UpdateSkillInvocationByIdHeaders {
+export class UpdateAllSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateSkillInvocationByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateSkillInvocationByIdHeaders, 'extraHeaders'>>
+      | Omit<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -140,19 +132,19 @@ export class SkillsManager {
       | Omit<
           SkillsManager,
           | 'networkSession'
-          | 'getFileMetadataGlobalBoxSkillsCards'
-          | 'createFileMetadataGlobalBoxSkillsCard'
-          | 'updateFileMetadataGlobalBoxSkillsCard'
-          | 'deleteFileMetadataGlobalBoxSkillsCard'
-          | 'updateSkillInvocationById'
+          | 'getBoxSkillCardsOnFile'
+          | 'createBoxSkillCardsOnFile'
+          | 'updateBoxSkillCardsOnFile'
+          | 'deleteBoxSkillCardsFromFile'
+          | 'updateAllSkillCardsOnFile'
         >
       | Partial<Pick<SkillsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getFileMetadataGlobalBoxSkillsCards(
+  async getBoxSkillCardsOnFile(
     fileId: string,
-    headers: GetFileMetadataGlobalBoxSkillsCardsHeaders = new GetFileMetadataGlobalBoxSkillsCardsHeaders(
+    headers: GetBoxSkillCardsOnFileHeaders = new GetBoxSkillCardsOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -178,10 +170,10 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
-  async createFileMetadataGlobalBoxSkillsCard(
+  async createBoxSkillCardsOnFile(
     fileId: string,
-    requestBody: CreateFileMetadataGlobalBoxSkillsCardRequestBody,
-    headers: CreateFileMetadataGlobalBoxSkillsCardHeaders = new CreateFileMetadataGlobalBoxSkillsCardHeaders(
+    requestBody: CreateBoxSkillCardsOnFileRequestBody,
+    headers: CreateBoxSkillCardsOnFileHeaders = new CreateBoxSkillCardsOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -199,9 +191,7 @@ export class SkillsManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateFileMetadataGlobalBoxSkillsCardRequestBody(
-          requestBody
-        ),
+        data: serializeCreateBoxSkillCardsOnFileRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -211,10 +201,10 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
-  async updateFileMetadataGlobalBoxSkillsCard(
+  async updateBoxSkillCardsOnFile(
     fileId: string,
-    requestBody: readonly UpdateFileMetadataGlobalBoxSkillsCardRequestBody[],
-    headers: UpdateFileMetadataGlobalBoxSkillsCardHeaders = new UpdateFileMetadataGlobalBoxSkillsCardHeaders(
+    requestBody: readonly UpdateBoxSkillCardsOnFileRequestBody[],
+    headers: UpdateBoxSkillCardsOnFileHeaders = new UpdateBoxSkillCardsOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -233,7 +223,7 @@ export class SkillsManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBody
+          serializeUpdateBoxSkillCardsOnFileRequestBody
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -244,9 +234,9 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
-  async deleteFileMetadataGlobalBoxSkillsCard(
+  async deleteBoxSkillCardsFromFile(
     fileId: string,
-    headers: DeleteFileMetadataGlobalBoxSkillsCardHeaders = new DeleteFileMetadataGlobalBoxSkillsCardHeaders(
+    headers: DeleteBoxSkillCardsFromFileHeaders = new DeleteBoxSkillCardsFromFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -272,10 +262,10 @@ export class SkillsManager {
     )) as FetchResponse;
     return void 0;
   }
-  async updateSkillInvocationById(
+  async updateAllSkillCardsOnFile(
     skillId: string,
-    requestBody: UpdateSkillInvocationByIdRequestBody,
-    headers: UpdateSkillInvocationByIdHeaders = new UpdateSkillInvocationByIdHeaders(
+    requestBody: UpdateAllSkillCardsOnFileRequestBody,
+    headers: UpdateAllSkillCardsOnFileHeaders = new UpdateAllSkillCardsOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -292,7 +282,7 @@ export class SkillsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateSkillInvocationByIdRequestBody(requestBody),
+        data: serializeUpdateAllSkillCardsOnFileRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: void 0,
         auth: this.auth,
@@ -303,8 +293,8 @@ export class SkillsManager {
     return void 0;
   }
 }
-export function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBody(
-  val: CreateFileMetadataGlobalBoxSkillsCardRequestBody
+export function serializeCreateBoxSkillCardsOnFileRequestBody(
+  val: CreateBoxSkillCardsOnFileRequestBody
 ): SerializedData {
   return {
     ['cards']: val.cards.map(function (
@@ -316,9 +306,9 @@ export function serializeCreateFileMetadataGlobalBoxSkillsCardRequestBody(
     }) as readonly any[],
   };
 }
-export function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBody(
+export function deserializeCreateBoxSkillCardsOnFileRequestBody(
   val: any
-): CreateFileMetadataGlobalBoxSkillsCardRequestBody {
+): CreateBoxSkillCardsOnFileRequestBody {
   const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
     sdIsList(val.cards)
       ? (val.cards.map(function (itm: SerializedData): any {
@@ -327,36 +317,32 @@ export function deserializeCreateFileMetadataGlobalBoxSkillsCardRequestBody(
           );
         }) as readonly any[])
       : [];
-  return {
-    cards: cards,
-  } satisfies CreateFileMetadataGlobalBoxSkillsCardRequestBody;
+  return { cards: cards } satisfies CreateBoxSkillCardsOnFileRequestBody;
 }
-export function serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField(
-  val: UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField
+export function serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
+  val: UpdateBoxSkillCardsOnFileRequestBodyOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField(
+export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   val: any
-): UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField {
+): UpdateBoxSkillCardsOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField"';
+    throw 'Expecting a string for "UpdateBoxSkillCardsOnFileRequestBodyOpField"';
   }
   if (val == 'replace') {
     return 'replace';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBody(
-  val: UpdateFileMetadataGlobalBoxSkillsCardRequestBody
+export function serializeUpdateBoxSkillCardsOnFileRequestBody(
+  val: UpdateBoxSkillCardsOnFileRequestBody
 ): SerializedData {
   return {
     ['op']:
       val.op == void 0
         ? void 0
-        : serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField(
-            val.op
-          ),
+        : serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(val.op),
     ['path']: val.path == void 0 ? void 0 : val.path,
     ['value']:
       val.value == void 0
@@ -366,17 +352,13 @@ export function serializeUpdateFileMetadataGlobalBoxSkillsCardRequestBody(
           ),
   };
 }
-export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBody(
+export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
   val: any
-): UpdateFileMetadataGlobalBoxSkillsCardRequestBody {
-  const op:
-    | undefined
-    | UpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField =
+): UpdateBoxSkillCardsOnFileRequestBody {
+  const op: undefined | UpdateBoxSkillCardsOnFileRequestBodyOpField =
     val.op == void 0
       ? void 0
-      : deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBodyOpField(
-          val.op
-        );
+      : deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(val.op);
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
   const value:
     | undefined
@@ -390,18 +372,18 @@ export function deserializeUpdateFileMetadataGlobalBoxSkillsCardRequestBody(
     op: op,
     path: path,
     value: value,
-  } satisfies UpdateFileMetadataGlobalBoxSkillsCardRequestBody;
+  } satisfies UpdateBoxSkillCardsOnFileRequestBody;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyStatusField(
-  val: UpdateSkillInvocationByIdRequestBodyStatusField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
+  val: UpdateAllSkillCardsOnFileRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyStatusField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyStatusField {
+): UpdateAllSkillCardsOnFileRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyStatusField"';
+    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyStatusField"';
   }
   if (val == 'invoked') {
     return 'invoked';
@@ -420,8 +402,8 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyMetadataField(
-  val: UpdateSkillInvocationByIdRequestBodyMetadataField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
+  val: UpdateAllSkillCardsOnFileRequestBodyMetadataField
 ): SerializedData {
   return {
     ['cards']:
@@ -436,9 +418,9 @@ export function serializeUpdateSkillInvocationByIdRequestBodyMetadataField(
           }) as readonly any[]),
   };
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyMetadataField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyMetadataField {
+): UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   const cards:
     | undefined
     | readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
@@ -453,161 +435,161 @@ export function deserializeUpdateSkillInvocationByIdRequestBodyMetadataField(
       : [];
   return {
     cards: cards,
-  } satisfies UpdateSkillInvocationByIdRequestBodyMetadataField;
+  } satisfies UpdateAllSkillCardsOnFileRequestBodyMetadataField;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyFileTypeField(
-  val: UpdateSkillInvocationByIdRequestBodyFileTypeField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
+  val: UpdateAllSkillCardsOnFileRequestBodyFileTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyFileTypeField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyFileTypeField {
+): UpdateAllSkillCardsOnFileRequestBodyFileTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyFileTypeField"';
+    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileTypeField"';
   }
   if (val == 'file') {
     return 'file';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyFileField(
-  val: UpdateSkillInvocationByIdRequestBodyFileField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
+  val: UpdateAllSkillCardsOnFileRequestBodyFileField
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeUpdateSkillInvocationByIdRequestBodyFileTypeField(val.type),
+        : serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(val.type),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyFileField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyFileField {
-  const type: undefined | UpdateSkillInvocationByIdRequestBodyFileTypeField =
+): UpdateAllSkillCardsOnFileRequestBodyFileField {
+  const type: undefined | UpdateAllSkillCardsOnFileRequestBodyFileTypeField =
     val.type == void 0
       ? void 0
-      : deserializeUpdateSkillInvocationByIdRequestBodyFileTypeField(val.type);
+      : deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,
-  } satisfies UpdateSkillInvocationByIdRequestBodyFileField;
+  } satisfies UpdateAllSkillCardsOnFileRequestBodyFileField;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyFileVersionTypeField(
-  val: UpdateSkillInvocationByIdRequestBodyFileVersionTypeField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
+  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyFileVersionTypeField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyFileVersionTypeField {
+): UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateSkillInvocationByIdRequestBodyFileVersionTypeField"';
+    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField"';
   }
   if (val == 'file_version') {
     return 'file_version';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyFileVersionField(
-  val: UpdateSkillInvocationByIdRequestBodyFileVersionField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
+  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeUpdateSkillInvocationByIdRequestBodyFileVersionTypeField(
+        : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
             val.type
           ),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyFileVersionField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyFileVersionField {
+): UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
   const type:
     | undefined
-    | UpdateSkillInvocationByIdRequestBodyFileVersionTypeField =
+    | UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
     val.type == void 0
       ? void 0
-      : deserializeUpdateSkillInvocationByIdRequestBodyFileVersionTypeField(
+      : deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
           val.type
         );
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,
-  } satisfies UpdateSkillInvocationByIdRequestBodyFileVersionField;
+  } satisfies UpdateAllSkillCardsOnFileRequestBodyFileVersionField;
 }
-export function serializeUpdateSkillInvocationByIdRequestBodyUsageField(
-  val: UpdateSkillInvocationByIdRequestBodyUsageField
+export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
+  val: UpdateAllSkillCardsOnFileRequestBodyUsageField
 ): SerializedData {
   return {
     ['unit']: val.unit == void 0 ? void 0 : val.unit,
     ['value']: val.value == void 0 ? void 0 : val.value,
   };
 }
-export function deserializeUpdateSkillInvocationByIdRequestBodyUsageField(
+export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   val: any
-): UpdateSkillInvocationByIdRequestBodyUsageField {
+): UpdateAllSkillCardsOnFileRequestBodyUsageField {
   const unit: undefined | string = val.unit == void 0 ? void 0 : val.unit;
   const value: undefined | number = val.value == void 0 ? void 0 : val.value;
   return {
     unit: unit,
     value: value,
-  } satisfies UpdateSkillInvocationByIdRequestBodyUsageField;
+  } satisfies UpdateAllSkillCardsOnFileRequestBodyUsageField;
 }
-export function serializeUpdateSkillInvocationByIdRequestBody(
-  val: UpdateSkillInvocationByIdRequestBody
+export function serializeUpdateAllSkillCardsOnFileRequestBody(
+  val: UpdateAllSkillCardsOnFileRequestBody
 ): SerializedData {
   return {
-    ['status']: serializeUpdateSkillInvocationByIdRequestBodyStatusField(
+    ['status']: serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
       val.status
     ),
-    ['metadata']: serializeUpdateSkillInvocationByIdRequestBodyMetadataField(
+    ['metadata']: serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
       val.metadata
     ),
-    ['file']: serializeUpdateSkillInvocationByIdRequestBodyFileField(val.file),
+    ['file']: serializeUpdateAllSkillCardsOnFileRequestBodyFileField(val.file),
     ['file_version']:
       val.fileVersion == void 0
         ? void 0
-        : serializeUpdateSkillInvocationByIdRequestBodyFileVersionField(
+        : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
             val.fileVersion
           ),
     ['usage']:
       val.usage == void 0
         ? void 0
-        : serializeUpdateSkillInvocationByIdRequestBodyUsageField(val.usage),
+        : serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(val.usage),
   };
 }
-export function deserializeUpdateSkillInvocationByIdRequestBody(
+export function deserializeUpdateAllSkillCardsOnFileRequestBody(
   val: any
-): UpdateSkillInvocationByIdRequestBody {
-  const status: UpdateSkillInvocationByIdRequestBodyStatusField =
-    deserializeUpdateSkillInvocationByIdRequestBodyStatusField(val.status);
-  const metadata: UpdateSkillInvocationByIdRequestBodyMetadataField =
-    deserializeUpdateSkillInvocationByIdRequestBodyMetadataField(val.metadata);
-  const file: UpdateSkillInvocationByIdRequestBodyFileField =
-    deserializeUpdateSkillInvocationByIdRequestBodyFileField(val.file);
+): UpdateAllSkillCardsOnFileRequestBody {
+  const status: UpdateAllSkillCardsOnFileRequestBodyStatusField =
+    deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(val.status);
+  const metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField =
+    deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(val.metadata);
+  const file: UpdateAllSkillCardsOnFileRequestBodyFileField =
+    deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(val.file);
   const fileVersion:
     | undefined
-    | UpdateSkillInvocationByIdRequestBodyFileVersionField =
+    | UpdateAllSkillCardsOnFileRequestBodyFileVersionField =
     val.file_version == void 0
       ? void 0
-      : deserializeUpdateSkillInvocationByIdRequestBodyFileVersionField(
+      : deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
           val.file_version
         );
-  const usage: undefined | UpdateSkillInvocationByIdRequestBodyUsageField =
+  const usage: undefined | UpdateAllSkillCardsOnFileRequestBodyUsageField =
     val.usage == void 0
       ? void 0
-      : deserializeUpdateSkillInvocationByIdRequestBodyUsageField(val.usage);
+      : deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(val.usage);
   return {
     status: status,
     metadata: metadata,
     file: file,
     fileVersion: fileVersion,
     usage: usage,
-  } satisfies UpdateSkillInvocationByIdRequestBody;
+  } satisfies UpdateAllSkillCardsOnFileRequestBody;
 }

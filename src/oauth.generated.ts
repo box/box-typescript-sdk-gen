@@ -81,7 +81,7 @@ export class BoxOAuth implements Authentication {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    const token: AccessToken = await authManager.createOauth2Token({
+    const token: AccessToken = await authManager.requestAccessToken({
       grantType: 'authorization_code',
       code: authorizationCode,
       clientId: this.config.clientId,
@@ -110,7 +110,7 @@ export class BoxOAuth implements Authentication {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    const token: AccessToken = await authManager.createOauth2Token({
+    const token: AccessToken = await authManager.requestAccessToken({
       grantType: 'refresh_token',
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
@@ -127,7 +127,7 @@ export class BoxOAuth implements Authentication {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    await authManager.createOauth2Revoke({
+    await authManager.revokeAccessToken({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
       token: token.accessToken,
@@ -148,7 +148,7 @@ export class BoxOAuth implements Authentication {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    const downscopedToken: AccessToken = await authManager.createOauth2Token({
+    const downscopedToken: AccessToken = await authManager.requestAccessToken({
       grantType: 'urn:ietf:params:oauth:grant-type:token-exchange',
       subjectToken: token.accessToken,
       subjectTokenType: 'urn:ietf:params:oauth:token-type:access_token',

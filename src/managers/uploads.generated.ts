@@ -86,22 +86,22 @@ export class UploadFileHeaders {
     Object.assign(this, fields);
   }
 }
-export interface PreflightFileUploadRequestBodyParentField {
+export interface PreflightFileUploadCheckRequestBodyParentField {
   readonly id?: string;
 }
-export interface PreflightFileUploadRequestBody {
+export interface PreflightFileUploadCheckRequestBody {
   readonly name?: string;
   readonly size?: number;
-  readonly parent?: PreflightFileUploadRequestBodyParentField;
+  readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
 }
-export class PreflightFileUploadHeaders {
+export class PreflightFileUploadCheckHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<PreflightFileUploadHeaders, 'extraHeaders'>
-      | Partial<Pick<PreflightFileUploadHeaders, 'extraHeaders'>>
+      | Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'>
+      | Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -116,7 +116,7 @@ export class UploadsManager {
           | 'networkSession'
           | 'uploadFileVersion'
           | 'uploadFile'
-          | 'preflightFileUpload'
+          | 'preflightFileUploadCheck'
         >
       | Partial<Pick<UploadsManager, 'networkSession'>>
   ) {
@@ -230,9 +230,11 @@ export class UploadsManager {
     )) as FetchResponse;
     return deserializeFiles(response.data);
   }
-  async preflightFileUpload(
-    requestBody: PreflightFileUploadRequestBody = {} satisfies PreflightFileUploadRequestBody,
-    headers: PreflightFileUploadHeaders = new PreflightFileUploadHeaders({}),
+  async preflightFileUploadCheck(
+    requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
+    headers: PreflightFileUploadCheckHeaders = new PreflightFileUploadCheckHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<UploadUrl> {
     const headersMap: {
@@ -246,7 +248,7 @@ export class UploadsManager {
       {
         method: 'OPTIONS',
         headers: headersMap,
-        data: serializePreflightFileUploadRequestBody(requestBody),
+        data: serializePreflightFileUploadCheckRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -317,19 +319,19 @@ export function deserializeUploadFileRequestBodyAttributesField(
     contentModifiedAt: contentModifiedAt,
   } satisfies UploadFileRequestBodyAttributesField;
 }
-export function serializePreflightFileUploadRequestBodyParentField(
-  val: PreflightFileUploadRequestBodyParentField
+export function serializePreflightFileUploadCheckRequestBodyParentField(
+  val: PreflightFileUploadCheckRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializePreflightFileUploadRequestBodyParentField(
+export function deserializePreflightFileUploadCheckRequestBodyParentField(
   val: any
-): PreflightFileUploadRequestBodyParentField {
+): PreflightFileUploadCheckRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies PreflightFileUploadRequestBodyParentField;
+  return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
 }
-export function serializePreflightFileUploadRequestBody(
-  val: PreflightFileUploadRequestBody
+export function serializePreflightFileUploadCheckRequestBody(
+  val: PreflightFileUploadCheckRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -337,21 +339,21 @@ export function serializePreflightFileUploadRequestBody(
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializePreflightFileUploadRequestBodyParentField(val.parent),
+        : serializePreflightFileUploadCheckRequestBodyParentField(val.parent),
   };
 }
-export function deserializePreflightFileUploadRequestBody(
+export function deserializePreflightFileUploadCheckRequestBody(
   val: any
-): PreflightFileUploadRequestBody {
+): PreflightFileUploadCheckRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
-  const parent: undefined | PreflightFileUploadRequestBodyParentField =
+  const parent: undefined | PreflightFileUploadCheckRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializePreflightFileUploadRequestBodyParentField(val.parent);
+      : deserializePreflightFileUploadCheckRequestBodyParentField(val.parent);
   return {
     name: name,
     size: size,
     parent: parent,
-  } satisfies PreflightFileUploadRequestBody;
+  } satisfies PreflightFileUploadCheckRequestBody;
 }

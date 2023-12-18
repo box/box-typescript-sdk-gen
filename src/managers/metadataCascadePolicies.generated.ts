@@ -89,19 +89,20 @@ export class DeleteMetadataCascadePolicyByIdHeaders {
     Object.assign(this, fields);
   }
 }
-export type CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField =
-  'none' | 'overwrite';
-export interface CreateMetadataCascadePolicyApplyRequestBody {
-  readonly conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField;
+export type ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
+  | 'none'
+  | 'overwrite';
+export interface ApplyMetadataCascadePolicyRequestBody {
+  readonly conflictResolution: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField;
 }
-export class CreateMetadataCascadePolicyApplyHeaders {
+export class ApplyMetadataCascadePolicyHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateMetadataCascadePolicyApplyHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataCascadePolicyApplyHeaders, 'extraHeaders'>>
+      | Omit<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>
+      | Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -118,7 +119,7 @@ export class MetadataCascadePoliciesManager {
           | 'createMetadataCascadePolicy'
           | 'getMetadataCascadePolicyById'
           | 'deleteMetadataCascadePolicyById'
-          | 'createMetadataCascadePolicyApply'
+          | 'applyMetadataCascadePolicy'
         >
       | Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>
   ) {
@@ -243,10 +244,10 @@ export class MetadataCascadePoliciesManager {
     )) as FetchResponse;
     return void 0;
   }
-  async createMetadataCascadePolicyApply(
+  async applyMetadataCascadePolicy(
     metadataCascadePolicyId: string,
-    requestBody: CreateMetadataCascadePolicyApplyRequestBody,
-    headers: CreateMetadataCascadePolicyApplyHeaders = new CreateMetadataCascadePolicyApplyHeaders(
+    requestBody: ApplyMetadataCascadePolicyRequestBody,
+    headers: ApplyMetadataCascadePolicyHeaders = new ApplyMetadataCascadePolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -264,7 +265,7 @@ export class MetadataCascadePoliciesManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateMetadataCascadePolicyApplyRequestBody(requestBody),
+        data: serializeApplyMetadataCascadePolicyRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: void 0,
         auth: this.auth,
@@ -318,16 +319,16 @@ export function deserializeCreateMetadataCascadePolicyRequestBody(
     templateKey: templateKey,
   } satisfies CreateMetadataCascadePolicyRequestBody;
 }
-export function serializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField(
-  val: CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField
+export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
+  val: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField(
+export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
   val: any
-): CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField {
+): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField"';
+    throw 'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"';
   }
   if (val == 'none') {
     return 'none';
@@ -337,24 +338,24 @@ export function deserializeCreateMetadataCascadePolicyApplyRequestBodyConflictRe
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateMetadataCascadePolicyApplyRequestBody(
-  val: CreateMetadataCascadePolicyApplyRequestBody
+export function serializeApplyMetadataCascadePolicyRequestBody(
+  val: ApplyMetadataCascadePolicyRequestBody
 ): SerializedData {
   return {
     ['conflict_resolution']:
-      serializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField(
+      serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
         val.conflictResolution
       ),
   };
 }
-export function deserializeCreateMetadataCascadePolicyApplyRequestBody(
+export function deserializeApplyMetadataCascadePolicyRequestBody(
   val: any
-): CreateMetadataCascadePolicyApplyRequestBody {
-  const conflictResolution: CreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField =
-    deserializeCreateMetadataCascadePolicyApplyRequestBodyConflictResolutionField(
+): ApplyMetadataCascadePolicyRequestBody {
+  const conflictResolution: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
+    deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
       val.conflict_resolution
     );
   return {
     conflictResolution: conflictResolution,
-  } satisfies CreateMetadataCascadePolicyApplyRequestBody;
+  } satisfies ApplyMetadataCascadePolicyRequestBody;
 }

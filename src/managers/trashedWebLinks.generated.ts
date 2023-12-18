@@ -46,29 +46,29 @@ export class RestoreWeblinkFromTrashHeaders {
     Object.assign(this, fields);
   }
 }
-export interface GetWebLinkTrashQueryParams {
+export interface GetTrashedWebLinkByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetWebLinkTrashHeaders {
+export class GetTrashedWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetWebLinkTrashHeaders, 'extraHeaders'>
-      | Partial<Pick<GetWebLinkTrashHeaders, 'extraHeaders'>>
+      | Omit<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteWebLinkTrashHeaders {
+export class DeleteTrashedWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteWebLinkTrashHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteWebLinkTrashHeaders, 'extraHeaders'>>
+      | Omit<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -82,8 +82,8 @@ export class TrashedWebLinksManager {
           TrashedWebLinksManager,
           | 'networkSession'
           | 'restoreWeblinkFromTrash'
-          | 'getWebLinkTrash'
-          | 'deleteWebLinkTrash'
+          | 'getTrashedWebLinkById'
+          | 'deleteTrashedWebLinkById'
         >
       | Partial<Pick<TrashedWebLinksManager, 'networkSession'>>
   ) {
@@ -128,10 +128,12 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLinkRestored(response.data);
   }
-  async getWebLinkTrash(
+  async getTrashedWebLinkById(
     webLinkId: string,
-    queryParams: GetWebLinkTrashQueryParams = {} satisfies GetWebLinkTrashQueryParams,
-    headers: GetWebLinkTrashHeaders = new GetWebLinkTrashHeaders({}),
+    queryParams: GetTrashedWebLinkByIdQueryParams = {} satisfies GetTrashedWebLinkByIdQueryParams,
+    headers: GetTrashedWebLinkByIdHeaders = new GetTrashedWebLinkByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TrashWebLink> {
     const queryParamsMap: {
@@ -163,9 +165,11 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLink(response.data);
   }
-  async deleteWebLinkTrash(
+  async deleteTrashedWebLinkById(
     webLinkId: string,
-    headers: DeleteWebLinkTrashHeaders = new DeleteWebLinkTrashHeaders({}),
+    headers: DeleteTrashedWebLinkByIdHeaders = new DeleteTrashedWebLinkByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {

@@ -33,14 +33,14 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class CreateMetadataQueryExecuteReadHeaders {
+export class SearchByMetadataQueryHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateMetadataQueryExecuteReadHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataQueryExecuteReadHeaders, 'extraHeaders'>>
+      | Omit<SearchByMetadataQueryHeaders, 'extraHeaders'>
+      | Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -64,25 +64,28 @@ export class GetMetadataQueryIndicesHeaders {
     Object.assign(this, fields);
   }
 }
-export type GetSearchQueryParamsScopeField =
+export type SearchForContentQueryParamsScopeField =
   | 'user_content'
   | 'enterprise_content';
-export type GetSearchQueryParamsContentTypesField =
+export type SearchForContentQueryParamsContentTypesField =
   | 'name'
   | 'description'
   | 'file_content'
   | 'comments'
   | 'tag';
-export type GetSearchQueryParamsTypeField = 'file' | 'folder' | 'web_link';
-export type GetSearchQueryParamsTrashContentField =
+export type SearchForContentQueryParamsTypeField =
+  | 'file'
+  | 'folder'
+  | 'web_link';
+export type SearchForContentQueryParamsTrashContentField =
   | 'non_trashed_only'
   | 'trashed_only'
   | 'all_items';
-export type GetSearchQueryParamsSortField = 'modified_at' | 'relevance';
-export type GetSearchQueryParamsDirectionField = 'DESC' | 'ASC';
-export interface GetSearchQueryParams {
+export type SearchForContentQueryParamsSortField = 'modified_at' | 'relevance';
+export type SearchForContentQueryParamsDirectionField = 'DESC' | 'ASC';
+export interface SearchForContentQueryParams {
   readonly query?: string;
-  readonly scope?: GetSearchQueryParamsScopeField;
+  readonly scope?: SearchForContentQueryParamsScopeField;
   readonly fileExtensions?: readonly string[];
   readonly createdAtRange?: readonly string[];
   readonly updatedAtRange?: readonly string[];
@@ -90,12 +93,12 @@ export interface GetSearchQueryParams {
   readonly ownerUserIds?: readonly string[];
   readonly recentUpdaterUserIds?: readonly string[];
   readonly ancestorFolderIds?: readonly string[];
-  readonly contentTypes?: readonly GetSearchQueryParamsContentTypesField[];
-  readonly type?: GetSearchQueryParamsTypeField;
-  readonly trashContent?: GetSearchQueryParamsTrashContentField;
+  readonly contentTypes?: readonly SearchForContentQueryParamsContentTypesField[];
+  readonly type?: SearchForContentQueryParamsTypeField;
+  readonly trashContent?: SearchForContentQueryParamsTrashContentField;
   readonly mdfilters?: readonly MetadataFilter[];
-  readonly sort?: GetSearchQueryParamsSortField;
-  readonly direction?: GetSearchQueryParamsDirectionField;
+  readonly sort?: SearchForContentQueryParamsSortField;
+  readonly direction?: SearchForContentQueryParamsDirectionField;
   readonly limit?: number;
   readonly includeRecentSharedLinks?: boolean;
   readonly fields?: readonly string[];
@@ -103,14 +106,14 @@ export interface GetSearchQueryParams {
   readonly deletedUserIds?: readonly string[];
   readonly deletedAtRange?: readonly string[];
 }
-export class GetSearchHeaders {
+export class SearchForContentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetSearchHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSearchHeaders, 'extraHeaders'>>
+      | Omit<SearchForContentHeaders, 'extraHeaders'>
+      | Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -123,17 +126,17 @@ export class SearchManager {
       | Omit<
           SearchManager,
           | 'networkSession'
-          | 'createMetadataQueryExecuteRead'
+          | 'searchByMetadataQuery'
           | 'getMetadataQueryIndices'
-          | 'getSearch'
+          | 'searchForContent'
         >
       | Partial<Pick<SearchManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async createMetadataQueryExecuteRead(
+  async searchByMetadataQuery(
     requestBody: MetadataQuery,
-    headers: CreateMetadataQueryExecuteReadHeaders = new CreateMetadataQueryExecuteReadHeaders(
+    headers: SearchByMetadataQueryHeaders = new SearchByMetadataQueryHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -192,9 +195,9 @@ export class SearchManager {
     )) as FetchResponse;
     return deserializeMetadataQueryIndices(response.data);
   }
-  async getSearch(
-    queryParams: GetSearchQueryParams = {} satisfies GetSearchQueryParams,
-    headers: GetSearchHeaders = new GetSearchHeaders({}),
+  async searchForContent(
+    queryParams: SearchForContentQueryParams = {} satisfies SearchForContentQueryParams,
+    headers: SearchForContentHeaders = new SearchForContentHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
     const queryParamsMap: {
@@ -287,16 +290,16 @@ export function deserializeGetMetadataQueryIndicesQueryParamsScopeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsScopeField(
-  val: GetSearchQueryParamsScopeField
+export function serializeSearchForContentQueryParamsScopeField(
+  val: SearchForContentQueryParamsScopeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsScopeField(
+export function deserializeSearchForContentQueryParamsScopeField(
   val: any
-): GetSearchQueryParamsScopeField {
+): SearchForContentQueryParamsScopeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsScopeField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsScopeField"';
   }
   if (val == 'user_content') {
     return 'user_content';
@@ -306,16 +309,16 @@ export function deserializeGetSearchQueryParamsScopeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsContentTypesField(
-  val: GetSearchQueryParamsContentTypesField
+export function serializeSearchForContentQueryParamsContentTypesField(
+  val: SearchForContentQueryParamsContentTypesField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsContentTypesField(
+export function deserializeSearchForContentQueryParamsContentTypesField(
   val: any
-): GetSearchQueryParamsContentTypesField {
+): SearchForContentQueryParamsContentTypesField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsContentTypesField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsContentTypesField"';
   }
   if (val == 'name') {
     return 'name';
@@ -334,16 +337,16 @@ export function deserializeGetSearchQueryParamsContentTypesField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsTypeField(
-  val: GetSearchQueryParamsTypeField
+export function serializeSearchForContentQueryParamsTypeField(
+  val: SearchForContentQueryParamsTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsTypeField(
+export function deserializeSearchForContentQueryParamsTypeField(
   val: any
-): GetSearchQueryParamsTypeField {
+): SearchForContentQueryParamsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsTypeField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsTypeField"';
   }
   if (val == 'file') {
     return 'file';
@@ -356,16 +359,16 @@ export function deserializeGetSearchQueryParamsTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsTrashContentField(
-  val: GetSearchQueryParamsTrashContentField
+export function serializeSearchForContentQueryParamsTrashContentField(
+  val: SearchForContentQueryParamsTrashContentField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsTrashContentField(
+export function deserializeSearchForContentQueryParamsTrashContentField(
   val: any
-): GetSearchQueryParamsTrashContentField {
+): SearchForContentQueryParamsTrashContentField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsTrashContentField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsTrashContentField"';
   }
   if (val == 'non_trashed_only') {
     return 'non_trashed_only';
@@ -378,16 +381,16 @@ export function deserializeGetSearchQueryParamsTrashContentField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsSortField(
-  val: GetSearchQueryParamsSortField
+export function serializeSearchForContentQueryParamsSortField(
+  val: SearchForContentQueryParamsSortField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsSortField(
+export function deserializeSearchForContentQueryParamsSortField(
   val: any
-): GetSearchQueryParamsSortField {
+): SearchForContentQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsSortField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsSortField"';
   }
   if (val == 'modified_at') {
     return 'modified_at';
@@ -397,16 +400,16 @@ export function deserializeGetSearchQueryParamsSortField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetSearchQueryParamsDirectionField(
-  val: GetSearchQueryParamsDirectionField
+export function serializeSearchForContentQueryParamsDirectionField(
+  val: SearchForContentQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
-export function deserializeGetSearchQueryParamsDirectionField(
+export function deserializeSearchForContentQueryParamsDirectionField(
   val: any
-): GetSearchQueryParamsDirectionField {
+): SearchForContentQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetSearchQueryParamsDirectionField"';
+    throw 'Expecting a string for "SearchForContentQueryParamsDirectionField"';
   }
   if (val == 'DESC') {
     return 'DESC';
