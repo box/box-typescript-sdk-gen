@@ -1,9 +1,9 @@
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeTrashFile } from '../schemas.generated.js';
@@ -13,9 +13,9 @@ import { deserializeTrashFileRestored } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { TrashFile } from '../schemas.generated.js';
 import { TrashFileRestored } from '../schemas.generated.js';
@@ -39,15 +39,15 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
   const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: fileName,
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: fileByteStream,
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const file: FileFull = files.entries![0];
   await client.files.deleteFileById(file.id);
-  const fromTrash: TrashFile = await client.trashedFiles.getFileTrash(file.id);
+  const fromTrash: TrashFile = await client.trashedFiles.getTrashedFileById(
+    file.id
+  );
   if (!(fromTrash.id == file.id)) {
     throw 'Assertion failed';
   }
@@ -71,9 +71,9 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.files.deleteFileById(file.id);
-  await client.trashedFiles.deleteFileTrash(file.id);
-  expect(async () => {
-    await client.trashedFiles.getFileTrash(file.id);
+  await client.trashedFiles.deleteTrashedFileById(file.id);
+  await expect(async () => {
+    await client.trashedFiles.getTrashedFileById(file.id);
   }).rejects.toThrow();
 });
 export {};

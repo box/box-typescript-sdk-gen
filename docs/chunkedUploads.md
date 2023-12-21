@@ -25,9 +25,9 @@ _Currently we don't have an example for calling `createFileUploadSession` in int
 
 ### Arguments
 
-- requestBody `CreateFileUploadSessionRequestBodyArg`
+- requestBody `CreateFileUploadSessionRequestBody`
   - Request body of createFileUploadSession method
-- headers `CreateFileUploadSessionHeadersArg`
+- headers `CreateFileUploadSessionHeaders`
   - Headers of createFileUploadSession method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -53,9 +53,9 @@ _Currently we don't have an example for calling `createFileUploadSessionForExist
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `CreateFileUploadSessionForExistingFileRequestBodyArg`
+- requestBody `CreateFileUploadSessionForExistingFileRequestBody`
   - Request body of createFileUploadSessionForExistingFile method
-- headers `CreateFileUploadSessionForExistingFileHeadersArg`
+- headers `CreateFileUploadSessionForExistingFileHeaders`
   - Headers of createFileUploadSessionForExistingFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -81,7 +81,7 @@ _Currently we don't have an example for calling `getFileUploadSessionById` in in
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headers `GetFileUploadSessionByIdHeadersArg`
+- headers `GetFileUploadSessionByIdHeaders`
   - Headers of getFileUploadSessionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -109,7 +109,7 @@ _Currently we don't have an example for calling `uploadFilePart` in integration 
   - The ID of the upload session. Example: "D5E3F7A"
 - requestBody `ByteStream`
   - Request body of uploadFilePart method
-- headers `UploadFilePartHeadersArg`
+- headers `UploadFilePartHeaders`
   - Headers of uploadFilePart method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -137,7 +137,7 @@ _Currently we don't have an example for calling `deleteFileUploadSessionById` in
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headers `DeleteFileUploadSessionByIdHeadersArg`
+- headers `DeleteFileUploadSessionByIdHeaders`
   - Headers of deleteFileUploadSessionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -165,9 +165,9 @@ _Currently we don't have an example for calling `getFileUploadSessionParts` in i
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- queryParams `GetFileUploadSessionPartsQueryParamsArg`
+- queryParams `GetFileUploadSessionPartsQueryParams`
   - Query parameters of getFileUploadSessionParts method
-- headers `GetFileUploadSessionPartsHeadersArg`
+- headers `GetFileUploadSessionPartsHeaders`
   - Headers of getFileUploadSessionParts method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -194,9 +194,9 @@ _Currently we don't have an example for calling `createFileUploadSessionCommit` 
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- requestBody `CreateFileUploadSessionCommitRequestBodyArg`
+- requestBody `CreateFileUploadSessionCommitRequestBody`
   - Request body of createFileUploadSessionCommit method
-- headers `CreateFileUploadSessionCommitHeadersArg`
+- headers `CreateFileUploadSessionCommitHeaders`
   - Headers of createFileUploadSessionCommit method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -226,6 +226,10 @@ _Currently we don't have an example for calling `reducer` in integration tests_
   -
 - chunk `ByteStream`
   -
+
+### Returns
+
+This function returns a value of type `PartAccumulator`.
 
 ##
 
@@ -257,3 +261,7 @@ await client.chunkedUploads.uploadBigFile(
   - The ID of the folder where the file should be uploaded.
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `FileFull`.

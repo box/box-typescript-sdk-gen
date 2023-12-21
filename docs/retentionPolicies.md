@@ -23,9 +23,9 @@ await client.retentionPolicies.getRetentionPolicies();
 
 ### Arguments
 
-- queryParams `GetRetentionPoliciesQueryParamsArg`
+- queryParams `GetRetentionPoliciesQueryParams`
   - Query parameters of getRetentionPolicies method
-- headers `GetRetentionPoliciesHeadersArg`
+- headers `GetRetentionPoliciesHeaders`
   - Headers of getRetentionPolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -50,23 +50,23 @@ See the endpoint docs at
 ```ts
 await client.retentionPolicies.createRetentionPolicy({
   policyName: retentionPolicyName,
-  policyType: 'finite' as CreateRetentionPolicyRequestBodyArgPolicyTypeField,
+  policyType: 'finite' as CreateRetentionPolicyRequestBodyPolicyTypeField,
   areOwnersNotified: true,
   canOwnerExtendRetention: true,
   description: retentionDescription,
   dispositionAction:
-    'remove_retention' as CreateRetentionPolicyRequestBodyArgDispositionActionField,
+    'remove_retention' as CreateRetentionPolicyRequestBodyDispositionActionField,
   retentionLength: '1',
   retentionType:
-    'modifiable' as CreateRetentionPolicyRequestBodyArgRetentionTypeField,
-} satisfies CreateRetentionPolicyRequestBodyArg);
+    'modifiable' as CreateRetentionPolicyRequestBodyRetentionTypeField,
+} satisfies CreateRetentionPolicyRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateRetentionPolicyRequestBodyArg`
+- requestBody `CreateRetentionPolicyRequestBody`
   - Request body of createRetentionPolicy method
-- headers `CreateRetentionPolicyHeadersArg`
+- headers `CreateRetentionPolicyHeaders`
   - Headers of createRetentionPolicy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -96,9 +96,9 @@ await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- queryParams `GetRetentionPolicyByIdQueryParamsArg`
+- queryParams `GetRetentionPolicyByIdQueryParams`
   - Query parameters of getRetentionPolicyById method
-- headers `GetRetentionPolicyByIdHeadersArg`
+- headers `GetRetentionPolicyByIdHeaders`
   - Headers of getRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -123,16 +123,16 @@ See the endpoint docs at
 ```ts
 await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
   policyName: updatedRetentionPolicyName,
-} satisfies UpdateRetentionPolicyByIdRequestBodyArg);
+} satisfies UpdateRetentionPolicyByIdRequestBody);
 ```
 
 ### Arguments
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- requestBody `UpdateRetentionPolicyByIdRequestBodyArg`
+- requestBody `UpdateRetentionPolicyByIdRequestBody`
   - Request body of updateRetentionPolicyById method
-- headers `UpdateRetentionPolicyByIdHeadersArg`
+- headers `UpdateRetentionPolicyByIdHeaders`
   - Headers of updateRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -162,7 +162,7 @@ await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- headers `DeleteRetentionPolicyByIdHeadersArg`
+- headers `DeleteRetentionPolicyByIdHeaders`
   - Headers of deleteRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

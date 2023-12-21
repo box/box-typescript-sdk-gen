@@ -27,92 +27,90 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetShieldInformationBarrierByIdHeadersArg {
+export class GetShieldInformationBarrierByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetShieldInformationBarrierByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetShieldInformationBarrierByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField =
-  'pending' | 'disabled';
-export interface CreateShieldInformationBarrierChangeStatusRequestBodyArg {
+export type UpdateShieldInformationBarrierStatusRequestBodyStatusField =
+  | 'pending'
+  | 'disabled';
+export interface UpdateShieldInformationBarrierStatusRequestBody {
   readonly id: string;
-  readonly status: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField;
+  readonly status: UpdateShieldInformationBarrierStatusRequestBodyStatusField;
 }
-export class CreateShieldInformationBarrierChangeStatusHeadersArg {
+export class UpdateShieldInformationBarrierStatusHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          CreateShieldInformationBarrierChangeStatusHeadersArg,
-          'extraHeaders'
-        >
+      | Omit<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
       | Partial<
-          Pick<
-            CreateShieldInformationBarrierChangeStatusHeadersArg,
-            'extraHeaders'
-          >
+          Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetShieldInformationBarriersQueryParamsArg {
+export interface GetShieldInformationBarriersQueryParams {
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetShieldInformationBarriersHeadersArg {
+export class GetShieldInformationBarriersHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetShieldInformationBarriersHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetShieldInformationBarriersHeadersArg, 'extraHeaders'>>
+      | Omit<GetShieldInformationBarriersHeaders, 'extraHeaders'>
+      | Partial<Pick<GetShieldInformationBarriersHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateShieldInformationBarrierRequestBodyArg {
+export interface CreateShieldInformationBarrierRequestBody {
   readonly enterprise: EnterpriseBase;
 }
-export class CreateShieldInformationBarrierHeadersArg {
+export class CreateShieldInformationBarrierHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateShieldInformationBarrierHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateShieldInformationBarrierHeadersArg, 'extraHeaders'>>
+      | Omit<CreateShieldInformationBarrierHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateShieldInformationBarrierHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class ShieldInformationBarriersManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      ShieldInformationBarriersManager,
-      | 'getShieldInformationBarrierById'
-      | 'createShieldInformationBarrierChangeStatus'
-      | 'getShieldInformationBarriers'
-      | 'createShieldInformationBarrier'
-    >
+    fields:
+      | Omit<
+          ShieldInformationBarriersManager,
+          | 'networkSession'
+          | 'getShieldInformationBarrierById'
+          | 'updateShieldInformationBarrierStatus'
+          | 'getShieldInformationBarriers'
+          | 'createShieldInformationBarrier'
+        >
+      | Partial<Pick<ShieldInformationBarriersManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getShieldInformationBarrierById(
     shieldInformationBarrierId: string,
-    headers: GetShieldInformationBarrierByIdHeadersArg = new GetShieldInformationBarrierByIdHeadersArg(
+    headers: GetShieldInformationBarrierByIdHeaders = new GetShieldInformationBarrierByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -122,7 +120,8 @@ export class ShieldInformationBarriersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barriers/',
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barriers/',
         toString(shieldInformationBarrierId) as string
       ) as string,
       {
@@ -136,9 +135,9 @@ export class ShieldInformationBarriersManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(response.data);
   }
-  async createShieldInformationBarrierChangeStatus(
-    requestBody: CreateShieldInformationBarrierChangeStatusRequestBodyArg,
-    headers: CreateShieldInformationBarrierChangeStatusHeadersArg = new CreateShieldInformationBarrierChangeStatusHeadersArg(
+  async updateShieldInformationBarrierStatus(
+    requestBody: UpdateShieldInformationBarrierStatusRequestBody,
+    headers: UpdateShieldInformationBarrierStatusHeaders = new UpdateShieldInformationBarrierStatusHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -148,12 +147,13 @@ export class ShieldInformationBarriersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barriers/change_status'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barriers/change_status'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
+        data: serializeUpdateShieldInformationBarrierStatusRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -166,8 +166,8 @@ export class ShieldInformationBarriersManager {
     return deserializeShieldInformationBarrier(response.data);
   }
   async getShieldInformationBarriers(
-    queryParams: GetShieldInformationBarriersQueryParamsArg = {} satisfies GetShieldInformationBarriersQueryParamsArg,
-    headers: GetShieldInformationBarriersHeadersArg = new GetShieldInformationBarriersHeadersArg(
+    queryParams: GetShieldInformationBarriersQueryParams = {} satisfies GetShieldInformationBarriersQueryParams,
+    headers: GetShieldInformationBarriersHeaders = new GetShieldInformationBarriersHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -183,7 +183,8 @@ export class ShieldInformationBarriersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barriers'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barriers'
       ) as string,
       {
         method: 'GET',
@@ -198,8 +199,8 @@ export class ShieldInformationBarriersManager {
     return deserializeShieldInformationBarriers(response.data);
   }
   async createShieldInformationBarrier(
-    requestBody: CreateShieldInformationBarrierRequestBodyArg,
-    headers: CreateShieldInformationBarrierHeadersArg = new CreateShieldInformationBarrierHeadersArg(
+    requestBody: CreateShieldInformationBarrierRequestBody,
+    headers: CreateShieldInformationBarrierHeaders = new CreateShieldInformationBarrierHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -209,14 +210,13 @@ export class ShieldInformationBarriersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barriers'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barriers'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateShieldInformationBarrierRequestBodyArg(
-          requestBody
-        ),
+        data: serializeCreateShieldInformationBarrierRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -227,16 +227,16 @@ export class ShieldInformationBarriersManager {
     return deserializeShieldInformationBarrier(response.data);
   }
 }
-export function serializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
-  val: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField
+export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
+  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
+export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
   val: any
-): CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField {
+): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField"';
+    throw 'Expecting a string for "UpdateShieldInformationBarrierStatusRequestBodyStatusField"';
   }
   if (val == 'pending') {
     return 'pending';
@@ -246,40 +246,40 @@ export function deserializeCreateShieldInformationBarrierChangeStatusRequestBody
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
-  val: CreateShieldInformationBarrierChangeStatusRequestBodyArg
+export function serializeUpdateShieldInformationBarrierStatusRequestBody(
+  val: UpdateShieldInformationBarrierStatusRequestBody
 ): SerializedData {
   return {
     ['id']: val.id,
     ['status']:
-      serializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
+      serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
         val.status
       ),
   };
 }
-export function deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArg(
+export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   val: any
-): CreateShieldInformationBarrierChangeStatusRequestBodyArg {
+): UpdateShieldInformationBarrierStatusRequestBody {
   const id: string = val.id;
-  const status: CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField =
-    deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField(
+  const status: UpdateShieldInformationBarrierStatusRequestBodyStatusField =
+    deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
       val.status
     );
   return {
     id: id,
     status: status,
-  } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg;
+  } satisfies UpdateShieldInformationBarrierStatusRequestBody;
 }
-export function serializeCreateShieldInformationBarrierRequestBodyArg(
-  val: CreateShieldInformationBarrierRequestBodyArg
+export function serializeCreateShieldInformationBarrierRequestBody(
+  val: CreateShieldInformationBarrierRequestBody
 ): SerializedData {
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }
-export function deserializeCreateShieldInformationBarrierRequestBodyArg(
+export function deserializeCreateShieldInformationBarrierRequestBody(
   val: any
-): CreateShieldInformationBarrierRequestBodyArg {
+): CreateShieldInformationBarrierRequestBody {
   const enterprise: EnterpriseBase = deserializeEnterpriseBase(val.enterprise);
   return {
     enterprise: enterprise,
-  } satisfies CreateShieldInformationBarrierRequestBodyArg;
+  } satisfies CreateShieldInformationBarrierRequestBody;
 }

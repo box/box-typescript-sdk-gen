@@ -14,19 +14,23 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `getFileMetadataEnterpriseSecurityClassification6VmVochwUWo`.
+This operation is performed by calling function `getClassificationOnFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `getFileMetadataEnterpriseSecurityClassification6VmVochwUWo` in integration tests_
+<!-- sample get_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.fileClassifications.getClassificationOnFile(file.id);
+```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
-  - Headers of getFileMetadataEnterpriseSecurityClassification6VmVochwUWo method
+- headers `GetClassificationOnFileHeaders`
+  - Headers of getClassificationOnFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -48,21 +52,27 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `createFileMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `addClassificationToFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `createFileMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample post_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.fileClassifications.addClassificationToFile(file.id, {
+  boxSecurityClassificationKey: classification.key,
+} satisfies AddClassificationToFileRequestBody);
+```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg`
-  - Request body of createFileMetadataEnterpriseSecurityClassification method
-- headers `CreateFileMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of createFileMetadataEnterpriseSecurityClassification method
+- requestBody `AddClassificationToFileRequestBody`
+  - Request body of addClassificationToFile method
+- headers `AddClassificationToFileHeaders`
+  - Headers of addClassificationToFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -81,21 +91,31 @@ The classification can only be updated if a classification has already been
 applied to the file before. When editing classifications, only values are
 defined for the enterprise will be accepted.
 
-This operation is performed by calling function `updateFileMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `updateClassificationOnFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `updateFileMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample put_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.fileClassifications.updateClassificationOnFile(file.id, [
+  {
+    op: 'replace' as UpdateClassificationOnFileRequestBodyOpField,
+    path: '/Box__Security__Classification__Key' as UpdateClassificationOnFileRequestBodyPathField,
+    value: secondClassification.key,
+  } satisfies UpdateClassificationOnFileRequestBody,
+]);
+```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `readonly UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg[]`
-  - Request body of updateFileMetadataEnterpriseSecurityClassification method
-- headers `UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of updateFileMetadataEnterpriseSecurityClassification method
+- requestBody `readonly UpdateClassificationOnFileRequestBody[]`
+  - Request body of updateClassificationOnFile method
+- headers `UpdateClassificationOnFileHeaders`
+  - Headers of updateClassificationOnFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -113,19 +133,23 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `deleteFileMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `deleteClassificationFromFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `deleteFileMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample delete_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.fileClassifications.deleteClassificationFromFile(file.id);
+```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of deleteFileMetadataEnterpriseSecurityClassification method
+- headers `DeleteClassificationFromFileHeaders`
+  - Headers of deleteClassificationFromFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

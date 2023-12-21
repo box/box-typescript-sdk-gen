@@ -24,73 +24,76 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface RestoreFileFromTrashRequestBodyArgParentField {
+export interface RestoreFileFromTrashRequestBodyParentField {
   readonly id?: string;
 }
-export interface RestoreFileFromTrashRequestBodyArg {
+export interface RestoreFileFromTrashRequestBody {
   readonly name?: string;
-  readonly parent?: RestoreFileFromTrashRequestBodyArgParentField;
+  readonly parent?: RestoreFileFromTrashRequestBodyParentField;
 }
-export interface RestoreFileFromTrashQueryParamsArg {
+export interface RestoreFileFromTrashQueryParams {
   readonly fields?: readonly string[];
 }
-export class RestoreFileFromTrashHeadersArg {
+export class RestoreFileFromTrashHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<RestoreFileFromTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<RestoreFileFromTrashHeadersArg, 'extraHeaders'>>
+      | Omit<RestoreFileFromTrashHeaders, 'extraHeaders'>
+      | Partial<Pick<RestoreFileFromTrashHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetFileTrashQueryParamsArg {
+export interface GetTrashedFileByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFileTrashHeadersArg {
+export class GetTrashedFileByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileTrashHeadersArg, 'extraHeaders'>>
+      | Omit<GetTrashedFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTrashedFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileTrashHeadersArg {
+export class DeleteTrashedFileByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFileTrashHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteTrashedFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteTrashedFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TrashedFilesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TrashedFilesManager,
-      'restoreFileFromTrash' | 'getFileTrash' | 'deleteFileTrash'
-    >
+    fields:
+      | Omit<
+          TrashedFilesManager,
+          | 'networkSession'
+          | 'restoreFileFromTrash'
+          | 'getTrashedFileById'
+          | 'deleteTrashedFileById'
+        >
+      | Partial<Pick<TrashedFilesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async restoreFileFromTrash(
     fileId: string,
-    requestBody: RestoreFileFromTrashRequestBodyArg = {} satisfies RestoreFileFromTrashRequestBodyArg,
-    queryParams: RestoreFileFromTrashQueryParamsArg = {} satisfies RestoreFileFromTrashQueryParamsArg,
-    headers: RestoreFileFromTrashHeadersArg = new RestoreFileFromTrashHeadersArg(
-      {}
-    ),
+    requestBody: RestoreFileFromTrashRequestBody = {} satisfies RestoreFileFromTrashRequestBody,
+    queryParams: RestoreFileFromTrashQueryParams = {} satisfies RestoreFileFromTrashQueryParams,
+    headers: RestoreFileFromTrashHeaders = new RestoreFileFromTrashHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TrashFileRestored> {
     const queryParamsMap: {
@@ -105,14 +108,15 @@ export class TrashedFilesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string
       ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeRestoreFileFromTrashRequestBodyArg(requestBody),
+        data: serializeRestoreFileFromTrashRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -122,10 +126,10 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFileRestored(response.data);
   }
-  async getFileTrash(
+  async getTrashedFileById(
     fileId: string,
-    queryParams: GetFileTrashQueryParamsArg = {} satisfies GetFileTrashQueryParamsArg,
-    headers: GetFileTrashHeadersArg = new GetFileTrashHeadersArg({}),
+    queryParams: GetTrashedFileByIdQueryParams = {} satisfies GetTrashedFileByIdQueryParams,
+    headers: GetTrashedFileByIdHeaders = new GetTrashedFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<TrashFile> {
     const queryParamsMap: {
@@ -140,7 +144,8 @@ export class TrashedFilesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/trash'
       ) as string,
@@ -156,9 +161,11 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFile(response.data);
   }
-  async deleteFileTrash(
+  async deleteTrashedFileById(
     fileId: string,
-    headers: DeleteFileTrashHeadersArg = new DeleteFileTrashHeadersArg({}),
+    headers: DeleteTrashedFileByIdHeaders = new DeleteTrashedFileByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -166,7 +173,8 @@ export class TrashedFilesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/trash'
       ) as string,
@@ -182,38 +190,38 @@ export class TrashedFilesManager {
     return void 0;
   }
 }
-export function serializeRestoreFileFromTrashRequestBodyArgParentField(
-  val: RestoreFileFromTrashRequestBodyArgParentField
+export function serializeRestoreFileFromTrashRequestBodyParentField(
+  val: RestoreFileFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeRestoreFileFromTrashRequestBodyArgParentField(
+export function deserializeRestoreFileFromTrashRequestBodyParentField(
   val: any
-): RestoreFileFromTrashRequestBodyArgParentField {
+): RestoreFileFromTrashRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies RestoreFileFromTrashRequestBodyArgParentField;
+  return { id: id } satisfies RestoreFileFromTrashRequestBodyParentField;
 }
-export function serializeRestoreFileFromTrashRequestBodyArg(
-  val: RestoreFileFromTrashRequestBodyArg
+export function serializeRestoreFileFromTrashRequestBody(
+  val: RestoreFileFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeRestoreFileFromTrashRequestBodyArgParentField(val.parent),
+        : serializeRestoreFileFromTrashRequestBodyParentField(val.parent),
   };
 }
-export function deserializeRestoreFileFromTrashRequestBodyArg(
+export function deserializeRestoreFileFromTrashRequestBody(
   val: any
-): RestoreFileFromTrashRequestBodyArg {
+): RestoreFileFromTrashRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const parent: undefined | RestoreFileFromTrashRequestBodyArgParentField =
+  const parent: undefined | RestoreFileFromTrashRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializeRestoreFileFromTrashRequestBodyArgParentField(val.parent);
+      : deserializeRestoreFileFromTrashRequestBodyParentField(val.parent);
   return {
     name: name,
     parent: parent,
-  } satisfies RestoreFileFromTrashRequestBodyArg;
+  } satisfies RestoreFileFromTrashRequestBody;
 }

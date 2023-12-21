@@ -24,105 +24,108 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetFileVersionsQueryParamsArg {
+export interface GetFileVersionsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetFileVersionsHeadersArg {
+export class GetFileVersionsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileVersionsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionsHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileVersionsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetFileVersionByIdQueryParamsArg {
+export interface GetFileVersionByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFileVersionByIdHeadersArg {
+export class GetFileVersionByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileVersionByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileVersionByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateFileVersionByIdRequestBodyArg {
+export interface UpdateFileVersionByIdRequestBody {
   readonly trashedAt?: string;
 }
-export class UpdateFileVersionByIdHeadersArg {
+export class UpdateFileVersionByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFileVersionByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateFileVersionByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileVersionByIdHeadersArg {
+export class DeleteFileVersionByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileVersionByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFileVersionByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFileVersionByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type PromoteFileVersionRequestBodyArgTypeField = 'file_version';
-export interface PromoteFileVersionRequestBodyArg {
+export type PromoteFileVersionRequestBodyTypeField = 'file_version';
+export interface PromoteFileVersionRequestBody {
   readonly id?: string;
-  readonly type?: PromoteFileVersionRequestBodyArgTypeField;
+  readonly type?: PromoteFileVersionRequestBodyTypeField;
 }
-export interface PromoteFileVersionQueryParamsArg {
+export interface PromoteFileVersionQueryParams {
   readonly fields?: readonly string[];
 }
-export class PromoteFileVersionHeadersArg {
+export class PromoteFileVersionHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<PromoteFileVersionHeadersArg, 'extraHeaders'>
-      | Partial<Pick<PromoteFileVersionHeadersArg, 'extraHeaders'>>
+      | Omit<PromoteFileVersionHeaders, 'extraHeaders'>
+      | Partial<Pick<PromoteFileVersionHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FileVersionsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FileVersionsManager,
-      | 'getFileVersions'
-      | 'getFileVersionById'
-      | 'updateFileVersionById'
-      | 'deleteFileVersionById'
-      | 'promoteFileVersion'
-    >
+    fields:
+      | Omit<
+          FileVersionsManager,
+          | 'networkSession'
+          | 'getFileVersions'
+          | 'getFileVersionById'
+          | 'updateFileVersionById'
+          | 'deleteFileVersionById'
+          | 'promoteFileVersion'
+        >
+      | Partial<Pick<FileVersionsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileVersions(
     fileId: string,
-    queryParams: GetFileVersionsQueryParamsArg = {} satisfies GetFileVersionsQueryParamsArg,
-    headers: GetFileVersionsHeadersArg = new GetFileVersionsHeadersArg({}),
+    queryParams: GetFileVersionsQueryParams = {} satisfies GetFileVersionsQueryParams,
+    headers: GetFileVersionsHeaders = new GetFileVersionsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileVersions> {
     const queryParamsMap: {
@@ -139,7 +142,8 @@ export class FileVersionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/versions'
       ) as string,
@@ -158,10 +162,8 @@ export class FileVersionsManager {
   async getFileVersionById(
     fileId: string,
     fileVersionId: string,
-    queryParams: GetFileVersionByIdQueryParamsArg = {} satisfies GetFileVersionByIdQueryParamsArg,
-    headers: GetFileVersionByIdHeadersArg = new GetFileVersionByIdHeadersArg(
-      {}
-    ),
+    queryParams: GetFileVersionByIdQueryParams = {} satisfies GetFileVersionByIdQueryParams,
+    headers: GetFileVersionByIdHeaders = new GetFileVersionByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
@@ -176,7 +178,8 @@ export class FileVersionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -196,8 +199,8 @@ export class FileVersionsManager {
   async updateFileVersionById(
     fileId: string,
     fileVersionId: string,
-    requestBody: UpdateFileVersionByIdRequestBodyArg = {} satisfies UpdateFileVersionByIdRequestBodyArg,
-    headers: UpdateFileVersionByIdHeadersArg = new UpdateFileVersionByIdHeadersArg(
+    requestBody: UpdateFileVersionByIdRequestBody = {} satisfies UpdateFileVersionByIdRequestBody,
+    headers: UpdateFileVersionByIdHeaders = new UpdateFileVersionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -207,7 +210,8 @@ export class FileVersionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -215,7 +219,7 @@ export class FileVersionsManager {
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateFileVersionByIdRequestBodyArg(requestBody),
+        data: serializeUpdateFileVersionByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -228,7 +232,7 @@ export class FileVersionsManager {
   async deleteFileVersionById(
     fileId: string,
     fileVersionId: string,
-    headers: DeleteFileVersionByIdHeadersArg = new DeleteFileVersionByIdHeadersArg(
+    headers: DeleteFileVersionByIdHeaders = new DeleteFileVersionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -241,7 +245,8 @@ export class FileVersionsManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -259,11 +264,9 @@ export class FileVersionsManager {
   }
   async promoteFileVersion(
     fileId: string,
-    requestBody: PromoteFileVersionRequestBodyArg = {} satisfies PromoteFileVersionRequestBodyArg,
-    queryParams: PromoteFileVersionQueryParamsArg = {} satisfies PromoteFileVersionQueryParamsArg,
-    headers: PromoteFileVersionHeadersArg = new PromoteFileVersionHeadersArg(
-      {}
-    ),
+    requestBody: PromoteFileVersionRequestBody = {} satisfies PromoteFileVersionRequestBody,
+    queryParams: PromoteFileVersionQueryParams = {} satisfies PromoteFileVersionQueryParams,
+    headers: PromoteFileVersionHeaders = new PromoteFileVersionHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
     const queryParamsMap: {
@@ -278,7 +281,8 @@ export class FileVersionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/versions/current'
       ) as string,
@@ -286,7 +290,7 @@ export class FileVersionsManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializePromoteFileVersionRequestBodyArg(requestBody),
+        data: serializePromoteFileVersionRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -297,52 +301,52 @@ export class FileVersionsManager {
     return deserializeFileVersionFull(response.data);
   }
 }
-export function serializeUpdateFileVersionByIdRequestBodyArg(
-  val: UpdateFileVersionByIdRequestBodyArg
+export function serializeUpdateFileVersionByIdRequestBody(
+  val: UpdateFileVersionByIdRequestBody
 ): SerializedData {
   return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
-export function deserializeUpdateFileVersionByIdRequestBodyArg(
+export function deserializeUpdateFileVersionByIdRequestBody(
   val: any
-): UpdateFileVersionByIdRequestBodyArg {
+): UpdateFileVersionByIdRequestBody {
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBodyArg;
+  return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBody;
 }
-export function serializePromoteFileVersionRequestBodyArgTypeField(
-  val: PromoteFileVersionRequestBodyArgTypeField
+export function serializePromoteFileVersionRequestBodyTypeField(
+  val: PromoteFileVersionRequestBodyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializePromoteFileVersionRequestBodyArgTypeField(
+export function deserializePromoteFileVersionRequestBodyTypeField(
   val: any
-): PromoteFileVersionRequestBodyArgTypeField {
+): PromoteFileVersionRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "PromoteFileVersionRequestBodyArgTypeField"';
+    throw 'Expecting a string for "PromoteFileVersionRequestBodyTypeField"';
   }
   if (val == 'file_version') {
     return 'file_version';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializePromoteFileVersionRequestBodyArg(
-  val: PromoteFileVersionRequestBodyArg
+export function serializePromoteFileVersionRequestBody(
+  val: PromoteFileVersionRequestBody
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
       val.type == void 0
         ? void 0
-        : serializePromoteFileVersionRequestBodyArgTypeField(val.type),
+        : serializePromoteFileVersionRequestBodyTypeField(val.type),
   };
 }
-export function deserializePromoteFileVersionRequestBodyArg(
+export function deserializePromoteFileVersionRequestBody(
   val: any
-): PromoteFileVersionRequestBodyArg {
+): PromoteFileVersionRequestBody {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | PromoteFileVersionRequestBodyArgTypeField =
+  const type: undefined | PromoteFileVersionRequestBodyTypeField =
     val.type == void 0
       ? void 0
-      : deserializePromoteFileVersionRequestBodyArgTypeField(val.type);
-  return { id: id, type: type } satisfies PromoteFileVersionRequestBodyArg;
+      : deserializePromoteFileVersionRequestBodyTypeField(val.type);
+  return { id: id, type: type } satisfies PromoteFileVersionRequestBody;
 }

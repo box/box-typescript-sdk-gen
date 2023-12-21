@@ -10,19 +10,19 @@
 Returns the current terms of service text and settings
 for the enterprise.
 
-This operation is performed by calling function `getTermOfServices`.
+This operation is performed by calling function `getTermsOfService`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-terms-of-services/).
 
-_Currently we don't have an example for calling `getTermOfServices` in integration tests_
+_Currently we don't have an example for calling `getTermsOfService` in integration tests_
 
 ### Arguments
 
-- queryParams `GetTermOfServicesQueryParamsArg`
-  - Query parameters of getTermOfServices method
-- headers `GetTermOfServicesHeadersArg`
-  - Headers of getTermOfServices method
+- queryParams `GetTermsOfServiceQueryParams`
+  - Query parameters of getTermsOfService method
+- headers `GetTermsOfServiceHeaders`
+  - Headers of getTermsOfService method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -38,19 +38,19 @@ enterprise.
 Creates a terms of service for a given enterprise
 and type of user.
 
-This operation is performed by calling function `createTermOfService`.
+This operation is performed by calling function `createTermsOfService`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-terms-of-services/).
 
-_Currently we don't have an example for calling `createTermOfService` in integration tests_
+_Currently we don't have an example for calling `createTermsOfService` in integration tests_
 
 ### Arguments
 
-- requestBody `CreateTermOfServiceRequestBodyArg`
-  - Request body of createTermOfService method
-- headers `CreateTermOfServiceHeadersArg`
-  - Headers of createTermOfService method
+- requestBody `CreateTermsOfServiceRequestBody`
+  - Request body of createTermsOfService method
+- headers `CreateTermsOfServiceHeaders`
+  - Headers of createTermsOfService method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -64,19 +64,19 @@ Returns a new task object
 
 Fetches a specific terms of service.
 
-This operation is performed by calling function `getTermOfServiceById`.
+This operation is performed by calling function `getTermsOfServiceById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-terms-of-services-id/).
 
-_Currently we don't have an example for calling `getTermOfServiceById` in integration tests_
+_Currently we don't have an example for calling `getTermsOfServiceById` in integration tests_
 
 ### Arguments
 
 - termsOfServiceId `string`
   - The ID of the terms of service. Example: "324234"
-- headers `GetTermOfServiceByIdHeadersArg`
-  - Headers of getTermOfServiceById method
+- headers `GetTermsOfServiceByIdHeaders`
+  - Headers of getTermsOfServiceById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -90,21 +90,21 @@ Returns a terms of service object.
 
 Updates a specific terms of service.
 
-This operation is performed by calling function `updateTermOfServiceById`.
+This operation is performed by calling function `updateTermsOfServiceById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-terms-of-services-id/).
 
-_Currently we don't have an example for calling `updateTermOfServiceById` in integration tests_
+_Currently we don't have an example for calling `updateTermsOfServiceById` in integration tests_
 
 ### Arguments
 
 - termsOfServiceId `string`
   - The ID of the terms of service. Example: "324234"
-- requestBody `UpdateTermOfServiceByIdRequestBodyArg`
-  - Request body of updateTermOfServiceById method
-- headers `UpdateTermOfServiceByIdHeadersArg`
-  - Headers of updateTermOfServiceById method
+- requestBody `UpdateTermsOfServiceByIdRequestBody`
+  - Request body of updateTermsOfServiceById method
+- headers `UpdateTermsOfServiceByIdHeaders`
+  - Headers of updateTermsOfServiceById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

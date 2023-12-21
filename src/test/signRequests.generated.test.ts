@@ -25,7 +25,7 @@ import { SignRequest } from '../schemas.generated.js';
 import { FolderBaseTypeField } from '../schemas.generated.js';
 import { FileBaseTypeField } from '../schemas.generated.js';
 import { SignRequests } from '../schemas.generated.js';
-import { DeleteFolderByIdQueryParamsArg } from '../managers/folders.generated.js';
+import { DeleteFolderByIdQueryParams } from '../managers/folders.generated.js';
 import { getUuid } from '../utils.js';
 import { uploadNewFile } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -96,7 +96,7 @@ test('test_create_get_cancel_and_list_sign_request', async function test_create_
   }
   await client.folders.deleteFolderById(destinationFolder.id, {
     recursive: true,
-  } satisfies DeleteFolderByIdQueryParamsArg);
+  } satisfies DeleteFolderByIdQueryParams);
   await client.files.deleteFileById(fileToSign.id);
 });
 export {};

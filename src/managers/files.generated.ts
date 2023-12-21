@@ -21,10 +21,10 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetFileByIdQueryParamsArg {
+export interface GetFileByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFileByIdHeadersArg {
+export class GetFileByIdHeaders {
   readonly ifNoneMatch?: string;
   readonly boxapi?: string;
   readonly xRepHints?: string;
@@ -33,146 +33,149 @@ export class GetFileByIdHeadersArg {
   } = {};
   constructor(
     fields:
-      | Omit<GetFileByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateFileByIdRequestBodyArgParentField {
+export interface UpdateFileByIdRequestBodyParentField {
   readonly id?: string;
 }
-export type UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField =
+export type UpdateFileByIdRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
   | 'collaborators';
-export interface UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField {
+export interface UpdateFileByIdRequestBodySharedLinkPermissionsField {
   readonly canDownload?: boolean;
 }
-export interface UpdateFileByIdRequestBodyArgSharedLinkField {
-  readonly access?: UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateFileByIdRequestBodySharedLinkField {
+  readonly access?: UpdateFileByIdRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
   readonly unsharedAt?: string;
-  readonly permissions?: UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField;
+  readonly permissions?: UpdateFileByIdRequestBodySharedLinkPermissionsField;
 }
-export type UpdateFileByIdRequestBodyArgLockFieldAccessField = 'lock';
-export interface UpdateFileByIdRequestBodyArgLockField {
-  readonly access?: UpdateFileByIdRequestBodyArgLockFieldAccessField;
+export type UpdateFileByIdRequestBodyLockAccessField = 'lock';
+export interface UpdateFileByIdRequestBodyLockField {
+  readonly access?: UpdateFileByIdRequestBodyLockAccessField;
   readonly expiresAt?: string;
   readonly isDownloadPrevented?: boolean;
 }
-export type UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField =
+export type UpdateFileByIdRequestBodyPermissionsCanDownloadField =
   | 'open'
   | 'company';
-export interface UpdateFileByIdRequestBodyArgPermissionsField {
-  readonly canDownload?: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField;
+export interface UpdateFileByIdRequestBodyPermissionsField {
+  readonly canDownload?: UpdateFileByIdRequestBodyPermissionsCanDownloadField;
 }
-export interface UpdateFileByIdRequestBodyArgCollectionsField {
+export interface UpdateFileByIdRequestBodyCollectionsField {
   readonly id?: string;
   readonly type?: string;
 }
-export interface UpdateFileByIdRequestBodyArg {
+export interface UpdateFileByIdRequestBody {
   readonly name?: string;
   readonly description?: string;
-  readonly parent?: UpdateFileByIdRequestBodyArgParentField;
-  readonly sharedLink?: UpdateFileByIdRequestBodyArgSharedLinkField;
-  readonly lock?: UpdateFileByIdRequestBodyArgLockField;
+  readonly parent?: UpdateFileByIdRequestBodyParentField;
+  readonly sharedLink?: UpdateFileByIdRequestBodySharedLinkField;
+  readonly lock?: UpdateFileByIdRequestBodyLockField;
   readonly dispositionAt?: string;
-  readonly permissions?: UpdateFileByIdRequestBodyArgPermissionsField;
-  readonly collections?: readonly UpdateFileByIdRequestBodyArgCollectionsField[];
+  readonly permissions?: UpdateFileByIdRequestBodyPermissionsField;
+  readonly collections?: readonly UpdateFileByIdRequestBodyCollectionsField[];
   readonly tags?: readonly string[];
 }
-export interface UpdateFileByIdQueryParamsArg {
+export interface UpdateFileByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class UpdateFileByIdHeadersArg {
+export class UpdateFileByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFileByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateFileByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileByIdHeadersArg {
+export class DeleteFileByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFileByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFileByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFileByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CopyFileRequestBodyArgParentField {
+export interface CopyFileRequestBodyParentField {
   readonly id: string;
 }
-export interface CopyFileRequestBodyArg {
+export interface CopyFileRequestBody {
   readonly name?: string;
   readonly version?: string;
-  readonly parent: CopyFileRequestBodyArgParentField;
+  readonly parent: CopyFileRequestBodyParentField;
 }
-export interface CopyFileQueryParamsArg {
+export interface CopyFileQueryParams {
   readonly fields?: readonly string[];
 }
-export class CopyFileHeadersArg {
+export class CopyFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CopyFileHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CopyFileHeadersArg, 'extraHeaders'>>
+      | Omit<CopyFileHeaders, 'extraHeaders'>
+      | Partial<Pick<CopyFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetFileThumbnailByIdExtensionArg = 'png' | 'jpg';
-export interface GetFileThumbnailByIdQueryParamsArg {
+export type GetFileThumbnailByIdExtension = 'png' | 'jpg';
+export interface GetFileThumbnailByIdQueryParams {
   readonly minHeight?: number;
   readonly minWidth?: number;
   readonly maxHeight?: number;
   readonly maxWidth?: number;
 }
-export class GetFileThumbnailByIdHeadersArg {
+export class GetFileThumbnailByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileThumbnailByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileThumbnailByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileThumbnailByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FilesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FilesManager,
-      | 'getFileById'
-      | 'updateFileById'
-      | 'deleteFileById'
-      | 'copyFile'
-      | 'getFileThumbnailById'
-    >
+    fields:
+      | Omit<
+          FilesManager,
+          | 'networkSession'
+          | 'getFileById'
+          | 'updateFileById'
+          | 'deleteFileById'
+          | 'copyFile'
+          | 'getFileThumbnailById'
+        >
+      | Partial<Pick<FilesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileById(
     fileId: string,
-    queryParams: GetFileByIdQueryParamsArg = {} satisfies GetFileByIdQueryParamsArg,
-    headers: GetFileByIdHeadersArg = new GetFileByIdHeadersArg({}),
+    queryParams: GetFileByIdQueryParams = {} satisfies GetFileByIdQueryParams,
+    headers: GetFileByIdHeaders = new GetFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
@@ -194,7 +197,8 @@ export class FilesManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string
       ) as string,
       {
@@ -211,9 +215,9 @@ export class FilesManager {
   }
   async updateFileById(
     fileId: string,
-    requestBody: UpdateFileByIdRequestBodyArg = {} satisfies UpdateFileByIdRequestBodyArg,
-    queryParams: UpdateFileByIdQueryParamsArg = {} satisfies UpdateFileByIdQueryParamsArg,
-    headers: UpdateFileByIdHeadersArg = new UpdateFileByIdHeadersArg({}),
+    requestBody: UpdateFileByIdRequestBody = {} satisfies UpdateFileByIdRequestBody,
+    queryParams: UpdateFileByIdQueryParams = {} satisfies UpdateFileByIdQueryParams,
+    headers: UpdateFileByIdHeaders = new UpdateFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
@@ -231,14 +235,15 @@ export class FilesManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string
       ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateFileByIdRequestBodyArg(requestBody),
+        data: serializeUpdateFileByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -250,7 +255,7 @@ export class FilesManager {
   }
   async deleteFileById(
     fileId: string,
-    headers: DeleteFileByIdHeadersArg = new DeleteFileByIdHeadersArg({}),
+    headers: DeleteFileByIdHeaders = new DeleteFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -261,7 +266,8 @@ export class FilesManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string
       ) as string,
       {
@@ -277,9 +283,9 @@ export class FilesManager {
   }
   async copyFile(
     fileId: string,
-    requestBody: CopyFileRequestBodyArg,
-    queryParams: CopyFileQueryParamsArg = {} satisfies CopyFileQueryParamsArg,
-    headers: CopyFileHeadersArg = new CopyFileHeadersArg({}),
+    requestBody: CopyFileRequestBody,
+    queryParams: CopyFileQueryParams = {} satisfies CopyFileQueryParams,
+    headers: CopyFileHeaders = new CopyFileHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
     const queryParamsMap: {
@@ -294,7 +300,8 @@ export class FilesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/copy'
       ) as string,
@@ -302,7 +309,7 @@ export class FilesManager {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCopyFileRequestBodyArg(requestBody),
+        data: serializeCopyFileRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -314,11 +321,9 @@ export class FilesManager {
   }
   async getFileThumbnailById(
     fileId: string,
-    extension: GetFileThumbnailByIdExtensionArg,
-    queryParams: GetFileThumbnailByIdQueryParamsArg = {} satisfies GetFileThumbnailByIdQueryParamsArg,
-    headers: GetFileThumbnailByIdHeadersArg = new GetFileThumbnailByIdHeadersArg(
-      {}
-    ),
+    extension: GetFileThumbnailByIdExtension,
+    queryParams: GetFileThumbnailByIdQueryParams = {} satisfies GetFileThumbnailByIdQueryParams,
+    headers: GetFileThumbnailByIdHeaders = new GetFileThumbnailByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const queryParamsMap: {
@@ -334,7 +339,8 @@ export class FilesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/thumbnail.',
         toString(extension) as string
@@ -352,27 +358,27 @@ export class FilesManager {
     return response.content;
   }
 }
-export function serializeUpdateFileByIdRequestBodyArgParentField(
-  val: UpdateFileByIdRequestBodyArgParentField
+export function serializeUpdateFileByIdRequestBodyParentField(
+  val: UpdateFileByIdRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeUpdateFileByIdRequestBodyArgParentField(
+export function deserializeUpdateFileByIdRequestBodyParentField(
   val: any
-): UpdateFileByIdRequestBodyArgParentField {
+): UpdateFileByIdRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies UpdateFileByIdRequestBodyArgParentField;
+  return { id: id } satisfies UpdateFileByIdRequestBodyParentField;
 }
-export function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
-  val: UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField
+export function serializeUpdateFileByIdRequestBodySharedLinkAccessField(
+  val: UpdateFileByIdRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
+export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   val: any
-): UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField {
+): UpdateFileByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField"';
+    throw 'Expecting a string for "UpdateFileByIdRequestBodySharedLinkAccessField"';
   }
   if (val == 'open') {
     return 'open';
@@ -385,54 +391,48 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessFiel
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(
-  val: UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField
+export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
+  val: UpdateFileByIdRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(
+export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   val: any
-): UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField {
+): UpdateFileByIdRequestBodySharedLinkPermissionsField {
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
   return {
     canDownload: canDownload,
-  } satisfies UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField;
+  } satisfies UpdateFileByIdRequestBodySharedLinkPermissionsField;
 }
-export function serializeUpdateFileByIdRequestBodyArgSharedLinkField(
-  val: UpdateFileByIdRequestBodyArgSharedLinkField
+export function serializeUpdateFileByIdRequestBodySharedLinkField(
+  val: UpdateFileByIdRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
-            val.access
-          ),
+        : serializeUpdateFileByIdRequestBodySharedLinkAccessField(val.access),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
     ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
     ['permissions']:
       val.permissions == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(
+        : serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
             val.permissions
           ),
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArgSharedLinkField(
+export function deserializeUpdateFileByIdRequestBodySharedLinkField(
   val: any
-): UpdateFileByIdRequestBodyArgSharedLinkField {
-  const access:
-    | undefined
-    | UpdateFileByIdRequestBodyArgSharedLinkFieldAccessField =
+): UpdateFileByIdRequestBodySharedLinkField {
+  const access: undefined | UpdateFileByIdRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldAccessField(
-          val.access
-        );
+      : deserializeUpdateFileByIdRequestBodySharedLinkAccessField(val.access);
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
   const vanityName: undefined | string =
@@ -441,10 +441,10 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkField(
     val.unshared_at == void 0 ? void 0 : val.unshared_at;
   const permissions:
     | undefined
-    | UpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField =
+    | UpdateFileByIdRequestBodySharedLinkPermissionsField =
     val.permissions == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgSharedLinkFieldPermissionsField(
+      : deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
           val.permissions
         );
   return {
@@ -453,44 +453,44 @@ export function deserializeUpdateFileByIdRequestBodyArgSharedLinkField(
     vanityName: vanityName,
     unsharedAt: unsharedAt,
     permissions: permissions,
-  } satisfies UpdateFileByIdRequestBodyArgSharedLinkField;
+  } satisfies UpdateFileByIdRequestBodySharedLinkField;
 }
-export function serializeUpdateFileByIdRequestBodyArgLockFieldAccessField(
-  val: UpdateFileByIdRequestBodyArgLockFieldAccessField
+export function serializeUpdateFileByIdRequestBodyLockAccessField(
+  val: UpdateFileByIdRequestBodyLockAccessField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(
+export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   val: any
-): UpdateFileByIdRequestBodyArgLockFieldAccessField {
+): UpdateFileByIdRequestBodyLockAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodyArgLockFieldAccessField"';
+    throw 'Expecting a string for "UpdateFileByIdRequestBodyLockAccessField"';
   }
   if (val == 'lock') {
     return 'lock';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileByIdRequestBodyArgLockField(
-  val: UpdateFileByIdRequestBodyArgLockField
+export function serializeUpdateFileByIdRequestBodyLockField(
+  val: UpdateFileByIdRequestBodyLockField
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val.access),
+        : serializeUpdateFileByIdRequestBodyLockAccessField(val.access),
     ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
     ['is_download_prevented']:
       val.isDownloadPrevented == void 0 ? void 0 : val.isDownloadPrevented,
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArgLockField(
+export function deserializeUpdateFileByIdRequestBodyLockField(
   val: any
-): UpdateFileByIdRequestBodyArgLockField {
-  const access: undefined | UpdateFileByIdRequestBodyArgLockFieldAccessField =
+): UpdateFileByIdRequestBodyLockField {
+  const access: undefined | UpdateFileByIdRequestBodyLockAccessField =
     val.access == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgLockFieldAccessField(val.access);
+      : deserializeUpdateFileByIdRequestBodyLockAccessField(val.access);
   const expiresAt: undefined | string =
     val.expires_at == void 0 ? void 0 : val.expires_at;
   const isDownloadPrevented: undefined | boolean =
@@ -499,18 +499,18 @@ export function deserializeUpdateFileByIdRequestBodyArgLockField(
     access: access,
     expiresAt: expiresAt,
     isDownloadPrevented: isDownloadPrevented,
-  } satisfies UpdateFileByIdRequestBodyArgLockField;
+  } satisfies UpdateFileByIdRequestBodyLockField;
 }
-export function serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
-  val: UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField
+export function serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
+  val: UpdateFileByIdRequestBodyPermissionsCanDownloadField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
+export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   val: any
-): UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField {
+): UpdateFileByIdRequestBodyPermissionsCanDownloadField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField"';
+    throw 'Expecting a string for "UpdateFileByIdRequestBodyPermissionsCanDownloadField"';
   }
   if (val == 'open') {
     return 'open';
@@ -520,53 +520,53 @@ export function deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownlo
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileByIdRequestBodyArgPermissionsField(
-  val: UpdateFileByIdRequestBodyArgPermissionsField
+export function serializeUpdateFileByIdRequestBodyPermissionsField(
+  val: UpdateFileByIdRequestBodyPermissionsField
 ): SerializedData {
   return {
     ['can_download']:
       val.canDownload == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
+        : serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
             val.canDownload
           ),
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArgPermissionsField(
+export function deserializeUpdateFileByIdRequestBodyPermissionsField(
   val: any
-): UpdateFileByIdRequestBodyArgPermissionsField {
+): UpdateFileByIdRequestBodyPermissionsField {
   const canDownload:
     | undefined
-    | UpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField =
+    | UpdateFileByIdRequestBodyPermissionsCanDownloadField =
     val.can_download == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgPermissionsFieldCanDownloadField(
+      : deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
           val.can_download
         );
   return {
     canDownload: canDownload,
-  } satisfies UpdateFileByIdRequestBodyArgPermissionsField;
+  } satisfies UpdateFileByIdRequestBodyPermissionsField;
 }
-export function serializeUpdateFileByIdRequestBodyArgCollectionsField(
-  val: UpdateFileByIdRequestBodyArgCollectionsField
+export function serializeUpdateFileByIdRequestBodyCollectionsField(
+  val: UpdateFileByIdRequestBodyCollectionsField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : val.type,
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArgCollectionsField(
+export function deserializeUpdateFileByIdRequestBodyCollectionsField(
   val: any
-): UpdateFileByIdRequestBodyArgCollectionsField {
+): UpdateFileByIdRequestBodyCollectionsField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   return {
     id: id,
     type: type,
-  } satisfies UpdateFileByIdRequestBodyArgCollectionsField;
+  } satisfies UpdateFileByIdRequestBodyCollectionsField;
 }
-export function serializeUpdateFileByIdRequestBodyArg(
-  val: UpdateFileByIdRequestBodyArg
+export function serializeUpdateFileByIdRequestBody(
+  val: UpdateFileByIdRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -574,30 +574,28 @@ export function serializeUpdateFileByIdRequestBodyArg(
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgParentField(val.parent),
+        : serializeUpdateFileByIdRequestBodyParentField(val.parent),
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgSharedLinkField(val.sharedLink),
+        : serializeUpdateFileByIdRequestBodySharedLinkField(val.sharedLink),
     ['lock']:
       val.lock == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgLockField(val.lock),
+        : serializeUpdateFileByIdRequestBodyLockField(val.lock),
     ['disposition_at']:
       val.dispositionAt == void 0 ? void 0 : val.dispositionAt,
     ['permissions']:
       val.permissions == void 0
         ? void 0
-        : serializeUpdateFileByIdRequestBodyArgPermissionsField(
-            val.permissions
-          ),
+        : serializeUpdateFileByIdRequestBodyPermissionsField(val.permissions),
     ['collections']:
       val.collections == void 0
         ? void 0
         : (val.collections.map(function (
-            item: UpdateFileByIdRequestBodyArgCollectionsField
+            item: UpdateFileByIdRequestBodyCollectionsField
           ): any {
-            return serializeUpdateFileByIdRequestBodyArgCollectionsField(item);
+            return serializeUpdateFileByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
     ['tags']:
       val.tags == void 0
@@ -607,40 +605,38 @@ export function serializeUpdateFileByIdRequestBodyArg(
           }) as readonly any[]),
   };
 }
-export function deserializeUpdateFileByIdRequestBodyArg(
+export function deserializeUpdateFileByIdRequestBody(
   val: any
-): UpdateFileByIdRequestBodyArg {
+): UpdateFileByIdRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const parent: undefined | UpdateFileByIdRequestBodyArgParentField =
+  const parent: undefined | UpdateFileByIdRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgParentField(val.parent);
-  const sharedLink: undefined | UpdateFileByIdRequestBodyArgSharedLinkField =
+      : deserializeUpdateFileByIdRequestBodyParentField(val.parent);
+  const sharedLink: undefined | UpdateFileByIdRequestBodySharedLinkField =
     val.shared_link == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgSharedLinkField(val.shared_link);
-  const lock: undefined | UpdateFileByIdRequestBodyArgLockField =
+      : deserializeUpdateFileByIdRequestBodySharedLinkField(val.shared_link);
+  const lock: undefined | UpdateFileByIdRequestBodyLockField =
     val.lock == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgLockField(val.lock);
+      : deserializeUpdateFileByIdRequestBodyLockField(val.lock);
   const dispositionAt: undefined | string =
     val.disposition_at == void 0 ? void 0 : val.disposition_at;
-  const permissions: undefined | UpdateFileByIdRequestBodyArgPermissionsField =
+  const permissions: undefined | UpdateFileByIdRequestBodyPermissionsField =
     val.permissions == void 0
       ? void 0
-      : deserializeUpdateFileByIdRequestBodyArgPermissionsField(
-          val.permissions
-        );
+      : deserializeUpdateFileByIdRequestBodyPermissionsField(val.permissions);
   const collections:
     | undefined
-    | readonly UpdateFileByIdRequestBodyArgCollectionsField[] =
+    | readonly UpdateFileByIdRequestBodyCollectionsField[] =
     val.collections == void 0
       ? void 0
       : sdIsList(val.collections)
       ? (val.collections.map(function (itm: SerializedData): any {
-          return deserializeUpdateFileByIdRequestBodyArgCollectionsField(itm);
+          return deserializeUpdateFileByIdRequestBodyCollectionsField(itm);
         }) as readonly any[])
       : [];
   const tags: undefined | readonly string[] =
@@ -661,52 +657,50 @@ export function deserializeUpdateFileByIdRequestBodyArg(
     permissions: permissions,
     collections: collections,
     tags: tags,
-  } satisfies UpdateFileByIdRequestBodyArg;
+  } satisfies UpdateFileByIdRequestBody;
 }
-export function serializeCopyFileRequestBodyArgParentField(
-  val: CopyFileRequestBodyArgParentField
+export function serializeCopyFileRequestBodyParentField(
+  val: CopyFileRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeCopyFileRequestBodyArgParentField(
+export function deserializeCopyFileRequestBodyParentField(
   val: any
-): CopyFileRequestBodyArgParentField {
+): CopyFileRequestBodyParentField {
   const id: string = val.id;
-  return { id: id } satisfies CopyFileRequestBodyArgParentField;
+  return { id: id } satisfies CopyFileRequestBodyParentField;
 }
-export function serializeCopyFileRequestBodyArg(
-  val: CopyFileRequestBodyArg
+export function serializeCopyFileRequestBody(
+  val: CopyFileRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['version']: val.version == void 0 ? void 0 : val.version,
-    ['parent']: serializeCopyFileRequestBodyArgParentField(val.parent),
+    ['parent']: serializeCopyFileRequestBodyParentField(val.parent),
   };
 }
-export function deserializeCopyFileRequestBodyArg(
-  val: any
-): CopyFileRequestBodyArg {
+export function deserializeCopyFileRequestBody(val: any): CopyFileRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const version: undefined | string =
     val.version == void 0 ? void 0 : val.version;
-  const parent: CopyFileRequestBodyArgParentField =
-    deserializeCopyFileRequestBodyArgParentField(val.parent);
+  const parent: CopyFileRequestBodyParentField =
+    deserializeCopyFileRequestBodyParentField(val.parent);
   return {
     name: name,
     version: version,
     parent: parent,
-  } satisfies CopyFileRequestBodyArg;
+  } satisfies CopyFileRequestBody;
 }
-export function serializeGetFileThumbnailByIdExtensionArg(
-  val: GetFileThumbnailByIdExtensionArg
+export function serializeGetFileThumbnailByIdExtension(
+  val: GetFileThumbnailByIdExtension
 ): SerializedData {
   return val;
 }
-export function deserializeGetFileThumbnailByIdExtensionArg(
+export function deserializeGetFileThumbnailByIdExtension(
   val: any
-): GetFileThumbnailByIdExtensionArg {
+): GetFileThumbnailByIdExtension {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFileThumbnailByIdExtensionArg"';
+    throw 'Expecting a string for "GetFileThumbnailByIdExtension"';
   }
   if (val == 'png') {
     return 'png';

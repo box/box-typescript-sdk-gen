@@ -30,19 +30,19 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetShieldInformationBarrierSegmentMemberByIdHeadersArg {
+export class GetShieldInformationBarrierSegmentMemberByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
       | Omit<
-          GetShieldInformationBarrierSegmentMemberByIdHeadersArg,
+          GetShieldInformationBarrierSegmentMemberByIdHeaders,
           'extraHeaders'
         >
       | Partial<
           Pick<
-            GetShieldInformationBarrierSegmentMemberByIdHeadersArg,
+            GetShieldInformationBarrierSegmentMemberByIdHeaders,
             'extraHeaders'
           >
         >
@@ -50,19 +50,19 @@ export class GetShieldInformationBarrierSegmentMemberByIdHeadersArg {
     Object.assign(this, fields);
   }
 }
-export class DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg {
+export class DeleteShieldInformationBarrierSegmentMemberByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
       | Omit<
-          DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg,
+          DeleteShieldInformationBarrierSegmentMemberByIdHeaders,
           'extraHeaders'
         >
       | Partial<
           Pick<
-            DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg,
+            DeleteShieldInformationBarrierSegmentMemberByIdHeaders,
             'extraHeaders'
           >
         >
@@ -70,58 +70,49 @@ export class DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg {
     Object.assign(this, fields);
   }
 }
-export interface GetShieldInformationBarrierSegmentMembersQueryParamsArg {
+export interface GetShieldInformationBarrierSegmentMembersQueryParams {
   readonly shieldInformationBarrierSegmentId: string;
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetShieldInformationBarrierSegmentMembersHeadersArg {
+export class GetShieldInformationBarrierSegmentMembersHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          GetShieldInformationBarrierSegmentMembersHeadersArg,
-          'extraHeaders'
-        >
+      | Omit<GetShieldInformationBarrierSegmentMembersHeaders, 'extraHeaders'>
       | Partial<
-          Pick<
-            GetShieldInformationBarrierSegmentMembersHeadersArg,
-            'extraHeaders'
-          >
+          Pick<GetShieldInformationBarrierSegmentMembersHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField =
+export type CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField =
   'shield_information_barrier_segment_member';
-export type CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField =
+export type CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
-export interface CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField {
+export interface CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField {
   readonly id?: string;
-  readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField;
+  readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField;
 }
-export interface CreateShieldInformationBarrierSegmentMemberRequestBodyArg {
-  readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField;
+export interface CreateShieldInformationBarrierSegmentMemberRequestBody {
+  readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-  readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
+  readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField;
   readonly user: UserBase;
 }
-export class CreateShieldInformationBarrierSegmentMemberHeadersArg {
+export class CreateShieldInformationBarrierSegmentMemberHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          CreateShieldInformationBarrierSegmentMemberHeadersArg,
-          'extraHeaders'
-        >
+      | Omit<CreateShieldInformationBarrierSegmentMemberHeaders, 'extraHeaders'>
       | Partial<
           Pick<
-            CreateShieldInformationBarrierSegmentMemberHeadersArg,
+            CreateShieldInformationBarrierSegmentMemberHeaders,
             'extraHeaders'
           >
         >
@@ -131,21 +122,26 @@ export class CreateShieldInformationBarrierSegmentMemberHeadersArg {
 }
 export class ShieldInformationBarrierSegmentMembersManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      ShieldInformationBarrierSegmentMembersManager,
-      | 'getShieldInformationBarrierSegmentMemberById'
-      | 'deleteShieldInformationBarrierSegmentMemberById'
-      | 'getShieldInformationBarrierSegmentMembers'
-      | 'createShieldInformationBarrierSegmentMember'
-    >
+    fields:
+      | Omit<
+          ShieldInformationBarrierSegmentMembersManager,
+          | 'networkSession'
+          | 'getShieldInformationBarrierSegmentMemberById'
+          | 'deleteShieldInformationBarrierSegmentMemberById'
+          | 'getShieldInformationBarrierSegmentMembers'
+          | 'createShieldInformationBarrierSegmentMember'
+        >
+      | Partial<
+          Pick<ShieldInformationBarrierSegmentMembersManager, 'networkSession'>
+        >
   ) {
     Object.assign(this, fields);
   }
   async getShieldInformationBarrierSegmentMemberById(
     shieldInformationBarrierSegmentMemberId: string,
-    headers: GetShieldInformationBarrierSegmentMemberByIdHeadersArg = new GetShieldInformationBarrierSegmentMemberByIdHeadersArg(
+    headers: GetShieldInformationBarrierSegmentMemberByIdHeaders = new GetShieldInformationBarrierSegmentMemberByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -155,7 +151,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_segment_members/',
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_segment_members/',
         toString(shieldInformationBarrierSegmentMemberId) as string
       ) as string,
       {
@@ -171,7 +168,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
   }
   async deleteShieldInformationBarrierSegmentMemberById(
     shieldInformationBarrierSegmentMemberId: string,
-    headers: DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg = new DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg(
+    headers: DeleteShieldInformationBarrierSegmentMemberByIdHeaders = new DeleteShieldInformationBarrierSegmentMemberByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -181,7 +178,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_segment_members/',
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_segment_members/',
         toString(shieldInformationBarrierSegmentMemberId) as string
       ) as string,
       {
@@ -196,8 +194,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     return void 0;
   }
   async getShieldInformationBarrierSegmentMembers(
-    queryParams: GetShieldInformationBarrierSegmentMembersQueryParamsArg,
-    headers: GetShieldInformationBarrierSegmentMembersHeadersArg = new GetShieldInformationBarrierSegmentMembersHeadersArg(
+    queryParams: GetShieldInformationBarrierSegmentMembersQueryParams,
+    headers: GetShieldInformationBarrierSegmentMembersHeaders = new GetShieldInformationBarrierSegmentMembersHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -216,7 +214,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_segment_members'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_segment_members'
       ) as string,
       {
         method: 'GET',
@@ -231,8 +230,8 @@ export class ShieldInformationBarrierSegmentMembersManager {
     return deserializeShieldInformationBarrierSegmentMembers(response.data);
   }
   async createShieldInformationBarrierSegmentMember(
-    requestBody: CreateShieldInformationBarrierSegmentMemberRequestBodyArg,
-    headers: CreateShieldInformationBarrierSegmentMemberHeadersArg = new CreateShieldInformationBarrierSegmentMemberHeadersArg(
+    requestBody: CreateShieldInformationBarrierSegmentMemberRequestBody,
+    headers: CreateShieldInformationBarrierSegmentMemberHeaders = new CreateShieldInformationBarrierSegmentMemberHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -242,12 +241,13 @@ export class ShieldInformationBarrierSegmentMembersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_segment_members'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_segment_members'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
+        data: serializeCreateShieldInformationBarrierSegmentMemberRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -260,76 +260,76 @@ export class ShieldInformationBarrierSegmentMembersManager {
     return deserializeShieldInformationBarrierSegmentMember(response.data);
   }
 }
-export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField
+export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
+export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
   val: any
-): CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField {
+): CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField"';
+    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField"';
   }
   if (val == 'shield_information_barrier_segment_member') {
     return 'shield_information_barrier_segment_member';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField
+export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
+export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
   val: any
-): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField {
+): CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField"';
+    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField"';
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField
+export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
+        : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
             val.type
           ),
   };
 }
-export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(
+export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
   val: any
-): CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField {
+): CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type:
     | undefined
-    | CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField =
+    | CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentFieldTypeField(
+      : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
           val.type
         );
   return {
     id: id,
     type: type,
-  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField;
+  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField;
 }
-export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyArg
+export function serializeCreateShieldInformationBarrierSegmentMemberRequestBody(
+  val: CreateShieldInformationBarrierSegmentMemberRequestBody
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
+        : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
             val.type
           ),
     ['shield_information_barrier']:
@@ -337,29 +337,29 @@ export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyA
         ? void 0
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
     ['shield_information_barrier_segment']:
-      serializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(
+      serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
         val.shieldInformationBarrierSegment
       ),
     ['user']: serializeUserBase(val.user),
   };
 }
-export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArg(
+export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBody(
   val: any
-): CreateShieldInformationBarrierSegmentMemberRequestBodyArg {
+): CreateShieldInformationBarrierSegmentMemberRequestBody {
   const type:
     | undefined
-    | CreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField =
+    | CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgTypeField(
+      : deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
           val.type
         );
   const shieldInformationBarrier: undefined | ShieldInformationBarrierBase =
     val.shield_information_barrier == void 0
       ? void 0
       : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
-  const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField =
-    deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyArgShieldInformationBarrierSegmentField(
+  const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField =
+    deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
       val.shield_information_barrier_segment
     );
   const user: UserBase = deserializeUserBase(val.user);
@@ -368,5 +368,5 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
     shieldInformationBarrier: shieldInformationBarrier,
     shieldInformationBarrierSegment: shieldInformationBarrierSegment,
     user: user,
-  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyArg;
+  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody;
 }

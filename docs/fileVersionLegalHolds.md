@@ -19,7 +19,7 @@ _Currently we don't have an example for calling `getFileVersionLegalHoldById` in
 
 - fileVersionLegalHoldId `string`
   - The ID of the file version legal hold Example: "2348213"
-- headers `GetFileVersionLegalHoldByIdHeadersArg`
+- headers `GetFileVersionLegalHoldByIdHeaders`
   - Headers of getFileVersionLegalHoldById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -62,9 +62,9 @@ _Currently we don't have an example for calling `getFileVersionLegalHolds` in in
 
 ### Arguments
 
-- queryParams `GetFileVersionLegalHoldsQueryParamsArg`
+- queryParams `GetFileVersionLegalHoldsQueryParams`
   - Query parameters of getFileVersionLegalHolds method
-- headers `GetFileVersionLegalHoldsHeadersArg`
+- headers `GetFileVersionLegalHoldsHeaders`
   - Headers of getFileVersionLegalHolds method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

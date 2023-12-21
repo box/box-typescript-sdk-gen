@@ -13,13 +13,21 @@ This operation is performed by calling function `getShieldInformationBarrierRepo
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierReports` in integration tests_
+<!-- sample get_shield_information_barrier_reports -->
+
+```ts
+await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
+  {
+    shieldInformationBarrierId: barrierId,
+  } satisfies GetShieldInformationBarrierReportsQueryParams
+);
+```
 
 ### Arguments
 
-- queryParams `GetShieldInformationBarrierReportsQueryParamsArg`
+- queryParams `GetShieldInformationBarrierReportsQueryParams`
   - Query parameters of getShieldInformationBarrierReports method
-- headers `GetShieldInformationBarrierReportsHeadersArg`
+- headers `GetShieldInformationBarrierReportsHeaders`
   - Headers of getShieldInformationBarrierReports method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -39,13 +47,24 @@ This operation is performed by calling function `createShieldInformationBarrierR
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-reports/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierReport` in integration tests_
+<!-- sample post_shield_information_barrier_reports -->
+
+```ts
+await client.shieldInformationBarrierReports.createShieldInformationBarrierReport(
+  {
+    shieldInformationBarrier: {
+      id: barrierId,
+      type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
+    } satisfies ShieldInformationBarrierBase,
+  } satisfies ShieldInformationBarrierReference
+);
+```
 
 ### Arguments
 
 - requestBody `ShieldInformationBarrierReference`
   - Request body of createShieldInformationBarrierReport method
-- headers `CreateShieldInformationBarrierReportHeadersArg`
+- headers `CreateShieldInformationBarrierReportHeaders`
   - Headers of createShieldInformationBarrierReport method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -65,13 +84,19 @@ This operation is performed by calling function `getShieldInformationBarrierRepo
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierReportById` in integration tests_
+<!-- sample get_shield_information_barrier_reports_id -->
+
+```ts
+await client.shieldInformationBarrierReports.getShieldInformationBarrierReportById(
+  createdReport.id!
+);
+```
 
 ### Arguments
 
 - shieldInformationBarrierReportId `string`
   - The ID of the shield information barrier Report. Example: "3423"
-- headers `GetShieldInformationBarrierReportByIdHeadersArg`
+- headers `GetShieldInformationBarrierReportByIdHeaders`
   - Headers of getShieldInformationBarrierReportById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

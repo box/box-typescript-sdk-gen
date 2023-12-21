@@ -24,51 +24,51 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetStoragePoliciesQueryParamsArg {
+export interface GetStoragePoliciesQueryParams {
   readonly fields?: readonly string[];
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetStoragePoliciesHeadersArg {
+export class GetStoragePoliciesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetStoragePoliciesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetStoragePoliciesHeadersArg, 'extraHeaders'>>
+      | Omit<GetStoragePoliciesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetStoragePoliciesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetStoragePolicyByIdHeadersArg {
+export class GetStoragePolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetStoragePolicyByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetStoragePolicyByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class StoragePoliciesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      StoragePoliciesManager,
-      'getStoragePolicies' | 'getStoragePolicyById'
-    >
+    fields:
+      | Omit<
+          StoragePoliciesManager,
+          'networkSession' | 'getStoragePolicies' | 'getStoragePolicyById'
+        >
+      | Partial<Pick<StoragePoliciesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getStoragePolicies(
-    queryParams: GetStoragePoliciesQueryParamsArg = {} satisfies GetStoragePoliciesQueryParamsArg,
-    headers: GetStoragePoliciesHeadersArg = new GetStoragePoliciesHeadersArg(
-      {}
-    ),
+    queryParams: GetStoragePoliciesQueryParams = {} satisfies GetStoragePoliciesQueryParams,
+    headers: GetStoragePoliciesHeaders = new GetStoragePoliciesHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicies> {
     const queryParamsMap: {
@@ -84,7 +84,10 @@ export class StoragePoliciesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/storage_policies') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policies'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -99,9 +102,7 @@ export class StoragePoliciesManager {
   }
   async getStoragePolicyById(
     storagePolicyId: string,
-    headers: GetStoragePolicyByIdHeadersArg = new GetStoragePolicyByIdHeadersArg(
-      {}
-    ),
+    headers: GetStoragePolicyByIdHeaders = new GetStoragePolicyByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicy> {
     const headersMap: {
@@ -109,7 +110,8 @@ export class StoragePoliciesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/storage_policies/',
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policies/',
         toString(storagePolicyId) as string
       ) as string,
       {

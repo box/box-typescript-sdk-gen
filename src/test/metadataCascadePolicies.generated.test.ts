@@ -1,38 +1,38 @@
-import { serializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeMetadataCascadePolicy } from '../schemas.generated.js';
 import { deserializeMetadataCascadePolicy } from '../schemas.generated.js';
-import { serializeCreateMetadataCascadePolicyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { serializeCreateMetadataCascadePolicyRequestBodyArgScopeField } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyRequestBodyArgScopeField } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeCreateMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeCreateMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeCreateMetadataCascadePolicyRequestBodyScopeField } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeCreateMetadataCascadePolicyRequestBodyScopeField } from '../managers/metadataCascadePolicies.generated.js';
 import { serializeMetadataCascadePolicies } from '../schemas.generated.js';
 import { deserializeMetadataCascadePolicies } from '../schemas.generated.js';
-import { serializeCreateMetadataCascadePolicyApplyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyApplyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { serializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
-import { deserializeCreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
-import { serializeCreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
-import { deserializeCreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
+import { serializeApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { CreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { MetadataCascadePolicy } from '../schemas.generated.js';
-import { CreateMetadataCascadePolicyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateMetadataCascadePolicyRequestBodyArgScopeField } from '../managers/metadataCascadePolicies.generated.js';
+import { CreateMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { CreateMetadataCascadePolicyRequestBodyScopeField } from '../managers/metadataCascadePolicies.generated.js';
 import { MetadataCascadePolicies } from '../schemas.generated.js';
-import { GetMetadataCascadePoliciesQueryParamsArg } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateMetadataCascadePolicyApplyRequestBodyArg } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
-import { CreateFolderMetadataByIdScopeArg } from '../managers/folderMetadata.generated.js';
+import { GetMetadataCascadePoliciesQueryParams } from '../managers/metadataCascadePolicies.generated.js';
+import { ApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
+import { ApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
+import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { getUuid } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { toString } from '../utils.js';
@@ -56,21 +56,20 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
     templateKey: templateKey,
     fields: [
       {
-        type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
         key: 'testName',
         displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
-  } satisfies CreateMetadataTemplateRequestBodyArg);
+  } satisfies CreateMetadataTemplateRequestBody);
   const folder: FolderFull = await createNewFolder();
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const cascadePolicy: MetadataCascadePolicy =
     await client.metadataCascadePolicies.createMetadataCascadePolicy({
       folderId: folder.id,
-      scope:
-        'enterprise' as CreateMetadataCascadePolicyRequestBodyArgScopeField,
+      scope: 'enterprise' as CreateMetadataCascadePolicyRequestBodyScopeField,
       templateKey: templateKey,
-    } satisfies CreateMetadataCascadePolicyRequestBodyArg);
+    } satisfies CreateMetadataCascadePolicyRequestBody);
   if (
     !((toString(cascadePolicy.type) as string) == 'metadata_cascade_policy')
   ) {
@@ -116,17 +115,17 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   const policies: MetadataCascadePolicies =
     await client.metadataCascadePolicies.getMetadataCascadePolicies({
       folderId: folder.id,
-    } satisfies GetMetadataCascadePoliciesQueryParamsArg);
+    } satisfies GetMetadataCascadePoliciesQueryParams);
   if (!(policies.entries!.length == 1)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
-    await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
+  await expect(async () => {
+    await client.metadataCascadePolicies.applyMetadataCascadePolicy(
       cascadePolicyId,
       {
         conflictResolution:
-          'overwrite' as CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField,
-      } satisfies CreateMetadataCascadePolicyApplyRequestBodyArg
+          'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
+      } satisfies ApplyMetadataCascadePolicyRequestBody
     );
   }).rejects.toThrow();
   const data: {
@@ -134,21 +133,21 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   } = { ['testName']: 'xyz' };
   await client.folderMetadata.createFolderMetadataById(
     folder.id,
-    'enterprise' as CreateFolderMetadataByIdScopeArg,
+    'enterprise' as CreateFolderMetadataByIdScope,
     templateKey,
     data
   );
-  await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
+  await client.metadataCascadePolicies.applyMetadataCascadePolicy(
     cascadePolicyId,
     {
       conflictResolution:
-        'overwrite' as CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField,
-    } satisfies CreateMetadataCascadePolicyApplyRequestBodyArg
+        'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
+    } satisfies ApplyMetadataCascadePolicyRequestBody
   );
   await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
     cascadePolicyId
   );
-  expect(async () => {
+  await expect(async () => {
     await client.metadataCascadePolicies.getMetadataCascadePolicyById(
       cascadePolicyId
     );

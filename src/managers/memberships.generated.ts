@@ -24,141 +24,140 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetUserMembershipsQueryParamsArg {
+export interface GetUserMembershipsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetUserMembershipsHeadersArg {
+export class GetUserMembershipsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetUserMembershipsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetUserMembershipsHeadersArg, 'extraHeaders'>>
+      | Omit<GetUserMembershipsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetUserMembershipsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetGroupMembershipsQueryParamsArg {
+export interface GetGroupMembershipsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetGroupMembershipsHeadersArg {
+export class GetGroupMembershipsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGroupMembershipsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGroupMembershipsHeadersArg, 'extraHeaders'>>
+      | Omit<GetGroupMembershipsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGroupMembershipsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateGroupMembershipRequestBodyArgUserField {
+export interface CreateGroupMembershipRequestBodyUserField {
   readonly id: string;
 }
-export interface CreateGroupMembershipRequestBodyArgGroupField {
+export interface CreateGroupMembershipRequestBodyGroupField {
   readonly id: string;
 }
-export type CreateGroupMembershipRequestBodyArgRoleField = 'member' | 'admin';
-export interface CreateGroupMembershipRequestBodyArg {
-  readonly user: CreateGroupMembershipRequestBodyArgUserField;
-  readonly group: CreateGroupMembershipRequestBodyArgGroupField;
-  readonly role?: CreateGroupMembershipRequestBodyArgRoleField;
+export type CreateGroupMembershipRequestBodyRoleField = 'member' | 'admin';
+export interface CreateGroupMembershipRequestBody {
+  readonly user: CreateGroupMembershipRequestBodyUserField;
+  readonly group: CreateGroupMembershipRequestBodyGroupField;
+  readonly role?: CreateGroupMembershipRequestBodyRoleField;
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
 }
-export interface CreateGroupMembershipQueryParamsArg {
+export interface CreateGroupMembershipQueryParams {
   readonly fields?: readonly string[];
 }
-export class CreateGroupMembershipHeadersArg {
+export class CreateGroupMembershipHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateGroupMembershipHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateGroupMembershipHeadersArg, 'extraHeaders'>>
+      | Omit<CreateGroupMembershipHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateGroupMembershipHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetGroupMembershipByIdQueryParamsArg {
+export interface GetGroupMembershipByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetGroupMembershipByIdHeadersArg {
+export class GetGroupMembershipByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGroupMembershipByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetGroupMembershipByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateGroupMembershipByIdRequestBodyArgRoleField =
-  | 'member'
-  | 'admin';
-export interface UpdateGroupMembershipByIdRequestBodyArg {
-  readonly role?: UpdateGroupMembershipByIdRequestBodyArgRoleField;
+export type UpdateGroupMembershipByIdRequestBodyRoleField = 'member' | 'admin';
+export interface UpdateGroupMembershipByIdRequestBody {
+  readonly role?: UpdateGroupMembershipByIdRequestBodyRoleField;
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
 }
-export interface UpdateGroupMembershipByIdQueryParamsArg {
+export interface UpdateGroupMembershipByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class UpdateGroupMembershipByIdHeadersArg {
+export class UpdateGroupMembershipByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateGroupMembershipByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteGroupMembershipByIdHeadersArg {
+export class DeleteGroupMembershipByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteGroupMembershipByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteGroupMembershipByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class MembershipsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      MembershipsManager,
-      | 'getUserMemberships'
-      | 'getGroupMemberships'
-      | 'createGroupMembership'
-      | 'getGroupMembershipById'
-      | 'updateGroupMembershipById'
-      | 'deleteGroupMembershipById'
-    >
+    fields:
+      | Omit<
+          MembershipsManager,
+          | 'networkSession'
+          | 'getUserMemberships'
+          | 'getGroupMemberships'
+          | 'createGroupMembership'
+          | 'getGroupMembershipById'
+          | 'updateGroupMembershipById'
+          | 'deleteGroupMembershipById'
+        >
+      | Partial<Pick<MembershipsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getUserMemberships(
     userId: string,
-    queryParams: GetUserMembershipsQueryParamsArg = {} satisfies GetUserMembershipsQueryParamsArg,
-    headers: GetUserMembershipsHeadersArg = new GetUserMembershipsHeadersArg(
-      {}
-    ),
+    queryParams: GetUserMembershipsQueryParams = {} satisfies GetUserMembershipsQueryParams,
+    headers: GetUserMembershipsHeaders = new GetUserMembershipsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
     const queryParamsMap: {
@@ -172,7 +171,8 @@ export class MembershipsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/users/',
+        this.networkSession.baseUrls.baseUrl,
+        '/users/',
         toString(userId) as string,
         '/memberships'
       ) as string,
@@ -190,10 +190,8 @@ export class MembershipsManager {
   }
   async getGroupMemberships(
     groupId: string,
-    queryParams: GetGroupMembershipsQueryParamsArg = {} satisfies GetGroupMembershipsQueryParamsArg,
-    headers: GetGroupMembershipsHeadersArg = new GetGroupMembershipsHeadersArg(
-      {}
-    ),
+    queryParams: GetGroupMembershipsQueryParams = {} satisfies GetGroupMembershipsQueryParams,
+    headers: GetGroupMembershipsHeaders = new GetGroupMembershipsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
     const queryParamsMap: {
@@ -207,7 +205,8 @@ export class MembershipsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/groups/',
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/',
         toString(groupId) as string,
         '/memberships'
       ) as string,
@@ -224,43 +223,9 @@ export class MembershipsManager {
     return deserializeGroupMemberships(response.data);
   }
   async createGroupMembership(
-    requestBody: CreateGroupMembershipRequestBodyArg,
-    queryParams: CreateGroupMembershipQueryParamsArg = {} satisfies CreateGroupMembershipQueryParamsArg,
-    headers: CreateGroupMembershipHeadersArg = new CreateGroupMembershipHeadersArg(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<GroupMembership> {
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['fields']: queryParams.fields
-        ? queryParams.fields.map(toString).join(',')
-        : undefined,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/group_memberships') as string,
-      {
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        data: serializeCreateGroupMembershipRequestBodyArg(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeGroupMembership(response.data);
-  }
-  async getGroupMembershipById(
-    groupMembershipId: string,
-    queryParams: GetGroupMembershipByIdQueryParamsArg = {} satisfies GetGroupMembershipByIdQueryParamsArg,
-    headers: GetGroupMembershipByIdHeadersArg = new GetGroupMembershipByIdHeadersArg(
+    requestBody: CreateGroupMembershipRequestBody,
+    queryParams: CreateGroupMembershipQueryParams = {} satisfies CreateGroupMembershipQueryParams,
+    headers: CreateGroupMembershipHeaders = new CreateGroupMembershipHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -277,7 +242,45 @@ export class MembershipsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/group_memberships/',
+        this.networkSession.baseUrls.baseUrl,
+        '/group_memberships'
+      ) as string,
+      {
+        method: 'POST',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeCreateGroupMembershipRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json',
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      } satisfies FetchOptions
+    )) as FetchResponse;
+    return deserializeGroupMembership(response.data);
+  }
+  async getGroupMembershipById(
+    groupMembershipId: string,
+    queryParams: GetGroupMembershipByIdQueryParams = {} satisfies GetGroupMembershipByIdQueryParams,
+    headers: GetGroupMembershipByIdHeaders = new GetGroupMembershipByIdHeaders(
+      {}
+    ),
+    cancellationToken?: CancellationToken
+  ): Promise<GroupMembership> {
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
@@ -294,9 +297,9 @@ export class MembershipsManager {
   }
   async updateGroupMembershipById(
     groupMembershipId: string,
-    requestBody: UpdateGroupMembershipByIdRequestBodyArg = {} satisfies UpdateGroupMembershipByIdRequestBodyArg,
-    queryParams: UpdateGroupMembershipByIdQueryParamsArg = {} satisfies UpdateGroupMembershipByIdQueryParamsArg,
-    headers: UpdateGroupMembershipByIdHeadersArg = new UpdateGroupMembershipByIdHeadersArg(
+    requestBody: UpdateGroupMembershipByIdRequestBody = {} satisfies UpdateGroupMembershipByIdRequestBody,
+    queryParams: UpdateGroupMembershipByIdQueryParams = {} satisfies UpdateGroupMembershipByIdQueryParams,
+    headers: UpdateGroupMembershipByIdHeaders = new UpdateGroupMembershipByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -313,14 +316,15 @@ export class MembershipsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/group_memberships/',
+        this.networkSession.baseUrls.baseUrl,
+        '/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateGroupMembershipByIdRequestBodyArg(requestBody),
+        data: serializeUpdateGroupMembershipByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -332,7 +336,7 @@ export class MembershipsManager {
   }
   async deleteGroupMembershipById(
     groupMembershipId: string,
-    headers: DeleteGroupMembershipByIdHeadersArg = new DeleteGroupMembershipByIdHeadersArg(
+    headers: DeleteGroupMembershipByIdHeaders = new DeleteGroupMembershipByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -342,7 +346,8 @@ export class MembershipsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/group_memberships/',
+        this.networkSession.baseUrls.baseUrl,
+        '/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
@@ -357,38 +362,38 @@ export class MembershipsManager {
     return void 0;
   }
 }
-export function serializeCreateGroupMembershipRequestBodyArgUserField(
-  val: CreateGroupMembershipRequestBodyArgUserField
+export function serializeCreateGroupMembershipRequestBodyUserField(
+  val: CreateGroupMembershipRequestBodyUserField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeCreateGroupMembershipRequestBodyArgUserField(
+export function deserializeCreateGroupMembershipRequestBodyUserField(
   val: any
-): CreateGroupMembershipRequestBodyArgUserField {
+): CreateGroupMembershipRequestBodyUserField {
   const id: string = val.id;
-  return { id: id } satisfies CreateGroupMembershipRequestBodyArgUserField;
+  return { id: id } satisfies CreateGroupMembershipRequestBodyUserField;
 }
-export function serializeCreateGroupMembershipRequestBodyArgGroupField(
-  val: CreateGroupMembershipRequestBodyArgGroupField
+export function serializeCreateGroupMembershipRequestBodyGroupField(
+  val: CreateGroupMembershipRequestBodyGroupField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeCreateGroupMembershipRequestBodyArgGroupField(
+export function deserializeCreateGroupMembershipRequestBodyGroupField(
   val: any
-): CreateGroupMembershipRequestBodyArgGroupField {
+): CreateGroupMembershipRequestBodyGroupField {
   const id: string = val.id;
-  return { id: id } satisfies CreateGroupMembershipRequestBodyArgGroupField;
+  return { id: id } satisfies CreateGroupMembershipRequestBodyGroupField;
 }
-export function serializeCreateGroupMembershipRequestBodyArgRoleField(
-  val: CreateGroupMembershipRequestBodyArgRoleField
+export function serializeCreateGroupMembershipRequestBodyRoleField(
+  val: CreateGroupMembershipRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateGroupMembershipRequestBodyArgRoleField(
+export function deserializeCreateGroupMembershipRequestBodyRoleField(
   val: any
-): CreateGroupMembershipRequestBodyArgRoleField {
+): CreateGroupMembershipRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupMembershipRequestBodyArgRoleField"';
+    throw 'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"';
   }
   if (val == 'member') {
     return 'member';
@@ -398,35 +403,33 @@ export function deserializeCreateGroupMembershipRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateGroupMembershipRequestBodyArg(
-  val: CreateGroupMembershipRequestBodyArg
+export function serializeCreateGroupMembershipRequestBody(
+  val: CreateGroupMembershipRequestBody
 ): SerializedData {
   return {
-    ['user']: serializeCreateGroupMembershipRequestBodyArgUserField(val.user),
-    ['group']: serializeCreateGroupMembershipRequestBodyArgGroupField(
-      val.group
-    ),
+    ['user']: serializeCreateGroupMembershipRequestBodyUserField(val.user),
+    ['group']: serializeCreateGroupMembershipRequestBodyGroupField(val.group),
     ['role']:
       val.role == void 0
         ? void 0
-        : serializeCreateGroupMembershipRequestBodyArgRoleField(val.role),
+        : serializeCreateGroupMembershipRequestBodyRoleField(val.role),
     ['configurable_permissions']:
       val.configurablePermissions == void 0
         ? void 0
         : val.configurablePermissions,
   };
 }
-export function deserializeCreateGroupMembershipRequestBodyArg(
+export function deserializeCreateGroupMembershipRequestBody(
   val: any
-): CreateGroupMembershipRequestBodyArg {
-  const user: CreateGroupMembershipRequestBodyArgUserField =
-    deserializeCreateGroupMembershipRequestBodyArgUserField(val.user);
-  const group: CreateGroupMembershipRequestBodyArgGroupField =
-    deserializeCreateGroupMembershipRequestBodyArgGroupField(val.group);
-  const role: undefined | CreateGroupMembershipRequestBodyArgRoleField =
+): CreateGroupMembershipRequestBody {
+  const user: CreateGroupMembershipRequestBodyUserField =
+    deserializeCreateGroupMembershipRequestBodyUserField(val.user);
+  const group: CreateGroupMembershipRequestBodyGroupField =
+    deserializeCreateGroupMembershipRequestBodyGroupField(val.group);
+  const role: undefined | CreateGroupMembershipRequestBodyRoleField =
     val.role == void 0
       ? void 0
-      : deserializeCreateGroupMembershipRequestBodyArgRoleField(val.role);
+      : deserializeCreateGroupMembershipRequestBodyRoleField(val.role);
   const configurablePermissions:
     | undefined
     | {
@@ -440,18 +443,18 @@ export function deserializeCreateGroupMembershipRequestBodyArg(
     group: group,
     role: role,
     configurablePermissions: configurablePermissions,
-  } satisfies CreateGroupMembershipRequestBodyArg;
+  } satisfies CreateGroupMembershipRequestBody;
 }
-export function serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
-  val: UpdateGroupMembershipByIdRequestBodyArgRoleField
+export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
+  val: UpdateGroupMembershipByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
+export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   val: any
-): UpdateGroupMembershipByIdRequestBodyArgRoleField {
+): UpdateGroupMembershipByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupMembershipByIdRequestBodyArgRoleField"';
+    throw 'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"';
   }
   if (val == 'member') {
     return 'member';
@@ -461,27 +464,27 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateGroupMembershipByIdRequestBodyArg(
-  val: UpdateGroupMembershipByIdRequestBodyArg
+export function serializeUpdateGroupMembershipByIdRequestBody(
+  val: UpdateGroupMembershipByIdRequestBody
 ): SerializedData {
   return {
     ['role']:
       val.role == void 0
         ? void 0
-        : serializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val.role),
+        : serializeUpdateGroupMembershipByIdRequestBodyRoleField(val.role),
     ['configurable_permissions']:
       val.configurablePermissions == void 0
         ? void 0
         : val.configurablePermissions,
   };
 }
-export function deserializeUpdateGroupMembershipByIdRequestBodyArg(
+export function deserializeUpdateGroupMembershipByIdRequestBody(
   val: any
-): UpdateGroupMembershipByIdRequestBodyArg {
-  const role: undefined | UpdateGroupMembershipByIdRequestBodyArgRoleField =
+): UpdateGroupMembershipByIdRequestBody {
+  const role: undefined | UpdateGroupMembershipByIdRequestBodyRoleField =
     val.role == void 0
       ? void 0
-      : deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField(val.role);
+      : deserializeUpdateGroupMembershipByIdRequestBodyRoleField(val.role);
   const configurablePermissions:
     | undefined
     | {
@@ -493,5 +496,5 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyArg(
   return {
     role: role,
     configurablePermissions: configurablePermissions,
-  } satisfies UpdateGroupMembershipByIdRequestBodyArg;
+  } satisfies UpdateGroupMembershipByIdRequestBody;
 }

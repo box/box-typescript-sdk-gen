@@ -23,9 +23,9 @@ await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
 
 ### Arguments
 
-- queryParams `GetCollaborationWhitelistEntriesQueryParamsArg`
+- queryParams `GetCollaborationWhitelistEntriesQueryParams`
   - Query parameters of getCollaborationWhitelistEntries method
-- headers `GetCollaborationWhitelistEntriesHeadersArg`
+- headers `GetCollaborationWhitelistEntriesHeaders`
   - Headers of getCollaborationWhitelistEntries method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -52,14 +52,14 @@ See the endpoint docs at
 await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
   direction: direction,
   domain: domain,
-} satisfies CreateCollaborationWhitelistEntryRequestBodyArg);
+} satisfies CreateCollaborationWhitelistEntryRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateCollaborationWhitelistEntryRequestBodyArg`
+- requestBody `CreateCollaborationWhitelistEntryRequestBody`
   - Request body of createCollaborationWhitelistEntry method
-- headers `CreateCollaborationWhitelistEntryHeadersArg`
+- headers `CreateCollaborationWhitelistEntryHeaders`
   - Headers of createCollaborationWhitelistEntry method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -92,7 +92,7 @@ await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
 
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
-- headers `GetCollaborationWhitelistEntryByIdHeadersArg`
+- headers `GetCollaborationWhitelistEntryByIdHeaders`
   - Headers of getCollaborationWhitelistEntryById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -125,7 +125,7 @@ await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById
 
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
-- headers `DeleteCollaborationWhitelistEntryByIdHeadersArg`
+- headers `DeleteCollaborationWhitelistEntryByIdHeaders`
   - Headers of deleteCollaborationWhitelistEntryById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

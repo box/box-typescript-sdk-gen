@@ -21,7 +21,7 @@ _Currently we don't have an example for calling `getTaskAssignments` in integrat
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headers `GetTaskAssignmentsHeadersArg`
+- headers `GetTaskAssignmentsHeaders`
   - Headers of getTaskAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -49,9 +49,9 @@ _Currently we don't have an example for calling `createTaskAssignment` in integr
 
 ### Arguments
 
-- requestBody `CreateTaskAssignmentRequestBodyArg`
+- requestBody `CreateTaskAssignmentRequestBody`
   - Request body of createTaskAssignment method
-- headers `CreateTaskAssignmentHeadersArg`
+- headers `CreateTaskAssignmentHeaders`
   - Headers of createTaskAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -77,7 +77,7 @@ _Currently we don't have an example for calling `getTaskAssignmentById` in integ
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headers `GetTaskAssignmentByIdHeadersArg`
+- headers `GetTaskAssignmentByIdHeaders`
   - Headers of getTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -105,9 +105,9 @@ _Currently we don't have an example for calling `updateTaskAssignmentById` in in
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- requestBody `UpdateTaskAssignmentByIdRequestBodyArg`
+- requestBody `UpdateTaskAssignmentByIdRequestBody`
   - Request body of updateTaskAssignmentById method
-- headers `UpdateTaskAssignmentByIdHeadersArg`
+- headers `UpdateTaskAssignmentByIdHeaders`
   - Headers of updateTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -133,7 +133,7 @@ _Currently we don't have an example for calling `deleteTaskAssignmentById` in in
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headers `DeleteTaskAssignmentByIdHeadersArg`
+- headers `DeleteTaskAssignmentByIdHeaders`
   - Headers of deleteTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

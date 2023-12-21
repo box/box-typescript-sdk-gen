@@ -24,104 +24,107 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFolderMetadataHeadersArg {
+export class GetFolderMetadataHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderMetadataHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderMetadataHeadersArg, 'extraHeaders'>>
+      | Omit<GetFolderMetadataHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetFolderMetadataByIdScopeArg = 'global' | 'enterprise';
-export class GetFolderMetadataByIdHeadersArg {
+export type GetFolderMetadataByIdScope = 'global' | 'enterprise';
+export class GetFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderMetadataByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFolderMetadataByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateFolderMetadataByIdScopeArg = 'global' | 'enterprise';
-export type CreateFolderMetadataByIdRequestBodyArg = {
+export type CreateFolderMetadataByIdScope = 'global' | 'enterprise';
+export type CreateFolderMetadataByIdRequestBody = {
   readonly [key: string]: string;
 };
-export class CreateFolderMetadataByIdHeadersArg {
+export class CreateFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateFolderMetadataByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+      | Omit<CreateFolderMetadataByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFolderMetadataByIdScopeArg = 'global' | 'enterprise';
-export type UpdateFolderMetadataByIdRequestBodyArgOpField =
+export type UpdateFolderMetadataByIdScope = 'global' | 'enterprise';
+export type UpdateFolderMetadataByIdRequestBodyOpField =
   | 'add'
   | 'replace'
   | 'remove'
   | 'test'
   | 'move'
   | 'copy';
-export interface UpdateFolderMetadataByIdRequestBodyArg {
-  readonly op?: UpdateFolderMetadataByIdRequestBodyArgOpField;
+export interface UpdateFolderMetadataByIdRequestBody {
+  readonly op?: UpdateFolderMetadataByIdRequestBodyOpField;
   readonly path?: string;
   readonly value?: string;
   readonly from?: string;
 }
-export class UpdateFolderMetadataByIdHeadersArg {
+export class UpdateFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFolderMetadataByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type DeleteFolderMetadataByIdScopeArg = 'global' | 'enterprise';
-export class DeleteFolderMetadataByIdHeadersArg {
+export type DeleteFolderMetadataByIdScope = 'global' | 'enterprise';
+export class DeleteFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFolderMetadataByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderMetadataByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FolderMetadataManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FolderMetadataManager,
-      | 'getFolderMetadata'
-      | 'getFolderMetadataById'
-      | 'createFolderMetadataById'
-      | 'updateFolderMetadataById'
-      | 'deleteFolderMetadataById'
-    >
+    fields:
+      | Omit<
+          FolderMetadataManager,
+          | 'networkSession'
+          | 'getFolderMetadata'
+          | 'getFolderMetadataById'
+          | 'createFolderMetadataById'
+          | 'updateFolderMetadataById'
+          | 'deleteFolderMetadataById'
+        >
+      | Partial<Pick<FolderMetadataManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFolderMetadata(
     folderId: string,
-    headers: GetFolderMetadataHeadersArg = new GetFolderMetadataHeadersArg({}),
+    headers: GetFolderMetadataHeaders = new GetFolderMetadataHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Metadatas> {
     const headersMap: {
@@ -129,7 +132,8 @@ export class FolderMetadataManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/metadata'
       ) as string,
@@ -146,9 +150,9 @@ export class FolderMetadataManager {
   }
   async getFolderMetadataById(
     folderId: string,
-    scope: GetFolderMetadataByIdScopeArg,
+    scope: GetFolderMetadataByIdScope,
     templateKey: string,
-    headers: GetFolderMetadataByIdHeadersArg = new GetFolderMetadataByIdHeadersArg(
+    headers: GetFolderMetadataByIdHeaders = new GetFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -158,7 +162,8 @@ export class FolderMetadataManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -178,10 +183,10 @@ export class FolderMetadataManager {
   }
   async createFolderMetadataById(
     folderId: string,
-    scope: CreateFolderMetadataByIdScopeArg,
+    scope: CreateFolderMetadataByIdScope,
     templateKey: string,
-    requestBody: CreateFolderMetadataByIdRequestBodyArg,
-    headers: CreateFolderMetadataByIdHeadersArg = new CreateFolderMetadataByIdHeadersArg(
+    requestBody: CreateFolderMetadataByIdRequestBody,
+    headers: CreateFolderMetadataByIdHeaders = new CreateFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -191,7 +196,8 @@ export class FolderMetadataManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -201,7 +207,7 @@ export class FolderMetadataManager {
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateFolderMetadataByIdRequestBodyArg(requestBody),
+        data: serializeCreateFolderMetadataByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -213,10 +219,10 @@ export class FolderMetadataManager {
   }
   async updateFolderMetadataById(
     folderId: string,
-    scope: UpdateFolderMetadataByIdScopeArg,
+    scope: UpdateFolderMetadataByIdScope,
     templateKey: string,
-    requestBody: readonly UpdateFolderMetadataByIdRequestBodyArg[],
-    headers: UpdateFolderMetadataByIdHeadersArg = new UpdateFolderMetadataByIdHeadersArg(
+    requestBody: readonly UpdateFolderMetadataByIdRequestBody[],
+    headers: UpdateFolderMetadataByIdHeaders = new UpdateFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -226,7 +232,8 @@ export class FolderMetadataManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -237,7 +244,7 @@ export class FolderMetadataManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateFolderMetadataByIdRequestBodyArg
+          serializeUpdateFolderMetadataByIdRequestBody
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -250,9 +257,9 @@ export class FolderMetadataManager {
   }
   async deleteFolderMetadataById(
     folderId: string,
-    scope: DeleteFolderMetadataByIdScopeArg,
+    scope: DeleteFolderMetadataByIdScope,
     templateKey: string,
-    headers: DeleteFolderMetadataByIdHeadersArg = new DeleteFolderMetadataByIdHeadersArg(
+    headers: DeleteFolderMetadataByIdHeaders = new DeleteFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -262,7 +269,8 @@ export class FolderMetadataManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -281,16 +289,16 @@ export class FolderMetadataManager {
     return void 0;
   }
 }
-export function serializeGetFolderMetadataByIdScopeArg(
-  val: GetFolderMetadataByIdScopeArg
+export function serializeGetFolderMetadataByIdScope(
+  val: GetFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
-export function deserializeGetFolderMetadataByIdScopeArg(
+export function deserializeGetFolderMetadataByIdScope(
   val: any
-): GetFolderMetadataByIdScopeArg {
+): GetFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderMetadataByIdScopeArg"';
+    throw 'Expecting a string for "GetFolderMetadataByIdScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -300,16 +308,16 @@ export function deserializeGetFolderMetadataByIdScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateFolderMetadataByIdScopeArg(
-  val: CreateFolderMetadataByIdScopeArg
+export function serializeCreateFolderMetadataByIdScope(
+  val: CreateFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
-export function deserializeCreateFolderMetadataByIdScopeArg(
+export function deserializeCreateFolderMetadataByIdScope(
   val: any
-): CreateFolderMetadataByIdScopeArg {
+): CreateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateFolderMetadataByIdScopeArg"';
+    throw 'Expecting a string for "CreateFolderMetadataByIdScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -319,26 +327,26 @@ export function deserializeCreateFolderMetadataByIdScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateFolderMetadataByIdRequestBodyArg(
-  val: CreateFolderMetadataByIdRequestBodyArg
+export function serializeCreateFolderMetadataByIdRequestBody(
+  val: CreateFolderMetadataByIdRequestBody
 ): SerializedData {
   return val;
 }
-export function deserializeCreateFolderMetadataByIdRequestBodyArg(
+export function deserializeCreateFolderMetadataByIdRequestBody(
   val: any
-): CreateFolderMetadataByIdRequestBodyArg {
+): CreateFolderMetadataByIdRequestBody {
   return val;
 }
-export function serializeUpdateFolderMetadataByIdScopeArg(
-  val: UpdateFolderMetadataByIdScopeArg
+export function serializeUpdateFolderMetadataByIdScope(
+  val: UpdateFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderMetadataByIdScopeArg(
+export function deserializeUpdateFolderMetadataByIdScope(
   val: any
-): UpdateFolderMetadataByIdScopeArg {
+): UpdateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataByIdScopeArg"';
+    throw 'Expecting a string for "UpdateFolderMetadataByIdScope"';
   }
   if (val == 'global') {
     return 'global';
@@ -348,16 +356,16 @@ export function deserializeUpdateFolderMetadataByIdScopeArg(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderMetadataByIdRequestBodyArgOpField(
-  val: UpdateFolderMetadataByIdRequestBodyArgOpField
+export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
+  val: UpdateFolderMetadataByIdRequestBodyOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderMetadataByIdRequestBodyArgOpField(
+export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   val: any
-): UpdateFolderMetadataByIdRequestBodyArgOpField {
+): UpdateFolderMetadataByIdRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataByIdRequestBodyArgOpField"';
+    throw 'Expecting a string for "UpdateFolderMetadataByIdRequestBodyOpField"';
   }
   if (val == 'add') {
     return 'add';
@@ -379,26 +387,26 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyArgOpField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderMetadataByIdRequestBodyArg(
-  val: UpdateFolderMetadataByIdRequestBodyArg
+export function serializeUpdateFolderMetadataByIdRequestBody(
+  val: UpdateFolderMetadataByIdRequestBody
 ): SerializedData {
   return {
     ['op']:
       val.op == void 0
         ? void 0
-        : serializeUpdateFolderMetadataByIdRequestBodyArgOpField(val.op),
+        : serializeUpdateFolderMetadataByIdRequestBodyOpField(val.op),
     ['path']: val.path == void 0 ? void 0 : val.path,
     ['value']: val.value == void 0 ? void 0 : val.value,
     ['from']: val.from == void 0 ? void 0 : val.from,
   };
 }
-export function deserializeUpdateFolderMetadataByIdRequestBodyArg(
+export function deserializeUpdateFolderMetadataByIdRequestBody(
   val: any
-): UpdateFolderMetadataByIdRequestBodyArg {
-  const op: undefined | UpdateFolderMetadataByIdRequestBodyArgOpField =
+): UpdateFolderMetadataByIdRequestBody {
+  const op: undefined | UpdateFolderMetadataByIdRequestBodyOpField =
     val.op == void 0
       ? void 0
-      : deserializeUpdateFolderMetadataByIdRequestBodyArgOpField(val.op);
+      : deserializeUpdateFolderMetadataByIdRequestBodyOpField(val.op);
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   const from: undefined | string = val.from == void 0 ? void 0 : val.from;
@@ -407,18 +415,18 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyArg(
     path: path,
     value: value,
     from: from,
-  } satisfies UpdateFolderMetadataByIdRequestBodyArg;
+  } satisfies UpdateFolderMetadataByIdRequestBody;
 }
-export function serializeDeleteFolderMetadataByIdScopeArg(
-  val: DeleteFolderMetadataByIdScopeArg
+export function serializeDeleteFolderMetadataByIdScope(
+  val: DeleteFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
-export function deserializeDeleteFolderMetadataByIdScopeArg(
+export function deserializeDeleteFolderMetadataByIdScope(
   val: any
-): DeleteFolderMetadataByIdScopeArg {
+): DeleteFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteFolderMetadataByIdScopeArg"';
+    throw 'Expecting a string for "DeleteFolderMetadataByIdScope"';
   }
   if (val == 'global') {
     return 'global';

@@ -21,9 +21,9 @@ await client.recentItems.getRecentItems();
 
 ### Arguments
 
-- queryParams `GetRecentItemsQueryParamsArg`
+- queryParams `GetRecentItemsQueryParams`
   - Query parameters of getRecentItems method
-- headers `GetRecentItemsHeadersArg`
+- headers `GetRecentItemsHeaders`
   - Headers of getRecentItems method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

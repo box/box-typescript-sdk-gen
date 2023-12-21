@@ -2,38 +2,38 @@ import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
-import { serializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { serializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { serializeUpdateWebLinkAddSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkAddSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { serializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { serializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
-import { serializeUpdateWebLinkUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { serializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { serializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
-import { deserializeUpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { serializeAddShareLinkToWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeAddShareLinkToWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeAddShareLinkToWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeAddShareLinkToWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeUpdateSharedLinkOnWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeUpdateSharedLinkOnWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
-import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { CreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { UpdateWebLinkAddSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkAddSharedLinkQueryParamsArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { GetWebLinkGetSharedLinkQueryParamsArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { GetSharedItemWebLinksQueryParamsArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { GetSharedItemWebLinksHeadersArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksWebLinks.generated.js';
-import { UpdateWebLinkUpdateSharedLinkQueryParamsArg } from '../managers/sharedLinksWebLinks.generated.js';
+import { CreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { AddShareLinkToWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { AddShareLinkToWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { AddShareLinkToWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { AddShareLinkToWebLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
+import { GetSharedLinkForWebLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
+import { FindWebLinkForSharedLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
+import { FindWebLinkForSharedLinkHeaders } from '../managers/sharedLinksWebLinks.generated.js';
+import { UpdateSharedLinkOnWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { UpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
+import { UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { UpdateSharedLinkOnWebLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -53,35 +53,34 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
   const parent: FolderFull = await client.folders.getFolderById('0');
   const webLink: WebLink = await client.webLinks.createWebLink({
     url: 'https://www.box.com',
-    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
+    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
     name: getUuid(),
     description: 'Weblink description',
-  } satisfies CreateWebLinkRequestBodyArg);
+  } satisfies CreateWebLinkRequestBody);
   const webLinkId: string = webLink.id;
-  await client.sharedLinksWebLinks.updateWebLinkAddSharedLink(
+  await client.sharedLinksWebLinks.addShareLinkToWebLink(
     webLinkId,
     {
       sharedLink: {
-        access:
-          'open' as UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+        access: 'open' as AddShareLinkToWebLinkRequestBodySharedLinkAccessField,
         password: 'Secret123@',
-      } satisfies UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField,
-    } satisfies UpdateWebLinkAddSharedLinkRequestBodyArg,
-    { fields: 'shared_link' } satisfies UpdateWebLinkAddSharedLinkQueryParamsArg
+      } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField,
+    } satisfies AddShareLinkToWebLinkRequestBody,
+    { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams
   );
   const webLinkFromApi: WebLink =
-    await client.sharedLinksWebLinks.getWebLinkGetSharedLink(webLinkId, {
+    await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
       fields: 'shared_link',
-    } satisfies GetWebLinkGetSharedLinkQueryParamsArg);
+    } satisfies GetSharedLinkForWebLinkQueryParams);
   if (!((toString(webLinkFromApi.sharedLink!.access) as string) == 'open')) {
     throw 'Assertion failed';
   }
   const userId: string = getEnvVar('USER_ID');
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
   const webLinkFromSharedLinkPassword: WebLink =
-    await userClient.sharedLinksWebLinks.getSharedItemWebLinks(
-      {} satisfies GetSharedItemWebLinksQueryParamsArg,
-      new GetSharedItemWebLinksHeadersArg({
+    await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
+      {} satisfies FindWebLinkForSharedLinkQueryParams,
+      new FindWebLinkForSharedLinkHeaders({
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
@@ -92,10 +91,10 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
   if (!(webLinkId == webLinkFromSharedLinkPassword.id)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
-    await userClient.sharedLinksWebLinks.getSharedItemWebLinks(
-      {} satisfies GetSharedItemWebLinksQueryParamsArg,
-      new GetSharedItemWebLinksHeadersArg({
+  await expect(async () => {
+    await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
+      {} satisfies FindWebLinkForSharedLinkQueryParams,
+      new FindWebLinkForSharedLinkHeaders({
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
@@ -105,17 +104,15 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
     );
   }).rejects.toThrow();
   const updatedWebLink: WebLink =
-    await client.sharedLinksWebLinks.updateWebLinkUpdateSharedLink(
+    await client.sharedLinksWebLinks.updateSharedLinkOnWebLink(
       webLinkId,
       {
         sharedLink: {
           access:
-            'collaborators' as UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
-        } satisfies UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField,
-      } satisfies UpdateWebLinkUpdateSharedLinkRequestBodyArg,
-      {
-        fields: 'shared_link',
-      } satisfies UpdateWebLinkUpdateSharedLinkQueryParamsArg
+            'collaborators' as UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField,
+        } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField,
+      } satisfies UpdateSharedLinkOnWebLinkRequestBody,
+      { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams
     );
   if (
     !(

@@ -29,9 +29,9 @@ await client.users.getUsers();
 
 ### Arguments
 
-- queryParams `GetUsersQueryParamsArg`
+- queryParams `GetUsersQueryParams`
   - Query parameters of getUsers method
-- headers `GetUsersHeadersArg`
+- headers `GetUsersHeaders`
   - Headers of getUsers method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -60,16 +60,16 @@ await client.users.createUser({
   name: userName,
   login: userLogin,
   isPlatformAccessOnly: true,
-} satisfies CreateUserRequestBodyArg);
+} satisfies CreateUserRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateUserRequestBodyArg`
+- requestBody `CreateUserRequestBody`
   - Request body of createUser method
-- queryParams `CreateUserQueryParamsArg`
+- queryParams `CreateUserQueryParams`
   - Query parameters of createUser method
-- headers `CreateUserHeadersArg`
+- headers `CreateUserHeaders`
   - Headers of createUser method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -106,9 +106,9 @@ await client.users.getUserMe();
 
 ### Arguments
 
-- queryParams `GetUserMeQueryParamsArg`
+- queryParams `GetUserMeQueryParams`
   - Query parameters of getUserMe method
-- headers `GetUserMeHeadersArg`
+- headers `GetUserMeHeaders`
   - Headers of getUserMe method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -148,9 +148,9 @@ await client.users.getUserById(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- queryParams `GetUserByIdQueryParamsArg`
+- queryParams `GetUserByIdQueryParams`
   - Query parameters of getUserById method
-- headers `GetUserByIdHeadersArg`
+- headers `GetUserByIdHeaders`
   - Headers of getUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -182,18 +182,18 @@ See the endpoint docs at
 ```ts
 await client.users.updateUserById(user.id, {
   name: updatedUserName,
-} satisfies UpdateUserByIdRequestBodyArg);
+} satisfies UpdateUserByIdRequestBody);
 ```
 
 ### Arguments
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- requestBody `UpdateUserByIdRequestBodyArg`
+- requestBody `UpdateUserByIdRequestBody`
   - Request body of updateUserById method
-- queryParams `UpdateUserByIdQueryParamsArg`
+- queryParams `UpdateUserByIdQueryParams`
   - Query parameters of updateUserById method
-- headers `UpdateUserByIdHeadersArg`
+- headers `UpdateUserByIdHeaders`
   - Headers of updateUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -226,9 +226,9 @@ await client.users.deleteUserById(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- queryParams `DeleteUserByIdQueryParamsArg`
+- queryParams `DeleteUserByIdQueryParams`
   - Query parameters of deleteUserById method
-- headers `DeleteUserByIdHeadersArg`
+- headers `DeleteUserByIdHeaders`
   - Headers of deleteUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

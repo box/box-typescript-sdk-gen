@@ -12,19 +12,19 @@ Lists [Slack integration mappings](https://support.box.com/hc/en-us/articles/441
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `getIntegrationMappingSlack`.
+This operation is performed by calling function `getSlackIntegrationMapping`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-integration-mappings-slack/).
 
-_Currently we don't have an example for calling `getIntegrationMappingSlack` in integration tests_
+_Currently we don't have an example for calling `getSlackIntegrationMapping` in integration tests_
 
 ### Arguments
 
-- queryParams `GetIntegrationMappingSlackQueryParamsArg`
-  - Query parameters of getIntegrationMappingSlack method
-- headers `GetIntegrationMappingSlackHeadersArg`
-  - Headers of getIntegrationMappingSlack method
+- queryParams `GetSlackIntegrationMappingQueryParams`
+  - Query parameters of getSlackIntegrationMapping method
+- headers `GetSlackIntegrationMappingHeaders`
+  - Headers of getSlackIntegrationMapping method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -42,19 +42,19 @@ by mapping a Slack channel to a Box item.
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `createIntegrationMappingSlack`.
+This operation is performed by calling function `createSlackIntegrationMapping`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-integration-mappings-slack/).
 
-_Currently we don't have an example for calling `createIntegrationMappingSlack` in integration tests_
+_Currently we don't have an example for calling `createSlackIntegrationMapping` in integration tests_
 
 ### Arguments
 
 - requestBody `IntegrationMappingSlackCreateRequest`
-  - Request body of createIntegrationMappingSlack method
-- headers `CreateIntegrationMappingSlackHeadersArg`
-  - Headers of createIntegrationMappingSlack method
+  - Request body of createSlackIntegrationMapping method
+- headers `CreateSlackIntegrationMappingHeaders`
+  - Headers of createSlackIntegrationMapping method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -72,21 +72,21 @@ Supports updating the Box folder ID and options.
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `updateIntegrationMappingSlackById`.
+This operation is performed by calling function `updateSlackIntegrationMappingById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-integration-mappings-slack-id/).
 
-_Currently we don't have an example for calling `updateIntegrationMappingSlackById` in integration tests_
+_Currently we don't have an example for calling `updateSlackIntegrationMappingById` in integration tests_
 
 ### Arguments
 
 - integrationMappingId `string`
   - An ID of an integration mapping Example: "11235432"
-- requestBody `UpdateIntegrationMappingSlackByIdRequestBodyArg`
-  - Request body of updateIntegrationMappingSlackById method
-- headers `UpdateIntegrationMappingSlackByIdHeadersArg`
-  - Headers of updateIntegrationMappingSlackById method
+- requestBody `UpdateSlackIntegrationMappingByIdRequestBody`
+  - Request body of updateSlackIntegrationMappingById method
+- headers `UpdateSlackIntegrationMappingByIdHeaders`
+  - Headers of updateSlackIntegrationMappingById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -103,19 +103,19 @@ Deletes a [Slack integration mapping](https://support.box.com/hc/en-us/articles/
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `deleteIntegrationMappingSlackById`.
+This operation is performed by calling function `deleteSlackIntegrationMappingById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-integration-mappings-slack-id/).
 
-_Currently we don't have an example for calling `deleteIntegrationMappingSlackById` in integration tests_
+_Currently we don't have an example for calling `deleteSlackIntegrationMappingById` in integration tests_
 
 ### Arguments
 
 - integrationMappingId `string`
   - An ID of an integration mapping Example: "11235432"
-- headers `DeleteIntegrationMappingSlackByIdHeadersArg`
-  - Headers of deleteIntegrationMappingSlackById method
+- headers `DeleteSlackIntegrationMappingByIdHeaders`
+  - Headers of deleteSlackIntegrationMappingById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

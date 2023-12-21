@@ -2,21 +2,21 @@ import { serializeCollaborationAllowlistExemptTargets } from '../schemas.generat
 import { deserializeCollaborationAllowlistExemptTargets } from '../schemas.generated.js';
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeCollaborationAllowlistExemptTarget } from '../schemas.generated.js';
 import { deserializeCollaborationAllowlistExemptTarget } from '../schemas.generated.js';
-import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
-import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
-import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
-import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { serializeCreateCollaborationWhitelistExemptTargetRequestBody } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { deserializeCreateCollaborationWhitelistExemptTargetRequestBody } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { serializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { CollaborationAllowlistExemptTargets } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { CollaborationAllowlistExemptTarget } from '../schemas.generated.js';
-import { CreateCollaborationWhitelistExemptTargetRequestBodyArg } from '../managers/collaborationAllowlistExemptTargets.generated.js';
-import { CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { CreateCollaborationWhitelistExemptTargetRequestBody } from '../managers/collaborationAllowlistExemptTargets.generated.js';
+import { CreateCollaborationWhitelistExemptTargetRequestBodyUserField } from '../managers/collaborationAllowlistExemptTargets.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
@@ -39,14 +39,14 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
     name: getUuid(),
     login: ''.concat(getUuid(), '@boxdemo.com') as string,
     isPlatformAccessOnly: true,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const newExemptTarget: CollaborationAllowlistExemptTarget =
     await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExemptTarget(
       {
         user: {
           id: user.id,
-        } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField,
-      } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArg
+        } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField,
+      } satisfies CreateCollaborationWhitelistExemptTargetRequestBody
     );
   if (
     !(
@@ -72,7 +72,7 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
   await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
     exemptTarget.id!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
       exemptTarget.id!
     );

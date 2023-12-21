@@ -26,7 +26,7 @@ await client.shieldInformationBarriers.getShieldInformationBarrierById(
 
 - shieldInformationBarrierId `string`
   - The ID of the shield information barrier. Example: "1910967"
-- headers `GetShieldInformationBarrierByIdHeadersArg`
+- headers `GetShieldInformationBarrierByIdHeaders`
   - Headers of getShieldInformationBarrierById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -41,7 +41,7 @@ Returns the shield information barrier object.
 
 Change status of shield information barrier with the specified ID.
 
-This operation is performed by calling function `createShieldInformationBarrierChangeStatus`.
+This operation is performed by calling function `updateShieldInformationBarrierStatus`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barriers-change-status/).
@@ -49,21 +49,19 @@ See the endpoint docs at
 <!-- sample post_shield_information_barriers_change_status -->
 
 ```ts
-await client.shieldInformationBarriers.createShieldInformationBarrierChangeStatus(
-  {
-    id: barrierId,
-    status:
-      'disabled' as CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField,
-  } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg
-);
+await client.shieldInformationBarriers.updateShieldInformationBarrierStatus({
+  id: barrierId,
+  status:
+    'disabled' as UpdateShieldInformationBarrierStatusRequestBodyStatusField,
+} satisfies UpdateShieldInformationBarrierStatusRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateShieldInformationBarrierChangeStatusRequestBodyArg`
-  - Request body of createShieldInformationBarrierChangeStatus method
-- headers `CreateShieldInformationBarrierChangeStatusHeadersArg`
-  - Headers of createShieldInformationBarrierChangeStatus method
+- requestBody `UpdateShieldInformationBarrierStatusRequestBody`
+  - Request body of updateShieldInformationBarrierStatus method
+- headers `UpdateShieldInformationBarrierStatusHeaders`
+  - Headers of updateShieldInformationBarrierStatus method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -91,9 +89,9 @@ await client.shieldInformationBarriers.getShieldInformationBarriers();
 
 ### Arguments
 
-- queryParams `GetShieldInformationBarriersQueryParamsArg`
+- queryParams `GetShieldInformationBarriersQueryParams`
   - Query parameters of getShieldInformationBarriers method
-- headers `GetShieldInformationBarriersHeadersArg`
+- headers `GetShieldInformationBarriersHeaders`
   - Headers of getShieldInformationBarriers method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -125,14 +123,14 @@ await client.shieldInformationBarriers.createShieldInformationBarrier({
     id: enterpriseId,
     type: 'enterprise' as EnterpriseBaseTypeField,
   } satisfies EnterpriseBase,
-} satisfies CreateShieldInformationBarrierRequestBodyArg);
+} satisfies CreateShieldInformationBarrierRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateShieldInformationBarrierRequestBodyArg`
+- requestBody `CreateShieldInformationBarrierRequestBody`
   - Request body of createShieldInformationBarrier method
-- headers `CreateShieldInformationBarrierHeadersArg`
+- headers `CreateShieldInformationBarrierHeaders`
   - Headers of createShieldInformationBarrier method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

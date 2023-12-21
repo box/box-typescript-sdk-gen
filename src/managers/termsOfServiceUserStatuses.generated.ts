@@ -24,63 +24,62 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetTermOfServiceUserStatusesQueryParamsArg {
+export interface GetTermsOfServiceUserStatusesQueryParams {
   readonly tosId: string;
   readonly userId?: string;
 }
-export class GetTermOfServiceUserStatusesHeadersArg {
+export class GetTermsOfServiceUserStatusesHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetTermOfServiceUserStatusesHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetTermOfServiceUserStatusesHeadersArg, 'extraHeaders'>>
+      | Omit<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField =
+export type CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
   'terms_of_service';
-export interface CreateTermOfServiceUserStatusRequestBodyArgTosField {
-  readonly type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField;
+export interface CreateTermsOfServiceStatusForUserRequestBodyTosField {
+  readonly type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
   readonly id: string;
 }
-export type CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField =
-  'user';
-export interface CreateTermOfServiceUserStatusRequestBodyArgUserField {
-  readonly type: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField;
+export type CreateTermsOfServiceStatusForUserRequestBodyUserTypeField = 'user';
+export interface CreateTermsOfServiceStatusForUserRequestBodyUserField {
+  readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
   readonly id: string;
 }
-export interface CreateTermOfServiceUserStatusRequestBodyArg {
-  readonly tos: CreateTermOfServiceUserStatusRequestBodyArgTosField;
-  readonly user: CreateTermOfServiceUserStatusRequestBodyArgUserField;
+export interface CreateTermsOfServiceStatusForUserRequestBody {
+  readonly tos: CreateTermsOfServiceStatusForUserRequestBodyTosField;
+  readonly user: CreateTermsOfServiceStatusForUserRequestBodyUserField;
   readonly isAccepted: boolean;
 }
-export class CreateTermOfServiceUserStatusHeadersArg {
+export class CreateTermsOfServiceStatusForUserHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateTermOfServiceUserStatusHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateTermOfServiceUserStatusHeadersArg, 'extraHeaders'>>
+      | Omit<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateTermOfServiceUserStatusByIdRequestBodyArg {
+export interface UpdateTermsOfServiceStatusForUserByIdRequestBody {
   readonly isAccepted: boolean;
 }
-export class UpdateTermOfServiceUserStatusByIdHeadersArg {
+export class UpdateTermsOfServiceStatusForUserByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateTermOfServiceUserStatusByIdHeadersArg, 'extraHeaders'>
+      | Omit<UpdateTermsOfServiceStatusForUserByIdHeaders, 'extraHeaders'>
       | Partial<
-          Pick<UpdateTermOfServiceUserStatusByIdHeadersArg, 'extraHeaders'>
+          Pick<UpdateTermsOfServiceStatusForUserByIdHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
@@ -88,20 +87,23 @@ export class UpdateTermOfServiceUserStatusByIdHeadersArg {
 }
 export class TermsOfServiceUserStatusesManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TermsOfServiceUserStatusesManager,
-      | 'getTermOfServiceUserStatuses'
-      | 'createTermOfServiceUserStatus'
-      | 'updateTermOfServiceUserStatusById'
-    >
+    fields:
+      | Omit<
+          TermsOfServiceUserStatusesManager,
+          | 'networkSession'
+          | 'getTermsOfServiceUserStatuses'
+          | 'createTermsOfServiceStatusForUser'
+          | 'updateTermsOfServiceStatusForUserById'
+        >
+      | Partial<Pick<TermsOfServiceUserStatusesManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getTermOfServiceUserStatuses(
-    queryParams: GetTermOfServiceUserStatusesQueryParamsArg,
-    headers: GetTermOfServiceUserStatusesHeadersArg = new GetTermOfServiceUserStatusesHeadersArg(
+  async getTermsOfServiceUserStatuses(
+    queryParams: GetTermsOfServiceUserStatusesQueryParams,
+    headers: GetTermsOfServiceUserStatusesHeaders = new GetTermsOfServiceUserStatusesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -117,7 +119,8 @@ export class TermsOfServiceUserStatusesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/terms_of_service_user_statuses'
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_service_user_statuses'
       ) as string,
       {
         method: 'GET',
@@ -131,9 +134,9 @@ export class TermsOfServiceUserStatusesManager {
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatuses(response.data);
   }
-  async createTermOfServiceUserStatus(
-    requestBody: CreateTermOfServiceUserStatusRequestBodyArg,
-    headers: CreateTermOfServiceUserStatusHeadersArg = new CreateTermOfServiceUserStatusHeadersArg(
+  async createTermsOfServiceStatusForUser(
+    requestBody: CreateTermsOfServiceStatusForUserRequestBody,
+    headers: CreateTermsOfServiceStatusForUserHeaders = new CreateTermsOfServiceStatusForUserHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -143,12 +146,15 @@ export class TermsOfServiceUserStatusesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/terms_of_service_user_statuses'
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_service_user_statuses'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateTermOfServiceUserStatusRequestBodyArg(requestBody),
+        data: serializeCreateTermsOfServiceStatusForUserRequestBody(
+          requestBody
+        ),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -158,10 +164,10 @@ export class TermsOfServiceUserStatusesManager {
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatus(response.data);
   }
-  async updateTermOfServiceUserStatusById(
+  async updateTermsOfServiceStatusForUserById(
     termsOfServiceUserStatusId: string,
-    requestBody: UpdateTermOfServiceUserStatusByIdRequestBodyArg,
-    headers: UpdateTermOfServiceUserStatusByIdHeadersArg = new UpdateTermOfServiceUserStatusByIdHeadersArg(
+    requestBody: UpdateTermsOfServiceStatusForUserByIdRequestBody,
+    headers: UpdateTermsOfServiceStatusForUserByIdHeaders = new UpdateTermsOfServiceStatusForUserByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -171,13 +177,14 @@ export class TermsOfServiceUserStatusesManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/terms_of_service_user_statuses/',
+        this.networkSession.baseUrls.baseUrl,
+        '/terms_of_service_user_statuses/',
         toString(termsOfServiceUserStatusId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(
+        data: serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -190,123 +197,122 @@ export class TermsOfServiceUserStatusesManager {
     return deserializeTermsOfServiceUserStatus(response.data);
   }
 }
-export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
-  val: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
   val: any
-): CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField {
+): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField"';
+    throw 'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"';
   }
   if (val == 'terms_of_service') {
     return 'terms_of_service';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
-  val: CreateTermOfServiceUserStatusRequestBodyArgTosField
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosField
 ): SerializedData {
   return {
-    ['type']:
-      serializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
-        val.type
-      ),
+    ['type']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
+      val.type
+    ),
     ['id']: val.id,
   };
 }
-export function deserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   val: any
-): CreateTermOfServiceUserStatusRequestBodyArgTosField {
-  const type: CreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField =
-    deserializeCreateTermOfServiceUserStatusRequestBodyArgTosFieldTypeField(
+): CreateTermsOfServiceStatusForUserRequestBodyTosField {
+  const type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
+    deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
       val.type
     );
   const id: string = val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateTermOfServiceUserStatusRequestBodyArgTosField;
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField;
 }
-export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
-  val: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
   val: any
-): CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField {
+): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField"';
+    throw 'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"';
   }
   if (val == 'user') {
     return 'user';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateTermOfServiceUserStatusRequestBodyArgUserField(
-  val: CreateTermOfServiceUserStatusRequestBodyArgUserField
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserField
 ): SerializedData {
   return {
     ['type']:
-      serializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
+      serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
         val.type
       ),
     ['id']: val.id,
   };
 }
-export function deserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
   val: any
-): CreateTermOfServiceUserStatusRequestBodyArgUserField {
-  const type: CreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField =
-    deserializeCreateTermOfServiceUserStatusRequestBodyArgUserFieldTypeField(
+): CreateTermsOfServiceStatusForUserRequestBodyUserField {
+  const type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
+    deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
       val.type
     );
   const id: string = val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateTermOfServiceUserStatusRequestBodyArgUserField;
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField;
 }
-export function serializeCreateTermOfServiceUserStatusRequestBodyArg(
-  val: CreateTermOfServiceUserStatusRequestBodyArg
+export function serializeCreateTermsOfServiceStatusForUserRequestBody(
+  val: CreateTermsOfServiceStatusForUserRequestBody
 ): SerializedData {
   return {
-    ['tos']: serializeCreateTermOfServiceUserStatusRequestBodyArgTosField(
+    ['tos']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
       val.tos
     ),
-    ['user']: serializeCreateTermOfServiceUserStatusRequestBodyArgUserField(
+    ['user']: serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
       val.user
     ),
     ['is_accepted']: val.isAccepted,
   };
 }
-export function deserializeCreateTermOfServiceUserStatusRequestBodyArg(
+export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
   val: any
-): CreateTermOfServiceUserStatusRequestBodyArg {
-  const tos: CreateTermOfServiceUserStatusRequestBodyArgTosField =
-    deserializeCreateTermOfServiceUserStatusRequestBodyArgTosField(val.tos);
-  const user: CreateTermOfServiceUserStatusRequestBodyArgUserField =
-    deserializeCreateTermOfServiceUserStatusRequestBodyArgUserField(val.user);
+): CreateTermsOfServiceStatusForUserRequestBody {
+  const tos: CreateTermsOfServiceStatusForUserRequestBodyTosField =
+    deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(val.tos);
+  const user: CreateTermsOfServiceStatusForUserRequestBodyUserField =
+    deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField(val.user);
   const isAccepted: boolean = val.is_accepted;
   return {
     tos: tos,
     user: user,
     isAccepted: isAccepted,
-  } satisfies CreateTermOfServiceUserStatusRequestBodyArg;
+  } satisfies CreateTermsOfServiceStatusForUserRequestBody;
 }
-export function serializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(
-  val: UpdateTermOfServiceUserStatusByIdRequestBodyArg
+export function serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
+  val: UpdateTermsOfServiceStatusForUserByIdRequestBody
 ): SerializedData {
   return { ['is_accepted']: val.isAccepted };
 }
-export function deserializeUpdateTermOfServiceUserStatusByIdRequestBodyArg(
+export function deserializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
   val: any
-): UpdateTermOfServiceUserStatusByIdRequestBodyArg {
+): UpdateTermsOfServiceStatusForUserByIdRequestBody {
   const isAccepted: boolean = val.is_accepted;
   return {
     isAccepted: isAccepted,
-  } satisfies UpdateTermOfServiceUserStatusByIdRequestBodyArg;
+  } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody;
 }

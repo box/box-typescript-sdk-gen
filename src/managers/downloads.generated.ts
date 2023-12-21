@@ -18,11 +18,11 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface DownloadFileQueryParamsArg {
+export interface DownloadFileQueryParams {
   readonly version?: string;
   readonly accessToken?: string;
 }
-export class DownloadFileHeadersArg {
+export class DownloadFileHeaders {
   readonly range?: string;
   readonly boxapi?: string;
   readonly extraHeaders?: {
@@ -30,22 +30,26 @@ export class DownloadFileHeadersArg {
   } = {};
   constructor(
     fields:
-      | Omit<DownloadFileHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DownloadFileHeadersArg, 'extraHeaders'>>
+      | Omit<DownloadFileHeaders, 'extraHeaders'>
+      | Partial<Pick<DownloadFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class DownloadsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<DownloadsManager, 'downloadFile'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<DownloadsManager, 'networkSession' | 'downloadFile'>
+      | Partial<Pick<DownloadsManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
   async downloadFile(
     fileId: string,
-    queryParams: DownloadFileQueryParamsArg = {} satisfies DownloadFileQueryParamsArg,
-    headers: DownloadFileHeadersArg = new DownloadFileHeadersArg({}),
+    queryParams: DownloadFileQueryParams = {} satisfies DownloadFileQueryParams,
+    headers: DownloadFileHeaders = new DownloadFileHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
     const queryParamsMap: {
@@ -65,7 +69,8 @@ export class DownloadsManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/content'
       ) as string,

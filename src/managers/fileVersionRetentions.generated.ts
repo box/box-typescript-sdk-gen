@@ -24,57 +24,61 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetFileVersionRetentionsQueryParamsArgDispositionActionField =
+export type GetFileVersionRetentionsQueryParamsDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
-export interface GetFileVersionRetentionsQueryParamsArg {
+export interface GetFileVersionRetentionsQueryParams {
   readonly fileId?: string;
   readonly fileVersionId?: string;
   readonly policyId?: string;
-  readonly dispositionAction?: GetFileVersionRetentionsQueryParamsArgDispositionActionField;
+  readonly dispositionAction?: GetFileVersionRetentionsQueryParamsDispositionActionField;
   readonly dispositionBefore?: string;
   readonly dispositionAfter?: string;
   readonly limit?: number;
   readonly marker?: string;
 }
-export class GetFileVersionRetentionsHeadersArg {
+export class GetFileVersionRetentionsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileVersionRetentionsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionRetentionsHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileVersionRetentionsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetFileVersionRetentionByIdHeadersArg {
+export class GetFileVersionRetentionByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileVersionRetentionByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionRetentionByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FileVersionRetentionsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FileVersionRetentionsManager,
-      'getFileVersionRetentions' | 'getFileVersionRetentionById'
-    >
+    fields:
+      | Omit<
+          FileVersionRetentionsManager,
+          | 'networkSession'
+          | 'getFileVersionRetentions'
+          | 'getFileVersionRetentionById'
+        >
+      | Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileVersionRetentions(
-    queryParams: GetFileVersionRetentionsQueryParamsArg = {} satisfies GetFileVersionRetentionsQueryParamsArg,
-    headers: GetFileVersionRetentionsHeadersArg = new GetFileVersionRetentionsHeadersArg(
+    queryParams: GetFileVersionRetentionsQueryParams = {} satisfies GetFileVersionRetentionsQueryParams,
+    headers: GetFileVersionRetentionsHeaders = new GetFileVersionRetentionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -95,7 +99,10 @@ export class FileVersionRetentionsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/file_version_retentions') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/file_version_retentions'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -110,7 +117,7 @@ export class FileVersionRetentionsManager {
   }
   async getFileVersionRetentionById(
     fileVersionRetentionId: string,
-    headers: GetFileVersionRetentionByIdHeadersArg = new GetFileVersionRetentionByIdHeadersArg(
+    headers: GetFileVersionRetentionByIdHeaders = new GetFileVersionRetentionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -120,7 +127,8 @@ export class FileVersionRetentionsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/file_version_retentions/',
+        this.networkSession.baseUrls.baseUrl,
+        '/file_version_retentions/',
         toString(fileVersionRetentionId) as string
       ) as string,
       {
@@ -135,16 +143,16 @@ export class FileVersionRetentionsManager {
     return deserializeFileVersionRetention(response.data);
   }
 }
-export function serializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
-  val: GetFileVersionRetentionsQueryParamsArgDispositionActionField
+export function serializeGetFileVersionRetentionsQueryParamsDispositionActionField(
+  val: GetFileVersionRetentionsQueryParamsDispositionActionField
 ): SerializedData {
   return val;
 }
-export function deserializeGetFileVersionRetentionsQueryParamsArgDispositionActionField(
+export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionField(
   val: any
-): GetFileVersionRetentionsQueryParamsArgDispositionActionField {
+): GetFileVersionRetentionsQueryParamsDispositionActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFileVersionRetentionsQueryParamsArgDispositionActionField"';
+    throw 'Expecting a string for "GetFileVersionRetentionsQueryParamsDispositionActionField"';
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';

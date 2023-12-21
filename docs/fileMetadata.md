@@ -25,7 +25,7 @@ await client.fileMetadata.getFileMetadata(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `GetFileMetadataHeadersArg`
+- headers `GetFileMetadataHeaders`
   - Headers of getFileMetadata method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -54,7 +54,7 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.getFileMetadataById(
   file.id,
-  'global' as GetFileMetadataByIdScopeArg,
+  'global' as GetFileMetadataByIdScope,
   'properties'
 );
 ```
@@ -63,11 +63,11 @@ await client.fileMetadata.getFileMetadataById(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- scope `GetFileMetadataByIdScopeArg`
+- scope `GetFileMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `GetFileMetadataByIdHeadersArg`
+- headers `GetFileMetadataByIdHeaders`
   - Headers of getFileMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -98,7 +98,7 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.createFileMetadataById(
   file.id,
-  'enterprise' as CreateFileMetadataByIdScopeArg,
+  'enterprise' as CreateFileMetadataByIdScope,
   templateKey,
   { ['testName']: 1 }
 );
@@ -108,13 +108,13 @@ await client.fileMetadata.createFileMetadataById(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- scope `CreateFileMetadataByIdScopeArg`
+- scope `CreateFileMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `CreateFileMetadataByIdRequestBodyArg`
+- requestBody `CreateFileMetadataByIdRequestBody`
   - Request body of createFileMetadataById method
-- headers `CreateFileMetadataByIdHeadersArg`
+- headers `CreateFileMetadataByIdHeaders`
   - Headers of createFileMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -147,14 +147,14 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.updateFileMetadataById(
   file.id,
-  'global' as UpdateFileMetadataByIdScopeArg,
+  'global' as UpdateFileMetadataByIdScope,
   'properties',
   [
     {
-      op: 'replace' as UpdateFileMetadataByIdRequestBodyArgOpField,
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
       path: '/abc',
       value: newValue,
-    } satisfies UpdateFileMetadataByIdRequestBodyArg,
+    } satisfies UpdateFileMetadataByIdRequestBody,
   ]
 );
 ```
@@ -163,13 +163,13 @@ await client.fileMetadata.updateFileMetadataById(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- scope `UpdateFileMetadataByIdScopeArg`
+- scope `UpdateFileMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `readonly UpdateFileMetadataByIdRequestBodyArg[]`
+- requestBody `readonly UpdateFileMetadataByIdRequestBody[]`
   - Request body of updateFileMetadataById method
-- headers `UpdateFileMetadataByIdHeadersArg`
+- headers `UpdateFileMetadataByIdHeaders`
   - Headers of updateFileMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -195,7 +195,7 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.deleteFileMetadataById(
   file.id,
-  'enterprise' as DeleteFileMetadataByIdScopeArg,
+  'enterprise' as DeleteFileMetadataByIdScope,
   templateKey
 );
 ```
@@ -204,11 +204,11 @@ await client.fileMetadata.deleteFileMetadataById(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- scope `DeleteFileMetadataByIdScopeArg`
+- scope `DeleteFileMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `DeleteFileMetadataByIdHeadersArg`
+- headers `DeleteFileMetadataByIdHeaders`
   - Headers of deleteFileMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

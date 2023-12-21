@@ -24,9 +24,9 @@ await client.userCollaborations.getCollaborationById(collaborationId);
 
 - collaborationId `string`
   - The ID of the collaboration Example: "1234"
-- queryParams `GetCollaborationByIdQueryParamsArg`
+- queryParams `GetCollaborationByIdQueryParams`
   - Query parameters of getCollaborationById method
-- headers `GetCollaborationByIdHeadersArg`
+- headers `GetCollaborationByIdHeaders`
   - Headers of getCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -52,17 +52,17 @@ See the endpoint docs at
 
 ```ts
 await client.userCollaborations.updateCollaborationById(collaborationId, {
-  role: 'viewer' as UpdateCollaborationByIdRequestBodyArgRoleField,
-} satisfies UpdateCollaborationByIdRequestBodyArg);
+  role: 'viewer' as UpdateCollaborationByIdRequestBodyRoleField,
+} satisfies UpdateCollaborationByIdRequestBody);
 ```
 
 ### Arguments
 
 - collaborationId `string`
   - The ID of the collaboration Example: "1234"
-- requestBody `UpdateCollaborationByIdRequestBodyArg`
+- requestBody `UpdateCollaborationByIdRequestBody`
   - Request body of updateCollaborationById method
-- headers `UpdateCollaborationByIdHeadersArg`
+- headers `UpdateCollaborationByIdHeaders`
   - Headers of updateCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -94,7 +94,7 @@ await client.userCollaborations.deleteCollaborationById(collaborationId);
 
 - collaborationId `string`
   - The ID of the collaboration Example: "1234"
-- headers `DeleteCollaborationByIdHeadersArg`
+- headers `DeleteCollaborationByIdHeaders`
   - Headers of deleteCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -134,24 +134,24 @@ See the endpoint docs at
 ```ts
 await client.userCollaborations.createCollaboration({
   item: {
-    type: 'folder' as CreateCollaborationRequestBodyArgItemFieldTypeField,
+    type: 'folder' as CreateCollaborationRequestBodyItemTypeField,
     id: folder.id,
-  } satisfies CreateCollaborationRequestBodyArgItemField,
+  } satisfies CreateCollaborationRequestBodyItemField,
   accessibleBy: {
-    type: 'user' as CreateCollaborationRequestBodyArgAccessibleByFieldTypeField,
-    id: user.id,
-  } satisfies CreateCollaborationRequestBodyArgAccessibleByField,
-  role: 'editor' as CreateCollaborationRequestBodyArgRoleField,
-} satisfies CreateCollaborationRequestBodyArg);
+    type: 'user' as CreateCollaborationRequestBodyAccessibleByTypeField,
+    login: userLogin,
+  } satisfies CreateCollaborationRequestBodyAccessibleByField,
+  role: 'editor' as CreateCollaborationRequestBodyRoleField,
+} satisfies CreateCollaborationRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateCollaborationRequestBodyArg`
+- requestBody `CreateCollaborationRequestBody`
   - Request body of createCollaboration method
-- queryParams `CreateCollaborationQueryParamsArg`
+- queryParams `CreateCollaborationQueryParams`
   - Query parameters of createCollaboration method
-- headers `CreateCollaborationHeadersArg`
+- headers `CreateCollaborationHeaders`
   - Headers of createCollaboration method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

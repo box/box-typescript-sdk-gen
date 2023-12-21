@@ -24,9 +24,9 @@ await client.groups.getGroups();
 
 ### Arguments
 
-- queryParams `GetGroupsQueryParamsArg`
+- queryParams `GetGroupsQueryParams`
   - Query parameters of getGroups method
-- headers `GetGroupsHeadersArg`
+- headers `GetGroupsHeaders`
   - Headers of getGroups method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -52,17 +52,17 @@ See the endpoint docs at
 
 ```ts
 await client.groups.createGroup({
-  name: getUuid(),
-} satisfies CreateGroupRequestBodyArg);
+  name: groupName,
+} satisfies CreateGroupRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateGroupRequestBodyArg`
+- requestBody `CreateGroupRequestBody`
   - Request body of createGroup method
-- queryParams `CreateGroupQueryParamsArg`
+- queryParams `CreateGroupQueryParams`
   - Query parameters of createGroup method
-- headers `CreateGroupHeadersArg`
+- headers `CreateGroupHeaders`
   - Headers of createGroup method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -94,9 +94,9 @@ await client.groups.getGroupById(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- queryParams `GetGroupByIdQueryParamsArg`
+- queryParams `GetGroupByIdQueryParams`
   - Query parameters of getGroupById method
-- headers `GetGroupByIdHeadersArg`
+- headers `GetGroupByIdHeaders`
   - Headers of getGroupById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -123,18 +123,18 @@ See the endpoint docs at
 ```ts
 await client.groups.updateGroupById(group.id, {
   name: updatedGroupName,
-} satisfies UpdateGroupByIdRequestBodyArg);
+} satisfies UpdateGroupByIdRequestBody);
 ```
 
 ### Arguments
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- requestBody `UpdateGroupByIdRequestBodyArg`
+- requestBody `UpdateGroupByIdRequestBody`
   - Request body of updateGroupById method
-- queryParams `UpdateGroupByIdQueryParamsArg`
+- queryParams `UpdateGroupByIdQueryParams`
   - Query parameters of updateGroupById method
-- headers `UpdateGroupByIdHeadersArg`
+- headers `UpdateGroupByIdHeaders`
   - Headers of updateGroupById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -165,7 +165,7 @@ await client.groups.deleteGroupById(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- headers `DeleteGroupByIdHeadersArg`
+- headers `DeleteGroupByIdHeaders`
   - Headers of deleteGroupById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

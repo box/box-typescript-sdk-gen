@@ -61,3 +61,16 @@ Calling the `client.withExtraHeaders()` method creates a new client, leaving the
 ```js
 const newClient = client.withExtraHeaders({ ['customHeader']: 'customValue' });
 ```
+
+## Custom Base URLs
+
+You can also specify the custom base URLs, which will be used for API calls made by client.
+Calling the `client.withCustomBaseUrls()` method creates a new client, leaving the original client unmodified.
+
+```js
+const newClient = client.withCustomBaseUrls({
+  baseUrl: 'https://api.box.com/2.0',
+  uploadUrl: 'https://upload.box.com/api/2.0',
+  oauth2Url: 'https://account.box.com/api/oauth2',
+});
+```

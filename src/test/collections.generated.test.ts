@@ -6,23 +6,23 @@ import { serializeItems } from '../schemas.generated.js';
 import { deserializeItems } from '../schemas.generated.js';
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { serializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
-import { deserializeUpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { serializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { deserializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { serializeUpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
+import { deserializeUpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Collections } from '../schemas.generated.js';
 import { Collection } from '../schemas.generated.js';
 import { Items } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { UpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { UpdateFolderByIdRequestBodyArgCollectionsField } from '../managers/folders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { UpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { UpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
@@ -41,15 +41,15 @@ test('testCollections', async function testCollections(): Promise<any> {
   );
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   await client.folders.updateFolderById(folder.id, {
     collections: [
       {
         id: favouriteCollection.id,
-      } satisfies UpdateFolderByIdRequestBodyArgCollectionsField,
+      } satisfies UpdateFolderByIdRequestBodyCollectionsField,
     ],
-  } satisfies UpdateFolderByIdRequestBodyArg);
+  } satisfies UpdateFolderByIdRequestBody);
   const collectionItemsAfterUpdate: Items =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
@@ -62,7 +62,7 @@ test('testCollections', async function testCollections(): Promise<any> {
   }
   await client.folders.updateFolderById(folder.id, {
     collections: [],
-  } satisfies UpdateFolderByIdRequestBodyArg);
+  } satisfies UpdateFolderByIdRequestBody);
   const collectionItemsAfterRemove: Items =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (

@@ -4,28 +4,28 @@ import { serializeMetadatas } from '../schemas.generated.js';
 import { deserializeMetadatas } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
-import { serializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { serializeGetFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeGetFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { serializeUpdateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeUpdateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { serializeUpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
-import { deserializeUpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
-import { serializeUpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
-import { deserializeUpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
-import { serializeDeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeDeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { serializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { serializeGetFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeGetFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { serializeUpdateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeUpdateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { serializeUpdateFileMetadataByIdRequestBody } from '../managers/fileMetadata.generated.js';
+import { deserializeUpdateFileMetadataByIdRequestBody } from '../managers/fileMetadata.generated.js';
+import { serializeUpdateFileMetadataByIdRequestBodyOpField } from '../managers/fileMetadata.generated.js';
+import { deserializeUpdateFileMetadataByIdRequestBodyOpField } from '../managers/fileMetadata.generated.js';
+import { serializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { Metadatas } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
-import { CreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { GetFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { UpdateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { UpdateFileMetadataByIdRequestBodyArg } from '../managers/fileMetadata.generated.js';
-import { UpdateFileMetadataByIdRequestBodyArgOpField } from '../managers/fileMetadata.generated.js';
-import { DeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { CreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { GetFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { UpdateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { UpdateFileMetadataByIdRequestBody } from '../managers/fileMetadata.generated.js';
+import { UpdateFileMetadataByIdRequestBodyOpField } from '../managers/fileMetadata.generated.js';
+import { DeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { generateByteStream } from '../utils.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -48,7 +48,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   }
   const createdMetadata: any = await client.fileMetadata.createFileMetadataById(
     file.id,
-    'global' as CreateFileMetadataByIdScopeArg,
+    'global' as CreateFileMetadataByIdScope,
     'properties',
     { ['abc']: 'xyz' }
   );
@@ -63,7 +63,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   }
   const receivedMetadata: any = await client.fileMetadata.getFileMetadataById(
     file.id,
-    'global' as GetFileMetadataByIdScopeArg,
+    'global' as GetFileMetadataByIdScope,
     'properties'
   );
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
@@ -72,20 +72,20 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   const newValue: any = 'bar';
   const updatedMetadata: any = await client.fileMetadata.updateFileMetadataById(
     file.id,
-    'global' as UpdateFileMetadataByIdScopeArg,
+    'global' as UpdateFileMetadataByIdScope,
     'properties',
     [
       {
-        op: 'replace' as UpdateFileMetadataByIdRequestBodyArgOpField,
+        op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
         path: '/abc',
         value: newValue,
-      } satisfies UpdateFileMetadataByIdRequestBodyArg,
+      } satisfies UpdateFileMetadataByIdRequestBody,
     ]
   );
   const receivedUpdatedMetadata: any =
     await client.fileMetadata.getFileMetadataById(
       file.id,
-      'global' as GetFileMetadataByIdScopeArg,
+      'global' as GetFileMetadataByIdScope,
       'properties'
     );
   if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
@@ -93,13 +93,13 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   }
   await client.fileMetadata.deleteFileMetadataById(
     file.id,
-    'global' as DeleteFileMetadataByIdScopeArg,
+    'global' as DeleteFileMetadataByIdScope,
     'properties'
   );
-  expect(async () => {
+  await expect(async () => {
     await client.fileMetadata.getFileMetadataById(
       file.id,
-      'global' as GetFileMetadataByIdScopeArg,
+      'global' as GetFileMetadataByIdScope,
       'properties'
     );
   }).rejects.toThrow();

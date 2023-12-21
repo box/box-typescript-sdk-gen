@@ -21,115 +21,85 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg {
+export class GetClassificationOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<GetClassificationOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<GetClassificationOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
+export interface AddClassificationToFileRequestBody {
   readonly boxSecurityClassificationKey?: string;
 }
-export class CreateFileMetadataEnterpriseSecurityClassificationHeadersArg {
+export class AddClassificationToFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          CreateFileMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            CreateFileMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<AddClassificationToFileHeaders, 'extraHeaders'>
+      | Partial<Pick<AddClassificationToFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField =
-  'replace';
-export type UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField =
-  'Box__Security__Classification__Key';
-export interface UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
-  readonly op?: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField;
-  readonly path?: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField;
-  readonly value?: string;
+export type UpdateClassificationOnFileRequestBodyOpField = 'replace';
+export type UpdateClassificationOnFileRequestBodyPathField =
+  '/Box__Security__Classification__Key';
+export interface UpdateClassificationOnFileRequestBody {
+  readonly op: UpdateClassificationOnFileRequestBodyOpField;
+  readonly path: UpdateClassificationOnFileRequestBodyPathField;
+  readonly value: string;
 }
-export class UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg {
+export class UpdateClassificationOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<UpdateClassificationOnFileHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateClassificationOnFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg {
+export class DeleteClassificationFromFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<
-          DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg,
-          'extraHeaders'
-        >
-      | Partial<
-          Pick<
-            DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg,
-            'extraHeaders'
-          >
-        >
+      | Omit<DeleteClassificationFromFileHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteClassificationFromFileHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FileClassificationsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FileClassificationsManager,
-      | 'getFileMetadataEnterpriseSecurityClassification6VmVochwUWo'
-      | 'createFileMetadataEnterpriseSecurityClassification'
-      | 'updateFileMetadataEnterpriseSecurityClassification'
-      | 'deleteFileMetadataEnterpriseSecurityClassification'
-    >
+    fields:
+      | Omit<
+          FileClassificationsManager,
+          | 'networkSession'
+          | 'getClassificationOnFile'
+          | 'addClassificationToFile'
+          | 'updateClassificationOnFile'
+          | 'deleteClassificationFromFile'
+        >
+      | Partial<Pick<FileClassificationsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
-  async getFileMetadataEnterpriseSecurityClassification6VmVochwUWo(
+  async getClassificationOnFile(
     fileId: string,
-    headers: GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg = new GetFileMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg(
+    headers: GetClassificationOnFileHeaders = new GetClassificationOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -139,7 +109,8 @@ export class FileClassificationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -154,10 +125,10 @@ export class FileClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async createFileMetadataEnterpriseSecurityClassification(
+  async addClassificationToFile(
     fileId: string,
-    requestBody: CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg = {} satisfies CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg,
-    headers: CreateFileMetadataEnterpriseSecurityClassificationHeadersArg = new CreateFileMetadataEnterpriseSecurityClassificationHeadersArg(
+    requestBody: AddClassificationToFileRequestBody = {} satisfies AddClassificationToFileRequestBody,
+    headers: AddClassificationToFileHeaders = new AddClassificationToFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -167,16 +138,15 @@ export class FileClassificationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
-          requestBody
-        ),
+        data: serializeAddClassificationToFileRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -186,10 +156,10 @@ export class FileClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async updateFileMetadataEnterpriseSecurityClassification(
+  async updateClassificationOnFile(
     fileId: string,
-    requestBody: readonly UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg[],
-    headers: UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg = new UpdateFileMetadataEnterpriseSecurityClassificationHeadersArg(
+    requestBody: readonly UpdateClassificationOnFileRequestBody[],
+    headers: UpdateClassificationOnFileHeaders = new UpdateClassificationOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -199,7 +169,8 @@ export class FileClassificationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -207,7 +178,7 @@ export class FileClassificationsManager {
         method: 'PUT',
         headers: headersMap,
         data: requestBody.map(
-          serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
+          serializeUpdateClassificationOnFileRequestBody
         ) as readonly any[],
         contentType: 'application/json-patch+json',
         responseFormat: 'json',
@@ -218,9 +189,9 @@ export class FileClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
-  async deleteFileMetadataEnterpriseSecurityClassification(
+  async deleteClassificationFromFile(
     fileId: string,
-    headers: DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg = new DeleteFileMetadataEnterpriseSecurityClassificationHeadersArg(
+    headers: DeleteClassificationFromFileHeaders = new DeleteClassificationFromFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -230,7 +201,8 @@ export class FileClassificationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -246,8 +218,8 @@ export class FileClassificationsManager {
     return void 0;
   }
 }
-export function serializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
-  val: CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
+export function serializeAddClassificationToFileRequestBody(
+  val: AddClassificationToFileRequestBody
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -256,91 +228,69 @@ export function serializeCreateFileMetadataEnterpriseSecurityClassificationReque
         : val.boxSecurityClassificationKey,
   };
 }
-export function deserializeCreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
+export function deserializeAddClassificationToFileRequestBody(
   val: any
-): CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
+): AddClassificationToFileRequestBody {
   const boxSecurityClassificationKey: undefined | string =
     val.Box__Security__Classification__Key == void 0
       ? void 0
       : val.Box__Security__Classification__Key;
   return {
     boxSecurityClassificationKey: boxSecurityClassificationKey,
-  } satisfies CreateFileMetadataEnterpriseSecurityClassificationRequestBodyArg;
+  } satisfies AddClassificationToFileRequestBody;
 }
-export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-  val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField
+export function serializeUpdateClassificationOnFileRequestBodyOpField(
+  val: UpdateClassificationOnFileRequestBodyOpField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
+export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   val: any
-): UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField {
+): UpdateClassificationOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField"';
+    throw 'Expecting a string for "UpdateClassificationOnFileRequestBodyOpField"';
   }
   if (val == 'replace') {
     return 'replace';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-  val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField
+export function serializeUpdateClassificationOnFileRequestBodyPathField(
+  val: UpdateClassificationOnFileRequestBodyPathField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
+export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   val: any
-): UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField {
+): UpdateClassificationOnFileRequestBodyPathField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField"';
+    throw 'Expecting a string for "UpdateClassificationOnFileRequestBodyPathField"';
   }
-  if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+  if (val == '/Box__Security__Classification__Key') {
+    return '/Box__Security__Classification__Key';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
-  val: UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg
+export function serializeUpdateClassificationOnFileRequestBody(
+  val: UpdateClassificationOnFileRequestBody
 ): SerializedData {
   return {
-    ['op']:
-      val.op == void 0
-        ? void 0
-        : serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-            val.op
-          ),
-    ['path']:
-      val.path == void 0
-        ? void 0
-        : serializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-            val.path
-          ),
-    ['value']: val.value == void 0 ? void 0 : val.value,
+    ['op']: serializeUpdateClassificationOnFileRequestBodyOpField(val.op),
+    ['path']: serializeUpdateClassificationOnFileRequestBodyPathField(val.path),
+    ['value']: val.value,
   };
 }
-export function deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg(
+export function deserializeUpdateClassificationOnFileRequestBody(
   val: any
-): UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg {
-  const op:
-    | undefined
-    | UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField =
-    val.op == void 0
-      ? void 0
-      : deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgOpField(
-          val.op
-        );
-  const path:
-    | undefined
-    | UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField =
-    val.path == void 0
-      ? void 0
-      : deserializeUpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArgPathField(
-          val.path
-        );
-  const value: undefined | string = val.value == void 0 ? void 0 : val.value;
+): UpdateClassificationOnFileRequestBody {
+  const op: UpdateClassificationOnFileRequestBodyOpField =
+    deserializeUpdateClassificationOnFileRequestBodyOpField(val.op);
+  const path: UpdateClassificationOnFileRequestBodyPathField =
+    deserializeUpdateClassificationOnFileRequestBodyPathField(val.path);
+  const value: string = val.value;
   return {
     op: op,
     path: path,
     value: value,
-  } satisfies UpdateFileMetadataEnterpriseSecurityClassificationRequestBodyArg;
+  } satisfies UpdateClassificationOnFileRequestBody;
 }

@@ -1,28 +1,28 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { serializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeUpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCopyFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCopyFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCopyFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCopyFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { serializeUpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeUpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { serializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { deserializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { serializeCopyFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCopyFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCopyFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCopyFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { serializeUpdateFolderByIdRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeUpdateFolderByIdRequestBodyParentField } from '../managers/folders.generated.js';
 import { serializeItems } from '../schemas.generated.js';
 import { deserializeItems } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { GetFolderByIdQueryParamsArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { UpdateFolderByIdRequestBodyArg } from '../managers/folders.generated.js';
-import { CopyFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CopyFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { UpdateFolderByIdRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { GetFolderByIdQueryParams } from '../managers/folders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { UpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
+import { CopyFolderRequestBody } from '../managers/folders.generated.js';
+import { CopyFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { UpdateFolderByIdRequestBodyParentField } from '../managers/folders.generated.js';
 import { Items } from '../schemas.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -46,7 +46,7 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0', {
     fields: ['has_collaborations' as '', 'tags' as ''],
-  } satisfies GetFolderByIdQueryParamsArg);
+  } satisfies GetFolderByIdQueryParams);
   if (!(rootFolder.id == '0')) {
     throw 'Assertion failed';
   }
@@ -62,8 +62,8 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
   const newFolderName: string = getUuid();
   const newFolder: FolderFull = await client.folders.createFolder({
     name: newFolderName,
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   const createdFolder: FolderFull = await client.folders.getFolderById(
     newFolder.id
   );
@@ -71,7 +71,7 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
     throw 'Assertion failed';
   }
   await client.folders.deleteFolderById(newFolder.id);
-  expect(async () => {
+  await expect(async () => {
     await client.folders.getFolderById(newFolder.id);
   }).rejects.toThrow();
 });
@@ -79,15 +79,15 @@ test('test_update_folder', async function test_update_folder(): Promise<any> {
   const folderToUpdateName: string = getUuid();
   const folderToUpdate: FolderFull = await client.folders.createFolder({
     name: folderToUpdateName,
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   const updatedName: string = getUuid();
   const updatedFolder: FolderFull = await client.folders.updateFolderById(
     folderToUpdate.id,
     {
       name: updatedName,
       description: 'Updated description',
-    } satisfies UpdateFolderByIdRequestBodyArg
+    } satisfies UpdateFolderByIdRequestBody
   );
   if (!(updatedFolder.name == updatedName)) {
     throw 'Assertion failed';
@@ -101,15 +101,15 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
   const folderOriginName: string = getUuid();
   const folderOrigin: FolderFull = await client.folders.createFolder({
     name: folderOriginName,
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   const copiedFolderName: string = getUuid();
   const copiedFolder: FolderFull = await client.folders.copyFolder(
     folderOrigin.id,
     {
-      parent: { id: '0' } satisfies CopyFolderRequestBodyArgParentField,
+      parent: { id: '0' } satisfies CopyFolderRequestBodyParentField,
       name: copiedFolderName,
-    } satisfies CopyFolderRequestBodyArg
+    } satisfies CopyFolderRequestBody
   );
   if (!(copiedFolder.parent!.id == '0')) {
     throw 'Assertion failed';
@@ -120,9 +120,9 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
     {
       parent: {
         id: folderOrigin.id,
-      } satisfies UpdateFolderByIdRequestBodyArgParentField,
+      } satisfies UpdateFolderByIdRequestBodyParentField,
       name: movedFolderName,
-    } satisfies UpdateFolderByIdRequestBodyArg
+    } satisfies UpdateFolderByIdRequestBody
   );
   if (!(movedFolder.parent!.id == folderOrigin.id)) {
     throw 'Assertion failed';

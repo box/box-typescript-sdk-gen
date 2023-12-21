@@ -2,8 +2,17 @@ import { serializeAccessToken } from '../schemas.generated.js';
 import { deserializeAccessToken } from '../schemas.generated.js';
 import { serializeOAuth2Error } from '../schemas.generated.js';
 import { deserializeOAuth2Error } from '../schemas.generated.js';
+import { serializePostOAuth2Token } from '../schemas.generated.js';
+import { deserializePostOAuth2Token } from '../schemas.generated.js';
+import { serializePostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
+import { deserializePostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
+import { serializePostOAuth2Revoke } from '../schemas.generated.js';
+import { deserializePostOAuth2Revoke } from '../schemas.generated.js';
 import { AccessToken } from '../schemas.generated.js';
 import { OAuth2Error } from '../schemas.generated.js';
+import { PostOAuth2Token } from '../schemas.generated.js';
+import { PostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
+import { PostOAuth2Revoke } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
 import { prepareParams } from '../utils.js';
@@ -21,35 +30,82 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetAuthorizeQueryParamsArgResponseTypeField = 'code';
-export interface GetAuthorizeQueryParamsArg {
-  readonly responseType: GetAuthorizeQueryParamsArgResponseTypeField;
+export type AuthorizeUserQueryParamsResponseTypeField = 'code';
+export interface AuthorizeUserQueryParams {
+  readonly responseType: AuthorizeUserQueryParamsResponseTypeField;
   readonly clientId: string;
   readonly redirectUri?: string;
   readonly state?: string;
   readonly scope?: string;
 }
-export class GetAuthorizeHeadersArg {
+export class AuthorizeUserHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetAuthorizeHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetAuthorizeHeadersArg, 'extraHeaders'>>
+      | Omit<AuthorizeUserHeaders, 'extraHeaders'>
+      | Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
+export class RequestAccessTokenHeaders {
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields:
+      | Omit<RequestAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
+export class RefreshAccessTokenHeaders {
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields:
+      | Omit<RefreshAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
+export class RevokeAccessTokenHeaders {
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields:
+      | Omit<RevokeAccessTokenHeaders, 'extraHeaders'>
+      | Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class AuthorizationManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<AuthorizationManager, 'getAuthorize'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<
+          AuthorizationManager,
+          | 'networkSession'
+          | 'authorizeUser'
+          | 'requestAccessToken'
+          | 'refreshAccessToken'
+          | 'revokeAccessToken'
+        >
+      | Partial<Pick<AuthorizationManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
-  async getAuthorize(
-    queryParams: GetAuthorizeQueryParamsArg,
-    headers: GetAuthorizeHeadersArg = new GetAuthorizeHeadersArg({}),
+  async authorizeUser(
+    queryParams: AuthorizeUserQueryParams,
+    headers: AuthorizeUserHeaders = new AuthorizeUserHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const queryParamsMap: {
@@ -65,7 +121,7 @@ export class AuthorizationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://account.box.com/api/oauth2/authorize') as string,
+      ''.concat(this.networkSession.baseUrls.oauth2Url, '/authorize') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -78,17 +134,86 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return void 0;
   }
+  async requestAccessToken(
+    requestBody: PostOAuth2Token,
+    headers: RequestAccessTokenHeaders = new RequestAccessTokenHeaders({}),
+    cancellationToken?: CancellationToken
+  ): Promise<AccessToken> {
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
+      ''.concat('https://api.box.com/oauth2/token') as string,
+      {
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2Token(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: 'json',
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      } satisfies FetchOptions
+    )) as FetchResponse;
+    return deserializeAccessToken(response.data);
+  }
+  async refreshAccessToken(
+    requestBody: PostOAuth2TokenRefreshAccessToken,
+    headers: RefreshAccessTokenHeaders = new RefreshAccessTokenHeaders({}),
+    cancellationToken?: CancellationToken
+  ): Promise<AccessToken> {
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
+      ''.concat('https://api.box.com/oauth2/token#refresh') as string,
+      {
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2TokenRefreshAccessToken(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: 'json',
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      } satisfies FetchOptions
+    )) as FetchResponse;
+    return deserializeAccessToken(response.data);
+  }
+  async revokeAccessToken(
+    requestBody: PostOAuth2Revoke,
+    headers: RevokeAccessTokenHeaders = new RevokeAccessTokenHeaders({}),
+    cancellationToken?: CancellationToken
+  ): Promise<undefined> {
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(
+      ''.concat('https://api.box.com/oauth2/revoke') as string,
+      {
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2Revoke(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: void 0,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      } satisfies FetchOptions
+    )) as FetchResponse;
+    return void 0;
+  }
 }
-export function serializeGetAuthorizeQueryParamsArgResponseTypeField(
-  val: GetAuthorizeQueryParamsArgResponseTypeField
+export function serializeAuthorizeUserQueryParamsResponseTypeField(
+  val: AuthorizeUserQueryParamsResponseTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetAuthorizeQueryParamsArgResponseTypeField(
+export function deserializeAuthorizeUserQueryParamsResponseTypeField(
   val: any
-): GetAuthorizeQueryParamsArgResponseTypeField {
+): AuthorizeUserQueryParamsResponseTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetAuthorizeQueryParamsArgResponseTypeField"';
+    throw 'Expecting a string for "AuthorizeUserQueryParamsResponseTypeField"';
   }
   if (val == 'code') {
     return 'code';

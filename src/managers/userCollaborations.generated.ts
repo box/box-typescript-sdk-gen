@@ -21,22 +21,22 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetCollaborationByIdQueryParamsArg {
+export interface GetCollaborationByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetCollaborationByIdHeadersArg {
+export class GetCollaborationByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetCollaborationByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetCollaborationByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateCollaborationByIdRequestBodyArgRoleField =
+export type UpdateCollaborationByIdRequestBodyRoleField =
   | 'editor'
   | 'viewer'
   | 'previewer'
@@ -45,56 +45,54 @@ export type UpdateCollaborationByIdRequestBodyArgRoleField =
   | 'viewer uploader'
   | 'co-owner'
   | 'owner';
-export type UpdateCollaborationByIdRequestBodyArgStatusField =
+export type UpdateCollaborationByIdRequestBodyStatusField =
   | 'pending'
   | 'accepted'
   | 'rejected';
-export interface UpdateCollaborationByIdRequestBodyArg {
-  readonly role: UpdateCollaborationByIdRequestBodyArgRoleField;
-  readonly status?: UpdateCollaborationByIdRequestBodyArgStatusField;
+export interface UpdateCollaborationByIdRequestBody {
+  readonly role: UpdateCollaborationByIdRequestBodyRoleField;
+  readonly status?: UpdateCollaborationByIdRequestBodyStatusField;
   readonly expiresAt?: string;
   readonly canViewPath?: boolean;
 }
-export class UpdateCollaborationByIdHeadersArg {
+export class UpdateCollaborationByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateCollaborationByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateCollaborationByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateCollaborationByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteCollaborationByIdHeadersArg {
+export class DeleteCollaborationByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteCollaborationByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteCollaborationByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteCollaborationByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateCollaborationRequestBodyArgItemFieldTypeField =
-  | 'file'
-  | 'folder';
-export interface CreateCollaborationRequestBodyArgItemField {
-  readonly type?: CreateCollaborationRequestBodyArgItemFieldTypeField;
+export type CreateCollaborationRequestBodyItemTypeField = 'file' | 'folder';
+export interface CreateCollaborationRequestBodyItemField {
+  readonly type?: CreateCollaborationRequestBodyItemTypeField;
   readonly id?: string;
 }
-export type CreateCollaborationRequestBodyArgAccessibleByFieldTypeField =
+export type CreateCollaborationRequestBodyAccessibleByTypeField =
   | 'user'
   | 'group';
-export interface CreateCollaborationRequestBodyArgAccessibleByField {
-  readonly type: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField;
+export interface CreateCollaborationRequestBodyAccessibleByField {
+  readonly type: CreateCollaborationRequestBodyAccessibleByTypeField;
   readonly id?: string;
   readonly login?: string;
 }
-export type CreateCollaborationRequestBodyArgRoleField =
+export type CreateCollaborationRequestBodyRoleField =
   | 'editor'
   | 'viewer'
   | 'previewer'
@@ -102,50 +100,51 @@ export type CreateCollaborationRequestBodyArgRoleField =
   | 'previewer uploader'
   | 'viewer uploader'
   | 'co-owner';
-export interface CreateCollaborationRequestBodyArg {
-  readonly item: CreateCollaborationRequestBodyArgItemField;
-  readonly accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField;
-  readonly role: CreateCollaborationRequestBodyArgRoleField;
+export interface CreateCollaborationRequestBody {
+  readonly item: CreateCollaborationRequestBodyItemField;
+  readonly accessibleBy: CreateCollaborationRequestBodyAccessibleByField;
+  readonly role: CreateCollaborationRequestBodyRoleField;
   readonly isAccessOnly?: boolean;
   readonly canViewPath?: boolean;
   readonly expiresAt?: string;
 }
-export interface CreateCollaborationQueryParamsArg {
+export interface CreateCollaborationQueryParams {
   readonly fields?: readonly string[];
   readonly notify?: boolean;
 }
-export class CreateCollaborationHeadersArg {
+export class CreateCollaborationHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateCollaborationHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateCollaborationHeadersArg, 'extraHeaders'>>
+      | Omit<CreateCollaborationHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class UserCollaborationsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      UserCollaborationsManager,
-      | 'getCollaborationById'
-      | 'updateCollaborationById'
-      | 'deleteCollaborationById'
-      | 'createCollaboration'
-    >
+    fields:
+      | Omit<
+          UserCollaborationsManager,
+          | 'networkSession'
+          | 'getCollaborationById'
+          | 'updateCollaborationById'
+          | 'deleteCollaborationById'
+          | 'createCollaboration'
+        >
+      | Partial<Pick<UserCollaborationsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getCollaborationById(
     collaborationId: string,
-    queryParams: GetCollaborationByIdQueryParamsArg = {} satisfies GetCollaborationByIdQueryParamsArg,
-    headers: GetCollaborationByIdHeadersArg = new GetCollaborationByIdHeadersArg(
-      {}
-    ),
+    queryParams: GetCollaborationByIdQueryParams = {} satisfies GetCollaborationByIdQueryParams,
+    headers: GetCollaborationByIdHeaders = new GetCollaborationByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
     const queryParamsMap: {
@@ -160,7 +159,8 @@ export class UserCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/collaborations/',
+        this.networkSession.baseUrls.baseUrl,
+        '/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
@@ -177,8 +177,8 @@ export class UserCollaborationsManager {
   }
   async updateCollaborationById(
     collaborationId: string,
-    requestBody: UpdateCollaborationByIdRequestBodyArg,
-    headers: UpdateCollaborationByIdHeadersArg = new UpdateCollaborationByIdHeadersArg(
+    requestBody: UpdateCollaborationByIdRequestBody,
+    headers: UpdateCollaborationByIdHeaders = new UpdateCollaborationByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -188,13 +188,14 @@ export class UserCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/collaborations/',
+        this.networkSession.baseUrls.baseUrl,
+        '/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateCollaborationByIdRequestBodyArg(requestBody),
+        data: serializeUpdateCollaborationByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -206,7 +207,7 @@ export class UserCollaborationsManager {
   }
   async deleteCollaborationById(
     collaborationId: string,
-    headers: DeleteCollaborationByIdHeadersArg = new DeleteCollaborationByIdHeadersArg(
+    headers: DeleteCollaborationByIdHeaders = new DeleteCollaborationByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -216,7 +217,8 @@ export class UserCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/collaborations/',
+        this.networkSession.baseUrls.baseUrl,
+        '/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
@@ -231,11 +233,9 @@ export class UserCollaborationsManager {
     return void 0;
   }
   async createCollaboration(
-    requestBody: CreateCollaborationRequestBodyArg,
-    queryParams: CreateCollaborationQueryParamsArg = {} satisfies CreateCollaborationQueryParamsArg,
-    headers: CreateCollaborationHeadersArg = new CreateCollaborationHeadersArg(
-      {}
-    ),
+    requestBody: CreateCollaborationRequestBody,
+    queryParams: CreateCollaborationQueryParams = {} satisfies CreateCollaborationQueryParams,
+    headers: CreateCollaborationHeaders = new CreateCollaborationHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
     const queryParamsMap: {
@@ -250,12 +250,15 @@ export class UserCollaborationsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/collaborations') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/collaborations'
+      ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCreateCollaborationRequestBodyArg(requestBody),
+        data: serializeCreateCollaborationRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -266,16 +269,16 @@ export class UserCollaborationsManager {
     return deserializeCollaboration(response.data);
   }
 }
-export function serializeUpdateCollaborationByIdRequestBodyArgRoleField(
-  val: UpdateCollaborationByIdRequestBodyArgRoleField
+export function serializeUpdateCollaborationByIdRequestBodyRoleField(
+  val: UpdateCollaborationByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateCollaborationByIdRequestBodyArgRoleField(
+export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   val: any
-): UpdateCollaborationByIdRequestBodyArgRoleField {
+): UpdateCollaborationByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyArgRoleField"';
+    throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyRoleField"';
   }
   if (val == 'editor') {
     return 'editor';
@@ -303,16 +306,16 @@ export function deserializeUpdateCollaborationByIdRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateCollaborationByIdRequestBodyArgStatusField(
-  val: UpdateCollaborationByIdRequestBodyArgStatusField
+export function serializeUpdateCollaborationByIdRequestBodyStatusField(
+  val: UpdateCollaborationByIdRequestBodyStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateCollaborationByIdRequestBodyArgStatusField(
+export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   val: any
-): UpdateCollaborationByIdRequestBodyArgStatusField {
+): UpdateCollaborationByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyArgStatusField"';
+    throw 'Expecting a string for "UpdateCollaborationByIdRequestBodyStatusField"';
   }
   if (val == 'pending') {
     return 'pending';
@@ -325,28 +328,28 @@ export function deserializeUpdateCollaborationByIdRequestBodyArgStatusField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateCollaborationByIdRequestBodyArg(
-  val: UpdateCollaborationByIdRequestBodyArg
+export function serializeUpdateCollaborationByIdRequestBody(
+  val: UpdateCollaborationByIdRequestBody
 ): SerializedData {
   return {
-    ['role']: serializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role),
+    ['role']: serializeUpdateCollaborationByIdRequestBodyRoleField(val.role),
     ['status']:
       val.status == void 0
         ? void 0
-        : serializeUpdateCollaborationByIdRequestBodyArgStatusField(val.status),
+        : serializeUpdateCollaborationByIdRequestBodyStatusField(val.status),
     ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
     ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
   };
 }
-export function deserializeUpdateCollaborationByIdRequestBodyArg(
+export function deserializeUpdateCollaborationByIdRequestBody(
   val: any
-): UpdateCollaborationByIdRequestBodyArg {
-  const role: UpdateCollaborationByIdRequestBodyArgRoleField =
-    deserializeUpdateCollaborationByIdRequestBodyArgRoleField(val.role);
-  const status: undefined | UpdateCollaborationByIdRequestBodyArgStatusField =
+): UpdateCollaborationByIdRequestBody {
+  const role: UpdateCollaborationByIdRequestBodyRoleField =
+    deserializeUpdateCollaborationByIdRequestBodyRoleField(val.role);
+  const status: undefined | UpdateCollaborationByIdRequestBodyStatusField =
     val.status == void 0
       ? void 0
-      : deserializeUpdateCollaborationByIdRequestBodyArgStatusField(val.status);
+      : deserializeUpdateCollaborationByIdRequestBodyStatusField(val.status);
   const expiresAt: undefined | string =
     val.expires_at == void 0 ? void 0 : val.expires_at;
   const canViewPath: undefined | boolean =
@@ -356,18 +359,18 @@ export function deserializeUpdateCollaborationByIdRequestBodyArg(
     status: status,
     expiresAt: expiresAt,
     canViewPath: canViewPath,
-  } satisfies UpdateCollaborationByIdRequestBodyArg;
+  } satisfies UpdateCollaborationByIdRequestBody;
 }
-export function serializeCreateCollaborationRequestBodyArgItemFieldTypeField(
-  val: CreateCollaborationRequestBodyArgItemFieldTypeField
+export function serializeCreateCollaborationRequestBodyItemTypeField(
+  val: CreateCollaborationRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(
+export function deserializeCreateCollaborationRequestBodyItemTypeField(
   val: any
-): CreateCollaborationRequestBodyArgItemFieldTypeField {
+): CreateCollaborationRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCollaborationRequestBodyArgItemFieldTypeField"';
+    throw 'Expecting a string for "CreateCollaborationRequestBodyItemTypeField"';
   }
   if (val == 'file') {
     return 'file';
@@ -377,44 +380,40 @@ export function deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateCollaborationRequestBodyArgItemField(
-  val: CreateCollaborationRequestBodyArgItemField
+export function serializeCreateCollaborationRequestBodyItemField(
+  val: CreateCollaborationRequestBodyItemField
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateCollaborationRequestBodyArgItemFieldTypeField(
-            val.type
-          ),
+        : serializeCreateCollaborationRequestBodyItemTypeField(val.type),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeCreateCollaborationRequestBodyArgItemField(
+export function deserializeCreateCollaborationRequestBodyItemField(
   val: any
-): CreateCollaborationRequestBodyArgItemField {
-  const type: undefined | CreateCollaborationRequestBodyArgItemFieldTypeField =
+): CreateCollaborationRequestBodyItemField {
+  const type: undefined | CreateCollaborationRequestBodyItemTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateCollaborationRequestBodyArgItemFieldTypeField(
-          val.type
-        );
+      : deserializeCreateCollaborationRequestBodyItemTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateCollaborationRequestBodyArgItemField;
+  } satisfies CreateCollaborationRequestBodyItemField;
 }
-export function serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
-  val: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField
+export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
+  val: CreateCollaborationRequestBodyAccessibleByTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
+export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   val: any
-): CreateCollaborationRequestBodyArgAccessibleByFieldTypeField {
+): CreateCollaborationRequestBodyAccessibleByTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCollaborationRequestBodyArgAccessibleByFieldTypeField"';
+    throw 'Expecting a string for "CreateCollaborationRequestBodyAccessibleByTypeField"';
   }
   if (val == 'user') {
     return 'user';
@@ -424,43 +423,40 @@ export function deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTyp
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateCollaborationRequestBodyArgAccessibleByField(
-  val: CreateCollaborationRequestBodyArgAccessibleByField
+export function serializeCreateCollaborationRequestBodyAccessibleByField(
+  val: CreateCollaborationRequestBodyAccessibleByField
 ): SerializedData {
   return {
-    ['type']:
-      serializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
-        val.type
-      ),
+    ['type']: serializeCreateCollaborationRequestBodyAccessibleByTypeField(
+      val.type
+    ),
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['login']: val.login == void 0 ? void 0 : val.login,
   };
 }
-export function deserializeCreateCollaborationRequestBodyArgAccessibleByField(
+export function deserializeCreateCollaborationRequestBodyAccessibleByField(
   val: any
-): CreateCollaborationRequestBodyArgAccessibleByField {
-  const type: CreateCollaborationRequestBodyArgAccessibleByFieldTypeField =
-    deserializeCreateCollaborationRequestBodyArgAccessibleByFieldTypeField(
-      val.type
-    );
+): CreateCollaborationRequestBodyAccessibleByField {
+  const type: CreateCollaborationRequestBodyAccessibleByTypeField =
+    deserializeCreateCollaborationRequestBodyAccessibleByTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return {
     type: type,
     id: id,
     login: login,
-  } satisfies CreateCollaborationRequestBodyArgAccessibleByField;
+  } satisfies CreateCollaborationRequestBodyAccessibleByField;
 }
-export function serializeCreateCollaborationRequestBodyArgRoleField(
-  val: CreateCollaborationRequestBodyArgRoleField
+export function serializeCreateCollaborationRequestBodyRoleField(
+  val: CreateCollaborationRequestBodyRoleField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateCollaborationRequestBodyArgRoleField(
+export function deserializeCreateCollaborationRequestBodyRoleField(
   val: any
-): CreateCollaborationRequestBodyArgRoleField {
+): CreateCollaborationRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCollaborationRequestBodyArgRoleField"';
+    throw 'Expecting a string for "CreateCollaborationRequestBodyRoleField"';
   }
   if (val == 'editor') {
     return 'editor';
@@ -485,32 +481,31 @@ export function deserializeCreateCollaborationRequestBodyArgRoleField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateCollaborationRequestBodyArg(
-  val: CreateCollaborationRequestBodyArg
+export function serializeCreateCollaborationRequestBody(
+  val: CreateCollaborationRequestBody
 ): SerializedData {
   return {
-    ['item']: serializeCreateCollaborationRequestBodyArgItemField(val.item),
-    ['accessible_by']:
-      serializeCreateCollaborationRequestBodyArgAccessibleByField(
-        val.accessibleBy
-      ),
-    ['role']: serializeCreateCollaborationRequestBodyArgRoleField(val.role),
+    ['item']: serializeCreateCollaborationRequestBodyItemField(val.item),
+    ['accessible_by']: serializeCreateCollaborationRequestBodyAccessibleByField(
+      val.accessibleBy
+    ),
+    ['role']: serializeCreateCollaborationRequestBodyRoleField(val.role),
     ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
     ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
   };
 }
-export function deserializeCreateCollaborationRequestBodyArg(
+export function deserializeCreateCollaborationRequestBody(
   val: any
-): CreateCollaborationRequestBodyArg {
-  const item: CreateCollaborationRequestBodyArgItemField =
-    deserializeCreateCollaborationRequestBodyArgItemField(val.item);
-  const accessibleBy: CreateCollaborationRequestBodyArgAccessibleByField =
-    deserializeCreateCollaborationRequestBodyArgAccessibleByField(
+): CreateCollaborationRequestBody {
+  const item: CreateCollaborationRequestBodyItemField =
+    deserializeCreateCollaborationRequestBodyItemField(val.item);
+  const accessibleBy: CreateCollaborationRequestBodyAccessibleByField =
+    deserializeCreateCollaborationRequestBodyAccessibleByField(
       val.accessible_by
     );
-  const role: CreateCollaborationRequestBodyArgRoleField =
-    deserializeCreateCollaborationRequestBodyArgRoleField(val.role);
+  const role: CreateCollaborationRequestBodyRoleField =
+    deserializeCreateCollaborationRequestBodyRoleField(val.role);
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const canViewPath: undefined | boolean =
@@ -524,5 +519,5 @@ export function deserializeCreateCollaborationRequestBodyArg(
     isAccessOnly: isAccessOnly,
     canViewPath: canViewPath,
     expiresAt: expiresAt,
-  } satisfies CreateCollaborationRequestBodyArg;
+  } satisfies CreateCollaborationRequestBody;
 }

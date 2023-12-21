@@ -26,11 +26,11 @@ await client.trashedWebLinks.restoreWeblinkFromTrash(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `RestoreWeblinkFromTrashRequestBodyArg`
+- requestBody `RestoreWeblinkFromTrashRequestBody`
   - Request body of restoreWeblinkFromTrash method
-- queryParams `RestoreWeblinkFromTrashQueryParamsArg`
+- queryParams `RestoreWeblinkFromTrashQueryParams`
   - Query parameters of restoreWeblinkFromTrash method
-- headers `RestoreWeblinkFromTrashHeadersArg`
+- headers `RestoreWeblinkFromTrashHeaders`
   - Headers of restoreWeblinkFromTrash method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -45,7 +45,7 @@ Returns a web link object when it has been restored.
 
 Retrieves a web link that has been moved to the trash.
 
-This operation is performed by calling function `getWebLinkTrash`.
+This operation is performed by calling function `getTrashedWebLinkById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-web-links-id-trash/).
@@ -53,17 +53,17 @@ See the endpoint docs at
 <!-- sample get_web_links_id_trash -->
 
 ```ts
-await client.trashedWebLinks.getWebLinkTrash(weblink.id);
+await client.trashedWebLinks.getTrashedWebLinkById(weblink.id);
 ```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- queryParams `GetWebLinkTrashQueryParamsArg`
-  - Query parameters of getWebLinkTrash method
-- headers `GetWebLinkTrashHeadersArg`
-  - Headers of getWebLinkTrash method
+- queryParams `GetTrashedWebLinkByIdQueryParams`
+  - Query parameters of getTrashedWebLinkById method
+- headers `GetTrashedWebLinkByIdHeaders`
+  - Headers of getTrashedWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -80,7 +80,7 @@ was moved to the trash.
 Permanently deletes a web link that is in the trash.
 This action cannot be undone.
 
-This operation is performed by calling function `deleteWebLinkTrash`.
+This operation is performed by calling function `deleteTrashedWebLinkById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-web-links-id-trash/).
@@ -88,15 +88,15 @@ See the endpoint docs at
 <!-- sample delete_web_links_id_trash -->
 
 ```ts
-await client.trashedWebLinks.deleteWebLinkTrash(weblink.id);
+await client.trashedWebLinks.deleteTrashedWebLinkById(weblink.id);
 ```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headers `DeleteWebLinkTrashHeadersArg`
-  - Headers of deleteWebLinkTrash method
+- headers `DeleteTrashedWebLinkByIdHeaders`
+  - Headers of deleteTrashedWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

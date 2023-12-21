@@ -1,13 +1,10 @@
 import { Authentication } from './auth.js';
 import { NetworkSession } from './network.js';
 import { AccessToken } from './schemas.generated.js';
+import { AuthorizationManager } from './managers/authorization.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
 import { sdToUrlParams } from './json.js';
-import { deserializeAccessToken } from './schemas.generated.js';
-import { fetch } from './fetch.js';
-import { FetchOptions } from './fetch.js';
-import { FetchResponse } from './fetch.js';
 import { toString } from './utils.js';
 import { sdToJson } from './json.js';
 import { SerializedData } from './json.js';
@@ -18,8 +15,6 @@ import { sdIsString } from './json.js';
 import { sdIsList } from './json.js';
 import { sdIsMap } from './json.js';
 const boxOauth2AuthUrl: string = 'https://account.box.com/api/oauth2/authorize';
-const boxOauth2TokenUrl: string = 'https://api.box.com/oauth2/token';
-const boxOauth2RevokeUrl: string = 'https://api.box.com/oauth2/revoke';
 export class OAuthConfig {
   readonly clientId!: string;
   readonly clientSecret!: string;
@@ -32,7 +27,7 @@ export class OAuthConfig {
     Object.assign(this, fields);
   }
 }
-export interface GetAuthorizeUrlOptionsArg {
+export interface GetAuthorizeUrlOptions {
   readonly clientId?: string;
   readonly redirectUri?: string;
   readonly responseType?: string;
@@ -58,7 +53,7 @@ export class BoxOAuth implements Authentication {
     this.tokenStorage = this.config.tokenStorage;
   }
   getAuthorizeUrl(
-    options: GetAuthorizeUrlOptionsArg = {} satisfies GetAuthorizeUrlOptionsArg
+    options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions
   ): string {
     const params: {
       readonly [key: string]: any;
@@ -83,18 +78,15 @@ export class BoxOAuth implements Authentication {
     authorizationCode: string,
     networkSession?: NetworkSession
   ): Promise<AccessToken> {
-    const response: FetchResponse = (await fetch(boxOauth2TokenUrl, {
-      method: 'POST',
-      data: {
-        ['grant_type']: 'authorization_code',
-        ['code']: authorizationCode,
-        ['client_id']: this.config.clientId,
-        ['client_secret']: this.config.clientSecret,
-      },
-      contentType: 'application/x-www-form-urlencoded',
-      networkSession: networkSession,
-    })) as FetchResponse;
-    const token: AccessToken = deserializeAccessToken(response.data);
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const token: AccessToken = await authManager.requestAccessToken({
+      grantType: 'authorization_code',
+      code: authorizationCode,
+      clientId: this.config.clientId,
+      clientSecret: this.config.clientSecret,
+    });
     await this.tokenStorage.store(token);
     return token;
   }
@@ -115,18 +107,15 @@ export class BoxOAuth implements Authentication {
       : !(oldToken == void 0)
       ? oldToken.refreshToken
       : void 0;
-    const response: FetchResponse = (await fetch(boxOauth2TokenUrl, {
-      method: 'POST',
-      data: {
-        ['grant_type']: 'refresh_token',
-        ['client_id']: this.config.clientId,
-        ['client_secret']: this.config.clientSecret,
-        ['refresh_token']: tokenUsedForRefresh,
-      },
-      contentType: 'application/x-www-form-urlencoded',
-      networkSession: networkSession,
-    })) as FetchResponse;
-    const token: AccessToken = deserializeAccessToken(response.data);
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const token: AccessToken = await authManager.requestAccessToken({
+      grantType: 'refresh_token',
+      clientId: this.config.clientId,
+      clientSecret: this.config.clientSecret,
+      refreshToken: tokenUsedForRefresh,
+    });
     await this.tokenStorage.store(token);
     return token;
   }
@@ -135,51 +124,43 @@ export class BoxOAuth implements Authentication {
     if (token == void 0) {
       return void 0;
     }
-    (await fetch(boxOauth2RevokeUrl, {
-      method: 'POST',
-      data: {
-        ['client_id']: this.config.clientId,
-        ['client_secret']: this.config.clientSecret,
-        ['token']: token.accessToken,
-      },
-      contentType: 'application/x-www-form-urlencoded',
-      networkSession: networkSession,
-    })) as FetchResponse;
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    await authManager.revokeAccessToken({
+      clientId: this.config.clientId,
+      clientSecret: this.config.clientSecret,
+      token: token.accessToken,
+    });
     await this.tokenStorage.clear();
     return void 0;
   }
   async downscopeToken(
     scopes: readonly string[],
-    networkSession?: NetworkSession,
-    refreshToken?: string
+    resource?: string,
+    sharedLink?: string,
+    networkSession?: NetworkSession
   ): Promise<AccessToken> {
-    const oldToken: undefined | AccessToken = await this.tokenStorage.get();
-    const tokenUsedForRefresh: any = !(refreshToken == void 0)
-      ? refreshToken
-      : !(oldToken == void 0)
-      ? oldToken.refreshToken
-      : void 0;
-    if (tokenUsedForRefresh == void 0) {
-      throw 'No refresh token is available.';
+    const token: undefined | AccessToken = await this.tokenStorage.get();
+    if (token == void 0 || token.accessToken == void 0) {
+      throw 'No access token is available.';
     }
-    const response: FetchResponse = (await fetch(boxOauth2TokenUrl, {
-      method: 'POST',
-      data: {
-        ['grant_type']: 'urn:ietf:params:oauth:grant-type:token-exchange',
-        ['subject_token']: tokenUsedForRefresh,
-        ['subject_token_type']: 'urn:ietf:params:oauth:token-type:access_token',
-        ['scope']: toString(scopes) as string,
-      },
-      contentType: 'application/x-www-form-urlencoded',
-      networkSession: networkSession,
-    })) as FetchResponse;
-    const token: AccessToken = deserializeAccessToken(response.data);
-    await this.tokenStorage.store(token);
-    return token;
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const downscopedToken: AccessToken = await authManager.requestAccessToken({
+      grantType: 'urn:ietf:params:oauth:grant-type:token-exchange',
+      subjectToken: token.accessToken,
+      subjectTokenType: 'urn:ietf:params:oauth:token-type:access_token',
+      scope: toString(scopes) as string,
+      resource: resource,
+      boxSharedLink: sharedLink,
+    });
+    return downscopedToken;
   }
 }
-export function serializeGetAuthorizeUrlOptionsArg(
-  val: GetAuthorizeUrlOptionsArg
+export function serializeGetAuthorizeUrlOptions(
+  val: GetAuthorizeUrlOptions
 ): SerializedData {
   return {
     ['clientId']: val.clientId == void 0 ? void 0 : val.clientId,
@@ -189,9 +170,9 @@ export function serializeGetAuthorizeUrlOptionsArg(
     ['scope']: val.scope == void 0 ? void 0 : val.scope,
   };
 }
-export function deserializeGetAuthorizeUrlOptionsArg(
+export function deserializeGetAuthorizeUrlOptions(
   val: any
-): GetAuthorizeUrlOptionsArg {
+): GetAuthorizeUrlOptions {
   const clientId: undefined | string =
     val.clientId == void 0 ? void 0 : val.clientId;
   const redirectUri: undefined | string =
@@ -206,5 +187,5 @@ export function deserializeGetAuthorizeUrlOptionsArg(
     responseType: responseType,
     state: state,
     scope: scope,
-  } satisfies GetAuthorizeUrlOptionsArg;
+  } satisfies GetAuthorizeUrlOptions;
 }

@@ -4,7 +4,7 @@ import { serializeSignTemplate } from '../schemas.generated.js';
 import { deserializeSignTemplate } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { SignTemplates } from '../schemas.generated.js';
-import { GetSignTemplatesQueryParamsArg } from '../managers/signTemplates.generated.js';
+import { GetSignTemplatesQueryParams } from '../managers/signTemplates.generated.js';
 import { SignTemplate } from '../schemas.generated.js';
 import { decodeBase64 } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -21,7 +21,7 @@ test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any>
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
       limit: 2,
-    } satisfies GetSignTemplatesQueryParamsArg);
+    } satisfies GetSignTemplatesQueryParams);
   if (!(signTemplates.entries!.length >= 0)) {
     throw 'Assertion failed';
   }
@@ -31,7 +31,7 @@ test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
       limit: 2,
-    } satisfies GetSignTemplatesQueryParamsArg);
+    } satisfies GetSignTemplatesQueryParams);
   if (!(signTemplates.entries!.length >= 0)) {
     throw 'Assertion failed';
   }

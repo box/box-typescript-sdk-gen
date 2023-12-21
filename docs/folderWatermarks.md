@@ -23,7 +23,7 @@ await client.folderWatermarks.getFolderWatermark(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `GetFolderWatermarkHeadersArg`
+- headers `GetFolderWatermarkHeaders`
   - Headers of getFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -49,19 +49,18 @@ See the endpoint docs at
 ```ts
 await client.folderWatermarks.updateFolderWatermark(folder.id, {
   watermark: {
-    imprint:
-      'default' as UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField,
-  } satisfies UpdateFolderWatermarkRequestBodyArgWatermarkField,
-} satisfies UpdateFolderWatermarkRequestBodyArg);
+    imprint: 'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField,
+  } satisfies UpdateFolderWatermarkRequestBodyWatermarkField,
+} satisfies UpdateFolderWatermarkRequestBody);
 ```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- requestBody `UpdateFolderWatermarkRequestBodyArg`
+- requestBody `UpdateFolderWatermarkRequestBody`
   - Request body of updateFolderWatermark method
-- headers `UpdateFolderWatermarkHeadersArg`
+- headers `UpdateFolderWatermarkHeaders`
   - Headers of updateFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -93,7 +92,7 @@ await client.folderWatermarks.deleteFolderWatermark(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `DeleteFolderWatermarkHeadersArg`
+- headers `DeleteFolderWatermarkHeaders`
   - Headers of deleteFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

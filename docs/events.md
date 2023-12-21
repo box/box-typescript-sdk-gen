@@ -24,9 +24,9 @@ _Currently we don't have an example for calling `getEvents` in integration tests
 
 ### Arguments
 
-- queryParams `GetEventsQueryParamsArg`
+- queryParams `GetEventsQueryParams`
   - Query parameters of getEvents method
-- headers `GetEventsHeadersArg`
+- headers `GetEventsHeaders`
   - Headers of getEvents method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -88,7 +88,7 @@ _Currently we don't have an example for calling `getEventsWithLongPolling` in in
 
 ### Arguments
 
-- headers `GetEventsWithLongPollingHeadersArg`
+- headers `GetEventsWithLongPollingHeaders`
   - Headers of getEventsWithLongPolling method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

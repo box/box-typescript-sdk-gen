@@ -2,21 +2,21 @@ import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
 import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
-import { serializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { serializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { deserializeCreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { serializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
-import { deserializeUpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
-import { serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
-import { deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { serializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { deserializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { serializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
+import { deserializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
+import { serializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
+import { deserializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
-import { CreateWebLinkRequestBodyArg } from '../managers/webLinks.generated.js';
-import { CreateWebLinkRequestBodyArgParentField } from '../managers/webLinks.generated.js';
-import { UpdateWebLinkByIdRequestBodyArg } from '../managers/webLinks.generated.js';
-import { UpdateWebLinkByIdRequestBodyArgSharedLinkField } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
+import { CreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
+import { UpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
+import { UpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
@@ -36,10 +36,10 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   const password: any = 'super-secret-password';
   const weblink: any = await client.webLinks.createWebLink({
     url: url,
-    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
+    parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
     name: name,
     description: description,
-  } satisfies CreateWebLinkRequestBodyArg);
+  } satisfies CreateWebLinkRequestBody);
   if (!(weblink.url == url)) {
     throw 'Assertion failed';
   }
@@ -67,8 +67,8 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
       sharedLink: {
         access: sharedAccess,
         password: password,
-      } satisfies UpdateWebLinkByIdRequestBodyArgSharedLinkField,
-    } satisfies UpdateWebLinkByIdRequestBodyArg
+      } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
+    } satisfies UpdateWebLinkByIdRequestBody
   );
   if (!(updatedWeblink.name == updatedName)) {
     throw 'Assertion failed';

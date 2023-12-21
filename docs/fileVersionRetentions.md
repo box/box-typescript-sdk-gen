@@ -16,9 +16,9 @@ _Currently we don't have an example for calling `getFileVersionRetentions` in in
 
 ### Arguments
 
-- queryParams `GetFileVersionRetentionsQueryParamsArg`
+- queryParams `GetFileVersionRetentionsQueryParams`
   - Query parameters of getFileVersionRetentions method
-- headers `GetFileVersionRetentionsHeadersArg`
+- headers `GetFileVersionRetentionsHeaders`
   - Headers of getFileVersionRetentions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -44,7 +44,7 @@ _Currently we don't have an example for calling `getFileVersionRetentionById` in
 
 - fileVersionRetentionId `string`
   - The ID of the file version retention Example: "3424234"
-- headers `GetFileVersionRetentionByIdHeadersArg`
+- headers `GetFileVersionRetentionByIdHeaders`
   - Headers of getFileVersionRetentionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

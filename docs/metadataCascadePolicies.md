@@ -22,14 +22,14 @@ See the endpoint docs at
 ```ts
 await client.metadataCascadePolicies.getMetadataCascadePolicies({
   folderId: folder.id,
-} satisfies GetMetadataCascadePoliciesQueryParamsArg);
+} satisfies GetMetadataCascadePoliciesQueryParams);
 ```
 
 ### Arguments
 
-- queryParams `GetMetadataCascadePoliciesQueryParamsArg`
+- queryParams `GetMetadataCascadePoliciesQueryParams`
   - Query parameters of getMetadataCascadePolicies method
-- headers `GetMetadataCascadePoliciesHeadersArg`
+- headers `GetMetadataCascadePoliciesHeaders`
   - Headers of getMetadataCascadePolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,16 +59,16 @@ See the endpoint docs at
 ```ts
 await client.metadataCascadePolicies.createMetadataCascadePolicy({
   folderId: folder.id,
-  scope: 'enterprise' as CreateMetadataCascadePolicyRequestBodyArgScopeField,
+  scope: 'enterprise' as CreateMetadataCascadePolicyRequestBodyScopeField,
   templateKey: templateKey,
-} satisfies CreateMetadataCascadePolicyRequestBodyArg);
+} satisfies CreateMetadataCascadePolicyRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateMetadataCascadePolicyRequestBodyArg`
+- requestBody `CreateMetadataCascadePolicyRequestBody`
   - Request body of createMetadataCascadePolicy method
-- headers `CreateMetadataCascadePolicyHeadersArg`
+- headers `CreateMetadataCascadePolicyHeaders`
   - Headers of createMetadataCascadePolicy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -100,7 +100,7 @@ await client.metadataCascadePolicies.getMetadataCascadePolicyById(
 
 - metadataCascadePolicyId `string`
   - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
-- headers `GetMetadataCascadePolicyByIdHeadersArg`
+- headers `GetMetadataCascadePolicyByIdHeaders`
   - Headers of getMetadataCascadePolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -132,7 +132,7 @@ await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
 
 - metadataCascadePolicyId `string`
   - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
-- headers `DeleteMetadataCascadePolicyByIdHeadersArg`
+- headers `DeleteMetadataCascadePolicyByIdHeaders`
   - Headers of deleteMetadataCascadePolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -151,7 +151,7 @@ all of its children. This can be used after creating a new cascade policy to
 enforce the metadata to be cascaded down to all existing files within that
 folder.
 
-This operation is performed by calling function `createMetadataCascadePolicyApply`.
+This operation is performed by calling function `applyMetadataCascadePolicy`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-cascade-policies-id-apply/).
@@ -159,12 +159,12 @@ See the endpoint docs at
 <!-- sample post_metadata_cascade_policies_id_apply -->
 
 ```ts
-await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
+await client.metadataCascadePolicies.applyMetadataCascadePolicy(
   cascadePolicyId,
   {
     conflictResolution:
-      'overwrite' as CreateMetadataCascadePolicyApplyRequestBodyArgConflictResolutionField,
-  } satisfies CreateMetadataCascadePolicyApplyRequestBodyArg
+      'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
+  } satisfies ApplyMetadataCascadePolicyRequestBody
 );
 ```
 
@@ -172,10 +172,10 @@ await client.metadataCascadePolicies.createMetadataCascadePolicyApply(
 
 - metadataCascadePolicyId `string`
   - The ID of the cascade policy to force-apply. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
-- requestBody `CreateMetadataCascadePolicyApplyRequestBodyArg`
-  - Request body of createMetadataCascadePolicyApply method
-- headers `CreateMetadataCascadePolicyApplyHeadersArg`
-  - Headers of createMetadataCascadePolicyApply method
+- requestBody `ApplyMetadataCascadePolicyRequestBody`
+  - Request body of applyMetadataCascadePolicy method
+- headers `ApplyMetadataCascadePolicyHeaders`
+  - Headers of applyMetadataCascadePolicy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

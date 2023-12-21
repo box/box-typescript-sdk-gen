@@ -20,9 +20,9 @@ _Currently we don't have an example for calling `getWorkflows` in integration te
 
 ### Arguments
 
-- queryParams `GetWorkflowsQueryParamsArg`
+- queryParams `GetWorkflowsQueryParams`
   - Query parameters of getWorkflows method
-- headers `GetWorkflowsHeadersArg`
+- headers `GetWorkflowsHeaders`
   - Headers of getWorkflows method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -40,21 +40,21 @@ Initiates a flow with a trigger type of `WORKFLOW_MANUAL_START`.
 You application must be authorized to use the `Manage Box Relay` application
 scope within the developer console.
 
-This operation is performed by calling function `createWorkflowStart`.
+This operation is performed by calling function `startWorkflow`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-workflows-id-start/).
 
-_Currently we don't have an example for calling `createWorkflowStart` in integration tests_
+_Currently we don't have an example for calling `startWorkflow` in integration tests_
 
 ### Arguments
 
 - workflowId `string`
   - The ID of the workflow. Example: "12345"
-- requestBody `CreateWorkflowStartRequestBodyArg`
-  - Request body of createWorkflowStart method
-- headers `CreateWorkflowStartHeadersArg`
-  - Headers of createWorkflowStart method
+- requestBody `StartWorkflowRequestBody`
+  - Request body of startWorkflow method
+- headers `StartWorkflowHeaders`
+  - Headers of startWorkflow method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

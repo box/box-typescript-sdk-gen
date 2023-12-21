@@ -23,9 +23,9 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignments` 
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- queryParams `GetRetentionPolicyAssignmentsQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentsQueryParams`
   - Query parameters of getRetentionPolicyAssignments method
-- headers `GetRetentionPolicyAssignmentsHeadersArg`
+- headers `GetRetentionPolicyAssignmentsHeaders`
   - Headers of getRetentionPolicyAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -50,9 +50,9 @@ _Currently we don't have an example for calling `createRetentionPolicyAssignment
 
 ### Arguments
 
-- requestBody `CreateRetentionPolicyAssignmentRequestBodyArg`
+- requestBody `CreateRetentionPolicyAssignmentRequestBody`
   - Request body of createRetentionPolicyAssignment method
-- headers `CreateRetentionPolicyAssignmentHeadersArg`
+- headers `CreateRetentionPolicyAssignmentHeaders`
   - Headers of createRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -78,9 +78,9 @@ _Currently we don't have an example for calling `getRetentionPolicyAssignmentByI
 
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
-- queryParams `GetRetentionPolicyAssignmentByIdQueryParamsArg`
+- queryParams `GetRetentionPolicyAssignmentByIdQueryParams`
   - Query parameters of getRetentionPolicyAssignmentById method
-- headers `GetRetentionPolicyAssignmentByIdHeadersArg`
+- headers `GetRetentionPolicyAssignmentByIdHeaders`
   - Headers of getRetentionPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -107,7 +107,7 @@ _Currently we don't have an example for calling `deleteRetentionPolicyAssignment
 
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
-- headers `DeleteRetentionPolicyAssignmentByIdHeadersArg`
+- headers `DeleteRetentionPolicyAssignmentByIdHeaders`
   - Headers of deleteRetentionPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -123,21 +123,21 @@ is successfully deleted.
 
 Returns a list of files under retention for a retention policy assignment.
 
-This operation is performed by calling function `getRetentionPolicyAssignmentFileUnderRetention`.
+This operation is performed by calling function `getFilesUnderRetentionPolicyAssignment`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-files-under-retention/).
 
-_Currently we don't have an example for calling `getRetentionPolicyAssignmentFileUnderRetention` in integration tests_
+_Currently we don't have an example for calling `getFilesUnderRetentionPolicyAssignment` in integration tests_
 
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
-- queryParams `GetRetentionPolicyAssignmentFileUnderRetentionQueryParamsArg`
-  - Query parameters of getRetentionPolicyAssignmentFileUnderRetention method
-- headers `GetRetentionPolicyAssignmentFileUnderRetentionHeadersArg`
-  - Headers of getRetentionPolicyAssignmentFileUnderRetention method
+- queryParams `GetFilesUnderRetentionPolicyAssignmentQueryParams`
+  - Query parameters of getFilesUnderRetentionPolicyAssignment method
+- headers `GetFilesUnderRetentionPolicyAssignmentHeaders`
+  - Headers of getFilesUnderRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -153,21 +153,21 @@ specified retention policy assignment.
 Returns a list of file versions under retention for a retention policy
 assignment.
 
-This operation is performed by calling function `getRetentionPolicyAssignmentFileVersionUnderRetention`.
+This operation is performed by calling function `getFileVersionsUnderRetentionPolicyAssignment`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-file-versions-under-retention/).
 
-_Currently we don't have an example for calling `getRetentionPolicyAssignmentFileVersionUnderRetention` in integration tests_
+_Currently we don't have an example for calling `getFileVersionsUnderRetentionPolicyAssignment` in integration tests_
 
 ### Arguments
 
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
-- queryParams `GetRetentionPolicyAssignmentFileVersionUnderRetentionQueryParamsArg`
-  - Query parameters of getRetentionPolicyAssignmentFileVersionUnderRetention method
-- headers `GetRetentionPolicyAssignmentFileVersionUnderRetentionHeadersArg`
-  - Headers of getRetentionPolicyAssignmentFileVersionUnderRetention method
+- queryParams `GetFileVersionsUnderRetentionPolicyAssignmentQueryParams`
+  - Query parameters of getFileVersionsUnderRetentionPolicyAssignment method
+- headers `GetFileVersionsUnderRetentionPolicyAssignmentHeaders`
+  - Headers of getFileVersionsUnderRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

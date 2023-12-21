@@ -24,9 +24,9 @@ await client.legalHoldPolicies.getLegalHoldPolicies();
 
 ### Arguments
 
-- queryParams `GetLegalHoldPoliciesQueryParamsArg`
+- queryParams `GetLegalHoldPoliciesQueryParams`
   - Query parameters of getLegalHoldPolicies method
-- headers `GetLegalHoldPoliciesHeadersArg`
+- headers `GetLegalHoldPoliciesHeaders`
   - Headers of getLegalHoldPolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -53,14 +53,14 @@ await client.legalHoldPolicies.createLegalHoldPolicy({
   policyName: legalHoldPolicyName,
   description: legalHoldDescription,
   isOngoing: true,
-} satisfies CreateLegalHoldPolicyRequestBodyArg);
+} satisfies CreateLegalHoldPolicyRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateLegalHoldPolicyRequestBodyArg`
+- requestBody `CreateLegalHoldPolicyRequestBody`
   - Request body of createLegalHoldPolicy method
-- headers `CreateLegalHoldPolicyHeadersArg`
+- headers `CreateLegalHoldPolicyHeaders`
   - Headers of createLegalHoldPolicy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -90,7 +90,7 @@ await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- headers `GetLegalHoldPolicyByIdHeadersArg`
+- headers `GetLegalHoldPolicyByIdHeaders`
   - Headers of getLegalHoldPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -115,16 +115,16 @@ See the endpoint docs at
 ```ts
 await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
   policyName: updatedLegalHoldPolicyName,
-} satisfies UpdateLegalHoldPolicyByIdRequestBodyArg);
+} satisfies UpdateLegalHoldPolicyByIdRequestBody);
 ```
 
 ### Arguments
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- requestBody `UpdateLegalHoldPolicyByIdRequestBodyArg`
+- requestBody `UpdateLegalHoldPolicyByIdRequestBody`
   - Request body of updateLegalHoldPolicyById method
-- headers `UpdateLegalHoldPolicyByIdHeadersArg`
+- headers `UpdateLegalHoldPolicyByIdHeaders`
   - Headers of updateLegalHoldPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -157,7 +157,7 @@ await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- headers `DeleteLegalHoldPolicyByIdHeadersArg`
+- headers `DeleteLegalHoldPolicyByIdHeaders`
   - Headers of deleteLegalHoldPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

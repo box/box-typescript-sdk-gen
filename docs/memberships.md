@@ -28,9 +28,9 @@ await client.memberships.getUserMemberships(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- queryParams `GetUserMembershipsQueryParamsArg`
+- queryParams `GetUserMembershipsQueryParams`
   - Query parameters of getUserMemberships method
-- headers `GetUserMembershipsHeadersArg`
+- headers `GetUserMembershipsHeaders`
   - Headers of getUserMemberships method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -63,9 +63,9 @@ await client.memberships.getGroupMemberships(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- queryParams `GetGroupMembershipsQueryParamsArg`
+- queryParams `GetGroupMembershipsQueryParams`
   - Query parameters of getGroupMemberships method
-- headers `GetGroupMembershipsHeadersArg`
+- headers `GetGroupMembershipsHeaders`
   - Headers of getGroupMemberships method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -91,20 +91,18 @@ See the endpoint docs at
 
 ```ts
 await client.memberships.createGroupMembership({
-  user: { id: user.id } satisfies CreateGroupMembershipRequestBodyArgUserField,
-  group: {
-    id: group.id,
-  } satisfies CreateGroupMembershipRequestBodyArgGroupField,
-} satisfies CreateGroupMembershipRequestBodyArg);
+  user: { id: user.id } satisfies CreateGroupMembershipRequestBodyUserField,
+  group: { id: group.id } satisfies CreateGroupMembershipRequestBodyGroupField,
+} satisfies CreateGroupMembershipRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateGroupMembershipRequestBodyArg`
+- requestBody `CreateGroupMembershipRequestBody`
   - Request body of createGroupMembership method
-- queryParams `CreateGroupMembershipQueryParamsArg`
+- queryParams `CreateGroupMembershipQueryParams`
   - Query parameters of createGroupMembership method
-- headers `CreateGroupMembershipHeadersArg`
+- headers `CreateGroupMembershipHeaders`
   - Headers of createGroupMembership method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -136,9 +134,9 @@ await client.memberships.getGroupMembershipById(groupMembership.id!);
 
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
-- queryParams `GetGroupMembershipByIdQueryParamsArg`
+- queryParams `GetGroupMembershipByIdQueryParams`
   - Query parameters of getGroupMembershipById method
-- headers `GetGroupMembershipByIdHeadersArg`
+- headers `GetGroupMembershipByIdHeaders`
   - Headers of getGroupMembershipById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -164,19 +162,19 @@ See the endpoint docs at
 
 ```ts
 await client.memberships.updateGroupMembershipById(groupMembership.id!, {
-  role: 'admin' as UpdateGroupMembershipByIdRequestBodyArgRoleField,
-} satisfies UpdateGroupMembershipByIdRequestBodyArg);
+  role: 'admin' as UpdateGroupMembershipByIdRequestBodyRoleField,
+} satisfies UpdateGroupMembershipByIdRequestBody);
 ```
 
 ### Arguments
 
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
-- requestBody `UpdateGroupMembershipByIdRequestBodyArg`
+- requestBody `UpdateGroupMembershipByIdRequestBody`
   - Request body of updateGroupMembershipById method
-- queryParams `UpdateGroupMembershipByIdQueryParamsArg`
+- queryParams `UpdateGroupMembershipByIdQueryParams`
   - Query parameters of updateGroupMembershipById method
-- headers `UpdateGroupMembershipByIdHeadersArg`
+- headers `UpdateGroupMembershipByIdHeaders`
   - Headers of updateGroupMembershipById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -208,7 +206,7 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id!);
 
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
-- headers `DeleteGroupMembershipByIdHeadersArg`
+- headers `DeleteGroupMembershipByIdHeaders`
   - Headers of deleteGroupMembershipById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

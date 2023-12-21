@@ -24,112 +24,115 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetFileCommentsQueryParamsArg {
+export interface GetFileCommentsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetFileCommentsHeadersArg {
+export class GetFileCommentsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileCommentsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileCommentsHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileCommentsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileCommentsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetCommentByIdQueryParamsArg {
+export interface GetCommentByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetCommentByIdHeadersArg {
+export class GetCommentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetCommentByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetCommentByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetCommentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetCommentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateCommentByIdRequestBodyArg {
+export interface UpdateCommentByIdRequestBody {
   readonly message?: string;
 }
-export interface UpdateCommentByIdQueryParamsArg {
+export interface UpdateCommentByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class UpdateCommentByIdHeadersArg {
+export class UpdateCommentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateCommentByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateCommentByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateCommentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateCommentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteCommentByIdHeadersArg {
+export class DeleteCommentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteCommentByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteCommentByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteCommentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteCommentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateCommentRequestBodyArgItemFieldTypeField = 'file' | 'comment';
-export interface CreateCommentRequestBodyArgItemField {
+export type CreateCommentRequestBodyItemTypeField = 'file' | 'comment';
+export interface CreateCommentRequestBodyItemField {
   readonly id: string;
-  readonly type: CreateCommentRequestBodyArgItemFieldTypeField;
+  readonly type: CreateCommentRequestBodyItemTypeField;
 }
-export interface CreateCommentRequestBodyArg {
+export interface CreateCommentRequestBody {
   readonly message: string;
   readonly taggedMessage?: string;
-  readonly item: CreateCommentRequestBodyArgItemField;
+  readonly item: CreateCommentRequestBodyItemField;
 }
-export interface CreateCommentQueryParamsArg {
+export interface CreateCommentQueryParams {
   readonly fields?: readonly string[];
 }
-export class CreateCommentHeadersArg {
+export class CreateCommentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateCommentHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateCommentHeadersArg, 'extraHeaders'>>
+      | Omit<CreateCommentHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateCommentHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class CommentsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      CommentsManager,
-      | 'getFileComments'
-      | 'getCommentById'
-      | 'updateCommentById'
-      | 'deleteCommentById'
-      | 'createComment'
-    >
+    fields:
+      | Omit<
+          CommentsManager,
+          | 'networkSession'
+          | 'getFileComments'
+          | 'getCommentById'
+          | 'updateCommentById'
+          | 'deleteCommentById'
+          | 'createComment'
+        >
+      | Partial<Pick<CommentsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileComments(
     fileId: string,
-    queryParams: GetFileCommentsQueryParamsArg = {} satisfies GetFileCommentsQueryParamsArg,
-    headers: GetFileCommentsHeadersArg = new GetFileCommentsHeadersArg({}),
+    queryParams: GetFileCommentsQueryParams = {} satisfies GetFileCommentsQueryParams,
+    headers: GetFileCommentsHeaders = new GetFileCommentsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Comments> {
     const queryParamsMap: {
@@ -146,7 +149,8 @@ export class CommentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/comments'
       ) as string,
@@ -164,8 +168,8 @@ export class CommentsManager {
   }
   async getCommentById(
     commentId: string,
-    queryParams: GetCommentByIdQueryParamsArg = {} satisfies GetCommentByIdQueryParamsArg,
-    headers: GetCommentByIdHeadersArg = new GetCommentByIdHeadersArg({}),
+    queryParams: GetCommentByIdQueryParams = {} satisfies GetCommentByIdQueryParams,
+    headers: GetCommentByIdHeaders = new GetCommentByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
     const queryParamsMap: {
@@ -180,7 +184,8 @@ export class CommentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/comments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/comments/',
         toString(commentId) as string
       ) as string,
       {
@@ -197,9 +202,9 @@ export class CommentsManager {
   }
   async updateCommentById(
     commentId: string,
-    requestBody: UpdateCommentByIdRequestBodyArg = {} satisfies UpdateCommentByIdRequestBodyArg,
-    queryParams: UpdateCommentByIdQueryParamsArg = {} satisfies UpdateCommentByIdQueryParamsArg,
-    headers: UpdateCommentByIdHeadersArg = new UpdateCommentByIdHeadersArg({}),
+    requestBody: UpdateCommentByIdRequestBody = {} satisfies UpdateCommentByIdRequestBody,
+    queryParams: UpdateCommentByIdQueryParams = {} satisfies UpdateCommentByIdQueryParams,
+    headers: UpdateCommentByIdHeaders = new UpdateCommentByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
     const queryParamsMap: {
@@ -214,14 +219,15 @@ export class CommentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/comments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/comments/',
         toString(commentId) as string
       ) as string,
       {
         method: 'PUT',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeUpdateCommentByIdRequestBodyArg(requestBody),
+        data: serializeUpdateCommentByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -233,7 +239,7 @@ export class CommentsManager {
   }
   async deleteCommentById(
     commentId: string,
-    headers: DeleteCommentByIdHeadersArg = new DeleteCommentByIdHeadersArg({}),
+    headers: DeleteCommentByIdHeaders = new DeleteCommentByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -241,7 +247,8 @@ export class CommentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/comments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/comments/',
         toString(commentId) as string
       ) as string,
       {
@@ -256,9 +263,9 @@ export class CommentsManager {
     return void 0;
   }
   async createComment(
-    requestBody: CreateCommentRequestBodyArg,
-    queryParams: CreateCommentQueryParamsArg = {} satisfies CreateCommentQueryParamsArg,
-    headers: CreateCommentHeadersArg = new CreateCommentHeadersArg({}),
+    requestBody: CreateCommentRequestBody,
+    queryParams: CreateCommentQueryParams = {} satisfies CreateCommentQueryParams,
+    headers: CreateCommentHeaders = new CreateCommentHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
     const queryParamsMap: {
@@ -272,12 +279,12 @@ export class CommentsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/comments') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/comments') as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeCreateCommentRequestBodyArg(requestBody),
+        data: serializeCreateCommentRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -288,28 +295,28 @@ export class CommentsManager {
     return deserializeCommentFull(response.data);
   }
 }
-export function serializeUpdateCommentByIdRequestBodyArg(
-  val: UpdateCommentByIdRequestBodyArg
+export function serializeUpdateCommentByIdRequestBody(
+  val: UpdateCommentByIdRequestBody
 ): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
-export function deserializeUpdateCommentByIdRequestBodyArg(
+export function deserializeUpdateCommentByIdRequestBody(
   val: any
-): UpdateCommentByIdRequestBodyArg {
+): UpdateCommentByIdRequestBody {
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  return { message: message } satisfies UpdateCommentByIdRequestBodyArg;
+  return { message: message } satisfies UpdateCommentByIdRequestBody;
 }
-export function serializeCreateCommentRequestBodyArgItemFieldTypeField(
-  val: CreateCommentRequestBodyArgItemFieldTypeField
+export function serializeCreateCommentRequestBodyItemTypeField(
+  val: CreateCommentRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateCommentRequestBodyArgItemFieldTypeField(
+export function deserializeCreateCommentRequestBodyItemTypeField(
   val: any
-): CreateCommentRequestBodyArgItemFieldTypeField {
+): CreateCommentRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCommentRequestBodyArgItemFieldTypeField"';
+    throw 'Expecting a string for "CreateCommentRequestBodyItemTypeField"';
   }
   if (val == 'file') {
     return 'file';
@@ -319,43 +326,43 @@ export function deserializeCreateCommentRequestBodyArgItemFieldTypeField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateCommentRequestBodyArgItemField(
-  val: CreateCommentRequestBodyArgItemField
+export function serializeCreateCommentRequestBodyItemField(
+  val: CreateCommentRequestBodyItemField
 ): SerializedData {
   return {
     ['id']: val.id,
-    ['type']: serializeCreateCommentRequestBodyArgItemFieldTypeField(val.type),
+    ['type']: serializeCreateCommentRequestBodyItemTypeField(val.type),
   };
 }
-export function deserializeCreateCommentRequestBodyArgItemField(
+export function deserializeCreateCommentRequestBodyItemField(
   val: any
-): CreateCommentRequestBodyArgItemField {
+): CreateCommentRequestBodyItemField {
   const id: string = val.id;
-  const type: CreateCommentRequestBodyArgItemFieldTypeField =
-    deserializeCreateCommentRequestBodyArgItemFieldTypeField(val.type);
-  return { id: id, type: type } satisfies CreateCommentRequestBodyArgItemField;
+  const type: CreateCommentRequestBodyItemTypeField =
+    deserializeCreateCommentRequestBodyItemTypeField(val.type);
+  return { id: id, type: type } satisfies CreateCommentRequestBodyItemField;
 }
-export function serializeCreateCommentRequestBodyArg(
-  val: CreateCommentRequestBodyArg
+export function serializeCreateCommentRequestBody(
+  val: CreateCommentRequestBody
 ): SerializedData {
   return {
     ['message']: val.message,
     ['tagged_message']:
       val.taggedMessage == void 0 ? void 0 : val.taggedMessage,
-    ['item']: serializeCreateCommentRequestBodyArgItemField(val.item),
+    ['item']: serializeCreateCommentRequestBodyItemField(val.item),
   };
 }
-export function deserializeCreateCommentRequestBodyArg(
+export function deserializeCreateCommentRequestBody(
   val: any
-): CreateCommentRequestBodyArg {
+): CreateCommentRequestBody {
   const message: string = val.message;
   const taggedMessage: undefined | string =
     val.tagged_message == void 0 ? void 0 : val.tagged_message;
-  const item: CreateCommentRequestBodyArgItemField =
-    deserializeCreateCommentRequestBodyArgItemField(val.item);
+  const item: CreateCommentRequestBodyItemField =
+    deserializeCreateCommentRequestBodyItemField(val.item);
   return {
     message: message,
     taggedMessage: taggedMessage,
     item: item,
-  } satisfies CreateCommentRequestBodyArg;
+  } satisfies CreateCommentRequestBody;
 }

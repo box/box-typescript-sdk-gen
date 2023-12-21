@@ -23,9 +23,9 @@ await client.collections.getCollections();
 
 ### Arguments
 
-- queryParams `GetCollectionsQueryParamsArg`
+- queryParams `GetCollectionsQueryParams`
   - Query parameters of getCollections method
-- headers `GetCollectionsHeadersArg`
+- headers `GetCollectionsHeaders`
   - Headers of getCollections method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -56,9 +56,9 @@ await client.collections.getCollectionItems(favouriteCollection.id!);
 
 - collectionId `string`
   - The ID of the collection. Example: "926489"
-- queryParams `GetCollectionItemsQueryParamsArg`
+- queryParams `GetCollectionItemsQueryParams`
   - Query parameters of getCollectionItems method
-- headers `GetCollectionItemsHeadersArg`
+- headers `GetCollectionItemsHeaders`
   - Headers of getCollectionItems method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

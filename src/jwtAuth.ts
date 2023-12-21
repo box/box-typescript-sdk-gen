@@ -2,13 +2,12 @@ import type * as jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import { Authentication } from './auth';
 import {
-  TokenRequest,
   TokenRequestBoxSubjectType,
   TokenRequestGrantType,
 } from './authSchemas.js';
-import { FetchResponse, fetch } from './fetch.js';
+import { AuthorizationManager } from './managers/authorization.generated';
 import { NetworkSession } from './network';
-import { AccessToken, deserializeAccessToken } from './schemas.generated.js';
+import { AccessToken } from './schemas.generated.js';
 import { InMemoryTokenStorage, TokenStorage } from './tokenStorage.generated';
 import { isBrowser } from './utils.js';
 
@@ -215,21 +214,16 @@ export class BoxJwtAuth implements Authentication {
       jwtOptions
     );
 
-    const requestBody: TokenRequest = {
-      grant_type: BOX_JWT_GRANT_TYPE,
-      assertion: assertion,
-      client_id: this.config.clientId,
-      client_secret: this.config.clientSecret,
-    };
-    const params = {
-      method: 'POST',
-      data: requestBody as Record<string, any>,
-      contentType: 'application/x-www-form-urlencoded',
-      networkSession,
-    };
+    const authManager: AuthorizationManager = !(networkSession == void 0)
+      ? new AuthorizationManager({ networkSession: networkSession })
+      : new AuthorizationManager({});
+    const newToken = await authManager.requestAccessToken({
+      grantType: BOX_JWT_GRANT_TYPE,
+      assertion,
+      clientId: this.config.clientId,
+      clientSecret: this.config.clientSecret,
+    });
 
-    const response = (await fetch(BOX_JWT_AUDIENCE, params)) as FetchResponse;
-    const newToken = deserializeAccessToken(response.data);
     await this.tokenStorage.store(newToken);
     return newToken;
   }

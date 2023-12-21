@@ -1,0 +1,70 @@
+import { serializeUserFull } from '../schemas.generated.js';
+import { deserializeUserFull } from '../schemas.generated.js';
+import { serializeSessionTerminationMessage } from '../schemas.generated.js';
+import { deserializeSessionTerminationMessage } from '../schemas.generated.js';
+import { serializeTerminateUsersSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { deserializeTerminateUsersSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { serializeGroupFull } from '../schemas.generated.js';
+import { deserializeGroupFull } from '../schemas.generated.js';
+import { serializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { deserializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { serializeTerminateGroupsSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { deserializeTerminateGroupsSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { BoxClient } from '../client.generated.js';
+import { UserFull } from '../schemas.generated.js';
+import { SessionTerminationMessage } from '../schemas.generated.js';
+import { TerminateUsersSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { GroupFull } from '../schemas.generated.js';
+import { CreateGroupRequestBody } from '../managers/groups.generated.js';
+import { TerminateGroupsSessionsRequestBody } from '../managers/sessionTermination.generated.js';
+import { getUuid } from '../utils.js';
+import { getEnvVar } from '../utils.js';
+import { getDefaultClient } from './commons.generated.js';
+import { getDefaultClientAsUser } from './commons.generated.js';
+import { SerializedData } from '../json.js';
+import { sdIsEmpty } from '../json.js';
+import { sdIsBoolean } from '../json.js';
+import { sdIsNumber } from '../json.js';
+import { sdIsString } from '../json.js';
+import { sdIsList } from '../json.js';
+import { sdIsMap } from '../json.js';
+const client: BoxClient = getDefaultClient();
+test('testSessionTerminationUser', async function testSessionTerminationUser(): Promise<any> {
+  const adminClient: BoxClient = await getDefaultClientAsUser(
+    getEnvVar('USER_ID')
+  );
+  const user: UserFull = await adminClient.users.getUserMe();
+  const result: SessionTerminationMessage =
+    await client.sessionTermination.terminateUsersSessions({
+      userIds: [getEnvVar('USER_ID')],
+      userLogins: [user.login!],
+    } satisfies TerminateUsersSessionsRequestBody);
+  if (
+    !(
+      result.message ==
+      'Request is successful, please check the admin events for the status of the job'
+    )
+  ) {
+    throw 'Assertion failed';
+  }
+});
+test('testSessionTerminationGroup', async function testSessionTerminationGroup(): Promise<any> {
+  const groupName: string = getUuid();
+  const group: GroupFull = await client.groups.createGroup({
+    name: groupName,
+  } satisfies CreateGroupRequestBody);
+  const result: SessionTerminationMessage =
+    await client.sessionTermination.terminateGroupsSessions({
+      groupIds: [group.id],
+    } satisfies TerminateGroupsSessionsRequestBody);
+  if (
+    !(
+      result.message ==
+      'Request is successful, please check the admin events for the status of the job'
+    )
+  ) {
+    throw 'Assertion failed';
+  }
+  await client.groups.deleteGroupById(group.id);
+});
+export {};

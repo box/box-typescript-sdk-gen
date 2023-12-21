@@ -2,15 +2,15 @@ import { serializeShieldInformationBarrier } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrier } from '../schemas.generated.js';
 import { serializeShieldInformationBarriers } from '../schemas.generated.js';
 import { deserializeShieldInformationBarriers } from '../schemas.generated.js';
-import { serializeCreateShieldInformationBarrierChangeStatusRequestBodyArg } from '../managers/shieldInformationBarriers.generated.js';
-import { deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArg } from '../managers/shieldInformationBarriers.generated.js';
-import { serializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField } from '../managers/shieldInformationBarriers.generated.js';
-import { deserializeCreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField } from '../managers/shieldInformationBarriers.generated.js';
+import { serializeUpdateShieldInformationBarrierStatusRequestBody } from '../managers/shieldInformationBarriers.generated.js';
+import { deserializeUpdateShieldInformationBarrierStatusRequestBody } from '../managers/shieldInformationBarriers.generated.js';
+import { serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField } from '../managers/shieldInformationBarriers.generated.js';
+import { deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField } from '../managers/shieldInformationBarriers.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarriers } from '../schemas.generated.js';
-import { CreateShieldInformationBarrierChangeStatusRequestBodyArg } from '../managers/shieldInformationBarriers.generated.js';
-import { CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField } from '../managers/shieldInformationBarriers.generated.js';
+import { UpdateShieldInformationBarrierStatusRequestBody } from '../managers/shieldInformationBarriers.generated.js';
+import { UpdateShieldInformationBarrierStatusRequestBodyStatusField } from '../managers/shieldInformationBarriers.generated.js';
 import { getEnvVar } from '../utils.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
 import { getOrCreateShieldInformationBarrier } from './commons.generated.js';
@@ -53,13 +53,13 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
   if (!(barriers.entries!.length == 1)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
-    await client.shieldInformationBarriers.createShieldInformationBarrierChangeStatus(
+  await expect(async () => {
+    await client.shieldInformationBarriers.updateShieldInformationBarrierStatus(
       {
         id: barrierId,
         status:
-          'disabled' as CreateShieldInformationBarrierChangeStatusRequestBodyArgStatusField,
-      } satisfies CreateShieldInformationBarrierChangeStatusRequestBodyArg
+          'disabled' as UpdateShieldInformationBarrierStatusRequestBodyStatusField,
+      } satisfies UpdateShieldInformationBarrierStatusRequestBody
     );
   }).rejects.toThrow();
 });

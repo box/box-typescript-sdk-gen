@@ -2,12 +2,12 @@ import { serializeCollaborationAllowlistEntries } from '../schemas.generated.js'
 import { deserializeCollaborationAllowlistEntries } from '../schemas.generated.js';
 import { serializeCollaborationAllowlistEntry } from '../schemas.generated.js';
 import { deserializeCollaborationAllowlistEntry } from '../schemas.generated.js';
-import { serializeCreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
-import { deserializeCreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
+import { serializeCreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
+import { deserializeCreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { CollaborationAllowlistEntries } from '../schemas.generated.js';
 import { CollaborationAllowlistEntry } from '../schemas.generated.js';
-import { CreateCollaborationWhitelistEntryRequestBodyArg } from '../managers/collaborationAllowlistEntries.generated.js';
+import { CreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
 import { sdIsEmpty } from '../json.js';
@@ -30,7 +30,7 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
       {
         direction: direction,
         domain: domain,
-      } satisfies CreateCollaborationWhitelistEntryRequestBodyArg
+      } satisfies CreateCollaborationWhitelistEntryRequestBody
     );
   if (!(newEntry.type == 'collaboration_whitelist_entry')) {
     throw 'Assertion failed';
@@ -57,7 +57,7 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
   await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
     entry.id!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
       entry.id!
     );

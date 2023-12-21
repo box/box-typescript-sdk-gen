@@ -1,37 +1,37 @@
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeGroupMemberships } from '../schemas.generated.js';
 import { deserializeGroupMemberships } from '../schemas.generated.js';
 import { serializeGroupFull } from '../schemas.generated.js';
 import { deserializeGroupFull } from '../schemas.generated.js';
-import { serializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
-import { deserializeCreateGroupRequestBodyArg } from '../managers/groups.generated.js';
+import { serializeCreateGroupRequestBody } from '../managers/groups.generated.js';
+import { deserializeCreateGroupRequestBody } from '../managers/groups.generated.js';
 import { serializeGroupMembership } from '../schemas.generated.js';
 import { deserializeGroupMembership } from '../schemas.generated.js';
-import { serializeCreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
-import { deserializeCreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
-import { serializeCreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
-import { deserializeCreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
-import { serializeCreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
-import { deserializeCreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
-import { serializeUpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
-import { deserializeUpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
-import { serializeUpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
-import { deserializeUpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
+import { serializeCreateGroupMembershipRequestBody } from '../managers/memberships.generated.js';
+import { deserializeCreateGroupMembershipRequestBody } from '../managers/memberships.generated.js';
+import { serializeCreateGroupMembershipRequestBodyUserField } from '../managers/memberships.generated.js';
+import { deserializeCreateGroupMembershipRequestBodyUserField } from '../managers/memberships.generated.js';
+import { serializeCreateGroupMembershipRequestBodyGroupField } from '../managers/memberships.generated.js';
+import { deserializeCreateGroupMembershipRequestBodyGroupField } from '../managers/memberships.generated.js';
+import { serializeUpdateGroupMembershipByIdRequestBody } from '../managers/memberships.generated.js';
+import { deserializeUpdateGroupMembershipByIdRequestBody } from '../managers/memberships.generated.js';
+import { serializeUpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
+import { deserializeUpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { GroupMemberships } from '../schemas.generated.js';
 import { GroupFull } from '../schemas.generated.js';
-import { CreateGroupRequestBodyArg } from '../managers/groups.generated.js';
+import { CreateGroupRequestBody } from '../managers/groups.generated.js';
 import { GroupMembership } from '../schemas.generated.js';
-import { CreateGroupMembershipRequestBodyArg } from '../managers/memberships.generated.js';
-import { CreateGroupMembershipRequestBodyArgUserField } from '../managers/memberships.generated.js';
-import { CreateGroupMembershipRequestBodyArgGroupField } from '../managers/memberships.generated.js';
-import { UpdateGroupMembershipByIdRequestBodyArg } from '../managers/memberships.generated.js';
-import { UpdateGroupMembershipByIdRequestBodyArgRoleField } from '../managers/memberships.generated.js';
+import { CreateGroupMembershipRequestBody } from '../managers/memberships.generated.js';
+import { CreateGroupMembershipRequestBodyUserField } from '../managers/memberships.generated.js';
+import { CreateGroupMembershipRequestBodyGroupField } from '../managers/memberships.generated.js';
+import { UpdateGroupMembershipByIdRequestBody } from '../managers/memberships.generated.js';
+import { UpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
@@ -48,7 +48,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   const user: UserFull = await client.users.createUser({
     name: getUuid(),
     login: ''.concat(getUuid(), '@boxdemo.com') as string,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const userMemberships: GroupMemberships =
     await client.memberships.getUserMemberships(user.id);
   if (!(userMemberships.totalCount == 0)) {
@@ -56,7 +56,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   }
   const group: GroupFull = await client.groups.createGroup({
     name: getUuid(),
-  } satisfies CreateGroupRequestBodyArg);
+  } satisfies CreateGroupRequestBody);
   const groupMemberships: GroupMemberships =
     await client.memberships.getGroupMemberships(group.id);
   if (!(groupMemberships.totalCount == 0)) {
@@ -64,13 +64,11 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   }
   const groupMembership: GroupMembership =
     await client.memberships.createGroupMembership({
-      user: {
-        id: user.id,
-      } satisfies CreateGroupMembershipRequestBodyArgUserField,
+      user: { id: user.id } satisfies CreateGroupMembershipRequestBodyUserField,
       group: {
         id: group.id,
-      } satisfies CreateGroupMembershipRequestBodyArgGroupField,
-    } satisfies CreateGroupMembershipRequestBodyArg);
+      } satisfies CreateGroupMembershipRequestBodyGroupField,
+    } satisfies CreateGroupMembershipRequestBody);
   if (!(groupMembership.user!.id == user.id)) {
     throw 'Assertion failed';
   }
@@ -87,8 +85,8 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   }
   const updatedGroupMembership: GroupMembership =
     await client.memberships.updateGroupMembershipById(groupMembership.id!, {
-      role: 'admin' as UpdateGroupMembershipByIdRequestBodyArgRoleField,
-    } satisfies UpdateGroupMembershipByIdRequestBodyArg);
+      role: 'admin' as UpdateGroupMembershipByIdRequestBodyRoleField,
+    } satisfies UpdateGroupMembershipByIdRequestBody);
   if (!(updatedGroupMembership.id == groupMembership.id)) {
     throw 'Assertion failed';
   }
@@ -96,7 +94,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.memberships.deleteGroupMembershipById(groupMembership.id!);
-  expect(async () => {
+  await expect(async () => {
     await client.memberships.getGroupMembershipById(groupMembership.id!);
   }).rejects.toThrow();
   await client.groups.deleteGroupById(group.id);

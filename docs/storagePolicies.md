@@ -16,9 +16,9 @@ _Currently we don't have an example for calling `getStoragePolicies` in integrat
 
 ### Arguments
 
-- queryParams `GetStoragePoliciesQueryParamsArg`
+- queryParams `GetStoragePoliciesQueryParams`
   - Query parameters of getStoragePolicies method
-- headers `GetStoragePoliciesHeadersArg`
+- headers `GetStoragePoliciesHeaders`
   - Headers of getStoragePolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -44,7 +44,7 @@ _Currently we don't have an example for calling `getStoragePolicyById` in integr
 
 - storagePolicyId `string`
   - The ID of the storage policy. Example: "34342"
-- headers `GetStoragePolicyByIdHeadersArg`
+- headers `GetStoragePolicyByIdHeaders`
   - Headers of getStoragePolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

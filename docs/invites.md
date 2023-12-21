@@ -26,20 +26,20 @@ See the endpoint docs at
 await client.invites.createInvite({
   enterprise: {
     id: currentUser.enterprise!.id!,
-  } satisfies CreateInviteRequestBodyArgEnterpriseField,
+  } satisfies CreateInviteRequestBodyEnterpriseField,
   actionableBy: {
     login: email,
-  } satisfies CreateInviteRequestBodyArgActionableByField,
-} satisfies CreateInviteRequestBodyArg);
+  } satisfies CreateInviteRequestBodyActionableByField,
+} satisfies CreateInviteRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateInviteRequestBodyArg`
+- requestBody `CreateInviteRequestBody`
   - Request body of createInvite method
-- queryParams `CreateInviteQueryParamsArg`
+- queryParams `CreateInviteQueryParams`
   - Query parameters of createInvite method
-- headers `CreateInviteHeadersArg`
+- headers `CreateInviteHeaders`
   - Headers of createInvite method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -69,9 +69,9 @@ await client.invites.getInviteById(invitation.id);
 
 - inviteId `string`
   - The ID of an invite. Example: "213723"
-- queryParams `GetInviteByIdQueryParamsArg`
+- queryParams `GetInviteByIdQueryParams`
   - Query parameters of getInviteById method
-- headers `GetInviteByIdHeadersArg`
+- headers `GetInviteByIdHeaders`
   - Headers of getInviteById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

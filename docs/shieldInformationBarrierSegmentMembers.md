@@ -15,13 +15,19 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentMemberById` in integration tests_
+<!-- sample get_shield_information_barrier_segment_members_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
+  segmentMember.id!
+);
+```
 
 ### Arguments
 
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
-- headers `GetShieldInformationBarrierSegmentMemberByIdHeadersArg`
+- headers `GetShieldInformationBarrierSegmentMemberByIdHeaders`
   - Headers of getShieldInformationBarrierSegmentMemberById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -42,13 +48,19 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-members-id/).
 
-_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentMemberById` in integration tests_
+<!-- sample delete_shield_information_barrier_segment_members_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarrierSegmentMemberById(
+  segmentMember.id!
+);
+```
 
 ### Arguments
 
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
-- headers `DeleteShieldInformationBarrierSegmentMemberByIdHeadersArg`
+- headers `DeleteShieldInformationBarrierSegmentMemberByIdHeaders`
   - Headers of deleteShieldInformationBarrierSegmentMemberById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -70,13 +82,21 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentMembers` in integration tests_
+<!-- sample get_shield_information_barrier_segment_members -->
+
+```ts
+await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMembers(
+  {
+    shieldInformationBarrierSegmentId: segment.id!,
+  } satisfies GetShieldInformationBarrierSegmentMembersQueryParams
+);
+```
 
 ### Arguments
 
-- queryParams `GetShieldInformationBarrierSegmentMembersQueryParamsArg`
+- queryParams `GetShieldInformationBarrierSegmentMembersQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentMembers method
-- headers `GetShieldInformationBarrierSegmentMembersHeadersArg`
+- headers `GetShieldInformationBarrierSegmentMembersHeaders`
   - Headers of getShieldInformationBarrierSegmentMembers method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,13 +117,28 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-members/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierSegmentMember` in integration tests_
+<!-- sample post_shield_information_barrier_segment_members -->
+
+```ts
+await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarrierSegmentMember(
+  {
+    shieldInformationBarrierSegment: {
+      id: segment.id!,
+      type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField,
+    } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
+    user: {
+      id: getEnvVar('USER_ID'),
+      type: 'user' as UserBaseTypeField,
+    } satisfies UserBase,
+  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
+);
+```
 
 ### Arguments
 
-- requestBody `CreateShieldInformationBarrierSegmentMemberRequestBodyArg`
+- requestBody `CreateShieldInformationBarrierSegmentMemberRequestBody`
   - Request body of createShieldInformationBarrierSegmentMember method
-- headers `CreateShieldInformationBarrierSegmentMemberHeadersArg`
+- headers `CreateShieldInformationBarrierSegmentMemberHeaders`
   - Headers of createShieldInformationBarrierSegmentMember method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

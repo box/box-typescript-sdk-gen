@@ -1,34 +1,34 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { serializeWebhook } from '../schemas.generated.js';
 import { deserializeWebhook } from '../schemas.generated.js';
-import { serializeCreateWebhookRequestBodyArg } from '../managers/webhooks.generated.js';
-import { deserializeCreateWebhookRequestBodyArg } from '../managers/webhooks.generated.js';
-import { serializeCreateWebhookRequestBodyArgTargetField } from '../managers/webhooks.generated.js';
-import { deserializeCreateWebhookRequestBodyArgTargetField } from '../managers/webhooks.generated.js';
-import { serializeCreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
-import { deserializeCreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
-import { serializeCreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
-import { deserializeCreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
+import { serializeCreateWebhookRequestBody } from '../managers/webhooks.generated.js';
+import { deserializeCreateWebhookRequestBody } from '../managers/webhooks.generated.js';
+import { serializeCreateWebhookRequestBodyTargetField } from '../managers/webhooks.generated.js';
+import { deserializeCreateWebhookRequestBodyTargetField } from '../managers/webhooks.generated.js';
+import { serializeCreateWebhookRequestBodyTargetTypeField } from '../managers/webhooks.generated.js';
+import { deserializeCreateWebhookRequestBodyTargetTypeField } from '../managers/webhooks.generated.js';
+import { serializeCreateWebhookRequestBodyTriggersField } from '../managers/webhooks.generated.js';
+import { deserializeCreateWebhookRequestBodyTriggersField } from '../managers/webhooks.generated.js';
 import { serializeWebhooks } from '../schemas.generated.js';
 import { deserializeWebhooks } from '../schemas.generated.js';
-import { serializeUpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
-import { deserializeUpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
+import { serializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
+import { deserializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { Webhook } from '../schemas.generated.js';
-import { CreateWebhookRequestBodyArg } from '../managers/webhooks.generated.js';
-import { CreateWebhookRequestBodyArgTargetField } from '../managers/webhooks.generated.js';
-import { CreateWebhookRequestBodyArgTargetFieldTypeField } from '../managers/webhooks.generated.js';
-import { CreateWebhookRequestBodyArgTriggersField } from '../managers/webhooks.generated.js';
+import { CreateWebhookRequestBody } from '../managers/webhooks.generated.js';
+import { CreateWebhookRequestBodyTargetField } from '../managers/webhooks.generated.js';
+import { CreateWebhookRequestBodyTargetTypeField } from '../managers/webhooks.generated.js';
+import { CreateWebhookRequestBodyTriggersField } from '../managers/webhooks.generated.js';
 import { Webhooks } from '../schemas.generated.js';
-import { UpdateWebhookByIdRequestBodyArg } from '../managers/webhooks.generated.js';
+import { UpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../utils.js';
@@ -44,16 +44,16 @@ const client: BoxClient = getDefaultClient();
 test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
   const webhook: Webhook = await client.webhooks.createWebhook({
     target: {
       id: folder.id,
-      type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
-    } satisfies CreateWebhookRequestBodyArgTargetField,
+      type: 'folder' as CreateWebhookRequestBodyTargetTypeField,
+    } satisfies CreateWebhookRequestBodyTargetField,
     address: 'https://example.com/new-webhook',
-    triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyArgTriggersField],
-  } satisfies CreateWebhookRequestBodyArg);
+    triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyTriggersField],
+  } satisfies CreateWebhookRequestBody);
   if (!(webhook.target!.id == folder.id)) {
     throw 'Assertion failed';
   }
@@ -86,7 +86,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     webhook.id!,
     {
       address: 'https://example.com/updated-webhook',
-    } satisfies UpdateWebhookByIdRequestBodyArg
+    } satisfies UpdateWebhookByIdRequestBody
   );
   if (!(updatedWebhook.id == webhook.id)) {
     throw 'Assertion failed';
@@ -95,7 +95,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     throw 'Assertion failed';
   }
   await client.webhooks.deleteWebhookById(webhook.id!);
-  expect(async () => {
+  await expect(async () => {
     await client.webhooks.deleteWebhookById(webhook.id!);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);

@@ -24,121 +24,121 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField =
+export type GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField =
   | 'user'
   | 'enterprise';
-export interface GetStoragePolicyAssignmentsQueryParamsArg {
+export interface GetStoragePolicyAssignmentsQueryParams {
   readonly marker?: string;
-  readonly resolvedForType: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField;
+  readonly resolvedForType: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField;
   readonly resolvedForId: string;
 }
-export class GetStoragePolicyAssignmentsHeadersArg {
+export class GetStoragePolicyAssignmentsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetStoragePolicyAssignmentsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyAssignmentsHeadersArg, 'extraHeaders'>>
+      | Omit<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField =
+export type CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
   'storage_policy';
-export interface CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField {
-  readonly type: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField;
+export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
+  readonly type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
   readonly id: string;
 }
-export type CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField =
-  'user' | 'enterprise';
-export interface CreateStoragePolicyAssignmentRequestBodyArgAssignedToField {
-  readonly type: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField;
+export type CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
+  | 'user'
+  | 'enterprise';
+export interface CreateStoragePolicyAssignmentRequestBodyAssignedToField {
+  readonly type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField;
   readonly id: string;
 }
-export interface CreateStoragePolicyAssignmentRequestBodyArg {
-  readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField;
-  readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
+export interface CreateStoragePolicyAssignmentRequestBody {
+  readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
+  readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField;
 }
-export class CreateStoragePolicyAssignmentHeadersArg {
+export class CreateStoragePolicyAssignmentHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateStoragePolicyAssignmentHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateStoragePolicyAssignmentHeadersArg, 'extraHeaders'>>
+      | Omit<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetStoragePolicyAssignmentByIdHeadersArg {
+export class GetStoragePolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField =
+export type UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
   'storage_policy';
-export interface UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField {
-  readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField;
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
+  readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
   readonly id: string;
 }
-export interface UpdateStoragePolicyAssignmentByIdRequestBodyArg {
-  readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
+export interface UpdateStoragePolicyAssignmentByIdRequestBody {
+  readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
-export class UpdateStoragePolicyAssignmentByIdHeadersArg {
+export class UpdateStoragePolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-      | Partial<
-          Pick<UpdateStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-        >
+      | Omit<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteStoragePolicyAssignmentByIdHeadersArg {
+export class DeleteStoragePolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-      | Partial<
-          Pick<DeleteStoragePolicyAssignmentByIdHeadersArg, 'extraHeaders'>
-        >
+      | Omit<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class StoragePolicyAssignmentsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      StoragePolicyAssignmentsManager,
-      | 'getStoragePolicyAssignments'
-      | 'createStoragePolicyAssignment'
-      | 'getStoragePolicyAssignmentById'
-      | 'updateStoragePolicyAssignmentById'
-      | 'deleteStoragePolicyAssignmentById'
-    >
+    fields:
+      | Omit<
+          StoragePolicyAssignmentsManager,
+          | 'networkSession'
+          | 'getStoragePolicyAssignments'
+          | 'createStoragePolicyAssignment'
+          | 'getStoragePolicyAssignmentById'
+          | 'updateStoragePolicyAssignmentById'
+          | 'deleteStoragePolicyAssignmentById'
+        >
+      | Partial<Pick<StoragePolicyAssignmentsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getStoragePolicyAssignments(
-    queryParams: GetStoragePolicyAssignmentsQueryParamsArg,
-    headers: GetStoragePolicyAssignmentsHeadersArg = new GetStoragePolicyAssignmentsHeadersArg(
+    queryParams: GetStoragePolicyAssignmentsQueryParams,
+    headers: GetStoragePolicyAssignmentsHeaders = new GetStoragePolicyAssignmentsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -154,7 +154,10 @@ export class StoragePolicyAssignmentsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/storage_policy_assignments') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policy_assignments'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -168,8 +171,8 @@ export class StoragePolicyAssignmentsManager {
     return deserializeStoragePolicyAssignments(response.data);
   }
   async createStoragePolicyAssignment(
-    requestBody: CreateStoragePolicyAssignmentRequestBodyArg,
-    headers: CreateStoragePolicyAssignmentHeadersArg = new CreateStoragePolicyAssignmentHeadersArg(
+    requestBody: CreateStoragePolicyAssignmentRequestBody,
+    headers: CreateStoragePolicyAssignmentHeaders = new CreateStoragePolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -178,11 +181,14 @@ export class StoragePolicyAssignmentsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/storage_policy_assignments') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policy_assignments'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateStoragePolicyAssignmentRequestBodyArg(requestBody),
+        data: serializeCreateStoragePolicyAssignmentRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -194,7 +200,7 @@ export class StoragePolicyAssignmentsManager {
   }
   async getStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headers: GetStoragePolicyAssignmentByIdHeadersArg = new GetStoragePolicyAssignmentByIdHeadersArg(
+    headers: GetStoragePolicyAssignmentByIdHeaders = new GetStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -204,7 +210,8 @@ export class StoragePolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/storage_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {
@@ -220,8 +227,8 @@ export class StoragePolicyAssignmentsManager {
   }
   async updateStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    requestBody: UpdateStoragePolicyAssignmentByIdRequestBodyArg,
-    headers: UpdateStoragePolicyAssignmentByIdHeadersArg = new UpdateStoragePolicyAssignmentByIdHeadersArg(
+    requestBody: UpdateStoragePolicyAssignmentByIdRequestBody,
+    headers: UpdateStoragePolicyAssignmentByIdHeaders = new UpdateStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -231,13 +238,14 @@ export class StoragePolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/storage_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(
+        data: serializeUpdateStoragePolicyAssignmentByIdRequestBody(
           requestBody
         ),
         contentType: 'application/json',
@@ -251,7 +259,7 @@ export class StoragePolicyAssignmentsManager {
   }
   async deleteStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headers: DeleteStoragePolicyAssignmentByIdHeadersArg = new DeleteStoragePolicyAssignmentByIdHeadersArg(
+    headers: DeleteStoragePolicyAssignmentByIdHeaders = new DeleteStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -261,7 +269,8 @@ export class StoragePolicyAssignmentsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/storage_policy_assignments/',
+        this.networkSession.baseUrls.baseUrl,
+        '/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {
@@ -276,16 +285,16 @@ export class StoragePolicyAssignmentsManager {
     return void 0;
   }
 }
-export function serializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
-  val: GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField
+export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
+  val: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField(
+export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
   val: any
-): GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField {
+): GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsArgResolvedForTypeField"';
+    throw 'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField"';
   }
   if (val == 'user') {
     return 'user';
@@ -295,56 +304,56 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsArgResolvedForT
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
-  val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField
+export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
+  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
+export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
   val: any
-): CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField {
+): CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField"';
+    throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField"';
   }
   if (val == 'storage_policy') {
     return 'storage_policy';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
-  val: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField
+export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
+  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField
 ): SerializedData {
   return {
     ['type']:
-      serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
+      serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
         val.type
       ),
     ['id']: val.id,
   };
 }
-export function deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
+export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
   val: any
-): CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField {
-  const type: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField =
-    deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyFieldTypeField(
+): CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
+  const type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
+    deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
       val.type
     );
   const id: string = val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField;
+  } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
 }
-export function serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
-  val: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField
+export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
+  val: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
+export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
   val: any
-): CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField {
+): CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField"';
+    throw 'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField"';
   }
   if (val == 'user') {
     return 'user';
@@ -354,118 +363,118 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedTo
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(
-  val: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField
+export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
+  val: CreateStoragePolicyAssignmentRequestBodyAssignedToField
 ): SerializedData {
   return {
     ['type']:
-      serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
+      serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
         val.type
       ),
     ['id']: val.id,
   };
 }
-export function deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(
+export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
   val: any
-): CreateStoragePolicyAssignmentRequestBodyArgAssignedToField {
-  const type: CreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField =
-    deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToFieldTypeField(
+): CreateStoragePolicyAssignmentRequestBodyAssignedToField {
+  const type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
+    deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
       val.type
     );
   const id: string = val.id;
   return {
     type: type,
     id: id,
-  } satisfies CreateStoragePolicyAssignmentRequestBodyArgAssignedToField;
+  } satisfies CreateStoragePolicyAssignmentRequestBodyAssignedToField;
 }
-export function serializeCreateStoragePolicyAssignmentRequestBodyArg(
-  val: CreateStoragePolicyAssignmentRequestBodyArg
+export function serializeCreateStoragePolicyAssignmentRequestBody(
+  val: CreateStoragePolicyAssignmentRequestBody
 ): SerializedData {
   return {
     ['storage_policy']:
-      serializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
+      serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
         val.storagePolicy
       ),
     ['assigned_to']:
-      serializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(
+      serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
         val.assignedTo
       ),
   };
 }
-export function deserializeCreateStoragePolicyAssignmentRequestBodyArg(
+export function deserializeCreateStoragePolicyAssignmentRequestBody(
   val: any
-): CreateStoragePolicyAssignmentRequestBodyArg {
-  const storagePolicy: CreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField =
-    deserializeCreateStoragePolicyAssignmentRequestBodyArgStoragePolicyField(
+): CreateStoragePolicyAssignmentRequestBody {
+  const storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField =
+    deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
       val.storage_policy
     );
-  const assignedTo: CreateStoragePolicyAssignmentRequestBodyArgAssignedToField =
-    deserializeCreateStoragePolicyAssignmentRequestBodyArgAssignedToField(
+  const assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField =
+    deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
       val.assigned_to
     );
   return {
     storagePolicy: storagePolicy,
     assignedTo: assignedTo,
-  } satisfies CreateStoragePolicyAssignmentRequestBodyArg;
+  } satisfies CreateStoragePolicyAssignmentRequestBody;
 }
-export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
-  val: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField
+export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
+  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
+export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
   val: any
-): UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField {
+): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField"';
+    throw 'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField"';
   }
   if (val == 'storage_policy') {
     return 'storage_policy';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(
-  val: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField
+export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
+  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField
 ): SerializedData {
   return {
     ['type']:
-      serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
+      serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
         val.type
       ),
     ['id']: val.id,
   };
 }
-export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(
+export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
   val: any
-): UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField {
-  const type: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField =
-    deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyFieldTypeField(
+): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
+  const type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
+    deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
       val.type
     );
   const id: string = val.id;
   return {
     type: type,
     id: id,
-  } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField;
+  } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
-export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(
-  val: UpdateStoragePolicyAssignmentByIdRequestBodyArg
+export function serializeUpdateStoragePolicyAssignmentByIdRequestBody(
+  val: UpdateStoragePolicyAssignmentByIdRequestBody
 ): SerializedData {
   return {
     ['storage_policy']:
-      serializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(
+      serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
         val.storagePolicy
       ),
   };
 }
-export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArg(
+export function deserializeUpdateStoragePolicyAssignmentByIdRequestBody(
   val: any
-): UpdateStoragePolicyAssignmentByIdRequestBodyArg {
-  const storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField =
-    deserializeUpdateStoragePolicyAssignmentByIdRequestBodyArgStoragePolicyField(
+): UpdateStoragePolicyAssignmentByIdRequestBody {
+  const storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField =
+    deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
       val.storage_policy
     );
   return {
     storagePolicy: storagePolicy,
-  } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyArg;
+  } satisfies UpdateStoragePolicyAssignmentByIdRequestBody;
 }

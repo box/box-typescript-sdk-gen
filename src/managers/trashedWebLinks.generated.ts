@@ -24,71 +24,76 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface RestoreWeblinkFromTrashRequestBodyArgParentField {
+export interface RestoreWeblinkFromTrashRequestBodyParentField {
   readonly id?: string;
 }
-export interface RestoreWeblinkFromTrashRequestBodyArg {
+export interface RestoreWeblinkFromTrashRequestBody {
   readonly name?: string;
-  readonly parent?: RestoreWeblinkFromTrashRequestBodyArgParentField;
+  readonly parent?: RestoreWeblinkFromTrashRequestBodyParentField;
 }
-export interface RestoreWeblinkFromTrashQueryParamsArg {
+export interface RestoreWeblinkFromTrashQueryParams {
   readonly fields?: readonly string[];
 }
-export class RestoreWeblinkFromTrashHeadersArg {
+export class RestoreWeblinkFromTrashHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<RestoreWeblinkFromTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<RestoreWeblinkFromTrashHeadersArg, 'extraHeaders'>>
+      | Omit<RestoreWeblinkFromTrashHeaders, 'extraHeaders'>
+      | Partial<Pick<RestoreWeblinkFromTrashHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetWebLinkTrashQueryParamsArg {
+export interface GetTrashedWebLinkByIdQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetWebLinkTrashHeadersArg {
+export class GetTrashedWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetWebLinkTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetWebLinkTrashHeadersArg, 'extraHeaders'>>
+      | Omit<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteWebLinkTrashHeadersArg {
+export class DeleteTrashedWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteWebLinkTrashHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteWebLinkTrashHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TrashedWebLinksManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      TrashedWebLinksManager,
-      'restoreWeblinkFromTrash' | 'getWebLinkTrash' | 'deleteWebLinkTrash'
-    >
+    fields:
+      | Omit<
+          TrashedWebLinksManager,
+          | 'networkSession'
+          | 'restoreWeblinkFromTrash'
+          | 'getTrashedWebLinkById'
+          | 'deleteTrashedWebLinkById'
+        >
+      | Partial<Pick<TrashedWebLinksManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async restoreWeblinkFromTrash(
     webLinkId: string,
-    requestBody: RestoreWeblinkFromTrashRequestBodyArg = {} satisfies RestoreWeblinkFromTrashRequestBodyArg,
-    queryParams: RestoreWeblinkFromTrashQueryParamsArg = {} satisfies RestoreWeblinkFromTrashQueryParamsArg,
-    headers: RestoreWeblinkFromTrashHeadersArg = new RestoreWeblinkFromTrashHeadersArg(
+    requestBody: RestoreWeblinkFromTrashRequestBody = {} satisfies RestoreWeblinkFromTrashRequestBody,
+    queryParams: RestoreWeblinkFromTrashQueryParams = {} satisfies RestoreWeblinkFromTrashQueryParams,
+    headers: RestoreWeblinkFromTrashHeaders = new RestoreWeblinkFromTrashHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -105,14 +110,15 @@ export class TrashedWebLinksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
         method: 'POST',
         params: queryParamsMap,
         headers: headersMap,
-        data: serializeRestoreWeblinkFromTrashRequestBodyArg(requestBody),
+        data: serializeRestoreWeblinkFromTrashRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -122,10 +128,12 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLinkRestored(response.data);
   }
-  async getWebLinkTrash(
+  async getTrashedWebLinkById(
     webLinkId: string,
-    queryParams: GetWebLinkTrashQueryParamsArg = {} satisfies GetWebLinkTrashQueryParamsArg,
-    headers: GetWebLinkTrashHeadersArg = new GetWebLinkTrashHeadersArg({}),
+    queryParams: GetTrashedWebLinkByIdQueryParams = {} satisfies GetTrashedWebLinkByIdQueryParams,
+    headers: GetTrashedWebLinkByIdHeaders = new GetTrashedWebLinkByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TrashWebLink> {
     const queryParamsMap: {
@@ -140,7 +148,8 @@ export class TrashedWebLinksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string,
         '/trash'
       ) as string,
@@ -156,9 +165,9 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLink(response.data);
   }
-  async deleteWebLinkTrash(
+  async deleteTrashedWebLinkById(
     webLinkId: string,
-    headers: DeleteWebLinkTrashHeadersArg = new DeleteWebLinkTrashHeadersArg(
+    headers: DeleteTrashedWebLinkByIdHeaders = new DeleteTrashedWebLinkByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -168,7 +177,8 @@ export class TrashedWebLinksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string,
         '/trash'
       ) as string,
@@ -184,38 +194,38 @@ export class TrashedWebLinksManager {
     return void 0;
   }
 }
-export function serializeRestoreWeblinkFromTrashRequestBodyArgParentField(
-  val: RestoreWeblinkFromTrashRequestBodyArgParentField
+export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
+  val: RestoreWeblinkFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(
+export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: any
-): RestoreWeblinkFromTrashRequestBodyArgParentField {
+): RestoreWeblinkFromTrashRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyArgParentField;
+  return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
-export function serializeRestoreWeblinkFromTrashRequestBodyArg(
-  val: RestoreWeblinkFromTrashRequestBodyArg
+export function serializeRestoreWeblinkFromTrashRequestBody(
+  val: RestoreWeblinkFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeRestoreWeblinkFromTrashRequestBodyArgParentField(val.parent),
+        : serializeRestoreWeblinkFromTrashRequestBodyParentField(val.parent),
   };
 }
-export function deserializeRestoreWeblinkFromTrashRequestBodyArg(
+export function deserializeRestoreWeblinkFromTrashRequestBody(
   val: any
-): RestoreWeblinkFromTrashRequestBodyArg {
+): RestoreWeblinkFromTrashRequestBody {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const parent: undefined | RestoreWeblinkFromTrashRequestBodyArgParentField =
+  const parent: undefined | RestoreWeblinkFromTrashRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializeRestoreWeblinkFromTrashRequestBodyArgParentField(val.parent);
+      : deserializeRestoreWeblinkFromTrashRequestBodyParentField(val.parent);
   return {
     name: name,
     parent: parent,
-  } satisfies RestoreWeblinkFromTrashRequestBodyArg;
+  } satisfies RestoreWeblinkFromTrashRequestBody;
 }

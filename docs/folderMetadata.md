@@ -26,7 +26,7 @@ await client.folderMetadata.getFolderMetadata(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `GetFolderMetadataHeadersArg`
+- headers `GetFolderMetadataHeaders`
   - Headers of getFolderMetadata method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -55,7 +55,7 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.getFolderMetadataById(
   folder.id,
-  'global' as GetFolderMetadataByIdScopeArg,
+  'global' as GetFolderMetadataByIdScope,
   'properties'
 );
 ```
@@ -64,11 +64,11 @@ await client.folderMetadata.getFolderMetadataById(
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- scope `GetFolderMetadataByIdScopeArg`
+- scope `GetFolderMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `GetFolderMetadataByIdHeadersArg`
+- headers `GetFolderMetadataByIdHeaders`
   - Headers of getFolderMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -103,7 +103,7 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.createFolderMetadataById(
   folder.id,
-  'enterprise' as CreateFolderMetadataByIdScopeArg,
+  'enterprise' as CreateFolderMetadataByIdScope,
   templateKey,
   data
 );
@@ -113,13 +113,13 @@ await client.folderMetadata.createFolderMetadataById(
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- scope `CreateFolderMetadataByIdScopeArg`
+- scope `CreateFolderMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `CreateFolderMetadataByIdRequestBodyArg`
+- requestBody `CreateFolderMetadataByIdRequestBody`
   - Request body of createFolderMetadataById method
-- headers `CreateFolderMetadataByIdHeadersArg`
+- headers `CreateFolderMetadataByIdHeaders`
   - Headers of createFolderMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -152,14 +152,14 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.updateFolderMetadataById(
   folder.id,
-  'global' as UpdateFolderMetadataByIdScopeArg,
+  'global' as UpdateFolderMetadataByIdScope,
   'properties',
   [
     {
-      op: 'replace' as UpdateFolderMetadataByIdRequestBodyArgOpField,
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
       path: '/abc',
       value: newValue,
-    } satisfies UpdateFolderMetadataByIdRequestBodyArg,
+    } satisfies UpdateFolderMetadataByIdRequestBody,
   ]
 );
 ```
@@ -168,13 +168,13 @@ await client.folderMetadata.updateFolderMetadataById(
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- scope `UpdateFolderMetadataByIdScopeArg`
+- scope `UpdateFolderMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `readonly UpdateFolderMetadataByIdRequestBodyArg[]`
+- requestBody `readonly UpdateFolderMetadataByIdRequestBody[]`
   - Request body of updateFolderMetadataById method
-- headers `UpdateFolderMetadataByIdHeadersArg`
+- headers `UpdateFolderMetadataByIdHeaders`
   - Headers of updateFolderMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -200,7 +200,7 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
-  'global' as DeleteFolderMetadataByIdScopeArg,
+  'global' as DeleteFolderMetadataByIdScope,
   'properties'
 );
 ```
@@ -209,11 +209,11 @@ await client.folderMetadata.deleteFolderMetadataById(
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- scope `DeleteFolderMetadataByIdScopeArg`
+- scope `DeleteFolderMetadataByIdScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `DeleteFolderMetadataByIdHeadersArg`
+- headers `DeleteFolderMetadataByIdHeaders`
   - Headers of deleteFolderMetadataById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -21,43 +21,42 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export type GetFolderTrashItemsQueryParamsArgDirectionField = 'ASC' | 'DESC';
-export type GetFolderTrashItemsQueryParamsArgSortField =
-  | 'name'
-  | 'date'
-  | 'size';
-export interface GetFolderTrashItemsQueryParamsArg {
+export type GetTrashedItemsQueryParamsDirectionField = 'ASC' | 'DESC';
+export type GetTrashedItemsQueryParamsSortField = 'name' | 'date' | 'size';
+export interface GetTrashedItemsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly offset?: number;
   readonly usemarker?: boolean;
   readonly marker?: string;
-  readonly direction?: GetFolderTrashItemsQueryParamsArgDirectionField;
-  readonly sort?: GetFolderTrashItemsQueryParamsArgSortField;
+  readonly direction?: GetTrashedItemsQueryParamsDirectionField;
+  readonly sort?: GetTrashedItemsQueryParamsSortField;
 }
-export class GetFolderTrashItemsHeadersArg {
+export class GetTrashedItemsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderTrashItemsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderTrashItemsHeadersArg, 'extraHeaders'>>
+      | Omit<GetTrashedItemsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class TrashedItemsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
-  constructor(fields: Omit<TrashedItemsManager, 'getFolderTrashItems'>) {
+  readonly networkSession: NetworkSession = new NetworkSession({});
+  constructor(
+    fields:
+      | Omit<TrashedItemsManager, 'networkSession' | 'getTrashedItems'>
+      | Partial<Pick<TrashedItemsManager, 'networkSession'>>
+  ) {
     Object.assign(this, fields);
   }
-  async getFolderTrashItems(
-    queryParams: GetFolderTrashItemsQueryParamsArg = {} satisfies GetFolderTrashItemsQueryParamsArg,
-    headers: GetFolderTrashItemsHeadersArg = new GetFolderTrashItemsHeadersArg(
-      {}
-    ),
+  async getTrashedItems(
+    queryParams: GetTrashedItemsQueryParams = {} satisfies GetTrashedItemsQueryParams,
+    headers: GetTrashedItemsHeaders = new GetTrashedItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
     const queryParamsMap: {
@@ -77,7 +76,10 @@ export class TrashedItemsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/folders/trash/items') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/trash/items'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -91,16 +93,16 @@ export class TrashedItemsManager {
     return deserializeItems(response.data);
   }
 }
-export function serializeGetFolderTrashItemsQueryParamsArgDirectionField(
-  val: GetFolderTrashItemsQueryParamsArgDirectionField
+export function serializeGetTrashedItemsQueryParamsDirectionField(
+  val: GetTrashedItemsQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
-export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(
+export function deserializeGetTrashedItemsQueryParamsDirectionField(
   val: any
-): GetFolderTrashItemsQueryParamsArgDirectionField {
+): GetTrashedItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgDirectionField"';
+    throw 'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"';
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -110,16 +112,16 @@ export function deserializeGetFolderTrashItemsQueryParamsArgDirectionField(
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeGetFolderTrashItemsQueryParamsArgSortField(
-  val: GetFolderTrashItemsQueryParamsArgSortField
+export function serializeGetTrashedItemsQueryParamsSortField(
+  val: GetTrashedItemsQueryParamsSortField
 ): SerializedData {
   return val;
 }
-export function deserializeGetFolderTrashItemsQueryParamsArgSortField(
+export function deserializeGetTrashedItemsQueryParamsSortField(
   val: any
-): GetFolderTrashItemsQueryParamsArgSortField {
+): GetTrashedItemsQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderTrashItemsQueryParamsArgSortField"';
+    throw 'Expecting a string for "GetTrashedItemsQueryParamsSortField"';
   }
   if (val == 'name') {
     return 'name';

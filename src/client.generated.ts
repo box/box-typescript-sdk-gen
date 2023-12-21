@@ -1,3 +1,5 @@
+import { serializeBaseUrls } from './baseUrls.generated.js';
+import { deserializeBaseUrls } from './baseUrls.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
 import { FilesManager } from './managers/files.generated.js';
 import { TrashedFilesManager } from './managers/trashedFiles.generated.js';
@@ -68,9 +70,19 @@ import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
 import { Authentication } from './auth.js';
 import { NetworkSession } from './network.js';
+import { BaseUrls } from './baseUrls.generated.js';
+import { SerializedData } from './json.js';
+import { sdIsEmpty } from './json.js';
+import { sdIsBoolean } from './json.js';
+import { sdIsNumber } from './json.js';
+import { sdIsString } from './json.js';
+import { sdIsList } from './json.js';
+import { sdIsMap } from './json.js';
 export class BoxClient {
   readonly auth!: Authentication;
-  readonly networkSession: NetworkSession = new NetworkSession({});
+  readonly networkSession: NetworkSession = new NetworkSession({
+    baseUrls: new BaseUrls({}),
+  });
   readonly authorization: AuthorizationManager;
   readonly files: FilesManager;
   readonly trashedFiles: TrashedFilesManager;
@@ -215,6 +227,7 @@ export class BoxClient {
           | 'withAsUserHeader'
           | 'withSuppressedNotifications'
           | 'withExtraHeaders'
+          | 'withCustomBaseUrls'
         >
       | Partial<Pick<BoxClient, 'networkSession'>>
   ) {
@@ -522,6 +535,12 @@ export class BoxClient {
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withAdditionalHeaders(extraHeaders),
+    });
+  }
+  withCustomBaseUrls(baseUrls: BaseUrls): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
     });
   }
 }

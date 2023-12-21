@@ -14,6 +14,7 @@
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
   - [OAuth 2.0 Auth](#oauth-20-auth)
     - [Authentication with OAuth2](#authentication-with-oauth2)
+    - [Revoking tokens](#revoking-tokens)
     - [Downscoping tokens](#downscoping-tokens)
 - [Token storage](#token-storage)
   - [In-memory token storage](#in-memory-token-storage)
@@ -312,16 +313,25 @@ await oauth.revokeTokens();
 
 You can exchange a client's access token for one with a lower scope, in order
 to restrict the permissions for a child client or to pass to a less secure
-location (e.g. a browser-based app). This method is only available for OAuth2 clients.
+location (e.g. a browser-based app).
 
-For example to exchange the client's token for one with scopes to upload and delete items, but not to view their contents, which would be suitable for an less-trusted server-side process; use the following code:
+A downscoped token does not include a refresh token.
+In that case, to get a new downscoped token, refresh the original refresh token and use that new token to get a downscoped token.
+
+More information about downscoping tokens can be found [here](https://developer.box.com/guides/authentication/tokens/downscope/).
+If you want to learn more about available scopes please go [here](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/#scopes-for-downscoping).
+
+For example to exchange the token for a new token with only `item_preview` scope, restricted to a single file, suitable for the [Content Preview UI Element](https://developer.box.com/en/guides/embed/ui-elements/preview/) you can the following code:
 
 <!-- sample post_oauth2_token downscope_token -->
 
 ```js
-let accessToken = await oauth.downscopeToken(['item_upload', 'item_delete']);
+let resource = 'https://api.box.com/2.0/files/123456789';
+let accessToken = await oauth.downscopeToken(['item_preview'], resource);
 // accessToken contains the new downscoped access token
 ```
+
+This method is only available for OAuth2 clients.
 
 # Token storage
 

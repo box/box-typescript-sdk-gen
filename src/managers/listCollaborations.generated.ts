@@ -21,91 +21,94 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetFileCollaborationsQueryParamsArg {
+export interface GetFileCollaborationsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
   readonly marker?: string;
 }
-export class GetFileCollaborationsHeadersArg {
+export class GetFileCollaborationsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFileCollaborationsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFileCollaborationsHeadersArg, 'extraHeaders'>>
+      | Omit<GetFileCollaborationsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFileCollaborationsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetFolderCollaborationsQueryParamsArg {
+export interface GetFolderCollaborationsQueryParams {
   readonly fields?: readonly string[];
 }
-export class GetFolderCollaborationsHeadersArg {
+export class GetFolderCollaborationsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderCollaborationsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderCollaborationsHeadersArg, 'extraHeaders'>>
+      | Omit<GetFolderCollaborationsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFolderCollaborationsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetCollaborationsQueryParamsArgStatusField = 'pending';
-export interface GetCollaborationsQueryParamsArg {
-  readonly status: GetCollaborationsQueryParamsArgStatusField;
+export type GetCollaborationsQueryParamsStatusField = 'pending';
+export interface GetCollaborationsQueryParams {
+  readonly status: GetCollaborationsQueryParamsStatusField;
   readonly fields?: readonly string[];
   readonly offset?: number;
   readonly limit?: number;
 }
-export class GetCollaborationsHeadersArg {
+export class GetCollaborationsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetCollaborationsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationsHeadersArg, 'extraHeaders'>>
+      | Omit<GetCollaborationsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetCollaborationsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface GetGroupCollaborationsQueryParamsArg {
+export interface GetGroupCollaborationsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
 }
-export class GetGroupCollaborationsHeadersArg {
+export class GetGroupCollaborationsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetGroupCollaborationsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetGroupCollaborationsHeadersArg, 'extraHeaders'>>
+      | Omit<GetGroupCollaborationsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetGroupCollaborationsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class ListCollaborationsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      ListCollaborationsManager,
-      | 'getFileCollaborations'
-      | 'getFolderCollaborations'
-      | 'getCollaborations'
-      | 'getGroupCollaborations'
-    >
+    fields:
+      | Omit<
+          ListCollaborationsManager,
+          | 'networkSession'
+          | 'getFileCollaborations'
+          | 'getFolderCollaborations'
+          | 'getCollaborations'
+          | 'getGroupCollaborations'
+        >
+      | Partial<Pick<ListCollaborationsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFileCollaborations(
     fileId: string,
-    queryParams: GetFileCollaborationsQueryParamsArg = {} satisfies GetFileCollaborationsQueryParamsArg,
-    headers: GetFileCollaborationsHeadersArg = new GetFileCollaborationsHeadersArg(
+    queryParams: GetFileCollaborationsQueryParams = {} satisfies GetFileCollaborationsQueryParams,
+    headers: GetFileCollaborationsHeaders = new GetFileCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -124,7 +127,8 @@ export class ListCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/files/',
+        this.networkSession.baseUrls.baseUrl,
+        '/files/',
         toString(fileId) as string,
         '/collaborations'
       ) as string,
@@ -142,8 +146,8 @@ export class ListCollaborationsManager {
   }
   async getFolderCollaborations(
     folderId: string,
-    queryParams: GetFolderCollaborationsQueryParamsArg = {} satisfies GetFolderCollaborationsQueryParamsArg,
-    headers: GetFolderCollaborationsHeadersArg = new GetFolderCollaborationsHeadersArg(
+    queryParams: GetFolderCollaborationsQueryParams = {} satisfies GetFolderCollaborationsQueryParams,
+    headers: GetFolderCollaborationsHeaders = new GetFolderCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -160,7 +164,8 @@ export class ListCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/collaborations'
       ) as string,
@@ -177,8 +182,8 @@ export class ListCollaborationsManager {
     return deserializeCollaborations(response.data);
   }
   async getCollaborations(
-    queryParams: GetCollaborationsQueryParamsArg,
-    headers: GetCollaborationsHeadersArg = new GetCollaborationsHeadersArg({}),
+    queryParams: GetCollaborationsQueryParams,
+    headers: GetCollaborationsHeaders = new GetCollaborationsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
     const queryParamsMap: {
@@ -195,7 +200,10 @@ export class ListCollaborationsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/collaborations') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/collaborations'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -210,8 +218,8 @@ export class ListCollaborationsManager {
   }
   async getGroupCollaborations(
     groupId: string,
-    queryParams: GetGroupCollaborationsQueryParamsArg = {} satisfies GetGroupCollaborationsQueryParamsArg,
-    headers: GetGroupCollaborationsHeadersArg = new GetGroupCollaborationsHeadersArg(
+    queryParams: GetGroupCollaborationsQueryParams = {} satisfies GetGroupCollaborationsQueryParams,
+    headers: GetGroupCollaborationsHeaders = new GetGroupCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -227,7 +235,8 @@ export class ListCollaborationsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/groups/',
+        this.networkSession.baseUrls.baseUrl,
+        '/groups/',
         toString(groupId) as string,
         '/collaborations'
       ) as string,
@@ -244,16 +253,16 @@ export class ListCollaborationsManager {
     return deserializeCollaborations(response.data);
   }
 }
-export function serializeGetCollaborationsQueryParamsArgStatusField(
-  val: GetCollaborationsQueryParamsArgStatusField
+export function serializeGetCollaborationsQueryParamsStatusField(
+  val: GetCollaborationsQueryParamsStatusField
 ): SerializedData {
   return val;
 }
-export function deserializeGetCollaborationsQueryParamsArgStatusField(
+export function deserializeGetCollaborationsQueryParamsStatusField(
   val: any
-): GetCollaborationsQueryParamsArgStatusField {
+): GetCollaborationsQueryParamsStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetCollaborationsQueryParamsArgStatusField"';
+    throw 'Expecting a string for "GetCollaborationsQueryParamsStatusField"';
   }
   if (val == 'pending') {
     return 'pending';

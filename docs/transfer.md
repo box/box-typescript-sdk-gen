@@ -51,9 +51,9 @@ await client.transfer.transferOwnedFolder(
   {
     ownedBy: {
       id: currentUser.id,
-    } satisfies TransferOwnedFolderRequestBodyArgOwnedByField,
-  } satisfies TransferOwnedFolderRequestBodyArg,
-  { notify: false } satisfies TransferOwnedFolderQueryParamsArg
+    } satisfies TransferOwnedFolderRequestBodyOwnedByField,
+  } satisfies TransferOwnedFolderRequestBody,
+  { notify: false } satisfies TransferOwnedFolderQueryParams
 );
 ```
 
@@ -61,11 +61,11 @@ await client.transfer.transferOwnedFolder(
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- requestBody `TransferOwnedFolderRequestBodyArg`
+- requestBody `TransferOwnedFolderRequestBody`
   - Request body of transferOwnedFolder method
-- queryParams `TransferOwnedFolderQueryParamsArg`
+- queryParams `TransferOwnedFolderQueryParams`
   - Query parameters of transferOwnedFolder method
-- headers `TransferOwnedFolderHeadersArg`
+- headers `TransferOwnedFolderHeaders`
   - Headers of transferOwnedFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

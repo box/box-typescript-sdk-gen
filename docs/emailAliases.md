@@ -24,7 +24,7 @@ await client.emailAliases.getUserEmailAliases(newUser.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- headers `GetUserEmailAliasesHeadersArg`
+- headers `GetUserEmailAliasesHeaders`
   - Headers of getUserEmailAliases method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -49,16 +49,16 @@ See the endpoint docs at
 ```ts
 await client.emailAliases.createUserEmailAlias(newUser.id, {
   email: newAliasEmail,
-} satisfies CreateUserEmailAliasRequestBodyArg);
+} satisfies CreateUserEmailAliasRequestBody);
 ```
 
 ### Arguments
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- requestBody `CreateUserEmailAliasRequestBodyArg`
+- requestBody `CreateUserEmailAliasRequestBody`
   - Request body of createUserEmailAlias method
-- headers `CreateUserEmailAliasHeadersArg`
+- headers `CreateUserEmailAliasHeaders`
   - Headers of createUserEmailAlias method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -90,7 +90,7 @@ await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id!);
   - The ID of the user. Example: "12345"
 - emailAliasId `string`
   - The ID of the email alias. Example: "23432"
-- headers `DeleteUserEmailAliasByIdHeadersArg`
+- headers `DeleteUserEmailAliasByIdHeaders`
   - Headers of deleteUserEmailAliasById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

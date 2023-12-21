@@ -27,7 +27,7 @@ await client.classifications.getClassificationTemplate();
 
 ### Arguments
 
-- headers `GetClassificationTemplateHeadersArg`
+- headers `GetClassificationTemplateHeaders`
   - Headers of getClassificationTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,27 +59,27 @@ See the endpoint docs at
 ```ts
 await client.classifications.addClassification([
   {
-    op: 'addEnumOption' as AddClassificationRequestBodyArgOpField,
+    op: 'addEnumOption' as AddClassificationRequestBodyOpField,
     fieldKey:
-      'Box__Security__Classification__Key' as AddClassificationRequestBodyArgFieldKeyField,
+      'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField,
     data: {
       key: getUuid(),
       staticConfig: {
         classification: {
-          colorId: 3,
-          classificationDefinition: 'Some description',
-        } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
-      } satisfies AddClassificationRequestBodyArgDataFieldStaticConfigField,
-    } satisfies AddClassificationRequestBodyArgDataField,
-  } satisfies AddClassificationRequestBodyArg,
+          colorId: 4,
+          classificationDefinition: 'Other description',
+        } satisfies AddClassificationRequestBodyDataStaticConfigClassificationField,
+      } satisfies AddClassificationRequestBodyDataStaticConfigField,
+    } satisfies AddClassificationRequestBodyDataField,
+  } satisfies AddClassificationRequestBody,
 ]);
 ```
 
 ### Arguments
 
-- requestBody `readonly AddClassificationRequestBodyArg[]`
+- requestBody `readonly AddClassificationRequestBody[]`
   - Request body of addClassification method
-- headers `AddClassificationHeadersArg`
+- headers `AddClassificationHeaders`
   - Headers of addClassification method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -111,9 +111,9 @@ See the endpoint docs at
 ```ts
 await client.classifications.updateClassification([
   {
-    op: 'editEnumOption' as UpdateClassificationRequestBodyArgOpField,
+    op: 'editEnumOption' as UpdateClassificationRequestBodyOpField,
     fieldKey:
-      'Box__Security__Classification__Key' as UpdateClassificationRequestBodyArgFieldKeyField,
+      'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField,
     enumOptionKey: classification.key,
     data: {
       key: updatedClassificationName,
@@ -121,18 +121,18 @@ await client.classifications.updateClassification([
         classification: {
           colorId: 2,
           classificationDefinition: updatedClassificationDescription,
-        } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigFieldClassificationField,
-      } satisfies UpdateClassificationRequestBodyArgDataFieldStaticConfigField,
-    } satisfies UpdateClassificationRequestBodyArgDataField,
-  } satisfies UpdateClassificationRequestBodyArg,
+        } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField,
+      } satisfies UpdateClassificationRequestBodyDataStaticConfigField,
+    } satisfies UpdateClassificationRequestBodyDataField,
+  } satisfies UpdateClassificationRequestBody,
 ]);
 ```
 
 ### Arguments
 
-- requestBody `readonly UpdateClassificationRequestBodyArg[]`
+- requestBody `readonly UpdateClassificationRequestBody[]`
   - Request body of updateClassification method
-- headers `UpdateClassificationHeadersArg`
+- headers `UpdateClassificationHeaders`
   - Headers of updateClassification method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -164,9 +164,9 @@ _Currently we don't have an example for calling `createClassificationTemplate` i
 
 ### Arguments
 
-- requestBody `CreateClassificationTemplateRequestBodyArg`
+- requestBody `CreateClassificationTemplateRequestBody`
   - Request body of createClassificationTemplate method
-- headers `CreateClassificationTemplateHeadersArg`
+- headers `CreateClassificationTemplateHeaders`
   - Headers of createClassificationTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

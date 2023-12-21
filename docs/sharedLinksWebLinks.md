@@ -16,7 +16,7 @@ which can originate within the current enterprise or within another.
 This endpoint allows an application to retrieve information about a
 shared web link when only given a shared link.
 
-This operation is performed by calling function `getSharedItemWebLinks`.
+This operation is performed by calling function `findWebLinkForSharedLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items-web-links/).
@@ -24,9 +24,9 @@ See the endpoint docs at
 <!-- sample get_shared_items#web_links -->
 
 ```ts
-await userClient.sharedLinksWebLinks.getSharedItemWebLinks(
-  {} satisfies GetSharedItemWebLinksQueryParamsArg,
-  new GetSharedItemWebLinksHeadersArg({
+await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
+  {} satisfies FindWebLinkForSharedLinkQueryParams,
+  new FindWebLinkForSharedLinkHeaders({
     boxapi: ''.concat(
       'shared_link=',
       webLinkFromApi.sharedLink!.url,
@@ -38,10 +38,10 @@ await userClient.sharedLinksWebLinks.getSharedItemWebLinks(
 
 ### Arguments
 
-- queryParams `GetSharedItemWebLinksQueryParamsArg`
-  - Query parameters of getSharedItemWebLinks method
-- headers `GetSharedItemWebLinksHeadersArg`
-  - Headers of getSharedItemWebLinks method
+- queryParams `FindWebLinkForSharedLinkQueryParams`
+  - Query parameters of findWebLinkForSharedLink method
+- headers `FindWebLinkForSharedLinkHeaders`
+  - Headers of findWebLinkForSharedLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -56,7 +56,7 @@ the user has access to it.
 
 Gets the information for a shared link on a web link.
 
-This operation is performed by calling function `getWebLinkGetSharedLink`.
+This operation is performed by calling function `getSharedLinkForWebLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-web-links-id-get-shared-link/).
@@ -64,19 +64,19 @@ See the endpoint docs at
 <!-- sample get_web_links_id#get_shared_link -->
 
 ```ts
-await client.sharedLinksWebLinks.getWebLinkGetSharedLink(webLinkId, {
+await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
   fields: 'shared_link',
-} satisfies GetWebLinkGetSharedLinkQueryParamsArg);
+} satisfies GetSharedLinkForWebLinkQueryParams);
 ```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- queryParams `GetWebLinkGetSharedLinkQueryParamsArg`
-  - Query parameters of getWebLinkGetSharedLink method
-- headers `GetWebLinkGetSharedLinkHeadersArg`
-  - Headers of getWebLinkGetSharedLink method
+- queryParams `GetSharedLinkForWebLinkQueryParams`
+  - Query parameters of getSharedLinkForWebLink method
+- headers `GetSharedLinkForWebLinkHeaders`
+  - Headers of getSharedLinkForWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -91,7 +91,7 @@ additional shared link information.
 
 Adds a shared link to a web link.
 
-This operation is performed by calling function `updateWebLinkAddSharedLink`.
+This operation is performed by calling function `addShareLinkToWebLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-add-shared-link/).
@@ -99,16 +99,15 @@ See the endpoint docs at
 <!-- sample put_web_links_id#add_shared_link -->
 
 ```ts
-await client.sharedLinksWebLinks.updateWebLinkAddSharedLink(
+await client.sharedLinksWebLinks.addShareLinkToWebLink(
   webLinkId,
   {
     sharedLink: {
-      access:
-        'open' as UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+      access: 'open' as AddShareLinkToWebLinkRequestBodySharedLinkAccessField,
       password: 'Secret123@',
-    } satisfies UpdateWebLinkAddSharedLinkRequestBodyArgSharedLinkField,
-  } satisfies UpdateWebLinkAddSharedLinkRequestBodyArg,
-  { fields: 'shared_link' } satisfies UpdateWebLinkAddSharedLinkQueryParamsArg
+    } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField,
+  } satisfies AddShareLinkToWebLinkRequestBody,
+  { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams
 );
 ```
 
@@ -116,12 +115,12 @@ await client.sharedLinksWebLinks.updateWebLinkAddSharedLink(
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `UpdateWebLinkAddSharedLinkRequestBodyArg`
-  - Request body of updateWebLinkAddSharedLink method
-- queryParams `UpdateWebLinkAddSharedLinkQueryParamsArg`
-  - Query parameters of updateWebLinkAddSharedLink method
-- headers `UpdateWebLinkAddSharedLinkHeadersArg`
-  - Headers of updateWebLinkAddSharedLink method
+- requestBody `AddShareLinkToWebLinkRequestBody`
+  - Request body of addShareLinkToWebLink method
+- queryParams `AddShareLinkToWebLinkQueryParams`
+  - Query parameters of addShareLinkToWebLink method
+- headers `AddShareLinkToWebLinkHeaders`
+  - Headers of addShareLinkToWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -136,7 +135,7 @@ link attached.
 
 Updates a shared link on a web link.
 
-This operation is performed by calling function `updateWebLinkUpdateSharedLink`.
+This operation is performed by calling function `updateSharedLinkOnWebLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-update-shared-link/).
@@ -144,17 +143,15 @@ See the endpoint docs at
 <!-- sample put_web_links_id#update_shared_link -->
 
 ```ts
-await client.sharedLinksWebLinks.updateWebLinkUpdateSharedLink(
+await client.sharedLinksWebLinks.updateSharedLinkOnWebLink(
   webLinkId,
   {
     sharedLink: {
       access:
-        'collaborators' as UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
-    } satisfies UpdateWebLinkUpdateSharedLinkRequestBodyArgSharedLinkField,
-  } satisfies UpdateWebLinkUpdateSharedLinkRequestBodyArg,
-  {
-    fields: 'shared_link',
-  } satisfies UpdateWebLinkUpdateSharedLinkQueryParamsArg
+        'collaborators' as UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField,
+    } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField,
+  } satisfies UpdateSharedLinkOnWebLinkRequestBody,
+  { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams
 );
 ```
 
@@ -162,12 +159,12 @@ await client.sharedLinksWebLinks.updateWebLinkUpdateSharedLink(
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `UpdateWebLinkUpdateSharedLinkRequestBodyArg`
-  - Request body of updateWebLinkUpdateSharedLink method
-- queryParams `UpdateWebLinkUpdateSharedLinkQueryParamsArg`
-  - Query parameters of updateWebLinkUpdateSharedLink method
-- headers `UpdateWebLinkUpdateSharedLinkHeadersArg`
-  - Headers of updateWebLinkUpdateSharedLink method
+- requestBody `UpdateSharedLinkOnWebLinkRequestBody`
+  - Request body of updateSharedLinkOnWebLink method
+- queryParams `UpdateSharedLinkOnWebLinkQueryParams`
+  - Query parameters of updateSharedLinkOnWebLink method
+- headers `UpdateSharedLinkOnWebLinkHeaders`
+  - Headers of updateSharedLinkOnWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -182,23 +179,23 @@ link attached.
 
 Removes a shared link from a web link.
 
-This operation is performed by calling function `updateWebLinkRemoveSharedLink`.
+This operation is performed by calling function `removeSharedLinkFromWebLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-web-links-id-remove-shared-link/).
 
-_Currently we don't have an example for calling `updateWebLinkRemoveSharedLink` in integration tests_
+_Currently we don't have an example for calling `removeSharedLinkFromWebLink` in integration tests_
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `UpdateWebLinkRemoveSharedLinkRequestBodyArg`
-  - Request body of updateWebLinkRemoveSharedLink method
-- queryParams `UpdateWebLinkRemoveSharedLinkQueryParamsArg`
-  - Query parameters of updateWebLinkRemoveSharedLink method
-- headers `UpdateWebLinkRemoveSharedLinkHeadersArg`
-  - Headers of updateWebLinkRemoveSharedLink method
+- requestBody `RemoveSharedLinkFromWebLinkRequestBody`
+  - Request body of removeSharedLinkFromWebLink method
+- queryParams `RemoveSharedLinkFromWebLinkQueryParams`
+  - Query parameters of removeSharedLinkFromWebLink method
+- headers `RemoveSharedLinkFromWebLinkHeaders`
+  - Headers of removeSharedLinkFromWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

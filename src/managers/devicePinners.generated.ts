@@ -24,68 +24,69 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetDevicePinnerByIdHeadersArg {
+export class GetDevicePinnerByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetDevicePinnerByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetDevicePinnerByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetDevicePinnerByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteDevicePinnerByIdHeadersArg {
+export class DeleteDevicePinnerByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteDevicePinnerByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteDevicePinnerByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type GetEnterpriseDevicePinnersQueryParamsArgDirectionField =
+export type GetEnterpriseDevicePinnersQueryParamsDirectionField =
   | 'ASC'
   | 'DESC';
-export interface GetEnterpriseDevicePinnersQueryParamsArg {
+export interface GetEnterpriseDevicePinnersQueryParams {
   readonly marker?: string;
   readonly limit?: number;
-  readonly direction?: GetEnterpriseDevicePinnersQueryParamsArgDirectionField;
+  readonly direction?: GetEnterpriseDevicePinnersQueryParamsDirectionField;
 }
-export class GetEnterpriseDevicePinnersHeadersArg {
+export class GetEnterpriseDevicePinnersHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetEnterpriseDevicePinnersHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetEnterpriseDevicePinnersHeadersArg, 'extraHeaders'>>
+      | Omit<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>
+      | Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class DevicePinnersManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      DevicePinnersManager,
-      | 'getDevicePinnerById'
-      | 'deleteDevicePinnerById'
-      | 'getEnterpriseDevicePinners'
-    >
+    fields:
+      | Omit<
+          DevicePinnersManager,
+          | 'networkSession'
+          | 'getDevicePinnerById'
+          | 'deleteDevicePinnerById'
+          | 'getEnterpriseDevicePinners'
+        >
+      | Partial<Pick<DevicePinnersManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getDevicePinnerById(
     devicePinnerId: string,
-    headers: GetDevicePinnerByIdHeadersArg = new GetDevicePinnerByIdHeadersArg(
-      {}
-    ),
+    headers: GetDevicePinnerByIdHeaders = new GetDevicePinnerByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<DevicePinner> {
     const headersMap: {
@@ -93,7 +94,8 @@ export class DevicePinnersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/device_pinners/',
+        this.networkSession.baseUrls.baseUrl,
+        '/device_pinners/',
         toString(devicePinnerId) as string
       ) as string,
       {
@@ -109,7 +111,7 @@ export class DevicePinnersManager {
   }
   async deleteDevicePinnerById(
     devicePinnerId: string,
-    headers: DeleteDevicePinnerByIdHeadersArg = new DeleteDevicePinnerByIdHeadersArg(
+    headers: DeleteDevicePinnerByIdHeaders = new DeleteDevicePinnerByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -119,7 +121,8 @@ export class DevicePinnersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/device_pinners/',
+        this.networkSession.baseUrls.baseUrl,
+        '/device_pinners/',
         toString(devicePinnerId) as string
       ) as string,
       {
@@ -135,8 +138,8 @@ export class DevicePinnersManager {
   }
   async getEnterpriseDevicePinners(
     enterpriseId: string,
-    queryParams: GetEnterpriseDevicePinnersQueryParamsArg = {} satisfies GetEnterpriseDevicePinnersQueryParamsArg,
-    headers: GetEnterpriseDevicePinnersHeadersArg = new GetEnterpriseDevicePinnersHeadersArg(
+    queryParams: GetEnterpriseDevicePinnersQueryParams = {} satisfies GetEnterpriseDevicePinnersQueryParams,
+    headers: GetEnterpriseDevicePinnersHeaders = new GetEnterpriseDevicePinnersHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -153,7 +156,8 @@ export class DevicePinnersManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/enterprises/',
+        this.networkSession.baseUrls.baseUrl,
+        '/enterprises/',
         toString(enterpriseId) as string,
         '/device_pinners'
       ) as string,
@@ -170,16 +174,16 @@ export class DevicePinnersManager {
     return deserializeDevicePinners(response.data);
   }
 }
-export function serializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(
-  val: GetEnterpriseDevicePinnersQueryParamsArgDirectionField
+export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
+  val: GetEnterpriseDevicePinnersQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
-export function deserializeGetEnterpriseDevicePinnersQueryParamsArgDirectionField(
+export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   val: any
-): GetEnterpriseDevicePinnersQueryParamsArgDirectionField {
+): GetEnterpriseDevicePinnersQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsArgDirectionField"';
+    throw 'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsDirectionField"';
   }
   if (val == 'ASC') {
     return 'ASC';

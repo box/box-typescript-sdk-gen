@@ -19,7 +19,7 @@ shared file when only given a shared link.
 The `shared_link_permission_options` array field can be returned
 by requesting it in the `fields` query parameter.
 
-This operation is performed by calling function `getSharedItems`.
+This operation is performed by calling function `findFileForSharedLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items/).
@@ -27,9 +27,9 @@ See the endpoint docs at
 <!-- sample get_shared_items -->
 
 ```ts
-await userClient.sharedLinksFiles.getSharedItems(
-  {} satisfies GetSharedItemsQueryParamsArg,
-  new GetSharedItemsHeadersArg({
+await userClient.sharedLinksFiles.findFileForSharedLink(
+  {} satisfies FindFileForSharedLinkQueryParams,
+  new FindFileForSharedLinkHeaders({
     boxapi: ''.concat(
       'shared_link=',
       fileFromApi.sharedLink!.url,
@@ -41,10 +41,10 @@ await userClient.sharedLinksFiles.getSharedItems(
 
 ### Arguments
 
-- queryParams `GetSharedItemsQueryParamsArg`
-  - Query parameters of getSharedItems method
-- headers `GetSharedItemsHeadersArg`
-  - Headers of getSharedItems method
+- queryParams `FindFileForSharedLinkQueryParams`
+  - Query parameters of findFileForSharedLink method
+- headers `FindFileForSharedLinkHeaders`
+  - Headers of findFileForSharedLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -59,7 +59,7 @@ the user has access to it.
 
 Gets the information for a shared link on a file.
 
-This operation is performed by calling function `getFileGetSharedLink`.
+This operation is performed by calling function `getSharedLinkForFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-get-shared-link/).
@@ -67,19 +67,19 @@ See the endpoint docs at
 <!-- sample get_files_id#get_shared_link -->
 
 ```ts
-await client.sharedLinksFiles.getFileGetSharedLink(fileId, {
+await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
   fields: 'shared_link',
-} satisfies GetFileGetSharedLinkQueryParamsArg);
+} satisfies GetSharedLinkForFileQueryParams);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileGetSharedLinkQueryParamsArg`
-  - Query parameters of getFileGetSharedLink method
-- headers `GetFileGetSharedLinkHeadersArg`
-  - Headers of getFileGetSharedLink method
+- queryParams `GetSharedLinkForFileQueryParams`
+  - Query parameters of getSharedLinkForFile method
+- headers `GetSharedLinkForFileHeaders`
+  - Headers of getSharedLinkForFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -94,7 +94,7 @@ additional shared link information.
 
 Adds a shared link to a file.
 
-This operation is performed by calling function `updateFileAddSharedLink`.
+This operation is performed by calling function `addShareLinkToFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-add-shared-link/).
@@ -102,16 +102,15 @@ See the endpoint docs at
 <!-- sample put_files_id#add_shared_link -->
 
 ```ts
-await client.sharedLinksFiles.updateFileAddSharedLink(
+await client.sharedLinksFiles.addShareLinkToFile(
   fileId,
   {
     sharedLink: {
-      access:
-        'open' as UpdateFileAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+      access: 'open' as AddShareLinkToFileRequestBodySharedLinkAccessField,
       password: 'Secret123@',
-    } satisfies UpdateFileAddSharedLinkRequestBodyArgSharedLinkField,
-  } satisfies UpdateFileAddSharedLinkRequestBodyArg,
-  { fields: 'shared_link' } satisfies UpdateFileAddSharedLinkQueryParamsArg
+    } satisfies AddShareLinkToFileRequestBodySharedLinkField,
+  } satisfies AddShareLinkToFileRequestBody,
+  { fields: 'shared_link' } satisfies AddShareLinkToFileQueryParams
 );
 ```
 
@@ -119,12 +118,12 @@ await client.sharedLinksFiles.updateFileAddSharedLink(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `UpdateFileAddSharedLinkRequestBodyArg`
-  - Request body of updateFileAddSharedLink method
-- queryParams `UpdateFileAddSharedLinkQueryParamsArg`
-  - Query parameters of updateFileAddSharedLink method
-- headers `UpdateFileAddSharedLinkHeadersArg`
-  - Headers of updateFileAddSharedLink method
+- requestBody `AddShareLinkToFileRequestBody`
+  - Request body of addShareLinkToFile method
+- queryParams `AddShareLinkToFileQueryParams`
+  - Query parameters of addShareLinkToFile method
+- headers `AddShareLinkToFileHeaders`
+  - Headers of addShareLinkToFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -139,7 +138,7 @@ link attached.
 
 Updates a shared link on a file.
 
-This operation is performed by calling function `updateFileUpdateSharedLink`.
+This operation is performed by calling function `updateSharedLinkOnFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-update-shared-link/).
@@ -147,15 +146,15 @@ See the endpoint docs at
 <!-- sample put_files_id#update_shared_link -->
 
 ```ts
-await client.sharedLinksFiles.updateFileUpdateSharedLink(
+await client.sharedLinksFiles.updateSharedLinkOnFile(
   fileId,
   {
     sharedLink: {
       access:
-        'collaborators' as UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
-    } satisfies UpdateFileUpdateSharedLinkRequestBodyArgSharedLinkField,
-  } satisfies UpdateFileUpdateSharedLinkRequestBodyArg,
-  { fields: 'shared_link' } satisfies UpdateFileUpdateSharedLinkQueryParamsArg
+        'collaborators' as UpdateSharedLinkOnFileRequestBodySharedLinkAccessField,
+    } satisfies UpdateSharedLinkOnFileRequestBodySharedLinkField,
+  } satisfies UpdateSharedLinkOnFileRequestBody,
+  { fields: 'shared_link' } satisfies UpdateSharedLinkOnFileQueryParams
 );
 ```
 
@@ -163,12 +162,12 @@ await client.sharedLinksFiles.updateFileUpdateSharedLink(
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `UpdateFileUpdateSharedLinkRequestBodyArg`
-  - Request body of updateFileUpdateSharedLink method
-- queryParams `UpdateFileUpdateSharedLinkQueryParamsArg`
-  - Query parameters of updateFileUpdateSharedLink method
-- headers `UpdateFileUpdateSharedLinkHeadersArg`
-  - Headers of updateFileUpdateSharedLink method
+- requestBody `UpdateSharedLinkOnFileRequestBody`
+  - Request body of updateSharedLinkOnFile method
+- queryParams `UpdateSharedLinkOnFileQueryParams`
+  - Query parameters of updateSharedLinkOnFile method
+- headers `UpdateSharedLinkOnFileHeaders`
+  - Headers of updateSharedLinkOnFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -183,23 +182,23 @@ link attached.
 
 Removes a shared link from a file.
 
-This operation is performed by calling function `updateFileRemoveSharedLink`.
+This operation is performed by calling function `removeSharedLinkFromFile`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-remove-shared-link/).
 
-_Currently we don't have an example for calling `updateFileRemoveSharedLink` in integration tests_
+_Currently we don't have an example for calling `removeSharedLinkFromFile` in integration tests_
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `UpdateFileRemoveSharedLinkRequestBodyArg`
-  - Request body of updateFileRemoveSharedLink method
-- queryParams `UpdateFileRemoveSharedLinkQueryParamsArg`
-  - Query parameters of updateFileRemoveSharedLink method
-- headers `UpdateFileRemoveSharedLinkHeadersArg`
-  - Headers of updateFileRemoveSharedLink method
+- requestBody `RemoveSharedLinkFromFileRequestBody`
+  - Request body of removeSharedLinkFromFile method
+- queryParams `RemoveSharedLinkFromFileQueryParams`
+  - Query parameters of removeSharedLinkFromFile method
+- headers `RemoveSharedLinkFromFileHeaders`
+  - Headers of removeSharedLinkFromFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

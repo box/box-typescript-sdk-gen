@@ -21,14 +21,14 @@ See the endpoint docs at
 ```ts
 await client.folderLocks.getFolderLocks({
   folderId: folder.id,
-} satisfies GetFolderLocksQueryParamsArg);
+} satisfies GetFolderLocksQueryParams);
 ```
 
 ### Arguments
 
-- queryParams `GetFolderLocksQueryParamsArg`
+- queryParams `GetFolderLocksQueryParams`
   - Query parameters of getFolderLocks method
-- headers `GetFolderLocksHeadersArg`
+- headers `GetFolderLocksHeaders`
   - Headers of getFolderLocks method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -60,19 +60,19 @@ await client.folderLocks.createFolderLock({
   folder: {
     id: folder.id,
     type: 'folder',
-  } satisfies CreateFolderLockRequestBodyArgFolderField,
+  } satisfies CreateFolderLockRequestBodyFolderField,
   lockedOperations: {
     move: true,
     delete: true,
-  } satisfies CreateFolderLockRequestBodyArgLockedOperationsField,
-} satisfies CreateFolderLockRequestBodyArg);
+  } satisfies CreateFolderLockRequestBodyLockedOperationsField,
+} satisfies CreateFolderLockRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateFolderLockRequestBodyArg`
+- requestBody `CreateFolderLockRequestBody`
   - Request body of createFolderLock method
-- headers `CreateFolderLockHeadersArg`
+- headers `CreateFolderLockHeaders`
   - Headers of createFolderLock method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -106,7 +106,7 @@ await client.folderLocks.deleteFolderLockById(folderLock.id!);
 
 - folderLockId `string`
   - The ID of the folder lock. Example: "12345"
-- headers `DeleteFolderLockByIdHeadersArg`
+- headers `DeleteFolderLockByIdHeaders`
   - Headers of deleteFolderLockById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

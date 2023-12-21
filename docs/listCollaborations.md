@@ -16,15 +16,19 @@ This operation is performed by calling function `getFileCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-collaborations/).
 
-_Currently we don't have an example for calling `getFileCollaborations` in integration tests_
+<!-- sample get_files_id_collaborations -->
+
+```ts
+await client.listCollaborations.getFileCollaborations(file.id);
+```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileCollaborationsQueryParamsArg`
+- queryParams `GetFileCollaborationsQueryParams`
   - Query parameters of getFileCollaborations method
-- headers `GetFileCollaborationsHeadersArg`
+- headers `GetFileCollaborationsHeaders`
   - Headers of getFileCollaborations method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -51,15 +55,19 @@ This operation is performed by calling function `getFolderCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-collaborations/).
 
-_Currently we don't have an example for calling `getFolderCollaborations` in integration tests_
+<!-- sample get_folders_id_collaborations -->
+
+```ts
+await client.listCollaborations.getFolderCollaborations(folder.id);
+```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
-- queryParams `GetFolderCollaborationsQueryParamsArg`
+- queryParams `GetFolderCollaborationsQueryParams`
   - Query parameters of getFolderCollaborations method
-- headers `GetFolderCollaborationsHeadersArg`
+- headers `GetFolderCollaborationsHeaders`
   - Headers of getFolderCollaborations method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -84,13 +92,19 @@ This operation is performed by calling function `getCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-collaborations/).
 
-_Currently we don't have an example for calling `getCollaborations` in integration tests_
+<!-- sample get_collaborations -->
+
+```ts
+await client.listCollaborations.getCollaborations({
+  status: 'pending' as GetCollaborationsQueryParamsStatusField,
+} satisfies GetCollaborationsQueryParams);
+```
 
 ### Arguments
 
-- queryParams `GetCollaborationsQueryParamsArg`
+- queryParams `GetCollaborationsQueryParams`
   - Query parameters of getCollaborations method
-- headers `GetCollaborationsHeadersArg`
+- headers `GetCollaborationsHeaders`
   - Headers of getCollaborations method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -117,15 +131,19 @@ This operation is performed by calling function `getGroupCollaborations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-groups-id-collaborations/).
 
-_Currently we don't have an example for calling `getGroupCollaborations` in integration tests_
+<!-- sample get_groups_id_collaborations -->
+
+```ts
+await client.listCollaborations.getGroupCollaborations(group.id);
+```
 
 ### Arguments
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- queryParams `GetGroupCollaborationsQueryParamsArg`
+- queryParams `GetGroupCollaborationsQueryParams`
   - Query parameters of getGroupCollaborations method
-- headers `GetGroupCollaborationsHeadersArg`
+- headers `GetGroupCollaborationsHeaders`
   - Headers of getGroupCollaborations method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

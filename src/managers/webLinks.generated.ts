@@ -21,112 +21,115 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface CreateWebLinkRequestBodyArgParentField {
+export interface CreateWebLinkRequestBodyParentField {
   readonly id: string;
 }
-export interface CreateWebLinkRequestBodyArg {
+export interface CreateWebLinkRequestBody {
   readonly url: string;
-  readonly parent: CreateWebLinkRequestBodyArgParentField;
+  readonly parent: CreateWebLinkRequestBodyParentField;
   readonly name?: string;
   readonly description?: string;
 }
-export class CreateWebLinkHeadersArg {
+export class CreateWebLinkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateWebLinkHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateWebLinkHeadersArg, 'extraHeaders'>>
+      | Omit<CreateWebLinkHeaders, 'extraHeaders'>
+      | Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class GetWebLinkByIdHeadersArg {
+export class GetWebLinkByIdHeaders {
   readonly boxapi?: string;
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetWebLinkByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetWebLinkByIdHeadersArg, 'extraHeaders'>>
+      | Omit<GetWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export interface UpdateWebLinkByIdRequestBodyArgParentField {
+export interface UpdateWebLinkByIdRequestBodyParentField {
   readonly id?: string;
 }
-export type UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField =
+export type UpdateWebLinkByIdRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
   | 'collaborators';
-export interface UpdateWebLinkByIdRequestBodyArgSharedLinkField {
-  readonly access?: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField;
+export interface UpdateWebLinkByIdRequestBodySharedLinkField {
+  readonly access?: UpdateWebLinkByIdRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
   readonly unsharedAt?: string;
 }
-export interface UpdateWebLinkByIdRequestBodyArg {
+export interface UpdateWebLinkByIdRequestBody {
   readonly url?: string;
-  readonly parent?: UpdateWebLinkByIdRequestBodyArgParentField;
+  readonly parent?: UpdateWebLinkByIdRequestBodyParentField;
   readonly name?: string;
   readonly description?: string;
-  readonly sharedLink?: UpdateWebLinkByIdRequestBodyArgSharedLinkField;
+  readonly sharedLink?: UpdateWebLinkByIdRequestBodySharedLinkField;
 }
-export class UpdateWebLinkByIdHeadersArg {
+export class UpdateWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateWebLinkByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateWebLinkByIdHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteWebLinkByIdHeadersArg {
+export class DeleteWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteWebLinkByIdHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteWebLinkByIdHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteWebLinkByIdHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class WebLinksManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      WebLinksManager,
-      | 'createWebLink'
-      | 'getWebLinkById'
-      | 'updateWebLinkById'
-      | 'deleteWebLinkById'
-    >
+    fields:
+      | Omit<
+          WebLinksManager,
+          | 'networkSession'
+          | 'createWebLink'
+          | 'getWebLinkById'
+          | 'updateWebLinkById'
+          | 'deleteWebLinkById'
+        >
+      | Partial<Pick<WebLinksManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async createWebLink(
-    requestBody: CreateWebLinkRequestBodyArg,
-    headers: CreateWebLinkHeadersArg = new CreateWebLinkHeadersArg({}),
+    requestBody: CreateWebLinkRequestBody,
+    headers: CreateWebLinkHeaders = new CreateWebLinkHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/web_links') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/web_links') as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateWebLinkRequestBodyArg(requestBody),
+        data: serializeCreateWebLinkRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -138,7 +141,7 @@ export class WebLinksManager {
   }
   async getWebLinkById(
     webLinkId: string,
-    headers: GetWebLinkByIdHeadersArg = new GetWebLinkByIdHeadersArg({}),
+    headers: GetWebLinkByIdHeaders = new GetWebLinkByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
@@ -149,7 +152,8 @@ export class WebLinksManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
@@ -165,8 +169,8 @@ export class WebLinksManager {
   }
   async updateWebLinkById(
     webLinkId: string,
-    requestBody: UpdateWebLinkByIdRequestBodyArg = {} satisfies UpdateWebLinkByIdRequestBodyArg,
-    headers: UpdateWebLinkByIdHeadersArg = new UpdateWebLinkByIdHeadersArg({}),
+    requestBody: UpdateWebLinkByIdRequestBody = {} satisfies UpdateWebLinkByIdRequestBody,
+    headers: UpdateWebLinkByIdHeaders = new UpdateWebLinkByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
     const headersMap: {
@@ -174,13 +178,14 @@ export class WebLinksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateWebLinkByIdRequestBodyArg(requestBody),
+        data: serializeUpdateWebLinkByIdRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -192,7 +197,7 @@ export class WebLinksManager {
   }
   async deleteWebLinkById(
     webLinkId: string,
-    headers: DeleteWebLinkByIdHeadersArg = new DeleteWebLinkByIdHeadersArg({}),
+    headers: DeleteWebLinkByIdHeaders = new DeleteWebLinkByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -200,7 +205,8 @@ export class WebLinksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/web_links/',
+        this.networkSession.baseUrls.baseUrl,
+        '/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
@@ -215,33 +221,33 @@ export class WebLinksManager {
     return void 0;
   }
 }
-export function serializeCreateWebLinkRequestBodyArgParentField(
-  val: CreateWebLinkRequestBodyArgParentField
+export function serializeCreateWebLinkRequestBodyParentField(
+  val: CreateWebLinkRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
-export function deserializeCreateWebLinkRequestBodyArgParentField(
+export function deserializeCreateWebLinkRequestBodyParentField(
   val: any
-): CreateWebLinkRequestBodyArgParentField {
+): CreateWebLinkRequestBodyParentField {
   const id: string = val.id;
-  return { id: id } satisfies CreateWebLinkRequestBodyArgParentField;
+  return { id: id } satisfies CreateWebLinkRequestBodyParentField;
 }
-export function serializeCreateWebLinkRequestBodyArg(
-  val: CreateWebLinkRequestBodyArg
+export function serializeCreateWebLinkRequestBody(
+  val: CreateWebLinkRequestBody
 ): SerializedData {
   return {
     ['url']: val.url,
-    ['parent']: serializeCreateWebLinkRequestBodyArgParentField(val.parent),
+    ['parent']: serializeCreateWebLinkRequestBodyParentField(val.parent),
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
   };
 }
-export function deserializeCreateWebLinkRequestBodyArg(
+export function deserializeCreateWebLinkRequestBody(
   val: any
-): CreateWebLinkRequestBodyArg {
+): CreateWebLinkRequestBody {
   const url: string = val.url;
-  const parent: CreateWebLinkRequestBodyArgParentField =
-    deserializeCreateWebLinkRequestBodyArgParentField(val.parent);
+  const parent: CreateWebLinkRequestBodyParentField =
+    deserializeCreateWebLinkRequestBodyParentField(val.parent);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
@@ -250,29 +256,29 @@ export function deserializeCreateWebLinkRequestBodyArg(
     parent: parent,
     name: name,
     description: description,
-  } satisfies CreateWebLinkRequestBodyArg;
+  } satisfies CreateWebLinkRequestBody;
 }
-export function serializeUpdateWebLinkByIdRequestBodyArgParentField(
-  val: UpdateWebLinkByIdRequestBodyArgParentField
+export function serializeUpdateWebLinkByIdRequestBodyParentField(
+  val: UpdateWebLinkByIdRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
-export function deserializeUpdateWebLinkByIdRequestBodyArgParentField(
+export function deserializeUpdateWebLinkByIdRequestBodyParentField(
   val: any
-): UpdateWebLinkByIdRequestBodyArgParentField {
+): UpdateWebLinkByIdRequestBodyParentField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies UpdateWebLinkByIdRequestBodyArgParentField;
+  return { id: id } satisfies UpdateWebLinkByIdRequestBodyParentField;
 }
-export function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
-  val: UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField
+export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
+  val: UpdateWebLinkByIdRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
+export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   val: any
-): UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField {
+): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField"';
+    throw 'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"';
   }
   if (val == 'open') {
     return 'open';
@@ -285,14 +291,14 @@ export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessF
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
-  val: UpdateWebLinkByIdRequestBodyArgSharedLinkField
+export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
+  val: UpdateWebLinkByIdRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
-        : serializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
+        : serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
             val.access
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
@@ -300,15 +306,13 @@ export function serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
     ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
   };
 }
-export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
+export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
   val: any
-): UpdateWebLinkByIdRequestBodyArgSharedLinkField {
-  const access:
-    | undefined
-    | UpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField =
+): UpdateWebLinkByIdRequestBodySharedLinkField {
+  const access: undefined | UpdateWebLinkByIdRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
-      : deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkFieldAccessField(
+      : deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
           val.access
         );
   const password: undefined | string =
@@ -322,49 +326,45 @@ export function deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
     password: password,
     vanityName: vanityName,
     unsharedAt: unsharedAt,
-  } satisfies UpdateWebLinkByIdRequestBodyArgSharedLinkField;
+  } satisfies UpdateWebLinkByIdRequestBodySharedLinkField;
 }
-export function serializeUpdateWebLinkByIdRequestBodyArg(
-  val: UpdateWebLinkByIdRequestBodyArg
+export function serializeUpdateWebLinkByIdRequestBody(
+  val: UpdateWebLinkByIdRequestBody
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,
     ['parent']:
       val.parent == void 0
         ? void 0
-        : serializeUpdateWebLinkByIdRequestBodyArgParentField(val.parent),
+        : serializeUpdateWebLinkByIdRequestBodyParentField(val.parent),
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
-        : serializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
-            val.sharedLink
-          ),
+        : serializeUpdateWebLinkByIdRequestBodySharedLinkField(val.sharedLink),
   };
 }
-export function deserializeUpdateWebLinkByIdRequestBodyArg(
+export function deserializeUpdateWebLinkByIdRequestBody(
   val: any
-): UpdateWebLinkByIdRequestBodyArg {
+): UpdateWebLinkByIdRequestBody {
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
-  const parent: undefined | UpdateWebLinkByIdRequestBodyArgParentField =
+  const parent: undefined | UpdateWebLinkByIdRequestBodyParentField =
     val.parent == void 0
       ? void 0
-      : deserializeUpdateWebLinkByIdRequestBodyArgParentField(val.parent);
+      : deserializeUpdateWebLinkByIdRequestBodyParentField(val.parent);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const sharedLink: undefined | UpdateWebLinkByIdRequestBodyArgSharedLinkField =
+  const sharedLink: undefined | UpdateWebLinkByIdRequestBodySharedLinkField =
     val.shared_link == void 0
       ? void 0
-      : deserializeUpdateWebLinkByIdRequestBodyArgSharedLinkField(
-          val.shared_link
-        );
+      : deserializeUpdateWebLinkByIdRequestBodySharedLinkField(val.shared_link);
   return {
     url: url,
     parent: parent,
     name: name,
     description: description,
     sharedLink: sharedLink,
-  } satisfies UpdateWebLinkByIdRequestBodyArg;
+  } satisfies UpdateWebLinkByIdRequestBody;
 }

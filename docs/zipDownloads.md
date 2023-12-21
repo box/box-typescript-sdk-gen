@@ -36,15 +36,15 @@ await client.zipDownloads.createZipDownload({
   items: [
     {
       id: file1.id,
-      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'file' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
     {
       id: file2.id,
-      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'file' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
     {
       id: folder1.id,
-      type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'folder' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
   ],
   downloadFileName: 'zip',
@@ -55,7 +55,7 @@ await client.zipDownloads.createZipDownload({
 
 - requestBody `ZipDownloadRequest`
   - Request body of createZipDownload method
-- headers `CreateZipDownloadHeadersArg`
+- headers `CreateZipDownloadHeaders`
   - Headers of createZipDownload method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -99,7 +99,7 @@ await client.zipDownloads.getZipDownloadContent(zipDownload.downloadUrl!);
 
 - downloadUrl `string`
   - The URL that can be used to download created `zip` archive. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content`
-- headers `GetZipDownloadContentHeadersArg`
+- headers `GetZipDownloadContentHeaders`
   - Headers of getZipDownloadContent method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -141,7 +141,7 @@ await client.zipDownloads.getZipDownloadStatus(zipDownload.statusUrl!);
 
 - statusUrl `string`
   - The URL that can be used to get the status of the `zip` archive being downloaded. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/status`
-- headers `GetZipDownloadStatusHeadersArg`
+- headers `GetZipDownloadStatusHeaders`
   - Headers of getZipDownloadStatus method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -166,15 +166,15 @@ await client.zipDownloads.downloadZip({
   items: [
     {
       id: file1.id,
-      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'file' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
     {
       id: file2.id,
-      type: 'file' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'file' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
     {
       id: folder1.id,
-      type: 'folder' as ZipDownloadRequestItemsFieldTypeField,
+      type: 'folder' as ZipDownloadRequestItemsTypeField,
     } satisfies ZipDownloadRequestItemsField,
   ],
   downloadFileName: 'zip',
@@ -185,7 +185,7 @@ await client.zipDownloads.downloadZip({
 
 - requestBody `ZipDownloadRequest`
   - Zip download request body
-- headers `DownloadZipHeadersArg`
+- headers `DownloadZipHeaders`
   - Headers of zip download method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

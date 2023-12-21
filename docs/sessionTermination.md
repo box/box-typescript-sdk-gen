@@ -10,19 +10,26 @@ and creates asynchronous jobs
 to terminate the user's sessions.
 Returns the status for the POST request.
 
-This operation is performed by calling function `createUserTerminateSession`.
+This operation is performed by calling function `terminateUsersSessions`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-users-terminate-sessions/).
 
-_Currently we don't have an example for calling `createUserTerminateSession` in integration tests_
+<!-- sample post_users_terminate_sessions -->
+
+```ts
+await client.sessionTermination.terminateUsersSessions({
+  userIds: [getEnvVar('USER_ID')],
+  userLogins: [user.login!],
+} satisfies TerminateUsersSessionsRequestBody);
+```
 
 ### Arguments
 
-- requestBody `CreateUserTerminateSessionRequestBodyArg`
-  - Request body of createUserTerminateSession method
-- headers `CreateUserTerminateSessionHeadersArg`
-  - Headers of createUserTerminateSession method
+- requestBody `TerminateUsersSessionsRequestBody`
+  - Request body of terminateUsersSessions method
+- headers `TerminateUsersSessionsHeaders`
+  - Headers of terminateUsersSessions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -39,19 +46,25 @@ and creates asynchronous jobs
 to terminate the group's sessions.
 Returns the status for the POST request.
 
-This operation is performed by calling function `createGroupTerminateSession`.
+This operation is performed by calling function `terminateGroupsSessions`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-groups-terminate-sessions/).
 
-_Currently we don't have an example for calling `createGroupTerminateSession` in integration tests_
+<!-- sample post_groups_terminate_sessions -->
+
+```ts
+await client.sessionTermination.terminateGroupsSessions({
+  groupIds: [group.id],
+} satisfies TerminateGroupsSessionsRequestBody);
+```
 
 ### Arguments
 
-- requestBody `CreateGroupTerminateSessionRequestBodyArg`
-  - Request body of createGroupTerminateSession method
-- headers `CreateGroupTerminateSessionHeadersArg`
-  - Headers of createGroupTerminateSession method
+- requestBody `TerminateGroupsSessionsRequestBody`
+  - Request body of terminateGroupsSessions method
+- headers `TerminateGroupsSessionsHeaders`
+  - Headers of terminateGroupsSessions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

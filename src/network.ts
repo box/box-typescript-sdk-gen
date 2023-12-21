@@ -1,7 +1,14 @@
+import { BaseUrls } from './baseUrls.generated.js';
+
 export class NetworkSession {
   additionalHeaders?: { readonly [key: string]: string };
+  baseUrls: BaseUrls = new BaseUrls({});
 
-  constructor(fields: Omit<NetworkSession, 'withAdditionalHeaders'>) {
+  constructor(
+    fields:
+      | Omit<NetworkSession, 'withAdditionalHeaders' | 'withCustomBaseUrls'>
+      | Partial<Pick<NetworkSession, 'baseUrls'>>
+  ) {
     Object.assign(this, fields);
   }
 
@@ -13,7 +20,12 @@ export class NetworkSession {
   withAdditionalHeaders(additionalHeaders: { readonly [key: string]: string }) {
     return new NetworkSession({
       additionalHeaders: { ...this.additionalHeaders, ...additionalHeaders },
+      baseUrls: this.baseUrls,
     });
+  }
+
+  withCustomBaseUrls(baseUrls: BaseUrls) {
+    return new NetworkSession({ ...this, baseUrls });
   }
 }
 

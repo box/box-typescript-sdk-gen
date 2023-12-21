@@ -27,48 +27,46 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetShieldInformationBarrierReportsQueryParamsArg {
+export interface GetShieldInformationBarrierReportsQueryParams {
   readonly shieldInformationBarrierId: string;
   readonly marker?: string;
   readonly limit?: number;
 }
-export class GetShieldInformationBarrierReportsHeadersArg {
+export class GetShieldInformationBarrierReportsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetShieldInformationBarrierReportsHeadersArg, 'extraHeaders'>
+      | Omit<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
+export class CreateShieldInformationBarrierReportHeaders {
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields:
+      | Omit<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'>
       | Partial<
-          Pick<GetShieldInformationBarrierReportsHeadersArg, 'extraHeaders'>
+          Pick<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
   }
 }
-export class CreateShieldInformationBarrierReportHeadersArg {
+export class GetShieldInformationBarrierReportByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateShieldInformationBarrierReportHeadersArg, 'extraHeaders'>
+      | Omit<GetShieldInformationBarrierReportByIdHeaders, 'extraHeaders'>
       | Partial<
-          Pick<CreateShieldInformationBarrierReportHeadersArg, 'extraHeaders'>
-        >
-  ) {
-    Object.assign(this, fields);
-  }
-}
-export class GetShieldInformationBarrierReportByIdHeadersArg {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields:
-      | Omit<GetShieldInformationBarrierReportByIdHeadersArg, 'extraHeaders'>
-      | Partial<
-          Pick<GetShieldInformationBarrierReportByIdHeadersArg, 'extraHeaders'>
+          Pick<GetShieldInformationBarrierReportByIdHeaders, 'extraHeaders'>
         >
   ) {
     Object.assign(this, fields);
@@ -76,20 +74,23 @@ export class GetShieldInformationBarrierReportByIdHeadersArg {
 }
 export class ShieldInformationBarrierReportsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      ShieldInformationBarrierReportsManager,
-      | 'getShieldInformationBarrierReports'
-      | 'createShieldInformationBarrierReport'
-      | 'getShieldInformationBarrierReportById'
-    >
+    fields:
+      | Omit<
+          ShieldInformationBarrierReportsManager,
+          | 'networkSession'
+          | 'getShieldInformationBarrierReports'
+          | 'createShieldInformationBarrierReport'
+          | 'getShieldInformationBarrierReportById'
+        >
+      | Partial<Pick<ShieldInformationBarrierReportsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getShieldInformationBarrierReports(
-    queryParams: GetShieldInformationBarrierReportsQueryParamsArg,
-    headers: GetShieldInformationBarrierReportsHeadersArg = new GetShieldInformationBarrierReportsHeadersArg(
+    queryParams: GetShieldInformationBarrierReportsQueryParams,
+    headers: GetShieldInformationBarrierReportsHeaders = new GetShieldInformationBarrierReportsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -108,7 +109,8 @@ export class ShieldInformationBarrierReportsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_reports'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_reports'
       ) as string,
       {
         method: 'GET',
@@ -124,7 +126,7 @@ export class ShieldInformationBarrierReportsManager {
   }
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,
-    headers: CreateShieldInformationBarrierReportHeadersArg = new CreateShieldInformationBarrierReportHeadersArg(
+    headers: CreateShieldInformationBarrierReportHeaders = new CreateShieldInformationBarrierReportHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -134,7 +136,8 @@ export class ShieldInformationBarrierReportsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_reports'
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_reports'
       ) as string,
       {
         method: 'POST',
@@ -151,7 +154,7 @@ export class ShieldInformationBarrierReportsManager {
   }
   async getShieldInformationBarrierReportById(
     shieldInformationBarrierReportId: string,
-    headers: GetShieldInformationBarrierReportByIdHeadersArg = new GetShieldInformationBarrierReportByIdHeadersArg(
+    headers: GetShieldInformationBarrierReportByIdHeaders = new GetShieldInformationBarrierReportByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -161,7 +164,8 @@ export class ShieldInformationBarrierReportsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/shield_information_barrier_reports/',
+        this.networkSession.baseUrls.baseUrl,
+        '/shield_information_barrier_reports/',
         toString(shieldInformationBarrierReportId) as string
       ) as string,
       {

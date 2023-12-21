@@ -19,9 +19,9 @@ _Currently we don't have an example for calling `getStoragePolicyAssignments` in
 
 ### Arguments
 
-- queryParams `GetStoragePolicyAssignmentsQueryParamsArg`
+- queryParams `GetStoragePolicyAssignmentsQueryParams`
   - Query parameters of getStoragePolicyAssignments method
-- headers `GetStoragePolicyAssignmentsHeadersArg`
+- headers `GetStoragePolicyAssignmentsHeaders`
   - Headers of getStoragePolicyAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -46,9 +46,9 @@ _Currently we don't have an example for calling `createStoragePolicyAssignment` 
 
 ### Arguments
 
-- requestBody `CreateStoragePolicyAssignmentRequestBodyArg`
+- requestBody `CreateStoragePolicyAssignmentRequestBody`
   - Request body of createStoragePolicyAssignment method
-- headers `CreateStoragePolicyAssignmentHeadersArg`
+- headers `CreateStoragePolicyAssignmentHeaders`
   - Headers of createStoragePolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -74,7 +74,7 @@ _Currently we don't have an example for calling `getStoragePolicyAssignmentById`
 
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
-- headers `GetStoragePolicyAssignmentByIdHeadersArg`
+- headers `GetStoragePolicyAssignmentByIdHeaders`
   - Headers of getStoragePolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -100,9 +100,9 @@ _Currently we don't have an example for calling `updateStoragePolicyAssignmentBy
 
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
-- requestBody `UpdateStoragePolicyAssignmentByIdRequestBodyArg`
+- requestBody `UpdateStoragePolicyAssignmentByIdRequestBody`
   - Request body of updateStoragePolicyAssignmentById method
-- headers `UpdateStoragePolicyAssignmentByIdHeadersArg`
+- headers `UpdateStoragePolicyAssignmentByIdHeaders`
   - Headers of updateStoragePolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -135,7 +135,7 @@ _Currently we don't have an example for calling `deleteStoragePolicyAssignmentBy
 
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
-- headers `DeleteStoragePolicyAssignmentByIdHeadersArg`
+- headers `DeleteStoragePolicyAssignmentByIdHeaders`
   - Headers of deleteStoragePolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

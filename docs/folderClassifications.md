@@ -14,19 +14,23 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo`.
+This operation is performed by calling function `getClassificationOnFolder`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo` in integration tests_
+<!-- sample get_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.folderClassifications.getClassificationOnFolder(folder.id);
+```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `GetFolderMetadataEnterpriseSecurityClassification6VmVochwUWoHeadersArg`
-  - Headers of getFolderMetadataEnterpriseSecurityClassification6VmVochwUWo method
+- headers `GetClassificationOnFolderHeaders`
+  - Headers of getClassificationOnFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -48,21 +52,27 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `createFolderMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `addClassificationToFolder`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `createFolderMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample post_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.folderClassifications.addClassificationToFolder(folder.id, {
+  boxSecurityClassificationKey: classification.key,
+} satisfies AddClassificationToFolderRequestBody);
+```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- requestBody `CreateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg`
-  - Request body of createFolderMetadataEnterpriseSecurityClassification method
-- headers `CreateFolderMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of createFolderMetadataEnterpriseSecurityClassification method
+- requestBody `AddClassificationToFolderRequestBody`
+  - Request body of addClassificationToFolder method
+- headers `AddClassificationToFolderHeaders`
+  - Headers of addClassificationToFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -81,21 +91,31 @@ The classification can only be updated if a classification has already been
 applied to the folder before. When editing classifications, only values are
 defined for the enterprise will be accepted.
 
-This operation is performed by calling function `updateFolderMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `updateClassificationOnFolder`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `updateFolderMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample put_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.folderClassifications.updateClassificationOnFolder(folder.id, [
+  {
+    op: 'replace' as UpdateClassificationOnFolderRequestBodyOpField,
+    path: '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField,
+    value: secondClassification.key,
+  } satisfies UpdateClassificationOnFolderRequestBody,
+]);
+```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- requestBody `readonly UpdateFolderMetadataEnterpriseSecurityClassificationRequestBodyArg[]`
-  - Request body of updateFolderMetadataEnterpriseSecurityClassification method
-- headers `UpdateFolderMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of updateFolderMetadataEnterpriseSecurityClassification method
+- requestBody `readonly UpdateClassificationOnFolderRequestBody[]`
+  - Request body of updateClassificationOnFolder method
+- headers `UpdateClassificationOnFolderHeaders`
+  - Headers of updateClassificationOnFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -113,19 +133,23 @@ This API can also be called by including the enterprise ID in the
 URL explicitly, for example
 `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
-This operation is performed by calling function `deleteFolderMetadataEnterpriseSecurityClassification`.
+This operation is performed by calling function `deleteClassificationFromFolder`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
 
-_Currently we don't have an example for calling `deleteFolderMetadataEnterpriseSecurityClassification` in integration tests_
+<!-- sample delete_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
+```ts
+await client.folderClassifications.deleteClassificationFromFolder(folder.id);
+```
 
 ### Arguments
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `DeleteFolderMetadataEnterpriseSecurityClassificationHeadersArg`
-  - Headers of deleteFolderMetadataEnterpriseSecurityClassification method
+- headers `DeleteClassificationFromFolderHeaders`
+  - Headers of deleteClassificationFromFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

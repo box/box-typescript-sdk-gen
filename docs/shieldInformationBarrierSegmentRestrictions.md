@@ -15,13 +15,19 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions-id/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictionById` in integration tests_
+<!-- sample get_shield_information_barrier_segment_restrictions_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
+  segmentRestrictionId
+);
+```
 
 ### Arguments
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headers `GetShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
+- headers `GetShieldInformationBarrierSegmentRestrictionByIdHeaders`
   - Headers of getShieldInformationBarrierSegmentRestrictionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -43,13 +49,19 @@ This operation is performed by calling function `deleteShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-restrictions-id/).
 
-_Currently we don't have an example for calling `deleteShieldInformationBarrierSegmentRestrictionById` in integration tests_
+<!-- sample delete_shield_information_barrier_segment_restrictions_id -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
+  segmentRestrictionId
+);
+```
 
 ### Arguments
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersArg`
+- headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders`
   - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -70,13 +82,21 @@ This operation is performed by calling function `getShieldInformationBarrierSegm
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions/).
 
-_Currently we don't have an example for calling `getShieldInformationBarrierSegmentRestrictions` in integration tests_
+<!-- sample get_shield_information_barrier_segment_restrictions -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
+  {
+    shieldInformationBarrierSegmentId: segmentId,
+  } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams
+);
+```
 
 ### Arguments
 
-- queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParamsArg`
+- queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentRestrictions method
-- headers `GetShieldInformationBarrierSegmentRestrictionsHeadersArg`
+- headers `GetShieldInformationBarrierSegmentRestrictionsHeaders`
   - Headers of getShieldInformationBarrierSegmentRestrictions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -98,13 +118,29 @@ This operation is performed by calling function `createShieldInformationBarrierS
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-restrictions/).
 
-_Currently we don't have an example for calling `createShieldInformationBarrierSegmentRestriction` in integration tests_
+<!-- sample post_shield_information_barrier_segment_restrictions -->
+
+```ts
+await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
+  {
+    restrictedSegment: {
+      id: segmentToRestrictId,
+      type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField,
+    } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField,
+    shieldInformationBarrierSegment: {
+      id: segmentId,
+      type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
+    } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
+    type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
+  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBody
+);
+```
 
 ### Arguments
 
-- requestBody `CreateShieldInformationBarrierSegmentRestrictionRequestBodyArg`
+- requestBody `CreateShieldInformationBarrierSegmentRestrictionRequestBody`
   - Request body of createShieldInformationBarrierSegmentRestriction method
-- headers `CreateShieldInformationBarrierSegmentRestrictionHeadersArg`
+- headers `CreateShieldInformationBarrierSegmentRestrictionHeaders`
   - Headers of createShieldInformationBarrierSegmentRestriction method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

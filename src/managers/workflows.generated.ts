@@ -21,75 +21,80 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export interface GetWorkflowsQueryParamsArg {
+export interface GetWorkflowsQueryParams {
   readonly folderId: string;
   readonly triggerType?: string;
   readonly limit?: number;
   readonly marker?: string;
 }
-export class GetWorkflowsHeadersArg {
+export class GetWorkflowsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetWorkflowsHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetWorkflowsHeadersArg, 'extraHeaders'>>
+      | Omit<GetWorkflowsHeaders, 'extraHeaders'>
+      | Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type CreateWorkflowStartRequestBodyArgTypeField = 'workflow_parameters';
-export interface CreateWorkflowStartRequestBodyArgFlowField {
+export type StartWorkflowRequestBodyTypeField = 'workflow_parameters';
+export interface StartWorkflowRequestBodyFlowField {
   readonly type?: string;
   readonly id?: string;
 }
-export type CreateWorkflowStartRequestBodyArgFilesFieldTypeField = 'file';
-export interface CreateWorkflowStartRequestBodyArgFilesField {
-  readonly type?: CreateWorkflowStartRequestBodyArgFilesFieldTypeField;
+export type StartWorkflowRequestBodyFilesTypeField = 'file';
+export interface StartWorkflowRequestBodyFilesField {
+  readonly type?: StartWorkflowRequestBodyFilesTypeField;
   readonly id?: string;
 }
-export type CreateWorkflowStartRequestBodyArgFolderFieldTypeField = 'folder';
-export interface CreateWorkflowStartRequestBodyArgFolderField {
-  readonly type?: CreateWorkflowStartRequestBodyArgFolderFieldTypeField;
+export type StartWorkflowRequestBodyFolderTypeField = 'folder';
+export interface StartWorkflowRequestBodyFolderField {
+  readonly type?: StartWorkflowRequestBodyFolderTypeField;
   readonly id?: string;
 }
-export type CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField = 'outcome';
-export interface CreateWorkflowStartRequestBodyArgOutcomesField {
+export type StartWorkflowRequestBodyOutcomesTypeField = 'outcome';
+export interface StartWorkflowRequestBodyOutcomesField {
   readonly id?: string;
-  readonly type?: CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField;
+  readonly type?: StartWorkflowRequestBodyOutcomesTypeField;
   readonly parameter?: string;
 }
-export interface CreateWorkflowStartRequestBodyArg {
-  readonly type?: CreateWorkflowStartRequestBodyArgTypeField;
-  readonly flow: CreateWorkflowStartRequestBodyArgFlowField;
-  readonly files: readonly CreateWorkflowStartRequestBodyArgFilesField[];
-  readonly folder: CreateWorkflowStartRequestBodyArgFolderField;
-  readonly outcomes?: readonly CreateWorkflowStartRequestBodyArgOutcomesField[];
+export interface StartWorkflowRequestBody {
+  readonly type?: StartWorkflowRequestBodyTypeField;
+  readonly flow: StartWorkflowRequestBodyFlowField;
+  readonly files: readonly StartWorkflowRequestBodyFilesField[];
+  readonly folder: StartWorkflowRequestBodyFolderField;
+  readonly outcomes?: readonly StartWorkflowRequestBodyOutcomesField[];
 }
-export class CreateWorkflowStartHeadersArg {
+export class StartWorkflowHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<CreateWorkflowStartHeadersArg, 'extraHeaders'>
-      | Partial<Pick<CreateWorkflowStartHeadersArg, 'extraHeaders'>>
+      | Omit<StartWorkflowHeaders, 'extraHeaders'>
+      | Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class WorkflowsManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<WorkflowsManager, 'getWorkflows' | 'createWorkflowStart'>
+    fields:
+      | Omit<
+          WorkflowsManager,
+          'networkSession' | 'getWorkflows' | 'startWorkflow'
+        >
+      | Partial<Pick<WorkflowsManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getWorkflows(
-    queryParams: GetWorkflowsQueryParamsArg,
-    headers: GetWorkflowsHeadersArg = new GetWorkflowsHeadersArg({}),
+    queryParams: GetWorkflowsQueryParams,
+    headers: GetWorkflowsHeaders = new GetWorkflowsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Workflows> {
     const queryParamsMap: {
@@ -104,7 +109,7 @@ export class WorkflowsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/2.0/workflows') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/workflows') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -117,12 +122,10 @@ export class WorkflowsManager {
     )) as FetchResponse;
     return deserializeWorkflows(response.data);
   }
-  async createWorkflowStart(
+  async startWorkflow(
     workflowId: string,
-    requestBody: CreateWorkflowStartRequestBodyArg,
-    headers: CreateWorkflowStartHeadersArg = new CreateWorkflowStartHeadersArg(
-      {}
-    ),
+    requestBody: StartWorkflowRequestBody,
+    headers: StartWorkflowHeaders = new StartWorkflowHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
     const headersMap: {
@@ -130,14 +133,15 @@ export class WorkflowsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/workflows/',
+        this.networkSession.baseUrls.baseUrl,
+        '/workflows/',
         toString(workflowId) as string,
         '/start'
       ) as string,
       {
         method: 'POST',
         headers: headersMap,
-        data: serializeCreateWorkflowStartRequestBodyArg(requestBody),
+        data: serializeStartWorkflowRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: void 0,
         auth: this.auth,
@@ -148,234 +152,204 @@ export class WorkflowsManager {
     return void 0;
   }
 }
-export function serializeCreateWorkflowStartRequestBodyArgTypeField(
-  val: CreateWorkflowStartRequestBodyArgTypeField
+export function serializeStartWorkflowRequestBodyTypeField(
+  val: StartWorkflowRequestBodyTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateWorkflowStartRequestBodyArgTypeField(
+export function deserializeStartWorkflowRequestBodyTypeField(
   val: any
-): CreateWorkflowStartRequestBodyArgTypeField {
+): StartWorkflowRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWorkflowStartRequestBodyArgTypeField"';
+    throw 'Expecting a string for "StartWorkflowRequestBodyTypeField"';
   }
   if (val == 'workflow_parameters') {
     return 'workflow_parameters';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateWorkflowStartRequestBodyArgFlowField(
-  val: CreateWorkflowStartRequestBodyArgFlowField
+export function serializeStartWorkflowRequestBodyFlowField(
+  val: StartWorkflowRequestBodyFlowField
 ): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeCreateWorkflowStartRequestBodyArgFlowField(
+export function deserializeStartWorkflowRequestBodyFlowField(
   val: any
-): CreateWorkflowStartRequestBodyArgFlowField {
+): StartWorkflowRequestBodyFlowField {
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return {
-    type: type,
-    id: id,
-  } satisfies CreateWorkflowStartRequestBodyArgFlowField;
+  return { type: type, id: id } satisfies StartWorkflowRequestBodyFlowField;
 }
-export function serializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(
-  val: CreateWorkflowStartRequestBodyArgFilesFieldTypeField
+export function serializeStartWorkflowRequestBodyFilesTypeField(
+  val: StartWorkflowRequestBodyFilesTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(
+export function deserializeStartWorkflowRequestBodyFilesTypeField(
   val: any
-): CreateWorkflowStartRequestBodyArgFilesFieldTypeField {
+): StartWorkflowRequestBodyFilesTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWorkflowStartRequestBodyArgFilesFieldTypeField"';
+    throw 'Expecting a string for "StartWorkflowRequestBodyFilesTypeField"';
   }
   if (val == 'file') {
     return 'file';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateWorkflowStartRequestBodyArgFilesField(
-  val: CreateWorkflowStartRequestBodyArgFilesField
+export function serializeStartWorkflowRequestBodyFilesField(
+  val: StartWorkflowRequestBodyFilesField
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(
-            val.type
-          ),
+        : serializeStartWorkflowRequestBodyFilesTypeField(val.type),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeCreateWorkflowStartRequestBodyArgFilesField(
+export function deserializeStartWorkflowRequestBodyFilesField(
   val: any
-): CreateWorkflowStartRequestBodyArgFilesField {
-  const type: undefined | CreateWorkflowStartRequestBodyArgFilesFieldTypeField =
+): StartWorkflowRequestBodyFilesField {
+  const type: undefined | StartWorkflowRequestBodyFilesTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateWorkflowStartRequestBodyArgFilesFieldTypeField(
-          val.type
-        );
+      : deserializeStartWorkflowRequestBodyFilesTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return {
-    type: type,
-    id: id,
-  } satisfies CreateWorkflowStartRequestBodyArgFilesField;
+  return { type: type, id: id } satisfies StartWorkflowRequestBodyFilesField;
 }
-export function serializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(
-  val: CreateWorkflowStartRequestBodyArgFolderFieldTypeField
+export function serializeStartWorkflowRequestBodyFolderTypeField(
+  val: StartWorkflowRequestBodyFolderTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(
+export function deserializeStartWorkflowRequestBodyFolderTypeField(
   val: any
-): CreateWorkflowStartRequestBodyArgFolderFieldTypeField {
+): StartWorkflowRequestBodyFolderTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWorkflowStartRequestBodyArgFolderFieldTypeField"';
+    throw 'Expecting a string for "StartWorkflowRequestBodyFolderTypeField"';
   }
   if (val == 'folder') {
     return 'folder';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateWorkflowStartRequestBodyArgFolderField(
-  val: CreateWorkflowStartRequestBodyArgFolderField
+export function serializeStartWorkflowRequestBodyFolderField(
+  val: StartWorkflowRequestBodyFolderField
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(
-            val.type
-          ),
+        : serializeStartWorkflowRequestBodyFolderTypeField(val.type),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
-export function deserializeCreateWorkflowStartRequestBodyArgFolderField(
+export function deserializeStartWorkflowRequestBodyFolderField(
   val: any
-): CreateWorkflowStartRequestBodyArgFolderField {
-  const type:
-    | undefined
-    | CreateWorkflowStartRequestBodyArgFolderFieldTypeField =
+): StartWorkflowRequestBodyFolderField {
+  const type: undefined | StartWorkflowRequestBodyFolderTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateWorkflowStartRequestBodyArgFolderFieldTypeField(
-          val.type
-        );
+      : deserializeStartWorkflowRequestBodyFolderTypeField(val.type);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return {
-    type: type,
-    id: id,
-  } satisfies CreateWorkflowStartRequestBodyArgFolderField;
+  return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
-export function serializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(
-  val: CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField
+export function serializeStartWorkflowRequestBodyOutcomesTypeField(
+  val: StartWorkflowRequestBodyOutcomesTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(
+export function deserializeStartWorkflowRequestBodyOutcomesTypeField(
   val: any
-): CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField {
+): StartWorkflowRequestBodyOutcomesTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField"';
+    throw 'Expecting a string for "StartWorkflowRequestBodyOutcomesTypeField"';
   }
   if (val == 'outcome') {
     return 'outcome';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeCreateWorkflowStartRequestBodyArgOutcomesField(
-  val: CreateWorkflowStartRequestBodyArgOutcomesField
+export function serializeStartWorkflowRequestBodyOutcomesField(
+  val: StartWorkflowRequestBodyOutcomesField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(
-            val.type
-          ),
+        : serializeStartWorkflowRequestBodyOutcomesTypeField(val.type),
     ['parameter']: val.parameter == void 0 ? void 0 : val.parameter,
   };
 }
-export function deserializeCreateWorkflowStartRequestBodyArgOutcomesField(
+export function deserializeStartWorkflowRequestBodyOutcomesField(
   val: any
-): CreateWorkflowStartRequestBodyArgOutcomesField {
+): StartWorkflowRequestBodyOutcomesField {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type:
-    | undefined
-    | CreateWorkflowStartRequestBodyArgOutcomesFieldTypeField =
+  const type: undefined | StartWorkflowRequestBodyOutcomesTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateWorkflowStartRequestBodyArgOutcomesFieldTypeField(
-          val.type
-        );
+      : deserializeStartWorkflowRequestBodyOutcomesTypeField(val.type);
   const parameter: undefined | string =
     val.parameter == void 0 ? void 0 : val.parameter;
   return {
     id: id,
     type: type,
     parameter: parameter,
-  } satisfies CreateWorkflowStartRequestBodyArgOutcomesField;
+  } satisfies StartWorkflowRequestBodyOutcomesField;
 }
-export function serializeCreateWorkflowStartRequestBodyArg(
-  val: CreateWorkflowStartRequestBodyArg
+export function serializeStartWorkflowRequestBody(
+  val: StartWorkflowRequestBody
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
-        : serializeCreateWorkflowStartRequestBodyArgTypeField(val.type),
-    ['flow']: serializeCreateWorkflowStartRequestBodyArgFlowField(val.flow),
+        : serializeStartWorkflowRequestBodyTypeField(val.type),
+    ['flow']: serializeStartWorkflowRequestBodyFlowField(val.flow),
     ['files']: val.files.map(function (
-      item: CreateWorkflowStartRequestBodyArgFilesField
+      item: StartWorkflowRequestBodyFilesField
     ): any {
-      return serializeCreateWorkflowStartRequestBodyArgFilesField(item);
+      return serializeStartWorkflowRequestBodyFilesField(item);
     }) as readonly any[],
-    ['folder']: serializeCreateWorkflowStartRequestBodyArgFolderField(
-      val.folder
-    ),
+    ['folder']: serializeStartWorkflowRequestBodyFolderField(val.folder),
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
         : (val.outcomes.map(function (
-            item: CreateWorkflowStartRequestBodyArgOutcomesField
+            item: StartWorkflowRequestBodyOutcomesField
           ): any {
-            return serializeCreateWorkflowStartRequestBodyArgOutcomesField(
-              item
-            );
+            return serializeStartWorkflowRequestBodyOutcomesField(item);
           }) as readonly any[]),
   };
 }
-export function deserializeCreateWorkflowStartRequestBodyArg(
+export function deserializeStartWorkflowRequestBody(
   val: any
-): CreateWorkflowStartRequestBodyArg {
-  const type: undefined | CreateWorkflowStartRequestBodyArgTypeField =
+): StartWorkflowRequestBody {
+  const type: undefined | StartWorkflowRequestBodyTypeField =
     val.type == void 0
       ? void 0
-      : deserializeCreateWorkflowStartRequestBodyArgTypeField(val.type);
-  const flow: CreateWorkflowStartRequestBodyArgFlowField =
-    deserializeCreateWorkflowStartRequestBodyArgFlowField(val.flow);
-  const files: readonly CreateWorkflowStartRequestBodyArgFilesField[] =
-    sdIsList(val.files)
-      ? (val.files.map(function (itm: SerializedData): any {
-          return deserializeCreateWorkflowStartRequestBodyArgFilesField(itm);
-        }) as readonly any[])
-      : [];
-  const folder: CreateWorkflowStartRequestBodyArgFolderField =
-    deserializeCreateWorkflowStartRequestBodyArgFolderField(val.folder);
-  const outcomes:
-    | undefined
-    | readonly CreateWorkflowStartRequestBodyArgOutcomesField[] =
+      : deserializeStartWorkflowRequestBodyTypeField(val.type);
+  const flow: StartWorkflowRequestBodyFlowField =
+    deserializeStartWorkflowRequestBodyFlowField(val.flow);
+  const files: readonly StartWorkflowRequestBodyFilesField[] = sdIsList(
+    val.files
+  )
+    ? (val.files.map(function (itm: SerializedData): any {
+        return deserializeStartWorkflowRequestBodyFilesField(itm);
+      }) as readonly any[])
+    : [];
+  const folder: StartWorkflowRequestBodyFolderField =
+    deserializeStartWorkflowRequestBodyFolderField(val.folder);
+  const outcomes: undefined | readonly StartWorkflowRequestBodyOutcomesField[] =
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
       ? (val.outcomes.map(function (itm: SerializedData): any {
-          return deserializeCreateWorkflowStartRequestBodyArgOutcomesField(itm);
+          return deserializeStartWorkflowRequestBodyOutcomesField(itm);
         }) as readonly any[])
       : [];
   return {
@@ -384,5 +358,5 @@ export function deserializeCreateWorkflowStartRequestBodyArg(
     files: files,
     folder: folder,
     outcomes: outcomes,
-  } satisfies CreateWorkflowStartRequestBodyArg;
+  } satisfies StartWorkflowRequestBody;
 }

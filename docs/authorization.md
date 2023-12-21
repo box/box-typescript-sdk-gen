@@ -1,6 +1,9 @@
 # AuthorizationManager
 
 - [Authorize user](#authorize-user)
+- [Request access token](#request-access-token)
+- [Refresh access token](#refresh-access-token)
+- [Revoke access token](#revoke-access-token)
 
 ## Authorize user
 
@@ -12,19 +15,19 @@ OAuth 2.0. To request a user's authorization to use the Box APIs
 on their behalf you will need to send a user to the URL with this
 format.
 
-This operation is performed by calling function `getAuthorize`.
+This operation is performed by calling function `authorizeUser`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-authorize/).
 
-_Currently we don't have an example for calling `getAuthorize` in integration tests_
+_Currently we don't have an example for calling `authorizeUser` in integration tests_
 
 ### Arguments
 
-- queryParams `GetAuthorizeQueryParamsArg`
-  - Query parameters of getAuthorize method
-- headers `GetAuthorizeHeadersArg`
-  - Headers of getAuthorize method
+- queryParams `AuthorizeUserQueryParams`
+  - Query parameters of authorizeUser method
+- headers `AuthorizeUserHeaders`
+  - Headers of authorizeUser method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -33,3 +36,97 @@ _Currently we don't have an example for calling `getAuthorize` in integration te
 This function returns a value of type `undefined`.
 
 Does not return any data, but rather should be used in the browser.
+
+## Request access token
+
+Request an Access Token using either a client-side obtained OAuth 2.0
+authorization code or a server-side JWT assertion.
+
+An Access Token is a string that enables Box to verify that a
+request belongs to an authorized session. In the normal order of
+operations you will begin by requesting authentication from the
+[authorize](#get-authorize) endpoint and Box will send you an
+authorization code.
+
+You will then send this code to this endpoint to exchange it for
+an Access Token. The returned Access Token can then be used to to make
+Box API calls.
+
+This operation is performed by calling function `requestAccessToken`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-oauth-2-token/).
+
+_Currently we don't have an example for calling `requestAccessToken` in integration tests_
+
+### Arguments
+
+- requestBody `PostOAuth2Token`
+  - Request body of requestAccessToken method
+- headers `RequestAccessTokenHeaders`
+  - Headers of requestAccessToken method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `AccessToken`.
+
+Returns a new Access Token that can be used to make authenticated
+API calls by passing along the token in a authorization header as
+follows `Authorization: Bearer <Token>`.
+
+## Refresh access token
+
+Refresh an Access Token using its client ID, secret, and refresh token.
+
+This operation is performed by calling function `refreshAccessToken`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-oauth-2-token-refresh/).
+
+_Currently we don't have an example for calling `refreshAccessToken` in integration tests_
+
+### Arguments
+
+- requestBody `PostOAuth2TokenRefreshAccessToken`
+  - Request body of refreshAccessToken method
+- headers `RefreshAccessTokenHeaders`
+  - Headers of refreshAccessToken method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `AccessToken`.
+
+Returns a new Access Token that can be used to make authenticated
+API calls by passing along the token in a authorization header as
+follows `Authorization: Bearer <Token>`.
+
+## Revoke access token
+
+Revoke an active Access Token, effectively logging a user out
+that has been previously authenticated.
+
+This operation is performed by calling function `revokeAccessToken`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-oauth-2-revoke/).
+
+_Currently we don't have an example for calling `revokeAccessToken` in integration tests_
+
+### Arguments
+
+- requestBody `PostOAuth2Revoke`
+  - Request body of revokeAccessToken method
+- headers `RevokeAccessTokenHeaders`
+  - Headers of revokeAccessToken method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the token was successfully revoked.

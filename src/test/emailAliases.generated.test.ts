@@ -1,19 +1,19 @@
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
-import { deserializeCreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeEmailAliases } from '../schemas.generated.js';
 import { deserializeEmailAliases } from '../schemas.generated.js';
 import { serializeEmailAlias } from '../schemas.generated.js';
 import { deserializeEmailAlias } from '../schemas.generated.js';
-import { serializeCreateUserEmailAliasRequestBodyArg } from '../managers/emailAliases.generated.js';
-import { deserializeCreateUserEmailAliasRequestBodyArg } from '../managers/emailAliases.generated.js';
+import { serializeCreateUserEmailAliasRequestBody } from '../managers/emailAliases.generated.js';
+import { deserializeCreateUserEmailAliasRequestBody } from '../managers/emailAliases.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { CreateUserRequestBodyArg } from '../managers/users.generated.js';
+import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { EmailAliases } from '../schemas.generated.js';
 import { EmailAlias } from '../schemas.generated.js';
-import { CreateUserEmailAliasRequestBodyArg } from '../managers/emailAliases.generated.js';
+import { CreateUserEmailAliasRequestBody } from '../managers/emailAliases.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../json.js';
@@ -30,7 +30,7 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
   const newUser: UserFull = await client.users.createUser({
     name: newUserName,
     login: newUserLogin,
-  } satisfies CreateUserRequestBodyArg);
+  } satisfies CreateUserRequestBody);
   const aliases: EmailAliases = await client.emailAliases.getUserEmailAliases(
     newUser.id
   );
@@ -40,7 +40,7 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
   const newAliasEmail: string = ''.concat(newUser.id, '@boxdemo.com') as string;
   const newAlias: EmailAlias = await client.emailAliases.createUserEmailAlias(
     newUser.id,
-    { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBodyArg
+    { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBody
   );
   const updatedAliases: EmailAliases =
     await client.emailAliases.getUserEmailAliases(newUser.id);

@@ -23,9 +23,9 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
 
 ### Arguments
 
-- queryParams `GetCollaborationWhitelistExemptTargetsQueryParamsArg`
+- queryParams `GetCollaborationWhitelistExemptTargetsQueryParams`
   - Query parameters of getCollaborationWhitelistExemptTargets method
-- headers `GetCollaborationWhitelistExemptTargetsHeadersArg`
+- headers `GetCollaborationWhitelistExemptTargetsHeaders`
   - Headers of getCollaborationWhitelistExemptTargets method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -53,16 +53,16 @@ await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExe
   {
     user: {
       id: user.id,
-    } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArgUserField,
-  } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyArg
+    } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField,
+  } satisfies CreateCollaborationWhitelistExemptTargetRequestBody
 );
 ```
 
 ### Arguments
 
-- requestBody `CreateCollaborationWhitelistExemptTargetRequestBodyArg`
+- requestBody `CreateCollaborationWhitelistExemptTargetRequestBody`
   - Request body of createCollaborationWhitelistExemptTarget method
-- headers `CreateCollaborationWhitelistExemptTargetHeadersArg`
+- headers `CreateCollaborationWhitelistExemptTargetHeaders`
   - Headers of createCollaborationWhitelistExemptTarget method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -95,7 +95,7 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
 
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
-- headers `GetCollaborationWhitelistExemptTargetByIdHeadersArg`
+- headers `GetCollaborationWhitelistExemptTargetByIdHeaders`
   - Headers of getCollaborationWhitelistExemptTargetById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -128,7 +128,7 @@ await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExe
 
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
-- headers `DeleteCollaborationWhitelistExemptTargetByIdHeadersArg`
+- headers `DeleteCollaborationWhitelistExemptTargetByIdHeaders`
   - Headers of deleteCollaborationWhitelistExemptTargetById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

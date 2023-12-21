@@ -1,47 +1,47 @@
 import { serializeMetadataTemplate } from '../schemas.generated.js';
 import { deserializeMetadataTemplate } from '../schemas.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { serializeUpdateMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeUpdateMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { serializeUpdateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeUpdateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { serializeUpdateMetadataTemplateRequestBodyArgOpField } from '../managers/metadataTemplates.generated.js';
-import { deserializeUpdateMetadataTemplateRequestBodyArgOpField } from '../managers/metadataTemplates.generated.js';
-import { serializeGetMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeGetMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeUpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeUpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { serializeUpdateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeUpdateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeUpdateMetadataTemplateRequestBodyOpField } from '../managers/metadataTemplates.generated.js';
+import { deserializeUpdateMetadataTemplateRequestBodyOpField } from '../managers/metadataTemplates.generated.js';
+import { serializeGetMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeGetMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataTemplates } from '../schemas.generated.js';
 import { deserializeMetadataTemplates } from '../schemas.generated.js';
-import { serializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { deserializeDeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeMetadataFull } from '../schemas.generated.js';
 import { deserializeMetadataFull } from '../schemas.generated.js';
-import { serializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeCreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { serializeDeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { deserializeDeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { serializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeCreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { serializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { deserializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
-import { CreateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsField } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField } from '../managers/metadataTemplates.generated.js';
-import { UpdateMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
-import { UpdateMetadataTemplateRequestBodyArg } from '../managers/metadataTemplates.generated.js';
-import { UpdateMetadataTemplateRequestBodyArgOpField } from '../managers/metadataTemplates.generated.js';
-import { GetMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { UpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { UpdateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { UpdateMetadataTemplateRequestBodyOpField } from '../managers/metadataTemplates.generated.js';
+import { GetMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { MetadataTemplates } from '../schemas.generated.js';
-import { DeleteMetadataTemplateScopeArg } from '../managers/metadataTemplates.generated.js';
+import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
-import { CreateFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
-import { GetMetadataTemplatesByInstanceIdQueryParamsArg } from '../managers/metadataTemplates.generated.js';
-import { DeleteFileMetadataByIdScopeArg } from '../managers/fileMetadata.generated.js';
+import { CreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
+import { GetMetadataTemplatesByInstanceIdQueryParams } from '../managers/metadataTemplates.generated.js';
+import { DeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { getUuid } from '../utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
@@ -61,12 +61,12 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
     templateKey: templateKey,
     fields: [
       {
-        type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
         key: 'testName',
         displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
-  } satisfies CreateMetadataTemplateRequestBodyArg);
+  } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
     throw 'Assertion failed';
   }
@@ -84,14 +84,14 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   }
   const updatedTemplate: any =
     await client.metadataTemplates.updateMetadataTemplate(
-      'enterprise' as UpdateMetadataTemplateScopeArg,
+      'enterprise' as UpdateMetadataTemplateScope,
       templateKey,
       [
         {
-          op: 'addField' as UpdateMetadataTemplateRequestBodyArgOpField,
+          op: 'addField' as UpdateMetadataTemplateRequestBodyOpField,
           fieldKey: 'newfieldname',
           data: { ['type']: 'string', ['displayName']: 'newFieldName' },
-        } satisfies UpdateMetadataTemplateRequestBodyArg,
+        } satisfies UpdateMetadataTemplateRequestBody,
       ]
     );
   if (!(updatedTemplate.fields!.length == 2)) {
@@ -110,7 +110,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   }
   const getMetadataTemplateSchema: any =
     await client.metadataTemplates.getMetadataTemplate(
-      'enterprise' as GetMetadataTemplateScopeArg,
+      'enterprise' as GetMetadataTemplateScope,
       template.templateKey!
     );
   if (!(getMetadataTemplateSchema.id == template.id)) {
@@ -127,12 +127,12 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
     throw 'Assertion failed';
   }
   await client.metadataTemplates.deleteMetadataTemplate(
-    'enterprise' as DeleteMetadataTemplateScopeArg,
+    'enterprise' as DeleteMetadataTemplateScope,
     template.templateKey!
   );
-  expect(async () => {
+  await expect(async () => {
     await client.metadataTemplates.deleteMetadataTemplate(
-      'enterprise' as DeleteMetadataTemplateScopeArg,
+      'enterprise' as DeleteMetadataTemplateScope,
       template.templateKey!
     );
   }).rejects.toThrow();
@@ -146,23 +146,23 @@ test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplate
     templateKey: templateKey,
     fields: [
       {
-        type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
         key: 'testName',
         displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
-  } satisfies CreateMetadataTemplateRequestBodyArg);
+  } satisfies CreateMetadataTemplateRequestBody);
   const createdMetadataInstance: any =
     await client.fileMetadata.createFileMetadataById(
       file.id,
-      'enterprise' as CreateFileMetadataByIdScopeArg,
+      'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
       { ['testName']: 'xyz' }
     );
   const metadataTemplates: any =
     await client.metadataTemplates.getMetadataTemplatesByInstanceId({
       metadataInstanceId: createdMetadataInstance.id!,
-    } satisfies GetMetadataTemplatesByInstanceIdQueryParamsArg);
+    } satisfies GetMetadataTemplatesByInstanceIdQueryParams);
   if (!(metadataTemplates.entries!.length == 1)) {
     throw 'Assertion failed';
   }
@@ -174,11 +174,11 @@ test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplate
   }
   await client.fileMetadata.deleteFileMetadataById(
     file.id,
-    'enterprise' as DeleteFileMetadataByIdScopeArg,
+    'enterprise' as DeleteFileMetadataByIdScope,
     templateKey
   );
   await client.metadataTemplates.deleteMetadataTemplate(
-    'enterprise' as DeleteMetadataTemplateScopeArg,
+    'enterprise' as DeleteMetadataTemplateScope,
     template.templateKey!
   );
   await client.files.deleteFileById(file.id);

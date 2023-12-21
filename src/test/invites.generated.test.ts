@@ -2,19 +2,19 @@ import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeInvite } from '../schemas.generated.js';
 import { deserializeInvite } from '../schemas.generated.js';
-import { serializeCreateInviteRequestBodyArg } from '../managers/invites.generated.js';
-import { deserializeCreateInviteRequestBodyArg } from '../managers/invites.generated.js';
-import { serializeCreateInviteRequestBodyArgEnterpriseField } from '../managers/invites.generated.js';
-import { deserializeCreateInviteRequestBodyArgEnterpriseField } from '../managers/invites.generated.js';
-import { serializeCreateInviteRequestBodyArgActionableByField } from '../managers/invites.generated.js';
-import { deserializeCreateInviteRequestBodyArgActionableByField } from '../managers/invites.generated.js';
+import { serializeCreateInviteRequestBody } from '../managers/invites.generated.js';
+import { deserializeCreateInviteRequestBody } from '../managers/invites.generated.js';
+import { serializeCreateInviteRequestBodyEnterpriseField } from '../managers/invites.generated.js';
+import { deserializeCreateInviteRequestBodyEnterpriseField } from '../managers/invites.generated.js';
+import { serializeCreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
+import { deserializeCreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
-import { GetUserMeQueryParamsArg } from '../managers/users.generated.js';
+import { GetUserMeQueryParams } from '../managers/users.generated.js';
 import { Invite } from '../schemas.generated.js';
-import { CreateInviteRequestBodyArg } from '../managers/invites.generated.js';
-import { CreateInviteRequestBodyArgEnterpriseField } from '../managers/invites.generated.js';
-import { CreateInviteRequestBodyArgActionableByField } from '../managers/invites.generated.js';
+import { CreateInviteRequestBody } from '../managers/invites.generated.js';
+import { CreateInviteRequestBodyEnterpriseField } from '../managers/invites.generated.js';
+import { CreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
 import { getUuid } from '../utils.js';
 import { getEnvVar } from '../utils.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
@@ -32,16 +32,16 @@ test('testInvites', async function testInvites(): Promise<any> {
   const client: BoxClient = await getDefaultClientAsUser(userId);
   const currentUser: UserFull = await client.users.getUserMe({
     fields: ['enterprise' as ''],
-  } satisfies GetUserMeQueryParamsArg);
+  } satisfies GetUserMeQueryParams);
   const email: string = getEnvVar('BOX_EXTERNAL_USER_EMAIL');
   const invitation: Invite = await client.invites.createInvite({
     enterprise: {
       id: currentUser.enterprise!.id!,
-    } satisfies CreateInviteRequestBodyArgEnterpriseField,
+    } satisfies CreateInviteRequestBodyEnterpriseField,
     actionableBy: {
       login: email,
-    } satisfies CreateInviteRequestBodyArgActionableByField,
-  } satisfies CreateInviteRequestBodyArg);
+    } satisfies CreateInviteRequestBodyActionableByField,
+  } satisfies CreateInviteRequestBody);
   if (!((toString(invitation.type) as string) == 'invite')) {
     throw 'Assertion failed';
   }

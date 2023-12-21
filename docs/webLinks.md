@@ -19,17 +19,17 @@ See the endpoint docs at
 ```ts
 await client.webLinks.createWebLink({
   url: url,
-  parent: { id: parent.id } satisfies CreateWebLinkRequestBodyArgParentField,
+  parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
   name: name,
   description: description,
-} satisfies CreateWebLinkRequestBodyArg);
+} satisfies CreateWebLinkRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateWebLinkRequestBodyArg`
+- requestBody `CreateWebLinkRequestBody`
   - Request body of createWebLink method
-- headers `CreateWebLinkHeadersArg`
+- headers `CreateWebLinkHeaders`
   - Headers of createWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,7 +59,7 @@ await client.webLinks.getWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headers `GetWebLinkByIdHeadersArg`
+- headers `GetWebLinkByIdHeaders`
   - Headers of getWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -87,17 +87,17 @@ await client.webLinks.updateWebLinkById(weblink.id, {
   sharedLink: {
     access: sharedAccess,
     password: password,
-  } satisfies UpdateWebLinkByIdRequestBodyArgSharedLinkField,
-} satisfies UpdateWebLinkByIdRequestBodyArg);
+  } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
+} satisfies UpdateWebLinkByIdRequestBody);
 ```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `UpdateWebLinkByIdRequestBodyArg`
+- requestBody `UpdateWebLinkByIdRequestBody`
   - Request body of updateWebLinkById method
-- headers `UpdateWebLinkByIdHeadersArg`
+- headers `UpdateWebLinkByIdHeaders`
   - Headers of updateWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -127,7 +127,7 @@ await client.webLinks.deleteWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headers `DeleteWebLinkByIdHeadersArg`
+- headers `DeleteWebLinkByIdHeaders`
   - Headers of deleteWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

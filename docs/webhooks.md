@@ -28,9 +28,9 @@ await client.webhooks.getWebhooks();
 
 ### Arguments
 
-- queryParams `GetWebhooksQueryParamsArg`
+- queryParams `GetWebhooksQueryParams`
   - Query parameters of getWebhooks method
-- headers `GetWebhooksHeadersArg`
+- headers `GetWebhooksHeaders`
   - Headers of getWebhooks method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -56,18 +56,18 @@ See the endpoint docs at
 await client.webhooks.createWebhook({
   target: {
     id: folder.id,
-    type: 'folder' as CreateWebhookRequestBodyArgTargetFieldTypeField,
-  } satisfies CreateWebhookRequestBodyArgTargetField,
+    type: 'folder' as CreateWebhookRequestBodyTargetTypeField,
+  } satisfies CreateWebhookRequestBodyTargetField,
   address: 'https://example.com/new-webhook',
-  triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyArgTriggersField],
-} satisfies CreateWebhookRequestBodyArg);
+  triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyTriggersField],
+} satisfies CreateWebhookRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateWebhookRequestBodyArg`
+- requestBody `CreateWebhookRequestBody`
   - Request body of createWebhook method
-- headers `CreateWebhookHeadersArg`
+- headers `CreateWebhookHeaders`
   - Headers of createWebhook method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,7 +97,7 @@ await client.webhooks.getWebhookById(webhook.id!);
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- headers `GetWebhookByIdHeadersArg`
+- headers `GetWebhookByIdHeaders`
   - Headers of getWebhookById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -122,16 +122,16 @@ See the endpoint docs at
 ```ts
 await client.webhooks.updateWebhookById(webhook.id!, {
   address: 'https://example.com/updated-webhook',
-} satisfies UpdateWebhookByIdRequestBodyArg);
+} satisfies UpdateWebhookByIdRequestBody);
 ```
 
 ### Arguments
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- requestBody `UpdateWebhookByIdRequestBodyArg`
+- requestBody `UpdateWebhookByIdRequestBody`
   - Request body of updateWebhookById method
-- headers `UpdateWebhookByIdHeadersArg`
+- headers `UpdateWebhookByIdHeaders`
   - Headers of updateWebhookById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -161,7 +161,7 @@ await client.webhooks.deleteWebhookById(webhook.id!);
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- headers `DeleteWebhookByIdHeadersArg`
+- headers `DeleteWebhookByIdHeaders`
   - Headers of deleteWebhookById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

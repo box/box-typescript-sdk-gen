@@ -24,14 +24,14 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.getMetadataTemplatesByInstanceId({
   metadataInstanceId: createdMetadataInstance.id!,
-} satisfies GetMetadataTemplatesByInstanceIdQueryParamsArg);
+} satisfies GetMetadataTemplatesByInstanceIdQueryParams);
 ```
 
 ### Arguments
 
-- queryParams `GetMetadataTemplatesByInstanceIdQueryParamsArg`
+- queryParams `GetMetadataTemplatesByInstanceIdQueryParams`
   - Query parameters of getMetadataTemplatesByInstanceId method
-- headers `GetMetadataTemplatesByInstanceIdHeadersArg`
+- headers `GetMetadataTemplatesByInstanceIdHeaders`
   - Headers of getMetadataTemplatesByInstanceId method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,18 +59,18 @@ See the endpoint docs at
 
 ```ts
 await client.metadataTemplates.getMetadataTemplate(
-  'enterprise' as GetMetadataTemplateScopeArg,
+  'enterprise' as GetMetadataTemplateScope,
   template.templateKey!
 );
 ```
 
 ### Arguments
 
-- scope `GetMetadataTemplateScopeArg`
+- scope `GetMetadataTemplateScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `GetMetadataTemplateHeadersArg`
+- headers `GetMetadataTemplateHeaders`
   - Headers of getMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -101,27 +101,27 @@ See the endpoint docs at
 
 ```ts
 await client.metadataTemplates.updateMetadataTemplate(
-  'enterprise' as UpdateMetadataTemplateScopeArg,
+  'enterprise' as UpdateMetadataTemplateScope,
   templateKey,
   [
     {
-      op: 'addField' as UpdateMetadataTemplateRequestBodyArgOpField,
+      op: 'addField' as UpdateMetadataTemplateRequestBodyOpField,
       fieldKey: 'newfieldname',
       data: { ['type']: 'string', ['displayName']: 'newFieldName' },
-    } satisfies UpdateMetadataTemplateRequestBodyArg,
+    } satisfies UpdateMetadataTemplateRequestBody,
   ]
 );
 ```
 
 ### Arguments
 
-- scope `UpdateMetadataTemplateScopeArg`
+- scope `UpdateMetadataTemplateScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- requestBody `readonly UpdateMetadataTemplateRequestBodyArg[]`
+- requestBody `readonly UpdateMetadataTemplateRequestBody[]`
   - Request body of updateMetadataTemplate method
-- headers `UpdateMetadataTemplateHeadersArg`
+- headers `UpdateMetadataTemplateHeaders`
   - Headers of updateMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -147,18 +147,18 @@ See the endpoint docs at
 
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
-  'enterprise' as DeleteMetadataTemplateScopeArg,
+  'enterprise' as DeleteMetadataTemplateScope,
   template.templateKey
 );
 ```
 
 ### Arguments
 
-- scope `DeleteMetadataTemplateScopeArg`
+- scope `DeleteMetadataTemplateScope`
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `DeleteMetadataTemplateHeadersArg`
+- headers `DeleteMetadataTemplateHeaders`
   - Headers of deleteMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -189,7 +189,7 @@ await client.metadataTemplates.getMetadataTemplateById(template.id);
 
 - templateId `string`
   - The ID of the template Example: "f7a9891f"
-- headers `GetMetadataTemplateByIdHeadersArg`
+- headers `GetMetadataTemplateByIdHeaders`
   - Headers of getMetadataTemplateById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -218,9 +218,9 @@ await client.metadataTemplates.getGlobalMetadataTemplates();
 
 ### Arguments
 
-- queryParams `GetGlobalMetadataTemplatesQueryParamsArg`
+- queryParams `GetGlobalMetadataTemplatesQueryParams`
   - Query parameters of getGlobalMetadataTemplates method
-- headers `GetGlobalMetadataTemplatesHeadersArg`
+- headers `GetGlobalMetadataTemplatesHeaders`
   - Headers of getGlobalMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -250,9 +250,9 @@ await client.metadataTemplates.getEnterpriseMetadataTemplates();
 
 ### Arguments
 
-- queryParams `GetEnterpriseMetadataTemplatesQueryParamsArg`
+- queryParams `GetEnterpriseMetadataTemplatesQueryParams`
   - Query parameters of getEnterpriseMetadataTemplates method
-- headers `GetEnterpriseMetadataTemplatesHeadersArg`
+- headers `GetEnterpriseMetadataTemplatesHeaders`
   - Headers of getEnterpriseMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -283,19 +283,19 @@ await client.metadataTemplates.createMetadataTemplate({
   templateKey: templateKey,
   fields: [
     {
-      type: 'string' as CreateMetadataTemplateRequestBodyArgFieldsFieldTypeField,
+      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
       key: 'testName',
       displayName: 'testName',
-    } satisfies CreateMetadataTemplateRequestBodyArgFieldsField,
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
-} satisfies CreateMetadataTemplateRequestBodyArg);
+} satisfies CreateMetadataTemplateRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateMetadataTemplateRequestBodyArg`
+- requestBody `CreateMetadataTemplateRequestBody`
   - Request body of createMetadataTemplate method
-- headers `CreateMetadataTemplateHeadersArg`
+- headers `CreateMetadataTemplateHeaders`
   - Headers of createMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

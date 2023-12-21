@@ -1,24 +1,24 @@
 import { serializeFiles } from '../schemas.generated.js';
 import { deserializeFiles } from '../schemas.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { serializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
-import { serializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { deserializeUploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { ByteStream } from '../utils.js';
 import { Files } from '../schemas.generated.js';
-import { UploadFileRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileRequestBodyArgAttributesFieldParentField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
-import { UploadFileVersionRequestBodyArg } from '../managers/uploads.generated.js';
-import { UploadFileVersionRequestBodyArgAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileVersionRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { CancellationToken } from '../utils.js';
-import { UploadFileQueryParamsArg } from '../managers/uploads.generated.js';
-import { UploadFileHeadersArg } from '../managers/uploads.generated.js';
+import { UploadFileQueryParams } from '../managers/uploads.generated.js';
+import { UploadFileHeaders } from '../managers/uploads.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { createTokenAndCancelAfter } from '../utils.js';
@@ -38,12 +38,10 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: newFileName,
-      parent: {
-        id: '0',
-      } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-    } satisfies UploadFileRequestBodyArgAttributesField,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
     file: fileContentStream,
-  } satisfies UploadFileRequestBodyArg);
+  } satisfies UploadFileRequestBody);
   const uploadedFile: FileFull = uploadedFiles.entries![0];
   if (!(uploadedFile.name == newFileName)) {
     throw 'Assertion failed';
@@ -55,9 +53,9 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
     {
       attributes: {
         name: newFileVersionName,
-      } satisfies UploadFileVersionRequestBodyArgAttributesField,
+      } satisfies UploadFileVersionRequestBodyAttributesField,
       file: newFileContentStream,
-    } satisfies UploadFileVersionRequestBodyArg
+    } satisfies UploadFileVersionRequestBody
   );
   const newFileVersion: FileFull = uploadedFilesVersion.entries![0];
   if (!(newFileVersion.name == newFileVersionName)) {
@@ -70,19 +68,19 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
   const fileName: string = getUuid();
   const fileByteStream: ByteStream = generateByteStream(fileSize);
   const cancellationToken: CancellationToken = createTokenAndCancelAfter(1);
-  expect(async () => {
+  await expect(async () => {
     await client.uploads.uploadFile(
       {
         attributes: {
           name: fileName,
           parent: {
             id: '0',
-          } satisfies UploadFileRequestBodyArgAttributesFieldParentField,
-        } satisfies UploadFileRequestBodyArgAttributesField,
+          } satisfies UploadFileRequestBodyAttributesParentField,
+        } satisfies UploadFileRequestBodyAttributesField,
         file: fileByteStream,
-      } satisfies UploadFileRequestBodyArg,
-      {} satisfies UploadFileQueryParamsArg,
-      new UploadFileHeadersArg({}),
+      } satisfies UploadFileRequestBody,
+      {} satisfies UploadFileQueryParams,
+      new UploadFileHeaders({}),
       cancellationToken
     );
   }).rejects.toThrow();

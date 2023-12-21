@@ -1,36 +1,36 @@
 import { serializeFolderFull } from '../schemas.generated.js';
 import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { serializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { deserializeCreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { serializeUpdateFolderAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { serializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { serializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
-import { serializeUpdateFolderUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { serializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { serializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
-import { deserializeUpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
+import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { serializeAddShareLinkToFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeAddShareLinkToFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { serializeAddShareLinkToFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeAddShareLinkToFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { serializeAddShareLinkToFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { serializeUpdateSharedLinkOnFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeUpdateSharedLinkOnFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
-import { CreateFolderRequestBodyArg } from '../managers/folders.generated.js';
-import { CreateFolderRequestBodyArgParentField } from '../managers/folders.generated.js';
-import { UpdateFolderAddSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderAddSharedLinkQueryParamsArg } from '../managers/sharedLinksFolders.generated.js';
-import { GetFolderGetSharedLinkQueryParamsArg } from '../managers/sharedLinksFolders.generated.js';
-import { GetSharedItemFoldersQueryParamsArg } from '../managers/sharedLinksFolders.generated.js';
-import { GetSharedItemFoldersHeadersArg } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderUpdateSharedLinkRequestBodyArg } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField } from '../managers/sharedLinksFolders.generated.js';
-import { UpdateFolderUpdateSharedLinkQueryParamsArg } from '../managers/sharedLinksFolders.generated.js';
+import { CreateFolderRequestBody } from '../managers/folders.generated.js';
+import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { AddShareLinkToFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { AddShareLinkToFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { AddShareLinkToFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { AddShareLinkToFolderQueryParams } from '../managers/sharedLinksFolders.generated.js';
+import { GetSharedLinkForFolderQueryParams } from '../managers/sharedLinksFolders.generated.js';
+import { FindFolderForSharedLinkQueryParams } from '../managers/sharedLinksFolders.generated.js';
+import { FindFolderForSharedLinkHeaders } from '../managers/sharedLinksFolders.generated.js';
+import { UpdateSharedLinkOnFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { UpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
+import { UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { UpdateSharedLinkOnFolderQueryParams } from '../managers/sharedLinksFolders.generated.js';
 import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { getEnvVar } from '../utils.js';
@@ -49,32 +49,31 @@ const client: BoxClient = getDefaultClient();
 test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<any> {
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
-    parent: { id: '0' } satisfies CreateFolderRequestBodyArgParentField,
-  } satisfies CreateFolderRequestBodyArg);
-  await client.sharedLinksFolders.updateFolderAddSharedLink(
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
+  await client.sharedLinksFolders.addShareLinkToFolder(
     folder.id,
     {
       sharedLink: {
-        access:
-          'open' as UpdateFolderAddSharedLinkRequestBodyArgSharedLinkFieldAccessField,
+        access: 'open' as AddShareLinkToFolderRequestBodySharedLinkAccessField,
         password: 'Secret123@',
-      } satisfies UpdateFolderAddSharedLinkRequestBodyArgSharedLinkField,
-    } satisfies UpdateFolderAddSharedLinkRequestBodyArg,
-    { fields: 'shared_link' } satisfies UpdateFolderAddSharedLinkQueryParamsArg
+      } satisfies AddShareLinkToFolderRequestBodySharedLinkField,
+    } satisfies AddShareLinkToFolderRequestBody,
+    { fields: 'shared_link' } satisfies AddShareLinkToFolderQueryParams
   );
   const folderFromApi: FolderFull =
-    await client.sharedLinksFolders.getFolderGetSharedLink(folder.id, {
+    await client.sharedLinksFolders.getSharedLinkForFolder(folder.id, {
       fields: 'shared_link',
-    } satisfies GetFolderGetSharedLinkQueryParamsArg);
+    } satisfies GetSharedLinkForFolderQueryParams);
   if (!((toString(folderFromApi.sharedLink!.access) as string) == 'open')) {
     throw 'Assertion failed';
   }
   const userId: string = getEnvVar('USER_ID');
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
   const folderFromSharedLinkPassword: FolderFull =
-    await userClient.sharedLinksFolders.getSharedItemFolders(
-      {} satisfies GetSharedItemFoldersQueryParamsArg,
-      new GetSharedItemFoldersHeadersArg({
+    await userClient.sharedLinksFolders.findFolderForSharedLink(
+      {} satisfies FindFolderForSharedLinkQueryParams,
+      new FindFolderForSharedLinkHeaders({
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
@@ -85,10 +84,10 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   if (!(folder.id == folderFromSharedLinkPassword.id)) {
     throw 'Assertion failed';
   }
-  expect(async () => {
-    await userClient.sharedLinksFolders.getSharedItemFolders(
-      {} satisfies GetSharedItemFoldersQueryParamsArg,
-      new GetSharedItemFoldersHeadersArg({
+  await expect(async () => {
+    await userClient.sharedLinksFolders.findFolderForSharedLink(
+      {} satisfies FindFolderForSharedLinkQueryParams,
+      new FindFolderForSharedLinkHeaders({
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
@@ -98,17 +97,15 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
     );
   }).rejects.toThrow();
   const updatedFolder: FolderFull =
-    await client.sharedLinksFolders.updateFolderUpdateSharedLink(
+    await client.sharedLinksFolders.updateSharedLinkOnFolder(
       folder.id,
       {
         sharedLink: {
           access:
-            'collaborators' as UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkFieldAccessField,
-        } satisfies UpdateFolderUpdateSharedLinkRequestBodyArgSharedLinkField,
-      } satisfies UpdateFolderUpdateSharedLinkRequestBodyArg,
-      {
-        fields: 'shared_link',
-      } satisfies UpdateFolderUpdateSharedLinkQueryParamsArg
+            'collaborators' as UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField,
+        } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkField,
+      } satisfies UpdateSharedLinkOnFolderRequestBody,
+      { fields: 'shared_link' } satisfies UpdateSharedLinkOnFolderQueryParams
     );
   if (
     !((toString(updatedFolder.sharedLink!.access) as string) == 'collaborators')

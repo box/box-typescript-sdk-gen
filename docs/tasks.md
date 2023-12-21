@@ -26,7 +26,7 @@ await client.tasks.getFileTasks(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `GetFileTasksHeadersArg`
+- headers `GetFileTasksHeaders`
   - Headers of getFileTasks method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -55,22 +55,21 @@ See the endpoint docs at
 ```ts
 await client.tasks.createTask({
   item: {
-    type: 'file' as CreateTaskRequestBodyArgItemFieldTypeField,
+    type: 'file' as CreateTaskRequestBodyItemTypeField,
     id: file.id,
-  } satisfies CreateTaskRequestBodyArgItemField,
+  } satisfies CreateTaskRequestBodyItemField,
   message: 'test message',
   dueAt: '2035-01-01T00:00:00Z',
-  action: 'review' as CreateTaskRequestBodyArgActionField,
-  completionRule:
-    'all_assignees' as CreateTaskRequestBodyArgCompletionRuleField,
-} satisfies CreateTaskRequestBodyArg);
+  action: 'review' as CreateTaskRequestBodyActionField,
+  completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
+} satisfies CreateTaskRequestBody);
 ```
 
 ### Arguments
 
-- requestBody `CreateTaskRequestBodyArg`
+- requestBody `CreateTaskRequestBody`
   - Request body of createTask method
-- headers `CreateTaskHeadersArg`
+- headers `CreateTaskHeaders`
   - Headers of createTask method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -100,7 +99,7 @@ await client.tasks.getTaskById(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headers `GetTaskByIdHeadersArg`
+- headers `GetTaskByIdHeaders`
   - Headers of getTaskById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -126,16 +125,16 @@ See the endpoint docs at
 ```ts
 await client.tasks.updateTaskById(task.id!, {
   message: 'updated message',
-} satisfies UpdateTaskByIdRequestBodyArg);
+} satisfies UpdateTaskByIdRequestBody);
 ```
 
 ### Arguments
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- requestBody `UpdateTaskByIdRequestBodyArg`
+- requestBody `UpdateTaskByIdRequestBody`
   - Request body of updateTaskById method
-- headers `UpdateTaskByIdHeadersArg`
+- headers `UpdateTaskByIdHeaders`
   - Headers of updateTaskById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -165,7 +164,7 @@ await client.tasks.deleteTaskById(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headers `DeleteTaskByIdHeadersArg`
+- headers `DeleteTaskByIdHeaders`
   - Headers of deleteTaskById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

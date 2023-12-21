@@ -21,66 +21,68 @@ import { sdIsNumber } from '../json.js';
 import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
-export class GetFolderWatermarkHeadersArg {
+export class GetFolderWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<GetFolderWatermarkHeadersArg, 'extraHeaders'>
-      | Partial<Pick<GetFolderWatermarkHeadersArg, 'extraHeaders'>>
+      | Omit<GetFolderWatermarkHeaders, 'extraHeaders'>
+      | Partial<Pick<GetFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export type UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField =
-  'default';
-export interface UpdateFolderWatermarkRequestBodyArgWatermarkField {
-  readonly imprint: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField;
+export type UpdateFolderWatermarkRequestBodyWatermarkImprintField = 'default';
+export interface UpdateFolderWatermarkRequestBodyWatermarkField {
+  readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField;
 }
-export interface UpdateFolderWatermarkRequestBodyArg {
-  readonly watermark: UpdateFolderWatermarkRequestBodyArgWatermarkField;
+export interface UpdateFolderWatermarkRequestBody {
+  readonly watermark: UpdateFolderWatermarkRequestBodyWatermarkField;
 }
-export class UpdateFolderWatermarkHeadersArg {
+export class UpdateFolderWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<UpdateFolderWatermarkHeadersArg, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderWatermarkHeadersArg, 'extraHeaders'>>
+      | Omit<UpdateFolderWatermarkHeaders, 'extraHeaders'>
+      | Partial<Pick<UpdateFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
-export class DeleteFolderWatermarkHeadersArg {
+export class DeleteFolderWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
     fields:
-      | Omit<DeleteFolderWatermarkHeadersArg, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderWatermarkHeadersArg, 'extraHeaders'>>
+      | Omit<DeleteFolderWatermarkHeaders, 'extraHeaders'>
+      | Partial<Pick<DeleteFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
 }
 export class FolderWatermarksManager {
   readonly auth?: Authentication;
-  readonly networkSession?: NetworkSession;
+  readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields: Omit<
-      FolderWatermarksManager,
-      'getFolderWatermark' | 'updateFolderWatermark' | 'deleteFolderWatermark'
-    >
+    fields:
+      | Omit<
+          FolderWatermarksManager,
+          | 'networkSession'
+          | 'getFolderWatermark'
+          | 'updateFolderWatermark'
+          | 'deleteFolderWatermark'
+        >
+      | Partial<Pick<FolderWatermarksManager, 'networkSession'>>
   ) {
     Object.assign(this, fields);
   }
   async getFolderWatermark(
     folderId: string,
-    headers: GetFolderWatermarkHeadersArg = new GetFolderWatermarkHeadersArg(
-      {}
-    ),
+    headers: GetFolderWatermarkHeaders = new GetFolderWatermarkHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Watermark> {
     const headersMap: {
@@ -88,7 +90,8 @@ export class FolderWatermarksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,
@@ -105,8 +108,8 @@ export class FolderWatermarksManager {
   }
   async updateFolderWatermark(
     folderId: string,
-    requestBody: UpdateFolderWatermarkRequestBodyArg,
-    headers: UpdateFolderWatermarkHeadersArg = new UpdateFolderWatermarkHeadersArg(
+    requestBody: UpdateFolderWatermarkRequestBody,
+    headers: UpdateFolderWatermarkHeaders = new UpdateFolderWatermarkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -116,14 +119,15 @@ export class FolderWatermarksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,
       {
         method: 'PUT',
         headers: headersMap,
-        data: serializeUpdateFolderWatermarkRequestBodyArg(requestBody),
+        data: serializeUpdateFolderWatermarkRequestBody(requestBody),
         contentType: 'application/json',
         responseFormat: 'json',
         auth: this.auth,
@@ -135,7 +139,7 @@ export class FolderWatermarksManager {
   }
   async deleteFolderWatermark(
     folderId: string,
-    headers: DeleteFolderWatermarkHeadersArg = new DeleteFolderWatermarkHeadersArg(
+    headers: DeleteFolderWatermarkHeaders = new DeleteFolderWatermarkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
@@ -145,7 +149,8 @@ export class FolderWatermarksManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        'https://api.box.com/2.0/folders/',
+        this.networkSession.baseUrls.baseUrl,
+        '/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,
@@ -161,56 +166,55 @@ export class FolderWatermarksManager {
     return void 0;
   }
 }
-export function serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
-  val: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField
+export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
+  val: UpdateFolderWatermarkRequestBodyWatermarkImprintField
 ): SerializedData {
   return val;
 }
-export function deserializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
+export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
   val: any
-): UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField {
+): UpdateFolderWatermarkRequestBodyWatermarkImprintField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField"';
+    throw 'Expecting a string for "UpdateFolderWatermarkRequestBodyWatermarkImprintField"';
   }
   if (val == 'default') {
     return 'default';
   }
   throw ''.concat('Invalid value: ', val) as string;
 }
-export function serializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
-  val: UpdateFolderWatermarkRequestBodyArgWatermarkField
+export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(
+  val: UpdateFolderWatermarkRequestBodyWatermarkField
 ): SerializedData {
   return {
-    ['imprint']:
-      serializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
-        val.imprint
-      ),
+    ['imprint']: serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
+      val.imprint
+    ),
   };
 }
-export function deserializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
+export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
   val: any
-): UpdateFolderWatermarkRequestBodyArgWatermarkField {
-  const imprint: UpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField =
-    deserializeUpdateFolderWatermarkRequestBodyArgWatermarkFieldImprintField(
+): UpdateFolderWatermarkRequestBodyWatermarkField {
+  const imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
+    deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
       val.imprint
     );
   return {
     imprint: imprint,
-  } satisfies UpdateFolderWatermarkRequestBodyArgWatermarkField;
+  } satisfies UpdateFolderWatermarkRequestBodyWatermarkField;
 }
-export function serializeUpdateFolderWatermarkRequestBodyArg(
-  val: UpdateFolderWatermarkRequestBodyArg
+export function serializeUpdateFolderWatermarkRequestBody(
+  val: UpdateFolderWatermarkRequestBody
 ): SerializedData {
   return {
-    ['watermark']: serializeUpdateFolderWatermarkRequestBodyArgWatermarkField(
+    ['watermark']: serializeUpdateFolderWatermarkRequestBodyWatermarkField(
       val.watermark
     ),
   };
 }
-export function deserializeUpdateFolderWatermarkRequestBodyArg(
+export function deserializeUpdateFolderWatermarkRequestBody(
   val: any
-): UpdateFolderWatermarkRequestBodyArg {
-  const watermark: UpdateFolderWatermarkRequestBodyArgWatermarkField =
-    deserializeUpdateFolderWatermarkRequestBodyArgWatermarkField(val.watermark);
-  return { watermark: watermark } satisfies UpdateFolderWatermarkRequestBodyArg;
+): UpdateFolderWatermarkRequestBody {
+  const watermark: UpdateFolderWatermarkRequestBodyWatermarkField =
+    deserializeUpdateFolderWatermarkRequestBodyWatermarkField(val.watermark);
+  return { watermark: watermark } satisfies UpdateFolderWatermarkRequestBody;
 }

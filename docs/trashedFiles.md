@@ -26,11 +26,11 @@ await client.trashedFiles.restoreFileFromTrash(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `RestoreFileFromTrashRequestBodyArg`
+- requestBody `RestoreFileFromTrashRequestBody`
   - Request body of restoreFileFromTrash method
-- queryParams `RestoreFileFromTrashQueryParamsArg`
+- queryParams `RestoreFileFromTrashQueryParams`
   - Query parameters of restoreFileFromTrash method
-- headers `RestoreFileFromTrashHeadersArg`
+- headers `RestoreFileFromTrashHeaders`
   - Headers of restoreFileFromTrash method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -55,7 +55,7 @@ To list all items that have been moved to the trash, please
 use the [`GET /folders/trash/items`](e://get-folders-trash-items/)
 API.
 
-This operation is performed by calling function `getFileTrash`.
+This operation is performed by calling function `getTrashedFileById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-trash/).
@@ -63,17 +63,17 @@ See the endpoint docs at
 <!-- sample get_files_id_trash -->
 
 ```ts
-await client.trashedFiles.getFileTrash(file.id);
+await client.trashedFiles.getTrashedFileById(file.id);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileTrashQueryParamsArg`
-  - Query parameters of getFileTrash method
-- headers `GetFileTrashHeadersArg`
-  - Headers of getFileTrash method
+- queryParams `GetTrashedFileByIdQueryParams`
+  - Query parameters of getTrashedFileById method
+- headers `GetTrashedFileByIdHeaders`
+  - Headers of getTrashedFileById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -90,7 +90,7 @@ was moved to the trash.
 Permanently deletes a file that is in the trash.
 This action cannot be undone.
 
-This operation is performed by calling function `deleteFileTrash`.
+This operation is performed by calling function `deleteTrashedFileById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-trash/).
@@ -98,15 +98,15 @@ See the endpoint docs at
 <!-- sample delete_files_id_trash -->
 
 ```ts
-await client.trashedFiles.deleteFileTrash(file.id);
+await client.trashedFiles.deleteTrashedFileById(file.id);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `DeleteFileTrashHeadersArg`
-  - Headers of deleteFileTrash method
+- headers `DeleteTrashedFileByIdHeaders`
+  - Headers of deleteTrashedFileById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 

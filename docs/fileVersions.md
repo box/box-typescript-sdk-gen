@@ -28,9 +28,9 @@ await client.fileVersions.getFileVersions(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileVersionsQueryParamsArg`
+- queryParams `GetFileVersionsQueryParams`
   - Query parameters of getFileVersions method
-- headers `GetFileVersionsHeadersArg`
+- headers `GetFileVersionsHeaders`
   - Headers of getFileVersions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -67,9 +67,9 @@ await client.fileVersions.getFileVersionById(
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- queryParams `GetFileVersionByIdQueryParamsArg`
+- queryParams `GetFileVersionByIdQueryParams`
   - Query parameters of getFileVersionById method
-- headers `GetFileVersionByIdHeadersArg`
+- headers `GetFileVersionByIdHeaders`
   - Headers of getFileVersionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -104,9 +104,9 @@ _Currently we don't have an example for calling `updateFileVersionById` in integ
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- requestBody `UpdateFileVersionByIdRequestBodyArg`
+- requestBody `UpdateFileVersionByIdRequestBody`
   - Request body of updateFileVersionById method
-- headers `UpdateFileVersionByIdHeadersArg`
+- headers `UpdateFileVersionByIdHeaders`
   - Headers of updateFileVersionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -143,7 +143,7 @@ await client.fileVersions.deleteFileVersionById(
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- headers `DeleteFileVersionByIdHeadersArg`
+- headers `DeleteFileVersionByIdHeaders`
   - Headers of deleteFileVersionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -184,19 +184,19 @@ See the endpoint docs at
 ```ts
 await client.fileVersions.promoteFileVersion(file.id, {
   id: fileVersions.entries![0].id,
-  type: 'file_version' as PromoteFileVersionRequestBodyArgTypeField,
-} satisfies PromoteFileVersionRequestBodyArg);
+  type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
+} satisfies PromoteFileVersionRequestBody);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `PromoteFileVersionRequestBodyArg`
+- requestBody `PromoteFileVersionRequestBody`
   - Request body of promoteFileVersion method
-- queryParams `PromoteFileVersionQueryParamsArg`
+- queryParams `PromoteFileVersionQueryParams`
   - Query parameters of promoteFileVersion method
-- headers `PromoteFileVersionHeadersArg`
+- headers `PromoteFileVersionHeaders`
   - Headers of promoteFileVersion method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -23,7 +23,7 @@ await client.fileWatermarks.getFileWatermark(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `GetFileWatermarkHeadersArg`
+- headers `GetFileWatermarkHeaders`
   - Headers of getFileWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -49,19 +49,18 @@ See the endpoint docs at
 ```ts
 await client.fileWatermarks.updateFileWatermark(file.id, {
   watermark: {
-    imprint:
-      'default' as UpdateFileWatermarkRequestBodyArgWatermarkFieldImprintField,
-  } satisfies UpdateFileWatermarkRequestBodyArgWatermarkField,
-} satisfies UpdateFileWatermarkRequestBodyArg);
+    imprint: 'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField,
+  } satisfies UpdateFileWatermarkRequestBodyWatermarkField,
+} satisfies UpdateFileWatermarkRequestBody);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `UpdateFileWatermarkRequestBodyArg`
+- requestBody `UpdateFileWatermarkRequestBody`
   - Request body of updateFileWatermark method
-- headers `UpdateFileWatermarkHeadersArg`
+- headers `UpdateFileWatermarkHeaders`
   - Headers of updateFileWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -93,7 +92,7 @@ await client.fileWatermarks.deleteFileWatermark(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `DeleteFileWatermarkHeadersArg`
+- headers `DeleteFileWatermarkHeaders`
   - Headers of deleteFileWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

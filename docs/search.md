@@ -13,7 +13,7 @@ By default, this endpoint returns only the most basic info about the items for
 which the query matches. To get additional fields for each item, including any
 of the metadata, use the `fields` attribute in the query.
 
-This operation is performed by calling function `createMetadataQueryExecuteRead`.
+This operation is performed by calling function `searchByMetadataQuery`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-metadata-queries-execute-read/).
@@ -21,7 +21,7 @@ See the endpoint docs at
 <!-- sample post_metadata_queries_execute_read -->
 
 ```ts
-await client.search.createMetadataQueryExecuteRead({
+await client.search.searchByMetadataQuery({
   ancestorFolderId: '0',
   from: searchFrom,
   query: 'testName >= :value',
@@ -32,9 +32,9 @@ await client.search.createMetadataQueryExecuteRead({
 ### Arguments
 
 - requestBody `MetadataQuery`
-  - Request body of createMetadataQueryExecuteRead method
-- headers `CreateMetadataQueryExecuteReadHeadersArg`
-  - Headers of createMetadataQueryExecuteRead method
+  - Request body of searchByMetadataQuery method
+- headers `SearchByMetadataQueryHeaders`
+  - Headers of searchByMetadataQuery method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -57,16 +57,16 @@ See the endpoint docs at
 
 ```ts
 await client.search.getMetadataQueryIndices({
-  scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsArgScopeField,
+  scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsScopeField,
   templateKey: templateKey,
-} satisfies GetMetadataQueryIndicesQueryParamsArg);
+} satisfies GetMetadataQueryIndicesQueryParams);
 ```
 
 ### Arguments
 
-- queryParams `GetMetadataQueryIndicesQueryParamsArg`
+- queryParams `GetMetadataQueryIndicesQueryParams`
   - Query parameters of getMetadataQueryIndices method
-- headers `GetMetadataQueryIndicesHeadersArg`
+- headers `GetMetadataQueryIndicesHeaders`
   - Headers of getMetadataQueryIndices method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -82,7 +82,7 @@ Returns a collection of metadata query indices for scope and template key.
 Searches for files, folders, web links, and shared files across the
 users content or across the entire enterprise.
 
-This operation is performed by calling function `getSearch`.
+This operation is performed by calling function `searchForContent`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-search/).
@@ -90,20 +90,21 @@ See the endpoint docs at
 <!-- sample get_search -->
 
 ```ts
-await client.search.getSearch({
+await client.search.searchForContent({
   ancestorFolderIds: ['0' as ''],
   query: keyword,
-  trashContent: 'non_trashed_only' as GetSearchQueryParamsArgTrashContentField,
+  trashContent:
+    'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
   includeRecentSharedLinks: true,
-} satisfies GetSearchQueryParamsArg);
+} satisfies SearchForContentQueryParams);
 ```
 
 ### Arguments
 
-- queryParams `GetSearchQueryParamsArg`
-  - Query parameters of getSearch method
-- headers `GetSearchHeadersArg`
-  - Headers of getSearch method
+- queryParams `SearchForContentQueryParams`
+  - Query parameters of searchForContent method
+- headers `SearchForContentHeaders`
+  - Headers of searchForContent method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
