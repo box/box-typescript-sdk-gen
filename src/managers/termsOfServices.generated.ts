@@ -2,13 +2,10 @@ import { serializeTermsOfServices } from '../schemas.generated.js';
 import { deserializeTermsOfServices } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
-import { serializeTask } from '../schemas.generated.js';
-import { deserializeTask } from '../schemas.generated.js';
 import { serializeTermsOfService } from '../schemas.generated.js';
 import { deserializeTermsOfService } from '../schemas.generated.js';
 import { TermsOfServices } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
-import { Task } from '../schemas.generated.js';
 import { TermsOfService } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
 import { NetworkSession } from '../network.js';
@@ -146,7 +143,7 @@ export class TermsOfServicesManager {
     requestBody: CreateTermsOfServiceRequestBody,
     headers: CreateTermsOfServiceHeaders = new CreateTermsOfServiceHeaders({}),
     cancellationToken?: CancellationToken
-  ): Promise<Task> {
+  ): Promise<TermsOfService> {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -166,7 +163,7 @@ export class TermsOfServicesManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeTask(response.data);
+    return deserializeTermsOfService(response.data);
   }
   async getTermsOfServiceById(
     termsOfServiceId: string,
