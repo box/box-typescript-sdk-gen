@@ -260,34 +260,6 @@ export type FileMini = FileBase & {
   readonly sha1?: string;
   readonly fileVersion?: FileVersionMini;
 };
-export type FileScopeScopeField =
-  | 'annotation_edit'
-  | 'annotation_view_all'
-  | 'annotation_view_self'
-  | 'base_explorer'
-  | 'base_picker'
-  | 'base_preview'
-  | 'base_upload'
-  | 'item_delete'
-  | 'item_download'
-  | 'item_preview'
-  | 'item_rename'
-  | 'item_share';
-export interface FileScope {
-  readonly scope?: FileScopeScopeField;
-  readonly object?: FileMini;
-}
-export type AccessTokenTokenTypeField = 'bearer';
-export type AccessTokenIssuedTokenTypeField =
-  'urn:ietf:params:oauth:token-type:access_token';
-export interface AccessToken {
-  readonly accessToken?: string;
-  readonly expiresIn?: number;
-  readonly tokenType?: AccessTokenTokenTypeField;
-  readonly restrictedTo?: readonly FileScope[];
-  readonly refreshToken?: string;
-  readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
-}
 export interface FilesUnderRetention {
   readonly limit?: number;
   readonly nextMarker?: string;
@@ -309,6 +281,35 @@ export type FolderMini = FolderBase & {
   readonly sequenceId?: string;
   readonly name?: string;
 };
+export type FileMiniOrFolderMini = FileMini | FolderMini;
+export type FileOrFolderScopeScopeField =
+  | 'annotation_edit'
+  | 'annotation_view_all'
+  | 'annotation_view_self'
+  | 'base_explorer'
+  | 'base_picker'
+  | 'base_preview'
+  | 'base_upload'
+  | 'item_delete'
+  | 'item_download'
+  | 'item_preview'
+  | 'item_rename'
+  | 'item_share';
+export interface FileOrFolderScope {
+  readonly scope?: FileOrFolderScopeScopeField;
+  readonly object?: FileMiniOrFolderMini;
+}
+export type AccessTokenTokenTypeField = 'bearer';
+export type AccessTokenIssuedTokenTypeField =
+  'urn:ietf:params:oauth:token-type:access_token';
+export interface AccessToken {
+  readonly accessToken?: string;
+  readonly expiresIn?: number;
+  readonly tokenType?: AccessTokenTokenTypeField;
+  readonly restrictedTo?: readonly FileOrFolderScope[];
+  readonly refreshToken?: string;
+  readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
+}
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
 export interface IntegrationMappingBase {
   readonly id?: string;
@@ -600,8 +601,8 @@ export interface StoragePolicies {
 }
 export type TermsOfServiceBaseTypeField = 'terms_of_service';
 export interface TermsOfServiceBase {
-  readonly id?: string;
-  readonly type?: TermsOfServiceBaseTypeField;
+  readonly id: string;
+  readonly type: TermsOfServiceBaseTypeField;
 }
 export type TermsOfServiceStatusField = 'enabled' | 'disabled';
 export type TermsOfServiceEnterpriseTypeField = 'enterprise';
@@ -1242,7 +1243,7 @@ export interface FileFullExpiringEmbedLinkField {
   readonly accessToken?: string;
   readonly expiresIn?: number;
   readonly tokenType?: FileFullExpiringEmbedLinkTokenTypeField;
-  readonly restrictedTo?: readonly FileScope[];
+  readonly restrictedTo?: readonly FileOrFolderScope[];
   readonly url?: string;
 }
 export interface FileFullWatermarkInfoField {
@@ -2482,6 +2483,7 @@ export interface SignRequestCreateSigner {
   readonly loginRequired?: boolean;
   readonly verificationPhoneNumber?: string;
   readonly password?: string;
+  readonly signerGroupId?: string;
 }
 export interface SignRequestPrefillTag {
   readonly documentTagId?: string;
@@ -2644,6 +2646,7 @@ export interface TemplateSigner {
   readonly role?: TemplateSignerRoleField;
   readonly isInPerson?: boolean;
   readonly order?: number;
+  readonly signerGroupId?: string;
 }
 export type SignTemplateTypeField = 'sign-template';
 export type SignTemplateAdditionalInfoNonEditableField =
@@ -4393,152 +4396,6 @@ export function deserializeFileMini(val: any): FileMini {
     type: type,
   } satisfies FileMini;
 }
-export function serializeFileScopeScopeField(
-  val: FileScopeScopeField
-): SerializedData {
-  return val;
-}
-export function deserializeFileScopeScopeField(val: any): FileScopeScopeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "FileScopeScopeField"';
-  }
-  if (val == 'annotation_edit') {
-    return 'annotation_edit';
-  }
-  if (val == 'annotation_view_all') {
-    return 'annotation_view_all';
-  }
-  if (val == 'annotation_view_self') {
-    return 'annotation_view_self';
-  }
-  if (val == 'base_explorer') {
-    return 'base_explorer';
-  }
-  if (val == 'base_picker') {
-    return 'base_picker';
-  }
-  if (val == 'base_preview') {
-    return 'base_preview';
-  }
-  if (val == 'base_upload') {
-    return 'base_upload';
-  }
-  if (val == 'item_delete') {
-    return 'item_delete';
-  }
-  if (val == 'item_download') {
-    return 'item_download';
-  }
-  if (val == 'item_preview') {
-    return 'item_preview';
-  }
-  if (val == 'item_rename') {
-    return 'item_rename';
-  }
-  if (val == 'item_share') {
-    return 'item_share';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeFileScope(val: FileScope): SerializedData {
-  return {
-    ['scope']:
-      val.scope == void 0 ? void 0 : serializeFileScopeScopeField(val.scope),
-    ['object']: val.object == void 0 ? void 0 : serializeFileMini(val.object),
-  };
-}
-export function deserializeFileScope(val: any): FileScope {
-  const scope: undefined | FileScopeScopeField =
-    val.scope == void 0 ? void 0 : deserializeFileScopeScopeField(val.scope);
-  const object: undefined | FileMini =
-    val.object == void 0 ? void 0 : deserializeFileMini(val.object);
-  return { scope: scope, object: object } satisfies FileScope;
-}
-export function serializeAccessTokenTokenTypeField(
-  val: AccessTokenTokenTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeAccessTokenTokenTypeField(
-  val: any
-): AccessTokenTokenTypeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "AccessTokenTokenTypeField"';
-  }
-  if (val == 'bearer') {
-    return 'bearer';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeAccessTokenIssuedTokenTypeField(
-  val: AccessTokenIssuedTokenTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeAccessTokenIssuedTokenTypeField(
-  val: any
-): AccessTokenIssuedTokenTypeField {
-  if (!sdIsString(val)) {
-    throw 'Expecting a string for "AccessTokenIssuedTokenTypeField"';
-  }
-  if (val == 'urn:ietf:params:oauth:token-type:access_token') {
-    return 'urn:ietf:params:oauth:token-type:access_token';
-  }
-  throw ''.concat('Invalid value: ', val) as string;
-}
-export function serializeAccessToken(val: AccessToken): SerializedData {
-  return {
-    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
-    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
-    ['token_type']:
-      val.tokenType == void 0
-        ? void 0
-        : serializeAccessTokenTokenTypeField(val.tokenType),
-    ['restricted_to']:
-      val.restrictedTo == void 0
-        ? void 0
-        : (val.restrictedTo.map(function (item: FileScope): any {
-            return serializeFileScope(item);
-          }) as readonly any[]),
-    ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
-    ['issued_token_type']:
-      val.issuedTokenType == void 0
-        ? void 0
-        : serializeAccessTokenIssuedTokenTypeField(val.issuedTokenType),
-  };
-}
-export function deserializeAccessToken(val: any): AccessToken {
-  const accessToken: undefined | string =
-    val.access_token == void 0 ? void 0 : val.access_token;
-  const expiresIn: undefined | number =
-    val.expires_in == void 0 ? void 0 : val.expires_in;
-  const tokenType: undefined | AccessTokenTokenTypeField =
-    val.token_type == void 0
-      ? void 0
-      : deserializeAccessTokenTokenTypeField(val.token_type);
-  const restrictedTo: undefined | readonly FileScope[] =
-    val.restricted_to == void 0
-      ? void 0
-      : sdIsList(val.restricted_to)
-      ? (val.restricted_to.map(function (itm: SerializedData): any {
-          return deserializeFileScope(itm);
-        }) as readonly any[])
-      : [];
-  const refreshToken: undefined | string =
-    val.refresh_token == void 0 ? void 0 : val.refresh_token;
-  const issuedTokenType: undefined | AccessTokenIssuedTokenTypeField =
-    val.issued_token_type == void 0
-      ? void 0
-      : deserializeAccessTokenIssuedTokenTypeField(val.issued_token_type);
-  return {
-    accessToken: accessToken,
-    expiresIn: expiresIn,
-    tokenType: tokenType,
-    restrictedTo: restrictedTo,
-    refreshToken: refreshToken,
-    issuedTokenType: issuedTokenType,
-  } satisfies AccessToken;
-}
 export function serializeFilesUnderRetention(
   val: FilesUnderRetention
 ): SerializedData {
@@ -4716,6 +4573,186 @@ export function deserializeFolderMini(val: any): FolderMini {
     etag: etag,
     type: type,
   } satisfies FolderMini;
+}
+export function serializeFileMiniOrFolderMini(
+  val: FileMiniOrFolderMini
+): SerializedData {
+  if (val.type == 'file') {
+    return serializeFileMini(val);
+  }
+  if (val.type == 'folder') {
+    return serializeFolderMini(val);
+  }
+  throw 'unknown type';
+}
+export function deserializeFileMiniOrFolderMini(
+  val: any
+): FileMiniOrFolderMini {
+  if (!sdIsMap(val)) {
+    throw 'Expecting a map for "FileMiniOrFolderMini"';
+  }
+  if (val.type == 'file') {
+    return deserializeFileMini(val);
+  }
+  if (val.type == 'folder') {
+    return deserializeFolderMini(val);
+  }
+  throw 'unknown type';
+}
+export function serializeFileOrFolderScopeScopeField(
+  val: FileOrFolderScopeScopeField
+): SerializedData {
+  return val;
+}
+export function deserializeFileOrFolderScopeScopeField(
+  val: any
+): FileOrFolderScopeScopeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "FileOrFolderScopeScopeField"';
+  }
+  if (val == 'annotation_edit') {
+    return 'annotation_edit';
+  }
+  if (val == 'annotation_view_all') {
+    return 'annotation_view_all';
+  }
+  if (val == 'annotation_view_self') {
+    return 'annotation_view_self';
+  }
+  if (val == 'base_explorer') {
+    return 'base_explorer';
+  }
+  if (val == 'base_picker') {
+    return 'base_picker';
+  }
+  if (val == 'base_preview') {
+    return 'base_preview';
+  }
+  if (val == 'base_upload') {
+    return 'base_upload';
+  }
+  if (val == 'item_delete') {
+    return 'item_delete';
+  }
+  if (val == 'item_download') {
+    return 'item_download';
+  }
+  if (val == 'item_preview') {
+    return 'item_preview';
+  }
+  if (val == 'item_rename') {
+    return 'item_rename';
+  }
+  if (val == 'item_share') {
+    return 'item_share';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeFileOrFolderScope(
+  val: FileOrFolderScope
+): SerializedData {
+  return {
+    ['scope']:
+      val.scope == void 0
+        ? void 0
+        : serializeFileOrFolderScopeScopeField(val.scope),
+    ['object']:
+      val.object == void 0 ? void 0 : serializeFileMiniOrFolderMini(val.object),
+  };
+}
+export function deserializeFileOrFolderScope(val: any): FileOrFolderScope {
+  const scope: undefined | FileOrFolderScopeScopeField =
+    val.scope == void 0
+      ? void 0
+      : deserializeFileOrFolderScopeScopeField(val.scope);
+  const object: undefined | FileMiniOrFolderMini =
+    val.object == void 0 ? void 0 : deserializeFileMiniOrFolderMini(val.object);
+  return { scope: scope, object: object } satisfies FileOrFolderScope;
+}
+export function serializeAccessTokenTokenTypeField(
+  val: AccessTokenTokenTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeAccessTokenTokenTypeField(
+  val: any
+): AccessTokenTokenTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "AccessTokenTokenTypeField"';
+  }
+  if (val == 'bearer') {
+    return 'bearer';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeAccessTokenIssuedTokenTypeField(
+  val: AccessTokenIssuedTokenTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeAccessTokenIssuedTokenTypeField(
+  val: any
+): AccessTokenIssuedTokenTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "AccessTokenIssuedTokenTypeField"';
+  }
+  if (val == 'urn:ietf:params:oauth:token-type:access_token') {
+    return 'urn:ietf:params:oauth:token-type:access_token';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
+}
+export function serializeAccessToken(val: AccessToken): SerializedData {
+  return {
+    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
+    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
+    ['token_type']:
+      val.tokenType == void 0
+        ? void 0
+        : serializeAccessTokenTokenTypeField(val.tokenType),
+    ['restricted_to']:
+      val.restrictedTo == void 0
+        ? void 0
+        : (val.restrictedTo.map(function (item: FileOrFolderScope): any {
+            return serializeFileOrFolderScope(item);
+          }) as readonly any[]),
+    ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
+    ['issued_token_type']:
+      val.issuedTokenType == void 0
+        ? void 0
+        : serializeAccessTokenIssuedTokenTypeField(val.issuedTokenType),
+  };
+}
+export function deserializeAccessToken(val: any): AccessToken {
+  const accessToken: undefined | string =
+    val.access_token == void 0 ? void 0 : val.access_token;
+  const expiresIn: undefined | number =
+    val.expires_in == void 0 ? void 0 : val.expires_in;
+  const tokenType: undefined | AccessTokenTokenTypeField =
+    val.token_type == void 0
+      ? void 0
+      : deserializeAccessTokenTokenTypeField(val.token_type);
+  const restrictedTo: undefined | readonly FileOrFolderScope[] =
+    val.restricted_to == void 0
+      ? void 0
+      : sdIsList(val.restricted_to)
+      ? (val.restricted_to.map(function (itm: SerializedData): any {
+          return deserializeFileOrFolderScope(itm);
+        }) as readonly any[])
+      : [];
+  const refreshToken: undefined | string =
+    val.refresh_token == void 0 ? void 0 : val.refresh_token;
+  const issuedTokenType: undefined | AccessTokenIssuedTokenTypeField =
+    val.issued_token_type == void 0
+      ? void 0
+      : deserializeAccessTokenIssuedTokenTypeField(val.issued_token_type);
+  return {
+    accessToken: accessToken,
+    expiresIn: expiresIn,
+    tokenType: tokenType,
+    restrictedTo: restrictedTo,
+    refreshToken: refreshToken,
+    issuedTokenType: issuedTokenType,
+  } satisfies AccessToken;
 }
 export function serializeIntegrationMappingBaseIntegrationTypeField(
   val: IntegrationMappingBaseIntegrationTypeField
@@ -6692,19 +6729,14 @@ export function serializeTermsOfServiceBase(
   val: TermsOfServiceBase
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeTermsOfServiceBaseTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeTermsOfServiceBaseTypeField(val.type),
   };
 }
 export function deserializeTermsOfServiceBase(val: any): TermsOfServiceBase {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | TermsOfServiceBaseTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeTermsOfServiceBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: TermsOfServiceBaseTypeField =
+    deserializeTermsOfServiceBaseTypeField(val.type);
   return { id: id, type: type } satisfies TermsOfServiceBase;
 }
 export function serializeTermsOfServiceStatusField(
@@ -6832,11 +6864,9 @@ export function deserializeTermsOfService(val: any): TermsOfService {
     val.created_at == void 0 ? void 0 : val.created_at;
   const modifiedAt: undefined | string =
     val.modified_at == void 0 ? void 0 : val.modified_at;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | TermsOfServiceBaseTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeTermsOfServiceBaseTypeField(val.type);
+  const id: string = val.id;
+  const type: TermsOfServiceBaseTypeField =
+    deserializeTermsOfServiceBaseTypeField(val.type);
   return {
     status: status,
     enterprise: enterprise,
@@ -10559,8 +10589,8 @@ export function serializeFileFullExpiringEmbedLinkField(
     ['restricted_to']:
       val.restrictedTo == void 0
         ? void 0
-        : (val.restrictedTo.map(function (item: FileScope): any {
-            return serializeFileScope(item);
+        : (val.restrictedTo.map(function (item: FileOrFolderScope): any {
+            return serializeFileOrFolderScope(item);
           }) as readonly any[]),
     ['url']: val.url == void 0 ? void 0 : val.url,
   };
@@ -10576,12 +10606,12 @@ export function deserializeFileFullExpiringEmbedLinkField(
     val.token_type == void 0
       ? void 0
       : deserializeFileFullExpiringEmbedLinkTokenTypeField(val.token_type);
-  const restrictedTo: undefined | readonly FileScope[] =
+  const restrictedTo: undefined | readonly FileOrFolderScope[] =
     val.restricted_to == void 0
       ? void 0
       : sdIsList(val.restricted_to)
       ? (val.restricted_to.map(function (itm: SerializedData): any {
-          return deserializeFileScope(itm);
+          return deserializeFileOrFolderScope(itm);
         }) as readonly any[])
       : [];
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
@@ -17988,6 +18018,8 @@ export function serializeSignRequestCreateSigner(
         ? void 0
         : val.verificationPhoneNumber,
     ['password']: val.password == void 0 ? void 0 : val.password,
+    ['signer_group_id']:
+      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeSignRequestCreateSigner(
@@ -18017,6 +18049,8 @@ export function deserializeSignRequestCreateSigner(
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     email: email,
     role: role,
@@ -18028,6 +18062,7 @@ export function deserializeSignRequestCreateSigner(
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
+    signerGroupId: signerGroupId,
   } satisfies SignRequestCreateSigner;
 }
 export function serializeSignRequestPrefillTag(
@@ -18321,6 +18356,8 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
       : val.verification_phone_number;
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     hasViewedDocument: hasViewedDocument,
     signerDecision: signerDecision,
@@ -18337,6 +18374,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     loginRequired: loginRequired,
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
+    signerGroupId: signerGroupId,
   } satisfies SignRequestSigner;
 }
 export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
@@ -19090,6 +19128,8 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
       val.role == void 0 ? void 0 : serializeTemplateSignerRoleField(val.role),
     ['is_in_person']: val.isInPerson == void 0 ? void 0 : val.isInPerson,
     ['order']: val.order == void 0 ? void 0 : val.order,
+    ['signer_group_id']:
+      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
 export function deserializeTemplateSigner(val: any): TemplateSigner {
@@ -19107,12 +19147,15 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
   const isInPerson: undefined | boolean =
     val.is_in_person == void 0 ? void 0 : val.is_in_person;
   const order: undefined | number = val.order == void 0 ? void 0 : val.order;
+  const signerGroupId: undefined | string =
+    val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {
     inputs: inputs,
     email: email,
     role: role,
     isInPerson: isInPerson,
     order: order,
+    signerGroupId: signerGroupId,
   } satisfies TemplateSigner;
 }
 export function serializeSignTemplateTypeField(
