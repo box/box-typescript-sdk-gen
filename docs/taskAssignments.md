@@ -15,7 +15,11 @@ This operation is performed by calling function `getTaskAssignments`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-tasks-id-assignments/).
 
-_Currently we don't have an example for calling `getTaskAssignments` in integration tests_
+<!-- sample get_tasks_id_assignments -->
+
+```ts
+await client.taskAssignments.getTaskAssignments(task.id!);
+```
 
 ### Arguments
 
@@ -45,7 +49,19 @@ This operation is performed by calling function `createTaskAssignment`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-task-assignments/).
 
-_Currently we don't have an example for calling `createTaskAssignment` in integration tests_
+<!-- sample post_task_assignments -->
+
+```ts
+await client.taskAssignments.createTaskAssignment({
+  task: {
+    type: 'task' as CreateTaskAssignmentRequestBodyTaskTypeField,
+    id: task.id!,
+  } satisfies CreateTaskAssignmentRequestBodyTaskField,
+  assignTo: {
+    id: currentUser.id,
+  } satisfies CreateTaskAssignmentRequestBodyAssignToField,
+} satisfies CreateTaskAssignmentRequestBody);
+```
 
 ### Arguments
 
@@ -71,7 +87,11 @@ This operation is performed by calling function `getTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-task-assignments-id/).
 
-_Currently we don't have an example for calling `getTaskAssignmentById` in integration tests_
+<!-- sample get_task_assignments_id -->
+
+```ts
+await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
+```
 
 ### Arguments
 
@@ -99,7 +119,15 @@ This operation is performed by calling function `updateTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-task-assignments-id/).
 
-_Currently we don't have an example for calling `updateTaskAssignmentById` in integration tests_
+<!-- sample put_task_assignments_id -->
+
+```ts
+await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
+  message: 'updated message',
+  resolutionState:
+    'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
+} satisfies UpdateTaskAssignmentByIdRequestBody);
+```
 
 ### Arguments
 
@@ -127,7 +155,11 @@ This operation is performed by calling function `deleteTaskAssignmentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-task-assignments-id/).
 
-_Currently we don't have an example for calling `deleteTaskAssignmentById` in integration tests_
+<!-- sample delete_task_assignments_id -->
+
+```ts
+await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);
+```
 
 ### Arguments
 

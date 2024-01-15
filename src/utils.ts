@@ -240,3 +240,72 @@ type CancellationToken = AbortSignal;
 export function createTokenAndCancelAfter(delay: number): CancellationToken {
   return AbortSignal.timeout(delay);
 }
+
+export type JwtKey = {
+  key: string;
+  passphrase: string;
+};
+
+export type JwtAlgorithm =
+  | 'HS256'
+  | 'HS384'
+  | 'HS512'
+  | 'RS256'
+  | 'RS384'
+  | 'RS512'
+  | 'ES256'
+  | 'ES384'
+  | 'ES512'
+  | 'PS256'
+  | 'PS384'
+  | 'PS512'
+  | 'none';
+
+export type JwtSignOptions = {
+  algorithm?: JwtAlgorithm;
+  keyid?: string | undefined;
+  expiresIn?: string | number | undefined;
+  notBefore?: string | number | undefined;
+  audience?: string | string[] | undefined;
+  subject?: string | undefined;
+  issuer?: string | undefined;
+  jwtid?: string | undefined;
+  mutatePayload?: boolean | undefined;
+  noTimestamp?: boolean | undefined;
+  encoding?: string | undefined;
+  allowInsecureKeySizes?: boolean | undefined;
+  allowInvalidAsymmetricKeyTypes?: boolean | undefined;
+};
+
+/**
+ * Creates a JWT assertion.
+ *
+ * @param claims
+ * @param key
+ * @param options
+ * @returns
+ */
+export function createJwtAssertion(
+  claims: {
+    readonly [key: string]: any;
+  },
+  key: JwtKey,
+  options: JwtSignOptions
+): string {
+  const jwt = eval('require')('jsonwebtoken');
+  return jwt.sign(claims, key, options);
+}
+
+/**
+ * Reads a text file and returns its content.
+ */
+export function readTextFromFile(filepath: string): string {
+  return eval('require')('fs').readFileSync(filepath, 'utf8');
+}
+
+/**
+ * Get current epoch time in seconds.
+ */
+export function getEpochTimeInSeconds(): number {
+  return Math.floor(Date.now() / 1000);
+}

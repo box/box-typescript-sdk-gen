@@ -12,6 +12,16 @@ import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploa
 import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { serializeTermsOfService } from '../schemas.generated.js';
+import { deserializeTermsOfService } from '../schemas.generated.js';
+import { serializeTermsOfServices } from '../schemas.generated.js';
+import { deserializeTermsOfServices } from '../schemas.generated.js';
+import { serializeCreateTermsOfServiceRequestBody } from '../managers/termsOfServices.generated.js';
+import { deserializeCreateTermsOfServiceRequestBody } from '../managers/termsOfServices.generated.js';
+import { serializeCreateTermsOfServiceRequestBodyStatusField } from '../managers/termsOfServices.generated.js';
+import { deserializeCreateTermsOfServiceRequestBodyStatusField } from '../managers/termsOfServices.generated.js';
+import { serializeCreateTermsOfServiceRequestBodyTosTypeField } from '../managers/termsOfServices.generated.js';
+import { deserializeCreateTermsOfServiceRequestBodyTosTypeField } from '../managers/termsOfServices.generated.js';
 import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { serializeAddClassificationRequestBody } from '../managers/classifications.generated.js';
@@ -63,6 +73,11 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { TermsOfService } from '../schemas.generated.js';
+import { TermsOfServices } from '../schemas.generated.js';
+import { CreateTermsOfServiceRequestBody } from '../managers/termsOfServices.generated.js';
+import { CreateTermsOfServiceRequestBodyStatusField } from '../managers/termsOfServices.generated.js';
+import { CreateTermsOfServiceRequestBodyTosTypeField } from '../managers/termsOfServices.generated.js';
 import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { AddClassificationRequestBody } from '../managers/classifications.generated.js';
 import { AddClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
@@ -89,8 +104,8 @@ import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplate } from '../schemas.generated.js';
-import { BoxJwtAuth } from '../jwtAuth.js';
-import { JwtConfig } from '../jwtAuth.js';
+import { BoxJwtAuth } from '../jwtAuth.generated.js';
+import { JwtConfig } from '../jwtAuth.generated.js';
 import { SerializedData } from '../json.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
@@ -109,8 +124,8 @@ export async function getDefaultClientAsUser(
   userId: string
 ): Promise<BoxClient> {
   const auth: BoxJwtAuth = getJwtAuth();
-  await auth.asUser(userId);
-  return new BoxClient({ auth: auth });
+  const authUser: BoxJwtAuth = await auth.asUser(userId);
+  return new BoxClient({ auth: authUser });
 }
 export function getDefaultClient(): BoxClient {
   const client: BoxClient = new BoxClient({ auth: getJwtAuth() });
@@ -136,6 +151,19 @@ export async function uploadNewFile(): Promise<FileFull> {
     file: fileContentStream,
   } satisfies UploadFileRequestBody);
   return uploadedFiles.entries![0];
+}
+export async function getOrCreateTermsOfServices(): Promise<TermsOfService> {
+  const client: BoxClient = getDefaultClient();
+  const tos: TermsOfServices = await client.termsOfServices.getTermsOfService();
+  const numberOfTos: number = tos.entries!.length;
+  if (numberOfTos == 0) {
+    return await client.termsOfServices.createTermsOfService({
+      status: 'enabled' as CreateTermsOfServiceRequestBodyStatusField,
+      tosType: 'managed' as CreateTermsOfServiceRequestBodyTosTypeField,
+      text: 'Test TOS',
+    } satisfies CreateTermsOfServiceRequestBody);
+  }
+  return tos.entries![0];
 }
 export async function getOrCreateClassification(
   classificationTemplate: ClassificationTemplate
