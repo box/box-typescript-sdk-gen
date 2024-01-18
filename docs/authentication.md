@@ -14,8 +14,8 @@
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
   - [OAuth 2.0 Auth](#oauth-20-auth)
     - [Authentication with OAuth2](#authentication-with-oauth2)
-    - [Revoking tokens](#revoking-tokens)
-    - [Downscoping tokens](#downscoping-tokens)
+- [Revoke token](#revoke-token)
+- [Downscope token](#downscope-token)
 - [Token storage](#token-storage)
   - [In-memory token storage](#in-memory-token-storage)
   - [Custom storage](#custom-storage)
@@ -119,8 +119,8 @@ make calls as that user. See the [API documentation](https://developer.box.com/)
 for detailed instructions on how to use app auth.
 
 Clients for making calls as an App User can be created with the same JSON JWT config file generated through the
-[Box Developer Console][dev_console], but it is also required to call `jwtAuth.asUser('USER_ID')`, with
-a user ID you want to authenticate.
+[Box Developer Console][dev_console]. Calling `jwtAuth.asUser('USER_ID')` method will return a new auth object,
+which is authenticated as the user with provided id, leaving the original object unchanged.
 
 ```js
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
@@ -131,8 +131,8 @@ const {
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
-jwtAuth.asUser('USER_ID');
-const userClient = new BoxClient({ auth: jwtAuth });
+const userAuth = jwtAuth.asUser('USER_ID');
+const userClient = new BoxClient({ auth: userAuth });
 ```
 
 Alternatively, clients for making calls as an App User can be created with the same `JwtConfig`
@@ -234,19 +234,22 @@ const client = new BoxClient({ auth: ccgAuth });
 
 ### Switching between Service Account and User
 
-In order to switch between being authenticated as Service Account and a User you can call:
+You can easily switch to be authenticated as a Service Account or as a User.
+To create a new auth object authenticated as Service Account you can call:
 
 ```js
-ccgAuth.asEnterprise('YOUR_ENTERPRISE_ID');
+const enterpriseAuth = ccgAuth.asEnterprise('YOUR_ENTERPRISE_ID');
+const enterpriseClient = new BoxClient({ auth: ccgAuth });
 ```
 
-to authenticate as enterprise or
+To authenticate as user with provided User ID call:
 
 ```js
-ccgAuth.asUser('YOUR_USER_ID');
+const userAuth = ccgAuth.asUser('YOUR_USER_ID');
+const userClient = new BoxClient({ auth: ccgAuth });
 ```
 
-to authenticate as User with provided ID. The new token will be automatically fetched with a next API call.
+The new token will be automatically fetched with a next API call.
 
 [ccg_guide]: https://developer.box.com/guides/authentication/client-credentials/client-credentials-setup/
 
@@ -295,43 +298,47 @@ You need to provide the auth code to the SDK to obtain an access token, then you
 await oauth.getTokensAuthorizationCodeGrant('code');
 ```
 
-### Revoking tokens
+# Revoke token
 
-Access tokens for a client can be revoked when needed. As this removes the client's way of authenticating this client can no
-longer be used after this call. This method is only available for OAuth2 clients.
+Access tokens for a client can be revoked when needed. This call invalidates old token.
+For CCGAuth and JWTAuth you can still reuse the `auth` object to retrieve a new token. If you make any new call after revoking the token,
+a new token will be automatically retrieved.
+For OAuth it would be necessary to manually go through the authentication process again.
 
 To revoke current client's tokens in the storage use the following code:
 
 <!-- sample post_oauth2_revoke -->
 
 ```js
-await oauth.revokeTokens();
+await auth.revokeTokens();
 // client's tokens have been revoked
 ```
 
-### Downscoping tokens
+# Downscope token
 
 You can exchange a client's access token for one with a lower scope, in order
 to restrict the permissions for a child client or to pass to a less secure
 location (e.g. a browser-based app).
 
 A downscoped token does not include a refresh token.
-In that case, to get a new downscoped token, refresh the original refresh token and use that new token to get a downscoped token.
+In such a scenario, to obtain a new downscoped token, refresh the original token
+and utilize the newly acquired token to obtain the downscoped token.
 
 More information about downscoping tokens can be found [here](https://developer.box.com/guides/authentication/tokens/downscope/).
 If you want to learn more about available scopes please go [here](https://developer.box.com/guides/api-calls/permissions-and-errors/scopes/#scopes-for-downscoping).
 
-For example to exchange the token for a new token with only `item_preview` scope, restricted to a single file, suitable for the [Content Preview UI Element](https://developer.box.com/en/guides/embed/ui-elements/preview/) you can the following code:
+For example to get a new token with only `item_preview` scope, restricted to a single file, suitable for the
+[Content Preview UI Element](https://developer.box.com/en/guides/embed/ui-elements/preview/) you can use the following code.
+You can also initialize `DeveloperTokenAuth` with the retrieved access token and use it to create a new Client.
 
 <!-- sample post_oauth2_token downscope_token -->
 
 ```js
 let resource = 'https://api.box.com/2.0/files/123456789';
-let accessToken = await oauth.downscopeToken(['item_preview'], resource);
-// accessToken contains the new downscoped access token
+let token = await oauth.downscopeToken(['item_preview'], resource);
+const auth = new BoxDeveloperTokenAuth({ token: token.accessToken });
+const client = new BoxClient({ auth });
 ```
-
-This method is only available for OAuth2 clients.
 
 # Token storage
 
