@@ -573,14 +573,17 @@ export interface SessionTerminationMessage {
 }
 export type StoragePolicyMiniTypeField = 'storage_policy';
 export interface StoragePolicyMini {
-  readonly id?: string;
-  readonly type?: StoragePolicyMiniTypeField;
+  readonly id: string;
+  readonly type: StoragePolicyMiniTypeField;
 }
+export type StoragePolicyAssignmentTypeField = 'storage_policy_assignment';
 export interface StoragePolicyAssignmentAssignedToField {
   readonly id?: string;
   readonly type?: string;
 }
 export interface StoragePolicyAssignment {
+  readonly id: string;
+  readonly type: StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
 }
@@ -6558,20 +6561,31 @@ export function serializeStoragePolicyMini(
   val: StoragePolicyMini
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeStoragePolicyMiniTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeStoragePolicyMiniTypeField(val.type),
   };
 }
 export function deserializeStoragePolicyMini(val: any): StoragePolicyMini {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | StoragePolicyMiniTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeStoragePolicyMiniTypeField(val.type);
+  const id: string = val.id;
+  const type: StoragePolicyMiniTypeField =
+    deserializeStoragePolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies StoragePolicyMini;
+}
+export function serializeStoragePolicyAssignmentTypeField(
+  val: StoragePolicyAssignmentTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeStoragePolicyAssignmentTypeField(
+  val: any
+): StoragePolicyAssignmentTypeField {
+  if (!sdIsString(val)) {
+    throw 'Expecting a string for "StoragePolicyAssignmentTypeField"';
+  }
+  if (val == 'storage_policy_assignment') {
+    return 'storage_policy_assignment';
+  }
+  throw ''.concat('Invalid value: ', val) as string;
 }
 export function serializeStoragePolicyAssignmentAssignedToField(
   val: StoragePolicyAssignmentAssignedToField
@@ -6595,6 +6609,8 @@ export function serializeStoragePolicyAssignment(
   val: StoragePolicyAssignment
 ): SerializedData {
   return {
+    ['id']: val.id,
+    ['type']: serializeStoragePolicyAssignmentTypeField(val.type),
     ['storage_policy']:
       val.storagePolicy == void 0
         ? void 0
@@ -6608,6 +6624,9 @@ export function serializeStoragePolicyAssignment(
 export function deserializeStoragePolicyAssignment(
   val: any
 ): StoragePolicyAssignment {
+  const id: string = val.id;
+  const type: StoragePolicyAssignmentTypeField =
+    deserializeStoragePolicyAssignmentTypeField(val.type);
   const storagePolicy: undefined | StoragePolicyMini =
     val.storage_policy == void 0
       ? void 0
@@ -6617,6 +6636,8 @@ export function deserializeStoragePolicyAssignment(
       ? void 0
       : deserializeStoragePolicyAssignmentAssignedToField(val.assigned_to);
   return {
+    id: id,
+    type: type,
     storagePolicy: storagePolicy,
     assignedTo: assignedTo,
   } satisfies StoragePolicyAssignment;
@@ -6668,11 +6689,9 @@ export function serializeStoragePolicy(val: StoragePolicy): SerializedData {
 }
 export function deserializeStoragePolicy(val: any): StoragePolicy {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | StoragePolicyMiniTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeStoragePolicyMiniTypeField(val.type);
+  const id: string = val.id;
+  const type: StoragePolicyMiniTypeField =
+    deserializeStoragePolicyMiniTypeField(val.type);
   return { name: name, id: id, type: type } satisfies StoragePolicy;
 }
 export function serializeStoragePolicies(val: StoragePolicies): SerializedData {
