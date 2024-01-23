@@ -29,16 +29,16 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
   const barrier: ShieldInformationBarrier =
     await getOrCreateShieldInformationBarrier(client, enterpriseId);
   if (!((toString(barrier.status!) as string) == 'draft')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(barrier.type!) as string) == 'shield_information_barrier')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(barrier.enterprise!.id == enterpriseId)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(barrier.enterprise!.type) as string) == 'enterprise')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const barrierId: string = barrier.id!;
   const barrierFromApi: ShieldInformationBarrier =
@@ -46,12 +46,12 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
       barrierId
     );
   if (!(barrierFromApi.id! == barrierId)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const barriers: ShieldInformationBarriers =
     await client.shieldInformationBarriers.getShieldInformationBarriers();
   if (!(barriers.entries!.length == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await expect(async () => {
     await client.shieldInformationBarriers.updateShieldInformationBarrierStatus(

@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -378,7 +378,11 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   val: any
 ): UpdateFileByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodySharedLinkAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFileByIdRequestBodySharedLinkAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -389,7 +393,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   val: UpdateFileByIdRequestBodySharedLinkPermissionsField
@@ -464,12 +468,16 @@ export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   val: any
 ): UpdateFileByIdRequestBodyLockAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodyLockAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFileByIdRequestBodyLockAccessField"'
+      )
+    );
   }
   if (val == 'lock') {
     return 'lock';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFileByIdRequestBodyLockField(
   val: UpdateFileByIdRequestBodyLockField
@@ -510,7 +518,11 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   val: any
 ): UpdateFileByIdRequestBodyPermissionsCanDownloadField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileByIdRequestBodyPermissionsCanDownloadField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFileByIdRequestBodyPermissionsCanDownloadField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -518,7 +530,7 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   if (val == 'company') {
     return 'company';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsField(
   val: UpdateFileByIdRequestBodyPermissionsField
@@ -700,7 +712,9 @@ export function deserializeGetFileThumbnailByIdExtension(
   val: any
 ): GetFileThumbnailByIdExtension {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFileThumbnailByIdExtension"';
+    throw new Error(
+      String('Expecting a string for "GetFileThumbnailByIdExtension"')
+    );
   }
   if (val == 'png') {
     return 'png';
@@ -708,5 +722,5 @@ export function deserializeGetFileThumbnailByIdExtension(
   if (val == 'jpg') {
     return 'jpg';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

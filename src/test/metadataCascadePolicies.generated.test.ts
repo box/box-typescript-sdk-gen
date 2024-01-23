@@ -73,25 +73,25 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   if (
     !((toString(cascadePolicy.type) as string) == 'metadata_cascade_policy')
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !(
       (toString(cascadePolicy.ownerEnterprise!.type!) as string) == 'enterprise'
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !((toString(cascadePolicy.ownerEnterprise!.id!) as string) == enterpriseId)
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(cascadePolicy.parent!.type!) as string) == 'folder')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(cascadePolicy.parent!.id! == folder.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !(
@@ -99,10 +99,10 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
       (''.concat('enterprise_', enterpriseId) as string)
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(cascadePolicy.templateKey! == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const cascadePolicyId: string = cascadePolicy.id;
   const policyFromTheApi: MetadataCascadePolicy =
@@ -110,14 +110,14 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
       cascadePolicyId
     );
   if (!(cascadePolicyId == policyFromTheApi.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const policies: MetadataCascadePolicies =
     await client.metadataCascadePolicies.getMetadataCascadePolicies({
       folderId: folder.id,
     } satisfies GetMetadataCascadePoliciesQueryParams);
   if (!(policies.entries!.length == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await expect(async () => {
     await client.metadataCascadePolicies.applyMetadataCascadePolicy(

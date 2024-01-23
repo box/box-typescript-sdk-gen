@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -343,7 +343,11 @@ export function deserializeAddShareLinkToFileRequestBodySharedLinkAccessField(
   val: any
 ): AddShareLinkToFileRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "AddShareLinkToFileRequestBodySharedLinkAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "AddShareLinkToFileRequestBodySharedLinkAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -354,7 +358,7 @@ export function deserializeAddShareLinkToFileRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeAddShareLinkToFileRequestBodySharedLinkPermissionsField(
   val: AddShareLinkToFileRequestBodySharedLinkPermissionsField
@@ -462,7 +466,11 @@ export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessFiel
   val: any
 ): UpdateSharedLinkOnFileRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateSharedLinkOnFileRequestBodySharedLinkAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateSharedLinkOnFileRequestBodySharedLinkAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -473,7 +481,7 @@ export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessFiel
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField(
   val: UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField

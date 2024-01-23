@@ -8,7 +8,7 @@ import { GroupMemberships } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { GroupMembership } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -393,7 +393,11 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   val: any
 ): CreateGroupMembershipRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"'
+      )
+    );
   }
   if (val == 'member') {
     return 'member';
@@ -401,7 +405,7 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   if (val == 'admin') {
     return 'admin';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateGroupMembershipRequestBody(
   val: CreateGroupMembershipRequestBody
@@ -454,7 +458,11 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   val: any
 ): UpdateGroupMembershipByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"'
+      )
+    );
   }
   if (val == 'member') {
     return 'member';
@@ -462,7 +470,7 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   if (val == 'admin') {
     return 'admin';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(
   val: UpdateGroupMembershipByIdRequestBody

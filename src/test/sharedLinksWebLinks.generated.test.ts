@@ -73,7 +73,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
       fields: 'shared_link',
     } satisfies GetSharedLinkForWebLinkQueryParams);
   if (!((toString(webLinkFromApi.sharedLink!.access) as string) == 'open')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const userId: string = getEnvVar('USER_ID');
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
@@ -89,7 +89,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
       })
     );
   if (!(webLinkId == webLinkFromSharedLinkPassword.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await expect(async () => {
     await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
@@ -119,7 +119,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
       (toString(updatedWebLink.sharedLink!.access) as string) == 'collaborators'
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.webLinks.deleteWebLinkById(webLinkId);
 });

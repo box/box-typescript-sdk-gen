@@ -5,7 +5,7 @@ import { PostOAuth2Revoke } from './schemas.generated.js';
 import { AccessToken } from './schemas.generated.js';
 import { PostOAuth2TokenBoxSubjectTypeField } from './schemas.generated.js';
 import { Authentication } from './auth.js';
-import { NetworkSession } from './network.js';
+import { NetworkSession } from './network.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
@@ -105,7 +105,11 @@ export class BoxCcgAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
-      throw 'No access token is available. Make an API call to retrieve a token before calling this method.';
+      throw new Error(
+        String(
+          'No access token is available. Make an API call to retrieve a token before calling this method.'
+        )
+      );
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

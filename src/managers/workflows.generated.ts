@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { Workflows } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -161,12 +161,14 @@ export function deserializeStartWorkflowRequestBodyTypeField(
   val: any
 ): StartWorkflowRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "StartWorkflowRequestBodyTypeField"';
+    throw new Error(
+      String('Expecting a string for "StartWorkflowRequestBodyTypeField"')
+    );
   }
   if (val == 'workflow_parameters') {
     return 'workflow_parameters';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeStartWorkflowRequestBodyFlowField(
   val: StartWorkflowRequestBodyFlowField
@@ -192,12 +194,14 @@ export function deserializeStartWorkflowRequestBodyFilesTypeField(
   val: any
 ): StartWorkflowRequestBodyFilesTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "StartWorkflowRequestBodyFilesTypeField"';
+    throw new Error(
+      String('Expecting a string for "StartWorkflowRequestBodyFilesTypeField"')
+    );
   }
   if (val == 'file') {
     return 'file';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeStartWorkflowRequestBodyFilesField(
   val: StartWorkflowRequestBodyFilesField
@@ -229,12 +233,14 @@ export function deserializeStartWorkflowRequestBodyFolderTypeField(
   val: any
 ): StartWorkflowRequestBodyFolderTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "StartWorkflowRequestBodyFolderTypeField"';
+    throw new Error(
+      String('Expecting a string for "StartWorkflowRequestBodyFolderTypeField"')
+    );
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeStartWorkflowRequestBodyFolderField(
   val: StartWorkflowRequestBodyFolderField
@@ -266,12 +272,16 @@ export function deserializeStartWorkflowRequestBodyOutcomesTypeField(
   val: any
 ): StartWorkflowRequestBodyOutcomesTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "StartWorkflowRequestBodyOutcomesTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "StartWorkflowRequestBodyOutcomesTypeField"'
+      )
+    );
   }
   if (val == 'outcome') {
     return 'outcome';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeStartWorkflowRequestBodyOutcomesField(
   val: StartWorkflowRequestBodyOutcomesField

@@ -23,12 +23,12 @@ test('testGetStoragePolicies', async function testGetStoragePolicies(): Promise<
     await client.storagePolicies.getStoragePolicies();
   const storagePolicy: StoragePolicy = storagePolicies.entries![0];
   if (!((toString(storagePolicy.type) as string) == 'storage_policy')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const getStoragePolicy: StoragePolicy =
     await client.storagePolicies.getStoragePolicyById(storagePolicy.id);
   if (!(getStoragePolicy.id == storagePolicy.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

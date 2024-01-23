@@ -8,7 +8,7 @@ import { DevicePinner } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { DevicePinners } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -183,7 +183,11 @@ export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   val: any
 ): GetEnterpriseDevicePinnersQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsDirectionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsDirectionField"'
+      )
+    );
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -191,5 +195,5 @@ export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

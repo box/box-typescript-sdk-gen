@@ -35,7 +35,7 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
     newUser.id
   );
   if (!(aliases.totalCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const newAliasEmail: string = ''.concat(newUser.id, '@boxdemo.com') as string;
   const newAlias: EmailAlias = await client.emailAliases.createUserEmailAlias(
@@ -45,16 +45,16 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
   const updatedAliases: EmailAliases =
     await client.emailAliases.getUserEmailAliases(newUser.id);
   if (!(updatedAliases.totalCount == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedAliases.entries![0].email == newAliasEmail)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id!);
   const finalAliases: EmailAliases =
     await client.emailAliases.getUserEmailAliases(newUser.id);
   if (!(finalAliases.totalCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.users.deleteUserById(newUser.id);
 });

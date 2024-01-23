@@ -8,7 +8,7 @@ import { Groups } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { GroupFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -319,7 +319,11 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   val: any
 ): CreateGroupRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"'
+      )
+    );
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -330,7 +334,7 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: CreateGroupRequestBodyMemberViewabilityLevelField
@@ -341,7 +345,11 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: any
 ): CreateGroupRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"'
+      )
+    );
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -352,7 +360,7 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateGroupRequestBody(
   val: CreateGroupRequestBody
@@ -425,7 +433,11 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   val: any
 ): UpdateGroupByIdRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"'
+      )
+    );
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -436,7 +448,7 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
   val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
@@ -447,7 +459,11 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
   val: any
 ): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"'
+      )
+    );
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -458,7 +474,7 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateGroupByIdRequestBody(
   val: UpdateGroupByIdRequestBody

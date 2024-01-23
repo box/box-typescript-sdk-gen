@@ -8,7 +8,7 @@ import { CollaborationAllowlistEntries } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { CollaborationAllowlistEntry } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -230,7 +230,11 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
   val: any
 ): CreateCollaborationWhitelistEntryRequestBodyDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCollaborationWhitelistEntryRequestBodyDirectionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateCollaborationWhitelistEntryRequestBodyDirectionField"'
+      )
+    );
   }
   if (val == 'inbound') {
     return 'inbound';
@@ -241,7 +245,7 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
   if (val == 'both') {
     return 'both';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBody(
   val: CreateCollaborationWhitelistEntryRequestBody

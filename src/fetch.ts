@@ -1,5 +1,6 @@
 import nodeFetch, { RequestInit } from 'node-fetch';
 import type { Readable } from 'stream';
+
 import { Authentication } from './auth';
 import {
   jsonToSerializedData,
@@ -7,7 +8,9 @@ import {
   sdToUrlParams,
   SerializedData,
 } from './json';
-import { getRetryTimeout, NetworkSession } from './network';
+import { NetworkSession } from './network.generated';
+import { Interceptor } from './interceptors.generated';
+import { getRetryTimeout } from './getRetryTimeout';
 import {
   ByteStream,
   CancellationToken,
@@ -103,9 +106,13 @@ export interface FetchResponse {
    * Binary array buffer of response body
    */
   readonly content: ByteStream;
+
+  readonly headers: {
+    [key: string]: string;
+  };
 }
 
-async function createFetchOptions(options: FetchOptions): Promise<RequestInit> {
+async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   const {
     method = 'GET',
     headers = {},
@@ -195,56 +202,26 @@ export async function fetch(
     numRetries?: number;
   }
 ): Promise<FetchResponse> {
-  const { params = {} } = options;
-  const fetchOptions = await createFetchOptions(options);
+  const fetchOptions: typeof options = options.networkSession?.interceptors
+    ?.length
+    ? options.networkSession?.interceptors.reduce(
+        (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
+          interceptor.beforeRequest(modifiedOptions),
+        options
+      )
+    : options;
 
+  const requestInit = await createRequestInit(fetchOptions);
+
+  const { params = {} } = fetchOptions;
   const response = await nodeFetch(
     ''.concat(
       resource,
       Object.keys(params).length === 0 || resource.endsWith('?') ? '' : '?',
       new URLSearchParams(params).toString()
     ),
-    fetchOptions
+    { ...requestInit, redirect: 'manual' }
   );
-
-  if (!response.ok) {
-    const { numRetries = 0 } = options;
-
-    const reauthenticationNeeded = response.status == 401;
-    if (reauthenticationNeeded) {
-      await options.auth?.refreshToken(options.networkSession);
-
-      // retry the request right away
-      return fetch(resource, { ...options, numRetries: numRetries + 1 });
-    }
-
-    const isRetryable =
-      options.contentType !== 'application/x-www-form-urlencoded' &&
-      (response.status === 429 || response.status >= 500);
-
-    if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
-      const retryTimeout = response.headers.has('retry-after')
-        ? parseFloat(response.headers.get('retry-after')!) * 1000
-        : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
-
-      await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-      return fetch(resource, { ...options, numRetries: numRetries + 1 });
-    }
-
-    let responseBody = await response.text();
-    if (response.headers.get('content-type')?.startsWith('application/json')) {
-      try {
-        responseBody = JSON.stringify(JSON.parse(responseBody), null, 2);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    throw new Error(
-      `Request failed, status code ${response.status}: ${response.statusText}\n
-      ${responseBody}`
-    );
-  }
 
   const contentType = response.headers.get('content-type') ?? '';
   const responseBytesBuffer = await response.arrayBuffer();
@@ -258,9 +235,61 @@ export async function fetch(
   })();
 
   const content = generateByteStreamFromBuffer(responseBytesBuffer);
-  const { status } = response;
 
-  return { status, data, content };
+  let fetchResponse: FetchResponse = {
+    status: response.status,
+    data,
+    content,
+    headers: Object.fromEntries(Array.from(response.headers.entries())),
+  };
+  if (fetchOptions.networkSession?.interceptors?.length) {
+    fetchResponse = fetchOptions.networkSession?.interceptors.reduce(
+      (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
+        interceptor.afterRequest(modifiedResponse),
+      fetchResponse
+    );
+  }
+
+  if (fetchResponse.status >= 300 && fetchResponse.status < 400) {
+    if (!fetchResponse.headers['location']) {
+      throw new Error(`Unable to follow redirect for ${resource}`);
+    }
+    return fetch(fetchResponse.headers['location'], options);
+  }
+
+  if (fetchResponse.status >= 400) {
+    const { numRetries = 0 } = fetchOptions;
+
+    const reauthenticationNeeded = fetchResponse.status == 401;
+    if (reauthenticationNeeded) {
+      await fetchOptions.auth?.refreshToken(fetchOptions.networkSession);
+
+      // retry the request right away
+      return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
+    }
+
+    const isRetryable =
+      fetchOptions.contentType !== 'application/x-www-form-urlencoded' &&
+      (fetchResponse.status === 429 || fetchResponse.status >= 500);
+
+    if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
+      const retryTimeout = fetchResponse.headers['retry-after']
+        ? parseFloat(fetchResponse.headers['retry-after']!) * 1000
+        : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
+
+      await new Promise((resolve) => setTimeout(resolve, retryTimeout));
+      return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
+    }
+
+    throw new Error(
+      `Request failed, status code ${fetchResponse.status}: ${
+        response.statusText
+      }\n
+      ${JSON.stringify(fetchResponse.data, null, 2)}`
+    );
+  }
+
+  return fetchResponse;
 }
 
 async function calculateMD5Hash(data: string | Buffer): Promise<string> {

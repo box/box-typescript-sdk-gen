@@ -64,7 +64,7 @@ test('testZipDownload', async function testZipDownload(): Promise<any> {
       false
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.files.deleteFileById(file1.id);
   await client.files.deleteFileById(file2.id);
@@ -92,13 +92,13 @@ test('testManualZipDownloadAndCheckStatus', async function testManualZipDownload
     downloadFileName: 'zip',
   } satisfies ZipDownloadRequest);
   if (!!(zipDownload.downloadUrl == '')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!!(zipDownload.statusUrl == '')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!!(zipDownload.expiresAt == '')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const zipStream: ByteStream = await client.zipDownloads.getZipDownloadContent(
     zipDownload.downloadUrl!
@@ -109,24 +109,24 @@ test('testManualZipDownloadAndCheckStatus', async function testManualZipDownload
       false
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const zipDownloadStatus: ZipDownloadStatus =
     await client.zipDownloads.getZipDownloadStatus(zipDownload.statusUrl!);
   if (!(zipDownloadStatus.totalFileCount == 2)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(zipDownloadStatus.downloadedFileCount == 2)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(zipDownloadStatus.skippedFileCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(zipDownloadStatus.skippedFolderCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!!((toString(zipDownloadStatus.state) as string) == 'failed')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.files.deleteFileById(file1.id);
   await client.files.deleteFileById(file2.id);

@@ -35,7 +35,7 @@ test('testFolderLocks', async function testFolderLocks(): Promise<any> {
     folderId: folder.id,
   } satisfies GetFolderLocksQueryParams);
   if (!(folderLocks.entries!.length == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const folderLock: FolderLock = await client.folderLocks.createFolderLock({
     folder: {
@@ -48,13 +48,13 @@ test('testFolderLocks', async function testFolderLocks(): Promise<any> {
     } satisfies CreateFolderLockRequestBodyLockedOperationsField,
   } satisfies CreateFolderLockRequestBody);
   if (!(folderLock.folder!.id == folder.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(folderLock.lockedOperations!.move == true)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(folderLock.lockedOperations!.delete == true)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.folderLocks.deleteFolderLockById(folderLock.id!);
   await expect(async () => {
@@ -64,7 +64,7 @@ test('testFolderLocks', async function testFolderLocks(): Promise<any> {
     folderId: folder.id,
   } satisfies GetFolderLocksQueryParams);
   if (!(newFolderLocks.entries!.length == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.folders.deleteFolderById(folder.id);
 });

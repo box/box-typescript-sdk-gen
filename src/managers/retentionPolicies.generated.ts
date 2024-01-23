@@ -14,7 +14,7 @@ import { RetentionPolicy } from '../schemas.generated.js';
 import { UserMini } from '../schemas.generated.js';
 import { UserBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -321,7 +321,11 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   val: any
 ): GetRetentionPoliciesQueryParamsPolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"'
+      )
+    );
   }
   if (val == 'finite') {
     return 'finite';
@@ -329,7 +333,7 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   if (val == 'indefinite') {
     return 'indefinite';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: CreateRetentionPolicyRequestBodyPolicyTypeField
@@ -340,7 +344,11 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: any
 ): CreateRetentionPolicyRequestBodyPolicyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"'
+      )
+    );
   }
   if (val == 'finite') {
     return 'finite';
@@ -348,7 +356,7 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   if (val == 'indefinite') {
     return 'indefinite';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
   val: CreateRetentionPolicyRequestBodyDispositionActionField
@@ -359,7 +367,11 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   val: any
 ): CreateRetentionPolicyRequestBodyDispositionActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"'
+      )
+    );
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';
@@ -367,7 +379,7 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   if (val == 'remove_retention') {
     return 'remove_retention';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: CreateRetentionPolicyRequestBodyRetentionTypeField
@@ -378,7 +390,11 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: any
 ): CreateRetentionPolicyRequestBodyRetentionTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"'
+      )
+    );
   }
   if (val == 'modifiable') {
     return 'modifiable';
@@ -386,7 +402,7 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   if (val == 'non_modifiable') {
     return 'non_modifiable';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyRequestBody(
   val: CreateRetentionPolicyRequestBody

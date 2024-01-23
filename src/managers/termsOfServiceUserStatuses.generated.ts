@@ -8,7 +8,7 @@ import { TermsOfServiceUserStatuses } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { TermsOfServiceUserStatus } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -206,12 +206,16 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFi
   val: any
 ): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"'
+      )
+    );
   }
   if (val == 'terms_of_service') {
     return 'terms_of_service';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   val: CreateTermsOfServiceStatusForUserRequestBodyTosField
@@ -245,12 +249,16 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeF
   val: any
 ): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"'
+      )
+    );
   }
   if (val == 'user') {
     return 'user';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
   val: CreateTermsOfServiceStatusForUserRequestBodyUserField

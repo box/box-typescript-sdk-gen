@@ -41,10 +41,10 @@ test('testClassifications', async function testClassifications(): Promise<any> {
   const classification: ClassificationTemplateFieldsOptionsField =
     await getOrCreateClassification(classificationTemplate);
   if (!!(classification.key == '')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!!(classification.staticConfig!.classification!.colorId == 100)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !!(
@@ -52,7 +52,7 @@ test('testClassifications', async function testClassifications(): Promise<any> {
       ''
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedClassificationName: string = getUuid();
   const updatedClassificationDescription: string = getUuid();
@@ -79,10 +79,10 @@ test('testClassifications', async function testClassifications(): Promise<any> {
   const updatedClassification: ClassificationTemplateFieldsOptionsField =
     updatedClassifications[0];
   if (!(updatedClassification.key == updatedClassificationName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedClassification.staticConfig!.classification!.colorId == 2)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !(
@@ -90,7 +90,7 @@ test('testClassifications', async function testClassifications(): Promise<any> {
         .classificationDefinition == updatedClassificationDescription
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

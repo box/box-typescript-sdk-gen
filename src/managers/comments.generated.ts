@@ -8,7 +8,7 @@ import { Comments } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { CommentFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -316,7 +316,9 @@ export function deserializeCreateCommentRequestBodyItemTypeField(
   val: any
 ): CreateCommentRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateCommentRequestBodyItemTypeField"';
+    throw new Error(
+      String('Expecting a string for "CreateCommentRequestBodyItemTypeField"')
+    );
   }
   if (val == 'file') {
     return 'file';
@@ -324,7 +326,7 @@ export function deserializeCreateCommentRequestBodyItemTypeField(
   if (val == 'comment') {
     return 'comment';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateCommentRequestBodyItemField(
   val: CreateCommentRequestBodyItemField

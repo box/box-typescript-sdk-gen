@@ -45,7 +45,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
     folder.id
   );
   if (!(folderMetadata.entries!.length == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const createdMetadata: any =
     await client.folderMetadata.createFolderMetadataById(
@@ -55,13 +55,13 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       { ['abc']: 'xyz' }
     );
   if (!((toString(createdMetadata.template) as string) == 'properties')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(createdMetadata.scope) as string) == 'global')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(createdMetadata.version == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const receivedMetadata: any =
     await client.folderMetadata.getFolderMetadataById(
@@ -70,7 +70,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       'properties'
     );
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const newValue: any = 'bar';
   const updatedMetadata: any =
@@ -93,7 +93,7 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       'properties'
     );
   if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.folderMetadata.deleteFolderMetadataById(
     folder.id,

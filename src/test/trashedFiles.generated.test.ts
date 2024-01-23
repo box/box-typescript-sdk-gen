@@ -49,26 +49,26 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
     file.id
   );
   if (!(fromTrash.id == file.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(fromTrash.name == file.name)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const fromApiAfterTrashed: FileFull = await client.files.getFileById(file.id);
   if (!((toString(fromApiAfterTrashed.itemStatus) as string) == 'trashed')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const restoredFile: TrashFileRestored =
     await client.trashedFiles.restoreFileFromTrash(file.id);
   const fromApiAfterRestore: FileFull = await client.files.getFileById(file.id);
   if (!(restoredFile.id == fromApiAfterRestore.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(restoredFile.name == fromApiAfterRestore.name)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(fromApiAfterRestore.itemStatus) as string) == 'active')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.files.deleteFileById(file.id);
   await client.trashedFiles.deleteTrashedFileById(file.id);

@@ -26,13 +26,13 @@ test('testChunkedUpload', async function testChunkedUpload(): Promise<any> {
     parentFolderId
   );
   if (!(uploadedFile.name == fileName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(uploadedFile.size == fileSize)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(uploadedFile.parent!.id == parentFolderId)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.files.deleteFileById(uploadedFile.id);
 });

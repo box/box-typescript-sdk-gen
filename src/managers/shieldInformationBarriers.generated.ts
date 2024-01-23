@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { ShieldInformationBarriers } from '../schemas.generated.js';
 import { EnterpriseBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -236,7 +236,11 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
   val: any
 ): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateShieldInformationBarrierStatusRequestBodyStatusField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateShieldInformationBarrierStatusRequestBodyStatusField"'
+      )
+    );
   }
   if (val == 'pending') {
     return 'pending';
@@ -244,7 +248,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBody(
   val: UpdateShieldInformationBarrierStatusRequestBody

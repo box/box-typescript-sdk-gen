@@ -14,7 +14,7 @@ import { PostOAuth2Token } from '../schemas.generated.js';
 import { PostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
 import { PostOAuth2Revoke } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -213,10 +213,14 @@ export function deserializeAuthorizeUserQueryParamsResponseTypeField(
   val: any
 ): AuthorizeUserQueryParamsResponseTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "AuthorizeUserQueryParamsResponseTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "AuthorizeUserQueryParamsResponseTypeField"'
+      )
+    );
   }
   if (val == 'code') {
     return 'code';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

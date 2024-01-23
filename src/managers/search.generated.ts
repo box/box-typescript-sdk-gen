@@ -17,7 +17,7 @@ import { MetadataQueryIndices } from '../schemas.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { MetadataFilter } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -280,7 +280,11 @@ export function deserializeGetMetadataQueryIndicesQueryParamsScopeField(
   val: any
 ): GetMetadataQueryIndicesQueryParamsScopeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetMetadataQueryIndicesQueryParamsScopeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetMetadataQueryIndicesQueryParamsScopeField"'
+      )
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -288,7 +292,7 @@ export function deserializeGetMetadataQueryIndicesQueryParamsScopeField(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsScopeField(
   val: SearchForContentQueryParamsScopeField
@@ -299,7 +303,9 @@ export function deserializeSearchForContentQueryParamsScopeField(
   val: any
 ): SearchForContentQueryParamsScopeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsScopeField"';
+    throw new Error(
+      String('Expecting a string for "SearchForContentQueryParamsScopeField"')
+    );
   }
   if (val == 'user_content') {
     return 'user_content';
@@ -307,7 +313,7 @@ export function deserializeSearchForContentQueryParamsScopeField(
   if (val == 'enterprise_content') {
     return 'enterprise_content';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsContentTypesField(
   val: SearchForContentQueryParamsContentTypesField
@@ -318,7 +324,11 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
   val: any
 ): SearchForContentQueryParamsContentTypesField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsContentTypesField"';
+    throw new Error(
+      String(
+        'Expecting a string for "SearchForContentQueryParamsContentTypesField"'
+      )
+    );
   }
   if (val == 'name') {
     return 'name';
@@ -335,7 +345,7 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
   if (val == 'tag') {
     return 'tag';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsTypeField(
   val: SearchForContentQueryParamsTypeField
@@ -346,7 +356,9 @@ export function deserializeSearchForContentQueryParamsTypeField(
   val: any
 ): SearchForContentQueryParamsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsTypeField"';
+    throw new Error(
+      String('Expecting a string for "SearchForContentQueryParamsTypeField"')
+    );
   }
   if (val == 'file') {
     return 'file';
@@ -357,7 +369,7 @@ export function deserializeSearchForContentQueryParamsTypeField(
   if (val == 'web_link') {
     return 'web_link';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsTrashContentField(
   val: SearchForContentQueryParamsTrashContentField
@@ -368,7 +380,11 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   val: any
 ): SearchForContentQueryParamsTrashContentField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsTrashContentField"';
+    throw new Error(
+      String(
+        'Expecting a string for "SearchForContentQueryParamsTrashContentField"'
+      )
+    );
   }
   if (val == 'non_trashed_only') {
     return 'non_trashed_only';
@@ -379,7 +395,7 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   if (val == 'all_items') {
     return 'all_items';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsSortField(
   val: SearchForContentQueryParamsSortField
@@ -390,7 +406,9 @@ export function deserializeSearchForContentQueryParamsSortField(
   val: any
 ): SearchForContentQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsSortField"';
+    throw new Error(
+      String('Expecting a string for "SearchForContentQueryParamsSortField"')
+    );
   }
   if (val == 'modified_at') {
     return 'modified_at';
@@ -398,7 +416,7 @@ export function deserializeSearchForContentQueryParamsSortField(
   if (val == 'relevance') {
     return 'relevance';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeSearchForContentQueryParamsDirectionField(
   val: SearchForContentQueryParamsDirectionField
@@ -409,7 +427,11 @@ export function deserializeSearchForContentQueryParamsDirectionField(
   val: any
 ): SearchForContentQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "SearchForContentQueryParamsDirectionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "SearchForContentQueryParamsDirectionField"'
+      )
+    );
   }
   if (val == 'DESC') {
     return 'DESC';
@@ -417,5 +439,5 @@ export function deserializeSearchForContentQueryParamsDirectionField(
   if (val == 'ASC') {
     return 'ASC';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

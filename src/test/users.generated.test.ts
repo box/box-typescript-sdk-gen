@@ -26,13 +26,13 @@ const client: BoxClient = getDefaultClient();
 test('test_get_users', async function test_get_users(): Promise<any> {
   const users: Users = await client.users.getUsers();
   if (!(users.totalCount! >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 test('test_get_user_me', async function test_get_user_me(): Promise<any> {
   const currentUser: UserFull = await client.users.getUserMe();
   if (!((toString(currentUser.type) as string) == 'user')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 test('test_create_update_get_delete_user', async function test_create_update_get_delete_user(): Promise<any> {
@@ -44,18 +44,18 @@ test('test_create_update_get_delete_user', async function test_create_update_get
     isPlatformAccessOnly: true,
   } satisfies CreateUserRequestBody);
   if (!(user.name == userName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const userById: UserFull = await client.users.getUserById(user.id);
   if (!(userById.id == user.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedUserName: string = getUuid();
   const updatedUser: UserFull = await client.users.updateUserById(user.id, {
     name: updatedUserName,
   } satisfies UpdateUserByIdRequestBody);
   if (!(updatedUser.name == updatedUserName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.users.deleteUserById(user.id);
 });

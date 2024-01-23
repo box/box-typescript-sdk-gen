@@ -8,7 +8,7 @@ import { StoragePolicies } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { StoragePolicy } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';

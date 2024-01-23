@@ -8,7 +8,7 @@ import { FolderFull } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Items } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -469,7 +469,9 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   val: any
 ): GetFolderByIdQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderByIdQueryParamsSortField"';
+    throw new Error(
+      String('Expecting a string for "GetFolderByIdQueryParamsSortField"')
+    );
   }
   if (val == 'id') {
     return 'id';
@@ -483,7 +485,7 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeGetFolderByIdQueryParamsDirectionField(
   val: GetFolderByIdQueryParamsDirectionField
@@ -494,7 +496,9 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   val: any
 ): GetFolderByIdQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderByIdQueryParamsDirectionField"';
+    throw new Error(
+      String('Expecting a string for "GetFolderByIdQueryParamsDirectionField"')
+    );
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -502,7 +506,7 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderByIdRequestBodySyncStateField(
   val: UpdateFolderByIdRequestBodySyncStateField
@@ -513,7 +517,11 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   val: any
 ): UpdateFolderByIdRequestBodySyncStateField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderByIdRequestBodySyncStateField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFolderByIdRequestBodySyncStateField"'
+      )
+    );
   }
   if (val == 'synced') {
     return 'synced';
@@ -524,7 +532,7 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   if (val == 'partially_synced') {
     return 'partially_synced';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderByIdRequestBodyParentField(
   val: UpdateFolderByIdRequestBodyParentField
@@ -546,7 +554,11 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   val: any
 ): UpdateFolderByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderByIdRequestBodySharedLinkAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFolderByIdRequestBodySharedLinkAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -557,7 +569,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
   val: UpdateFolderByIdRequestBodySharedLinkPermissionsField
@@ -632,7 +644,11 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   val: any
 ): UpdateFolderByIdRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderByIdRequestBodyFolderUploadEmailAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFolderByIdRequestBodyFolderUploadEmailAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -640,7 +656,7 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
   val: UpdateFolderByIdRequestBodyFolderUploadEmailField
@@ -815,7 +831,9 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   val: any
 ): GetFolderItemsQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderItemsQueryParamsSortField"';
+    throw new Error(
+      String('Expecting a string for "GetFolderItemsQueryParamsSortField"')
+    );
   }
   if (val == 'id') {
     return 'id';
@@ -829,7 +847,7 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeGetFolderItemsQueryParamsDirectionField(
   val: GetFolderItemsQueryParamsDirectionField
@@ -840,7 +858,9 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   val: any
 ): GetFolderItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderItemsQueryParamsDirectionField"';
+    throw new Error(
+      String('Expecting a string for "GetFolderItemsQueryParamsDirectionField"')
+    );
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -848,7 +868,7 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFolderRequestBodyParentField(
   val: CreateFolderRequestBodyParentField
@@ -870,7 +890,11 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   val: any
 ): CreateFolderRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateFolderRequestBodyFolderUploadEmailAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateFolderRequestBodyFolderUploadEmailAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -878,7 +902,7 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailField(
   val: CreateFolderRequestBodyFolderUploadEmailField
@@ -916,7 +940,9 @@ export function deserializeCreateFolderRequestBodySyncStateField(
   val: any
 ): CreateFolderRequestBodySyncStateField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateFolderRequestBodySyncStateField"';
+    throw new Error(
+      String('Expecting a string for "CreateFolderRequestBodySyncStateField"')
+    );
   }
   if (val == 'synced') {
     return 'synced';
@@ -927,7 +953,7 @@ export function deserializeCreateFolderRequestBodySyncStateField(
   if (val == 'partially_synced') {
     return 'partially_synced';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFolderRequestBody(
   val: CreateFolderRequestBody
