@@ -45,7 +45,7 @@ See the endpoint docs at
 <!-- sample get_storage_policies_id -->
 
 ```ts
-await client.storagePolicies.getStoragePolicyById(storagePolicy.id!);
+await client.storagePolicies.getStoragePolicyById(storagePolicy.id);
 ```
 
 ### Arguments
