@@ -61,21 +61,22 @@ import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateGetDeleteTaskAssignment(): Promise<any> {
   const file: FileFull = await uploadNewFile();
+  const date: string = '2035-01-01T00:00:00Z';
   const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyItemTypeField,
       id: file.id,
     } satisfies CreateTaskRequestBodyItemField,
     message: 'test message',
-    dueAt: '2035-01-01T00:00:00Z',
+    dueAt: date,
     action: 'review' as CreateTaskRequestBodyActionField,
     completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
   } satisfies CreateTaskRequestBody);
   if (!(task.message == 'test message')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(task.item!.id == file.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const currentUser: UserFull = await client.users.getUserMe();
   const taskAssignment: TaskAssignment =
@@ -89,20 +90,20 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
       } satisfies CreateTaskAssignmentRequestBodyAssignToField,
     } satisfies CreateTaskAssignmentRequestBody);
   if (!(taskAssignment.item!.id == file.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(taskAssignment.assignedTo!.id == currentUser.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const taskAssignmentById: TaskAssignment =
     await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
   if (!(taskAssignmentById.id == taskAssignment.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const taskAssignmentsOnTask: TaskAssignments =
     await client.taskAssignments.getTaskAssignments(task.id!);
   if (!(taskAssignmentsOnTask.totalCount! == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedTaskAssignment: TaskAssignment =
     await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
@@ -111,12 +112,12 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
         'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
     } satisfies UpdateTaskAssignmentByIdRequestBody);
   if (!(updatedTaskAssignment.message == 'updated message')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !((toString(updatedTaskAssignment.resolutionState) as string) == 'approved')
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await expect(async () => {
     await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);

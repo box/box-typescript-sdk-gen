@@ -25,7 +25,7 @@ const client: BoxClient = getDefaultClient();
 test('test_get_groups', async function test_get_groups(): Promise<any> {
   const groups: Groups = await client.groups.getGroups();
   if (!(groups.totalCount! >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 test('test_create_get_delete_group', async function test_create_get_delete_group(): Promise<any> {
@@ -36,16 +36,16 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
     description: groupDescription,
   } satisfies CreateGroupRequestBody);
   if (!(group.name == groupName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const groupById: GroupFull = await client.groups.getGroupById(group.id, {
     fields: ['id' as '', 'name' as '', 'description' as '', 'group_type' as ''],
   } satisfies GetGroupByIdQueryParams);
   if (!(groupById.id == group.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(groupById.description == groupDescription)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedGroupName: string = getUuid();
   const updatedGroup: GroupFull = await client.groups.updateGroupById(
@@ -53,7 +53,7 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
     { name: updatedGroupName } satisfies UpdateGroupByIdRequestBody
   );
   if (!(updatedGroup.name == updatedGroupName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.groups.deleteGroupById(group.id);
   await expect(async () => {

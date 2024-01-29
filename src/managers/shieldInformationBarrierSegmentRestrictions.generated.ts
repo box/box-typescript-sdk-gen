@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegmentRestrictions } from '../schemas.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -286,12 +286,16 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField"'
+      )
+    );
   }
   if (val == 'shield_information_barrier_segment_restriction') {
     return 'shield_information_barrier_segment_restriction';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField
@@ -302,12 +306,16 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField"'
+      )
+    );
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField
@@ -348,12 +356,16 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   val: any
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField"'
+      )
+    );
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField

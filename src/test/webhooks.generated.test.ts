@@ -55,32 +55,32 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     triggers: ['FILE.UPLOADED' as CreateWebhookRequestBodyTriggersField],
   } satisfies CreateWebhookRequestBody);
   if (!(webhook.target!.id == folder.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(webhook.target!.type) as string) == 'folder')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(webhook.triggers!.length == ['FILE.UPLOADED'].length)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(webhook.address == 'https://example.com/new-webhook')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const webhooks: Webhooks = await client.webhooks.getWebhooks();
   if (!(webhooks.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const webhookFromApi: Webhook = await client.webhooks.getWebhookById(
     webhook.id!
   );
   if (!(webhook.id == webhookFromApi.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(webhook.target!.id == webhookFromApi.target!.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(webhook.address == webhookFromApi.address)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedWebhook: Webhook = await client.webhooks.updateWebhookById(
     webhook.id!,
@@ -89,10 +89,10 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     } satisfies UpdateWebhookByIdRequestBody
   );
   if (!(updatedWebhook.id == webhook.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedWebhook.address == 'https://example.com/updated-webhook')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.webhooks.deleteWebhookById(webhook.id!);
   await expect(async () => {

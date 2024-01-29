@@ -93,10 +93,6 @@ export function getEnvVar(name: string) {
   return process.env[name] || '';
 }
 
-export function listConcat<T>(a: readonly T[], b: readonly T[]): T[] {
-  return [...a, ...b];
-}
-
 export function generateByteBuffer(size: number): Buffer {
   if (isBrowser()) {
     const buffer = new Uint8Array(size);

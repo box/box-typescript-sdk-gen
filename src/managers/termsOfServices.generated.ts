@@ -8,7 +8,7 @@ import { TermsOfServices } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { TermsOfService } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -232,7 +232,11 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   val: any
 ): GetTermsOfServiceQueryParamsTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetTermsOfServiceQueryParamsTosTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetTermsOfServiceQueryParamsTosTypeField"'
+      )
+    );
   }
   if (val == 'external') {
     return 'external';
@@ -240,7 +244,7 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   if (val == 'managed') {
     return 'managed';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTermsOfServiceRequestBodyStatusField(
   val: CreateTermsOfServiceRequestBodyStatusField
@@ -251,7 +255,11 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   val: any
 ): CreateTermsOfServiceRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermsOfServiceRequestBodyStatusField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTermsOfServiceRequestBodyStatusField"'
+      )
+    );
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -259,7 +267,7 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
   val: CreateTermsOfServiceRequestBodyTosTypeField
@@ -270,7 +278,11 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   val: any
 ): CreateTermsOfServiceRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTermsOfServiceRequestBodyTosTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTermsOfServiceRequestBodyTosTypeField"'
+      )
+    );
   }
   if (val == 'external') {
     return 'external';
@@ -278,7 +290,7 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   if (val == 'managed') {
     return 'managed';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTermsOfServiceRequestBody(
   val: CreateTermsOfServiceRequestBody
@@ -317,7 +329,11 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   val: any
 ): UpdateTermsOfServiceByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTermsOfServiceByIdRequestBodyStatusField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateTermsOfServiceByIdRequestBodyStatusField"'
+      )
+    );
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -325,7 +341,7 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateTermsOfServiceByIdRequestBody(
   val: UpdateTermsOfServiceByIdRequestBody

@@ -10,6 +10,8 @@ divided across resource managers.
   - [As-User header](#as-user-header)
   - [Suppress notifications](#suppress-notifications)
   - [Custom headers](#custom-headers)
+- [Custom Base URLs](#custom-base-urls)
+- [Interceptors](#interceptors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -62,7 +64,7 @@ Calling the `client.withExtraHeaders()` method creates a new client, leaving the
 const newClient = client.withExtraHeaders({ ['customHeader']: 'customValue' });
 ```
 
-## Custom Base URLs
+# Custom Base URLs
 
 You can also specify the custom base URLs, which will be used for API calls made by client.
 Calling the `client.withCustomBaseUrls()` method creates a new client, leaving the original client unmodified.
@@ -73,4 +75,46 @@ const newClient = client.withCustomBaseUrls({
   uploadUrl: 'https://upload.box.com/api/2.0',
   oauth2Url: 'https://account.box.com/api/oauth2',
 });
+```
+
+# Interceptors
+
+You can specify custom interceptors - methods that will be called just before making a request and right after
+receiving a response from the server. Using these function allows you to modify the request payload and response.
+Interceptor interface accepts two methods with the following signatures:
+
+```js
+beforeRequest(options: FetchOptions): FetchOptions;
+afterRequest(response: FetchResponse): FetchResponse;
+```
+
+You can apply more than one interceptor to the client by passing a list of interceptors to apply.
+Calling the `client.withInterceptors()` method creates a new client, leaving the original client unmodified.
+
+```js
+function beforeRequest(options: FetchOptions): FetchOptions {
+  return {
+    method: options.method,
+    headers: options.headers,
+    params: { ...options.params, ...{ ['fields']: 'role' } },
+    data: options.data,
+    fileStream: options.fileStream,
+    multipartData: options.multipartData,
+    contentType: options.contentType,
+    responseFormat: options.responseFormat,
+    auth: options.auth,
+    networkSession: options.networkSession,
+    cancellationToken: options.cancellationToken,
+  };
+}
+function emptyAfterRequest(response: FetchResponse): FetchResponse {
+  return response;
+}
+
+const clientWithInterceptor: BoxClient = client.withInterceptors([
+  {
+    beforeRequest: beforeRequest,
+    afterRequest: emptyAfterRequest,
+  },
+]);
 ```

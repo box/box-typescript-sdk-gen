@@ -8,7 +8,7 @@ import { Metadatas } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -296,7 +296,9 @@ export function deserializeGetFileMetadataByIdScope(
   val: any
 ): GetFileMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFileMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "GetFileMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -304,7 +306,7 @@ export function deserializeGetFileMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFileMetadataByIdScope(
   val: CreateFileMetadataByIdScope
@@ -315,7 +317,9 @@ export function deserializeCreateFileMetadataByIdScope(
   val: any
 ): CreateFileMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateFileMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "CreateFileMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -323,7 +327,7 @@ export function deserializeCreateFileMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFileMetadataByIdRequestBody(
   val: CreateFileMetadataByIdRequestBody
@@ -344,7 +348,9 @@ export function deserializeUpdateFileMetadataByIdScope(
   val: any
 ): UpdateFileMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "UpdateFileMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -352,7 +358,7 @@ export function deserializeUpdateFileMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFileMetadataByIdRequestBodyOpField(
   val: UpdateFileMetadataByIdRequestBodyOpField
@@ -363,7 +369,11 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   val: any
 ): UpdateFileMetadataByIdRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFileMetadataByIdRequestBodyOpField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFileMetadataByIdRequestBodyOpField"'
+      )
+    );
   }
   if (val == 'add') {
     return 'add';
@@ -383,7 +393,7 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   if (val == 'copy') {
     return 'copy';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFileMetadataByIdRequestBody(
   val: UpdateFileMetadataByIdRequestBody
@@ -424,7 +434,9 @@ export function deserializeDeleteFileMetadataByIdScope(
   val: any
 ): DeleteFileMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteFileMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "DeleteFileMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -432,5 +444,5 @@ export function deserializeDeleteFileMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

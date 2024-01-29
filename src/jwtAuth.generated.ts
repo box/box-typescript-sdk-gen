@@ -1,7 +1,7 @@
 import { PostOAuth2TokenGrantTypeField } from './schemas.generated.js';
 import { PostOAuth2TokenSubjectTokenTypeField } from './schemas.generated.js';
 import { Authentication } from './auth.js';
-import { NetworkSession } from './network.js';
+import { NetworkSession } from './network.generated.js';
 import { AccessToken } from './schemas.generated.js';
 import { PostOAuth2Token } from './schemas.generated.js';
 import { PostOAuth2Revoke } from './schemas.generated.js';
@@ -131,7 +131,9 @@ export class BoxJwtAuth implements Authentication {
   }
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (isBrowser()) {
-      throw 'JWT auth is not supported in browser environment.';
+      throw new Error(
+        String('JWT auth is not supported in browser environment.')
+      );
     }
     const alg: JwtAlgorithm = !(this.config.jwtAlgorithm == void 0)
       ? this.config.jwtAlgorithm
@@ -218,7 +220,11 @@ export class BoxJwtAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
-      throw 'No access token is available. Make an API call to retrieve a token before calling this method.';
+      throw new Error(
+        String(
+          'No access token is available. Make an API call to retrieve a token before calling this method.'
+        )
+      );
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

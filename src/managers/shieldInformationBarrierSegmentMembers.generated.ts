@@ -14,7 +14,7 @@ import { ShieldInformationBarrierSegmentMembers } from '../schemas.generated.js'
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { UserBase } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -269,12 +269,16 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   val: any
 ): CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField"'
+      )
+    );
   }
   if (val == 'shield_information_barrier_segment_member') {
     return 'shield_information_barrier_segment_member';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField
@@ -285,12 +289,16 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   val: any
 ): CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField"'
+      )
+    );
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField

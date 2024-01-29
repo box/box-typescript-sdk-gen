@@ -52,7 +52,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   const userMemberships: GroupMemberships =
     await client.memberships.getUserMemberships(user.id);
   if (!(userMemberships.totalCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const group: GroupFull = await client.groups.createGroup({
     name: getUuid(),
@@ -60,7 +60,7 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   const groupMemberships: GroupMemberships =
     await client.memberships.getGroupMemberships(group.id);
   if (!(groupMemberships.totalCount == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const groupMembership: GroupMembership =
     await client.memberships.createGroupMembership({
@@ -70,28 +70,28 @@ test('testMemberships', async function testMemberships(): Promise<any> {
       } satisfies CreateGroupMembershipRequestBodyGroupField,
     } satisfies CreateGroupMembershipRequestBody);
   if (!(groupMembership.user!.id == user.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(groupMembership.group!.id == group.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(groupMembership.role) as string) == 'member')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const getGroupMembership: GroupMembership =
     await client.memberships.getGroupMembershipById(groupMembership.id!);
   if (!(getGroupMembership.id == groupMembership.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedGroupMembership: GroupMembership =
     await client.memberships.updateGroupMembershipById(groupMembership.id!, {
       role: 'admin' as UpdateGroupMembershipByIdRequestBodyRoleField,
     } satisfies UpdateGroupMembershipByIdRequestBody);
   if (!(updatedGroupMembership.id == groupMembership.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(updatedGroupMembership.role) as string) == 'admin')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.memberships.deleteGroupMembershipById(groupMembership.id!);
   await expect(async () => {

@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { Items } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -102,7 +102,11 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   val: any
 ): GetTrashedItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"'
+      )
+    );
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -110,7 +114,7 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
   val: GetTrashedItemsQueryParamsSortField
@@ -121,7 +125,9 @@ export function deserializeGetTrashedItemsQueryParamsSortField(
   val: any
 ): GetTrashedItemsQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetTrashedItemsQueryParamsSortField"';
+    throw new Error(
+      String('Expecting a string for "GetTrashedItemsQueryParamsSortField"')
+    );
   }
   if (val == 'name') {
     return 'name';
@@ -132,5 +138,5 @@ export function deserializeGetTrashedItemsQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

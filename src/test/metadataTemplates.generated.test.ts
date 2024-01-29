@@ -68,19 +68,19 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
     ],
   } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(template.displayName == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(template.fields!.length == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(template.fields![0].key == 'testName')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(template.fields![0].displayName == 'testName')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedTemplate: any =
     await client.metadataTemplates.updateMetadataTemplate(
@@ -95,18 +95,18 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
       ]
     );
   if (!(updatedTemplate.fields!.length == 2)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedTemplate.fields![1].key == 'newfieldname')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedTemplate.fields![1].displayName == 'newFieldName')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const getMetadataTemplate: any =
     await client.metadataTemplates.getMetadataTemplateById(template.id);
   if (!(getMetadataTemplate.id == template.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const getMetadataTemplateSchema: any =
     await client.metadataTemplates.getMetadataTemplate(
@@ -114,17 +114,17 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
       template.templateKey!
     );
   if (!(getMetadataTemplateSchema.id == template.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const enterpriseMetadataTemplates: any =
     await client.metadataTemplates.getEnterpriseMetadataTemplates();
   if (!(enterpriseMetadataTemplates.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const globalMetadataTemplates: any =
     await client.metadataTemplates.getGlobalMetadataTemplates();
   if (!(globalMetadataTemplates.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
@@ -164,13 +164,13 @@ test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplate
       metadataInstanceId: createdMetadataInstance.id!,
     } satisfies GetMetadataTemplatesByInstanceIdQueryParams);
   if (!(metadataTemplates.entries!.length == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(metadataTemplates.entries![0].displayName == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(metadataTemplates.entries![0].templateKey == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.fileMetadata.deleteFileMetadataById(
     file.id,

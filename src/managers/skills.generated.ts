@@ -8,7 +8,7 @@ import { SkillCardsMetadata } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -328,12 +328,16 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   val: any
 ): UpdateBoxSkillCardsOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateBoxSkillCardsOnFileRequestBodyOpField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateBoxSkillCardsOnFileRequestBodyOpField"'
+      )
+    );
   }
   if (val == 'replace') {
     return 'replace';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBody(
   val: UpdateBoxSkillCardsOnFileRequestBody
@@ -383,7 +387,11 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyStatusField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyStatusField"'
+      )
+    );
   }
   if (val == 'invoked') {
     return 'invoked';
@@ -400,7 +408,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   if (val == 'permanent_failure') {
     return 'permanent_failure';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   val: UpdateAllSkillCardsOnFileRequestBodyMetadataField
@@ -446,12 +454,16 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyFileTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileTypeField"'
+      )
+    );
   }
   if (val == 'file') {
     return 'file';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   val: UpdateAllSkillCardsOnFileRequestBodyFileField
@@ -486,12 +498,16 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeFi
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField"'
+      )
+    );
   }
   if (val == 'file_version') {
     return 'file_version';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField

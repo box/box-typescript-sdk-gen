@@ -101,14 +101,14 @@ test('testFileClassifications', async function testFileClassifications(): Promis
       classification.key
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const fileClassification: Classification =
     await client.fileClassifications.getClassificationOnFile(file.id);
   if (
     !(fileClassification.boxSecurityClassificationKey == classification.key)
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const secondClassification: ClassificationTemplateFieldsOptionsField =
     await getOrCreateSecondClassification(classificationTemplate);
@@ -126,7 +126,7 @@ test('testFileClassifications', async function testFileClassifications(): Promis
       secondClassification.key
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.fileClassifications.deleteClassificationFromFile(file.id);
   await expect(async () => {

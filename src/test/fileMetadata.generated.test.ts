@@ -44,7 +44,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
   const file: any = await uploadNewFile();
   const fileMetadata: any = await client.fileMetadata.getFileMetadata(file.id);
   if (!(fileMetadata.entries!.length == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const createdMetadata: any = await client.fileMetadata.createFileMetadataById(
     file.id,
@@ -53,13 +53,13 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
     { ['abc']: 'xyz' }
   );
   if (!((toString(createdMetadata.template) as string) == 'properties')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(createdMetadata.scope) as string) == 'global')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(createdMetadata.version == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const receivedMetadata: any = await client.fileMetadata.getFileMetadataById(
     file.id,
@@ -67,7 +67,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
     'properties'
   );
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const newValue: any = 'bar';
   const updatedMetadata: any = await client.fileMetadata.updateFileMetadataById(
@@ -89,7 +89,7 @@ test('testFileMetadata', async function testFileMetadata(): Promise<any> {
       'properties'
     );
   if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.fileMetadata.deleteFileMetadataById(
     file.id,

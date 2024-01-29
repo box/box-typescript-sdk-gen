@@ -8,7 +8,7 @@ import { MetadataTemplates } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -467,7 +467,9 @@ export function deserializeGetMetadataTemplateScope(
   val: any
 ): GetMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetMetadataTemplateScope"';
+    throw new Error(
+      String('Expecting a string for "GetMetadataTemplateScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -475,7 +477,7 @@ export function deserializeGetMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateMetadataTemplateScope(
   val: UpdateMetadataTemplateScope
@@ -486,7 +488,9 @@ export function deserializeUpdateMetadataTemplateScope(
   val: any
 ): UpdateMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateScope"';
+    throw new Error(
+      String('Expecting a string for "UpdateMetadataTemplateScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -494,7 +498,7 @@ export function deserializeUpdateMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
   val: UpdateMetadataTemplateRequestBodyOpField
@@ -505,7 +509,11 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   val: any
 ): UpdateMetadataTemplateRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"'
+      )
+    );
   }
   if (val == 'editTemplate') {
     return 'editTemplate';
@@ -546,7 +554,7 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   if (val == 'removeMultiSelectOption') {
     return 'removeMultiSelectOption';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateMetadataTemplateRequestBody(
   val: UpdateMetadataTemplateRequestBody
@@ -638,7 +646,9 @@ export function deserializeDeleteMetadataTemplateScope(
   val: any
 ): DeleteMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteMetadataTemplateScope"';
+    throw new Error(
+      String('Expecting a string for "DeleteMetadataTemplateScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -646,7 +656,7 @@ export function deserializeDeleteMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: CreateMetadataTemplateRequestBodyFieldsTypeField
@@ -657,7 +667,11 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: any
 ): CreateMetadataTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"'
+      )
+    );
   }
   if (val == 'string') {
     return 'string';
@@ -674,7 +688,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   if (val == 'multiSelect') {
     return 'multiSelect';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   val: CreateMetadataTemplateRequestBodyFieldsOptionsField

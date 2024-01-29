@@ -8,7 +8,7 @@ import { TaskAssignments } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { TaskAssignment } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -270,12 +270,16 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   val: any
 ): CreateTaskAssignmentRequestBodyTaskTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskAssignmentRequestBodyTaskTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTaskAssignmentRequestBodyTaskTypeField"'
+      )
+    );
   }
   if (val == 'task') {
     return 'task';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
   val: CreateTaskAssignmentRequestBodyTaskField
@@ -345,7 +349,11 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   val: any
 ): UpdateTaskAssignmentByIdRequestBodyResolutionStateField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyResolutionStateField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyResolutionStateField"'
+      )
+    );
   }
   if (val == 'completed') {
     return 'completed';
@@ -359,7 +367,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   if (val == 'rejected') {
     return 'rejected';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(
   val: UpdateTaskAssignmentByIdRequestBody

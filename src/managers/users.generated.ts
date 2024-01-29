@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { TrackingCode } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -416,7 +416,9 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   val: any
 ): GetUsersQueryParamsUserTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetUsersQueryParamsUserTypeField"';
+    throw new Error(
+      String('Expecting a string for "GetUsersQueryParamsUserTypeField"')
+    );
   }
   if (val == 'all') {
     return 'all';
@@ -427,7 +429,7 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   if (val == 'external') {
     return 'external';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateUserRequestBodyRoleField(
   val: CreateUserRequestBodyRoleField
@@ -438,7 +440,9 @@ export function deserializeCreateUserRequestBodyRoleField(
   val: any
 ): CreateUserRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateUserRequestBodyRoleField"';
+    throw new Error(
+      String('Expecting a string for "CreateUserRequestBodyRoleField"')
+    );
   }
   if (val == 'coadmin') {
     return 'coadmin';
@@ -446,7 +450,7 @@ export function deserializeCreateUserRequestBodyRoleField(
   if (val == 'user') {
     return 'user';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateUserRequestBodyStatusField(
   val: CreateUserRequestBodyStatusField
@@ -457,7 +461,9 @@ export function deserializeCreateUserRequestBodyStatusField(
   val: any
 ): CreateUserRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateUserRequestBodyStatusField"';
+    throw new Error(
+      String('Expecting a string for "CreateUserRequestBodyStatusField"')
+    );
   }
   if (val == 'active') {
     return 'active';
@@ -471,7 +477,7 @@ export function deserializeCreateUserRequestBodyStatusField(
   if (val == 'cannot_delete_edit_upload') {
     return 'cannot_delete_edit_upload';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateUserRequestBody(
   val: CreateUserRequestBody
@@ -605,7 +611,9 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   val: any
 ): UpdateUserByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateUserByIdRequestBodyRoleField"';
+    throw new Error(
+      String('Expecting a string for "UpdateUserByIdRequestBodyRoleField"')
+    );
   }
   if (val == 'coadmin') {
     return 'coadmin';
@@ -613,7 +621,7 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   if (val == 'user') {
     return 'user';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateUserByIdRequestBodyStatusField(
   val: UpdateUserByIdRequestBodyStatusField
@@ -624,7 +632,9 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
   val: any
 ): UpdateUserByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateUserByIdRequestBodyStatusField"';
+    throw new Error(
+      String('Expecting a string for "UpdateUserByIdRequestBodyStatusField"')
+    );
   }
   if (val == 'active') {
     return 'active';
@@ -638,7 +648,7 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
   if (val == 'cannot_delete_edit_upload') {
     return 'cannot_delete_edit_upload';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
   val: UpdateUserByIdRequestBodyNotificationEmailField

@@ -8,7 +8,7 @@ import { Webhooks } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Webhook } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -347,7 +347,9 @@ export function deserializeCreateWebhookRequestBodyTargetTypeField(
   val: any
 ): CreateWebhookRequestBodyTargetTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWebhookRequestBodyTargetTypeField"';
+    throw new Error(
+      String('Expecting a string for "CreateWebhookRequestBodyTargetTypeField"')
+    );
   }
   if (val == 'file') {
     return 'file';
@@ -355,7 +357,7 @@ export function deserializeCreateWebhookRequestBodyTargetTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateWebhookRequestBodyTargetField(
   val: CreateWebhookRequestBodyTargetField
@@ -387,7 +389,9 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
   val: any
 ): CreateWebhookRequestBodyTriggersField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateWebhookRequestBodyTriggersField"';
+    throw new Error(
+      String('Expecting a string for "CreateWebhookRequestBodyTriggersField"')
+    );
   }
   if (val == 'FILE.UPLOADED') {
     return 'FILE.UPLOADED';
@@ -509,7 +513,7 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
     return 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateWebhookRequestBody(
   val: CreateWebhookRequestBody
@@ -552,7 +556,11 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
   val: any
 ): UpdateWebhookByIdRequestBodyTargetTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateWebhookByIdRequestBodyTargetTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateWebhookByIdRequestBodyTargetTypeField"'
+      )
+    );
   }
   if (val == 'file') {
     return 'file';
@@ -560,7 +568,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetField(
   val: UpdateWebhookByIdRequestBodyTargetField
@@ -595,7 +603,11 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
   val: any
 ): UpdateWebhookByIdRequestBodyTriggersField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateWebhookByIdRequestBodyTriggersField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateWebhookByIdRequestBodyTriggersField"'
+      )
+    );
   }
   if (val == 'FILE.UPLOADED') {
     return 'FILE.UPLOADED';
@@ -717,7 +729,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
     return 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateWebhookByIdRequestBody(
   val: UpdateWebhookByIdRequestBody

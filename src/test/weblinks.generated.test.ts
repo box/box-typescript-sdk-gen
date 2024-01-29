@@ -41,23 +41,23 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
     description: description,
   } satisfies CreateWebLinkRequestBody);
   if (!(weblink.url == url)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(weblink.parent!.id == parent.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(weblink.name == name)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(weblink.description == description)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const weblinkById: any = await client.webLinks.getWebLinkById(weblink.id);
   if (!(weblinkById.id == weblink.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(weblinkById.url == url)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedName: any = getUuid();
   const updatedWeblink: any = await client.webLinks.updateWebLinkById(
@@ -71,15 +71,15 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
     } satisfies UpdateWebLinkByIdRequestBody
   );
   if (!(updatedWeblink.name == updatedName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedWeblink.sharedLink!.access! == sharedAccess)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
   const deletedWeblink: any = await client.webLinks.getWebLinkById(weblink.id);
   if (!(deletedWeblink.itemStatus! == 'trashed')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

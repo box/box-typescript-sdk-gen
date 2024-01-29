@@ -31,10 +31,10 @@ test('testGetTermsOfServices', async function testGetTermsOfServices(): Promise<
       text: 'Enabled TOS',
     } satisfies UpdateTermsOfServiceByIdRequestBody);
   if (!((toString(updatedTos1.status) as string) == 'enabled')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedTos1.text == 'Enabled TOS')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedTos2: TermsOfService =
     await client.termsOfServices.updateTermsOfServiceById(tos.id, {
@@ -42,15 +42,15 @@ test('testGetTermsOfServices', async function testGetTermsOfServices(): Promise<
       text: 'Disabled TOS',
     } satisfies UpdateTermsOfServiceByIdRequestBody);
   if (!((toString(updatedTos2.status) as string) == 'disabled')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(updatedTos2.text == 'Disabled TOS')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const listTos: TermsOfServices =
     await client.termsOfServices.getTermsOfService();
   if (!(listTos.totalCount! > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

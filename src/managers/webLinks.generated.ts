@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -278,7 +278,11 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   val: any
 ): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"'
+      )
+    );
   }
   if (val == 'open') {
     return 'open';
@@ -289,7 +293,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
   val: UpdateWebLinkByIdRequestBodySharedLinkField

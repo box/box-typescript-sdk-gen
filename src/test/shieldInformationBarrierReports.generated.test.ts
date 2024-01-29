@@ -36,16 +36,16 @@ test('shieldInformationBarrierReports', async function shieldInformationBarrierR
   const barrier: ShieldInformationBarrier =
     await getOrCreateShieldInformationBarrier(client, enterpriseId);
   if (!((toString(barrier.status!) as string) == 'draft')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(barrier.type!) as string) == 'shield_information_barrier')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(barrier.enterprise!.id == enterpriseId)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(barrier.enterprise!.type) as string) == 'enterprise')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const barrierId: string = barrier.id!;
   const existingReports: ShieldInformationBarrierReports =
@@ -72,14 +72,14 @@ test('shieldInformationBarrierReports', async function shieldInformationBarrierR
       barrierId
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const retrievedReport: ShieldInformationBarrierReport =
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReportById(
       createdReport.id!
     );
   if (!(retrievedReport.id == createdReport.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const retrievedReports: ShieldInformationBarrierReports =
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
@@ -88,7 +88,7 @@ test('shieldInformationBarrierReports', async function shieldInformationBarrierR
       } satisfies GetShieldInformationBarrierReportsQueryParams
     );
   if (!(retrievedReports.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

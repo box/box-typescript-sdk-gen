@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { RetentionPolicyAssignment } from '../schemas.generated.js';
 import { FilesUnderRetention } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -382,7 +382,11 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   val: any
 ): GetRetentionPolicyAssignmentsQueryParamsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"'
+      )
+    );
   }
   if (val == 'folder') {
     return 'folder';
@@ -393,7 +397,7 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
   val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
@@ -404,7 +408,11 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   val: any
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"'
+      )
+    );
   }
   if (val == 'enterprise') {
     return 'enterprise';
@@ -415,7 +423,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
   val: CreateRetentionPolicyAssignmentRequestBodyAssignToField

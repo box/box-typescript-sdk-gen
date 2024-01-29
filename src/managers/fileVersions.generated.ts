@@ -8,7 +8,7 @@ import { FileVersions } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { FileVersionFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -322,12 +322,14 @@ export function deserializePromoteFileVersionRequestBodyTypeField(
   val: any
 ): PromoteFileVersionRequestBodyTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "PromoteFileVersionRequestBodyTypeField"';
+    throw new Error(
+      String('Expecting a string for "PromoteFileVersionRequestBodyTypeField"')
+    );
   }
   if (val == 'file_version') {
     return 'file_version';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializePromoteFileVersionRequestBody(
   val: PromoteFileVersionRequestBody

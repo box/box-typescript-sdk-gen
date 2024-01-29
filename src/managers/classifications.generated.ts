@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { ClassificationTemplate } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -279,12 +279,14 @@ export function deserializeAddClassificationRequestBodyOpField(
   val: any
 ): AddClassificationRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "AddClassificationRequestBodyOpField"';
+    throw new Error(
+      String('Expecting a string for "AddClassificationRequestBodyOpField"')
+    );
   }
   if (val == 'addEnumOption') {
     return 'addEnumOption';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeAddClassificationRequestBodyFieldKeyField(
   val: AddClassificationRequestBodyFieldKeyField
@@ -295,12 +297,16 @@ export function deserializeAddClassificationRequestBodyFieldKeyField(
   val: any
 ): AddClassificationRequestBodyFieldKeyField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "AddClassificationRequestBodyFieldKeyField"';
+    throw new Error(
+      String(
+        'Expecting a string for "AddClassificationRequestBodyFieldKeyField"'
+      )
+    );
   }
   if (val == 'Box__Security__Classification__Key') {
     return 'Box__Security__Classification__Key';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigClassificationField(
   val: AddClassificationRequestBodyDataStaticConfigClassificationField
@@ -419,12 +425,14 @@ export function deserializeUpdateClassificationRequestBodyOpField(
   val: any
 ): UpdateClassificationRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateClassificationRequestBodyOpField"';
+    throw new Error(
+      String('Expecting a string for "UpdateClassificationRequestBodyOpField"')
+    );
   }
   if (val == 'editEnumOption') {
     return 'editEnumOption';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateClassificationRequestBodyFieldKeyField(
   val: UpdateClassificationRequestBodyFieldKeyField
@@ -435,12 +443,16 @@ export function deserializeUpdateClassificationRequestBodyFieldKeyField(
   val: any
 ): UpdateClassificationRequestBodyFieldKeyField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateClassificationRequestBodyFieldKeyField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateClassificationRequestBodyFieldKeyField"'
+      )
+    );
   }
   if (val == 'Box__Security__Classification__Key') {
     return 'Box__Security__Classification__Key';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
   val: UpdateClassificationRequestBodyDataStaticConfigClassificationField
@@ -562,12 +574,16 @@ export function deserializeCreateClassificationTemplateRequestBodyScopeField(
   val: any
 ): CreateClassificationTemplateRequestBodyScopeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyScopeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyScopeField"'
+      )
+    );
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
   val: CreateClassificationTemplateRequestBodyTemplateKeyField
@@ -578,12 +594,16 @@ export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyFie
   val: any
 ): CreateClassificationTemplateRequestBodyTemplateKeyField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyTemplateKeyField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyTemplateKeyField"'
+      )
+    );
   }
   if (val == 'securityClassification-6VMVochwUWo') {
     return 'securityClassification-6VMVochwUWo';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyDisplayNameField(
   val: CreateClassificationTemplateRequestBodyDisplayNameField
@@ -594,12 +614,16 @@ export function deserializeCreateClassificationTemplateRequestBodyDisplayNameFie
   val: any
 ): CreateClassificationTemplateRequestBodyDisplayNameField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyDisplayNameField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyDisplayNameField"'
+      )
+    );
   }
   if (val == 'Classification') {
     return 'Classification';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
   val: CreateClassificationTemplateRequestBodyFieldsTypeField
@@ -610,12 +634,16 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsTypeFiel
   val: any
 ): CreateClassificationTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsTypeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsTypeField"'
+      )
+    );
   }
   if (val == 'enum') {
     return 'enum';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
   val: CreateClassificationTemplateRequestBodyFieldsKeyField
@@ -626,12 +654,16 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField
   val: any
 ): CreateClassificationTemplateRequestBodyFieldsKeyField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsKeyField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsKeyField"'
+      )
+    );
   }
   if (val == 'Box__Security__Classification__Key') {
     return 'Box__Security__Classification__Key';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
   val: CreateClassificationTemplateRequestBodyFieldsDisplayNameField
@@ -642,12 +674,16 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayN
   val: any
 ): CreateClassificationTemplateRequestBodyFieldsDisplayNameField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsDisplayNameField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsDisplayNameField"'
+      )
+    );
   }
   if (val == 'Classification') {
     return 'Classification';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
   val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField
