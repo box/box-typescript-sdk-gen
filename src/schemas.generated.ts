@@ -936,8 +936,8 @@ export interface TrashFile {
 }
 export type TermsOfServiceUserStatusTypeField = 'terms_of_service_user_status';
 export interface TermsOfServiceUserStatus {
-  readonly id?: string;
-  readonly type?: TermsOfServiceUserStatusTypeField;
+  readonly id: string;
+  readonly type: TermsOfServiceUserStatusTypeField;
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   readonly isAccepted?: boolean;
@@ -8815,11 +8815,8 @@ export function serializeTermsOfServiceUserStatus(
   val: TermsOfServiceUserStatus
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeTermsOfServiceUserStatusTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeTermsOfServiceUserStatusTypeField(val.type),
     ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
     ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
     ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
@@ -8830,11 +8827,9 @@ export function serializeTermsOfServiceUserStatus(
 export function deserializeTermsOfServiceUserStatus(
   val: any
 ): TermsOfServiceUserStatus {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | TermsOfServiceUserStatusTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeTermsOfServiceUserStatusTypeField(val.type);
+  const id: string = val.id;
+  const type: TermsOfServiceUserStatusTypeField =
+    deserializeTermsOfServiceUserStatusTypeField(val.type);
   const tos: undefined | TermsOfServiceBase =
     val.tos == void 0 ? void 0 : deserializeTermsOfServiceBase(val.tos);
   const user: undefined | UserMini =
