@@ -174,13 +174,16 @@ You can use `CCGAuth` to initialize a client object the same way as for other au
 
 ```js
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const {
+  BoxCcgAuth,
+  CcgConfig,
+} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
-const ccgConfig = {
+const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
-};
+});
 const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
 const client = new BoxClient({ auth: ccgAuth });
 
@@ -200,13 +203,16 @@ To obtain service account you will have to provide enterprise ID with client id 
 
 ```js
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const {
+  BoxCcgAuth,
+  CcgConfig,
+} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
-const ccgConfig = {
+const ccgConfig = new CcgConfig({
   enterpriseId: 'YOUR_ENTERPRISE_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
-};
+});
 const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
 const client = new BoxClient({ auth: ccgAuth });
 ```
@@ -221,13 +227,16 @@ To obtain user account you will have to provide user ID with client id and secre
 
 ```js
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
-const { BoxCcgAuth } = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+const {
+  BoxCcgAuth,
+  CcgConfig,
+} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
 
-const ccgConfig = {
+const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
-};
+});
 const ccgAuth = new BoxCcgAuth({ config: ccgConfig });
 const client = new BoxClient({ auth: ccgAuth });
 ```
@@ -276,10 +285,10 @@ const {
   OAuthConfig,
 } = require('box-typescript-sdk-gen/lib/oauth.js');
 
-const config = {
+const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
-};
+});
 const oauth = new BoxOAuth({ config: config });
 
 // the URL to redirect the user to
@@ -350,10 +359,10 @@ To use in-memory token storage, you don't need to do anything more than
 create an Auth class using AuthConfig, for example, for OAuth:
 
 ```js
-const config = {
+const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
-};
+});
 const oauth = new BoxOAuth({ config: config });
 ```
 
@@ -363,10 +372,10 @@ You can also provide a custom token storage class. All you need to do is create 
 interface and pass an instance of your class to the AuthConfig constructor.
 
 ```js
-const config = {
+const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
   tokenStorage: new MyCustomTokenStorage(),
-};
+});
 const oauth = new BoxOAuth({ config: config });
 ```

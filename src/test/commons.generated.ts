@@ -12,8 +12,6 @@ import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploa
 import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
-import { serializeTermsOfService } from '../schemas.generated.js';
-import { deserializeTermsOfService } from '../schemas.generated.js';
 import { serializeTermsOfServices } from '../schemas.generated.js';
 import { deserializeTermsOfServices } from '../schemas.generated.js';
 import { serializeCreateTermsOfServiceRequestBody } from '../managers/termsOfServices.generated.js';
@@ -64,6 +62,8 @@ import { serializeEnterpriseBaseTypeField } from '../schemas.generated.js';
 import { deserializeEnterpriseBaseTypeField } from '../schemas.generated.js';
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
+import { serializeTermsOfService } from '../schemas.generated.js';
+import { deserializeTermsOfService } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
@@ -73,7 +73,6 @@ import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
-import { TermsOfService } from '../schemas.generated.js';
 import { TermsOfServices } from '../schemas.generated.js';
 import { CreateTermsOfServiceRequestBody } from '../managers/termsOfServices.generated.js';
 import { CreateTermsOfServiceRequestBodyStatusField } from '../managers/termsOfServices.generated.js';
@@ -104,8 +103,11 @@ import { getUuid } from '../utils.js';
 import { generateByteStream } from '../utils.js';
 import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplate } from '../schemas.generated.js';
+import { TermsOfService } from '../schemas.generated.js';
 import { BoxJwtAuth } from '../jwtAuth.generated.js';
 import { JwtConfig } from '../jwtAuth.generated.js';
+import { toString } from '../utils.js';
+import { sdToJson } from '../json.js';
 import { SerializedData } from '../json.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
@@ -156,14 +158,23 @@ export async function getOrCreateTermsOfServices(): Promise<TermsOfService> {
   const client: BoxClient = getDefaultClient();
   const tos: TermsOfServices = await client.termsOfServices.getTermsOfService();
   const numberOfTos: number = tos.entries!.length;
-  if (numberOfTos == 0) {
-    return await client.termsOfServices.createTermsOfService({
-      status: 'enabled' as CreateTermsOfServiceRequestBodyStatusField,
-      tosType: 'managed' as CreateTermsOfServiceRequestBodyTosTypeField,
-      text: 'Test TOS',
-    } satisfies CreateTermsOfServiceRequestBody);
+  if (numberOfTos >= 1) {
+    const firstTos: TermsOfService = tos.entries![0];
+    if ((toString(firstTos.tosType) as string) == 'managed') {
+      return firstTos;
+    }
   }
-  return tos.entries![0];
+  if (numberOfTos >= 2) {
+    const secondTos: TermsOfService = tos.entries![1];
+    if ((toString(secondTos.tosType) as string) == 'managed') {
+      return secondTos;
+    }
+  }
+  return await client.termsOfServices.createTermsOfService({
+    status: 'disabled' as CreateTermsOfServiceRequestBodyStatusField,
+    tosType: 'managed' as CreateTermsOfServiceRequestBodyTosTypeField,
+    text: 'Test TOS',
+  } satisfies CreateTermsOfServiceRequestBody);
 }
 export async function getOrCreateClassification(
   classificationTemplate: ClassificationTemplate
