@@ -35,6 +35,7 @@ jobs:
           ENTERPRISE_ID: ${{ secrets.ENTERPRISE_ID }}
           BOX_FILE_REQUEST_ID: ${{ secrets.BOX_FILE_REQUEST_ID }}
           BOX_EXTERNAL_USER_EMAIL: ${{ secrets.BOX_EXTERNAL_USER_EMAIL }}
+          WORKFLOW_FOLDER_ID: ${{ secrets.WORKFLOW_FOLDER_ID }}
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
