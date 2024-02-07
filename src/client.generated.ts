@@ -69,8 +69,9 @@ import { WorkflowsManager } from './managers/workflows.generated.js';
 import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
 import { Authentication } from './auth.js';
-import { NetworkSession } from './network.js';
+import { NetworkSession } from './network.generated.js';
 import { BaseUrls } from './baseUrls.generated.js';
+import { Interceptor } from './interceptors.generated.js';
 import { SerializedData } from './json.js';
 import { sdIsEmpty } from './json.js';
 import { sdIsBoolean } from './json.js';
@@ -228,6 +229,7 @@ export class BoxClient {
           | 'withSuppressedNotifications'
           | 'withExtraHeaders'
           | 'withCustomBaseUrls'
+          | 'withInterceptors'
         >
       | Partial<Pick<BoxClient, 'networkSession'>>
   ) {
@@ -541,6 +543,12 @@ export class BoxClient {
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
+    });
+  }
+  withInterceptors(interceptors: readonly Interceptor[]): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withInterceptors(interceptors),
     });
   }
 }

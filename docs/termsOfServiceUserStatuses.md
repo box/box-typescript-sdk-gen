@@ -15,7 +15,14 @@ This operation is performed by calling function `getTermsOfServiceUserStatuses`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-terms-of-service-user-statuses/).
 
-_Currently we don't have an example for calling `getTermsOfServiceUserStatuses` in integration tests_
+<!-- sample get_terms_of_service_user_statuses -->
+
+```ts
+await client.termsOfServiceUserStatuses.getTermsOfServiceUserStatuses({
+  tosId: tos.id,
+  userId: user.id,
+} satisfies GetTermsOfServiceUserStatusesQueryParams);
+```
 
 ### Arguments
 
@@ -41,7 +48,21 @@ This operation is performed by calling function `createTermsOfServiceStatusForUs
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-terms-of-service-user-statuses/).
 
-_Currently we don't have an example for calling `createTermsOfServiceStatusForUser` in integration tests_
+<!-- sample post_terms_of_service_user_statuses -->
+
+```ts
+await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
+  tos: {
+    type: 'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField,
+    id: tos.id,
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField,
+  user: {
+    type: 'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField,
+    id: user.id,
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField,
+  isAccepted: false,
+} satisfies CreateTermsOfServiceStatusForUserRequestBody);
+```
 
 ### Arguments
 
@@ -67,7 +88,16 @@ This operation is performed by calling function `updateTermsOfServiceStatusForUs
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-terms-of-service-user-statuses-id/).
 
-_Currently we don't have an example for calling `updateTermsOfServiceStatusForUserById` in integration tests_
+<!-- sample put_terms_of_service_user_statuses_id -->
+
+```ts
+await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(
+  createdTosUserStatus.id,
+  {
+    isAccepted: true,
+  } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody
+);
+```
 
 ### Arguments
 

@@ -31,21 +31,21 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
       isOngoing: true,
     } satisfies CreateLegalHoldPolicyRequestBody);
   if (!(legalHoldPolicy.policyName == legalHoldPolicyName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(legalHoldPolicy.description == legalHoldDescription)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const legalHoldPolicyId: string = legalHoldPolicy.id;
   const legalHoldPolicyById: LegalHoldPolicy =
     await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
   if (!(legalHoldPolicyById.id == legalHoldPolicyId)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const legalHoldPolicies: LegalHoldPolicies =
     await client.legalHoldPolicies.getLegalHoldPolicies();
   if (!(legalHoldPolicies.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedLegalHoldPolicyName: string = getUuid();
   const updatedLegalHoldPolicy: LegalHoldPolicy =
@@ -56,7 +56,7 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
       } satisfies UpdateLegalHoldPolicyByIdRequestBody
     );
   if (!(updatedLegalHoldPolicy.policyName == updatedLegalHoldPolicyName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
 });

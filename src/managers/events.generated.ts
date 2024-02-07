@@ -8,7 +8,7 @@ import { Events } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { RealtimeServers } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -253,7 +253,9 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   val: any
 ): GetEventsQueryParamsStreamTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEventsQueryParamsStreamTypeField"';
+    throw new Error(
+      String('Expecting a string for "GetEventsQueryParamsStreamTypeField"')
+    );
   }
   if (val == 'all') {
     return 'all';
@@ -270,7 +272,7 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   if (val == 'admin_logs_streaming') {
     return 'admin_logs_streaming';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeGetEventsQueryParamsEventTypeField(
   val: GetEventsQueryParamsEventTypeField
@@ -281,7 +283,9 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   val: any
 ): GetEventsQueryParamsEventTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetEventsQueryParamsEventTypeField"';
+    throw new Error(
+      String('Expecting a string for "GetEventsQueryParamsEventTypeField"')
+    );
   }
   if (val == 'ACCESS_GRANTED') {
     return 'ACCESS_GRANTED';
@@ -616,5 +620,5 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   if (val == 'WATERMARK_LABEL_DELETE') {
     return 'WATERMARK_LABEL_DELETE';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

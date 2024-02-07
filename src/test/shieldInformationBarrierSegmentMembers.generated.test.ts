@@ -65,7 +65,7 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
       } satisfies CreateShieldInformationBarrierSegmentRequestBody
     );
   if (!(segment.name! == segmentName)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const segmentMember: ShieldInformationBarrierSegmentMember =
     await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarrierSegmentMember(
@@ -81,10 +81,10 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
       } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
     );
   if (!(segmentMember.user!.id == getEnvVar('USER_ID'))) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(segmentMember.shieldInformationBarrierSegment!.id == segment.id!)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const segmentMembers: ShieldInformationBarrierSegmentMembers =
     await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMembers(
@@ -93,14 +93,14 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
       } satisfies GetShieldInformationBarrierSegmentMembersQueryParams
     );
   if (!(segmentMembers.entries!.length > 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const segmentMemberGet: ShieldInformationBarrierSegmentMember =
     await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
       segmentMember.id!
     );
   if (!(segmentMemberGet.id! == segmentMember.id!)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarrierSegmentMemberById(
     segmentMember.id!

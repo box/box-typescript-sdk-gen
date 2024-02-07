@@ -56,35 +56,36 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     file: generateByteStream(10),
   } satisfies UploadFileRequestBody);
   const file: FileFull = files.entries![0];
+  const date: string = '2035-01-01T00:00:00Z';
   const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyItemTypeField,
       id: file.id,
     } satisfies CreateTaskRequestBodyItemField,
     message: 'test message',
-    dueAt: '2035-01-01T00:00:00Z',
+    dueAt: date,
     action: 'review' as CreateTaskRequestBodyActionField,
     completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
   } satisfies CreateTaskRequestBody);
   if (!(task.message == 'test message')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(task.item!.id == file.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const taskById: Task = await client.tasks.getTaskById(task.id!);
   if (!(taskById.id == task.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const taskOnFile: Tasks = await client.tasks.getFileTasks(file.id);
   if (!(taskOnFile.totalCount == 1)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const updatedTask: Task = await client.tasks.updateTaskById(task.id!, {
     message: 'updated message',
   } satisfies UpdateTaskByIdRequestBody);
   if (!(updatedTask.message == 'updated message')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.tasks.deleteTaskById(task.id!);
   await client.files.deleteFileById(file.id);

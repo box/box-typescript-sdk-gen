@@ -51,7 +51,7 @@ See the endpoint docs at
 
 ```ts
 await client.termsOfServices.createTermsOfService({
-  status: 'enabled' as CreateTermsOfServiceRequestBodyStatusField,
+  status: 'disabled' as CreateTermsOfServiceRequestBodyStatusField,
   tosType: 'managed' as CreateTermsOfServiceRequestBodyTosTypeField,
   text: 'Test TOS',
 } satisfies CreateTermsOfServiceRequestBody);

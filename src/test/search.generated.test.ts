@@ -81,7 +81,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     ],
   } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const files: any = await client.uploads.uploadFile({
     attributes: {
@@ -98,10 +98,10 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     { ['testName']: 1 }
   );
   if (!(metadata.template == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(metadata.scope == template.scope)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const searchFrom: any = ''.concat(
     template.scope!,
@@ -115,7 +115,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     queryParams: { ['value']: '0.0' },
   } satisfies MetadataQuery);
   if (!(query.entries!.length >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
@@ -138,14 +138,14 @@ test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices()
     ],
   } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const indices: any = await client.search.getMetadataQueryIndices({
     scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsScopeField,
     templateKey: templateKey,
   } satisfies GetMetadataQueryIndicesQueryParams);
   if (!(indices.entries!.length >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
@@ -161,10 +161,10 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
       'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
   } satisfies SearchForContentQueryParams);
   if (!(search.entries!.length >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!((toString(search.type) as string) == 'search_results_items')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const searchWithSharedLink: any = await client.search.searchForContent({
     ancestorFolderIds: ['0' as ''],
@@ -174,7 +174,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
     includeRecentSharedLinks: true,
   } satisfies SearchForContentQueryParams);
   if (!(searchWithSharedLink.entries!.length >= 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (
     !(
@@ -182,7 +182,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
       'search_results_with_shared_links'
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

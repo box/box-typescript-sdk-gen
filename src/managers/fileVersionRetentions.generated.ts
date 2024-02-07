@@ -8,7 +8,7 @@ import { FileVersionRetentions } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { FileVersionRetention } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -152,7 +152,11 @@ export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionF
   val: any
 ): GetFileVersionRetentionsQueryParamsDispositionActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFileVersionRetentionsQueryParamsDispositionActionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "GetFileVersionRetentionsQueryParamsDispositionActionField"'
+      )
+    );
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';
@@ -160,5 +164,5 @@ export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionF
   if (val == 'remove_retention') {
     return 'remove_retention';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

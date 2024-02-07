@@ -8,7 +8,7 @@ import { Metadatas } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { MetadataFull } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -298,7 +298,9 @@ export function deserializeGetFolderMetadataByIdScope(
   val: any
 ): GetFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetFolderMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "GetFolderMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -306,7 +308,7 @@ export function deserializeGetFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFolderMetadataByIdScope(
   val: CreateFolderMetadataByIdScope
@@ -317,7 +319,9 @@ export function deserializeCreateFolderMetadataByIdScope(
   val: any
 ): CreateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateFolderMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "CreateFolderMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -325,7 +329,7 @@ export function deserializeCreateFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateFolderMetadataByIdRequestBody(
   val: CreateFolderMetadataByIdRequestBody
@@ -346,7 +350,9 @@ export function deserializeUpdateFolderMetadataByIdScope(
   val: any
 ): UpdateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "UpdateFolderMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -354,7 +360,7 @@ export function deserializeUpdateFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
   val: UpdateFolderMetadataByIdRequestBodyOpField
@@ -365,7 +371,11 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   val: any
 ): UpdateFolderMetadataByIdRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateFolderMetadataByIdRequestBodyOpField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateFolderMetadataByIdRequestBodyOpField"'
+      )
+    );
   }
   if (val == 'add') {
     return 'add';
@@ -385,7 +395,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   if (val == 'copy') {
     return 'copy';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateFolderMetadataByIdRequestBody(
   val: UpdateFolderMetadataByIdRequestBody
@@ -426,7 +436,9 @@ export function deserializeDeleteFolderMetadataByIdScope(
   val: any
 ): DeleteFolderMetadataByIdScope {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "DeleteFolderMetadataByIdScope"';
+    throw new Error(
+      String('Expecting a string for "DeleteFolderMetadataByIdScope"')
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -434,5 +446,5 @@ export function deserializeDeleteFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

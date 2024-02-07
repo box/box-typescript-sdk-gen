@@ -64,7 +64,7 @@ test('testIntegrationMappings', async function testIntegrationMappings(): Promis
   const integrationMappings: IntegrationMappings =
     await userClient.integrationMappings.getSlackIntegrationMapping();
   if (!(integrationMappings.entries!.length == 0)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.folders.deleteFolderById(folder.id);
 });

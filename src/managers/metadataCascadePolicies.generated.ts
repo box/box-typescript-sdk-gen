@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { MetadataCascadePolicy } from '../schemas.generated.js';
 import { ConflictError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -285,7 +285,11 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   val: any
 ): CreateMetadataCascadePolicyRequestBodyScopeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateMetadataCascadePolicyRequestBodyScopeField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateMetadataCascadePolicyRequestBodyScopeField"'
+      )
+    );
   }
   if (val == 'global') {
     return 'global';
@@ -293,7 +297,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
   val: CreateMetadataCascadePolicyRequestBody
@@ -328,7 +332,11 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   val: any
 ): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"';
+    throw new Error(
+      String(
+        'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"'
+      )
+    );
   }
   if (val == 'none') {
     return 'none';
@@ -336,7 +344,7 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   if (val == 'overwrite') {
     return 'overwrite';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(
   val: ApplyMetadataCascadePolicyRequestBody

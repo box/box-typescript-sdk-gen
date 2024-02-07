@@ -23,7 +23,7 @@ import { UploadParts } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadPart } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -39,7 +39,6 @@ import { iterateChunks } from '../utils.js';
 import { readByteStream } from '../utils.js';
 import { reduceIterator } from '../utils.js';
 import { Hash } from '../utils.js';
-import { listConcat } from '../utils.js';
 import { bufferLength } from '../utils.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
@@ -434,18 +433,18 @@ export class ChunkedUploadsManager {
     const part: UploadPart = uploadedPart.part!;
     const partSha1: string = hexToBase64(part.sha1!);
     if (!(partSha1 == sha1)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     if (!(part.size == chunkSize)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     if (!(part.offset == bytesStart)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     acc.fileHash.updateHash(chunkBuffer);
     return {
       lastIndex: bytesEnd,
-      parts: listConcat(parts, [part]),
+      parts: parts.concat([part]),
       fileSize: acc.fileSize,
       uploadSessionId: acc.uploadSessionId,
       fileHash: acc.fileHash,
@@ -471,10 +470,10 @@ export class ChunkedUploadsManager {
     const partSize: number = uploadSession.partSize!;
     const totalParts: number = uploadSession.totalParts!;
     if (!(partSize * totalParts >= fileSize)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     if (!(uploadSession.numPartsProcessed == 0)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     const fileHash: Hash = new Hash({ algorithm: 'sha1' as HashName });
     const chunksIterator: Iterator = iterateChunks(file, partSize);
@@ -498,7 +497,7 @@ export class ChunkedUploadsManager {
         cancellationToken
       );
     if (!(processedSessionParts.totalCount! == totalParts)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     const processedSession: UploadSession = await this.getFileUploadSessionById(
       uploadSessionId,
@@ -506,7 +505,7 @@ export class ChunkedUploadsManager {
       cancellationToken
     );
     if (!(processedSession.numPartsProcessed == totalParts)) {
-      throw 'Assertion failed';
+      throw new Error(String('Assertion failed'));
     }
     const sha1: string = await fileHash.digestHash('base64');
     const digest: string = ''.concat('sha=', sha1) as string;

@@ -11,7 +11,7 @@ import { ClientError } from '../schemas.generated.js';
 import { ShieldInformationBarrierReport } from '../schemas.generated.js';
 import { ShieldInformationBarrierReference } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';

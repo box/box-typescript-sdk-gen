@@ -45,7 +45,7 @@ test('testSessionTerminationUser', async function testSessionTerminationUser(): 
       'Request is successful, please check the admin events for the status of the job'
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 test('testSessionTerminationGroup', async function testSessionTerminationGroup(): Promise<any> {
@@ -63,7 +63,7 @@ test('testSessionTerminationGroup', async function testSessionTerminationGroup()
       'Request is successful, please check the admin events for the status of the job'
     )
   ) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.groups.deleteGroupById(group.id);
 });

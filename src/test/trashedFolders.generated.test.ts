@@ -33,10 +33,10 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
   const fromTrash: TrashFolder =
     await client.trashedFolders.getTrashedFolderById(folder.id);
   if (!(fromTrash.id == folder.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(fromTrash.name == folder.name)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await expect(async () => {
     await client.folders.getFolderById(folder.id);
@@ -45,10 +45,10 @@ test('testTrashedFolders', async function testTrashedFolders(): Promise<any> {
     await client.trashedFolders.restoreFolderFromTrash(folder.id);
   const fromApi: FolderFull = await client.folders.getFolderById(folder.id);
   if (!(restoredFolder.id == fromApi.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(restoredFolder.name == fromApi.name)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   await client.folders.deleteFolderById(folder.id);
   await client.trashedFolders.deleteTrashedFolderById(folder.id);

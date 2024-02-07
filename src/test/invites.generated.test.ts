@@ -43,19 +43,19 @@ test('testInvites', async function testInvites(): Promise<any> {
     } satisfies CreateInviteRequestBodyActionableByField,
   } satisfies CreateInviteRequestBody);
   if (!((toString(invitation.type) as string) == 'invite')) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(invitation.invitedTo!.id == currentUser.enterprise!.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   if (!(invitation.actionableBy!.login == email)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
   const getInvitation: Invite = await client.invites.getInviteById(
     invitation.id
   );
   if (!(getInvitation.id == invitation.id)) {
-    throw 'Assertion failed';
+    throw new Error(String('Assertion failed'));
   }
 });
 export {};

@@ -8,7 +8,7 @@ import { Tasks } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Task } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -265,12 +265,14 @@ export function deserializeCreateTaskRequestBodyItemTypeField(
   val: any
 ): CreateTaskRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyItemTypeField"';
+    throw new Error(
+      String('Expecting a string for "CreateTaskRequestBodyItemTypeField"')
+    );
   }
   if (val == 'file') {
     return 'file';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTaskRequestBodyItemField(
   val: CreateTaskRequestBodyItemField
@@ -302,7 +304,9 @@ export function deserializeCreateTaskRequestBodyActionField(
   val: any
 ): CreateTaskRequestBodyActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyActionField"';
+    throw new Error(
+      String('Expecting a string for "CreateTaskRequestBodyActionField"')
+    );
   }
   if (val == 'review') {
     return 'review';
@@ -310,7 +314,7 @@ export function deserializeCreateTaskRequestBodyActionField(
   if (val == 'complete') {
     return 'complete';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTaskRequestBodyCompletionRuleField(
   val: CreateTaskRequestBodyCompletionRuleField
@@ -321,7 +325,11 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
   val: any
 ): CreateTaskRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "CreateTaskRequestBodyCompletionRuleField"';
+    throw new Error(
+      String(
+        'Expecting a string for "CreateTaskRequestBodyCompletionRuleField"'
+      )
+    );
   }
   if (val == 'all_assignees') {
     return 'all_assignees';
@@ -329,7 +337,7 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
   if (val == 'any_assignee') {
     return 'any_assignee';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeCreateTaskRequestBody(
   val: CreateTaskRequestBody
@@ -383,7 +391,9 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   val: any
 ): UpdateTaskByIdRequestBodyActionField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTaskByIdRequestBodyActionField"';
+    throw new Error(
+      String('Expecting a string for "UpdateTaskByIdRequestBodyActionField"')
+    );
   }
   if (val == 'review') {
     return 'review';
@@ -391,7 +401,7 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   if (val == 'complete') {
     return 'complete';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
   val: UpdateTaskByIdRequestBodyCompletionRuleField
@@ -402,7 +412,11 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
   val: any
 ): UpdateTaskByIdRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateTaskByIdRequestBodyCompletionRuleField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateTaskByIdRequestBodyCompletionRuleField"'
+      )
+    );
   }
   if (val == 'all_assignees') {
     return 'all_assignees';
@@ -410,7 +424,7 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
   if (val == 'any_assignee') {
     return 'any_assignee';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateTaskByIdRequestBody(
   val: UpdateTaskByIdRequestBody

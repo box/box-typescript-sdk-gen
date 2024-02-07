@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { Collaborations } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -262,10 +262,12 @@ export function deserializeGetCollaborationsQueryParamsStatusField(
   val: any
 ): GetCollaborationsQueryParamsStatusField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "GetCollaborationsQueryParamsStatusField"';
+    throw new Error(
+      String('Expecting a string for "GetCollaborationsQueryParamsStatusField"')
+    );
   }
   if (val == 'pending') {
     return 'pending';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }

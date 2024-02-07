@@ -1,7 +1,7 @@
 import { PostOAuth2TokenGrantTypeField } from './schemas.generated.js';
 import { PostOAuth2TokenSubjectTokenTypeField } from './schemas.generated.js';
 import { Authentication } from './auth.js';
-import { NetworkSession } from './network.js';
+import { NetworkSession } from './network.generated.js';
 import { AccessToken } from './schemas.generated.js';
 import { PostOAuth2Token } from './schemas.generated.js';
 import { PostOAuth2Revoke } from './schemas.generated.js';
@@ -85,7 +85,11 @@ export class BoxOAuth implements Authentication {
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const token: any = await this.tokenStorage.get();
     if (token == void 0) {
-      throw 'Access and refresh tokens not available. Authenticate before making any API call first.';
+      throw new Error(
+        String(
+          'Access and refresh tokens not available. Authenticate before making any API call first.'
+        )
+      );
     }
     return token;
   }
@@ -135,7 +139,7 @@ export class BoxOAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0 || token.accessToken == void 0) {
-      throw 'No access token is available.';
+      throw new Error(String('No access token is available.'));
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

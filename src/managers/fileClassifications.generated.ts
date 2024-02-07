@@ -5,7 +5,7 @@ import { deserializeClientError } from '../schemas.generated.js';
 import { Classification } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.js';
+import { NetworkSession } from '../network.generated.js';
 import { prepareParams } from '../utils.js';
 import { toString } from '../utils.js';
 import { ByteStream } from '../utils.js';
@@ -248,12 +248,16 @@ export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   val: any
 ): UpdateClassificationOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateClassificationOnFileRequestBodyOpField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateClassificationOnFileRequestBodyOpField"'
+      )
+    );
   }
   if (val == 'replace') {
     return 'replace';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateClassificationOnFileRequestBodyPathField(
   val: UpdateClassificationOnFileRequestBodyPathField
@@ -264,12 +268,16 @@ export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   val: any
 ): UpdateClassificationOnFileRequestBodyPathField {
   if (!sdIsString(val)) {
-    throw 'Expecting a string for "UpdateClassificationOnFileRequestBodyPathField"';
+    throw new Error(
+      String(
+        'Expecting a string for "UpdateClassificationOnFileRequestBodyPathField"'
+      )
+    );
   }
   if (val == '/Box__Security__Classification__Key') {
     return '/Box__Security__Classification__Key';
   }
-  throw ''.concat('Invalid value: ', val) as string;
+  throw new Error(String(''.concat('Invalid value: ', val) as string));
 }
 export function serializeUpdateClassificationOnFileRequestBody(
   val: UpdateClassificationOnFileRequestBody
