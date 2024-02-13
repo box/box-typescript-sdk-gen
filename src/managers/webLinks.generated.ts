@@ -15,6 +15,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
 import { sdToJson } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -278,11 +279,10 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   val: any
 ): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -293,7 +293,9 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
   val: UpdateWebLinkByIdRequestBodySharedLinkField

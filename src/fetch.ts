@@ -17,6 +17,7 @@ import {
   generateByteStreamFromBuffer,
   isBrowser,
 } from './utils';
+import { BoxApiError, BoxSdkError } from './errors';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
@@ -141,7 +142,9 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
         } else if (item.data) {
           formData.append(item.partName, sdToJson(item.data));
         } else {
-          throw new Error('Multipart item must have either body or fileStream');
+          throw new BoxSdkError({
+            message: 'Multipart item must have either body or fileStream',
+          });
         }
       }
 
@@ -162,14 +165,17 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
 
       case 'application/octet-stream':
         if (!fileStream) {
-          throw new Error(
-            'fileStream required for application/octet-stream content type'
-          );
+          throw new BoxSdkError({
+            message:
+              'fileStream required for application/octet-stream content type',
+          });
         }
         return { contentType, body: fileStream };
 
       default:
-        throw new Error(`Unsupported content type : ${contentType}`);
+        throw new BoxSdkError({
+          message: `Unsupported content type : ${contentType}`,
+        });
     }
   })();
 
@@ -252,7 +258,9 @@ export async function fetch(
 
   if (fetchResponse.status >= 300 && fetchResponse.status < 400) {
     if (!fetchResponse.headers['location']) {
-      throw new Error(`Unable to follow redirect for ${resource}`);
+      throw new BoxSdkError({
+        message: `Unable to follow redirect for ${resource}`,
+      });
     }
     return fetch(fetchResponse.headers['location'], options);
   }
@@ -281,12 +289,24 @@ export async function fetch(
       return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
     }
 
-    throw new Error(
-      `Request failed, status code ${fetchResponse.status}: ${
-        response.statusText
-      }\n
-      ${JSON.stringify(fetchResponse.data, null, 2)}`
-    );
+    throw new BoxApiError({
+      message: `${fetchResponse.status}`,
+      timestamp: `${Date.now()}`,
+      requestInfo: {
+        method: requestInit.method!,
+        url: resource,
+        queryParams: params,
+        headers: (requestInit.headers as { [key: string]: string }) ?? {},
+        body: requestInit.body,
+      },
+      responseInfo: {
+        statusCode: fetchResponse.status,
+        headers: fetchResponse.headers,
+        body: fetchResponse.data,
+        rawBody: new TextDecoder().decode(responseBytesBuffer),
+      },
+      name: 'BoxApiError',
+    });
   }
 
   return fetchResponse;

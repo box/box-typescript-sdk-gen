@@ -24,6 +24,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -321,11 +322,10 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   val: any
 ): GetRetentionPoliciesQueryParamsPolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"',
+    });
   }
   if (val == 'finite') {
     return 'finite';
@@ -333,7 +333,9 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   if (val == 'indefinite') {
     return 'indefinite';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: CreateRetentionPolicyRequestBodyPolicyTypeField
@@ -344,11 +346,10 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: any
 ): CreateRetentionPolicyRequestBodyPolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"',
+    });
   }
   if (val == 'finite') {
     return 'finite';
@@ -356,7 +357,9 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   if (val == 'indefinite') {
     return 'indefinite';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
   val: CreateRetentionPolicyRequestBodyDispositionActionField
@@ -367,11 +370,10 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   val: any
 ): CreateRetentionPolicyRequestBodyDispositionActionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"',
+    });
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';
@@ -379,7 +381,9 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   if (val == 'remove_retention') {
     return 'remove_retention';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: CreateRetentionPolicyRequestBodyRetentionTypeField
@@ -390,11 +394,10 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: any
 ): CreateRetentionPolicyRequestBodyRetentionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"',
+    });
   }
   if (val == 'modifiable') {
     return 'modifiable';
@@ -402,7 +405,9 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   if (val == 'non_modifiable') {
     return 'non_modifiable';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyRequestBody(
   val: CreateRetentionPolicyRequestBody

@@ -101,14 +101,14 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
       classification.key
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const folderClassification: Classification =
     await client.folderClassifications.getClassificationOnFolder(folder.id);
   if (
     !(folderClassification.boxSecurityClassificationKey == classification.key)
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const secondClassification: ClassificationTemplateFieldsOptionsField =
     await getOrCreateSecondClassification(classificationTemplate);
@@ -126,7 +126,7 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
       secondClassification.key
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folderClassifications.deleteClassificationFromFolder(folder.id);
   await expect(async () => {

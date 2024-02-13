@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -467,9 +468,9 @@ export function deserializeGetMetadataTemplateScope(
   val: any
 ): GetMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetMetadataTemplateScope"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetMetadataTemplateScope"',
+    });
   }
   if (val == 'global') {
     return 'global';
@@ -477,7 +478,9 @@ export function deserializeGetMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateMetadataTemplateScope(
   val: UpdateMetadataTemplateScope
@@ -488,9 +491,9 @@ export function deserializeUpdateMetadataTemplateScope(
   val: any
 ): UpdateMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "UpdateMetadataTemplateScope"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UpdateMetadataTemplateScope"',
+    });
   }
   if (val == 'global') {
     return 'global';
@@ -498,7 +501,9 @@ export function deserializeUpdateMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
   val: UpdateMetadataTemplateRequestBodyOpField
@@ -509,11 +514,10 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   val: any
 ): UpdateMetadataTemplateRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"',
+    });
   }
   if (val == 'editTemplate') {
     return 'editTemplate';
@@ -554,7 +558,9 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   if (val == 'removeMultiSelectOption') {
     return 'removeMultiSelectOption';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateMetadataTemplateRequestBody(
   val: UpdateMetadataTemplateRequestBody
@@ -646,9 +652,9 @@ export function deserializeDeleteMetadataTemplateScope(
   val: any
 ): DeleteMetadataTemplateScope {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "DeleteMetadataTemplateScope"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "DeleteMetadataTemplateScope"',
+    });
   }
   if (val == 'global') {
     return 'global';
@@ -656,7 +662,9 @@ export function deserializeDeleteMetadataTemplateScope(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: CreateMetadataTemplateRequestBodyFieldsTypeField
@@ -667,11 +675,10 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: any
 ): CreateMetadataTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"',
+    });
   }
   if (val == 'string') {
     return 'string';
@@ -688,7 +695,9 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   if (val == 'multiSelect') {
     return 'multiSelect';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   val: CreateMetadataTemplateRequestBodyFieldsOptionsField

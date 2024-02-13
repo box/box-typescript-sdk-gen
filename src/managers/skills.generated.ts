@@ -18,6 +18,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { sdToJson } from '../json.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -328,16 +329,17 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   val: any
 ): UpdateBoxSkillCardsOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateBoxSkillCardsOnFileRequestBodyOpField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateBoxSkillCardsOnFileRequestBodyOpField"',
+    });
   }
   if (val == 'replace') {
     return 'replace';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBody(
   val: UpdateBoxSkillCardsOnFileRequestBody
@@ -387,11 +389,10 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyStatusField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyStatusField"',
+    });
   }
   if (val == 'invoked') {
     return 'invoked';
@@ -408,7 +409,9 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   if (val == 'permanent_failure') {
     return 'permanent_failure';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   val: UpdateAllSkillCardsOnFileRequestBodyMetadataField
@@ -454,16 +457,17 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyFileTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   val: UpdateAllSkillCardsOnFileRequestBodyFileField
@@ -498,16 +502,17 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeFi
   val: any
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField"',
+    });
   }
   if (val == 'file_version') {
     return 'file_version';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField

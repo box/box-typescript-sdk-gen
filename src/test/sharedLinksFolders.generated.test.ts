@@ -66,7 +66,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
       fields: 'shared_link',
     } satisfies GetSharedLinkForFolderQueryParams);
   if (!((toString(folderFromApi.sharedLink!.access) as string) == 'open')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const userId: string = getEnvVar('USER_ID');
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
@@ -82,7 +82,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
       })
     );
   if (!(folder.id == folderFromSharedLinkPassword.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await expect(async () => {
     await userClient.sharedLinksFolders.findFolderForSharedLink(
@@ -110,7 +110,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   if (
     !((toString(updatedFolder.sharedLink!.access) as string) == 'collaborators')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(folder.id);
 });

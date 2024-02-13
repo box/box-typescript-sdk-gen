@@ -15,6 +15,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { sdToJson } from '../json.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -171,16 +172,17 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
   val: any
 ): UpdateFileWatermarkRequestBodyWatermarkImprintField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateFileWatermarkRequestBodyWatermarkImprintField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateFileWatermarkRequestBodyWatermarkImprintField"',
+    });
   }
   if (val == 'default') {
     return 'default';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkField(
   val: UpdateFileWatermarkRequestBodyWatermarkField

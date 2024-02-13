@@ -33,7 +33,7 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
   const exemptTargets: CollaborationAllowlistExemptTargets =
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargets();
   if (!(exemptTargets.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const user: UserFull = await client.users.createUser({
     name: getUuid(),
@@ -54,20 +54,20 @@ test('collaborationAllowlistExemptTargets', async function collaborationAllowlis
       'collaboration_whitelist_exempt_target'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newExemptTarget.user!.id == user.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const exemptTarget: CollaborationAllowlistExemptTarget =
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
       newExemptTarget.id!
     );
   if (!(exemptTarget.id == newExemptTarget.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(exemptTarget.user!.id == user.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
     exemptTarget.id!

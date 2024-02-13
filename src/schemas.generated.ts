@@ -1,3 +1,4 @@
+import { BoxSdkError } from './errors.js';
 import { SerializedData } from './json.js';
 import { sdIsEmpty } from './json.js';
 import { sdIsBoolean } from './json.js';
@@ -2817,9 +2818,9 @@ export function deserializePostOAuth2TokenGrantTypeField(
   val: any
 ): PostOAuth2TokenGrantTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "PostOAuth2TokenGrantTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "PostOAuth2TokenGrantTypeField"',
+    });
   }
   if (val == 'authorization_code') {
     return 'authorization_code';
@@ -2836,7 +2837,9 @@ export function deserializePostOAuth2TokenGrantTypeField(
   if (val == 'urn:ietf:params:oauth:grant-type:token-exchange') {
     return 'urn:ietf:params:oauth:grant-type:token-exchange';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializePostOAuth2TokenSubjectTokenTypeField(
   val: PostOAuth2TokenSubjectTokenTypeField
@@ -2847,14 +2850,16 @@ export function deserializePostOAuth2TokenSubjectTokenTypeField(
   val: any
 ): PostOAuth2TokenSubjectTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "PostOAuth2TokenSubjectTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "PostOAuth2TokenSubjectTokenTypeField"',
+    });
   }
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
     return 'urn:ietf:params:oauth:token-type:access_token';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializePostOAuth2TokenActorTokenTypeField(
   val: PostOAuth2TokenActorTokenTypeField
@@ -2865,14 +2870,16 @@ export function deserializePostOAuth2TokenActorTokenTypeField(
   val: any
 ): PostOAuth2TokenActorTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "PostOAuth2TokenActorTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "PostOAuth2TokenActorTokenTypeField"',
+    });
   }
   if (val == 'urn:ietf:params:oauth:token-type:id_token') {
     return 'urn:ietf:params:oauth:token-type:id_token';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializePostOAuth2TokenBoxSubjectTypeField(
   val: PostOAuth2TokenBoxSubjectTypeField
@@ -2883,9 +2890,9 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(
   val: any
 ): PostOAuth2TokenBoxSubjectTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "PostOAuth2TokenBoxSubjectTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "PostOAuth2TokenBoxSubjectTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
@@ -2893,7 +2900,9 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(
   if (val == 'user') {
     return 'user';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializePostOAuth2Token(val: PostOAuth2Token): SerializedData {
   return {
@@ -2986,16 +2995,17 @@ export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   val: any
 ): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "PostOAuth2TokenRefreshAccessTokenGrantTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "PostOAuth2TokenRefreshAccessTokenGrantTypeField"',
+    });
   }
   if (val == 'refresh_token') {
     return 'refresh_token';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializePostOAuth2TokenRefreshAccessToken(
   val: PostOAuth2TokenRefreshAccessToken
@@ -3054,9 +3064,9 @@ export function deserializeZipDownloadRequestItemsTypeField(
   val: any
 ): ZipDownloadRequestItemsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ZipDownloadRequestItemsTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ZipDownloadRequestItemsTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
@@ -3064,7 +3074,9 @@ export function deserializeZipDownloadRequestItemsTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeZipDownloadRequestItemsField(
   val: ZipDownloadRequestItemsField
@@ -3117,9 +3129,9 @@ export function deserializeMetadataQueryOrderByDirectionField(
   val: any
 ): MetadataQueryOrderByDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataQueryOrderByDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataQueryOrderByDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -3127,7 +3139,9 @@ export function deserializeMetadataQueryOrderByDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataQueryOrderByField(
   val: MetadataQueryOrderByField
@@ -3223,9 +3237,9 @@ export function deserializeFileRequestUpdateRequestStatusField(
   val: any
 ): FileRequestUpdateRequestStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileRequestUpdateRequestStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileRequestUpdateRequestStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -3233,7 +3247,9 @@ export function deserializeFileRequestUpdateRequestStatusField(
   if (val == 'inactive') {
     return 'inactive';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileRequestUpdateRequest(
   val: FileRequestUpdateRequest
@@ -3288,14 +3304,16 @@ export function deserializeFileRequestCopyRequestFolderTypeField(
   val: any
 ): FileRequestCopyRequestFolderTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileRequestCopyRequestFolderTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileRequestCopyRequestFolderTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileRequestCopyRequestFolderField(
   val: FileRequestCopyRequestFolderField
@@ -3323,7 +3341,9 @@ export function serializeFileRequestCopyRequest(
 ): SerializedData {
   const base: any = serializeFileRequestUpdateRequest(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileRequestCopyRequest"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileRequestCopyRequest"',
+    });
   }
   return {
     ...base,
@@ -3369,12 +3389,16 @@ export function deserializeClientErrorTypeField(
   val: any
 ): ClientErrorTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "ClientErrorTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClientErrorTypeField"',
+    });
   }
   if (val == 'error') {
     return 'error';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClientErrorCodeField(
   val: ClientErrorCodeField
@@ -3385,7 +3409,9 @@ export function deserializeClientErrorCodeField(
   val: any
 ): ClientErrorCodeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "ClientErrorCodeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClientErrorCodeField"',
+    });
   }
   if (val == 'created') {
     return 'created';
@@ -3438,7 +3464,9 @@ export function deserializeClientErrorCodeField(
   if (val == 'insufficient_scope') {
     return 'insufficient_scope';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClientErrorContextInfoField(
   val: ClientErrorContextInfoField
@@ -3519,14 +3547,16 @@ export function deserializeClassificationTemplateField(
   val: any
 ): ClassificationTemplateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClassificationTemplateField"',
+    });
   }
   if (val == 'securityClassification-6VMVochwUWo') {
     return 'securityClassification-6VMVochwUWo';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassification(val: Classification): SerializedData {
   return {
@@ -3585,14 +3615,16 @@ export function deserializeClassificationTemplateTypeField(
   val: any
 ): ClassificationTemplateTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClassificationTemplateTypeField"',
+    });
   }
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateTemplateKeyField(
   val: ClassificationTemplateTemplateKeyField
@@ -3603,14 +3635,17 @@ export function deserializeClassificationTemplateTemplateKeyField(
   val: any
 ): ClassificationTemplateTemplateKeyField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateTemplateKeyField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ClassificationTemplateTemplateKeyField"',
+    });
   }
   if (val == 'securityClassification-6VMVochwUWo') {
     return 'securityClassification-6VMVochwUWo';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateDisplayNameField(
   val: ClassificationTemplateDisplayNameField
@@ -3621,14 +3656,17 @@ export function deserializeClassificationTemplateDisplayNameField(
   val: any
 ): ClassificationTemplateDisplayNameField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateDisplayNameField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ClassificationTemplateDisplayNameField"',
+    });
   }
   if (val == 'Classification') {
     return 'Classification';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateFieldsTypeField(
   val: ClassificationTemplateFieldsTypeField
@@ -3639,14 +3677,16 @@ export function deserializeClassificationTemplateFieldsTypeField(
   val: any
 ): ClassificationTemplateFieldsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateFieldsTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClassificationTemplateFieldsTypeField"',
+    });
   }
   if (val == 'enum') {
     return 'enum';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateFieldsKeyField(
   val: ClassificationTemplateFieldsKeyField
@@ -3657,14 +3697,16 @@ export function deserializeClassificationTemplateFieldsKeyField(
   val: any
 ): ClassificationTemplateFieldsKeyField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ClassificationTemplateFieldsKeyField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ClassificationTemplateFieldsKeyField"',
+    });
   }
   if (val == 'Box__Security__Classification__Key') {
     return 'Box__Security__Classification__Key';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateFieldsDisplayNameField(
   val: ClassificationTemplateFieldsDisplayNameField
@@ -3675,16 +3717,17 @@ export function deserializeClassificationTemplateFieldsDisplayNameField(
   val: any
 ): ClassificationTemplateFieldsDisplayNameField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ClassificationTemplateFieldsDisplayNameField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ClassificationTemplateFieldsDisplayNameField"',
+    });
   }
   if (val == 'Classification') {
     return 'Classification';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
   val: ClassificationTemplateFieldsOptionsStaticConfigClassificationField
@@ -3884,14 +3927,16 @@ export function deserializeCollaborationAllowlistEntryTypeField(
   val: any
 ): CollaborationAllowlistEntryTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CollaborationAllowlistEntryTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaborationAllowlistEntryTypeField"',
+    });
   }
   if (val == 'collaboration_whitelist_entry') {
     return 'collaboration_whitelist_entry';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAllowlistEntryDirectionField(
   val: CollaborationAllowlistEntryDirectionField
@@ -3902,11 +3947,10 @@ export function deserializeCollaborationAllowlistEntryDirectionField(
   val: any
 ): CollaborationAllowlistEntryDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CollaborationAllowlistEntryDirectionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CollaborationAllowlistEntryDirectionField"',
+    });
   }
   if (val == 'inbound') {
     return 'inbound';
@@ -3917,7 +3961,9 @@ export function deserializeCollaborationAllowlistEntryDirectionField(
   if (val == 'both') {
     return 'both';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
   val: CollaborationAllowlistEntryEnterpriseTypeField
@@ -3928,16 +3974,17 @@ export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
   val: any
 ): CollaborationAllowlistEntryEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CollaborationAllowlistEntryEnterpriseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CollaborationAllowlistEntryEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseField(
   val: CollaborationAllowlistEntryEnterpriseField
@@ -4060,12 +4107,16 @@ export function serializeCollectionTypeField(
 }
 export function deserializeCollectionTypeField(val: any): CollectionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "CollectionTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollectionTypeField"',
+    });
   }
   if (val == 'collection') {
     return 'collection';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollectionNameField(
   val: CollectionNameField
@@ -4074,12 +4125,16 @@ export function serializeCollectionNameField(
 }
 export function deserializeCollectionNameField(val: any): CollectionNameField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "CollectionNameField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollectionNameField"',
+    });
   }
   if (val == 'Favorites') {
     return 'Favorites';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollectionCollectionTypeField(
   val: CollectionCollectionTypeField
@@ -4090,14 +4145,16 @@ export function deserializeCollectionCollectionTypeField(
   val: any
 ): CollectionCollectionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CollectionCollectionTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollectionCollectionTypeField"',
+    });
   }
   if (val == 'favorites') {
     return 'favorites';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollection(val: Collection): SerializedData {
   return {
@@ -4138,9 +4195,9 @@ export function deserializeCollectionsOrderDirectionField(
   val: any
 ): CollectionsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CollectionsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollectionsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -4148,7 +4205,9 @@ export function deserializeCollectionsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollectionsOrderField(
   val: CollectionsOrderField
@@ -4228,12 +4287,16 @@ export function deserializeCommentBaseTypeField(
   val: any
 ): CommentBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "CommentBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CommentBaseTypeField"',
+    });
   }
   if (val == 'comment') {
     return 'comment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCommentBase(val: CommentBase): SerializedData {
   return {
@@ -4255,12 +4318,16 @@ export function serializeEmailAliasTypeField(
 }
 export function deserializeEmailAliasTypeField(val: any): EmailAliasTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "EmailAliasTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "EmailAliasTypeField"',
+    });
   }
   if (val == 'email_alias') {
     return 'email_alias';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeEmailAlias(val: EmailAlias): SerializedData {
   return {
@@ -4318,12 +4385,16 @@ export function deserializeEnterpriseBaseTypeField(
   val: any
 ): EnterpriseBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "EnterpriseBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "EnterpriseBaseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeEnterpriseBase(val: EnterpriseBase): SerializedData {
   return {
@@ -4345,12 +4416,16 @@ export function serializeFileBaseTypeField(
 }
 export function deserializeFileBaseTypeField(val: any): FileBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FileBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileBaseTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileBase(val: FileBase): SerializedData {
   return {
@@ -4374,14 +4449,16 @@ export function deserializeFileVersionBaseTypeField(
   val: any
 ): FileVersionBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileVersionBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileVersionBaseTypeField"',
+    });
   }
   if (val == 'file_version') {
     return 'file_version';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileVersionBase(val: FileVersionBase): SerializedData {
   return {
@@ -4399,7 +4476,7 @@ export function deserializeFileVersionBase(val: any): FileVersionBase {
 export function serializeFileVersionMini(val: FileVersionMini): SerializedData {
   const base: any = serializeFileVersionBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileVersionMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersionMini"' });
   }
   return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
 }
@@ -4414,7 +4491,7 @@ export function deserializeFileVersionMini(val: any): FileVersionMini {
 export function serializeFileMini(val: FileMini): SerializedData {
   const base: any = serializeFileBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileMini"' });
   }
   return {
     ...base,
@@ -4490,7 +4567,7 @@ export function deserializeFilesUnderRetention(val: any): FilesUnderRetention {
 export function serializeFileConflict(val: FileConflict): SerializedData {
   const base: any = serializeFileMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileConflict"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileConflict"' });
   }
   return { ...base, ...{} };
 }
@@ -4544,7 +4621,7 @@ export function deserializeConflictErrorContextInfoField(
 export function serializeConflictError(val: ConflictError): SerializedData {
   const base: any = serializeClientError(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "ConflictError"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "ConflictError"' });
   }
   return { ...base, ...{} };
 }
@@ -4581,12 +4658,16 @@ export function serializeFolderBaseTypeField(
 }
 export function deserializeFolderBaseTypeField(val: any): FolderBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FolderBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderBaseTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderBase(val: FolderBase): SerializedData {
   return {
@@ -4604,7 +4685,7 @@ export function deserializeFolderBase(val: any): FolderBase {
 export function serializeFolderMini(val: FolderMini): SerializedData {
   const base: any = serializeFolderBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FolderMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FolderMini"' });
   }
   return {
     ...base,
@@ -4638,13 +4719,15 @@ export function serializeFileMiniOrFolderMini(
   if (val.type == 'folder') {
     return serializeFolderMini(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileMiniOrFolderMini(
   val: any
 ): FileMiniOrFolderMini {
   if (!sdIsMap(val)) {
-    throw new Error(String('Expecting a map for "FileMiniOrFolderMini"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileMiniOrFolderMini"',
+    });
   }
   if (val.type == 'file') {
     return deserializeFileMini(val);
@@ -4652,7 +4735,7 @@ export function deserializeFileMiniOrFolderMini(
   if (val.type == 'folder') {
     return deserializeFolderMini(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeFileOrFolderScopeScopeField(
   val: FileOrFolderScopeScopeField
@@ -4663,9 +4746,9 @@ export function deserializeFileOrFolderScopeScopeField(
   val: any
 ): FileOrFolderScopeScopeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileOrFolderScopeScopeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileOrFolderScopeScopeField"',
+    });
   }
   if (val == 'annotation_edit') {
     return 'annotation_edit';
@@ -4703,7 +4786,9 @@ export function deserializeFileOrFolderScopeScopeField(
   if (val == 'item_share') {
     return 'item_share';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileOrFolderScope(
   val: FileOrFolderScope
@@ -4735,14 +4820,16 @@ export function deserializeAccessTokenTokenTypeField(
   val: any
 ): AccessTokenTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "AccessTokenTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "AccessTokenTokenTypeField"',
+    });
   }
   if (val == 'bearer') {
     return 'bearer';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeAccessTokenIssuedTokenTypeField(
   val: AccessTokenIssuedTokenTypeField
@@ -4753,14 +4840,16 @@ export function deserializeAccessTokenIssuedTokenTypeField(
   val: any
 ): AccessTokenIssuedTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "AccessTokenIssuedTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "AccessTokenIssuedTokenTypeField"',
+    });
   }
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
     return 'urn:ietf:params:oauth:token-type:access_token';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeAccessToken(val: AccessToken): SerializedData {
   return {
@@ -4824,16 +4913,17 @@ export function deserializeIntegrationMappingBaseIntegrationTypeField(
   val: any
 ): IntegrationMappingBaseIntegrationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "IntegrationMappingBaseIntegrationTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "IntegrationMappingBaseIntegrationTypeField"',
+    });
   }
   if (val == 'slack') {
     return 'slack';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMappingBase(
   val: IntegrationMappingBase
@@ -4874,16 +4964,17 @@ export function deserializeIntegrationMappingMiniPartnerItemTypeField(
   val: any
 ): IntegrationMappingMiniPartnerItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "IntegrationMappingMiniPartnerItemTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "IntegrationMappingMiniPartnerItemTypeField"',
+    });
   }
   if (val == 'channel') {
     return 'channel';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMappingMiniBoxItemTypeField(
   val: IntegrationMappingMiniBoxItemTypeField
@@ -4894,21 +4985,26 @@ export function deserializeIntegrationMappingMiniBoxItemTypeField(
   val: any
 ): IntegrationMappingMiniBoxItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "IntegrationMappingMiniBoxItemTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "IntegrationMappingMiniBoxItemTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMappingMini(
   val: IntegrationMappingMini
 ): SerializedData {
   const base: any = serializeIntegrationMappingBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "IntegrationMappingMini"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingMini"',
+    });
   }
   return {
     ...base,
@@ -4973,12 +5069,16 @@ export function serializeGroupBaseTypeField(
 }
 export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "GroupBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupBaseTypeField"',
+    });
   }
   if (val == 'group') {
     return 'group';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupBase(val: GroupBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeGroupBaseTypeField(val.type) };
@@ -4997,7 +5097,9 @@ export function deserializeGroupMiniGroupTypeField(
   val: any
 ): GroupMiniGroupTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "GroupMiniGroupTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupMiniGroupTypeField"',
+    });
   }
   if (val == 'managed_group') {
     return 'managed_group';
@@ -5005,12 +5107,14 @@ export function deserializeGroupMiniGroupTypeField(
   if (val == 'all_users_group') {
     return 'all_users_group';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupMini(val: GroupMini): SerializedData {
   const base: any = serializeGroupBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "GroupMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupMini"' });
   }
   return {
     ...base,
@@ -5041,7 +5145,7 @@ export function deserializeGroupMini(val: any): GroupMini {
 export function serializeGroup(val: Group): SerializedData {
   const base: any = serializeGroupMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "Group"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "Group"' });
   }
   return {
     ...base,
@@ -5081,9 +5185,9 @@ export function deserializeGroupFullInvitabilityLevelField(
   val: any
 ): GroupFullInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupFullInvitabilityLevelField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupFullInvitabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -5094,7 +5198,9 @@ export function deserializeGroupFullInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupFullMemberViewabilityLevelField(
   val: GroupFullMemberViewabilityLevelField
@@ -5105,9 +5211,9 @@ export function deserializeGroupFullMemberViewabilityLevelField(
   val: any
 ): GroupFullMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupFullMemberViewabilityLevelField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupFullMemberViewabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -5118,7 +5224,9 @@ export function deserializeGroupFullMemberViewabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupFullPermissionsField(
   val: GroupFullPermissionsField
@@ -5144,7 +5252,7 @@ export function deserializeGroupFullPermissionsField(
 export function serializeGroupFull(val: GroupFull): SerializedData {
   const base: any = serializeGroup(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "GroupFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupFull"' });
   }
   return {
     ...base,
@@ -5232,9 +5340,9 @@ export function deserializeGroupsOrderDirectionField(
   val: any
 ): GroupsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -5242,7 +5350,9 @@ export function deserializeGroupsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupsOrderField(
   val: GroupsOrderField
@@ -5320,14 +5430,16 @@ export function deserializeLegalHoldPolicyMiniTypeField(
   val: any
 ): LegalHoldPolicyMiniTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "LegalHoldPolicyMiniTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "LegalHoldPolicyMiniTypeField"',
+    });
   }
   if (val == 'legal_hold_policy') {
     return 'legal_hold_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeLegalHoldPolicyMini(
   val: LegalHoldPolicyMini
@@ -5352,14 +5464,17 @@ export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
   val: any
 ): LegalHoldPolicyAssignmentBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "LegalHoldPolicyAssignmentBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "LegalHoldPolicyAssignmentBaseTypeField"',
+    });
   }
   if (val == 'legal_hold_policy_assignment') {
     return 'legal_hold_policy_assignment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeLegalHoldPolicyAssignmentBase(
   val: LegalHoldPolicyAssignmentBase
@@ -5437,7 +5552,7 @@ export function deserializeMetadatas(val: any): Metadatas {
 export function serializeMetadataFull(val: MetadataFull): SerializedData {
   const base: any = serializeMetadata(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "MetadataFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "MetadataFull"' });
   }
   return {
     ...base,
@@ -5492,14 +5607,16 @@ export function deserializeMetadataCascadePolicyTypeField(
   val: any
 ): MetadataCascadePolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataCascadePolicyTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataCascadePolicyTypeField"',
+    });
   }
   if (val == 'metadata_cascade_policy') {
     return 'metadata_cascade_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   val: MetadataCascadePolicyOwnerEnterpriseTypeField
@@ -5510,16 +5627,17 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   val: any
 ): MetadataCascadePolicyOwnerEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "MetadataCascadePolicyOwnerEnterpriseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "MetadataCascadePolicyOwnerEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseField(
   val: MetadataCascadePolicyOwnerEnterpriseField
@@ -5554,14 +5672,16 @@ export function deserializeMetadataCascadePolicyParentTypeField(
   val: any
 ): MetadataCascadePolicyParentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataCascadePolicyParentTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataCascadePolicyParentTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataCascadePolicyParentField(
   val: MetadataCascadePolicyParentField
@@ -5679,9 +5799,9 @@ export function deserializeMetadataQueryIndexStatusField(
   val: any
 ): MetadataQueryIndexStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataQueryIndexStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataQueryIndexStatusField"',
+    });
   }
   if (val == 'building') {
     return 'building';
@@ -5692,7 +5812,9 @@ export function deserializeMetadataQueryIndexStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataQueryIndexFieldsSortDirectionField(
   val: MetadataQueryIndexFieldsSortDirectionField
@@ -5703,11 +5825,10 @@ export function deserializeMetadataQueryIndexFieldsSortDirectionField(
   val: any
 ): MetadataQueryIndexFieldsSortDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "MetadataQueryIndexFieldsSortDirectionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "MetadataQueryIndexFieldsSortDirectionField"',
+    });
   }
   if (val == 'asc') {
     return 'asc';
@@ -5715,7 +5836,9 @@ export function deserializeMetadataQueryIndexFieldsSortDirectionField(
   if (val == 'desc') {
     return 'desc';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataQueryIndexFieldsField(
   val: MetadataQueryIndexFieldsField
@@ -5823,14 +5946,16 @@ export function deserializeMetadataTemplateTypeField(
   val: any
 ): MetadataTemplateTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataTemplateTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataTemplateTypeField"',
+    });
   }
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataTemplateFieldsTypeField(
   val: MetadataTemplateFieldsTypeField
@@ -5841,9 +5966,9 @@ export function deserializeMetadataTemplateFieldsTypeField(
   val: any
 ): MetadataTemplateFieldsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataTemplateFieldsTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataTemplateFieldsTypeField"',
+    });
   }
   if (val == 'string') {
     return 'string';
@@ -5863,7 +5988,9 @@ export function deserializeMetadataTemplateFieldsTypeField(
   if (val == 'integer') {
     return 'integer';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataTemplateFieldsOptionsField(
   val: MetadataTemplateFieldsOptionsField
@@ -6076,14 +6203,16 @@ export function deserializeRetentionPolicyBaseTypeField(
   val: any
 ): RetentionPolicyBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RetentionPolicyBaseTypeField"',
+    });
   }
   if (val == 'retention_policy') {
     return 'retention_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyBase(
   val: RetentionPolicyBase
@@ -6108,11 +6237,10 @@ export function deserializeRetentionPolicyMiniDispositionActionField(
   val: any
 ): RetentionPolicyMiniDispositionActionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "RetentionPolicyMiniDispositionActionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "RetentionPolicyMiniDispositionActionField"',
+    });
   }
   if (val == 'permanently_delete') {
     return 'permanently_delete';
@@ -6120,14 +6248,18 @@ export function deserializeRetentionPolicyMiniDispositionActionField(
   if (val == 'remove_retention') {
     return 'remove_retention';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyMini(
   val: RetentionPolicyMini
 ): SerializedData {
   const base: any = serializeRetentionPolicyBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "RetentionPolicyMini"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyMini"',
+    });
   }
   return {
     ...base,
@@ -6177,14 +6309,16 @@ export function deserializeFileVersionRetentionTypeField(
   val: any
 ): FileVersionRetentionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileVersionRetentionTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileVersionRetentionTypeField"',
+    });
   }
   if (val == 'file_version_retention') {
     return 'file_version_retention';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileVersionRetention(
   val: FileVersionRetention
@@ -6288,14 +6422,17 @@ export function deserializeRetentionPolicyAssignmentBaseTypeField(
   val: any
 ): RetentionPolicyAssignmentBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyAssignmentBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "RetentionPolicyAssignmentBaseTypeField"',
+    });
   }
   if (val == 'retention_policy_assignment') {
     return 'retention_policy_assignment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyAssignmentBase(
   val: RetentionPolicyAssignmentBase
@@ -6322,14 +6459,16 @@ export function deserializeShieldInformationBarrierBaseTypeField(
   val: any
 ): ShieldInformationBarrierBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ShieldInformationBarrierBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ShieldInformationBarrierBaseTypeField"',
+    });
   }
   if (val == 'shield_information_barrier') {
     return 'shield_information_barrier';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierBase(
   val: ShieldInformationBarrierBase
@@ -6382,16 +6521,17 @@ export function deserializeShieldInformationBarrierReportBaseTypeField(
   val: any
 ): ShieldInformationBarrierReportBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierReportBaseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierReportBaseTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_report') {
     return 'shield_information_barrier_report';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierReportBase(
   val: ShieldInformationBarrierReportBase
@@ -6423,16 +6563,17 @@ export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(
   val: any
 ): ShieldInformationBarrierSegmentMemberBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentMemberBaseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentMemberBaseTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment_member') {
     return 'shield_information_barrier_segment_member';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegmentMemberBase(
   val: ShieldInformationBarrierSegmentMemberBase
@@ -6467,16 +6608,17 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeFie
   val: any
 ): ShieldInformationBarrierSegmentRestrictionBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionBaseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionBaseTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment_restriction') {
     return 'shield_information_barrier_segment_restriction';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBase(
   val: ShieldInformationBarrierSegmentRestrictionBase
@@ -6517,16 +6659,17 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldI
   val: any
 ): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(
   val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField
@@ -6567,16 +6710,17 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestric
   val: any
 ): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(
   val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField
@@ -6614,11 +6758,10 @@ export function serializeShieldInformationBarrierSegmentRestrictionMini(
   const base: any =
     serializeShieldInformationBarrierSegmentRestrictionBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(
-      String(
-        'Expecting a map for "ShieldInformationBarrierSegmentRestrictionMini"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "ShieldInformationBarrierSegmentRestrictionMini"',
+    });
   }
   return {
     ...base,
@@ -6682,14 +6825,16 @@ export function deserializeStoragePolicyMiniTypeField(
   val: any
 ): StoragePolicyMiniTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StoragePolicyMiniTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StoragePolicyMiniTypeField"',
+    });
   }
   if (val == 'storage_policy') {
     return 'storage_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStoragePolicyMini(
   val: StoragePolicyMini
@@ -6714,14 +6859,16 @@ export function deserializeStoragePolicyAssignmentTypeField(
   val: any
 ): StoragePolicyAssignmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StoragePolicyAssignmentTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StoragePolicyAssignmentTypeField"',
+    });
   }
   if (val == 'storage_policy_assignment') {
     return 'storage_policy_assignment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStoragePolicyAssignmentAssignedToField(
   val: StoragePolicyAssignmentAssignedToField
@@ -6819,7 +6966,7 @@ export function deserializeStoragePolicyAssignments(
 export function serializeStoragePolicy(val: StoragePolicy): SerializedData {
   const base: any = serializeStoragePolicyMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "StoragePolicy"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "StoragePolicy"' });
   }
   return { ...base, ...{ ['name']: val.name == void 0 ? void 0 : val.name } };
 }
@@ -6873,14 +7020,16 @@ export function deserializeTermsOfServiceBaseTypeField(
   val: any
 ): TermsOfServiceBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TermsOfServiceBaseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TermsOfServiceBaseTypeField"',
+    });
   }
   if (val == 'terms_of_service') {
     return 'terms_of_service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTermsOfServiceBase(
   val: TermsOfServiceBase
@@ -6905,9 +7054,9 @@ export function deserializeTermsOfServiceStatusField(
   val: any
 ): TermsOfServiceStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TermsOfServiceStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TermsOfServiceStatusField"',
+    });
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -6915,7 +7064,9 @@ export function deserializeTermsOfServiceStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTermsOfServiceEnterpriseTypeField(
   val: TermsOfServiceEnterpriseTypeField
@@ -6926,14 +7077,16 @@ export function deserializeTermsOfServiceEnterpriseTypeField(
   val: any
 ): TermsOfServiceEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TermsOfServiceEnterpriseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TermsOfServiceEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTermsOfServiceEnterpriseField(
   val: TermsOfServiceEnterpriseField
@@ -6971,9 +7124,9 @@ export function deserializeTermsOfServiceTosTypeField(
   val: any
 ): TermsOfServiceTosTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TermsOfServiceTosTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TermsOfServiceTosTypeField"',
+    });
   }
   if (val == 'managed') {
     return 'managed';
@@ -6981,12 +7134,14 @@ export function deserializeTermsOfServiceTosTypeField(
   if (val == 'external') {
     return 'external';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTermsOfService(val: TermsOfService): SerializedData {
   const base: any = serializeTermsOfServiceBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "TermsOfService"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "TermsOfService"' });
   }
   return {
     ...base,
@@ -7086,7 +7241,7 @@ export function deserializeUploadPartMini(val: any): UploadPartMini {
 export function serializeUploadPart(val: UploadPart): SerializedData {
   const base: any = serializeUploadPartMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "UploadPart"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "UploadPart"' });
   }
   return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
 }
@@ -7112,9 +7267,9 @@ export function deserializeUploadPartsOrderDirectionField(
   val: any
 ): UploadPartsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "UploadPartsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UploadPartsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -7122,7 +7277,9 @@ export function deserializeUploadPartsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUploadPartsOrderField(
   val: UploadPartsOrderField
@@ -7212,12 +7369,16 @@ export function deserializeUploadSessionTypeField(
   val: any
 ): UploadSessionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "UploadSessionTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UploadSessionTypeField"',
+    });
   }
   if (val == 'upload_session') {
     return 'upload_session';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUploadSessionSessionEndpointsField(
   val: UploadSessionSessionEndpointsField
@@ -7352,12 +7513,16 @@ export function serializeUserBaseTypeField(
 }
 export function deserializeUserBaseTypeField(val: any): UserBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "UserBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UserBaseTypeField"',
+    });
   }
   if (val == 'user') {
     return 'user';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUserBase(val: UserBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeUserBaseTypeField(val.type) };
@@ -7372,7 +7537,9 @@ export function serializeUserIntegrationMappings(
 ): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "UserIntegrationMappings"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UserIntegrationMappings"',
+    });
   }
   return {
     ...base,
@@ -7401,7 +7568,9 @@ export function serializeUserCollaborations(
 ): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "UserCollaborations"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UserCollaborations"',
+    });
   }
   return {
     ...base,
@@ -7432,15 +7601,15 @@ export function serializeGroupMiniOrUserCollaborations(
   if (val.type == 'user') {
     return serializeUserCollaborations(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeGroupMiniOrUserCollaborations(
   val: any
 ): GroupMiniOrUserCollaborations {
   if (!sdIsMap(val)) {
-    throw new Error(
-      String('Expecting a map for "GroupMiniOrUserCollaborations"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a map for "GroupMiniOrUserCollaborations"',
+    });
   }
   if (val.type == 'group') {
     return deserializeGroupMini(val);
@@ -7448,12 +7617,12 @@ export function deserializeGroupMiniOrUserCollaborations(
   if (val.type == 'user') {
     return deserializeUserCollaborations(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeUserMini(val: UserMini): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "UserMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "UserMini"' });
   }
   return {
     ...base,
@@ -7479,9 +7648,9 @@ export function deserializeEventSourceItemTypeField(
   val: any
 ): EventSourceItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "EventSourceItemTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "EventSourceItemTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
@@ -7489,7 +7658,9 @@ export function deserializeEventSourceItemTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeEventSourceClassificationField(
   val: EventSourceClassificationField
@@ -7543,7 +7714,9 @@ export function serializeUserStatusField(val: UserStatusField): SerializedData {
 }
 export function deserializeUserStatusField(val: any): UserStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "UserStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UserStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -7557,7 +7730,9 @@ export function deserializeUserStatusField(val: any): UserStatusField {
   if (val == 'cannot_delete_edit_upload') {
     return 'cannot_delete_edit_upload';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUserNotificationEmailField(
   val: UserNotificationEmailField
@@ -7581,7 +7756,7 @@ export function deserializeUserNotificationEmailField(
 export function serializeUser(val: User): SerializedData {
   const base: any = serializeUserMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "User"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "User"' });
   }
   return {
     ...base,
@@ -7668,14 +7843,16 @@ export function deserializeTrashWebLinkRestoredTypeField(
   val: any
 ): TrashWebLinkRestoredTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashWebLinkRestoredTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashWebLinkRestoredTypeField"',
+    });
   }
   if (val == 'web_link') {
     return 'web_link';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashWebLinkRestoredPathCollectionField(
   val: TrashWebLinkRestoredPathCollectionField
@@ -7710,9 +7887,9 @@ export function deserializeTrashWebLinkRestoredItemStatusField(
   val: any
 ): TrashWebLinkRestoredItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashWebLinkRestoredItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashWebLinkRestoredItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -7723,7 +7900,9 @@ export function deserializeTrashWebLinkRestoredItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashWebLinkRestored(
   val: TrashWebLinkRestored
@@ -7828,14 +8007,16 @@ export function deserializeTrashFolderRestoredTypeField(
   val: any
 ): TrashFolderRestoredTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFolderRestoredTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFolderRestoredTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFolderRestoredPathCollectionField(
   val: TrashFolderRestoredPathCollectionField
@@ -7870,9 +8051,9 @@ export function deserializeTrashFolderRestoredItemStatusField(
   val: any
 ): TrashFolderRestoredItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFolderRestoredItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFolderRestoredItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -7883,7 +8064,9 @@ export function deserializeTrashFolderRestoredItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFolderRestored(
   val: TrashFolderRestored
@@ -8005,14 +8188,16 @@ export function deserializeTrashFileRestoredTypeField(
   val: any
 ): TrashFileRestoredTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFileRestoredTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFileRestoredTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFileRestoredPathCollectionField(
   val: TrashFileRestoredPathCollectionField
@@ -8047,9 +8232,9 @@ export function deserializeTrashFileRestoredItemStatusField(
   val: any
 ): TrashFileRestoredItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFileRestoredItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFileRestoredItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -8060,7 +8245,9 @@ export function deserializeTrashFileRestoredItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFileRestored(
   val: TrashFileRestored
@@ -8168,12 +8355,16 @@ export function deserializeTrashWebLinkTypeField(
   val: any
 ): TrashWebLinkTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TrashWebLinkTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashWebLinkTypeField"',
+    });
   }
   if (val == 'web_link') {
     return 'web_link';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashWebLinkPathCollectionEntriesTypeField(
   val: TrashWebLinkPathCollectionEntriesTypeField
@@ -8184,16 +8375,17 @@ export function deserializeTrashWebLinkPathCollectionEntriesTypeField(
   val: any
 ): TrashWebLinkPathCollectionEntriesTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "TrashWebLinkPathCollectionEntriesTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "TrashWebLinkPathCollectionEntriesTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashWebLinkPathCollectionEntriesField(
   val: TrashWebLinkPathCollectionEntriesField
@@ -8266,9 +8458,9 @@ export function deserializeTrashWebLinkItemStatusField(
   val: any
 ): TrashWebLinkItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashWebLinkItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashWebLinkItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -8279,7 +8471,9 @@ export function deserializeTrashWebLinkItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashWebLink(val: TrashWebLink): SerializedData {
   return {
@@ -8380,12 +8574,16 @@ export function deserializeTrashFolderTypeField(
   val: any
 ): TrashFolderTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TrashFolderTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFolderTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFolderPathCollectionEntriesTypeField(
   val: TrashFolderPathCollectionEntriesTypeField
@@ -8396,16 +8594,17 @@ export function deserializeTrashFolderPathCollectionEntriesTypeField(
   val: any
 ): TrashFolderPathCollectionEntriesTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "TrashFolderPathCollectionEntriesTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "TrashFolderPathCollectionEntriesTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFolderPathCollectionEntriesField(
   val: TrashFolderPathCollectionEntriesField
@@ -8478,9 +8677,9 @@ export function deserializeTrashFolderItemStatusField(
   val: any
 ): TrashFolderItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFolderItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFolderItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -8491,7 +8690,9 @@ export function deserializeTrashFolderItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFolder(val: TrashFolder): SerializedData {
   return {
@@ -8588,12 +8789,16 @@ export function serializeTrashFileTypeField(
 }
 export function deserializeTrashFileTypeField(val: any): TrashFileTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TrashFileTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFileTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFilePathCollectionEntriesTypeField(
   val: TrashFilePathCollectionEntriesTypeField
@@ -8604,14 +8809,17 @@ export function deserializeTrashFilePathCollectionEntriesTypeField(
   val: any
 ): TrashFilePathCollectionEntriesTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFilePathCollectionEntriesTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "TrashFilePathCollectionEntriesTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFilePathCollectionEntriesField(
   val: TrashFilePathCollectionEntriesField
@@ -8684,9 +8892,9 @@ export function deserializeTrashFileItemStatusField(
   val: any
 ): TrashFileItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TrashFileItemStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrashFileItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -8697,7 +8905,9 @@ export function deserializeTrashFileItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrashFile(val: TrashFile): SerializedData {
   return {
@@ -8802,14 +9012,16 @@ export function deserializeTermsOfServiceUserStatusTypeField(
   val: any
 ): TermsOfServiceUserStatusTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TermsOfServiceUserStatusTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TermsOfServiceUserStatusTypeField"',
+    });
   }
   if (val == 'terms_of_service_user_status') {
     return 'terms_of_service_user_status';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTermsOfServiceUserStatus(
   val: TermsOfServiceUserStatus
@@ -8890,12 +9102,16 @@ export function deserializeTaskAssignmentTypeField(
   val: any
 ): TaskAssignmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TaskAssignmentTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskAssignmentTypeField"',
+    });
   }
   if (val == 'task_assignment') {
     return 'task_assignment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTaskAssignmentResolutionStateField(
   val: TaskAssignmentResolutionStateField
@@ -8906,9 +9122,9 @@ export function deserializeTaskAssignmentResolutionStateField(
   val: any
 ): TaskAssignmentResolutionStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TaskAssignmentResolutionStateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskAssignmentResolutionStateField"',
+    });
   }
   if (val == 'completed') {
     return 'completed';
@@ -8922,7 +9138,9 @@ export function deserializeTaskAssignmentResolutionStateField(
   if (val == 'rejected') {
     return 'rejected';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTaskAssignment(val: TaskAssignment): SerializedData {
   return {
@@ -9008,19 +9226,25 @@ export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
 }
 export function deserializeTaskTypeField(val: any): TaskTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TaskTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskTypeField"',
+    });
   }
   if (val == 'task') {
     return 'task';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTaskActionField(val: TaskActionField): SerializedData {
   return val;
 }
 export function deserializeTaskActionField(val: any): TaskActionField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TaskActionField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskActionField"',
+    });
   }
   if (val == 'review') {
     return 'review';
@@ -9028,7 +9252,9 @@ export function deserializeTaskActionField(val: any): TaskActionField {
   if (val == 'complete') {
     return 'complete';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTaskCompletionRuleField(
   val: TaskCompletionRuleField
@@ -9039,7 +9265,9 @@ export function deserializeTaskCompletionRuleField(
   val: any
 ): TaskCompletionRuleField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TaskCompletionRuleField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskCompletionRuleField"',
+    });
   }
   if (val == 'all_assignees') {
     return 'all_assignees';
@@ -9047,7 +9275,9 @@ export function deserializeTaskCompletionRuleField(
   if (val == 'any_assignee') {
     return 'any_assignee';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTask(val: Task): SerializedData {
   return {
@@ -9144,14 +9374,16 @@ export function deserializeRetentionPolicyAssignmentTypeField(
   val: any
 ): RetentionPolicyAssignmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyAssignmentTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RetentionPolicyAssignmentTypeField"',
+    });
   }
   if (val == 'retention_policy_assignment') {
     return 'retention_policy_assignment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyAssignmentAssignedToTypeField(
   val: RetentionPolicyAssignmentAssignedToTypeField
@@ -9162,11 +9394,10 @@ export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
   val: any
 ): RetentionPolicyAssignmentAssignedToTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "RetentionPolicyAssignmentAssignedToTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "RetentionPolicyAssignmentAssignedToTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
@@ -9177,7 +9408,9 @@ export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyAssignmentAssignedToField(
   val: RetentionPolicyAssignmentAssignedToField
@@ -9334,9 +9567,9 @@ export function deserializeRetentionPolicyPolicyTypeField(
   val: any
 ): RetentionPolicyPolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyPolicyTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RetentionPolicyPolicyTypeField"',
+    });
   }
   if (val == 'finite') {
     return 'finite';
@@ -9344,7 +9577,9 @@ export function deserializeRetentionPolicyPolicyTypeField(
   if (val == 'indefinite') {
     return 'indefinite';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyRetentionTypeField(
   val: RetentionPolicyRetentionTypeField
@@ -9355,9 +9590,9 @@ export function deserializeRetentionPolicyRetentionTypeField(
   val: any
 ): RetentionPolicyRetentionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyRetentionTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RetentionPolicyRetentionTypeField"',
+    });
   }
   if (val == 'modifiable') {
     return 'modifiable';
@@ -9365,7 +9600,9 @@ export function deserializeRetentionPolicyRetentionTypeField(
   if (val == 'non_modifiable') {
     return 'non_modifiable';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyStatusField(
   val: RetentionPolicyStatusField
@@ -9376,9 +9613,9 @@ export function deserializeRetentionPolicyStatusField(
   val: any
 ): RetentionPolicyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RetentionPolicyStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RetentionPolicyStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -9386,7 +9623,9 @@ export function deserializeRetentionPolicyStatusField(
   if (val == 'retired') {
     return 'retired';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRetentionPolicyAssignmentCountsField(
   val: RetentionPolicyAssignmentCountsField
@@ -9415,7 +9654,7 @@ export function deserializeRetentionPolicyAssignmentCountsField(
 export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
   const base: any = serializeRetentionPolicyMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "RetentionPolicy"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "RetentionPolicy"' });
   }
   return {
     ...base,
@@ -9574,9 +9813,9 @@ export function deserializeLegalHoldPolicyStatusField(
   val: any
 ): LegalHoldPolicyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "LegalHoldPolicyStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "LegalHoldPolicyStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -9590,7 +9829,9 @@ export function deserializeLegalHoldPolicyStatusField(
   if (val == 'released') {
     return 'released';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeLegalHoldPolicyAssignmentCountsField(
   val: LegalHoldPolicyAssignmentCountsField
@@ -9620,7 +9861,7 @@ export function deserializeLegalHoldPolicyAssignmentCountsField(
 export function serializeLegalHoldPolicy(val: LegalHoldPolicy): SerializedData {
   const base: any = serializeLegalHoldPolicyMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "LegalHoldPolicy"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "LegalHoldPolicy"' });
   }
   return {
     ...base,
@@ -9735,12 +9976,16 @@ export function serializeInviteTypeField(val: InviteTypeField): SerializedData {
 }
 export function deserializeInviteTypeField(val: any): InviteTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "InviteTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "InviteTypeField"',
+    });
   }
   if (val == 'invite') {
     return 'invite';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeInviteInvitedToTypeField(
   val: InviteInvitedToTypeField
@@ -9751,14 +9996,16 @@ export function deserializeInviteInvitedToTypeField(
   val: any
 ): InviteInvitedToTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "InviteInvitedToTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "InviteInvitedToTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeInviteInvitedToField(
   val: InviteInvitedToField
@@ -9834,14 +10081,16 @@ export function deserializeGroupMembershipTypeField(
   val: any
 ): GroupMembershipTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupMembershipTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupMembershipTypeField"',
+    });
   }
   if (val == 'group_membership') {
     return 'group_membership';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupMembershipRoleField(
   val: GroupMembershipRoleField
@@ -9852,9 +10101,9 @@ export function deserializeGroupMembershipRoleField(
   val: any
 ): GroupMembershipRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupMembershipRoleField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupMembershipRoleField"',
+    });
   }
   if (val == 'member') {
     return 'member';
@@ -9862,7 +10111,9 @@ export function deserializeGroupMembershipRoleField(
   if (val == 'admin') {
     return 'admin';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupMembership(val: GroupMembership): SerializedData {
   return {
@@ -9910,9 +10161,9 @@ export function deserializeGroupMembershipsOrderDirectionField(
   val: any
 ): GroupMembershipsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GroupMembershipsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GroupMembershipsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -9920,7 +10171,9 @@ export function deserializeGroupMembershipsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGroupMembershipsOrderField(
   val: GroupMembershipsOrderField
@@ -9996,7 +10249,7 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
 export function serializeFileVersion(val: FileVersion): SerializedData {
   const base: any = serializeFileVersionMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileVersion"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersion"' });
   }
   return {
     ...base,
@@ -10065,7 +10318,7 @@ export function deserializeFileVersion(val: any): FileVersion {
 export function serializeFileVersionFull(val: FileVersionFull): SerializedData {
   const base: any = serializeFileVersion(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileVersionFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersionFull"' });
   }
   return {
     ...base,
@@ -10130,9 +10383,9 @@ export function deserializeFileVersionsOrderDirectionField(
   val: any
 ): FileVersionsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileVersionsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileVersionsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -10140,7 +10393,9 @@ export function deserializeFileVersionsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileVersionsOrderField(
   val: FileVersionsOrderField
@@ -10220,12 +10475,16 @@ export function deserializeFileRequestTypeField(
   val: any
 ): FileRequestTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FileRequestTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileRequestTypeField"',
+    });
   }
   if (val == 'file_request') {
     return 'file_request';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileRequestStatusField(
   val: FileRequestStatusField
@@ -10236,7 +10495,9 @@ export function deserializeFileRequestStatusField(
   val: any
 ): FileRequestStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FileRequestStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileRequestStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -10244,7 +10505,9 @@ export function deserializeFileRequestStatusField(
   if (val == 'inactive') {
     return 'inactive';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileRequest(val: FileRequest): SerializedData {
   return {
@@ -10350,9 +10613,9 @@ export function deserializeFileSharedLinkAccessField(
   val: any
 ): FileSharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileSharedLinkAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileSharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -10363,7 +10626,9 @@ export function deserializeFileSharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileSharedLinkEffectiveAccessField(
   val: FileSharedLinkEffectiveAccessField
@@ -10374,9 +10639,9 @@ export function deserializeFileSharedLinkEffectiveAccessField(
   val: any
 ): FileSharedLinkEffectiveAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileSharedLinkEffectiveAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileSharedLinkEffectiveAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -10387,7 +10652,9 @@ export function deserializeFileSharedLinkEffectiveAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileSharedLinkEffectivePermissionField(
   val: FileSharedLinkEffectivePermissionField
@@ -10398,9 +10665,10 @@ export function deserializeFileSharedLinkEffectivePermissionField(
   val: any
 ): FileSharedLinkEffectivePermissionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileSharedLinkEffectivePermissionField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FileSharedLinkEffectivePermissionField"',
+    });
   }
   if (val == 'can_edit') {
     return 'can_edit';
@@ -10414,7 +10682,9 @@ export function deserializeFileSharedLinkEffectivePermissionField(
   if (val == 'no_access') {
     return 'no_access';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileSharedLinkPermissionsField(
   val: FileSharedLinkPermissionsField
@@ -10512,7 +10782,9 @@ export function serializeFileItemStatusField(
 }
 export function deserializeFileItemStatusField(val: any): FileItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FileItemStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -10523,12 +10795,14 @@ export function deserializeFileItemStatusField(val: any): FileItemStatusField {
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFile(val: File): SerializedData {
   const base: any = serializeFileMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "File"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "File"' });
   }
   return {
     ...base,
@@ -10709,12 +10983,16 @@ export function deserializeFileFullLockTypeField(
   val: any
 ): FileFullLockTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FileFullLockTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileFullLockTypeField"',
+    });
   }
   if (val == 'lock') {
     return 'lock';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFullLockAppTypeField(
   val: FileFullLockAppTypeField
@@ -10725,9 +11003,9 @@ export function deserializeFileFullLockAppTypeField(
   val: any
 ): FileFullLockAppTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileFullLockAppTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileFullLockAppTypeField"',
+    });
   }
   if (val == 'gsuite') {
     return 'gsuite';
@@ -10741,7 +11019,9 @@ export function deserializeFileFullLockAppTypeField(
   if (val == 'other') {
     return 'other';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFullLockField(
   val: FileFullLockField
@@ -10797,14 +11077,17 @@ export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
   val: any
 ): FileFullExpiringEmbedLinkTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileFullExpiringEmbedLinkTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FileFullExpiringEmbedLinkTokenTypeField"',
+    });
   }
   if (val == 'bearer') {
     return 'bearer';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFullExpiringEmbedLinkField(
   val: FileFullExpiringEmbedLinkField
@@ -10877,9 +11160,9 @@ export function deserializeFileFullAllowedInviteeRolesField(
   val: any
 ): FileFullAllowedInviteeRolesField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileFullAllowedInviteeRolesField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileFullAllowedInviteeRolesField"',
+    });
   }
   if (val == 'editor') {
     return 'editor';
@@ -10902,7 +11185,9 @@ export function deserializeFileFullAllowedInviteeRolesField(
   if (val == 'co-owner') {
     return 'co-owner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFullMetadataField(
   val: FileFullMetadataField
@@ -10979,11 +11264,10 @@ export function deserializeFileFullRepresentationsEntriesStatusStateField(
   val: any
 ): FileFullRepresentationsEntriesStatusStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "FileFullRepresentationsEntriesStatusStateField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FileFullRepresentationsEntriesStatusStateField"',
+    });
   }
   if (val == 'success') {
     return 'success';
@@ -10997,7 +11281,9 @@ export function deserializeFileFullRepresentationsEntriesStatusStateField(
   if (val == 'none') {
     return 'none';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFullRepresentationsEntriesStatusField(
   val: FileFullRepresentationsEntriesStatusField
@@ -11133,11 +11419,10 @@ export function deserializeFileFullSharedLinkPermissionOptionsField(
   val: any
 ): FileFullSharedLinkPermissionOptionsField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "FileFullSharedLinkPermissionOptionsField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FileFullSharedLinkPermissionOptionsField"',
+    });
   }
   if (val == 'can_preview') {
     return 'can_preview';
@@ -11148,12 +11433,14 @@ export function deserializeFileFullSharedLinkPermissionOptionsField(
   if (val == 'can_edit') {
     return 'can_edit';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileFull(val: FileFull): SerializedData {
   const base: any = serializeFile(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FileFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileFull"' });
   }
   return {
     ...base,
@@ -11430,12 +11717,16 @@ export function deserializeDevicePinnerTypeField(
   val: any
 ): DevicePinnerTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "DevicePinnerTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "DevicePinnerTypeField"',
+    });
   }
   if (val == 'device_pinner') {
     return 'device_pinner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeDevicePinner(val: DevicePinner): SerializedData {
   return {
@@ -11471,14 +11762,16 @@ export function deserializeDevicePinnersOrderByField(
   val: any
 ): DevicePinnersOrderByField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "DevicePinnersOrderByField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "DevicePinnersOrderByField"',
+    });
   }
   if (val == 'id') {
     return 'id';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeDevicePinnersOrderDirectionField(
   val: DevicePinnersOrderDirectionField
@@ -11489,9 +11782,9 @@ export function deserializeDevicePinnersOrderDirectionField(
   val: any
 ): DevicePinnersOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "DevicePinnersOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "DevicePinnersOrderDirectionField"',
+    });
   }
   if (val == 'asc') {
     return 'asc';
@@ -11499,7 +11792,9 @@ export function deserializeDevicePinnersOrderDirectionField(
   if (val == 'desc') {
     return 'desc';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeDevicePinnersOrderField(
   val: DevicePinnersOrderField
@@ -11585,7 +11880,7 @@ export function deserializeCommentItemField(val: any): CommentItemField {
 export function serializeComment(val: Comment): SerializedData {
   const base: any = serializeCommentBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "Comment"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "Comment"' });
   }
   return {
     ...base,
@@ -11632,7 +11927,7 @@ export function deserializeComment(val: any): Comment {
 export function serializeCommentFull(val: CommentFull): SerializedData {
   const base: any = serializeComment(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "CommentFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "CommentFull"' });
   }
   return {
     ...base,
@@ -11681,9 +11976,9 @@ export function deserializeCommentsOrderDirectionField(
   val: any
 ): CommentsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CommentsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CommentsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -11691,7 +11986,9 @@ export function deserializeCommentsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCommentsOrderField(
   val: CommentsOrderField
@@ -11769,16 +12066,17 @@ export function deserializeCollaborationAllowlistExemptTargetTypeField(
   val: any
 ): CollaborationAllowlistExemptTargetTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CollaborationAllowlistExemptTargetTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CollaborationAllowlistExemptTargetTypeField"',
+    });
   }
   if (val == 'collaboration_whitelist_exempt_target') {
     return 'collaboration_whitelist_exempt_target';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
   val: CollaborationAllowlistExemptTargetEnterpriseTypeField
@@ -11789,16 +12087,17 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField
   val: any
 ): CollaborationAllowlistExemptTargetEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CollaborationAllowlistExemptTargetEnterpriseTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CollaborationAllowlistExemptTargetEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
   val: CollaborationAllowlistExemptTargetEnterpriseField
@@ -11930,9 +12229,10 @@ export function serializeShieldInformationBarrierSegmentRestriction(
   const base: any =
     serializeShieldInformationBarrierSegmentRestrictionMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(
-      String('Expecting a map for "ShieldInformationBarrierSegmentRestriction"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "ShieldInformationBarrierSegmentRestriction"',
+    });
   }
   return {
     ...base,
@@ -12037,9 +12337,10 @@ export function serializeShieldInformationBarrierSegmentMemberMini(
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(
-      String('Expecting a map for "ShieldInformationBarrierSegmentMemberMini"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "ShieldInformationBarrierSegmentMemberMini"',
+    });
   }
   return {
     ...base,
@@ -12071,16 +12372,17 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
   val: any
 ): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
   val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField
@@ -12117,9 +12419,9 @@ export function serializeShieldInformationBarrierSegmentMember(
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(
-      String('Expecting a map for "ShieldInformationBarrierSegmentMember"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierSegmentMember"',
+    });
   }
   return {
     ...base,
@@ -12230,16 +12532,17 @@ export function deserializeShieldInformationBarrierSegmentTypeField(
   val: any
 ): ShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierSegmentTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierSegmentTypeField"',
+    });
   }
   if (val == 'shield_information_barrier_segment') {
     return 'shield_information_barrier_segment';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierSegment(
   val: ShieldInformationBarrierSegment
@@ -12344,14 +12647,16 @@ export function deserializeShieldInformationBarrierTypeField(
   val: any
 ): ShieldInformationBarrierTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ShieldInformationBarrierTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ShieldInformationBarrierTypeField"',
+    });
   }
   if (val == 'shield_information_barrier') {
     return 'shield_information_barrier';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierStatusField(
   val: ShieldInformationBarrierStatusField
@@ -12362,9 +12667,9 @@ export function deserializeShieldInformationBarrierStatusField(
   val: any
 ): ShieldInformationBarrierStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ShieldInformationBarrierStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ShieldInformationBarrierStatusField"',
+    });
   }
   if (val == 'draft') {
     return 'draft';
@@ -12381,7 +12686,9 @@ export function deserializeShieldInformationBarrierStatusField(
   if (val == 'invalid') {
     return 'invalid';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrier(
   val: ShieldInformationBarrier
@@ -12615,12 +12922,16 @@ export function deserializeWebhookMiniTypeField(
   val: any
 ): WebhookMiniTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WebhookMiniTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebhookMiniTypeField"',
+    });
   }
   if (val == 'webhook') {
     return 'webhook';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebhookMiniTargetTypeField(
   val: WebhookMiniTargetTypeField
@@ -12631,9 +12942,9 @@ export function deserializeWebhookMiniTargetTypeField(
   val: any
 ): WebhookMiniTargetTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WebhookMiniTargetTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebhookMiniTargetTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
@@ -12641,7 +12952,9 @@ export function deserializeWebhookMiniTargetTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebhookMiniTargetField(
   val: WebhookMiniTargetField
@@ -12728,7 +13041,9 @@ export function deserializeWebhookTriggersField(
   val: any
 ): WebhookTriggersField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WebhookTriggersField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebhookTriggersField"',
+    });
   }
   if (val == 'FILE.UPLOADED') {
     return 'FILE.UPLOADED';
@@ -12850,12 +13165,14 @@ export function deserializeWebhookTriggersField(
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
     return 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebhook(val: Webhook): SerializedData {
   const base: any = serializeWebhookMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "Webhook"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "Webhook"' });
   }
   return {
     ...base,
@@ -12914,12 +13231,16 @@ export function deserializeWebLinkBaseTypeField(
   val: any
 ): WebLinkBaseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WebLinkBaseTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebLinkBaseTypeField"',
+    });
   }
   if (val == 'web_link') {
     return 'web_link';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebLinkBase(val: WebLinkBase): SerializedData {
   return {
@@ -12937,7 +13258,7 @@ export function deserializeWebLinkBase(val: any): WebLinkBase {
 export function serializeWebLinkMini(val: WebLinkMini): SerializedData {
   const base: any = serializeWebLinkBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "WebLinkMini"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "WebLinkMini"' });
   }
   return {
     ...base,
@@ -12998,9 +13319,9 @@ export function deserializeWebLinkSharedLinkAccessField(
   val: any
 ): WebLinkSharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WebLinkSharedLinkAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebLinkSharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -13011,7 +13332,9 @@ export function deserializeWebLinkSharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebLinkSharedLinkEffectiveAccessField(
   val: WebLinkSharedLinkEffectiveAccessField
@@ -13022,9 +13345,9 @@ export function deserializeWebLinkSharedLinkEffectiveAccessField(
   val: any
 ): WebLinkSharedLinkEffectiveAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WebLinkSharedLinkEffectiveAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebLinkSharedLinkEffectiveAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -13035,7 +13358,9 @@ export function deserializeWebLinkSharedLinkEffectiveAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebLinkSharedLinkEffectivePermissionField(
   val: WebLinkSharedLinkEffectivePermissionField
@@ -13046,11 +13371,10 @@ export function deserializeWebLinkSharedLinkEffectivePermissionField(
   val: any
 ): WebLinkSharedLinkEffectivePermissionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "WebLinkSharedLinkEffectivePermissionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "WebLinkSharedLinkEffectivePermissionField"',
+    });
   }
   if (val == 'can_edit') {
     return 'can_edit';
@@ -13064,7 +13388,9 @@ export function deserializeWebLinkSharedLinkEffectivePermissionField(
   if (val == 'no_access') {
     return 'no_access';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebLinkSharedLinkPermissionsField(
   val: WebLinkSharedLinkPermissionsField
@@ -13169,7 +13495,9 @@ export function deserializeWebLinkItemStatusField(
   val: any
 ): WebLinkItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WebLinkItemStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebLinkItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -13180,12 +13508,14 @@ export function deserializeWebLinkItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebLink(val: WebLink): SerializedData {
   const base: any = serializeWebLinkMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "WebLink"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "WebLink"' });
   }
   return {
     ...base,
@@ -13289,15 +13619,15 @@ export function serializeFileFullOrFolderMiniOrWebLink(
   if (val.type == 'web_link') {
     return serializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileFullOrFolderMiniOrWebLink(
   val: any
 ): FileFullOrFolderMiniOrWebLink {
   if (!sdIsMap(val)) {
-    throw new Error(
-      String('Expecting a map for "FileFullOrFolderMiniOrWebLink"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileFullOrFolderMiniOrWebLink"',
+    });
   }
   if (val.type == 'file') {
     return deserializeFileFull(val);
@@ -13308,7 +13638,7 @@ export function deserializeFileFullOrFolderMiniOrWebLink(
   if (val.type == 'web_link') {
     return deserializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeItemsOrderDirectionField(
   val: ItemsOrderDirectionField
@@ -13319,9 +13649,9 @@ export function deserializeItemsOrderDirectionField(
   val: any
 ): ItemsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ItemsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ItemsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -13329,7 +13659,9 @@ export function deserializeItemsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeItemsOrderField(val: ItemsOrderField): SerializedData {
   return {
@@ -13429,9 +13761,9 @@ export function deserializeFolderSharedLinkAccessField(
   val: any
 ): FolderSharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FolderSharedLinkAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderSharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -13442,7 +13774,9 @@ export function deserializeFolderSharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderSharedLinkEffectiveAccessField(
   val: FolderSharedLinkEffectiveAccessField
@@ -13453,9 +13787,9 @@ export function deserializeFolderSharedLinkEffectiveAccessField(
   val: any
 ): FolderSharedLinkEffectiveAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FolderSharedLinkEffectiveAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderSharedLinkEffectiveAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -13466,7 +13800,9 @@ export function deserializeFolderSharedLinkEffectiveAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderSharedLinkEffectivePermissionField(
   val: FolderSharedLinkEffectivePermissionField
@@ -13477,11 +13813,10 @@ export function deserializeFolderSharedLinkEffectivePermissionField(
   val: any
 ): FolderSharedLinkEffectivePermissionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "FolderSharedLinkEffectivePermissionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FolderSharedLinkEffectivePermissionField"',
+    });
   }
   if (val == 'can_edit') {
     return 'can_edit';
@@ -13495,7 +13830,9 @@ export function deserializeFolderSharedLinkEffectivePermissionField(
   if (val == 'no_access') {
     return 'no_access';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderSharedLinkPermissionsField(
   val: FolderSharedLinkPermissionsField
@@ -13599,9 +13936,9 @@ export function deserializeFolderFolderUploadEmailAccessField(
   val: any
 ): FolderFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FolderFolderUploadEmailAccessField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderFolderUploadEmailAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -13609,7 +13946,9 @@ export function deserializeFolderFolderUploadEmailAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderFolderUploadEmailField(
   val: FolderFolderUploadEmailField
@@ -13644,7 +13983,9 @@ export function deserializeFolderItemStatusField(
   val: any
 ): FolderItemStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "FolderItemStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderItemStatusField"',
+    });
   }
   if (val == 'active') {
     return 'active';
@@ -13655,12 +13996,14 @@ export function deserializeFolderItemStatusField(
   if (val == 'deleted') {
     return 'deleted';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolder(val: Folder): SerializedData {
   const base: any = serializeFolderMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "Folder"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "Folder"' });
   }
   return {
     ...base,
@@ -13784,12 +14127,16 @@ export function deserializeFolder(val: any): Folder {
 export function serializeEventSourceOrFileOrFolderOrUser(
   val: EventSourceOrFileOrFolderOrUser
 ): SerializedData {
-  throw new Error(String("Can't serialize EventSourceOrFileOrFolderOrUser"));
+  throw new BoxSdkError({
+    message: "Can't serialize EventSourceOrFileOrFolderOrUser",
+  });
 }
 export function deserializeEventSourceOrFileOrFolderOrUser(
   val: any
 ): EventSourceOrFileOrFolderOrUser {
-  throw new Error(String("Can't deserialize EventSourceOrFileOrFolderOrUser"));
+  throw new BoxSdkError({
+    message: "Can't deserialize EventSourceOrFileOrFolderOrUser",
+  });
 }
 export function serializeEventEventTypeField(
   val: EventEventTypeField
@@ -13798,7 +14145,9 @@ export function serializeEventEventTypeField(
 }
 export function deserializeEventEventTypeField(val: any): EventEventTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "EventEventTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "EventEventTypeField"',
+    });
   }
   if (val == 'ACCESS_GRANTED') {
     return 'ACCESS_GRANTED';
@@ -14199,7 +14548,9 @@ export function deserializeEventEventTypeField(val: any): EventEventTypeField {
   if (val == 'WATERMARK_LABEL_DELETE') {
     return 'WATERMARK_LABEL_DELETE';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeEventAdditionalDetailsField(
   val: EventAdditionalDetailsField
@@ -14314,13 +14665,15 @@ export function serializeFileOrFolderOrWebLink(
   if (val.type == 'web_link') {
     return serializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileOrFolderOrWebLink(
   val: any
 ): FileOrFolderOrWebLink {
   if (!sdIsMap(val)) {
-    throw new Error(String('Expecting a map for "FileOrFolderOrWebLink"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileOrFolderOrWebLink"',
+    });
   }
   if (val.type == 'file') {
     return deserializeFile(val);
@@ -14331,14 +14684,16 @@ export function deserializeFileOrFolderOrWebLink(
   if (val.type == 'web_link') {
     return deserializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeLegalHoldPolicyAssignment(
   val: LegalHoldPolicyAssignment
 ): SerializedData {
   const base: any = serializeLegalHoldPolicyAssignmentBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "LegalHoldPolicyAssignment"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyAssignment"',
+    });
   }
   return {
     ...base,
@@ -14437,14 +14792,16 @@ export function deserializeFileVersionLegalHoldTypeField(
   val: any
 ): FileVersionLegalHoldTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FileVersionLegalHoldTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FileVersionLegalHoldTypeField"',
+    });
   }
   if (val == 'file_version_legal_hold') {
     return 'file_version_legal_hold';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFileVersionLegalHold(
   val: FileVersionLegalHold
@@ -14555,12 +14912,16 @@ export function deserializeCollaborationTypeField(
   val: any
 ): CollaborationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "CollaborationTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaborationTypeField"',
+    });
   }
   if (val == 'collaboration') {
     return 'collaboration';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationRoleField(
   val: CollaborationRoleField
@@ -14571,7 +14932,9 @@ export function deserializeCollaborationRoleField(
   val: any
 ): CollaborationRoleField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "CollaborationRoleField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaborationRoleField"',
+    });
   }
   if (val == 'editor') {
     return 'editor';
@@ -14597,7 +14960,9 @@ export function deserializeCollaborationRoleField(
   if (val == 'owner') {
     return 'owner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationStatusField(
   val: CollaborationStatusField
@@ -14608,9 +14973,9 @@ export function deserializeCollaborationStatusField(
   val: any
 ): CollaborationStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CollaborationStatusField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaborationStatusField"',
+    });
   }
   if (val == 'accepted') {
     return 'accepted';
@@ -14621,7 +14986,9 @@ export function deserializeCollaborationStatusField(
   if (val == 'rejected') {
     return 'rejected';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
   val: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField
@@ -14869,9 +15236,9 @@ export function deserializeCollaborationsOrderDirectionField(
   val: any
 ): CollaborationsOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CollaborationsOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaborationsOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -14879,7 +15246,9 @@ export function deserializeCollaborationsOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCollaborationsOrderField(
   val: CollaborationsOrderField
@@ -14957,11 +15326,11 @@ export function serializeFileOrFolder(val: FileOrFolder): SerializedData {
   if (val.type == 'folder') {
     return serializeFolder(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileOrFolder(val: any): FileOrFolder {
   if (!sdIsMap(val)) {
-    throw new Error(String('Expecting a map for "FileOrFolder"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FileOrFolder"' });
   }
   if (val.type == 'file') {
     return deserializeFile(val);
@@ -14969,7 +15338,7 @@ export function deserializeFileOrFolder(val: any): FileOrFolder {
   if (val.type == 'folder') {
     return deserializeFolder(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeMetadataQueryResults(
   val: MetadataQueryResults
@@ -15014,14 +15383,16 @@ export function deserializeWebhookInvocationTypeField(
   val: any
 ): WebhookInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WebhookInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebhookInvocationTypeField"',
+    });
   }
   if (val == 'webhook_event') {
     return 'webhook_event';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebhookInvocationTriggerField(
   val: WebhookInvocationTriggerField
@@ -15032,9 +15403,9 @@ export function deserializeWebhookInvocationTriggerField(
   val: any
 ): WebhookInvocationTriggerField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WebhookInvocationTriggerField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WebhookInvocationTriggerField"',
+    });
   }
   if (val == 'FILE.UPLOADED') {
     return 'FILE.UPLOADED';
@@ -15156,7 +15527,9 @@ export function deserializeWebhookInvocationTriggerField(
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
     return 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWebhookInvocation(
   val: WebhookInvocation
@@ -15216,14 +15589,16 @@ export function deserializeSkillInvocationTypeField(
   val: any
 ): SkillInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SkillInvocationTypeField"',
+    });
   }
   if (val == 'skill_invocation') {
     return 'skill_invocation';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationSkillTypeField(
   val: SkillInvocationSkillTypeField
@@ -15234,14 +15609,16 @@ export function deserializeSkillInvocationSkillTypeField(
   val: any
 ): SkillInvocationSkillTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationSkillTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SkillInvocationSkillTypeField"',
+    });
   }
   if (val == 'skill') {
     return 'skill';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationSkillField(
   val: SkillInvocationSkillField
@@ -15283,14 +15660,17 @@ export function deserializeSkillInvocationTokenReadTokenTypeField(
   val: any
 ): SkillInvocationTokenReadTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationTokenReadTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SkillInvocationTokenReadTokenTypeField"',
+    });
   }
   if (val == 'bearer') {
     return 'bearer';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationTokenReadField(
   val: SkillInvocationTokenReadField
@@ -15334,14 +15714,17 @@ export function deserializeSkillInvocationTokenWriteTokenTypeField(
   val: any
 ): SkillInvocationTokenWriteTokenTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationTokenWriteTokenTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SkillInvocationTokenWriteTokenTypeField"',
+    });
   }
   if (val == 'bearer') {
     return 'bearer';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationTokenWriteField(
   val: SkillInvocationTokenWriteField
@@ -15412,9 +15795,9 @@ export function deserializeSkillInvocationStatusStateField(
   val: any
 ): SkillInvocationStatusStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationStatusStateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SkillInvocationStatusStateField"',
+    });
   }
   if (val == 'invoked') {
     return 'invoked';
@@ -15431,7 +15814,9 @@ export function deserializeSkillInvocationStatusStateField(
   if (val == 'permanent_failure') {
     return 'permanent_failure';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationStatusField(
   val: SkillInvocationStatusField
@@ -15476,14 +15861,16 @@ export function deserializeSkillInvocationEnterpriseTypeField(
   val: any
 ): SkillInvocationEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SkillInvocationEnterpriseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SkillInvocationEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSkillInvocationEnterpriseField(
   val: SkillInvocationEnterpriseField
@@ -15590,9 +15977,9 @@ export function deserializeFolderFullSyncStateField(
   val: any
 ): FolderFullSyncStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FolderFullSyncStateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderFullSyncStateField"',
+    });
   }
   if (val == 'synced') {
     return 'synced';
@@ -15603,7 +15990,9 @@ export function deserializeFolderFullSyncStateField(
   if (val == 'partially_synced') {
     return 'partially_synced';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderFullPermissionsField(
   val: FolderFullPermissionsField
@@ -15665,11 +16054,10 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   val: any
 ): FolderFullAllowedSharedLinkAccessLevelsField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "FolderFullAllowedSharedLinkAccessLevelsField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "FolderFullAllowedSharedLinkAccessLevelsField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -15680,7 +16068,9 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderFullAllowedInviteeRolesField(
   val: FolderFullAllowedInviteeRolesField
@@ -15691,9 +16081,9 @@ export function deserializeFolderFullAllowedInviteeRolesField(
   val: any
 ): FolderFullAllowedInviteeRolesField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "FolderFullAllowedInviteeRolesField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "FolderFullAllowedInviteeRolesField"',
+    });
   }
   if (val == 'editor') {
     return 'editor';
@@ -15716,7 +16106,9 @@ export function deserializeFolderFullAllowedInviteeRolesField(
   if (val == 'co-owner') {
     return 'co-owner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeFolderFullWatermarkInfoField(
   val: FolderFullWatermarkInfoField
@@ -15760,7 +16152,7 @@ export function deserializeFolderFullClassificationField(
 export function serializeFolderFull(val: FolderFull): SerializedData {
   const base: any = serializeFolder(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "FolderFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "FolderFull"' });
   }
   return {
     ...base,
@@ -16000,15 +16392,15 @@ export function serializeFileFullOrFolderFullOrWebLink(
   if (val.type == 'web_link') {
     return serializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileFullOrFolderFullOrWebLink(
   val: any
 ): FileFullOrFolderFullOrWebLink {
   if (!sdIsMap(val)) {
-    throw new Error(
-      String('Expecting a map for "FileFullOrFolderFullOrWebLink"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileFullOrFolderFullOrWebLink"',
+    });
   }
   if (val.type == 'file') {
     return deserializeFileFull(val);
@@ -16019,7 +16411,7 @@ export function deserializeFileFullOrFolderFullOrWebLink(
   if (val.type == 'web_link') {
     return deserializeWebLink(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeSearchResultWithSharedLink(
   val: SearchResultWithSharedLink
@@ -16063,14 +16455,16 @@ export function deserializeSearchResultsWithSharedLinksTypeField(
   val: any
 ): SearchResultsWithSharedLinksTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SearchResultsWithSharedLinksTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SearchResultsWithSharedLinksTypeField"',
+    });
   }
   if (val == 'search_results_with_shared_links') {
     return 'search_results_with_shared_links';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSearchResultsWithSharedLinks(
   val: SearchResultsWithSharedLinks
@@ -16122,12 +16516,16 @@ export function deserializeSearchResultsTypeField(
   val: any
 ): SearchResultsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "SearchResultsTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SearchResultsTypeField"',
+    });
   }
   if (val == 'search_results_items') {
     return 'search_results_items';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSearchResults(val: SearchResults): SerializedData {
   return {
@@ -16176,17 +16574,16 @@ export function serializeSearchResultsOrSearchResultsWithSharedLinks(
   if (val.type == 'search_results_with_shared_links') {
     return serializeSearchResultsWithSharedLinks(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
   val: any
 ): SearchResultsOrSearchResultsWithSharedLinks {
   if (!sdIsMap(val)) {
-    throw new Error(
-      String(
-        'Expecting a map for "SearchResultsOrSearchResultsWithSharedLinks"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "SearchResultsOrSearchResultsWithSharedLinks"',
+    });
   }
   if (val.type == 'search_results_items') {
     return deserializeSearchResults(val);
@@ -16194,7 +16591,7 @@ export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
   if (val.type == 'search_results_with_shared_links') {
     return deserializeSearchResultsWithSharedLinks(val);
   }
-  throw new Error(String('unknown type'));
+  throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeRecentItemInteractionTypeField(
   val: RecentItemInteractionTypeField
@@ -16205,9 +16602,9 @@ export function deserializeRecentItemInteractionTypeField(
   val: any
 ): RecentItemInteractionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "RecentItemInteractionTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RecentItemInteractionTypeField"',
+    });
   }
   if (val == 'item_preview') {
     return 'item_preview';
@@ -16224,7 +16621,9 @@ export function deserializeRecentItemInteractionTypeField(
   if (val == 'item_modify') {
     return 'item_modify';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeRecentItem(val: RecentItem): SerializedData {
   return {
@@ -16309,12 +16708,16 @@ export function deserializeWorkflowMiniTypeField(
   val: any
 ): WorkflowMiniTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WorkflowMiniTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowMiniTypeField"',
+    });
   }
   if (val == 'workflow') {
     return 'workflow';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowMini(val: WorkflowMini): SerializedData {
   return {
@@ -16352,12 +16755,16 @@ export function deserializeWorkflowFlowsTypeField(
   val: any
 ): WorkflowFlowsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "WorkflowFlowsTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsTypeField"',
+    });
   }
   if (val == 'flow') {
     return 'flow';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsTriggerTypeField(
   val: WorkflowFlowsTriggerTypeField
@@ -16368,14 +16775,16 @@ export function deserializeWorkflowFlowsTriggerTypeField(
   val: any
 ): WorkflowFlowsTriggerTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WorkflowFlowsTriggerTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsTriggerTypeField"',
+    });
   }
   if (val == 'trigger') {
     return 'trigger';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsTriggerTriggerTypeField(
   val: WorkflowFlowsTriggerTriggerTypeField
@@ -16386,14 +16795,16 @@ export function deserializeWorkflowFlowsTriggerTriggerTypeField(
   val: any
 ): WorkflowFlowsTriggerTriggerTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WorkflowFlowsTriggerTriggerTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsTriggerTriggerTypeField"',
+    });
   }
   if (val == 'WORKFLOW_MANUAL_START') {
     return 'WORKFLOW_MANUAL_START';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsTriggerScopeTypeField(
   val: WorkflowFlowsTriggerScopeTypeField
@@ -16404,14 +16815,16 @@ export function deserializeWorkflowFlowsTriggerScopeTypeField(
   val: any
 ): WorkflowFlowsTriggerScopeTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WorkflowFlowsTriggerScopeTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsTriggerScopeTypeField"',
+    });
   }
   if (val == 'trigger_scope') {
     return 'trigger_scope';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectTypeField(
   val: WorkflowFlowsTriggerScopeObjectTypeField
@@ -16422,16 +16835,17 @@ export function deserializeWorkflowFlowsTriggerScopeObjectTypeField(
   val: any
 ): WorkflowFlowsTriggerScopeObjectTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "WorkflowFlowsTriggerScopeObjectTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "WorkflowFlowsTriggerScopeObjectTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectField(
   val: WorkflowFlowsTriggerScopeObjectField
@@ -16541,14 +16955,16 @@ export function deserializeWorkflowFlowsOutcomesTypeField(
   val: any
 ): WorkflowFlowsOutcomesTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WorkflowFlowsOutcomesTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsOutcomesTypeField"',
+    });
   }
   if (val == 'outcome') {
     return 'outcome';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsOutcomesActionTypeField(
   val: WorkflowFlowsOutcomesActionTypeField
@@ -16559,9 +16975,9 @@ export function deserializeWorkflowFlowsOutcomesActionTypeField(
   val: any
 ): WorkflowFlowsOutcomesActionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "WorkflowFlowsOutcomesActionTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "WorkflowFlowsOutcomesActionTypeField"',
+    });
   }
   if (val == 'add_metadata') {
     return 'add_metadata';
@@ -16632,7 +17048,9 @@ export function deserializeWorkflowFlowsOutcomesActionTypeField(
   if (val == 'send_notification') {
     return 'send_notification';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedTypeField(
   val: WorkflowFlowsOutcomesIfRejectedTypeField
@@ -16643,16 +17061,17 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedTypeField(
   val: any
 ): WorkflowFlowsOutcomesIfRejectedTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedTypeField"',
+    });
   }
   if (val == 'outcome') {
     return 'outcome';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   val: WorkflowFlowsOutcomesIfRejectedActionTypeField
@@ -16663,11 +17082,10 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   val: any
 ): WorkflowFlowsOutcomesIfRejectedActionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedActionTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedActionTypeField"',
+    });
   }
   if (val == 'add_metadata') {
     return 'add_metadata';
@@ -16738,7 +17156,9 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   if (val == 'send_notification') {
     return 'send_notification';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedField(
   val: WorkflowFlowsOutcomesIfRejectedField
@@ -16889,7 +17309,7 @@ export function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField {
 export function serializeWorkflow(val: Workflow): SerializedData {
   const base: any = serializeWorkflowMini(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "Workflow"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "Workflow"' });
   }
   return {
     ...base,
@@ -16966,7 +17386,7 @@ export function deserializeWorkflows(val: any): Workflows {
 export function serializeWorkflowFull(val: WorkflowFull): SerializedData {
   const base: any = serializeWorkflow(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "WorkflowFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "WorkflowFull"' });
   }
   return {
     ...base,
@@ -17027,9 +17447,9 @@ export function deserializeZipDownloadNameConflictsTypeField(
   val: any
 ): ZipDownloadNameConflictsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ZipDownloadNameConflictsTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ZipDownloadNameConflictsTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
@@ -17037,7 +17457,9 @@ export function deserializeZipDownloadNameConflictsTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeZipDownloadNameConflictsField(
   val: ZipDownloadNameConflictsField
@@ -17127,9 +17549,9 @@ export function deserializeZipDownloadStatusStateField(
   val: any
 ): ZipDownloadStatusStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "ZipDownloadStatusStateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "ZipDownloadStatusStateField"',
+    });
   }
   if (val == 'in_progress') {
     return 'in_progress';
@@ -17140,7 +17562,9 @@ export function deserializeZipDownloadStatusStateField(
   if (val == 'succeeded') {
     return 'succeeded';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeZipDownloadStatus(
   val: ZipDownloadStatus
@@ -17190,14 +17614,16 @@ export function deserializeKeywordSkillCardTypeField(
   val: any
 ): KeywordSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "KeywordSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "KeywordSkillCardTypeField"',
+    });
   }
   if (val == 'skill_card') {
     return 'skill_card';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeKeywordSkillCardSkillCardTypeField(
   val: KeywordSkillCardSkillCardTypeField
@@ -17208,14 +17634,16 @@ export function deserializeKeywordSkillCardSkillCardTypeField(
   val: any
 ): KeywordSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "KeywordSkillCardSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "KeywordSkillCardSkillCardTypeField"',
+    });
   }
   if (val == 'keyword') {
     return 'keyword';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeKeywordSkillCardSkillCardTitleField(
   val: KeywordSkillCardSkillCardTitleField
@@ -17244,14 +17672,16 @@ export function deserializeKeywordSkillCardSkillTypeField(
   val: any
 ): KeywordSkillCardSkillTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "KeywordSkillCardSkillTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "KeywordSkillCardSkillTypeField"',
+    });
   }
   if (val == 'service') {
     return 'service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeKeywordSkillCardSkillField(
   val: KeywordSkillCardSkillField
@@ -17278,14 +17708,16 @@ export function deserializeKeywordSkillCardInvocationTypeField(
   val: any
 ): KeywordSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "KeywordSkillCardInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "KeywordSkillCardInvocationTypeField"',
+    });
   }
   if (val == 'skill_invocation') {
     return 'skill_invocation';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeKeywordSkillCardInvocationField(
   val: KeywordSkillCardInvocationField
@@ -17397,16 +17829,17 @@ export function deserializeIntegrationMappingPartnerItemSlackTypeField(
   val: any
 ): IntegrationMappingPartnerItemSlackTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "IntegrationMappingPartnerItemSlackTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "IntegrationMappingPartnerItemSlackTypeField"',
+    });
   }
   if (val == 'channel') {
     return 'channel';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMappingPartnerItemSlack(
   val: IntegrationMappingPartnerItemSlack
@@ -17445,21 +17878,25 @@ export function deserializeIntegrationMappingTypeField(
   val: any
 ): IntegrationMappingTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "IntegrationMappingTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "IntegrationMappingTypeField"',
+    });
   }
   if (val == 'integration_mapping') {
     return 'integration_mapping';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMapping(
   val: IntegrationMapping
 ): SerializedData {
   const base: any = serializeIntegrationMappingBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "IntegrationMapping"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMapping"',
+    });
   }
   return {
     ...base,
@@ -17576,14 +18013,17 @@ export function deserializeIntegrationMappingBoxItemSlackTypeField(
   val: any
 ): IntegrationMappingBoxItemSlackTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "IntegrationMappingBoxItemSlackTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "IntegrationMappingBoxItemSlackTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeIntegrationMappingBoxItemSlack(
   val: IntegrationMappingBoxItemSlack
@@ -17641,14 +18081,16 @@ export function deserializeTimelineSkillCardTypeField(
   val: any
 ): TimelineSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TimelineSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TimelineSkillCardTypeField"',
+    });
   }
   if (val == 'skill_card') {
     return 'skill_card';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTimelineSkillCardSkillCardTypeField(
   val: TimelineSkillCardSkillCardTypeField
@@ -17659,14 +18101,16 @@ export function deserializeTimelineSkillCardSkillCardTypeField(
   val: any
 ): TimelineSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TimelineSkillCardSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TimelineSkillCardSkillCardTypeField"',
+    });
   }
   if (val == 'timeline') {
     return 'timeline';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTimelineSkillCardSkillCardTitleField(
   val: TimelineSkillCardSkillCardTitleField
@@ -17695,14 +18139,16 @@ export function deserializeTimelineSkillCardSkillTypeField(
   val: any
 ): TimelineSkillCardSkillTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TimelineSkillCardSkillTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TimelineSkillCardSkillTypeField"',
+    });
   }
   if (val == 'service') {
     return 'service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTimelineSkillCardSkillField(
   val: TimelineSkillCardSkillField
@@ -17729,14 +18175,16 @@ export function deserializeTimelineSkillCardInvocationTypeField(
   val: any
 ): TimelineSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TimelineSkillCardInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TimelineSkillCardInvocationTypeField"',
+    });
   }
   if (val == 'skill_invocation') {
     return 'skill_invocation';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTimelineSkillCardInvocationField(
   val: TimelineSkillCardInvocationField
@@ -17875,14 +18323,16 @@ export function deserializeTranscriptSkillCardTypeField(
   val: any
 ): TranscriptSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TranscriptSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TranscriptSkillCardTypeField"',
+    });
   }
   if (val == 'skill_card') {
     return 'skill_card';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTranscriptSkillCardSkillCardTypeField(
   val: TranscriptSkillCardSkillCardTypeField
@@ -17893,14 +18343,16 @@ export function deserializeTranscriptSkillCardSkillCardTypeField(
   val: any
 ): TranscriptSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TranscriptSkillCardSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TranscriptSkillCardSkillCardTypeField"',
+    });
   }
   if (val == 'transcript') {
     return 'transcript';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTranscriptSkillCardSkillCardTitleField(
   val: TranscriptSkillCardSkillCardTitleField
@@ -17929,14 +18381,16 @@ export function deserializeTranscriptSkillCardSkillTypeField(
   val: any
 ): TranscriptSkillCardSkillTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TranscriptSkillCardSkillTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TranscriptSkillCardSkillTypeField"',
+    });
   }
   if (val == 'service') {
     return 'service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTranscriptSkillCardSkillField(
   val: TranscriptSkillCardSkillField
@@ -17963,14 +18417,17 @@ export function deserializeTranscriptSkillCardInvocationTypeField(
   val: any
 ): TranscriptSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TranscriptSkillCardInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "TranscriptSkillCardInvocationTypeField"',
+    });
   }
   if (val == 'skill_invocation') {
     return 'skill_invocation';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTranscriptSkillCardInvocationField(
   val: TranscriptSkillCardInvocationField
@@ -18098,14 +18555,16 @@ export function deserializeStatusSkillCardTypeField(
   val: any
 ): StatusSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StatusSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StatusSkillCardTypeField"',
+    });
   }
   if (val == 'skill_card') {
     return 'skill_card';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStatusSkillCardSkillCardTypeField(
   val: StatusSkillCardSkillCardTypeField
@@ -18116,14 +18575,16 @@ export function deserializeStatusSkillCardSkillCardTypeField(
   val: any
 ): StatusSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StatusSkillCardSkillCardTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StatusSkillCardSkillCardTypeField"',
+    });
   }
   if (val == 'status') {
     return 'status';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStatusSkillCardSkillCardTitleField(
   val: StatusSkillCardSkillCardTitleField
@@ -18152,9 +18613,9 @@ export function deserializeStatusSkillCardStatusCodeField(
   val: any
 ): StatusSkillCardStatusCodeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StatusSkillCardStatusCodeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StatusSkillCardStatusCodeField"',
+    });
   }
   if (val == 'invoked') {
     return 'invoked';
@@ -18171,7 +18632,9 @@ export function deserializeStatusSkillCardStatusCodeField(
   if (val == 'permanent_failure') {
     return 'permanent_failure';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStatusSkillCardStatusField(
   val: StatusSkillCardStatusField
@@ -18199,14 +18662,16 @@ export function deserializeStatusSkillCardSkillTypeField(
   val: any
 ): StatusSkillCardSkillTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StatusSkillCardSkillTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StatusSkillCardSkillTypeField"',
+    });
   }
   if (val == 'service') {
     return 'service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStatusSkillCardSkillField(
   val: StatusSkillCardSkillField
@@ -18233,14 +18698,16 @@ export function deserializeStatusSkillCardInvocationTypeField(
   val: any
 ): StatusSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "StatusSkillCardInvocationTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "StatusSkillCardInvocationTypeField"',
+    });
   }
   if (val == 'skill_invocation') {
     return 'skill_invocation';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeStatusSkillCardInvocationField(
   val: StatusSkillCardInvocationField
@@ -18306,20 +18773,18 @@ export function deserializeStatusSkillCard(val: any): StatusSkillCard {
 export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
   val: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
 ): SerializedData {
-  throw new Error(
-    String(
-      "Can't serialize KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard"
-    )
-  );
+  throw new BoxSdkError({
+    message:
+      "Can't serialize KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard",
+  });
 }
 export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
   val: any
 ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
-  throw new Error(
-    String(
-      "Can't deserialize KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard"
-    )
-  );
+  throw new BoxSdkError({
+    message:
+      "Can't deserialize KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard",
+  });
 }
 export function serializeSkillCardsMetadata(
   val: SkillCardsMetadata
@@ -18392,9 +18857,9 @@ export function deserializeSignRequestCreateSignerRoleField(
   val: any
 ): SignRequestCreateSignerRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SignRequestCreateSignerRoleField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SignRequestCreateSignerRoleField"',
+    });
   }
   if (val == 'signer') {
     return 'signer';
@@ -18405,7 +18870,9 @@ export function deserializeSignRequestCreateSignerRoleField(
   if (val == 'final_copy_reader') {
     return 'final_copy_reader';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestCreateSigner(
   val: SignRequestCreateSigner
@@ -18518,9 +18985,9 @@ export function deserializeSignRequestSignerInputTypeField(
   val: any
 ): SignRequestSignerInputTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SignRequestSignerInputTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SignRequestSignerInputTypeField"',
+    });
   }
   if (val == 'signature') {
     return 'signature';
@@ -18540,7 +19007,9 @@ export function deserializeSignRequestSignerInputTypeField(
   if (val == 'dropdown') {
     return 'dropdown';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestSignerInputContentTypeField(
   val: SignRequestSignerInputContentTypeField
@@ -18551,9 +19020,10 @@ export function deserializeSignRequestSignerInputContentTypeField(
   val: any
 ): SignRequestSignerInputContentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "SignRequestSignerInputContentTypeField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SignRequestSignerInputContentTypeField"',
+    });
   }
   if (val == 'signature') {
     return 'signature';
@@ -18600,14 +19070,18 @@ export function deserializeSignRequestSignerInputContentTypeField(
   if (val == 'dropdown') {
     return 'dropdown';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestSignerInput(
   val: SignRequestSignerInput
 ): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "SignRequestSignerInput"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestSignerInput"',
+    });
   }
   return {
     ...base,
@@ -18663,11 +19137,10 @@ export function deserializeSignRequestSignerSignerDecisionTypeField(
   val: any
 ): SignRequestSignerSignerDecisionTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "SignRequestSignerSignerDecisionTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SignRequestSignerSignerDecisionTypeField"',
+    });
   }
   if (val == 'signed') {
     return 'signed';
@@ -18675,7 +19148,9 @@ export function deserializeSignRequestSignerSignerDecisionTypeField(
   if (val == 'declined') {
     return 'declined';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestSignerSignerDecisionField(
   val: SignRequestSignerSignerDecisionField
@@ -18712,7 +19187,9 @@ export function serializeSignRequestSigner(
 ): SerializedData {
   const base: any = serializeSignRequestCreateSigner(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "SignRequestSigner"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestSigner"',
+    });
   }
   return {
     ...base,
@@ -18898,12 +19375,16 @@ export function deserializeSignRequestTypeField(
   val: any
 ): SignRequestTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "SignRequestTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SignRequestTypeField"',
+    });
   }
   if (val == 'sign-request') {
     return 'sign-request';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestStatusField(
   val: SignRequestStatusField
@@ -18914,7 +19395,9 @@ export function deserializeSignRequestStatusField(
   val: any
 ): SignRequestStatusField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "SignRequestStatusField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SignRequestStatusField"',
+    });
   }
   if (val == 'converting') {
     return 'converting';
@@ -18952,7 +19435,9 @@ export function deserializeSignRequestStatusField(
   if (val == 'error_finalizing') {
     return 'error_finalizing';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestSignFilesField(
   val: SignRequestSignFilesField
@@ -18989,7 +19474,7 @@ export function deserializeSignRequestSignFilesField(
 export function serializeSignRequest(val: SignRequest): SerializedData {
   const base: any = serializeSignRequestBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "SignRequest"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "SignRequest"' });
   }
   return {
     ...base,
@@ -19167,11 +19652,10 @@ export function deserializeSignRequestCreateRequestSignatureColorField(
   val: any
 ): SignRequestCreateRequestSignatureColorField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "SignRequestCreateRequestSignatureColorField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SignRequestCreateRequestSignatureColorField"',
+    });
   }
   if (val == 'blue') {
     return 'blue';
@@ -19182,14 +19666,18 @@ export function deserializeSignRequestCreateRequestSignatureColorField(
   if (val == 'red') {
     return 'red';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignRequestCreateRequest(
   val: SignRequestCreateRequest
 ): SerializedData {
   const base: any = serializeSignRequestBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "SignRequestCreateRequest"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestCreateRequest"',
+    });
   }
   return {
     ...base,
@@ -19305,9 +19793,9 @@ export function deserializeTemplateSignerInputTypeField(
   val: any
 ): TemplateSignerInputTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TemplateSignerInputTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TemplateSignerInputTypeField"',
+    });
   }
   if (val == 'signature') {
     return 'signature';
@@ -19330,7 +19818,9 @@ export function deserializeTemplateSignerInputTypeField(
   if (val == 'dropdown') {
     return 'dropdown';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTemplateSignerInputContentTypeField(
   val: TemplateSignerInputContentTypeField
@@ -19341,9 +19831,9 @@ export function deserializeTemplateSignerInputContentTypeField(
   val: any
 ): TemplateSignerInputContentTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "TemplateSignerInputContentTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TemplateSignerInputContentTypeField"',
+    });
   }
   if (val == 'signature') {
     return 'signature';
@@ -19390,7 +19880,9 @@ export function deserializeTemplateSignerInputContentTypeField(
   if (val == 'dropdown') {
     return 'dropdown';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTemplateSignerInputCoordinatesField(
   val: TemplateSignerInputCoordinatesField
@@ -19430,7 +19922,9 @@ export function serializeTemplateSignerInput(
 ): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "TemplateSignerInput"'));
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TemplateSignerInput"',
+    });
   }
   return {
     ...base,
@@ -19532,7 +20026,9 @@ export function deserializeTemplateSignerRoleField(
   val: any
 ): TemplateSignerRoleField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TemplateSignerRoleField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TemplateSignerRoleField"',
+    });
   }
   if (val == 'signer') {
     return 'signer';
@@ -19543,7 +20039,9 @@ export function deserializeTemplateSignerRoleField(
   if (val == 'final_copy_reader') {
     return 'final_copy_reader';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
   return {
@@ -19597,12 +20095,16 @@ export function deserializeSignTemplateTypeField(
   val: any
 ): SignTemplateTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "SignTemplateTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "SignTemplateTypeField"',
+    });
   }
   if (val == 'sign-template') {
     return 'sign-template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignTemplateAdditionalInfoNonEditableField(
   val: SignTemplateAdditionalInfoNonEditableField
@@ -19613,11 +20115,10 @@ export function deserializeSignTemplateAdditionalInfoNonEditableField(
   val: any
 ): SignTemplateAdditionalInfoNonEditableField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "SignTemplateAdditionalInfoNonEditableField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SignTemplateAdditionalInfoNonEditableField"',
+    });
   }
   if (val == 'email_subject') {
     return 'email_subject';
@@ -19637,7 +20138,9 @@ export function deserializeSignTemplateAdditionalInfoNonEditableField(
   if (val == 'source_files') {
     return 'source_files';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignTemplateAdditionalInfoRequiredSignersField(
   val: SignTemplateAdditionalInfoRequiredSignersField
@@ -19648,16 +20151,17 @@ export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
   val: any
 ): SignTemplateAdditionalInfoRequiredSignersField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "SignTemplateAdditionalInfoRequiredSignersField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "SignTemplateAdditionalInfoRequiredSignersField"',
+    });
   }
   if (val == 'email') {
     return 'email';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeSignTemplateAdditionalInfoRequiredField(
   val: SignTemplateAdditionalInfoRequiredField
@@ -20015,11 +20519,10 @@ export function deserializeShieldInformationBarrierReportStatusField(
   val: any
 ): ShieldInformationBarrierReportStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ShieldInformationBarrierReportStatusField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierReportStatusField"',
+    });
   }
   if (val == 'pending') {
     return 'pending';
@@ -20033,16 +20536,18 @@ export function deserializeShieldInformationBarrierReportStatusField(
   if (val == 'cancelled') {
     return 'cancelled';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeShieldInformationBarrierReport(
   val: ShieldInformationBarrierReport
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierReportBase(val);
   if (!sdIsMap(base)) {
-    throw new Error(
-      String('Expecting a map for "ShieldInformationBarrierReport"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReport"',
+    });
   }
   return {
     ...base,
@@ -20154,12 +20659,16 @@ export function deserializeTrackingCodeTypeField(
   val: any
 ): TrackingCodeTypeField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "TrackingCodeTypeField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TrackingCodeTypeField"',
+    });
   }
   if (val == 'tracking_code') {
     return 'tracking_code';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeTrackingCode(val: TrackingCode): SerializedData {
   return {
@@ -20183,7 +20692,9 @@ export function serializeUserFullRoleField(
 }
 export function deserializeUserFullRoleField(val: any): UserFullRoleField {
   if (!sdIsString(val)) {
-    throw new Error(String('Expecting a string for "UserFullRoleField"'));
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UserFullRoleField"',
+    });
   }
   if (val == 'admin') {
     return 'admin';
@@ -20194,7 +20705,9 @@ export function deserializeUserFullRoleField(val: any): UserFullRoleField {
   if (val == 'user') {
     return 'user';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUserFullEnterpriseTypeField(
   val: UserFullEnterpriseTypeField
@@ -20205,14 +20718,16 @@ export function deserializeUserFullEnterpriseTypeField(
   val: any
 ): UserFullEnterpriseTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "UserFullEnterpriseTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UserFullEnterpriseTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUserFullEnterpriseField(
   val: UserFullEnterpriseField
@@ -20240,7 +20755,7 @@ export function deserializeUserFullEnterpriseField(
 export function serializeUserFull(val: UserFull): SerializedData {
   const base: any = serializeUser(val);
   if (!sdIsMap(base)) {
-    throw new Error(String('Expecting a map for "UserFull"'));
+    throw new BoxSdkError({ message: 'Expecting a map for "UserFull"' });
   }
   return {
     ...base,
@@ -20406,9 +20921,9 @@ export function deserializeUsersOrderDirectionField(
   val: any
 ): UsersOrderDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "UsersOrderDirectionField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "UsersOrderDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -20416,7 +20931,9 @@ export function deserializeUsersOrderDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUsersOrderField(val: UsersOrderField): SerializedData {
   return {
@@ -20597,9 +21114,9 @@ export function deserializeMetadataFilterScopeField(
   val: any
 ): MetadataFilterScopeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "MetadataFilterScopeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "MetadataFilterScopeField"',
+    });
   }
   if (val == 'global') {
     return 'global';
@@ -20610,17 +21127,23 @@ export function deserializeMetadataFilterScopeField(
   if (val == 'enterprise_{enterprise_id}') {
     return 'enterprise_{enterprise_id}';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeMetadataFilterFiltersField(
   val: MetadataFilterFiltersField
 ): SerializedData {
-  throw new Error(String("Can't serialize MetadataFilterFiltersField"));
+  throw new BoxSdkError({
+    message: "Can't serialize MetadataFilterFiltersField",
+  });
 }
 export function deserializeMetadataFilterFiltersField(
   val: any
 ): MetadataFilterFiltersField {
-  throw new Error(String("Can't deserialize MetadataFilterFiltersField"));
+  throw new BoxSdkError({
+    message: "Can't deserialize MetadataFilterFiltersField",
+  });
 }
 export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
   return {

@@ -58,7 +58,7 @@ test('testCollections', async function testCollections(): Promise<any> {
       collectionItems.entries!.length + 1
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.updateFolderById(folder.id, {
     collections: [],
@@ -71,7 +71,7 @@ test('testCollections', async function testCollections(): Promise<any> {
       collectionItems.entries!.length
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(folder.id);
 });

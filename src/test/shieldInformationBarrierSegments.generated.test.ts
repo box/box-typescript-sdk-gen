@@ -54,7 +54,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
       } satisfies CreateShieldInformationBarrierSegmentRequestBody
     );
   if (!(segment.name! == segmentName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const segments: ShieldInformationBarrierSegments =
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegments(
@@ -63,7 +63,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
       } satisfies GetShieldInformationBarrierSegmentsQueryParams
     );
   if (!(segments.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const segmentId: string = segment.id!;
   const segmentFromApi: ShieldInformationBarrierSegment =
@@ -76,19 +76,19 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
       'shield_information_barrier_segment'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(segmentFromApi.id! == segmentId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(segmentFromApi.name! == segmentName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(segmentFromApi.description! == segmentDescription)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(segmentFromApi.shieldInformationBarrier!.id == barrierId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedSegmentDescription: string =
     'updated barrier segment description';
@@ -100,7 +100,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
       } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody
     );
   if (!(updatedSegment.description! == updatedSegmentDescription)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
     segmentId

@@ -51,10 +51,10 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   } satisfies UploadFileRequestBody);
   const file: FileFull = files.entries![0];
   if (!(file.name == oldName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(file.size == 10)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const newFiles: Files = await client.uploads.uploadFileVersion(file.id, {
     attributes: {
@@ -64,16 +64,16 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   } satisfies UploadFileVersionRequestBody);
   const newFile: FileFull = newFiles.entries![0];
   if (!(newFile.name == newName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newFile.size == 20)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fileVersions: FileVersions = await client.fileVersions.getFileVersions(
     file.id
   );
   if (!(fileVersions.totalCount == 1)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fileVersion: FileVersionFull =
     await client.fileVersions.getFileVersionById(
@@ -81,7 +81,7 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
       fileVersions.entries![0].id
     );
   if (!(fileVersion.id == fileVersions.entries![0].id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.fileVersions.promoteFileVersion(file.id, {
     id: fileVersions.entries![0].id,
@@ -89,10 +89,10 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
   } satisfies PromoteFileVersionRequestBody);
   const fileRestored: FileFull = await client.files.getFileById(file.id);
   if (!(fileRestored.name == oldName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(fileRestored.size == 10)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fileVersionsRestored: FileVersions =
     await client.fileVersions.getFileVersions(file.id);

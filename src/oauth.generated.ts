@@ -10,6 +10,7 @@ import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
 import { sdToUrlParams } from './json.js';
 import { prepareParams } from './utils.js';
+import { BoxSdkError } from './errors.js';
 const boxOauth2AuthUrl: string = 'https://account.box.com/api/oauth2/authorize';
 export class OAuthConfig {
   readonly clientId!: string;
@@ -85,11 +86,10 @@ export class BoxOAuth implements Authentication {
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const token: any = await this.tokenStorage.get();
     if (token == void 0) {
-      throw new Error(
-        String(
-          'Access and refresh tokens not available. Authenticate before making any API call first.'
-        )
-      );
+      throw new BoxSdkError({
+        message:
+          'Access and refresh tokens not available. Authenticate before making any API call first.',
+      });
     }
     return token;
   }
@@ -139,7 +139,7 @@ export class BoxOAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0 || token.accessToken == void 0) {
-      throw new Error(String('No access token is available.'));
+      throw new BoxSdkError({ message: 'No access token is available.' });
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

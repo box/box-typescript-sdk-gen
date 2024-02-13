@@ -82,13 +82,13 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
         'modifiable' as CreateRetentionPolicyRequestBodyRetentionTypeField,
     } satisfies CreateRetentionPolicyRequestBody);
   if (!(retentionPolicy.description == description)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(retentionPolicy.canOwnerExtendRetention == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(retentionPolicy.retentionType) as string) == 'modifiable')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const folder: FolderFull = await createNewFolder();
   const retentionPolicyAssignment: RetentionPolicyAssignment =
@@ -100,10 +100,10 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
       } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField,
     } satisfies CreateRetentionPolicyAssignmentRequestBody);
   if (!(retentionPolicyAssignment.retentionPolicy!.id == retentionPolicy.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(retentionPolicyAssignment.assignedTo!.id == folder.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
@@ -111,7 +111,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
       (toString(folder.type) as string)
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const files: Files = await client.uploads.uploadFile({
     attributes: {
@@ -131,14 +131,14 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
   } satisfies UploadFileVersionRequestBody);
   const newFile: FileFull = newFiles.entries![0];
   if (!(newFile.id == file.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fileVersionRetentions: FileVersionRetentions =
     await client.fileVersionRetentions.getFileVersionRetentions();
   const fileVersionRetentionsCount: number =
     fileVersionRetentions.entries!.length;
   if (!(fileVersionRetentionsCount >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (fileVersionRetentionsCount == 0) {
     await client.retentionPolicies.deleteRetentionPolicyById(
@@ -156,7 +156,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
       fileVersionRetention.id!
     );
   if (!(fileVersionRetentionById.id == fileVersionRetention.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
   await client.folders.deleteFolderById(folder.id, {

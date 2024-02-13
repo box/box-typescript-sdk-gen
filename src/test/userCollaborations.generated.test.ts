@@ -70,29 +70,29 @@ test('testUserCollaborations', async function testUserCollaborations(): Promise<
       role: 'editor' as CreateCollaborationRequestBodyRoleField,
     } satisfies CreateCollaborationRequestBody);
   if (!((toString(collaboration.role!) as string) == 'editor')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const collaborationId: string = collaboration.id;
   const collaborationFromApi: Collaboration =
     await client.userCollaborations.getCollaborationById(collaborationId);
   if (!(collaborationId == collaborationFromApi.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(collaborationFromApi.status!) as string) == 'accepted')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(collaborationFromApi.type) as string) == 'collaboration')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(collaborationFromApi.inviteEmail == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedCollaboration: Collaboration =
     await client.userCollaborations.updateCollaborationById(collaborationId, {
       role: 'viewer' as UpdateCollaborationByIdRequestBodyRoleField,
     } satisfies UpdateCollaborationByIdRequestBody);
   if (!((toString(updatedCollaboration.role!) as string) == 'viewer')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.userCollaborations.deleteCollaborationById(collaborationId);
   await expect(async () => {
@@ -118,29 +118,29 @@ test('testExternalUserCollaborations', async function testExternalUserCollaborat
       role: 'editor' as CreateCollaborationRequestBodyRoleField,
     } satisfies CreateCollaborationRequestBody);
   if (!((toString(collaboration.role!) as string) == 'editor')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const collaborationId: string = collaboration.id;
   const collaborationFromApi: Collaboration =
     await client.userCollaborations.getCollaborationById(collaborationId);
   if (!(collaborationId == collaborationFromApi.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(collaborationFromApi.status!) as string) == 'pending')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(collaborationFromApi.type) as string) == 'collaboration')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(collaborationFromApi.inviteEmail == userLogin)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedCollaboration: Collaboration =
     await client.userCollaborations.updateCollaborationById(collaborationId, {
       role: 'viewer' as UpdateCollaborationByIdRequestBodyRoleField,
     } satisfies UpdateCollaborationByIdRequestBody);
   if (!((toString(updatedCollaboration.role!) as string) == 'viewer')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.userCollaborations.deleteCollaborationById(collaborationId);
   await expect(async () => {

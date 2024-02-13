@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -319,11 +320,10 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   val: any
 ): CreateGroupRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -334,7 +334,9 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: CreateGroupRequestBodyMemberViewabilityLevelField
@@ -345,11 +347,10 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: any
 ): CreateGroupRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -360,7 +361,9 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateGroupRequestBody(
   val: CreateGroupRequestBody
@@ -433,11 +436,10 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   val: any
 ): UpdateGroupByIdRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -448,7 +450,9 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
   val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
@@ -459,11 +463,10 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
   val: any
 ): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"',
+    });
   }
   if (val == 'admins_only') {
     return 'admins_only';
@@ -474,7 +477,9 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
   if (val == 'all_managed_users') {
     return 'all_managed_users';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateGroupByIdRequestBody(
   val: UpdateGroupByIdRequestBody

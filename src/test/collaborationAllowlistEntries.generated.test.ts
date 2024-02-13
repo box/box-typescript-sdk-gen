@@ -21,7 +21,7 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
   const allowlist: any =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
   if (!(allowlist.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const direction: any = 'inbound';
   const domain: any = 'example.com';
@@ -33,26 +33,26 @@ test('collaborationAllowlistEntries', async function collaborationAllowlistEntri
       } satisfies CreateCollaborationWhitelistEntryRequestBody
     );
   if (!(newEntry.type == 'collaboration_whitelist_entry')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newEntry.direction == direction)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newEntry.domain == domain)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const entry: any =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
       newEntry.id!
     );
   if (!(entry.id == newEntry.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(entry.direction == direction)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(entry.domain == domain)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
     entry.id!

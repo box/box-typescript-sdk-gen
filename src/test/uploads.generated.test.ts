@@ -44,7 +44,7 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
   } satisfies UploadFileRequestBody);
   const uploadedFile: FileFull = uploadedFiles.entries![0];
   if (!(uploadedFile.name == newFileName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const newFileVersionName: string = getUuid();
   const newFileContentStream: ByteStream = generateByteStream(1024 * 1024);
@@ -59,7 +59,7 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
   );
   const newFileVersion: FileFull = uploadedFilesVersion.entries![0];
   if (!(newFileVersion.name == newFileVersionName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(newFileVersion.id);
 });

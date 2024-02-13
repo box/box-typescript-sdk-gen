@@ -45,7 +45,7 @@ test('testTransferUserContent', async function testTransferUserContent(): Promis
       { notify: false } satisfies TransferOwnedFolderQueryParams
     );
   if (!(transferedFolder.ownedBy!.id == currentUser.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(transferedFolder.id, {
     recursive: true,

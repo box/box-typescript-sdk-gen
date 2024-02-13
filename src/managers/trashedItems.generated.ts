@@ -15,6 +15,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -102,11 +103,10 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   val: any
 ): GetTrashedItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -114,7 +114,9 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
   val: GetTrashedItemsQueryParamsSortField
@@ -125,9 +127,9 @@ export function deserializeGetTrashedItemsQueryParamsSortField(
   val: any
 ): GetTrashedItemsQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetTrashedItemsQueryParamsSortField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetTrashedItemsQueryParamsSortField"',
+    });
   }
   if (val == 'name') {
     return 'name';
@@ -138,5 +140,7 @@ export function deserializeGetTrashedItemsQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }

@@ -63,36 +63,36 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
       ],
     } satisfies SignRequestCreateRequest);
   if (!(createdSignRequest.signFiles!.files![0].name == fileToSign.name)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.signers![1].email == signerEmail)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.parentFolder.id == destinationFolder.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const newSignRequest: SignRequest =
     await client.signRequests.getSignRequestById(createdSignRequest.id!);
   if (!(newSignRequest.signFiles!.files![0].name == fileToSign.name)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newSignRequest.signers![1].email == signerEmail)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newSignRequest.parentFolder.id == destinationFolder.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const cancelledSignRequest: SignRequest =
     await client.signRequests.cancelSignRequest(createdSignRequest.id!);
   if (!((toString(cancelledSignRequest.status) as string) == 'cancelled')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const signRequests: SignRequests =
     await client.signRequests.getSignRequests();
   if (
     !((toString(signRequests.entries![0].type!) as string) == 'sign-request')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(destinationFolder.id, {
     recursive: true,

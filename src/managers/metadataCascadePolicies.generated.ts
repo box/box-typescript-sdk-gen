@@ -21,6 +21,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -285,11 +286,10 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   val: any
 ): CreateMetadataCascadePolicyRequestBodyScopeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateMetadataCascadePolicyRequestBodyScopeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateMetadataCascadePolicyRequestBodyScopeField"',
+    });
   }
   if (val == 'global') {
     return 'global';
@@ -297,7 +297,9 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
   val: CreateMetadataCascadePolicyRequestBody
@@ -332,11 +334,10 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   val: any
 ): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"',
+    });
   }
   if (val == 'none') {
     return 'none';
@@ -344,7 +345,9 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   if (val == 'overwrite') {
     return 'overwrite';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(
   val: ApplyMetadataCascadePolicyRequestBody

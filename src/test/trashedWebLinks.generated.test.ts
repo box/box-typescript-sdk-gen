@@ -44,25 +44,25 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
   const fromTrash: TrashWebLink =
     await client.trashedWebLinks.getTrashedWebLinkById(weblink.id);
   if (!(fromTrash.id == weblink.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(fromTrash.name == weblink.name)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fromApiAfterTrashed: WebLink = await client.webLinks.getWebLinkById(
     weblink.id
   );
   if (!((toString(fromApiAfterTrashed.itemStatus) as string) == 'trashed')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const restoredWeblink: TrashWebLinkRestored =
     await client.trashedWebLinks.restoreWeblinkFromTrash(weblink.id);
   const fromApi: WebLink = await client.webLinks.getWebLinkById(weblink.id);
   if (!(restoredWeblink.id == fromApi.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(restoredWeblink.name == fromApi.name)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
   await client.trashedWebLinks.deleteTrashedWebLinkById(weblink.id);

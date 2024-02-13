@@ -27,6 +27,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -251,16 +252,17 @@ export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeF
   val: any
 ): GetSlackIntegrationMappingQueryParamsPartnerItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetSlackIntegrationMappingQueryParamsPartnerItemTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetSlackIntegrationMappingQueryParamsPartnerItemTypeField"',
+    });
   }
   if (val == 'channel') {
     return 'channel';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
   val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField
@@ -271,16 +273,17 @@ export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField
   val: any
 ): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetSlackIntegrationMappingQueryParamsBoxItemTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetSlackIntegrationMappingQueryParamsBoxItemTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
   val: UpdateSlackIntegrationMappingByIdRequestBody

@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -393,11 +394,10 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   val: any
 ): CreateGroupMembershipRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"',
+    });
   }
   if (val == 'member') {
     return 'member';
@@ -405,7 +405,9 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   if (val == 'admin') {
     return 'admin';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateGroupMembershipRequestBody(
   val: CreateGroupMembershipRequestBody
@@ -458,11 +460,10 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   val: any
 ): UpdateGroupMembershipByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"',
+    });
   }
   if (val == 'member') {
     return 'member';
@@ -470,7 +471,9 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   if (val == 'admin') {
     return 'admin';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(
   val: UpdateGroupMembershipByIdRequestBody

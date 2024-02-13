@@ -9,6 +9,7 @@ import { NetworkSession } from './network.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
+import { BoxSdkError } from './errors.js';
 export class CcgConfig {
   readonly clientId!: string;
   readonly clientSecret!: string;
@@ -105,11 +106,10 @@ export class BoxCcgAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
-      throw new Error(
-        String(
-          'No access token is available. Make an API call to retrieve a token before calling this method.'
-        )
-      );
+      throw new BoxSdkError({
+        message:
+          'No access token is available. Make an API call to retrieve a token before calling this method.',
+      });
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

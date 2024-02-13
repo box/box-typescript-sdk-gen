@@ -36,13 +36,13 @@ test('testAvatars', async function testAvatars(): Promise<any> {
     } satisfies CreateUserAvatarRequestBody
   );
   if (!!(createdAvatar.picUrls!.small == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!!(createdAvatar.picUrls!.large == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!!(createdAvatar.picUrls!.preview == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const response: ByteStream = await client.avatars.getUserAvatar(user.id);
   if (
@@ -51,7 +51,7 @@ test('testAvatars', async function testAvatars(): Promise<any> {
       false
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.avatars.deleteUserAvatar(user.id);
   await expect(async () => {

@@ -17,7 +17,7 @@ test('testRecentItems', async function testRecentItems(): Promise<any> {
   const client: BoxClient = await getDefaultClientAsUser(getEnvVar('USER_ID'));
   const recentItems: RecentItems = await client.recentItems.getRecentItems();
   if (!(recentItems.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 export {};
