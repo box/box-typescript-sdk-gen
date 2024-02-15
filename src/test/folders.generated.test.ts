@@ -37,10 +37,10 @@ const client: BoxClient = getDefaultClient();
 test('test_get_folder_info', async function test_get_folder_info(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0');
   if (!(rootFolder.id == '0')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(rootFolder.name == 'All Files')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
@@ -48,14 +48,14 @@ test('test_get_folder_full_info_with_extra_fields', async function test_get_fold
     fields: ['has_collaborations' as '', 'tags' as ''],
   } satisfies GetFolderByIdQueryParams);
   if (!(rootFolder.id == '0')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(rootFolder.hasCollaborations == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const tagsLength: number = rootFolder.tags!.length;
   if (!(tagsLength == 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_create_and_delete_folder', async function test_create_and_delete_folder(): Promise<any> {
@@ -68,7 +68,7 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
     newFolder.id
   );
   if (!(createdFolder.name == newFolderName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(newFolder.id);
   await expect(async () => {
@@ -90,10 +90,10 @@ test('test_update_folder', async function test_update_folder(): Promise<any> {
     } satisfies UpdateFolderByIdRequestBody
   );
   if (!(updatedFolder.name == updatedName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(updatedFolder.description == 'Updated description')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(updatedFolder.id);
 });
@@ -112,7 +112,7 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
     } satisfies CopyFolderRequestBody
   );
   if (!(copiedFolder.parent!.id == '0')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const movedFolderName: string = getUuid();
   const movedFolder: FolderFull = await client.folders.updateFolderById(
@@ -125,16 +125,16 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
     } satisfies UpdateFolderByIdRequestBody
   );
   if (!(movedFolder.parent!.id == folderOrigin.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const folderItems: Items = await client.folders.getFolderItems(
     folderOrigin.id
   );
   if (!(folderItems.entries![0].id == movedFolder.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(folderItems.entries![0].name == movedFolderName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(movedFolder.id);
   await client.folders.deleteFolderById(folderOrigin.id);

@@ -15,6 +15,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -278,11 +279,10 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   val: any
 ): UpdateCollaborationByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateCollaborationByIdRequestBodyRoleField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateCollaborationByIdRequestBodyRoleField"',
+    });
   }
   if (val == 'editor') {
     return 'editor';
@@ -308,7 +308,9 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   if (val == 'owner') {
     return 'owner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateCollaborationByIdRequestBodyStatusField(
   val: UpdateCollaborationByIdRequestBodyStatusField
@@ -319,11 +321,10 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   val: any
 ): UpdateCollaborationByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateCollaborationByIdRequestBodyStatusField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateCollaborationByIdRequestBodyStatusField"',
+    });
   }
   if (val == 'pending') {
     return 'pending';
@@ -334,7 +335,9 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   if (val == 'rejected') {
     return 'rejected';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateCollaborationByIdRequestBody(
   val: UpdateCollaborationByIdRequestBody
@@ -378,11 +381,10 @@ export function deserializeCreateCollaborationRequestBodyItemTypeField(
   val: any
 ): CreateCollaborationRequestBodyItemTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateCollaborationRequestBodyItemTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateCollaborationRequestBodyItemTypeField"',
+    });
   }
   if (val == 'file') {
     return 'file';
@@ -390,7 +392,9 @@ export function deserializeCreateCollaborationRequestBodyItemTypeField(
   if (val == 'folder') {
     return 'folder';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateCollaborationRequestBodyItemField(
   val: CreateCollaborationRequestBodyItemField
@@ -425,11 +429,10 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   val: any
 ): CreateCollaborationRequestBodyAccessibleByTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateCollaborationRequestBodyAccessibleByTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateCollaborationRequestBodyAccessibleByTypeField"',
+    });
   }
   if (val == 'user') {
     return 'user';
@@ -437,7 +440,9 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   if (val == 'group') {
     return 'group';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByField(
   val: CreateCollaborationRequestBodyAccessibleByField
@@ -472,9 +477,10 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
   val: any
 ): CreateCollaborationRequestBodyRoleField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CreateCollaborationRequestBodyRoleField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateCollaborationRequestBodyRoleField"',
+    });
   }
   if (val == 'editor') {
     return 'editor';
@@ -497,7 +503,9 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
   if (val == 'co-owner') {
     return 'co-owner';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateCollaborationRequestBody(
   val: CreateCollaborationRequestBody

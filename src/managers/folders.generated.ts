@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -469,9 +470,9 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   val: any
 ): GetFolderByIdQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetFolderByIdQueryParamsSortField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetFolderByIdQueryParamsSortField"',
+    });
   }
   if (val == 'id') {
     return 'id';
@@ -485,7 +486,9 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGetFolderByIdQueryParamsDirectionField(
   val: GetFolderByIdQueryParamsDirectionField
@@ -496,9 +499,10 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   val: any
 ): GetFolderByIdQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetFolderByIdQueryParamsDirectionField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetFolderByIdQueryParamsDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -506,7 +510,9 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateFolderByIdRequestBodySyncStateField(
   val: UpdateFolderByIdRequestBodySyncStateField
@@ -517,11 +523,10 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   val: any
 ): UpdateFolderByIdRequestBodySyncStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateFolderByIdRequestBodySyncStateField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateFolderByIdRequestBodySyncStateField"',
+    });
   }
   if (val == 'synced') {
     return 'synced';
@@ -532,7 +537,9 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   if (val == 'partially_synced') {
     return 'partially_synced';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateFolderByIdRequestBodyParentField(
   val: UpdateFolderByIdRequestBodyParentField
@@ -554,11 +561,10 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   val: any
 ): UpdateFolderByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateFolderByIdRequestBodySharedLinkAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateFolderByIdRequestBodySharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -569,7 +575,9 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
   val: UpdateFolderByIdRequestBodySharedLinkPermissionsField
@@ -644,11 +652,10 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   val: any
 ): UpdateFolderByIdRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateFolderByIdRequestBodyFolderUploadEmailAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateFolderByIdRequestBodyFolderUploadEmailAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -656,7 +663,9 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
   val: UpdateFolderByIdRequestBodyFolderUploadEmailField
@@ -831,9 +840,9 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   val: any
 ): GetFolderItemsQueryParamsSortField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetFolderItemsQueryParamsSortField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetFolderItemsQueryParamsSortField"',
+    });
   }
   if (val == 'id') {
     return 'id';
@@ -847,7 +856,9 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   if (val == 'size') {
     return 'size';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGetFolderItemsQueryParamsDirectionField(
   val: GetFolderItemsQueryParamsDirectionField
@@ -858,9 +869,10 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   val: any
 ): GetFolderItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetFolderItemsQueryParamsDirectionField"')
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetFolderItemsQueryParamsDirectionField"',
+    });
   }
   if (val == 'ASC') {
     return 'ASC';
@@ -868,7 +880,9 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   if (val == 'DESC') {
     return 'DESC';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateFolderRequestBodyParentField(
   val: CreateFolderRequestBodyParentField
@@ -890,11 +904,10 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   val: any
 ): CreateFolderRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateFolderRequestBodyFolderUploadEmailAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateFolderRequestBodyFolderUploadEmailAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -902,7 +915,9 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailField(
   val: CreateFolderRequestBodyFolderUploadEmailField
@@ -940,9 +955,9 @@ export function deserializeCreateFolderRequestBodySyncStateField(
   val: any
 ): CreateFolderRequestBodySyncStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "CreateFolderRequestBodySyncStateField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CreateFolderRequestBodySyncStateField"',
+    });
   }
   if (val == 'synced') {
     return 'synced';
@@ -953,7 +968,9 @@ export function deserializeCreateFolderRequestBodySyncStateField(
   if (val == 'partially_synced') {
     return 'partially_synced';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateFolderRequestBody(
   val: CreateFolderRequestBody

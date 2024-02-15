@@ -33,10 +33,10 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
     fileRequestId
   );
   if (!(fileRequest.id == fileRequestId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(fileRequest.type) as string) == 'file_request')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const copiedFileRequest: FileRequest =
     await client.fileRequests.createFileRequestCopy(fileRequestId, {
@@ -46,13 +46,13 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
       } satisfies FileRequestCopyRequestFolderField,
     } satisfies FileRequestCopyRequest);
   if (!!(copiedFileRequest.id == fileRequestId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(copiedFileRequest.title == fileRequest.title)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(copiedFileRequest.description == fileRequest.description)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedFileRequest: FileRequest =
     await client.fileRequests.updateFileRequestById(copiedFileRequest.id, {
@@ -60,13 +60,13 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
       description: 'updated description',
     } satisfies FileRequestUpdateRequest);
   if (!(updatedFileRequest.id == copiedFileRequest.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(updatedFileRequest.title == 'updated title')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(updatedFileRequest.description == 'updated description')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.fileRequests.deleteFileRequestById(updatedFileRequest.id);
   await expect(async () => {

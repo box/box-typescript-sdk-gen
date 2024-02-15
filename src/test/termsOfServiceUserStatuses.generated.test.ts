@@ -68,7 +68,7 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
       isAccepted: false,
     } satisfies CreateTermsOfServiceStatusForUserRequestBody);
   if (!(createdTosUserStatus.isAccepted == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
@@ -76,23 +76,23 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
       'terms_of_service_user_status'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
       (toString(createdTosUserStatus.tos!.type) as string) == 'terms_of_service'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(createdTosUserStatus.user!.type) as string) == 'user')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(createdTosUserStatus.tos!.id == tos.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(createdTosUserStatus.user!.id == user.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedTosUserStatus: TermsOfServiceUserStatus =
     await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(
@@ -102,7 +102,7 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
       } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody
     );
   if (!(updatedTosUserStatus.isAccepted == true)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const listTosUserStatuses: TermsOfServiceUserStatuses =
     await client.termsOfServiceUserStatuses.getTermsOfServiceUserStatuses({
@@ -110,7 +110,7 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
       userId: user.id,
     } satisfies GetTermsOfServiceUserStatusesQueryParams);
   if (!(listTosUserStatuses.totalCount! > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.users.deleteUserById(user.id);
 });

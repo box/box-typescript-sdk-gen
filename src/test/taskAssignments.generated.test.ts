@@ -73,10 +73,10 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
     completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
   } satisfies CreateTaskRequestBody);
   if (!(task.message == 'test message')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(task.item!.id == file.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const currentUser: UserFull = await client.users.getUserMe();
   const taskAssignment: TaskAssignment =
@@ -90,20 +90,20 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
       } satisfies CreateTaskAssignmentRequestBodyAssignToField,
     } satisfies CreateTaskAssignmentRequestBody);
   if (!(taskAssignment.item!.id == file.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(taskAssignment.assignedTo!.id == currentUser.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const taskAssignmentById: TaskAssignment =
     await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
   if (!(taskAssignmentById.id == taskAssignment.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const taskAssignmentsOnTask: TaskAssignments =
     await client.taskAssignments.getTaskAssignments(task.id!);
   if (!(taskAssignmentsOnTask.totalCount! == 1)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedTaskAssignment: TaskAssignment =
     await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
@@ -112,12 +112,12 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
         'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
     } satisfies UpdateTaskAssignmentByIdRequestBody);
   if (!(updatedTaskAssignment.message == 'updated message')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !((toString(updatedTaskAssignment.resolutionState) as string) == 'approved')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await expect(async () => {
     await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);

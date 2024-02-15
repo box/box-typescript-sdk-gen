@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -253,9 +254,9 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   val: any
 ): GetEventsQueryParamsStreamTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetEventsQueryParamsStreamTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetEventsQueryParamsStreamTypeField"',
+    });
   }
   if (val == 'all') {
     return 'all';
@@ -272,7 +273,9 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   if (val == 'admin_logs_streaming') {
     return 'admin_logs_streaming';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeGetEventsQueryParamsEventTypeField(
   val: GetEventsQueryParamsEventTypeField
@@ -283,9 +286,9 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   val: any
 ): GetEventsQueryParamsEventTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String('Expecting a string for "GetEventsQueryParamsEventTypeField"')
-    );
+    throw new BoxSdkError({
+      message: 'Expecting a string for "GetEventsQueryParamsEventTypeField"',
+    });
   }
   if (val == 'ACCESS_GRANTED') {
     return 'ACCESS_GRANTED';
@@ -620,5 +623,7 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   if (val == 'WATERMARK_LABEL_DELETE') {
     return 'WATERMARK_LABEL_DELETE';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }

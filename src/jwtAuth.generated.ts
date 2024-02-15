@@ -18,6 +18,7 @@ import { JwtSignOptions } from './utils.js';
 import { JwtKey } from './utils.js';
 import { JwtAlgorithm } from './utils.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
+import { BoxSdkError } from './errors.js';
 import { sdIsEmpty } from './json.js';
 import { sdIsBoolean } from './json.js';
 import { sdIsNumber } from './json.js';
@@ -131,9 +132,9 @@ export class BoxJwtAuth implements Authentication {
   }
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (isBrowser()) {
-      throw new Error(
-        String('JWT auth is not supported in browser environment.')
-      );
+      throw new BoxSdkError({
+        message: 'JWT auth is not supported in browser environment.',
+      });
     }
     const alg: JwtAlgorithm = !(this.config.jwtAlgorithm == void 0)
       ? this.config.jwtAlgorithm
@@ -220,11 +221,10 @@ export class BoxJwtAuth implements Authentication {
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
-      throw new Error(
-        String(
-          'No access token is available. Make an API call to retrieve a token before calling this method.'
-        )
-      );
+      throw new BoxSdkError({
+        message:
+          'No access token is available. Make an API call to retrieve a token before calling this method.',
+      });
     }
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })

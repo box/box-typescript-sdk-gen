@@ -96,7 +96,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
     );
   const segmentRestrictionId: string = segmentRestriction.id!;
   if (!(segmentRestriction.shieldInformationBarrierSegment.id == segmentId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const segmentRestrictions: ShieldInformationBarrierSegmentRestrictions =
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
@@ -105,27 +105,27 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
       } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams
     );
   if (!(segmentRestrictions.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const segmentRestrictionFromApi: ShieldInformationBarrierSegmentRestriction =
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
       segmentRestrictionId
     );
   if (!(segmentRestrictionFromApi.id! == segmentRestrictionId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(segmentRestrictionFromApi.shieldInformationBarrierSegment.id == segmentId)
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(segmentRestrictionFromApi.restrictedSegment.id == segmentToRestrictId)
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(segmentRestrictionFromApi.shieldInformationBarrier!.id == barrierId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
     segmentRestrictionId

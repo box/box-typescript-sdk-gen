@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -294,11 +295,10 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForType
   val: any
 ): GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField"',
+    });
   }
   if (val == 'user') {
     return 'user';
@@ -306,7 +306,9 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForType
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
   val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField
@@ -317,16 +319,17 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   val: any
 ): CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField"',
+    });
   }
   if (val == 'storage_policy') {
     return 'storage_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
   val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField
@@ -361,11 +364,10 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTyp
   val: any
 ): CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField"',
+    });
   }
   if (val == 'user') {
     return 'user';
@@ -373,7 +375,9 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTyp
   if (val == 'enterprise') {
     return 'enterprise';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
   val: CreateStoragePolicyAssignmentRequestBodyAssignedToField
@@ -438,16 +442,17 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   val: any
 ): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField"',
+    });
   }
   if (val == 'storage_policy') {
     return 'storage_policy';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
   val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField

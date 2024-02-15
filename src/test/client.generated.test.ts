@@ -30,11 +30,11 @@ test('testWithAsUserHeader', async function testWithAsUserHeader(): Promise<any>
   const asUserClient: BoxClient = client.withAsUserHeader(createdUser.id);
   const adminUser: UserFull = await client.users.getUserMe();
   if (!!((toString(adminUser.name) as string) == userName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const appUser: UserFull = await asUserClient.users.getUserMe();
   if (!((toString(appUser.name) as string) == userName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.users.deleteUserById(createdUser.id);
 });
@@ -42,7 +42,7 @@ test('testWithSuppressedNotifications', async function testWithSuppressedNotific
   const newClient: BoxClient = client.withSuppressedNotifications();
   const user: UserFull = await newClient.users.getUserMe();
   if (!!(user.id == '')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('testWithExtraHeaders', async function testWithExtraHeaders(): Promise<any> {
@@ -56,18 +56,18 @@ test('testWithExtraHeaders', async function testWithExtraHeaders(): Promise<any>
   });
   const adminUser: UserFull = await client.users.getUserMe();
   if (!!((toString(adminUser.name) as string) == userName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const appUser: UserFull = await asUserClient.users.getUserMe();
   if (!((toString(appUser.name) as string) == userName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.users.deleteUserById(createdUser.id);
 });
 test('testWithInterceptors', async function testWithInterceptors(): Promise<any> {
   const user: UserFull = await client.users.getUserMe();
   if (!(user.role == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   function beforeRequest(options: FetchOptions): FetchOptions {
     return {
@@ -95,7 +95,7 @@ test('testWithInterceptors', async function testWithInterceptors(): Promise<any>
   ]);
   const newUser: UserFull = await clientWithInterceptor.users.getUserMe();
   if (!!(newUser.role == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   function emptyBeforeRequest(options: FetchOptions): FetchOptions {
     return options;
@@ -118,13 +118,13 @@ test('testWithInterceptors', async function testWithInterceptors(): Promise<any>
   const superNewUser: UserFull =
     await clientWithTwoInterceptors.users.getUserMe();
   if (!(superNewUser.id == '123')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('testWithFailingInterceptors', async function testWithFailingInterceptors(): Promise<any> {
   const user: UserFull = await client.users.getUserMe();
   if (!!(user.id == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   function emptyBeforeRequest(options: FetchOptions): FetchOptions {
     return options;

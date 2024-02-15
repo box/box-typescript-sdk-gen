@@ -48,7 +48,7 @@ test('test_download_file', async function test_download_file(): Promise<any> {
     uploadedFile.id
   );
   if (!bufferEquals(await readByteStream(downloadedFileContent), fileBuffer)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(uploadedFile.id);
 });
@@ -69,7 +69,7 @@ test('test_change_download_url_with_interceptor', async function test_change_dow
     uploadedFile.id
   );
   if (!bufferEquals(await readByteStream(downloadedFileContent), fileBuffer)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   function emptyBeforeRequest(options: FetchOptions): FetchOptions {
     return options;

@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -232,11 +233,10 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   val: any
 ): GetTermsOfServiceQueryParamsTosTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetTermsOfServiceQueryParamsTosTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetTermsOfServiceQueryParamsTosTypeField"',
+    });
   }
   if (val == 'external') {
     return 'external';
@@ -244,7 +244,9 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   if (val == 'managed') {
     return 'managed';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTermsOfServiceRequestBodyStatusField(
   val: CreateTermsOfServiceRequestBodyStatusField
@@ -255,11 +257,10 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   val: any
 ): CreateTermsOfServiceRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateTermsOfServiceRequestBodyStatusField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateTermsOfServiceRequestBodyStatusField"',
+    });
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -267,7 +268,9 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
   val: CreateTermsOfServiceRequestBodyTosTypeField
@@ -278,11 +281,10 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   val: any
 ): CreateTermsOfServiceRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateTermsOfServiceRequestBodyTosTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateTermsOfServiceRequestBodyTosTypeField"',
+    });
   }
   if (val == 'external') {
     return 'external';
@@ -290,7 +292,9 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   if (val == 'managed') {
     return 'managed';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTermsOfServiceRequestBody(
   val: CreateTermsOfServiceRequestBody
@@ -329,11 +333,10 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   val: any
 ): UpdateTermsOfServiceByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateTermsOfServiceByIdRequestBodyStatusField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateTermsOfServiceByIdRequestBodyStatusField"',
+    });
   }
   if (val == 'enabled') {
     return 'enabled';
@@ -341,7 +344,9 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   if (val == 'disabled') {
     return 'disabled';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateTermsOfServiceByIdRequestBody(
   val: UpdateTermsOfServiceByIdRequestBody

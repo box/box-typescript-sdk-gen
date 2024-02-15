@@ -85,32 +85,32 @@ test('testListCollaborations', async function testListCollaborations(): Promise<
       role: 'editor' as CreateCollaborationRequestBodyRoleField,
     } satisfies CreateCollaborationRequestBody);
   if (!((toString(groupCollaboration.role) as string) == 'editor')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(groupCollaboration.type) as string) == 'collaboration')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const fileCollaborations: Collaborations =
     await client.listCollaborations.getFileCollaborations(file.id);
   if (!(fileCollaborations.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const folderCollaborations: Collaborations =
     await client.listCollaborations.getFolderCollaborations(folder.id);
   if (!(folderCollaborations.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const pendingCollaborations: Collaborations =
     await client.listCollaborations.getCollaborations({
       status: 'pending' as GetCollaborationsQueryParamsStatusField,
     } satisfies GetCollaborationsQueryParams);
   if (!(pendingCollaborations.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const groupCollaborations: Collaborations =
     await client.listCollaborations.getGroupCollaborations(group.id);
   if (!(groupCollaborations.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.userCollaborations.deleteCollaborationById(
     groupCollaboration.id

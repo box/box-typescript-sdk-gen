@@ -21,6 +21,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -382,11 +383,10 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   val: any
 ): GetRetentionPolicyAssignmentsQueryParamsTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"',
+    });
   }
   if (val == 'folder') {
     return 'folder';
@@ -397,7 +397,9 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
   val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
@@ -408,11 +410,10 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   val: any
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"',
+    });
   }
   if (val == 'enterprise') {
     return 'enterprise';
@@ -423,7 +424,9 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   if (val == 'metadata_template') {
     return 'metadata_template';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
   val: CreateRetentionPolicyAssignmentRequestBodyAssignToField

@@ -16,7 +16,13 @@ This operation is performed by calling function `getLegalHoldPolicyAssignments`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments/).
 
-_Currently we don't have an example for calling `getLegalHoldPolicyAssignments` in integration tests_
+<!-- sample get_legal_hold_policy_assignments -->
+
+```ts
+await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignments({
+  policyId: legalHoldPolicyId,
+} satisfies GetLegalHoldPolicyAssignmentsQueryParams);
+```
 
 ### Arguments
 
@@ -42,7 +48,17 @@ This operation is performed by calling function `createLegalHoldPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-legal-hold-policy-assignments/).
 
-_Currently we don't have an example for calling `createLegalHoldPolicyAssignment` in integration tests_
+<!-- sample post_legal_hold_policy_assignments -->
+
+```ts
+await client.legalHoldPolicyAssignments.createLegalHoldPolicyAssignment({
+  policyId: legalHoldPolicyId,
+  assignTo: {
+    type: 'file' as CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField,
+    id: fileId,
+  } satisfies CreateLegalHoldPolicyAssignmentRequestBodyAssignToField,
+} satisfies CreateLegalHoldPolicyAssignmentRequestBody);
+```
 
 ### Arguments
 
@@ -68,7 +84,13 @@ This operation is performed by calling function `getLegalHoldPolicyAssignmentByI
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id/).
 
-_Currently we don't have an example for calling `getLegalHoldPolicyAssignmentById` in integration tests_
+<!-- sample get_legal_hold_policy_assignments_id -->
+
+```ts
+await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
+  legalHoldPolicyAssignmentId
+);
+```
 
 ### Arguments
 
@@ -97,7 +119,13 @@ This operation is performed by calling function `deleteLegalHoldPolicyAssignment
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-legal-hold-policy-assignments-id/).
 
-_Currently we don't have an example for calling `deleteLegalHoldPolicyAssignmentById` in integration tests_
+<!-- sample delete_legal_hold_policy_assignments_id -->
+
+```ts
+await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
+  legalHoldPolicyAssignmentId
+);
+```
 
 ### Arguments
 

@@ -15,6 +15,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { sdToJson } from '../json.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -248,16 +249,17 @@ export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
   val: any
 ): UpdateClassificationOnFolderRequestBodyOpField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateClassificationOnFolderRequestBodyOpField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateClassificationOnFolderRequestBodyOpField"',
+    });
   }
   if (val == 'replace') {
     return 'replace';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateClassificationOnFolderRequestBodyPathField(
   val: UpdateClassificationOnFolderRequestBodyPathField
@@ -268,16 +270,17 @@ export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
   val: any
 ): UpdateClassificationOnFolderRequestBodyPathField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateClassificationOnFolderRequestBodyPathField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateClassificationOnFolderRequestBodyPathField"',
+    });
   }
   if (val == '/Box__Security__Classification__Key') {
     return '/Box__Security__Classification__Key';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateClassificationOnFolderRequestBody(
   val: UpdateClassificationOnFolderRequestBody

@@ -18,6 +18,7 @@ import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { sdToJson } from '../json.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -270,16 +271,17 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   val: any
 ): CreateTaskAssignmentRequestBodyTaskTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateTaskAssignmentRequestBodyTaskTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateTaskAssignmentRequestBodyTaskTypeField"',
+    });
   }
   if (val == 'task') {
     return 'task';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
   val: CreateTaskAssignmentRequestBodyTaskField
@@ -349,11 +351,10 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   val: any
 ): UpdateTaskAssignmentByIdRequestBodyResolutionStateField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyResolutionStateField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyResolutionStateField"',
+    });
   }
   if (val == 'completed') {
     return 'completed';
@@ -367,7 +368,9 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   if (val == 'rejected') {
     return 'rejected';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(
   val: UpdateTaskAssignmentByIdRequestBody

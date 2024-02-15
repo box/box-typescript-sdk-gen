@@ -114,22 +114,22 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
       'storage_policy_assignment'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !((toString(storagePolicyAssignment.assignedTo!.type) as string) == 'user')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(storagePolicyAssignment.assignedTo!.id == newUser.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const getStoragePolicyAssignment: StoragePolicyAssignment =
     await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
       storagePolicyAssignment.id
     );
   if (!(getStoragePolicyAssignment.id == storagePolicyAssignment.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const updatedStoragePolicyAssignment: StoragePolicyAssignment =
     await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
@@ -144,7 +144,7 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
   if (
     !(updatedStoragePolicyAssignment.storagePolicy!.id == storagePolicy2.id)
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(
     storagePolicyAssignment.id

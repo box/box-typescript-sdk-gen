@@ -20,7 +20,7 @@ test('testListTrashedItems', async function testListTrashedItems(): Promise<any>
   await client.files.deleteFileById(file.id);
   const trashedItems: Items = await client.trashedItems.getTrashedItems();
   if (!(trashedItems.entries!.length > 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 export {};

@@ -56,7 +56,7 @@ test('comments', async function comments(): Promise<any> {
   const fileId: string = uploadedFiles.entries![0].id;
   const comments: Comments = await client.comments.getFileComments(fileId);
   if (!(comments.totalCount == 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const message: string = 'Hello there!';
   const newComment: CommentFull = await client.comments.createComment({
@@ -67,13 +67,13 @@ test('comments', async function comments(): Promise<any> {
     } satisfies CreateCommentRequestBodyItemField,
   } satisfies CreateCommentRequestBody);
   if (!(newComment.message == message)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newComment.isReplyComment == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newComment.item!.id == fileId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const newReplyComment: CommentFull = await client.comments.createComment({
     message: message,
@@ -83,10 +83,10 @@ test('comments', async function comments(): Promise<any> {
     } satisfies CreateCommentRequestBodyItemField,
   } satisfies CreateCommentRequestBody);
   if (!(newReplyComment.message == message)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newReplyComment.isReplyComment == true)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const newMessage: string = 'Hi!';
   await client.comments.updateCommentById(newReplyComment.id!, {
@@ -94,16 +94,16 @@ test('comments', async function comments(): Promise<any> {
   } satisfies UpdateCommentByIdRequestBody);
   const newComments: Comments = await client.comments.getFileComments(fileId);
   if (!(newComments.totalCount == 2)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newComments.entries![1].message == newMessage)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const receivedComment: CommentFull = await client.comments.getCommentById(
     newComment.id!
   );
   if (!(receivedComment.message! == newComment.message!)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.comments.deleteCommentById(newComment.id!);
   await expect(async () => {

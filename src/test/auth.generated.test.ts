@@ -79,7 +79,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   const userClient: BoxClient = new BoxClient({ auth: userAuth });
   const currentUser: UserFull = await userClient.users.getUserMe();
   if (!(currentUser.id == userId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const enterpriseAuth: BoxJwtAuth = await auth.asEnterprise(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
@@ -87,13 +87,13 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
     fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newUser.enterprise!.id == enterpriseId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!!(newUser.id == userId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promise<any> {
@@ -119,7 +119,7 @@ test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promis
     resourcePath
   );
   if (!!(downscopedToken.accessToken == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const downscopedClient: BoxClient = new BoxClient({
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
@@ -144,10 +144,10 @@ test('test_jwt_auth_revoke', async function test_jwt_auth_revoke(): Promise<any>
   const tokenFromStorageAfterRevoke: undefined | AccessToken =
     await auth.tokenStorage.get();
   if (!!(tokenFromStorageBeforeRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(tokenFromStorageAfterRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_oauth_auth_authorizeUrl', function test_oauth_auth_authorizeUrl(): any {
@@ -165,7 +165,7 @@ test('test_oauth_auth_authorizeUrl', function test_oauth_auth_authorizeUrl(): an
         'https://account.box.com/api/oauth2/authorize?response_type=code&client_id=OAUTH_CLIENT_ID'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
@@ -182,7 +182,7 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   const userClient: BoxClient = new BoxClient({ auth: userAuth });
   const currentUser: UserFull = await userClient.users.getUserMe();
   if (!(currentUser.id == userId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const enterpriseAuth: BoxCcgAuth = await auth.asEnterprise(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
@@ -190,13 +190,13 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
     fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(newUser.enterprise!.id == enterpriseId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!!(newUser.id == userId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_ccg_auth_downscope', async function test_ccg_auth_downscope(): Promise<any> {
@@ -220,7 +220,7 @@ test('test_ccg_auth_downscope', async function test_ccg_auth_downscope(): Promis
     resourcePath
   );
   if (!!(downscopedToken.accessToken == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const downscopedClient: BoxClient = new BoxClient({
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
@@ -247,10 +247,10 @@ test('test_ccg_auth_revoke', async function test_ccg_auth_revoke(): Promise<any>
   const tokenFromStorageAfterRevoke: undefined | AccessToken =
     await auth.tokenStorage.get();
   if (!!(tokenFromStorageBeforeRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(tokenFromStorageAfterRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_developer_token_auth', async function test_developer_token_auth(): Promise<any> {
@@ -262,7 +262,7 @@ test('test_developer_token_auth', async function test_developer_token_auth(): Pr
   const client: BoxClient = new BoxClient({ auth: devAuth });
   const currentUser: UserFull = await client.users.getUserMe();
   if (!(currentUser.id == userId)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_oauth_auth_revoke', async function test_oauth_auth_revoke(): Promise<any> {
@@ -279,10 +279,10 @@ test('test_oauth_auth_revoke', async function test_oauth_auth_revoke(): Promise<
   const tokenAfterRevoke: undefined | AccessToken =
     await auth.tokenStorage.get();
   if (!!(tokenBeforeRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(tokenAfterRevoke == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Promise<any> {
@@ -311,7 +311,7 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
     resourcePath
   );
   if (!!(downscopedToken.accessToken == void 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const downscopedClient: BoxClient = new BoxClient({
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),

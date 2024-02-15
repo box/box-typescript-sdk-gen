@@ -76,22 +76,22 @@ test('testWorkflows', async function testWorkflows(): Promise<any> {
     folderId: workflowFolderId,
   } satisfies GetWorkflowsQueryParams);
   if (!(workflows.entries!.length == 1)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const workflowToRun: Workflow = workflows.entries![0];
   if (!((toString(workflowToRun.type!) as string) == 'workflow')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(workflowToRun.isEnabled! == true)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!((toString(workflowToRun.flows![0].type!) as string) == 'flow')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !((toString(workflowToRun.flows![0].trigger!.type!) as string) == 'trigger')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
@@ -99,7 +99,7 @@ test('testWorkflows', async function testWorkflows(): Promise<any> {
       'WORKFLOW_MANUAL_START'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
@@ -107,7 +107,7 @@ test('testWorkflows', async function testWorkflows(): Promise<any> {
       'delete_file'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (
     !(
@@ -115,7 +115,7 @@ test('testWorkflows', async function testWorkflows(): Promise<any> {
       'outcome'
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await adminClient.workflows.startWorkflow(workflowToRun.id!, {
     type: 'workflow_parameters' as StartWorkflowRequestBodyTypeField,

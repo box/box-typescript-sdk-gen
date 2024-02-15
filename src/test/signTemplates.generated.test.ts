@@ -23,7 +23,7 @@ test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any>
       limit: 2,
     } satisfies GetSignTemplatesQueryParams);
   if (!(signTemplates.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
@@ -33,7 +33,7 @@ test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
       limit: 2,
     } satisfies GetSignTemplatesQueryParams);
   if (!(signTemplates.entries!.length >= 0)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (signTemplates.entries!.length > 0) {
     const signTemplate: SignTemplate =
@@ -41,16 +41,16 @@ test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
         signTemplates.entries![0].id!
       );
     if (!(signTemplate.id == signTemplates.entries![0].id)) {
-      throw new Error(String('Assertion failed'));
+      throw new Error('Assertion failed');
     }
     if (!(signTemplate.sourceFiles!.length > 0)) {
-      throw new Error(String('Assertion failed'));
+      throw new Error('Assertion failed');
     }
     if (!!(signTemplate.name == '')) {
-      throw new Error(String('Assertion failed'));
+      throw new Error('Assertion failed');
     }
     if (!!(signTemplate.parentFolder!.id == '')) {
-      throw new Error(String('Assertion failed'));
+      throw new Error('Assertion failed');
     }
   }
 });

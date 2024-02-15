@@ -74,7 +74,7 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
       fields: 'shared_link',
     } satisfies GetSharedLinkForFileQueryParams);
   if (!((toString(fileFromApi.sharedLink!.access) as string) == 'open')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   const userId: string = getEnvVar('USER_ID');
   const userClient: BoxClient = await getDefaultClientAsUser(userId);
@@ -90,7 +90,7 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
       })
     );
   if (!(fileId == fileFromSharedLinkPassword.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await expect(async () => {
     await userClient.sharedLinksFiles.findFileForSharedLink(
@@ -118,7 +118,7 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   if (
     !((toString(updatedFile.sharedLink!.access) as string) == 'collaborators')
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileId);
 });

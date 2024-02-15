@@ -15,6 +15,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -345,11 +346,10 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   val: any
 ): AddShareLinkToFolderRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "AddShareLinkToFolderRequestBodySharedLinkAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "AddShareLinkToFolderRequestBodySharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -360,7 +360,9 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
   val: AddShareLinkToFolderRequestBodySharedLinkPermissionsField
@@ -472,11 +474,10 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessFi
   val: any
 ): UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField"',
+    });
   }
   if (val == 'open') {
     return 'open';
@@ -487,7 +488,9 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessFi
   if (val == 'collaborators') {
     return 'collaborators';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
   val: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField

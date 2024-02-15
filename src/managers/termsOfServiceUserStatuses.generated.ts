@@ -18,6 +18,7 @@ import { fetch } from '../fetch.js';
 import { FetchOptions } from '../fetch.js';
 import { FetchResponse } from '../fetch.js';
 import { SerializedData } from '../json.js';
+import { BoxSdkError } from '../errors.js';
 import { sdIsEmpty } from '../json.js';
 import { sdIsBoolean } from '../json.js';
 import { sdIsNumber } from '../json.js';
@@ -206,16 +207,17 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFi
   val: any
 ): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"',
+    });
   }
   if (val == 'terms_of_service') {
     return 'terms_of_service';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   val: CreateTermsOfServiceStatusForUserRequestBodyTosField
@@ -249,16 +251,17 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeF
   val: any
 ): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
   if (!sdIsString(val)) {
-    throw new Error(
-      String(
-        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"'
-      )
-    );
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"',
+    });
   }
   if (val == 'user') {
     return 'user';
   }
-  throw new Error(String(''.concat('Invalid value: ', val) as string));
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
   val: CreateTermsOfServiceStatusForUserRequestBodyUserField

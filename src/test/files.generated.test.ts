@@ -77,7 +77,7 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
       ) == true
     )
   ) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(thumbnailFile.id);
 });
@@ -89,10 +89,10 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
     fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
   } satisfies GetFileByIdQueryParams);
   if (!(file.isExternallyOwned == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(file.hasCollaborations == false)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(file.id);
 });
@@ -112,14 +112,14 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
     );
   }).rejects.toThrow();
   if (!(file.name == newFileName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(uploadedFile.id);
   const trashedFile: TrashFile = await client.trashedFiles.getTrashedFileById(
     uploadedFile.id
   );
   if (!(file.id == trashedFile.id)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
 });
 test('testUpdateFile', async function testUpdateFile(): Promise<any> {
@@ -133,10 +133,10 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
     } satisfies UpdateFileByIdRequestBody
   );
   if (!(updatedFile.name == updatedName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(updatedFile.description == 'Updated description')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(updatedFile.id);
 });
@@ -148,10 +148,10 @@ test('testCopyFile', async function testCopyFile(): Promise<any> {
     name: copiedFileName,
   } satisfies CopyFileRequestBody);
   if (!(copiedFile.parent!.id == '0')) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   if (!(copiedFile.name == copiedFileName)) {
-    throw new Error(String('Assertion failed'));
+    throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileOrigin.id);
   await client.files.deleteFileById(copiedFile.id);
