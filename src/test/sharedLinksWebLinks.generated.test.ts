@@ -76,7 +76,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
     throw new Error('Assertion failed');
   }
   const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = await getDefaultClientAsUser(userId);
+  const userClient: BoxClient = getDefaultClientAsUser(userId);
   const webLinkFromSharedLinkPassword: WebLink =
     await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
       {} satisfies FindWebLinkForSharedLinkQueryParams,

@@ -47,7 +47,7 @@ test('testIntegrationMappings', async function testIntegrationMappings(): Promis
   const slackOrgId: string = '1';
   const partnerItemId: string = '1';
   const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = await getDefaultClientAsUser(userId);
+  const userClient: BoxClient = getDefaultClientAsUser(userId);
   await expect(async () => {
     await userClient.integrationMappings.createSlackIntegrationMapping({
       partnerItem: {

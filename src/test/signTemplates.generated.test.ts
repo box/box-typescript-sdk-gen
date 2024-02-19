@@ -17,7 +17,7 @@ import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
       limit: 2,
@@ -27,7 +27,7 @@ test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any>
   }
 });
 test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
       limit: 2,

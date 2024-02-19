@@ -28,7 +28,7 @@ import { sdIsMap } from '../json.js';
 test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDeleteFileRequest(): Promise<any> {
   const fileRequestId: string = getEnvVar('BOX_FILE_REQUEST_ID');
   const userId: string = getEnvVar('USER_ID');
-  const client: BoxClient = await getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientAsUser(userId);
   const fileRequest: FileRequest = await client.fileRequests.getFileRequestById(
     fileRequestId
   );

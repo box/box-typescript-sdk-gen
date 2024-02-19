@@ -57,9 +57,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testWorkflows', async function testWorkflows(): Promise<any> {
-  const adminClient: BoxClient = await getDefaultClientAsUser(
-    getEnvVar('USER_ID')
-  );
+  const adminClient: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const workflowFolderId: string = getEnvVar('WORKFLOW_FOLDER_ID');
   const uploadedFiles: Files = await adminClient.uploads.uploadFile({
     attributes: {

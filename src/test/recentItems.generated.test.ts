@@ -14,7 +14,7 @@ import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 test('testRecentItems', async function testRecentItems(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const recentItems: RecentItems = await client.recentItems.getRecentItems();
   if (!(recentItems.entries!.length >= 0)) {
     throw new Error('Assertion failed');

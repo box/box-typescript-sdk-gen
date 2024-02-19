@@ -19,12 +19,17 @@ export function sdToJson(data: SerializedData): string {
 }
 
 export function sdToUrlParams(data: SerializedData): string {
-  if (!sdIsMap(data)) {
-    throw new Error('Expecting an object as an argument for sdToUrlParams');
+  if (!sdIsMap(data) && !sdIsString(data)) {
+    throw new Error(
+      'Expecting an object or string as an argument for sdToUrlParams'
+    );
   }
+  const dataAsMap: SerializedDataMap = sdIsString(data)
+    ? JSON.parse(data)
+    : data;
   return new URLSearchParams(
     Object.fromEntries(
-      Object.entries(data).filter(([key, value]) => value != null)
+      Object.entries(dataAsMap).filter(([key, value]) => value != null)
     ) as Record<string, string>
   ).toString();
 }

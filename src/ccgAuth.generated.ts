@@ -44,38 +44,45 @@ export class BoxCcgAuth implements Authentication {
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage = this.config.tokenStorage;
+    this.tokenStorage =
+      this.config.tokenStorage == void 0
+        ? new InMemoryTokenStorage({})
+        : this.config.tokenStorage;
     this.subjectId = !(this.config.userId == void 0)
       ? this.config.userId
       : this.config.enterpriseId;
-    this.subjectType = !(this.config.userId == void 0) ? 'user' : 'enterprise';
+    this.subjectType = !(this.config.userId == void 0)
+      ? ('user' as PostOAuth2TokenBoxSubjectTypeField)
+      : ('enterprise' as PostOAuth2TokenBoxSubjectTypeField);
   }
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
-    const token: AccessToken = await authManager.requestAccessToken({
-      grantType: 'client_credentials' as PostOAuth2TokenGrantTypeField,
-      clientId: this.config.clientId,
-      clientSecret: this.config.clientSecret,
-      boxSubjectId: this.subjectId,
-      boxSubjectType: this.subjectType,
-    } satisfies PostOAuth2Token);
+    const token: undefined | AccessToken = await authManager.requestAccessToken(
+      {
+        grantType: 'client_credentials' as PostOAuth2TokenGrantTypeField,
+        clientId: this.config.clientId,
+        clientSecret: this.config.clientSecret,
+        boxSubjectId: this.subjectId,
+        boxSubjectType: this.subjectType,
+      } satisfies PostOAuth2Token
+    );
     await this.tokenStorage.store(token);
     return token;
   }
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    const oldToken: any = await this.tokenStorage.get();
+    const oldToken: undefined | AccessToken = await this.tokenStorage.get();
     if (oldToken == void 0) {
       const newToken: AccessToken = await this.refreshToken(networkSession);
       return newToken;
     }
     return oldToken;
   }
-  async asUser(
+  asUser(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
-  ): Promise<BoxCcgAuth> {
+  ): BoxCcgAuth {
     const newConfig: CcgConfig = new CcgConfig({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
@@ -85,10 +92,10 @@ export class BoxCcgAuth implements Authentication {
     });
     return new BoxCcgAuth({ config: newConfig });
   }
-  async asEnterprise(
+  asEnterprise(
     enterpriseId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
-  ): Promise<BoxCcgAuth> {
+  ): BoxCcgAuth {
     const newConfig: CcgConfig = new CcgConfig({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,

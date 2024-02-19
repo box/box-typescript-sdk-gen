@@ -122,11 +122,9 @@ export function getJwtAuth(): BoxJwtAuth {
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   return auth;
 }
-export async function getDefaultClientAsUser(
-  userId: string
-): Promise<BoxClient> {
+export function getDefaultClientAsUser(userId: string): BoxClient {
   const auth: BoxJwtAuth = getJwtAuth();
-  const authUser: BoxJwtAuth = await auth.asUser(userId);
+  const authUser: BoxJwtAuth = auth.asUser(userId);
   return new BoxClient({ auth: authUser });
 }
 export function getDefaultClient(): BoxClient {

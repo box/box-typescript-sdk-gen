@@ -11,7 +11,7 @@ import { InMemoryTokenStorage } from './tokenStorage.generated.js';
 import { sdToUrlParams } from './json.js';
 import { prepareParams } from './utils.js';
 import { BoxSdkError } from './errors.js';
-const boxOauth2AuthUrl: string = 'https://account.box.com/api/oauth2/authorize';
+import { SerializedData } from './json.js';
 export class OAuthConfig {
   readonly clientId!: string;
   readonly clientSecret!: string;
@@ -47,12 +47,15 @@ export class BoxOAuth implements Authentication {
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage = this.config.tokenStorage;
+    this.tokenStorage =
+      this.config.tokenStorage == void 0
+        ? new InMemoryTokenStorage({})
+        : this.config.tokenStorage;
   }
   getAuthorizeUrl(
     options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions
   ): string {
-    const params: {
+    const paramsMap: {
       readonly [key: string]: string;
     } = prepareParams({
       ['client_id']: !(options.clientId == void 0)
@@ -65,7 +68,10 @@ export class BoxOAuth implements Authentication {
       ['state']: options.state,
       ['scope']: options.scope,
     });
-    return ''.concat(boxOauth2AuthUrl, '?', sdToUrlParams(params)) as string;
+    return ''.concat(
+      'https://account.box.com/api/oauth2/authorize?',
+      sdToUrlParams(JSON.stringify(paramsMap) as SerializedData)
+    ) as string;
   }
   async getTokensAuthorizationCodeGrant(
     authorizationCode: string,
@@ -84,7 +90,7 @@ export class BoxOAuth implements Authentication {
     return token;
   }
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    const token: any = await this.tokenStorage.get();
+    const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
       throw new BoxSdkError({
         message:
@@ -93,14 +99,9 @@ export class BoxOAuth implements Authentication {
     }
     return token;
   }
-  async refreshToken(
-    networkSession?: NetworkSession,
-    refreshToken?: string
-  ): Promise<AccessToken> {
+  async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const oldToken: undefined | AccessToken = await this.tokenStorage.get();
-    const tokenUsedForRefresh: any = !(refreshToken == void 0)
-      ? refreshToken
-      : !(oldToken == void 0)
+    const tokenUsedForRefresh: undefined | string = !(oldToken == void 0)
       ? oldToken.refreshToken
       : void 0;
     const authManager: AuthorizationManager = !(networkSession == void 0)

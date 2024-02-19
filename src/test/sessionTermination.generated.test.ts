@@ -30,9 +30,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 const client: BoxClient = getDefaultClient();
 test('testSessionTerminationUser', async function testSessionTerminationUser(): Promise<any> {
-  const adminClient: BoxClient = await getDefaultClientAsUser(
-    getEnvVar('USER_ID')
-  );
+  const adminClient: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const user: UserFull = await adminClient.users.getUserMe();
   const result: SessionTerminationMessage =
     await client.sessionTermination.terminateUsersSessions({

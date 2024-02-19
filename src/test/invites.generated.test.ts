@@ -29,7 +29,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 test('testInvites', async function testInvites(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
-  const client: BoxClient = await getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientAsUser(userId);
   const currentUser: UserFull = await client.users.getUserMe({
     fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParams);

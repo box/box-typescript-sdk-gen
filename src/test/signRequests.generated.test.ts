@@ -99,4 +99,48 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
   } satisfies DeleteFolderByIdQueryParams);
   await client.files.deleteFileById(fileToSign.id);
 });
+test('testCreateSignRequestWithSignerGroupId', async function testCreateSignRequestWithSignerGroupId(): Promise<any> {
+  const signer1Email: string = ''.concat(getUuid(), '@box.com') as string;
+  const signer2Email: string = ''.concat(getUuid(), '@box.com') as string;
+  const fileToSign: FileFull = await uploadNewFile();
+  const destinationFolder: FolderFull = await createNewFolder();
+  const createdSignRequest: SignRequest =
+    await client.signRequests.createSignRequest({
+      signers: [
+        {
+          email: signer1Email,
+          signerGroupId: 'user',
+        } satisfies SignRequestCreateSigner,
+        {
+          email: signer2Email,
+          signerGroupId: 'user',
+        } satisfies SignRequestCreateSigner,
+      ],
+      parentFolder: {
+        id: destinationFolder.id,
+        type: 'folder' as FolderBaseTypeField,
+      } satisfies FolderMini,
+      sourceFiles: [
+        {
+          id: fileToSign.id,
+          type: 'file' as FileBaseTypeField,
+        } satisfies FileBase,
+      ],
+    } satisfies SignRequestCreateRequest);
+  if (!(createdSignRequest.signers!.length == 3)) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      createdSignRequest.signers![1].signerGroupId ==
+      createdSignRequest.signers![2].signerGroupId
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  await client.folders.deleteFolderById(destinationFolder.id, {
+    recursive: true,
+  } satisfies DeleteFolderByIdQueryParams);
+  await client.files.deleteFileById(fileToSign.id);
+});
 export {};
