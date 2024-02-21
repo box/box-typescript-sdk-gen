@@ -31,7 +31,7 @@ import { sdIsString } from '../json.js';
 import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 test('shieldInformationBarrierReports', async function shieldInformationBarrierReports(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
     await getOrCreateShieldInformationBarrier(client, enterpriseId);

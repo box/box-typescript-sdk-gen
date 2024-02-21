@@ -48,7 +48,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUserStatuses(): Promise<any> {
   const adminUserId: string = getEnvVar('USER_ID');
-  const client: BoxClient = await getDefaultClientAsUser(adminUserId);
+  const client: BoxClient = getDefaultClientAsUser(adminUserId);
   const tos: TermsOfService = await getOrCreateTermsOfServices();
   const user: UserFull = await client.users.createUser({
     name: getUuid(),

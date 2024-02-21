@@ -18,7 +18,7 @@ import { sdIsList } from '../json.js';
 import { sdIsMap } from '../json.js';
 const userId: string = getEnvVar('USER_ID');
 test('testGetStoragePolicies', async function testGetStoragePolicies(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientAsUser(userId);
   const storagePolicies: StoragePolicies =
     await client.storagePolicies.getStoragePolicies();
   const storagePolicy: StoragePolicy = storagePolicies.entries![0];

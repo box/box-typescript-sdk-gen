@@ -92,7 +92,7 @@ export async function getOrCreateStoragePolicyAssignment(
   return storagePolicyAssignment;
 }
 test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssignments(): Promise<any> {
-  const client: BoxClient = await getDefaultClientAsUser(adminUserId);
+  const client: BoxClient = getDefaultClientAsUser(adminUserId);
   const userName: string = getUuid();
   const newUser: UserFull = await client.users.createUser({
     name: userName,

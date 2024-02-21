@@ -25,7 +25,6 @@ import { sdIsNumber } from './json.js';
 import { sdIsString } from './json.js';
 import { sdIsList } from './json.js';
 import { sdIsMap } from './json.js';
-const boxJwtAudience: string = 'https://api.box.com/oauth2/token';
 export interface JwtConfigAppSettingsAppAuth {
   readonly publicKeyId: string;
   readonly privateKey: string;
@@ -49,18 +48,18 @@ export class JwtConfig {
   readonly privateKeyPassphrase!: string;
   readonly enterpriseId?: string;
   readonly userId?: string;
-  readonly jwtAlgorithm?: JwtAlgorithm = 'RS256';
+  readonly algorithm?: JwtAlgorithm = 'RS256' as JwtAlgorithm;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
     fields:
       | Omit<
           JwtConfig,
-          | 'jwtAlgorithm'
+          | 'algorithm'
           | 'tokenStorage'
           | 'fromConfigJsonString'
           | 'fromConfigFile'
         >
-      | Partial<Pick<JwtConfig, 'jwtAlgorithm' | 'tokenStorage'>>
+      | Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>
   ) {
     Object.assign(this, fields);
   }
@@ -71,7 +70,7 @@ export class JwtConfig {
     const configJson: JwtConfigFile = deserializeJwtConfigFile(
       jsonToSerializedData(configJsonString)
     );
-    const newConfig: any = !(tokenStorage == void 0)
+    const newConfig: JwtConfig = !(tokenStorage == void 0)
       ? new JwtConfig({
           clientId: configJson.boxAppSettings.clientId,
           clientSecret: configJson.boxAppSettings.clientSecret,
@@ -117,12 +116,14 @@ export class BoxJwtAuth implements Authentication {
       | 'asUser'
       | 'asEnterprise'
       | 'downscopeToken'
-      | 'addSpace'
       | 'revokeToken'
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage = this.config.tokenStorage;
+    this.tokenStorage =
+      this.config.tokenStorage == void 0
+        ? new InMemoryTokenStorage({})
+        : this.config.tokenStorage;
     this.subjectId = !(this.config.enterpriseId == void 0)
       ? this.config.enterpriseId
       : this.config.userId;
@@ -136,9 +137,9 @@ export class BoxJwtAuth implements Authentication {
         message: 'JWT auth is not supported in browser environment.',
       });
     }
-    const alg: JwtAlgorithm = !(this.config.jwtAlgorithm == void 0)
-      ? this.config.jwtAlgorithm
-      : 'RS256';
+    const alg: JwtAlgorithm = !(this.config.algorithm == void 0)
+      ? this.config.algorithm!
+      : ('RS256' as JwtAlgorithm);
     const claims: {
       readonly [key: string]: any;
     } = {
@@ -147,7 +148,7 @@ export class BoxJwtAuth implements Authentication {
     };
     const jwtOptions: JwtSignOptions = {
       algorithm: alg,
-      audience: boxJwtAudience,
+      audience: 'https://api.box.com/oauth2/token',
       subject: this.subjectId,
       issuer: this.config.clientId,
       jwtid: getUuid(),
@@ -172,17 +173,17 @@ export class BoxJwtAuth implements Authentication {
     return token;
   }
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    const oldToken: any = await this.tokenStorage.get();
+    const oldToken: undefined | AccessToken = await this.tokenStorage.get();
     if (oldToken == void 0) {
       const newToken: AccessToken = await this.refreshToken(networkSession);
       return newToken;
     }
     return oldToken;
   }
-  async asUser(
+  asUser(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
-  ): Promise<BoxJwtAuth> {
+  ): BoxJwtAuth {
     const newConfig: JwtConfig = new JwtConfig({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
@@ -196,10 +197,10 @@ export class BoxJwtAuth implements Authentication {
     const newAuth: BoxJwtAuth = new BoxJwtAuth({ config: newConfig });
     return newAuth;
   }
-  async asEnterprise(
+  asEnterprise(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
-  ): Promise<BoxJwtAuth> {
+  ): BoxJwtAuth {
     const newConfig: JwtConfig = new JwtConfig({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
@@ -240,9 +241,6 @@ export class BoxJwtAuth implements Authentication {
       boxSharedLink: sharedLink,
     } satisfies PostOAuth2Token);
     return downscopedToken;
-  }
-  addSpace(text: string): string {
-    return ''.concat() as string;
   }
   async revokeToken(networkSession?: NetworkSession): Promise<undefined> {
     const oldToken: undefined | AccessToken = await this.tokenStorage.get();

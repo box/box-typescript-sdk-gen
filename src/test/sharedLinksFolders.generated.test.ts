@@ -69,7 +69,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
     throw new Error('Assertion failed');
   }
   const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = await getDefaultClientAsUser(userId);
+  const userClient: BoxClient = getDefaultClientAsUser(userId);
   const folderFromSharedLinkPassword: FolderFull =
     await userClient.sharedLinksFolders.findFolderForSharedLink(
       {} satisfies FindFolderForSharedLinkQueryParams,
