@@ -1,116 +1,215 @@
-# Files
+# FilesManager
 
-File objects represent individual files in Box. They can be used to download a
-file's contents, upload new versions, and perform other common file operations
-(move, copy, delete, etc.).
+- [Get file information](#get-file-information)
+- [Update file](#update-file)
+- [Delete file](#delete-file)
+- [Copy file](#copy-file)
+- [Get file thumbnail](#get-file-thumbnail)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Get file information
 
-- [Get a File's Information](#get-a-files-information)
-  - [Getting additional fields](#getting-additional-fields)
-- [Update a File's Information](#update-a-files-information)
-- [Copy a File](#copy-a-file)
-- [Delete a File](#delete-a-file)
-- [Restore a File from Trash](#restore-a-file-from-trash)
-- [Get Thumbnail](#get-thumbnail)
+Retrieves the details about a file.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+This operation is performed by calling function `getFileById`.
 
-## Get a File's Information
-
-To retreive information about a File, call `getFileById` method. This method returns a `File` object which contains information about the file.
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id/).
 
 <!-- sample get_files_id -->
 
-```js
-const file = await client.files.getFileById("123456789");
-console.log(`File with id ${file.id} has name ${file.name}`))
+```ts
+await client.files.getFileById(file.id);
 ```
 
-### Getting additional fields
+### Arguments
 
-If you want the response object to contain additional fields that are not return by default, you should pass a list of
-such fields in a comma-separated string
+- fileId `string`
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- queryParams `GetFileByIdQueryParams`
+  - Query parameters of getFileById method
+- headers `GetFileByIdHeaders`
+  - Headers of getFileById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-```js
-const file = await client.files.getFileById('123456789', {
-  fields: 'is_externally_owned,has_collaborations',
-});
-```
+### Returns
 
-NOTE: Be aware that specifying `fields` parameter will have the effect that none of the standard fields
-are returned in the response unless explicitly specified, instead only fields defined in `FileBase`
-are returned, additional to the fields requested.
+This function returns a value of type `FileFull`.
 
-## Update a File's Information
+Returns a file object.
 
-To update a file's information, call `updateFileById` method. This method returns a `File` object which contains information about the file.
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
+
+## Update file
+
+Updates a file. This can be used to rename or move a file,
+create a shared link, or lock a file.
+
+This operation is performed by calling function `updateFileById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id/).
 
 <!-- sample put_files_id -->
 
-```js
-const file = await client.files.updateFileById("123456789", {
-    name: "test.txt",
-    description: "Test file",
-});
-console.log(`File with id ${file.id} has new name ${file.name}`);)
+```ts
+await client.files.updateFileById(fileToUpdate.id, {
+  name: updatedName,
+  description: 'Updated description',
+} satisfies UpdateFileByIdRequestBody);
 ```
 
-## Copy a File
+### Arguments
 
-To copy a file to a new location, call `copyFile` method.
-You need to specify the `parent` field in the request body, which is the destination folder and optionally the `name` field which is the new name of the file.
-This method returns a `File` object which contains information about the copied file.
+- fileId `string`
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- requestBody `UpdateFileByIdRequestBody`
+  - Request body of updateFileById method
+- queryParams `UpdateFileByIdQueryParams`
+  - Query parameters of updateFileById method
+- headers `UpdateFileByIdHeaders`
+  - Headers of updateFileById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-<!-- sample post_files_id_copy -->
+### Returns
 
-```js
-const file = await client.files.copyFile("123456789", {
-    parent: { id: 0 },
-    name: "test_copy.txt",
-});
-console.log(`File copied with id ${file.id}, name ${file.name}`);)
-```
+This function returns a value of type `FileFull`.
 
-## Delete a File
+Returns a file object.
 
-To delete a file, call `deleteFileById` method.
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
+
+## Delete file
+
+Deletes a file, either permanently or by moving it to
+the trash.
+
+The the enterprise settings determine whether the item will
+be permanently deleted from Box or moved to the trash.
+
+This operation is performed by calling function `deleteFileById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-id/).
 
 <!-- sample delete_files_id -->
 
-```js
-await client.files.deleteFileById('1211254579723');
+```ts
+await client.files.deleteFileById(file2.id);
 ```
 
-## Restore a File from Trash
+### Arguments
 
-To restore a file from trash, call `restoreFileFromTrash` method on `trashedFiles` manager.
-This method returns a `TrashFileRestored` object which contains information about the restored file.
+- fileId `string`
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- headers `DeleteFileByIdHeaders`
+  - Headers of deleteFileById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-<!-- sample post_files_id -->
+### Returns
 
-```js
-const file = await client.trashedFiles.restoreFileFromTrash('123456789');
-console.log(`File restored with id ${file.id}, name ${file.name}`);
+This function returns a value of type `undefined`.
+
+Returns an empty response when the file has been successfully
+deleted.
+
+## Copy file
+
+Creates a copy of a file.
+
+This operation is performed by calling function `copyFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-id-copy/).
+
+<!-- sample post_files_id_copy -->
+
+```ts
+await client.files.copyFile(fileOrigin.id, {
+  parent: { id: '0' } satisfies CopyFileRequestBodyParentField,
+  name: copiedFileName,
+} satisfies CopyFileRequestBody);
 ```
 
-## Get Thumbnail
+### Arguments
 
-To retrieve a thumbnail for a file, call `getFileThumbnailById` method. This method returns a `ArrayBuffer` object which contains the thumbnail data in the specified format.
+- fileId `string`
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- requestBody `CopyFileRequestBody`
+  - Request body of copyFile method
+- queryParams `CopyFileQueryParams`
+  - Query parameters of copyFile method
+- headers `CopyFileHeaders`
+  - Headers of copyFile method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-Optionally, you can specify the information about the thumbnail you want to retrieve, including the `maxHeight`, `maxWidth`, `minHeight`, `minWidth`.
+### Returns
+
+This function returns a value of type `FileFull`.
+
+Returns a new file object representing the copied file.
+
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
+
+## Get file thumbnail
+
+Retrieves a thumbnail, or smaller image representation, of a file.
+
+Sizes of `32x32`,`64x64`, `128x128`, and `256x256` can be returned in
+the `.png` format and sizes of `32x32`, `160x160`, and `320x320`
+can be returned in the `.jpg` format.
+
+Thumbnails can be generated for the image and video file formats listed
+[found on our community site][1].
+
+[1]: https://community.box.com/t5/Migrating-and-Previewing-Content/File-Types-and-Fonts-Supported-in-Box-Content-Preview/ta-p/327
+
+This operation is performed by calling function `getFileThumbnailById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-thumbnail-id/).
 
 <!-- sample get_files_id_thumbnail_id -->
 
-```js
-const fs = require("fs");
-
-const thumbnail = await client.files.getFileThumbnailById(
-    "123456789",
-    "png",
-    { minHeight: 256, minWidth: 256, maxHeight: 256, maxWidth: 256}
+```ts
+await client.files.getFileThumbnailById(
+  thumbnailFile.id,
+  'png' as GetFileThumbnailByIdExtension
 );
-
-fs.appendFileSync("myFile.txt", Buffer.from(thumbnail)))
 ```
+
+### Arguments
+
+- fileId `string`
+  - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
+- extension `GetFileThumbnailByIdExtension`
+  - The file format for the thumbnail Example: "png"
+- queryParams `GetFileThumbnailByIdQueryParams`
+  - Query parameters of getFileThumbnailById method
+- headers `GetFileThumbnailByIdHeaders`
+  - Headers of getFileThumbnailById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `ByteStream`.
+
+When a thumbnail can be created the thumbnail data will be
+returned in the body of the response.Sometimes generating a thumbnail can take a few seconds. In these
+situations the API returns a `Location`-header pointing to a
+placeholder graphic for this file type.
+
+The placeholder graphic can be used in a user interface until the
+thumbnail generation has completed. The `Retry-After`-header indicates
+when to the thumbnail will be ready. At that time, retry this endpoint
+to retrieve the thumbnail.

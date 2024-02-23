@@ -21,7 +21,7 @@ const fs = require('fs');
 const attrs = { name: 'filename.txt', parent: { id: '0' } };
 const body = {
   attributes: attrs,
-  file: fs.readFileSync('filename.txt', 'utf8'),
+  file: fs.createReadStream('filename.txt'),
 };
 const files = await client.uploads.uploadFile(body);
 const file = files.entries[0];

@@ -1,169 +1,260 @@
-# Folders
+# FoldersManager
 
-Folder objects represent a folder from a user's account. They can be used to
-iterate through a folder's contents and perform other common folder operations (move, copy, delete, etc.).
+- [Get folder information](#get-folder-information)
+- [Update folder](#update-folder)
+- [Delete folder](#delete-folder)
+- [List items in folder](#list-items-in-folder)
+- [Create folder](#create-folder)
+- [Copy folder](#copy-folder)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Get folder information
 
-- [Get Information about a Folder](#get-information-about-a-folder)
-  - [Get the User's Root Folder Information](#get-the-users-root-folder-information)
-  - [Getting additional fields](#getting-additional-fields)
-- [Get the Items in a Folder](#get-the-items-in-a-folder)
-- [Create a Folder](#create-a-folder)
-- [Update a Folder](#update-a-folder)
-- [Copy a Folder](#copy-a-folder)
-- [Move a Folder](#move-a-folder)
-- [Rename a Folder](#rename-a-folder)
-- [Delete a Folder](#delete-a-folder)
+Retrieves details for a folder, including the first 100 entries
+in the folder.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+Passing `sort`, `direction`, `offset`, and `limit`
+parameters in query allows you to manage the
+list of returned
+[folder items](r://folder--full#param-item-collection).
 
-# Get Information about a Folder
+To fetch more items within the folder, use the
+[Get items in a folder](e://get-folders-id-items) endpoint.
 
-To retrieve information about a folder, call:
+This operation is performed by calling function `getFolderById`.
 
-```js
-const folder = await client.folders.getFolderById('12345');
-console.log(`Folder with id ${folder.id} has name ${folder.name}`);
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-folders-id/).
+
+<!-- sample get_folders_id -->
+
+```ts
+await client.folders.getFolderById('0');
 ```
 
-`getFolderById` method returns a new `FolderFull` object with fields populated by data from the API.
-The default response object will contain only fields specified in `Folder` class.
+### Arguments
 
-## Get the User's Root Folder Information
+- folderId `string`
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+- queryParams `GetFolderByIdQueryParams`
+  - Query parameters of getFolderById method
+- headers `GetFolderByIdHeaders`
+  - Headers of getFolderById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-To get the current user's root folder, call `getFolderById` with `folderId` set to '0'.
+### Returns
 
-```js
-const rootFolder = await client.folders.getFolderById('0');
-```
+This function returns a value of type `FolderFull`.
 
-## Getting additional fields
+Returns a folder, including the first 100 entries in the folder.
+If you used query parameters like
+`sort`, `direction`, `offset`, or `limit`
+the _folder items list_ will be affected accordingly.
 
-If you want the response object to contain additional fields that are not return by default, you should pass a list of
-such fields in a comma-separated string
+To fetch more items within the folder, use the
+[Get items in a folder](e://get-folders-id-items)) endpoint.
 
-```js
-const rootFolder = await client.folders.getFolderById('0', {
-  fields: 'has_collaborations,tags',
-});
-```
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
 
-NOTE: Be aware that specifying `fields` parameter will have the effect that none of the standard fields
-are returned in the response unless explicitly specified, instead only fields defined in `FolderBase`
-are returned, additional to the fields requested.
+## Update folder
 
-# Get the Items in a Folder
+Updates a folder. This can be also be used to move the folder,
+create shared links, update collaborations, and more.
 
-To retrieve the items in a folder, call `getFolderItems` method. It returns a `Items` object
-that exposes list of items inside a folder with field `entries`.
+This operation is performed by calling function `updateFolderById`.
 
-```js
-const items = await client.folders.getFolderItems('0');
-items.entries.forEach((item) =>
-  console.log(`${item.type} ${item.id} is named "${item.name}"`)
-);
-```
-
-# Create a Folder
-
-A folder can be created by calling `createFolder` method with required request body parameters.
-This method returns a new `FolderFull` representing the created subfolder.
-
-```js
-const subfolder = await client.folders.createFolder({
-  name: 'New Folder Name',
-  parent: { id: '0' },
-});
-console.log(`Created subfolder with ID ${subfolder.id}`);
-```
-
-# Update a Folder
-
-To update a folder's information, call `updateFolderById` method with new values of properties
-to update on the folder. This method returns an updated `FolderFull` object.
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-folders-id/).
 
 <!-- sample put_folders_id -->
 
-```js
-const updatedFolder = await client.folders.updateFolderById('12345', {
-  name: 'Updated folder name',
-  description: 'Updated description',
-});
-console.log(
-  `Folder with ID ${updatedFolder.id} new name: ${updatedFolder.name}`
-);
+```ts
+await client.folders.updateFolderById(copiedFolder.id, {
+  parent: {
+    id: folderOrigin.id,
+  } satisfies UpdateFolderByIdRequestBodyParentField,
+  name: movedFolderName,
+} satisfies UpdateFolderByIdRequestBody);
 ```
 
-# Copy a Folder
+### Arguments
 
-A folder can be copied into a new parent folder by calling `copyFolder` with the
-destination folder and an optional new name for the file in case there is a name conflict in the destination folder.
-This method returns a new `FolderFull` object representing the copy of the folder in the destination folder.
+- folderId `string`
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+- requestBody `UpdateFolderByIdRequestBody`
+  - Request body of updateFolderById method
+- queryParams `UpdateFolderByIdQueryParams`
+  - Query parameters of updateFolderById method
+- headers `UpdateFolderByIdHeaders`
+  - Headers of updateFolderById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `FolderFull`.
+
+Returns a folder object for the updated folder
+
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
+
+This call will return synchronously. This holds true even when
+moving folders with a large a large number of items in all of its
+descendants. For very large folders, this means the call could
+take minutes or hours to return.
+
+## Delete folder
+
+Deletes a folder, either permanently or by moving it to
+the trash.
+
+This operation is performed by calling function `deleteFolderById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-folders-id/).
+
+<!-- sample delete_folders_id -->
+
+```ts
+await client.folders.deleteFolderById(folder1.id);
+```
+
+### Arguments
+
+- folderId `string`
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+- queryParams `DeleteFolderByIdQueryParams`
+  - Query parameters of deleteFolderById method
+- headers `DeleteFolderByIdHeaders`
+  - Headers of deleteFolderById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the folder is successfully deleted
+or moved to the trash.
+
+## List items in folder
+
+Retrieves a page of items in a folder. These items can be files,
+folders, and web links.
+
+To request more information about the folder itself, like its size,
+use the [Get a folder](#get-folders-id) endpoint instead.
+
+This operation is performed by calling function `getFolderItems`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-folders-id-items/).
+
+<!-- sample get_folders_id_items -->
+
+```ts
+await client.folders.getFolderItems(folderOrigin.id);
+```
+
+### Arguments
+
+- folderId `string`
+  - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
+- queryParams `GetFolderItemsQueryParams`
+  - Query parameters of getFolderItems method
+- headers `GetFolderItemsHeaders`
+  - Headers of getFolderItems method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `Items`.
+
+Returns a collection of files, folders, and web links contained in a folder.
+
+## Create folder
+
+Creates a new empty folder within the specified parent folder.
+
+This operation is performed by calling function `createFolder`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-folders/).
+
+<!-- sample post_folders -->
+
+```ts
+await client.folders.createFolder({
+  name: getUuid(),
+  parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+} satisfies CreateFolderRequestBody);
+```
+
+### Arguments
+
+- requestBody `CreateFolderRequestBody`
+  - Request body of createFolder method
+- queryParams `CreateFolderQueryParams`
+  - Query parameters of createFolder method
+- headers `CreateFolderHeaders`
+  - Headers of createFolder method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `FolderFull`.
+
+Returns a folder object.
+
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
+
+## Copy folder
+
+Creates a copy of a folder within a destination folder.
+
+The original folder will not be changed.
+
+This operation is performed by calling function `copyFolder`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-folders-id-copy/).
 
 <!-- sample post_folders_id_copy -->
 
-```js
-const folderId = '22222';
-const destinationFolderId = '44444';
-
-const folderCopy = await client.folders.copyFolder(folderId, {
-  parent: { id: destinationFolderId },
-  name: 'Copied folder name',
-});
-
-console.log(
-  `Folder "${folderCopy.name}" has been copied into folder "${folderCopy.parent.name}"`
-);
+```ts
+await client.folders.copyFolder(folderOrigin.id, {
+  parent: { id: '0' } satisfies CopyFolderRequestBodyParentField,
+  name: copiedFolderName,
+} satisfies CopyFolderRequestBody);
 ```
 
-# Move a Folder
+### Arguments
 
-To move a folder from one parent folder into another, call `updateFolderById` and pass `parent` field to specify
-destination folder to move the folder into. You can optionally provide a `name` parameter to automatically rename the
-folder in case of a name conflict in the destination folder. This method returns the updated `FolderFull` object.
+- folderId `string`
+  - The unique identifier of the folder to copy. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder with the ID `0` can not be copied. Example: "0"
+- requestBody `CopyFolderRequestBody`
+  - Request body of copyFolder method
+- queryParams `CopyFolderQueryParams`
+  - Query parameters of copyFolder method
+- headers `CopyFolderHeaders`
+  - Headers of copyFolder method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-```js
-const folderId = '22222';
-const destinationFolderId = '44444';
+### Returns
 
-const movedFolder = await client.folders.updateFolderById(folderId, {
-  parent: { id: destinationFolderId },
-  name: 'Moved folder new name',
-});
-console.log(
-  `Folder "${movedFolder.name}" has been moved into folder "${movedFolder.parent.name}"`
-);
-```
+This function returns a value of type `FolderFull`.
 
-# Rename a Folder
+Returns a new folder object representing the copied folder.
 
-A folder can be renamed by calling `updateFolderById` method and passing a new folder name.
-This method returns the updated `FolderFull` object with a new name.
-
-```js
-const updatedFolder = await client.folders.updateFolderById('12345', {
-  name: 'Updated folder name',
-});
-console.log(
-  `Folder "${updatedFolder.id}" has a new name "${updatedFolder.name}"`
-);
-```
-
-# Delete a Folder
-
-Calling the `deleteFolderById` method will delete the folder. Depending on enterprise settings,
-this will either move the folder to the user's trash or permanently delete the folder.
-
-```js
-await client.folders.deleteFolderById('12345');
-```
-
-By default, the method will not delete the folder when folder is not empty. To delete the folder with all its content
-set the `recursive` parameter to `true`.
-
-```js
-await client.folders.deleteFolderById('12345', { recursive: true });
-print('Folder with id: 12345 was successfully deleted');
-```
+Not all available fields are returned by default. Use the
+[fields](#param-fields) query parameter to explicitly request
+any specific fields.
