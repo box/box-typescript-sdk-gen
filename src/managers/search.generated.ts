@@ -4,8 +4,6 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeMetadataQuery } from '../schemas.generated.js';
 import { deserializeMetadataQuery } from '../schemas.generated.js';
-import { serializeMetadataQueryIndices } from '../schemas.generated.js';
-import { deserializeMetadataQueryIndices } from '../schemas.generated.js';
 import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { serializeMetadataFilter } from '../schemas.generated.js';
@@ -13,27 +11,26 @@ import { deserializeMetadataFilter } from '../schemas.generated.js';
 import { MetadataQueryResults } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { MetadataQuery } from '../schemas.generated.js';
-import { MetadataQueryIndices } from '../schemas.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { MetadataFilter } from '../schemas.generated.js';
-import { Authentication } from '../auth.js';
-import { NetworkSession } from '../network.generated.js';
-import { prepareParams } from '../utils.js';
-import { toString } from '../utils.js';
-import { ByteStream } from '../utils.js';
-import { CancellationToken } from '../utils.js';
-import { fetch } from '../fetch.js';
-import { FetchOptions } from '../fetch.js';
-import { FetchResponse } from '../fetch.js';
-import { SerializedData } from '../json.js';
-import { sdToJson } from '../json.js';
-import { BoxSdkError } from '../errors.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { Authentication } from '../networking/auth.js';
+import { NetworkSession } from '../networking/network.generated.js';
+import { prepareParams } from '../internal/utils.js';
+import { toString } from '../internal/utils.js';
+import { ByteStream } from '../internal/utils.js';
+import { CancellationToken } from '../internal/utils.js';
+import { FetchOptions } from '../networking/fetch.js';
+import { FetchResponse } from '../networking/fetch.js';
+import { fetch } from '../networking/fetch.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdToJson } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 export class SearchByMetadataQueryHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -42,25 +39,6 @@ export class SearchByMetadataQueryHeaders {
     fields:
       | Omit<SearchByMetadataQueryHeaders, 'extraHeaders'>
       | Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>
-  ) {
-    Object.assign(this, fields);
-  }
-}
-export type GetMetadataQueryIndicesQueryParamsScopeField =
-  | 'global'
-  | 'enterprise';
-export interface GetMetadataQueryIndicesQueryParams {
-  readonly scope: GetMetadataQueryIndicesQueryParamsScopeField;
-  readonly templateKey: string;
-}
-export class GetMetadataQueryIndicesHeaders {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields:
-      | Omit<GetMetadataQueryIndicesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataQueryIndicesHeaders, 'extraHeaders'>>
   ) {
     Object.assign(this, fields);
   }
@@ -126,10 +104,7 @@ export class SearchManager {
     fields:
       | Omit<
           SearchManager,
-          | 'networkSession'
-          | 'searchByMetadataQuery'
-          | 'getMetadataQueryIndices'
-          | 'searchForContent'
+          'networkSession' | 'searchByMetadataQuery' | 'searchForContent'
         >
       | Partial<Pick<SearchManager, 'networkSession'>>
   ) {
@@ -162,39 +137,6 @@ export class SearchManager {
       } satisfies FetchOptions
     )) as FetchResponse;
     return deserializeMetadataQueryResults(response.data);
-  }
-  async getMetadataQueryIndices(
-    queryParams: GetMetadataQueryIndicesQueryParams,
-    headers: GetMetadataQueryIndicesHeaders = new GetMetadataQueryIndicesHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<MetadataQueryIndices> {
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['scope']: toString(queryParams.scope) as string,
-      ['template_key']: toString(queryParams.templateKey) as string,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/metadata_query_indices'
-      ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeMetadataQueryIndices(response.data);
   }
   async searchForContent(
     queryParams: SearchForContentQueryParams = {} satisfies SearchForContentQueryParams,
@@ -271,30 +213,6 @@ export class SearchManager {
       response.data
     );
   }
-}
-export function serializeGetMetadataQueryIndicesQueryParamsScopeField(
-  val: GetMetadataQueryIndicesQueryParamsScopeField
-): SerializedData {
-  return val;
-}
-export function deserializeGetMetadataQueryIndicesQueryParamsScopeField(
-  val: any
-): GetMetadataQueryIndicesQueryParamsScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetMetadataQueryIndicesQueryParamsScopeField"',
-    });
-  }
-  if (val == 'global') {
-    return 'global';
-  }
-  if (val == 'enterprise') {
-    return 'enterprise';
-  }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
 }
 export function serializeSearchForContentQueryParamsScopeField(
   val: SearchForContentQueryParamsScopeField

@@ -1,4 +1,4 @@
-import { SerializedData } from './json.js';
+import { SerializedData } from '../serialization/json.js';
 
 export class BoxSdkError extends Error {
   readonly message!: string;

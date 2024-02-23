@@ -1,4 +1,4 @@
-import { AccessToken } from './schemas.generated.js';
+import { AccessToken } from '../schemas.generated.js';
 export interface TokenStorage {
   store(token: AccessToken): Promise<undefined>;
   get(): Promise<undefined | AccessToken>;

@@ -1,11 +1,11 @@
-import { BoxSdkError } from './errors.js';
-import { SerializedData } from './json.js';
-import { sdIsEmpty } from './json.js';
-import { sdIsBoolean } from './json.js';
-import { sdIsNumber } from './json.js';
-import { sdIsString } from './json.js';
-import { sdIsList } from './json.js';
-import { sdIsMap } from './json.js';
+import { BoxSdkError } from './box/errors.js';
+import { SerializedData } from './serialization/json.js';
+import { sdIsEmpty } from './serialization/json.js';
+import { sdIsBoolean } from './serialization/json.js';
+import { sdIsNumber } from './serialization/json.js';
+import { sdIsString } from './serialization/json.js';
+import { sdIsList } from './serialization/json.js';
+import { sdIsMap } from './serialization/json.js';
 export type PostOAuth2TokenGrantTypeField =
   | 'authorization_code'
   | 'refresh_token'
@@ -436,11 +436,6 @@ export interface MetadataQueryIndex {
   readonly type: string;
   readonly status: MetadataQueryIndexStatusField;
   readonly fields?: readonly MetadataQueryIndexFieldsField[];
-}
-export interface MetadataQueryIndices {
-  readonly entries?: readonly MetadataQueryIndex[];
-  readonly limit?: number;
-  readonly nextMarker?: string;
 }
 export type MetadataTemplateTypeField = 'metadata_template';
 export type MetadataTemplateFieldsTypeField =
@@ -2522,6 +2517,7 @@ export type SignRequestSignerInput = SignRequestPrefillTag & {
   readonly type?: SignRequestSignerInputTypeField;
   readonly contentType?: SignRequestSignerInputContentTypeField;
   readonly pageIndex: number;
+  readonly readOnly?: boolean;
 };
 export type SignRequestSignerSignerDecisionTypeField = 'signed' | 'declined';
 export interface SignRequestSignerSignerDecisionField {
@@ -2544,7 +2540,6 @@ export interface SignRequestBase {
   readonly emailSubject?: string;
   readonly emailMessage?: string;
   readonly areRemindersEnabled?: boolean;
-  readonly parentFolder: FolderMini;
   readonly name?: string;
   readonly prefillTags?: readonly SignRequestPrefillTag[];
   readonly daysValid?: number;
@@ -2581,6 +2576,7 @@ export type SignRequest = SignRequestBase & {
   readonly status?: SignRequestStatusField;
   readonly signFiles?: SignRequestSignFilesField;
   readonly autoExpireAt?: string;
+  readonly parentFolder?: FolderMini;
 };
 export interface SignRequests {
   readonly limit?: number;
@@ -2595,6 +2591,7 @@ export type SignRequestCreateRequest = SignRequestBase & {
   readonly sourceFiles?: readonly FileBase[];
   readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
   readonly signers: readonly SignRequestCreateSigner[];
+  readonly parentFolder?: FolderMini;
 };
 export type TemplateSignerInputTypeField =
   | 'signature'
@@ -2639,6 +2636,7 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
   readonly coordinates?: TemplateSignerInputCoordinatesField;
   readonly dimensions?: TemplateSignerInputDimensionsField;
   readonly label?: string;
+  readonly readOnly?: boolean;
 };
 export type TemplateSignerRoleField =
   | 'signer'
@@ -5902,40 +5900,6 @@ export function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex {
     status: status,
     fields: fields,
   } satisfies MetadataQueryIndex;
-}
-export function serializeMetadataQueryIndices(
-  val: MetadataQueryIndices
-): SerializedData {
-  return {
-    ['entries']:
-      val.entries == void 0
-        ? void 0
-        : (val.entries.map(function (item: MetadataQueryIndex): any {
-            return serializeMetadataQueryIndex(item);
-          }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-  };
-}
-export function deserializeMetadataQueryIndices(
-  val: any
-): MetadataQueryIndices {
-  const entries: undefined | readonly MetadataQueryIndex[] =
-    val.entries == void 0
-      ? void 0
-      : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
-          return deserializeMetadataQueryIndex(itm);
-        }) as readonly any[])
-      : [];
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
-  const nextMarker: undefined | string =
-    val.next_marker == void 0 ? void 0 : val.next_marker;
-  return {
-    entries: entries,
-    limit: limit,
-    nextMarker: nextMarker,
-  } satisfies MetadataQueryIndices;
 }
 export function serializeMetadataTemplateTypeField(
   val: MetadataTemplateTypeField
@@ -19095,6 +19059,7 @@ export function serializeSignRequestSignerInput(
           ? void 0
           : serializeSignRequestSignerInputContentTypeField(val.contentType),
       ['page_index']: val.pageIndex,
+      ['read_only']: val.readOnly == void 0 ? void 0 : val.readOnly,
     },
   };
 }
@@ -19110,6 +19075,8 @@ export function deserializeSignRequestSignerInput(
       ? void 0
       : deserializeSignRequestSignerInputContentTypeField(val.content_type);
   const pageIndex: number = val.page_index;
+  const readOnly: undefined | boolean =
+    val.read_only == void 0 ? void 0 : val.read_only;
   const documentTagId: undefined | string =
     val.document_tag_id == void 0 ? void 0 : val.document_tag_id;
   const textValue: undefined | string =
@@ -19122,6 +19089,7 @@ export function deserializeSignRequestSignerInput(
     type: type,
     contentType: contentType,
     pageIndex: pageIndex,
+    readOnly: readOnly,
     documentTagId: documentTagId,
     textValue: textValue,
     checkboxValue: checkboxValue,
@@ -19293,7 +19261,6 @@ export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
     ['email_message']: val.emailMessage == void 0 ? void 0 : val.emailMessage,
     ['are_reminders_enabled']:
       val.areRemindersEnabled == void 0 ? void 0 : val.areRemindersEnabled,
-    ['parent_folder']: serializeFolderMini(val.parentFolder),
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['prefill_tags']:
       val.prefillTags == void 0
@@ -19329,7 +19296,6 @@ export function deserializeSignRequestBase(val: any): SignRequestBase {
     val.email_message == void 0 ? void 0 : val.email_message;
   const areRemindersEnabled: undefined | boolean =
     val.are_reminders_enabled == void 0 ? void 0 : val.are_reminders_enabled;
-  const parentFolder: FolderMini = deserializeFolderMini(val.parent_folder);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const prefillTags: undefined | readonly SignRequestPrefillTag[] =
     val.prefill_tags == void 0
@@ -19357,7 +19323,6 @@ export function deserializeSignRequestBase(val: any): SignRequestBase {
     emailSubject: emailSubject,
     emailMessage: emailMessage,
     areRemindersEnabled: areRemindersEnabled,
-    parentFolder: parentFolder,
     name: name,
     prefillTags: prefillTags,
     daysValid: daysValid,
@@ -19509,6 +19474,10 @@ export function serializeSignRequest(val: SignRequest): SerializedData {
           : serializeSignRequestSignFilesField(val.signFiles),
       ['auto_expire_at']:
         val.autoExpireAt == void 0 ? void 0 : val.autoExpireAt,
+      ['parent_folder']:
+        val.parentFolder == void 0
+          ? void 0
+          : serializeFolderMini(val.parentFolder),
     },
   };
 }
@@ -19548,6 +19517,10 @@ export function deserializeSignRequest(val: any): SignRequest {
       : deserializeSignRequestSignFilesField(val.sign_files);
   const autoExpireAt: undefined | string =
     val.auto_expire_at == void 0 ? void 0 : val.auto_expire_at;
+  const parentFolder: undefined | FolderMini =
+    val.parent_folder == void 0
+      ? void 0
+      : deserializeFolderMini(val.parent_folder);
   const isDocumentPreparationNeeded: undefined | boolean =
     val.is_document_preparation_needed == void 0
       ? void 0
@@ -19566,7 +19539,6 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.email_message == void 0 ? void 0 : val.email_message;
   const areRemindersEnabled: undefined | boolean =
     val.are_reminders_enabled == void 0 ? void 0 : val.are_reminders_enabled;
-  const parentFolder: FolderMini = deserializeFolderMini(val.parent_folder);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const prefillTags: undefined | readonly SignRequestPrefillTag[] =
     val.prefill_tags == void 0
@@ -19597,6 +19569,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     status: status,
     signFiles: signFiles,
     autoExpireAt: autoExpireAt,
+    parentFolder: parentFolder,
     isDocumentPreparationNeeded: isDocumentPreparationNeeded,
     redirectUrl: redirectUrl,
     declinedRedirectUrl: declinedRedirectUrl,
@@ -19604,7 +19577,6 @@ export function deserializeSignRequest(val: any): SignRequest {
     emailSubject: emailSubject,
     emailMessage: emailMessage,
     areRemindersEnabled: areRemindersEnabled,
-    parentFolder: parentFolder,
     name: name,
     prefillTags: prefillTags,
     daysValid: daysValid,
@@ -19699,6 +19671,10 @@ export function serializeSignRequestCreateRequest(
       ): any {
         return serializeSignRequestCreateSigner(item);
       }) as readonly any[],
+      ['parent_folder']:
+        val.parentFolder == void 0
+          ? void 0
+          : serializeFolderMini(val.parentFolder),
     },
   };
 }
@@ -19726,6 +19702,10 @@ export function deserializeSignRequestCreateRequest(
         return deserializeSignRequestCreateSigner(itm);
       }) as readonly any[])
     : [];
+  const parentFolder: undefined | FolderMini =
+    val.parent_folder == void 0
+      ? void 0
+      : deserializeFolderMini(val.parent_folder);
   const isDocumentPreparationNeeded: undefined | boolean =
     val.is_document_preparation_needed == void 0
       ? void 0
@@ -19744,7 +19724,6 @@ export function deserializeSignRequestCreateRequest(
     val.email_message == void 0 ? void 0 : val.email_message;
   const areRemindersEnabled: undefined | boolean =
     val.are_reminders_enabled == void 0 ? void 0 : val.are_reminders_enabled;
-  const parentFolder: FolderMini = deserializeFolderMini(val.parent_folder);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const prefillTags: undefined | readonly SignRequestPrefillTag[] =
     val.prefill_tags == void 0
@@ -19768,6 +19747,7 @@ export function deserializeSignRequestCreateRequest(
     sourceFiles: sourceFiles,
     signatureColor: signatureColor,
     signers: signers,
+    parentFolder: parentFolder,
     isDocumentPreparationNeeded: isDocumentPreparationNeeded,
     redirectUrl: redirectUrl,
     declinedRedirectUrl: declinedRedirectUrl,
@@ -19775,7 +19755,6 @@ export function deserializeSignRequestCreateRequest(
     emailSubject: emailSubject,
     emailMessage: emailMessage,
     areRemindersEnabled: areRemindersEnabled,
-    parentFolder: parentFolder,
     name: name,
     prefillTags: prefillTags,
     daysValid: daysValid,
@@ -19956,6 +19935,7 @@ export function serializeTemplateSignerInput(
           ? void 0
           : serializeTemplateSignerInputDimensionsField(val.dimensions),
       ['label']: val.label == void 0 ? void 0 : val.label,
+      ['read_only']: val.readOnly == void 0 ? void 0 : val.readOnly,
     },
   };
 }
@@ -19992,6 +19972,8 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
       ? void 0
       : deserializeTemplateSignerInputDimensionsField(val.dimensions);
   const label: undefined | string = val.label == void 0 ? void 0 : val.label;
+  const readOnly: undefined | boolean =
+    val.read_only == void 0 ? void 0 : val.read_only;
   const documentTagId: undefined | string =
     val.document_tag_id == void 0 ? void 0 : val.document_tag_id;
   const textValue: undefined | string =
@@ -20011,6 +19993,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     coordinates: coordinates,
     dimensions: dimensions,
     label: label,
+    readOnly: readOnly,
     documentTagId: documentTagId,
     textValue: textValue,
     checkboxValue: checkboxValue,

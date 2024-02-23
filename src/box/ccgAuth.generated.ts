@@ -1,14 +1,14 @@
-import { PostOAuth2Token } from './schemas.generated.js';
-import { PostOAuth2TokenGrantTypeField } from './schemas.generated.js';
-import { PostOAuth2TokenSubjectTokenTypeField } from './schemas.generated.js';
-import { PostOAuth2Revoke } from './schemas.generated.js';
-import { AccessToken } from './schemas.generated.js';
-import { PostOAuth2TokenBoxSubjectTypeField } from './schemas.generated.js';
-import { Authentication } from './auth.js';
-import { NetworkSession } from './network.generated.js';
+import { PostOAuth2Token } from '../schemas.generated.js';
+import { PostOAuth2TokenGrantTypeField } from '../schemas.generated.js';
+import { PostOAuth2TokenSubjectTokenTypeField } from '../schemas.generated.js';
+import { PostOAuth2Revoke } from '../schemas.generated.js';
+import { AccessToken } from '../schemas.generated.js';
+import { PostOAuth2TokenBoxSubjectTypeField } from '../schemas.generated.js';
+import { Authentication } from '../networking/auth.js';
+import { NetworkSession } from '../networking/network.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
-import { AuthorizationManager } from './managers/authorization.generated.js';
+import { AuthorizationManager } from '../managers/authorization.generated.js';
 import { BoxSdkError } from './errors.js';
 export class CcgConfig {
   readonly clientId!: string;

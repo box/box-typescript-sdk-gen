@@ -1,5 +1,5 @@
-import { serializeBaseUrls } from './baseUrls.generated.js';
-import { deserializeBaseUrls } from './baseUrls.generated.js';
+import { serializeBaseUrls } from './networking/baseUrls.generated.js';
+import { deserializeBaseUrls } from './networking/baseUrls.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
 import { FilesManager } from './managers/files.generated.js';
 import { TrashedFilesManager } from './managers/trashedFiles.generated.js';
@@ -68,17 +68,17 @@ import { SignRequestsManager } from './managers/signRequests.generated.js';
 import { WorkflowsManager } from './managers/workflows.generated.js';
 import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
-import { Authentication } from './auth.js';
-import { NetworkSession } from './network.generated.js';
-import { BaseUrls } from './baseUrls.generated.js';
-import { Interceptor } from './interceptors.generated.js';
-import { SerializedData } from './json.js';
-import { sdIsEmpty } from './json.js';
-import { sdIsBoolean } from './json.js';
-import { sdIsNumber } from './json.js';
-import { sdIsString } from './json.js';
-import { sdIsList } from './json.js';
-import { sdIsMap } from './json.js';
+import { Authentication } from './networking/auth.js';
+import { NetworkSession } from './networking/network.generated.js';
+import { BaseUrls } from './networking/baseUrls.generated.js';
+import { Interceptor } from './networking/interceptors.generated.js';
+import { SerializedData } from './serialization/json.js';
+import { sdIsEmpty } from './serialization/json.js';
+import { sdIsBoolean } from './serialization/json.js';
+import { sdIsNumber } from './serialization/json.js';
+import { sdIsString } from './serialization/json.js';
+import { sdIsList } from './serialization/json.js';
+import { sdIsMap } from './serialization/json.js';
 export class BoxClient {
   readonly auth!: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({

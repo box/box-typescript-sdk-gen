@@ -1,23 +1,23 @@
 import nodeFetch, { RequestInit } from 'node-fetch';
 import type { Readable } from 'stream';
 
-import { Authentication } from './auth';
-import {
-  jsonToSerializedData,
-  sdToJson,
-  sdToUrlParams,
-  SerializedData,
-} from './json';
-import { NetworkSession } from './network.generated';
-import { Interceptor } from './interceptors.generated';
-import { getRetryTimeout } from './getRetryTimeout';
+import { BoxApiError, BoxSdkError } from '../box/errors';
 import {
   ByteStream,
   CancellationToken,
   generateByteStreamFromBuffer,
   isBrowser,
-} from './utils';
-import { BoxApiError, BoxSdkError } from './errors';
+} from '../internal/utils';
+import {
+  SerializedData,
+  jsonToSerializedData,
+  sdToJson,
+  sdToUrlParams,
+} from '../serialization/json';
+import { Authentication } from './auth';
+import { getRetryTimeout } from './getRetryTimeout';
+import { Interceptor } from './interceptors.generated';
+import { NetworkSession } from './network.generated';
 
 const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${

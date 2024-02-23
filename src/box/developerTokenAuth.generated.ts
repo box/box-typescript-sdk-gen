@@ -1,6 +1,6 @@
-import { AccessToken } from './schemas.generated.js';
-import { Authentication } from './auth.js';
-import { NetworkSession } from './network.generated.js';
+import { AccessToken } from '../schemas.generated.js';
+import { Authentication } from '../networking/auth.js';
+import { NetworkSession } from '../networking/network.generated.js';
 import { BoxSdkError } from './errors.js';
 export class BoxDeveloperTokenAuth implements Authentication {
   readonly token!: string;

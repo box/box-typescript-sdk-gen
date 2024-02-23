@@ -35,18 +35,18 @@ import { CreateCollaborationRequestBodyAccessibleByTypeField } from '../managers
 import { CreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
 import { UpdateCollaborationByIdRequestBody } from '../managers/userCollaborations.generated.js';
 import { UpdateCollaborationByIdRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
-import { getUuid } from '../utils.js';
+import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
-import { toString } from '../utils.js';
-import { sdToJson } from '../json.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 const client: BoxClient = getDefaultClient();
 test('testUserCollaborations', async function testUserCollaborations(): Promise<any> {
   const userName: string = getUuid();

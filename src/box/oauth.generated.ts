@@ -1,17 +1,17 @@
-import { PostOAuth2TokenGrantTypeField } from './schemas.generated.js';
-import { PostOAuth2TokenSubjectTokenTypeField } from './schemas.generated.js';
-import { Authentication } from './auth.js';
-import { NetworkSession } from './network.generated.js';
-import { AccessToken } from './schemas.generated.js';
-import { PostOAuth2Token } from './schemas.generated.js';
-import { PostOAuth2Revoke } from './schemas.generated.js';
-import { AuthorizationManager } from './managers/authorization.generated.js';
+import { PostOAuth2TokenGrantTypeField } from '../schemas.generated.js';
+import { PostOAuth2TokenSubjectTokenTypeField } from '../schemas.generated.js';
+import { Authentication } from '../networking/auth.js';
+import { NetworkSession } from '../networking/network.generated.js';
+import { AccessToken } from '../schemas.generated.js';
+import { PostOAuth2Token } from '../schemas.generated.js';
+import { PostOAuth2Revoke } from '../schemas.generated.js';
+import { AuthorizationManager } from '../managers/authorization.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
-import { sdToUrlParams } from './json.js';
-import { prepareParams } from './utils.js';
+import { sdToUrlParams } from '../serialization/json.js';
+import { prepareParams } from '../internal/utils.js';
 import { BoxSdkError } from './errors.js';
-import { SerializedData } from './json.js';
+import { SerializedData } from '../serialization/json.js';
 export class OAuthConfig {
   readonly clientId!: string;
   readonly clientSecret!: string;
