@@ -78,7 +78,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
@@ -95,7 +95,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -127,7 +127,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
@@ -144,7 +144,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.js');
+} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -177,7 +177,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
@@ -206,7 +206,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   enterpriseId: 'YOUR_ENTERPRISE_ID',
@@ -230,7 +230,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.js');
+} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
@@ -248,14 +248,14 @@ To create a new auth object authenticated as Service Account you can call:
 
 ```js
 const enterpriseAuth = ccgAuth.asEnterprise('YOUR_ENTERPRISE_ID');
-const enterpriseClient = new BoxClient({ auth: ccgAuth });
+const enterpriseClient = new BoxClient({ auth: enterpriseAuth });
 ```
 
 To authenticate as user with provided User ID call:
 
 ```js
 const userAuth = ccgAuth.asUser('YOUR_USER_ID');
-const userClient = new BoxClient({ auth: ccgAuth });
+const userClient = new BoxClient({ auth: userAuth });
 ```
 
 The new token will be automatically fetched with a next API call.
@@ -283,7 +283,7 @@ browser or web view) in order to obtain an auth code.
 const {
   BoxOAuth,
   OAuthConfig,
-} = require('box-typescript-sdk-gen/lib/oauth.js');
+} = require('box-typescript-sdk-gen/lib/oauth.generated.js');
 
 const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',

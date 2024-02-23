@@ -17,18 +17,9 @@ This method returns a `ArrayBuffer` object which contains the file content.
 <!-- sample get_files_id_content -->
 
 ```js
-const fs = require("fs");
+const fs = require('fs');
 
-const fileContent = await client.downloads.downloadFile("123456789");
-fs.appendFileSync("file.pdf", Buffer.from(fileContent))
-console.log(`File was successfully downloaded as file.pdf`))
-```
-
-Additionally, only a part of the file can be downloaded by specifying a byte range.
-
-```js
-const fileContent = await client.downloads.downloadFile('123456789', {
-  range: 'bytes=0-100',
-});
-console.log(`File content size: ${fileContent.byteLength}`);
+const fileContent = await client.downloads.downloadFile('123456789');
+const fileWriteStream = fs.createWriteStream('file.pdf');
+fileContent.pipe(fileWriteStream);
 ```

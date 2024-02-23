@@ -1,77 +1,174 @@
-# Sign Requests
+# SignRequestsManager
 
-Sign Requests are used to request e-signatures on documents from signers.  
-A Sign Request can refer to one or more Box Files and can be sent to one or more Box Sign Request Signers.
+- [Cancel sign request](#cancel-sign-request)
+- [Resend sign request](#resend-sign-request)
+- [Get sign request by ID](#get-sign-request-by-id)
+- [List sign requests](#list-sign-requests)
+- [Create sign request](#create-sign-request)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Cancel sign request
 
-- [Create Sign Request](#create-sign-request)
-- [Get All Sign Requests](#get-all-sign-requests)
-- [Get Sign Request by ID](#get-sign-request-by-id)
-- [Cancel Sign Request](#cancel-sign-request)
-- [Resend Sign Request](#resend-sign-request)
+Cancels a sign request.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+This operation is performed by calling function `cancelSignRequest`.
 
-# Create Sign Request
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests-id-cancel/).
 
-The `createSignRequest`method will create a Sign Request. You need to provide at least one file
-(from which the signing document will be created) and at least one signer to receive the Sign Request.
+<!-- sample post_sign_requests_id_cancel -->
 
-```js
-const destinationFolderId = '12345';
-const fileToSignId = '11111';
-const signerEmail = 'signer@box.com';
-
-const createdSignRequest = await client.signRequests.createSignRequest({
-  signers: [{ email: signerEmail }],
-  parentFolder: { id: destinationFolderId, type: 'folder' },
-  sourceFiles: [{ id: fileToSignId, type: 'file' }],
-});
-
-console.log(`(Sign Request ID: ${createdSignRequest.id})`);
+```ts
+await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 ```
 
-If you set `isDocumentPreparationNeeded` flag to true, you need to visit `prepareUrl` before the Sign Request will be sent.
-For more information on `isDocumentPreparationNeeded` and the other parameters available, please refer to the [developer documentation](https://developer.box.com/guides/sign-request/).
+### Arguments
 
-# Get All Sign Requests
+- signRequestId `string`
+  - The ID of the sign request Example: "33243242"
+- headers `CancelSignRequestHeaders`
+  - Headers of cancelSignRequest method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-Calling the `getSignRequests` will return `SignRequests` object that will allow getting access to all the Sign Requests.
+### Returns
 
-```js
-const signRequests = await client.signRequests.getSignRequests();
-signRequests.entries.forEach((signRequest) =>
-  console.log(`Sign Request ID: ${signRequest.id}`)
-);
+This function returns a value of type `SignRequest`.
+
+Returns a Sign Request object.
+
+## Resend sign request
+
+Resends a sign request email to all outstanding signers.
+
+This operation is performed by calling function `resendSignRequest`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests-id-resend/).
+
+_Currently we don't have an example for calling `resendSignRequest` in integration tests_
+
+### Arguments
+
+- signRequestId `string`
+  - The ID of the sign request Example: "33243242"
+- headers `ResendSignRequestHeaders`
+  - Headers of resendSignRequest method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
+
+### Returns
+
+This function returns a value of type `undefined`.
+
+Returns an empty response when the API call was successful.
+The email notifications will be sent asynchronously.
+
+## Get sign request by ID
+
+Gets a sign request by ID.
+
+This operation is performed by calling function `getSignRequestById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-sign-requests-id/).
+
+<!-- sample get_sign_requests_id -->
+
+```ts
+await client.signRequests.getSignRequestById(createdSignRequest.id!);
 ```
 
-# Get Sign Request by ID
+### Arguments
 
-Calling `getSignRequestById` will return `SignRequest` object containing information about the Sign Request.
+- signRequestId `string`
+  - The ID of the sign request Example: "33243242"
+- headers `GetSignRequestByIdHeaders`
+  - Headers of getSignRequestById method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-```js
-const signRequest = await client.signRequests.getSignRequestById('123456');
-console.log(`Sign Request ID is ${signRequest.id}`);
+### Returns
+
+This function returns a value of type `SignRequest`.
+
+Returns a sign request
+
+## List sign requests
+
+Gets sign requests created by a user. If the `sign_files` and/or
+`parent_folder` are deleted, the sign request will not return in the list.
+
+This operation is performed by calling function `getSignRequests`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-sign-requests/).
+
+<!-- sample get_sign_requests -->
+
+```ts
+await client.signRequests.getSignRequests();
 ```
 
-# Cancel Sign Request
+### Arguments
 
-Calling `cancelSignRequest` will cancel a created Sign Request.
+- queryParams `GetSignRequestsQueryParams`
+  - Query parameters of getSignRequests method
+- headers `GetSignRequestsHeaders`
+  - Headers of getSignRequests method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-```js
-const cancelledSignRequest = client.signRequests.cancelSignRequest('123456');
-console.log(`Cancelled Sign Request status is ${cancelledSignRequest.status}`);
+### Returns
+
+This function returns a value of type `SignRequests`.
+
+Returns a collection of sign requests
+
+## Create sign request
+
+Creates a sign request. This involves preparing a document for signing and
+sending the sign request to signers.
+
+This operation is performed by calling function `createSignRequest`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests/).
+
+<!-- sample post_sign_requests -->
+
+```ts
+await client.signRequests.createSignRequest({
+  signers: [
+    {
+      email: signer1Email,
+      signerGroupId: 'user',
+    } satisfies SignRequestCreateSigner,
+    {
+      email: signer2Email,
+      signerGroupId: 'user',
+    } satisfies SignRequestCreateSigner,
+  ],
+  parentFolder: {
+    id: destinationFolder.id,
+    type: 'folder' as FolderBaseTypeField,
+  } satisfies FolderMini,
+  sourceFiles: [
+    { id: fileToSign.id, type: 'file' as FileBaseTypeField } satisfies FileBase,
+  ],
+} satisfies SignRequestCreateRequest);
 ```
 
-# Resend Sign Request
+### Arguments
 
-Calling `resendSignRequest` will resend a Sign Request to all signers that have not signed it yet.
-There is an 10-minute cooling-off period between re-sending reminder emails.
+- requestBody `SignRequestCreateRequest`
+  - Request body of createSignRequest method
+- headers `CreateSignRequestHeaders`
+  - Headers of createSignRequest method
+- cancellationToken `undefined | CancellationToken`
+  - Token used for request cancellation.
 
-```js
-const signRequestToResendId = '123456';
-await client.signRequests.resendSignRequest(signRequestToResendId);
-console.log(`Sign Request with ID ${sign_request_to_resend_id} was resent`);
-```
+### Returns
+
+This function returns a value of type `SignRequest`.
+
+Returns a Sign Request object.
