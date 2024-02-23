@@ -17,17 +17,17 @@ import { TerminateUsersSessionsRequestBody } from '../managers/sessionTerminatio
 import { GroupFull } from '../schemas.generated.js';
 import { CreateGroupRequestBody } from '../managers/groups.generated.js';
 import { TerminateGroupsSessionsRequestBody } from '../managers/sessionTermination.generated.js';
-import { getUuid } from '../utils.js';
-import { getEnvVar } from '../utils.js';
+import { getUuid } from '../internal/utils.js';
+import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 const client: BoxClient = getDefaultClient();
 test('testSessionTerminationUser', async function testSessionTerminationUser(): Promise<any> {
   const adminClient: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));

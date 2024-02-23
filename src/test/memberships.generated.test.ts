@@ -32,17 +32,17 @@ import { CreateGroupMembershipRequestBodyUserField } from '../managers/membershi
 import { CreateGroupMembershipRequestBodyGroupField } from '../managers/memberships.generated.js';
 import { UpdateGroupMembershipByIdRequestBody } from '../managers/memberships.generated.js';
 import { UpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
-import { getUuid } from '../utils.js';
+import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { toString } from '../utils.js';
-import { sdToJson } from '../json.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 const client: BoxClient = getDefaultClient();
 test('testMemberships', async function testMemberships(): Promise<any> {
   const user: UserFull = await client.users.createUser({

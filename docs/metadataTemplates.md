@@ -283,7 +283,7 @@ await client.metadataTemplates.createMetadataTemplate({
   templateKey: templateKey,
   fields: [
     {
-      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
       key: 'testName',
       displayName: 'testName',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,

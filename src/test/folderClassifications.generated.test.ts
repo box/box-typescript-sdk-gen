@@ -40,19 +40,19 @@ import { AddClassificationToFolderRequestBody } from '../managers/folderClassifi
 import { UpdateClassificationOnFolderRequestBody } from '../managers/folderClassifications.generated.js';
 import { UpdateClassificationOnFolderRequestBodyOpField } from '../managers/folderClassifications.generated.js';
 import { UpdateClassificationOnFolderRequestBodyPathField } from '../managers/folderClassifications.generated.js';
-import { getUuid } from '../utils.js';
+import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
 import { getOrCreateClassificationTemplate } from './commons.generated.js';
 import { getOrCreateClassification } from './commons.generated.js';
 import { ClassificationTemplate } from '../schemas.generated.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 const client: BoxClient = getDefaultClient();
 export async function getOrCreateSecondClassification(
   classificationTemplate: ClassificationTemplate

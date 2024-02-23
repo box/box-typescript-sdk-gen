@@ -24,10 +24,6 @@ import { serializeMetadataQuery } from '../schemas.generated.js';
 import { deserializeMetadataQuery } from '../schemas.generated.js';
 import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
-import { serializeMetadataQueryIndices } from '../schemas.generated.js';
-import { deserializeMetadataQueryIndices } from '../schemas.generated.js';
-import { serializeGetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
-import { deserializeGetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
@@ -47,24 +43,21 @@ import { CreateFileMetadataByIdScope } from '../managers/fileMetadata.generated.
 import { MetadataQueryResults } from '../schemas.generated.js';
 import { MetadataQuery } from '../schemas.generated.js';
 import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
-import { MetadataQueryIndices } from '../schemas.generated.js';
-import { GetMetadataQueryIndicesQueryParams } from '../managers/search.generated.js';
-import { GetMetadataQueryIndicesQueryParamsScopeField } from '../managers/search.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { SearchForContentQueryParams } from '../managers/search.generated.js';
 import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
-import { getUuid } from '../utils.js';
-import { generateByteStream } from '../utils.js';
+import { getUuid } from '../internal/utils.js';
+import { generateByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { toString } from '../utils.js';
-import { sdToJson } from '../json.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 const client: any = getDefaultClient();
 test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQueryExecuteRead(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
@@ -122,35 +115,6 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     template.templateKey
   );
   await client.files.deleteFileById(file.id);
-});
-test('testGetMetadataQueryIndices', async function testGetMetadataQueryIndices(): Promise<any> {
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'testName',
-        displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
-  if (!(template.templateKey == templateKey)) {
-    throw new Error('Assertion failed');
-  }
-  const indices: any = await client.search.getMetadataQueryIndices({
-    scope: 'enterprise' as GetMetadataQueryIndicesQueryParamsScopeField,
-    templateKey: templateKey,
-  } satisfies GetMetadataQueryIndicesQueryParams);
-  if (!(indices.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
-  await client.metadataTemplates.deleteMetadataTemplate(
-    'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey
-  );
 });
 test('testGetSearch', async function testGetSearch(): Promise<any> {
   const keyword: any = 'test';

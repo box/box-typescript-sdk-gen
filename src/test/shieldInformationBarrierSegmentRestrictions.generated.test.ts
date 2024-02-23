@@ -39,17 +39,17 @@ import { CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInform
 import { CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField } from '../managers/shieldInformationBarrierSegmentRestrictions.generated.js';
 import { ShieldInformationBarrierSegmentRestrictions } from '../schemas.generated.js';
 import { GetShieldInformationBarrierSegmentRestrictionsQueryParams } from '../managers/shieldInformationBarrierSegmentRestrictions.generated.js';
-import { getEnvVar } from '../utils.js';
-import { getUuid } from '../utils.js';
+import { getEnvVar } from '../internal/utils.js';
+import { getUuid } from '../internal/utils.js';
 import { getDefaultClientAsUser } from './commons.generated.js';
 import { getOrCreateShieldInformationBarrier } from './commons.generated.js';
-import { SerializedData } from '../json.js';
-import { sdIsEmpty } from '../json.js';
-import { sdIsBoolean } from '../json.js';
-import { sdIsNumber } from '../json.js';
-import { sdIsString } from '../json.js';
-import { sdIsList } from '../json.js';
-import { sdIsMap } from '../json.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierSegmentRestrictions', async function testShieldInformationBarrierSegmentRestrictions(): Promise<any> {
   const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
