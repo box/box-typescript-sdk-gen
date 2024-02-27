@@ -311,6 +311,9 @@ export interface AccessToken {
   readonly refreshToken?: string;
   readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
 }
+export type GenericSource = {
+  readonly [key: string]: string;
+};
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
 export interface IntegrationMappingBase {
   readonly id?: string;
@@ -1694,10 +1697,11 @@ export type Folder = FolderMini & {
   readonly itemStatus?: FolderItemStatusField;
   readonly itemCollection?: Items;
 };
-export type EventSourceOrFileOrFolderOrUser =
+export type EventSourceOrFileOrFolderOrGenericSourceOrUser =
   | EventSource
   | File
   | Folder
+  | GenericSource
   | User;
 export type EventEventTypeField =
   | 'ACCESS_GRANTED'
@@ -1842,7 +1846,7 @@ export interface Event {
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;
   readonly sessionId?: string;
-  readonly source?: EventSourceOrFileOrFolderOrUser;
+  readonly source?: EventSourceOrFileOrFolderOrGenericSourceOrUser;
   readonly additionalDetails?: EventAdditionalDetailsField;
 }
 export interface Events {
@@ -4901,6 +4905,12 @@ export function deserializeAccessToken(val: any): AccessToken {
     refreshToken: refreshToken,
     issuedTokenType: issuedTokenType,
   } satisfies AccessToken;
+}
+export function serializeGenericSource(val: GenericSource): SerializedData {
+  return val;
+}
+export function deserializeGenericSource(val: any): GenericSource {
+  return val;
 }
 export function serializeIntegrationMappingBaseIntegrationTypeField(
   val: IntegrationMappingBaseIntegrationTypeField
@@ -14088,18 +14098,18 @@ export function deserializeFolder(val: any): Folder {
     type: type,
   } satisfies Folder;
 }
-export function serializeEventSourceOrFileOrFolderOrUser(
-  val: EventSourceOrFileOrFolderOrUser
+export function serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
+  val: EventSourceOrFileOrFolderOrGenericSourceOrUser
 ): SerializedData {
   throw new BoxSdkError({
-    message: "Can't serialize EventSourceOrFileOrFolderOrUser",
+    message: "Can't serialize EventSourceOrFileOrFolderOrGenericSourceOrUser",
   });
 }
-export function deserializeEventSourceOrFileOrFolderOrUser(
+export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   val: any
-): EventSourceOrFileOrFolderOrUser {
+): EventSourceOrFileOrFolderOrGenericSourceOrUser {
   throw new BoxSdkError({
-    message: "Can't deserialize EventSourceOrFileOrFolderOrUser",
+    message: "Can't deserialize EventSourceOrFileOrFolderOrGenericSourceOrUser",
   });
 }
 export function serializeEventEventTypeField(
@@ -14542,7 +14552,7 @@ export function serializeEvent(val: Event): SerializedData {
     ['source']:
       val.source == void 0
         ? void 0
-        : serializeEventSourceOrFileOrFolderOrUser(val.source),
+        : serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source),
     ['additional_details']:
       val.additionalDetails == void 0
         ? void 0
@@ -14565,10 +14575,10 @@ export function deserializeEvent(val: any): Event {
       : deserializeEventEventTypeField(val.event_type);
   const sessionId: undefined | string =
     val.session_id == void 0 ? void 0 : val.session_id;
-  const source: undefined | EventSourceOrFileOrFolderOrUser =
+  const source: undefined | EventSourceOrFileOrFolderOrGenericSourceOrUser =
     val.source == void 0
       ? void 0
-      : deserializeEventSourceOrFileOrFolderOrUser(val.source);
+      : deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source);
   const additionalDetails: undefined | EventAdditionalDetailsField =
     val.additional_details == void 0
       ? void 0
