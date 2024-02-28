@@ -13,7 +13,13 @@ This operation is performed by calling function `getFileVersionLegalHoldById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-legal-holds-id/).
 
-_Currently we don't have an example for calling `getFileVersionLegalHoldById` in integration tests_
+<!-- sample get_file_version_legal_holds_id -->
+
+```ts
+await client.fileVersionLegalHolds.getFileVersionLegalHoldById(
+  fileVersionLegalHoldId
+);
+```
 
 ### Arguments
 
@@ -58,7 +64,13 @@ This operation is performed by calling function `getFileVersionLegalHolds`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-file-version-legal-holds/).
 
-_Currently we don't have an example for calling `getFileVersionLegalHolds` in integration tests_
+<!-- sample get_file_version_legal_holds -->
+
+```ts
+await client.fileVersionLegalHolds.getFileVersionLegalHolds({
+  policyId: policyId,
+} satisfies GetFileVersionLegalHoldsQueryParams);
+```
 
 ### Arguments
 
