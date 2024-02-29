@@ -1,6 +1,6 @@
 import { PostOAuth2TokenGrantTypeField } from '../schemas.generated.js';
 import { PostOAuth2TokenSubjectTokenTypeField } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { AccessToken } from '../schemas.generated.js';
 import { PostOAuth2Token } from '../schemas.generated.js';
@@ -42,6 +42,7 @@ export class BoxOAuth implements Authentication {
       | 'getTokensAuthorizationCodeGrant'
       | 'retrieveToken'
       | 'refreshToken'
+      | 'retrieveAuthorizationHeader'
       | 'revokeToken'
       | 'downscopeToken'
     >
@@ -116,6 +117,12 @@ export class BoxOAuth implements Authentication {
     await this.tokenStorage.store(token);
     return token;
   }
+  async retrieveAuthorizationHeader(
+    networkSession?: NetworkSession
+  ): Promise<string> {
+    const token: AccessToken = await this.retrieveToken(networkSession);
+    return ''.concat('Bearer ', token.accessToken!) as string;
+  }
   async revokeToken(networkSession?: NetworkSession): Promise<undefined> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
@@ -129,7 +136,6 @@ export class BoxOAuth implements Authentication {
       clientSecret: this.config.clientSecret,
       token: token.accessToken,
     } satisfies PostOAuth2Revoke);
-    await this.tokenStorage.clear();
     return void 0;
   }
   async downscopeToken(

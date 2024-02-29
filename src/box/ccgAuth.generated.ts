@@ -2,7 +2,7 @@ import { PostOAuth2TokenGrantTypeField } from '../schemas.generated.js';
 import { PostOAuth2TokenSubjectTokenTypeField } from '../schemas.generated.js';
 import { AccessToken } from '../schemas.generated.js';
 import { PostOAuth2TokenBoxSubjectTypeField } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { TokenStorage } from './tokenStorage.generated.js';
 import { InMemoryTokenStorage } from './tokenStorage.generated.js';
@@ -37,6 +37,7 @@ export class BoxCcgAuth implements Authentication {
       | 'subjectType'
       | 'refreshToken'
       | 'retrieveToken'
+      | 'retrieveAuthorizationHeader'
       | 'asUser'
       | 'asEnterprise'
       | 'downscopeToken'
@@ -78,6 +79,12 @@ export class BoxCcgAuth implements Authentication {
       return newToken;
     }
     return oldToken;
+  }
+  async retrieveAuthorizationHeader(
+    networkSession?: NetworkSession
+  ): Promise<string> {
+    const token: AccessToken = await this.retrieveToken(networkSession);
+    return ''.concat('Bearer ', token.accessToken!) as string;
   }
   asUser(
     userId: string,

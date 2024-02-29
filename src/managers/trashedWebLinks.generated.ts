@@ -7,7 +7,7 @@ import { deserializeTrashWebLink } from '../schemas.generated.js';
 import { TrashWebLinkRestored } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { TrashWebLink } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';

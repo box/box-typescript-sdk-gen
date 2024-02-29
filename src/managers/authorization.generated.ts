@@ -13,7 +13,7 @@ import { OAuth2Error } from '../schemas.generated.js';
 import { PostOAuth2Token } from '../schemas.generated.js';
 import { PostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
 import { PostOAuth2Revoke } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';

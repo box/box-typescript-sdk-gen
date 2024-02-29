@@ -13,7 +13,7 @@ import { ClientError } from '../schemas.generated.js';
 import { MetadataQuery } from '../schemas.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { MetadataFilter } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
