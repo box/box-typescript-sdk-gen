@@ -58,7 +58,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateGetDeleteTaskAssignment(): Promise<any> {
   const file: FileFull = await uploadNewFile();
   const date: string = '2035-01-01T00:00:00Z';

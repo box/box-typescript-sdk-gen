@@ -47,7 +47,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testUserCollaborations', async function testUserCollaborations(): Promise<any> {
   const userName: string = getUuid();
   const userLogin: string = ''.concat(getUuid(), '@gmail.com') as string;
