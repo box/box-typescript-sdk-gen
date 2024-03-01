@@ -16,7 +16,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const userId: string = getEnvVar('USER_ID');
+export const userId: string = getEnvVar('USER_ID');
 test('testGetStoragePolicies', async function testGetStoragePolicies(): Promise<any> {
   const client: BoxClient = getDefaultClientAsUser(userId);
   const storagePolicies: StoragePolicies =

@@ -30,7 +30,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('test_download_file', async function test_download_file(): Promise<any> {
   const newFileName: string = getUuid();
   const fileBuffer: Buffer = generateByteBuffer(1024 * 1024);

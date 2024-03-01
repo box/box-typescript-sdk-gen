@@ -58,7 +58,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: any = getDefaultClient();
+export const client: any = getDefaultClient();
 test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQueryExecuteRead(): Promise<any> {
   const templateKey: any = ''.concat('key', getUuid()) as string;
   const template: any = await client.metadataTemplates.createMetadataTemplate({

@@ -26,7 +26,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testTransferUserContent', async function testTransferUserContent(): Promise<any> {
   const newUserName: string = getUuid();
   const newUser: UserFull = await client.users.createUser({

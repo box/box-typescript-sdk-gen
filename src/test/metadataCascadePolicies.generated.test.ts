@@ -47,7 +47,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testMetadataCascadePolicies', async function testMetadataCascadePolicies(): Promise<any> {
   const templateKey: string = ''.concat('key', getUuid()) as string;
   await client.metadataTemplates.createMetadataTemplate({

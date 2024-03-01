@@ -13,7 +13,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testChunkedUpload', async function testChunkedUpload(): Promise<any> {
   const fileSize: number = 20 * 1024 * 1024;
   const fileByteStream: ByteStream = generateByteStream(fileSize);

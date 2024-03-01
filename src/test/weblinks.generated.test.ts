@@ -26,7 +26,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: any = getDefaultClient();
+export const client: any = getDefaultClient();
 test('test_create_get_delete_weblink', async function test_create_get_delete_weblink(): Promise<any> {
   const url: any = 'https://www.box.com';
   const parent: any = await client.folders.getFolderById('0');

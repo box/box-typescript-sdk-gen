@@ -16,7 +16,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: any = getDefaultClient();
+export const client: any = getDefaultClient();
 test('collaborationAllowlistEntries', async function collaborationAllowlistEntries(): Promise<any> {
   const allowlist: any =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
