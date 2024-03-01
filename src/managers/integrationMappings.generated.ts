@@ -16,7 +16,7 @@ import { IntegrationMapping } from '../schemas.generated.js';
 import { IntegrationMappingSlackCreateRequest } from '../schemas.generated.js';
 import { IntegrationMappingBoxItemSlack } from '../schemas.generated.js';
 import { IntegrationMappingSlackOptions } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';

@@ -68,7 +68,7 @@ import { SignRequestsManager } from './managers/signRequests.generated.js';
 import { WorkflowsManager } from './managers/workflows.generated.js';
 import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
-import { Authentication } from './networking/auth.js';
+import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BaseUrls } from './networking/baseUrls.generated.js';
 import { Interceptor } from './networking/interceptors.generated.js';

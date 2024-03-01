@@ -271,19 +271,14 @@ test('test_oauth_auth_revoke', async function test_oauth_auth_revoke(): Promise<
     clientSecret: getEnvVar('CLIENT_SECRET'),
   });
   const auth: BoxOAuth = new BoxOAuth({ config: config });
+  const client: BoxClient = new BoxClient({ auth: auth });
   const token: AccessToken = await getAccessToken();
   await auth.tokenStorage.store(token);
-  const tokenBeforeRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
+  await client.users.getUserMe();
   await auth.revokeToken();
-  const tokenAfterRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
-  if (!!(tokenBeforeRevoke == void 0)) {
-    throw new Error('Assertion failed');
-  }
-  if (!(tokenAfterRevoke == void 0)) {
-    throw new Error('Assertion failed');
-  }
+  await expect(async () => {
+    await client.users.getUserMe();
+  }).rejects.toThrow();
 });
 test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Promise<any> {
   const config: OAuthConfig = new OAuthConfig({

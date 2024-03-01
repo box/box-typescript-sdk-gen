@@ -14,7 +14,7 @@ import {
   sdToJson,
   sdToUrlParams,
 } from '../serialization/json';
-import { Authentication } from './auth';
+import { Authentication } from './auth.generated';
 import { getRetryTimeout } from './getRetryTimeout';
 import { Interceptor } from './interceptors.generated';
 import { NetworkSession } from './network.generated';
@@ -186,9 +186,9 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       'Content-Type': contentType,
       ...headers,
       ...(options.auth && {
-        Authorization: `Bearer ${
-          (await options.auth.retrieveToken(options.networkSession)).accessToken
-        }`,
+        Authorization: await options.auth.retrieveAuthorizationHeader(
+          options.networkSession
+        ),
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,
@@ -269,8 +269,8 @@ export async function fetch(
     const { numRetries = 0 } = fetchOptions;
 
     const reauthenticationNeeded = fetchResponse.status == 401;
-    if (reauthenticationNeeded) {
-      await fetchOptions.auth?.refreshToken(fetchOptions.networkSession);
+    if (reauthenticationNeeded && fetchOptions.auth) {
+      await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
 
       // retry the request right away
       return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });

@@ -10,7 +10,7 @@ import { RetentionPolicyAssignments } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { RetentionPolicyAssignment } from '../schemas.generated.js';
 import { FilesUnderRetention } from '../schemas.generated.js';
-import { Authentication } from '../networking/auth.js';
+import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
