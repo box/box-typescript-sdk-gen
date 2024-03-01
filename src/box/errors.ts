@@ -34,6 +34,12 @@ export interface ResponseInfo {
   };
   readonly body?: SerializedData;
   readonly rawBody?: string;
+  readonly code?: string;
+  readonly contextInfo?: {
+    readonly [key: string]: any;
+  };
+  readonly requestId?: string;
+  readonly helpUrl?: string;
 }
 export class BoxApiError extends BoxSdkError {
   readonly requestInfo!: RequestInfo;

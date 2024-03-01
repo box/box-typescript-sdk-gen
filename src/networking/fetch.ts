@@ -11,6 +11,7 @@ import {
 import {
   SerializedData,
   jsonToSerializedData,
+  sdIsMap,
   sdToJson,
   sdToUrlParams,
 } from '../serialization/json';
@@ -289,6 +290,17 @@ export async function fetch(
       return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
     }
 
+    const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
+      ? [
+          sdToJson(fetchResponse.data['code']),
+          sdIsMap(fetchResponse.data['context_info'])
+            ? fetchResponse.data['context_info']
+            : undefined,
+          sdToJson(fetchResponse.data['request_id']),
+          sdToJson(fetchResponse.data['help_url']),
+        ]
+      : [];
+
     throw new BoxApiError({
       message: `${fetchResponse.status}`,
       timestamp: `${Date.now()}`,
@@ -304,6 +316,10 @@ export async function fetch(
         headers: fetchResponse.headers,
         body: fetchResponse.data,
         rawBody: new TextDecoder().decode(responseBytesBuffer),
+        code: code,
+        contextInfo: contextInfo,
+        requestId: requestId,
+        helpUrl: helpUrl,
       },
       name: 'BoxApiError',
     });
