@@ -37,7 +37,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignments(): Promise<any> {
   const legalHoldPolicyName: string = getUuid();
   const legalHoldDescription: string = 'test description';

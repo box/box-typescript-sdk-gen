@@ -33,7 +33,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('test_get_folder_info', async function test_get_folder_info(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0');
   if (!(rootFolder.id == '0')) {

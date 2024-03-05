@@ -43,7 +43,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testMemberships', async function testMemberships(): Promise<any> {
   const user: UserFull = await client.users.createUser({
     name: getUuid(),

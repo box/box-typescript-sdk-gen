@@ -22,7 +22,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('test_get_users', async function test_get_users(): Promise<any> {
   const users: Users = await client.users.getUsers();
   if (!(users.totalCount! >= 0)) {
