@@ -38,7 +38,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: any = getDefaultClient();
+export const client: any = getDefaultClient();
 test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
   const folder: any = await createNewFolder();
   const folderMetadata: any = await client.folderMetadata.getFolderMetadata(

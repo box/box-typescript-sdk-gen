@@ -28,7 +28,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testSessionTerminationUser', async function testSessionTerminationUser(): Promise<any> {
   const adminClient: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
   const user: UserFull = await adminClient.users.getUserMe();

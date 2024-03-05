@@ -21,7 +21,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('test_get_groups', async function test_get_groups(): Promise<any> {
   const groups: Groups = await client.groups.getGroups();
   if (!(groups.totalCount! >= 0)) {

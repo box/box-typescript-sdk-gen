@@ -32,7 +32,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const client: BoxClient = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testCollections', async function testCollections(): Promise<any> {
   const collections: Collections = await client.collections.getCollections();
   const favouriteCollection: Collection = collections.entries![0];

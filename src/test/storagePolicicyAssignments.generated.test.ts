@@ -57,7 +57,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-const adminUserId: string = getEnvVar('USER_ID');
+export const adminUserId: string = getEnvVar('USER_ID');
 export async function getOrCreateStoragePolicyAssignment(
   client: BoxClient,
   policyId: string,
