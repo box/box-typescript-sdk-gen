@@ -8,6 +8,7 @@ import {
   generateByteStreamFromBuffer,
   isBrowser,
 } from '../internal/utils';
+import { sdkVersion } from './version';
 import {
   SerializedData,
   jsonToSerializedData,
@@ -20,7 +21,6 @@ import { getRetryTimeout } from './getRetryTimeout';
 import { Interceptor } from './interceptors.generated';
 import { NetworkSession } from './network.generated';
 
-const sdkVersion = '0.1.0';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
 })`;
