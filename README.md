@@ -78,6 +78,14 @@ const { BoxClient, BoxDeveloperTokenAuth } = window['box-typescript-sdk-gen'];
 
 See example.html for an example website using this SDK.
 
+To run the example locally:
+
+1. Start the local server by running `npx serve -p 3000` in the project directory.
+2. Make sure `http://localhost:3000` is whitelisted in CORS Domains of your application.
+3. Head over to `http://localhost:3000/example.html`.
+4. Provide a fresh Developer Token to the dialog window that shows up upon running the example.
+5. Make sure that you get an alert message that includes your user name.
+
 # Integration Tests
 
 ## Running integration tests locally
