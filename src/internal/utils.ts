@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 import type { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
+import { SignJWT, importPKCS8 } from 'jose';
 
 export function isBrowser() {
   return (
@@ -266,11 +267,6 @@ export type JwtSignOptions = {
   subject?: string | undefined;
   issuer?: string | undefined;
   jwtid?: string | undefined;
-  mutatePayload?: boolean | undefined;
-  noTimestamp?: boolean | undefined;
-  encoding?: string | undefined;
-  allowInsecureKeySizes?: boolean | undefined;
-  allowInvalidAsymmetricKeyTypes?: boolean | undefined;
 };
 
 /**
@@ -281,15 +277,36 @@ export type JwtSignOptions = {
  * @param options
  * @returns
  */
-export function createJwtAssertion(
+export async function createJwtAssertion(
   claims: {
     readonly [key: string]: any;
   },
   key: JwtKey,
   options: JwtSignOptions
-): string {
-  const jwt = eval('require')('jsonwebtoken');
-  return jwt.sign(claims, key, options);
+): Promise<string> {
+  const crypto = eval('require')('crypto');
+  const privateKey = crypto.createPrivateKey({
+    key: key.key,
+    format: 'pem',
+    type: 'pkcs8',
+    passphrase: key.passphrase,
+  });
+  const pem = privateKey.export({ type: 'pkcs8', format: 'pem' }).toString();
+  const pkcs8 = await importPKCS8(pem, options.algorithm || 'RS256');
+  let signer = new SignJWT(claims);
+  signer = options.audience ? signer.setAudience(options.audience) : signer;
+  signer = options.expiresIn
+    ? signer.setExpirationTime(options.expiresIn)
+    : signer;
+  signer = options.issuer ? signer.setIssuer(options.issuer) : signer;
+  signer = options.jwtid ? signer.setJti(options.jwtid) : signer;
+  signer = options.notBefore ? signer.setNotBefore(options.notBefore) : signer;
+  signer = options.subject ? signer.setSubject(options.subject) : signer;
+  signer = options.algorithm
+    ? signer.setProtectedHeader({ alg: options.algorithm })
+    : signer;
+  signer = signer.setIssuedAt();
+  return await signer.sign(pkcs8);
 }
 
 /**

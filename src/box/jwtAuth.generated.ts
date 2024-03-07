@@ -159,7 +159,11 @@ export class BoxJwtAuth implements Authentication {
       key: this.config.privateKey,
       passphrase: this.config.privateKeyPassphrase,
     } satisfies JwtKey;
-    const assertion: string = createJwtAssertion(claims, jwtKey, jwtOptions);
+    const assertion: string = await createJwtAssertion(
+      claims,
+      jwtKey,
+      jwtOptions
+    );
     const authManager: AuthorizationManager = !(networkSession == void 0)
       ? new AuthorizationManager({ networkSession: networkSession })
       : new AuthorizationManager({});
