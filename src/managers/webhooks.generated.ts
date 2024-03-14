@@ -340,7 +340,7 @@ export class WebhooksManager {
   }
 }
 export function serializeCreateWebhookRequestBodyTargetTypeField(
-  val: CreateWebhookRequestBodyTargetTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -364,7 +364,7 @@ export function deserializeCreateWebhookRequestBodyTargetTypeField(
   });
 }
 export function serializeCreateWebhookRequestBodyTargetField(
-  val: CreateWebhookRequestBodyTargetField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -385,7 +385,7 @@ export function deserializeCreateWebhookRequestBodyTargetField(
   return { id: id, type: type } satisfies CreateWebhookRequestBodyTargetField;
 }
 export function serializeCreateWebhookRequestBodyTriggersField(
-  val: CreateWebhookRequestBodyTriggersField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -521,9 +521,7 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateWebhookRequestBody(
-  val: CreateWebhookRequestBody
-): SerializedData {
+export function serializeCreateWebhookRequestBody(val: any): SerializedData {
   return {
     ['target']: serializeCreateWebhookRequestBodyTargetField(val.target),
     ['address']: val.address,
@@ -554,7 +552,7 @@ export function deserializeCreateWebhookRequestBody(
   } satisfies CreateWebhookRequestBody;
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetTypeField(
-  val: UpdateWebhookByIdRequestBodyTargetTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -578,7 +576,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetField(
-  val: UpdateWebhookByIdRequestBodyTargetField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -602,7 +600,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetField(
   } satisfies UpdateWebhookByIdRequestBodyTargetField;
 }
 export function serializeUpdateWebhookByIdRequestBodyTriggersField(
-  val: UpdateWebhookByIdRequestBodyTriggersField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -740,7 +738,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBody(
-  val: UpdateWebhookByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['target']:

@@ -283,7 +283,7 @@ export class ShieldInformationBarrierSegmentsManager {
   }
 }
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
-  val: UpdateShieldInformationBarrierSegmentByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -302,7 +302,7 @@ export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody;
 }
 export function serializeCreateShieldInformationBarrierSegmentRequestBody(
-  val: CreateShieldInformationBarrierSegmentRequestBody
+  val: any
 ): SerializedData {
   return {
     ['shield_information_barrier']: serializeShieldInformationBarrierBase(

@@ -94,7 +94,7 @@ export class TransferManager {
   }
 }
 export function serializeTransferOwnedFolderRequestBodyOwnedByField(
-  val: TransferOwnedFolderRequestBodyOwnedByField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -105,7 +105,7 @@ export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
   return { id: id } satisfies TransferOwnedFolderRequestBodyOwnedByField;
 }
 export function serializeTransferOwnedFolderRequestBody(
-  val: TransferOwnedFolderRequestBody
+  val: any
 ): SerializedData {
   return {
     ['owned_by']: serializeTransferOwnedFolderRequestBodyOwnedByField(

@@ -142,7 +142,7 @@ export class InvitesManager {
   }
 }
 export function serializeCreateInviteRequestBodyEnterpriseField(
-  val: CreateInviteRequestBodyEnterpriseField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -153,7 +153,7 @@ export function deserializeCreateInviteRequestBodyEnterpriseField(
   return { id: id } satisfies CreateInviteRequestBodyEnterpriseField;
 }
 export function serializeCreateInviteRequestBodyActionableByField(
-  val: CreateInviteRequestBodyActionableByField
+  val: any
 ): SerializedData {
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
@@ -163,9 +163,7 @@ export function deserializeCreateInviteRequestBodyActionableByField(
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return { login: login } satisfies CreateInviteRequestBodyActionableByField;
 }
-export function serializeCreateInviteRequestBody(
-  val: CreateInviteRequestBody
-): SerializedData {
+export function serializeCreateInviteRequestBody(val: any): SerializedData {
   return {
     ['enterprise']: serializeCreateInviteRequestBodyEnterpriseField(
       val.enterprise

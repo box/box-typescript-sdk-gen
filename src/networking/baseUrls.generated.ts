@@ -17,7 +17,7 @@ export class BaseUrls {
     Object.assign(this, fields);
   }
 }
-export function serializeBaseUrls(val: BaseUrls): SerializedData {
+export function serializeBaseUrls(val: any): SerializedData {
   return {
     ['base_url']: val.baseUrl,
     ['upload_url']: val.uploadUrl,

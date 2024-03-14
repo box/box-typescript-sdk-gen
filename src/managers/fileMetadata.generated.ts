@@ -288,9 +288,7 @@ export class FileMetadataManager {
     return void 0;
   }
 }
-export function serializeGetFileMetadataByIdScope(
-  val: GetFileMetadataByIdScope
-): SerializedData {
+export function serializeGetFileMetadataByIdScope(val: any): SerializedData {
   return val;
 }
 export function deserializeGetFileMetadataByIdScope(
@@ -311,9 +309,7 @@ export function deserializeGetFileMetadataByIdScope(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateFileMetadataByIdScope(
-  val: CreateFileMetadataByIdScope
-): SerializedData {
+export function serializeCreateFileMetadataByIdScope(val: any): SerializedData {
   return val;
 }
 export function deserializeCreateFileMetadataByIdScope(
@@ -335,7 +331,7 @@ export function deserializeCreateFileMetadataByIdScope(
   });
 }
 export function serializeCreateFileMetadataByIdRequestBody(
-  val: CreateFileMetadataByIdRequestBody
+  val: any
 ): SerializedData {
   return val;
 }
@@ -344,9 +340,7 @@ export function deserializeCreateFileMetadataByIdRequestBody(
 ): CreateFileMetadataByIdRequestBody {
   return val;
 }
-export function serializeUpdateFileMetadataByIdScope(
-  val: UpdateFileMetadataByIdScope
-): SerializedData {
+export function serializeUpdateFileMetadataByIdScope(val: any): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdScope(
@@ -368,7 +362,7 @@ export function deserializeUpdateFileMetadataByIdScope(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBodyOpField(
-  val: UpdateFileMetadataByIdRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -404,7 +398,7 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBody(
-  val: UpdateFileMetadataByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']:
@@ -433,9 +427,7 @@ export function deserializeUpdateFileMetadataByIdRequestBody(
     from: from,
   } satisfies UpdateFileMetadataByIdRequestBody;
 }
-export function serializeDeleteFileMetadataByIdScope(
-  val: DeleteFileMetadataByIdScope
-): SerializedData {
+export function serializeDeleteFileMetadataByIdScope(val: any): SerializedData {
   return val;
 }
 export function deserializeDeleteFileMetadataByIdScope(

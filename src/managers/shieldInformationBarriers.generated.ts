@@ -229,7 +229,7 @@ export class ShieldInformationBarriersManager {
   }
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -253,7 +253,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
   });
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBody(
-  val: UpdateShieldInformationBarrierStatusRequestBody
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -277,7 +277,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   } satisfies UpdateShieldInformationBarrierStatusRequestBody;
 }
 export function serializeCreateShieldInformationBarrierRequestBody(
-  val: CreateShieldInformationBarrierRequestBody
+  val: any
 ): SerializedData {
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }

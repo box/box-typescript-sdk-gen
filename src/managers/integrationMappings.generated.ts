@@ -244,7 +244,7 @@ export class IntegrationMappingsManager {
   }
 }
 export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
-  val: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -265,7 +265,7 @@ export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeF
   });
 }
 export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
-  val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -286,7 +286,7 @@ export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField
   });
 }
 export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
-  val: UpdateSlackIntegrationMappingByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['box_item']:

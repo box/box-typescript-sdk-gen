@@ -364,7 +364,7 @@ export class MembershipsManager {
   }
 }
 export function serializeCreateGroupMembershipRequestBodyUserField(
-  val: CreateGroupMembershipRequestBodyUserField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -375,7 +375,7 @@ export function deserializeCreateGroupMembershipRequestBodyUserField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyUserField;
 }
 export function serializeCreateGroupMembershipRequestBodyGroupField(
-  val: CreateGroupMembershipRequestBodyGroupField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -386,7 +386,7 @@ export function deserializeCreateGroupMembershipRequestBodyGroupField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyGroupField;
 }
 export function serializeCreateGroupMembershipRequestBodyRoleField(
-  val: CreateGroupMembershipRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -410,7 +410,7 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   });
 }
 export function serializeCreateGroupMembershipRequestBody(
-  val: CreateGroupMembershipRequestBody
+  val: any
 ): SerializedData {
   return {
     ['user']: serializeCreateGroupMembershipRequestBodyUserField(val.user),
@@ -452,7 +452,7 @@ export function deserializeCreateGroupMembershipRequestBody(
   } satisfies CreateGroupMembershipRequestBody;
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
-  val: UpdateGroupMembershipByIdRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -476,7 +476,7 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(
-  val: UpdateGroupMembershipByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['role']:

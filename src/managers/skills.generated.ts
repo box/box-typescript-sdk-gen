@@ -295,7 +295,7 @@ export class SkillsManager {
   }
 }
 export function serializeCreateBoxSkillCardsOnFileRequestBody(
-  val: CreateBoxSkillCardsOnFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['cards']: val.cards.map(function (
@@ -321,7 +321,7 @@ export function deserializeCreateBoxSkillCardsOnFileRequestBody(
   return { cards: cards } satisfies CreateBoxSkillCardsOnFileRequestBody;
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
-  val: UpdateBoxSkillCardsOnFileRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -342,7 +342,7 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   });
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBody(
-  val: UpdateBoxSkillCardsOnFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']:
@@ -381,7 +381,7 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
   } satisfies UpdateBoxSkillCardsOnFileRequestBody;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
-  val: UpdateAllSkillCardsOnFileRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -414,7 +414,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
-  val: UpdateAllSkillCardsOnFileRequestBodyMetadataField
+  val: any
 ): SerializedData {
   return {
     ['cards']:
@@ -449,7 +449,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyMetadataField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -470,7 +470,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -494,7 +494,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyFileField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -515,7 +515,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeFi
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -545,7 +545,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyFileVersionField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
-  val: UpdateAllSkillCardsOnFileRequestBodyUsageField
+  val: any
 ): SerializedData {
   return {
     ['unit']: val.unit == void 0 ? void 0 : val.unit,
@@ -563,7 +563,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyUsageField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBody(
-  val: UpdateAllSkillCardsOnFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['status']: serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(

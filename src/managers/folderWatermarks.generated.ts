@@ -168,7 +168,7 @@ export class FolderWatermarksManager {
   }
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-  val: UpdateFolderWatermarkRequestBodyWatermarkImprintField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -189,7 +189,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField
   });
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(
-  val: UpdateFolderWatermarkRequestBodyWatermarkField
+  val: any
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
@@ -209,7 +209,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
   } satisfies UpdateFolderWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFolderWatermarkRequestBody(
-  val: UpdateFolderWatermarkRequestBody
+  val: any
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFolderWatermarkRequestBodyWatermarkField(

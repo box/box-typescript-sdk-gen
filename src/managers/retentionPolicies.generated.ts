@@ -314,7 +314,7 @@ export class RetentionPoliciesManager {
   }
 }
 export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
-  val: GetRetentionPoliciesQueryParamsPolicyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -338,7 +338,7 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-  val: CreateRetentionPolicyRequestBodyPolicyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -362,7 +362,7 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
-  val: CreateRetentionPolicyRequestBodyDispositionActionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -386,7 +386,7 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-  val: CreateRetentionPolicyRequestBodyRetentionTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -410,7 +410,7 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBody(
-  val: CreateRetentionPolicyRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -495,7 +495,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
   } satisfies CreateRetentionPolicyRequestBody;
 }
 export function serializeUpdateRetentionPolicyByIdRequestBody(
-  val: UpdateRetentionPolicyByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
