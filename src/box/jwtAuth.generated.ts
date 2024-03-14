@@ -269,9 +269,7 @@ export class BoxJwtAuth implements Authentication {
     return await this.tokenStorage.clear();
   }
 }
-export function serializeJwtConfigAppSettingsAppAuth(
-  val: JwtConfigAppSettingsAppAuth
-): SerializedData {
+export function serializeJwtConfigAppSettingsAppAuth(val: any): SerializedData {
   return {
     ['publicKeyID']: val.publicKeyId,
     ['privateKey']: val.privateKey,
@@ -290,9 +288,7 @@ export function deserializeJwtConfigAppSettingsAppAuth(
     passphrase: passphrase,
   } satisfies JwtConfigAppSettingsAppAuth;
 }
-export function serializeJwtConfigAppSettings(
-  val: JwtConfigAppSettings
-): SerializedData {
+export function serializeJwtConfigAppSettings(val: any): SerializedData {
   return {
     ['clientID']: val.clientId,
     ['clientSecret']: val.clientSecret,
@@ -312,7 +308,7 @@ export function deserializeJwtConfigAppSettings(
     appAuth: appAuth,
   } satisfies JwtConfigAppSettings;
 }
-export function serializeJwtConfigFile(val: JwtConfigFile): SerializedData {
+export function serializeJwtConfigFile(val: any): SerializedData {
   return {
     ['enterpriseID']: val.enterpriseId == void 0 ? void 0 : val.enterpriseId,
     ['userID']: val.userId == void 0 ? void 0 : val.userId,

@@ -263,7 +263,7 @@ export class TaskAssignmentsManager {
   }
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
-  val: CreateTaskAssignmentRequestBodyTaskTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -284,7 +284,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   });
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
-  val: CreateTaskAssignmentRequestBodyTaskField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -303,7 +303,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskField(
   } satisfies CreateTaskAssignmentRequestBodyTaskField;
 }
 export function serializeCreateTaskAssignmentRequestBodyAssignToField(
-  val: CreateTaskAssignmentRequestBodyAssignToField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -321,7 +321,7 @@ export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
   } satisfies CreateTaskAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateTaskAssignmentRequestBody(
-  val: CreateTaskAssignmentRequestBody
+  val: any
 ): SerializedData {
   return {
     ['task']: serializeCreateTaskAssignmentRequestBodyTaskField(val.task),
@@ -343,7 +343,7 @@ export function deserializeCreateTaskAssignmentRequestBody(
   } satisfies CreateTaskAssignmentRequestBody;
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-  val: UpdateTaskAssignmentByIdRequestBodyResolutionStateField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -373,7 +373,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   });
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(
-  val: UpdateTaskAssignmentByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['message']: val.message == void 0 ? void 0 : val.message,

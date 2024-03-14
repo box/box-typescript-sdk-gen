@@ -15,7 +15,11 @@ This operation is performed by calling function `getBoxSkillCardsOnFile`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-metadata-global-box-skills-cards/).
 
-_Currently we don't have an example for calling `getBoxSkillCardsOnFile` in integration tests_
+<!-- sample get_files_id_metadata_global_boxSkillsCards -->
+
+```ts
+await client.skills.getBoxSkillCardsOnFile(file.id);
+```
 
 ### Arguments
 
@@ -44,7 +48,31 @@ This operation is performed by calling function `createBoxSkillCardsOnFile`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-id-metadata-global-box-skills-cards/).
 
-_Currently we don't have an example for calling `createBoxSkillCardsOnFile` in integration tests_
+<!-- sample post_files_id_metadata_global_boxSkillsCards -->
+
+```ts
+await client.skills.createBoxSkillCardsOnFile(file.id, {
+  cards: [
+    {
+      type: 'skill_card' as KeywordSkillCardTypeField,
+      skillCardType: 'keyword' as KeywordSkillCardSkillCardTypeField,
+      skillCardTitle: {
+        code: 'license-plates',
+        message: titleMessage,
+      } satisfies KeywordSkillCardSkillCardTitleField,
+      skill: {
+        id: skillId,
+        type: 'service' as KeywordSkillCardSkillTypeField,
+      } satisfies KeywordSkillCardSkillField,
+      invocation: {
+        id: invocationId,
+        type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
+      } satisfies KeywordSkillCardInvocationField,
+      entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
+    } satisfies KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
+  ],
+} satisfies CreateBoxSkillCardsOnFileRequestBody);
+```
 
 ### Arguments
 
@@ -73,7 +101,33 @@ This operation is performed by calling function `updateBoxSkillCardsOnFile`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-metadata-global-box-skills-cards/).
 
-_Currently we don't have an example for calling `updateBoxSkillCardsOnFile` in integration tests_
+<!-- sample put_files_id_metadata_global_boxSkillsCards -->
+
+```ts
+await client.skills.updateBoxSkillCardsOnFile(file.id, [
+  {
+    op: 'replace' as UpdateBoxSkillCardsOnFileRequestBodyOpField,
+    path: '/cards/0',
+    value: {
+      type: 'skill_card' as KeywordSkillCardTypeField,
+      skillCardType: 'keyword' as KeywordSkillCardSkillCardTypeField,
+      skillCardTitle: {
+        code: 'license-plates',
+        message: updatedTitleMessage,
+      } satisfies KeywordSkillCardSkillCardTitleField,
+      skill: {
+        id: skillId,
+        type: 'service' as KeywordSkillCardSkillTypeField,
+      } satisfies KeywordSkillCardSkillField,
+      invocation: {
+        id: invocationId,
+        type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
+      } satisfies KeywordSkillCardInvocationField,
+      entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
+    } satisfies KeywordSkillCard,
+  } satisfies UpdateBoxSkillCardsOnFileRequestBody,
+]);
+```
 
 ### Arguments
 
@@ -102,7 +156,11 @@ This operation is performed by calling function `deleteBoxSkillCardsFromFile`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-files-id-metadata-global-box-skills-cards/).
 
-_Currently we don't have an example for calling `deleteBoxSkillCardsFromFile` in integration tests_
+<!-- sample delete_files_id_metadata_global_boxSkillsCards -->
+
+```ts
+await client.skills.deleteBoxSkillCardsFromFile(file.id);
+```
 
 ### Arguments
 

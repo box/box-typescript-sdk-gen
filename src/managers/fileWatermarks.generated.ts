@@ -164,7 +164,7 @@ export class FileWatermarksManager {
   }
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-  val: UpdateFileWatermarkRequestBodyWatermarkImprintField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -185,7 +185,7 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
   });
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkField(
-  val: UpdateFileWatermarkRequestBodyWatermarkField
+  val: any
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
@@ -203,7 +203,7 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkField(
   } satisfies UpdateFileWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFileWatermarkRequestBody(
-  val: UpdateFileWatermarkRequestBody
+  val: any
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFileWatermarkRequestBodyWatermarkField(

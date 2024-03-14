@@ -375,7 +375,7 @@ export class RetentionPolicyAssignmentsManager {
   }
 }
 export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
-  val: GetRetentionPolicyAssignmentsQueryParamsTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -402,7 +402,7 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-  val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -429,7 +429,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-  val: CreateRetentionPolicyAssignmentRequestBodyAssignToField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -453,7 +453,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-  val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
+  val: any
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
@@ -471,7 +471,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterField
   } satisfies CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBody(
-  val: CreateRetentionPolicyAssignmentRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,

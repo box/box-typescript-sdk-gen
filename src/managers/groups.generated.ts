@@ -312,7 +312,7 @@ export class GroupsManager {
   }
 }
 export function serializeCreateGroupRequestBodyInvitabilityLevelField(
-  val: CreateGroupRequestBodyInvitabilityLevelField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -339,7 +339,7 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
-  val: CreateGroupRequestBodyMemberViewabilityLevelField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -365,9 +365,7 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateGroupRequestBody(
-  val: CreateGroupRequestBody
-): SerializedData {
+export function serializeCreateGroupRequestBody(val: any): SerializedData {
   return {
     ['name']: val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
@@ -428,7 +426,7 @@ export function deserializeCreateGroupRequestBody(
   } satisfies CreateGroupRequestBody;
 }
 export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-  val: UpdateGroupByIdRequestBodyInvitabilityLevelField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -455,7 +453,7 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-  val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -481,9 +479,7 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateGroupByIdRequestBody(
-  val: UpdateGroupByIdRequestBody
-): SerializedData {
+export function serializeUpdateGroupByIdRequestBody(val: any): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,

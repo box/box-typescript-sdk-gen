@@ -193,7 +193,7 @@ export class TrashedFoldersManager {
   }
 }
 export function serializeRestoreFolderFromTrashRequestBodyParentField(
-  val: RestoreFolderFromTrashRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -204,7 +204,7 @@ export function deserializeRestoreFolderFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFolderFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFolderFromTrashRequestBody(
-  val: RestoreFolderFromTrashRequestBody
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

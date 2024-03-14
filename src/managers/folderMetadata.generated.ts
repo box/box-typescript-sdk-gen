@@ -290,9 +290,7 @@ export class FolderMetadataManager {
     return void 0;
   }
 }
-export function serializeGetFolderMetadataByIdScope(
-  val: GetFolderMetadataByIdScope
-): SerializedData {
+export function serializeGetFolderMetadataByIdScope(val: any): SerializedData {
   return val;
 }
 export function deserializeGetFolderMetadataByIdScope(
@@ -314,7 +312,7 @@ export function deserializeGetFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdScope(
-  val: CreateFolderMetadataByIdScope
+  val: any
 ): SerializedData {
   return val;
 }
@@ -337,7 +335,7 @@ export function deserializeCreateFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdRequestBody(
-  val: CreateFolderMetadataByIdRequestBody
+  val: any
 ): SerializedData {
   return val;
 }
@@ -347,7 +345,7 @@ export function deserializeCreateFolderMetadataByIdRequestBody(
   return val;
 }
 export function serializeUpdateFolderMetadataByIdScope(
-  val: UpdateFolderMetadataByIdScope
+  val: any
 ): SerializedData {
   return val;
 }
@@ -370,7 +368,7 @@ export function deserializeUpdateFolderMetadataByIdScope(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
-  val: UpdateFolderMetadataByIdRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -406,7 +404,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBody(
-  val: UpdateFolderMetadataByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']:
@@ -436,7 +434,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBody(
   } satisfies UpdateFolderMetadataByIdRequestBody;
 }
 export function serializeDeleteFolderMetadataByIdScope(
-  val: DeleteFolderMetadataByIdScope
+  val: any
 ): SerializedData {
   return val;
 }

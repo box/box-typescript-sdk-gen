@@ -269,7 +269,7 @@ export class LegalHoldPoliciesManager {
   }
 }
 export function serializeCreateLegalHoldPolicyRequestBody(
-  val: CreateLegalHoldPolicyRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -302,7 +302,7 @@ export function deserializeCreateLegalHoldPolicyRequestBody(
   } satisfies CreateLegalHoldPolicyRequestBody;
 }
 export function serializeUpdateLegalHoldPolicyByIdRequestBody(
-  val: UpdateLegalHoldPolicyByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,

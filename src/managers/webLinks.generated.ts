@@ -223,7 +223,7 @@ export class WebLinksManager {
   }
 }
 export function serializeCreateWebLinkRequestBodyParentField(
-  val: CreateWebLinkRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -233,9 +233,7 @@ export function deserializeCreateWebLinkRequestBodyParentField(
   const id: string = val.id;
   return { id: id } satisfies CreateWebLinkRequestBodyParentField;
 }
-export function serializeCreateWebLinkRequestBody(
-  val: CreateWebLinkRequestBody
-): SerializedData {
+export function serializeCreateWebLinkRequestBody(val: any): SerializedData {
   return {
     ['url']: val.url,
     ['parent']: serializeCreateWebLinkRequestBodyParentField(val.parent),
@@ -260,7 +258,7 @@ export function deserializeCreateWebLinkRequestBody(
   } satisfies CreateWebLinkRequestBody;
 }
 export function serializeUpdateWebLinkByIdRequestBodyParentField(
-  val: UpdateWebLinkByIdRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -271,7 +269,7 @@ export function deserializeUpdateWebLinkByIdRequestBodyParentField(
   return { id: id } satisfies UpdateWebLinkByIdRequestBodyParentField;
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-  val: UpdateWebLinkByIdRequestBodySharedLinkAccessField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -298,7 +296,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
-  val: UpdateWebLinkByIdRequestBodySharedLinkField
+  val: any
 ): SerializedData {
   return {
     ['access']:
@@ -335,7 +333,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
   } satisfies UpdateWebLinkByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateWebLinkByIdRequestBody(
-  val: UpdateWebLinkByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,

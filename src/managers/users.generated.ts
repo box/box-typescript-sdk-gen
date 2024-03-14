@@ -409,7 +409,7 @@ export class UsersManager {
   }
 }
 export function serializeGetUsersQueryParamsUserTypeField(
-  val: GetUsersQueryParamsUserTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -435,7 +435,7 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   });
 }
 export function serializeCreateUserRequestBodyRoleField(
-  val: CreateUserRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -458,7 +458,7 @@ export function deserializeCreateUserRequestBodyRoleField(
   });
 }
 export function serializeCreateUserRequestBodyStatusField(
-  val: CreateUserRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -486,9 +486,7 @@ export function deserializeCreateUserRequestBodyStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateUserRequestBody(
-  val: CreateUserRequestBody
-): SerializedData {
+export function serializeCreateUserRequestBody(val: any): SerializedData {
   return {
     ['name']: val.name,
     ['login']: val.login == void 0 ? void 0 : val.login,
@@ -610,7 +608,7 @@ export function deserializeCreateUserRequestBody(
   } satisfies CreateUserRequestBody;
 }
 export function serializeUpdateUserByIdRequestBodyRoleField(
-  val: UpdateUserByIdRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -633,7 +631,7 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyStatusField(
-  val: UpdateUserByIdRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -662,7 +660,7 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
-  val: UpdateUserByIdRequestBodyNotificationEmailField
+  val: any
 ): SerializedData {
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
@@ -674,9 +672,7 @@ export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
     email: email,
   } satisfies UpdateUserByIdRequestBodyNotificationEmailField;
 }
-export function serializeUpdateUserByIdRequestBody(
-  val: UpdateUserByIdRequestBody
-): SerializedData {
+export function serializeUpdateUserByIdRequestBody(val: any): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
     ['notify']: val.notify == void 0 ? void 0 : val.notify,

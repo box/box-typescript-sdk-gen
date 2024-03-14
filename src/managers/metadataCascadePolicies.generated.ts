@@ -278,7 +278,7 @@ export class MetadataCascadePoliciesManager {
   }
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
-  val: CreateMetadataCascadePolicyRequestBodyScopeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -302,7 +302,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   });
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
-  val: CreateMetadataCascadePolicyRequestBody
+  val: any
 ): SerializedData {
   return {
     ['folder_id']: val.folderId,
@@ -326,7 +326,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBody(
   } satisfies CreateMetadataCascadePolicyRequestBody;
 }
 export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-  val: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -350,7 +350,7 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   });
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(
-  val: ApplyMetadataCascadePolicyRequestBody
+  val: any
 ): SerializedData {
   return {
     ['conflict_resolution']:

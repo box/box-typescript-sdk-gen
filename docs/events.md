@@ -20,7 +20,13 @@ This operation is performed by calling function `getEvents`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-events/).
 
-_Currently we don't have an example for calling `getEvents` in integration tests_
+<!-- sample get_events -->
+
+```ts
+await client.events.getEvents({
+  streamType: 'changes' as GetEventsQueryParamsStreamTypeField,
+} satisfies GetEventsQueryParams);
+```
 
 ### Arguments
 
@@ -84,7 +90,11 @@ This operation is performed by calling function `getEventsWithLongPolling`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/options-events/).
 
-_Currently we don't have an example for calling `getEventsWithLongPolling` in integration tests_
+<!-- sample options_events -->
+
+```ts
+await client.events.getEventsWithLongPolling();
+```
 
 ### Arguments
 

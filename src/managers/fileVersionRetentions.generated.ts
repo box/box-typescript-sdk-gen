@@ -145,7 +145,7 @@ export class FileVersionRetentionsManager {
   }
 }
 export function serializeGetFileVersionRetentionsQueryParamsDispositionActionField(
-  val: GetFileVersionRetentionsQueryParamsDispositionActionField
+  val: any
 ): SerializedData {
   return val;
 }
