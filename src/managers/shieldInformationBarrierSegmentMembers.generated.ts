@@ -262,7 +262,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
   }
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -283,7 +283,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -304,7 +304,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -334,7 +334,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField;
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBody(
-  val: CreateShieldInformationBarrierSegmentMemberRequestBody
+  val: any
 ): SerializedData {
   return {
     ['type']:

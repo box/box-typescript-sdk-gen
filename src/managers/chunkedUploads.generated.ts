@@ -519,7 +519,7 @@ export class ChunkedUploadsManager {
   }
 }
 export function serializeCreateFileUploadSessionRequestBody(
-  val: CreateFileUploadSessionRequestBody
+  val: any
 ): SerializedData {
   return {
     ['folder_id']: val.folderId,
@@ -540,7 +540,7 @@ export function deserializeCreateFileUploadSessionRequestBody(
   } satisfies CreateFileUploadSessionRequestBody;
 }
 export function serializeCreateFileUploadSessionForExistingFileRequestBody(
-  val: CreateFileUploadSessionForExistingFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['file_size']: val.fileSize,
@@ -559,7 +559,7 @@ export function deserializeCreateFileUploadSessionForExistingFileRequestBody(
   } satisfies CreateFileUploadSessionForExistingFileRequestBody;
 }
 export function serializeCreateFileUploadSessionCommitRequestBody(
-  val: CreateFileUploadSessionCommitRequestBody
+  val: any
 ): SerializedData {
   return {
     ['parts']: val.parts.map(function (item: UploadPart): any {

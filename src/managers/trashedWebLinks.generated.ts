@@ -195,7 +195,7 @@ export class TrashedWebLinksManager {
   }
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
-  val: RestoreWeblinkFromTrashRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -206,7 +206,7 @@ export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
 export function serializeRestoreWeblinkFromTrashRequestBody(
-  val: RestoreWeblinkFromTrashRequestBody
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

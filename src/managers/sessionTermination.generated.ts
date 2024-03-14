@@ -124,7 +124,7 @@ export class SessionTerminationManager {
   }
 }
 export function serializeTerminateUsersSessionsRequestBody(
-  val: TerminateUsersSessionsRequestBody
+  val: any
 ): SerializedData {
   return {
     ['user_ids']: val.userIds.map(function (item: string): any {
@@ -154,7 +154,7 @@ export function deserializeTerminateUsersSessionsRequestBody(
   } satisfies TerminateUsersSessionsRequestBody;
 }
 export function serializeTerminateGroupsSessionsRequestBody(
-  val: TerminateGroupsSessionsRequestBody
+  val: any
 ): SerializedData {
   return {
     ['group_ids']: val.groupIds.map(function (item: string): any {

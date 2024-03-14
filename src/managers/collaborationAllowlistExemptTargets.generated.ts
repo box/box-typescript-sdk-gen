@@ -234,7 +234,7 @@ export class CollaborationAllowlistExemptTargetsManager {
   }
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-  val: CreateCollaborationWhitelistExemptTargetRequestBodyUserField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -247,7 +247,7 @@ export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUs
   } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField;
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBody(
-  val: CreateCollaborationWhitelistExemptTargetRequestBody
+  val: any
 ): SerializedData {
   return {
     ['user']:

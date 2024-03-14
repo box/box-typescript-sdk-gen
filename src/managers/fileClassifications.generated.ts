@@ -220,7 +220,7 @@ export class FileClassificationsManager {
   }
 }
 export function serializeAddClassificationToFileRequestBody(
-  val: AddClassificationToFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -241,7 +241,7 @@ export function deserializeAddClassificationToFileRequestBody(
   } satisfies AddClassificationToFileRequestBody;
 }
 export function serializeUpdateClassificationOnFileRequestBodyOpField(
-  val: UpdateClassificationOnFileRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -262,7 +262,7 @@ export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationOnFileRequestBodyPathField(
-  val: UpdateClassificationOnFileRequestBodyPathField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -283,7 +283,7 @@ export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   });
 }
 export function serializeUpdateClassificationOnFileRequestBody(
-  val: UpdateClassificationOnFileRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationOnFileRequestBodyOpField(val.op),

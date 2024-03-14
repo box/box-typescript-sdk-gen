@@ -166,7 +166,7 @@ export class EmailAliasesManager {
   }
 }
 export function serializeCreateUserEmailAliasRequestBody(
-  val: CreateUserEmailAliasRequestBody
+  val: any
 ): SerializedData {
   return { ['email']: val.email };
 }

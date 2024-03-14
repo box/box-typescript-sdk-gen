@@ -368,7 +368,7 @@ export class LegalHoldPolicyAssignmentsManager {
   }
 }
 export function serializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
-  val: GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -398,7 +398,7 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeF
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -428,7 +428,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -452,7 +452,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateLegalHoldPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBody(
-  val: CreateLegalHoldPolicyAssignmentRequestBody
+  val: any
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,

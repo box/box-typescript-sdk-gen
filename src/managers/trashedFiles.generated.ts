@@ -191,7 +191,7 @@ export class TrashedFilesManager {
   }
 }
 export function serializeRestoreFileFromTrashRequestBodyParentField(
-  val: RestoreFileFromTrashRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -202,7 +202,7 @@ export function deserializeRestoreFileFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFileFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFileFromTrashRequestBody(
-  val: RestoreFileFromTrashRequestBody
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

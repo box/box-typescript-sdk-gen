@@ -174,7 +174,7 @@ export class FolderLocksManager {
   }
 }
 export function serializeCreateFolderLockRequestBodyLockedOperationsField(
-  val: CreateFolderLockRequestBodyLockedOperationsField
+  val: any
 ): SerializedData {
   return { ['move']: val.move, ['delete']: val.delete };
 }
@@ -189,7 +189,7 @@ export function deserializeCreateFolderLockRequestBodyLockedOperationsField(
   } satisfies CreateFolderLockRequestBodyLockedOperationsField;
 }
 export function serializeCreateFolderLockRequestBodyFolderField(
-  val: CreateFolderLockRequestBodyFolderField
+  val: any
 ): SerializedData {
   return { ['type']: val.type, ['id']: val.id };
 }
@@ -203,9 +203,7 @@ export function deserializeCreateFolderLockRequestBodyFolderField(
     id: id,
   } satisfies CreateFolderLockRequestBodyFolderField;
 }
-export function serializeCreateFolderLockRequestBody(
-  val: CreateFolderLockRequestBody
-): SerializedData {
+export function serializeCreateFolderLockRequestBody(val: any): SerializedData {
   return {
     ['locked_operations']:
       val.lockedOperations == void 0

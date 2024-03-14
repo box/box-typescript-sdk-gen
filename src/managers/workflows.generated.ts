@@ -154,7 +154,7 @@ export class WorkflowsManager {
   }
 }
 export function serializeStartWorkflowRequestBodyTypeField(
-  val: StartWorkflowRequestBodyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -174,7 +174,7 @@ export function deserializeStartWorkflowRequestBodyTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFlowField(
-  val: StartWorkflowRequestBodyFlowField
+  val: any
 ): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -189,7 +189,7 @@ export function deserializeStartWorkflowRequestBodyFlowField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFlowField;
 }
 export function serializeStartWorkflowRequestBodyFilesTypeField(
-  val: StartWorkflowRequestBodyFilesTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -210,7 +210,7 @@ export function deserializeStartWorkflowRequestBodyFilesTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFilesField(
-  val: StartWorkflowRequestBodyFilesField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -231,7 +231,7 @@ export function deserializeStartWorkflowRequestBodyFilesField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFilesField;
 }
 export function serializeStartWorkflowRequestBodyFolderTypeField(
-  val: StartWorkflowRequestBodyFolderTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -252,7 +252,7 @@ export function deserializeStartWorkflowRequestBodyFolderTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFolderField(
-  val: StartWorkflowRequestBodyFolderField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -273,7 +273,7 @@ export function deserializeStartWorkflowRequestBodyFolderField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
 export function serializeStartWorkflowRequestBodyOutcomesTypeField(
-  val: StartWorkflowRequestBodyOutcomesTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -294,7 +294,7 @@ export function deserializeStartWorkflowRequestBodyOutcomesTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyOutcomesField(
-  val: StartWorkflowRequestBodyOutcomesField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -321,9 +321,7 @@ export function deserializeStartWorkflowRequestBodyOutcomesField(
     parameter: parameter,
   } satisfies StartWorkflowRequestBodyOutcomesField;
 }
-export function serializeStartWorkflowRequestBody(
-  val: StartWorkflowRequestBody
-): SerializedData {
+export function serializeStartWorkflowRequestBody(val: any): SerializedData {
   return {
     ['type']:
       val.type == void 0

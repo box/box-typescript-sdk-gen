@@ -206,7 +206,7 @@ export class AuthorizationManager {
   }
 }
 export function serializeAuthorizeUserQueryParamsResponseTypeField(
-  val: AuthorizeUserQueryParamsResponseTypeField
+  val: any
 ): SerializedData {
   return val;
 }

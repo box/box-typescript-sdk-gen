@@ -255,7 +255,7 @@ export class ListCollaborationsManager {
   }
 }
 export function serializeGetCollaborationsQueryParamsStatusField(
-  val: GetCollaborationsQueryParamsStatusField
+  val: any
 ): SerializedData {
   return val;
 }

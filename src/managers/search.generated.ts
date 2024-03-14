@@ -215,7 +215,7 @@ export class SearchManager {
   }
 }
 export function serializeSearchForContentQueryParamsScopeField(
-  val: SearchForContentQueryParamsScopeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -238,7 +238,7 @@ export function deserializeSearchForContentQueryParamsScopeField(
   });
 }
 export function serializeSearchForContentQueryParamsContentTypesField(
-  val: SearchForContentQueryParamsContentTypesField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -271,7 +271,7 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
   });
 }
 export function serializeSearchForContentQueryParamsTypeField(
-  val: SearchForContentQueryParamsTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -297,7 +297,7 @@ export function deserializeSearchForContentQueryParamsTypeField(
   });
 }
 export function serializeSearchForContentQueryParamsTrashContentField(
-  val: SearchForContentQueryParamsTrashContentField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -324,7 +324,7 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   });
 }
 export function serializeSearchForContentQueryParamsSortField(
-  val: SearchForContentQueryParamsSortField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -347,7 +347,7 @@ export function deserializeSearchForContentQueryParamsSortField(
   });
 }
 export function serializeSearchForContentQueryParamsDirectionField(
-  val: SearchForContentQueryParamsDirectionField
+  val: any
 ): SerializedData {
   return val;
 }

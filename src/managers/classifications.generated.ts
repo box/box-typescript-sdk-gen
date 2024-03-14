@@ -272,7 +272,7 @@ export class ClassificationsManager {
   }
 }
 export function serializeAddClassificationRequestBodyOpField(
-  val: AddClassificationRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -292,7 +292,7 @@ export function deserializeAddClassificationRequestBodyOpField(
   });
 }
 export function serializeAddClassificationRequestBodyFieldKeyField(
-  val: AddClassificationRequestBodyFieldKeyField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -313,7 +313,7 @@ export function deserializeAddClassificationRequestBodyFieldKeyField(
   });
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigClassificationField(
-  val: AddClassificationRequestBodyDataStaticConfigClassificationField
+  val: any
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -338,7 +338,7 @@ export function deserializeAddClassificationRequestBodyDataStaticConfigClassific
   } satisfies AddClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigField(
-  val: AddClassificationRequestBodyDataStaticConfigField
+  val: any
 ): SerializedData {
   return {
     ['classification']:
@@ -365,7 +365,7 @@ export function deserializeAddClassificationRequestBodyDataStaticConfigField(
   } satisfies AddClassificationRequestBodyDataStaticConfigField;
 }
 export function serializeAddClassificationRequestBodyDataField(
-  val: AddClassificationRequestBodyDataField
+  val: any
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -395,7 +395,7 @@ export function deserializeAddClassificationRequestBodyDataField(
   } satisfies AddClassificationRequestBodyDataField;
 }
 export function serializeAddClassificationRequestBody(
-  val: AddClassificationRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']: serializeAddClassificationRequestBodyOpField(val.op),
@@ -421,7 +421,7 @@ export function deserializeAddClassificationRequestBody(
   } satisfies AddClassificationRequestBody;
 }
 export function serializeUpdateClassificationRequestBodyOpField(
-  val: UpdateClassificationRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -442,7 +442,7 @@ export function deserializeUpdateClassificationRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationRequestBodyFieldKeyField(
-  val: UpdateClassificationRequestBodyFieldKeyField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -463,7 +463,7 @@ export function deserializeUpdateClassificationRequestBodyFieldKeyField(
   });
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
-  val: UpdateClassificationRequestBodyDataStaticConfigClassificationField
+  val: any
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -488,7 +488,7 @@ export function deserializeUpdateClassificationRequestBodyDataStaticConfigClassi
   } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigField(
-  val: UpdateClassificationRequestBodyDataStaticConfigField
+  val: any
 ): SerializedData {
   return {
     ['classification']:
@@ -515,7 +515,7 @@ export function deserializeUpdateClassificationRequestBodyDataStaticConfigField(
   } satisfies UpdateClassificationRequestBodyDataStaticConfigField;
 }
 export function serializeUpdateClassificationRequestBodyDataField(
-  val: UpdateClassificationRequestBodyDataField
+  val: any
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -545,7 +545,7 @@ export function deserializeUpdateClassificationRequestBodyDataField(
   } satisfies UpdateClassificationRequestBodyDataField;
 }
 export function serializeUpdateClassificationRequestBody(
-  val: UpdateClassificationRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationRequestBodyOpField(val.op),
@@ -574,7 +574,7 @@ export function deserializeUpdateClassificationRequestBody(
   } satisfies UpdateClassificationRequestBody;
 }
 export function serializeCreateClassificationTemplateRequestBodyScopeField(
-  val: CreateClassificationTemplateRequestBodyScopeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -595,7 +595,7 @@ export function deserializeCreateClassificationTemplateRequestBodyScopeField(
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
-  val: CreateClassificationTemplateRequestBodyTemplateKeyField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -616,7 +616,7 @@ export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyFie
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyDisplayNameField(
-  val: CreateClassificationTemplateRequestBodyDisplayNameField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -637,7 +637,7 @@ export function deserializeCreateClassificationTemplateRequestBodyDisplayNameFie
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
-  val: CreateClassificationTemplateRequestBodyFieldsTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -658,7 +658,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsTypeFiel
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
-  val: CreateClassificationTemplateRequestBodyFieldsKeyField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -679,7 +679,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
-  val: CreateClassificationTemplateRequestBodyFieldsDisplayNameField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -700,7 +700,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayN
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
-  val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField
+  val: any
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -725,7 +725,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsS
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField(
-  val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField
+  val: any
 ): SerializedData {
   return {
     ['classification']:
@@ -752,7 +752,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsS
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
-  val: CreateClassificationTemplateRequestBodyFieldsOptionsField
+  val: any
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -782,7 +782,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsF
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsField(
-  val: CreateClassificationTemplateRequestBodyFieldsField
+  val: any
 ): SerializedData {
   return {
     ['type']: serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
@@ -835,7 +835,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsField(
   } satisfies CreateClassificationTemplateRequestBodyFieldsField;
 }
 export function serializeCreateClassificationTemplateRequestBody(
-  val: CreateClassificationTemplateRequestBody
+  val: any
 ): SerializedData {
   return {
     ['scope']: serializeCreateClassificationTemplateRequestBodyScopeField(

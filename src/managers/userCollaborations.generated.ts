@@ -271,7 +271,7 @@ export class UserCollaborationsManager {
   }
 }
 export function serializeUpdateCollaborationByIdRequestBodyRoleField(
-  val: UpdateCollaborationByIdRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -313,7 +313,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBodyStatusField(
-  val: UpdateCollaborationByIdRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -340,7 +340,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBody(
-  val: UpdateCollaborationByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['role']: serializeUpdateCollaborationByIdRequestBodyRoleField(val.role),
@@ -373,7 +373,7 @@ export function deserializeUpdateCollaborationByIdRequestBody(
   } satisfies UpdateCollaborationByIdRequestBody;
 }
 export function serializeCreateCollaborationRequestBodyItemTypeField(
-  val: CreateCollaborationRequestBodyItemTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -397,7 +397,7 @@ export function deserializeCreateCollaborationRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyItemField(
-  val: CreateCollaborationRequestBodyItemField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -421,7 +421,7 @@ export function deserializeCreateCollaborationRequestBodyItemField(
   } satisfies CreateCollaborationRequestBodyItemField;
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
-  val: CreateCollaborationRequestBodyAccessibleByTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -445,7 +445,7 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByField(
-  val: CreateCollaborationRequestBodyAccessibleByField
+  val: any
 ): SerializedData {
   return {
     ['type']: serializeCreateCollaborationRequestBodyAccessibleByTypeField(
@@ -469,7 +469,7 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByField(
   } satisfies CreateCollaborationRequestBodyAccessibleByField;
 }
 export function serializeCreateCollaborationRequestBodyRoleField(
-  val: CreateCollaborationRequestBodyRoleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -508,7 +508,7 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
   });
 }
 export function serializeCreateCollaborationRequestBody(
-  val: CreateCollaborationRequestBody
+  val: any
 ): SerializedData {
   return {
     ['item']: serializeCreateCollaborationRequestBodyItemField(val.item),
