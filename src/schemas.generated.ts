@@ -312,7 +312,7 @@ export interface AccessToken {
   readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
 }
 export type GenericSource = {
-  readonly [key: string]: string;
+  readonly [key: string]: any;
 };
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
 export interface IntegrationMappingBase {
@@ -400,7 +400,7 @@ export type MetadataFull = Metadata & {
   readonly type?: string;
   readonly typeVersion?: number;
   readonly extraData?: {
-    readonly [key: string]: string;
+    readonly [key: string]: any;
   };
 };
 export type MetadataCascadePolicyTypeField = 'metadata_cascade_policy';
@@ -4857,7 +4857,16 @@ export function deserializeAccessToken(val: any): AccessToken {
   } satisfies AccessToken;
 }
 export function serializeGenericSource(val: any): SerializedData {
-  return val;
+  return Object.fromEntries(
+    Object.entries(val).map(([k, v]: [string, any]) => [
+      k,
+      (function (v: any): any {
+        return v;
+      })(v),
+    ])
+  ) as {
+    readonly [key: string]: any;
+  };
 }
 export function deserializeGenericSource(val: any): GenericSource {
   return val;
@@ -5519,7 +5528,7 @@ export function deserializeMetadataFull(val: any): MetadataFull {
   const extraData:
     | undefined
     | {
-        readonly [key: string]: string;
+        readonly [key: string]: any;
       } = val == void 0 ? void 0 : val;
   const parent: undefined | string =
     val.$parent == void 0 ? void 0 : val.$parent;

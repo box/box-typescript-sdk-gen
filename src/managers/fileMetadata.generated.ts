@@ -52,7 +52,7 @@ export class GetFileMetadataByIdHeaders {
 }
 export type CreateFileMetadataByIdScope = 'global' | 'enterprise';
 export type CreateFileMetadataByIdRequestBody = {
-  readonly [key: string]: string;
+  readonly [key: string]: any;
 };
 export class CreateFileMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -333,7 +333,16 @@ export function deserializeCreateFileMetadataByIdScope(
 export function serializeCreateFileMetadataByIdRequestBody(
   val: any
 ): SerializedData {
-  return val;
+  return Object.fromEntries(
+    Object.entries(val).map(([k, v]: [string, any]) => [
+      k,
+      (function (v: any): any {
+        return v;
+      })(v),
+    ])
+  ) as {
+    readonly [key: string]: any;
+  };
 }
 export function deserializeCreateFileMetadataByIdRequestBody(
   val: any

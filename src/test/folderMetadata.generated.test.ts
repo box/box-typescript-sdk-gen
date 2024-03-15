@@ -16,6 +16,18 @@ import { serializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers
 import { deserializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
 import { serializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { deserializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeMetadataTemplate } from '../schemas.generated.js';
+import { deserializeMetadataTemplate } from '../schemas.generated.js';
+import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { Metadatas } from '../schemas.generated.js';
@@ -26,6 +38,12 @@ import { UpdateFolderMetadataByIdScope } from '../managers/folderMetadata.genera
 import { UpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
 import { UpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
 import { DeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { MetadataTemplate } from '../schemas.generated.js';
+import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -39,7 +57,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: any = getDefaultClient();
-test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
+test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Promise<any> {
   const folder: any = await createNewFolder();
   const folderMetadata: any = await client.folderMetadata.getFolderMetadata(
     folder.id
@@ -107,6 +125,106 @@ test('testFolderMetadata', async function testFolderMetadata(): Promise<any> {
       'properties'
     );
   }).rejects.toThrow();
+  await client.folders.deleteFolderById(folder.id);
+});
+test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata(): Promise<any> {
+  const folder: any = await createNewFolder();
+  const templateKey: any = ''.concat('key', getUuid()) as string;
+  const template: any = await client.metadataTemplates.createMetadataTemplate({
+    scope: 'enterprise',
+    displayName: templateKey,
+    templateKey: templateKey,
+    fields: [
+      {
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'name',
+        displayName: 'name',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'age',
+        displayName: 'age',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'birthDate',
+        displayName: 'birthDate',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'countryCode',
+        displayName: 'countryCode',
+        options: [
+          {
+            key: 'US',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          {
+            key: 'CA',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        ],
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'sports',
+        displayName: 'sports',
+        options: [
+          {
+            key: 'basketball',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          {
+            key: 'football',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          {
+            key: 'tennis',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        ],
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    ],
+  } satisfies CreateMetadataTemplateRequestBody);
+  const createdMetadata: any =
+    await client.folderMetadata.createFolderMetadataById(
+      folder.id,
+      'enterprise' as CreateFolderMetadataByIdScope,
+      templateKey,
+      {
+        ['name']: 'John',
+        ['age']: 23,
+        ['birthDate']: '2001-01-03T02:20:50.520Z',
+        ['countryCode']: 'US',
+        ['sports']: ['basketball', 'tennis'],
+      }
+    );
+  if (!((toString(createdMetadata.template) as string) == templateKey)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(createdMetadata.extraData!.name == 'John')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(createdMetadata.extraData!.age == 23)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(createdMetadata.extraData!.birthDate == '2001-01-03T02:20:50.520Z')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(createdMetadata.extraData!.countryCode == 'US')) {
+    throw new Error('Assertion failed');
+  }
+  const sports: any = createdMetadata.extraData!.sports;
+  if (!(sports[0] == 'basketball')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(sports[1] == 'tennis')) {
+    throw new Error('Assertion failed');
+  }
+  await client.folderMetadata.deleteFolderMetadataById(
+    folder.id,
+    'enterprise' as DeleteFolderMetadataByIdScope,
+    templateKey
+  );
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScope,
+    templateKey
+  );
   await client.folders.deleteFolderById(folder.id);
 });
 export {};
