@@ -60,4 +60,27 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
   }
   await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
 });
+test('testCreateNotOngoingLegalHoldPolicy', async function testCreateNotOngoingLegalHoldPolicy(): Promise<any> {
+  const legalHoldPolicyName: string = getUuid();
+  const legalHoldDescription: string = 'test description';
+  const legalHoldPolicy: LegalHoldPolicy =
+    await client.legalHoldPolicies.createLegalHoldPolicy({
+      policyName: legalHoldPolicyName,
+      description: legalHoldDescription,
+      isOngoing: false,
+      filterStartedAt: '2021-01-01T00:00:00-08:00',
+      filterEndedAt: '2022-01-01T00:00:00-08:00',
+    } satisfies CreateLegalHoldPolicyRequestBody);
+  if (!(legalHoldPolicy.policyName == legalHoldPolicyName)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(legalHoldPolicy.description == legalHoldDescription)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(legalHoldPolicy.filterStartedAt! == '2021-01-01T00:00:00-08:00')) {
+    throw new Error('Assertion failed');
+  }
+  legalHoldPolicy.filterEndedAt! == '2022-01-01T00:00:00-08:00';
+  await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);
+});
 export {};
