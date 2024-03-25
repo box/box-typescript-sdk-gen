@@ -2290,6 +2290,28 @@ export interface ZipDownloadStatus {
   readonly skippedFolderCount?: number;
   readonly state?: ZipDownloadStatusStateField;
 }
+export type CompletionRuleVariableTypeField = 'variable';
+export type CompletionRuleVariableVariableTypeField = 'task_completion_rule';
+export type CompletionRuleVariableVariableValueField =
+  | 'all_assignees'
+  | 'any_assignees';
+export interface CompletionRuleVariable {
+  readonly type: CompletionRuleVariableTypeField;
+  readonly variableType: CompletionRuleVariableVariableTypeField;
+  readonly variableValue: CompletionRuleVariableVariableValueField;
+}
+export type CollaboratorVariableTypeField = 'variable';
+export type CollaboratorVariableVariableTypeField = 'user_list';
+export type CollaboratorVariableVariableValueTypeField = 'user';
+export interface CollaboratorVariableVariableValueField {
+  readonly type: CollaboratorVariableVariableValueTypeField;
+  readonly id: string;
+}
+export interface CollaboratorVariable {
+  readonly type: CollaboratorVariableTypeField;
+  readonly variableType: CollaboratorVariableVariableTypeField;
+  readonly variableValue: readonly CollaboratorVariableVariableValueField[];
+}
 export type KeywordSkillCardTypeField = 'skill_card';
 export type KeywordSkillCardSkillCardTypeField = 'keyword';
 export interface KeywordSkillCardSkillCardTitleField {
@@ -2354,6 +2376,29 @@ export interface IntegrationMappingSlackCreateRequest {
   readonly partnerItem: IntegrationMappingPartnerItemSlack;
   readonly boxItem: IntegrationMappingBoxItemSlack;
   readonly options?: IntegrationMappingSlackOptions;
+}
+export type RoleVariableTypeField = 'variable';
+export type RoleVariableVariableTypeField = 'collaborator_role';
+export type RoleVariableVariableValueField =
+  | 'editor'
+  | 'viewer'
+  | 'previewer'
+  | 'uploader'
+  | 'previewer uploader'
+  | 'viewer uploader'
+  | 'co-owner';
+export interface RoleVariable {
+  readonly type: RoleVariableTypeField;
+  readonly variableType: RoleVariableVariableTypeField;
+  readonly variableValue: RoleVariableVariableValueField;
+}
+export interface Outcome {
+  readonly id: string;
+  readonly collaborators?: CollaboratorVariable;
+  readonly completionRule?: CompletionRuleVariable;
+  readonly fileCollaboratorRole?: RoleVariable;
+  readonly taskCollaborators?: CollaboratorVariable;
+  readonly role?: RoleVariable;
 }
 export type TimelineSkillCardTypeField = 'skill_card';
 export type TimelineSkillCardSkillCardTypeField = 'timeline';
@@ -17320,6 +17365,209 @@ export function deserializeZipDownloadStatus(val: any): ZipDownloadStatus {
     state: state,
   } satisfies ZipDownloadStatus;
 }
+export function serializeCompletionRuleVariableTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCompletionRuleVariableTypeField(
+  val: any
+): CompletionRuleVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CompletionRuleVariableTypeField"',
+    });
+  }
+  if (val == 'variable') {
+    return 'variable';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCompletionRuleVariableVariableTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCompletionRuleVariableVariableTypeField(
+  val: any
+): CompletionRuleVariableVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CompletionRuleVariableVariableTypeField"',
+    });
+  }
+  if (val == 'task_completion_rule') {
+    return 'task_completion_rule';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCompletionRuleVariableVariableValueField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCompletionRuleVariableVariableValueField(
+  val: any
+): CompletionRuleVariableVariableValueField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CompletionRuleVariableVariableValueField"',
+    });
+  }
+  if (val == 'all_assignees') {
+    return 'all_assignees';
+  }
+  if (val == 'any_assignees') {
+    return 'any_assignees';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCompletionRuleVariable(val: any): SerializedData {
+  return {
+    ['type']: serializeCompletionRuleVariableTypeField(val.type),
+    ['variable_type']: serializeCompletionRuleVariableVariableTypeField(
+      val.variableType
+    ),
+    ['variable_value']: serializeCompletionRuleVariableVariableValueField(
+      val.variableValue
+    ),
+  };
+}
+export function deserializeCompletionRuleVariable(
+  val: any
+): CompletionRuleVariable {
+  const type: CompletionRuleVariableTypeField =
+    deserializeCompletionRuleVariableTypeField(val.type);
+  const variableType: CompletionRuleVariableVariableTypeField =
+    deserializeCompletionRuleVariableVariableTypeField(val.variable_type);
+  const variableValue: CompletionRuleVariableVariableValueField =
+    deserializeCompletionRuleVariableVariableValueField(val.variable_value);
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies CompletionRuleVariable;
+}
+export function serializeCollaboratorVariableTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCollaboratorVariableTypeField(
+  val: any
+): CollaboratorVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaboratorVariableTypeField"',
+    });
+  }
+  if (val == 'variable') {
+    return 'variable';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCollaboratorVariableVariableTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCollaboratorVariableVariableTypeField(
+  val: any
+): CollaboratorVariableVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "CollaboratorVariableVariableTypeField"',
+    });
+  }
+  if (val == 'user_list') {
+    return 'user_list';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCollaboratorVariableVariableValueTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeCollaboratorVariableVariableValueTypeField(
+  val: any
+): CollaboratorVariableVariableValueTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "CollaboratorVariableVariableValueTypeField"',
+    });
+  }
+  if (val == 'user') {
+    return 'user';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeCollaboratorVariableVariableValueField(
+  val: any
+): SerializedData {
+  return {
+    ['type']: serializeCollaboratorVariableVariableValueTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeCollaboratorVariableVariableValueField(
+  val: any
+): CollaboratorVariableVariableValueField {
+  const type: CollaboratorVariableVariableValueTypeField =
+    deserializeCollaboratorVariableVariableValueTypeField(val.type);
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies CollaboratorVariableVariableValueField;
+}
+export function serializeCollaboratorVariable(val: any): SerializedData {
+  return {
+    ['type']: serializeCollaboratorVariableTypeField(val.type),
+    ['variable_type']: serializeCollaboratorVariableVariableTypeField(
+      val.variableType
+    ),
+    ['variable_value']: val.variableValue.map(function (
+      item: CollaboratorVariableVariableValueField
+    ): any {
+      return serializeCollaboratorVariableVariableValueField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeCollaboratorVariable(
+  val: any
+): CollaboratorVariable {
+  const type: CollaboratorVariableTypeField =
+    deserializeCollaboratorVariableTypeField(val.type);
+  const variableType: CollaboratorVariableVariableTypeField =
+    deserializeCollaboratorVariableVariableTypeField(val.variable_type);
+  const variableValue: readonly CollaboratorVariableVariableValueField[] =
+    sdIsList(val.variable_value)
+      ? (val.variable_value.map(function (itm: SerializedData): any {
+          return deserializeCollaboratorVariableVariableValueField(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies CollaboratorVariable;
+}
 export function serializeKeywordSkillCardTypeField(val: any): SerializedData {
   return val;
 }
@@ -17774,6 +18022,156 @@ export function deserializeIntegrationMappingSlackCreateRequest(
     boxItem: boxItem,
     options: options,
   } satisfies IntegrationMappingSlackCreateRequest;
+}
+export function serializeRoleVariableTypeField(val: any): SerializedData {
+  return val;
+}
+export function deserializeRoleVariableTypeField(
+  val: any
+): RoleVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RoleVariableTypeField"',
+    });
+  }
+  if (val == 'variable') {
+    return 'variable';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeRoleVariableVariableTypeField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeRoleVariableVariableTypeField(
+  val: any
+): RoleVariableVariableTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RoleVariableVariableTypeField"',
+    });
+  }
+  if (val == 'collaborator_role') {
+    return 'collaborator_role';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeRoleVariableVariableValueField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeRoleVariableVariableValueField(
+  val: any
+): RoleVariableVariableValueField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "RoleVariableVariableValueField"',
+    });
+  }
+  if (val == 'editor') {
+    return 'editor';
+  }
+  if (val == 'viewer') {
+    return 'viewer';
+  }
+  if (val == 'previewer') {
+    return 'previewer';
+  }
+  if (val == 'uploader') {
+    return 'uploader';
+  }
+  if (val == 'previewer uploader') {
+    return 'previewer uploader';
+  }
+  if (val == 'viewer uploader') {
+    return 'viewer uploader';
+  }
+  if (val == 'co-owner') {
+    return 'co-owner';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeRoleVariable(val: any): SerializedData {
+  return {
+    ['type']: serializeRoleVariableTypeField(val.type),
+    ['variable_type']: serializeRoleVariableVariableTypeField(val.variableType),
+    ['variable_value']: serializeRoleVariableVariableValueField(
+      val.variableValue
+    ),
+  };
+}
+export function deserializeRoleVariable(val: any): RoleVariable {
+  const type: RoleVariableTypeField = deserializeRoleVariableTypeField(
+    val.type
+  );
+  const variableType: RoleVariableVariableTypeField =
+    deserializeRoleVariableVariableTypeField(val.variable_type);
+  const variableValue: RoleVariableVariableValueField =
+    deserializeRoleVariableVariableValueField(val.variable_value);
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies RoleVariable;
+}
+export function serializeOutcome(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['collaborators']:
+      val.collaborators == void 0
+        ? void 0
+        : serializeCollaboratorVariable(val.collaborators),
+    ['completion_rule']:
+      val.completionRule == void 0
+        ? void 0
+        : serializeCompletionRuleVariable(val.completionRule),
+    ['file_collaborator_role']:
+      val.fileCollaboratorRole == void 0
+        ? void 0
+        : serializeRoleVariable(val.fileCollaboratorRole),
+    ['task_collaborators']:
+      val.taskCollaborators == void 0
+        ? void 0
+        : serializeCollaboratorVariable(val.taskCollaborators),
+    ['role']: val.role == void 0 ? void 0 : serializeRoleVariable(val.role),
+  };
+}
+export function deserializeOutcome(val: any): Outcome {
+  const id: string = val.id;
+  const collaborators: undefined | CollaboratorVariable =
+    val.collaborators == void 0
+      ? void 0
+      : deserializeCollaboratorVariable(val.collaborators);
+  const completionRule: undefined | CompletionRuleVariable =
+    val.completion_rule == void 0
+      ? void 0
+      : deserializeCompletionRuleVariable(val.completion_rule);
+  const fileCollaboratorRole: undefined | RoleVariable =
+    val.file_collaborator_role == void 0
+      ? void 0
+      : deserializeRoleVariable(val.file_collaborator_role);
+  const taskCollaborators: undefined | CollaboratorVariable =
+    val.task_collaborators == void 0
+      ? void 0
+      : deserializeCollaboratorVariable(val.task_collaborators);
+  const role: undefined | RoleVariable =
+    val.role == void 0 ? void 0 : deserializeRoleVariable(val.role);
+  return {
+    id: id,
+    collaborators: collaborators,
+    completionRule: completionRule,
+    fileCollaboratorRole: fileCollaboratorRole,
+    taskCollaborators: taskCollaborators,
+    role: role,
+  } satisfies Outcome;
 }
 export function serializeTimelineSkillCardTypeField(val: any): SerializedData {
   return val;

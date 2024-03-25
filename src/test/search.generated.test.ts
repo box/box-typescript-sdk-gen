@@ -28,6 +28,12 @@ import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { serializeMetadataFilter } from '../schemas.generated.js';
+import { deserializeMetadataFilter } from '../schemas.generated.js';
+import { serializeMetadataFilterScopeField } from '../schemas.generated.js';
+import { deserializeMetadataFilterScopeField } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -46,6 +52,9 @@ import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.gener
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas.generated.js';
 import { SearchForContentQueryParams } from '../managers/search.generated.js';
 import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { MetadataFilter } from '../schemas.generated.js';
+import { MetadataFilterScopeField } from '../schemas.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -148,5 +157,122 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   ) {
     throw new Error('Assertion failed');
   }
+});
+test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
+  const templateKey: any = ''.concat('key', getUuid()) as string;
+  const template: any = await client.metadataTemplates.createMetadataTemplate({
+    scope: 'enterprise',
+    displayName: templateKey,
+    templateKey: templateKey,
+    fields: [
+      {
+        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'floatField',
+        displayName: 'floatField',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'stringField',
+        displayName: 'stringField',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'dateField',
+        displayName: 'dateField',
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'enumField',
+        displayName: 'enumField',
+        options: [
+          {
+            key: 'enumValue1',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          {
+            key: 'enumValue2',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        ],
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      {
+        type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        key: 'multiSelectField',
+        displayName: 'multiSelectField',
+        options: [
+          {
+            key: 'multiSelectValue1',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          {
+            key: 'multiSelectValue2',
+          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        ],
+      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    ],
+  } satisfies CreateMetadataTemplateRequestBody);
+  const files: any = await client.uploads.uploadFile({
+    attributes: {
+      name: getUuid(),
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
+    file: generateByteStream(10),
+  } satisfies UploadFileRequestBody);
+  const file: any = files.entries![0];
+  const metadata: any = await client.fileMetadata.createFileMetadataById(
+    file.id,
+    'enterprise' as CreateFileMetadataByIdScope,
+    templateKey,
+    {
+      ['floatField']: 10,
+      ['stringField']: 'stringValue',
+      ['dateField']: '2035-01-02T00:00:00Z',
+      ['enumField']: 'enumValue2',
+      ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+    }
+  );
+  const stringQuery: any = await client.search.searchForContent({
+    ancestorFolderIds: ['0' as ''],
+    mdfilters: [
+      {
+        filters: { ['stringField']: 'stringValue' },
+        scope: 'enterprise' as MetadataFilterScopeField,
+        templateKey: templateKey,
+      } satisfies MetadataFilter,
+    ],
+  } satisfies SearchForContentQueryParams);
+  if (!(stringQuery.entries!.length >= 0)) {
+    throw new Error('Assertion failed');
+  }
+  const enumQuery: any = await client.search.searchForContent({
+    ancestorFolderIds: ['0' as ''],
+    mdfilters: [
+      {
+        filters: { ['enumField']: 'enumValue2' },
+        scope: 'enterprise' as MetadataFilterScopeField,
+        templateKey: templateKey,
+      } satisfies MetadataFilter,
+    ],
+  } satisfies SearchForContentQueryParams);
+  if (!(enumQuery.entries!.length >= 0)) {
+    throw new Error('Assertion failed');
+  }
+  const multiSelectQuery: any = await client.search.searchForContent({
+    ancestorFolderIds: ['0' as ''],
+    mdfilters: [
+      {
+        filters: {
+          ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+        },
+        scope: 'enterprise' as MetadataFilterScopeField,
+        templateKey: templateKey,
+      } satisfies MetadataFilter,
+    ],
+  } satisfies SearchForContentQueryParams);
+  if (!(multiSelectQuery.entries!.length >= 0)) {
+    throw new Error('Assertion failed');
+  }
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScope,
+    template.templateKey
+  );
+  await client.files.deleteFileById(file.id);
 });
 export {};

@@ -58,10 +58,15 @@ See the endpoint docs at
 ```ts
 await client.search.searchForContent({
   ancestorFolderIds: ['0' as ''],
-  query: keyword,
-  trashContent:
-    'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
-  includeRecentSharedLinks: true,
+  mdfilters: [
+    {
+      filters: {
+        ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+      },
+      scope: 'enterprise' as MetadataFilterScopeField,
+      templateKey: templateKey,
+    } satisfies MetadataFilter,
+  ],
 } satisfies SearchForContentQueryParams);
 ```
 
