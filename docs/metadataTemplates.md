@@ -284,8 +284,44 @@ await client.metadataTemplates.createMetadataTemplate({
   fields: [
     {
       type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'testName',
-      displayName: 'testName',
+      key: 'floatField',
+      displayName: 'floatField',
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'stringField',
+      displayName: 'stringField',
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'dateField',
+      displayName: 'dateField',
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'enumField',
+      displayName: 'enumField',
+      options: [
+        {
+          key: 'enumValue1',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'enumValue2',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'multiSelectField',
+      displayName: 'multiSelectField',
+      options: [
+        {
+          key: 'multiSelectValue1',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'multiSelectValue2',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+      ],
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
 } satisfies CreateMetadataTemplateRequestBody);
