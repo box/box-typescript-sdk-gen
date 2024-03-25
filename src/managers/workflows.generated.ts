@@ -2,8 +2,11 @@ import { serializeWorkflows } from '../schemas.generated.js';
 import { deserializeWorkflows } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeOutcome } from '../schemas.generated.js';
+import { deserializeOutcome } from '../schemas.generated.js';
 import { Workflows } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
+import { Outcome } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -55,18 +58,12 @@ export interface StartWorkflowRequestBodyFolderField {
   readonly type?: StartWorkflowRequestBodyFolderTypeField;
   readonly id?: string;
 }
-export type StartWorkflowRequestBodyOutcomesTypeField = 'outcome';
-export interface StartWorkflowRequestBodyOutcomesField {
-  readonly id?: string;
-  readonly type?: StartWorkflowRequestBodyOutcomesTypeField;
-  readonly parameter?: string;
-}
 export interface StartWorkflowRequestBody {
   readonly type?: StartWorkflowRequestBodyTypeField;
   readonly flow: StartWorkflowRequestBodyFlowField;
   readonly files: readonly StartWorkflowRequestBodyFilesField[];
   readonly folder: StartWorkflowRequestBodyFolderField;
-  readonly outcomes?: readonly StartWorkflowRequestBodyOutcomesField[];
+  readonly outcomes?: readonly Outcome[];
 }
 export class StartWorkflowHeaders {
   readonly extraHeaders?: {
@@ -272,55 +269,6 @@ export function deserializeStartWorkflowRequestBodyFolderField(
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
-export function serializeStartWorkflowRequestBodyOutcomesTypeField(
-  val: any
-): SerializedData {
-  return val;
-}
-export function deserializeStartWorkflowRequestBodyOutcomesTypeField(
-  val: any
-): StartWorkflowRequestBodyOutcomesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "StartWorkflowRequestBodyOutcomesTypeField"',
-    });
-  }
-  if (val == 'outcome') {
-    return 'outcome';
-  }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
-}
-export function serializeStartWorkflowRequestBodyOutcomesField(
-  val: any
-): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0
-        ? void 0
-        : serializeStartWorkflowRequestBodyOutcomesTypeField(val.type),
-    ['parameter']: val.parameter == void 0 ? void 0 : val.parameter,
-  };
-}
-export function deserializeStartWorkflowRequestBodyOutcomesField(
-  val: any
-): StartWorkflowRequestBodyOutcomesField {
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | StartWorkflowRequestBodyOutcomesTypeField =
-    val.type == void 0
-      ? void 0
-      : deserializeStartWorkflowRequestBodyOutcomesTypeField(val.type);
-  const parameter: undefined | string =
-    val.parameter == void 0 ? void 0 : val.parameter;
-  return {
-    id: id,
-    type: type,
-    parameter: parameter,
-  } satisfies StartWorkflowRequestBodyOutcomesField;
-}
 export function serializeStartWorkflowRequestBody(val: any): SerializedData {
   return {
     ['type']:
@@ -337,10 +285,8 @@ export function serializeStartWorkflowRequestBody(val: any): SerializedData {
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
-        : (val.outcomes.map(function (
-            item: StartWorkflowRequestBodyOutcomesField
-          ): any {
-            return serializeStartWorkflowRequestBodyOutcomesField(item);
+        : (val.outcomes.map(function (item: Outcome): any {
+            return serializeOutcome(item);
           }) as readonly any[]),
   };
 }
@@ -362,12 +308,12 @@ export function deserializeStartWorkflowRequestBody(
     : [];
   const folder: StartWorkflowRequestBodyFolderField =
     deserializeStartWorkflowRequestBodyFolderField(val.folder);
-  const outcomes: undefined | readonly StartWorkflowRequestBodyOutcomesField[] =
+  const outcomes: undefined | readonly Outcome[] =
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
       ? (val.outcomes.map(function (itm: SerializedData): any {
-          return deserializeStartWorkflowRequestBodyOutcomesField(itm);
+          return deserializeOutcome(itm);
         }) as readonly any[])
       : [];
   return {
