@@ -20,6 +20,8 @@ import { serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField }
 import { deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
 import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
@@ -33,6 +35,7 @@ import { GetMetadataCascadePoliciesQueryParams } from '../managers/metadataCasca
 import { ApplyMetadataCascadePolicyRequestBody } from '../managers/metadataCascadePolicies.generated.js';
 import { ApplyMetadataCascadePolicyRequestBodyConflictResolutionField } from '../managers/metadataCascadePolicies.generated.js';
 import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
@@ -152,6 +155,10 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
       cascadePolicyId
     );
   }).rejects.toThrow();
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScope,
+    templateKey
+  );
   await client.folders.deleteFolderById(folder.id);
 });
 export {};
