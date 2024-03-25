@@ -303,7 +303,7 @@ export class FileVersionsManager {
   }
 }
 export function serializeUpdateFileVersionByIdRequestBody(
-  val: UpdateFileVersionByIdRequestBody
+  val: any
 ): SerializedData {
   return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
@@ -315,7 +315,7 @@ export function deserializeUpdateFileVersionByIdRequestBody(
   return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBody;
 }
 export function serializePromoteFileVersionRequestBodyTypeField(
-  val: PromoteFileVersionRequestBodyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -336,7 +336,7 @@ export function deserializePromoteFileVersionRequestBodyTypeField(
   });
 }
 export function serializePromoteFileVersionRequestBody(
-  val: PromoteFileVersionRequestBody
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,

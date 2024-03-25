@@ -95,7 +95,7 @@ export class TrashedItemsManager {
   }
 }
 export function serializeGetTrashedItemsQueryParamsDirectionField(
-  val: GetTrashedItemsQueryParamsDirectionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -119,7 +119,7 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   });
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
-  val: GetTrashedItemsQueryParamsSortField
+  val: any
 ): SerializedData {
   return val;
 }

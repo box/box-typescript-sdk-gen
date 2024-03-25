@@ -279,7 +279,7 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
   }
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -300,7 +300,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -321,7 +321,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -351,7 +351,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -372,7 +372,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -402,7 +402,7 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
   } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBody(
-  val: CreateShieldInformationBarrierSegmentRestrictionRequestBody
+  val: any
 ): SerializedData {
   return {
     ['type']:

@@ -340,7 +340,7 @@ export class SharedLinksWebLinksManager {
   }
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkAccessField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -367,7 +367,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField
   });
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField
+  val: any
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -391,7 +391,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissions
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkField
+  val: any
 ): SerializedData {
   return {
     ['access']:
@@ -445,7 +445,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField;
 }
 export function serializeAddShareLinkToWebLinkRequestBody(
-  val: AddShareLinkToWebLinkRequestBody
+  val: any
 ): SerializedData {
   return {
     ['shared_link']:
@@ -470,7 +470,7 @@ export function deserializeAddShareLinkToWebLinkRequestBody(
   return { sharedLink: sharedLink } satisfies AddShareLinkToWebLinkRequestBody;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -497,7 +497,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessF
   });
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField
+  val: any
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -521,7 +521,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermiss
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField
+  val: any
 ): SerializedData {
   return {
     ['access']:
@@ -575,7 +575,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBody(
-  val: UpdateSharedLinkOnWebLinkRequestBody
+  val: any
 ): SerializedData {
   return {
     ['shared_link']:
@@ -602,7 +602,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBody(
   } satisfies UpdateSharedLinkOnWebLinkRequestBody;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-  val: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField
+  val: any
 ): SerializedData {
   return {};
 }
@@ -612,7 +612,7 @@ export function deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField
   return {} satisfies RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBody(
-  val: RemoveSharedLinkFromWebLinkRequestBody
+  val: any
 ): SerializedData {
   return {
     ['shared_link']:

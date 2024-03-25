@@ -176,7 +176,7 @@ export class DevicePinnersManager {
   }
 }
 export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
-  val: GetEnterpriseDevicePinnersQueryParamsDirectionField
+  val: any
 ): SerializedData {
   return val;
 }

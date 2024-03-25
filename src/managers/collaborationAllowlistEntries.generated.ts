@@ -223,7 +223,7 @@ export class CollaborationAllowlistEntriesManager {
   }
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-  val: CreateCollaborationWhitelistEntryRequestBodyDirectionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -250,7 +250,7 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
   });
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBody(
-  val: CreateCollaborationWhitelistEntryRequestBody
+  val: any
 ): SerializedData {
   return {
     ['domain']: val.domain,

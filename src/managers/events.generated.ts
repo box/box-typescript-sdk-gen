@@ -246,7 +246,7 @@ export class EventsManager {
   }
 }
 export function serializeGetEventsQueryParamsStreamTypeField(
-  val: GetEventsQueryParamsStreamTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -278,7 +278,7 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   });
 }
 export function serializeGetEventsQueryParamsEventTypeField(
-  val: GetEventsQueryParamsEventTypeField
+  val: any
 ): SerializedData {
   return val;
 }

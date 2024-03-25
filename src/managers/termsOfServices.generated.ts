@@ -225,7 +225,7 @@ export class TermsOfServicesManager {
   }
 }
 export function serializeGetTermsOfServiceQueryParamsTosTypeField(
-  val: GetTermsOfServiceQueryParamsTosTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -249,7 +249,7 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyStatusField(
-  val: CreateTermsOfServiceRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -273,7 +273,7 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
-  val: CreateTermsOfServiceRequestBodyTosTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -297,7 +297,7 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBody(
-  val: CreateTermsOfServiceRequestBody
+  val: any
 ): SerializedData {
   return {
     ['status']: serializeCreateTermsOfServiceRequestBodyStatusField(val.status),
@@ -325,7 +325,7 @@ export function deserializeCreateTermsOfServiceRequestBody(
   } satisfies CreateTermsOfServiceRequestBody;
 }
 export function serializeUpdateTermsOfServiceByIdRequestBodyStatusField(
-  val: UpdateTermsOfServiceByIdRequestBodyStatusField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -349,7 +349,7 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateTermsOfServiceByIdRequestBody(
-  val: UpdateTermsOfServiceByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['status']: serializeUpdateTermsOfServiceByIdRequestBodyStatusField(

@@ -297,7 +297,7 @@ export class CommentsManager {
   }
 }
 export function serializeUpdateCommentByIdRequestBody(
-  val: UpdateCommentByIdRequestBody
+  val: any
 ): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
@@ -309,7 +309,7 @@ export function deserializeUpdateCommentByIdRequestBody(
   return { message: message } satisfies UpdateCommentByIdRequestBody;
 }
 export function serializeCreateCommentRequestBodyItemTypeField(
-  val: CreateCommentRequestBodyItemTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -332,7 +332,7 @@ export function deserializeCreateCommentRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCommentRequestBodyItemField(
-  val: CreateCommentRequestBodyItemField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -347,9 +347,7 @@ export function deserializeCreateCommentRequestBodyItemField(
     deserializeCreateCommentRequestBodyItemTypeField(val.type);
   return { id: id, type: type } satisfies CreateCommentRequestBodyItemField;
 }
-export function serializeCreateCommentRequestBody(
-  val: CreateCommentRequestBody
-): SerializedData {
+export function serializeCreateCommentRequestBody(val: any): SerializedData {
   return {
     ['message']: val.message,
     ['tagged_message']:

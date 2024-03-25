@@ -199,7 +199,7 @@ export class TermsOfServiceUserStatusesManager {
   }
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -220,7 +220,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFi
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyTosField
+  val: any
 ): SerializedData {
   return {
     ['type']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
@@ -243,7 +243,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -264,7 +264,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeF
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyUserField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -288,7 +288,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBody(
-  val: CreateTermsOfServiceStatusForUserRequestBody
+  val: any
 ): SerializedData {
   return {
     ['tos']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
@@ -315,7 +315,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
   } satisfies CreateTermsOfServiceStatusForUserRequestBody;
 }
 export function serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-  val: UpdateTermsOfServiceStatusForUserByIdRequestBody
+  val: any
 ): SerializedData {
   return { ['is_accepted']: val.isAccepted };
 }

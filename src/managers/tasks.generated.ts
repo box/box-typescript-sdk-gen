@@ -258,7 +258,7 @@ export class TasksManager {
   }
 }
 export function serializeCreateTaskRequestBodyItemTypeField(
-  val: CreateTaskRequestBodyItemTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -278,7 +278,7 @@ export function deserializeCreateTaskRequestBodyItemTypeField(
   });
 }
 export function serializeCreateTaskRequestBodyItemField(
-  val: CreateTaskRequestBodyItemField
+  val: any
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -299,7 +299,7 @@ export function deserializeCreateTaskRequestBodyItemField(
   return { id: id, type: type } satisfies CreateTaskRequestBodyItemField;
 }
 export function serializeCreateTaskRequestBodyActionField(
-  val: CreateTaskRequestBodyActionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -322,7 +322,7 @@ export function deserializeCreateTaskRequestBodyActionField(
   });
 }
 export function serializeCreateTaskRequestBodyCompletionRuleField(
-  val: CreateTaskRequestBodyCompletionRuleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -345,9 +345,7 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateTaskRequestBody(
-  val: CreateTaskRequestBody
-): SerializedData {
+export function serializeCreateTaskRequestBody(val: any): SerializedData {
   return {
     ['item']: serializeCreateTaskRequestBodyItemField(val.item),
     ['action']:
@@ -389,7 +387,7 @@ export function deserializeCreateTaskRequestBody(
   } satisfies CreateTaskRequestBody;
 }
 export function serializeUpdateTaskByIdRequestBodyActionField(
-  val: UpdateTaskByIdRequestBodyActionField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -412,7 +410,7 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   });
 }
 export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
-  val: UpdateTaskByIdRequestBodyCompletionRuleField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -435,9 +433,7 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateTaskByIdRequestBody(
-  val: UpdateTaskByIdRequestBody
-): SerializedData {
+export function serializeUpdateTaskByIdRequestBody(val: any): SerializedData {
   return {
     ['action']:
       val.action == void 0

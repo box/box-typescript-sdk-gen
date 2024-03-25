@@ -287,7 +287,7 @@ export class StoragePolicyAssignmentsManager {
   }
 }
 export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
-  val: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -311,7 +311,7 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForType
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
-  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -332,7 +332,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
-  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -356,7 +356,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
-  val: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -380,7 +380,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTyp
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
-  val: CreateStoragePolicyAssignmentRequestBodyAssignedToField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -404,7 +404,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToFie
   } satisfies CreateStoragePolicyAssignmentRequestBodyAssignedToField;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBody(
-  val: CreateStoragePolicyAssignmentRequestBody
+  val: any
 ): SerializedData {
   return {
     ['storage_policy']:
@@ -434,7 +434,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBody(
   } satisfies CreateStoragePolicyAssignmentRequestBody;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
-  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -455,7 +455,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   });
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
-  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField
+  val: any
 ): SerializedData {
   return {
     ['type']:
@@ -479,7 +479,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBody(
-  val: UpdateStoragePolicyAssignmentByIdRequestBody
+  val: any
 ): SerializedData {
   return {
     ['storage_policy']:

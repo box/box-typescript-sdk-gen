@@ -260,7 +260,7 @@ export class UploadsManager {
   }
 }
 export function serializeUploadFileVersionRequestBodyAttributesField(
-  val: UploadFileVersionRequestBodyAttributesField
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -280,7 +280,7 @@ export function deserializeUploadFileVersionRequestBodyAttributesField(
   } satisfies UploadFileVersionRequestBodyAttributesField;
 }
 export function serializeUploadFileRequestBodyAttributesParentField(
-  val: UploadFileRequestBodyAttributesParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -291,7 +291,7 @@ export function deserializeUploadFileRequestBodyAttributesParentField(
   return { id: id } satisfies UploadFileRequestBodyAttributesParentField;
 }
 export function serializeUploadFileRequestBodyAttributesField(
-  val: UploadFileRequestBodyAttributesField
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -320,7 +320,7 @@ export function deserializeUploadFileRequestBodyAttributesField(
   } satisfies UploadFileRequestBodyAttributesField;
 }
 export function serializePreflightFileUploadCheckRequestBodyParentField(
-  val: PreflightFileUploadCheckRequestBodyParentField
+  val: any
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -331,7 +331,7 @@ export function deserializePreflightFileUploadCheckRequestBodyParentField(
   return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
 }
 export function serializePreflightFileUploadCheckRequestBody(
-  val: PreflightFileUploadCheckRequestBody
+  val: any
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

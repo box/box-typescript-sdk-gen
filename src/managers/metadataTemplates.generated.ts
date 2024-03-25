@@ -459,9 +459,7 @@ export class MetadataTemplatesManager {
     return deserializeMetadataTemplate(response.data);
   }
 }
-export function serializeGetMetadataTemplateScope(
-  val: GetMetadataTemplateScope
-): SerializedData {
+export function serializeGetMetadataTemplateScope(val: any): SerializedData {
   return val;
 }
 export function deserializeGetMetadataTemplateScope(
@@ -482,9 +480,7 @@ export function deserializeGetMetadataTemplateScope(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateMetadataTemplateScope(
-  val: UpdateMetadataTemplateScope
-): SerializedData {
+export function serializeUpdateMetadataTemplateScope(val: any): SerializedData {
   return val;
 }
 export function deserializeUpdateMetadataTemplateScope(
@@ -506,7 +502,7 @@ export function deserializeUpdateMetadataTemplateScope(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
-  val: UpdateMetadataTemplateRequestBodyOpField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -563,7 +559,7 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBody(
-  val: UpdateMetadataTemplateRequestBody
+  val: any
 ): SerializedData {
   return {
     ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
@@ -643,9 +639,7 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     multiSelectOptionKeys: multiSelectOptionKeys,
   } satisfies UpdateMetadataTemplateRequestBody;
 }
-export function serializeDeleteMetadataTemplateScope(
-  val: DeleteMetadataTemplateScope
-): SerializedData {
+export function serializeDeleteMetadataTemplateScope(val: any): SerializedData {
   return val;
 }
 export function deserializeDeleteMetadataTemplateScope(
@@ -667,7 +661,7 @@ export function deserializeDeleteMetadataTemplateScope(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-  val: CreateMetadataTemplateRequestBodyFieldsTypeField
+  val: any
 ): SerializedData {
   return val;
 }
@@ -700,7 +694,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-  val: CreateMetadataTemplateRequestBodyFieldsOptionsField
+  val: any
 ): SerializedData {
   return { ['key']: val.key };
 }
@@ -713,7 +707,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField;
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsField(
-  val: CreateMetadataTemplateRequestBodyFieldsField
+  val: any
 ): SerializedData {
   return {
     ['type']: serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
@@ -768,7 +762,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsField;
 }
 export function serializeCreateMetadataTemplateRequestBody(
-  val: CreateMetadataTemplateRequestBody
+  val: any
 ): SerializedData {
   return {
     ['scope']: val.scope,
