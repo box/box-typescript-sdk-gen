@@ -200,8 +200,8 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
-  'global' as DeleteFolderMetadataByIdScope,
-  'properties'
+  'enterprise' as DeleteFolderMetadataByIdScope,
+  templateKey
 );
 ```
 

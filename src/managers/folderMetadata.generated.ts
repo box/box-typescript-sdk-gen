@@ -52,7 +52,7 @@ export class GetFolderMetadataByIdHeaders {
 }
 export type CreateFolderMetadataByIdScope = 'global' | 'enterprise';
 export type CreateFolderMetadataByIdRequestBody = {
-  readonly [key: string]: string;
+  readonly [key: string]: any;
 };
 export class CreateFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -337,7 +337,16 @@ export function deserializeCreateFolderMetadataByIdScope(
 export function serializeCreateFolderMetadataByIdRequestBody(
   val: any
 ): SerializedData {
-  return val;
+  return Object.fromEntries(
+    Object.entries(val).map(([k, v]: [string, any]) => [
+      k,
+      (function (v: any): any {
+        return v;
+      })(v),
+    ])
+  ) as {
+    readonly [key: string]: any;
+  };
 }
 export function deserializeCreateFolderMetadataByIdRequestBody(
   val: any

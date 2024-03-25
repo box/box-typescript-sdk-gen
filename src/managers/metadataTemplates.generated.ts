@@ -71,7 +71,7 @@ export type UpdateMetadataTemplateRequestBodyOpField =
 export interface UpdateMetadataTemplateRequestBody {
   readonly op: UpdateMetadataTemplateRequestBodyOpField;
   readonly data?: {
-    readonly [key: string]: string;
+    readonly [key: string]: any;
   };
   readonly fieldKey?: string;
   readonly fieldKeys?: readonly string[];
@@ -563,7 +563,19 @@ export function serializeUpdateMetadataTemplateRequestBody(
 ): SerializedData {
   return {
     ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
-    ['data']: val.data == void 0 ? void 0 : val.data,
+    ['data']:
+      val.data == void 0
+        ? void 0
+        : (Object.fromEntries(
+            Object.entries(val.data).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ])
+          ) as {
+            readonly [key: string]: any;
+          }),
     ['fieldKey']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
     ['fieldKeys']:
       val.fieldKeys == void 0
@@ -596,7 +608,7 @@ export function deserializeUpdateMetadataTemplateRequestBody(
   const data:
     | undefined
     | {
-        readonly [key: string]: string;
+        readonly [key: string]: any;
       } = val.data == void 0 ? void 0 : val.data;
   const fieldKey: undefined | string =
     val.fieldKey == void 0 ? void 0 : val.fieldKey;
