@@ -71,6 +71,7 @@ import { IntegrationMappingsManager } from './managers/integrationMappings.gener
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BaseUrls } from './networking/baseUrls.generated.js';
+import { AgentOptions } from './internal/utils.js';
 import { Interceptor } from './networking/interceptors.generated.js';
 import { SerializedData } from './serialization/json.js';
 import { sdIsEmpty } from './serialization/json.js';
@@ -229,6 +230,7 @@ export class BoxClient {
           | 'withSuppressedNotifications'
           | 'withExtraHeaders'
           | 'withCustomBaseUrls'
+          | 'withCustomAgentOptions'
           | 'withInterceptors'
         >
       | Partial<Pick<BoxClient, 'networkSession'>>
@@ -543,6 +545,12 @@ export class BoxClient {
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
+    });
+  }
+  withCustomAgentOptions(agentOptions: AgentOptions): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withCustomAgentOptions(agentOptions),
     });
   }
   withInterceptors(interceptors: readonly Interceptor[]): BoxClient {
