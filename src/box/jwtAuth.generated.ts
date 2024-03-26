@@ -114,8 +114,8 @@ export class BoxJwtAuth implements Authentication {
       | 'refreshToken'
       | 'retrieveToken'
       | 'retrieveAuthorizationHeader'
-      | 'asUser'
-      | 'asEnterprise'
+      | 'withUserSubject'
+      | 'withEnterpriseSubject'
       | 'downscopeToken'
       | 'revokeToken'
     >
@@ -191,7 +191,7 @@ export class BoxJwtAuth implements Authentication {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
   }
-  asUser(
+  withUserSubject(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
   ): BoxJwtAuth {
@@ -208,7 +208,7 @@ export class BoxJwtAuth implements Authentication {
     const newAuth: BoxJwtAuth = new BoxJwtAuth({ config: newConfig });
     return newAuth;
   }
-  asEnterprise(
+  withEnterpriseSubject(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
   ): BoxJwtAuth {

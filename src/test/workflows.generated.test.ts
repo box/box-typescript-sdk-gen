@@ -45,7 +45,7 @@ import { getEnvVar } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -57,7 +57,9 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testWorkflows', async function testWorkflows(): Promise<any> {
-  const adminClient: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const adminClient: BoxClient = getDefaultClientWithUserSubject(
+    getEnvVar('USER_ID')
+  );
   const workflowFolderId: string = getEnvVar('WORKFLOW_FOLDER_ID');
   const uploadedFiles: Files = await adminClient.uploads.uploadFile({
     attributes: {

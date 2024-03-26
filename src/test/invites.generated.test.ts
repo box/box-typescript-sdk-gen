@@ -17,7 +17,7 @@ import { CreateInviteRequestBodyEnterpriseField } from '../managers/invites.gene
 import { CreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -29,7 +29,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testInvites', async function testInvites(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
-  const client: BoxClient = getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientWithUserSubject(userId);
   const currentUser: UserFull = await client.users.getUserMe({
     fields: ['enterprise' as ''],
   } satisfies GetUserMeQueryParams);
