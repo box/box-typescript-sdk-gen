@@ -2,6 +2,8 @@ import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
 import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
+import { serializeBaseUrls } from '../networking/baseUrls.generated.js';
+import { deserializeBaseUrls } from '../networking/baseUrls.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
@@ -10,6 +12,7 @@ import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
+import { BaseUrls } from '../networking/baseUrls.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { jsonToSerializedData } from '../serialization/json.js';
@@ -63,6 +66,17 @@ test('testWithExtraHeaders', async function testWithExtraHeaders(): Promise<any>
     throw new Error('Assertion failed');
   }
   await client.users.deleteUserById(createdUser.id);
+});
+test('testWithCustomBaseUrls', async function testWithCustomBaseUrls(): Promise<any> {
+  const newBaseUrls: BaseUrls = new BaseUrls({
+    baseUrl: 'https://box.com/',
+    uploadUrl: 'https://box.com/',
+    oauth2Url: 'https://box.com/',
+  });
+  const customBaseClient: BoxClient = client.withCustomBaseUrls(newBaseUrls);
+  await expect(async () => {
+    await customBaseClient.users.getUserMe();
+  }).rejects.toThrow();
 });
 test('testWithInterceptors', async function testWithInterceptors(): Promise<any> {
   const user: UserFull = await client.users.getUserMe();

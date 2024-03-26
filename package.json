@@ -31,10 +31,12 @@
     "buffer": "^6.0.3",
     "jose": "^5.2.2",
     "tslib": "^2.6.2",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "proxy-agent": "^6.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest": "^29.5.1",

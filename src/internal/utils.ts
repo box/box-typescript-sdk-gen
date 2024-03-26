@@ -24,6 +24,8 @@ export function hexToBase64(data: string): string {
 export { Buffer, Readable as ByteStream };
 export type { CancellationToken };
 export type Iterator<T = any> = AsyncIterator<T>;
+export type AgentOptions = any;
+export type Agent = any;
 
 // Function to convert a hexadecimal string to base64
 export function hexStrToBase64(hex: string) {
@@ -321,4 +323,15 @@ export function readTextFromFile(filepath: string): string {
  */
 export function getEpochTimeInSeconds(): number {
   return Math.floor(Date.now() / 1000);
+}
+
+/**
+ * Create web agent from proxy agent options.
+ */
+export function createAgent(options?: AgentOptions): Agent {
+  if (isBrowser()) {
+    return undefined;
+  }
+  const ProxyAgent = eval('require')('proxy-agent').ProxyAgent;
+  return options ? new ProxyAgent(options) : new ProxyAgent();
 }

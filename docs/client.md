@@ -77,6 +77,17 @@ const newClient = client.withCustomBaseUrls({
 });
 ```
 
+# Custom Agent Options
+
+You can also specify the custom agent options, which will be used for API calls made by client.
+Calling the `client.withCustomAgentOptions()` method creates a new client, leaving the original client unmodified.
+
+```js
+const options: AgentOptions = {};
+
+const newClient = client.withCustomAgentOptions(options);
+```
+
 # Interceptors
 
 You can specify custom interceptors - methods that will be called just before making a request and right after

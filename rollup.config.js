@@ -16,5 +16,6 @@ exports.default = {
     require('@rollup/plugin-typescript')({
       tsconfig: './tsconfig.rollup.json',
     }), // Compiles TypeScript
+    require('@rollup/plugin-json')(), // Converts JSON files to ES6 modules
   ],
 };
