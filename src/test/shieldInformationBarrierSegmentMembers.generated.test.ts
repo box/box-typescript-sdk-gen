@@ -38,7 +38,7 @@ import { ShieldInformationBarrierSegmentMembers } from '../schemas.generated.js'
 import { GetShieldInformationBarrierSegmentMembersQueryParams } from '../managers/shieldInformationBarrierSegmentMembers.generated.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { getOrCreateShieldInformationBarrier } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -48,7 +48,9 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierSegmentMembers', async function testShieldInformationBarrierSegmentMembers(): Promise<any> {
-  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientWithUserSubject(
+    getEnvVar('USER_ID')
+  );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
     await getOrCreateShieldInformationBarrier(client, enterpriseId);

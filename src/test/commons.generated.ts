@@ -122,9 +122,9 @@ export function getJwtAuth(): BoxJwtAuth {
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   return auth;
 }
-export function getDefaultClientAsUser(userId: string): BoxClient {
+export function getDefaultClientWithUserSubject(userId: string): BoxClient {
   const auth: BoxJwtAuth = getJwtAuth();
-  const authUser: BoxJwtAuth = auth.asUser(userId);
+  const authUser: BoxJwtAuth = auth.withUserSubject(userId);
   return new BoxClient({ auth: authUser });
 }
 export function getDefaultClient(): BoxClient {

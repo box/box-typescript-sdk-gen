@@ -64,9 +64,8 @@ export async function getAccessToken(): Promise<AccessToken> {
     userId: userId,
   });
   const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
-  auth.asUser(userId);
-  const token: AccessToken = await auth.retrieveToken();
-  return token;
+  const authUser: BoxCcgAuth = auth.withUserSubject(userId);
+  return await authUser.retrieveToken();
 }
 test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
@@ -75,13 +74,13 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
     decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
-  const userAuth: BoxJwtAuth = auth.asUser(userId);
+  const userAuth: BoxJwtAuth = auth.withUserSubject(userId);
   const userClient: BoxClient = new BoxClient({ auth: userAuth });
   const currentUser: UserFull = await userClient.users.getUserMe();
   if (!(currentUser.id == userId)) {
     throw new Error('Assertion failed');
   }
-  const enterpriseAuth: BoxJwtAuth = auth.asEnterprise(enterpriseId);
+  const enterpriseAuth: BoxJwtAuth = auth.withEnterpriseSubject(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
   const newUser: UserFull = await enterpriseClient.users.getUserMe({
     fields: ['enterprise' as ''],
@@ -178,13 +177,13 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
     userId: userId,
   });
   const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
-  const userAuth: BoxCcgAuth = auth.asUser(userId);
+  const userAuth: BoxCcgAuth = auth.withUserSubject(userId);
   const userClient: BoxClient = new BoxClient({ auth: userAuth });
   const currentUser: UserFull = await userClient.users.getUserMe();
   if (!(currentUser.id == userId)) {
     throw new Error('Assertion failed');
   }
-  const enterpriseAuth: BoxCcgAuth = auth.asEnterprise(enterpriseId);
+  const enterpriseAuth: BoxCcgAuth = auth.withEnterpriseSubject(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
   const newUser: UserFull = await enterpriseClient.users.getUserMe({
     fields: ['enterprise' as ''],
