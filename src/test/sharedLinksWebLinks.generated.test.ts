@@ -38,7 +38,7 @@ import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -76,7 +76,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
     throw new Error('Assertion failed');
   }
   const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = getDefaultClientAsUser(userId);
+  const userClient: BoxClient = getDefaultClientWithUserSubject(userId);
   const webLinkFromSharedLinkPassword: WebLink =
     await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
       {} satisfies FindWebLinkForSharedLinkQueryParams,

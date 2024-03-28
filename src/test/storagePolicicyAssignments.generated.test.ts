@@ -45,7 +45,7 @@ import { UpdateStoragePolicyAssignmentByIdRequestBody } from '../managers/storag
 import { UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
 import { UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { getEnvVar } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
@@ -92,7 +92,7 @@ export async function getOrCreateStoragePolicyAssignment(
   return storagePolicyAssignment;
 }
 test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssignments(): Promise<any> {
-  const client: BoxClient = getDefaultClientAsUser(adminUserId);
+  const client: BoxClient = getDefaultClientWithUserSubject(adminUserId);
   const userName: string = getUuid();
   const newUser: UserFull = await client.users.createUser({
     name: userName,

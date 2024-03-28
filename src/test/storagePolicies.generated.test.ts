@@ -6,7 +6,7 @@ import { BoxClient } from '../client.generated.js';
 import { StoragePolicies } from '../schemas.generated.js';
 import { StoragePolicy } from '../schemas.generated.js';
 import { getEnvVar } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -18,7 +18,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const userId: string = getEnvVar('USER_ID');
 test('testGetStoragePolicies', async function testGetStoragePolicies(): Promise<any> {
-  const client: BoxClient = getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientWithUserSubject(userId);
   const storagePolicies: StoragePolicies =
     await client.storagePolicies.getStoragePolicies();
   const storagePolicy: StoragePolicy = storagePolicies.entries![0];

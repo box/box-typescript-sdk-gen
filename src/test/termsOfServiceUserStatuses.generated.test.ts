@@ -33,7 +33,7 @@ import { CreateTermsOfServiceStatusForUserRequestBodyUserTypeField } from '../ma
 import { UpdateTermsOfServiceStatusForUserByIdRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { TermsOfServiceUserStatuses } from '../schemas.generated.js';
 import { GetTermsOfServiceUserStatusesQueryParams } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { getOrCreateTermsOfServices } from './commons.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
@@ -48,7 +48,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUserStatuses(): Promise<any> {
   const adminUserId: string = getEnvVar('USER_ID');
-  const client: BoxClient = getDefaultClientAsUser(adminUserId);
+  const client: BoxClient = getDefaultClientWithUserSubject(adminUserId);
   const tos: TermsOfService = await getOrCreateTermsOfServices();
   const user: UserFull = await client.users.createUser({
     name: getUuid(),

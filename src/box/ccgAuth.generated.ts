@@ -38,8 +38,8 @@ export class BoxCcgAuth implements Authentication {
       | 'refreshToken'
       | 'retrieveToken'
       | 'retrieveAuthorizationHeader'
-      | 'asUser'
-      | 'asEnterprise'
+      | 'withUserSubject'
+      | 'withEnterpriseSubject'
       | 'downscopeToken'
       | 'revokeToken'
     >
@@ -86,7 +86,7 @@ export class BoxCcgAuth implements Authentication {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
   }
-  asUser(
+  withUserSubject(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
   ): BoxCcgAuth {
@@ -99,7 +99,7 @@ export class BoxCcgAuth implements Authentication {
     });
     return new BoxCcgAuth({ config: newConfig });
   }
-  asEnterprise(
+  withEnterpriseSubject(
     enterpriseId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
   ): BoxCcgAuth {
