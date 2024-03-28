@@ -119,7 +119,7 @@ make calls as that user. See the [API documentation](https://developer.box.com/)
 for detailed instructions on how to use app auth.
 
 Clients for making calls as an App User can be created with the same JSON JWT config file generated through the
-[Box Developer Console][dev_console]. Calling `jwtAuth.asUser('USER_ID')` method will return a new auth object,
+[Box Developer Console][dev_console]. Calling `jwtAuth.withUserSubject('USER_ID')` method will return a new auth object,
 which is authenticated as the user with provided id, leaving the original object unchanged.
 
 ```js
@@ -131,7 +131,7 @@ const {
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
-const userAuth = jwtAuth.asUser('USER_ID');
+const userAuth = jwtAuth.withUserSubject('USER_ID');
 const userClient = new BoxClient({ auth: userAuth });
 ```
 
@@ -247,14 +247,14 @@ You can easily switch to be authenticated as a Service Account or as a User.
 To create a new auth object authenticated as Service Account you can call:
 
 ```js
-const enterpriseAuth = ccgAuth.asEnterprise('YOUR_ENTERPRISE_ID');
+const enterpriseAuth = ccgAuth.withEnterpriseSubject('YOUR_ENTERPRISE_ID');
 const enterpriseClient = new BoxClient({ auth: enterpriseAuth });
 ```
 
-To authenticate as user with provided User ID call:
+To authenticate with user subject call:
 
 ```js
-const userAuth = ccgAuth.asUser('YOUR_USER_ID');
+const userAuth = ccgAuth.withUserSubject('YOUR_USER_ID');
 const userClient = new BoxClient({ auth: userAuth });
 ```
 

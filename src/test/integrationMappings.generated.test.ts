@@ -30,7 +30,7 @@ import { generateByteStream } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -47,7 +47,7 @@ test('testIntegrationMappings', async function testIntegrationMappings(): Promis
   const slackOrgId: string = '1';
   const partnerItemId: string = '1';
   const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = getDefaultClientAsUser(userId);
+  const userClient: BoxClient = getDefaultClientWithUserSubject(userId);
   await expect(async () => {
     await userClient.integrationMappings.createSlackIntegrationMapping({
       partnerItem: {

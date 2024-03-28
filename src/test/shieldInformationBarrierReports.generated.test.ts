@@ -17,7 +17,7 @@ import { ShieldInformationBarrierReference } from '../schemas.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas.generated.js';
 import { ShieldInformationBarrierBaseTypeField } from '../schemas.generated.js';
 import { getEnvVar } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { getOrCreateShieldInformationBarrier } from './commons.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -31,7 +31,9 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('shieldInformationBarrierReports', async function shieldInformationBarrierReports(): Promise<any> {
-  const client: BoxClient = getDefaultClientAsUser(getEnvVar('USER_ID'));
+  const client: BoxClient = getDefaultClientWithUserSubject(
+    getEnvVar('USER_ID')
+  );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
     await getOrCreateShieldInformationBarrier(client, enterpriseId);

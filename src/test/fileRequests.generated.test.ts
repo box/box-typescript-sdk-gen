@@ -15,7 +15,7 @@ import { FileRequestCopyRequestFolderField } from '../schemas.generated.js';
 import { FileRequestCopyRequestFolderTypeField } from '../schemas.generated.js';
 import { FileRequestUpdateRequest } from '../schemas.generated.js';
 import { getEnvVar } from '../internal/utils.js';
-import { getDefaultClientAsUser } from './commons.generated.js';
+import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -28,7 +28,7 @@ import { sdIsMap } from '../serialization/json.js';
 test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDeleteFileRequest(): Promise<any> {
   const fileRequestId: string = getEnvVar('BOX_FILE_REQUEST_ID');
   const userId: string = getEnvVar('USER_ID');
-  const client: BoxClient = getDefaultClientAsUser(userId);
+  const client: BoxClient = getDefaultClientWithUserSubject(userId);
   const fileRequest: FileRequest = await client.fileRequests.getFileRequestById(
     fileRequestId
   );
