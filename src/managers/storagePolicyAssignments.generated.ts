@@ -47,9 +47,22 @@ export class GetStoragePolicyAssignmentsHeaders {
 }
 export type CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
   'storage_policy';
-export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
-  readonly type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
-  readonly id: string;
+export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
+  readonly type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
+    'storage_policy' as CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<CreateStoragePolicyAssignmentRequestBodyStoragePolicyField, 'type'>
+      | Partial<
+          Pick<
+            CreateStoragePolicyAssignmentRequestBodyStoragePolicyField,
+            'type'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
   | 'user'
@@ -88,9 +101,25 @@ export class GetStoragePolicyAssignmentByIdHeaders {
 }
 export type UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
   'storage_policy';
-export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
-  readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
-  readonly id: string;
+export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
+  readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
+    'storage_policy' as UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<
+          UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
+          'type'
+        >
+      | Partial<
+          Pick<
+            UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
+            'type'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBody {
   readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;

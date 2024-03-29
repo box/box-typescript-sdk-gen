@@ -48,9 +48,9 @@ See the endpoint docs at
 
 ```ts
 await client.fileWatermarks.updateFileWatermark(file.id, {
-  watermark: {
+  watermark: new UpdateFileWatermarkRequestBodyWatermarkField({
     imprint: 'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField,
-  } satisfies UpdateFileWatermarkRequestBodyWatermarkField,
+  }),
 } satisfies UpdateFileWatermarkRequestBody);
 ```
 

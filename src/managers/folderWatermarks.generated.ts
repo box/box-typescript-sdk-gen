@@ -35,8 +35,16 @@ export class GetFolderWatermarkHeaders {
   }
 }
 export type UpdateFolderWatermarkRequestBodyWatermarkImprintField = 'default';
-export interface UpdateFolderWatermarkRequestBodyWatermarkField {
-  readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField;
+export class UpdateFolderWatermarkRequestBodyWatermarkField {
+  readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
+    'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField;
+  constructor(
+    fields:
+      | Omit<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>
+      | Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface UpdateFolderWatermarkRequestBody {
   readonly watermark: UpdateFolderWatermarkRequestBodyWatermarkField;

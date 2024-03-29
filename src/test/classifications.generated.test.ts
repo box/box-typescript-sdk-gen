@@ -2,10 +2,6 @@ import { serializeClassificationTemplateFieldsOptionsField } from '../schemas.ge
 import { deserializeClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { serializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
 import { deserializeUpdateClassificationRequestBody } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
-import { serializeUpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
-import { deserializeUpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
 import { serializeUpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
 import { deserializeUpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
 import { serializeUpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
@@ -17,8 +13,6 @@ import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { UpdateClassificationRequestBody } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyOpField } from '../managers/classifications.generated.js';
-import { UpdateClassificationRequestBodyFieldKeyField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataStaticConfigField } from '../managers/classifications.generated.js';
 import { UpdateClassificationRequestBodyDataStaticConfigClassificationField } from '../managers/classifications.generated.js';
@@ -58,10 +52,7 @@ test('testClassifications', async function testClassifications(): Promise<any> {
   const updatedClassificationDescription: string = getUuid();
   const classificationTemplateWithUpdatedClassification: ClassificationTemplate =
     await client.classifications.updateClassification([
-      {
-        op: 'editEnumOption' as UpdateClassificationRequestBodyOpField,
-        fieldKey:
-          'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField,
+      new UpdateClassificationRequestBody({
         enumOptionKey: classification.key,
         data: {
           key: updatedClassificationName,
@@ -72,7 +63,7 @@ test('testClassifications', async function testClassifications(): Promise<any> {
             } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField,
           } satisfies UpdateClassificationRequestBodyDataStaticConfigField,
         } satisfies UpdateClassificationRequestBodyDataField,
-      } satisfies UpdateClassificationRequestBody,
+      }),
     ]);
   const updatedClassifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplateWithUpdatedClassification.fields[0].options;

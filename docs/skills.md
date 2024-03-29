@@ -60,14 +60,14 @@ await client.skills.createBoxSkillCardsOnFile(file.id, {
         code: 'license-plates',
         message: titleMessage,
       } satisfies KeywordSkillCardSkillCardTitleField,
-      skill: {
+      skill: new KeywordSkillCardSkillField({
         id: skillId,
         type: 'service' as KeywordSkillCardSkillTypeField,
-      } satisfies KeywordSkillCardSkillField,
-      invocation: {
+      }),
+      invocation: new KeywordSkillCardInvocationField({
         id: invocationId,
         type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
-      } satisfies KeywordSkillCardInvocationField,
+      }),
       entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
     } satisfies KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
   ],
@@ -108,23 +108,23 @@ await client.skills.updateBoxSkillCardsOnFile(file.id, [
   {
     op: 'replace' as UpdateBoxSkillCardsOnFileRequestBodyOpField,
     path: '/cards/0',
-    value: {
+    value: new KeywordSkillCard({
       type: 'skill_card' as KeywordSkillCardTypeField,
       skillCardType: 'keyword' as KeywordSkillCardSkillCardTypeField,
       skillCardTitle: {
         code: 'license-plates',
         message: updatedTitleMessage,
       } satisfies KeywordSkillCardSkillCardTitleField,
-      skill: {
+      skill: new KeywordSkillCardSkillField({
         id: skillId,
         type: 'service' as KeywordSkillCardSkillTypeField,
-      } satisfies KeywordSkillCardSkillField,
-      invocation: {
+      }),
+      invocation: new KeywordSkillCardInvocationField({
         id: invocationId,
         type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
-      } satisfies KeywordSkillCardInvocationField,
+      }),
       entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
-    } satisfies KeywordSkillCard,
+    }),
   } satisfies UpdateBoxSkillCardsOnFileRequestBody,
 ]);
 ```

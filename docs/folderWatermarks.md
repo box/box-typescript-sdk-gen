@@ -48,9 +48,9 @@ See the endpoint docs at
 
 ```ts
 await client.folderWatermarks.updateFolderWatermark(folder.id, {
-  watermark: {
+  watermark: new UpdateFolderWatermarkRequestBodyWatermarkField({
     imprint: 'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField,
-  } satisfies UpdateFolderWatermarkRequestBodyWatermarkField,
+  }),
 } satisfies UpdateFolderWatermarkRequestBody);
 ```
 
