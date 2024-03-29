@@ -403,7 +403,7 @@ export class ChunkedUploadsManager {
     )) as FetchResponse;
     return deserializeFiles(response.data);
   }
-  async reducer(
+  private async reducer(
     acc: PartAccumulator,
     chunk: ByteStream
   ): Promise<PartAccumulator> {
