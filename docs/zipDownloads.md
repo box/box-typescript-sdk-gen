@@ -3,7 +3,7 @@
 - [Create zip download](#create-zip-download)
 - [Download zip archive](#download-zip-archive)
 - [Get zip download status](#get-zip-download-status)
-- [](#)
+- [Download ZIP](#download-zip)
 
 ## Create zip download
 
@@ -152,14 +152,11 @@ This function returns a value of type `ZipDownloadStatus`.
 
 Returns the status of the `zip` archive that is being downloaded.
 
-##
+## Download ZIP
+
+Creates a zip and downloads its content
 
 This operation is performed by calling function `downloadZip`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference//).
-
-<!-- sample  -->
 
 ```ts
 await client.zipDownloads.downloadZip({

@@ -9,8 +9,7 @@ This is a manager for chunked uploads (allowed for files at least 20MB).
 - [Remove upload session](#remove-upload-session)
 - [List parts](#list-parts)
 - [Commit upload session](#commit-upload-session)
-- [](#)
-- [](#)
+- [Upload big file](#upload-big-file)
 
 ## Create upload session
 
@@ -21,7 +20,19 @@ This operation is performed by calling function `createFileUploadSession`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-upload-sessions/).
 
-_Currently we don't have an example for calling `createFileUploadSession` in integration tests_
+<!-- sample post_files_upload_sessions -->
+
+```ts
+await this.createFileUploadSession(
+  {
+    fileName: fileName,
+    fileSize: fileSize,
+    folderId: parentFolderId,
+  } satisfies CreateFileUploadSessionRequestBody,
+  new CreateFileUploadSessionHeaders({}),
+  cancellationToken
+);
+```
 
 ### Arguments
 
@@ -75,7 +86,15 @@ This operation is performed by calling function `getFileUploadSessionById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-upload-sessions-id/).
 
-_Currently we don't have an example for calling `getFileUploadSessionById` in integration tests_
+<!-- sample get_files_upload_sessions_id -->
+
+```ts
+await this.getFileUploadSessionById(
+  uploadSessionId,
+  new GetFileUploadSessionByIdHeaders({}),
+  cancellationToken
+);
+```
 
 ### Arguments
 
@@ -101,7 +120,15 @@ This operation is performed by calling function `uploadFilePart`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-upload-sessions-id/).
 
-_Currently we don't have an example for calling `uploadFilePart` in integration tests_
+<!-- sample put_files_upload_sessions_id -->
+
+```ts
+await this.uploadFilePart(
+  acc.uploadSessionId,
+  generateByteStreamFromBuffer(chunkBuffer),
+  new UploadFilePartHeaders({ digest: digest, contentRange: contentRange })
+);
+```
 
 ### Arguments
 
@@ -159,7 +186,16 @@ This operation is performed by calling function `getFileUploadSessionParts`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-upload-sessions-id-parts/).
 
-_Currently we don't have an example for calling `getFileUploadSessionParts` in integration tests_
+<!-- sample get_files_upload_sessions_id_parts -->
+
+```ts
+await this.getFileUploadSessionParts(
+  uploadSessionId,
+  {} satisfies GetFileUploadSessionPartsQueryParams,
+  new GetFileUploadSessionPartsHeaders({}),
+  cancellationToken
+);
+```
 
 ### Arguments
 
@@ -188,7 +224,16 @@ This operation is performed by calling function `createFileUploadSessionCommit`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-files-upload-sessions-id-commit/).
 
-_Currently we don't have an example for calling `createFileUploadSessionCommit` in integration tests_
+<!-- sample post_files_upload_sessions_id_commit -->
+
+```ts
+await this.createFileUploadSessionCommit(
+  uploadSessionId,
+  { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
+  new CreateFileUploadSessionCommitHeaders({ digest: digest }),
+  cancellationToken
+);
+```
 
 ### Arguments
 
@@ -211,34 +256,11 @@ Inspect the upload session to get more information about the
 progress of processing the chunks, then retry committing the file
 when all chunks have processed.
 
-##
+## Upload big file
 
-This operation is performed by calling function `reducer`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference//).
-
-_Currently we don't have an example for calling `reducer` in integration tests_
-
-### Arguments
-
-- acc `PartAccumulator`
-  -
-- chunk `ByteStream`
-  -
-
-### Returns
-
-This function returns a value of type `PartAccumulator`.
-
-##
+Starts the process of chunk uploading a big file. Should return a File object representing uploaded file.
 
 This operation is performed by calling function `uploadBigFile`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference//).
-
-<!-- sample  -->
 
 ```ts
 await client.chunkedUploads.uploadBigFile(
