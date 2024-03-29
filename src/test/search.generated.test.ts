@@ -128,7 +128,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
 test('testGetSearch', async function testGetSearch(): Promise<any> {
   const keyword: any = 'test';
   const search: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as ''],
+    ancestorFolderIds: ['0' as string],
     query: keyword,
     trashContent:
       'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
@@ -140,7 +140,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const searchWithSharedLink: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as ''],
+    ancestorFolderIds: ['0' as string],
     query: keyword,
     trashContent:
       'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
@@ -229,7 +229,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
     }
   );
   const stringQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as ''],
+    ancestorFolderIds: ['0' as string],
     mdfilters: [
       {
         filters: { ['stringField']: 'stringValue' },
@@ -242,7 +242,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const enumQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as ''],
+    ancestorFolderIds: ['0' as string],
     mdfilters: [
       {
         filters: { ['enumField']: 'enumValue2' },
@@ -255,7 +255,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const multiSelectQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as ''],
+    ancestorFolderIds: ['0' as string],
     mdfilters: [
       {
         filters: {

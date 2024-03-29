@@ -31,7 +31,7 @@ test('testInvites', async function testInvites(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
   const client: BoxClient = getDefaultClientWithUserSubject(userId);
   const currentUser: UserFull = await client.users.getUserMe({
-    fields: ['enterprise' as ''],
+    fields: ['enterprise' as string],
   } satisfies GetUserMeQueryParams);
   const email: string = getEnvVar('BOX_EXTERNAL_USER_EMAIL');
   const invitation: Invite = await client.invites.createInvite({
