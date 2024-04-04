@@ -148,13 +148,8 @@ await client.signRequests.createSignRequest({
       signerGroupId: 'user',
     } satisfies SignRequestCreateSigner,
   ],
-  parentFolder: {
-    id: destinationFolder.id,
-    type: 'folder' as FolderBaseTypeField,
-  } satisfies FolderMini,
-  sourceFiles: [
-    { id: fileToSign.id, type: 'file' as FileBaseTypeField } satisfies FileBase,
-  ],
+  parentFolder: new FolderMini({ id: destinationFolder.id }),
+  sourceFiles: [new FileBase({ id: fileToSign.id })],
 } satisfies SignRequestCreateRequest);
 ```
 

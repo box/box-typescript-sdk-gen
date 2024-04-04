@@ -47,10 +47,10 @@ test('testCreateGetDeleteFileWatermark', async function testCreateGetDeleteFileW
   const file: FileFull = uploadedFiles.entries![0];
   const createdWatermark: Watermark =
     await client.fileWatermarks.updateFileWatermark(file.id, {
-      watermark: {
+      watermark: new UpdateFileWatermarkRequestBodyWatermarkField({
         imprint:
           'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField,
-      } satisfies UpdateFileWatermarkRequestBodyWatermarkField,
+      }),
     } satisfies UpdateFileWatermarkRequestBody);
   const watermark: Watermark = await client.fileWatermarks.getFileWatermark(
     file.id

@@ -8,12 +8,8 @@ import { serializeIntegrationMappingSlackCreateRequest } from '../schemas.genera
 import { deserializeIntegrationMappingSlackCreateRequest } from '../schemas.generated.js';
 import { serializeIntegrationMappingPartnerItemSlack } from '../schemas.generated.js';
 import { deserializeIntegrationMappingPartnerItemSlack } from '../schemas.generated.js';
-import { serializeIntegrationMappingPartnerItemSlackTypeField } from '../schemas.generated.js';
-import { deserializeIntegrationMappingPartnerItemSlackTypeField } from '../schemas.generated.js';
 import { serializeIntegrationMappingBoxItemSlack } from '../schemas.generated.js';
 import { deserializeIntegrationMappingBoxItemSlack } from '../schemas.generated.js';
-import { serializeIntegrationMappingBoxItemSlackTypeField } from '../schemas.generated.js';
-import { deserializeIntegrationMappingBoxItemSlackTypeField } from '../schemas.generated.js';
 import { serializeIntegrationMappings } from '../schemas.generated.js';
 import { deserializeIntegrationMappings } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -22,9 +18,7 @@ import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { IntegrationMappingSlackCreateRequest } from '../schemas.generated.js';
 import { IntegrationMappingPartnerItemSlack } from '../schemas.generated.js';
-import { IntegrationMappingPartnerItemSlackTypeField } from '../schemas.generated.js';
 import { IntegrationMappingBoxItemSlack } from '../schemas.generated.js';
-import { IntegrationMappingBoxItemSlackTypeField } from '../schemas.generated.js';
 import { IntegrationMappings } from '../schemas.generated.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
@@ -50,15 +44,11 @@ test('testIntegrationMappings', async function testIntegrationMappings(): Promis
   const userClient: BoxClient = getDefaultClientWithUserSubject(userId);
   await expect(async () => {
     await userClient.integrationMappings.createSlackIntegrationMapping({
-      partnerItem: {
-        type: 'channel' as IntegrationMappingPartnerItemSlackTypeField,
+      partnerItem: new IntegrationMappingPartnerItemSlack({
         id: partnerItemId,
         slackOrgId: slackOrgId,
-      } satisfies IntegrationMappingPartnerItemSlack,
-      boxItem: {
-        id: folder.id,
-        type: 'folder' as IntegrationMappingBoxItemSlackTypeField,
-      } satisfies IntegrationMappingBoxItemSlack,
+      }),
+      boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
     } satisfies IntegrationMappingSlackCreateRequest);
   }).rejects.toThrow();
   const integrationMappings: IntegrationMappings =

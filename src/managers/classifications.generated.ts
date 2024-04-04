@@ -47,10 +47,19 @@ export interface AddClassificationRequestBodyDataField {
   readonly key: string;
   readonly staticConfig?: AddClassificationRequestBodyDataStaticConfigField;
 }
-export interface AddClassificationRequestBody {
-  readonly op: AddClassificationRequestBodyOpField;
-  readonly fieldKey: AddClassificationRequestBodyFieldKeyField;
-  readonly data: AddClassificationRequestBodyDataField;
+export class AddClassificationRequestBody {
+  readonly op: AddClassificationRequestBodyOpField =
+    'addEnumOption' as AddClassificationRequestBodyOpField;
+  readonly fieldKey: AddClassificationRequestBodyFieldKeyField =
+    'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField;
+  readonly data!: AddClassificationRequestBodyDataField;
+  constructor(
+    fields:
+      | Omit<AddClassificationRequestBody, 'op' | 'fieldKey'>
+      | Partial<Pick<AddClassificationRequestBody, 'op' | 'fieldKey'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export class AddClassificationHeaders {
   readonly extraHeaders?: {
@@ -78,11 +87,20 @@ export interface UpdateClassificationRequestBodyDataField {
   readonly key: string;
   readonly staticConfig?: UpdateClassificationRequestBodyDataStaticConfigField;
 }
-export interface UpdateClassificationRequestBody {
-  readonly op: UpdateClassificationRequestBodyOpField;
-  readonly fieldKey: UpdateClassificationRequestBodyFieldKeyField;
-  readonly enumOptionKey: string;
-  readonly data: UpdateClassificationRequestBodyDataField;
+export class UpdateClassificationRequestBody {
+  readonly op: UpdateClassificationRequestBodyOpField =
+    'editEnumOption' as UpdateClassificationRequestBodyOpField;
+  readonly fieldKey: UpdateClassificationRequestBodyFieldKeyField =
+    'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField;
+  readonly enumOptionKey!: string;
+  readonly data!: UpdateClassificationRequestBodyDataField;
+  constructor(
+    fields:
+      | Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'>
+      | Partial<Pick<UpdateClassificationRequestBody, 'op' | 'fieldKey'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export class UpdateClassificationHeaders {
   readonly extraHeaders?: {
@@ -117,20 +135,56 @@ export interface CreateClassificationTemplateRequestBodyFieldsOptionsField {
   readonly key: string;
   readonly staticConfig?: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField;
 }
-export interface CreateClassificationTemplateRequestBodyFieldsField {
-  readonly type: CreateClassificationTemplateRequestBodyFieldsTypeField;
-  readonly key: CreateClassificationTemplateRequestBodyFieldsKeyField;
-  readonly displayName: CreateClassificationTemplateRequestBodyFieldsDisplayNameField;
+export class CreateClassificationTemplateRequestBodyFieldsField {
+  readonly type: CreateClassificationTemplateRequestBodyFieldsTypeField =
+    'enum' as CreateClassificationTemplateRequestBodyFieldsTypeField;
+  readonly key: CreateClassificationTemplateRequestBodyFieldsKeyField =
+    'Box__Security__Classification__Key' as CreateClassificationTemplateRequestBodyFieldsKeyField;
+  readonly displayName: CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
+    'Classification' as CreateClassificationTemplateRequestBodyFieldsDisplayNameField;
   readonly hidden?: boolean;
-  readonly options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
+  readonly options!: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
+  constructor(
+    fields:
+      | Omit<
+          CreateClassificationTemplateRequestBodyFieldsField,
+          'type' | 'key' | 'displayName'
+        >
+      | Partial<
+          Pick<
+            CreateClassificationTemplateRequestBodyFieldsField,
+            'type' | 'key' | 'displayName'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export interface CreateClassificationTemplateRequestBody {
-  readonly scope: CreateClassificationTemplateRequestBodyScopeField;
-  readonly templateKey: CreateClassificationTemplateRequestBodyTemplateKeyField;
-  readonly displayName: CreateClassificationTemplateRequestBodyDisplayNameField;
+export class CreateClassificationTemplateRequestBody {
+  readonly scope: CreateClassificationTemplateRequestBodyScopeField =
+    'enterprise' as CreateClassificationTemplateRequestBodyScopeField;
+  readonly templateKey: CreateClassificationTemplateRequestBodyTemplateKeyField =
+    'securityClassification-6VMVochwUWo' as CreateClassificationTemplateRequestBodyTemplateKeyField;
+  readonly displayName: CreateClassificationTemplateRequestBodyDisplayNameField =
+    'Classification' as CreateClassificationTemplateRequestBodyDisplayNameField;
   readonly hidden?: boolean;
   readonly copyInstanceOnItemCopy?: boolean;
-  readonly fields: readonly CreateClassificationTemplateRequestBodyFieldsField[];
+  readonly fields!: readonly CreateClassificationTemplateRequestBodyFieldsField[];
+  constructor(
+    fields:
+      | Omit<
+          CreateClassificationTemplateRequestBody,
+          'scope' | 'templateKey' | 'displayName'
+        >
+      | Partial<
+          Pick<
+            CreateClassificationTemplateRequestBody,
+            'scope' | 'templateKey' | 'displayName'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export class CreateClassificationTemplateHeaders {
   readonly extraHeaders?: {

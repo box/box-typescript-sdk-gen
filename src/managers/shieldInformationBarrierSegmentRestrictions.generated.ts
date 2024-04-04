@@ -107,11 +107,27 @@ export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyRest
   readonly id?: string;
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField;
 }
-export interface CreateShieldInformationBarrierSegmentRestrictionRequestBody {
-  readonly type: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField;
+export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
+  readonly type: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField =
+    'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-  readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
-  readonly restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
+  readonly shieldInformationBarrierSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
+  readonly restrictedSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
+  constructor(
+    fields:
+      | Omit<
+          CreateShieldInformationBarrierSegmentRestrictionRequestBody,
+          'type'
+        >
+      | Partial<
+          Pick<
+            CreateShieldInformationBarrierSegmentRestrictionRequestBody,
+            'type'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export class CreateShieldInformationBarrierSegmentRestrictionHeaders {
   readonly extraHeaders?: {

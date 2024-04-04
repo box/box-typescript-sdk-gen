@@ -38,9 +38,17 @@ export class GetTaskAssignmentsHeaders {
   }
 }
 export type CreateTaskAssignmentRequestBodyTaskTypeField = 'task';
-export interface CreateTaskAssignmentRequestBodyTaskField {
-  readonly id: string;
-  readonly type: CreateTaskAssignmentRequestBodyTaskTypeField;
+export class CreateTaskAssignmentRequestBodyTaskField {
+  readonly id!: string;
+  readonly type: CreateTaskAssignmentRequestBodyTaskTypeField =
+    'task' as CreateTaskAssignmentRequestBodyTaskTypeField;
+  constructor(
+    fields:
+      | Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'>
+      | Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface CreateTaskAssignmentRequestBodyAssignToField {
   readonly id?: string;

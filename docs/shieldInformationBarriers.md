@@ -119,10 +119,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarriers.createShieldInformationBarrier({
-  enterprise: {
-    id: enterpriseId,
-    type: 'enterprise' as EnterpriseBaseTypeField,
-  } satisfies EnterpriseBase,
+  enterprise: { id: enterpriseId } satisfies EnterpriseBase,
 } satisfies CreateShieldInformationBarrierRequestBody);
 ```
 

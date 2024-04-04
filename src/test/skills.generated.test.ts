@@ -70,14 +70,14 @@ test('test_skills_cards_CRUD', async function test_skills_cards_CRUD(): Promise<
             code: 'license-plates',
             message: titleMessage,
           } satisfies KeywordSkillCardSkillCardTitleField,
-          skill: {
+          skill: new KeywordSkillCardSkillField({
             id: skillId,
             type: 'service' as KeywordSkillCardSkillTypeField,
-          } satisfies KeywordSkillCardSkillField,
-          invocation: {
+          }),
+          invocation: new KeywordSkillCardInvocationField({
             id: invocationId,
             type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
-          } satisfies KeywordSkillCardInvocationField,
+          }),
           entries: [
             { text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField,
           ],
@@ -101,25 +101,25 @@ test('test_skills_cards_CRUD', async function test_skills_cards_CRUD(): Promise<
       {
         op: 'replace' as UpdateBoxSkillCardsOnFileRequestBodyOpField,
         path: '/cards/0',
-        value: {
+        value: new KeywordSkillCard({
           type: 'skill_card' as KeywordSkillCardTypeField,
           skillCardType: 'keyword' as KeywordSkillCardSkillCardTypeField,
           skillCardTitle: {
             code: 'license-plates',
             message: updatedTitleMessage,
           } satisfies KeywordSkillCardSkillCardTitleField,
-          skill: {
+          skill: new KeywordSkillCardSkillField({
             id: skillId,
             type: 'service' as KeywordSkillCardSkillTypeField,
-          } satisfies KeywordSkillCardSkillField,
-          invocation: {
+          }),
+          invocation: new KeywordSkillCardInvocationField({
             id: invocationId,
             type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
-          } satisfies KeywordSkillCardInvocationField,
+          }),
           entries: [
             { text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField,
           ],
-        } satisfies KeywordSkillCard,
+        }),
       } satisfies UpdateBoxSkillCardsOnFileRequestBody,
     ]);
   if (!(updatedSkillCardsMetadata.cards![0].skill.id == skillId)) {

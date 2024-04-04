@@ -100,11 +100,9 @@ See the endpoint docs at
 
 ```ts
 await client.folderClassifications.updateClassificationOnFolder(folder.id, [
-  {
-    op: 'replace' as UpdateClassificationOnFolderRequestBodyOpField,
-    path: '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField,
+  new UpdateClassificationOnFolderRequestBody({
     value: secondClassification.key,
-  } satisfies UpdateClassificationOnFolderRequestBody,
+  }),
 ]);
 ```
 

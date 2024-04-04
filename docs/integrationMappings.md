@@ -55,15 +55,11 @@ See the endpoint docs at
 
 ```ts
 await userClient.integrationMappings.createSlackIntegrationMapping({
-  partnerItem: {
-    type: 'channel' as IntegrationMappingPartnerItemSlackTypeField,
+  partnerItem: new IntegrationMappingPartnerItemSlack({
     id: partnerItemId,
     slackOrgId: slackOrgId,
-  } satisfies IntegrationMappingPartnerItemSlack,
-  boxItem: {
-    id: folder.id,
-    type: 'folder' as IntegrationMappingBoxItemSlackTypeField,
-  } satisfies IntegrationMappingBoxItemSlack,
+  }),
+  boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
 } satisfies IntegrationMappingSlackCreateRequest);
 ```
 

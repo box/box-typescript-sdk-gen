@@ -100,11 +100,9 @@ See the endpoint docs at
 
 ```ts
 await client.fileClassifications.updateClassificationOnFile(file.id, [
-  {
-    op: 'replace' as UpdateClassificationOnFileRequestBodyOpField,
-    path: '/Box__Security__Classification__Key' as UpdateClassificationOnFileRequestBodyPathField,
+  new UpdateClassificationOnFileRequestBody({
     value: secondClassification.key,
-  } satisfies UpdateClassificationOnFileRequestBody,
+  }),
 ]);
 ```
 
