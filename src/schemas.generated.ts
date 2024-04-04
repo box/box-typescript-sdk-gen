@@ -35,11 +35,19 @@ export interface PostOAuth2Token {
   readonly boxSharedLink?: string;
 }
 export type PostOAuth2TokenRefreshAccessTokenGrantTypeField = 'refresh_token';
-export interface PostOAuth2TokenRefreshAccessToken {
-  readonly grantType: PostOAuth2TokenRefreshAccessTokenGrantTypeField;
-  readonly clientId: string;
-  readonly clientSecret: string;
-  readonly refreshToken: string;
+export class PostOAuth2TokenRefreshAccessToken {
+  readonly grantType: PostOAuth2TokenRefreshAccessTokenGrantTypeField =
+    'refresh_token' as PostOAuth2TokenRefreshAccessTokenGrantTypeField;
+  readonly clientId!: string;
+  readonly clientSecret!: string;
+  readonly refreshToken!: string;
+  constructor(
+    fields:
+      | Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'>
+      | Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface PostOAuth2Revoke {
   readonly clientId?: string;
@@ -155,23 +163,50 @@ export interface ClassificationTemplateFieldsOptionsField {
   readonly key: string;
   readonly staticConfig?: ClassificationTemplateFieldsOptionsStaticConfigField;
 }
-export interface ClassificationTemplateFieldsField {
-  readonly id: string;
-  readonly type: ClassificationTemplateFieldsTypeField;
-  readonly key: ClassificationTemplateFieldsKeyField;
-  readonly displayName: ClassificationTemplateFieldsDisplayNameField;
+export class ClassificationTemplateFieldsField {
+  readonly id!: string;
+  readonly type: ClassificationTemplateFieldsTypeField =
+    'enum' as ClassificationTemplateFieldsTypeField;
+  readonly key: ClassificationTemplateFieldsKeyField =
+    'Box__Security__Classification__Key' as ClassificationTemplateFieldsKeyField;
+  readonly displayName: ClassificationTemplateFieldsDisplayNameField =
+    'Classification' as ClassificationTemplateFieldsDisplayNameField;
   readonly hidden?: boolean;
-  readonly options: readonly ClassificationTemplateFieldsOptionsField[];
+  readonly options!: readonly ClassificationTemplateFieldsOptionsField[];
+  constructor(
+    fields:
+      | Omit<ClassificationTemplateFieldsField, 'type' | 'key' | 'displayName'>
+      | Partial<
+          Pick<
+            ClassificationTemplateFieldsField,
+            'type' | 'key' | 'displayName'
+          >
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export interface ClassificationTemplate {
-  readonly id: string;
-  readonly type: ClassificationTemplateTypeField;
-  readonly scope: string;
-  readonly templateKey: ClassificationTemplateTemplateKeyField;
-  readonly displayName: ClassificationTemplateDisplayNameField;
+export class ClassificationTemplate {
+  readonly id!: string;
+  readonly type: ClassificationTemplateTypeField =
+    'metadata_template' as ClassificationTemplateTypeField;
+  readonly scope!: string;
+  readonly templateKey: ClassificationTemplateTemplateKeyField =
+    'securityClassification-6VMVochwUWo' as ClassificationTemplateTemplateKeyField;
+  readonly displayName: ClassificationTemplateDisplayNameField =
+    'Classification' as ClassificationTemplateDisplayNameField;
   readonly hidden?: boolean;
   readonly copyInstanceOnItemCopy?: boolean;
-  readonly fields: readonly ClassificationTemplateFieldsField[];
+  readonly fields!: readonly ClassificationTemplateFieldsField[];
+  constructor(
+    fields:
+      | Omit<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
+      | Partial<
+          Pick<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type CollaborationAllowlistEntryTypeField =
   'collaboration_whitelist_entry';
@@ -242,46 +277,79 @@ export interface EnterpriseBase {
   readonly type?: EnterpriseBaseTypeField;
 }
 export type FileBaseTypeField = 'file';
-export interface FileBase {
-  readonly id: string;
+export class FileBase {
+  readonly id!: string;
   readonly etag?: string;
-  readonly type: FileBaseTypeField;
+  readonly type: FileBaseTypeField = 'file' as FileBaseTypeField;
+  constructor(
+    fields: Omit<FileBase, 'type'> | Partial<Pick<FileBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type FileVersionBaseTypeField = 'file_version';
-export interface FileVersionBase {
-  readonly id: string;
-  readonly type: FileVersionBaseTypeField;
+export class FileVersionBase {
+  readonly id!: string;
+  readonly type: FileVersionBaseTypeField =
+    'file_version' as FileVersionBaseTypeField;
+  constructor(
+    fields:
+      | Omit<FileVersionBase, 'type'>
+      | Partial<Pick<FileVersionBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export type FileVersionMini = FileVersionBase & {
+export class FileVersionMini extends FileVersionBase {
   readonly sha1?: string;
-};
-export type FileMini = FileBase & {
+  constructor(fields: FileVersionMini) {
+    super(fields);
+  }
+}
+export class FileMini extends FileBase {
   readonly sequenceId?: string;
   readonly name?: string;
   readonly sha1?: string;
   readonly fileVersion?: FileVersionMini;
-};
+  constructor(fields: FileMini) {
+    super(fields);
+  }
+}
 export interface FilesUnderRetention {
   readonly limit?: number;
   readonly nextMarker?: string;
   readonly prevMarker?: string;
   readonly entries?: readonly FileMini[];
 }
-export type FileConflict = FileMini & {};
+export class FileConflict extends FileMini {
+  constructor(fields: FileConflict) {
+    super(fields);
+  }
+}
 export interface ConflictErrorContextInfoField {
   readonly conflicts?: readonly FileConflict[];
 }
 export type ConflictError = ClientError & {};
 export type FolderBaseTypeField = 'folder';
-export interface FolderBase {
-  readonly id: string;
+export class FolderBase {
+  readonly id!: string;
   readonly etag?: string;
-  readonly type: FolderBaseTypeField;
+  readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
+  constructor(
+    fields: Omit<FolderBase, 'type'> | Partial<Pick<FolderBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export type FolderMini = FolderBase & {
+export class FolderMini extends FolderBase {
   readonly sequenceId?: string;
   readonly name?: string;
-};
+  constructor(
+    fields: Omit<FolderMini, 'type'> | Partial<Pick<FolderMini, 'type'>>
+  ) {
+    super(fields);
+  }
+}
 export type FileMiniOrFolderMini = FileMini | FolderMini;
 export type FileOrFolderScopeScopeField =
   | 'annotation_edit'
@@ -328,19 +396,30 @@ export type IntegrationMappingMini = IntegrationMappingBase & {
   readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
 };
 export type GroupBaseTypeField = 'group';
-export interface GroupBase {
-  readonly id: string;
-  readonly type: GroupBaseTypeField;
+export class GroupBase {
+  readonly id!: string;
+  readonly type: GroupBaseTypeField = 'group' as GroupBaseTypeField;
+  constructor(
+    fields: Omit<GroupBase, 'type'> | Partial<Pick<GroupBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type GroupMiniGroupTypeField = 'managed_group' | 'all_users_group';
-export type GroupMini = GroupBase & {
+export class GroupMini extends GroupBase {
   readonly name?: string;
   readonly groupType?: GroupMiniGroupTypeField;
-};
-export type Group = GroupMini & {
+  constructor(fields: GroupMini) {
+    super(fields);
+  }
+}
+export class Group extends GroupMini {
   readonly createdAt?: string;
   readonly modifiedAt?: string;
-};
+  constructor(fields: Group) {
+    super(fields);
+  }
+}
 export type GroupFullInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
@@ -352,14 +431,17 @@ export type GroupFullMemberViewabilityLevelField =
 export interface GroupFullPermissionsField {
   readonly canInviteAsCollaborator?: boolean;
 }
-export type GroupFull = Group & {
+export class GroupFull extends Group {
   readonly provenance?: string;
   readonly externalSyncIdentifier?: string;
   readonly description?: string;
   readonly invitabilityLevel?: GroupFullInvitabilityLevelField;
   readonly memberViewabilityLevel?: GroupFullMemberViewabilityLevelField;
   readonly permissions?: GroupFullPermissionsField;
-};
+  constructor(fields: GroupFull) {
+    super(fields);
+  }
+}
 export type GroupsOrderDirectionField = 'ASC' | 'DESC';
 export interface GroupsOrderField {
   readonly by?: string;
@@ -373,9 +455,17 @@ export interface Groups {
   readonly entries?: readonly GroupFull[];
 }
 export type LegalHoldPolicyMiniTypeField = 'legal_hold_policy';
-export interface LegalHoldPolicyMini {
-  readonly id: string;
-  readonly type: LegalHoldPolicyMiniTypeField;
+export class LegalHoldPolicyMini {
+  readonly id!: string;
+  readonly type: LegalHoldPolicyMiniTypeField =
+    'legal_hold_policy' as LegalHoldPolicyMiniTypeField;
+  constructor(
+    fields:
+      | Omit<LegalHoldPolicyMini, 'type'>
+      | Partial<Pick<LegalHoldPolicyMini, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type LegalHoldPolicyAssignmentBaseTypeField =
   'legal_hold_policy_assignment';
@@ -414,13 +504,21 @@ export interface MetadataCascadePolicyParentField {
   readonly type?: MetadataCascadePolicyParentTypeField;
   readonly id?: string;
 }
-export interface MetadataCascadePolicy {
-  readonly id: string;
-  readonly type: MetadataCascadePolicyTypeField;
+export class MetadataCascadePolicy {
+  readonly id!: string;
+  readonly type: MetadataCascadePolicyTypeField =
+    'metadata_cascade_policy' as MetadataCascadePolicyTypeField;
   readonly ownerEnterprise?: MetadataCascadePolicyOwnerEnterpriseField;
   readonly parent?: MetadataCascadePolicyParentField;
   readonly scope?: string;
   readonly templateKey?: string;
+  constructor(
+    fields:
+      | Omit<MetadataCascadePolicy, 'type'>
+      | Partial<Pick<MetadataCascadePolicy, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface MetadataCascadePolicies {
   readonly limit?: number;
@@ -461,15 +559,23 @@ export interface MetadataTemplateFieldsField {
   readonly options?: readonly MetadataTemplateFieldsOptionsField[];
   readonly id?: string;
 }
-export interface MetadataTemplate {
-  readonly id: string;
-  readonly type: MetadataTemplateTypeField;
+export class MetadataTemplate {
+  readonly id!: string;
+  readonly type: MetadataTemplateTypeField =
+    'metadata_template' as MetadataTemplateTypeField;
   readonly scope?: string;
   readonly templateKey?: string;
   readonly displayName?: string;
   readonly hidden?: boolean;
   readonly fields?: readonly MetadataTemplateFieldsField[];
   readonly copyInstanceOnItemCopy?: boolean;
+  constructor(
+    fields:
+      | Omit<MetadataTemplate, 'type'>
+      | Partial<Pick<MetadataTemplate, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface MetadataTemplates {
   readonly limit?: number;
@@ -489,18 +595,29 @@ export interface RealtimeServers {
   readonly entries?: readonly RealtimeServer[];
 }
 export type RetentionPolicyBaseTypeField = 'retention_policy';
-export interface RetentionPolicyBase {
-  readonly id: string;
-  readonly type: RetentionPolicyBaseTypeField;
+export class RetentionPolicyBase {
+  readonly id!: string;
+  readonly type: RetentionPolicyBaseTypeField =
+    'retention_policy' as RetentionPolicyBaseTypeField;
+  constructor(
+    fields:
+      | Omit<RetentionPolicyBase, 'type'>
+      | Partial<Pick<RetentionPolicyBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type RetentionPolicyMiniDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
-export type RetentionPolicyMini = RetentionPolicyBase & {
+export class RetentionPolicyMini extends RetentionPolicyBase {
   readonly policyName?: string;
   readonly retentionLength?: string;
   readonly dispositionAction?: RetentionPolicyMiniDispositionActionField;
-};
+  constructor(fields: RetentionPolicyMini) {
+    super(fields);
+  }
+}
 export type FileVersionRetentionTypeField = 'file_version_retention';
 export interface FileVersionRetention {
   readonly id?: string;
@@ -519,9 +636,17 @@ export interface FileVersionRetentions {
 }
 export type RetentionPolicyAssignmentBaseTypeField =
   'retention_policy_assignment';
-export interface RetentionPolicyAssignmentBase {
-  readonly id: string;
-  readonly type: RetentionPolicyAssignmentBaseTypeField;
+export class RetentionPolicyAssignmentBase {
+  readonly id!: string;
+  readonly type: RetentionPolicyAssignmentBaseTypeField =
+    'retention_policy_assignment' as RetentionPolicyAssignmentBaseTypeField;
+  constructor(
+    fields:
+      | Omit<RetentionPolicyAssignmentBase, 'type'>
+      | Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type ShieldInformationBarrierBaseTypeField =
   'shield_information_barrier';
@@ -571,20 +696,36 @@ export interface SessionTerminationMessage {
   readonly message?: string;
 }
 export type StoragePolicyMiniTypeField = 'storage_policy';
-export interface StoragePolicyMini {
-  readonly id: string;
-  readonly type: StoragePolicyMiniTypeField;
+export class StoragePolicyMini {
+  readonly id!: string;
+  readonly type: StoragePolicyMiniTypeField =
+    'storage_policy' as StoragePolicyMiniTypeField;
+  constructor(
+    fields:
+      | Omit<StoragePolicyMini, 'type'>
+      | Partial<Pick<StoragePolicyMini, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type StoragePolicyAssignmentTypeField = 'storage_policy_assignment';
 export interface StoragePolicyAssignmentAssignedToField {
   readonly id?: string;
   readonly type?: string;
 }
-export interface StoragePolicyAssignment {
-  readonly id: string;
-  readonly type: StoragePolicyAssignmentTypeField;
+export class StoragePolicyAssignment {
+  readonly id!: string;
+  readonly type: StoragePolicyAssignmentTypeField =
+    'storage_policy_assignment' as StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
+  constructor(
+    fields:
+      | Omit<StoragePolicyAssignment, 'type'>
+      | Partial<Pick<StoragePolicyAssignment, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface StoragePolicyAssignments {
   readonly limit?: number;
@@ -592,9 +733,12 @@ export interface StoragePolicyAssignments {
   readonly prevMarker?: string;
   readonly entries?: readonly StoragePolicyAssignment[];
 }
-export type StoragePolicy = StoragePolicyMini & {
+export class StoragePolicy extends StoragePolicyMini {
   readonly name?: string;
-};
+  constructor(fields: StoragePolicy) {
+    super(fields);
+  }
+}
 export interface StoragePolicies {
   readonly limit?: number;
   readonly nextMarker?: string;
@@ -602,9 +746,17 @@ export interface StoragePolicies {
   readonly entries?: readonly StoragePolicy[];
 }
 export type TermsOfServiceBaseTypeField = 'terms_of_service';
-export interface TermsOfServiceBase {
-  readonly id: string;
-  readonly type: TermsOfServiceBaseTypeField;
+export class TermsOfServiceBase {
+  readonly id!: string;
+  readonly type: TermsOfServiceBaseTypeField =
+    'terms_of_service' as TermsOfServiceBaseTypeField;
+  constructor(
+    fields:
+      | Omit<TermsOfServiceBase, 'type'>
+      | Partial<Pick<TermsOfServiceBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TermsOfServiceStatusField = 'enabled' | 'disabled';
 export type TermsOfServiceEnterpriseTypeField = 'enterprise';
@@ -614,14 +766,17 @@ export interface TermsOfServiceEnterpriseField {
   readonly name?: string;
 }
 export type TermsOfServiceTosTypeField = 'managed' | 'external';
-export type TermsOfService = TermsOfServiceBase & {
+export class TermsOfService extends TermsOfServiceBase {
   readonly status?: TermsOfServiceStatusField;
   readonly enterprise?: TermsOfServiceEnterpriseField;
   readonly tosType?: TermsOfServiceTosTypeField;
   readonly text?: string;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
-};
+  constructor(fields: TermsOfService) {
+    super(fields);
+  }
+}
 export interface TermsOfServices {
   readonly totalCount?: number;
   readonly entries?: readonly TermsOfService[];
@@ -680,23 +835,37 @@ export interface UserAvatar {
   readonly picUrls?: UserAvatarPicUrlsField;
 }
 export type UserBaseTypeField = 'user';
-export interface UserBase {
-  readonly id: string;
-  readonly type: UserBaseTypeField;
+export class UserBase {
+  readonly id!: string;
+  readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
+  constructor(
+    fields: Omit<UserBase, 'type'> | Partial<Pick<UserBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export type UserIntegrationMappings = UserBase & {
+export class UserIntegrationMappings extends UserBase {
   readonly name?: string;
   readonly login?: string;
-};
-export type UserCollaborations = UserBase & {
+  constructor(fields: UserIntegrationMappings) {
+    super(fields);
+  }
+}
+export class UserCollaborations extends UserBase {
   readonly name?: string;
   readonly login?: string;
-};
+  constructor(fields: UserCollaborations) {
+    super(fields);
+  }
+}
 export type GroupMiniOrUserCollaborations = GroupMini | UserCollaborations;
-export type UserMini = UserBase & {
+export class UserMini extends UserBase {
   readonly name?: string;
   readonly login?: string;
-};
+  constructor(fields: UserMini) {
+    super(fields);
+  }
+}
 export type EventSourceItemTypeField = 'file' | 'folder';
 export interface EventSourceClassificationField {
   readonly name?: string;
@@ -718,7 +887,7 @@ export interface UserNotificationEmailField {
   readonly email?: string;
   readonly isConfirmed?: boolean;
 }
-export type User = UserMini & {
+export class User extends UserMini {
   readonly createdAt?: string;
   readonly modifiedAt?: string;
   readonly language?: string;
@@ -732,7 +901,10 @@ export type User = UserMini & {
   readonly address?: string;
   readonly avatarUrl?: string;
   readonly notificationEmail?: UserNotificationEmailField;
-};
+  constructor(fields: User) {
+    super(fields);
+  }
+}
 export type TrashWebLinkRestoredTypeField = 'web_link';
 export interface TrashWebLinkRestoredPathCollectionField {
   readonly totalCount: number;
@@ -800,29 +972,37 @@ export interface TrashFileRestoredPathCollectionField {
   readonly entries: readonly FolderMini[];
 }
 export type TrashFileRestoredItemStatusField = 'active' | 'trashed' | 'deleted';
-export interface TrashFileRestored {
-  readonly id: string;
+export class TrashFileRestored {
+  readonly id!: string;
   readonly etag?: string;
-  readonly type: TrashFileRestoredTypeField;
-  readonly sequenceId: string;
+  readonly type: TrashFileRestoredTypeField =
+    'file' as TrashFileRestoredTypeField;
+  readonly sequenceId!: string;
   readonly name?: string;
-  readonly sha1: string;
+  readonly sha1!: string;
   readonly fileVersion?: FileVersionMini;
-  readonly description: string;
-  readonly size: number;
-  readonly pathCollection: TrashFileRestoredPathCollectionField;
-  readonly createdAt: string;
-  readonly modifiedAt: string;
+  readonly description!: string;
+  readonly size!: number;
+  readonly pathCollection!: TrashFileRestoredPathCollectionField;
+  readonly createdAt!: string;
+  readonly modifiedAt!: string;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
   readonly contentCreatedAt?: string;
   readonly contentModifiedAt?: string;
   readonly createdBy?: UserMini;
-  readonly modifiedBy: UserMini;
-  readonly ownedBy: UserMini;
+  readonly modifiedBy!: UserMini;
+  readonly ownedBy!: UserMini;
   readonly sharedLink?: string;
   readonly parent?: FolderMini;
-  readonly itemStatus: TrashFileRestoredItemStatusField;
+  readonly itemStatus!: TrashFileRestoredItemStatusField;
+  constructor(
+    fields:
+      | Omit<TrashFileRestored, 'type'>
+      | Partial<Pick<TrashFileRestored, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TrashWebLinkTypeField = 'web_link';
 export type TrashWebLinkPathCollectionEntriesTypeField = 'folder';
@@ -872,28 +1052,33 @@ export interface TrashFolderPathCollectionField {
   readonly entries: readonly TrashFolderPathCollectionEntriesField[];
 }
 export type TrashFolderItemStatusField = 'active' | 'trashed' | 'deleted';
-export interface TrashFolder {
-  readonly id: string;
+export class TrashFolder {
+  readonly id!: string;
   readonly etag?: string;
-  readonly type: TrashFolderTypeField;
+  readonly type: TrashFolderTypeField = 'folder' as TrashFolderTypeField;
   readonly sequenceId?: string;
-  readonly name: string;
+  readonly name!: string;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
-  readonly description: string;
-  readonly size: number;
-  readonly pathCollection: TrashFolderPathCollectionField;
-  readonly createdBy: UserMini;
-  readonly modifiedBy: UserMini;
+  readonly description!: string;
+  readonly size!: number;
+  readonly pathCollection!: TrashFolderPathCollectionField;
+  readonly createdBy!: UserMini;
+  readonly modifiedBy!: UserMini;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
   readonly contentCreatedAt?: string;
   readonly contentModifiedAt?: string;
-  readonly ownedBy: UserMini;
+  readonly ownedBy!: UserMini;
   readonly sharedLink?: string;
   readonly folderUploadEmail?: string;
   readonly parent?: FolderMini;
-  readonly itemStatus: TrashFolderItemStatusField;
+  readonly itemStatus!: TrashFolderItemStatusField;
+  constructor(
+    fields: Omit<TrashFolder, 'type'> | Partial<Pick<TrashFolder, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TrashFileTypeField = 'file';
 export type TrashFilePathCollectionEntriesTypeField = 'folder';
@@ -909,39 +1094,52 @@ export interface TrashFilePathCollectionField {
   readonly entries: readonly TrashFilePathCollectionEntriesField[];
 }
 export type TrashFileItemStatusField = 'active' | 'trashed' | 'deleted';
-export interface TrashFile {
-  readonly id: string;
+export class TrashFile {
+  readonly id!: string;
   readonly etag?: string;
-  readonly type: TrashFileTypeField;
-  readonly sequenceId: string;
+  readonly type: TrashFileTypeField = 'file' as TrashFileTypeField;
+  readonly sequenceId!: string;
   readonly name?: string;
-  readonly sha1: string;
+  readonly sha1!: string;
   readonly fileVersion?: FileVersionMini;
-  readonly description: string;
-  readonly size: number;
-  readonly pathCollection: TrashFilePathCollectionField;
-  readonly createdAt: string;
-  readonly modifiedAt: string;
+  readonly description!: string;
+  readonly size!: number;
+  readonly pathCollection!: TrashFilePathCollectionField;
+  readonly createdAt!: string;
+  readonly modifiedAt!: string;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
   readonly contentCreatedAt?: string;
   readonly contentModifiedAt?: string;
   readonly createdBy?: UserMini;
-  readonly modifiedBy: UserMini;
-  readonly ownedBy: UserMini;
+  readonly modifiedBy!: UserMini;
+  readonly ownedBy!: UserMini;
   readonly sharedLink?: string;
   readonly parent?: FolderMini;
-  readonly itemStatus: TrashFileItemStatusField;
+  readonly itemStatus!: TrashFileItemStatusField;
+  constructor(
+    fields: Omit<TrashFile, 'type'> | Partial<Pick<TrashFile, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TermsOfServiceUserStatusTypeField = 'terms_of_service_user_status';
-export interface TermsOfServiceUserStatus {
-  readonly id: string;
-  readonly type: TermsOfServiceUserStatusTypeField;
+export class TermsOfServiceUserStatus {
+  readonly id!: string;
+  readonly type: TermsOfServiceUserStatusTypeField =
+    'terms_of_service_user_status' as TermsOfServiceUserStatusTypeField;
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   readonly isAccepted?: boolean;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
+  constructor(
+    fields:
+      | Omit<TermsOfServiceUserStatus, 'type'>
+      | Partial<Pick<TermsOfServiceUserStatus, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface TermsOfServiceUserStatuses {
   readonly totalCount?: number;
@@ -1002,15 +1200,23 @@ export interface RetentionPolicyAssignmentFilterFieldsField {
   readonly field?: string;
   readonly value?: string;
 }
-export interface RetentionPolicyAssignment {
-  readonly id: string;
-  readonly type: RetentionPolicyAssignmentTypeField;
+export class RetentionPolicyAssignment {
+  readonly id!: string;
+  readonly type: RetentionPolicyAssignmentTypeField =
+    'retention_policy_assignment' as RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
   readonly assignedBy?: UserMini;
   readonly assignedAt?: string;
   readonly startDateField?: string;
+  constructor(
+    fields:
+      | Omit<RetentionPolicyAssignment, 'type'>
+      | Partial<Pick<RetentionPolicyAssignment, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface RetentionPolicyAssignments {
   readonly entries?: readonly RetentionPolicyAssignment[];
@@ -1025,7 +1231,7 @@ export interface RetentionPolicyAssignmentCountsField {
   readonly folder?: number;
   readonly metadataTemplate?: number;
 }
-export type RetentionPolicy = RetentionPolicyMini & {
+export class RetentionPolicy extends RetentionPolicyMini {
   readonly description?: string;
   readonly policyType?: RetentionPolicyPolicyTypeField;
   readonly retentionType?: RetentionPolicyRetentionTypeField;
@@ -1037,7 +1243,10 @@ export type RetentionPolicy = RetentionPolicyMini & {
   readonly areOwnersNotified?: boolean;
   readonly customNotificationRecipients?: readonly UserMini[];
   readonly assignmentCounts?: RetentionPolicyAssignmentCountsField;
-};
+  constructor(fields: RetentionPolicy) {
+    super(fields);
+  }
+}
 export interface RetentionPolicies {
   readonly entries?: readonly RetentionPolicy[];
   readonly limit?: number;
@@ -1054,7 +1263,7 @@ export interface LegalHoldPolicyAssignmentCountsField {
   readonly file?: number;
   readonly fileVersion?: number;
 }
-export type LegalHoldPolicy = LegalHoldPolicyMini & {
+export class LegalHoldPolicy extends LegalHoldPolicyMini {
   readonly policyName?: string;
   readonly description?: string;
   readonly status?: LegalHoldPolicyStatusField;
@@ -1066,7 +1275,10 @@ export type LegalHoldPolicy = LegalHoldPolicyMini & {
   readonly filterStartedAt?: string;
   readonly filterEndedAt?: string;
   readonly releaseNotes?: string;
-};
+  constructor(fields: LegalHoldPolicy) {
+    super(fields);
+  }
+}
 export interface LegalHoldPolicies {
   readonly limit?: number;
   readonly nextMarker?: string;
@@ -1080,15 +1292,18 @@ export interface InviteInvitedToField {
   readonly type?: InviteInvitedToTypeField;
   readonly name?: string;
 }
-export interface Invite {
-  readonly id: string;
-  readonly type: InviteTypeField;
+export class Invite {
+  readonly id!: string;
+  readonly type: InviteTypeField = 'invite' as InviteTypeField;
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
   readonly status?: string;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
+  constructor(fields: Omit<Invite, 'type'> | Partial<Pick<Invite, 'type'>>) {
+    Object.assign(this, fields);
+  }
 }
 export type GroupMembershipTypeField = 'group_membership';
 export type GroupMembershipRoleField = 'member' | 'admin';
@@ -1113,7 +1328,7 @@ export interface GroupMemberships {
   readonly order?: readonly GroupMembershipsOrderField[];
   readonly entries?: readonly GroupMembership[];
 }
-export type FileVersion = FileVersionMini & {
+export class FileVersion extends FileVersionMini {
   readonly name?: string;
   readonly size?: number;
   readonly createdAt?: string;
@@ -1125,10 +1340,16 @@ export type FileVersion = FileVersionMini & {
   readonly restoredBy?: UserMini;
   readonly purgedAt?: string;
   readonly uploaderDisplayName?: string;
-};
-export type FileVersionFull = FileVersion & {
+  constructor(fields: FileVersion) {
+    super(fields);
+  }
+}
+export class FileVersionFull extends FileVersion {
   readonly versionNumber?: string;
-};
+  constructor(fields: FileVersionFull) {
+    super(fields);
+  }
+}
 export type FileVersionsOrderDirectionField = 'ASC' | 'DESC';
 export interface FileVersionsOrderField {
   readonly by?: string;
@@ -1143,22 +1364,27 @@ export interface FileVersions {
 }
 export type FileRequestTypeField = 'file_request';
 export type FileRequestStatusField = 'active' | 'inactive';
-export interface FileRequest {
-  readonly id: string;
-  readonly type: FileRequestTypeField;
+export class FileRequest {
+  readonly id!: string;
+  readonly type: FileRequestTypeField = 'file_request' as FileRequestTypeField;
   readonly title?: string;
   readonly description?: string;
   readonly status?: FileRequestStatusField;
   readonly isEmailRequired?: boolean;
   readonly isDescriptionRequired?: boolean;
   readonly expiresAt?: string;
-  readonly folder: FolderMini;
+  readonly folder!: FolderMini;
   readonly url?: string;
   readonly etag?: string;
   readonly createdBy?: UserMini;
-  readonly createdAt: string;
+  readonly createdAt!: string;
   readonly updatedBy?: UserMini;
-  readonly updatedAt: string;
+  readonly updatedAt!: string;
+  constructor(
+    fields: Omit<FileRequest, 'type'> | Partial<Pick<FileRequest, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface FilePathCollectionField {
   readonly totalCount: number;
@@ -1194,7 +1420,7 @@ export interface FileSharedLinkField {
   readonly previewCount: number;
 }
 export type FileItemStatusField = 'active' | 'trashed' | 'deleted';
-export type File = FileMini & {
+export class File extends FileMini {
   readonly description?: string;
   readonly size?: number;
   readonly pathCollection?: FilePathCollectionField;
@@ -1210,7 +1436,10 @@ export type File = FileMini & {
   readonly sharedLink?: FileSharedLinkField;
   readonly parent?: FolderMini;
   readonly itemStatus?: FileItemStatusField;
-};
+  constructor(fields: File) {
+    super(fields);
+  }
+}
 export interface FileFullPermissionsField {
   readonly canDelete: boolean;
   readonly canDownload: boolean;
@@ -1304,7 +1533,7 @@ export type FileFullSharedLinkPermissionOptionsField =
   | 'can_preview'
   | 'can_download'
   | 'can_edit';
-export type FileFull = File & {
+export class FileFull extends File {
   readonly versionNumber?: string;
   readonly commentCount?: number;
   readonly permissions?: FileFullPermissionsField;
@@ -1325,7 +1554,10 @@ export type FileFull = File & {
   readonly uploaderDisplayName?: string;
   readonly dispositionAt?: string;
   readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
-};
+  constructor(fields: FileFull) {
+    super(fields);
+  }
+}
 export interface Files {
   readonly totalCount?: number;
   readonly entries?: readonly FileFull[];
@@ -1568,16 +1800,24 @@ export type Webhook = WebhookMini & {
   readonly triggers?: readonly WebhookTriggersField[];
 };
 export type WebLinkBaseTypeField = 'web_link';
-export interface WebLinkBase {
-  readonly id: string;
-  readonly type: WebLinkBaseTypeField;
+export class WebLinkBase {
+  readonly id!: string;
+  readonly type: WebLinkBaseTypeField = 'web_link' as WebLinkBaseTypeField;
   readonly etag?: string;
+  constructor(
+    fields: Omit<WebLinkBase, 'type'> | Partial<Pick<WebLinkBase, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export type WebLinkMini = WebLinkBase & {
+export class WebLinkMini extends WebLinkBase {
   readonly url?: string;
   readonly sequenceId?: string;
   readonly name?: string;
-};
+  constructor(fields: WebLinkMini) {
+    super(fields);
+  }
+}
 export interface WebLinkPathCollectionField {
   readonly totalCount: number;
   readonly entries: readonly FolderMini[];
@@ -1612,7 +1852,7 @@ export interface WebLinkSharedLinkField {
   readonly previewCount: number;
 }
 export type WebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
-export type WebLink = WebLinkMini & {
+export class WebLink extends WebLinkMini {
   readonly parent?: FolderMini;
   readonly description?: string;
   readonly pathCollection?: WebLinkPathCollectionField;
@@ -1625,7 +1865,10 @@ export type WebLink = WebLinkMini & {
   readonly ownedBy?: UserMini;
   readonly sharedLink?: WebLinkSharedLinkField;
   readonly itemStatus?: WebLinkItemStatusField;
-};
+  constructor(fields: WebLink) {
+    super(fields);
+  }
+}
 export type FileFullOrFolderMiniOrWebLink = FileFull | FolderMini | WebLink;
 export type ItemsOrderDirectionField = 'ASC' | 'DESC';
 export interface ItemsOrderField {
@@ -1678,7 +1921,7 @@ export interface FolderFolderUploadEmailField {
   readonly email?: string;
 }
 export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
-export type Folder = FolderMini & {
+export class Folder extends FolderMini {
   readonly createdAt?: string;
   readonly modifiedAt?: string;
   readonly description?: string;
@@ -1696,7 +1939,10 @@ export type Folder = FolderMini & {
   readonly parent?: FolderMini;
   readonly itemStatus?: FolderItemStatusField;
   readonly itemCollection?: Items;
-};
+  constructor(fields: Folder) {
+    super(fields);
+  }
+}
 export type EventSourceOrFileOrFolderOrGenericSourceOrUser =
   | EventSource
   | File
@@ -1911,9 +2157,10 @@ export interface CollaborationAcceptanceRequirementsStatusField {
   readonly strongPasswordRequirement?: CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField;
   readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField;
 }
-export interface Collaboration {
-  readonly id: string;
-  readonly type: CollaborationTypeField;
+export class Collaboration {
+  readonly id!: string;
+  readonly type: CollaborationTypeField =
+    'collaboration' as CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   readonly inviteEmail?: string;
@@ -1926,6 +2173,11 @@ export interface Collaboration {
   readonly createdAt?: string;
   readonly modifiedAt?: string;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
+  constructor(
+    fields: Omit<Collaboration, 'type'> | Partial<Pick<Collaboration, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type CollaborationsOrderDirectionField = 'ASC' | 'DESC';
 export interface CollaborationsOrderField {
@@ -2092,7 +2344,7 @@ export interface FolderFullClassificationField {
   readonly definition?: string;
   readonly color?: string;
 }
-export type FolderFull = Folder & {
+export class FolderFull extends Folder {
   readonly syncState?: FolderFullSyncStateField;
   readonly hasCollaborations?: boolean;
   readonly permissions?: FolderFullPermissionsField;
@@ -2107,7 +2359,10 @@ export type FolderFull = Folder & {
   readonly isAccessibleViaSharedLink?: boolean;
   readonly canNonOwnersViewCollaborators?: boolean;
   readonly classification?: FolderFullClassificationField;
-};
+  constructor(fields: FolderFull) {
+    super(fields);
+  }
+}
 export type FileFullOrFolderFullOrWebLink = FileFull | FolderFull | WebLink;
 export interface SearchResultWithSharedLink {
   readonly accessibleViaSharedLink?: string;
@@ -2116,20 +2371,34 @@ export interface SearchResultWithSharedLink {
 }
 export type SearchResultsWithSharedLinksTypeField =
   'search_results_with_shared_links';
-export interface SearchResultsWithSharedLinks {
+export class SearchResultsWithSharedLinks {
   readonly totalCount?: number;
   readonly limit?: number;
   readonly offset?: number;
-  readonly type: SearchResultsWithSharedLinksTypeField;
+  readonly type: SearchResultsWithSharedLinksTypeField =
+    'search_results_with_shared_links' as SearchResultsWithSharedLinksTypeField;
   readonly entries?: readonly SearchResultWithSharedLink[];
+  constructor(
+    fields:
+      | Omit<SearchResultsWithSharedLinks, 'type'>
+      | Partial<Pick<SearchResultsWithSharedLinks, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type SearchResultsTypeField = 'search_results_items';
-export interface SearchResults {
+export class SearchResults {
   readonly totalCount?: number;
   readonly limit?: number;
   readonly offset?: number;
-  readonly type: SearchResultsTypeField;
+  readonly type: SearchResultsTypeField =
+    'search_results_items' as SearchResultsTypeField;
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
+  constructor(
+    fields: Omit<SearchResults, 'type'> | Partial<Pick<SearchResults, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type SearchResultsOrSearchResultsWithSharedLinks =
   | SearchResults
@@ -2295,22 +2564,48 @@ export type CompletionRuleVariableVariableTypeField = 'task_completion_rule';
 export type CompletionRuleVariableVariableValueField =
   | 'all_assignees'
   | 'any_assignees';
-export interface CompletionRuleVariable {
-  readonly type: CompletionRuleVariableTypeField;
-  readonly variableType: CompletionRuleVariableVariableTypeField;
-  readonly variableValue: CompletionRuleVariableVariableValueField;
+export class CompletionRuleVariable {
+  readonly type: CompletionRuleVariableTypeField =
+    'variable' as CompletionRuleVariableTypeField;
+  readonly variableType: CompletionRuleVariableVariableTypeField =
+    'task_completion_rule' as CompletionRuleVariableVariableTypeField;
+  readonly variableValue!: CompletionRuleVariableVariableValueField;
+  constructor(
+    fields:
+      | Omit<CompletionRuleVariable, 'type' | 'variableType'>
+      | Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type CollaboratorVariableTypeField = 'variable';
 export type CollaboratorVariableVariableTypeField = 'user_list';
 export type CollaboratorVariableVariableValueTypeField = 'user';
-export interface CollaboratorVariableVariableValueField {
-  readonly type: CollaboratorVariableVariableValueTypeField;
-  readonly id: string;
+export class CollaboratorVariableVariableValueField {
+  readonly type: CollaboratorVariableVariableValueTypeField =
+    'user' as CollaboratorVariableVariableValueTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<CollaboratorVariableVariableValueField, 'type'>
+      | Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export interface CollaboratorVariable {
-  readonly type: CollaboratorVariableTypeField;
-  readonly variableType: CollaboratorVariableVariableTypeField;
-  readonly variableValue: readonly CollaboratorVariableVariableValueField[];
+export class CollaboratorVariable {
+  readonly type: CollaboratorVariableTypeField =
+    'variable' as CollaboratorVariableTypeField;
+  readonly variableType: CollaboratorVariableVariableTypeField =
+    'user_list' as CollaboratorVariableVariableTypeField;
+  readonly variableValue!: readonly CollaboratorVariableVariableValueField[];
+  constructor(
+    fields:
+      | Omit<CollaboratorVariable, 'type' | 'variableType'>
+      | Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type KeywordSkillCardTypeField = 'skill_card';
 export type KeywordSkillCardSkillCardTypeField = 'keyword';
@@ -2319,58 +2614,109 @@ export interface KeywordSkillCardSkillCardTitleField {
   readonly message: string;
 }
 export type KeywordSkillCardSkillTypeField = 'service';
-export interface KeywordSkillCardSkillField {
-  readonly type: KeywordSkillCardSkillTypeField;
-  readonly id: string;
+export class KeywordSkillCardSkillField {
+  readonly type: KeywordSkillCardSkillTypeField =
+    'service' as KeywordSkillCardSkillTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<KeywordSkillCardSkillField, 'type'>
+      | Partial<Pick<KeywordSkillCardSkillField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type KeywordSkillCardInvocationTypeField = 'skill_invocation';
-export interface KeywordSkillCardInvocationField {
-  readonly type: KeywordSkillCardInvocationTypeField;
-  readonly id: string;
+export class KeywordSkillCardInvocationField {
+  readonly type: KeywordSkillCardInvocationTypeField =
+    'skill_invocation' as KeywordSkillCardInvocationTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<KeywordSkillCardInvocationField, 'type'>
+      | Partial<Pick<KeywordSkillCardInvocationField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface KeywordSkillCardEntriesField {
   readonly text?: string;
 }
-export interface KeywordSkillCard {
+export class KeywordSkillCard {
   readonly createdAt?: string;
-  readonly type: KeywordSkillCardTypeField;
-  readonly skillCardType: KeywordSkillCardSkillCardTypeField;
+  readonly type: KeywordSkillCardTypeField =
+    'skill_card' as KeywordSkillCardTypeField;
+  readonly skillCardType: KeywordSkillCardSkillCardTypeField =
+    'keyword' as KeywordSkillCardSkillCardTypeField;
   readonly skillCardTitle?: KeywordSkillCardSkillCardTitleField;
-  readonly skill: KeywordSkillCardSkillField;
-  readonly invocation: KeywordSkillCardInvocationField;
-  readonly entries: readonly KeywordSkillCardEntriesField[];
+  readonly skill!: KeywordSkillCardSkillField;
+  readonly invocation!: KeywordSkillCardInvocationField;
+  readonly entries!: readonly KeywordSkillCardEntriesField[];
+  constructor(
+    fields:
+      | Omit<KeywordSkillCard, 'type' | 'skillCardType'>
+      | Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface IntegrationMappingSlackOptions {
   readonly isAccessManagementDisabled?: boolean;
 }
 export type IntegrationMappingPartnerItemSlackTypeField = 'channel';
-export interface IntegrationMappingPartnerItemSlack {
-  readonly type: IntegrationMappingPartnerItemSlackTypeField;
-  readonly id: string;
+export class IntegrationMappingPartnerItemSlack {
+  readonly type: IntegrationMappingPartnerItemSlackTypeField =
+    'channel' as IntegrationMappingPartnerItemSlackTypeField;
+  readonly id!: string;
   readonly slackWorkspaceId?: string;
   readonly slackOrgId?: string;
+  constructor(
+    fields:
+      | Omit<IntegrationMappingPartnerItemSlack, 'type'>
+      | Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type IntegrationMappingTypeField = 'integration_mapping';
-export type IntegrationMapping = IntegrationMappingBase & {
-  readonly type: IntegrationMappingTypeField;
-  readonly partnerItem: IntegrationMappingPartnerItemSlack;
-  readonly boxItem: FolderMini;
+export class IntegrationMapping implements IntegrationMappingBase {
+  readonly id?: string;
+  readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
+  readonly type: IntegrationMappingTypeField =
+    'integration_mapping' as IntegrationMappingTypeField;
+  readonly partnerItem!: IntegrationMappingPartnerItemSlack;
+  readonly boxItem!: FolderMini;
   readonly isManuallyCreated?: boolean;
   readonly options?: IntegrationMappingSlackOptions;
   readonly createdBy?: UserIntegrationMappings;
   readonly modifiedBy?: UserIntegrationMappings;
   readonly createdAt?: string;
   readonly modifiedAt?: string;
-};
+  constructor(
+    fields:
+      | Omit<IntegrationMapping, 'type'>
+      | Partial<Pick<IntegrationMapping, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
+}
 export interface IntegrationMappings {
   readonly limit?: number;
   readonly nextMarker?: string;
   readonly entries?: readonly IntegrationMapping[];
 }
 export type IntegrationMappingBoxItemSlackTypeField = 'folder';
-export interface IntegrationMappingBoxItemSlack {
-  readonly type: IntegrationMappingBoxItemSlackTypeField;
-  readonly id: string;
+export class IntegrationMappingBoxItemSlack {
+  readonly type: IntegrationMappingBoxItemSlackTypeField =
+    'folder' as IntegrationMappingBoxItemSlackTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<IntegrationMappingBoxItemSlack, 'type'>
+      | Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface IntegrationMappingSlackCreateRequest {
   readonly partnerItem: IntegrationMappingPartnerItemSlack;
@@ -2387,10 +2733,18 @@ export type RoleVariableVariableValueField =
   | 'previewer uploader'
   | 'viewer uploader'
   | 'co-owner';
-export interface RoleVariable {
-  readonly type: RoleVariableTypeField;
-  readonly variableType: RoleVariableVariableTypeField;
-  readonly variableValue: RoleVariableVariableValueField;
+export class RoleVariable {
+  readonly type: RoleVariableTypeField = 'variable' as RoleVariableTypeField;
+  readonly variableType: RoleVariableVariableTypeField =
+    'collaborator_role' as RoleVariableVariableTypeField;
+  readonly variableValue!: RoleVariableVariableValueField;
+  constructor(
+    fields:
+      | Omit<RoleVariable, 'type' | 'variableType'>
+      | Partial<Pick<RoleVariable, 'type' | 'variableType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface Outcome {
   readonly id: string;
@@ -2407,14 +2761,30 @@ export interface TimelineSkillCardSkillCardTitleField {
   readonly message: string;
 }
 export type TimelineSkillCardSkillTypeField = 'service';
-export interface TimelineSkillCardSkillField {
-  readonly type: TimelineSkillCardSkillTypeField;
-  readonly id: string;
+export class TimelineSkillCardSkillField {
+  readonly type: TimelineSkillCardSkillTypeField =
+    'service' as TimelineSkillCardSkillTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<TimelineSkillCardSkillField, 'type'>
+      | Partial<Pick<TimelineSkillCardSkillField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TimelineSkillCardInvocationTypeField = 'skill_invocation';
-export interface TimelineSkillCardInvocationField {
-  readonly type: TimelineSkillCardInvocationTypeField;
-  readonly id: string;
+export class TimelineSkillCardInvocationField {
+  readonly type: TimelineSkillCardInvocationTypeField =
+    'skill_invocation' as TimelineSkillCardInvocationTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<TimelineSkillCardInvocationField, 'type'>
+      | Partial<Pick<TimelineSkillCardInvocationField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface TimelineSkillCardEntriesAppearsField {
   readonly start?: number;
@@ -2425,15 +2795,24 @@ export interface TimelineSkillCardEntriesField {
   readonly appears?: readonly TimelineSkillCardEntriesAppearsField[];
   readonly imageUrl?: string;
 }
-export interface TimelineSkillCard {
+export class TimelineSkillCard {
   readonly createdAt?: string;
-  readonly type: TimelineSkillCardTypeField;
-  readonly skillCardType: TimelineSkillCardSkillCardTypeField;
+  readonly type: TimelineSkillCardTypeField =
+    'skill_card' as TimelineSkillCardTypeField;
+  readonly skillCardType: TimelineSkillCardSkillCardTypeField =
+    'timeline' as TimelineSkillCardSkillCardTypeField;
   readonly skillCardTitle?: TimelineSkillCardSkillCardTitleField;
-  readonly skill: TimelineSkillCardSkillField;
-  readonly invocation: TimelineSkillCardInvocationField;
+  readonly skill!: TimelineSkillCardSkillField;
+  readonly invocation!: TimelineSkillCardInvocationField;
   readonly duration?: number;
-  readonly entries: readonly TimelineSkillCardEntriesField[];
+  readonly entries!: readonly TimelineSkillCardEntriesField[];
+  constructor(
+    fields:
+      | Omit<TimelineSkillCard, 'type' | 'skillCardType'>
+      | Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TranscriptSkillCardTypeField = 'skill_card';
 export type TranscriptSkillCardSkillCardTypeField = 'transcript';
@@ -2442,14 +2821,30 @@ export interface TranscriptSkillCardSkillCardTitleField {
   readonly message: string;
 }
 export type TranscriptSkillCardSkillTypeField = 'service';
-export interface TranscriptSkillCardSkillField {
-  readonly type: TranscriptSkillCardSkillTypeField;
-  readonly id: string;
+export class TranscriptSkillCardSkillField {
+  readonly type: TranscriptSkillCardSkillTypeField =
+    'service' as TranscriptSkillCardSkillTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<TranscriptSkillCardSkillField, 'type'>
+      | Partial<Pick<TranscriptSkillCardSkillField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type TranscriptSkillCardInvocationTypeField = 'skill_invocation';
-export interface TranscriptSkillCardInvocationField {
-  readonly type: TranscriptSkillCardInvocationTypeField;
-  readonly id: string;
+export class TranscriptSkillCardInvocationField {
+  readonly type: TranscriptSkillCardInvocationTypeField =
+    'skill_invocation' as TranscriptSkillCardInvocationTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<TranscriptSkillCardInvocationField, 'type'>
+      | Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface TranscriptSkillCardEntriesAppearsField {
   readonly start?: number;
@@ -2458,15 +2853,24 @@ export interface TranscriptSkillCardEntriesField {
   readonly text?: string;
   readonly appears?: readonly TranscriptSkillCardEntriesAppearsField[];
 }
-export interface TranscriptSkillCard {
+export class TranscriptSkillCard {
   readonly createdAt?: string;
-  readonly type: TranscriptSkillCardTypeField;
-  readonly skillCardType: TranscriptSkillCardSkillCardTypeField;
+  readonly type: TranscriptSkillCardTypeField =
+    'skill_card' as TranscriptSkillCardTypeField;
+  readonly skillCardType: TranscriptSkillCardSkillCardTypeField =
+    'transcript' as TranscriptSkillCardSkillCardTypeField;
   readonly skillCardTitle?: TranscriptSkillCardSkillCardTitleField;
-  readonly skill: TranscriptSkillCardSkillField;
-  readonly invocation: TranscriptSkillCardInvocationField;
+  readonly skill!: TranscriptSkillCardSkillField;
+  readonly invocation!: TranscriptSkillCardInvocationField;
   readonly duration?: number;
-  readonly entries: readonly TranscriptSkillCardEntriesField[];
+  readonly entries!: readonly TranscriptSkillCardEntriesField[];
+  constructor(
+    fields:
+      | Omit<TranscriptSkillCard, 'type' | 'skillCardType'>
+      | Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type StatusSkillCardTypeField = 'skill_card';
 export type StatusSkillCardSkillCardTypeField = 'status';
@@ -2485,23 +2889,48 @@ export interface StatusSkillCardStatusField {
   readonly message?: string;
 }
 export type StatusSkillCardSkillTypeField = 'service';
-export interface StatusSkillCardSkillField {
-  readonly type: StatusSkillCardSkillTypeField;
-  readonly id: string;
+export class StatusSkillCardSkillField {
+  readonly type: StatusSkillCardSkillTypeField =
+    'service' as StatusSkillCardSkillTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<StatusSkillCardSkillField, 'type'>
+      | Partial<Pick<StatusSkillCardSkillField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type StatusSkillCardInvocationTypeField = 'skill_invocation';
-export interface StatusSkillCardInvocationField {
-  readonly type: StatusSkillCardInvocationTypeField;
-  readonly id: string;
+export class StatusSkillCardInvocationField {
+  readonly type: StatusSkillCardInvocationTypeField =
+    'skill_invocation' as StatusSkillCardInvocationTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<StatusSkillCardInvocationField, 'type'>
+      | Partial<Pick<StatusSkillCardInvocationField, 'type'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
-export interface StatusSkillCard {
+export class StatusSkillCard {
   readonly createdAt?: string;
-  readonly type: StatusSkillCardTypeField;
-  readonly skillCardType: StatusSkillCardSkillCardTypeField;
+  readonly type: StatusSkillCardTypeField =
+    'skill_card' as StatusSkillCardTypeField;
+  readonly skillCardType: StatusSkillCardSkillCardTypeField =
+    'status' as StatusSkillCardSkillCardTypeField;
   readonly skillCardTitle?: StatusSkillCardSkillCardTitleField;
-  readonly status: StatusSkillCardStatusField;
-  readonly skill: StatusSkillCardSkillField;
-  readonly invocation: StatusSkillCardInvocationField;
+  readonly status!: StatusSkillCardStatusField;
+  readonly skill!: StatusSkillCardSkillField;
+  readonly invocation!: StatusSkillCardInvocationField;
+  constructor(
+    fields:
+      | Omit<StatusSkillCard, 'type' | 'skillCardType'>
+      | Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard =
   KeywordSkillCard | StatusSkillCard | TimelineSkillCard | TranscriptSkillCard;
@@ -2792,7 +3221,7 @@ export interface UserFullEnterpriseField {
   readonly type?: UserFullEnterpriseTypeField;
   readonly name?: string;
 }
-export type UserFull = User & {
+export class UserFull extends User {
   readonly role?: UserFullRoleField;
   readonly trackingCodes?: readonly TrackingCode[];
   readonly canSeeManagedUsers?: boolean;
@@ -2805,7 +3234,10 @@ export type UserFull = User & {
   readonly hostname?: string;
   readonly isPlatformAccessOnly?: boolean;
   readonly externalAppUserId?: string;
-};
+  constructor(fields: UserFull) {
+    super(fields);
+  }
+}
 export type UsersOrderDirectionField = 'ASC' | 'DESC';
 export interface UsersOrderField {
   readonly by?: string;

@@ -8,8 +8,6 @@ import { serializeCreateStoragePolicyAssignmentRequestBody } from '../managers/s
 import { deserializeCreateStoragePolicyAssignmentRequestBody } from '../managers/storagePolicyAssignments.generated.js';
 import { serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
 import { deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
-import { serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
-import { deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField } from '../managers/storagePolicyAssignments.generated.js';
 import { deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToField } from '../managers/storagePolicyAssignments.generated.js';
 import { serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField } from '../managers/storagePolicyAssignments.generated.js';
@@ -26,15 +24,12 @@ import { serializeUpdateStoragePolicyAssignmentByIdRequestBody } from '../manage
 import { deserializeUpdateStoragePolicyAssignmentByIdRequestBody } from '../managers/storagePolicyAssignments.generated.js';
 import { serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
 import { deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
-import { serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
-import { deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { StoragePolicyAssignment } from '../schemas.generated.js';
 import { StoragePolicyAssignments } from '../schemas.generated.js';
 import { GetStoragePolicyAssignmentsQueryParams } from '../managers/storagePolicyAssignments.generated.js';
 import { GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { CreateStoragePolicyAssignmentRequestBody } from '../managers/storagePolicyAssignments.generated.js';
 import { CreateStoragePolicyAssignmentRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
-import { CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { CreateStoragePolicyAssignmentRequestBodyAssignedToField } from '../managers/storagePolicyAssignments.generated.js';
 import { CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { UserFull } from '../schemas.generated.js';
@@ -43,7 +38,6 @@ import { StoragePolicies } from '../schemas.generated.js';
 import { StoragePolicy } from '../schemas.generated.js';
 import { UpdateStoragePolicyAssignmentByIdRequestBody } from '../managers/storagePolicyAssignments.generated.js';
 import { UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
-import { UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField } from '../managers/storagePolicyAssignments.generated.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -80,10 +74,10 @@ export async function getOrCreateStoragePolicyAssignment(
   }
   const storagePolicyAssignment: StoragePolicyAssignment =
     await client.storagePolicyAssignments.createStoragePolicyAssignment({
-      storagePolicy: {
-        id: policyId,
-        type: 'storage_policy' as CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField,
-      } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyField,
+      storagePolicy:
+        new CreateStoragePolicyAssignmentRequestBodyStoragePolicyField({
+          id: policyId,
+        }),
       assignedTo: {
         id: userId,
         type: 'user' as CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField,
@@ -135,10 +129,10 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
     await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
       storagePolicyAssignment.id,
       {
-        storagePolicy: {
-          id: storagePolicy2.id,
-          type: 'storage_policy' as UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField,
-        } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
+        storagePolicy:
+          new UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField({
+            id: storagePolicy2.id,
+          }),
       } satisfies UpdateStoragePolicyAssignmentByIdRequestBody
     );
   if (

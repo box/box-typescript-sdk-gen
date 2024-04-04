@@ -52,14 +52,10 @@ See the endpoint docs at
 
 ```ts
 await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
-  tos: {
-    type: 'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField,
-    id: tos.id,
-  } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField,
-  user: {
-    type: 'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField,
+  tos: new CreateTermsOfServiceStatusForUserRequestBodyTosField({ id: tos.id }),
+  user: new CreateTermsOfServiceStatusForUserRequestBodyUserField({
     id: user.id,
-  } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField,
+  }),
   isAccepted: false,
 } satisfies CreateTermsOfServiceStatusForUserRequestBody);
 ```

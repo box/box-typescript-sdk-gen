@@ -43,14 +43,34 @@ export class GetTermsOfServiceUserStatusesHeaders {
 }
 export type CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
   'terms_of_service';
-export interface CreateTermsOfServiceStatusForUserRequestBodyTosField {
-  readonly type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
-  readonly id: string;
+export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
+  readonly type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
+    'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'>
+      | Partial<
+          Pick<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'>
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export type CreateTermsOfServiceStatusForUserRequestBodyUserTypeField = 'user';
-export interface CreateTermsOfServiceStatusForUserRequestBodyUserField {
-  readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
-  readonly id: string;
+export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
+  readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
+    'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
+  readonly id!: string;
+  constructor(
+    fields:
+      | Omit<CreateTermsOfServiceStatusForUserRequestBodyUserField, 'type'>
+      | Partial<
+          Pick<CreateTermsOfServiceStatusForUserRequestBodyUserField, 'type'>
+        >
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export interface CreateTermsOfServiceStatusForUserRequestBody {
   readonly tos: CreateTermsOfServiceStatusForUserRequestBodyTosField;

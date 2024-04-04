@@ -52,10 +52,19 @@ export class AddClassificationToFolderHeaders {
 export type UpdateClassificationOnFolderRequestBodyOpField = 'replace';
 export type UpdateClassificationOnFolderRequestBodyPathField =
   '/Box__Security__Classification__Key';
-export interface UpdateClassificationOnFolderRequestBody {
-  readonly op: UpdateClassificationOnFolderRequestBodyOpField;
-  readonly path: UpdateClassificationOnFolderRequestBodyPathField;
-  readonly value: string;
+export class UpdateClassificationOnFolderRequestBody {
+  readonly op: UpdateClassificationOnFolderRequestBodyOpField =
+    'replace' as UpdateClassificationOnFolderRequestBodyOpField;
+  readonly path: UpdateClassificationOnFolderRequestBodyPathField =
+    '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField;
+  readonly value!: string;
+  constructor(
+    fields:
+      | Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>
+      | Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>
+  ) {
+    Object.assign(this, fields);
+  }
 }
 export class UpdateClassificationOnFolderHeaders {
   readonly extraHeaders?: {

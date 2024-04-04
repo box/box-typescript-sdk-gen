@@ -84,7 +84,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
   const segmentToRestrictId: string = segmentToRestrict.id!;
   const segmentRestriction: ShieldInformationBarrierSegmentRestriction =
     await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
-      {
+      new CreateShieldInformationBarrierSegmentRestrictionRequestBody({
         restrictedSegment: {
           id: segmentToRestrictId,
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField,
@@ -94,7 +94,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
         } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
         type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-      } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBody
+      })
     );
   const segmentRestrictionId: string = segmentRestriction.id!;
   if (!(segmentRestriction.shieldInformationBarrierSegment.id == segmentId)) {

@@ -30,7 +30,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-test('shieldInformationBarrierReports', async function shieldInformationBarrierReports(): Promise<any> {
+test('testShieldInformationBarrierReports', async function testShieldInformationBarrierReports(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
     getEnvVar('USER_ID')
   );

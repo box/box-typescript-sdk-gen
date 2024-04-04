@@ -18,8 +18,6 @@ import { serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldIn
 import { deserializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField } from '../managers/shieldInformationBarrierSegmentMembers.generated.js';
 import { serializeUserBase } from '../schemas.generated.js';
 import { deserializeUserBase } from '../schemas.generated.js';
-import { serializeUserBaseTypeField } from '../schemas.generated.js';
-import { deserializeUserBaseTypeField } from '../schemas.generated.js';
 import { serializeShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -33,7 +31,6 @@ import { CreateShieldInformationBarrierSegmentMemberRequestBody } from '../manag
 import { CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField } from '../managers/shieldInformationBarrierSegmentMembers.generated.js';
 import { CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField } from '../managers/shieldInformationBarrierSegmentMembers.generated.js';
 import { UserBase } from '../schemas.generated.js';
-import { UserBaseTypeField } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegmentMembers } from '../schemas.generated.js';
 import { GetShieldInformationBarrierSegmentMembersQueryParams } from '../managers/shieldInformationBarrierSegmentMembers.generated.js';
 import { getEnvVar } from '../internal/utils.js';
@@ -76,10 +73,7 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
           id: segment.id!,
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField,
         } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
-        user: {
-          id: getEnvVar('USER_ID'),
-          type: 'user' as UserBaseTypeField,
-        } satisfies UserBase,
+        user: new UserBase({ id: getEnvVar('USER_ID') }),
       } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
     );
   if (!(segmentMember.user!.id == getEnvVar('USER_ID'))) {

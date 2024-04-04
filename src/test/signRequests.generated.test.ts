@@ -10,12 +10,8 @@ import { serializeSignRequestCreateSigner } from '../schemas.generated.js';
 import { deserializeSignRequestCreateSigner } from '../schemas.generated.js';
 import { serializeFolderMini } from '../schemas.generated.js';
 import { deserializeFolderMini } from '../schemas.generated.js';
-import { serializeFolderBaseTypeField } from '../schemas.generated.js';
-import { deserializeFolderBaseTypeField } from '../schemas.generated.js';
 import { serializeFileBase } from '../schemas.generated.js';
 import { deserializeFileBase } from '../schemas.generated.js';
-import { serializeFileBaseTypeField } from '../schemas.generated.js';
-import { deserializeFileBaseTypeField } from '../schemas.generated.js';
 import { serializeSignRequests } from '../schemas.generated.js';
 import { deserializeSignRequests } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -25,9 +21,7 @@ import { SignRequest } from '../schemas.generated.js';
 import { SignRequestCreateRequest } from '../schemas.generated.js';
 import { SignRequestCreateSigner } from '../schemas.generated.js';
 import { FolderMini } from '../schemas.generated.js';
-import { FolderBaseTypeField } from '../schemas.generated.js';
 import { FileBase } from '../schemas.generated.js';
-import { FileBaseTypeField } from '../schemas.generated.js';
 import { SignRequests } from '../schemas.generated.js';
 import { DeleteFolderByIdQueryParams } from '../managers/folders.generated.js';
 import { getUuid } from '../internal/utils.js';
@@ -51,16 +45,8 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
   const createdSignRequest: SignRequest =
     await client.signRequests.createSignRequest({
       signers: [{ email: signerEmail } satisfies SignRequestCreateSigner],
-      parentFolder: {
-        id: destinationFolder.id,
-        type: 'folder' as FolderBaseTypeField,
-      } satisfies FolderMini,
-      sourceFiles: [
-        {
-          id: fileToSign.id,
-          type: 'file' as FileBaseTypeField,
-        } satisfies FileBase,
-      ],
+      parentFolder: new FolderMini({ id: destinationFolder.id }),
+      sourceFiles: [new FileBase({ id: fileToSign.id })],
     } satisfies SignRequestCreateRequest);
   if (!(createdSignRequest.signFiles!.files![0].name == fileToSign.name)) {
     throw new Error('Assertion failed');
@@ -116,16 +102,8 @@ test('testCreateSignRequestWithSignerGroupId', async function testCreateSignRequ
           signerGroupId: 'user',
         } satisfies SignRequestCreateSigner,
       ],
-      parentFolder: {
-        id: destinationFolder.id,
-        type: 'folder' as FolderBaseTypeField,
-      } satisfies FolderMini,
-      sourceFiles: [
-        {
-          id: fileToSign.id,
-          type: 'file' as FileBaseTypeField,
-        } satisfies FileBase,
-      ],
+      parentFolder: new FolderMini({ id: destinationFolder.id }),
+      sourceFiles: [new FileBase({ id: fileToSign.id })],
     } satisfies SignRequestCreateRequest);
   if (!(createdSignRequest.signers!.length == 3)) {
     throw new Error('Assertion failed');

@@ -10,12 +10,8 @@ import { serializeCreateTermsOfServiceStatusForUserRequestBody } from '../manage
 import { deserializeCreateTermsOfServiceStatusForUserRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { serializeCreateTermsOfServiceStatusForUserRequestBodyTosField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { serializeCreateTermsOfServiceStatusForUserRequestBodyUserField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { serializeUpdateTermsOfServiceStatusForUserByIdRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { deserializeUpdateTermsOfServiceStatusForUserByIdRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { serializeTermsOfServiceUserStatuses } from '../schemas.generated.js';
@@ -27,9 +23,7 @@ import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { TermsOfServiceUserStatus } from '../schemas.generated.js';
 import { CreateTermsOfServiceStatusForUserRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { CreateTermsOfServiceStatusForUserRequestBodyTosField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { CreateTermsOfServiceStatusForUserRequestBodyTosTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { CreateTermsOfServiceStatusForUserRequestBodyUserField } from '../managers/termsOfServiceUserStatuses.generated.js';
-import { CreateTermsOfServiceStatusForUserRequestBodyUserTypeField } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { UpdateTermsOfServiceStatusForUserByIdRequestBody } from '../managers/termsOfServiceUserStatuses.generated.js';
 import { TermsOfServiceUserStatuses } from '../schemas.generated.js';
 import { GetTermsOfServiceUserStatusesQueryParams } from '../managers/termsOfServiceUserStatuses.generated.js';
@@ -57,14 +51,12 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
   } satisfies CreateUserRequestBody);
   const createdTosUserStatus: TermsOfServiceUserStatus =
     await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
-      tos: {
-        type: 'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField,
+      tos: new CreateTermsOfServiceStatusForUserRequestBodyTosField({
         id: tos.id,
-      } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField,
-      user: {
-        type: 'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField,
+      }),
+      user: new CreateTermsOfServiceStatusForUserRequestBodyUserField({
         id: user.id,
-      } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField,
+      }),
       isAccepted: false,
     } satisfies CreateTermsOfServiceStatusForUserRequestBody);
   if (!(createdTosUserStatus.isAccepted == false)) {

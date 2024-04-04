@@ -126,10 +126,7 @@ await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarri
       id: segment.id!,
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField,
     } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
-    user: {
-      id: getEnvVar('USER_ID'),
-      type: 'user' as UserBaseTypeField,
-    } satisfies UserBase,
+    user: new UserBase({ id: getEnvVar('USER_ID') }),
   } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
 );
 ```

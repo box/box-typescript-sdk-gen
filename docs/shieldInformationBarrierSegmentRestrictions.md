@@ -122,7 +122,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
-  {
+  new CreateShieldInformationBarrierSegmentRestrictionRequestBody({
     restrictedSegment: {
       id: segmentToRestrictId,
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField,
@@ -132,7 +132,7 @@ await client.shieldInformationBarrierSegmentRestrictions.createShieldInformation
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
     } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
     type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBody
+  })
 );
 ```
 

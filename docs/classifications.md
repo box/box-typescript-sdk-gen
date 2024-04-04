@@ -58,10 +58,7 @@ See the endpoint docs at
 
 ```ts
 await client.classifications.addClassification([
-  {
-    op: 'addEnumOption' as AddClassificationRequestBodyOpField,
-    fieldKey:
-      'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField,
+  new AddClassificationRequestBody({
     data: {
       key: getUuid(),
       staticConfig: {
@@ -71,7 +68,7 @@ await client.classifications.addClassification([
         } satisfies AddClassificationRequestBodyDataStaticConfigClassificationField,
       } satisfies AddClassificationRequestBodyDataStaticConfigField,
     } satisfies AddClassificationRequestBodyDataField,
-  } satisfies AddClassificationRequestBody,
+  }),
 ]);
 ```
 
@@ -110,10 +107,7 @@ See the endpoint docs at
 
 ```ts
 await client.classifications.updateClassification([
-  {
-    op: 'editEnumOption' as UpdateClassificationRequestBodyOpField,
-    fieldKey:
-      'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField,
+  new UpdateClassificationRequestBody({
     enumOptionKey: classification.key,
     data: {
       key: updatedClassificationName,
@@ -124,7 +118,7 @@ await client.classifications.updateClassification([
         } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField,
       } satisfies UpdateClassificationRequestBodyDataStaticConfigField,
     } satisfies UpdateClassificationRequestBodyDataField,
-  } satisfies UpdateClassificationRequestBody,
+  }),
 ]);
 ```
 

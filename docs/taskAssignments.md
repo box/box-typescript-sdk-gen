@@ -53,10 +53,10 @@ See the endpoint docs at
 
 ```ts
 await client.taskAssignments.createTaskAssignment({
-  task: {
+  task: new CreateTaskAssignmentRequestBodyTaskField({
     type: 'task' as CreateTaskAssignmentRequestBodyTaskTypeField,
     id: task.id!,
-  } satisfies CreateTaskAssignmentRequestBodyTaskField,
+  }),
   assignTo: {
     id: currentUser.id,
   } satisfies CreateTaskAssignmentRequestBodyAssignToField,
