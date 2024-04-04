@@ -86,7 +86,7 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
   const fileStream: ByteStream = generateByteStream(1024 * 1024);
   const uploadedFile: FileFull = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
-    fields: ['is_externally_owned' as '', 'has_collaborations' as ''],
+    fields: ['is_externally_owned' as string, 'has_collaborations' as string],
   } satisfies GetFileByIdQueryParams);
   if (!(file.isExternallyOwned == false)) {
     throw new Error('Assertion failed');
@@ -107,7 +107,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   await expect(async () => {
     await client.files.getFileById(
       uploadedFile.id,
-      { fields: ['name' as ''] } satisfies GetFileByIdQueryParams,
+      { fields: ['name' as string] } satisfies GetFileByIdQueryParams,
       new GetFileByIdHeaders({ extraHeaders: { ['if-none-match']: file.etag } })
     );
   }).rejects.toThrow();

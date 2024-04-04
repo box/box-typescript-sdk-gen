@@ -39,7 +39,12 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
     throw new Error('Assertion failed');
   }
   const groupById: GroupFull = await client.groups.getGroupById(group.id, {
-    fields: ['id' as '', 'name' as '', 'description' as '', 'group_type' as ''],
+    fields: [
+      'id' as string,
+      'name' as string,
+      'description' as string,
+      'group_type' as string,
+    ],
   } satisfies GetGroupByIdQueryParams);
   if (!(groupById.id == group.id)) {
     throw new Error('Assertion failed');
