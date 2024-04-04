@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/box/box-typescript-sdk-gen/compare/v0.5.2...v0.5.3) (2024-04-04)
+
+
+### Bug Fixes
+
+* **docs:** fixes for chunked uploads docs (box/box-codegen[#457](https://github.com/box/box-typescript-sdk-gen/issues/457)) ([#128](https://github.com/box/box-typescript-sdk-gen/issues/128)) ([c94dbf5](https://github.com/box/box-typescript-sdk-gen/commit/c94dbf5926010e2bec8fc54c317999957a2f3eab))
+
+
+### New Features and Enhancements
+
+* Assign default value to fields and args of type enum with only one value (box/box-codegen[#465](https://github.com/box/box-typescript-sdk-gen/issues/465)) ([#131](https://github.com/box/box-typescript-sdk-gen/issues/131)) ([bf4d58c](https://github.com/box/box-typescript-sdk-gen/commit/bf4d58c4c19c10f0ede27a4e9c4f7b3861bcd6f7))
+* Change `asUser` and `asEnterprise` method names (box/box-codegen[#464](https://github.com/box/box-typescript-sdk-gen/issues/464)) ([#125](https://github.com/box/box-typescript-sdk-gen/issues/125)) ([22c1907](https://github.com/box/box-typescript-sdk-gen/commit/22c19071723430498baa6aa5c5846b0249f061ca))
+* **transformers:** determineIsType (box/box-codegen[#148](https://github.com/box/box-typescript-sdk-gen/issues/148)) ([#129](https://github.com/box/box-typescript-sdk-gen/issues/129)) ([57ccdac](https://github.com/box/box-typescript-sdk-gen/commit/57ccdaca74f68b7e221a43bce967e983ef4b0fcf))
+
 ### [0.5.2](https://github.com/box/box-typescript-sdk-gen/compare/v0.5.1...v0.5.2) (2024-03-26)
 
 
