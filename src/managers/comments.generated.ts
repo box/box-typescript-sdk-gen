@@ -42,6 +42,13 @@ export class GetFileCommentsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileCommentsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetCommentByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -56,6 +63,13 @@ export class GetCommentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetCommentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateCommentByIdRequestBody {
   readonly message?: string;
@@ -75,6 +89,13 @@ export class UpdateCommentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateCommentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteCommentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -86,6 +107,13 @@ export class DeleteCommentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteCommentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateCommentRequestBodyItemTypeField = 'file' | 'comment';
 export interface CreateCommentRequestBodyItemField {
@@ -112,6 +140,13 @@ export class CreateCommentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateCommentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class CommentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -133,9 +168,12 @@ export class CommentsManager {
   async getFileComments(
     fileId: string,
     queryParams: GetFileCommentsQueryParams = {} satisfies GetFileCommentsQueryParams,
-    headers: GetFileCommentsHeaders = new GetFileCommentsHeaders({}),
+    headersInput: GetFileCommentsHeadersInput = new GetFileCommentsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Comments> {
+    const headers: any = new GetFileCommentsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -170,9 +208,12 @@ export class CommentsManager {
   async getCommentById(
     commentId: string,
     queryParams: GetCommentByIdQueryParams = {} satisfies GetCommentByIdQueryParams,
-    headers: GetCommentByIdHeaders = new GetCommentByIdHeaders({}),
+    headersInput: GetCommentByIdHeadersInput = new GetCommentByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
+    const headers: any = new GetCommentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -205,9 +246,14 @@ export class CommentsManager {
     commentId: string,
     requestBody: UpdateCommentByIdRequestBody = {} satisfies UpdateCommentByIdRequestBody,
     queryParams: UpdateCommentByIdQueryParams = {} satisfies UpdateCommentByIdQueryParams,
-    headers: UpdateCommentByIdHeaders = new UpdateCommentByIdHeaders({}),
+    headersInput: UpdateCommentByIdHeadersInput = new UpdateCommentByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
+    const headers: any = new UpdateCommentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -240,9 +286,14 @@ export class CommentsManager {
   }
   async deleteCommentById(
     commentId: string,
-    headers: DeleteCommentByIdHeaders = new DeleteCommentByIdHeaders({}),
+    headersInput: DeleteCommentByIdHeadersInput = new DeleteCommentByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteCommentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -266,9 +317,12 @@ export class CommentsManager {
   async createComment(
     requestBody: CreateCommentRequestBody,
     queryParams: CreateCommentQueryParams = {} satisfies CreateCommentQueryParams,
-    headers: CreateCommentHeaders = new CreateCommentHeaders({}),
+    headersInput: CreateCommentHeadersInput = new CreateCommentHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<CommentFull> {
+    const headers: any = new CreateCommentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -295,6 +349,10 @@ export class CommentsManager {
     )) as FetchResponse;
     return deserializeCommentFull(response.data);
   }
+}
+export interface CommentsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCommentByIdRequestBody(
   val: any

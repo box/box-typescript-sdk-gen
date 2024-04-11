@@ -41,6 +41,13 @@ export class GetShieldInformationBarrierSegmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetShieldInformationBarrierSegmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UpdateShieldInformationBarrierSegmentByIdRequestBody {
   readonly name?: string;
   readonly description?: string;
@@ -59,6 +66,13 @@ export class UpdateShieldInformationBarrierSegmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateShieldInformationBarrierSegmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteShieldInformationBarrierSegmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +86,13 @@ export class DeleteShieldInformationBarrierSegmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteShieldInformationBarrierSegmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface GetShieldInformationBarrierSegmentsQueryParams {
   readonly shieldInformationBarrierId: string;
@@ -92,6 +113,13 @@ export class GetShieldInformationBarrierSegmentsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetShieldInformationBarrierSegmentsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CreateShieldInformationBarrierSegmentRequestBody {
   readonly shieldInformationBarrier: ShieldInformationBarrierBase;
   readonly name: string;
@@ -110,6 +138,13 @@ export class CreateShieldInformationBarrierSegmentHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateShieldInformationBarrierSegmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class ShieldInformationBarrierSegmentsManager {
   readonly auth?: Authentication;
@@ -131,11 +166,14 @@ export class ShieldInformationBarrierSegmentsManager {
   }
   async getShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
-    headers: GetShieldInformationBarrierSegmentByIdHeaders = new GetShieldInformationBarrierSegmentByIdHeaders(
+    headersInput: GetShieldInformationBarrierSegmentByIdHeadersInput = new GetShieldInformationBarrierSegmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegment> {
+    const headers: any = new GetShieldInformationBarrierSegmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -159,11 +197,14 @@ export class ShieldInformationBarrierSegmentsManager {
   async updateShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
     requestBody: UpdateShieldInformationBarrierSegmentByIdRequestBody = {} satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody,
-    headers: UpdateShieldInformationBarrierSegmentByIdHeaders = new UpdateShieldInformationBarrierSegmentByIdHeaders(
+    headersInput: UpdateShieldInformationBarrierSegmentByIdHeadersInput = new UpdateShieldInformationBarrierSegmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegment> {
+    const headers: any = new UpdateShieldInformationBarrierSegmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -190,11 +231,14 @@ export class ShieldInformationBarrierSegmentsManager {
   }
   async deleteShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
-    headers: DeleteShieldInformationBarrierSegmentByIdHeaders = new DeleteShieldInformationBarrierSegmentByIdHeaders(
+    headersInput: DeleteShieldInformationBarrierSegmentByIdHeadersInput = new DeleteShieldInformationBarrierSegmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteShieldInformationBarrierSegmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -217,11 +261,14 @@ export class ShieldInformationBarrierSegmentsManager {
   }
   async getShieldInformationBarrierSegments(
     queryParams: GetShieldInformationBarrierSegmentsQueryParams,
-    headers: GetShieldInformationBarrierSegmentsHeaders = new GetShieldInformationBarrierSegmentsHeaders(
+    headersInput: GetShieldInformationBarrierSegmentsHeadersInput = new GetShieldInformationBarrierSegmentsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegments> {
+    const headers: any = new GetShieldInformationBarrierSegmentsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -253,11 +300,14 @@ export class ShieldInformationBarrierSegmentsManager {
   }
   async createShieldInformationBarrierSegment(
     requestBody: CreateShieldInformationBarrierSegmentRequestBody,
-    headers: CreateShieldInformationBarrierSegmentHeaders = new CreateShieldInformationBarrierSegmentHeaders(
+    headersInput: CreateShieldInformationBarrierSegmentHeadersInput = new CreateShieldInformationBarrierSegmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierSegment> {
+    const headers: any = new CreateShieldInformationBarrierSegmentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -281,6 +331,10 @@ export class ShieldInformationBarrierSegmentsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegment(response.data);
   }
+}
+export interface ShieldInformationBarrierSegmentsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   val: any

@@ -18,6 +18,7 @@ import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkField } from '../ma
 import { deserializeUpdateSharedLinkOnFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
 import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { FindFileForSharedLinkHeadersInput } from '../managers/sharedLinksFiles.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -81,13 +82,13 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   const fileFromSharedLinkPassword: FileFull =
     await userClient.sharedLinksFiles.findFileForSharedLink(
       {} satisfies FindFileForSharedLinkQueryParams,
-      new FindFileForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
           '&shared_link_password=Secret123@'
         ) as string,
-      })
+      } satisfies FindFileForSharedLinkHeadersInput
     );
   if (!(fileId == fileFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -95,13 +96,13 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   await expect(async () => {
     await userClient.sharedLinksFiles.findFileForSharedLink(
       {} satisfies FindFileForSharedLinkQueryParams,
-      new FindFileForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
           '&shared_link_password=incorrectPassword'
         ) as string,
-      })
+      } satisfies FindFileForSharedLinkHeadersInput
     );
   }).rejects.toThrow();
   const updatedFile: FileFull =

@@ -41,6 +41,13 @@ export class GetTermsOfServiceUserStatusesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetTermsOfServiceUserStatusesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
   'terms_of_service';
 export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
@@ -57,6 +64,10 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
     Object.assign(this, fields);
   }
 }
+export interface CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
+  readonly type?: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
+  readonly id: string;
+}
 export type CreateTermsOfServiceStatusForUserRequestBodyUserTypeField = 'user';
 export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
   readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
@@ -71,6 +82,10 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
+  readonly type?: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
+  readonly id: string;
 }
 export interface CreateTermsOfServiceStatusForUserRequestBody {
   readonly tos: CreateTermsOfServiceStatusForUserRequestBodyTosField;
@@ -89,6 +104,13 @@ export class CreateTermsOfServiceStatusForUserHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateTermsOfServiceStatusForUserHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UpdateTermsOfServiceStatusForUserByIdRequestBody {
   readonly isAccepted: boolean;
 }
@@ -105,6 +127,13 @@ export class UpdateTermsOfServiceStatusForUserByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface UpdateTermsOfServiceStatusForUserByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class TermsOfServiceUserStatusesManager {
   readonly auth?: Authentication;
@@ -124,11 +153,14 @@ export class TermsOfServiceUserStatusesManager {
   }
   async getTermsOfServiceUserStatuses(
     queryParams: GetTermsOfServiceUserStatusesQueryParams,
-    headers: GetTermsOfServiceUserStatusesHeaders = new GetTermsOfServiceUserStatusesHeaders(
+    headersInput: GetTermsOfServiceUserStatusesHeadersInput = new GetTermsOfServiceUserStatusesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatuses> {
+    const headers: any = new GetTermsOfServiceUserStatusesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -157,11 +189,14 @@ export class TermsOfServiceUserStatusesManager {
   }
   async createTermsOfServiceStatusForUser(
     requestBody: CreateTermsOfServiceStatusForUserRequestBody,
-    headers: CreateTermsOfServiceStatusForUserHeaders = new CreateTermsOfServiceStatusForUserHeaders(
+    headersInput: CreateTermsOfServiceStatusForUserHeadersInput = new CreateTermsOfServiceStatusForUserHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatus> {
+    const headers: any = new CreateTermsOfServiceStatusForUserHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -188,11 +223,14 @@ export class TermsOfServiceUserStatusesManager {
   async updateTermsOfServiceStatusForUserById(
     termsOfServiceUserStatusId: string,
     requestBody: UpdateTermsOfServiceStatusForUserByIdRequestBody,
-    headers: UpdateTermsOfServiceStatusForUserByIdHeaders = new UpdateTermsOfServiceStatusForUserByIdHeaders(
+    headersInput: UpdateTermsOfServiceStatusForUserByIdHeadersInput = new UpdateTermsOfServiceStatusForUserByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfServiceUserStatus> {
+    const headers: any = new UpdateTermsOfServiceStatusForUserByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -217,6 +255,10 @@ export class TermsOfServiceUserStatusesManager {
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatus(response.data);
   }
+}
+export interface TermsOfServiceUserStatusesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
   val: any
@@ -262,6 +304,36 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
     id: id,
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField;
 }
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
+            val.type
+          ),
+    ['id']: val.id,
+  };
+}
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
+  val: any
+): CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
+  const type:
+    | undefined
+    | CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
+          val.type
+        );
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput;
+}
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
   val: any
 ): SerializedData {
@@ -306,6 +378,36 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
     type: type,
     id: id,
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField;
+}
+export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
+            val.type
+          ),
+    ['id']: val.id,
+  };
+}
+export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
+  val: any
+): CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
+  const type:
+    | undefined
+    | CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
+          val.type
+        );
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBody(
   val: any

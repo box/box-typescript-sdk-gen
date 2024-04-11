@@ -43,6 +43,13 @@ export class CreateWebLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateWebLinkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetWebLinkByIdHeaders {
   readonly boxapi?: string;
   readonly extraHeaders?: {
@@ -55,6 +62,14 @@ export class GetWebLinkByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetWebLinkByIdHeadersInput {
+  readonly boxapi?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateWebLinkByIdRequestBodyParentField {
   readonly id?: string;
@@ -88,6 +103,13 @@ export class UpdateWebLinkByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateWebLinkByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -99,6 +121,13 @@ export class DeleteWebLinkByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteWebLinkByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class WebLinksManager {
   readonly auth?: Authentication;
@@ -119,9 +148,12 @@ export class WebLinksManager {
   }
   async createWebLink(
     requestBody: CreateWebLinkRequestBody,
-    headers: CreateWebLinkHeaders = new CreateWebLinkHeaders({}),
+    headersInput: CreateWebLinkHeadersInput = new CreateWebLinkHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new CreateWebLinkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -142,9 +174,13 @@ export class WebLinksManager {
   }
   async getWebLinkById(
     webLinkId: string,
-    headers: GetWebLinkByIdHeaders = new GetWebLinkByIdHeaders({}),
+    headersInput: GetWebLinkByIdHeadersInput = new GetWebLinkByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new GetWebLinkByIdHeaders({
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -171,9 +207,14 @@ export class WebLinksManager {
   async updateWebLinkById(
     webLinkId: string,
     requestBody: UpdateWebLinkByIdRequestBody = {} satisfies UpdateWebLinkByIdRequestBody,
-    headers: UpdateWebLinkByIdHeaders = new UpdateWebLinkByIdHeaders({}),
+    headersInput: UpdateWebLinkByIdHeadersInput = new UpdateWebLinkByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new UpdateWebLinkByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -198,9 +239,14 @@ export class WebLinksManager {
   }
   async deleteWebLinkById(
     webLinkId: string,
-    headers: DeleteWebLinkByIdHeaders = new DeleteWebLinkByIdHeaders({}),
+    headersInput: DeleteWebLinkByIdHeadersInput = new DeleteWebLinkByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteWebLinkByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -221,6 +267,10 @@ export class WebLinksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface WebLinksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebLinkRequestBodyParentField(
   val: any

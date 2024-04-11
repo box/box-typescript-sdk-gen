@@ -26,7 +26,7 @@ await client.shieldInformationBarriers.getShieldInformationBarrierById(
 
 - shieldInformationBarrierId `string`
   - The ID of the shield information barrier. Example: "1910967"
-- headers `GetShieldInformationBarrierByIdHeaders`
+- headersInput `GetShieldInformationBarrierByIdHeadersInput`
   - Headers of getShieldInformationBarrierById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -60,7 +60,7 @@ await client.shieldInformationBarriers.updateShieldInformationBarrierStatus({
 
 - requestBody `UpdateShieldInformationBarrierStatusRequestBody`
   - Request body of updateShieldInformationBarrierStatus method
-- headers `UpdateShieldInformationBarrierStatusHeaders`
+- headersInput `UpdateShieldInformationBarrierStatusHeadersInput`
   - Headers of updateShieldInformationBarrierStatus method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -91,7 +91,7 @@ await client.shieldInformationBarriers.getShieldInformationBarriers();
 
 - queryParams `GetShieldInformationBarriersQueryParams`
   - Query parameters of getShieldInformationBarriers method
-- headers `GetShieldInformationBarriersHeaders`
+- headersInput `GetShieldInformationBarriersHeadersInput`
   - Headers of getShieldInformationBarriers method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -127,7 +127,7 @@ await client.shieldInformationBarriers.createShieldInformationBarrier({
 
 - requestBody `CreateShieldInformationBarrierRequestBody`
   - Request body of createShieldInformationBarrier method
-- headers `CreateShieldInformationBarrierHeaders`
+- headersInput `CreateShieldInformationBarrierHeadersInput`
   - Headers of createShieldInformationBarrier method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

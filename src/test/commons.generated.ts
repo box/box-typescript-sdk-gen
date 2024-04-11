@@ -46,6 +46,9 @@ import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { serializeTermsOfService } from '../schemas.generated.js';
 import { deserializeTermsOfService } from '../schemas.generated.js';
+import { ClassificationTemplateInput } from '../schemas.generated.js';
+import { CreateClassificationTemplateRequestBodyInput } from '../managers/classifications.generated.js';
+import { BoxClientInput } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
@@ -148,8 +151,18 @@ export async function getOrCreateTermsOfServices(): Promise<TermsOfService> {
   } satisfies CreateTermsOfServiceRequestBody);
 }
 export async function getOrCreateClassification(
-  classificationTemplate: ClassificationTemplate
+  classificationTemplateInput: ClassificationTemplateInput
 ): Promise<ClassificationTemplateFieldsOptionsField> {
+  const classificationTemplate: any = new ClassificationTemplate({
+    id: classificationTemplateInput.id,
+    type: classificationTemplateInput.type,
+    scope: classificationTemplateInput.scope,
+    templateKey: classificationTemplateInput.templateKey,
+    displayName: classificationTemplateInput.displayName,
+    hidden: classificationTemplateInput.hidden,
+    copyInstanceOnItemCopy: classificationTemplateInput.copyInstanceOnItemCopy,
+    fields: classificationTemplateInput.fields,
+  });
   const client: BoxClient = getDefaultClient();
   const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;
@@ -178,22 +191,22 @@ export async function getOrCreateClassificationTemplate(): Promise<Classificatio
   try {
     return await client.classifications.getClassificationTemplate();
   } catch (error) {
-    return await client.classifications.createClassificationTemplate(
-      new CreateClassificationTemplateRequestBody({
-        fields: [
-          new CreateClassificationTemplateRequestBodyFieldsField({
-            options: [],
-          }),
-        ],
-      })
-    );
+    return await client.classifications.createClassificationTemplate({
+      fields: [
+        new CreateClassificationTemplateRequestBodyFieldsField({ options: [] }),
+      ],
+    } satisfies CreateClassificationTemplateRequestBodyInput);
   } finally {
   }
 }
 export async function getOrCreateShieldInformationBarrier(
-  client: BoxClient,
+  clientInput: BoxClientInput,
   enterpriseId: string
 ): Promise<ShieldInformationBarrier> {
+  const client: any = new BoxClient({
+    auth: clientInput.auth,
+    networkSession: clientInput.networkSession,
+  });
   const barriers: ShieldInformationBarriers =
     await client.shieldInformationBarriers.getShieldInformationBarriers();
   const numberOfBarriers: number = barriers.entries!.length;

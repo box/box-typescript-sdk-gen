@@ -36,6 +36,15 @@ export class DownloadFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface DownloadFileHeadersInput {
+  readonly range?: string;
+  readonly boxapi?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DownloadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -49,9 +58,14 @@ export class DownloadsManager {
   async downloadFile(
     fileId: string,
     queryParams: DownloadFileQueryParams = {} satisfies DownloadFileQueryParams,
-    headers: DownloadFileHeaders = new DownloadFileHeaders({}),
+    headersInput: DownloadFileHeadersInput = new DownloadFileHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
+    const headers: any = new DownloadFileHeaders({
+      range: headersInput.range,
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -86,4 +100,8 @@ export class DownloadsManager {
     )) as FetchResponse;
     return response.content;
   }
+}
+export interface DownloadsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

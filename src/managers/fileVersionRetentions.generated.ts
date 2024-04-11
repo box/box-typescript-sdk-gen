@@ -50,6 +50,13 @@ export class GetFileVersionRetentionsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileVersionRetentionsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetFileVersionRetentionByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -61,6 +68,13 @@ export class GetFileVersionRetentionByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFileVersionRetentionByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileVersionRetentionsManager {
   readonly auth?: Authentication;
@@ -79,11 +93,14 @@ export class FileVersionRetentionsManager {
   }
   async getFileVersionRetentions(
     queryParams: GetFileVersionRetentionsQueryParams = {} satisfies GetFileVersionRetentionsQueryParams,
-    headers: GetFileVersionRetentionsHeaders = new GetFileVersionRetentionsHeaders(
+    headersInput: GetFileVersionRetentionsHeadersInput = new GetFileVersionRetentionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionRetentions> {
+    const headers: any = new GetFileVersionRetentionsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -118,11 +135,14 @@ export class FileVersionRetentionsManager {
   }
   async getFileVersionRetentionById(
     fileVersionRetentionId: string,
-    headers: GetFileVersionRetentionByIdHeaders = new GetFileVersionRetentionByIdHeaders(
+    headersInput: GetFileVersionRetentionByIdHeadersInput = new GetFileVersionRetentionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionRetention> {
+    const headers: any = new GetFileVersionRetentionByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -143,6 +163,10 @@ export class FileVersionRetentionsManager {
     )) as FetchResponse;
     return deserializeFileVersionRetention(response.data);
   }
+}
+export interface FileVersionRetentionsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetFileVersionRetentionsQueryParamsDispositionActionField(
   val: any

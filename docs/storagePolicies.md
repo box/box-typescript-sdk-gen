@@ -22,7 +22,7 @@ await client.storagePolicies.getStoragePolicies();
 
 - queryParams `GetStoragePoliciesQueryParams`
   - Query parameters of getStoragePolicies method
-- headers `GetStoragePoliciesHeaders`
+- headersInput `GetStoragePoliciesHeadersInput`
   - Headers of getStoragePolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -52,7 +52,7 @@ await client.storagePolicies.getStoragePolicyById(storagePolicy.id);
 
 - storagePolicyId `string`
   - The ID of the storage policy. Example: "34342"
-- headers `GetStoragePolicyByIdHeaders`
+- headersInput `GetStoragePolicyByIdHeadersInput`
   - Headers of getStoragePolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

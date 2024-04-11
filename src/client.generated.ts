@@ -1,5 +1,6 @@
 import { serializeBaseUrls } from './networking/baseUrls.generated.js';
 import { deserializeBaseUrls } from './networking/baseUrls.generated.js';
+import { BaseUrlsInput } from './networking/baseUrls.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
 import { FilesManager } from './managers/files.generated.js';
 import { TrashedFilesManager } from './managers/trashedFiles.generated.js';
@@ -541,7 +542,12 @@ export class BoxClient {
       networkSession: this.networkSession.withAdditionalHeaders(extraHeaders),
     });
   }
-  withCustomBaseUrls(baseUrls: BaseUrls): BoxClient {
+  withCustomBaseUrls(baseUrlsInput: BaseUrlsInput): BoxClient {
+    const baseUrls: any = new BaseUrls({
+      baseUrl: baseUrlsInput.baseUrl,
+      uploadUrl: baseUrlsInput.uploadUrl,
+      oauth2Url: baseUrlsInput.oauth2Url,
+    });
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
@@ -559,4 +565,8 @@ export class BoxClient {
       networkSession: this.networkSession.withInterceptors(interceptors),
     });
   }
+}
+export interface BoxClientInput {
+  readonly auth: Authentication;
+  readonly networkSession?: NetworkSession;
 }

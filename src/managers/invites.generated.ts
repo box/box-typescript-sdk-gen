@@ -46,6 +46,13 @@ export class CreateInviteHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateInviteHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetInviteByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -60,6 +67,13 @@ export class GetInviteByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetInviteByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class InvitesManager {
   readonly auth?: Authentication;
@@ -77,9 +91,12 @@ export class InvitesManager {
   async createInvite(
     requestBody: CreateInviteRequestBody,
     queryParams: CreateInviteQueryParams = {} satisfies CreateInviteQueryParams,
-    headers: CreateInviteHeaders = new CreateInviteHeaders({}),
+    headersInput: CreateInviteHeadersInput = new CreateInviteHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Invite> {
+    const headers: any = new CreateInviteHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -109,9 +126,12 @@ export class InvitesManager {
   async getInviteById(
     inviteId: string,
     queryParams: GetInviteByIdQueryParams = {} satisfies GetInviteByIdQueryParams,
-    headers: GetInviteByIdHeaders = new GetInviteByIdHeaders({}),
+    headersInput: GetInviteByIdHeadersInput = new GetInviteByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Invite> {
+    const headers: any = new GetInviteByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -140,6 +160,10 @@ export class InvitesManager {
     )) as FetchResponse;
     return deserializeInvite(response.data);
   }
+}
+export interface InvitesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateInviteRequestBodyEnterpriseField(
   val: any

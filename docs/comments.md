@@ -27,7 +27,7 @@ await client.comments.getFileComments(fileId);
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetFileCommentsQueryParams`
   - Query parameters of getFileComments method
-- headers `GetFileCommentsHeaders`
+- headersInput `GetFileCommentsHeadersInput`
   - Headers of getFileComments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -61,7 +61,7 @@ await client.comments.getCommentById(newComment.id!);
   - The ID of the comment. Example: "12345"
 - queryParams `GetCommentByIdQueryParams`
   - Query parameters of getCommentById method
-- headers `GetCommentByIdHeaders`
+- headersInput `GetCommentByIdHeadersInput`
   - Headers of getCommentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,7 +97,7 @@ await client.comments.updateCommentById(newReplyComment.id!, {
   - Request body of updateCommentById method
 - queryParams `UpdateCommentByIdQueryParams`
   - Query parameters of updateCommentById method
-- headers `UpdateCommentByIdHeaders`
+- headersInput `UpdateCommentByIdHeadersInput`
   - Headers of updateCommentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -127,7 +127,7 @@ await client.comments.deleteCommentById(newComment.id!);
 
 - commentId `string`
   - The ID of the comment. Example: "12345"
-- headers `DeleteCommentByIdHeaders`
+- headersInput `DeleteCommentByIdHeadersInput`
   - Headers of deleteCommentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -166,7 +166,7 @@ await client.comments.createComment({
   - Request body of createComment method
 - queryParams `CreateCommentQueryParams`
   - Query parameters of createComment method
-- headers `CreateCommentHeaders`
+- headersInput `CreateCommentHeadersInput`
   - Headers of createComment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -29,7 +29,7 @@ await this.createFileUploadSession(
     fileSize: fileSize,
     folderId: parentFolderId,
   } satisfies CreateFileUploadSessionRequestBody,
-  new CreateFileUploadSessionHeaders({}),
+  {} satisfies CreateFileUploadSessionHeadersInput,
   cancellationToken
 );
 ```
@@ -38,7 +38,7 @@ await this.createFileUploadSession(
 
 - requestBody `CreateFileUploadSessionRequestBody`
   - Request body of createFileUploadSession method
-- headers `CreateFileUploadSessionHeaders`
+- headersInput `CreateFileUploadSessionHeadersInput`
   - Headers of createFileUploadSession method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -66,7 +66,7 @@ _Currently we don't have an example for calling `createFileUploadSessionForExist
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileUploadSessionForExistingFileRequestBody`
   - Request body of createFileUploadSessionForExistingFile method
-- headers `CreateFileUploadSessionForExistingFileHeaders`
+- headersInput `CreateFileUploadSessionForExistingFileHeadersInput`
   - Headers of createFileUploadSessionForExistingFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -91,7 +91,7 @@ See the endpoint docs at
 ```ts
 await this.getFileUploadSessionById(
   uploadSessionId,
-  new GetFileUploadSessionByIdHeaders({}),
+  {} satisfies GetFileUploadSessionByIdHeadersInput,
   cancellationToken
 );
 ```
@@ -100,7 +100,7 @@ await this.getFileUploadSessionById(
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headers `GetFileUploadSessionByIdHeaders`
+- headersInput `GetFileUploadSessionByIdHeadersInput`
   - Headers of getFileUploadSessionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -126,7 +126,10 @@ See the endpoint docs at
 await this.uploadFilePart(
   acc.uploadSessionId,
   generateByteStreamFromBuffer(chunkBuffer),
-  new UploadFilePartHeaders({ digest: digest, contentRange: contentRange })
+  {
+    digest: digest,
+    contentRange: contentRange,
+  } satisfies UploadFilePartHeadersInput
 );
 ```
 
@@ -136,7 +139,7 @@ await this.uploadFilePart(
   - The ID of the upload session. Example: "D5E3F7A"
 - requestBody `ByteStream`
   - Request body of uploadFilePart method
-- headers `UploadFilePartHeaders`
+- headersInput `UploadFilePartHeadersInput`
   - Headers of uploadFilePart method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -164,7 +167,7 @@ _Currently we don't have an example for calling `deleteFileUploadSessionById` in
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headers `DeleteFileUploadSessionByIdHeaders`
+- headersInput `DeleteFileUploadSessionByIdHeadersInput`
   - Headers of deleteFileUploadSessionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -192,7 +195,7 @@ See the endpoint docs at
 await this.getFileUploadSessionParts(
   uploadSessionId,
   {} satisfies GetFileUploadSessionPartsQueryParams,
-  new GetFileUploadSessionPartsHeaders({}),
+  {} satisfies GetFileUploadSessionPartsHeadersInput,
   cancellationToken
 );
 ```
@@ -203,7 +206,7 @@ await this.getFileUploadSessionParts(
   - The ID of the upload session. Example: "D5E3F7A"
 - queryParams `GetFileUploadSessionPartsQueryParams`
   - Query parameters of getFileUploadSessionParts method
-- headers `GetFileUploadSessionPartsHeaders`
+- headersInput `GetFileUploadSessionPartsHeadersInput`
   - Headers of getFileUploadSessionParts method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -230,7 +233,7 @@ See the endpoint docs at
 await this.createFileUploadSessionCommit(
   uploadSessionId,
   { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
-  new CreateFileUploadSessionCommitHeaders({ digest: digest }),
+  { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
   cancellationToken
 );
 ```
@@ -241,7 +244,7 @@ await this.createFileUploadSessionCommit(
   - The ID of the upload session. Example: "D5E3F7A"
 - requestBody `CreateFileUploadSessionCommitRequestBody`
   - Request body of createFileUploadSessionCommit method
-- headers `CreateFileUploadSessionCommitHeaders`
+- headersInput `CreateFileUploadSessionCommitHeadersInput`
   - Headers of createFileUploadSessionCommit method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

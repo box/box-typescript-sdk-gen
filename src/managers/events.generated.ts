@@ -163,6 +163,13 @@ export class GetEventsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetEventsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetEventsWithLongPollingHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -174,6 +181,13 @@ export class GetEventsWithLongPollingHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetEventsWithLongPollingHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class EventsManager {
   readonly auth?: Authentication;
@@ -190,9 +204,12 @@ export class EventsManager {
   }
   async getEvents(
     queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,
-    headers: GetEventsHeaders = new GetEventsHeaders({}),
+    headersInput: GetEventsHeadersInput = new GetEventsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Events> {
+    const headers: any = new GetEventsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -223,11 +240,14 @@ export class EventsManager {
     return deserializeEvents(response.data);
   }
   async getEventsWithLongPolling(
-    headers: GetEventsWithLongPollingHeaders = new GetEventsWithLongPollingHeaders(
+    headersInput: GetEventsWithLongPollingHeadersInput = new GetEventsWithLongPollingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RealtimeServers> {
+    const headers: any = new GetEventsWithLongPollingHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -244,6 +264,10 @@ export class EventsManager {
     )) as FetchResponse;
     return deserializeRealtimeServers(response.data);
   }
+}
+export interface EventsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetEventsQueryParamsStreamTypeField(
   val: any

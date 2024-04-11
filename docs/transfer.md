@@ -65,7 +65,7 @@ await client.transfer.transferOwnedFolder(
   - Request body of transferOwnedFolder method
 - queryParams `TransferOwnedFolderQueryParams`
   - Query parameters of transferOwnedFolder method
-- headers `TransferOwnedFolderHeaders`
+- headersInput `TransferOwnedFolderHeadersInput`
   - Headers of transferOwnedFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

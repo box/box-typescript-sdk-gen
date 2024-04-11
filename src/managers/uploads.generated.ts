@@ -55,6 +55,15 @@ export class UploadFileVersionHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UploadFileVersionHeadersInput {
+  readonly ifMatch?: string;
+  readonly contentMd5?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UploadFileRequestBodyAttributesParentField {
   readonly id: string;
 }
@@ -86,6 +95,14 @@ export class UploadFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UploadFileHeadersInput {
+  readonly contentMd5?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface PreflightFileUploadCheckRequestBodyParentField {
   readonly id?: string;
 }
@@ -105,6 +122,13 @@ export class PreflightFileUploadCheckHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface PreflightFileUploadCheckHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class UploadsManager {
   readonly auth?: Authentication;
@@ -126,9 +150,16 @@ export class UploadsManager {
     fileId: string,
     requestBody: UploadFileVersionRequestBody,
     queryParams: UploadFileVersionQueryParams = {} satisfies UploadFileVersionQueryParams,
-    headers: UploadFileVersionHeaders = new UploadFileVersionHeaders({}),
+    headersInput: UploadFileVersionHeadersInput = new UploadFileVersionHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Files> {
+    const headers: any = new UploadFileVersionHeaders({
+      ifMatch: headersInput.ifMatch,
+      contentMd5: headersInput.contentMd5,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -182,9 +213,13 @@ export class UploadsManager {
   async uploadFile(
     requestBody: UploadFileRequestBody,
     queryParams: UploadFileQueryParams = {} satisfies UploadFileQueryParams,
-    headers: UploadFileHeaders = new UploadFileHeaders({}),
+    headersInput: UploadFileHeadersInput = new UploadFileHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Files> {
+    const headers: any = new UploadFileHeaders({
+      contentMd5: headersInput.contentMd5,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -232,11 +267,14 @@ export class UploadsManager {
   }
   async preflightFileUploadCheck(
     requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
-    headers: PreflightFileUploadCheckHeaders = new PreflightFileUploadCheckHeaders(
+    headersInput: PreflightFileUploadCheckHeadersInput = new PreflightFileUploadCheckHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<UploadUrl> {
+    const headers: any = new PreflightFileUploadCheckHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -258,6 +296,10 @@ export class UploadsManager {
     )) as FetchResponse;
     return deserializeUploadUrl(response.data);
   }
+}
+export interface UploadsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUploadFileVersionRequestBodyAttributesField(
   val: any

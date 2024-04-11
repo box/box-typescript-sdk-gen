@@ -41,6 +41,13 @@ export class GetWebhooksHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetWebhooksHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateWebhookRequestBodyTargetTypeField = 'file' | 'folder';
 export interface CreateWebhookRequestBodyTargetField {
   readonly id?: string;
@@ -104,6 +111,13 @@ export class CreateWebhookHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateWebhookHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetWebhookByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -115,6 +129,13 @@ export class GetWebhookByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetWebhookByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateWebhookByIdRequestBodyTargetTypeField = 'file' | 'folder';
 export interface UpdateWebhookByIdRequestBodyTargetField {
@@ -179,6 +200,13 @@ export class UpdateWebhookByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateWebhookByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteWebhookByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -190,6 +218,13 @@ export class DeleteWebhookByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteWebhookByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class WebhooksManager {
   readonly auth?: Authentication;
@@ -211,9 +246,12 @@ export class WebhooksManager {
   }
   async getWebhooks(
     queryParams: GetWebhooksQueryParams = {} satisfies GetWebhooksQueryParams,
-    headers: GetWebhooksHeaders = new GetWebhooksHeaders({}),
+    headersInput: GetWebhooksHeadersInput = new GetWebhooksHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Webhooks> {
+    const headers: any = new GetWebhooksHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -239,9 +277,12 @@ export class WebhooksManager {
   }
   async createWebhook(
     requestBody: CreateWebhookRequestBody,
-    headers: CreateWebhookHeaders = new CreateWebhookHeaders({}),
+    headersInput: CreateWebhookHeadersInput = new CreateWebhookHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Webhook> {
+    const headers: any = new CreateWebhookHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -262,9 +303,12 @@ export class WebhooksManager {
   }
   async getWebhookById(
     webhookId: string,
-    headers: GetWebhookByIdHeaders = new GetWebhookByIdHeaders({}),
+    headersInput: GetWebhookByIdHeadersInput = new GetWebhookByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Webhook> {
+    const headers: any = new GetWebhookByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -288,9 +332,14 @@ export class WebhooksManager {
   async updateWebhookById(
     webhookId: string,
     requestBody: UpdateWebhookByIdRequestBody = {} satisfies UpdateWebhookByIdRequestBody,
-    headers: UpdateWebhookByIdHeaders = new UpdateWebhookByIdHeaders({}),
+    headersInput: UpdateWebhookByIdHeadersInput = new UpdateWebhookByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Webhook> {
+    const headers: any = new UpdateWebhookByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -315,9 +364,14 @@ export class WebhooksManager {
   }
   async deleteWebhookById(
     webhookId: string,
-    headers: DeleteWebhookByIdHeaders = new DeleteWebhookByIdHeaders({}),
+    headersInput: DeleteWebhookByIdHeadersInput = new DeleteWebhookByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteWebhookByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -338,6 +392,10 @@ export class WebhooksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface WebhooksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebhookRequestBodyTargetTypeField(
   val: any

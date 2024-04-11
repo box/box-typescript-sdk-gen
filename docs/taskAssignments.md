@@ -25,7 +25,7 @@ await client.taskAssignments.getTaskAssignments(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headers `GetTaskAssignmentsHeaders`
+- headersInput `GetTaskAssignmentsHeadersInput`
   - Headers of getTaskAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -67,7 +67,7 @@ await client.taskAssignments.createTaskAssignment({
 
 - requestBody `CreateTaskAssignmentRequestBody`
   - Request body of createTaskAssignment method
-- headers `CreateTaskAssignmentHeaders`
+- headersInput `CreateTaskAssignmentHeadersInput`
   - Headers of createTaskAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,7 +97,7 @@ await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headers `GetTaskAssignmentByIdHeaders`
+- headersInput `GetTaskAssignmentByIdHeadersInput`
   - Headers of getTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -135,7 +135,7 @@ await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
   - The ID of the task assignment. Example: "12345"
 - requestBody `UpdateTaskAssignmentByIdRequestBody`
   - Request body of updateTaskAssignmentById method
-- headers `UpdateTaskAssignmentByIdHeaders`
+- headersInput `UpdateTaskAssignmentByIdHeadersInput`
   - Headers of updateTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -165,7 +165,7 @@ await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headers `DeleteTaskAssignmentByIdHeaders`
+- headersInput `DeleteTaskAssignmentByIdHeadersInput`
   - Headers of deleteTaskAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

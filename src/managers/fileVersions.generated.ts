@@ -42,6 +42,13 @@ export class GetFileVersionsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileVersionsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetFileVersionByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -56,6 +63,13 @@ export class GetFileVersionByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFileVersionByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateFileVersionByIdRequestBody {
   readonly trashedAt?: string;
@@ -72,6 +86,13 @@ export class UpdateFileVersionByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFileVersionByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFileVersionByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
@@ -84,6 +105,14 @@ export class DeleteFileVersionByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFileVersionByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type PromoteFileVersionRequestBodyTypeField = 'file_version';
 export interface PromoteFileVersionRequestBody {
@@ -104,6 +133,13 @@ export class PromoteFileVersionHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface PromoteFileVersionHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileVersionsManager {
   readonly auth?: Authentication;
@@ -126,9 +162,12 @@ export class FileVersionsManager {
   async getFileVersions(
     fileId: string,
     queryParams: GetFileVersionsQueryParams = {} satisfies GetFileVersionsQueryParams,
-    headers: GetFileVersionsHeaders = new GetFileVersionsHeaders({}),
+    headersInput: GetFileVersionsHeadersInput = new GetFileVersionsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileVersions> {
+    const headers: any = new GetFileVersionsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -164,9 +203,14 @@ export class FileVersionsManager {
     fileId: string,
     fileVersionId: string,
     queryParams: GetFileVersionByIdQueryParams = {} satisfies GetFileVersionByIdQueryParams,
-    headers: GetFileVersionByIdHeaders = new GetFileVersionByIdHeaders({}),
+    headersInput: GetFileVersionByIdHeadersInput = new GetFileVersionByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
+    const headers: any = new GetFileVersionByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -201,11 +245,14 @@ export class FileVersionsManager {
     fileId: string,
     fileVersionId: string,
     requestBody: UpdateFileVersionByIdRequestBody = {} satisfies UpdateFileVersionByIdRequestBody,
-    headers: UpdateFileVersionByIdHeaders = new UpdateFileVersionByIdHeaders(
+    headersInput: UpdateFileVersionByIdHeadersInput = new UpdateFileVersionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
+    const headers: any = new UpdateFileVersionByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -233,11 +280,15 @@ export class FileVersionsManager {
   async deleteFileVersionById(
     fileId: string,
     fileVersionId: string,
-    headers: DeleteFileVersionByIdHeaders = new DeleteFileVersionByIdHeaders(
+    headersInput: DeleteFileVersionByIdHeadersInput = new DeleteFileVersionByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFileVersionByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -267,9 +318,14 @@ export class FileVersionsManager {
     fileId: string,
     requestBody: PromoteFileVersionRequestBody = {} satisfies PromoteFileVersionRequestBody,
     queryParams: PromoteFileVersionQueryParams = {} satisfies PromoteFileVersionQueryParams,
-    headers: PromoteFileVersionHeaders = new PromoteFileVersionHeaders({}),
+    headersInput: PromoteFileVersionHeadersInput = new PromoteFileVersionHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionFull> {
+    const headers: any = new PromoteFileVersionHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -301,6 +357,10 @@ export class FileVersionsManager {
     )) as FetchResponse;
     return deserializeFileVersionFull(response.data);
   }
+}
+export interface FileVersionsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileVersionByIdRequestBody(
   val: any

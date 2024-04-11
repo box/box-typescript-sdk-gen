@@ -46,6 +46,13 @@ export class GetMetadataCascadePoliciesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetMetadataCascadePoliciesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateMetadataCascadePolicyRequestBodyScopeField =
   | 'global'
   | 'enterprise';
@@ -66,6 +73,13 @@ export class CreateMetadataCascadePolicyHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateMetadataCascadePolicyHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetMetadataCascadePolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -78,6 +92,13 @@ export class GetMetadataCascadePolicyByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetMetadataCascadePolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteMetadataCascadePolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -89,6 +110,13 @@ export class DeleteMetadataCascadePolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteMetadataCascadePolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
   | 'none'
@@ -107,6 +135,13 @@ export class ApplyMetadataCascadePolicyHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface ApplyMetadataCascadePolicyHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class MetadataCascadePoliciesManager {
   readonly auth?: Authentication;
@@ -128,11 +163,14 @@ export class MetadataCascadePoliciesManager {
   }
   async getMetadataCascadePolicies(
     queryParams: GetMetadataCascadePoliciesQueryParams,
-    headers: GetMetadataCascadePoliciesHeaders = new GetMetadataCascadePoliciesHeaders(
+    headersInput: GetMetadataCascadePoliciesHeadersInput = new GetMetadataCascadePoliciesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicies> {
+    const headers: any = new GetMetadataCascadePoliciesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -165,11 +203,14 @@ export class MetadataCascadePoliciesManager {
   }
   async createMetadataCascadePolicy(
     requestBody: CreateMetadataCascadePolicyRequestBody,
-    headers: CreateMetadataCascadePolicyHeaders = new CreateMetadataCascadePolicyHeaders(
+    headersInput: CreateMetadataCascadePolicyHeadersInput = new CreateMetadataCascadePolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicy> {
+    const headers: any = new CreateMetadataCascadePolicyHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -193,11 +234,14 @@ export class MetadataCascadePoliciesManager {
   }
   async getMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    headers: GetMetadataCascadePolicyByIdHeaders = new GetMetadataCascadePolicyByIdHeaders(
+    headersInput: GetMetadataCascadePolicyByIdHeadersInput = new GetMetadataCascadePolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataCascadePolicy> {
+    const headers: any = new GetMetadataCascadePolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -220,11 +264,14 @@ export class MetadataCascadePoliciesManager {
   }
   async deleteMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    headers: DeleteMetadataCascadePolicyByIdHeaders = new DeleteMetadataCascadePolicyByIdHeaders(
+    headersInput: DeleteMetadataCascadePolicyByIdHeadersInput = new DeleteMetadataCascadePolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteMetadataCascadePolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -248,11 +295,14 @@ export class MetadataCascadePoliciesManager {
   async applyMetadataCascadePolicy(
     metadataCascadePolicyId: string,
     requestBody: ApplyMetadataCascadePolicyRequestBody,
-    headers: ApplyMetadataCascadePolicyHeaders = new ApplyMetadataCascadePolicyHeaders(
+    headersInput: ApplyMetadataCascadePolicyHeadersInput = new ApplyMetadataCascadePolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new ApplyMetadataCascadePolicyHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -276,6 +326,10 @@ export class MetadataCascadePoliciesManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface MetadataCascadePoliciesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
   val: any

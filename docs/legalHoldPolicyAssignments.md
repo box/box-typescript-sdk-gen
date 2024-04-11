@@ -28,7 +28,7 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignments({
 
 - queryParams `GetLegalHoldPolicyAssignmentsQueryParams`
   - Query parameters of getLegalHoldPolicyAssignments method
-- headers `GetLegalHoldPolicyAssignmentsHeaders`
+- headersInput `GetLegalHoldPolicyAssignmentsHeadersInput`
   - Headers of getLegalHoldPolicyAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -64,7 +64,7 @@ await client.legalHoldPolicyAssignments.createLegalHoldPolicyAssignment({
 
 - requestBody `CreateLegalHoldPolicyAssignmentRequestBody`
   - Request body of createLegalHoldPolicyAssignment method
-- headers `CreateLegalHoldPolicyAssignmentHeaders`
+- headersInput `CreateLegalHoldPolicyAssignmentHeadersInput`
   - Headers of createLegalHoldPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -96,7 +96,7 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
 
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment Example: "753465"
-- headers `GetLegalHoldPolicyAssignmentByIdHeaders`
+- headersInput `GetLegalHoldPolicyAssignmentByIdHeadersInput`
   - Headers of getLegalHoldPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -131,7 +131,7 @@ await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
 
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment Example: "753465"
-- headers `DeleteLegalHoldPolicyAssignmentByIdHeaders`
+- headersInput `DeleteLegalHoldPolicyAssignmentByIdHeadersInput`
   - Headers of deleteLegalHoldPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -175,7 +175,7 @@ _Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFil
   - The ID of the legal hold policy assignment Example: "753465"
 - queryParams `GetLegalHoldPolicyAssignmentFileOnHoldQueryParams`
   - Query parameters of getLegalHoldPolicyAssignmentFileOnHold method
-- headers `GetLegalHoldPolicyAssignmentFileOnHoldHeaders`
+- headersInput `GetLegalHoldPolicyAssignmentFileOnHoldHeadersInput`
   - Headers of getLegalHoldPolicyAssignmentFileOnHold method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -219,7 +219,7 @@ _Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFil
   - The ID of the legal hold policy assignment Example: "753465"
 - queryParams `GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParams`
   - Query parameters of getLegalHoldPolicyAssignmentFileVersionOnHold method
-- headers `GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders`
+- headersInput `GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersInput`
   - Headers of getLegalHoldPolicyAssignmentFileVersionOnHold method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

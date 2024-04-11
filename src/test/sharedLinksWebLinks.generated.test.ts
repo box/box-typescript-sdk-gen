@@ -18,6 +18,7 @@ import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '..
 import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
 import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
 import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { FindWebLinkForSharedLinkHeadersInput } from '../managers/sharedLinksWebLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
@@ -80,13 +81,13 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
   const webLinkFromSharedLinkPassword: WebLink =
     await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
       {} satisfies FindWebLinkForSharedLinkQueryParams,
-      new FindWebLinkForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
           '&shared_link_password=Secret123@'
         ) as string,
-      })
+      } satisfies FindWebLinkForSharedLinkHeadersInput
     );
   if (!(webLinkId == webLinkFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -94,13 +95,13 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
   await expect(async () => {
     await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
       {} satisfies FindWebLinkForSharedLinkQueryParams,
-      new FindWebLinkForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
           '&shared_link_password=incorrectPassword'
         ) as string,
-      })
+      } satisfies FindWebLinkForSharedLinkHeadersInput
     );
   }).rejects.toThrow();
   const updatedWebLink: WebLink =

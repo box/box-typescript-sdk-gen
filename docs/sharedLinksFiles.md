@@ -29,13 +29,13 @@ See the endpoint docs at
 ```ts
 await userClient.sharedLinksFiles.findFileForSharedLink(
   {} satisfies FindFileForSharedLinkQueryParams,
-  new FindFileForSharedLinkHeaders({
+  {
     boxapi: ''.concat(
       'shared_link=',
       fileFromApi.sharedLink!.url,
       '&shared_link_password=incorrectPassword'
     ) as string,
-  })
+  } satisfies FindFileForSharedLinkHeadersInput
 );
 ```
 
@@ -43,7 +43,7 @@ await userClient.sharedLinksFiles.findFileForSharedLink(
 
 - queryParams `FindFileForSharedLinkQueryParams`
   - Query parameters of findFileForSharedLink method
-- headers `FindFileForSharedLinkHeaders`
+- headersInput `FindFileForSharedLinkHeadersInput`
   - Headers of findFileForSharedLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -78,7 +78,7 @@ await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetSharedLinkForFileQueryParams`
   - Query parameters of getSharedLinkForFile method
-- headers `GetSharedLinkForFileHeaders`
+- headersInput `GetSharedLinkForFileHeadersInput`
   - Headers of getSharedLinkForFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -122,7 +122,7 @@ await client.sharedLinksFiles.addShareLinkToFile(
   - Request body of addShareLinkToFile method
 - queryParams `AddShareLinkToFileQueryParams`
   - Query parameters of addShareLinkToFile method
-- headers `AddShareLinkToFileHeaders`
+- headersInput `AddShareLinkToFileHeadersInput`
   - Headers of addShareLinkToFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -166,7 +166,7 @@ await client.sharedLinksFiles.updateSharedLinkOnFile(
   - Request body of updateSharedLinkOnFile method
 - queryParams `UpdateSharedLinkOnFileQueryParams`
   - Query parameters of updateSharedLinkOnFile method
-- headers `UpdateSharedLinkOnFileHeaders`
+- headersInput `UpdateSharedLinkOnFileHeadersInput`
   - Headers of updateSharedLinkOnFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -197,7 +197,7 @@ _Currently we don't have an example for calling `removeSharedLinkFromFile` in in
   - Request body of removeSharedLinkFromFile method
 - queryParams `RemoveSharedLinkFromFileQueryParams`
   - Query parameters of removeSharedLinkFromFile method
-- headers `RemoveSharedLinkFromFileHeaders`
+- headersInput `RemoveSharedLinkFromFileHeadersInput`
   - Headers of removeSharedLinkFromFile method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

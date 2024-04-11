@@ -37,6 +37,13 @@ export class GetDevicePinnerByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetDevicePinnerByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteDevicePinnerByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -48,6 +55,13 @@ export class DeleteDevicePinnerByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteDevicePinnerByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type GetEnterpriseDevicePinnersQueryParamsDirectionField =
   | 'ASC'
@@ -69,6 +83,13 @@ export class GetEnterpriseDevicePinnersHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetEnterpriseDevicePinnersHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DevicePinnersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -87,9 +108,14 @@ export class DevicePinnersManager {
   }
   async getDevicePinnerById(
     devicePinnerId: string,
-    headers: GetDevicePinnerByIdHeaders = new GetDevicePinnerByIdHeaders({}),
+    headersInput: GetDevicePinnerByIdHeadersInput = new GetDevicePinnerByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<DevicePinner> {
+    const headers: any = new GetDevicePinnerByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -112,11 +138,14 @@ export class DevicePinnersManager {
   }
   async deleteDevicePinnerById(
     devicePinnerId: string,
-    headers: DeleteDevicePinnerByIdHeaders = new DeleteDevicePinnerByIdHeaders(
+    headersInput: DeleteDevicePinnerByIdHeadersInput = new DeleteDevicePinnerByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteDevicePinnerByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -140,11 +169,14 @@ export class DevicePinnersManager {
   async getEnterpriseDevicePinners(
     enterpriseId: string,
     queryParams: GetEnterpriseDevicePinnersQueryParams = {} satisfies GetEnterpriseDevicePinnersQueryParams,
-    headers: GetEnterpriseDevicePinnersHeaders = new GetEnterpriseDevicePinnersHeaders(
+    headersInput: GetEnterpriseDevicePinnersHeadersInput = new GetEnterpriseDevicePinnersHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<DevicePinners> {
+    const headers: any = new GetEnterpriseDevicePinnersHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -174,6 +206,10 @@ export class DevicePinnersManager {
     )) as FetchResponse;
     return deserializeDevicePinners(response.data);
   }
+}
+export interface DevicePinnersManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   val: any

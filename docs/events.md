@@ -32,7 +32,7 @@ await client.events.getEvents({
 
 - queryParams `GetEventsQueryParams`
   - Query parameters of getEvents method
-- headers `GetEventsHeaders`
+- headersInput `GetEventsHeadersInput`
   - Headers of getEvents method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -98,7 +98,7 @@ await client.events.getEventsWithLongPolling();
 
 ### Arguments
 
-- headers `GetEventsWithLongPollingHeaders`
+- headersInput `GetEventsWithLongPollingHeadersInput`
   - Headers of getEventsWithLongPolling method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

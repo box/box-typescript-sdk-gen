@@ -27,7 +27,7 @@ await userClient.integrationMappings.getSlackIntegrationMapping();
 
 - queryParams `GetSlackIntegrationMappingQueryParams`
   - Query parameters of getSlackIntegrationMapping method
-- headers `GetSlackIntegrationMappingHeaders`
+- headersInput `GetSlackIntegrationMappingHeadersInput`
   - Headers of getSlackIntegrationMapping method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -67,7 +67,7 @@ await userClient.integrationMappings.createSlackIntegrationMapping({
 
 - requestBody `IntegrationMappingSlackCreateRequest`
   - Request body of createSlackIntegrationMapping method
-- headers `CreateSlackIntegrationMappingHeaders`
+- headersInput `CreateSlackIntegrationMappingHeadersInput`
   - Headers of createSlackIntegrationMapping method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -99,7 +99,7 @@ _Currently we don't have an example for calling `updateSlackIntegrationMappingBy
   - An ID of an integration mapping Example: "11235432"
 - requestBody `UpdateSlackIntegrationMappingByIdRequestBody`
   - Request body of updateSlackIntegrationMappingById method
-- headers `UpdateSlackIntegrationMappingByIdHeaders`
+- headersInput `UpdateSlackIntegrationMappingByIdHeadersInput`
   - Headers of updateSlackIntegrationMappingById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -128,7 +128,7 @@ _Currently we don't have an example for calling `deleteSlackIntegrationMappingBy
 
 - integrationMappingId `string`
   - An ID of an integration mapping Example: "11235432"
-- headers `DeleteSlackIntegrationMappingByIdHeaders`
+- headersInput `DeleteSlackIntegrationMappingByIdHeadersInput`
   - Headers of deleteSlackIntegrationMappingById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -37,6 +37,13 @@ export class GetCollaborationByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetCollaborationByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateCollaborationByIdRequestBodyRoleField =
   | 'editor'
   | 'viewer'
@@ -68,6 +75,13 @@ export class UpdateCollaborationByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateCollaborationByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteCollaborationByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -79,6 +93,13 @@ export class DeleteCollaborationByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteCollaborationByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateCollaborationRequestBodyItemTypeField = 'file' | 'folder';
 export interface CreateCollaborationRequestBodyItemField {
@@ -125,6 +146,13 @@ export class CreateCollaborationHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateCollaborationHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class UserCollaborationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -145,9 +173,14 @@ export class UserCollaborationsManager {
   async getCollaborationById(
     collaborationId: string,
     queryParams: GetCollaborationByIdQueryParams = {} satisfies GetCollaborationByIdQueryParams,
-    headers: GetCollaborationByIdHeaders = new GetCollaborationByIdHeaders({}),
+    headersInput: GetCollaborationByIdHeadersInput = new GetCollaborationByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
+    const headers: any = new GetCollaborationByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -179,11 +212,14 @@ export class UserCollaborationsManager {
   async updateCollaborationById(
     collaborationId: string,
     requestBody: UpdateCollaborationByIdRequestBody,
-    headers: UpdateCollaborationByIdHeaders = new UpdateCollaborationByIdHeaders(
+    headersInput: UpdateCollaborationByIdHeadersInput = new UpdateCollaborationByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
+    const headers: any = new UpdateCollaborationByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -208,11 +244,14 @@ export class UserCollaborationsManager {
   }
   async deleteCollaborationById(
     collaborationId: string,
-    headers: DeleteCollaborationByIdHeaders = new DeleteCollaborationByIdHeaders(
+    headersInput: DeleteCollaborationByIdHeadersInput = new DeleteCollaborationByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteCollaborationByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -236,9 +275,14 @@ export class UserCollaborationsManager {
   async createCollaboration(
     requestBody: CreateCollaborationRequestBody,
     queryParams: CreateCollaborationQueryParams = {} satisfies CreateCollaborationQueryParams,
-    headers: CreateCollaborationHeaders = new CreateCollaborationHeaders({}),
+    headersInput: CreateCollaborationHeadersInput = new CreateCollaborationHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Collaboration> {
+    const headers: any = new CreateCollaborationHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -269,6 +313,10 @@ export class UserCollaborationsManager {
     )) as FetchResponse;
     return deserializeCollaboration(response.data);
   }
+}
+export interface UserCollaborationsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCollaborationByIdRequestBodyRoleField(
   val: any

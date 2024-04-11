@@ -41,6 +41,13 @@ export class GetCollaborationWhitelistEntriesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetCollaborationWhitelistEntriesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateCollaborationWhitelistEntryRequestBodyDirectionField =
   | 'inbound'
   | 'outbound'
@@ -61,6 +68,13 @@ export class CreateCollaborationWhitelistEntryHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateCollaborationWhitelistEntryHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetCollaborationWhitelistEntryByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +86,13 @@ export class GetCollaborationWhitelistEntryByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetCollaborationWhitelistEntryByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class DeleteCollaborationWhitelistEntryByIdHeaders {
   readonly extraHeaders?: {
@@ -86,6 +107,13 @@ export class DeleteCollaborationWhitelistEntryByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteCollaborationWhitelistEntryByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class CollaborationAllowlistEntriesManager {
   readonly auth?: Authentication;
@@ -106,11 +134,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async getCollaborationWhitelistEntries(
     queryParams: GetCollaborationWhitelistEntriesQueryParams = {} satisfies GetCollaborationWhitelistEntriesQueryParams,
-    headers: GetCollaborationWhitelistEntriesHeaders = new GetCollaborationWhitelistEntriesHeaders(
+    headersInput: GetCollaborationWhitelistEntriesHeadersInput = new GetCollaborationWhitelistEntriesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntries> {
+    const headers: any = new GetCollaborationWhitelistEntriesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -139,11 +170,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async createCollaborationWhitelistEntry(
     requestBody: CreateCollaborationWhitelistEntryRequestBody,
-    headers: CreateCollaborationWhitelistEntryHeaders = new CreateCollaborationWhitelistEntryHeaders(
+    headersInput: CreateCollaborationWhitelistEntryHeadersInput = new CreateCollaborationWhitelistEntryHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntry> {
+    const headers: any = new CreateCollaborationWhitelistEntryHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -169,11 +203,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async getCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    headers: GetCollaborationWhitelistEntryByIdHeaders = new GetCollaborationWhitelistEntryByIdHeaders(
+    headersInput: GetCollaborationWhitelistEntryByIdHeadersInput = new GetCollaborationWhitelistEntryByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntry> {
+    const headers: any = new GetCollaborationWhitelistEntryByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -196,11 +233,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async deleteCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    headers: DeleteCollaborationWhitelistEntryByIdHeaders = new DeleteCollaborationWhitelistEntryByIdHeaders(
+    headersInput: DeleteCollaborationWhitelistEntryByIdHeadersInput = new DeleteCollaborationWhitelistEntryByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteCollaborationWhitelistEntryByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -221,6 +261,10 @@ export class CollaborationAllowlistEntriesManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface CollaborationAllowlistEntriesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
   val: any

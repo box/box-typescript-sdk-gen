@@ -39,6 +39,15 @@ export class FindFolderForSharedLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface FindFolderForSharedLinkHeadersInput {
+  readonly ifNoneMatch?: string;
+  readonly boxapi: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetSharedLinkForFolderQueryParams {
   readonly fields: string;
 }
@@ -53,6 +62,13 @@ export class GetSharedLinkForFolderHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetSharedLinkForFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type AddShareLinkToFolderRequestBodySharedLinkAccessField =
   | 'open'
@@ -88,6 +104,13 @@ export class AddShareLinkToFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface AddShareLinkToFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
@@ -122,6 +145,13 @@ export class UpdateSharedLinkOnFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateSharedLinkOnFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface RemoveSharedLinkFromFolderRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromFolderRequestBody {
   readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField;
@@ -140,6 +170,13 @@ export class RemoveSharedLinkFromFolderHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RemoveSharedLinkFromFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class SharedLinksFoldersManager {
   readonly auth?: Authentication;
@@ -161,9 +198,14 @@ export class SharedLinksFoldersManager {
   }
   async findFolderForSharedLink(
     queryParams: FindFolderForSharedLinkQueryParams = {} satisfies FindFolderForSharedLinkQueryParams,
-    headers: FindFolderForSharedLinkHeaders,
+    headersInput: FindFolderForSharedLinkHeadersInput,
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new FindFolderForSharedLinkHeaders({
+      ifNoneMatch: headersInput.ifNoneMatch,
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -200,11 +242,14 @@ export class SharedLinksFoldersManager {
   async getSharedLinkForFolder(
     folderId: string,
     queryParams: GetSharedLinkForFolderQueryParams,
-    headers: GetSharedLinkForFolderHeaders = new GetSharedLinkForFolderHeaders(
+    headersInput: GetSharedLinkForFolderHeadersInput = new GetSharedLinkForFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new GetSharedLinkForFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -234,9 +279,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: AddShareLinkToFolderRequestBody = {} satisfies AddShareLinkToFolderRequestBody,
     queryParams: AddShareLinkToFolderQueryParams,
-    headers: AddShareLinkToFolderHeaders = new AddShareLinkToFolderHeaders({}),
+    headersInput: AddShareLinkToFolderHeadersInput = new AddShareLinkToFolderHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new AddShareLinkToFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -268,11 +318,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: UpdateSharedLinkOnFolderRequestBody = {} satisfies UpdateSharedLinkOnFolderRequestBody,
     queryParams: UpdateSharedLinkOnFolderQueryParams,
-    headers: UpdateSharedLinkOnFolderHeaders = new UpdateSharedLinkOnFolderHeaders(
+    headersInput: UpdateSharedLinkOnFolderHeadersInput = new UpdateSharedLinkOnFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new UpdateSharedLinkOnFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -304,11 +357,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: RemoveSharedLinkFromFolderRequestBody = {} satisfies RemoveSharedLinkFromFolderRequestBody,
     queryParams: RemoveSharedLinkFromFolderQueryParams,
-    headers: RemoveSharedLinkFromFolderHeaders = new RemoveSharedLinkFromFolderHeaders(
+    headersInput: RemoveSharedLinkFromFolderHeadersInput = new RemoveSharedLinkFromFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new RemoveSharedLinkFromFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -336,6 +392,10 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+}
+export interface SharedLinksFoldersManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   val: any

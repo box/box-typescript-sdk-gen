@@ -41,6 +41,13 @@ export class GetStoragePoliciesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetStoragePoliciesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetStoragePolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -52,6 +59,13 @@ export class GetStoragePolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetStoragePolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class StoragePoliciesManager {
   readonly auth?: Authentication;
@@ -68,9 +82,14 @@ export class StoragePoliciesManager {
   }
   async getStoragePolicies(
     queryParams: GetStoragePoliciesQueryParams = {} satisfies GetStoragePoliciesQueryParams,
-    headers: GetStoragePoliciesHeaders = new GetStoragePoliciesHeaders({}),
+    headersInput: GetStoragePoliciesHeadersInput = new GetStoragePoliciesHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicies> {
+    const headers: any = new GetStoragePoliciesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -102,9 +121,14 @@ export class StoragePoliciesManager {
   }
   async getStoragePolicyById(
     storagePolicyId: string,
-    headers: GetStoragePolicyByIdHeaders = new GetStoragePolicyByIdHeaders({}),
+    headersInput: GetStoragePolicyByIdHeadersInput = new GetStoragePolicyByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicy> {
+    const headers: any = new GetStoragePolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -125,4 +149,8 @@ export class StoragePoliciesManager {
     )) as FetchResponse;
     return deserializeStoragePolicy(response.data);
   }
+}
+export interface StoragePoliciesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

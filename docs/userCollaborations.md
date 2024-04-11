@@ -26,7 +26,7 @@ await client.userCollaborations.getCollaborationById(collaborationId);
   - The ID of the collaboration Example: "1234"
 - queryParams `GetCollaborationByIdQueryParams`
   - Query parameters of getCollaborationById method
-- headers `GetCollaborationByIdHeaders`
+- headersInput `GetCollaborationByIdHeadersInput`
   - Headers of getCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -62,7 +62,7 @@ await client.userCollaborations.updateCollaborationById(collaborationId, {
   - The ID of the collaboration Example: "1234"
 - requestBody `UpdateCollaborationByIdRequestBody`
   - Request body of updateCollaborationById method
-- headers `UpdateCollaborationByIdHeaders`
+- headersInput `UpdateCollaborationByIdHeadersInput`
   - Headers of updateCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -94,7 +94,7 @@ await client.userCollaborations.deleteCollaborationById(collaborationId);
 
 - collaborationId `string`
   - The ID of the collaboration Example: "1234"
-- headers `DeleteCollaborationByIdHeaders`
+- headersInput `DeleteCollaborationByIdHeadersInput`
   - Headers of deleteCollaborationById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -151,7 +151,7 @@ await client.userCollaborations.createCollaboration({
   - Request body of createCollaboration method
 - queryParams `CreateCollaborationQueryParams`
   - Query parameters of createCollaboration method
-- headers `CreateCollaborationHeaders`
+- headersInput `CreateCollaborationHeadersInput`
   - Headers of createCollaboration method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

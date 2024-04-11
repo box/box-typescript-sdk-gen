@@ -27,7 +27,7 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headers `GetShieldInformationBarrierSegmentRestrictionByIdHeaders`
+- headersInput `GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput`
   - Headers of getShieldInformationBarrierSegmentRestrictionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -61,7 +61,7 @@ await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformation
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headers `DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders`
+- headersInput `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInput`
   - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -96,7 +96,7 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 
 - queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentRestrictions method
-- headers `GetShieldInformationBarrierSegmentRestrictionsHeaders`
+- headersInput `GetShieldInformationBarrierSegmentRestrictionsHeadersInput`
   - Headers of getShieldInformationBarrierSegmentRestrictions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -122,7 +122,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
-  new CreateShieldInformationBarrierSegmentRestrictionRequestBody({
+  {
     restrictedSegment: {
       id: segmentToRestrictId,
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField,
@@ -132,15 +132,15 @@ await client.shieldInformationBarrierSegmentRestrictions.createShieldInformation
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
     } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
     type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-  })
+  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput
 );
 ```
 
 ### Arguments
 
-- requestBody `CreateShieldInformationBarrierSegmentRestrictionRequestBody`
+- requestBodyInput `CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput`
   - Request body of createShieldInformationBarrierSegmentRestriction method
-- headers `CreateShieldInformationBarrierSegmentRestrictionHeaders`
+- headersInput `CreateShieldInformationBarrierSegmentRestrictionHeadersInput`
   - Headers of createShieldInformationBarrierSegmentRestriction method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

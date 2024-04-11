@@ -37,6 +37,13 @@ export class GetFolderMetadataHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFolderMetadataHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type GetFolderMetadataByIdScope = 'global' | 'enterprise';
 export class GetFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -49,6 +56,13 @@ export class GetFolderMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFolderMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateFolderMetadataByIdScope = 'global' | 'enterprise';
 export type CreateFolderMetadataByIdRequestBody = {
@@ -65,6 +79,13 @@ export class CreateFolderMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateFolderMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateFolderMetadataByIdScope = 'global' | 'enterprise';
 export type UpdateFolderMetadataByIdRequestBodyOpField =
@@ -92,6 +113,13 @@ export class UpdateFolderMetadataByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFolderMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type DeleteFolderMetadataByIdScope = 'global' | 'enterprise';
 export class DeleteFolderMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -104,6 +132,13 @@ export class DeleteFolderMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFolderMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FolderMetadataManager {
   readonly auth?: Authentication;
@@ -125,9 +160,14 @@ export class FolderMetadataManager {
   }
   async getFolderMetadata(
     folderId: string,
-    headers: GetFolderMetadataHeaders = new GetFolderMetadataHeaders({}),
+    headersInput: GetFolderMetadataHeadersInput = new GetFolderMetadataHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Metadatas> {
+    const headers: any = new GetFolderMetadataHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -153,11 +193,14 @@ export class FolderMetadataManager {
     folderId: string,
     scope: GetFolderMetadataByIdScope,
     templateKey: string,
-    headers: GetFolderMetadataByIdHeaders = new GetFolderMetadataByIdHeaders(
+    headersInput: GetFolderMetadataByIdHeadersInput = new GetFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new GetFolderMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -187,11 +230,14 @@ export class FolderMetadataManager {
     scope: CreateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFolderMetadataByIdRequestBody,
-    headers: CreateFolderMetadataByIdHeaders = new CreateFolderMetadataByIdHeaders(
+    headersInput: CreateFolderMetadataByIdHeadersInput = new CreateFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new CreateFolderMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -223,11 +269,14 @@ export class FolderMetadataManager {
     scope: UpdateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFolderMetadataByIdRequestBody[],
-    headers: UpdateFolderMetadataByIdHeaders = new UpdateFolderMetadataByIdHeaders(
+    headersInput: UpdateFolderMetadataByIdHeadersInput = new UpdateFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new UpdateFolderMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -260,11 +309,14 @@ export class FolderMetadataManager {
     folderId: string,
     scope: DeleteFolderMetadataByIdScope,
     templateKey: string,
-    headers: DeleteFolderMetadataByIdHeaders = new DeleteFolderMetadataByIdHeaders(
+    headersInput: DeleteFolderMetadataByIdHeadersInput = new DeleteFolderMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFolderMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -289,6 +341,10 @@ export class FolderMetadataManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FolderMetadataManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetFolderMetadataByIdScope(val: any): SerializedData {
   return val;

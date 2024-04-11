@@ -28,7 +28,7 @@ await client.sessionTermination.terminateUsersSessions({
 
 - requestBody `TerminateUsersSessionsRequestBody`
   - Request body of terminateUsersSessions method
-- headers `TerminateUsersSessionsHeaders`
+- headersInput `TerminateUsersSessionsHeadersInput`
   - Headers of terminateUsersSessions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -63,7 +63,7 @@ await client.sessionTermination.terminateGroupsSessions({
 
 - requestBody `TerminateGroupsSessionsRequestBody`
   - Request body of terminateGroupsSessions method
-- headers `TerminateGroupsSessionsHeaders`
+- headersInput `TerminateGroupsSessionsHeadersInput`
   - Headers of terminateGroupsSessions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

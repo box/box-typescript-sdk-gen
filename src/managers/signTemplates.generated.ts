@@ -40,6 +40,13 @@ export class GetSignTemplatesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetSignTemplatesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetSignTemplateByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -51,6 +58,13 @@ export class GetSignTemplateByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetSignTemplateByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class SignTemplatesManager {
   readonly auth?: Authentication;
@@ -67,9 +81,14 @@ export class SignTemplatesManager {
   }
   async getSignTemplates(
     queryParams: GetSignTemplatesQueryParams = {} satisfies GetSignTemplatesQueryParams,
-    headers: GetSignTemplatesHeaders = new GetSignTemplatesHeaders({}),
+    headersInput: GetSignTemplatesHeadersInput = new GetSignTemplatesHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<SignTemplates> {
+    const headers: any = new GetSignTemplatesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -98,9 +117,14 @@ export class SignTemplatesManager {
   }
   async getSignTemplateById(
     templateId: string,
-    headers: GetSignTemplateByIdHeaders = new GetSignTemplateByIdHeaders({}),
+    headersInput: GetSignTemplateByIdHeadersInput = new GetSignTemplateByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<SignTemplate> {
+    const headers: any = new GetSignTemplateByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -121,4 +145,8 @@ export class SignTemplatesManager {
     )) as FetchResponse;
     return deserializeSignTemplate(response.data);
   }
+}
+export interface SignTemplatesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

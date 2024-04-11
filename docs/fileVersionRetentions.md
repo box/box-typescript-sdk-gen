@@ -22,7 +22,7 @@ await client.fileVersionRetentions.getFileVersionRetentions();
 
 - queryParams `GetFileVersionRetentionsQueryParams`
   - Query parameters of getFileVersionRetentions method
-- headers `GetFileVersionRetentionsHeaders`
+- headersInput `GetFileVersionRetentionsHeadersInput`
   - Headers of getFileVersionRetentions method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -54,7 +54,7 @@ await client.fileVersionRetentions.getFileVersionRetentionById(
 
 - fileVersionRetentionId `string`
   - The ID of the file version retention Example: "3424234"
-- headers `GetFileVersionRetentionByIdHeaders`
+- headersInput `GetFileVersionRetentionByIdHeadersInput`
   - Headers of getFileVersionRetentionById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

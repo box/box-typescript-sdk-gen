@@ -36,6 +36,13 @@ export class TerminateUsersSessionsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface TerminateUsersSessionsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface TerminateGroupsSessionsRequestBody {
   readonly groupIds: readonly string[];
 }
@@ -50,6 +57,13 @@ export class TerminateGroupsSessionsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TerminateGroupsSessionsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class SessionTerminationManager {
   readonly auth?: Authentication;
@@ -68,11 +82,14 @@ export class SessionTerminationManager {
   }
   async terminateUsersSessions(
     requestBody: TerminateUsersSessionsRequestBody,
-    headers: TerminateUsersSessionsHeaders = new TerminateUsersSessionsHeaders(
+    headersInput: TerminateUsersSessionsHeadersInput = new TerminateUsersSessionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<SessionTerminationMessage> {
+    const headers: any = new TerminateUsersSessionsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -96,11 +113,14 @@ export class SessionTerminationManager {
   }
   async terminateGroupsSessions(
     requestBody: TerminateGroupsSessionsRequestBody,
-    headers: TerminateGroupsSessionsHeaders = new TerminateGroupsSessionsHeaders(
+    headersInput: TerminateGroupsSessionsHeadersInput = new TerminateGroupsSessionsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<SessionTerminationMessage> {
+    const headers: any = new TerminateGroupsSessionsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -122,6 +142,10 @@ export class SessionTerminationManager {
     )) as FetchResponse;
     return deserializeSessionTerminationMessage(response.data);
   }
+}
+export interface SessionTerminationManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeTerminateUsersSessionsRequestBody(
   val: any

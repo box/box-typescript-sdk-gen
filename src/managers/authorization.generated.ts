@@ -8,6 +8,7 @@ import { serializePostOAuth2TokenRefreshAccessToken } from '../schemas.generated
 import { deserializePostOAuth2TokenRefreshAccessToken } from '../schemas.generated.js';
 import { serializePostOAuth2Revoke } from '../schemas.generated.js';
 import { deserializePostOAuth2Revoke } from '../schemas.generated.js';
+import { PostOAuth2TokenRefreshAccessTokenInput } from '../schemas.generated.js';
 import { AccessToken } from '../schemas.generated.js';
 import { OAuth2Error } from '../schemas.generated.js';
 import { PostOAuth2Token } from '../schemas.generated.js';
@@ -51,6 +52,13 @@ export class AuthorizeUserHeaders {
     Object.assign(this, fields);
   }
 }
+export interface AuthorizeUserHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class RequestAccessTokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -62,6 +70,13 @@ export class RequestAccessTokenHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RequestAccessTokenHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class RefreshAccessTokenHeaders {
   readonly extraHeaders?: {
@@ -75,6 +90,13 @@ export class RefreshAccessTokenHeaders {
     Object.assign(this, fields);
   }
 }
+export interface RefreshAccessTokenHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class RevokeAccessTokenHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -86,6 +108,13 @@ export class RevokeAccessTokenHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RevokeAccessTokenHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class AuthorizationManager {
   readonly auth?: Authentication;
@@ -106,9 +135,12 @@ export class AuthorizationManager {
   }
   async authorizeUser(
     queryParams: AuthorizeUserQueryParams,
-    headers: AuthorizeUserHeaders = new AuthorizeUserHeaders({}),
+    headersInput: AuthorizeUserHeadersInput = new AuthorizeUserHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new AuthorizeUserHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -137,9 +169,14 @@ export class AuthorizationManager {
   }
   async requestAccessToken(
     requestBody: PostOAuth2Token,
-    headers: RequestAccessTokenHeaders = new RequestAccessTokenHeaders({}),
+    headersInput: RequestAccessTokenHeadersInput = new RequestAccessTokenHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<AccessToken> {
+    const headers: any = new RequestAccessTokenHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -159,10 +196,21 @@ export class AuthorizationManager {
     return deserializeAccessToken(response.data);
   }
   async refreshAccessToken(
-    requestBody: PostOAuth2TokenRefreshAccessToken,
-    headers: RefreshAccessTokenHeaders = new RefreshAccessTokenHeaders({}),
+    requestBodyInput: PostOAuth2TokenRefreshAccessTokenInput,
+    headersInput: RefreshAccessTokenHeadersInput = new RefreshAccessTokenHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<AccessToken> {
+    const requestBody: any = new PostOAuth2TokenRefreshAccessToken({
+      grantType: requestBodyInput.grantType,
+      clientId: requestBodyInput.clientId,
+      clientSecret: requestBodyInput.clientSecret,
+      refreshToken: requestBodyInput.refreshToken,
+    });
+    const headers: any = new RefreshAccessTokenHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -183,9 +231,14 @@ export class AuthorizationManager {
   }
   async revokeAccessToken(
     requestBody: PostOAuth2Revoke,
-    headers: RevokeAccessTokenHeaders = new RevokeAccessTokenHeaders({}),
+    headersInput: RevokeAccessTokenHeadersInput = new RevokeAccessTokenHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new RevokeAccessTokenHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -204,6 +257,10 @@ export class AuthorizationManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface AuthorizationManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAuthorizeUserQueryParamsResponseTypeField(
   val: any

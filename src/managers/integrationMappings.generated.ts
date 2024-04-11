@@ -58,6 +58,13 @@ export class GetSlackIntegrationMappingHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetSlackIntegrationMappingHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class CreateSlackIntegrationMappingHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -69,6 +76,13 @@ export class CreateSlackIntegrationMappingHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateSlackIntegrationMappingHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateSlackIntegrationMappingByIdRequestBody {
   readonly boxItem?: IntegrationMappingBoxItemSlack;
@@ -86,6 +100,13 @@ export class UpdateSlackIntegrationMappingByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateSlackIntegrationMappingByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteSlackIntegrationMappingByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -97,6 +118,13 @@ export class DeleteSlackIntegrationMappingByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteSlackIntegrationMappingByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class IntegrationMappingsManager {
   readonly auth?: Authentication;
@@ -117,11 +145,14 @@ export class IntegrationMappingsManager {
   }
   async getSlackIntegrationMapping(
     queryParams: GetSlackIntegrationMappingQueryParams = {} satisfies GetSlackIntegrationMappingQueryParams,
-    headers: GetSlackIntegrationMappingHeaders = new GetSlackIntegrationMappingHeaders(
+    headersInput: GetSlackIntegrationMappingHeadersInput = new GetSlackIntegrationMappingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<IntegrationMappings> {
+    const headers: any = new GetSlackIntegrationMappingHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -157,11 +188,14 @@ export class IntegrationMappingsManager {
   }
   async createSlackIntegrationMapping(
     requestBody: IntegrationMappingSlackCreateRequest,
-    headers: CreateSlackIntegrationMappingHeaders = new CreateSlackIntegrationMappingHeaders(
+    headersInput: CreateSlackIntegrationMappingHeadersInput = new CreateSlackIntegrationMappingHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<IntegrationMapping> {
+    const headers: any = new CreateSlackIntegrationMappingHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -186,11 +220,14 @@ export class IntegrationMappingsManager {
   async updateSlackIntegrationMappingById(
     integrationMappingId: string,
     requestBody: UpdateSlackIntegrationMappingByIdRequestBody = {} satisfies UpdateSlackIntegrationMappingByIdRequestBody,
-    headers: UpdateSlackIntegrationMappingByIdHeaders = new UpdateSlackIntegrationMappingByIdHeaders(
+    headersInput: UpdateSlackIntegrationMappingByIdHeadersInput = new UpdateSlackIntegrationMappingByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<IntegrationMapping> {
+    const headers: any = new UpdateSlackIntegrationMappingByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -217,11 +254,14 @@ export class IntegrationMappingsManager {
   }
   async deleteSlackIntegrationMappingById(
     integrationMappingId: string,
-    headers: DeleteSlackIntegrationMappingByIdHeaders = new DeleteSlackIntegrationMappingByIdHeaders(
+    headersInput: DeleteSlackIntegrationMappingByIdHeadersInput = new DeleteSlackIntegrationMappingByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteSlackIntegrationMappingByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -242,6 +282,10 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface IntegrationMappingsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
   val: any

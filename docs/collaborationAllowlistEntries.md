@@ -25,7 +25,7 @@ await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
 
 - queryParams `GetCollaborationWhitelistEntriesQueryParams`
   - Query parameters of getCollaborationWhitelistEntries method
-- headers `GetCollaborationWhitelistEntriesHeaders`
+- headersInput `GetCollaborationWhitelistEntriesHeadersInput`
   - Headers of getCollaborationWhitelistEntries method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,7 +59,7 @@ await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
 
 - requestBody `CreateCollaborationWhitelistEntryRequestBody`
   - Request body of createCollaborationWhitelistEntry method
-- headers `CreateCollaborationWhitelistEntryHeaders`
+- headersInput `CreateCollaborationWhitelistEntryHeadersInput`
   - Headers of createCollaborationWhitelistEntry method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -92,7 +92,7 @@ await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
 
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
-- headers `GetCollaborationWhitelistEntryByIdHeaders`
+- headersInput `GetCollaborationWhitelistEntryByIdHeadersInput`
   - Headers of getCollaborationWhitelistEntryById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -125,7 +125,7 @@ await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById
 
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
-- headers `DeleteCollaborationWhitelistEntryByIdHeaders`
+- headersInput `DeleteCollaborationWhitelistEntryByIdHeadersInput`
   - Headers of deleteCollaborationWhitelistEntryById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

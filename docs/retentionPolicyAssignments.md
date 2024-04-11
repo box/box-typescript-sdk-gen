@@ -31,7 +31,7 @@ await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
   - The ID of the retention policy. Example: "982312"
 - queryParams `GetRetentionPolicyAssignmentsQueryParams`
   - Query parameters of getRetentionPolicyAssignments method
-- headers `GetRetentionPolicyAssignmentsHeaders`
+- headersInput `GetRetentionPolicyAssignmentsHeadersInput`
   - Headers of getRetentionPolicyAssignments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -68,7 +68,7 @@ await client.retentionPolicyAssignments.createRetentionPolicyAssignment({
 
 - requestBody `CreateRetentionPolicyAssignmentRequestBody`
   - Request body of createRetentionPolicyAssignment method
-- headers `CreateRetentionPolicyAssignmentHeaders`
+- headersInput `CreateRetentionPolicyAssignmentHeadersInput`
   - Headers of createRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -102,7 +102,7 @@ await client.retentionPolicyAssignments.getRetentionPolicyAssignmentById(
   - The ID of the retention policy assignment. Example: "1233123"
 - queryParams `GetRetentionPolicyAssignmentByIdQueryParams`
   - Query parameters of getRetentionPolicyAssignmentById method
-- headers `GetRetentionPolicyAssignmentByIdHeaders`
+- headersInput `GetRetentionPolicyAssignmentByIdHeadersInput`
   - Headers of getRetentionPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -135,7 +135,7 @@ await client.retentionPolicyAssignments.deleteRetentionPolicyAssignmentById(
 
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
-- headers `DeleteRetentionPolicyAssignmentByIdHeaders`
+- headersInput `DeleteRetentionPolicyAssignmentByIdHeadersInput`
   - Headers of deleteRetentionPolicyAssignmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -170,7 +170,7 @@ await client.retentionPolicyAssignments.getFilesUnderRetentionPolicyAssignment(
   - The ID of the retention policy assignment. Example: "1233123"
 - queryParams `GetFilesUnderRetentionPolicyAssignmentQueryParams`
   - Query parameters of getFilesUnderRetentionPolicyAssignment method
-- headers `GetFilesUnderRetentionPolicyAssignmentHeaders`
+- headersInput `GetFilesUnderRetentionPolicyAssignmentHeadersInput`
   - Headers of getFilesUnderRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -200,7 +200,7 @@ _Currently we don't have an example for calling `getFileVersionsUnderRetentionPo
   - The ID of the retention policy assignment. Example: "1233123"
 - queryParams `GetFileVersionsUnderRetentionPolicyAssignmentQueryParams`
   - Query parameters of getFileVersionsUnderRetentionPolicyAssignment method
-- headers `GetFileVersionsUnderRetentionPolicyAssignmentHeaders`
+- headersInput `GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput`
   - Headers of getFileVersionsUnderRetentionPolicyAssignment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

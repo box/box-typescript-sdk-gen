@@ -25,7 +25,7 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
 
 - queryParams `GetCollaborationWhitelistExemptTargetsQueryParams`
   - Query parameters of getCollaborationWhitelistExemptTargets method
-- headers `GetCollaborationWhitelistExemptTargetsHeaders`
+- headersInput `GetCollaborationWhitelistExemptTargetsHeadersInput`
   - Headers of getCollaborationWhitelistExemptTargets method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -62,7 +62,7 @@ await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExe
 
 - requestBody `CreateCollaborationWhitelistExemptTargetRequestBody`
   - Request body of createCollaborationWhitelistExemptTarget method
-- headers `CreateCollaborationWhitelistExemptTargetHeaders`
+- headersInput `CreateCollaborationWhitelistExemptTargetHeadersInput`
   - Headers of createCollaborationWhitelistExemptTarget method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -95,7 +95,7 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
 
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
-- headers `GetCollaborationWhitelistExemptTargetByIdHeaders`
+- headersInput `GetCollaborationWhitelistExemptTargetByIdHeadersInput`
   - Headers of getCollaborationWhitelistExemptTargetById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -128,7 +128,7 @@ await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExe
 
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
-- headers `DeleteCollaborationWhitelistExemptTargetByIdHeaders`
+- headersInput `DeleteCollaborationWhitelistExemptTargetByIdHeadersInput`
   - Headers of deleteCollaborationWhitelistExemptTargetById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

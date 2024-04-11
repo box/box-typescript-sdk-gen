@@ -32,7 +32,7 @@ await client.search.searchByMetadataQuery({
 
 - requestBody `MetadataQuery`
   - Request body of searchByMetadataQuery method
-- headers `SearchByMetadataQueryHeaders`
+- headersInput `SearchByMetadataQueryHeadersInput`
   - Headers of searchByMetadataQuery method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -74,7 +74,7 @@ await client.search.searchForContent({
 
 - queryParams `SearchForContentQueryParams`
   - Query parameters of searchForContent method
-- headers `SearchForContentHeaders`
+- headersInput `SearchForContentHeadersInput`
   - Headers of searchForContent method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

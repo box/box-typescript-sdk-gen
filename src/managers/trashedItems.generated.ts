@@ -45,6 +45,13 @@ export class GetTrashedItemsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetTrashedItemsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class TrashedItemsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -57,9 +64,12 @@ export class TrashedItemsManager {
   }
   async getTrashedItems(
     queryParams: GetTrashedItemsQueryParams = {} satisfies GetTrashedItemsQueryParams,
-    headers: GetTrashedItemsHeaders = new GetTrashedItemsHeaders({}),
+    headersInput: GetTrashedItemsHeadersInput = new GetTrashedItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
+    const headers: any = new GetTrashedItemsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -93,6 +103,10 @@ export class TrashedItemsManager {
     )) as FetchResponse;
     return deserializeItems(response.data);
   }
+}
+export interface TrashedItemsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetTrashedItemsQueryParamsDirectionField(
   val: any

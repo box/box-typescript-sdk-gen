@@ -37,6 +37,13 @@ export class GetTaskAssignmentsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetTaskAssignmentsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateTaskAssignmentRequestBodyTaskTypeField = 'task';
 export class CreateTaskAssignmentRequestBodyTaskField {
   readonly id!: string;
@@ -49,6 +56,10 @@ export class CreateTaskAssignmentRequestBodyTaskField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
+  readonly id: string;
+  readonly type?: CreateTaskAssignmentRequestBodyTaskTypeField;
 }
 export interface CreateTaskAssignmentRequestBodyAssignToField {
   readonly id?: string;
@@ -70,6 +81,13 @@ export class CreateTaskAssignmentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateTaskAssignmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetTaskAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -81,6 +99,13 @@ export class GetTaskAssignmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetTaskAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateTaskAssignmentByIdRequestBodyResolutionStateField =
   | 'completed'
@@ -103,6 +128,13 @@ export class UpdateTaskAssignmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateTaskAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteTaskAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -114,6 +146,13 @@ export class DeleteTaskAssignmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteTaskAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class TaskAssignmentsManager {
   readonly auth?: Authentication;
@@ -135,9 +174,14 @@ export class TaskAssignmentsManager {
   }
   async getTaskAssignments(
     taskId: string,
-    headers: GetTaskAssignmentsHeaders = new GetTaskAssignmentsHeaders({}),
+    headersInput: GetTaskAssignmentsHeadersInput = new GetTaskAssignmentsHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TaskAssignments> {
+    const headers: any = new GetTaskAssignmentsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -161,9 +205,14 @@ export class TaskAssignmentsManager {
   }
   async createTaskAssignment(
     requestBody: CreateTaskAssignmentRequestBody,
-    headers: CreateTaskAssignmentHeaders = new CreateTaskAssignmentHeaders({}),
+    headersInput: CreateTaskAssignmentHeadersInput = new CreateTaskAssignmentHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
+    const headers: any = new CreateTaskAssignmentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -187,11 +236,14 @@ export class TaskAssignmentsManager {
   }
   async getTaskAssignmentById(
     taskAssignmentId: string,
-    headers: GetTaskAssignmentByIdHeaders = new GetTaskAssignmentByIdHeaders(
+    headersInput: GetTaskAssignmentByIdHeadersInput = new GetTaskAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
+    const headers: any = new GetTaskAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -215,11 +267,14 @@ export class TaskAssignmentsManager {
   async updateTaskAssignmentById(
     taskAssignmentId: string,
     requestBody: UpdateTaskAssignmentByIdRequestBody = {} satisfies UpdateTaskAssignmentByIdRequestBody,
-    headers: UpdateTaskAssignmentByIdHeaders = new UpdateTaskAssignmentByIdHeaders(
+    headersInput: UpdateTaskAssignmentByIdHeadersInput = new UpdateTaskAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TaskAssignment> {
+    const headers: any = new UpdateTaskAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -244,11 +299,14 @@ export class TaskAssignmentsManager {
   }
   async deleteTaskAssignmentById(
     taskAssignmentId: string,
-    headers: DeleteTaskAssignmentByIdHeaders = new DeleteTaskAssignmentByIdHeaders(
+    headersInput: DeleteTaskAssignmentByIdHeadersInput = new DeleteTaskAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteTaskAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -269,6 +327,10 @@ export class TaskAssignmentsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface TaskAssignmentsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
   val: any
@@ -309,6 +371,30 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskField(
     id: id,
     type: type,
   } satisfies CreateTaskAssignmentRequestBodyTaskField;
+}
+export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCreateTaskAssignmentRequestBodyTaskTypeField(val.type),
+  };
+}
+export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
+  val: any
+): CreateTaskAssignmentRequestBodyTaskFieldInput {
+  const id: string = val.id;
+  const type: undefined | CreateTaskAssignmentRequestBodyTaskTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCreateTaskAssignmentRequestBodyTaskTypeField(val.type);
+  return {
+    id: id,
+    type: type,
+  } satisfies CreateTaskAssignmentRequestBodyTaskFieldInput;
 }
 export function serializeCreateTaskAssignmentRequestBodyAssignToField(
   val: any

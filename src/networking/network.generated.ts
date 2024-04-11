@@ -70,3 +70,12 @@ export class NetworkSession {
     });
   }
 }
+export interface NetworkSessionInput {
+  readonly additionalHeaders?: {
+    readonly [key: string]: string;
+  };
+  readonly baseUrls: BaseUrls;
+  readonly interceptors?: readonly Interceptor[];
+  readonly agent?: Agent;
+  readonly agentOptions?: AgentOptions;
+}

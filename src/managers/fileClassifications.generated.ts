@@ -34,6 +34,13 @@ export class GetClassificationOnFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetClassificationOnFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface AddClassificationToFileRequestBody {
   readonly boxSecurityClassificationKey?: string;
 }
@@ -48,6 +55,13 @@ export class AddClassificationToFileHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface AddClassificationToFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateClassificationOnFileRequestBodyOpField = 'replace';
 export type UpdateClassificationOnFileRequestBodyPathField =
@@ -66,6 +80,11 @@ export class UpdateClassificationOnFileRequestBody {
     Object.assign(this, fields);
   }
 }
+export interface UpdateClassificationOnFileRequestBodyInput {
+  readonly op?: UpdateClassificationOnFileRequestBodyOpField;
+  readonly path?: UpdateClassificationOnFileRequestBodyPathField;
+  readonly value: string;
+}
 export class UpdateClassificationOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -78,6 +97,13 @@ export class UpdateClassificationOnFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateClassificationOnFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteClassificationFromFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -89,6 +115,13 @@ export class DeleteClassificationFromFileHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteClassificationFromFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileClassificationsManager {
   readonly auth?: Authentication;
@@ -109,11 +142,14 @@ export class FileClassificationsManager {
   }
   async getClassificationOnFile(
     fileId: string,
-    headers: GetClassificationOnFileHeaders = new GetClassificationOnFileHeaders(
+    headersInput: GetClassificationOnFileHeadersInput = new GetClassificationOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new GetClassificationOnFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -138,11 +174,14 @@ export class FileClassificationsManager {
   async addClassificationToFile(
     fileId: string,
     requestBody: AddClassificationToFileRequestBody = {} satisfies AddClassificationToFileRequestBody,
-    headers: AddClassificationToFileHeaders = new AddClassificationToFileHeaders(
+    headersInput: AddClassificationToFileHeadersInput = new AddClassificationToFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new AddClassificationToFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -169,11 +208,14 @@ export class FileClassificationsManager {
   async updateClassificationOnFile(
     fileId: string,
     requestBody: readonly UpdateClassificationOnFileRequestBody[],
-    headers: UpdateClassificationOnFileHeaders = new UpdateClassificationOnFileHeaders(
+    headersInput: UpdateClassificationOnFileHeadersInput = new UpdateClassificationOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new UpdateClassificationOnFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -201,11 +243,14 @@ export class FileClassificationsManager {
   }
   async deleteClassificationFromFile(
     fileId: string,
-    headers: DeleteClassificationFromFileHeaders = new DeleteClassificationFromFileHeaders(
+    headersInput: DeleteClassificationFromFileHeadersInput = new DeleteClassificationFromFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteClassificationFromFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -227,6 +272,10 @@ export class FileClassificationsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FileClassificationsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationToFileRequestBody(
   val: any
@@ -313,4 +362,37 @@ export function deserializeUpdateClassificationOnFileRequestBody(
     path: path,
     value: value,
   } satisfies UpdateClassificationOnFileRequestBody;
+}
+export function serializeUpdateClassificationOnFileRequestBodyInput(
+  val: any
+): SerializedData {
+  return {
+    ['op']:
+      val.op == void 0
+        ? void 0
+        : serializeUpdateClassificationOnFileRequestBodyOpField(val.op),
+    ['path']:
+      val.path == void 0
+        ? void 0
+        : serializeUpdateClassificationOnFileRequestBodyPathField(val.path),
+    ['value']: val.value,
+  };
+}
+export function deserializeUpdateClassificationOnFileRequestBodyInput(
+  val: any
+): UpdateClassificationOnFileRequestBodyInput {
+  const op: undefined | UpdateClassificationOnFileRequestBodyOpField =
+    val.op == void 0
+      ? void 0
+      : deserializeUpdateClassificationOnFileRequestBodyOpField(val.op);
+  const path: undefined | UpdateClassificationOnFileRequestBodyPathField =
+    val.path == void 0
+      ? void 0
+      : deserializeUpdateClassificationOnFileRequestBodyPathField(val.path);
+  const value: string = val.value;
+  return {
+    op: op,
+    path: path,
+    value: value,
+  } satisfies UpdateClassificationOnFileRequestBodyInput;
 }

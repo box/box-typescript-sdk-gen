@@ -16,6 +16,7 @@ import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../
 import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
 import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
 import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { FindFolderForSharedLinkHeadersInput } from '../managers/sharedLinksFolders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
@@ -73,13 +74,13 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   const folderFromSharedLinkPassword: FolderFull =
     await userClient.sharedLinksFolders.findFolderForSharedLink(
       {} satisfies FindFolderForSharedLinkQueryParams,
-      new FindFolderForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
           '&shared_link_password=Secret123@'
         ) as string,
-      })
+      } satisfies FindFolderForSharedLinkHeadersInput
     );
   if (!(folder.id == folderFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -87,13 +88,13 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   await expect(async () => {
     await userClient.sharedLinksFolders.findFolderForSharedLink(
       {} satisfies FindFolderForSharedLinkQueryParams,
-      new FindFolderForSharedLinkHeaders({
+      {
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
           '&shared_link_password=incorrectPassword'
         ) as string,
-      })
+      } satisfies FindFolderForSharedLinkHeadersInput
     );
   }).rejects.toThrow();
   const updatedFolder: FolderFull =

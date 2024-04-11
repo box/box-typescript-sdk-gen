@@ -16,6 +16,7 @@ import { serializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { serializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
+import { GetFileByIdHeadersInput } from '../managers/files.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
@@ -108,7 +109,9 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
     await client.files.getFileById(
       uploadedFile.id,
       { fields: ['name' as string] } satisfies GetFileByIdQueryParams,
-      new GetFileByIdHeaders({ extraHeaders: { ['if-none-match']: file.etag } })
+      {
+        extraHeaders: { ['if-none-match']: file.etag },
+      } satisfies GetFileByIdHeadersInput
     );
   }).rejects.toThrow();
   if (!(file.name == newFileName)) {

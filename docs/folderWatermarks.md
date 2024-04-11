@@ -23,7 +23,7 @@ await client.folderWatermarks.getFolderWatermark(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `GetFolderWatermarkHeaders`
+- headersInput `GetFolderWatermarkHeadersInput`
   - Headers of getFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -60,7 +60,7 @@ await client.folderWatermarks.updateFolderWatermark(folder.id, {
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `UpdateFolderWatermarkRequestBody`
   - Request body of updateFolderWatermark method
-- headers `UpdateFolderWatermarkHeaders`
+- headersInput `UpdateFolderWatermarkHeadersInput`
   - Headers of updateFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -92,7 +92,7 @@ await client.folderWatermarks.deleteFolderWatermark(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `DeleteFolderWatermarkHeaders`
+- headersInput `DeleteFolderWatermarkHeadersInput`
   - Headers of deleteFolderWatermark method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

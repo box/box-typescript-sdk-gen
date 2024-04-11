@@ -39,6 +39,13 @@ export class GetFileRequestByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileRequestByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class UpdateFileRequestByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
@@ -52,6 +59,14 @@ export class UpdateFileRequestByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFileRequestByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFileRequestByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -64,6 +79,13 @@ export class DeleteFileRequestByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface DeleteFileRequestByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class CreateFileRequestCopyHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -75,6 +97,13 @@ export class CreateFileRequestCopyHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateFileRequestCopyHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileRequestsManager {
   readonly auth?: Authentication;
@@ -95,9 +124,14 @@ export class FileRequestsManager {
   }
   async getFileRequestById(
     fileRequestId: string,
-    headers: GetFileRequestByIdHeaders = new GetFileRequestByIdHeaders({}),
+    headersInput: GetFileRequestByIdHeadersInput = new GetFileRequestByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
+    const headers: any = new GetFileRequestByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -121,11 +155,15 @@ export class FileRequestsManager {
   async updateFileRequestById(
     fileRequestId: string,
     requestBody: FileRequestUpdateRequest,
-    headers: UpdateFileRequestByIdHeaders = new UpdateFileRequestByIdHeaders(
+    headersInput: UpdateFileRequestByIdHeadersInput = new UpdateFileRequestByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
+    const headers: any = new UpdateFileRequestByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -153,11 +191,14 @@ export class FileRequestsManager {
   }
   async deleteFileRequestById(
     fileRequestId: string,
-    headers: DeleteFileRequestByIdHeaders = new DeleteFileRequestByIdHeaders(
+    headersInput: DeleteFileRequestByIdHeadersInput = new DeleteFileRequestByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFileRequestByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -181,11 +222,14 @@ export class FileRequestsManager {
   async createFileRequestCopy(
     fileRequestId: string,
     requestBody: FileRequestCopyRequest,
-    headers: CreateFileRequestCopyHeaders = new CreateFileRequestCopyHeaders(
+    headersInput: CreateFileRequestCopyHeadersInput = new CreateFileRequestCopyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileRequest> {
+    const headers: any = new CreateFileRequestCopyHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -209,4 +253,8 @@ export class FileRequestsManager {
     )) as FetchResponse;
     return deserializeFileRequest(response.data);
   }
+}
+export interface FileRequestsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

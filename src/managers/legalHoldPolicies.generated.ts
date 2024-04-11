@@ -42,6 +42,13 @@ export class GetLegalHoldPoliciesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetLegalHoldPoliciesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CreateLegalHoldPolicyRequestBody {
   readonly policyName: string;
   readonly description?: string;
@@ -61,6 +68,13 @@ export class CreateLegalHoldPolicyHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateLegalHoldPolicyHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetLegalHoldPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +86,13 @@ export class GetLegalHoldPolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetLegalHoldPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateLegalHoldPolicyByIdRequestBody {
   readonly policyName?: string;
@@ -90,6 +111,13 @@ export class UpdateLegalHoldPolicyByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateLegalHoldPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteLegalHoldPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -101,6 +129,13 @@ export class DeleteLegalHoldPolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteLegalHoldPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class LegalHoldPoliciesManager {
   readonly auth?: Authentication;
@@ -122,9 +157,14 @@ export class LegalHoldPoliciesManager {
   }
   async getLegalHoldPolicies(
     queryParams: GetLegalHoldPoliciesQueryParams = {} satisfies GetLegalHoldPoliciesQueryParams,
-    headers: GetLegalHoldPoliciesHeaders = new GetLegalHoldPoliciesHeaders({}),
+    headersInput: GetLegalHoldPoliciesHeadersInput = new GetLegalHoldPoliciesHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicies> {
+    const headers: any = new GetLegalHoldPoliciesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -157,11 +197,14 @@ export class LegalHoldPoliciesManager {
   }
   async createLegalHoldPolicy(
     requestBody: CreateLegalHoldPolicyRequestBody,
-    headers: CreateLegalHoldPolicyHeaders = new CreateLegalHoldPolicyHeaders(
+    headersInput: CreateLegalHoldPolicyHeadersInput = new CreateLegalHoldPolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
+    const headers: any = new CreateLegalHoldPolicyHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -185,11 +228,14 @@ export class LegalHoldPoliciesManager {
   }
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headers: GetLegalHoldPolicyByIdHeaders = new GetLegalHoldPolicyByIdHeaders(
+    headersInput: GetLegalHoldPolicyByIdHeadersInput = new GetLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
+    const headers: any = new GetLegalHoldPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -213,11 +259,14 @@ export class LegalHoldPoliciesManager {
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
     requestBody: UpdateLegalHoldPolicyByIdRequestBody = {} satisfies UpdateLegalHoldPolicyByIdRequestBody,
-    headers: UpdateLegalHoldPolicyByIdHeaders = new UpdateLegalHoldPolicyByIdHeaders(
+    headersInput: UpdateLegalHoldPolicyByIdHeadersInput = new UpdateLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicy> {
+    const headers: any = new UpdateLegalHoldPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -242,11 +291,14 @@ export class LegalHoldPoliciesManager {
   }
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headers: DeleteLegalHoldPolicyByIdHeaders = new DeleteLegalHoldPolicyByIdHeaders(
+    headersInput: DeleteLegalHoldPolicyByIdHeadersInput = new DeleteLegalHoldPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteLegalHoldPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -267,6 +319,10 @@ export class LegalHoldPoliciesManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface LegalHoldPoliciesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateLegalHoldPolicyRequestBody(
   val: any
