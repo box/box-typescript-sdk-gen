@@ -52,10 +52,7 @@ export class BoxCcgAuth implements Authentication {
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage =
-      this.config.tokenStorage == void 0
-        ? new InMemoryTokenStorage({})
-        : this.config.tokenStorage;
+    this.tokenStorage = this.config.tokenStorage;
     this.subjectId = !(this.config.userId == void 0)
       ? this.config.userId
       : this.config.enterpriseId;
@@ -64,18 +61,18 @@ export class BoxCcgAuth implements Authentication {
       : ('enterprise' as PostOAuth2TokenBoxSubjectTypeField);
   }
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
-    const token: undefined | AccessToken = await authManager.requestAccessToken(
-      {
-        grantType: 'client_credentials' as PostOAuth2TokenGrantTypeField,
-        clientId: this.config.clientId,
-        clientSecret: this.config.clientSecret,
-        boxSubjectId: this.subjectId,
-        boxSubjectType: this.subjectType,
-      } satisfies PostOAuth2Token
-    );
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
+    const token: AccessToken = await authManager.requestAccessToken({
+      grantType: 'client_credentials' as PostOAuth2TokenGrantTypeField,
+      clientId: this.config.clientId,
+      clientSecret: this.config.clientSecret,
+      boxSubjectType: this.subjectType,
+      boxSubjectId: this.subjectId,
+    } satisfies PostOAuth2Token);
     await this.tokenStorage.store(token);
     return token;
   }
@@ -85,7 +82,7 @@ export class BoxCcgAuth implements Authentication {
       const newToken: AccessToken = await this.refreshToken(networkSession);
       return newToken;
     }
-    return oldToken;
+    return oldToken!;
   }
   async retrieveAuthorizationHeader(
     networkSession?: NetworkSession
@@ -132,17 +129,19 @@ export class BoxCcgAuth implements Authentication {
           'No access token is available. Make an API call to retrieve a token before calling this method.',
       });
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const downscopedToken: AccessToken = await authManager.requestAccessToken({
       grantType:
         'urn:ietf:params:oauth:grant-type:token-exchange' as PostOAuth2TokenGrantTypeField,
-      subjectToken: token.accessToken,
+      subjectToken: token!.accessToken,
       subjectTokenType:
         'urn:ietf:params:oauth:token-type:access_token' as PostOAuth2TokenSubjectTokenTypeField,
-      resource: resource,
       scope: scopes.join(' ') as string,
+      resource: resource,
       boxSharedLink: sharedLink,
     } satisfies PostOAuth2Token);
     return downscopedToken;
@@ -152,13 +151,15 @@ export class BoxCcgAuth implements Authentication {
     if (oldToken == void 0) {
       return void 0;
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     await authManager.revokeAccessToken({
-      token: oldToken.accessToken,
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
+      token: oldToken!.accessToken,
     } satisfies PostOAuth2Revoke);
     return await this.tokenStorage.clear();
   }
