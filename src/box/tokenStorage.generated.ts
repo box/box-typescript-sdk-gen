@@ -5,23 +5,23 @@ export interface TokenStorage {
   clear(): Promise<undefined>;
 }
 export class InMemoryTokenStorage implements TokenStorage {
-  accessToken?: AccessToken = void 0;
+  token?: AccessToken = void 0;
   constructor(
     fields:
-      | Omit<InMemoryTokenStorage, 'accessToken' | 'store' | 'get' | 'clear'>
-      | Partial<Pick<InMemoryTokenStorage, 'accessToken'>>
+      | Omit<InMemoryTokenStorage, 'token' | 'store' | 'get' | 'clear'>
+      | Partial<Pick<InMemoryTokenStorage, 'token'>>
   ) {
     Object.assign(this, fields);
   }
   async store(token: AccessToken): Promise<undefined> {
-    this.accessToken = token;
+    this.token = token;
     return void 0;
   }
   async get(): Promise<undefined | AccessToken> {
-    return this.accessToken;
+    return this.token;
   }
   async clear(): Promise<undefined> {
-    this.accessToken = void 0;
+    this.token = void 0;
     return void 0;
   }
 }
