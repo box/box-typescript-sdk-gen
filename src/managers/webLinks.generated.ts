@@ -2,6 +2,8 @@ import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { WebLink } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -15,6 +17,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdToJson } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -82,7 +85,7 @@ export interface UpdateWebLinkByIdRequestBodySharedLinkField {
   readonly access?: UpdateWebLinkByIdRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
 }
 export interface UpdateWebLinkByIdRequestBody {
   readonly url?: string;
@@ -357,7 +360,8 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
@@ -373,8 +377,8 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
     val.password == void 0 ? void 0 : val.password;
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   return {
     access: access,
     password: password,

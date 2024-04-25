@@ -2,6 +2,8 @@ import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { FileFull } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -15,6 +17,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -64,13 +67,13 @@ export interface UpdateFileByIdRequestBodySharedLinkField {
   readonly access?: UpdateFileByIdRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateFileByIdRequestBodySharedLinkPermissionsField;
 }
 export type UpdateFileByIdRequestBodyLockAccessField = 'lock';
 export interface UpdateFileByIdRequestBodyLockField {
   readonly access?: UpdateFileByIdRequestBodyLockAccessField;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly isDownloadPrevented?: boolean;
 }
 export type UpdateFileByIdRequestBodyPermissionsCanDownloadField =
@@ -89,7 +92,7 @@ export interface UpdateFileByIdRequestBody {
   readonly parent?: UpdateFileByIdRequestBodyParentField;
   readonly sharedLink?: UpdateFileByIdRequestBodySharedLinkField;
   readonly lock?: UpdateFileByIdRequestBodyLockField;
-  readonly dispositionAt?: string;
+  readonly dispositionAt?: DateTime;
   readonly permissions?: UpdateFileByIdRequestBodyPermissionsField;
   readonly collections?: readonly UpdateFileByIdRequestBodyCollectionsField[];
   readonly tags?: readonly string[];
@@ -489,7 +492,8 @@ export function serializeUpdateFileByIdRequestBodySharedLinkField(
         : serializeUpdateFileByIdRequestBodySharedLinkAccessField(val.access),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
         ? void 0
@@ -509,8 +513,8 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkField(
     val.password == void 0 ? void 0 : val.password;
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
     | undefined
     | UpdateFileByIdRequestBodySharedLinkPermissionsField =
@@ -556,7 +560,8 @@ export function serializeUpdateFileByIdRequestBodyLockField(
       val.access == void 0
         ? void 0
         : serializeUpdateFileByIdRequestBodyLockAccessField(val.access),
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['is_download_prevented']:
       val.isDownloadPrevented == void 0 ? void 0 : val.isDownloadPrevented,
   };
@@ -568,8 +573,8 @@ export function deserializeUpdateFileByIdRequestBodyLockField(
     val.access == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyLockAccessField(val.access);
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const isDownloadPrevented: undefined | boolean =
     val.is_download_prevented == void 0 ? void 0 : val.is_download_prevented;
   return {
@@ -664,7 +669,9 @@ export function serializeUpdateFileByIdRequestBody(val: any): SerializedData {
         ? void 0
         : serializeUpdateFileByIdRequestBodyLockField(val.lock),
     ['disposition_at']:
-      val.dispositionAt == void 0 ? void 0 : val.dispositionAt,
+      val.dispositionAt == void 0
+        ? void 0
+        : serializeDateTime(val.dispositionAt),
     ['permissions']:
       val.permissions == void 0
         ? void 0
@@ -703,8 +710,10 @@ export function deserializeUpdateFileByIdRequestBody(
     val.lock == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyLockField(val.lock);
-  const dispositionAt: undefined | string =
-    val.disposition_at == void 0 ? void 0 : val.disposition_at;
+  const dispositionAt: undefined | DateTime =
+    val.disposition_at == void 0
+      ? void 0
+      : deserializeDateTime(val.disposition_at);
   const permissions: undefined | UpdateFileByIdRequestBodyPermissionsField =
     val.permissions == void 0
       ? void 0

@@ -6,11 +6,16 @@ import { serializeLegalHoldPolicies } from '../schemas.generated.js';
 import { deserializeLegalHoldPolicies } from '../schemas.generated.js';
 import { serializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { deserializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { LegalHoldPolicy } from '../schemas.generated.js';
 import { CreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { LegalHoldPolicies } from '../schemas.generated.js';
 import { UpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
+import { DateTime } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
+import { dateTimeFromString } from '../internal/utils.js';
+import { dateTimeToString } from '../internal/utils.js';
 import { BoxClient } from '../client.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';
@@ -63,13 +68,19 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
 test('testCreateNotOngoingLegalHoldPolicy', async function testCreateNotOngoingLegalHoldPolicy(): Promise<any> {
   const legalHoldPolicyName: string = getUuid();
   const legalHoldDescription: string = 'test description';
+  const filterStartedAt: DateTime = dateTimeFromString(
+    '2021-01-01T00:00:00-08:00'
+  );
+  const filterEndedAt: DateTime = dateTimeFromString(
+    '2022-01-01T00:00:00-08:00'
+  );
   const legalHoldPolicy: LegalHoldPolicy =
     await client.legalHoldPolicies.createLegalHoldPolicy({
       policyName: legalHoldPolicyName,
       description: legalHoldDescription,
       isOngoing: false,
-      filterStartedAt: '2021-01-01T00:00:00-08:00',
-      filterEndedAt: '2022-01-01T00:00:00-08:00',
+      filterStartedAt: filterStartedAt,
+      filterEndedAt: filterEndedAt,
     } satisfies CreateLegalHoldPolicyRequestBody);
   if (!(legalHoldPolicy.policyName == legalHoldPolicyName)) {
     throw new Error('Assertion failed');
@@ -77,10 +88,22 @@ test('testCreateNotOngoingLegalHoldPolicy', async function testCreateNotOngoingL
   if (!(legalHoldPolicy.description == legalHoldDescription)) {
     throw new Error('Assertion failed');
   }
-  if (!(legalHoldPolicy.filterStartedAt! == '2021-01-01T00:00:00-08:00')) {
+  if (
+    !(
+      dateTimeToString(legalHoldPolicy.filterStartedAt!) ==
+      dateTimeToString(filterStartedAt)
+    )
+  ) {
     throw new Error('Assertion failed');
   }
-  legalHoldPolicy.filterEndedAt! == '2022-01-01T00:00:00-08:00';
+  if (
+    !(
+      dateTimeToString(legalHoldPolicy.filterEndedAt!) ==
+      dateTimeToString(filterEndedAt)
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
   await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);
 });
 export {};

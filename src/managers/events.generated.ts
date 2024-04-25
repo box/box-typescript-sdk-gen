@@ -4,6 +4,8 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeRealtimeServers } from '../schemas.generated.js';
 import { deserializeRealtimeServers } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { Events } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { RealtimeServers } from '../schemas.generated.js';
@@ -13,6 +15,7 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
+import { DateTime } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
@@ -148,8 +151,8 @@ export interface GetEventsQueryParams {
   readonly streamPosition?: string;
   readonly limit?: number;
   readonly eventType?: readonly GetEventsQueryParamsEventTypeField[];
-  readonly createdAfter?: string;
-  readonly createdBefore?: string;
+  readonly createdAfter?: DateTime;
+  readonly createdBefore?: DateTime;
 }
 export class GetEventsHeaders {
   readonly extraHeaders?: {
@@ -219,8 +222,16 @@ export class EventsManager {
       ['event_type']: queryParams.eventType
         ? queryParams.eventType.map(toString).join(',')
         : undefined,
-      ['created_after']: toString(queryParams.createdAfter) as string,
-      ['created_before']: toString(queryParams.createdBefore) as string,
+      ['created_after']: sdToJson(
+        queryParams.createdAfter
+          ? serializeDateTime(queryParams.createdAfter)
+          : undefined
+      ) as string,
+      ['created_before']: sdToJson(
+        queryParams.createdBefore
+          ? serializeDateTime(queryParams.createdBefore)
+          : undefined
+      ) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

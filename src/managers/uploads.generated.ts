@@ -6,6 +6,8 @@ import { serializeUploadUrl } from '../schemas.generated.js';
 import { deserializeUploadUrl } from '../schemas.generated.js';
 import { serializeConflictError } from '../schemas.generated.js';
 import { deserializeConflictError } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { Files } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { UploadUrl } from '../schemas.generated.js';
@@ -16,6 +18,7 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
+import { DateTime } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
@@ -30,7 +33,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface UploadFileVersionRequestBodyAttributesField {
   readonly name: string;
-  readonly contentModifiedAt?: string;
+  readonly contentModifiedAt?: DateTime;
 }
 export interface UploadFileVersionRequestBody {
   readonly attributes: UploadFileVersionRequestBodyAttributesField;
@@ -70,8 +73,8 @@ export interface UploadFileRequestBodyAttributesParentField {
 export interface UploadFileRequestBodyAttributesField {
   readonly name: string;
   readonly parent: UploadFileRequestBodyAttributesParentField;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
 }
 export interface UploadFileRequestBody {
   readonly attributes: UploadFileRequestBodyAttributesField;
@@ -307,15 +310,19 @@ export function serializeUploadFileVersionRequestBodyAttributesField(
   return {
     ['name']: val.name,
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
   };
 }
 export function deserializeUploadFileVersionRequestBodyAttributesField(
   val: any
 ): UploadFileVersionRequestBodyAttributesField {
   const name: string = val.name;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   return {
     name: name,
     contentModifiedAt: contentModifiedAt,
@@ -339,9 +346,13 @@ export function serializeUploadFileRequestBodyAttributesField(
     ['name']: val.name,
     ['parent']: serializeUploadFileRequestBodyAttributesParentField(val.parent),
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
   };
 }
 export function deserializeUploadFileRequestBodyAttributesField(
@@ -350,10 +361,14 @@ export function deserializeUploadFileRequestBodyAttributesField(
   const name: string = val.name;
   const parent: UploadFileRequestBodyAttributesParentField =
     deserializeUploadFileRequestBodyAttributesParentField(val.parent);
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   return {
     name: name,
     parent: parent,
