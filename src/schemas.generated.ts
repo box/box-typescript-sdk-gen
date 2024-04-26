@@ -465,7 +465,7 @@ export class FolderMini extends FolderBase {
     super(fields);
   }
 }
-export type FileMiniOrFolderMini = FileMini | FolderMini;
+export type FolderMiniOrFileMini = FileMini | FolderMini;
 export type FileOrFolderScopeScopeField =
   | 'annotation_edit'
   | 'annotation_view_all'
@@ -481,7 +481,7 @@ export type FileOrFolderScopeScopeField =
   | 'item_share';
 export interface FileOrFolderScope {
   readonly scope?: FileOrFolderScopeScopeField;
-  readonly object?: FileMiniOrFolderMini;
+  readonly object?: FolderMiniOrFileMini;
 }
 export type AccessTokenTokenTypeField = 'bearer';
 export type AccessTokenIssuedTokenTypeField =
@@ -1103,7 +1103,7 @@ export class UserCollaborations extends UserBase {
     super(fields);
   }
 }
-export type GroupMiniOrUserCollaborations = GroupMini | UserCollaborations;
+export type UserCollaborationsOrGroupMini = GroupMini | UserCollaborations;
 export class UserMini extends UserBase {
   readonly name?: string;
   readonly login?: string;
@@ -2617,7 +2617,7 @@ export class Folder extends FolderMini {
     super(fields);
   }
 }
-export type EventSourceOrFileOrFolderOrGenericSourceOrUser =
+export type UserOrEventSourceOrFileOrFolderOrGenericSource =
   | EventSource
   | File
   | Folder
@@ -2766,7 +2766,7 @@ export interface Event {
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;
   readonly sessionId?: string;
-  readonly source?: EventSourceOrFileOrFolderOrGenericSourceOrUser;
+  readonly source?: UserOrEventSourceOrFileOrFolderOrGenericSource;
   readonly additionalDetails?: EventAdditionalDetailsField;
 }
 export interface Events {
@@ -2836,7 +2836,7 @@ export class Collaboration {
   readonly type: CollaborationTypeField =
     'collaboration' as CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
-  readonly accessibleBy?: GroupMiniOrUserCollaborations;
+  readonly accessibleBy?: UserCollaborationsOrGroupMini;
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
   readonly expiresAt?: DateTime;
@@ -2898,7 +2898,7 @@ export interface CollaborationInput {
   readonly id: string;
   readonly type?: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
-  readonly accessibleBy?: GroupMiniOrUserCollaborations;
+  readonly accessibleBy?: UserCollaborationsOrGroupMini;
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
   readonly expiresAt?: DateTime;
@@ -3987,7 +3987,7 @@ export interface StatusSkillCardInput {
   readonly skill: StatusSkillCardSkillField;
   readonly invocation: StatusSkillCardInvocationField;
 }
-export type KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard =
+export type KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard =
   KeywordSkillCard | StatusSkillCard | TimelineSkillCard | TranscriptSkillCard;
 export interface SkillCardsMetadata {
   readonly canEdit?: boolean;
@@ -3998,7 +3998,7 @@ export interface SkillCardsMetadata {
   readonly type?: string;
   readonly typeVersion?: number;
   readonly version?: number;
-  readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly cards?: readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[];
 }
 export type SignRequestCreateSignerRoleField =
   | 'signer'
@@ -6413,7 +6413,7 @@ export function deserializeFolderMini(val: any): FolderMini {
     type: type,
   } satisfies FolderMini;
 }
-export function serializeFileMiniOrFolderMini(val: any): SerializedData {
+export function serializeFolderMiniOrFileMini(val: any): SerializedData {
   if (val.type == 'file') {
     return serializeFileMini(val);
   }
@@ -6422,12 +6422,12 @@ export function serializeFileMiniOrFolderMini(val: any): SerializedData {
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function deserializeFileMiniOrFolderMini(
+export function deserializeFolderMiniOrFileMini(
   val: any
-): FileMiniOrFolderMini {
+): FolderMiniOrFileMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
-      message: 'Expecting a map for "FileMiniOrFolderMini"',
+      message: 'Expecting a map for "FolderMiniOrFileMini"',
     });
   }
   if (val.type == 'file') {
@@ -6496,7 +6496,7 @@ export function serializeFileOrFolderScope(val: any): SerializedData {
         ? void 0
         : serializeFileOrFolderScopeScopeField(val.scope),
     ['object']:
-      val.object == void 0 ? void 0 : serializeFileMiniOrFolderMini(val.object),
+      val.object == void 0 ? void 0 : serializeFolderMiniOrFileMini(val.object),
   };
 }
 export function deserializeFileOrFolderScope(val: any): FileOrFolderScope {
@@ -6504,8 +6504,8 @@ export function deserializeFileOrFolderScope(val: any): FileOrFolderScope {
     val.scope == void 0
       ? void 0
       : deserializeFileOrFolderScopeScopeField(val.scope);
-  const object: undefined | FileMiniOrFolderMini =
-    val.object == void 0 ? void 0 : deserializeFileMiniOrFolderMini(val.object);
+  const object: undefined | FolderMiniOrFileMini =
+    val.object == void 0 ? void 0 : deserializeFolderMiniOrFileMini(val.object);
   return { scope: scope, object: object } satisfies FileOrFolderScope;
 }
 export function serializeAccessTokenTokenTypeField(val: any): SerializedData {
@@ -9488,7 +9488,7 @@ export function deserializeUserCollaborations(val: any): UserCollaborations {
     type: type,
   } satisfies UserCollaborations;
 }
-export function serializeGroupMiniOrUserCollaborations(
+export function serializeUserCollaborationsOrGroupMini(
   val: any
 ): SerializedData {
   if (val.type == 'group') {
@@ -9499,12 +9499,12 @@ export function serializeGroupMiniOrUserCollaborations(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function deserializeGroupMiniOrUserCollaborations(
+export function deserializeUserCollaborationsOrGroupMini(
   val: any
-): GroupMiniOrUserCollaborations {
+): UserCollaborationsOrGroupMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
-      message: 'Expecting a map for "GroupMiniOrUserCollaborations"',
+      message: 'Expecting a map for "UserCollaborationsOrGroupMini"',
     });
   }
   if (val.type == 'group') {
@@ -16608,7 +16608,7 @@ export function deserializeFolder(val: any): Folder {
     type: type,
   } satisfies Folder;
 }
-export function serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
+export function serializeUserOrEventSourceOrFileOrFolderOrGenericSource(
   val: any
 ): SerializedData {
   if (val.itemType == 'file') {
@@ -16628,13 +16628,13 @@ export function serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   }
   return serializeGenericSource(val);
 }
-export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
+export function deserializeUserOrEventSourceOrFileOrFolderOrGenericSource(
   val: any
-): EventSourceOrFileOrFolderOrGenericSourceOrUser {
+): UserOrEventSourceOrFileOrFolderOrGenericSource {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
       message:
-        'Expecting a map for "EventSourceOrFileOrFolderOrGenericSourceOrUser"',
+        'Expecting a map for "UserOrEventSourceOrFileOrFolderOrGenericSource"',
     });
   }
   if (val.item_type == 'file') {
@@ -16646,7 +16646,7 @@ export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
       message:
-        'Expecting a map for "EventSourceOrFileOrFolderOrGenericSourceOrUser"',
+        'Expecting a map for "UserOrEventSourceOrFileOrFolderOrGenericSource"',
     });
   }
   if (val.type == 'file') {
@@ -17098,7 +17098,7 @@ export function serializeEvent(val: any): SerializedData {
     ['source']:
       val.source == void 0
         ? void 0
-        : serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source),
+        : serializeUserOrEventSourceOrFileOrFolderOrGenericSource(val.source),
     ['additional_details']:
       val.additionalDetails == void 0
         ? void 0
@@ -17121,10 +17121,10 @@ export function deserializeEvent(val: any): Event {
       : deserializeEventEventTypeField(val.event_type);
   const sessionId: undefined | string =
     val.session_id == void 0 ? void 0 : val.session_id;
-  const source: undefined | EventSourceOrFileOrFolderOrGenericSourceOrUser =
+  const source: undefined | UserOrEventSourceOrFileOrFolderOrGenericSource =
     val.source == void 0
       ? void 0
-      : deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source);
+      : deserializeUserOrEventSourceOrFileOrFolderOrGenericSource(val.source);
   const additionalDetails: undefined | EventAdditionalDetailsField =
     val.additional_details == void 0
       ? void 0
@@ -17650,7 +17650,7 @@ export function serializeCollaboration(val: any): SerializedData {
     ['accessible_by']:
       val.accessibleBy == void 0
         ? void 0
-        : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
+        : serializeUserCollaborationsOrGroupMini(val.accessibleBy),
     ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
@@ -17688,10 +17688,10 @@ export function deserializeCollaboration(val: any): Collaboration {
   );
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
-  const accessibleBy: undefined | GroupMiniOrUserCollaborations =
+  const accessibleBy: undefined | UserCollaborationsOrGroupMini =
     val.accessible_by == void 0
       ? void 0
-      : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
+      : deserializeUserCollaborationsOrGroupMini(val.accessible_by);
   const inviteEmail: undefined | string =
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
@@ -17751,7 +17751,7 @@ export function serializeCollaborationInput(val: any): SerializedData {
     ['accessible_by']:
       val.accessibleBy == void 0
         ? void 0
-        : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
+        : serializeUserCollaborationsOrGroupMini(val.accessibleBy),
     ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
@@ -17788,10 +17788,10 @@ export function deserializeCollaborationInput(val: any): CollaborationInput {
     val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
-  const accessibleBy: undefined | GroupMiniOrUserCollaborations =
+  const accessibleBy: undefined | UserCollaborationsOrGroupMini =
     val.accessible_by == void 0
       ? void 0
-      : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
+      : deserializeUserCollaborationsOrGroupMini(val.accessible_by);
   const inviteEmail: undefined | string =
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
@@ -22371,7 +22371,7 @@ export function deserializeStatusSkillCardInput(
     invocation: invocation,
   } satisfies StatusSkillCardInput;
 }
-export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+export function serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
   val: any
 ): SerializedData {
   if (val.skillCardType == 'keyword') {
@@ -22388,13 +22388,13 @@ export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrT
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+export function deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
   val: any
-): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
+): KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
       message:
-        'Expecting a map for "KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard"',
+        'Expecting a map for "KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard"',
     });
   }
   if (val.skill_card_type == 'keyword') {
@@ -22425,9 +22425,9 @@ export function serializeSkillCardsMetadata(val: any): SerializedData {
       val.cards == void 0
         ? void 0
         : (val.cards.map(function (
-            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+            item: KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard
           ): any {
-            return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+            return serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
               item
             );
           }) as readonly any[]),
@@ -22449,12 +22449,12 @@ export function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata {
     val.$version == void 0 ? void 0 : val.$version;
   const cards:
     | undefined
-    | readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
+    | readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[] =
     val.cards == void 0
       ? void 0
       : sdIsList(val.cards)
       ? (val.cards.map(function (itm: SerializedData): any {
-          return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+          return deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
             itm
           );
         }) as readonly any[])

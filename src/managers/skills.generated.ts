@@ -2,11 +2,11 @@ import { serializeSkillCardsMetadata } from '../schemas.generated.js';
 import { deserializeSkillCardsMetadata } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
-import { serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
-import { deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
+import { serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
+import { deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
 import { SkillCardsMetadata } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
-import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
+import { KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -183,7 +183,7 @@ export interface GetBoxSkillCardsOnFileHeadersInput {
       };
 }
 export interface CreateBoxSkillCardsOnFileRequestBody {
-  readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly cards: readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[];
 }
 export class CreateBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
@@ -209,7 +209,7 @@ export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace';
 export interface UpdateBoxSkillCardsOnFileRequestBody {
   readonly op?: UpdateBoxSkillCardsOnFileRequestBodyOpField;
   readonly path?: string;
-  readonly value?: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard;
+  readonly value?: KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard;
 }
 export class UpdateBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
@@ -258,7 +258,7 @@ export type UpdateAllSkillCardsOnFileRequestBodyStatusField =
   | 'transient_failure'
   | 'permanent_failure';
 export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
-  readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly cards?: readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[];
 }
 export type UpdateAllSkillCardsOnFileRequestBodyFileTypeField = 'file';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
@@ -499,9 +499,9 @@ export function serializeCreateBoxSkillCardsOnFileRequestBody(
 ): SerializedData {
   return {
     ['cards']: val.cards.map(function (
-      item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+      item: KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard
     ): any {
-      return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+      return serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
         item
       );
     }) as readonly any[],
@@ -510,10 +510,10 @@ export function serializeCreateBoxSkillCardsOnFileRequestBody(
 export function deserializeCreateBoxSkillCardsOnFileRequestBody(
   val: any
 ): CreateBoxSkillCardsOnFileRequestBody {
-  const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
+  const cards: readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[] =
     sdIsList(val.cards)
       ? (val.cards.map(function (itm: SerializedData): any {
-          return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+          return deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
             itm
           );
         }) as readonly any[])
@@ -553,7 +553,7 @@ export function serializeUpdateBoxSkillCardsOnFileRequestBody(
     ['value']:
       val.value == void 0
         ? void 0
-        : serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+        : serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
             val.value
           ),
   };
@@ -568,10 +568,10 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
   const value:
     | undefined
-    | KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard =
+    | KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard =
     val.value == void 0
       ? void 0
-      : deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+      : deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
           val.value
         );
   return {
@@ -621,9 +621,9 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
       val.cards == void 0
         ? void 0
         : (val.cards.map(function (
-            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+            item: KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard
           ): any {
-            return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+            return serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
               item
             );
           }) as readonly any[]),
@@ -634,12 +634,12 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
 ): UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   const cards:
     | undefined
-    | readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
+    | readonly KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard[] =
     val.cards == void 0
       ? void 0
       : sdIsList(val.cards)
       ? (val.cards.map(function (itm: SerializedData): any {
-          return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+          return deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard(
             itm
           );
         }) as readonly any[])
