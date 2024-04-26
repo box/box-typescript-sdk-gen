@@ -25,16 +25,137 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileMetadataOptionals {
+  readonly headers: GetFileMetadataHeaders = new GetFileMetadataHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFileMetadataOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetFileMetadataOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileMetadataOptionalsInput {
+  readonly headers?: GetFileMetadataHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileMetadataByIdOptionals {
+  readonly headers: GetFileMetadataByIdHeaders = new GetFileMetadataByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileMetadataByIdOptionalsInput {
+  readonly headers?: GetFileMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFileMetadataByIdOptionals {
+  readonly headers: CreateFileMetadataByIdHeaders =
+    new CreateFileMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFileMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileMetadataByIdOptionalsInput {
+  readonly headers?: CreateFileMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFileMetadataByIdOptionals {
+  readonly headers: UpdateFileMetadataByIdHeaders =
+    new UpdateFileMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFileMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFileMetadataByIdOptionalsInput {
+  readonly headers?: UpdateFileMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileMetadataByIdOptionals {
+  readonly headers: DeleteFileMetadataByIdHeaders =
+    new DeleteFileMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileMetadataByIdOptionalsInput {
+  readonly headers?: DeleteFileMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFileMetadataHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileMetadataHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileMetadataHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileMetadataHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileMetadataHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileMetadataHeadersInput {
@@ -50,11 +171,12 @@ export class GetFileMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileMetadataByIdHeadersInput {
@@ -73,11 +195,12 @@ export class CreateFileMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFileMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFileMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFileMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFileMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFileMetadataByIdHeadersInput {
@@ -106,11 +229,12 @@ export class UpdateFileMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFileMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFileMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFileMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFileMetadataByIdHeadersInput {
@@ -126,11 +250,12 @@ export class DeleteFileMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileMetadataByIdHeadersInput {
@@ -144,28 +269,34 @@ export class FileMetadataManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileMetadataManager,
-          | 'networkSession'
-          | 'getFileMetadata'
-          | 'getFileMetadataById'
-          | 'createFileMetadataById'
-          | 'updateFileMetadataById'
-          | 'deleteFileMetadataById'
-        >
-      | Partial<Pick<FileMetadataManager, 'networkSession'>>
+    fields: Omit<
+      FileMetadataManager,
+      | 'networkSession'
+      | 'getFileMetadata'
+      | 'getFileMetadataById'
+      | 'createFileMetadataById'
+      | 'updateFileMetadataById'
+      | 'deleteFileMetadataById'
+    > &
+      Partial<Pick<FileMetadataManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileMetadata(
     fileId: string,
-    headersInput: GetFileMetadataHeadersInput = new GetFileMetadataHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileMetadataOptionalsInput = {}
   ): Promise<Metadatas> {
-    const headers: any = new GetFileMetadataHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileMetadataOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -191,14 +322,14 @@ export class FileMetadataManager {
     fileId: string,
     scope: GetFileMetadataByIdScope,
     templateKey: string,
-    headersInput: GetFileMetadataByIdHeadersInput = new GetFileMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new GetFileMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -228,14 +359,14 @@ export class FileMetadataManager {
     scope: CreateFileMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFileMetadataByIdRequestBody,
-    headersInput: CreateFileMetadataByIdHeadersInput = new CreateFileMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new CreateFileMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFileMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -267,14 +398,14 @@ export class FileMetadataManager {
     scope: UpdateFileMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFileMetadataByIdRequestBody[],
-    headersInput: UpdateFileMetadataByIdHeadersInput = new UpdateFileMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new UpdateFileMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFileMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -307,14 +438,14 @@ export class FileMetadataManager {
     fileId: string,
     scope: DeleteFileMetadataByIdScope,
     templateKey: string,
-    headersInput: DeleteFileMetadataByIdHeadersInput = new DeleteFileMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileMetadataByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

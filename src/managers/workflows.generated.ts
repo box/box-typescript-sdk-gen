@@ -25,6 +25,44 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetWorkflowsOptionals {
+  readonly headers: GetWorkflowsHeaders = new GetWorkflowsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetWorkflowsOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetWorkflowsOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetWorkflowsOptionalsInput {
+  readonly headers?: GetWorkflowsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class StartWorkflowOptionals {
+  readonly headers: StartWorkflowHeaders = new StartWorkflowHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<StartWorkflowOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<StartWorkflowOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface StartWorkflowOptionalsInput {
+  readonly headers?: StartWorkflowHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetWorkflowsQueryParams {
   readonly folderId: string;
   readonly triggerType?: string;
@@ -36,11 +74,12 @@ export class GetWorkflowsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetWorkflowsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>
+    fields: Omit<GetWorkflowsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetWorkflowsHeadersInput {
@@ -77,11 +116,12 @@ export class StartWorkflowHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<StartWorkflowHeaders, 'extraHeaders'>
-      | Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>
+    fields: Omit<StartWorkflowHeaders, 'extraHeaders'> &
+      Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface StartWorkflowHeadersInput {
@@ -95,23 +135,29 @@ export class WorkflowsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          WorkflowsManager,
-          'networkSession' | 'getWorkflows' | 'startWorkflow'
-        >
-      | Partial<Pick<WorkflowsManager, 'networkSession'>>
+    fields: Omit<
+      WorkflowsManager,
+      'networkSession' | 'getWorkflows' | 'startWorkflow'
+    > &
+      Partial<Pick<WorkflowsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getWorkflows(
     queryParams: GetWorkflowsQueryParams,
-    headersInput: GetWorkflowsHeadersInput = new GetWorkflowsHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetWorkflowsOptionalsInput = {}
   ): Promise<Workflows> {
-    const headers: any = new GetWorkflowsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetWorkflowsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -140,12 +186,14 @@ export class WorkflowsManager {
   async startWorkflow(
     workflowId: string,
     requestBody: StartWorkflowRequestBody,
-    headersInput: StartWorkflowHeadersInput = new StartWorkflowHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: StartWorkflowOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new StartWorkflowHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new StartWorkflowOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

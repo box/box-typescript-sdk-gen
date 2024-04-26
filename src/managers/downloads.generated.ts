@@ -18,6 +18,39 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class DownloadFileOptionals {
+  readonly queryParams: DownloadFileQueryParams =
+    {} satisfies DownloadFileQueryParams;
+  readonly headers: DownloadFileHeaders = new DownloadFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DownloadFileOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DownloadFileOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DownloadFileOptionalsInput {
+  readonly queryParams?: DownloadFileQueryParams;
+  readonly headers?: DownloadFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface DownloadFileQueryParams {
   readonly version?: string;
   readonly accessToken?: string;
@@ -29,11 +62,18 @@ export class DownloadFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DownloadFileHeaders, 'extraHeaders'>
-      | Partial<Pick<DownloadFileHeaders, 'extraHeaders'>>
+    fields: Omit<DownloadFileHeaders, 'extraHeaders'> &
+      Partial<Pick<DownloadFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.range) {
+      this.range = fields.range;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DownloadFileHeadersInput {
@@ -49,23 +89,28 @@ export class DownloadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<DownloadsManager, 'networkSession' | 'downloadFile'>
-      | Partial<Pick<DownloadsManager, 'networkSession'>>
+    fields: Omit<DownloadsManager, 'networkSession' | 'downloadFile'> &
+      Partial<Pick<DownloadsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async downloadFile(
     fileId: string,
-    queryParams: DownloadFileQueryParams = {} satisfies DownloadFileQueryParams,
-    headersInput: DownloadFileHeadersInput = new DownloadFileHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: DownloadFileOptionalsInput = {}
   ): Promise<ByteStream> {
-    const headers: any = new DownloadFileHeaders({
-      range: headersInput.range,
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DownloadFileOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

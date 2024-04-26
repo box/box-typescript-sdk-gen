@@ -16,7 +16,10 @@ import { serializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { serializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
-import { GetFileByIdHeadersInput } from '../managers/files.generated.js';
+import { GetFileByIdOptionalsInput } from '../managers/files.generated.js';
+import { UpdateFileByIdOptionalsInput } from '../managers/files.generated.js';
+import { GetFileByIdOptionals } from '../managers/files.generated.js';
+import { UpdateFileByIdOptionals } from '../managers/files.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { Files } from '../schemas.generated.js';
@@ -87,8 +90,10 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
   const fileStream: ByteStream = generateByteStream(1024 * 1024);
   const uploadedFile: FileFull = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
-    fields: ['is_externally_owned' as string, 'has_collaborations' as string],
-  } satisfies GetFileByIdQueryParams);
+    queryParams: {
+      fields: ['is_externally_owned' as string, 'has_collaborations' as string],
+    } satisfies GetFileByIdQueryParams,
+  } satisfies GetFileByIdOptionalsInput);
   if (!(file.isExternallyOwned == false)) {
     throw new Error('Assertion failed');
   }
@@ -106,13 +111,14 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   );
   const file: FileFull = await client.files.getFileById(uploadedFile.id);
   await expect(async () => {
-    await client.files.getFileById(
-      uploadedFile.id,
-      { fields: ['name' as string] } satisfies GetFileByIdQueryParams,
-      {
+    await client.files.getFileById(uploadedFile.id, {
+      queryParams: {
+        fields: ['name' as string],
+      } satisfies GetFileByIdQueryParams,
+      headers: new GetFileByIdHeaders({
         extraHeaders: { ['if-none-match']: file.etag },
-      } satisfies GetFileByIdHeadersInput
-    );
+      }),
+    } satisfies GetFileByIdOptionalsInput);
   }).rejects.toThrow();
   if (!(file.name == newFileName)) {
     throw new Error('Assertion failed');
@@ -131,9 +137,11 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
   const updatedFile: FileFull = await client.files.updateFileById(
     fileToUpdate.id,
     {
-      name: updatedName,
-      description: 'Updated description',
-    } satisfies UpdateFileByIdRequestBody
+      requestBody: {
+        name: updatedName,
+        description: 'Updated description',
+      } satisfies UpdateFileByIdRequestBody,
+    } satisfies UpdateFileByIdOptionalsInput
   );
   if (!(updatedFile.name == updatedName)) {
     throw new Error('Assertion failed');

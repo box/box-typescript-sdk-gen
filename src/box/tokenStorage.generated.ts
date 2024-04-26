@@ -7,11 +7,12 @@ export interface TokenStorage {
 export class InMemoryTokenStorage implements TokenStorage {
   token?: AccessToken = void 0;
   constructor(
-    fields:
-      | Omit<InMemoryTokenStorage, 'token' | 'store' | 'get' | 'clear'>
-      | Partial<Pick<InMemoryTokenStorage, 'token'>>
+    fields: Omit<InMemoryTokenStorage, 'token' | 'store' | 'get' | 'clear'> &
+      Partial<Pick<InMemoryTokenStorage, 'token'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.token) {
+      this.token = fields.token;
+    }
   }
   async store(token: AccessToken): Promise<undefined> {
     this.token = token;

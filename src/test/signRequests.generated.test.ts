@@ -16,6 +16,8 @@ import { serializeFileBase } from '../schemas.generated.js';
 import { deserializeFileBase } from '../schemas.generated.js';
 import { serializeSignRequests } from '../schemas.generated.js';
 import { deserializeSignRequests } from '../schemas.generated.js';
+import { DeleteFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { DeleteFolderByIdOptionals } from '../managers/folders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { FolderFull } from '../schemas.generated.js';
@@ -101,8 +103,8 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
     throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(destinationFolder.id, {
-    recursive: true,
-  } satisfies DeleteFolderByIdQueryParams);
+    queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
+  } satisfies DeleteFolderByIdOptionalsInput);
   await client.files.deleteFileById(fileToSign.id);
 });
 test('testCreateSignRequestWithSignerGroupId', async function testCreateSignRequestWithSignerGroupId(): Promise<any> {
@@ -137,8 +139,8 @@ test('testCreateSignRequestWithSignerGroupId', async function testCreateSignRequ
     throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(destinationFolder.id, {
-    recursive: true,
-  } satisfies DeleteFolderByIdQueryParams);
+    queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
+  } satisfies DeleteFolderByIdOptionalsInput);
   await client.files.deleteFileById(fileToSign.id);
 });
 export {};

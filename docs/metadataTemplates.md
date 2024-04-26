@@ -31,10 +31,8 @@ await client.metadataTemplates.getMetadataTemplatesByInstanceId({
 
 - queryParams `GetMetadataTemplatesByInstanceIdQueryParams`
   - Query parameters of getMetadataTemplatesByInstanceId method
-- headersInput `GetMetadataTemplatesByInstanceIdHeadersInput`
-  - Headers of getMetadataTemplatesByInstanceId method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetMetadataTemplatesByInstanceIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -70,10 +68,8 @@ await client.metadataTemplates.getMetadataTemplate(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `GetMetadataTemplateHeadersInput`
-  - Headers of getMetadataTemplate method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetMetadataTemplateOptionalsInput`
+  -
 
 ### Returns
 
@@ -121,10 +117,8 @@ await client.metadataTemplates.updateMetadataTemplate(
   - The name of the metadata template Example: "properties"
 - requestBody `readonly UpdateMetadataTemplateRequestBody[]`
   - Request body of updateMetadataTemplate method
-- headersInput `UpdateMetadataTemplateHeadersInput`
-  - Headers of updateMetadataTemplate method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateMetadataTemplateOptionalsInput`
+  -
 
 ### Returns
 
@@ -158,10 +152,8 @@ await client.metadataTemplates.deleteMetadataTemplate(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `DeleteMetadataTemplateHeadersInput`
-  - Headers of deleteMetadataTemplate method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteMetadataTemplateOptionalsInput`
+  -
 
 ### Returns
 
@@ -189,10 +181,8 @@ await client.metadataTemplates.getMetadataTemplateById(template.id);
 
 - templateId `string`
   - The ID of the template Example: "f7a9891f"
-- headersInput `GetMetadataTemplateByIdHeadersInput`
-  - Headers of getMetadataTemplateById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetMetadataTemplateByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -331,10 +321,8 @@ await client.metadataTemplates.createMetadataTemplate({
 
 - requestBody `CreateMetadataTemplateRequestBody`
   - Request body of createMetadataTemplate method
-- headersInput `CreateMetadataTemplateHeadersInput`
-  - Headers of createMetadataTemplate method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateMetadataTemplateOptionalsInput`
+  -
 
 ### Returns
 

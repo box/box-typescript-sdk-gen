@@ -18,6 +18,8 @@ import { serializeWebhooks } from '../schemas.generated.js';
 import { deserializeWebhooks } from '../schemas.generated.js';
 import { serializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { deserializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
+import { UpdateWebhookByIdOptionalsInput } from '../managers/webhooks.generated.js';
+import { UpdateWebhookByIdOptionals } from '../managers/webhooks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
@@ -85,8 +87,10 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
   const updatedWebhook: Webhook = await client.webhooks.updateWebhookById(
     webhook.id!,
     {
-      address: 'https://example.com/updated-webhook',
-    } satisfies UpdateWebhookByIdRequestBody
+      requestBody: {
+        address: 'https://example.com/updated-webhook',
+      } satisfies UpdateWebhookByIdRequestBody,
+    } satisfies UpdateWebhookByIdOptionalsInput
   );
   if (!(updatedWebhook.id == webhook.id)) {
     throw new Error('Assertion failed');

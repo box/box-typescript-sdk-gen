@@ -25,10 +25,8 @@ await client.skills.getBoxSkillCardsOnFile(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `GetBoxSkillCardsOnFileHeadersInput`
-  - Headers of getBoxSkillCardsOnFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetBoxSkillCardsOnFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -80,10 +78,8 @@ await client.skills.createBoxSkillCardsOnFile(file.id, {
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateBoxSkillCardsOnFileRequestBody`
   - Request body of createBoxSkillCardsOnFile method
-- headersInput `CreateBoxSkillCardsOnFileHeadersInput`
-  - Headers of createBoxSkillCardsOnFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateBoxSkillCardsOnFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -135,10 +131,8 @@ await client.skills.updateBoxSkillCardsOnFile(file.id, [
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `readonly UpdateBoxSkillCardsOnFileRequestBody[]`
   - Request body of updateBoxSkillCardsOnFile method
-- headersInput `UpdateBoxSkillCardsOnFileHeadersInput`
-  - Headers of updateBoxSkillCardsOnFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateBoxSkillCardsOnFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -166,10 +160,8 @@ await client.skills.deleteBoxSkillCardsFromFile(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `DeleteBoxSkillCardsFromFileHeadersInput`
-  - Headers of deleteBoxSkillCardsFromFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteBoxSkillCardsFromFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -196,10 +188,8 @@ _Currently we don't have an example for calling `updateAllSkillCardsOnFile` in i
   - The ID of the skill to apply this metadata for. Example: "33243242"
 - requestBody `UpdateAllSkillCardsOnFileRequestBody`
   - Request body of updateAllSkillCardsOnFile method
-- headersInput `UpdateAllSkillCardsOnFileHeadersInput`
-  - Headers of updateAllSkillCardsOnFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateAllSkillCardsOnFileOptionalsInput`
+  -
 
 ### Returns
 

@@ -42,8 +42,8 @@ await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
   - Query parameters of findWebLinkForSharedLink method
 - headersInput `FindWebLinkForSharedLinkHeadersInput`
   - Headers of findWebLinkForSharedLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `FindWebLinkForSharedLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -75,10 +75,8 @@ await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
   - The ID of the web link. Example: "12345"
 - queryParams `GetSharedLinkForWebLinkQueryParams`
   - Query parameters of getSharedLinkForWebLink method
-- headersInput `GetSharedLinkForWebLinkHeadersInput`
-  - Headers of getSharedLinkForWebLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetSharedLinkForWebLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -119,10 +117,8 @@ await client.sharedLinksWebLinks.addShareLinkToWebLink(
   - Request body of addShareLinkToWebLink method
 - queryParams `AddShareLinkToWebLinkQueryParams`
   - Query parameters of addShareLinkToWebLink method
-- headersInput `AddShareLinkToWebLinkHeadersInput`
-  - Headers of addShareLinkToWebLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `AddShareLinkToWebLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -163,10 +159,8 @@ await client.sharedLinksWebLinks.updateSharedLinkOnWebLink(
   - Request body of updateSharedLinkOnWebLink method
 - queryParams `UpdateSharedLinkOnWebLinkQueryParams`
   - Query parameters of updateSharedLinkOnWebLink method
-- headersInput `UpdateSharedLinkOnWebLinkHeadersInput`
-  - Headers of updateSharedLinkOnWebLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateSharedLinkOnWebLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -194,10 +188,8 @@ _Currently we don't have an example for calling `removeSharedLinkFromWebLink` in
   - Request body of removeSharedLinkFromWebLink method
 - queryParams `RemoveSharedLinkFromWebLinkQueryParams`
   - Query parameters of removeSharedLinkFromWebLink method
-- headersInput `RemoveSharedLinkFromWebLinkHeadersInput`
-  - Headers of removeSharedLinkFromWebLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RemoveSharedLinkFromWebLinkOptionalsInput`
+  -
 
 ### Returns
 

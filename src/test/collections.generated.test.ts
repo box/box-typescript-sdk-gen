@@ -14,6 +14,8 @@ import { serializeUpdateFolderByIdRequestBody } from '../managers/folders.genera
 import { deserializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
 import { serializeUpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
 import { deserializeUpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
+import { UpdateFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { UpdateFolderByIdOptionals } from '../managers/folders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Collections } from '../schemas.generated.js';
 import { Collection } from '../schemas.generated.js';
@@ -44,12 +46,14 @@ test('testCollections', async function testCollections(): Promise<any> {
     parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
   } satisfies CreateFolderRequestBody);
   await client.folders.updateFolderById(folder.id, {
-    collections: [
-      {
-        id: favouriteCollection.id,
-      } satisfies UpdateFolderByIdRequestBodyCollectionsField,
-    ],
-  } satisfies UpdateFolderByIdRequestBody);
+    requestBody: {
+      collections: [
+        {
+          id: favouriteCollection.id,
+        } satisfies UpdateFolderByIdRequestBodyCollectionsField,
+      ],
+    } satisfies UpdateFolderByIdRequestBody,
+  } satisfies UpdateFolderByIdOptionalsInput);
   const collectionItemsAfterUpdate: Items =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
@@ -61,8 +65,8 @@ test('testCollections', async function testCollections(): Promise<any> {
     throw new Error('Assertion failed');
   }
   await client.folders.updateFolderById(folder.id, {
-    collections: [],
-  } satisfies UpdateFolderByIdRequestBody);
+    requestBody: { collections: [] } satisfies UpdateFolderByIdRequestBody,
+  } satisfies UpdateFolderByIdOptionalsInput);
   const collectionItemsAfterRemove: Items =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (

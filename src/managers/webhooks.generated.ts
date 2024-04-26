@@ -25,6 +25,96 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateWebhookOptionals {
+  readonly headers: CreateWebhookHeaders = new CreateWebhookHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateWebhookOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateWebhookOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateWebhookOptionalsInput {
+  readonly headers?: CreateWebhookHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetWebhookByIdOptionals {
+  readonly headers: GetWebhookByIdHeaders = new GetWebhookByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetWebhookByIdOptionalsInput {
+  readonly headers?: GetWebhookByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateWebhookByIdOptionals {
+  readonly requestBody: UpdateWebhookByIdRequestBody =
+    {} satisfies UpdateWebhookByIdRequestBody;
+  readonly headers: UpdateWebhookByIdHeaders = new UpdateWebhookByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateWebhookByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateWebhookByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateWebhookByIdOptionalsInput {
+  readonly requestBody?: UpdateWebhookByIdRequestBody;
+  readonly headers?: UpdateWebhookByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteWebhookByIdOptionals {
+  readonly headers: DeleteWebhookByIdHeaders = new DeleteWebhookByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteWebhookByIdOptionalsInput {
+  readonly headers?: DeleteWebhookByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetWebhooksQueryParams {
   readonly marker?: string;
   readonly limit?: number;
@@ -34,11 +124,12 @@ export class GetWebhooksHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetWebhooksHeaders, 'extraHeaders'>
-      | Partial<Pick<GetWebhooksHeaders, 'extraHeaders'>>
+    fields: Omit<GetWebhooksHeaders, 'extraHeaders'> &
+      Partial<Pick<GetWebhooksHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetWebhooksHeadersInput {
@@ -104,11 +195,12 @@ export class CreateWebhookHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateWebhookHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateWebhookHeaders, 'extraHeaders'>>
+    fields: Omit<CreateWebhookHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateWebhookHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateWebhookHeadersInput {
@@ -123,11 +215,12 @@ export class GetWebhookByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetWebhookByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetWebhookByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetWebhookByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetWebhookByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetWebhookByIdHeadersInput {
@@ -193,11 +286,12 @@ export class UpdateWebhookByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateWebhookByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateWebhookByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateWebhookByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateWebhookByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateWebhookByIdHeadersInput {
@@ -212,11 +306,12 @@ export class DeleteWebhookByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteWebhookByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteWebhookByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteWebhookByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteWebhookByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteWebhookByIdHeadersInput {
@@ -230,19 +325,23 @@ export class WebhooksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          WebhooksManager,
-          | 'networkSession'
-          | 'getWebhooks'
-          | 'createWebhook'
-          | 'getWebhookById'
-          | 'updateWebhookById'
-          | 'deleteWebhookById'
-        >
-      | Partial<Pick<WebhooksManager, 'networkSession'>>
+    fields: Omit<
+      WebhooksManager,
+      | 'networkSession'
+      | 'getWebhooks'
+      | 'createWebhook'
+      | 'getWebhookById'
+      | 'updateWebhookById'
+      | 'deleteWebhookById'
+    > &
+      Partial<Pick<WebhooksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getWebhooks(
     queryParams: GetWebhooksQueryParams = {} satisfies GetWebhooksQueryParams,
@@ -277,12 +376,14 @@ export class WebhooksManager {
   }
   async createWebhook(
     requestBody: CreateWebhookRequestBody,
-    headersInput: CreateWebhookHeadersInput = new CreateWebhookHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateWebhookOptionalsInput = {}
   ): Promise<Webhook> {
-    const headers: any = new CreateWebhookHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateWebhookOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -303,12 +404,14 @@ export class WebhooksManager {
   }
   async getWebhookById(
     webhookId: string,
-    headersInput: GetWebhookByIdHeadersInput = new GetWebhookByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetWebhookByIdOptionalsInput = {}
   ): Promise<Webhook> {
-    const headers: any = new GetWebhookByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetWebhookByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -331,15 +434,16 @@ export class WebhooksManager {
   }
   async updateWebhookById(
     webhookId: string,
-    requestBody: UpdateWebhookByIdRequestBody = {} satisfies UpdateWebhookByIdRequestBody,
-    headersInput: UpdateWebhookByIdHeadersInput = new UpdateWebhookByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateWebhookByIdOptionalsInput = {}
   ): Promise<Webhook> {
-    const headers: any = new UpdateWebhookByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateWebhookByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -364,14 +468,14 @@ export class WebhooksManager {
   }
   async deleteWebhookById(
     webhookId: string,
-    headersInput: DeleteWebhookByIdHeadersInput = new DeleteWebhookByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteWebhookByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteWebhookByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteWebhookByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -26,10 +26,8 @@ await client.tasks.getFileTasks(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `GetFileTasksHeadersInput`
-  - Headers of getFileTasks method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileTasksOptionalsInput`
+  -
 
 ### Returns
 
@@ -69,10 +67,8 @@ await client.tasks.createTask({
 
 - requestBody `CreateTaskRequestBody`
   - Request body of createTask method
-- headersInput `CreateTaskHeadersInput`
-  - Headers of createTask method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateTaskOptionalsInput`
+  -
 
 ### Returns
 
@@ -99,10 +95,8 @@ await client.tasks.getTaskById(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headersInput `GetTaskByIdHeadersInput`
-  - Headers of getTaskById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetTaskByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -124,20 +118,18 @@ See the endpoint docs at
 
 ```ts
 await client.tasks.updateTaskById(task.id!, {
-  message: 'updated message',
-} satisfies UpdateTaskByIdRequestBody);
+  requestBody: {
+    message: 'updated message',
+  } satisfies UpdateTaskByIdRequestBody,
+} satisfies UpdateTaskByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- requestBody `UpdateTaskByIdRequestBody`
-  - Request body of updateTaskById method
-- headersInput `UpdateTaskByIdHeadersInput`
-  - Headers of updateTaskById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateTaskByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -164,10 +156,8 @@ await client.tasks.deleteTaskById(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headersInput `DeleteTaskByIdHeadersInput`
-  - Headers of deleteTaskById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteTaskByIdOptionalsInput`
+  -
 
 ### Returns
 

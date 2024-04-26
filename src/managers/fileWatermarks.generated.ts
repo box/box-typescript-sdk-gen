@@ -22,16 +22,88 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileWatermarkOptionals {
+  readonly headers: GetFileWatermarkHeaders = new GetFileWatermarkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileWatermarkOptionalsInput {
+  readonly headers?: GetFileWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFileWatermarkOptionals {
+  readonly headers: UpdateFileWatermarkHeaders = new UpdateFileWatermarkHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFileWatermarkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateFileWatermarkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFileWatermarkOptionalsInput {
+  readonly headers?: UpdateFileWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileWatermarkOptionals {
+  readonly headers: DeleteFileWatermarkHeaders = new DeleteFileWatermarkHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileWatermarkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFileWatermarkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileWatermarkOptionalsInput {
+  readonly headers?: DeleteFileWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFileWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileWatermarkHeadersInput {
@@ -46,11 +118,12 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
   readonly imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField;
   constructor(
-    fields:
-      | Omit<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>
-      | Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>
+    fields: Omit<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'> &
+      Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.imprint) {
+      this.imprint = fields.imprint;
+    }
   }
 }
 export interface UpdateFileWatermarkRequestBodyWatermarkFieldInput {
@@ -64,11 +137,12 @@ export class UpdateFileWatermarkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFileWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFileWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFileWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFileWatermarkHeadersInput {
@@ -83,11 +157,12 @@ export class DeleteFileWatermarkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileWatermarkHeadersInput {
@@ -101,28 +176,32 @@ export class FileWatermarksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileWatermarksManager,
-          | 'networkSession'
-          | 'getFileWatermark'
-          | 'updateFileWatermark'
-          | 'deleteFileWatermark'
-        >
-      | Partial<Pick<FileWatermarksManager, 'networkSession'>>
+    fields: Omit<
+      FileWatermarksManager,
+      | 'networkSession'
+      | 'getFileWatermark'
+      | 'updateFileWatermark'
+      | 'deleteFileWatermark'
+    > &
+      Partial<Pick<FileWatermarksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileWatermark(
     fileId: string,
-    headersInput: GetFileWatermarkHeadersInput = new GetFileWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const headers: any = new GetFileWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -147,14 +226,14 @@ export class FileWatermarksManager {
   async updateFileWatermark(
     fileId: string,
     requestBody: UpdateFileWatermarkRequestBody,
-    headersInput: UpdateFileWatermarkHeadersInput = new UpdateFileWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFileWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const headers: any = new UpdateFileWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFileWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -180,14 +259,14 @@ export class FileWatermarksManager {
   }
   async deleteFileWatermark(
     fileId: string,
-    headersInput: DeleteFileWatermarkHeadersInput = new DeleteFileWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileWatermarkOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

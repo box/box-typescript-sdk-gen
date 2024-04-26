@@ -76,10 +76,8 @@ await client.classifications.addClassification([
 
 - requestBody `readonly AddClassificationRequestBody[]`
   - Request body of addClassification method
-- headersInput `AddClassificationHeadersInput`
-  - Headers of addClassification method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `AddClassificationOptionalsInput`
+  -
 
 ### Returns
 
@@ -126,10 +124,8 @@ await client.classifications.updateClassification([
 
 - requestBody `readonly UpdateClassificationRequestBody[]`
   - Request body of updateClassification method
-- headersInput `UpdateClassificationHeadersInput`
-  - Headers of updateClassification method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateClassificationOptionalsInput`
+  -
 
 ### Returns
 
@@ -160,10 +156,8 @@ _Currently we don't have an example for calling `createClassificationTemplate` i
 
 - requestBodyInput `CreateClassificationTemplateRequestBodyInput`
   - Request body of createClassificationTemplate method
-- headersInput `CreateClassificationTemplateHeadersInput`
-  - Headers of createClassificationTemplate method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateClassificationTemplateOptionalsInput`
+  -
 
 ### Returns
 

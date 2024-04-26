@@ -6,6 +6,8 @@ import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
 import { deserializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
+import { UpdateUserByIdOptionalsInput } from '../managers/users.generated.js';
+import { UpdateUserByIdOptionals } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Users } from '../schemas.generated.js';
 import { UserFull } from '../schemas.generated.js';
@@ -52,8 +54,8 @@ test('test_create_update_get_delete_user', async function test_create_update_get
   }
   const updatedUserName: string = getUuid();
   const updatedUser: UserFull = await client.users.updateUserById(user.id, {
-    name: updatedUserName,
-  } satisfies UpdateUserByIdRequestBody);
+    requestBody: { name: updatedUserName } satisfies UpdateUserByIdRequestBody,
+  } satisfies UpdateUserByIdOptionalsInput);
   if (!(updatedUser.name == updatedUserName)) {
     throw new Error('Assertion failed');
   }

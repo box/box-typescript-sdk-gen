@@ -66,10 +66,8 @@ await client.retentionPolicies.createRetentionPolicy({
 
 - requestBody `CreateRetentionPolicyRequestBody`
   - Request body of createRetentionPolicy method
-- headersInput `CreateRetentionPolicyHeadersInput`
-  - Headers of createRetentionPolicy method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateRetentionPolicyOptionalsInput`
+  -
 
 ### Returns
 
@@ -96,12 +94,8 @@ await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- queryParams `GetRetentionPolicyByIdQueryParams`
-  - Query parameters of getRetentionPolicyById method
-- headersInput `GetRetentionPolicyByIdHeadersInput`
-  - Headers of getRetentionPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetRetentionPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -122,20 +116,18 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
-  policyName: updatedRetentionPolicyName,
-} satisfies UpdateRetentionPolicyByIdRequestBody);
+  requestBody: {
+    policyName: updatedRetentionPolicyName,
+  } satisfies UpdateRetentionPolicyByIdRequestBody,
+} satisfies UpdateRetentionPolicyByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- requestBody `UpdateRetentionPolicyByIdRequestBody`
-  - Request body of updateRetentionPolicyById method
-- headersInput `UpdateRetentionPolicyByIdHeadersInput`
-  - Headers of updateRetentionPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateRetentionPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -162,10 +154,8 @@ await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- headersInput `DeleteRetentionPolicyByIdHeadersInput`
-  - Headers of deleteRetentionPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteRetentionPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 

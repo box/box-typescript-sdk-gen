@@ -25,6 +25,81 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateTermsOfServiceOptionals {
+  readonly headers: CreateTermsOfServiceHeaders =
+    new CreateTermsOfServiceHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateTermsOfServiceOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateTermsOfServiceOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateTermsOfServiceOptionalsInput {
+  readonly headers?: CreateTermsOfServiceHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetTermsOfServiceByIdOptionals {
+  readonly headers: GetTermsOfServiceByIdHeaders =
+    new GetTermsOfServiceByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetTermsOfServiceByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetTermsOfServiceByIdOptionalsInput {
+  readonly headers?: GetTermsOfServiceByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateTermsOfServiceByIdOptionals {
+  readonly headers: UpdateTermsOfServiceByIdHeaders =
+    new UpdateTermsOfServiceByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateTermsOfServiceByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateTermsOfServiceByIdOptionalsInput {
+  readonly headers?: UpdateTermsOfServiceByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetTermsOfServiceQueryParamsTosTypeField = 'external' | 'managed';
 export interface GetTermsOfServiceQueryParams {
   readonly tosType?: GetTermsOfServiceQueryParamsTosTypeField;
@@ -34,11 +109,12 @@ export class GetTermsOfServiceHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTermsOfServiceHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTermsOfServiceHeaders, 'extraHeaders'>>
+    fields: Omit<GetTermsOfServiceHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTermsOfServiceHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTermsOfServiceHeadersInput {
@@ -62,11 +138,12 @@ export class CreateTermsOfServiceHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateTermsOfServiceHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateTermsOfServiceHeaders, 'extraHeaders'>>
+    fields: Omit<CreateTermsOfServiceHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateTermsOfServiceHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateTermsOfServiceHeadersInput {
@@ -81,11 +158,12 @@ export class GetTermsOfServiceByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTermsOfServiceByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTermsOfServiceByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetTermsOfServiceByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTermsOfServiceByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTermsOfServiceByIdHeadersInput {
@@ -107,11 +185,12 @@ export class UpdateTermsOfServiceByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateTermsOfServiceByIdHeadersInput {
@@ -125,18 +204,22 @@ export class TermsOfServicesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          TermsOfServicesManager,
-          | 'networkSession'
-          | 'getTermsOfService'
-          | 'createTermsOfService'
-          | 'getTermsOfServiceById'
-          | 'updateTermsOfServiceById'
-        >
-      | Partial<Pick<TermsOfServicesManager, 'networkSession'>>
+    fields: Omit<
+      TermsOfServicesManager,
+      | 'networkSession'
+      | 'getTermsOfService'
+      | 'createTermsOfService'
+      | 'getTermsOfServiceById'
+      | 'updateTermsOfServiceById'
+    > &
+      Partial<Pick<TermsOfServicesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getTermsOfService(
     queryParams: GetTermsOfServiceQueryParams = {} satisfies GetTermsOfServiceQueryParams,
@@ -175,14 +258,14 @@ export class TermsOfServicesManager {
   }
   async createTermsOfService(
     requestBody: CreateTermsOfServiceRequestBody,
-    headersInput: CreateTermsOfServiceHeadersInput = new CreateTermsOfServiceHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateTermsOfServiceOptionalsInput = {}
   ): Promise<TermsOfService> {
-    const headers: any = new CreateTermsOfServiceHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateTermsOfServiceOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -206,14 +289,14 @@ export class TermsOfServicesManager {
   }
   async getTermsOfServiceById(
     termsOfServiceId: string,
-    headersInput: GetTermsOfServiceByIdHeadersInput = new GetTermsOfServiceByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetTermsOfServiceByIdOptionalsInput = {}
   ): Promise<TermsOfService> {
-    const headers: any = new GetTermsOfServiceByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetTermsOfServiceByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -237,14 +320,14 @@ export class TermsOfServicesManager {
   async updateTermsOfServiceById(
     termsOfServiceId: string,
     requestBody: UpdateTermsOfServiceByIdRequestBody,
-    headersInput: UpdateTermsOfServiceByIdHeadersInput = new UpdateTermsOfServiceByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateTermsOfServiceByIdOptionalsInput = {}
   ): Promise<TermsOfService> {
-    const headers: any = new UpdateTermsOfServiceByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateTermsOfServiceByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

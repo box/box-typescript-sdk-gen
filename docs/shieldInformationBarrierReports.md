@@ -27,10 +27,8 @@ await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
 
 - queryParams `GetShieldInformationBarrierReportsQueryParams`
   - Query parameters of getShieldInformationBarrierReports method
-- headersInput `GetShieldInformationBarrierReportsHeadersInput`
-  - Headers of getShieldInformationBarrierReports method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierReportsOptionalsInput`
+  -
 
 ### Returns
 
@@ -64,10 +62,8 @@ await client.shieldInformationBarrierReports.createShieldInformationBarrierRepor
 
 - requestBody `ShieldInformationBarrierReference`
   - Request body of createShieldInformationBarrierReport method
-- headersInput `CreateShieldInformationBarrierReportHeadersInput`
-  - Headers of createShieldInformationBarrierReport method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateShieldInformationBarrierReportOptionalsInput`
+  -
 
 ### Returns
 
@@ -96,10 +92,8 @@ await client.shieldInformationBarrierReports.getShieldInformationBarrierReportBy
 
 - shieldInformationBarrierReportId `string`
   - The ID of the shield information barrier Report. Example: "3423"
-- headersInput `GetShieldInformationBarrierReportByIdHeadersInput`
-  - Headers of getShieldInformationBarrierReportById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierReportByIdOptionalsInput`
+  -
 
 ### Returns
 

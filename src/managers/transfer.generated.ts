@@ -21,6 +21,41 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class TransferOwnedFolderOptionals {
+  readonly queryParams: TransferOwnedFolderQueryParams =
+    {} satisfies TransferOwnedFolderQueryParams;
+  readonly headers: TransferOwnedFolderHeaders = new TransferOwnedFolderHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      TransferOwnedFolderOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          TransferOwnedFolderOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface TransferOwnedFolderOptionalsInput {
+  readonly queryParams?: TransferOwnedFolderQueryParams;
+  readonly headers?: TransferOwnedFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface TransferOwnedFolderRequestBodyOwnedByField {
   readonly id: string;
 }
@@ -36,11 +71,12 @@ export class TransferOwnedFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<TransferOwnedFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>
+    fields: Omit<TransferOwnedFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface TransferOwnedFolderHeadersInput {
@@ -54,24 +90,29 @@ export class TransferManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<TransferManager, 'networkSession' | 'transferOwnedFolder'>
-      | Partial<Pick<TransferManager, 'networkSession'>>
+    fields: Omit<TransferManager, 'networkSession' | 'transferOwnedFolder'> &
+      Partial<Pick<TransferManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async transferOwnedFolder(
     userId: string,
     requestBody: TransferOwnedFolderRequestBody,
-    queryParams: TransferOwnedFolderQueryParams = {} satisfies TransferOwnedFolderQueryParams,
-    headersInput: TransferOwnedFolderHeadersInput = new TransferOwnedFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: TransferOwnedFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new TransferOwnedFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new TransferOwnedFolderOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

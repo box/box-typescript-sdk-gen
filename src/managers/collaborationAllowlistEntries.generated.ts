@@ -25,6 +25,90 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateCollaborationWhitelistEntryOptionals {
+  readonly headers: CreateCollaborationWhitelistEntryHeaders =
+    new CreateCollaborationWhitelistEntryHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateCollaborationWhitelistEntryOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateCollaborationWhitelistEntryOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateCollaborationWhitelistEntryOptionalsInput {
+  readonly headers?: CreateCollaborationWhitelistEntryHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetCollaborationWhitelistEntryByIdOptionals {
+  readonly headers: GetCollaborationWhitelistEntryByIdHeaders =
+    new GetCollaborationWhitelistEntryByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetCollaborationWhitelistEntryByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetCollaborationWhitelistEntryByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCollaborationWhitelistEntryByIdOptionalsInput {
+  readonly headers?: GetCollaborationWhitelistEntryByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteCollaborationWhitelistEntryByIdOptionals {
+  readonly headers: DeleteCollaborationWhitelistEntryByIdHeaders =
+    new DeleteCollaborationWhitelistEntryByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteCollaborationWhitelistEntryByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteCollaborationWhitelistEntryByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteCollaborationWhitelistEntryByIdOptionalsInput {
+  readonly headers?: DeleteCollaborationWhitelistEntryByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetCollaborationWhitelistEntriesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
@@ -34,11 +118,12 @@ export class GetCollaborationWhitelistEntriesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationWhitelistEntriesHeadersInput {
@@ -61,11 +146,12 @@ export class CreateCollaborationWhitelistEntryHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>>
+    fields: Omit<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateCollaborationWhitelistEntryHeadersInput {
@@ -80,11 +166,12 @@ export class GetCollaborationWhitelistEntryByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationWhitelistEntryByIdHeadersInput {
@@ -99,13 +186,14 @@ export class DeleteCollaborationWhitelistEntryByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
-        >
+    fields: Omit<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'> &
+      Partial<
+        Pick<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteCollaborationWhitelistEntryByIdHeadersInput {
@@ -119,18 +207,22 @@ export class CollaborationAllowlistEntriesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          CollaborationAllowlistEntriesManager,
-          | 'networkSession'
-          | 'getCollaborationWhitelistEntries'
-          | 'createCollaborationWhitelistEntry'
-          | 'getCollaborationWhitelistEntryById'
-          | 'deleteCollaborationWhitelistEntryById'
-        >
-      | Partial<Pick<CollaborationAllowlistEntriesManager, 'networkSession'>>
+    fields: Omit<
+      CollaborationAllowlistEntriesManager,
+      | 'networkSession'
+      | 'getCollaborationWhitelistEntries'
+      | 'createCollaborationWhitelistEntry'
+      | 'getCollaborationWhitelistEntryById'
+      | 'deleteCollaborationWhitelistEntryById'
+    > &
+      Partial<Pick<CollaborationAllowlistEntriesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getCollaborationWhitelistEntries(
     queryParams: GetCollaborationWhitelistEntriesQueryParams = {} satisfies GetCollaborationWhitelistEntriesQueryParams,
@@ -170,14 +262,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async createCollaborationWhitelistEntry(
     requestBody: CreateCollaborationWhitelistEntryRequestBody,
-    headersInput: CreateCollaborationWhitelistEntryHeadersInput = new CreateCollaborationWhitelistEntryHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateCollaborationWhitelistEntryOptionalsInput = {}
   ): Promise<CollaborationAllowlistEntry> {
-    const headers: any = new CreateCollaborationWhitelistEntryHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateCollaborationWhitelistEntryOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -203,14 +295,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async getCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    headersInput: GetCollaborationWhitelistEntryByIdHeadersInput = new GetCollaborationWhitelistEntryByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCollaborationWhitelistEntryByIdOptionalsInput = {}
   ): Promise<CollaborationAllowlistEntry> {
-    const headers: any = new GetCollaborationWhitelistEntryByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetCollaborationWhitelistEntryByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -233,14 +325,14 @@ export class CollaborationAllowlistEntriesManager {
   }
   async deleteCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    headersInput: DeleteCollaborationWhitelistEntryByIdHeadersInput = new DeleteCollaborationWhitelistEntryByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteCollaborationWhitelistEntryByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteCollaborationWhitelistEntryByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteCollaborationWhitelistEntryByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -25,16 +25,102 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetDevicePinnerByIdOptionals {
+  readonly headers: GetDevicePinnerByIdHeaders = new GetDevicePinnerByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetDevicePinnerByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetDevicePinnerByIdOptionalsInput {
+  readonly headers?: GetDevicePinnerByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteDevicePinnerByIdOptionals {
+  readonly headers: DeleteDevicePinnerByIdHeaders =
+    new DeleteDevicePinnerByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteDevicePinnerByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteDevicePinnerByIdOptionalsInput {
+  readonly headers?: DeleteDevicePinnerByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetEnterpriseDevicePinnersOptionals {
+  readonly queryParams: GetEnterpriseDevicePinnersQueryParams =
+    {} satisfies GetEnterpriseDevicePinnersQueryParams;
+  readonly headers: GetEnterpriseDevicePinnersHeaders =
+    new GetEnterpriseDevicePinnersHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetEnterpriseDevicePinnersOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetEnterpriseDevicePinnersOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetEnterpriseDevicePinnersOptionalsInput {
+  readonly queryParams?: GetEnterpriseDevicePinnersQueryParams;
+  readonly headers?: GetEnterpriseDevicePinnersHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetDevicePinnerByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetDevicePinnerByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetDevicePinnerByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetDevicePinnerByIdHeadersInput {
@@ -49,11 +135,12 @@ export class DeleteDevicePinnerByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteDevicePinnerByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteDevicePinnerByIdHeadersInput {
@@ -76,11 +163,12 @@ export class GetEnterpriseDevicePinnersHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>
-      | Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>
+    fields: Omit<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'> &
+      Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetEnterpriseDevicePinnersHeadersInput {
@@ -94,28 +182,32 @@ export class DevicePinnersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          DevicePinnersManager,
-          | 'networkSession'
-          | 'getDevicePinnerById'
-          | 'deleteDevicePinnerById'
-          | 'getEnterpriseDevicePinners'
-        >
-      | Partial<Pick<DevicePinnersManager, 'networkSession'>>
+    fields: Omit<
+      DevicePinnersManager,
+      | 'networkSession'
+      | 'getDevicePinnerById'
+      | 'deleteDevicePinnerById'
+      | 'getEnterpriseDevicePinners'
+    > &
+      Partial<Pick<DevicePinnersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getDevicePinnerById(
     devicePinnerId: string,
-    headersInput: GetDevicePinnerByIdHeadersInput = new GetDevicePinnerByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetDevicePinnerByIdOptionalsInput = {}
   ): Promise<DevicePinner> {
-    const headers: any = new GetDevicePinnerByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetDevicePinnerByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -138,14 +230,14 @@ export class DevicePinnersManager {
   }
   async deleteDevicePinnerById(
     devicePinnerId: string,
-    headersInput: DeleteDevicePinnerByIdHeadersInput = new DeleteDevicePinnerByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteDevicePinnerByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteDevicePinnerByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteDevicePinnerByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -168,15 +260,16 @@ export class DevicePinnersManager {
   }
   async getEnterpriseDevicePinners(
     enterpriseId: string,
-    queryParams: GetEnterpriseDevicePinnersQueryParams = {} satisfies GetEnterpriseDevicePinnersQueryParams,
-    headersInput: GetEnterpriseDevicePinnersHeadersInput = new GetEnterpriseDevicePinnersHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetEnterpriseDevicePinnersOptionalsInput = {}
   ): Promise<DevicePinners> {
-    const headers: any = new GetEnterpriseDevicePinnersHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetEnterpriseDevicePinnersOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
