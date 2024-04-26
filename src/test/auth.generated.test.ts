@@ -42,6 +42,7 @@ import { BoxClient } from '../client.generated.js';
 import { BoxCcgAuth } from '../box/ccgAuth.generated.js';
 import { CcgConfig } from '../box/ccgAuth.generated.js';
 import { BoxDeveloperTokenAuth } from '../box/developerTokenAuth.generated.js';
+import { DeveloperTokenConfig } from '../box/developerTokenAuth.generated.js';
 import { BoxOAuth } from '../box/oauth.generated.js';
 import { OAuthConfig } from '../box/oauth.generated.js';
 import { UserFull } from '../schemas.generated.js';
@@ -251,6 +252,66 @@ test('test_ccg_auth_revoke', async function test_ccg_auth_revoke(): Promise<any>
   if (!(tokenFromStorageAfterRevoke == void 0)) {
     throw new Error('Assertion failed');
   }
+});
+test('test_developer_token_auth_revoke', async function test_developer_token_auth_revoke(): Promise<any> {
+  const developerTokenConfig: DeveloperTokenConfig = {
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+  } satisfies DeveloperTokenConfig;
+  const token: AccessToken = await getAccessToken();
+  const auth: BoxDeveloperTokenAuth = new BoxDeveloperTokenAuth({
+    token: token.accessToken!,
+    config: developerTokenConfig,
+  });
+  await auth.retrieveToken();
+  const tokenFromStorageBeforeRevoke: undefined | AccessToken =
+    await auth.tokenStorage.get();
+  await auth.revokeToken();
+  const tokenFromStorageAfterRevoke: undefined | AccessToken =
+    await auth.tokenStorage.get();
+  if (!!(tokenFromStorageBeforeRevoke == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(tokenFromStorageAfterRevoke == void 0)) {
+    throw new Error('Assertion failed');
+  }
+});
+test('test_developer_token_auth_downscope', async function test_developer_token_auth_downscope(): Promise<any> {
+  const developerTokenConfig: DeveloperTokenConfig = {
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+  } satisfies DeveloperTokenConfig;
+  const token: AccessToken = await getAccessToken();
+  const auth: BoxDeveloperTokenAuth = new BoxDeveloperTokenAuth({
+    token: token.accessToken!,
+    config: developerTokenConfig,
+  });
+  const parentClient: BoxClient = new BoxClient({ auth: auth });
+  const folder: FolderFull = await parentClient.folders.createFolder({
+    name: getUuid(),
+    parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
+  } satisfies CreateFolderRequestBody);
+  const resourcePath: string = ''.concat(
+    'https://api.box.com/2.0/folders/',
+    folder.id
+  ) as string;
+  const downscopedToken: AccessToken = await auth.downscopeToken(
+    ['item_rename', 'item_preview'],
+    resourcePath
+  );
+  if (!!(downscopedToken.accessToken == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  const downscopedClient: BoxClient = new BoxClient({
+    auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
+  });
+  await downscopedClient.folders.updateFolderById(folder.id, {
+    name: getUuid(),
+  } satisfies UpdateFolderByIdRequestBody);
+  await expect(async () => {
+    await downscopedClient.folders.deleteFolderById(folder.id);
+  }).rejects.toThrow();
+  await parentClient.folders.deleteFolderById(folder.id);
 });
 test('test_developer_token_auth', async function test_developer_token_auth(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
