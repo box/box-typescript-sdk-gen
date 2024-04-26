@@ -67,7 +67,7 @@ await client.skills.createBoxSkillCardsOnFile(file.id, {
         type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
       }),
       entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
-    } satisfies KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard,
+    } satisfies KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
   ],
 } satisfies CreateBoxSkillCardsOnFileRequestBody);
 ```
