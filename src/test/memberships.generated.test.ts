@@ -20,6 +20,8 @@ import { serializeUpdateGroupMembershipByIdRequestBody } from '../managers/membe
 import { deserializeUpdateGroupMembershipByIdRequestBody } from '../managers/memberships.generated.js';
 import { serializeUpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
 import { deserializeUpdateGroupMembershipByIdRequestBodyRoleField } from '../managers/memberships.generated.js';
+import { UpdateGroupMembershipByIdOptionalsInput } from '../managers/memberships.generated.js';
+import { UpdateGroupMembershipByIdOptionals } from '../managers/memberships.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
@@ -85,8 +87,10 @@ test('testMemberships', async function testMemberships(): Promise<any> {
   }
   const updatedGroupMembership: GroupMembership =
     await client.memberships.updateGroupMembershipById(groupMembership.id!, {
-      role: 'admin' as UpdateGroupMembershipByIdRequestBodyRoleField,
-    } satisfies UpdateGroupMembershipByIdRequestBody);
+      requestBody: {
+        role: 'admin' as UpdateGroupMembershipByIdRequestBodyRoleField,
+      } satisfies UpdateGroupMembershipByIdRequestBody,
+    } satisfies UpdateGroupMembershipByIdOptionalsInput);
   if (!(updatedGroupMembership.id == groupMembership.id)) {
     throw new Error('Assertion failed');
   }

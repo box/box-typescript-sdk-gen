@@ -46,6 +46,174 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateFileUploadSessionOptionals {
+  readonly headers: CreateFileUploadSessionHeaders =
+    new CreateFileUploadSessionHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFileUploadSessionOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateFileUploadSessionOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileUploadSessionOptionalsInput {
+  readonly headers?: CreateFileUploadSessionHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFileUploadSessionForExistingFileOptionals {
+  readonly headers: CreateFileUploadSessionForExistingFileHeaders =
+    new CreateFileUploadSessionForExistingFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFileUploadSessionForExistingFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateFileUploadSessionForExistingFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileUploadSessionForExistingFileOptionalsInput {
+  readonly headers?: CreateFileUploadSessionForExistingFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileUploadSessionByIdOptionals {
+  readonly headers: GetFileUploadSessionByIdHeaders =
+    new GetFileUploadSessionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileUploadSessionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetFileUploadSessionByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileUploadSessionByIdOptionalsInput {
+  readonly headers?: GetFileUploadSessionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UploadFilePartOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<UploadFilePartOptionals, 'cancellationToken'> &
+      Partial<Pick<UploadFilePartOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UploadFilePartOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileUploadSessionByIdOptionals {
+  readonly headers: DeleteFileUploadSessionByIdHeaders =
+    new DeleteFileUploadSessionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileUploadSessionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteFileUploadSessionByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileUploadSessionByIdOptionalsInput {
+  readonly headers?: DeleteFileUploadSessionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileUploadSessionPartsOptionals {
+  readonly queryParams: GetFileUploadSessionPartsQueryParams =
+    {} satisfies GetFileUploadSessionPartsQueryParams;
+  readonly headers: GetFileUploadSessionPartsHeaders =
+    new GetFileUploadSessionPartsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileUploadSessionPartsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileUploadSessionPartsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileUploadSessionPartsOptionalsInput {
+  readonly queryParams?: GetFileUploadSessionPartsQueryParams;
+  readonly headers?: GetFileUploadSessionPartsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFileUploadSessionCommitOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateFileUploadSessionCommitOptionals, 'cancellationToken'> &
+      Partial<Pick<CreateFileUploadSessionCommitOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileUploadSessionCommitOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface PartAccumulator {
   readonly lastIndex: number;
   readonly parts: readonly UploadPart[];
@@ -63,11 +231,12 @@ export class CreateFileUploadSessionHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFileUploadSessionHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFileUploadSessionHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFileUploadSessionHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFileUploadSessionHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFileUploadSessionHeadersInput {
@@ -86,13 +255,17 @@ export class CreateFileUploadSessionForExistingFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFileUploadSessionForExistingFileHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<CreateFileUploadSessionForExistingFileHeaders, 'extraHeaders'>
-        >
+    fields: Omit<
+      CreateFileUploadSessionForExistingFileHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<CreateFileUploadSessionForExistingFileHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFileUploadSessionForExistingFileHeadersInput {
@@ -107,11 +280,12 @@ export class GetFileUploadSessionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileUploadSessionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileUploadSessionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileUploadSessionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileUploadSessionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileUploadSessionByIdHeadersInput {
@@ -128,11 +302,18 @@ export class UploadFilePartHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UploadFilePartHeaders, 'extraHeaders'>
-      | Partial<Pick<UploadFilePartHeaders, 'extraHeaders'>>
+    fields: Omit<UploadFilePartHeaders, 'extraHeaders'> &
+      Partial<Pick<UploadFilePartHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.digest) {
+      this.digest = fields.digest;
+    }
+    if (fields.contentRange) {
+      this.contentRange = fields.contentRange;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UploadFilePartHeadersInput {
@@ -149,11 +330,12 @@ export class DeleteFileUploadSessionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileUploadSessionByIdHeadersInput {
@@ -172,11 +354,12 @@ export class GetFileUploadSessionPartsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileUploadSessionPartsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileUploadSessionPartsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileUploadSessionPartsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileUploadSessionPartsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileUploadSessionPartsHeadersInput {
@@ -197,11 +380,21 @@ export class CreateFileUploadSessionCommitHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFileUploadSessionCommitHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFileUploadSessionCommitHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFileUploadSessionCommitHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFileUploadSessionCommitHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.digest) {
+      this.digest = fields.digest;
+    }
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFileUploadSessionCommitHeadersInput {
@@ -218,34 +411,38 @@ export class ChunkedUploadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          ChunkedUploadsManager,
-          | 'networkSession'
-          | 'createFileUploadSession'
-          | 'createFileUploadSessionForExistingFile'
-          | 'getFileUploadSessionById'
-          | 'uploadFilePart'
-          | 'deleteFileUploadSessionById'
-          | 'getFileUploadSessionParts'
-          | 'createFileUploadSessionCommit'
-          | 'reducer'
-          | 'uploadBigFile'
-        >
-      | Partial<Pick<ChunkedUploadsManager, 'networkSession'>>
+    fields: Omit<
+      ChunkedUploadsManager,
+      | 'networkSession'
+      | 'createFileUploadSession'
+      | 'createFileUploadSessionForExistingFile'
+      | 'getFileUploadSessionById'
+      | 'uploadFilePart'
+      | 'deleteFileUploadSessionById'
+      | 'getFileUploadSessionParts'
+      | 'createFileUploadSessionCommit'
+      | 'reducer'
+      | 'uploadBigFile'
+    > &
+      Partial<Pick<ChunkedUploadsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async createFileUploadSession(
     requestBody: CreateFileUploadSessionRequestBody,
-    headersInput: CreateFileUploadSessionHeadersInput = new CreateFileUploadSessionHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFileUploadSessionOptionalsInput = {}
   ): Promise<UploadSession> {
-    const headers: any = new CreateFileUploadSessionHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFileUploadSessionOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -270,14 +467,14 @@ export class ChunkedUploadsManager {
   async createFileUploadSessionForExistingFile(
     fileId: string,
     requestBody: CreateFileUploadSessionForExistingFileRequestBody,
-    headersInput: CreateFileUploadSessionForExistingFileHeadersInput = new CreateFileUploadSessionForExistingFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFileUploadSessionForExistingFileOptionalsInput = {}
   ): Promise<UploadSession> {
-    const headers: any = new CreateFileUploadSessionForExistingFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFileUploadSessionForExistingFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -305,14 +502,14 @@ export class ChunkedUploadsManager {
   }
   async getFileUploadSessionById(
     uploadSessionId: string,
-    headersInput: GetFileUploadSessionByIdHeadersInput = new GetFileUploadSessionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileUploadSessionByIdOptionalsInput = {}
   ): Promise<UploadSession> {
-    const headers: any = new GetFileUploadSessionByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileUploadSessionByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -337,13 +534,17 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     requestBody: ByteStream,
     headersInput: UploadFilePartHeadersInput,
-    cancellationToken?: CancellationToken
+    optionalsInput: UploadFilePartOptionalsInput = {}
   ): Promise<UploadedPart> {
     const headers: any = new UploadFilePartHeaders({
       digest: headersInput.digest,
       contentRange: headersInput.contentRange,
       extraHeaders: headersInput.extraHeaders,
     });
+    const optionals: any = new UploadFilePartOptionals({
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -374,14 +575,14 @@ export class ChunkedUploadsManager {
   }
   async deleteFileUploadSessionById(
     uploadSessionId: string,
-    headersInput: DeleteFileUploadSessionByIdHeadersInput = new DeleteFileUploadSessionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileUploadSessionByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileUploadSessionByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileUploadSessionByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -404,15 +605,16 @@ export class ChunkedUploadsManager {
   }
   async getFileUploadSessionParts(
     uploadSessionId: string,
-    queryParams: GetFileUploadSessionPartsQueryParams = {} satisfies GetFileUploadSessionPartsQueryParams,
-    headersInput: GetFileUploadSessionPartsHeadersInput = new GetFileUploadSessionPartsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileUploadSessionPartsOptionalsInput = {}
   ): Promise<UploadParts> {
-    const headers: any = new GetFileUploadSessionPartsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileUploadSessionPartsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -445,7 +647,7 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     requestBody: CreateFileUploadSessionCommitRequestBody,
     headersInput: CreateFileUploadSessionCommitHeadersInput,
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFileUploadSessionCommitOptionalsInput = {}
   ): Promise<Files> {
     const headers: any = new CreateFileUploadSessionCommitHeaders({
       digest: headersInput.digest,
@@ -453,6 +655,10 @@ export class ChunkedUploadsManager {
       ifNoneMatch: headersInput.ifNoneMatch,
       extraHeaders: headersInput.extraHeaders,
     });
+    const optionals: any = new CreateFileUploadSessionCommitOptionals({
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -546,8 +752,10 @@ export class ChunkedUploadsManager {
         fileSize: fileSize,
         folderId: parentFolderId,
       } satisfies CreateFileUploadSessionRequestBody,
-      {} satisfies CreateFileUploadSessionHeadersInput,
-      cancellationToken
+      {
+        headers: new CreateFileUploadSessionHeaders({}),
+        cancellationToken: cancellationToken,
+      } satisfies CreateFileUploadSessionOptionalsInput
     );
     const uploadSessionId: string = uploadSession.id!;
     const partSize: number = uploadSession.partSize!;
@@ -573,19 +781,20 @@ export class ChunkedUploadsManager {
     );
     const parts: readonly UploadPart[] = results.parts;
     const processedSessionParts: UploadParts =
-      await this.getFileUploadSessionParts(
-        uploadSessionId,
-        {} satisfies GetFileUploadSessionPartsQueryParams,
-        {} satisfies GetFileUploadSessionPartsHeadersInput,
-        cancellationToken
-      );
+      await this.getFileUploadSessionParts(uploadSessionId, {
+        queryParams: {} satisfies GetFileUploadSessionPartsQueryParams,
+        headers: new GetFileUploadSessionPartsHeaders({}),
+        cancellationToken: cancellationToken,
+      } satisfies GetFileUploadSessionPartsOptionalsInput);
     if (!(processedSessionParts.totalCount! == totalParts)) {
       throw new Error('Assertion failed');
     }
     const processedSession: UploadSession = await this.getFileUploadSessionById(
       uploadSessionId,
-      {} satisfies GetFileUploadSessionByIdHeadersInput,
-      cancellationToken
+      {
+        headers: new GetFileUploadSessionByIdHeaders({}),
+        cancellationToken: cancellationToken,
+      } satisfies GetFileUploadSessionByIdOptionalsInput
     );
     if (!(processedSession.numPartsProcessed == totalParts)) {
       throw new Error('Assertion failed');
@@ -596,7 +805,9 @@ export class ChunkedUploadsManager {
       uploadSessionId,
       { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
       { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
-      cancellationToken
+      {
+        cancellationToken: cancellationToken,
+      } satisfies CreateFileUploadSessionCommitOptionalsInput
     );
     return committedSession.entries![0];
   }

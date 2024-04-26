@@ -25,6 +25,160 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetMetadataTemplatesByInstanceIdOptionals {
+  readonly headers: GetMetadataTemplatesByInstanceIdHeaders =
+    new GetMetadataTemplatesByInstanceIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetMetadataTemplatesByInstanceIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetMetadataTemplatesByInstanceIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetMetadataTemplatesByInstanceIdOptionalsInput {
+  readonly headers?: GetMetadataTemplatesByInstanceIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetMetadataTemplateOptionals {
+  readonly headers: GetMetadataTemplateHeaders = new GetMetadataTemplateHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetMetadataTemplateOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetMetadataTemplateOptionalsInput {
+  readonly headers?: GetMetadataTemplateHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateMetadataTemplateOptionals {
+  readonly headers: UpdateMetadataTemplateHeaders =
+    new UpdateMetadataTemplateHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateMetadataTemplateOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateMetadataTemplateOptionalsInput {
+  readonly headers?: UpdateMetadataTemplateHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteMetadataTemplateOptionals {
+  readonly headers: DeleteMetadataTemplateHeaders =
+    new DeleteMetadataTemplateHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteMetadataTemplateOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteMetadataTemplateOptionalsInput {
+  readonly headers?: DeleteMetadataTemplateHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetMetadataTemplateByIdOptionals {
+  readonly headers: GetMetadataTemplateByIdHeaders =
+    new GetMetadataTemplateByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetMetadataTemplateByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetMetadataTemplateByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetMetadataTemplateByIdOptionalsInput {
+  readonly headers?: GetMetadataTemplateByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateMetadataTemplateOptionals {
+  readonly headers: CreateMetadataTemplateHeaders =
+    new CreateMetadataTemplateHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateMetadataTemplateOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateMetadataTemplateOptionalsInput {
+  readonly headers?: CreateMetadataTemplateHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetMetadataTemplatesByInstanceIdQueryParams {
   readonly metadataInstanceId: string;
 }
@@ -33,11 +187,12 @@ export class GetMetadataTemplatesByInstanceIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetMetadataTemplatesByInstanceIdHeadersInput {
@@ -53,11 +208,12 @@ export class GetMetadataTemplateHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetMetadataTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<GetMetadataTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetMetadataTemplateHeadersInput {
@@ -99,11 +255,12 @@ export class UpdateMetadataTemplateHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateMetadataTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateMetadataTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateMetadataTemplateHeadersInput {
@@ -119,11 +276,12 @@ export class DeleteMetadataTemplateHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteMetadataTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteMetadataTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteMetadataTemplateHeadersInput {
@@ -138,11 +296,12 @@ export class GetMetadataTemplateByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetMetadataTemplateByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetMetadataTemplateByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetMetadataTemplateByIdHeadersInput {
@@ -161,11 +320,12 @@ export class GetGlobalMetadataTemplatesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>
+    fields: Omit<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGlobalMetadataTemplatesHeadersInput {
@@ -184,11 +344,12 @@ export class GetEnterpriseMetadataTemplatesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>
+    fields: Omit<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetEnterpriseMetadataTemplatesHeadersInput {
@@ -228,11 +389,12 @@ export class CreateMetadataTemplateHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateMetadataTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<CreateMetadataTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateMetadataTemplateHeadersInput {
@@ -246,33 +408,37 @@ export class MetadataTemplatesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          MetadataTemplatesManager,
-          | 'networkSession'
-          | 'getMetadataTemplatesByInstanceId'
-          | 'getMetadataTemplate'
-          | 'updateMetadataTemplate'
-          | 'deleteMetadataTemplate'
-          | 'getMetadataTemplateById'
-          | 'getGlobalMetadataTemplates'
-          | 'getEnterpriseMetadataTemplates'
-          | 'createMetadataTemplate'
-        >
-      | Partial<Pick<MetadataTemplatesManager, 'networkSession'>>
+    fields: Omit<
+      MetadataTemplatesManager,
+      | 'networkSession'
+      | 'getMetadataTemplatesByInstanceId'
+      | 'getMetadataTemplate'
+      | 'updateMetadataTemplate'
+      | 'deleteMetadataTemplate'
+      | 'getMetadataTemplateById'
+      | 'getGlobalMetadataTemplates'
+      | 'getEnterpriseMetadataTemplates'
+      | 'createMetadataTemplate'
+    > &
+      Partial<Pick<MetadataTemplatesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getMetadataTemplatesByInstanceId(
     queryParams: GetMetadataTemplatesByInstanceIdQueryParams,
-    headersInput: GetMetadataTemplatesByInstanceIdHeadersInput = new GetMetadataTemplatesByInstanceIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetMetadataTemplatesByInstanceIdOptionalsInput = {}
   ): Promise<MetadataTemplates> {
-    const headers: any = new GetMetadataTemplatesByInstanceIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetMetadataTemplatesByInstanceIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -303,14 +469,14 @@ export class MetadataTemplatesManager {
   async getMetadataTemplate(
     scope: GetMetadataTemplateScope,
     templateKey: string,
-    headersInput: GetMetadataTemplateHeadersInput = new GetMetadataTemplateHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const headers: any = new GetMetadataTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetMetadataTemplateOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -338,14 +504,14 @@ export class MetadataTemplatesManager {
     scope: UpdateMetadataTemplateScope,
     templateKey: string,
     requestBody: readonly UpdateMetadataTemplateRequestBody[],
-    headersInput: UpdateMetadataTemplateHeadersInput = new UpdateMetadataTemplateHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const headers: any = new UpdateMetadataTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateMetadataTemplateOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -376,14 +542,14 @@ export class MetadataTemplatesManager {
   async deleteMetadataTemplate(
     scope: DeleteMetadataTemplateScope,
     templateKey: string,
-    headersInput: DeleteMetadataTemplateHeadersInput = new DeleteMetadataTemplateHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteMetadataTemplateOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteMetadataTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteMetadataTemplateOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -409,14 +575,14 @@ export class MetadataTemplatesManager {
   }
   async getMetadataTemplateById(
     templateId: string,
-    headersInput: GetMetadataTemplateByIdHeadersInput = new GetMetadataTemplateByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetMetadataTemplateByIdOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const headers: any = new GetMetadataTemplateByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetMetadataTemplateByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -511,14 +677,14 @@ export class MetadataTemplatesManager {
   }
   async createMetadataTemplate(
     requestBody: CreateMetadataTemplateRequestBody,
-    headersInput: CreateMetadataTemplateHeadersInput = new CreateMetadataTemplateHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const headers: any = new CreateMetadataTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateMetadataTemplateOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

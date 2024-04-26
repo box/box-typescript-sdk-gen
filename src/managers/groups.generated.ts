@@ -25,6 +25,130 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateGroupOptionals {
+  readonly queryParams: CreateGroupQueryParams =
+    {} satisfies CreateGroupQueryParams;
+  readonly headers: CreateGroupHeaders = new CreateGroupHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateGroupOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateGroupOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateGroupOptionalsInput {
+  readonly queryParams?: CreateGroupQueryParams;
+  readonly headers?: CreateGroupHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetGroupByIdOptionals {
+  readonly queryParams: GetGroupByIdQueryParams =
+    {} satisfies GetGroupByIdQueryParams;
+  readonly headers: GetGroupByIdHeaders = new GetGroupByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetGroupByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetGroupByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetGroupByIdOptionalsInput {
+  readonly queryParams?: GetGroupByIdQueryParams;
+  readonly headers?: GetGroupByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateGroupByIdOptionals {
+  readonly requestBody: UpdateGroupByIdRequestBody =
+    {} satisfies UpdateGroupByIdRequestBody;
+  readonly queryParams: UpdateGroupByIdQueryParams =
+    {} satisfies UpdateGroupByIdQueryParams;
+  readonly headers: UpdateGroupByIdHeaders = new UpdateGroupByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateGroupByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateGroupByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateGroupByIdOptionalsInput {
+  readonly requestBody?: UpdateGroupByIdRequestBody;
+  readonly queryParams?: UpdateGroupByIdQueryParams;
+  readonly headers?: UpdateGroupByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteGroupByIdOptionals {
+  readonly headers: DeleteGroupByIdHeaders = new DeleteGroupByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteGroupByIdOptionalsInput {
+  readonly headers?: DeleteGroupByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetGroupsQueryParams {
   readonly filterTerm?: string;
   readonly fields?: readonly string[];
@@ -36,11 +160,12 @@ export class GetGroupsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGroupsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>
+    fields: Omit<GetGroupsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGroupsHeadersInput {
@@ -74,11 +199,12 @@ export class CreateGroupHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateGroupHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>
+    fields: Omit<CreateGroupHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateGroupHeadersInput {
@@ -96,11 +222,12 @@ export class GetGroupByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGroupByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetGroupByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGroupByIdHeadersInput {
@@ -134,11 +261,12 @@ export class UpdateGroupByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateGroupByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateGroupByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateGroupByIdHeadersInput {
@@ -153,11 +281,12 @@ export class DeleteGroupByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteGroupByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteGroupByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteGroupByIdHeadersInput {
@@ -171,19 +300,23 @@ export class GroupsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          GroupsManager,
-          | 'networkSession'
-          | 'getGroups'
-          | 'createGroup'
-          | 'getGroupById'
-          | 'updateGroupById'
-          | 'deleteGroupById'
-        >
-      | Partial<Pick<GroupsManager, 'networkSession'>>
+    fields: Omit<
+      GroupsManager,
+      | 'networkSession'
+      | 'getGroups'
+      | 'createGroup'
+      | 'getGroupById'
+      | 'updateGroupById'
+      | 'deleteGroupById'
+    > &
+      Partial<Pick<GroupsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getGroups(
     queryParams: GetGroupsQueryParams = {} satisfies GetGroupsQueryParams,
@@ -222,13 +355,16 @@ export class GroupsManager {
   }
   async createGroup(
     requestBody: CreateGroupRequestBody,
-    queryParams: CreateGroupQueryParams = {} satisfies CreateGroupQueryParams,
-    headersInput: CreateGroupHeadersInput = new CreateGroupHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateGroupOptionalsInput = {}
   ): Promise<GroupFull> {
-    const headers: any = new CreateGroupHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateGroupOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -257,13 +393,16 @@ export class GroupsManager {
   }
   async getGroupById(
     groupId: string,
-    queryParams: GetGroupByIdQueryParams = {} satisfies GetGroupByIdQueryParams,
-    headersInput: GetGroupByIdHeadersInput = new GetGroupByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetGroupByIdOptionalsInput = {}
   ): Promise<GroupFull> {
-    const headers: any = new GetGroupByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetGroupByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -294,14 +433,18 @@ export class GroupsManager {
   }
   async updateGroupById(
     groupId: string,
-    requestBody: UpdateGroupByIdRequestBody = {} satisfies UpdateGroupByIdRequestBody,
-    queryParams: UpdateGroupByIdQueryParams = {} satisfies UpdateGroupByIdQueryParams,
-    headersInput: UpdateGroupByIdHeadersInput = new UpdateGroupByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateGroupByIdOptionalsInput = {}
   ): Promise<GroupFull> {
-    const headers: any = new UpdateGroupByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateGroupByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -334,12 +477,14 @@ export class GroupsManager {
   }
   async deleteGroupById(
     groupId: string,
-    headersInput: DeleteGroupByIdHeadersInput = new DeleteGroupByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteGroupByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteGroupByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteGroupByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

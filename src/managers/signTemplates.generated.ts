@@ -24,6 +24,32 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetSignTemplateByIdOptionals {
+  readonly headers: GetSignTemplateByIdHeaders = new GetSignTemplateByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetSignTemplateByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetSignTemplateByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetSignTemplateByIdOptionalsInput {
+  readonly headers?: GetSignTemplateByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetSignTemplatesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
@@ -33,11 +59,12 @@ export class GetSignTemplatesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSignTemplatesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>
+    fields: Omit<GetSignTemplatesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSignTemplatesHeadersInput {
@@ -52,11 +79,12 @@ export class GetSignTemplateByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSignTemplateByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetSignTemplateByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSignTemplateByIdHeadersInput {
@@ -70,14 +98,18 @@ export class SignTemplatesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SignTemplatesManager,
-          'networkSession' | 'getSignTemplates' | 'getSignTemplateById'
-        >
-      | Partial<Pick<SignTemplatesManager, 'networkSession'>>
+    fields: Omit<
+      SignTemplatesManager,
+      'networkSession' | 'getSignTemplates' | 'getSignTemplateById'
+    > &
+      Partial<Pick<SignTemplatesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getSignTemplates(
     queryParams: GetSignTemplatesQueryParams = {} satisfies GetSignTemplatesQueryParams,
@@ -117,14 +149,14 @@ export class SignTemplatesManager {
   }
   async getSignTemplateById(
     templateId: string,
-    headersInput: GetSignTemplateByIdHeadersInput = new GetSignTemplateByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetSignTemplateByIdOptionalsInput = {}
   ): Promise<SignTemplate> {
-    const headers: any = new GetSignTemplateByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetSignTemplateByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -24,6 +24,8 @@ import { serializeTasks } from '../schemas.generated.js';
 import { deserializeTasks } from '../schemas.generated.js';
 import { serializeUpdateTaskByIdRequestBody } from '../managers/tasks.generated.js';
 import { deserializeUpdateTaskByIdRequestBody } from '../managers/tasks.generated.js';
+import { UpdateTaskByIdOptionalsInput } from '../managers/tasks.generated.js';
+import { UpdateTaskByIdOptionals } from '../managers/tasks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -90,8 +92,10 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     throw new Error('Assertion failed');
   }
   const updatedTask: Task = await client.tasks.updateTaskById(task.id!, {
-    message: 'updated message',
-  } satisfies UpdateTaskByIdRequestBody);
+    requestBody: {
+      message: 'updated message',
+    } satisfies UpdateTaskByIdRequestBody,
+  } satisfies UpdateTaskByIdOptionalsInput);
   if (!(updatedTask.message == 'updated message')) {
     throw new Error('Assertion failed');
   }

@@ -17,11 +17,24 @@ export class CcgConfig {
   readonly userId?: string;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
-    fields:
-      | Omit<CcgConfig, 'tokenStorage'>
-      | Partial<Pick<CcgConfig, 'tokenStorage'>>
+    fields: Omit<CcgConfig, 'tokenStorage'> &
+      Partial<Pick<CcgConfig, 'tokenStorage'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.clientId) {
+      this.clientId = fields.clientId;
+    }
+    if (fields.clientSecret) {
+      this.clientSecret = fields.clientSecret;
+    }
+    if (fields.enterpriseId) {
+      this.enterpriseId = fields.enterpriseId;
+    }
+    if (fields.userId) {
+      this.userId = fields.userId;
+    }
+    if (fields.tokenStorage) {
+      this.tokenStorage = fields.tokenStorage;
+    }
   }
 }
 export interface CcgConfigInput {
@@ -51,7 +64,9 @@ export class BoxCcgAuth implements Authentication {
       | 'revokeToken'
     >
   ) {
-    Object.assign(this, fields);
+    if (fields.config) {
+      this.config = fields.config;
+    }
     this.tokenStorage = this.config.tokenStorage;
     this.subjectId = !(this.config.userId == void 0)
       ? this.config.userId

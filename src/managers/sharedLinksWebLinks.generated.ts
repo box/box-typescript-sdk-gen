@@ -25,6 +25,126 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class FindWebLinkForSharedLinkOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<FindWebLinkForSharedLinkOptionals, 'cancellationToken'> &
+      Partial<Pick<FindWebLinkForSharedLinkOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface FindWebLinkForSharedLinkOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetSharedLinkForWebLinkOptionals {
+  readonly headers: GetSharedLinkForWebLinkHeaders =
+    new GetSharedLinkForWebLinkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetSharedLinkForWebLinkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetSharedLinkForWebLinkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetSharedLinkForWebLinkOptionalsInput {
+  readonly headers?: GetSharedLinkForWebLinkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class AddShareLinkToWebLinkOptionals {
+  readonly headers: AddShareLinkToWebLinkHeaders =
+    new AddShareLinkToWebLinkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      AddShareLinkToWebLinkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<AddShareLinkToWebLinkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddShareLinkToWebLinkOptionalsInput {
+  readonly headers?: AddShareLinkToWebLinkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateSharedLinkOnWebLinkOptionals {
+  readonly headers: UpdateSharedLinkOnWebLinkHeaders =
+    new UpdateSharedLinkOnWebLinkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateSharedLinkOnWebLinkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateSharedLinkOnWebLinkOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateSharedLinkOnWebLinkOptionalsInput {
+  readonly headers?: UpdateSharedLinkOnWebLinkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RemoveSharedLinkFromWebLinkOptionals {
+  readonly headers: RemoveSharedLinkFromWebLinkHeaders =
+    new RemoveSharedLinkFromWebLinkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      RemoveSharedLinkFromWebLinkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          RemoveSharedLinkFromWebLinkOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RemoveSharedLinkFromWebLinkOptionalsInput {
+  readonly headers?: RemoveSharedLinkFromWebLinkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface FindWebLinkForSharedLinkQueryParams {
   readonly fields?: readonly string[];
 }
@@ -35,11 +155,18 @@ export class FindWebLinkForSharedLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>>
+    fields: Omit<FindWebLinkForSharedLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface FindWebLinkForSharedLinkHeadersInput {
@@ -59,11 +186,12 @@ export class GetSharedLinkForWebLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>>
+    fields: Omit<GetSharedLinkForWebLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSharedLinkForWebLinkHeadersInput {
@@ -100,11 +228,12 @@ export class AddShareLinkToWebLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddShareLinkToWebLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<AddShareLinkToWebLinkHeaders, 'extraHeaders'>>
+    fields: Omit<AddShareLinkToWebLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<AddShareLinkToWebLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddShareLinkToWebLinkHeadersInput {
@@ -141,11 +270,12 @@ export class UpdateSharedLinkOnWebLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateSharedLinkOnWebLinkHeadersInput {
@@ -167,11 +297,12 @@ export class RemoveSharedLinkFromWebLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>>
+    fields: Omit<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RemoveSharedLinkFromWebLinkHeadersInput {
@@ -185,30 +316,38 @@ export class SharedLinksWebLinksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SharedLinksWebLinksManager,
-          | 'networkSession'
-          | 'findWebLinkForSharedLink'
-          | 'getSharedLinkForWebLink'
-          | 'addShareLinkToWebLink'
-          | 'updateSharedLinkOnWebLink'
-          | 'removeSharedLinkFromWebLink'
-        >
-      | Partial<Pick<SharedLinksWebLinksManager, 'networkSession'>>
+    fields: Omit<
+      SharedLinksWebLinksManager,
+      | 'networkSession'
+      | 'findWebLinkForSharedLink'
+      | 'getSharedLinkForWebLink'
+      | 'addShareLinkToWebLink'
+      | 'updateSharedLinkOnWebLink'
+      | 'removeSharedLinkFromWebLink'
+    > &
+      Partial<Pick<SharedLinksWebLinksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async findWebLinkForSharedLink(
     queryParams: FindWebLinkForSharedLinkQueryParams = {} satisfies FindWebLinkForSharedLinkQueryParams,
     headersInput: FindWebLinkForSharedLinkHeadersInput,
-    cancellationToken?: CancellationToken
+    optionalsInput: FindWebLinkForSharedLinkOptionalsInput = {}
   ): Promise<WebLink> {
     const headers: any = new FindWebLinkForSharedLinkHeaders({
       ifNoneMatch: headersInput.ifNoneMatch,
       boxapi: headersInput.boxapi,
       extraHeaders: headersInput.extraHeaders,
     });
+    const optionals: any = new FindWebLinkForSharedLinkOptionals({
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -245,14 +384,14 @@ export class SharedLinksWebLinksManager {
   async getSharedLinkForWebLink(
     webLinkId: string,
     queryParams: GetSharedLinkForWebLinkQueryParams,
-    headersInput: GetSharedLinkForWebLinkHeadersInput = new GetSharedLinkForWebLinkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetSharedLinkForWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new GetSharedLinkForWebLinkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetSharedLinkForWebLinkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -282,14 +421,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: AddShareLinkToWebLinkRequestBody = {} satisfies AddShareLinkToWebLinkRequestBody,
     queryParams: AddShareLinkToWebLinkQueryParams,
-    headersInput: AddShareLinkToWebLinkHeadersInput = new AddShareLinkToWebLinkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddShareLinkToWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new AddShareLinkToWebLinkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddShareLinkToWebLinkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -321,14 +460,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: UpdateSharedLinkOnWebLinkRequestBody = {} satisfies UpdateSharedLinkOnWebLinkRequestBody,
     queryParams: UpdateSharedLinkOnWebLinkQueryParams,
-    headersInput: UpdateSharedLinkOnWebLinkHeadersInput = new UpdateSharedLinkOnWebLinkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateSharedLinkOnWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new UpdateSharedLinkOnWebLinkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateSharedLinkOnWebLinkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -360,14 +499,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: RemoveSharedLinkFromWebLinkRequestBody = {} satisfies RemoveSharedLinkFromWebLinkRequestBody,
     queryParams: RemoveSharedLinkFromWebLinkQueryParams,
-    headersInput: RemoveSharedLinkFromWebLinkHeadersInput = new RemoveSharedLinkFromWebLinkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RemoveSharedLinkFromWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new RemoveSharedLinkFromWebLinkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RemoveSharedLinkFromWebLinkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });

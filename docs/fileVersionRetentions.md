@@ -54,10 +54,8 @@ await client.fileVersionRetentions.getFileVersionRetentionById(
 
 - fileVersionRetentionId `string`
   - The ID of the file version retention Example: "3424234"
-- headersInput `GetFileVersionRetentionByIdHeadersInput`
-  - Headers of getFileVersionRetentionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileVersionRetentionByIdOptionalsInput`
+  -
 
 ### Returns
 

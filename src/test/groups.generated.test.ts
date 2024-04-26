@@ -6,6 +6,10 @@ import { serializeCreateGroupRequestBody } from '../managers/groups.generated.js
 import { deserializeCreateGroupRequestBody } from '../managers/groups.generated.js';
 import { serializeUpdateGroupByIdRequestBody } from '../managers/groups.generated.js';
 import { deserializeUpdateGroupByIdRequestBody } from '../managers/groups.generated.js';
+import { GetGroupByIdOptionalsInput } from '../managers/groups.generated.js';
+import { UpdateGroupByIdOptionalsInput } from '../managers/groups.generated.js';
+import { GetGroupByIdOptionals } from '../managers/groups.generated.js';
+import { UpdateGroupByIdOptionals } from '../managers/groups.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Groups } from '../schemas.generated.js';
 import { GroupFull } from '../schemas.generated.js';
@@ -39,13 +43,15 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
     throw new Error('Assertion failed');
   }
   const groupById: GroupFull = await client.groups.getGroupById(group.id, {
-    fields: [
-      'id' as string,
-      'name' as string,
-      'description' as string,
-      'group_type' as string,
-    ],
-  } satisfies GetGroupByIdQueryParams);
+    queryParams: {
+      fields: [
+        'id' as string,
+        'name' as string,
+        'description' as string,
+        'group_type' as string,
+      ],
+    } satisfies GetGroupByIdQueryParams,
+  } satisfies GetGroupByIdOptionalsInput);
   if (!(groupById.id == group.id)) {
     throw new Error('Assertion failed');
   }
@@ -55,7 +61,11 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
   const updatedGroupName: string = getUuid();
   const updatedGroup: GroupFull = await client.groups.updateGroupById(
     group.id,
-    { name: updatedGroupName } satisfies UpdateGroupByIdRequestBody
+    {
+      requestBody: {
+        name: updatedGroupName,
+      } satisfies UpdateGroupByIdRequestBody,
+    } satisfies UpdateGroupByIdOptionalsInput
   );
   if (!(updatedGroup.name == updatedGroupName)) {
     throw new Error('Assertion failed');

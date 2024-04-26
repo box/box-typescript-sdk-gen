@@ -16,6 +16,8 @@ import { serializeCreateCommentRequestBodyItemTypeField } from '../managers/comm
 import { deserializeCreateCommentRequestBodyItemTypeField } from '../managers/comments.generated.js';
 import { serializeUpdateCommentByIdRequestBody } from '../managers/comments.generated.js';
 import { deserializeUpdateCommentByIdRequestBody } from '../managers/comments.generated.js';
+import { UpdateCommentByIdOptionalsInput } from '../managers/comments.generated.js';
+import { UpdateCommentByIdOptionals } from '../managers/comments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../internal/utils.js';
 import { Files } from '../schemas.generated.js';
@@ -90,8 +92,8 @@ test('comments', async function comments(): Promise<any> {
   }
   const newMessage: string = 'Hi!';
   await client.comments.updateCommentById(newReplyComment.id!, {
-    message: newMessage,
-  } satisfies UpdateCommentByIdRequestBody);
+    requestBody: { message: newMessage } satisfies UpdateCommentByIdRequestBody,
+  } satisfies UpdateCommentByIdOptionalsInput);
   const newComments: Comments = await client.comments.getFileComments(fileId);
   if (!(newComments.totalCount == 2)) {
     throw new Error('Assertion failed');

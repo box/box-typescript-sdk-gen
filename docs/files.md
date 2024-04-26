@@ -25,12 +25,8 @@ await client.files.getFileById(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileByIdQueryParams`
-  - Query parameters of getFileById method
-- headersInput `GetFileByIdHeadersInput`
-  - Headers of getFileById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -56,23 +52,19 @@ See the endpoint docs at
 
 ```ts
 await client.files.updateFileById(fileToUpdate.id, {
-  name: updatedName,
-  description: 'Updated description',
-} satisfies UpdateFileByIdRequestBody);
+  requestBody: {
+    name: updatedName,
+    description: 'Updated description',
+  } satisfies UpdateFileByIdRequestBody,
+} satisfies UpdateFileByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `UpdateFileByIdRequestBody`
-  - Request body of updateFileById method
-- queryParams `UpdateFileByIdQueryParams`
-  - Query parameters of updateFileById method
-- headersInput `UpdateFileByIdHeadersInput`
-  - Headers of updateFileById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateFileByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -107,10 +99,8 @@ await client.files.deleteFileById(file2.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `DeleteFileByIdHeadersInput`
-  - Headers of deleteFileById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteFileByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -143,12 +133,8 @@ await client.files.copyFile(fileOrigin.id, {
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CopyFileRequestBody`
   - Request body of copyFile method
-- queryParams `CopyFileQueryParams`
-  - Query parameters of copyFile method
-- headersInput `CopyFileHeadersInput`
-  - Headers of copyFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CopyFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -193,12 +179,8 @@ await client.files.getFileThumbnailById(
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - extension `GetFileThumbnailByIdExtension`
   - The file format for the thumbnail Example: "png"
-- queryParams `GetFileThumbnailByIdQueryParams`
-  - Query parameters of getFileThumbnailById method
-- headersInput `GetFileThumbnailByIdHeadersInput`
-  - Headers of getFileThumbnailById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileThumbnailByIdOptionalsInput`
+  -
 
 ### Returns
 

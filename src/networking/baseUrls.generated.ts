@@ -10,11 +10,18 @@ export class BaseUrls {
   readonly uploadUrl: string = 'https://upload.box.com/api/2.0';
   readonly oauth2Url: string = 'https://account.box.com/api/oauth2';
   constructor(
-    fields:
-      | Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>
-      | Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>
+    fields: Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'> &
+      Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.baseUrl) {
+      this.baseUrl = fields.baseUrl;
+    }
+    if (fields.uploadUrl) {
+      this.uploadUrl = fields.uploadUrl;
+    }
+    if (fields.oauth2Url) {
+      this.oauth2Url = fields.oauth2Url;
+    }
   }
 }
 export interface BaseUrlsInput {

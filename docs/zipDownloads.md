@@ -55,10 +55,8 @@ await client.zipDownloads.createZipDownload({
 
 - requestBody `ZipDownloadRequest`
   - Request body of createZipDownload method
-- headersInput `CreateZipDownloadHeadersInput`
-  - Headers of createZipDownload method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateZipDownloadOptionalsInput`
+  -
 
 ### Returns
 
@@ -99,10 +97,8 @@ await client.zipDownloads.getZipDownloadContent(zipDownload.downloadUrl!);
 
 - downloadUrl `string`
   - The URL that can be used to download created `zip` archive. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content`
-- headersInput `GetZipDownloadContentHeadersInput`
-  - Headers of getZipDownloadContent method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetZipDownloadContentOptionalsInput`
+  -
 
 ### Returns
 
@@ -141,10 +137,8 @@ await client.zipDownloads.getZipDownloadStatus(zipDownload.statusUrl!);
 
 - statusUrl `string`
   - The URL that can be used to get the status of the `zip` archive being downloaded. Example: `https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/status`
-- headersInput `GetZipDownloadStatusHeadersInput`
-  - Headers of getZipDownloadStatus method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetZipDownloadStatusOptionalsInput`
+  -
 
 ### Returns
 
@@ -182,10 +176,8 @@ await client.zipDownloads.downloadZip({
 
 - requestBody `ZipDownloadRequest`
   - Zip download request body
-- headersInput `DownloadZipHeadersInput`
-  - Headers of zip download method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DownloadZipOptionalsInput`
+  -
 
 ### Returns
 

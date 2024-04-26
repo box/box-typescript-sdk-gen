@@ -24,6 +24,69 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFolderLocksOptionals {
+  readonly headers: GetFolderLocksHeaders = new GetFolderLocksHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFolderLocksOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetFolderLocksOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderLocksOptionalsInput {
+  readonly headers?: GetFolderLocksHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFolderLockOptionals {
+  readonly headers: CreateFolderLockHeaders = new CreateFolderLockHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateFolderLockOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateFolderLockOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFolderLockOptionalsInput {
+  readonly headers?: CreateFolderLockHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFolderLockByIdOptionals {
+  readonly headers: DeleteFolderLockByIdHeaders =
+    new DeleteFolderLockByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFolderLockByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFolderLockByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFolderLockByIdOptionalsInput {
+  readonly headers?: DeleteFolderLockByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetFolderLocksQueryParams {
   readonly folderId: string;
 }
@@ -32,11 +95,12 @@ export class GetFolderLocksHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderLocksHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderLocksHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderLocksHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderLocksHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderLocksHeadersInput {
@@ -63,11 +127,12 @@ export class CreateFolderLockHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFolderLockHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFolderLockHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFolderLockHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFolderLockHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFolderLockHeadersInput {
@@ -82,11 +147,12 @@ export class DeleteFolderLockByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFolderLockByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderLockByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFolderLockByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFolderLockByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFolderLockByIdHeadersInput {
@@ -100,26 +166,32 @@ export class FolderLocksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FolderLocksManager,
-          | 'networkSession'
-          | 'getFolderLocks'
-          | 'createFolderLock'
-          | 'deleteFolderLockById'
-        >
-      | Partial<Pick<FolderLocksManager, 'networkSession'>>
+    fields: Omit<
+      FolderLocksManager,
+      | 'networkSession'
+      | 'getFolderLocks'
+      | 'createFolderLock'
+      | 'deleteFolderLockById'
+    > &
+      Partial<Pick<FolderLocksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFolderLocks(
     queryParams: GetFolderLocksQueryParams,
-    headersInput: GetFolderLocksHeadersInput = new GetFolderLocksHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderLocksOptionalsInput = {}
   ): Promise<FolderLocks> {
-    const headers: any = new GetFolderLocksHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderLocksOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -147,14 +219,14 @@ export class FolderLocksManager {
   }
   async createFolderLock(
     requestBody: CreateFolderLockRequestBody,
-    headersInput: CreateFolderLockHeadersInput = new CreateFolderLockHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFolderLockOptionalsInput = {}
   ): Promise<FolderLock> {
-    const headers: any = new CreateFolderLockHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFolderLockOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -178,14 +250,14 @@ export class FolderLocksManager {
   }
   async deleteFolderLockById(
     folderLockId: string,
-    headersInput: DeleteFolderLockByIdHeadersInput = new DeleteFolderLockByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFolderLockByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFolderLockByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFolderLockByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

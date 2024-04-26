@@ -54,10 +54,8 @@ await client.signTemplates.getSignTemplateById(signTemplates.entries![0].id!);
 
 - templateId `string`
   - The ID of a Box Sign template. Example: "123075213-7d117509-8f05-42e4-a5ef-5190a319d41d"
-- headersInput `GetSignTemplateByIdHeadersInput`
-  - Headers of getSignTemplateById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetSignTemplateByIdOptionalsInput`
+  -
 
 ### Returns
 

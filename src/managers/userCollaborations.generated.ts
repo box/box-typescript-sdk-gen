@@ -25,6 +25,125 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetCollaborationByIdOptionals {
+  readonly queryParams: GetCollaborationByIdQueryParams =
+    {} satisfies GetCollaborationByIdQueryParams;
+  readonly headers: GetCollaborationByIdHeaders =
+    new GetCollaborationByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetCollaborationByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetCollaborationByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCollaborationByIdOptionalsInput {
+  readonly queryParams?: GetCollaborationByIdQueryParams;
+  readonly headers?: GetCollaborationByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateCollaborationByIdOptionals {
+  readonly headers: UpdateCollaborationByIdHeaders =
+    new UpdateCollaborationByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateCollaborationByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateCollaborationByIdOptionalsInput {
+  readonly headers?: UpdateCollaborationByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteCollaborationByIdOptionals {
+  readonly headers: DeleteCollaborationByIdHeaders =
+    new DeleteCollaborationByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteCollaborationByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteCollaborationByIdOptionalsInput {
+  readonly headers?: DeleteCollaborationByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateCollaborationOptionals {
+  readonly queryParams: CreateCollaborationQueryParams =
+    {} satisfies CreateCollaborationQueryParams;
+  readonly headers: CreateCollaborationHeaders = new CreateCollaborationHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateCollaborationOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateCollaborationOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateCollaborationOptionalsInput {
+  readonly queryParams?: CreateCollaborationQueryParams;
+  readonly headers?: CreateCollaborationHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetCollaborationByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -33,11 +152,12 @@ export class GetCollaborationByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollaborationByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationByIdHeadersInput {
@@ -71,11 +191,12 @@ export class UpdateCollaborationByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateCollaborationByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateCollaborationByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateCollaborationByIdHeadersInput {
@@ -90,11 +211,12 @@ export class DeleteCollaborationByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteCollaborationByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteCollaborationByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteCollaborationByIdHeadersInput {
@@ -142,11 +264,12 @@ export class CreateCollaborationHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateCollaborationHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>
+    fields: Omit<CreateCollaborationHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateCollaborationHeadersInput {
@@ -160,30 +283,35 @@ export class UserCollaborationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          UserCollaborationsManager,
-          | 'networkSession'
-          | 'getCollaborationById'
-          | 'updateCollaborationById'
-          | 'deleteCollaborationById'
-          | 'createCollaboration'
-        >
-      | Partial<Pick<UserCollaborationsManager, 'networkSession'>>
+    fields: Omit<
+      UserCollaborationsManager,
+      | 'networkSession'
+      | 'getCollaborationById'
+      | 'updateCollaborationById'
+      | 'deleteCollaborationById'
+      | 'createCollaboration'
+    > &
+      Partial<Pick<UserCollaborationsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getCollaborationById(
     collaborationId: string,
-    queryParams: GetCollaborationByIdQueryParams = {} satisfies GetCollaborationByIdQueryParams,
-    headersInput: GetCollaborationByIdHeadersInput = new GetCollaborationByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCollaborationByIdOptionalsInput = {}
   ): Promise<Collaboration> {
-    const headers: any = new GetCollaborationByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetCollaborationByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -215,14 +343,14 @@ export class UserCollaborationsManager {
   async updateCollaborationById(
     collaborationId: string,
     requestBody: UpdateCollaborationByIdRequestBody,
-    headersInput: UpdateCollaborationByIdHeadersInput = new UpdateCollaborationByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateCollaborationByIdOptionalsInput = {}
   ): Promise<Collaboration> {
-    const headers: any = new UpdateCollaborationByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateCollaborationByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -247,14 +375,14 @@ export class UserCollaborationsManager {
   }
   async deleteCollaborationById(
     collaborationId: string,
-    headersInput: DeleteCollaborationByIdHeadersInput = new DeleteCollaborationByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteCollaborationByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteCollaborationByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteCollaborationByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -277,15 +405,16 @@ export class UserCollaborationsManager {
   }
   async createCollaboration(
     requestBody: CreateCollaborationRequestBody,
-    queryParams: CreateCollaborationQueryParams = {} satisfies CreateCollaborationQueryParams,
-    headersInput: CreateCollaborationHeadersInput = new CreateCollaborationHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateCollaborationOptionalsInput = {}
   ): Promise<Collaboration> {
-    const headers: any = new CreateCollaborationHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateCollaborationOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

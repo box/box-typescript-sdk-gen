@@ -31,6 +31,127 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateRetentionPolicyOptionals {
+  readonly headers: CreateRetentionPolicyHeaders =
+    new CreateRetentionPolicyHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateRetentionPolicyOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateRetentionPolicyOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateRetentionPolicyOptionalsInput {
+  readonly headers?: CreateRetentionPolicyHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetRetentionPolicyByIdOptionals {
+  readonly queryParams: GetRetentionPolicyByIdQueryParams =
+    {} satisfies GetRetentionPolicyByIdQueryParams;
+  readonly headers: GetRetentionPolicyByIdHeaders =
+    new GetRetentionPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetRetentionPolicyByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetRetentionPolicyByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetRetentionPolicyByIdOptionalsInput {
+  readonly queryParams?: GetRetentionPolicyByIdQueryParams;
+  readonly headers?: GetRetentionPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateRetentionPolicyByIdOptionals {
+  readonly requestBody: UpdateRetentionPolicyByIdRequestBody =
+    {} satisfies UpdateRetentionPolicyByIdRequestBody;
+  readonly headers: UpdateRetentionPolicyByIdHeaders =
+    new UpdateRetentionPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateRetentionPolicyByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateRetentionPolicyByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateRetentionPolicyByIdOptionalsInput {
+  readonly requestBody?: UpdateRetentionPolicyByIdRequestBody;
+  readonly headers?: UpdateRetentionPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteRetentionPolicyByIdOptionals {
+  readonly headers: DeleteRetentionPolicyByIdHeaders =
+    new DeleteRetentionPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteRetentionPolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteRetentionPolicyByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteRetentionPolicyByIdOptionalsInput {
+  readonly headers?: DeleteRetentionPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetRetentionPoliciesQueryParamsPolicyTypeField =
   | 'finite'
   | 'indefinite';
@@ -47,11 +168,12 @@ export class GetRetentionPoliciesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetRetentionPoliciesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>
+    fields: Omit<GetRetentionPoliciesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetRetentionPoliciesHeadersInput {
@@ -86,11 +208,12 @@ export class CreateRetentionPolicyHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateRetentionPolicyHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>
+    fields: Omit<CreateRetentionPolicyHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateRetentionPolicyHeadersInput {
@@ -108,11 +231,12 @@ export class GetRetentionPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetRetentionPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetRetentionPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetRetentionPolicyByIdHeadersInput {
@@ -138,11 +262,12 @@ export class UpdateRetentionPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateRetentionPolicyByIdHeadersInput {
@@ -157,11 +282,12 @@ export class DeleteRetentionPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteRetentionPolicyByIdHeadersInput {
@@ -175,19 +301,23 @@ export class RetentionPoliciesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          RetentionPoliciesManager,
-          | 'networkSession'
-          | 'getRetentionPolicies'
-          | 'createRetentionPolicy'
-          | 'getRetentionPolicyById'
-          | 'updateRetentionPolicyById'
-          | 'deleteRetentionPolicyById'
-        >
-      | Partial<Pick<RetentionPoliciesManager, 'networkSession'>>
+    fields: Omit<
+      RetentionPoliciesManager,
+      | 'networkSession'
+      | 'getRetentionPolicies'
+      | 'createRetentionPolicy'
+      | 'getRetentionPolicyById'
+      | 'updateRetentionPolicyById'
+      | 'deleteRetentionPolicyById'
+    > &
+      Partial<Pick<RetentionPoliciesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getRetentionPolicies(
     queryParams: GetRetentionPoliciesQueryParams = {} satisfies GetRetentionPoliciesQueryParams,
@@ -233,14 +363,14 @@ export class RetentionPoliciesManager {
   }
   async createRetentionPolicy(
     requestBody: CreateRetentionPolicyRequestBody,
-    headersInput: CreateRetentionPolicyHeadersInput = new CreateRetentionPolicyHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateRetentionPolicyOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const headers: any = new CreateRetentionPolicyHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateRetentionPolicyOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -264,15 +394,16 @@ export class RetentionPoliciesManager {
   }
   async getRetentionPolicyById(
     retentionPolicyId: string,
-    queryParams: GetRetentionPolicyByIdQueryParams = {} satisfies GetRetentionPolicyByIdQueryParams,
-    headersInput: GetRetentionPolicyByIdHeadersInput = new GetRetentionPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetRetentionPolicyByIdOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const headers: any = new GetRetentionPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetRetentionPolicyByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -303,15 +434,16 @@ export class RetentionPoliciesManager {
   }
   async updateRetentionPolicyById(
     retentionPolicyId: string,
-    requestBody: UpdateRetentionPolicyByIdRequestBody = {} satisfies UpdateRetentionPolicyByIdRequestBody,
-    headersInput: UpdateRetentionPolicyByIdHeadersInput = new UpdateRetentionPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateRetentionPolicyByIdOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const headers: any = new UpdateRetentionPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateRetentionPolicyByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -336,14 +468,14 @@ export class RetentionPoliciesManager {
   }
   async deleteRetentionPolicyById(
     retentionPolicyId: string,
-    headersInput: DeleteRetentionPolicyByIdHeadersInput = new DeleteRetentionPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteRetentionPolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteRetentionPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteRetentionPolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
