@@ -36,6 +36,13 @@ export class GetFileVersionLegalHoldByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileVersionLegalHoldByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetFileVersionLegalHoldsQueryParams {
   readonly policyId: string;
   readonly marker?: string;
@@ -52,6 +59,13 @@ export class GetFileVersionLegalHoldsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFileVersionLegalHoldsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileVersionLegalHoldsManager {
   readonly auth?: Authentication;
@@ -70,11 +84,14 @@ export class FileVersionLegalHoldsManager {
   }
   async getFileVersionLegalHoldById(
     fileVersionLegalHoldId: string,
-    headers: GetFileVersionLegalHoldByIdHeaders = new GetFileVersionLegalHoldByIdHeaders(
+    headersInput: GetFileVersionLegalHoldByIdHeadersInput = new GetFileVersionLegalHoldByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionLegalHold> {
+    const headers: any = new GetFileVersionLegalHoldByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -97,11 +114,14 @@ export class FileVersionLegalHoldsManager {
   }
   async getFileVersionLegalHolds(
     queryParams: GetFileVersionLegalHoldsQueryParams,
-    headers: GetFileVersionLegalHoldsHeaders = new GetFileVersionLegalHoldsHeaders(
+    headersInput: GetFileVersionLegalHoldsHeadersInput = new GetFileVersionLegalHoldsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionLegalHolds> {
+    const headers: any = new GetFileVersionLegalHoldsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -129,4 +149,8 @@ export class FileVersionLegalHoldsManager {
     )) as FetchResponse;
     return deserializeFileVersionLegalHolds(response.data);
   }
+}
+export interface FileVersionLegalHoldsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

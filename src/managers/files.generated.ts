@@ -40,6 +40,16 @@ export class GetFileByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileByIdHeadersInput {
+  readonly ifNoneMatch?: string;
+  readonly boxapi?: string;
+  readonly xRepHints?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UpdateFileByIdRequestBodyParentField {
   readonly id?: string;
 }
@@ -100,6 +110,14 @@ export class UpdateFileByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFileByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFileByIdHeaders {
   readonly ifMatch?: string;
   readonly extraHeaders?: {
@@ -112,6 +130,14 @@ export class DeleteFileByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFileByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface CopyFileRequestBodyParentField {
   readonly id: string;
@@ -136,6 +162,13 @@ export class CopyFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CopyFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type GetFileThumbnailByIdExtension = 'png' | 'jpg';
 export interface GetFileThumbnailByIdQueryParams {
   readonly minHeight?: number;
@@ -154,6 +187,13 @@ export class GetFileThumbnailByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFileThumbnailByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FilesManager {
   readonly auth?: Authentication;
@@ -176,9 +216,15 @@ export class FilesManager {
   async getFileById(
     fileId: string,
     queryParams: GetFileByIdQueryParams = {} satisfies GetFileByIdQueryParams,
-    headers: GetFileByIdHeaders = new GetFileByIdHeaders({}),
+    headersInput: GetFileByIdHeadersInput = new GetFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new GetFileByIdHeaders({
+      ifNoneMatch: headersInput.ifNoneMatch,
+      boxapi: headersInput.boxapi,
+      xRepHints: headersInput.xRepHints,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -218,9 +264,13 @@ export class FilesManager {
     fileId: string,
     requestBody: UpdateFileByIdRequestBody = {} satisfies UpdateFileByIdRequestBody,
     queryParams: UpdateFileByIdQueryParams = {} satisfies UpdateFileByIdQueryParams,
-    headers: UpdateFileByIdHeaders = new UpdateFileByIdHeaders({}),
+    headersInput: UpdateFileByIdHeadersInput = new UpdateFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new UpdateFileByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -256,9 +306,13 @@ export class FilesManager {
   }
   async deleteFileById(
     fileId: string,
-    headers: DeleteFileByIdHeaders = new DeleteFileByIdHeaders({}),
+    headersInput: DeleteFileByIdHeadersInput = new DeleteFileByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFileByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -286,9 +340,12 @@ export class FilesManager {
     fileId: string,
     requestBody: CopyFileRequestBody,
     queryParams: CopyFileQueryParams = {} satisfies CopyFileQueryParams,
-    headers: CopyFileHeaders = new CopyFileHeaders({}),
+    headersInput: CopyFileHeadersInput = new CopyFileHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new CopyFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -324,9 +381,14 @@ export class FilesManager {
     fileId: string,
     extension: GetFileThumbnailByIdExtension,
     queryParams: GetFileThumbnailByIdQueryParams = {} satisfies GetFileThumbnailByIdQueryParams,
-    headers: GetFileThumbnailByIdHeaders = new GetFileThumbnailByIdHeaders({}),
+    headersInput: GetFileThumbnailByIdHeadersInput = new GetFileThumbnailByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
+    const headers: any = new GetFileThumbnailByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -358,6 +420,10 @@ export class FilesManager {
     )) as FetchResponse;
     return response.content;
   }
+}
+export interface FilesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileByIdRequestBodyParentField(
   val: any

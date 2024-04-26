@@ -25,7 +25,7 @@ await client.retentionPolicies.getRetentionPolicies();
 
 - queryParams `GetRetentionPoliciesQueryParams`
   - Query parameters of getRetentionPolicies method
-- headers `GetRetentionPoliciesHeaders`
+- headersInput `GetRetentionPoliciesHeadersInput`
   - Headers of getRetentionPolicies method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -66,7 +66,7 @@ await client.retentionPolicies.createRetentionPolicy({
 
 - requestBody `CreateRetentionPolicyRequestBody`
   - Request body of createRetentionPolicy method
-- headers `CreateRetentionPolicyHeaders`
+- headersInput `CreateRetentionPolicyHeadersInput`
   - Headers of createRetentionPolicy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -98,7 +98,7 @@ await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
   - The ID of the retention policy. Example: "982312"
 - queryParams `GetRetentionPolicyByIdQueryParams`
   - Query parameters of getRetentionPolicyById method
-- headers `GetRetentionPolicyByIdHeaders`
+- headersInput `GetRetentionPolicyByIdHeadersInput`
   - Headers of getRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -132,7 +132,7 @@ await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
   - The ID of the retention policy. Example: "982312"
 - requestBody `UpdateRetentionPolicyByIdRequestBody`
   - Request body of updateRetentionPolicyById method
-- headers `UpdateRetentionPolicyByIdHeaders`
+- headersInput `UpdateRetentionPolicyByIdHeadersInput`
   - Headers of updateRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -162,7 +162,7 @@ await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
 
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
-- headers `DeleteRetentionPolicyByIdHeaders`
+- headersInput `DeleteRetentionPolicyByIdHeadersInput`
   - Headers of deleteRetentionPolicyById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

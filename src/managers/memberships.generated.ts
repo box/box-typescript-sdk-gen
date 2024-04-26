@@ -41,6 +41,13 @@ export class GetUserMembershipsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetUserMembershipsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetGroupMembershipsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
@@ -56,6 +63,13 @@ export class GetGroupMembershipsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetGroupMembershipsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface CreateGroupMembershipRequestBodyUserField {
   readonly id: string;
@@ -87,6 +101,13 @@ export class CreateGroupMembershipHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateGroupMembershipHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetGroupMembershipByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -101,6 +122,13 @@ export class GetGroupMembershipByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetGroupMembershipByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateGroupMembershipByIdRequestBodyRoleField = 'member' | 'admin';
 export interface UpdateGroupMembershipByIdRequestBody {
@@ -124,6 +152,13 @@ export class UpdateGroupMembershipByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateGroupMembershipByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteGroupMembershipByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -135,6 +170,13 @@ export class DeleteGroupMembershipByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteGroupMembershipByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class MembershipsManager {
   readonly auth?: Authentication;
@@ -158,9 +200,14 @@ export class MembershipsManager {
   async getUserMemberships(
     userId: string,
     queryParams: GetUserMembershipsQueryParams = {} satisfies GetUserMembershipsQueryParams,
-    headers: GetUserMembershipsHeaders = new GetUserMembershipsHeaders({}),
+    headersInput: GetUserMembershipsHeadersInput = new GetUserMembershipsHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
+    const headers: any = new GetUserMembershipsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -192,9 +239,14 @@ export class MembershipsManager {
   async getGroupMemberships(
     groupId: string,
     queryParams: GetGroupMembershipsQueryParams = {} satisfies GetGroupMembershipsQueryParams,
-    headers: GetGroupMembershipsHeaders = new GetGroupMembershipsHeaders({}),
+    headersInput: GetGroupMembershipsHeadersInput = new GetGroupMembershipsHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<GroupMemberships> {
+    const headers: any = new GetGroupMembershipsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -226,11 +278,14 @@ export class MembershipsManager {
   async createGroupMembership(
     requestBody: CreateGroupMembershipRequestBody,
     queryParams: CreateGroupMembershipQueryParams = {} satisfies CreateGroupMembershipQueryParams,
-    headers: CreateGroupMembershipHeaders = new CreateGroupMembershipHeaders(
+    headersInput: CreateGroupMembershipHeadersInput = new CreateGroupMembershipHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
+    const headers: any = new CreateGroupMembershipHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -263,11 +318,14 @@ export class MembershipsManager {
   async getGroupMembershipById(
     groupMembershipId: string,
     queryParams: GetGroupMembershipByIdQueryParams = {} satisfies GetGroupMembershipByIdQueryParams,
-    headers: GetGroupMembershipByIdHeaders = new GetGroupMembershipByIdHeaders(
+    headersInput: GetGroupMembershipByIdHeadersInput = new GetGroupMembershipByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
+    const headers: any = new GetGroupMembershipByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -300,11 +358,14 @@ export class MembershipsManager {
     groupMembershipId: string,
     requestBody: UpdateGroupMembershipByIdRequestBody = {} satisfies UpdateGroupMembershipByIdRequestBody,
     queryParams: UpdateGroupMembershipByIdQueryParams = {} satisfies UpdateGroupMembershipByIdQueryParams,
-    headers: UpdateGroupMembershipByIdHeaders = new UpdateGroupMembershipByIdHeaders(
+    headersInput: UpdateGroupMembershipByIdHeadersInput = new UpdateGroupMembershipByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<GroupMembership> {
+    const headers: any = new UpdateGroupMembershipByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -337,11 +398,14 @@ export class MembershipsManager {
   }
   async deleteGroupMembershipById(
     groupMembershipId: string,
-    headers: DeleteGroupMembershipByIdHeaders = new DeleteGroupMembershipByIdHeaders(
+    headersInput: DeleteGroupMembershipByIdHeadersInput = new DeleteGroupMembershipByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteGroupMembershipByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -362,6 +426,10 @@ export class MembershipsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface MembershipsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupMembershipRequestBodyUserField(
   val: any

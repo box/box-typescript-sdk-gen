@@ -48,6 +48,15 @@ export class GetFolderByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFolderByIdHeadersInput {
+  readonly ifNoneMatch?: string;
+  readonly boxapi?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateFolderByIdRequestBodySyncStateField =
   | 'synced'
   | 'not_synced'
@@ -108,6 +117,14 @@ export class UpdateFolderByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFolderByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface DeleteFolderByIdQueryParams {
   readonly recursive?: boolean;
 }
@@ -123,6 +140,14 @@ export class DeleteFolderByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFolderByIdHeadersInput {
+  readonly ifMatch?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type GetFolderItemsQueryParamsSortField =
   | 'id'
@@ -151,6 +176,14 @@ export class GetFolderItemsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFolderItemsHeadersInput {
+  readonly boxapi?: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface CreateFolderRequestBodyParentField {
   readonly id: string;
@@ -186,6 +219,13 @@ export class CreateFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CopyFolderRequestBodyParentField {
   readonly id: string;
 }
@@ -207,6 +247,13 @@ export class CopyFolderHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CopyFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FoldersManager {
   readonly auth?: Authentication;
@@ -230,9 +277,14 @@ export class FoldersManager {
   async getFolderById(
     folderId: string,
     queryParams: GetFolderByIdQueryParams = {} satisfies GetFolderByIdQueryParams,
-    headers: GetFolderByIdHeaders = new GetFolderByIdHeaders({}),
+    headersInput: GetFolderByIdHeadersInput = new GetFolderByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new GetFolderByIdHeaders({
+      ifNoneMatch: headersInput.ifNoneMatch,
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -275,9 +327,15 @@ export class FoldersManager {
     folderId: string,
     requestBody: UpdateFolderByIdRequestBody = {} satisfies UpdateFolderByIdRequestBody,
     queryParams: UpdateFolderByIdQueryParams = {} satisfies UpdateFolderByIdQueryParams,
-    headers: UpdateFolderByIdHeaders = new UpdateFolderByIdHeaders({}),
+    headersInput: UpdateFolderByIdHeadersInput = new UpdateFolderByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new UpdateFolderByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -314,9 +372,15 @@ export class FoldersManager {
   async deleteFolderById(
     folderId: string,
     queryParams: DeleteFolderByIdQueryParams = {} satisfies DeleteFolderByIdQueryParams,
-    headers: DeleteFolderByIdHeaders = new DeleteFolderByIdHeaders({}),
+    headersInput: DeleteFolderByIdHeadersInput = new DeleteFolderByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFolderByIdHeaders({
+      ifMatch: headersInput.ifMatch,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -349,9 +413,13 @@ export class FoldersManager {
   async getFolderItems(
     folderId: string,
     queryParams: GetFolderItemsQueryParams = {} satisfies GetFolderItemsQueryParams,
-    headers: GetFolderItemsHeaders = new GetFolderItemsHeaders({}),
+    headersInput: GetFolderItemsHeadersInput = new GetFolderItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
+    const headers: any = new GetFolderItemsHeaders({
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -393,9 +461,12 @@ export class FoldersManager {
   async createFolder(
     requestBody: CreateFolderRequestBody,
     queryParams: CreateFolderQueryParams = {} satisfies CreateFolderQueryParams,
-    headers: CreateFolderHeaders = new CreateFolderHeaders({}),
+    headersInput: CreateFolderHeadersInput = new CreateFolderHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new CreateFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -426,9 +497,12 @@ export class FoldersManager {
     folderId: string,
     requestBody: CopyFolderRequestBody,
     queryParams: CopyFolderQueryParams = {} satisfies CopyFolderQueryParams,
-    headers: CopyFolderHeaders = new CopyFolderHeaders({}),
+    headersInput: CopyFolderHeadersInput = new CopyFolderHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new CopyFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -460,6 +534,10 @@ export class FoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+}
+export interface FoldersManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetFolderByIdQueryParamsSortField(
   val: any

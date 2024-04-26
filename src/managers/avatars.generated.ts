@@ -34,6 +34,13 @@ export class GetUserAvatarHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetUserAvatarHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CreateUserAvatarRequestBody {
   readonly pic: ByteStream;
   readonly picFileName?: string;
@@ -51,6 +58,13 @@ export class CreateUserAvatarHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateUserAvatarHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteUserAvatarHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -62,6 +76,13 @@ export class DeleteUserAvatarHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteUserAvatarHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class AvatarsManager {
   readonly auth?: Authentication;
@@ -81,9 +102,12 @@ export class AvatarsManager {
   }
   async getUserAvatar(
     userId: string,
-    headers: GetUserAvatarHeaders = new GetUserAvatarHeaders({}),
+    headersInput: GetUserAvatarHeadersInput = new GetUserAvatarHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<ByteStream> {
+    const headers: any = new GetUserAvatarHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -108,9 +132,14 @@ export class AvatarsManager {
   async createUserAvatar(
     userId: string,
     requestBody: CreateUserAvatarRequestBody,
-    headers: CreateUserAvatarHeaders = new CreateUserAvatarHeaders({}),
+    headersInput: CreateUserAvatarHeadersInput = new CreateUserAvatarHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<UserAvatar> {
+    const headers: any = new CreateUserAvatarHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -143,9 +172,14 @@ export class AvatarsManager {
   }
   async deleteUserAvatar(
     userId: string,
-    headers: DeleteUserAvatarHeaders = new DeleteUserAvatarHeaders({}),
+    headersInput: DeleteUserAvatarHeadersInput = new DeleteUserAvatarHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteUserAvatarHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -167,4 +201,8 @@ export class AvatarsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface AvatarsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

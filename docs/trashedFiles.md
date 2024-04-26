@@ -30,7 +30,7 @@ await client.trashedFiles.restoreFileFromTrash(file.id);
   - Request body of restoreFileFromTrash method
 - queryParams `RestoreFileFromTrashQueryParams`
   - Query parameters of restoreFileFromTrash method
-- headers `RestoreFileFromTrashHeaders`
+- headersInput `RestoreFileFromTrashHeadersInput`
   - Headers of restoreFileFromTrash method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -72,7 +72,7 @@ await client.trashedFiles.getTrashedFileById(file.id);
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetTrashedFileByIdQueryParams`
   - Query parameters of getTrashedFileById method
-- headers `GetTrashedFileByIdHeaders`
+- headersInput `GetTrashedFileByIdHeadersInput`
   - Headers of getTrashedFileById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -105,7 +105,7 @@ await client.trashedFiles.deleteTrashedFileById(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headers `DeleteTrashedFileByIdHeaders`
+- headersInput `DeleteTrashedFileByIdHeadersInput`
   - Headers of deleteTrashedFileById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

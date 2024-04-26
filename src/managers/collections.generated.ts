@@ -41,6 +41,13 @@ export class GetCollectionsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetCollectionsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetCollectionItemsQueryParams {
   readonly fields?: readonly string[];
   readonly offset?: number;
@@ -58,6 +65,13 @@ export class GetCollectionItemsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetCollectionItemsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class CollectionsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -73,9 +87,12 @@ export class CollectionsManager {
   }
   async getCollections(
     queryParams: GetCollectionsQueryParams = {} satisfies GetCollectionsQueryParams,
-    headers: GetCollectionsHeaders = new GetCollectionsHeaders({}),
+    headersInput: GetCollectionsHeadersInput = new GetCollectionsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collections> {
+    const headers: any = new GetCollectionsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -105,9 +122,14 @@ export class CollectionsManager {
   async getCollectionItems(
     collectionId: string,
     queryParams: GetCollectionItemsQueryParams = {} satisfies GetCollectionItemsQueryParams,
-    headers: GetCollectionItemsHeaders = new GetCollectionItemsHeaders({}),
+    headersInput: GetCollectionItemsHeadersInput = new GetCollectionItemsHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
+    const headers: any = new GetCollectionItemsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -139,4 +161,8 @@ export class CollectionsManager {
     )) as FetchResponse;
     return deserializeItems(response.data);
   }
+}
+export interface CollectionsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

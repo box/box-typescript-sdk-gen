@@ -100,6 +100,17 @@ export class JwtConfig {
     return JwtConfig.fromConfigJsonString(configJsonString, tokenStorage);
   }
 }
+export interface JwtConfigInput {
+  readonly clientId: string;
+  readonly clientSecret: string;
+  readonly jwtKeyId: string;
+  readonly privateKey: string;
+  readonly privateKeyPassphrase: string;
+  readonly enterpriseId?: string;
+  readonly userId?: string;
+  readonly algorithm?: undefined | JwtAlgorithm;
+  readonly tokenStorage?: TokenStorage;
+}
 export class BoxJwtAuth implements Authentication {
   readonly config!: JwtConfig;
   readonly tokenStorage: TokenStorage;

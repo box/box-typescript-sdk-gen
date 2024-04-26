@@ -17,6 +17,11 @@ export class BaseUrls {
     Object.assign(this, fields);
   }
 }
+export interface BaseUrlsInput {
+  readonly baseUrl?: string;
+  readonly uploadUrl?: string;
+  readonly oauth2Url?: string;
+}
 export function serializeBaseUrls(val: any): SerializedData {
   return {
     ['base_url']: val.baseUrl,
@@ -33,4 +38,24 @@ export function deserializeBaseUrls(val: any): BaseUrls {
     uploadUrl: uploadUrl,
     oauth2Url: oauth2Url,
   } satisfies BaseUrls;
+}
+export function serializeBaseUrlsInput(val: any): SerializedData {
+  return {
+    ['baseUrl']: val.baseUrl == void 0 ? void 0 : val.baseUrl,
+    ['uploadUrl']: val.uploadUrl == void 0 ? void 0 : val.uploadUrl,
+    ['oauth2Url']: val.oauth2Url == void 0 ? void 0 : val.oauth2Url,
+  };
+}
+export function deserializeBaseUrlsInput(val: any): BaseUrlsInput {
+  const baseUrl: undefined | string =
+    val.baseUrl == void 0 ? void 0 : val.baseUrl;
+  const uploadUrl: undefined | string =
+    val.uploadUrl == void 0 ? void 0 : val.uploadUrl;
+  const oauth2Url: undefined | string =
+    val.oauth2Url == void 0 ? void 0 : val.oauth2Url;
+  return {
+    baseUrl: baseUrl,
+    uploadUrl: uploadUrl,
+    oauth2Url: oauth2Url,
+  } satisfies BaseUrlsInput;
 }

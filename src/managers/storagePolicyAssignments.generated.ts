@@ -45,6 +45,13 @@ export class GetStoragePolicyAssignmentsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetStoragePolicyAssignmentsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
   'storage_policy';
 export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
@@ -63,6 +70,10 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
+  readonly type?: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
+  readonly id: string;
 }
 export type CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
   | 'user'
@@ -87,6 +98,13 @@ export class CreateStoragePolicyAssignmentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateStoragePolicyAssignmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetStoragePolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -98,6 +116,13 @@ export class GetStoragePolicyAssignmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetStoragePolicyAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
   'storage_policy';
@@ -121,6 +146,10 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
     Object.assign(this, fields);
   }
 }
+export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
+  readonly type?: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
+  readonly id: string;
+}
 export interface UpdateStoragePolicyAssignmentByIdRequestBody {
   readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
@@ -136,6 +165,13 @@ export class UpdateStoragePolicyAssignmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateStoragePolicyAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteStoragePolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -147,6 +183,13 @@ export class DeleteStoragePolicyAssignmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteStoragePolicyAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class StoragePolicyAssignmentsManager {
   readonly auth?: Authentication;
@@ -168,11 +211,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async getStoragePolicyAssignments(
     queryParams: GetStoragePolicyAssignmentsQueryParams,
-    headers: GetStoragePolicyAssignmentsHeaders = new GetStoragePolicyAssignmentsHeaders(
+    headersInput: GetStoragePolicyAssignmentsHeadersInput = new GetStoragePolicyAssignmentsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicyAssignments> {
+    const headers: any = new GetStoragePolicyAssignmentsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -202,11 +248,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async createStoragePolicyAssignment(
     requestBody: CreateStoragePolicyAssignmentRequestBody,
-    headers: CreateStoragePolicyAssignmentHeaders = new CreateStoragePolicyAssignmentHeaders(
+    headersInput: CreateStoragePolicyAssignmentHeadersInput = new CreateStoragePolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicyAssignment> {
+    const headers: any = new CreateStoragePolicyAssignmentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -230,11 +279,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async getStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headers: GetStoragePolicyAssignmentByIdHeaders = new GetStoragePolicyAssignmentByIdHeaders(
+    headersInput: GetStoragePolicyAssignmentByIdHeadersInput = new GetStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicyAssignment> {
+    const headers: any = new GetStoragePolicyAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -258,11 +310,14 @@ export class StoragePolicyAssignmentsManager {
   async updateStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
     requestBody: UpdateStoragePolicyAssignmentByIdRequestBody,
-    headers: UpdateStoragePolicyAssignmentByIdHeaders = new UpdateStoragePolicyAssignmentByIdHeaders(
+    headersInput: UpdateStoragePolicyAssignmentByIdHeadersInput = new UpdateStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicyAssignment> {
+    const headers: any = new UpdateStoragePolicyAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -289,11 +344,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async deleteStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headers: DeleteStoragePolicyAssignmentByIdHeaders = new DeleteStoragePolicyAssignmentByIdHeaders(
+    headersInput: DeleteStoragePolicyAssignmentByIdHeadersInput = new DeleteStoragePolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteStoragePolicyAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -314,6 +372,10 @@ export class StoragePolicyAssignmentsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface StoragePolicyAssignmentsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
   val: any
@@ -383,6 +445,36 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
     type: type,
     id: id,
   } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
+}
+export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
+            val.type
+          ),
+    ['id']: val.id,
+  };
+}
+export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput(
+  val: any
+): CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
+  const type:
+    | undefined
+    | CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
+          val.type
+        );
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
   val: any
@@ -506,6 +598,36 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
     type: type,
     id: id,
   } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
+}
+export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
+            val.type
+          ),
+    ['id']: val.id,
+  };
+}
+export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput(
+  val: any
+): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
+  const type:
+    | undefined
+    | UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
+          val.type
+        );
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBody(
   val: any

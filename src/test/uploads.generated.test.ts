@@ -8,6 +8,7 @@ import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileHeadersInput } from '../managers/uploads.generated.js';
 import { ByteStream } from '../internal/utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -80,7 +81,7 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
         file: fileByteStream,
       } satisfies UploadFileRequestBody,
       {} satisfies UploadFileQueryParams,
-      new UploadFileHeaders({}),
+      {} satisfies UploadFileHeadersInput,
       cancellationToken
     );
   }).rejects.toThrow();

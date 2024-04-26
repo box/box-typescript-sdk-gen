@@ -54,6 +54,13 @@ export class GetRetentionPoliciesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetRetentionPoliciesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateRetentionPolicyRequestBodyPolicyTypeField =
   | 'finite'
   | 'indefinite';
@@ -86,6 +93,13 @@ export class CreateRetentionPolicyHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateRetentionPolicyHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetRetentionPolicyByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -100,6 +114,13 @@ export class GetRetentionPolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetRetentionPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface UpdateRetentionPolicyByIdRequestBody {
   readonly policyName?: string;
@@ -124,6 +145,13 @@ export class UpdateRetentionPolicyByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateRetentionPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteRetentionPolicyByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -135,6 +163,13 @@ export class DeleteRetentionPolicyByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteRetentionPolicyByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class RetentionPoliciesManager {
   readonly auth?: Authentication;
@@ -156,9 +191,14 @@ export class RetentionPoliciesManager {
   }
   async getRetentionPolicies(
     queryParams: GetRetentionPoliciesQueryParams = {} satisfies GetRetentionPoliciesQueryParams,
-    headers: GetRetentionPoliciesHeaders = new GetRetentionPoliciesHeaders({}),
+    headersInput: GetRetentionPoliciesHeadersInput = new GetRetentionPoliciesHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicies> {
+    const headers: any = new GetRetentionPoliciesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -193,11 +233,14 @@ export class RetentionPoliciesManager {
   }
   async createRetentionPolicy(
     requestBody: CreateRetentionPolicyRequestBody,
-    headers: CreateRetentionPolicyHeaders = new CreateRetentionPolicyHeaders(
+    headersInput: CreateRetentionPolicyHeadersInput = new CreateRetentionPolicyHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
+    const headers: any = new CreateRetentionPolicyHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -222,11 +265,14 @@ export class RetentionPoliciesManager {
   async getRetentionPolicyById(
     retentionPolicyId: string,
     queryParams: GetRetentionPolicyByIdQueryParams = {} satisfies GetRetentionPolicyByIdQueryParams,
-    headers: GetRetentionPolicyByIdHeaders = new GetRetentionPolicyByIdHeaders(
+    headersInput: GetRetentionPolicyByIdHeadersInput = new GetRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
+    const headers: any = new GetRetentionPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -258,11 +304,14 @@ export class RetentionPoliciesManager {
   async updateRetentionPolicyById(
     retentionPolicyId: string,
     requestBody: UpdateRetentionPolicyByIdRequestBody = {} satisfies UpdateRetentionPolicyByIdRequestBody,
-    headers: UpdateRetentionPolicyByIdHeaders = new UpdateRetentionPolicyByIdHeaders(
+    headersInput: UpdateRetentionPolicyByIdHeadersInput = new UpdateRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicy> {
+    const headers: any = new UpdateRetentionPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -287,11 +336,14 @@ export class RetentionPoliciesManager {
   }
   async deleteRetentionPolicyById(
     retentionPolicyId: string,
-    headers: DeleteRetentionPolicyByIdHeaders = new DeleteRetentionPolicyByIdHeaders(
+    headersInput: DeleteRetentionPolicyByIdHeadersInput = new DeleteRetentionPolicyByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteRetentionPolicyByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -312,6 +364,10 @@ export class RetentionPoliciesManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface RetentionPoliciesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   val: any

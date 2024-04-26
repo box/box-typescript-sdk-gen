@@ -29,7 +29,7 @@ await client.folderClassifications.getClassificationOnFolder(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `GetClassificationOnFolderHeaders`
+- headersInput `GetClassificationOnFolderHeadersInput`
   - Headers of getClassificationOnFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -71,7 +71,7 @@ await client.folderClassifications.addClassificationToFolder(folder.id, {
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `AddClassificationToFolderRequestBody`
   - Request body of addClassificationToFolder method
-- headers `AddClassificationToFolderHeaders`
+- headersInput `AddClassificationToFolderHeadersInput`
   - Headers of addClassificationToFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -112,7 +112,7 @@ await client.folderClassifications.updateClassificationOnFolder(folder.id, [
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - requestBody `readonly UpdateClassificationOnFolderRequestBody[]`
   - Request body of updateClassificationOnFolder method
-- headers `UpdateClassificationOnFolderHeaders`
+- headersInput `UpdateClassificationOnFolderHeadersInput`
   - Headers of updateClassificationOnFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -146,7 +146,7 @@ await client.folderClassifications.deleteClassificationFromFolder(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `DeleteClassificationFromFolderHeaders`
+- headersInput `DeleteClassificationFromFolderHeadersInput`
   - Headers of deleteClassificationFromFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

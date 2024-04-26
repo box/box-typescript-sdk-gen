@@ -39,7 +39,7 @@ await client.trashedFolders.restoreFolderFromTrash(folder.id);
   - Request body of restoreFolderFromTrash method
 - queryParams `RestoreFolderFromTrashQueryParams`
   - Query parameters of restoreFolderFromTrash method
-- headers `RestoreFolderFromTrashHeaders`
+- headersInput `RestoreFolderFromTrashHeadersInput`
   - Headers of restoreFolderFromTrash method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -81,7 +81,7 @@ await client.trashedFolders.getTrashedFolderById(folder.id);
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetTrashedFolderByIdQueryParams`
   - Query parameters of getTrashedFolderById method
-- headers `GetTrashedFolderByIdHeaders`
+- headersInput `GetTrashedFolderByIdHeadersInput`
   - Headers of getTrashedFolderById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -114,7 +114,7 @@ await client.trashedFolders.deleteTrashedFolderById(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headers `DeleteTrashedFolderByIdHeaders`
+- headersInput `DeleteTrashedFolderByIdHeadersInput`
   - Headers of deleteTrashedFolderById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

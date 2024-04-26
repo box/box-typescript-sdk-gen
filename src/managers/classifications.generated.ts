@@ -33,6 +33,13 @@ export class GetClassificationTemplateHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetClassificationTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type AddClassificationRequestBodyOpField = 'addEnumOption';
 export type AddClassificationRequestBodyFieldKeyField =
   'Box__Security__Classification__Key';
@@ -61,6 +68,11 @@ export class AddClassificationRequestBody {
     Object.assign(this, fields);
   }
 }
+export interface AddClassificationRequestBodyInput {
+  readonly op?: AddClassificationRequestBodyOpField;
+  readonly fieldKey?: AddClassificationRequestBodyFieldKeyField;
+  readonly data: AddClassificationRequestBodyDataField;
+}
 export class AddClassificationHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +84,13 @@ export class AddClassificationHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface AddClassificationHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateClassificationRequestBodyOpField = 'editEnumOption';
 export type UpdateClassificationRequestBodyFieldKeyField =
@@ -102,6 +121,12 @@ export class UpdateClassificationRequestBody {
     Object.assign(this, fields);
   }
 }
+export interface UpdateClassificationRequestBodyInput {
+  readonly op?: UpdateClassificationRequestBodyOpField;
+  readonly fieldKey?: UpdateClassificationRequestBodyFieldKeyField;
+  readonly enumOptionKey: string;
+  readonly data: UpdateClassificationRequestBodyDataField;
+}
 export class UpdateClassificationHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -113,6 +138,13 @@ export class UpdateClassificationHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface UpdateClassificationHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateClassificationTemplateRequestBodyScopeField = 'enterprise';
 export type CreateClassificationTemplateRequestBodyTemplateKeyField =
@@ -160,6 +192,13 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
     Object.assign(this, fields);
   }
 }
+export interface CreateClassificationTemplateRequestBodyFieldsFieldInput {
+  readonly type?: CreateClassificationTemplateRequestBodyFieldsTypeField;
+  readonly key?: CreateClassificationTemplateRequestBodyFieldsKeyField;
+  readonly displayName?: CreateClassificationTemplateRequestBodyFieldsDisplayNameField;
+  readonly hidden?: boolean;
+  readonly options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
+}
 export class CreateClassificationTemplateRequestBody {
   readonly scope: CreateClassificationTemplateRequestBodyScopeField =
     'enterprise' as CreateClassificationTemplateRequestBodyScopeField;
@@ -186,6 +225,14 @@ export class CreateClassificationTemplateRequestBody {
     Object.assign(this, fields);
   }
 }
+export interface CreateClassificationTemplateRequestBodyInput {
+  readonly scope?: CreateClassificationTemplateRequestBodyScopeField;
+  readonly templateKey?: CreateClassificationTemplateRequestBodyTemplateKeyField;
+  readonly displayName?: CreateClassificationTemplateRequestBodyDisplayNameField;
+  readonly hidden?: boolean;
+  readonly copyInstanceOnItemCopy?: boolean;
+  readonly fields: readonly CreateClassificationTemplateRequestBodyFieldsField[];
+}
 export class CreateClassificationTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -197,6 +244,13 @@ export class CreateClassificationTemplateHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateClassificationTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class ClassificationsManager {
   readonly auth?: Authentication;
@@ -216,11 +270,14 @@ export class ClassificationsManager {
     Object.assign(this, fields);
   }
   async getClassificationTemplate(
-    headers: GetClassificationTemplateHeaders = new GetClassificationTemplateHeaders(
+    headersInput: GetClassificationTemplateHeadersInput = new GetClassificationTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ClassificationTemplate> {
+    const headers: any = new GetClassificationTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -242,9 +299,14 @@ export class ClassificationsManager {
   }
   async addClassification(
     requestBody: readonly AddClassificationRequestBody[],
-    headers: AddClassificationHeaders = new AddClassificationHeaders({}),
+    headersInput: AddClassificationHeadersInput = new AddClassificationHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<ClassificationTemplate> {
+    const headers: any = new AddClassificationHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -270,9 +332,14 @@ export class ClassificationsManager {
   }
   async updateClassification(
     requestBody: readonly UpdateClassificationRequestBody[],
-    headers: UpdateClassificationHeaders = new UpdateClassificationHeaders({}),
+    headersInput: UpdateClassificationHeadersInput = new UpdateClassificationHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<ClassificationTemplate> {
+    const headers: any = new UpdateClassificationHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -297,12 +364,23 @@ export class ClassificationsManager {
     return deserializeClassificationTemplate(response.data);
   }
   async createClassificationTemplate(
-    requestBody: CreateClassificationTemplateRequestBody,
-    headers: CreateClassificationTemplateHeaders = new CreateClassificationTemplateHeaders(
+    requestBodyInput: CreateClassificationTemplateRequestBodyInput,
+    headersInput: CreateClassificationTemplateHeadersInput = new CreateClassificationTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ClassificationTemplate> {
+    const requestBody: any = new CreateClassificationTemplateRequestBody({
+      scope: requestBodyInput.scope,
+      templateKey: requestBodyInput.templateKey,
+      displayName: requestBodyInput.displayName,
+      hidden: requestBodyInput.hidden,
+      copyInstanceOnItemCopy: requestBodyInput.copyInstanceOnItemCopy,
+      fields: requestBodyInput.fields,
+    });
+    const headers: any = new CreateClassificationTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -324,6 +402,10 @@ export class ClassificationsManager {
     )) as FetchResponse;
     return deserializeClassificationTemplate(response.data);
   }
+}
+export interface ClassificationsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationRequestBodyOpField(
   val: any
@@ -473,6 +555,40 @@ export function deserializeAddClassificationRequestBody(
     fieldKey: fieldKey,
     data: data,
   } satisfies AddClassificationRequestBody;
+}
+export function serializeAddClassificationRequestBodyInput(
+  val: any
+): SerializedData {
+  return {
+    ['op']:
+      val.op == void 0
+        ? void 0
+        : serializeAddClassificationRequestBodyOpField(val.op),
+    ['fieldKey']:
+      val.fieldKey == void 0
+        ? void 0
+        : serializeAddClassificationRequestBodyFieldKeyField(val.fieldKey),
+    ['data']: serializeAddClassificationRequestBodyDataField(val.data),
+  };
+}
+export function deserializeAddClassificationRequestBodyInput(
+  val: any
+): AddClassificationRequestBodyInput {
+  const op: undefined | AddClassificationRequestBodyOpField =
+    val.op == void 0
+      ? void 0
+      : deserializeAddClassificationRequestBodyOpField(val.op);
+  const fieldKey: undefined | AddClassificationRequestBodyFieldKeyField =
+    val.fieldKey == void 0
+      ? void 0
+      : deserializeAddClassificationRequestBodyFieldKeyField(val.fieldKey);
+  const data: AddClassificationRequestBodyDataField =
+    deserializeAddClassificationRequestBodyDataField(val.data);
+  return {
+    op: op,
+    fieldKey: fieldKey,
+    data: data,
+  } satisfies AddClassificationRequestBodyInput;
 }
 export function serializeUpdateClassificationRequestBodyOpField(
   val: any
@@ -626,6 +742,43 @@ export function deserializeUpdateClassificationRequestBody(
     enumOptionKey: enumOptionKey,
     data: data,
   } satisfies UpdateClassificationRequestBody;
+}
+export function serializeUpdateClassificationRequestBodyInput(
+  val: any
+): SerializedData {
+  return {
+    ['op']:
+      val.op == void 0
+        ? void 0
+        : serializeUpdateClassificationRequestBodyOpField(val.op),
+    ['fieldKey']:
+      val.fieldKey == void 0
+        ? void 0
+        : serializeUpdateClassificationRequestBodyFieldKeyField(val.fieldKey),
+    ['enumOptionKey']: val.enumOptionKey,
+    ['data']: serializeUpdateClassificationRequestBodyDataField(val.data),
+  };
+}
+export function deserializeUpdateClassificationRequestBodyInput(
+  val: any
+): UpdateClassificationRequestBodyInput {
+  const op: undefined | UpdateClassificationRequestBodyOpField =
+    val.op == void 0
+      ? void 0
+      : deserializeUpdateClassificationRequestBodyOpField(val.op);
+  const fieldKey: undefined | UpdateClassificationRequestBodyFieldKeyField =
+    val.fieldKey == void 0
+      ? void 0
+      : deserializeUpdateClassificationRequestBodyFieldKeyField(val.fieldKey);
+  const enumOptionKey: string = val.enumOptionKey;
+  const data: UpdateClassificationRequestBodyDataField =
+    deserializeUpdateClassificationRequestBodyDataField(val.data);
+  return {
+    op: op,
+    fieldKey: fieldKey,
+    enumOptionKey: enumOptionKey,
+    data: data,
+  } satisfies UpdateClassificationRequestBodyInput;
 }
 export function serializeCreateClassificationTemplateRequestBodyScopeField(
   val: any
@@ -888,6 +1041,81 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsField(
     options: options,
   } satisfies CreateClassificationTemplateRequestBodyFieldsField;
 }
+export function serializeCreateClassificationTemplateRequestBodyFieldsFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
+            val.type
+          ),
+    ['key']:
+      val.key == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
+            val.key
+          ),
+    ['displayName']:
+      val.displayName == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
+            val.displayName
+          ),
+    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['options']: val.options.map(function (
+      item: CreateClassificationTemplateRequestBodyFieldsOptionsField
+    ): any {
+      return serializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
+        item
+      );
+    }) as readonly any[],
+  };
+}
+export function deserializeCreateClassificationTemplateRequestBodyFieldsFieldInput(
+  val: any
+): CreateClassificationTemplateRequestBodyFieldsFieldInput {
+  const type:
+    | undefined
+    | CreateClassificationTemplateRequestBodyFieldsTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyFieldsTypeField(
+          val.type
+        );
+  const key: undefined | CreateClassificationTemplateRequestBodyFieldsKeyField =
+    val.key == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyFieldsKeyField(
+          val.key
+        );
+  const displayName:
+    | undefined
+    | CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
+    val.displayName == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
+          val.displayName
+        );
+  const hidden: undefined | boolean =
+    val.hidden == void 0 ? void 0 : val.hidden;
+  const options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[] =
+    sdIsList(val.options)
+      ? (val.options.map(function (itm: SerializedData): any {
+          return deserializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
+            itm
+          );
+        }) as readonly any[])
+      : [];
+  return {
+    type: type,
+    key: key,
+    displayName: displayName,
+    hidden: hidden,
+    options: options,
+  } satisfies CreateClassificationTemplateRequestBodyFieldsFieldInput;
+}
 export function serializeCreateClassificationTemplateRequestBody(
   val: any
 ): SerializedData {
@@ -948,4 +1176,80 @@ export function deserializeCreateClassificationTemplateRequestBody(
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
     fields: fields,
   } satisfies CreateClassificationTemplateRequestBody;
+}
+export function serializeCreateClassificationTemplateRequestBodyInput(
+  val: any
+): SerializedData {
+  return {
+    ['scope']:
+      val.scope == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyScopeField(val.scope),
+    ['templateKey']:
+      val.templateKey == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
+            val.templateKey
+          ),
+    ['displayName']:
+      val.displayName == void 0
+        ? void 0
+        : serializeCreateClassificationTemplateRequestBodyDisplayNameField(
+            val.displayName
+          ),
+    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['copyInstanceOnItemCopy']:
+      val.copyInstanceOnItemCopy == void 0
+        ? void 0
+        : val.copyInstanceOnItemCopy,
+    ['fields']: val.fields.map(function (
+      item: CreateClassificationTemplateRequestBodyFieldsField
+    ): any {
+      return serializeCreateClassificationTemplateRequestBodyFieldsField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeCreateClassificationTemplateRequestBodyInput(
+  val: any
+): CreateClassificationTemplateRequestBodyInput {
+  const scope: undefined | CreateClassificationTemplateRequestBodyScopeField =
+    val.scope == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyScopeField(val.scope);
+  const templateKey:
+    | undefined
+    | CreateClassificationTemplateRequestBodyTemplateKeyField =
+    val.templateKey == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyTemplateKeyField(
+          val.templateKey
+        );
+  const displayName:
+    | undefined
+    | CreateClassificationTemplateRequestBodyDisplayNameField =
+    val.displayName == void 0
+      ? void 0
+      : deserializeCreateClassificationTemplateRequestBodyDisplayNameField(
+          val.displayName
+        );
+  const hidden: undefined | boolean =
+    val.hidden == void 0 ? void 0 : val.hidden;
+  const copyInstanceOnItemCopy: undefined | boolean =
+    val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+  const fields: readonly CreateClassificationTemplateRequestBodyFieldsField[] =
+    sdIsList(val.fields)
+      ? (val.fields.map(function (itm: SerializedData): any {
+          return deserializeCreateClassificationTemplateRequestBodyFieldsField(
+            itm
+          );
+        }) as readonly any[])
+      : [];
+  return {
+    scope: scope,
+    templateKey: templateKey,
+    displayName: displayName,
+    hidden: hidden,
+    copyInstanceOnItemCopy: copyInstanceOnItemCopy,
+    fields: fields,
+  } satisfies CreateClassificationTemplateRequestBodyInput;
 }

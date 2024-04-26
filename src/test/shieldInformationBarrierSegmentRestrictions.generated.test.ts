@@ -24,6 +24,7 @@ import { serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTyp
 import { deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField } from '../managers/shieldInformationBarrierSegmentRestrictions.generated.js';
 import { serializeShieldInformationBarrierSegmentRestrictions } from '../schemas.generated.js';
 import { deserializeShieldInformationBarrierSegmentRestrictions } from '../schemas.generated.js';
+import { CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput } from '../managers/shieldInformationBarrierSegmentRestrictions.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegment } from '../schemas.generated.js';
@@ -84,7 +85,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
   const segmentToRestrictId: string = segmentToRestrict.id!;
   const segmentRestriction: ShieldInformationBarrierSegmentRestriction =
     await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(
-      new CreateShieldInformationBarrierSegmentRestrictionRequestBody({
+      {
         restrictedSegment: {
           id: segmentToRestrictId,
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField,
@@ -94,7 +95,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
         } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
         type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-      })
+      } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput
     );
   const segmentRestrictionId: string = segmentRestriction.id!;
   if (!(segmentRestriction.shieldInformationBarrierSegment.id == segmentId)) {

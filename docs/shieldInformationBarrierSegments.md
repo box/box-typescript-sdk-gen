@@ -27,7 +27,7 @@ await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegment
 
 - shieldInformationBarrierSegmentId `string`
   - The ID of the shield information barrier segment. Example: "3423"
-- headers `GetShieldInformationBarrierSegmentByIdHeaders`
+- headersInput `GetShieldInformationBarrierSegmentByIdHeadersInput`
   - Headers of getShieldInformationBarrierSegmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -64,7 +64,7 @@ await client.shieldInformationBarrierSegments.updateShieldInformationBarrierSegm
   - The ID of the shield information barrier segment. Example: "3423"
 - requestBody `UpdateShieldInformationBarrierSegmentByIdRequestBody`
   - Request body of updateShieldInformationBarrierSegmentById method
-- headers `UpdateShieldInformationBarrierSegmentByIdHeaders`
+- headersInput `UpdateShieldInformationBarrierSegmentByIdHeadersInput`
   - Headers of updateShieldInformationBarrierSegmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,7 +97,7 @@ await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegm
 
 - shieldInformationBarrierSegmentId `string`
   - The ID of the shield information barrier segment. Example: "3423"
-- headers `DeleteShieldInformationBarrierSegmentByIdHeaders`
+- headersInput `DeleteShieldInformationBarrierSegmentByIdHeadersInput`
   - Headers of deleteShieldInformationBarrierSegmentById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -132,7 +132,7 @@ await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegment
 
 - queryParams `GetShieldInformationBarrierSegmentsQueryParams`
   - Query parameters of getShieldInformationBarrierSegments method
-- headers `GetShieldInformationBarrierSegmentsHeaders`
+- headersInput `GetShieldInformationBarrierSegmentsHeadersInput`
   - Headers of getShieldInformationBarrierSegments method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -171,7 +171,7 @@ await client.shieldInformationBarrierSegments.createShieldInformationBarrierSegm
 
 - requestBody `CreateShieldInformationBarrierSegmentRequestBody`
   - Request body of createShieldInformationBarrierSegment method
-- headers `CreateShieldInformationBarrierSegmentHeaders`
+- headersInput `CreateShieldInformationBarrierSegmentHeadersInput`
   - Headers of createShieldInformationBarrierSegment method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

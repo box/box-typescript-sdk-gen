@@ -37,7 +37,7 @@ await client.folders.getFolderById('0');
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetFolderByIdQueryParams`
   - Query parameters of getFolderById method
-- headers `GetFolderByIdHeaders`
+- headersInput `GetFolderByIdHeadersInput`
   - Headers of getFolderById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -87,7 +87,7 @@ await client.folders.updateFolderById(copiedFolder.id, {
   - Request body of updateFolderById method
 - queryParams `UpdateFolderByIdQueryParams`
   - Query parameters of updateFolderById method
-- headers `UpdateFolderByIdHeaders`
+- headersInput `UpdateFolderByIdHeadersInput`
   - Headers of updateFolderById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -129,7 +129,7 @@ await client.folders.deleteFolderById(folder1.id);
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `DeleteFolderByIdQueryParams`
   - Query parameters of deleteFolderById method
-- headers `DeleteFolderByIdHeaders`
+- headersInput `DeleteFolderByIdHeadersInput`
   - Headers of deleteFolderById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -166,7 +166,7 @@ await client.folders.getFolderItems(folderOrigin.id);
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetFolderItemsQueryParams`
   - Query parameters of getFolderItems method
-- headers `GetFolderItemsHeaders`
+- headersInput `GetFolderItemsHeadersInput`
   - Headers of getFolderItems method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -201,7 +201,7 @@ await client.folders.createFolder({
   - Request body of createFolder method
 - queryParams `CreateFolderQueryParams`
   - Query parameters of createFolder method
-- headers `CreateFolderHeaders`
+- headersInput `CreateFolderHeadersInput`
   - Headers of createFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -244,7 +244,7 @@ await client.folders.copyFolder(folderOrigin.id, {
   - Request body of copyFolder method
 - queryParams `CopyFolderQueryParams`
   - Query parameters of copyFolder method
-- headers `CopyFolderHeaders`
+- headersInput `CopyFolderHeadersInput`
   - Headers of copyFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

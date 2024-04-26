@@ -41,6 +41,13 @@ export class GetTermsOfServiceHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetTermsOfServiceHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateTermsOfServiceRequestBodyStatusField = 'enabled' | 'disabled';
 export type CreateTermsOfServiceRequestBodyTosTypeField =
   | 'external'
@@ -62,6 +69,13 @@ export class CreateTermsOfServiceHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateTermsOfServiceHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetTermsOfServiceByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -73,6 +87,13 @@ export class GetTermsOfServiceByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetTermsOfServiceByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateTermsOfServiceByIdRequestBodyStatusField =
   | 'enabled'
@@ -93,6 +114,13 @@ export class UpdateTermsOfServiceByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateTermsOfServiceByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class TermsOfServicesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -112,9 +140,14 @@ export class TermsOfServicesManager {
   }
   async getTermsOfService(
     queryParams: GetTermsOfServiceQueryParams = {} satisfies GetTermsOfServiceQueryParams,
-    headers: GetTermsOfServiceHeaders = new GetTermsOfServiceHeaders({}),
+    headersInput: GetTermsOfServiceHeadersInput = new GetTermsOfServiceHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfServices> {
+    const headers: any = new GetTermsOfServiceHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -142,9 +175,14 @@ export class TermsOfServicesManager {
   }
   async createTermsOfService(
     requestBody: CreateTermsOfServiceRequestBody,
-    headers: CreateTermsOfServiceHeaders = new CreateTermsOfServiceHeaders({}),
+    headersInput: CreateTermsOfServiceHeadersInput = new CreateTermsOfServiceHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
+    const headers: any = new CreateTermsOfServiceHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -168,11 +206,14 @@ export class TermsOfServicesManager {
   }
   async getTermsOfServiceById(
     termsOfServiceId: string,
-    headers: GetTermsOfServiceByIdHeaders = new GetTermsOfServiceByIdHeaders(
+    headersInput: GetTermsOfServiceByIdHeadersInput = new GetTermsOfServiceByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
+    const headers: any = new GetTermsOfServiceByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -196,11 +237,14 @@ export class TermsOfServicesManager {
   async updateTermsOfServiceById(
     termsOfServiceId: string,
     requestBody: UpdateTermsOfServiceByIdRequestBody,
-    headers: UpdateTermsOfServiceByIdHeaders = new UpdateTermsOfServiceByIdHeaders(
+    headersInput: UpdateTermsOfServiceByIdHeadersInput = new UpdateTermsOfServiceByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TermsOfService> {
+    const headers: any = new UpdateTermsOfServiceByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -223,6 +267,10 @@ export class TermsOfServicesManager {
     )) as FetchResponse;
     return deserializeTermsOfService(response.data);
   }
+}
+export interface TermsOfServicesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetTermsOfServiceQueryParamsTosTypeField(
   val: any

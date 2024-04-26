@@ -25,7 +25,7 @@ await client.termsOfServices.getTermsOfService();
 
 - queryParams `GetTermsOfServiceQueryParams`
   - Query parameters of getTermsOfService method
-- headers `GetTermsOfServiceHeaders`
+- headersInput `GetTermsOfServiceHeadersInput`
   - Headers of getTermsOfService method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -61,7 +61,7 @@ await client.termsOfServices.createTermsOfService({
 
 - requestBody `CreateTermsOfServiceRequestBody`
   - Request body of createTermsOfService method
-- headers `CreateTermsOfServiceHeaders`
+- headersInput `CreateTermsOfServiceHeadersInput`
   - Headers of createTermsOfService method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -87,7 +87,7 @@ _Currently we don't have an example for calling `getTermsOfServiceById` in integ
 
 - termsOfServiceId `string`
   - The ID of the terms of service. Example: "324234"
-- headers `GetTermsOfServiceByIdHeaders`
+- headersInput `GetTermsOfServiceByIdHeadersInput`
   - Headers of getTermsOfServiceById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -122,7 +122,7 @@ await client.termsOfServices.updateTermsOfServiceById(tos.id, {
   - The ID of the terms of service. Example: "324234"
 - requestBody `UpdateTermsOfServiceByIdRequestBody`
   - Request body of updateTermsOfServiceById method
-- headers `UpdateTermsOfServiceByIdHeaders`
+- headersInput `UpdateTermsOfServiceByIdHeadersInput`
   - Headers of updateTermsOfServiceById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

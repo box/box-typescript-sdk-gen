@@ -43,6 +43,13 @@ export class GetGroupsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetGroupsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateGroupRequestBodyInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
@@ -74,6 +81,13 @@ export class CreateGroupHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateGroupHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetGroupByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -88,6 +102,13 @@ export class GetGroupByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetGroupByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateGroupByIdRequestBodyInvitabilityLevelField =
   | 'admins_only'
@@ -120,6 +141,13 @@ export class UpdateGroupByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateGroupByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteGroupByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -131,6 +159,13 @@ export class DeleteGroupByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteGroupByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class GroupsManager {
   readonly auth?: Authentication;
@@ -152,9 +187,12 @@ export class GroupsManager {
   }
   async getGroups(
     queryParams: GetGroupsQueryParams = {} satisfies GetGroupsQueryParams,
-    headers: GetGroupsHeaders = new GetGroupsHeaders({}),
+    headersInput: GetGroupsHeadersInput = new GetGroupsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Groups> {
+    const headers: any = new GetGroupsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -185,9 +223,12 @@ export class GroupsManager {
   async createGroup(
     requestBody: CreateGroupRequestBody,
     queryParams: CreateGroupQueryParams = {} satisfies CreateGroupQueryParams,
-    headers: CreateGroupHeaders = new CreateGroupHeaders({}),
+    headersInput: CreateGroupHeadersInput = new CreateGroupHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
+    const headers: any = new CreateGroupHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -217,9 +258,12 @@ export class GroupsManager {
   async getGroupById(
     groupId: string,
     queryParams: GetGroupByIdQueryParams = {} satisfies GetGroupByIdQueryParams,
-    headers: GetGroupByIdHeaders = new GetGroupByIdHeaders({}),
+    headersInput: GetGroupByIdHeadersInput = new GetGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
+    const headers: any = new GetGroupByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -252,9 +296,12 @@ export class GroupsManager {
     groupId: string,
     requestBody: UpdateGroupByIdRequestBody = {} satisfies UpdateGroupByIdRequestBody,
     queryParams: UpdateGroupByIdQueryParams = {} satisfies UpdateGroupByIdQueryParams,
-    headers: UpdateGroupByIdHeaders = new UpdateGroupByIdHeaders({}),
+    headersInput: UpdateGroupByIdHeadersInput = new UpdateGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<GroupFull> {
+    const headers: any = new UpdateGroupByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -287,9 +334,12 @@ export class GroupsManager {
   }
   async deleteGroupById(
     groupId: string,
-    headers: DeleteGroupByIdHeaders = new DeleteGroupByIdHeaders({}),
+    headersInput: DeleteGroupByIdHeadersInput = new DeleteGroupByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteGroupByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -310,6 +360,10 @@ export class GroupsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface GroupsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupRequestBodyInvitabilityLevelField(
   val: any

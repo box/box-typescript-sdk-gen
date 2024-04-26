@@ -25,7 +25,7 @@ await client.fileVersionLegalHolds.getFileVersionLegalHoldById(
 
 - fileVersionLegalHoldId `string`
   - The ID of the file version legal hold Example: "2348213"
-- headers `GetFileVersionLegalHoldByIdHeaders`
+- headersInput `GetFileVersionLegalHoldByIdHeadersInput`
   - Headers of getFileVersionLegalHoldById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -76,7 +76,7 @@ await client.fileVersionLegalHolds.getFileVersionLegalHolds({
 
 - queryParams `GetFileVersionLegalHoldsQueryParams`
   - Query parameters of getFileVersionLegalHolds method
-- headers `GetFileVersionLegalHoldsHeaders`
+- headersInput `GetFileVersionLegalHoldsHeadersInput`
   - Headers of getFileVersionLegalHolds method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -31,7 +31,7 @@ await client.metadataTemplates.getMetadataTemplatesByInstanceId({
 
 - queryParams `GetMetadataTemplatesByInstanceIdQueryParams`
   - Query parameters of getMetadataTemplatesByInstanceId method
-- headers `GetMetadataTemplatesByInstanceIdHeaders`
+- headersInput `GetMetadataTemplatesByInstanceIdHeadersInput`
   - Headers of getMetadataTemplatesByInstanceId method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -70,7 +70,7 @@ await client.metadataTemplates.getMetadataTemplate(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `GetMetadataTemplateHeaders`
+- headersInput `GetMetadataTemplateHeadersInput`
   - Headers of getMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -121,7 +121,7 @@ await client.metadataTemplates.updateMetadataTemplate(
   - The name of the metadata template Example: "properties"
 - requestBody `readonly UpdateMetadataTemplateRequestBody[]`
   - Request body of updateMetadataTemplate method
-- headers `UpdateMetadataTemplateHeaders`
+- headersInput `UpdateMetadataTemplateHeadersInput`
   - Headers of updateMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -158,7 +158,7 @@ await client.metadataTemplates.deleteMetadataTemplate(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headers `DeleteMetadataTemplateHeaders`
+- headersInput `DeleteMetadataTemplateHeadersInput`
   - Headers of deleteMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -189,7 +189,7 @@ await client.metadataTemplates.getMetadataTemplateById(template.id);
 
 - templateId `string`
   - The ID of the template Example: "f7a9891f"
-- headers `GetMetadataTemplateByIdHeaders`
+- headersInput `GetMetadataTemplateByIdHeadersInput`
   - Headers of getMetadataTemplateById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -220,7 +220,7 @@ await client.metadataTemplates.getGlobalMetadataTemplates();
 
 - queryParams `GetGlobalMetadataTemplatesQueryParams`
   - Query parameters of getGlobalMetadataTemplates method
-- headers `GetGlobalMetadataTemplatesHeaders`
+- headersInput `GetGlobalMetadataTemplatesHeadersInput`
   - Headers of getGlobalMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -252,7 +252,7 @@ await client.metadataTemplates.getEnterpriseMetadataTemplates();
 
 - queryParams `GetEnterpriseMetadataTemplatesQueryParams`
   - Query parameters of getEnterpriseMetadataTemplates method
-- headers `GetEnterpriseMetadataTemplatesHeaders`
+- headersInput `GetEnterpriseMetadataTemplatesHeadersInput`
   - Headers of getEnterpriseMetadataTemplates method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -331,7 +331,7 @@ await client.metadataTemplates.createMetadataTemplate({
 
 - requestBody `CreateMetadataTemplateRequestBody`
   - Request body of createMetadataTemplate method
-- headers `CreateMetadataTemplateHeaders`
+- headersInput `CreateMetadataTemplateHeadersInput`
   - Headers of createMetadataTemplate method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

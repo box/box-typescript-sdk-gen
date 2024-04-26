@@ -44,6 +44,13 @@ export class GetShieldInformationBarrierReportsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetShieldInformationBarrierReportsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class CreateShieldInformationBarrierReportHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -58,6 +65,13 @@ export class CreateShieldInformationBarrierReportHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateShieldInformationBarrierReportHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetShieldInformationBarrierReportByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -71,6 +85,13 @@ export class GetShieldInformationBarrierReportByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetShieldInformationBarrierReportByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class ShieldInformationBarrierReportsManager {
   readonly auth?: Authentication;
@@ -90,11 +111,14 @@ export class ShieldInformationBarrierReportsManager {
   }
   async getShieldInformationBarrierReports(
     queryParams: GetShieldInformationBarrierReportsQueryParams,
-    headers: GetShieldInformationBarrierReportsHeaders = new GetShieldInformationBarrierReportsHeaders(
+    headersInput: GetShieldInformationBarrierReportsHeadersInput = new GetShieldInformationBarrierReportsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReports> {
+    const headers: any = new GetShieldInformationBarrierReportsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -126,11 +150,14 @@ export class ShieldInformationBarrierReportsManager {
   }
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,
-    headers: CreateShieldInformationBarrierReportHeaders = new CreateShieldInformationBarrierReportHeaders(
+    headersInput: CreateShieldInformationBarrierReportHeadersInput = new CreateShieldInformationBarrierReportHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReport> {
+    const headers: any = new CreateShieldInformationBarrierReportHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -154,11 +181,14 @@ export class ShieldInformationBarrierReportsManager {
   }
   async getShieldInformationBarrierReportById(
     shieldInformationBarrierReportId: string,
-    headers: GetShieldInformationBarrierReportByIdHeaders = new GetShieldInformationBarrierReportByIdHeaders(
+    headersInput: GetShieldInformationBarrierReportByIdHeadersInput = new GetShieldInformationBarrierReportByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarrierReport> {
+    const headers: any = new GetShieldInformationBarrierReportByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -179,4 +209,8 @@ export class ShieldInformationBarrierReportsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReport(response.data);
   }
+}
+export interface ShieldInformationBarrierReportsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

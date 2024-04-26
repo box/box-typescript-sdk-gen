@@ -25,7 +25,7 @@ await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headers `CancelSignRequestHeaders`
+- headersInput `CancelSignRequestHeadersInput`
   - Headers of cancelSignRequest method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -51,7 +51,7 @@ _Currently we don't have an example for calling `resendSignRequest` in integrati
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headers `ResendSignRequestHeaders`
+- headersInput `ResendSignRequestHeadersInput`
   - Headers of resendSignRequest method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -82,7 +82,7 @@ await client.signRequests.getSignRequestById(createdSignRequest.id!);
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headers `GetSignRequestByIdHeaders`
+- headersInput `GetSignRequestByIdHeadersInput`
   - Headers of getSignRequestById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -113,7 +113,7 @@ await client.signRequests.getSignRequests();
 
 - queryParams `GetSignRequestsQueryParams`
   - Query parameters of getSignRequests method
-- headers `GetSignRequestsHeaders`
+- headersInput `GetSignRequestsHeadersInput`
   - Headers of getSignRequests method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -157,7 +157,7 @@ await client.signRequests.createSignRequest({
 
 - requestBody `SignRequestCreateRequest`
   - Request body of createSignRequest method
-- headers `CreateSignRequestHeaders`
+- headersInput `CreateSignRequestHeadersInput`
   - Headers of createSignRequest method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

@@ -24,6 +24,13 @@ export class CcgConfig {
     Object.assign(this, fields);
   }
 }
+export interface CcgConfigInput {
+  readonly clientId: string;
+  readonly clientSecret: string;
+  readonly enterpriseId?: string;
+  readonly userId?: string;
+  readonly tokenStorage?: TokenStorage;
+}
 export class BoxCcgAuth implements Authentication {
   readonly config!: CcgConfig;
   readonly tokenStorage: TokenStorage;

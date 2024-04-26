@@ -39,6 +39,15 @@ export class FindWebLinkForSharedLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface FindWebLinkForSharedLinkHeadersInput {
+  readonly ifNoneMatch?: string;
+  readonly boxapi: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetSharedLinkForWebLinkQueryParams {
   readonly fields: string;
 }
@@ -53,6 +62,13 @@ export class GetSharedLinkForWebLinkHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetSharedLinkForWebLinkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type AddShareLinkToWebLinkRequestBodySharedLinkAccessField =
   | 'open'
@@ -88,6 +104,13 @@ export class AddShareLinkToWebLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface AddShareLinkToWebLinkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
@@ -122,6 +145,13 @@ export class UpdateSharedLinkOnWebLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateSharedLinkOnWebLinkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromWebLinkRequestBody {
   readonly sharedLink?: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
@@ -140,6 +170,13 @@ export class RemoveSharedLinkFromWebLinkHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RemoveSharedLinkFromWebLinkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class SharedLinksWebLinksManager {
   readonly auth?: Authentication;
@@ -161,9 +198,14 @@ export class SharedLinksWebLinksManager {
   }
   async findWebLinkForSharedLink(
     queryParams: FindWebLinkForSharedLinkQueryParams = {} satisfies FindWebLinkForSharedLinkQueryParams,
-    headers: FindWebLinkForSharedLinkHeaders,
+    headersInput: FindWebLinkForSharedLinkHeadersInput,
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new FindWebLinkForSharedLinkHeaders({
+      ifNoneMatch: headersInput.ifNoneMatch,
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -200,11 +242,14 @@ export class SharedLinksWebLinksManager {
   async getSharedLinkForWebLink(
     webLinkId: string,
     queryParams: GetSharedLinkForWebLinkQueryParams,
-    headers: GetSharedLinkForWebLinkHeaders = new GetSharedLinkForWebLinkHeaders(
+    headersInput: GetSharedLinkForWebLinkHeadersInput = new GetSharedLinkForWebLinkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new GetSharedLinkForWebLinkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -234,11 +279,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: AddShareLinkToWebLinkRequestBody = {} satisfies AddShareLinkToWebLinkRequestBody,
     queryParams: AddShareLinkToWebLinkQueryParams,
-    headers: AddShareLinkToWebLinkHeaders = new AddShareLinkToWebLinkHeaders(
+    headersInput: AddShareLinkToWebLinkHeadersInput = new AddShareLinkToWebLinkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new AddShareLinkToWebLinkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -270,11 +318,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: UpdateSharedLinkOnWebLinkRequestBody = {} satisfies UpdateSharedLinkOnWebLinkRequestBody,
     queryParams: UpdateSharedLinkOnWebLinkQueryParams,
-    headers: UpdateSharedLinkOnWebLinkHeaders = new UpdateSharedLinkOnWebLinkHeaders(
+    headersInput: UpdateSharedLinkOnWebLinkHeadersInput = new UpdateSharedLinkOnWebLinkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new UpdateSharedLinkOnWebLinkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -306,11 +357,14 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: RemoveSharedLinkFromWebLinkRequestBody = {} satisfies RemoveSharedLinkFromWebLinkRequestBody,
     queryParams: RemoveSharedLinkFromWebLinkQueryParams,
-    headers: RemoveSharedLinkFromWebLinkHeaders = new RemoveSharedLinkFromWebLinkHeaders(
+    headersInput: RemoveSharedLinkFromWebLinkHeadersInput = new RemoveSharedLinkFromWebLinkHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<WebLink> {
+    const headers: any = new RemoveSharedLinkFromWebLinkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -338,6 +392,10 @@ export class SharedLinksWebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+}
+export interface SharedLinksWebLinksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
   val: any

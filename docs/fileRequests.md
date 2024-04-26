@@ -24,7 +24,7 @@ await client.fileRequests.getFileRequestById(updatedFileRequest.id);
 
 - fileRequestId `string`
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
-- headers `GetFileRequestByIdHeaders`
+- headersInput `GetFileRequestByIdHeadersInput`
   - Headers of getFileRequestById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -60,7 +60,7 @@ await client.fileRequests.updateFileRequestById(copiedFileRequest.id, {
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - requestBody `FileRequestUpdateRequest`
   - Request body of updateFileRequestById method
-- headers `UpdateFileRequestByIdHeaders`
+- headersInput `UpdateFileRequestByIdHeadersInput`
   - Headers of updateFileRequestById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -90,7 +90,7 @@ await client.fileRequests.deleteFileRequestById(updatedFileRequest.id);
 
 - fileRequestId `string`
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
-- headers `DeleteFileRequestByIdHeaders`
+- headersInput `DeleteFileRequestByIdHeadersInput`
   - Headers of deleteFileRequestById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -129,7 +129,7 @@ await client.fileRequests.createFileRequestCopy(fileRequestId, {
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - requestBody `FileRequestCopyRequest`
   - Request body of createFileRequestCopy method
-- headers `CreateFileRequestCopyHeaders`
+- headersInput `CreateFileRequestCopyHeadersInput`
   - Headers of createFileRequestCopy method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

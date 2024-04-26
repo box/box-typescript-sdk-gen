@@ -36,6 +36,13 @@ export class GetUserEmailAliasesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetUserEmailAliasesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CreateUserEmailAliasRequestBody {
   readonly email: string;
 }
@@ -51,6 +58,13 @@ export class CreateUserEmailAliasHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateUserEmailAliasHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteUserEmailAliasByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -62,6 +76,13 @@ export class DeleteUserEmailAliasByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteUserEmailAliasByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class EmailAliasesManager {
   readonly auth?: Authentication;
@@ -81,9 +102,14 @@ export class EmailAliasesManager {
   }
   async getUserEmailAliases(
     userId: string,
-    headers: GetUserEmailAliasesHeaders = new GetUserEmailAliasesHeaders({}),
+    headersInput: GetUserEmailAliasesHeadersInput = new GetUserEmailAliasesHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<EmailAliases> {
+    const headers: any = new GetUserEmailAliasesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -108,9 +134,14 @@ export class EmailAliasesManager {
   async createUserEmailAlias(
     userId: string,
     requestBody: CreateUserEmailAliasRequestBody,
-    headers: CreateUserEmailAliasHeaders = new CreateUserEmailAliasHeaders({}),
+    headersInput: CreateUserEmailAliasHeadersInput = new CreateUserEmailAliasHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<EmailAlias> {
+    const headers: any = new CreateUserEmailAliasHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -137,11 +168,14 @@ export class EmailAliasesManager {
   async deleteUserEmailAliasById(
     userId: string,
     emailAliasId: string,
-    headers: DeleteUserEmailAliasByIdHeaders = new DeleteUserEmailAliasByIdHeaders(
+    headersInput: DeleteUserEmailAliasByIdHeadersInput = new DeleteUserEmailAliasByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteUserEmailAliasByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -164,6 +198,10 @@ export class EmailAliasesManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface EmailAliasesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateUserEmailAliasRequestBody(
   val: any

@@ -34,6 +34,13 @@ export class GetClassificationOnFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetClassificationOnFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface AddClassificationToFolderRequestBody {
   readonly boxSecurityClassificationKey?: string;
 }
@@ -48,6 +55,13 @@ export class AddClassificationToFolderHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface AddClassificationToFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateClassificationOnFolderRequestBodyOpField = 'replace';
 export type UpdateClassificationOnFolderRequestBodyPathField =
@@ -66,6 +80,11 @@ export class UpdateClassificationOnFolderRequestBody {
     Object.assign(this, fields);
   }
 }
+export interface UpdateClassificationOnFolderRequestBodyInput {
+  readonly op?: UpdateClassificationOnFolderRequestBodyOpField;
+  readonly path?: UpdateClassificationOnFolderRequestBodyPathField;
+  readonly value: string;
+}
 export class UpdateClassificationOnFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -78,6 +97,13 @@ export class UpdateClassificationOnFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateClassificationOnFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteClassificationFromFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -89,6 +115,13 @@ export class DeleteClassificationFromFolderHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteClassificationFromFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FolderClassificationsManager {
   readonly auth?: Authentication;
@@ -109,11 +142,14 @@ export class FolderClassificationsManager {
   }
   async getClassificationOnFolder(
     folderId: string,
-    headers: GetClassificationOnFolderHeaders = new GetClassificationOnFolderHeaders(
+    headersInput: GetClassificationOnFolderHeadersInput = new GetClassificationOnFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new GetClassificationOnFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -138,11 +174,14 @@ export class FolderClassificationsManager {
   async addClassificationToFolder(
     folderId: string,
     requestBody: AddClassificationToFolderRequestBody = {} satisfies AddClassificationToFolderRequestBody,
-    headers: AddClassificationToFolderHeaders = new AddClassificationToFolderHeaders(
+    headersInput: AddClassificationToFolderHeadersInput = new AddClassificationToFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new AddClassificationToFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -169,11 +208,14 @@ export class FolderClassificationsManager {
   async updateClassificationOnFolder(
     folderId: string,
     requestBody: readonly UpdateClassificationOnFolderRequestBody[],
-    headers: UpdateClassificationOnFolderHeaders = new UpdateClassificationOnFolderHeaders(
+    headersInput: UpdateClassificationOnFolderHeadersInput = new UpdateClassificationOnFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Classification> {
+    const headers: any = new UpdateClassificationOnFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -201,11 +243,14 @@ export class FolderClassificationsManager {
   }
   async deleteClassificationFromFolder(
     folderId: string,
-    headers: DeleteClassificationFromFolderHeaders = new DeleteClassificationFromFolderHeaders(
+    headersInput: DeleteClassificationFromFolderHeadersInput = new DeleteClassificationFromFolderHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteClassificationFromFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -227,6 +272,10 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FolderClassificationsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationToFolderRequestBody(
   val: any
@@ -315,4 +364,37 @@ export function deserializeUpdateClassificationOnFolderRequestBody(
     path: path,
     value: value,
   } satisfies UpdateClassificationOnFolderRequestBody;
+}
+export function serializeUpdateClassificationOnFolderRequestBodyInput(
+  val: any
+): SerializedData {
+  return {
+    ['op']:
+      val.op == void 0
+        ? void 0
+        : serializeUpdateClassificationOnFolderRequestBodyOpField(val.op),
+    ['path']:
+      val.path == void 0
+        ? void 0
+        : serializeUpdateClassificationOnFolderRequestBodyPathField(val.path),
+    ['value']: val.value,
+  };
+}
+export function deserializeUpdateClassificationOnFolderRequestBodyInput(
+  val: any
+): UpdateClassificationOnFolderRequestBodyInput {
+  const op: undefined | UpdateClassificationOnFolderRequestBodyOpField =
+    val.op == void 0
+      ? void 0
+      : deserializeUpdateClassificationOnFolderRequestBodyOpField(val.op);
+  const path: undefined | UpdateClassificationOnFolderRequestBodyPathField =
+    val.path == void 0
+      ? void 0
+      : deserializeUpdateClassificationOnFolderRequestBodyPathField(val.path);
+  const value: string = val.value;
+  return {
+    op: op,
+    path: path,
+    value: value,
+  } satisfies UpdateClassificationOnFolderRequestBodyInput;
 }

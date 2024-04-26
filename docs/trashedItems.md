@@ -29,7 +29,7 @@ await client.trashedItems.getTrashedItems();
 
 - queryParams `GetTrashedItemsQueryParams`
   - Query parameters of getTrashedItems method
-- headers `GetTrashedItemsHeaders`
+- headersInput `GetTrashedItemsHeadersInput`
   - Headers of getTrashedItems method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

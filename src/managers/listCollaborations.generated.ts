@@ -39,6 +39,13 @@ export class GetFileCollaborationsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileCollaborationsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetFolderCollaborationsQueryParams {
   readonly fields?: readonly string[];
 }
@@ -53,6 +60,13 @@ export class GetFolderCollaborationsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFolderCollaborationsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type GetCollaborationsQueryParamsStatusField = 'pending';
 export interface GetCollaborationsQueryParams {
@@ -73,6 +87,13 @@ export class GetCollaborationsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetCollaborationsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetGroupCollaborationsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
@@ -88,6 +109,13 @@ export class GetGroupCollaborationsHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetGroupCollaborationsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class ListCollaborationsManager {
   readonly auth?: Authentication;
@@ -109,11 +137,14 @@ export class ListCollaborationsManager {
   async getFileCollaborations(
     fileId: string,
     queryParams: GetFileCollaborationsQueryParams = {} satisfies GetFileCollaborationsQueryParams,
-    headers: GetFileCollaborationsHeaders = new GetFileCollaborationsHeaders(
+    headersInput: GetFileCollaborationsHeadersInput = new GetFileCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
+    const headers: any = new GetFileCollaborationsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -148,11 +179,14 @@ export class ListCollaborationsManager {
   async getFolderCollaborations(
     folderId: string,
     queryParams: GetFolderCollaborationsQueryParams = {} satisfies GetFolderCollaborationsQueryParams,
-    headers: GetFolderCollaborationsHeaders = new GetFolderCollaborationsHeaders(
+    headersInput: GetFolderCollaborationsHeadersInput = new GetFolderCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
+    const headers: any = new GetFolderCollaborationsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -184,9 +218,14 @@ export class ListCollaborationsManager {
   }
   async getCollaborations(
     queryParams: GetCollaborationsQueryParams,
-    headers: GetCollaborationsHeaders = new GetCollaborationsHeaders({}),
+    headersInput: GetCollaborationsHeadersInput = new GetCollaborationsHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
+    const headers: any = new GetCollaborationsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -220,11 +259,14 @@ export class ListCollaborationsManager {
   async getGroupCollaborations(
     groupId: string,
     queryParams: GetGroupCollaborationsQueryParams = {} satisfies GetGroupCollaborationsQueryParams,
-    headers: GetGroupCollaborationsHeaders = new GetGroupCollaborationsHeaders(
+    headersInput: GetGroupCollaborationsHeadersInput = new GetGroupCollaborationsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<Collaborations> {
+    const headers: any = new GetGroupCollaborationsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -253,6 +295,10 @@ export class ListCollaborationsManager {
     )) as FetchResponse;
     return deserializeCollaborations(response.data);
   }
+}
+export interface ListCollaborationsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetCollaborationsQueryParamsStatusField(
   val: any

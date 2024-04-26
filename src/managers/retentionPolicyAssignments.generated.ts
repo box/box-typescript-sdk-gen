@@ -50,6 +50,13 @@ export class GetRetentionPolicyAssignmentsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetRetentionPolicyAssignmentsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
   | 'enterprise'
   | 'folder'
@@ -80,6 +87,13 @@ export class CreateRetentionPolicyAssignmentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateRetentionPolicyAssignmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetRetentionPolicyAssignmentByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -95,6 +109,13 @@ export class GetRetentionPolicyAssignmentByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetRetentionPolicyAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteRetentionPolicyAssignmentByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -108,6 +129,13 @@ export class DeleteRetentionPolicyAssignmentByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteRetentionPolicyAssignmentByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface GetFilesUnderRetentionPolicyAssignmentQueryParams {
   readonly marker?: string;
@@ -126,6 +154,13 @@ export class GetFilesUnderRetentionPolicyAssignmentHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFilesUnderRetentionPolicyAssignmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface GetFileVersionsUnderRetentionPolicyAssignmentQueryParams {
   readonly marker?: string;
@@ -151,6 +186,13 @@ export class GetFileVersionsUnderRetentionPolicyAssignmentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class RetentionPolicyAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -173,11 +215,14 @@ export class RetentionPolicyAssignmentsManager {
   async getRetentionPolicyAssignments(
     retentionPolicyId: string,
     queryParams: GetRetentionPolicyAssignmentsQueryParams = {} satisfies GetRetentionPolicyAssignmentsQueryParams,
-    headers: GetRetentionPolicyAssignmentsHeaders = new GetRetentionPolicyAssignmentsHeaders(
+    headersInput: GetRetentionPolicyAssignmentsHeadersInput = new GetRetentionPolicyAssignmentsHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicyAssignments> {
+    const headers: any = new GetRetentionPolicyAssignmentsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -212,11 +257,14 @@ export class RetentionPolicyAssignmentsManager {
   }
   async createRetentionPolicyAssignment(
     requestBody: CreateRetentionPolicyAssignmentRequestBody,
-    headers: CreateRetentionPolicyAssignmentHeaders = new CreateRetentionPolicyAssignmentHeaders(
+    headersInput: CreateRetentionPolicyAssignmentHeadersInput = new CreateRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicyAssignment> {
+    const headers: any = new CreateRetentionPolicyAssignmentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -241,11 +289,14 @@ export class RetentionPolicyAssignmentsManager {
   async getRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
     queryParams: GetRetentionPolicyAssignmentByIdQueryParams = {} satisfies GetRetentionPolicyAssignmentByIdQueryParams,
-    headers: GetRetentionPolicyAssignmentByIdHeaders = new GetRetentionPolicyAssignmentByIdHeaders(
+    headersInput: GetRetentionPolicyAssignmentByIdHeadersInput = new GetRetentionPolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicyAssignment> {
+    const headers: any = new GetRetentionPolicyAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -276,11 +327,14 @@ export class RetentionPolicyAssignmentsManager {
   }
   async deleteRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    headers: DeleteRetentionPolicyAssignmentByIdHeaders = new DeleteRetentionPolicyAssignmentByIdHeaders(
+    headersInput: DeleteRetentionPolicyAssignmentByIdHeadersInput = new DeleteRetentionPolicyAssignmentByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteRetentionPolicyAssignmentByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -304,11 +358,14 @@ export class RetentionPolicyAssignmentsManager {
   async getFilesUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
     queryParams: GetFilesUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFilesUnderRetentionPolicyAssignmentQueryParams,
-    headers: GetFilesUnderRetentionPolicyAssignmentHeaders = new GetFilesUnderRetentionPolicyAssignmentHeaders(
+    headersInput: GetFilesUnderRetentionPolicyAssignmentHeadersInput = new GetFilesUnderRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FilesUnderRetention> {
+    const headers: any = new GetFilesUnderRetentionPolicyAssignmentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -340,11 +397,15 @@ export class RetentionPolicyAssignmentsManager {
   async getFileVersionsUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
     queryParams: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFileVersionsUnderRetentionPolicyAssignmentQueryParams,
-    headers: GetFileVersionsUnderRetentionPolicyAssignmentHeaders = new GetFileVersionsUnderRetentionPolicyAssignmentHeaders(
+    headersInput: GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput = new GetFileVersionsUnderRetentionPolicyAssignmentHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FilesUnderRetention> {
+    const headers: any =
+      new GetFileVersionsUnderRetentionPolicyAssignmentHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -373,6 +434,10 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeFilesUnderRetention(response.data);
   }
+}
+export interface RetentionPolicyAssignmentsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   val: any

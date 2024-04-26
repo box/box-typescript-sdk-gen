@@ -43,6 +43,13 @@ export class GetWorkflowsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetWorkflowsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type StartWorkflowRequestBodyTypeField = 'workflow_parameters';
 export interface StartWorkflowRequestBodyFlowField {
   readonly type?: string;
@@ -77,6 +84,13 @@ export class StartWorkflowHeaders {
     Object.assign(this, fields);
   }
 }
+export interface StartWorkflowHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class WorkflowsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -92,9 +106,12 @@ export class WorkflowsManager {
   }
   async getWorkflows(
     queryParams: GetWorkflowsQueryParams,
-    headers: GetWorkflowsHeaders = new GetWorkflowsHeaders({}),
+    headersInput: GetWorkflowsHeadersInput = new GetWorkflowsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Workflows> {
+    const headers: any = new GetWorkflowsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -123,9 +140,12 @@ export class WorkflowsManager {
   async startWorkflow(
     workflowId: string,
     requestBody: StartWorkflowRequestBody,
-    headers: StartWorkflowHeaders = new StartWorkflowHeaders({}),
+    headersInput: StartWorkflowHeadersInput = new StartWorkflowHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new StartWorkflowHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -149,6 +169,10 @@ export class WorkflowsManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface WorkflowsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeStartWorkflowRequestBodyTypeField(
   val: any

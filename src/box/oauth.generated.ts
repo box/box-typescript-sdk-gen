@@ -24,6 +24,11 @@ export class OAuthConfig {
     Object.assign(this, fields);
   }
 }
+export interface OAuthConfigInput {
+  readonly clientId: string;
+  readonly clientSecret: string;
+  readonly tokenStorage?: TokenStorage;
+}
 export interface GetAuthorizeUrlOptions {
   readonly clientId?: string;
   readonly redirectUri?: string;

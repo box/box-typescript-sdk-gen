@@ -51,6 +51,13 @@ export class GetUsersHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetUsersHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateUserRequestBodyRoleField = 'coadmin' | 'user';
 export type CreateUserRequestBodyStatusField =
   | 'active'
@@ -92,6 +99,13 @@ export class CreateUserHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateUserHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetUserMeQueryParams {
   readonly fields?: readonly string[];
 }
@@ -107,6 +121,13 @@ export class GetUserMeHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetUserMeHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetUserByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -121,6 +142,13 @@ export class GetUserByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetUserByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateUserByIdRequestBodyRoleField = 'coadmin' | 'user';
 export type UpdateUserByIdRequestBodyStatusField =
@@ -169,6 +197,13 @@ export class UpdateUserByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateUserByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface DeleteUserByIdQueryParams {
   readonly notify?: boolean;
   readonly force?: boolean;
@@ -184,6 +219,13 @@ export class DeleteUserByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteUserByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class UsersManager {
   readonly auth?: Authentication;
@@ -206,9 +248,12 @@ export class UsersManager {
   }
   async getUsers(
     queryParams: GetUsersQueryParams = {} satisfies GetUsersQueryParams,
-    headers: GetUsersHeaders = new GetUsersHeaders({}),
+    headersInput: GetUsersHeadersInput = new GetUsersHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Users> {
+    const headers: any = new GetUsersHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -245,9 +290,12 @@ export class UsersManager {
   async createUser(
     requestBody: CreateUserRequestBody,
     queryParams: CreateUserQueryParams = {} satisfies CreateUserQueryParams,
-    headers: CreateUserHeaders = new CreateUserHeaders({}),
+    headersInput: CreateUserHeadersInput = new CreateUserHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
+    const headers: any = new CreateUserHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -276,9 +324,12 @@ export class UsersManager {
   }
   async getUserMe(
     queryParams: GetUserMeQueryParams = {} satisfies GetUserMeQueryParams,
-    headers: GetUserMeHeaders = new GetUserMeHeaders({}),
+    headersInput: GetUserMeHeadersInput = new GetUserMeHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
+    const headers: any = new GetUserMeHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -306,9 +357,12 @@ export class UsersManager {
   async getUserById(
     userId: string,
     queryParams: GetUserByIdQueryParams = {} satisfies GetUserByIdQueryParams,
-    headers: GetUserByIdHeaders = new GetUserByIdHeaders({}),
+    headersInput: GetUserByIdHeadersInput = new GetUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
+    const headers: any = new GetUserByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -341,9 +395,12 @@ export class UsersManager {
     userId: string,
     requestBody: UpdateUserByIdRequestBody = {} satisfies UpdateUserByIdRequestBody,
     queryParams: UpdateUserByIdQueryParams = {} satisfies UpdateUserByIdQueryParams,
-    headers: UpdateUserByIdHeaders = new UpdateUserByIdHeaders({}),
+    headersInput: UpdateUserByIdHeadersInput = new UpdateUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
+    const headers: any = new UpdateUserByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -377,9 +434,12 @@ export class UsersManager {
   async deleteUserById(
     userId: string,
     queryParams: DeleteUserByIdQueryParams = {} satisfies DeleteUserByIdQueryParams,
-    headers: DeleteUserByIdHeaders = new DeleteUserByIdHeaders({}),
+    headersInput: DeleteUserByIdHeadersInput = new DeleteUserByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteUserByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -407,6 +467,10 @@ export class UsersManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface UsersManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetUsersQueryParamsUserTypeField(
   val: any

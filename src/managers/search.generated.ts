@@ -43,6 +43,13 @@ export class SearchByMetadataQueryHeaders {
     Object.assign(this, fields);
   }
 }
+export interface SearchByMetadataQueryHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type SearchForContentQueryParamsScopeField =
   | 'user_content'
   | 'enterprise_content';
@@ -97,6 +104,13 @@ export class SearchForContentHeaders {
     Object.assign(this, fields);
   }
 }
+export interface SearchForContentHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class SearchManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -112,11 +126,14 @@ export class SearchManager {
   }
   async searchByMetadataQuery(
     requestBody: MetadataQuery,
-    headers: SearchByMetadataQueryHeaders = new SearchByMetadataQueryHeaders(
+    headersInput: SearchByMetadataQueryHeadersInput = new SearchByMetadataQueryHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataQueryResults> {
+    const headers: any = new SearchByMetadataQueryHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -140,9 +157,14 @@ export class SearchManager {
   }
   async searchForContent(
     queryParams: SearchForContentQueryParams = {} satisfies SearchForContentQueryParams,
-    headers: SearchForContentHeaders = new SearchForContentHeaders({}),
+    headersInput: SearchForContentHeadersInput = new SearchForContentHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
+    const headers: any = new SearchForContentHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -213,6 +235,10 @@ export class SearchManager {
       response.data
     );
   }
+}
+export interface SearchManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeSearchForContentQueryParamsScopeField(
   val: any

@@ -38,6 +38,13 @@ export class GetRecentItemsHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetRecentItemsHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class RecentItemsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -50,9 +57,12 @@ export class RecentItemsManager {
   }
   async getRecentItems(
     queryParams: GetRecentItemsQueryParams = {} satisfies GetRecentItemsQueryParams,
-    headers: GetRecentItemsHeaders = new GetRecentItemsHeaders({}),
+    headersInput: GetRecentItemsHeadersInput = new GetRecentItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<RecentItems> {
+    const headers: any = new GetRecentItemsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -82,4 +92,8 @@ export class RecentItemsManager {
     )) as FetchResponse;
     return deserializeRecentItems(response.data);
   }
+}
+export interface RecentItemsManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }

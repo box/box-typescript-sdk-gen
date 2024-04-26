@@ -37,6 +37,13 @@ export class GetFileTasksHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileTasksHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type CreateTaskRequestBodyItemTypeField = 'file';
 export interface CreateTaskRequestBodyItemField {
   readonly id?: string;
@@ -65,6 +72,13 @@ export class CreateTaskHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateTaskHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetTaskByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -76,6 +90,13 @@ export class GetTaskByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetTaskByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateTaskByIdRequestBodyActionField = 'review' | 'complete';
 export type UpdateTaskByIdRequestBodyCompletionRuleField =
@@ -99,6 +120,13 @@ export class UpdateTaskByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateTaskByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteTaskByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -110,6 +138,13 @@ export class DeleteTaskByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteTaskByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class TasksManager {
   readonly auth?: Authentication;
@@ -131,9 +166,12 @@ export class TasksManager {
   }
   async getFileTasks(
     fileId: string,
-    headers: GetFileTasksHeaders = new GetFileTasksHeaders({}),
+    headersInput: GetFileTasksHeadersInput = new GetFileTasksHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Tasks> {
+    const headers: any = new GetFileTasksHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -157,9 +195,12 @@ export class TasksManager {
   }
   async createTask(
     requestBody: CreateTaskRequestBody,
-    headers: CreateTaskHeaders = new CreateTaskHeaders({}),
+    headersInput: CreateTaskHeadersInput = new CreateTaskHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
+    const headers: any = new CreateTaskHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -180,9 +221,12 @@ export class TasksManager {
   }
   async getTaskById(
     taskId: string,
-    headers: GetTaskByIdHeaders = new GetTaskByIdHeaders({}),
+    headersInput: GetTaskByIdHeadersInput = new GetTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
+    const headers: any = new GetTaskByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -206,9 +250,12 @@ export class TasksManager {
   async updateTaskById(
     taskId: string,
     requestBody: UpdateTaskByIdRequestBody = {} satisfies UpdateTaskByIdRequestBody,
-    headers: UpdateTaskByIdHeaders = new UpdateTaskByIdHeaders({}),
+    headersInput: UpdateTaskByIdHeadersInput = new UpdateTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Task> {
+    const headers: any = new UpdateTaskByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -233,9 +280,12 @@ export class TasksManager {
   }
   async deleteTaskById(
     taskId: string,
-    headers: DeleteTaskByIdHeaders = new DeleteTaskByIdHeaders({}),
+    headersInput: DeleteTaskByIdHeadersInput = new DeleteTaskByIdHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteTaskByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -256,6 +306,10 @@ export class TasksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface TasksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskRequestBodyItemTypeField(
   val: any

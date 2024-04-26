@@ -29,7 +29,7 @@ await client.webLinks.createWebLink({
 
 - requestBody `CreateWebLinkRequestBody`
   - Request body of createWebLink method
-- headers `CreateWebLinkHeaders`
+- headersInput `CreateWebLinkHeadersInput`
   - Headers of createWebLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -59,7 +59,7 @@ await client.webLinks.getWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headers `GetWebLinkByIdHeaders`
+- headersInput `GetWebLinkByIdHeadersInput`
   - Headers of getWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -97,7 +97,7 @@ await client.webLinks.updateWebLinkById(weblink.id, {
   - The ID of the web link. Example: "12345"
 - requestBody `UpdateWebLinkByIdRequestBody`
   - Request body of updateWebLinkById method
-- headers `UpdateWebLinkByIdHeaders`
+- headersInput `UpdateWebLinkByIdHeadersInput`
   - Headers of updateWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -127,7 +127,7 @@ await client.webLinks.deleteWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headers `DeleteWebLinkByIdHeaders`
+- headersInput `DeleteWebLinkByIdHeadersInput`
   - Headers of deleteWebLinkById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

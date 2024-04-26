@@ -34,6 +34,13 @@ export class GetFileWatermarkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileWatermarkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateFileWatermarkRequestBodyWatermarkImprintField = 'default';
 export class UpdateFileWatermarkRequestBodyWatermarkField {
   readonly imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField =
@@ -45,6 +52,9 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface UpdateFileWatermarkRequestBodyWatermarkFieldInput {
+  readonly imprint?: UpdateFileWatermarkRequestBodyWatermarkImprintField;
 }
 export interface UpdateFileWatermarkRequestBody {
   readonly watermark: UpdateFileWatermarkRequestBodyWatermarkField;
@@ -61,6 +71,13 @@ export class UpdateFileWatermarkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFileWatermarkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFileWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +89,13 @@ export class DeleteFileWatermarkHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFileWatermarkHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileWatermarksManager {
   readonly auth?: Authentication;
@@ -91,9 +115,14 @@ export class FileWatermarksManager {
   }
   async getFileWatermark(
     fileId: string,
-    headers: GetFileWatermarkHeaders = new GetFileWatermarkHeaders({}),
+    headersInput: GetFileWatermarkHeadersInput = new GetFileWatermarkHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Watermark> {
+    const headers: any = new GetFileWatermarkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -118,9 +147,14 @@ export class FileWatermarksManager {
   async updateFileWatermark(
     fileId: string,
     requestBody: UpdateFileWatermarkRequestBody,
-    headers: UpdateFileWatermarkHeaders = new UpdateFileWatermarkHeaders({}),
+    headersInput: UpdateFileWatermarkHeadersInput = new UpdateFileWatermarkHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<Watermark> {
+    const headers: any = new UpdateFileWatermarkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -146,9 +180,14 @@ export class FileWatermarksManager {
   }
   async deleteFileWatermark(
     fileId: string,
-    headers: DeleteFileWatermarkHeaders = new DeleteFileWatermarkHeaders({}),
+    headersInput: DeleteFileWatermarkHeadersInput = new DeleteFileWatermarkHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFileWatermarkHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -170,6 +209,10 @@ export class FileWatermarksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FileWatermarksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
   val: any
@@ -209,6 +252,33 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkField(
   return {
     imprint: imprint,
   } satisfies UpdateFileWatermarkRequestBodyWatermarkField;
+}
+export function serializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['imprint']:
+      val.imprint == void 0
+        ? void 0
+        : serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
+            val.imprint
+          ),
+  };
+}
+export function deserializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
+  val: any
+): UpdateFileWatermarkRequestBodyWatermarkFieldInput {
+  const imprint:
+    | undefined
+    | UpdateFileWatermarkRequestBodyWatermarkImprintField =
+    val.imprint == void 0
+      ? void 0
+      : deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
+          val.imprint
+        );
+  return {
+    imprint: imprint,
+  } satisfies UpdateFileWatermarkRequestBodyWatermarkFieldInput;
 }
 export function serializeUpdateFileWatermarkRequestBody(
   val: any

@@ -39,6 +39,15 @@ export class FindFileForSharedLinkHeaders {
     Object.assign(this, fields);
   }
 }
+export interface FindFileForSharedLinkHeadersInput {
+  readonly ifNoneMatch?: string;
+  readonly boxapi: string;
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetSharedLinkForFileQueryParams {
   readonly fields: string;
 }
@@ -53,6 +62,13 @@ export class GetSharedLinkForFileHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetSharedLinkForFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type AddShareLinkToFileRequestBodySharedLinkAccessField =
   | 'open'
@@ -88,6 +104,13 @@ export class AddShareLinkToFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface AddShareLinkToFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type UpdateSharedLinkOnFileRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
@@ -122,6 +145,13 @@ export class UpdateSharedLinkOnFileHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateSharedLinkOnFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface RemoveSharedLinkFromFileRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromFileRequestBody {
   readonly sharedLink?: RemoveSharedLinkFromFileRequestBodySharedLinkField;
@@ -140,6 +170,13 @@ export class RemoveSharedLinkFromFileHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RemoveSharedLinkFromFileHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class SharedLinksFilesManager {
   readonly auth?: Authentication;
@@ -161,9 +198,14 @@ export class SharedLinksFilesManager {
   }
   async findFileForSharedLink(
     queryParams: FindFileForSharedLinkQueryParams = {} satisfies FindFileForSharedLinkQueryParams,
-    headers: FindFileForSharedLinkHeaders,
+    headersInput: FindFileForSharedLinkHeadersInput,
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new FindFileForSharedLinkHeaders({
+      ifNoneMatch: headersInput.ifNoneMatch,
+      boxapi: headersInput.boxapi,
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -200,9 +242,14 @@ export class SharedLinksFilesManager {
   async getSharedLinkForFile(
     fileId: string,
     queryParams: GetSharedLinkForFileQueryParams,
-    headers: GetSharedLinkForFileHeaders = new GetSharedLinkForFileHeaders({}),
+    headersInput: GetSharedLinkForFileHeadersInput = new GetSharedLinkForFileHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new GetSharedLinkForFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -232,9 +279,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: AddShareLinkToFileRequestBody = {} satisfies AddShareLinkToFileRequestBody,
     queryParams: AddShareLinkToFileQueryParams,
-    headers: AddShareLinkToFileHeaders = new AddShareLinkToFileHeaders({}),
+    headersInput: AddShareLinkToFileHeadersInput = new AddShareLinkToFileHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new AddShareLinkToFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -266,11 +318,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: UpdateSharedLinkOnFileRequestBody = {} satisfies UpdateSharedLinkOnFileRequestBody,
     queryParams: UpdateSharedLinkOnFileQueryParams,
-    headers: UpdateSharedLinkOnFileHeaders = new UpdateSharedLinkOnFileHeaders(
+    headersInput: UpdateSharedLinkOnFileHeadersInput = new UpdateSharedLinkOnFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new UpdateSharedLinkOnFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -302,11 +357,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: RemoveSharedLinkFromFileRequestBody = {} satisfies RemoveSharedLinkFromFileRequestBody,
     queryParams: RemoveSharedLinkFromFileQueryParams,
-    headers: RemoveSharedLinkFromFileHeaders = new RemoveSharedLinkFromFileHeaders(
+    headersInput: RemoveSharedLinkFromFileHeadersInput = new RemoveSharedLinkFromFileHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileFull> {
+    const headers: any = new RemoveSharedLinkFromFileHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -334,6 +392,10 @@ export class SharedLinksFilesManager {
     )) as FetchResponse;
     return deserializeFileFull(response.data);
   }
+}
+export interface SharedLinksFilesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToFileRequestBodySharedLinkAccessField(
   val: any

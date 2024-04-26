@@ -46,6 +46,13 @@ export class RestoreWeblinkFromTrashHeaders {
     Object.assign(this, fields);
   }
 }
+export interface RestoreWeblinkFromTrashHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetTrashedWebLinkByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -61,6 +68,13 @@ export class GetTrashedWebLinkByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetTrashedWebLinkByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteTrashedWebLinkByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -72,6 +86,13 @@ export class DeleteTrashedWebLinkByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteTrashedWebLinkByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class TrashedWebLinksManager {
   readonly auth?: Authentication;
@@ -93,11 +114,14 @@ export class TrashedWebLinksManager {
     webLinkId: string,
     requestBody: RestoreWeblinkFromTrashRequestBody = {} satisfies RestoreWeblinkFromTrashRequestBody,
     queryParams: RestoreWeblinkFromTrashQueryParams = {} satisfies RestoreWeblinkFromTrashQueryParams,
-    headers: RestoreWeblinkFromTrashHeaders = new RestoreWeblinkFromTrashHeaders(
+    headersInput: RestoreWeblinkFromTrashHeadersInput = new RestoreWeblinkFromTrashHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TrashWebLinkRestored> {
+    const headers: any = new RestoreWeblinkFromTrashHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -131,11 +155,14 @@ export class TrashedWebLinksManager {
   async getTrashedWebLinkById(
     webLinkId: string,
     queryParams: GetTrashedWebLinkByIdQueryParams = {} satisfies GetTrashedWebLinkByIdQueryParams,
-    headers: GetTrashedWebLinkByIdHeaders = new GetTrashedWebLinkByIdHeaders(
+    headersInput: GetTrashedWebLinkByIdHeadersInput = new GetTrashedWebLinkByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<TrashWebLink> {
+    const headers: any = new GetTrashedWebLinkByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -167,11 +194,14 @@ export class TrashedWebLinksManager {
   }
   async deleteTrashedWebLinkById(
     webLinkId: string,
-    headers: DeleteTrashedWebLinkByIdHeaders = new DeleteTrashedWebLinkByIdHeaders(
+    headersInput: DeleteTrashedWebLinkByIdHeadersInput = new DeleteTrashedWebLinkByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteTrashedWebLinkByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -193,6 +223,10 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface TrashedWebLinksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: any

@@ -39,6 +39,13 @@ export class GetFolderLocksHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFolderLocksHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface CreateFolderLockRequestBodyLockedOperationsField {
   readonly move: boolean;
   readonly delete: boolean;
@@ -63,6 +70,13 @@ export class CreateFolderLockHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateFolderLockHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFolderLockByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -74,6 +88,13 @@ export class DeleteFolderLockByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFolderLockByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FolderLocksManager {
   readonly auth?: Authentication;
@@ -93,9 +114,12 @@ export class FolderLocksManager {
   }
   async getFolderLocks(
     queryParams: GetFolderLocksQueryParams,
-    headers: GetFolderLocksHeaders = new GetFolderLocksHeaders({}),
+    headersInput: GetFolderLocksHeadersInput = new GetFolderLocksHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<FolderLocks> {
+    const headers: any = new GetFolderLocksHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -123,9 +147,14 @@ export class FolderLocksManager {
   }
   async createFolderLock(
     requestBody: CreateFolderLockRequestBody,
-    headers: CreateFolderLockHeaders = new CreateFolderLockHeaders({}),
+    headersInput: CreateFolderLockHeadersInput = new CreateFolderLockHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FolderLock> {
+    const headers: any = new CreateFolderLockHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -149,9 +178,14 @@ export class FolderLocksManager {
   }
   async deleteFolderLockById(
     folderLockId: string,
-    headers: DeleteFolderLockByIdHeaders = new DeleteFolderLockByIdHeaders({}),
+    headersInput: DeleteFolderLockByIdHeadersInput = new DeleteFolderLockByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFolderLockByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -172,6 +206,10 @@ export class FolderLocksManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FolderLocksManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeCreateFolderLockRequestBodyLockedOperationsField(
   val: any

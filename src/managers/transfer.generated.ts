@@ -43,6 +43,13 @@ export class TransferOwnedFolderHeaders {
     Object.assign(this, fields);
   }
 }
+export interface TransferOwnedFolderHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class TransferManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -57,9 +64,14 @@ export class TransferManager {
     userId: string,
     requestBody: TransferOwnedFolderRequestBody,
     queryParams: TransferOwnedFolderQueryParams = {} satisfies TransferOwnedFolderQueryParams,
-    headers: TransferOwnedFolderHeaders = new TransferOwnedFolderHeaders({}),
+    headersInput: TransferOwnedFolderHeadersInput = new TransferOwnedFolderHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<FolderFull> {
+    const headers: any = new TransferOwnedFolderHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -92,6 +104,10 @@ export class TransferManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+}
+export interface TransferManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeTransferOwnedFolderRequestBodyOwnedByField(
   val: any

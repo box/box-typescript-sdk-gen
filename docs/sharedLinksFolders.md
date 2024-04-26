@@ -26,13 +26,13 @@ See the endpoint docs at
 ```ts
 await userClient.sharedLinksFolders.findFolderForSharedLink(
   {} satisfies FindFolderForSharedLinkQueryParams,
-  new FindFolderForSharedLinkHeaders({
+  {
     boxapi: ''.concat(
       'shared_link=',
       folderFromApi.sharedLink!.url,
       '&shared_link_password=incorrectPassword'
     ) as string,
-  })
+  } satisfies FindFolderForSharedLinkHeadersInput
 );
 ```
 
@@ -40,7 +40,7 @@ await userClient.sharedLinksFolders.findFolderForSharedLink(
 
 - queryParams `FindFolderForSharedLinkQueryParams`
   - Query parameters of findFolderForSharedLink method
-- headers `FindFolderForSharedLinkHeaders`
+- headersInput `FindFolderForSharedLinkHeadersInput`
   - Headers of findFolderForSharedLink method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -75,7 +75,7 @@ await client.sharedLinksFolders.getSharedLinkForFolder(folder.id, {
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - queryParams `GetSharedLinkForFolderQueryParams`
   - Query parameters of getSharedLinkForFolder method
-- headers `GetSharedLinkForFolderHeaders`
+- headersInput `GetSharedLinkForFolderHeadersInput`
   - Headers of getSharedLinkForFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -119,7 +119,7 @@ await client.sharedLinksFolders.addShareLinkToFolder(
   - Request body of addShareLinkToFolder method
 - queryParams `AddShareLinkToFolderQueryParams`
   - Query parameters of addShareLinkToFolder method
-- headers `AddShareLinkToFolderHeaders`
+- headersInput `AddShareLinkToFolderHeadersInput`
   - Headers of addShareLinkToFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -163,7 +163,7 @@ await client.sharedLinksFolders.updateSharedLinkOnFolder(
   - Request body of updateSharedLinkOnFolder method
 - queryParams `UpdateSharedLinkOnFolderQueryParams`
   - Query parameters of updateSharedLinkOnFolder method
-- headers `UpdateSharedLinkOnFolderHeaders`
+- headersInput `UpdateSharedLinkOnFolderHeadersInput`
   - Headers of updateSharedLinkOnFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -194,7 +194,7 @@ _Currently we don't have an example for calling `removeSharedLinkFromFolder` in 
   - Request body of removeSharedLinkFromFolder method
 - queryParams `RemoveSharedLinkFromFolderQueryParams`
   - Query parameters of removeSharedLinkFromFolder method
-- headers `RemoveSharedLinkFromFolderHeaders`
+- headersInput `RemoveSharedLinkFromFolderHeadersInput`
   - Headers of removeSharedLinkFromFolder method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

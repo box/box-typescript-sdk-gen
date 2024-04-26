@@ -31,7 +31,7 @@ await client.users.getUsers();
 
 - queryParams `GetUsersQueryParams`
   - Query parameters of getUsers method
-- headers `GetUsersHeaders`
+- headersInput `GetUsersHeadersInput`
   - Headers of getUsers method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -69,7 +69,7 @@ await client.users.createUser({
   - Request body of createUser method
 - queryParams `CreateUserQueryParams`
   - Query parameters of createUser method
-- headers `CreateUserHeaders`
+- headersInput `CreateUserHeadersInput`
   - Headers of createUser method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -108,7 +108,7 @@ await client.users.getUserMe();
 
 - queryParams `GetUserMeQueryParams`
   - Query parameters of getUserMe method
-- headers `GetUserMeHeaders`
+- headersInput `GetUserMeHeadersInput`
   - Headers of getUserMe method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -150,7 +150,7 @@ await client.users.getUserById(user.id);
   - The ID of the user. Example: "12345"
 - queryParams `GetUserByIdQueryParams`
   - Query parameters of getUserById method
-- headers `GetUserByIdHeaders`
+- headersInput `GetUserByIdHeadersInput`
   - Headers of getUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -193,7 +193,7 @@ await client.users.updateUserById(user.id, {
   - Request body of updateUserById method
 - queryParams `UpdateUserByIdQueryParams`
   - Query parameters of updateUserById method
-- headers `UpdateUserByIdHeaders`
+- headersInput `UpdateUserByIdHeadersInput`
   - Headers of updateUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
@@ -228,7 +228,7 @@ await client.users.deleteUserById(user.id);
   - The ID of the user. Example: "12345"
 - queryParams `DeleteUserByIdQueryParams`
   - Query parameters of deleteUserById method
-- headers `DeleteUserByIdHeaders`
+- headersInput `DeleteUserByIdHeadersInput`
   - Headers of deleteUserById method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.

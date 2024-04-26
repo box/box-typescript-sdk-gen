@@ -40,6 +40,13 @@ export class GetMetadataTemplatesByInstanceIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetMetadataTemplatesByInstanceIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type GetMetadataTemplateScope = 'global' | 'enterprise';
 export class GetMetadataTemplateHeaders {
   readonly extraHeaders?: {
@@ -52,6 +59,13 @@ export class GetMetadataTemplateHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetMetadataTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateMetadataTemplateScope = 'global' | 'enterprise';
 export type UpdateMetadataTemplateRequestBodyOpField =
@@ -92,6 +106,13 @@ export class UpdateMetadataTemplateHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateMetadataTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type DeleteMetadataTemplateScope = 'global' | 'enterprise';
 export class DeleteMetadataTemplateHeaders {
   readonly extraHeaders?: {
@@ -105,6 +126,13 @@ export class DeleteMetadataTemplateHeaders {
     Object.assign(this, fields);
   }
 }
+export interface DeleteMetadataTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetMetadataTemplateByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
@@ -116,6 +144,13 @@ export class GetMetadataTemplateByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetMetadataTemplateByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export interface GetGlobalMetadataTemplatesQueryParams {
   readonly marker?: string;
@@ -133,6 +168,13 @@ export class GetGlobalMetadataTemplatesHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetGlobalMetadataTemplatesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface GetEnterpriseMetadataTemplatesQueryParams {
   readonly marker?: string;
   readonly limit?: number;
@@ -148,6 +190,13 @@ export class GetEnterpriseMetadataTemplatesHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetEnterpriseMetadataTemplatesHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateMetadataTemplateRequestBodyFieldsTypeField =
   | 'string'
@@ -186,6 +235,13 @@ export class CreateMetadataTemplateHeaders {
     Object.assign(this, fields);
   }
 }
+export interface CreateMetadataTemplateHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class MetadataTemplatesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -209,11 +265,14 @@ export class MetadataTemplatesManager {
   }
   async getMetadataTemplatesByInstanceId(
     queryParams: GetMetadataTemplatesByInstanceIdQueryParams,
-    headers: GetMetadataTemplatesByInstanceIdHeaders = new GetMetadataTemplatesByInstanceIdHeaders(
+    headersInput: GetMetadataTemplatesByInstanceIdHeadersInput = new GetMetadataTemplatesByInstanceIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
+    const headers: any = new GetMetadataTemplatesByInstanceIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -244,9 +303,14 @@ export class MetadataTemplatesManager {
   async getMetadataTemplate(
     scope: GetMetadataTemplateScope,
     templateKey: string,
-    headers: GetMetadataTemplateHeaders = new GetMetadataTemplateHeaders({}),
+    headersInput: GetMetadataTemplateHeadersInput = new GetMetadataTemplateHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
+    const headers: any = new GetMetadataTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -274,11 +338,14 @@ export class MetadataTemplatesManager {
     scope: UpdateMetadataTemplateScope,
     templateKey: string,
     requestBody: readonly UpdateMetadataTemplateRequestBody[],
-    headers: UpdateMetadataTemplateHeaders = new UpdateMetadataTemplateHeaders(
+    headersInput: UpdateMetadataTemplateHeadersInput = new UpdateMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
+    const headers: any = new UpdateMetadataTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -309,11 +376,14 @@ export class MetadataTemplatesManager {
   async deleteMetadataTemplate(
     scope: DeleteMetadataTemplateScope,
     templateKey: string,
-    headers: DeleteMetadataTemplateHeaders = new DeleteMetadataTemplateHeaders(
+    headersInput: DeleteMetadataTemplateHeadersInput = new DeleteMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteMetadataTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -339,11 +409,14 @@ export class MetadataTemplatesManager {
   }
   async getMetadataTemplateById(
     templateId: string,
-    headers: GetMetadataTemplateByIdHeaders = new GetMetadataTemplateByIdHeaders(
+    headersInput: GetMetadataTemplateByIdHeadersInput = new GetMetadataTemplateByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
+    const headers: any = new GetMetadataTemplateByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -366,11 +439,14 @@ export class MetadataTemplatesManager {
   }
   async getGlobalMetadataTemplates(
     queryParams: GetGlobalMetadataTemplatesQueryParams = {} satisfies GetGlobalMetadataTemplatesQueryParams,
-    headers: GetGlobalMetadataTemplatesHeaders = new GetGlobalMetadataTemplatesHeaders(
+    headersInput: GetGlobalMetadataTemplatesHeadersInput = new GetGlobalMetadataTemplatesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
+    const headers: any = new GetGlobalMetadataTemplatesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -399,11 +475,14 @@ export class MetadataTemplatesManager {
   }
   async getEnterpriseMetadataTemplates(
     queryParams: GetEnterpriseMetadataTemplatesQueryParams = {} satisfies GetEnterpriseMetadataTemplatesQueryParams,
-    headers: GetEnterpriseMetadataTemplatesHeaders = new GetEnterpriseMetadataTemplatesHeaders(
+    headersInput: GetEnterpriseMetadataTemplatesHeadersInput = new GetEnterpriseMetadataTemplatesHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
+    const headers: any = new GetEnterpriseMetadataTemplatesHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -432,11 +511,14 @@ export class MetadataTemplatesManager {
   }
   async createMetadataTemplate(
     requestBody: CreateMetadataTemplateRequestBody,
-    headers: CreateMetadataTemplateHeaders = new CreateMetadataTemplateHeaders(
+    headersInput: CreateMetadataTemplateHeadersInput = new CreateMetadataTemplateHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplate> {
+    const headers: any = new CreateMetadataTemplateHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -458,6 +540,10 @@ export class MetadataTemplatesManager {
     )) as FetchResponse;
     return deserializeMetadataTemplate(response.data);
   }
+}
+export interface MetadataTemplatesManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetMetadataTemplateScope(val: any): SerializedData {
   return val;

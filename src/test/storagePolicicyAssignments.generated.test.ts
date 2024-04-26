@@ -24,6 +24,7 @@ import { serializeUpdateStoragePolicyAssignmentByIdRequestBody } from '../manage
 import { deserializeUpdateStoragePolicyAssignmentByIdRequestBody } from '../managers/storagePolicyAssignments.generated.js';
 import { serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
 import { deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField } from '../managers/storagePolicyAssignments.generated.js';
+import { BoxClientInput } from '../client.generated.js';
 import { StoragePolicyAssignment } from '../schemas.generated.js';
 import { StoragePolicyAssignments } from '../schemas.generated.js';
 import { GetStoragePolicyAssignmentsQueryParams } from '../managers/storagePolicyAssignments.generated.js';
@@ -53,10 +54,14 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const adminUserId: string = getEnvVar('USER_ID');
 export async function getOrCreateStoragePolicyAssignment(
-  client: BoxClient,
+  clientInput: BoxClientInput,
   policyId: string,
   userId: string
 ): Promise<StoragePolicyAssignment> {
+  const client: any = new BoxClient({
+    auth: clientInput.auth,
+    networkSession: clientInput.networkSession,
+  });
   const storagePolicyAssignments: StoragePolicyAssignments =
     await client.storagePolicyAssignments.getStoragePolicyAssignments({
       resolvedForType:

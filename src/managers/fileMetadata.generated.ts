@@ -37,6 +37,13 @@ export class GetFileMetadataHeaders {
     Object.assign(this, fields);
   }
 }
+export interface GetFileMetadataHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type GetFileMetadataByIdScope = 'global' | 'enterprise';
 export class GetFileMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -49,6 +56,13 @@ export class GetFileMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface GetFileMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type CreateFileMetadataByIdScope = 'global' | 'enterprise';
 export type CreateFileMetadataByIdRequestBody = {
@@ -65,6 +79,13 @@ export class CreateFileMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CreateFileMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export type UpdateFileMetadataByIdScope = 'global' | 'enterprise';
 export type UpdateFileMetadataByIdRequestBodyOpField =
@@ -92,6 +113,13 @@ export class UpdateFileMetadataByIdHeaders {
     Object.assign(this, fields);
   }
 }
+export interface UpdateFileMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type DeleteFileMetadataByIdScope = 'global' | 'enterprise';
 export class DeleteFileMetadataByIdHeaders {
   readonly extraHeaders?: {
@@ -104,6 +132,13 @@ export class DeleteFileMetadataByIdHeaders {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface DeleteFileMetadataByIdHeadersInput {
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
 }
 export class FileMetadataManager {
   readonly auth?: Authentication;
@@ -125,9 +160,12 @@ export class FileMetadataManager {
   }
   async getFileMetadata(
     fileId: string,
-    headers: GetFileMetadataHeaders = new GetFileMetadataHeaders({}),
+    headersInput: GetFileMetadataHeadersInput = new GetFileMetadataHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Metadatas> {
+    const headers: any = new GetFileMetadataHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -153,9 +191,14 @@ export class FileMetadataManager {
     fileId: string,
     scope: GetFileMetadataByIdScope,
     templateKey: string,
-    headers: GetFileMetadataByIdHeaders = new GetFileMetadataByIdHeaders({}),
+    headersInput: GetFileMetadataByIdHeadersInput = new GetFileMetadataByIdHeaders(
+      {}
+    ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new GetFileMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -185,11 +228,14 @@ export class FileMetadataManager {
     scope: CreateFileMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFileMetadataByIdRequestBody,
-    headers: CreateFileMetadataByIdHeaders = new CreateFileMetadataByIdHeaders(
+    headersInput: CreateFileMetadataByIdHeadersInput = new CreateFileMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new CreateFileMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -221,11 +267,14 @@ export class FileMetadataManager {
     scope: UpdateFileMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFileMetadataByIdRequestBody[],
-    headers: UpdateFileMetadataByIdHeaders = new UpdateFileMetadataByIdHeaders(
+    headersInput: UpdateFileMetadataByIdHeadersInput = new UpdateFileMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataFull> {
+    const headers: any = new UpdateFileMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -258,11 +307,14 @@ export class FileMetadataManager {
     fileId: string,
     scope: DeleteFileMetadataByIdScope,
     templateKey: string,
-    headers: DeleteFileMetadataByIdHeaders = new DeleteFileMetadataByIdHeaders(
+    headersInput: DeleteFileMetadataByIdHeadersInput = new DeleteFileMetadataByIdHeaders(
       {}
     ),
     cancellationToken?: CancellationToken
   ): Promise<undefined> {
+    const headers: any = new DeleteFileMetadataByIdHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -287,6 +339,10 @@ export class FileMetadataManager {
     )) as FetchResponse;
     return void 0;
   }
+}
+export interface FileMetadataManagerInput {
+  readonly auth?: Authentication;
+  readonly networkSession?: NetworkSession;
 }
 export function serializeGetFileMetadataByIdScope(val: any): SerializedData {
   return val;

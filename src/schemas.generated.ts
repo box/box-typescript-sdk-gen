@@ -49,6 +49,12 @@ export class PostOAuth2TokenRefreshAccessToken {
     Object.assign(this, fields);
   }
 }
+export interface PostOAuth2TokenRefreshAccessTokenInput {
+  readonly grantType?: PostOAuth2TokenRefreshAccessTokenGrantTypeField;
+  readonly clientId: string;
+  readonly clientSecret: string;
+  readonly refreshToken: string;
+}
 export interface PostOAuth2Revoke {
   readonly clientId?: string;
   readonly clientSecret?: string;
@@ -186,6 +192,14 @@ export class ClassificationTemplateFieldsField {
     Object.assign(this, fields);
   }
 }
+export interface ClassificationTemplateFieldsFieldInput {
+  readonly id: string;
+  readonly type?: ClassificationTemplateFieldsTypeField;
+  readonly key?: ClassificationTemplateFieldsKeyField;
+  readonly displayName?: ClassificationTemplateFieldsDisplayNameField;
+  readonly hidden?: boolean;
+  readonly options: readonly ClassificationTemplateFieldsOptionsField[];
+}
 export class ClassificationTemplate {
   readonly id!: string;
   readonly type: ClassificationTemplateTypeField =
@@ -207,6 +221,16 @@ export class ClassificationTemplate {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface ClassificationTemplateInput {
+  readonly id: string;
+  readonly type?: ClassificationTemplateTypeField;
+  readonly scope: string;
+  readonly templateKey?: ClassificationTemplateTemplateKeyField;
+  readonly displayName?: ClassificationTemplateDisplayNameField;
+  readonly hidden?: boolean;
+  readonly copyInstanceOnItemCopy?: boolean;
+  readonly fields: readonly ClassificationTemplateFieldsField[];
 }
 export type CollaborationAllowlistEntryTypeField =
   'collaboration_whitelist_entry';
@@ -287,6 +311,11 @@ export class FileBase {
     Object.assign(this, fields);
   }
 }
+export interface FileBaseInput {
+  readonly id: string;
+  readonly etag?: string;
+  readonly type?: FileBaseTypeField;
+}
 export type FileVersionBaseTypeField = 'file_version';
 export class FileVersionBase {
   readonly id!: string;
@@ -299,6 +328,10 @@ export class FileVersionBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface FileVersionBaseInput {
+  readonly id: string;
+  readonly type?: FileVersionBaseTypeField;
 }
 export class FileVersionMini extends FileVersionBase {
   readonly sha1?: string;
@@ -340,6 +373,11 @@ export class FolderBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface FolderBaseInput {
+  readonly id: string;
+  readonly etag?: string;
+  readonly type?: FolderBaseTypeField;
 }
 export class FolderMini extends FolderBase {
   readonly sequenceId?: string;
@@ -405,6 +443,10 @@ export class GroupBase {
     Object.assign(this, fields);
   }
 }
+export interface GroupBaseInput {
+  readonly id: string;
+  readonly type?: GroupBaseTypeField;
+}
 export type GroupMiniGroupTypeField = 'managed_group' | 'all_users_group';
 export class GroupMini extends GroupBase {
   readonly name?: string;
@@ -467,6 +509,10 @@ export class LegalHoldPolicyMini {
     Object.assign(this, fields);
   }
 }
+export interface LegalHoldPolicyMiniInput {
+  readonly id: string;
+  readonly type?: LegalHoldPolicyMiniTypeField;
+}
 export type LegalHoldPolicyAssignmentBaseTypeField =
   'legal_hold_policy_assignment';
 export interface LegalHoldPolicyAssignmentBase {
@@ -519,6 +565,14 @@ export class MetadataCascadePolicy {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface MetadataCascadePolicyInput {
+  readonly id: string;
+  readonly type?: MetadataCascadePolicyTypeField;
+  readonly ownerEnterprise?: MetadataCascadePolicyOwnerEnterpriseField;
+  readonly parent?: MetadataCascadePolicyParentField;
+  readonly scope?: string;
+  readonly templateKey?: string;
 }
 export interface MetadataCascadePolicies {
   readonly limit?: number;
@@ -577,6 +631,16 @@ export class MetadataTemplate {
     Object.assign(this, fields);
   }
 }
+export interface MetadataTemplateInput {
+  readonly id: string;
+  readonly type?: MetadataTemplateTypeField;
+  readonly scope?: string;
+  readonly templateKey?: string;
+  readonly displayName?: string;
+  readonly hidden?: boolean;
+  readonly fields?: readonly MetadataTemplateFieldsField[];
+  readonly copyInstanceOnItemCopy?: boolean;
+}
 export interface MetadataTemplates {
   readonly limit?: number;
   readonly nextMarker?: string;
@@ -606,6 +670,10 @@ export class RetentionPolicyBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RetentionPolicyBaseInput {
+  readonly id: string;
+  readonly type?: RetentionPolicyBaseTypeField;
 }
 export type RetentionPolicyMiniDispositionActionField =
   | 'permanently_delete'
@@ -647,6 +715,10 @@ export class RetentionPolicyAssignmentBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RetentionPolicyAssignmentBaseInput {
+  readonly id: string;
+  readonly type?: RetentionPolicyAssignmentBaseTypeField;
 }
 export type ShieldInformationBarrierBaseTypeField =
   'shield_information_barrier';
@@ -708,6 +780,10 @@ export class StoragePolicyMini {
     Object.assign(this, fields);
   }
 }
+export interface StoragePolicyMiniInput {
+  readonly id: string;
+  readonly type?: StoragePolicyMiniTypeField;
+}
 export type StoragePolicyAssignmentTypeField = 'storage_policy_assignment';
 export interface StoragePolicyAssignmentAssignedToField {
   readonly id?: string;
@@ -726,6 +802,12 @@ export class StoragePolicyAssignment {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface StoragePolicyAssignmentInput {
+  readonly id: string;
+  readonly type?: StoragePolicyAssignmentTypeField;
+  readonly storagePolicy?: StoragePolicyMini;
+  readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
 }
 export interface StoragePolicyAssignments {
   readonly limit?: number;
@@ -757,6 +839,10 @@ export class TermsOfServiceBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TermsOfServiceBaseInput {
+  readonly id: string;
+  readonly type?: TermsOfServiceBaseTypeField;
 }
 export type TermsOfServiceStatusField = 'enabled' | 'disabled';
 export type TermsOfServiceEnterpriseTypeField = 'enterprise';
@@ -843,6 +929,10 @@ export class UserBase {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface UserBaseInput {
+  readonly id: string;
+  readonly type?: UserBaseTypeField;
 }
 export class UserIntegrationMappings extends UserBase {
   readonly name?: string;
@@ -1004,6 +1094,30 @@ export class TrashFileRestored {
     Object.assign(this, fields);
   }
 }
+export interface TrashFileRestoredInput {
+  readonly id: string;
+  readonly etag?: string;
+  readonly type?: TrashFileRestoredTypeField;
+  readonly sequenceId: string;
+  readonly name?: string;
+  readonly sha1: string;
+  readonly fileVersion?: FileVersionMini;
+  readonly description: string;
+  readonly size: number;
+  readonly pathCollection: TrashFileRestoredPathCollectionField;
+  readonly createdAt: string;
+  readonly modifiedAt: string;
+  readonly trashedAt?: string;
+  readonly purgedAt?: string;
+  readonly contentCreatedAt?: string;
+  readonly contentModifiedAt?: string;
+  readonly createdBy?: UserMini;
+  readonly modifiedBy: UserMini;
+  readonly ownedBy: UserMini;
+  readonly sharedLink?: string;
+  readonly parent?: FolderMini;
+  readonly itemStatus: TrashFileRestoredItemStatusField;
+}
 export type TrashWebLinkTypeField = 'web_link';
 export type TrashWebLinkPathCollectionEntriesTypeField = 'folder';
 export interface TrashWebLinkPathCollectionEntriesField {
@@ -1080,6 +1194,29 @@ export class TrashFolder {
     Object.assign(this, fields);
   }
 }
+export interface TrashFolderInput {
+  readonly id: string;
+  readonly etag?: string;
+  readonly type?: TrashFolderTypeField;
+  readonly sequenceId?: string;
+  readonly name: string;
+  readonly createdAt?: string;
+  readonly modifiedAt?: string;
+  readonly description: string;
+  readonly size: number;
+  readonly pathCollection: TrashFolderPathCollectionField;
+  readonly createdBy: UserMini;
+  readonly modifiedBy: UserMini;
+  readonly trashedAt?: string;
+  readonly purgedAt?: string;
+  readonly contentCreatedAt?: string;
+  readonly contentModifiedAt?: string;
+  readonly ownedBy: UserMini;
+  readonly sharedLink?: string;
+  readonly folderUploadEmail?: string;
+  readonly parent?: FolderMini;
+  readonly itemStatus: TrashFolderItemStatusField;
+}
 export type TrashFileTypeField = 'file';
 export type TrashFilePathCollectionEntriesTypeField = 'folder';
 export interface TrashFilePathCollectionEntriesField {
@@ -1123,6 +1260,30 @@ export class TrashFile {
     Object.assign(this, fields);
   }
 }
+export interface TrashFileInput {
+  readonly id: string;
+  readonly etag?: string;
+  readonly type?: TrashFileTypeField;
+  readonly sequenceId: string;
+  readonly name?: string;
+  readonly sha1: string;
+  readonly fileVersion?: FileVersionMini;
+  readonly description: string;
+  readonly size: number;
+  readonly pathCollection: TrashFilePathCollectionField;
+  readonly createdAt: string;
+  readonly modifiedAt: string;
+  readonly trashedAt?: string;
+  readonly purgedAt?: string;
+  readonly contentCreatedAt?: string;
+  readonly contentModifiedAt?: string;
+  readonly createdBy?: UserMini;
+  readonly modifiedBy: UserMini;
+  readonly ownedBy: UserMini;
+  readonly sharedLink?: string;
+  readonly parent?: FolderMini;
+  readonly itemStatus: TrashFileItemStatusField;
+}
 export type TermsOfServiceUserStatusTypeField = 'terms_of_service_user_status';
 export class TermsOfServiceUserStatus {
   readonly id!: string;
@@ -1140,6 +1301,15 @@ export class TermsOfServiceUserStatus {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TermsOfServiceUserStatusInput {
+  readonly id: string;
+  readonly type?: TermsOfServiceUserStatusTypeField;
+  readonly tos?: TermsOfServiceBase;
+  readonly user?: UserMini;
+  readonly isAccepted?: boolean;
+  readonly createdAt?: string;
+  readonly modifiedAt?: string;
 }
 export interface TermsOfServiceUserStatuses {
   readonly totalCount?: number;
@@ -1217,6 +1387,16 @@ export class RetentionPolicyAssignment {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface RetentionPolicyAssignmentInput {
+  readonly id: string;
+  readonly type?: RetentionPolicyAssignmentTypeField;
+  readonly retentionPolicy?: RetentionPolicyMini;
+  readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
+  readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
+  readonly assignedBy?: UserMini;
+  readonly assignedAt?: string;
+  readonly startDateField?: string;
 }
 export interface RetentionPolicyAssignments {
   readonly entries?: readonly RetentionPolicyAssignment[];
@@ -1305,6 +1485,16 @@ export class Invite {
     Object.assign(this, fields);
   }
 }
+export interface InviteInput {
+  readonly id: string;
+  readonly type?: InviteTypeField;
+  readonly invitedTo?: InviteInvitedToField;
+  readonly actionableBy?: UserMini;
+  readonly invitedBy?: UserMini;
+  readonly status?: string;
+  readonly createdAt?: string;
+  readonly modifiedAt?: string;
+}
 export type GroupMembershipTypeField = 'group_membership';
 export type GroupMembershipRoleField = 'member' | 'admin';
 export interface GroupMembership {
@@ -1385,6 +1575,23 @@ export class FileRequest {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface FileRequestInput {
+  readonly id: string;
+  readonly type?: FileRequestTypeField;
+  readonly title?: string;
+  readonly description?: string;
+  readonly status?: FileRequestStatusField;
+  readonly isEmailRequired?: boolean;
+  readonly isDescriptionRequired?: boolean;
+  readonly expiresAt?: string;
+  readonly folder: FolderMini;
+  readonly url?: string;
+  readonly etag?: string;
+  readonly createdBy?: UserMini;
+  readonly createdAt: string;
+  readonly updatedBy?: UserMini;
+  readonly updatedAt: string;
 }
 export interface FilePathCollectionField {
   readonly totalCount: number;
@@ -1810,6 +2017,11 @@ export class WebLinkBase {
     Object.assign(this, fields);
   }
 }
+export interface WebLinkBaseInput {
+  readonly id: string;
+  readonly type?: WebLinkBaseTypeField;
+  readonly etag?: string;
+}
 export class WebLinkMini extends WebLinkBase {
   readonly url?: string;
   readonly sequenceId?: string;
@@ -2179,6 +2391,22 @@ export class Collaboration {
     Object.assign(this, fields);
   }
 }
+export interface CollaborationInput {
+  readonly id: string;
+  readonly type?: CollaborationTypeField;
+  readonly item?: FileOrFolderOrWebLink;
+  readonly accessibleBy?: GroupMiniOrUserCollaborations;
+  readonly inviteEmail?: string;
+  readonly role?: CollaborationRoleField;
+  readonly expiresAt?: string;
+  readonly isAccessOnly?: boolean;
+  readonly status?: CollaborationStatusField;
+  readonly acknowledgedAt?: string;
+  readonly createdBy?: UserCollaborations;
+  readonly createdAt?: string;
+  readonly modifiedAt?: string;
+  readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
+}
 export type CollaborationsOrderDirectionField = 'ASC' | 'DESC';
 export interface CollaborationsOrderField {
   readonly by?: string;
@@ -2386,6 +2614,13 @@ export class SearchResultsWithSharedLinks {
     Object.assign(this, fields);
   }
 }
+export interface SearchResultsWithSharedLinksInput {
+  readonly totalCount?: number;
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly type?: SearchResultsWithSharedLinksTypeField;
+  readonly entries?: readonly SearchResultWithSharedLink[];
+}
 export type SearchResultsTypeField = 'search_results_items';
 export class SearchResults {
   readonly totalCount?: number;
@@ -2399,6 +2634,13 @@ export class SearchResults {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface SearchResultsInput {
+  readonly totalCount?: number;
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly type?: SearchResultsTypeField;
+  readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
 }
 export type SearchResultsOrSearchResultsWithSharedLinks =
   | SearchResults
@@ -2578,6 +2820,11 @@ export class CompletionRuleVariable {
     Object.assign(this, fields);
   }
 }
+export interface CompletionRuleVariableInput {
+  readonly type?: CompletionRuleVariableTypeField;
+  readonly variableType?: CompletionRuleVariableVariableTypeField;
+  readonly variableValue: CompletionRuleVariableVariableValueField;
+}
 export type CollaboratorVariableTypeField = 'variable';
 export type CollaboratorVariableVariableTypeField = 'user_list';
 export type CollaboratorVariableVariableValueTypeField = 'user';
@@ -2593,6 +2840,10 @@ export class CollaboratorVariableVariableValueField {
     Object.assign(this, fields);
   }
 }
+export interface CollaboratorVariableVariableValueFieldInput {
+  readonly type?: CollaboratorVariableVariableValueTypeField;
+  readonly id: string;
+}
 export class CollaboratorVariable {
   readonly type: CollaboratorVariableTypeField =
     'variable' as CollaboratorVariableTypeField;
@@ -2606,6 +2857,11 @@ export class CollaboratorVariable {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface CollaboratorVariableInput {
+  readonly type?: CollaboratorVariableTypeField;
+  readonly variableType?: CollaboratorVariableVariableTypeField;
+  readonly variableValue: readonly CollaboratorVariableVariableValueField[];
 }
 export type KeywordSkillCardTypeField = 'skill_card';
 export type KeywordSkillCardSkillCardTypeField = 'keyword';
@@ -2626,6 +2882,10 @@ export class KeywordSkillCardSkillField {
     Object.assign(this, fields);
   }
 }
+export interface KeywordSkillCardSkillFieldInput {
+  readonly type?: KeywordSkillCardSkillTypeField;
+  readonly id: string;
+}
 export type KeywordSkillCardInvocationTypeField = 'skill_invocation';
 export class KeywordSkillCardInvocationField {
   readonly type: KeywordSkillCardInvocationTypeField =
@@ -2638,6 +2898,10 @@ export class KeywordSkillCardInvocationField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface KeywordSkillCardInvocationFieldInput {
+  readonly type?: KeywordSkillCardInvocationTypeField;
+  readonly id: string;
 }
 export interface KeywordSkillCardEntriesField {
   readonly text?: string;
@@ -2660,6 +2924,15 @@ export class KeywordSkillCard {
     Object.assign(this, fields);
   }
 }
+export interface KeywordSkillCardInput {
+  readonly createdAt?: string;
+  readonly type?: KeywordSkillCardTypeField;
+  readonly skillCardType?: KeywordSkillCardSkillCardTypeField;
+  readonly skillCardTitle?: KeywordSkillCardSkillCardTitleField;
+  readonly skill: KeywordSkillCardSkillField;
+  readonly invocation: KeywordSkillCardInvocationField;
+  readonly entries: readonly KeywordSkillCardEntriesField[];
+}
 export interface IntegrationMappingSlackOptions {
   readonly isAccessManagementDisabled?: boolean;
 }
@@ -2677,6 +2950,12 @@ export class IntegrationMappingPartnerItemSlack {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface IntegrationMappingPartnerItemSlackInput {
+  readonly type?: IntegrationMappingPartnerItemSlackTypeField;
+  readonly id: string;
+  readonly slackWorkspaceId?: string;
+  readonly slackOrgId?: string;
 }
 export type IntegrationMappingTypeField = 'integration_mapping';
 export class IntegrationMapping implements IntegrationMappingBase {
@@ -2718,6 +2997,10 @@ export class IntegrationMappingBoxItemSlack {
     Object.assign(this, fields);
   }
 }
+export interface IntegrationMappingBoxItemSlackInput {
+  readonly type?: IntegrationMappingBoxItemSlackTypeField;
+  readonly id: string;
+}
 export interface IntegrationMappingSlackCreateRequest {
   readonly partnerItem: IntegrationMappingPartnerItemSlack;
   readonly boxItem: IntegrationMappingBoxItemSlack;
@@ -2746,6 +3029,11 @@ export class RoleVariable {
     Object.assign(this, fields);
   }
 }
+export interface RoleVariableInput {
+  readonly type?: RoleVariableTypeField;
+  readonly variableType?: RoleVariableVariableTypeField;
+  readonly variableValue: RoleVariableVariableValueField;
+}
 export interface Outcome {
   readonly id: string;
   readonly collaborators?: CollaboratorVariable;
@@ -2773,6 +3061,10 @@ export class TimelineSkillCardSkillField {
     Object.assign(this, fields);
   }
 }
+export interface TimelineSkillCardSkillFieldInput {
+  readonly type?: TimelineSkillCardSkillTypeField;
+  readonly id: string;
+}
 export type TimelineSkillCardInvocationTypeField = 'skill_invocation';
 export class TimelineSkillCardInvocationField {
   readonly type: TimelineSkillCardInvocationTypeField =
@@ -2785,6 +3077,10 @@ export class TimelineSkillCardInvocationField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TimelineSkillCardInvocationFieldInput {
+  readonly type?: TimelineSkillCardInvocationTypeField;
+  readonly id: string;
 }
 export interface TimelineSkillCardEntriesAppearsField {
   readonly start?: number;
@@ -2814,6 +3110,16 @@ export class TimelineSkillCard {
     Object.assign(this, fields);
   }
 }
+export interface TimelineSkillCardInput {
+  readonly createdAt?: string;
+  readonly type?: TimelineSkillCardTypeField;
+  readonly skillCardType?: TimelineSkillCardSkillCardTypeField;
+  readonly skillCardTitle?: TimelineSkillCardSkillCardTitleField;
+  readonly skill: TimelineSkillCardSkillField;
+  readonly invocation: TimelineSkillCardInvocationField;
+  readonly duration?: number;
+  readonly entries: readonly TimelineSkillCardEntriesField[];
+}
 export type TranscriptSkillCardTypeField = 'skill_card';
 export type TranscriptSkillCardSkillCardTypeField = 'transcript';
 export interface TranscriptSkillCardSkillCardTitleField {
@@ -2833,6 +3139,10 @@ export class TranscriptSkillCardSkillField {
     Object.assign(this, fields);
   }
 }
+export interface TranscriptSkillCardSkillFieldInput {
+  readonly type?: TranscriptSkillCardSkillTypeField;
+  readonly id: string;
+}
 export type TranscriptSkillCardInvocationTypeField = 'skill_invocation';
 export class TranscriptSkillCardInvocationField {
   readonly type: TranscriptSkillCardInvocationTypeField =
@@ -2845,6 +3155,10 @@ export class TranscriptSkillCardInvocationField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TranscriptSkillCardInvocationFieldInput {
+  readonly type?: TranscriptSkillCardInvocationTypeField;
+  readonly id: string;
 }
 export interface TranscriptSkillCardEntriesAppearsField {
   readonly start?: number;
@@ -2871,6 +3185,16 @@ export class TranscriptSkillCard {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface TranscriptSkillCardInput {
+  readonly createdAt?: string;
+  readonly type?: TranscriptSkillCardTypeField;
+  readonly skillCardType?: TranscriptSkillCardSkillCardTypeField;
+  readonly skillCardTitle?: TranscriptSkillCardSkillCardTitleField;
+  readonly skill: TranscriptSkillCardSkillField;
+  readonly invocation: TranscriptSkillCardInvocationField;
+  readonly duration?: number;
+  readonly entries: readonly TranscriptSkillCardEntriesField[];
 }
 export type StatusSkillCardTypeField = 'skill_card';
 export type StatusSkillCardSkillCardTypeField = 'status';
@@ -2901,6 +3225,10 @@ export class StatusSkillCardSkillField {
     Object.assign(this, fields);
   }
 }
+export interface StatusSkillCardSkillFieldInput {
+  readonly type?: StatusSkillCardSkillTypeField;
+  readonly id: string;
+}
 export type StatusSkillCardInvocationTypeField = 'skill_invocation';
 export class StatusSkillCardInvocationField {
   readonly type: StatusSkillCardInvocationTypeField =
@@ -2913,6 +3241,10 @@ export class StatusSkillCardInvocationField {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface StatusSkillCardInvocationFieldInput {
+  readonly type?: StatusSkillCardInvocationTypeField;
+  readonly id: string;
 }
 export class StatusSkillCard {
   readonly createdAt?: string;
@@ -2931,6 +3263,15 @@ export class StatusSkillCard {
   ) {
     Object.assign(this, fields);
   }
+}
+export interface StatusSkillCardInput {
+  readonly createdAt?: string;
+  readonly type?: StatusSkillCardTypeField;
+  readonly skillCardType?: StatusSkillCardSkillCardTypeField;
+  readonly skillCardTitle?: StatusSkillCardSkillCardTitleField;
+  readonly status: StatusSkillCardStatusField;
+  readonly skill: StatusSkillCardSkillField;
+  readonly invocation: StatusSkillCardInvocationField;
 }
 export type KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard =
   KeywordSkillCard | StatusSkillCard | TimelineSkillCard | TranscriptSkillCard;
@@ -3512,6 +3853,40 @@ export function deserializePostOAuth2TokenRefreshAccessToken(
     clientSecret: clientSecret,
     refreshToken: refreshToken,
   } satisfies PostOAuth2TokenRefreshAccessToken;
+}
+export function serializePostOAuth2TokenRefreshAccessTokenInput(
+  val: any
+): SerializedData {
+  return {
+    ['grantType']:
+      val.grantType == void 0
+        ? void 0
+        : serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
+            val.grantType
+          ),
+    ['client_id']: val.clientId,
+    ['client_secret']: val.clientSecret,
+    ['refresh_token']: val.refreshToken,
+  };
+}
+export function deserializePostOAuth2TokenRefreshAccessTokenInput(
+  val: any
+): PostOAuth2TokenRefreshAccessTokenInput {
+  const grantType: undefined | PostOAuth2TokenRefreshAccessTokenGrantTypeField =
+    val.grantType == void 0
+      ? void 0
+      : deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
+          val.grantType
+        );
+  const clientId: string = val.client_id;
+  const clientSecret: string = val.client_secret;
+  const refreshToken: string = val.refresh_token;
+  return {
+    grantType: grantType,
+    clientId: clientId,
+    clientSecret: clientSecret,
+    refreshToken: refreshToken,
+  } satisfies PostOAuth2TokenRefreshAccessTokenInput;
 }
 export function serializePostOAuth2Revoke(val: any): SerializedData {
   return {
@@ -4321,6 +4696,69 @@ export function deserializeClassificationTemplateFieldsField(
     options: options,
   } satisfies ClassificationTemplateFieldsField;
 }
+export function serializeClassificationTemplateFieldsFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeClassificationTemplateFieldsTypeField(val.type),
+    ['key']:
+      val.key == void 0
+        ? void 0
+        : serializeClassificationTemplateFieldsKeyField(val.key),
+    ['displayName']:
+      val.displayName == void 0
+        ? void 0
+        : serializeClassificationTemplateFieldsDisplayNameField(
+            val.displayName
+          ),
+    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['options']: val.options.map(function (
+      item: ClassificationTemplateFieldsOptionsField
+    ): any {
+      return serializeClassificationTemplateFieldsOptionsField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeClassificationTemplateFieldsFieldInput(
+  val: any
+): ClassificationTemplateFieldsFieldInput {
+  const id: string = val.id;
+  const type: undefined | ClassificationTemplateFieldsTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeClassificationTemplateFieldsTypeField(val.type);
+  const key: undefined | ClassificationTemplateFieldsKeyField =
+    val.key == void 0
+      ? void 0
+      : deserializeClassificationTemplateFieldsKeyField(val.key);
+  const displayName: undefined | ClassificationTemplateFieldsDisplayNameField =
+    val.displayName == void 0
+      ? void 0
+      : deserializeClassificationTemplateFieldsDisplayNameField(
+          val.displayName
+        );
+  const hidden: undefined | boolean =
+    val.hidden == void 0 ? void 0 : val.hidden;
+  const options: readonly ClassificationTemplateFieldsOptionsField[] = sdIsList(
+    val.options
+  )
+    ? (val.options.map(function (itm: SerializedData): any {
+        return deserializeClassificationTemplateFieldsOptionsField(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    id: id,
+    type: type,
+    key: key,
+    displayName: displayName,
+    hidden: hidden,
+    options: options,
+  } satisfies ClassificationTemplateFieldsFieldInput;
+}
 export function serializeClassificationTemplate(val: any): SerializedData {
   return {
     ['id']: val.id,
@@ -4376,6 +4814,73 @@ export function deserializeClassificationTemplate(
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
     fields: fields,
   } satisfies ClassificationTemplate;
+}
+export function serializeClassificationTemplateInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeClassificationTemplateTypeField(val.type),
+    ['scope']: val.scope,
+    ['templateKey']:
+      val.templateKey == void 0
+        ? void 0
+        : serializeClassificationTemplateTemplateKeyField(val.templateKey),
+    ['displayName']:
+      val.displayName == void 0
+        ? void 0
+        : serializeClassificationTemplateDisplayNameField(val.displayName),
+    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['copyInstanceOnItemCopy']:
+      val.copyInstanceOnItemCopy == void 0
+        ? void 0
+        : val.copyInstanceOnItemCopy,
+    ['fields']: val.fields.map(function (
+      item: ClassificationTemplateFieldsField
+    ): any {
+      return serializeClassificationTemplateFieldsField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeClassificationTemplateInput(
+  val: any
+): ClassificationTemplateInput {
+  const id: string = val.id;
+  const type: undefined | ClassificationTemplateTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeClassificationTemplateTypeField(val.type);
+  const scope: string = val.scope;
+  const templateKey: undefined | ClassificationTemplateTemplateKeyField =
+    val.templateKey == void 0
+      ? void 0
+      : deserializeClassificationTemplateTemplateKeyField(val.templateKey);
+  const displayName: undefined | ClassificationTemplateDisplayNameField =
+    val.displayName == void 0
+      ? void 0
+      : deserializeClassificationTemplateDisplayNameField(val.displayName);
+  const hidden: undefined | boolean =
+    val.hidden == void 0 ? void 0 : val.hidden;
+  const copyInstanceOnItemCopy: undefined | boolean =
+    val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+  const fields: readonly ClassificationTemplateFieldsField[] = sdIsList(
+    val.fields
+  )
+    ? (val.fields.map(function (itm: SerializedData): any {
+        return deserializeClassificationTemplateFieldsField(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    id: id,
+    type: type,
+    scope: scope,
+    templateKey: templateKey,
+    displayName: displayName,
+    hidden: hidden,
+    copyInstanceOnItemCopy: copyInstanceOnItemCopy,
+    fields: fields,
+  } satisfies ClassificationTemplateInput;
 }
 export function serializeCollaborationAllowlistEntryTypeField(
   val: any
@@ -4883,6 +5388,21 @@ export function deserializeFileBase(val: any): FileBase {
   const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FileBase;
 }
+export function serializeFileBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeFileBaseTypeField(val.type),
+  };
+}
+export function deserializeFileBaseInput(val: any): FileBaseInput {
+  const id: string = val.id;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const type: undefined | FileBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeFileBaseTypeField(val.type);
+  return { id: id, etag: etag, type: type } satisfies FileBaseInput;
+}
 export function serializeFileVersionBaseTypeField(val: any): SerializedData {
   return val;
 }
@@ -4913,6 +5433,21 @@ export function deserializeFileVersionBase(val: any): FileVersionBase {
     val.type
   );
   return { id: id, type: type } satisfies FileVersionBase;
+}
+export function serializeFileVersionBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeFileVersionBaseTypeField(val.type),
+  };
+}
+export function deserializeFileVersionBaseInput(
+  val: any
+): FileVersionBaseInput {
+  const id: string = val.id;
+  const type: undefined | FileVersionBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeFileVersionBaseTypeField(val.type);
+  return { id: id, type: type } satisfies FileVersionBaseInput;
 }
 export function serializeFileVersionMini(val: any): SerializedData {
   const base: any = serializeFileVersionBase(val);
@@ -5118,6 +5653,21 @@ export function deserializeFolderBase(val: any): FolderBase {
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FolderBase;
+}
+export function serializeFolderBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeFolderBaseTypeField(val.type),
+  };
+}
+export function deserializeFolderBaseInput(val: any): FolderBaseInput {
+  const id: string = val.id;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const type: undefined | FolderBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeFolderBaseTypeField(val.type);
+  return { id: id, etag: etag, type: type } satisfies FolderBaseInput;
 }
 export function serializeFolderMini(val: any): SerializedData {
   const base: any = serializeFolderBase(val);
@@ -5526,6 +6076,19 @@ export function deserializeGroupBase(val: any): GroupBase {
   const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return { id: id, type: type } satisfies GroupBase;
 }
+export function serializeGroupBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeGroupBaseTypeField(val.type),
+  };
+}
+export function deserializeGroupBaseInput(val: any): GroupBaseInput {
+  const id: string = val.id;
+  const type: undefined | GroupBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
+  return { id: id, type: type } satisfies GroupBaseInput;
+}
 export function serializeGroupMiniGroupTypeField(val: any): SerializedData {
   return val;
 }
@@ -5883,6 +6446,25 @@ export function deserializeLegalHoldPolicyMini(val: any): LegalHoldPolicyMini {
     deserializeLegalHoldPolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies LegalHoldPolicyMini;
 }
+export function serializeLegalHoldPolicyMiniInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeLegalHoldPolicyMiniTypeField(val.type),
+  };
+}
+export function deserializeLegalHoldPolicyMiniInput(
+  val: any
+): LegalHoldPolicyMiniInput {
+  const id: string = val.id;
+  const type: undefined | LegalHoldPolicyMiniTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeLegalHoldPolicyMiniTypeField(val.type);
+  return { id: id, type: type } satisfies LegalHoldPolicyMiniInput;
+}
 export function serializeLegalHoldPolicyAssignmentBaseTypeField(
   val: any
 ): SerializedData {
@@ -6177,6 +6759,57 @@ export function deserializeMetadataCascadePolicy(
     scope: scope,
     templateKey: templateKey,
   } satisfies MetadataCascadePolicy;
+}
+export function serializeMetadataCascadePolicyInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeMetadataCascadePolicyTypeField(val.type),
+    ['owner_enterprise']:
+      val.ownerEnterprise == void 0
+        ? void 0
+        : serializeMetadataCascadePolicyOwnerEnterpriseField(
+            val.ownerEnterprise
+          ),
+    ['parent']:
+      val.parent == void 0
+        ? void 0
+        : serializeMetadataCascadePolicyParentField(val.parent),
+    ['scope']: val.scope == void 0 ? void 0 : val.scope,
+    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+  };
+}
+export function deserializeMetadataCascadePolicyInput(
+  val: any
+): MetadataCascadePolicyInput {
+  const id: string = val.id;
+  const type: undefined | MetadataCascadePolicyTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeMetadataCascadePolicyTypeField(val.type);
+  const ownerEnterprise: undefined | MetadataCascadePolicyOwnerEnterpriseField =
+    val.owner_enterprise == void 0
+      ? void 0
+      : deserializeMetadataCascadePolicyOwnerEnterpriseField(
+          val.owner_enterprise
+        );
+  const parent: undefined | MetadataCascadePolicyParentField =
+    val.parent == void 0
+      ? void 0
+      : deserializeMetadataCascadePolicyParentField(val.parent);
+  const scope: undefined | string = val.scope == void 0 ? void 0 : val.scope;
+  const templateKey: undefined | string =
+    val.templateKey == void 0 ? void 0 : val.templateKey;
+  return {
+    id: id,
+    type: type,
+    ownerEnterprise: ownerEnterprise,
+    parent: parent,
+    scope: scope,
+    templateKey: templateKey,
+  } satisfies MetadataCascadePolicyInput;
 }
 export function serializeMetadataCascadePolicies(val: any): SerializedData {
   return {
@@ -6491,6 +7124,65 @@ export function deserializeMetadataTemplate(val: any): MetadataTemplate {
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
   } satisfies MetadataTemplate;
 }
+export function serializeMetadataTemplateInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeMetadataTemplateTypeField(val.type),
+    ['scope']: val.scope == void 0 ? void 0 : val.scope,
+    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['displayName']: val.displayName == void 0 ? void 0 : val.displayName,
+    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['fields']:
+      val.fields == void 0
+        ? void 0
+        : (val.fields.map(function (item: MetadataTemplateFieldsField): any {
+            return serializeMetadataTemplateFieldsField(item);
+          }) as readonly any[]),
+    ['copyInstanceOnItemCopy']:
+      val.copyInstanceOnItemCopy == void 0
+        ? void 0
+        : val.copyInstanceOnItemCopy,
+  };
+}
+export function deserializeMetadataTemplateInput(
+  val: any
+): MetadataTemplateInput {
+  const id: string = val.id;
+  const type: undefined | MetadataTemplateTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeMetadataTemplateTypeField(val.type);
+  const scope: undefined | string = val.scope == void 0 ? void 0 : val.scope;
+  const templateKey: undefined | string =
+    val.templateKey == void 0 ? void 0 : val.templateKey;
+  const displayName: undefined | string =
+    val.displayName == void 0 ? void 0 : val.displayName;
+  const hidden: undefined | boolean =
+    val.hidden == void 0 ? void 0 : val.hidden;
+  const fields: undefined | readonly MetadataTemplateFieldsField[] =
+    val.fields == void 0
+      ? void 0
+      : sdIsList(val.fields)
+      ? (val.fields.map(function (itm: SerializedData): any {
+          return deserializeMetadataTemplateFieldsField(itm);
+        }) as readonly any[])
+      : [];
+  const copyInstanceOnItemCopy: undefined | boolean =
+    val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+  return {
+    id: id,
+    type: type,
+    scope: scope,
+    templateKey: templateKey,
+    displayName: displayName,
+    hidden: hidden,
+    fields: fields,
+    copyInstanceOnItemCopy: copyInstanceOnItemCopy,
+  } satisfies MetadataTemplateInput;
+}
 export function serializeMetadataTemplates(val: any): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -6605,6 +7297,25 @@ export function deserializeRetentionPolicyBase(val: any): RetentionPolicyBase {
   const type: RetentionPolicyBaseTypeField =
     deserializeRetentionPolicyBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyBase;
+}
+export function serializeRetentionPolicyBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeRetentionPolicyBaseTypeField(val.type),
+  };
+}
+export function deserializeRetentionPolicyBaseInput(
+  val: any
+): RetentionPolicyBaseInput {
+  const id: string = val.id;
+  const type: undefined | RetentionPolicyBaseTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeRetentionPolicyBaseTypeField(val.type);
+  return { id: id, type: type } satisfies RetentionPolicyBaseInput;
 }
 export function serializeRetentionPolicyMiniDispositionActionField(
   val: any
@@ -6821,6 +7532,27 @@ export function deserializeRetentionPolicyAssignmentBase(
   const type: RetentionPolicyAssignmentBaseTypeField =
     deserializeRetentionPolicyAssignmentBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
+}
+export function serializeRetentionPolicyAssignmentBaseInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeRetentionPolicyAssignmentBaseTypeField(val.type),
+  };
+}
+export function deserializeRetentionPolicyAssignmentBaseInput(
+  val: any
+): RetentionPolicyAssignmentBaseInput {
+  const id: string = val.id;
+  const type: undefined | RetentionPolicyAssignmentBaseTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeRetentionPolicyAssignmentBaseTypeField(val.type);
+  return { id: id, type: type } satisfies RetentionPolicyAssignmentBaseInput;
 }
 export function serializeShieldInformationBarrierBaseTypeField(
   val: any
@@ -7216,6 +7948,25 @@ export function deserializeStoragePolicyMini(val: any): StoragePolicyMini {
     deserializeStoragePolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies StoragePolicyMini;
 }
+export function serializeStoragePolicyMiniInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeStoragePolicyMiniTypeField(val.type),
+  };
+}
+export function deserializeStoragePolicyMiniInput(
+  val: any
+): StoragePolicyMiniInput {
+  const id: string = val.id;
+  const type: undefined | StoragePolicyMiniTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeStoragePolicyMiniTypeField(val.type);
+  return { id: id, type: type } satisfies StoragePolicyMiniInput;
+}
 export function serializeStoragePolicyAssignmentTypeField(
   val: any
 ): SerializedData {
@@ -7288,6 +8039,48 @@ export function deserializeStoragePolicyAssignment(
     storagePolicy: storagePolicy,
     assignedTo: assignedTo,
   } satisfies StoragePolicyAssignment;
+}
+export function serializeStoragePolicyAssignmentInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeStoragePolicyAssignmentTypeField(val.type),
+    ['storage_policy']:
+      val.storagePolicy == void 0
+        ? void 0
+        : serializeStoragePolicyMini(val.storagePolicy),
+    ['assigned_to']:
+      val.assignedTo == void 0
+        ? void 0
+        : serializeStoragePolicyAssignmentAssignedToField(val.assignedTo),
+  };
+}
+export function deserializeStoragePolicyAssignmentInput(
+  val: any
+): StoragePolicyAssignmentInput {
+  const id: string = val.id;
+  const type: undefined | StoragePolicyAssignmentTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeStoragePolicyAssignmentTypeField(val.type);
+  const storagePolicy: undefined | StoragePolicyMini =
+    val.storage_policy == void 0
+      ? void 0
+      : deserializeStoragePolicyMini(val.storage_policy);
+  const assignedTo: undefined | StoragePolicyAssignmentAssignedToField =
+    val.assigned_to == void 0
+      ? void 0
+      : deserializeStoragePolicyAssignmentAssignedToField(val.assigned_to);
+  return {
+    id: id,
+    type: type,
+    storagePolicy: storagePolicy,
+    assignedTo: assignedTo,
+  } satisfies StoragePolicyAssignmentInput;
 }
 export function serializeStoragePolicyAssignments(val: any): SerializedData {
   return {
@@ -7402,6 +8195,25 @@ export function deserializeTermsOfServiceBase(val: any): TermsOfServiceBase {
   const type: TermsOfServiceBaseTypeField =
     deserializeTermsOfServiceBaseTypeField(val.type);
   return { id: id, type: type } satisfies TermsOfServiceBase;
+}
+export function serializeTermsOfServiceBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTermsOfServiceBaseTypeField(val.type),
+  };
+}
+export function deserializeTermsOfServiceBaseInput(
+  val: any
+): TermsOfServiceBaseInput {
+  const id: string = val.id;
+  const type: undefined | TermsOfServiceBaseTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTermsOfServiceBaseTypeField(val.type);
+  return { id: id, type: type } satisfies TermsOfServiceBaseInput;
 }
 export function serializeTermsOfServiceStatusField(val: any): SerializedData {
   return val;
@@ -7877,6 +8689,19 @@ export function deserializeUserBase(val: any): UserBase {
   const id: string = val.id;
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return { id: id, type: type } satisfies UserBase;
+}
+export function serializeUserBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeUserBaseTypeField(val.type),
+  };
+}
+export function deserializeUserBaseInput(val: any): UserBaseInput {
+  const id: string = val.id;
+  const type: undefined | UserBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeUserBaseTypeField(val.type);
+  return { id: id, type: type } satisfies UserBaseInput;
 }
 export function serializeUserIntegrationMappings(val: any): SerializedData {
   const base: any = serializeUserBase(val);
@@ -8676,6 +9501,108 @@ export function deserializeTrashFileRestored(val: any): TrashFileRestored {
     itemStatus: itemStatus,
   } satisfies TrashFileRestored;
 }
+export function serializeTrashFileRestoredInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTrashFileRestoredTypeField(val.type),
+    ['sequence_id']: val.sequenceId,
+    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['sha1']: val.sha1,
+    ['file_version']:
+      val.fileVersion == void 0
+        ? void 0
+        : serializeFileVersionMini(val.fileVersion),
+    ['description']: val.description,
+    ['size']: val.size,
+    ['path_collection']: serializeTrashFileRestoredPathCollectionField(
+      val.pathCollection
+    ),
+    ['created_at']: val.createdAt,
+    ['modified_at']: val.modifiedAt,
+    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
+    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['content_created_at']:
+      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+    ['content_modified_at']:
+      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+    ['created_by']:
+      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+    ['modified_by']: serializeUserMini(val.modifiedBy),
+    ['owned_by']: serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
+    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['item_status']: serializeTrashFileRestoredItemStatusField(val.itemStatus),
+  };
+}
+export function deserializeTrashFileRestoredInput(
+  val: any
+): TrashFileRestoredInput {
+  const id: string = val.id;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const type: undefined | TrashFileRestoredTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTrashFileRestoredTypeField(val.type);
+  const sequenceId: string = val.sequence_id;
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  const sha1: string = val.sha1;
+  const fileVersion: undefined | FileVersionMini =
+    val.file_version == void 0
+      ? void 0
+      : deserializeFileVersionMini(val.file_version);
+  const description: string = val.description;
+  const size: number = val.size;
+  const pathCollection: TrashFileRestoredPathCollectionField =
+    deserializeTrashFileRestoredPathCollectionField(val.path_collection);
+  const createdAt: string = val.created_at;
+  const modifiedAt: string = val.modified_at;
+  const trashedAt: undefined | string =
+    val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  const purgedAt: undefined | string =
+    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const contentCreatedAt: undefined | string =
+    val.content_created_at == void 0 ? void 0 : val.content_created_at;
+  const contentModifiedAt: undefined | string =
+    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdBy: undefined | UserMini =
+    val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+  const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+  const sharedLink: undefined | string =
+    val.shared_link == void 0 ? void 0 : val.shared_link;
+  const parent: undefined | FolderMini =
+    val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  const itemStatus: TrashFileRestoredItemStatusField =
+    deserializeTrashFileRestoredItemStatusField(val.item_status);
+  return {
+    id: id,
+    etag: etag,
+    type: type,
+    sequenceId: sequenceId,
+    name: name,
+    sha1: sha1,
+    fileVersion: fileVersion,
+    description: description,
+    size: size,
+    pathCollection: pathCollection,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+    trashedAt: trashedAt,
+    purgedAt: purgedAt,
+    contentCreatedAt: contentCreatedAt,
+    contentModifiedAt: contentModifiedAt,
+    createdBy: createdBy,
+    modifiedBy: modifiedBy,
+    ownedBy: ownedBy,
+    sharedLink: sharedLink,
+    parent: parent,
+    itemStatus: itemStatus,
+  } satisfies TrashFileRestoredInput;
+}
 export function serializeTrashWebLinkTypeField(val: any): SerializedData {
   return val;
 }
@@ -9104,6 +10031,96 @@ export function deserializeTrashFolder(val: any): TrashFolder {
     itemStatus: itemStatus,
   } satisfies TrashFolder;
 }
+export function serializeTrashFolderInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeTrashFolderTypeField(val.type),
+    ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
+    ['name']: val.name,
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['description']: val.description,
+    ['size']: val.size,
+    ['path_collection']: serializeTrashFolderPathCollectionField(
+      val.pathCollection
+    ),
+    ['created_by']: serializeUserMini(val.createdBy),
+    ['modified_by']: serializeUserMini(val.modifiedBy),
+    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
+    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['content_created_at']:
+      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+    ['content_modified_at']:
+      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+    ['owned_by']: serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
+    ['folder_upload_email']:
+      val.folderUploadEmail == void 0 ? void 0 : val.folderUploadEmail,
+    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['item_status']: serializeTrashFolderItemStatusField(val.itemStatus),
+  };
+}
+export function deserializeTrashFolderInput(val: any): TrashFolderInput {
+  const id: string = val.id;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const type: undefined | TrashFolderTypeField =
+    val.type == void 0 ? void 0 : deserializeTrashFolderTypeField(val.type);
+  const sequenceId: undefined | string =
+    val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  const name: string = val.name;
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const modifiedAt: undefined | string =
+    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const description: string = val.description;
+  const size: number = val.size;
+  const pathCollection: TrashFolderPathCollectionField =
+    deserializeTrashFolderPathCollectionField(val.path_collection);
+  const createdBy: UserMini = deserializeUserMini(val.created_by);
+  const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+  const trashedAt: undefined | string =
+    val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  const purgedAt: undefined | string =
+    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const contentCreatedAt: undefined | string =
+    val.content_created_at == void 0 ? void 0 : val.content_created_at;
+  const contentModifiedAt: undefined | string =
+    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+  const sharedLink: undefined | string =
+    val.shared_link == void 0 ? void 0 : val.shared_link;
+  const folderUploadEmail: undefined | string =
+    val.folder_upload_email == void 0 ? void 0 : val.folder_upload_email;
+  const parent: undefined | FolderMini =
+    val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  const itemStatus: TrashFolderItemStatusField =
+    deserializeTrashFolderItemStatusField(val.item_status);
+  return {
+    id: id,
+    etag: etag,
+    type: type,
+    sequenceId: sequenceId,
+    name: name,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+    description: description,
+    size: size,
+    pathCollection: pathCollection,
+    createdBy: createdBy,
+    modifiedBy: modifiedBy,
+    trashedAt: trashedAt,
+    purgedAt: purgedAt,
+    contentCreatedAt: contentCreatedAt,
+    contentModifiedAt: contentModifiedAt,
+    ownedBy: ownedBy,
+    sharedLink: sharedLink,
+    folderUploadEmail: folderUploadEmail,
+    parent: parent,
+    itemStatus: itemStatus,
+  } satisfies TrashFolderInput;
+}
 export function serializeTrashFileTypeField(val: any): SerializedData {
   return val;
 }
@@ -9321,6 +10338,102 @@ export function deserializeTrashFile(val: any): TrashFile {
     itemStatus: itemStatus,
   } satisfies TrashFile;
 }
+export function serializeTrashFileInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeTrashFileTypeField(val.type),
+    ['sequence_id']: val.sequenceId,
+    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['sha1']: val.sha1,
+    ['file_version']:
+      val.fileVersion == void 0
+        ? void 0
+        : serializeFileVersionMini(val.fileVersion),
+    ['description']: val.description,
+    ['size']: val.size,
+    ['path_collection']: serializeTrashFilePathCollectionField(
+      val.pathCollection
+    ),
+    ['created_at']: val.createdAt,
+    ['modified_at']: val.modifiedAt,
+    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
+    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['content_created_at']:
+      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+    ['content_modified_at']:
+      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+    ['created_by']:
+      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+    ['modified_by']: serializeUserMini(val.modifiedBy),
+    ['owned_by']: serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
+    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['item_status']: serializeTrashFileItemStatusField(val.itemStatus),
+  };
+}
+export function deserializeTrashFileInput(val: any): TrashFileInput {
+  const id: string = val.id;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const type: undefined | TrashFileTypeField =
+    val.type == void 0 ? void 0 : deserializeTrashFileTypeField(val.type);
+  const sequenceId: string = val.sequence_id;
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  const sha1: string = val.sha1;
+  const fileVersion: undefined | FileVersionMini =
+    val.file_version == void 0
+      ? void 0
+      : deserializeFileVersionMini(val.file_version);
+  const description: string = val.description;
+  const size: number = val.size;
+  const pathCollection: TrashFilePathCollectionField =
+    deserializeTrashFilePathCollectionField(val.path_collection);
+  const createdAt: string = val.created_at;
+  const modifiedAt: string = val.modified_at;
+  const trashedAt: undefined | string =
+    val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  const purgedAt: undefined | string =
+    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const contentCreatedAt: undefined | string =
+    val.content_created_at == void 0 ? void 0 : val.content_created_at;
+  const contentModifiedAt: undefined | string =
+    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdBy: undefined | UserMini =
+    val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+  const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+  const sharedLink: undefined | string =
+    val.shared_link == void 0 ? void 0 : val.shared_link;
+  const parent: undefined | FolderMini =
+    val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  const itemStatus: TrashFileItemStatusField =
+    deserializeTrashFileItemStatusField(val.item_status);
+  return {
+    id: id,
+    etag: etag,
+    type: type,
+    sequenceId: sequenceId,
+    name: name,
+    sha1: sha1,
+    fileVersion: fileVersion,
+    description: description,
+    size: size,
+    pathCollection: pathCollection,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+    trashedAt: trashedAt,
+    purgedAt: purgedAt,
+    contentCreatedAt: contentCreatedAt,
+    contentModifiedAt: contentModifiedAt,
+    createdBy: createdBy,
+    modifiedBy: modifiedBy,
+    ownedBy: ownedBy,
+    sharedLink: sharedLink,
+    parent: parent,
+    itemStatus: itemStatus,
+  } satisfies TrashFileInput;
+}
 export function serializeTermsOfServiceUserStatusTypeField(
   val: any
 ): SerializedData {
@@ -9377,6 +10490,50 @@ export function deserializeTermsOfServiceUserStatus(
     createdAt: createdAt,
     modifiedAt: modifiedAt,
   } satisfies TermsOfServiceUserStatus;
+}
+export function serializeTermsOfServiceUserStatusInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTermsOfServiceUserStatusTypeField(val.type),
+    ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
+    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
+    ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+  };
+}
+export function deserializeTermsOfServiceUserStatusInput(
+  val: any
+): TermsOfServiceUserStatusInput {
+  const id: string = val.id;
+  const type: undefined | TermsOfServiceUserStatusTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTermsOfServiceUserStatusTypeField(val.type);
+  const tos: undefined | TermsOfServiceBase =
+    val.tos == void 0 ? void 0 : deserializeTermsOfServiceBase(val.tos);
+  const user: undefined | UserMini =
+    val.user == void 0 ? void 0 : deserializeUserMini(val.user);
+  const isAccepted: undefined | boolean =
+    val.is_accepted == void 0 ? void 0 : val.is_accepted;
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const modifiedAt: undefined | string =
+    val.modified_at == void 0 ? void 0 : val.modified_at;
+  return {
+    id: id,
+    type: type,
+    tos: tos,
+    user: user,
+    isAccepted: isAccepted,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+  } satisfies TermsOfServiceUserStatusInput;
 }
 export function serializeTermsOfServiceUserStatuses(val: any): SerializedData {
   return {
@@ -9831,6 +10988,81 @@ export function deserializeRetentionPolicyAssignment(
     assignedAt: assignedAt,
     startDateField: startDateField,
   } satisfies RetentionPolicyAssignment;
+}
+export function serializeRetentionPolicyAssignmentInput(
+  val: any
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeRetentionPolicyAssignmentTypeField(val.type),
+    ['retention_policy']:
+      val.retentionPolicy == void 0
+        ? void 0
+        : serializeRetentionPolicyMini(val.retentionPolicy),
+    ['assigned_to']:
+      val.assignedTo == void 0
+        ? void 0
+        : serializeRetentionPolicyAssignmentAssignedToField(val.assignedTo),
+    ['filter_fields']:
+      val.filterFields == void 0
+        ? void 0
+        : (val.filterFields.map(function (
+            item: RetentionPolicyAssignmentFilterFieldsField
+          ): any {
+            return serializeRetentionPolicyAssignmentFilterFieldsField(item);
+          }) as readonly any[]),
+    ['assigned_by']:
+      val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
+    ['assigned_at']: val.assignedAt == void 0 ? void 0 : val.assignedAt,
+    ['start_date_field']:
+      val.startDateField == void 0 ? void 0 : val.startDateField,
+  };
+}
+export function deserializeRetentionPolicyAssignmentInput(
+  val: any
+): RetentionPolicyAssignmentInput {
+  const id: string = val.id;
+  const type: undefined | RetentionPolicyAssignmentTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeRetentionPolicyAssignmentTypeField(val.type);
+  const retentionPolicy: undefined | RetentionPolicyMini =
+    val.retention_policy == void 0
+      ? void 0
+      : deserializeRetentionPolicyMini(val.retention_policy);
+  const assignedTo: undefined | RetentionPolicyAssignmentAssignedToField =
+    val.assigned_to == void 0
+      ? void 0
+      : deserializeRetentionPolicyAssignmentAssignedToField(val.assigned_to);
+  const filterFields:
+    | undefined
+    | readonly RetentionPolicyAssignmentFilterFieldsField[] =
+    val.filter_fields == void 0
+      ? void 0
+      : sdIsList(val.filter_fields)
+      ? (val.filter_fields.map(function (itm: SerializedData): any {
+          return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
+        }) as readonly any[])
+      : [];
+  const assignedBy: undefined | UserMini =
+    val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
+  const assignedAt: undefined | string =
+    val.assigned_at == void 0 ? void 0 : val.assigned_at;
+  const startDateField: undefined | string =
+    val.start_date_field == void 0 ? void 0 : val.start_date_field;
+  return {
+    id: id,
+    type: type,
+    retentionPolicy: retentionPolicy,
+    assignedTo: assignedTo,
+    filterFields: filterFields,
+    assignedBy: assignedBy,
+    assignedAt: assignedAt,
+    startDateField: startDateField,
+  } satisfies RetentionPolicyAssignmentInput;
 }
 export function serializeRetentionPolicyAssignments(val: any): SerializedData {
   return {
@@ -10366,6 +11598,53 @@ export function deserializeInvite(val: any): Invite {
     modifiedAt: modifiedAt,
   } satisfies Invite;
 }
+export function serializeInviteInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']: val.type == void 0 ? void 0 : serializeInviteTypeField(val.type),
+    ['invited_to']:
+      val.invitedTo == void 0
+        ? void 0
+        : serializeInviteInvitedToField(val.invitedTo),
+    ['actionable_by']:
+      val.actionableBy == void 0 ? void 0 : serializeUserMini(val.actionableBy),
+    ['invited_by']:
+      val.invitedBy == void 0 ? void 0 : serializeUserMini(val.invitedBy),
+    ['status']: val.status == void 0 ? void 0 : val.status,
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+  };
+}
+export function deserializeInviteInput(val: any): InviteInput {
+  const id: string = val.id;
+  const type: undefined | InviteTypeField =
+    val.type == void 0 ? void 0 : deserializeInviteTypeField(val.type);
+  const invitedTo: undefined | InviteInvitedToField =
+    val.invited_to == void 0
+      ? void 0
+      : deserializeInviteInvitedToField(val.invited_to);
+  const actionableBy: undefined | UserMini =
+    val.actionable_by == void 0
+      ? void 0
+      : deserializeUserMini(val.actionable_by);
+  const invitedBy: undefined | UserMini =
+    val.invited_by == void 0 ? void 0 : deserializeUserMini(val.invited_by);
+  const status: undefined | string = val.status == void 0 ? void 0 : val.status;
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const modifiedAt: undefined | string =
+    val.modified_at == void 0 ? void 0 : val.modified_at;
+  return {
+    id: id,
+    type: type,
+    invitedTo: invitedTo,
+    actionableBy: actionableBy,
+    invitedBy: invitedBy,
+    status: status,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+  } satisfies InviteInput;
+}
 export function serializeGroupMembershipTypeField(val: any): SerializedData {
   return val;
 }
@@ -10859,6 +12138,79 @@ export function deserializeFileRequest(val: any): FileRequest {
     updatedBy: updatedBy,
     updatedAt: updatedAt,
   } satisfies FileRequest;
+}
+export function serializeFileRequestInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeFileRequestTypeField(val.type),
+    ['title']: val.title == void 0 ? void 0 : val.title,
+    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['status']:
+      val.status == void 0
+        ? void 0
+        : serializeFileRequestStatusField(val.status),
+    ['is_email_required']:
+      val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
+    ['is_description_required']:
+      val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
+    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['folder']: serializeFolderMini(val.folder),
+    ['url']: val.url == void 0 ? void 0 : val.url,
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['created_by']:
+      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+    ['created_at']: val.createdAt,
+    ['updated_by']:
+      val.updatedBy == void 0 ? void 0 : serializeUserMini(val.updatedBy),
+    ['updated_at']: val.updatedAt,
+  };
+}
+export function deserializeFileRequestInput(val: any): FileRequestInput {
+  const id: string = val.id;
+  const type: undefined | FileRequestTypeField =
+    val.type == void 0 ? void 0 : deserializeFileRequestTypeField(val.type);
+  const title: undefined | string = val.title == void 0 ? void 0 : val.title;
+  const description: undefined | string =
+    val.description == void 0 ? void 0 : val.description;
+  const status: undefined | FileRequestStatusField =
+    val.status == void 0
+      ? void 0
+      : deserializeFileRequestStatusField(val.status);
+  const isEmailRequired: undefined | boolean =
+    val.is_email_required == void 0 ? void 0 : val.is_email_required;
+  const isDescriptionRequired: undefined | boolean =
+    val.is_description_required == void 0
+      ? void 0
+      : val.is_description_required;
+  const expiresAt: undefined | string =
+    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const folder: FolderMini = deserializeFolderMini(val.folder);
+  const url: undefined | string = val.url == void 0 ? void 0 : val.url;
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  const createdBy: undefined | UserMini =
+    val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  const createdAt: string = val.created_at;
+  const updatedBy: undefined | UserMini =
+    val.updated_by == void 0 ? void 0 : deserializeUserMini(val.updated_by);
+  const updatedAt: string = val.updated_at;
+  return {
+    id: id,
+    type: type,
+    title: title,
+    description: description,
+    status: status,
+    isEmailRequired: isEmailRequired,
+    isDescriptionRequired: isDescriptionRequired,
+    expiresAt: expiresAt,
+    folder: folder,
+    url: url,
+    etag: etag,
+    createdBy: createdBy,
+    createdAt: createdAt,
+    updatedBy: updatedBy,
+    updatedAt: updatedAt,
+  } satisfies FileRequestInput;
 }
 export function serializeFilePathCollectionField(val: any): SerializedData {
   return {
@@ -13485,6 +14837,21 @@ export function deserializeWebLinkBase(val: any): WebLinkBase {
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return { id: id, type: type, etag: etag } satisfies WebLinkBase;
 }
+export function serializeWebLinkBaseInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeWebLinkBaseTypeField(val.type),
+    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+  };
+}
+export function deserializeWebLinkBaseInput(val: any): WebLinkBaseInput {
+  const id: string = val.id;
+  const type: undefined | WebLinkBaseTypeField =
+    val.type == void 0 ? void 0 : deserializeWebLinkBaseTypeField(val.type);
+  const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  return { id: id, type: type, etag: etag } satisfies WebLinkBaseInput;
+}
 export function serializeWebLinkMini(val: any): SerializedData {
   const base: any = serializeWebLinkBase(val);
   if (!sdIsMap(base)) {
@@ -15459,6 +16826,99 @@ export function deserializeCollaboration(val: any): Collaboration {
     acceptanceRequirementsStatus: acceptanceRequirementsStatus,
   } satisfies Collaboration;
 }
+export function serializeCollaborationInput(val: any): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeCollaborationTypeField(val.type),
+    ['item']:
+      val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
+    ['accessible_by']:
+      val.accessibleBy == void 0
+        ? void 0
+        : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
+    ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
+    ['role']:
+      val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
+    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
+    ['status']:
+      val.status == void 0
+        ? void 0
+        : serializeCollaborationStatusField(val.status),
+    ['acknowledged_at']:
+      val.acknowledgedAt == void 0 ? void 0 : val.acknowledgedAt,
+    ['created_by']:
+      val.createdBy == void 0
+        ? void 0
+        : serializeUserCollaborations(val.createdBy),
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['acceptance_requirements_status']:
+      val.acceptanceRequirementsStatus == void 0
+        ? void 0
+        : serializeCollaborationAcceptanceRequirementsStatusField(
+            val.acceptanceRequirementsStatus
+          ),
+  };
+}
+export function deserializeCollaborationInput(val: any): CollaborationInput {
+  const id: string = val.id;
+  const type: undefined | CollaborationTypeField =
+    val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
+  const item: undefined | FileOrFolderOrWebLink =
+    val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
+  const accessibleBy: undefined | GroupMiniOrUserCollaborations =
+    val.accessible_by == void 0
+      ? void 0
+      : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
+  const inviteEmail: undefined | string =
+    val.invite_email == void 0 ? void 0 : val.invite_email;
+  const role: undefined | CollaborationRoleField =
+    val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
+  const expiresAt: undefined | string =
+    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const isAccessOnly: undefined | boolean =
+    val.is_access_only == void 0 ? void 0 : val.is_access_only;
+  const status: undefined | CollaborationStatusField =
+    val.status == void 0
+      ? void 0
+      : deserializeCollaborationStatusField(val.status);
+  const acknowledgedAt: undefined | string =
+    val.acknowledged_at == void 0 ? void 0 : val.acknowledged_at;
+  const createdBy: undefined | UserCollaborations =
+    val.created_by == void 0
+      ? void 0
+      : deserializeUserCollaborations(val.created_by);
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const modifiedAt: undefined | string =
+    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const acceptanceRequirementsStatus:
+    | undefined
+    | CollaborationAcceptanceRequirementsStatusField =
+    val.acceptance_requirements_status == void 0
+      ? void 0
+      : deserializeCollaborationAcceptanceRequirementsStatusField(
+          val.acceptance_requirements_status
+        );
+  return {
+    id: id,
+    type: type,
+    item: item,
+    accessibleBy: accessibleBy,
+    inviteEmail: inviteEmail,
+    role: role,
+    expiresAt: expiresAt,
+    isAccessOnly: isAccessOnly,
+    status: status,
+    acknowledgedAt: acknowledgedAt,
+    createdBy: createdBy,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+    acceptanceRequirementsStatus: acceptanceRequirementsStatus,
+  } satisfies CollaborationInput;
+}
 export function serializeCollaborationsOrderDirectionField(
   val: any
 ): SerializedData {
@@ -16715,6 +18175,52 @@ export function deserializeSearchResultsWithSharedLinks(
     entries: entries,
   } satisfies SearchResultsWithSharedLinks;
 }
+export function serializeSearchResultsWithSharedLinksInput(
+  val: any
+): SerializedData {
+  return {
+    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeSearchResultsWithSharedLinksTypeField(val.type),
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
+            return serializeSearchResultWithSharedLink(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeSearchResultsWithSharedLinksInput(
+  val: any
+): SearchResultsWithSharedLinksInput {
+  const totalCount: undefined | number =
+    val.total_count == void 0 ? void 0 : val.total_count;
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  const type: undefined | SearchResultsWithSharedLinksTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeSearchResultsWithSharedLinksTypeField(val.type);
+  const entries: undefined | readonly SearchResultWithSharedLink[] =
+    val.entries == void 0
+      ? void 0
+      : sdIsList(val.entries)
+      ? (val.entries.map(function (itm: SerializedData): any {
+          return deserializeSearchResultWithSharedLink(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    totalCount: totalCount,
+    limit: limit,
+    offset: offset,
+    type: type,
+    entries: entries,
+  } satisfies SearchResultsWithSharedLinksInput;
+}
 export function serializeSearchResultsTypeField(val: any): SerializedData {
   return val;
 }
@@ -16770,6 +18276,44 @@ export function deserializeSearchResults(val: any): SearchResults {
     type: type,
     entries: entries,
   } satisfies SearchResults;
+}
+export function serializeSearchResultsInput(val: any): SerializedData {
+  return {
+    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeSearchResultsTypeField(val.type),
+    ['entries']:
+      val.entries == void 0
+        ? void 0
+        : (val.entries.map(function (item: FileFullOrFolderFullOrWebLink): any {
+            return serializeFileFullOrFolderFullOrWebLink(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeSearchResultsInput(val: any): SearchResultsInput {
+  const totalCount: undefined | number =
+    val.total_count == void 0 ? void 0 : val.total_count;
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  const type: undefined | SearchResultsTypeField =
+    val.type == void 0 ? void 0 : deserializeSearchResultsTypeField(val.type);
+  const entries: undefined | readonly FileFullOrFolderFullOrWebLink[] =
+    val.entries == void 0
+      ? void 0
+      : sdIsList(val.entries)
+      ? (val.entries.map(function (itm: SerializedData): any {
+          return deserializeFileFullOrFolderFullOrWebLink(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    totalCount: totalCount,
+    limit: limit,
+    offset: offset,
+    type: type,
+    entries: entries,
+  } satisfies SearchResultsInput;
 }
 export function serializeSearchResultsOrSearchResultsWithSharedLinks(
   val: any
@@ -17888,6 +19432,40 @@ export function deserializeCompletionRuleVariable(
     variableValue: variableValue,
   } satisfies CompletionRuleVariable;
 }
+export function serializeCompletionRuleVariableInput(val: any): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCompletionRuleVariableTypeField(val.type),
+    ['variableType']:
+      val.variableType == void 0
+        ? void 0
+        : serializeCompletionRuleVariableVariableTypeField(val.variableType),
+    ['variable_value']: serializeCompletionRuleVariableVariableValueField(
+      val.variableValue
+    ),
+  };
+}
+export function deserializeCompletionRuleVariableInput(
+  val: any
+): CompletionRuleVariableInput {
+  const type: undefined | CompletionRuleVariableTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCompletionRuleVariableTypeField(val.type);
+  const variableType: undefined | CompletionRuleVariableVariableTypeField =
+    val.variableType == void 0
+      ? void 0
+      : deserializeCompletionRuleVariableVariableTypeField(val.variableType);
+  const variableValue: CompletionRuleVariableVariableValueField =
+    deserializeCompletionRuleVariableVariableValueField(val.variable_value);
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies CompletionRuleVariableInput;
+}
 export function serializeCollaboratorVariableTypeField(
   val: any
 ): SerializedData {
@@ -17968,6 +19546,30 @@ export function deserializeCollaboratorVariableVariableValueField(
     id: id,
   } satisfies CollaboratorVariableVariableValueField;
 }
+export function serializeCollaboratorVariableVariableValueFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCollaboratorVariableVariableValueTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeCollaboratorVariableVariableValueFieldInput(
+  val: any
+): CollaboratorVariableVariableValueFieldInput {
+  const type: undefined | CollaboratorVariableVariableValueTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCollaboratorVariableVariableValueTypeField(val.type);
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies CollaboratorVariableVariableValueFieldInput;
+}
 export function serializeCollaboratorVariable(val: any): SerializedData {
   return {
     ['type']: serializeCollaboratorVariableTypeField(val.type),
@@ -17999,6 +19601,46 @@ export function deserializeCollaboratorVariable(
     variableType: variableType,
     variableValue: variableValue,
   } satisfies CollaboratorVariable;
+}
+export function serializeCollaboratorVariableInput(val: any): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeCollaboratorVariableTypeField(val.type),
+    ['variableType']:
+      val.variableType == void 0
+        ? void 0
+        : serializeCollaboratorVariableVariableTypeField(val.variableType),
+    ['variable_value']: val.variableValue.map(function (
+      item: CollaboratorVariableVariableValueField
+    ): any {
+      return serializeCollaboratorVariableVariableValueField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeCollaboratorVariableInput(
+  val: any
+): CollaboratorVariableInput {
+  const type: undefined | CollaboratorVariableTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeCollaboratorVariableTypeField(val.type);
+  const variableType: undefined | CollaboratorVariableVariableTypeField =
+    val.variableType == void 0
+      ? void 0
+      : deserializeCollaboratorVariableVariableTypeField(val.variableType);
+  const variableValue: readonly CollaboratorVariableVariableValueField[] =
+    sdIsList(val.variable_value)
+      ? (val.variable_value.map(function (itm: SerializedData): any {
+          return deserializeCollaboratorVariableVariableValueField(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies CollaboratorVariableInput;
 }
 export function serializeKeywordSkillCardTypeField(val: any): SerializedData {
   return val;
@@ -18090,6 +19732,27 @@ export function deserializeKeywordSkillCardSkillField(
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardSkillField;
 }
+export function serializeKeywordSkillCardSkillFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeKeywordSkillCardSkillTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeKeywordSkillCardSkillFieldInput(
+  val: any
+): KeywordSkillCardSkillFieldInput {
+  const type: undefined | KeywordSkillCardSkillTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeKeywordSkillCardSkillTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies KeywordSkillCardSkillFieldInput;
+}
 export function serializeKeywordSkillCardInvocationTypeField(
   val: any
 ): SerializedData {
@@ -18125,6 +19788,27 @@ export function deserializeKeywordSkillCardInvocationField(
     deserializeKeywordSkillCardInvocationTypeField(val.type);
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardInvocationField;
+}
+export function serializeKeywordSkillCardInvocationFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeKeywordSkillCardInvocationTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeKeywordSkillCardInvocationFieldInput(
+  val: any
+): KeywordSkillCardInvocationFieldInput {
+  const type: undefined | KeywordSkillCardInvocationTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeKeywordSkillCardInvocationTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies KeywordSkillCardInvocationFieldInput;
 }
 export function serializeKeywordSkillCardEntriesField(
   val: any
@@ -18187,6 +19871,66 @@ export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
     invocation: invocation,
     entries: entries,
   } satisfies KeywordSkillCard;
+}
+export function serializeKeywordSkillCardInput(val: any): SerializedData {
+  return {
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeKeywordSkillCardTypeField(val.type),
+    ['skillCardType']:
+      val.skillCardType == void 0
+        ? void 0
+        : serializeKeywordSkillCardSkillCardTypeField(val.skillCardType),
+    ['skill_card_title']:
+      val.skillCardTitle == void 0
+        ? void 0
+        : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle),
+    ['skill']: serializeKeywordSkillCardSkillField(val.skill),
+    ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
+    ['entries']: val.entries.map(function (
+      item: KeywordSkillCardEntriesField
+    ): any {
+      return serializeKeywordSkillCardEntriesField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeKeywordSkillCardInput(
+  val: any
+): KeywordSkillCardInput {
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const type: undefined | KeywordSkillCardTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeKeywordSkillCardTypeField(val.type);
+  const skillCardType: undefined | KeywordSkillCardSkillCardTypeField =
+    val.skillCardType == void 0
+      ? void 0
+      : deserializeKeywordSkillCardSkillCardTypeField(val.skillCardType);
+  const skillCardTitle: undefined | KeywordSkillCardSkillCardTitleField =
+    val.skill_card_title == void 0
+      ? void 0
+      : deserializeKeywordSkillCardSkillCardTitleField(val.skill_card_title);
+  const skill: KeywordSkillCardSkillField =
+    deserializeKeywordSkillCardSkillField(val.skill);
+  const invocation: KeywordSkillCardInvocationField =
+    deserializeKeywordSkillCardInvocationField(val.invocation);
+  const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
+    ? (val.entries.map(function (itm: SerializedData): any {
+        return deserializeKeywordSkillCardEntriesField(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    createdAt: createdAt,
+    type: type,
+    skillCardType: skillCardType,
+    skillCardTitle: skillCardTitle,
+    skill: skill,
+    invocation: invocation,
+    entries: entries,
+  } satisfies KeywordSkillCardInput;
 }
 export function serializeIntegrationMappingSlackOptions(
   val: any
@@ -18257,6 +20001,39 @@ export function deserializeIntegrationMappingPartnerItemSlack(
     slackWorkspaceId: slackWorkspaceId,
     slackOrgId: slackOrgId,
   } satisfies IntegrationMappingPartnerItemSlack;
+}
+export function serializeIntegrationMappingPartnerItemSlackInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeIntegrationMappingPartnerItemSlackTypeField(val.type),
+    ['id']: val.id,
+    ['slack_workspace_id']:
+      val.slackWorkspaceId == void 0 ? void 0 : val.slackWorkspaceId,
+    ['slack_org_id']: val.slackOrgId == void 0 ? void 0 : val.slackOrgId,
+  };
+}
+export function deserializeIntegrationMappingPartnerItemSlackInput(
+  val: any
+): IntegrationMappingPartnerItemSlackInput {
+  const type: undefined | IntegrationMappingPartnerItemSlackTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeIntegrationMappingPartnerItemSlackTypeField(val.type);
+  const id: string = val.id;
+  const slackWorkspaceId: undefined | string =
+    val.slack_workspace_id == void 0 ? void 0 : val.slack_workspace_id;
+  const slackOrgId: undefined | string =
+    val.slack_org_id == void 0 ? void 0 : val.slack_org_id;
+  return {
+    type: type,
+    id: id,
+    slackWorkspaceId: slackWorkspaceId,
+    slackOrgId: slackOrgId,
+  } satisfies IntegrationMappingPartnerItemSlackInput;
 }
 export function serializeIntegrationMappingTypeField(val: any): SerializedData {
   return val;
@@ -18424,6 +20201,27 @@ export function deserializeIntegrationMappingBoxItemSlack(
   const id: string = val.id;
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlack;
 }
+export function serializeIntegrationMappingBoxItemSlackInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeIntegrationMappingBoxItemSlackTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeIntegrationMappingBoxItemSlackInput(
+  val: any
+): IntegrationMappingBoxItemSlackInput {
+  const type: undefined | IntegrationMappingBoxItemSlackTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeIntegrationMappingBoxItemSlackTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies IntegrationMappingBoxItemSlackInput;
+}
 export function serializeIntegrationMappingSlackCreateRequest(
   val: any
 ): SerializedData {
@@ -18553,6 +20351,34 @@ export function deserializeRoleVariable(val: any): RoleVariable {
     variableType: variableType,
     variableValue: variableValue,
   } satisfies RoleVariable;
+}
+export function serializeRoleVariableInput(val: any): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0 ? void 0 : serializeRoleVariableTypeField(val.type),
+    ['variableType']:
+      val.variableType == void 0
+        ? void 0
+        : serializeRoleVariableVariableTypeField(val.variableType),
+    ['variable_value']: serializeRoleVariableVariableValueField(
+      val.variableValue
+    ),
+  };
+}
+export function deserializeRoleVariableInput(val: any): RoleVariableInput {
+  const type: undefined | RoleVariableTypeField =
+    val.type == void 0 ? void 0 : deserializeRoleVariableTypeField(val.type);
+  const variableType: undefined | RoleVariableVariableTypeField =
+    val.variableType == void 0
+      ? void 0
+      : deserializeRoleVariableVariableTypeField(val.variableType);
+  const variableValue: RoleVariableVariableValueField =
+    deserializeRoleVariableVariableValueField(val.variable_value);
+  return {
+    type: type,
+    variableType: variableType,
+    variableValue: variableValue,
+  } satisfies RoleVariableInput;
 }
 export function serializeOutcome(val: any): SerializedData {
   return {
@@ -18695,6 +20521,27 @@ export function deserializeTimelineSkillCardSkillField(
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardSkillField;
 }
+export function serializeTimelineSkillCardSkillFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTimelineSkillCardSkillTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeTimelineSkillCardSkillFieldInput(
+  val: any
+): TimelineSkillCardSkillFieldInput {
+  const type: undefined | TimelineSkillCardSkillTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTimelineSkillCardSkillTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies TimelineSkillCardSkillFieldInput;
+}
 export function serializeTimelineSkillCardInvocationTypeField(
   val: any
 ): SerializedData {
@@ -18730,6 +20577,27 @@ export function deserializeTimelineSkillCardInvocationField(
     deserializeTimelineSkillCardInvocationTypeField(val.type);
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardInvocationField;
+}
+export function serializeTimelineSkillCardInvocationFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTimelineSkillCardInvocationTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeTimelineSkillCardInvocationFieldInput(
+  val: any
+): TimelineSkillCardInvocationFieldInput {
+  const type: undefined | TimelineSkillCardInvocationTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTimelineSkillCardInvocationTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies TimelineSkillCardInvocationFieldInput;
 }
 export function serializeTimelineSkillCardEntriesAppearsField(
   val: any
@@ -18841,6 +20709,72 @@ export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
     entries: entries,
   } satisfies TimelineSkillCard;
 }
+export function serializeTimelineSkillCardInput(val: any): SerializedData {
+  return {
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTimelineSkillCardTypeField(val.type),
+    ['skillCardType']:
+      val.skillCardType == void 0
+        ? void 0
+        : serializeTimelineSkillCardSkillCardTypeField(val.skillCardType),
+    ['skill_card_title']:
+      val.skillCardTitle == void 0
+        ? void 0
+        : serializeTimelineSkillCardSkillCardTitleField(val.skillCardTitle),
+    ['skill']: serializeTimelineSkillCardSkillField(val.skill),
+    ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
+    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['entries']: val.entries.map(function (
+      item: TimelineSkillCardEntriesField
+    ): any {
+      return serializeTimelineSkillCardEntriesField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeTimelineSkillCardInput(
+  val: any
+): TimelineSkillCardInput {
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const type: undefined | TimelineSkillCardTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTimelineSkillCardTypeField(val.type);
+  const skillCardType: undefined | TimelineSkillCardSkillCardTypeField =
+    val.skillCardType == void 0
+      ? void 0
+      : deserializeTimelineSkillCardSkillCardTypeField(val.skillCardType);
+  const skillCardTitle: undefined | TimelineSkillCardSkillCardTitleField =
+    val.skill_card_title == void 0
+      ? void 0
+      : deserializeTimelineSkillCardSkillCardTitleField(val.skill_card_title);
+  const skill: TimelineSkillCardSkillField =
+    deserializeTimelineSkillCardSkillField(val.skill);
+  const invocation: TimelineSkillCardInvocationField =
+    deserializeTimelineSkillCardInvocationField(val.invocation);
+  const duration: undefined | number =
+    val.duration == void 0 ? void 0 : val.duration;
+  const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
+    val.entries
+  )
+    ? (val.entries.map(function (itm: SerializedData): any {
+        return deserializeTimelineSkillCardEntriesField(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    createdAt: createdAt,
+    type: type,
+    skillCardType: skillCardType,
+    skillCardTitle: skillCardTitle,
+    skill: skill,
+    invocation: invocation,
+    duration: duration,
+    entries: entries,
+  } satisfies TimelineSkillCardInput;
+}
 export function serializeTranscriptSkillCardTypeField(
   val: any
 ): SerializedData {
@@ -18935,6 +20869,27 @@ export function deserializeTranscriptSkillCardSkillField(
   const id: string = val.id;
   return { type: type, id: id } satisfies TranscriptSkillCardSkillField;
 }
+export function serializeTranscriptSkillCardSkillFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTranscriptSkillCardSkillTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeTranscriptSkillCardSkillFieldInput(
+  val: any
+): TranscriptSkillCardSkillFieldInput {
+  const type: undefined | TranscriptSkillCardSkillTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTranscriptSkillCardSkillTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies TranscriptSkillCardSkillFieldInput;
+}
 export function serializeTranscriptSkillCardInvocationTypeField(
   val: any
 ): SerializedData {
@@ -18971,6 +20926,30 @@ export function deserializeTranscriptSkillCardInvocationField(
     deserializeTranscriptSkillCardInvocationTypeField(val.type);
   const id: string = val.id;
   return { type: type, id: id } satisfies TranscriptSkillCardInvocationField;
+}
+export function serializeTranscriptSkillCardInvocationFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTranscriptSkillCardInvocationTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeTranscriptSkillCardInvocationFieldInput(
+  val: any
+): TranscriptSkillCardInvocationFieldInput {
+  const type: undefined | TranscriptSkillCardInvocationTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTranscriptSkillCardInvocationTypeField(val.type);
+  const id: string = val.id;
+  return {
+    type: type,
+    id: id,
+  } satisfies TranscriptSkillCardInvocationFieldInput;
 }
 export function serializeTranscriptSkillCardEntriesAppearsField(
   val: any
@@ -19070,6 +21049,72 @@ export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
     duration: duration,
     entries: entries,
   } satisfies TranscriptSkillCard;
+}
+export function serializeTranscriptSkillCardInput(val: any): SerializedData {
+  return {
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeTranscriptSkillCardTypeField(val.type),
+    ['skillCardType']:
+      val.skillCardType == void 0
+        ? void 0
+        : serializeTranscriptSkillCardSkillCardTypeField(val.skillCardType),
+    ['skill_card_title']:
+      val.skillCardTitle == void 0
+        ? void 0
+        : serializeTranscriptSkillCardSkillCardTitleField(val.skillCardTitle),
+    ['skill']: serializeTranscriptSkillCardSkillField(val.skill),
+    ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
+    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['entries']: val.entries.map(function (
+      item: TranscriptSkillCardEntriesField
+    ): any {
+      return serializeTranscriptSkillCardEntriesField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeTranscriptSkillCardInput(
+  val: any
+): TranscriptSkillCardInput {
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const type: undefined | TranscriptSkillCardTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeTranscriptSkillCardTypeField(val.type);
+  const skillCardType: undefined | TranscriptSkillCardSkillCardTypeField =
+    val.skillCardType == void 0
+      ? void 0
+      : deserializeTranscriptSkillCardSkillCardTypeField(val.skillCardType);
+  const skillCardTitle: undefined | TranscriptSkillCardSkillCardTitleField =
+    val.skill_card_title == void 0
+      ? void 0
+      : deserializeTranscriptSkillCardSkillCardTitleField(val.skill_card_title);
+  const skill: TranscriptSkillCardSkillField =
+    deserializeTranscriptSkillCardSkillField(val.skill);
+  const invocation: TranscriptSkillCardInvocationField =
+    deserializeTranscriptSkillCardInvocationField(val.invocation);
+  const duration: undefined | number =
+    val.duration == void 0 ? void 0 : val.duration;
+  const entries: readonly TranscriptSkillCardEntriesField[] = sdIsList(
+    val.entries
+  )
+    ? (val.entries.map(function (itm: SerializedData): any {
+        return deserializeTranscriptSkillCardEntriesField(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    createdAt: createdAt,
+    type: type,
+    skillCardType: skillCardType,
+    skillCardTitle: skillCardTitle,
+    skill: skill,
+    invocation: invocation,
+    duration: duration,
+    entries: entries,
+  } satisfies TranscriptSkillCardInput;
 }
 export function serializeStatusSkillCardTypeField(val: any): SerializedData {
   return val;
@@ -19208,6 +21253,27 @@ export function deserializeStatusSkillCardSkillField(
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardSkillField;
 }
+export function serializeStatusSkillCardSkillFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeStatusSkillCardSkillTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeStatusSkillCardSkillFieldInput(
+  val: any
+): StatusSkillCardSkillFieldInput {
+  const type: undefined | StatusSkillCardSkillTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeStatusSkillCardSkillTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies StatusSkillCardSkillFieldInput;
+}
 export function serializeStatusSkillCardInvocationTypeField(
   val: any
 ): SerializedData {
@@ -19243,6 +21309,27 @@ export function deserializeStatusSkillCardInvocationField(
     deserializeStatusSkillCardInvocationTypeField(val.type);
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardInvocationField;
+}
+export function serializeStatusSkillCardInvocationFieldInput(
+  val: any
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeStatusSkillCardInvocationTypeField(val.type),
+    ['id']: val.id,
+  };
+}
+export function deserializeStatusSkillCardInvocationFieldInput(
+  val: any
+): StatusSkillCardInvocationFieldInput {
+  const type: undefined | StatusSkillCardInvocationTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeStatusSkillCardInvocationTypeField(val.type);
+  const id: string = val.id;
+  return { type: type, id: id } satisfies StatusSkillCardInvocationFieldInput;
 }
 export function serializeStatusSkillCard(val: any): SerializedData {
   return {
@@ -19288,6 +21375,56 @@ export function deserializeStatusSkillCard(val: any): StatusSkillCard {
     skill: skill,
     invocation: invocation,
   } satisfies StatusSkillCard;
+}
+export function serializeStatusSkillCardInput(val: any): SerializedData {
+  return {
+    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeStatusSkillCardTypeField(val.type),
+    ['skillCardType']:
+      val.skillCardType == void 0
+        ? void 0
+        : serializeStatusSkillCardSkillCardTypeField(val.skillCardType),
+    ['skill_card_title']:
+      val.skillCardTitle == void 0
+        ? void 0
+        : serializeStatusSkillCardSkillCardTitleField(val.skillCardTitle),
+    ['status']: serializeStatusSkillCardStatusField(val.status),
+    ['skill']: serializeStatusSkillCardSkillField(val.skill),
+    ['invocation']: serializeStatusSkillCardInvocationField(val.invocation),
+  };
+}
+export function deserializeStatusSkillCardInput(
+  val: any
+): StatusSkillCardInput {
+  const createdAt: undefined | string =
+    val.created_at == void 0 ? void 0 : val.created_at;
+  const type: undefined | StatusSkillCardTypeField =
+    val.type == void 0 ? void 0 : deserializeStatusSkillCardTypeField(val.type);
+  const skillCardType: undefined | StatusSkillCardSkillCardTypeField =
+    val.skillCardType == void 0
+      ? void 0
+      : deserializeStatusSkillCardSkillCardTypeField(val.skillCardType);
+  const skillCardTitle: undefined | StatusSkillCardSkillCardTitleField =
+    val.skill_card_title == void 0
+      ? void 0
+      : deserializeStatusSkillCardSkillCardTitleField(val.skill_card_title);
+  const status: StatusSkillCardStatusField =
+    deserializeStatusSkillCardStatusField(val.status);
+  const skill: StatusSkillCardSkillField = deserializeStatusSkillCardSkillField(
+    val.skill
+  );
+  const invocation: StatusSkillCardInvocationField =
+    deserializeStatusSkillCardInvocationField(val.invocation);
+  return {
+    createdAt: createdAt,
+    type: type,
+    skillCardType: skillCardType,
+    skillCardTitle: skillCardTitle,
+    status: status,
+    skill: skill,
+    invocation: invocation,
+  } satisfies StatusSkillCardInput;
 }
 export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
   val: any
