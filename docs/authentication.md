@@ -41,7 +41,7 @@ object with the `token` set to the developer token and construct the client with
 const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxDeveloperTokenAuth,
-} = require('box-typescript-sdk-gen/lib/developerTokenAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/developerTokenAuth.generated.js');
 
 const auth = new BoxDeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
 const client = new BoxClient({ auth });
@@ -78,7 +78,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/jwtAuth.generated.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
@@ -95,7 +95,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/jwtAuth.generated.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -127,7 +127,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/jwtAuth.generated.js');
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/settings.json');
 const jwtAuth = new BoxJwtAuth({ config: jwtConfig });
@@ -144,7 +144,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxJwtAuth,
   JwtConfig,
-} = require('box-typescript-sdk-gen/lib/jwtAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/jwtAuth.generated.js');
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -177,7 +177,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
@@ -206,7 +206,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   enterpriseId: 'YOUR_ENTERPRISE_ID',
@@ -230,7 +230,7 @@ const { BoxClient } = require('box-typescript-sdk-gen/lib/client.generated.js');
 const {
   BoxCcgAuth,
   CcgConfig,
-} = require('box-typescript-sdk-gen/lib/ccgAuth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/ccgAuth.generated.js');
 
 const ccgConfig = new CcgConfig({
   userId: 'YOUR_USER_ID',
@@ -283,7 +283,7 @@ browser or web view) in order to obtain an auth code.
 const {
   BoxOAuth,
   OAuthConfig,
-} = require('box-typescript-sdk-gen/lib/oauth.generated.js');
+} = require('box-typescript-sdk-gen/lib/box/oauth.generated.js');
 
 const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
@@ -310,9 +310,11 @@ await oauth.getTokensAuthorizationCodeGrant('code');
 # Revoke token
 
 Access tokens for a client can be revoked when needed. This call invalidates old token.
-For CCGAuth and JWTAuth you can still reuse the `auth` object to retrieve a new token. If you make any new call after revoking the token,
-a new token will be automatically retrieved.
-For OAuth it would be necessary to manually go through the authentication process again.
+For BoxCcgAuth and BoxJwtAuth you can still reuse the `auth` object to retrieve a new token.
+If you make any new call after revoking the token, a new token will be automatically retrieved.
+For BoxOAuth it would be necessary to manually go through the authentication process again.
+For BoxDeveloperTokenAuth, it is necessary to provide a DeveloperTokenConfig during initialization,
+containing the client ID and client secret.
 
 To revoke current client's tokens in the storage use the following code:
 
@@ -338,7 +340,7 @@ If you want to learn more about available scopes please go [here](https://develo
 
 For example to get a new token with only `item_preview` scope, restricted to a single file, suitable for the
 [Content Preview UI Element](https://developer.box.com/en/guides/embed/ui-elements/preview/) you can use the following code.
-You can also initialize `DeveloperTokenAuth` with the retrieved access token and use it to create a new Client.
+You can also initialize `BoxDeveloperTokenAuth` with the retrieved access token and use it to create a new Client.
 
 <!-- sample post_oauth2_token downscope_token -->
 

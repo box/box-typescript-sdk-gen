@@ -132,10 +132,7 @@ export class BoxJwtAuth implements Authentication {
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage =
-      this.config.tokenStorage == void 0
-        ? new InMemoryTokenStorage({})
-        : this.config.tokenStorage;
+    this.tokenStorage = this.config.tokenStorage;
     this.subjectId = !(this.config.enterpriseId == void 0)
       ? this.config.enterpriseId
       : this.config.userId;
@@ -175,9 +172,11 @@ export class BoxJwtAuth implements Authentication {
       jwtKey,
       jwtOptions
     );
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const token: AccessToken = await authManager.requestAccessToken({
       grantType:
         'urn:ietf:params:oauth:grant-type:jwt-bearer' as PostOAuth2TokenGrantTypeField,
@@ -249,9 +248,11 @@ export class BoxJwtAuth implements Authentication {
           'No access token is available. Make an API call to retrieve a token before calling this method.',
       });
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const downscopedToken: AccessToken = await authManager.requestAccessToken({
       grantType:
         'urn:ietf:params:oauth:grant-type:token-exchange' as PostOAuth2TokenGrantTypeField,
@@ -269,9 +270,11 @@ export class BoxJwtAuth implements Authentication {
     if (oldToken == void 0) {
       return void 0;
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     await authManager.revokeAccessToken({
       token: oldToken.accessToken,
       clientId: this.config.clientId,

@@ -53,10 +53,7 @@ export class BoxOAuth implements Authentication {
     >
   ) {
     Object.assign(this, fields);
-    this.tokenStorage =
-      this.config.tokenStorage == void 0
-        ? new InMemoryTokenStorage({})
-        : this.config.tokenStorage;
+    this.tokenStorage = this.config.tokenStorage;
   }
   getAuthorizeUrl(
     options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions
@@ -83,14 +80,16 @@ export class BoxOAuth implements Authentication {
     authorizationCode: string,
     networkSession?: NetworkSession
   ): Promise<AccessToken> {
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const token: AccessToken = await authManager.requestAccessToken({
       grantType: 'authorization_code' as PostOAuth2TokenGrantTypeField,
-      code: authorizationCode,
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
+      code: authorizationCode,
     } satisfies PostOAuth2Token);
     await this.tokenStorage.store(token);
     return token;
@@ -103,16 +102,18 @@ export class BoxOAuth implements Authentication {
           'Access and refresh tokens not available. Authenticate before making any API call first.',
       });
     }
-    return token;
+    return token!;
   }
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const oldToken: undefined | AccessToken = await this.tokenStorage.get();
     const tokenUsedForRefresh: undefined | string = !(oldToken == void 0)
-      ? oldToken.refreshToken
+      ? oldToken!.refreshToken
       : void 0;
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const token: AccessToken = await authManager.requestAccessToken({
       grantType: 'refresh_token' as PostOAuth2TokenGrantTypeField,
       clientId: this.config.clientId,
@@ -133,13 +134,15 @@ export class BoxOAuth implements Authentication {
     if (token == void 0) {
       return void 0;
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     await authManager.revokeAccessToken({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
-      token: token.accessToken,
+      token: token!.accessToken,
     } satisfies PostOAuth2Revoke);
     return void 0;
   }
@@ -150,16 +153,18 @@ export class BoxOAuth implements Authentication {
     networkSession?: NetworkSession
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
-    if (token == void 0 || token.accessToken == void 0) {
+    if (token == void 0 || token!.accessToken == void 0) {
       throw new BoxSdkError({ message: 'No access token is available.' });
     }
-    const authManager: AuthorizationManager = !(networkSession == void 0)
-      ? new AuthorizationManager({ networkSession: networkSession })
-      : new AuthorizationManager({});
+    const authManager: AuthorizationManager = new AuthorizationManager({
+      networkSession: !(networkSession == void 0)
+        ? networkSession!
+        : new NetworkSession({}),
+    });
     const downscopedToken: AccessToken = await authManager.requestAccessToken({
       grantType:
         'urn:ietf:params:oauth:grant-type:token-exchange' as PostOAuth2TokenGrantTypeField,
-      subjectToken: token.accessToken,
+      subjectToken: token!.accessToken,
       subjectTokenType:
         'urn:ietf:params:oauth:token-type:access_token' as PostOAuth2TokenSubjectTokenTypeField,
       scope: scopes.join(' ') as string,
