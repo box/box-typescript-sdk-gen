@@ -27,6 +27,8 @@ import { createNewFolder } from './commons.generated.js';
 import { bufferEquals } from '../internal/utils.js';
 import { readByteStream } from '../internal/utils.js';
 import { generateByteBuffer } from '../internal/utils.js';
+import { dateTimeToString } from '../internal/utils.js';
+import { DateTime } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -97,7 +99,7 @@ test('testManualZipDownloadAndCheckStatus', async function testManualZipDownload
   if (!!(zipDownload.statusUrl == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(zipDownload.expiresAt == '')) {
+  if (!!(dateTimeToString(zipDownload.expiresAt!) == '')) {
     throw new Error('Assertion failed');
   }
   const zipStream: ByteStream = await client.zipDownloads.getZipDownloadContent(

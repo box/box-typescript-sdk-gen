@@ -6,6 +6,8 @@ import { serializeUploadFileRequestBodyAttributesParentField } from '../managers
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { serializeTask } from '../schemas.generated.js';
 import { deserializeTask } from '../schemas.generated.js';
 import { serializeCreateTaskRequestBody } from '../managers/tasks.generated.js';
@@ -28,6 +30,7 @@ import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { FileFull } from '../schemas.generated.js';
+import { DateTime } from '../internal/utils.js';
 import { Task } from '../schemas.generated.js';
 import { CreateTaskRequestBody } from '../managers/tasks.generated.js';
 import { CreateTaskRequestBodyItemField } from '../managers/tasks.generated.js';
@@ -38,6 +41,8 @@ import { Tasks } from '../schemas.generated.js';
 import { UpdateTaskByIdRequestBody } from '../managers/tasks.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
+import { dateTimeFromString } from '../internal/utils.js';
+import { dateTimeToString } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -56,14 +61,14 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     file: generateByteStream(10),
   } satisfies UploadFileRequestBody);
   const file: FileFull = files.entries![0];
-  const date: string = '2035-01-01T00:00:00Z';
+  const dateTime: DateTime = dateTimeFromString('2035-01-01T00:00:00Z');
   const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyItemTypeField,
       id: file.id,
     } satisfies CreateTaskRequestBodyItemField,
     message: 'test message',
-    dueAt: date,
+    dueAt: dateTime,
     action: 'review' as CreateTaskRequestBodyActionField,
     completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
   } satisfies CreateTaskRequestBody);
@@ -71,6 +76,9 @@ test('testCreateUpdateGetDeleteTask', async function testCreateUpdateGetDeleteTa
     throw new Error('Assertion failed');
   }
   if (!(task.item!.id == file.id)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(dateTimeToString(task.dueAt!) == dateTimeToString(dateTime))) {
     throw new Error('Assertion failed');
   }
   const taskById: Task = await client.tasks.getTaskById(task.id!);

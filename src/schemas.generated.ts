@@ -1,3 +1,9 @@
+import { serializeDateTime } from './internal/utils.js';
+import { deserializeDateTime } from './internal/utils.js';
+import { serializeDate } from './internal/utils.js';
+import { deserializeDate } from './internal/utils.js';
+import { DateTime } from './internal/utils.js';
+import { Date } from './internal/utils.js';
 import { BoxSdkError } from './box/errors.js';
 import { SerializedData } from './serialization/json.js';
 import { sdIsEmpty } from './serialization/json.js';
@@ -93,7 +99,7 @@ export interface FileRequestUpdateRequest {
   readonly status?: FileRequestUpdateRequestStatusField;
   readonly isEmailRequired?: boolean;
   readonly isDescriptionRequired?: boolean;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
 }
 export type FileRequestCopyRequestFolderTypeField = 'folder';
 export interface FileRequestCopyRequestFolderField {
@@ -250,7 +256,7 @@ export interface CollaborationAllowlistEntry {
   readonly domain?: string;
   readonly direction?: CollaborationAllowlistEntryDirectionField;
   readonly enterprise?: CollaborationAllowlistEntryEnterpriseField;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
 }
 export interface CollaborationAllowlistEntries {
   readonly limit?: number;
@@ -456,8 +462,8 @@ export class GroupMini extends GroupBase {
   }
 }
 export class Group extends GroupMini {
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(fields: Group) {
     super(fields);
   }
@@ -692,8 +698,8 @@ export interface FileVersionRetention {
   readonly type?: FileVersionRetentionTypeField;
   readonly fileVersion?: FileVersionMini;
   readonly file?: FileMini;
-  readonly appliedAt?: string;
-  readonly dispositionAt?: string;
+  readonly appliedAt?: DateTime;
+  readonly dispositionAt?: DateTime;
   readonly winningRetentionPolicy?: RetentionPolicyMini;
 }
 export interface FileVersionRetentions {
@@ -857,8 +863,8 @@ export class TermsOfService extends TermsOfServiceBase {
   readonly enterprise?: TermsOfServiceEnterpriseField;
   readonly tosType?: TermsOfServiceTosTypeField;
   readonly text?: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(fields: TermsOfService) {
     super(fields);
   }
@@ -902,7 +908,7 @@ export interface UploadSessionSessionEndpointsField {
 export interface UploadSession {
   readonly id?: string;
   readonly type?: UploadSessionTypeField;
-  readonly sessionExpiresAt?: string;
+  readonly sessionExpiresAt?: DateTime;
   readonly partSize?: number;
   readonly totalParts?: number;
   readonly numPartsProcessed?: number;
@@ -978,8 +984,8 @@ export interface UserNotificationEmailField {
   readonly isConfirmed?: boolean;
 }
 export class User extends UserMini {
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly language?: string;
   readonly timezone?: string;
   readonly spaceAmount?: number;
@@ -1014,8 +1020,8 @@ export interface TrashWebLinkRestored {
   readonly parent?: FolderMini;
   readonly description?: string;
   readonly pathCollection: TrashWebLinkRestoredPathCollectionField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
   readonly createdBy?: UserMini;
@@ -1039,8 +1045,8 @@ export interface TrashFolderRestored {
   readonly type?: TrashFolderRestoredTypeField;
   readonly sequenceId?: string;
   readonly name?: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly description?: string;
   readonly size?: number;
   readonly pathCollection?: TrashFolderRestoredPathCollectionField;
@@ -1048,8 +1054,8 @@ export interface TrashFolderRestored {
   readonly modifiedBy?: UserMini;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: string;
   readonly folderUploadEmail?: string;
@@ -1074,12 +1080,12 @@ export class TrashFileRestored {
   readonly description!: string;
   readonly size!: number;
   readonly pathCollection!: TrashFileRestoredPathCollectionField;
-  readonly createdAt!: string;
-  readonly modifiedAt!: string;
+  readonly createdAt!: DateTime;
+  readonly modifiedAt!: DateTime;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy!: UserMini;
   readonly ownedBy!: UserMini;
@@ -1105,12 +1111,12 @@ export interface TrashFileRestoredInput {
   readonly description: string;
   readonly size: number;
   readonly pathCollection: TrashFileRestoredPathCollectionField;
-  readonly createdAt: string;
-  readonly modifiedAt: string;
+  readonly createdAt: DateTime;
+  readonly modifiedAt: DateTime;
   readonly trashedAt?: string;
   readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy: UserMini;
   readonly ownedBy: UserMini;
@@ -1142,10 +1148,10 @@ export interface TrashWebLink {
   readonly parent?: FolderMini;
   readonly description?: string;
   readonly pathCollection?: TrashWebLinkPathCollectionField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
@@ -1172,17 +1178,17 @@ export class TrashFolder {
   readonly type: TrashFolderTypeField = 'folder' as TrashFolderTypeField;
   readonly sequenceId?: string;
   readonly name!: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly description!: string;
   readonly size!: number;
   readonly pathCollection!: TrashFolderPathCollectionField;
   readonly createdBy!: UserMini;
   readonly modifiedBy!: UserMini;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly ownedBy!: UserMini;
   readonly sharedLink?: string;
   readonly folderUploadEmail?: string;
@@ -1200,17 +1206,17 @@ export interface TrashFolderInput {
   readonly type?: TrashFolderTypeField;
   readonly sequenceId?: string;
   readonly name: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly description: string;
   readonly size: number;
   readonly pathCollection: TrashFolderPathCollectionField;
   readonly createdBy: UserMini;
   readonly modifiedBy: UserMini;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly ownedBy: UserMini;
   readonly sharedLink?: string;
   readonly folderUploadEmail?: string;
@@ -1242,12 +1248,12 @@ export class TrashFile {
   readonly description!: string;
   readonly size!: number;
   readonly pathCollection!: TrashFilePathCollectionField;
-  readonly createdAt!: string;
-  readonly modifiedAt!: string;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly createdAt!: DateTime;
+  readonly modifiedAt!: DateTime;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy!: UserMini;
   readonly ownedBy!: UserMini;
@@ -1271,12 +1277,12 @@ export interface TrashFileInput {
   readonly description: string;
   readonly size: number;
   readonly pathCollection: TrashFilePathCollectionField;
-  readonly createdAt: string;
-  readonly modifiedAt: string;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly createdAt: DateTime;
+  readonly modifiedAt: DateTime;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy: UserMini;
   readonly ownedBy: UserMini;
@@ -1292,8 +1298,8 @@ export class TermsOfServiceUserStatus {
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   readonly isAccepted?: boolean;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(
     fields:
       | Omit<TermsOfServiceUserStatus, 'type'>
@@ -1308,8 +1314,8 @@ export interface TermsOfServiceUserStatusInput {
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   readonly isAccepted?: boolean;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
 }
 export interface TermsOfServiceUserStatuses {
   readonly totalCount?: number;
@@ -1327,9 +1333,9 @@ export interface TaskAssignment {
   readonly item?: FileMini;
   readonly assignedTo?: UserMini;
   readonly message?: string;
-  readonly completedAt?: string;
-  readonly assignedAt?: string;
-  readonly remindedAt?: string;
+  readonly completedAt?: DateTime;
+  readonly assignedAt?: DateTime;
+  readonly remindedAt?: DateTime;
   readonly resolutionState?: TaskAssignmentResolutionStateField;
   readonly assignedBy?: UserMini;
 }
@@ -1344,13 +1350,13 @@ export interface Task {
   readonly id?: string;
   readonly type?: TaskTypeField;
   readonly item?: FileMini;
-  readonly dueAt?: string;
+  readonly dueAt?: DateTime;
   readonly action?: TaskActionField;
   readonly message?: string;
   readonly taskAssignmentCollection?: TaskAssignments;
   readonly isCompleted?: boolean;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly completionRule?: TaskCompletionRuleField;
 }
 export interface Tasks {
@@ -1378,7 +1384,7 @@ export class RetentionPolicyAssignment {
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
   readonly assignedBy?: UserMini;
-  readonly assignedAt?: string;
+  readonly assignedAt?: DateTime;
   readonly startDateField?: string;
   constructor(
     fields:
@@ -1395,7 +1401,7 @@ export interface RetentionPolicyAssignmentInput {
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
   readonly assignedBy?: UserMini;
-  readonly assignedAt?: string;
+  readonly assignedAt?: DateTime;
   readonly startDateField?: string;
 }
 export interface RetentionPolicyAssignments {
@@ -1417,8 +1423,8 @@ export class RetentionPolicy extends RetentionPolicyMini {
   readonly retentionType?: RetentionPolicyRetentionTypeField;
   readonly status?: RetentionPolicyStatusField;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly canOwnerExtendRetention?: boolean;
   readonly areOwnersNotified?: boolean;
   readonly customNotificationRecipients?: readonly UserMini[];
@@ -1449,11 +1455,11 @@ export class LegalHoldPolicy extends LegalHoldPolicyMini {
   readonly status?: LegalHoldPolicyStatusField;
   readonly assignmentCounts?: LegalHoldPolicyAssignmentCountsField;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
-  readonly deletedAt?: string;
-  readonly filterStartedAt?: string;
-  readonly filterEndedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
+  readonly deletedAt?: DateTime;
+  readonly filterStartedAt?: DateTime;
+  readonly filterEndedAt?: DateTime;
   readonly releaseNotes?: string;
   constructor(fields: LegalHoldPolicy) {
     super(fields);
@@ -1479,8 +1485,8 @@ export class Invite {
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
   readonly status?: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(fields: Omit<Invite, 'type'> | Partial<Pick<Invite, 'type'>>) {
     Object.assign(this, fields);
   }
@@ -1492,8 +1498,8 @@ export interface InviteInput {
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
   readonly status?: string;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
 }
 export type GroupMembershipTypeField = 'group_membership';
 export type GroupMembershipRoleField = 'member' | 'admin';
@@ -1503,8 +1509,8 @@ export interface GroupMembership {
   readonly user?: UserMini;
   readonly group?: GroupMini;
   readonly role?: GroupMembershipRoleField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
 }
 export type GroupMembershipsOrderDirectionField = 'ASC' | 'DESC';
 export interface GroupMembershipsOrderField {
@@ -1521,14 +1527,14 @@ export interface GroupMemberships {
 export class FileVersion extends FileVersionMini {
   readonly name?: string;
   readonly size?: number;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly modifiedBy?: UserMini;
-  readonly trashedAt?: string;
+  readonly trashedAt?: DateTime;
   readonly trashedBy?: UserMini;
-  readonly restoredAt?: string;
+  readonly restoredAt?: DateTime;
   readonly restoredBy?: UserMini;
-  readonly purgedAt?: string;
+  readonly purgedAt?: DateTime;
   readonly uploaderDisplayName?: string;
   constructor(fields: FileVersion) {
     super(fields);
@@ -1562,14 +1568,14 @@ export class FileRequest {
   readonly status?: FileRequestStatusField;
   readonly isEmailRequired?: boolean;
   readonly isDescriptionRequired?: boolean;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly folder!: FolderMini;
   readonly url?: string;
   readonly etag?: string;
   readonly createdBy?: UserMini;
-  readonly createdAt!: string;
+  readonly createdAt!: DateTime;
   readonly updatedBy?: UserMini;
-  readonly updatedAt!: string;
+  readonly updatedAt!: DateTime;
   constructor(
     fields: Omit<FileRequest, 'type'> | Partial<Pick<FileRequest, 'type'>>
   ) {
@@ -1584,14 +1590,14 @@ export interface FileRequestInput {
   readonly status?: FileRequestStatusField;
   readonly isEmailRequired?: boolean;
   readonly isDescriptionRequired?: boolean;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly folder: FolderMini;
   readonly url?: string;
   readonly etag?: string;
   readonly createdBy?: UserMini;
-  readonly createdAt: string;
+  readonly createdAt: DateTime;
   readonly updatedBy?: UserMini;
-  readonly updatedAt: string;
+  readonly updatedAt: DateTime;
 }
 export interface FilePathCollectionField {
   readonly totalCount: number;
@@ -1620,7 +1626,7 @@ export interface FileSharedLinkField {
   readonly access?: FileSharedLinkAccessField;
   readonly effectiveAccess: FileSharedLinkEffectiveAccessField;
   readonly effectivePermission: FileSharedLinkEffectivePermissionField;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly isPasswordEnabled: boolean;
   readonly permissions?: FileSharedLinkPermissionsField;
   readonly downloadCount: number;
@@ -1631,12 +1637,12 @@ export class File extends FileMini {
   readonly description?: string;
   readonly size?: number;
   readonly pathCollection?: FilePathCollectionField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
@@ -1671,8 +1677,8 @@ export interface FileFullLockField {
   readonly id?: string;
   readonly type?: FileFullLockTypeField;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
-  readonly expiredAt?: string;
+  readonly createdAt?: DateTime;
+  readonly expiredAt?: DateTime;
   readonly isDownloadPrevented?: boolean;
   readonly appType?: FileFullLockAppTypeField;
 }
@@ -1755,11 +1761,11 @@ export class FileFull extends File {
   readonly isExternallyOwned?: boolean;
   readonly hasCollaborations?: boolean;
   readonly metadata?: FileFullMetadataField;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly representations?: FileFullRepresentationsField;
   readonly classification?: FileFullClassificationField;
   readonly uploaderDisplayName?: string;
-  readonly dispositionAt?: string;
+  readonly dispositionAt?: DateTime;
   readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
   constructor(fields: FileFull) {
     super(fields);
@@ -1796,8 +1802,8 @@ export type Comment = CommentBase & {
   readonly isReplyComment?: boolean;
   readonly message?: string;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly item?: CommentItemField;
 };
 export type CommentFull = Comment & {
@@ -1829,8 +1835,8 @@ export interface CollaborationAllowlistExemptTarget {
   readonly type?: CollaborationAllowlistExemptTargetTypeField;
   readonly enterprise?: CollaborationAllowlistExemptTargetEnterpriseField;
   readonly user?: UserMini;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
 }
 export interface CollaborationAllowlistExemptTargets {
   readonly limit?: number;
@@ -1841,9 +1847,9 @@ export interface CollaborationAllowlistExemptTargets {
 export type ShieldInformationBarrierSegmentRestriction =
   ShieldInformationBarrierSegmentRestrictionMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
-    readonly createdAt?: string;
+    readonly createdAt?: DateTime;
     readonly createdBy?: UserBase;
-    readonly updatedAt?: string;
+    readonly updatedAt?: DateTime;
     readonly updatedBy?: UserBase;
   };
 export interface ShieldInformationBarrierSegmentRestrictions {
@@ -1865,9 +1871,9 @@ export type ShieldInformationBarrierSegmentMember =
   ShieldInformationBarrierSegmentMemberMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
     readonly shieldInformationBarrierSegment?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
-    readonly createdAt?: string;
+    readonly createdAt?: DateTime;
     readonly createdBy?: UserBase;
-    readonly updatedAt?: string;
+    readonly updatedAt?: DateTime;
     readonly updatedBy?: UserBase;
   };
 export interface ShieldInformationBarrierSegmentMembers {
@@ -1883,9 +1889,9 @@ export interface ShieldInformationBarrierSegment {
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
   readonly name?: string;
   readonly description?: string;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
-  readonly updatedAt?: string;
+  readonly updatedAt?: DateTime;
   readonly updatedBy?: UserBase;
 }
 export interface ShieldInformationBarrierSegments {
@@ -1905,11 +1911,11 @@ export interface ShieldInformationBarrier {
   readonly type?: ShieldInformationBarrierTypeField;
   readonly enterprise?: EnterpriseBase;
   readonly status?: ShieldInformationBarrierStatusField;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
-  readonly updatedAt?: string;
+  readonly updatedAt?: DateTime;
   readonly updatedBy?: UserBase;
-  readonly enabledAt?: string;
+  readonly enabledAt?: DateTime;
   readonly enabledBy?: UserBase;
 }
 export interface ShieldInformationBarriers {
@@ -1926,7 +1932,7 @@ export interface FolderLock {
   readonly id?: string;
   readonly type?: string;
   readonly createdBy?: UserBase;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly lockedOperations?: FolderLockLockedOperationsField;
   readonly lockType?: string;
 }
@@ -1936,8 +1942,8 @@ export interface FolderLocks {
   readonly nextMarker?: string;
 }
 export interface WatermarkWatermarkField {
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
 }
 export interface Watermark {
   readonly watermark?: WatermarkWatermarkField;
@@ -2002,7 +2008,7 @@ export type WebhookTriggersField =
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export type Webhook = WebhookMini & {
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly address?: string;
   readonly triggers?: readonly WebhookTriggersField[];
 };
@@ -2057,7 +2063,7 @@ export interface WebLinkSharedLinkField {
   readonly access?: WebLinkSharedLinkAccessField;
   readonly effectiveAccess: WebLinkSharedLinkEffectiveAccessField;
   readonly effectivePermission: WebLinkSharedLinkEffectivePermissionField;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly isPasswordEnabled: boolean;
   readonly permissions?: WebLinkSharedLinkPermissionsField;
   readonly downloadCount: number;
@@ -2068,10 +2074,10 @@ export class WebLink extends WebLinkMini {
   readonly parent?: FolderMini;
   readonly description?: string;
   readonly pathCollection?: WebLinkPathCollectionField;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
@@ -2121,7 +2127,7 @@ export interface FolderSharedLinkField {
   readonly access?: FolderSharedLinkAccessField;
   readonly effectiveAccess: FolderSharedLinkEffectiveAccessField;
   readonly effectivePermission: FolderSharedLinkEffectivePermissionField;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly isPasswordEnabled: boolean;
   readonly permissions?: FolderSharedLinkPermissionsField;
   readonly downloadCount: number;
@@ -2134,17 +2140,17 @@ export interface FolderFolderUploadEmailField {
 }
 export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
 export class Folder extends FolderMini {
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly description?: string;
   readonly size?: number;
   readonly pathCollection?: FolderPathCollectionField;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
-  readonly trashedAt?: string;
-  readonly purgedAt?: string;
-  readonly contentCreatedAt?: string;
-  readonly contentModifiedAt?: string;
+  readonly trashedAt?: DateTime;
+  readonly purgedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: FolderSharedLinkField;
   readonly folderUploadEmail?: FolderFolderUploadEmailField;
@@ -2298,8 +2304,8 @@ export type EventEventTypeField =
 export interface EventAdditionalDetailsField {}
 export interface Event {
   readonly type?: string;
-  readonly createdAt?: string;
-  readonly recordedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly recordedAt?: DateTime;
   readonly eventId?: string;
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;
@@ -2317,8 +2323,8 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
   readonly legalHoldPolicy?: LegalHoldPolicyMini;
   readonly assignedTo?: FileOrFolderOrWebLink;
   readonly assignedBy?: UserMini;
-  readonly assignedAt?: string;
-  readonly deletedAt?: string;
+  readonly assignedAt?: DateTime;
+  readonly deletedAt?: DateTime;
 };
 export interface LegalHoldPolicyAssignments {
   readonly limit?: number;
@@ -2333,7 +2339,7 @@ export interface FileVersionLegalHold {
   readonly fileVersion?: FileVersionMini;
   readonly file?: FileMini;
   readonly legalHoldPolicyAssignments?: readonly LegalHoldPolicyAssignment[];
-  readonly deletedAt?: string;
+  readonly deletedAt?: DateTime;
 }
 export interface FileVersionLegalHolds {
   readonly limit?: number;
@@ -2377,13 +2383,13 @@ export class Collaboration {
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly isAccessOnly?: boolean;
   readonly status?: CollaborationStatusField;
-  readonly acknowledgedAt?: string;
+  readonly acknowledgedAt?: DateTime;
   readonly createdBy?: UserCollaborations;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
   constructor(
     fields: Omit<Collaboration, 'type'> | Partial<Pick<Collaboration, 'type'>>
@@ -2398,13 +2404,13 @@ export interface CollaborationInput {
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   readonly inviteEmail?: string;
   readonly role?: CollaborationRoleField;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly isAccessOnly?: boolean;
   readonly status?: CollaborationStatusField;
-  readonly acknowledgedAt?: string;
+  readonly acknowledgedAt?: DateTime;
   readonly createdBy?: UserCollaborations;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }
 export type CollaborationsOrderDirectionField = 'ASC' | 'DESC';
@@ -2472,7 +2478,7 @@ export interface WebhookInvocation {
   readonly type?: WebhookInvocationTypeField;
   readonly webhook?: Webhook;
   readonly createdBy?: UserMini;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly trigger?: WebhookInvocationTriggerField;
   readonly source?: FileOrFolder;
 }
@@ -2526,7 +2532,7 @@ export interface SkillInvocation {
   readonly skill?: SkillInvocationSkillField;
   readonly token?: SkillInvocationTokenField;
   readonly status?: SkillInvocationStatusField;
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly trigger?: string;
   readonly enterprise?: SkillInvocationEnterpriseField;
   readonly source?: FileOrFolder;
@@ -2655,7 +2661,7 @@ export interface RecentItem {
   readonly type?: string;
   readonly item?: FileFullOrFolderFullOrWebLink;
   readonly interactionType?: RecentItemInteractionTypeField;
-  readonly interactedAt?: string;
+  readonly interactedAt?: DateTime;
   readonly interactionSharedLink?: string;
 }
 export interface RecentItems {
@@ -2759,7 +2765,7 @@ export interface WorkflowFlowsField {
   readonly type?: WorkflowFlowsTypeField;
   readonly trigger?: WorkflowFlowsTriggerField;
   readonly outcomes?: readonly WorkflowFlowsOutcomesField[];
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
 }
 export type Workflow = WorkflowMini & {
@@ -2772,8 +2778,8 @@ export interface Workflows {
   readonly entries?: readonly Workflow[];
 }
 export type WorkflowFull = Workflow & {
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   readonly createdBy?: UserBase;
   readonly modifiedBy?: UserBase;
 };
@@ -2787,7 +2793,7 @@ export interface ZipDownloadNameConflictsField {
 export interface ZipDownload {
   readonly downloadUrl?: string;
   readonly statusUrl?: string;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
 }
 export type ZipDownloadStatusStateField =
@@ -2907,7 +2913,7 @@ export interface KeywordSkillCardEntriesField {
   readonly text?: string;
 }
 export class KeywordSkillCard {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type: KeywordSkillCardTypeField =
     'skill_card' as KeywordSkillCardTypeField;
   readonly skillCardType: KeywordSkillCardSkillCardTypeField =
@@ -2925,7 +2931,7 @@ export class KeywordSkillCard {
   }
 }
 export interface KeywordSkillCardInput {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type?: KeywordSkillCardTypeField;
   readonly skillCardType?: KeywordSkillCardSkillCardTypeField;
   readonly skillCardTitle?: KeywordSkillCardSkillCardTitleField;
@@ -2969,8 +2975,8 @@ export class IntegrationMapping implements IntegrationMappingBase {
   readonly options?: IntegrationMappingSlackOptions;
   readonly createdBy?: UserIntegrationMappings;
   readonly modifiedBy?: UserIntegrationMappings;
-  readonly createdAt?: string;
-  readonly modifiedAt?: string;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(
     fields:
       | Omit<IntegrationMapping, 'type'>
@@ -3092,7 +3098,7 @@ export interface TimelineSkillCardEntriesField {
   readonly imageUrl?: string;
 }
 export class TimelineSkillCard {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type: TimelineSkillCardTypeField =
     'skill_card' as TimelineSkillCardTypeField;
   readonly skillCardType: TimelineSkillCardSkillCardTypeField =
@@ -3111,7 +3117,7 @@ export class TimelineSkillCard {
   }
 }
 export interface TimelineSkillCardInput {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type?: TimelineSkillCardTypeField;
   readonly skillCardType?: TimelineSkillCardSkillCardTypeField;
   readonly skillCardTitle?: TimelineSkillCardSkillCardTitleField;
@@ -3168,7 +3174,7 @@ export interface TranscriptSkillCardEntriesField {
   readonly appears?: readonly TranscriptSkillCardEntriesAppearsField[];
 }
 export class TranscriptSkillCard {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type: TranscriptSkillCardTypeField =
     'skill_card' as TranscriptSkillCardTypeField;
   readonly skillCardType: TranscriptSkillCardSkillCardTypeField =
@@ -3187,7 +3193,7 @@ export class TranscriptSkillCard {
   }
 }
 export interface TranscriptSkillCardInput {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type?: TranscriptSkillCardTypeField;
   readonly skillCardType?: TranscriptSkillCardSkillCardTypeField;
   readonly skillCardTitle?: TranscriptSkillCardSkillCardTitleField;
@@ -3247,7 +3253,7 @@ export interface StatusSkillCardInvocationFieldInput {
   readonly id: string;
 }
 export class StatusSkillCard {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type: StatusSkillCardTypeField =
     'skill_card' as StatusSkillCardTypeField;
   readonly skillCardType: StatusSkillCardSkillCardTypeField =
@@ -3265,7 +3271,7 @@ export class StatusSkillCard {
   }
 }
 export interface StatusSkillCardInput {
-  readonly createdAt?: string;
+  readonly createdAt?: DateTime;
   readonly type?: StatusSkillCardTypeField;
   readonly skillCardType?: StatusSkillCardSkillCardTypeField;
   readonly skillCardTitle?: StatusSkillCardSkillCardTitleField;
@@ -3307,7 +3313,7 @@ export interface SignRequestPrefillTag {
   readonly documentTagId?: string;
   readonly textValue?: string;
   readonly checkboxValue?: boolean;
-  readonly dateValue?: string;
+  readonly dateValue?: Date;
 }
 export type SignRequestSignerInputTypeField =
   | 'signature'
@@ -3341,7 +3347,7 @@ export type SignRequestSignerInput = SignRequestPrefillTag & {
 export type SignRequestSignerSignerDecisionTypeField = 'signed' | 'declined';
 export interface SignRequestSignerSignerDecisionField {
   readonly type?: SignRequestSignerSignerDecisionTypeField;
-  readonly finalizedAt?: string;
+  readonly finalizedAt?: DateTime;
   readonly additionalInfo?: string;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
@@ -3394,7 +3400,7 @@ export type SignRequest = SignRequestBase & {
   readonly signingLog?: FileMini;
   readonly status?: SignRequestStatusField;
   readonly signFiles?: SignRequestSignFilesField;
-  readonly autoExpireAt?: string;
+  readonly autoExpireAt?: DateTime;
   readonly parentFolder?: FolderMini;
 };
 export interface SignRequests {
@@ -3540,9 +3546,9 @@ export type ShieldInformationBarrierReport =
     readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
     readonly status?: ShieldInformationBarrierReportStatusField;
     readonly details?: ShieldInformationBarrierReportDetails;
-    readonly createdAt?: string;
+    readonly createdAt?: DateTime;
     readonly createdBy?: UserBase;
-    readonly updatedAt?: string;
+    readonly updatedAt?: DateTime;
   };
 export interface ShieldInformationBarrierReports {
   readonly limit?: number;
@@ -3608,8 +3614,8 @@ export type MetadataFieldFilterFloatRange = {
   readonly [key: string]: MetadataFieldFilterFloatRangeValue;
 };
 export interface MetadataFieldFilterDateRangeValue {
-  readonly lt?: string;
-  readonly gt?: string;
+  readonly lt?: DateTime;
+  readonly gt?: DateTime;
 }
 export type MetadataFieldFilterDateRange = {
   readonly [key: string]: MetadataFieldFilterDateRangeValue;
@@ -4111,7 +4117,8 @@ export function serializeFileRequestUpdateRequest(val: any): SerializedData {
       val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
     ['is_description_required']:
       val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
   };
 }
 export function deserializeFileRequestUpdateRequest(
@@ -4130,8 +4137,8 @@ export function deserializeFileRequestUpdateRequest(
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   return {
     title: title,
     description: description,
@@ -4212,8 +4219,8 @@ export function deserializeFileRequestCopyRequest(
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   return {
     folder: folder,
     title: title,
@@ -4993,7 +5000,8 @@ export function serializeCollaborationAllowlistEntry(val: any): SerializedData {
       val.enterprise == void 0
         ? void 0
         : serializeCollaborationAllowlistEntryEnterpriseField(val.enterprise),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
   };
 }
 export function deserializeCollaborationAllowlistEntry(
@@ -5013,8 +5021,8 @@ export function deserializeCollaborationAllowlistEntry(
     val.enterprise == void 0
       ? void 0
       : deserializeCollaborationAllowlistEntryEnterpriseField(val.enterprise);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   return {
     id: id,
     type: type,
@@ -6149,16 +6157,18 @@ export function serializeGroup(val: any): SerializedData {
   return {
     ...base,
     ...{
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     },
   };
 }
 export function deserializeGroup(val: any): Group {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const groupType: undefined | GroupMiniGroupTypeField =
     val.group_type == void 0
@@ -6302,10 +6312,10 @@ export function deserializeGroupFull(val: any): GroupFull {
     val.permissions == void 0
       ? void 0
       : deserializeGroupFullPermissionsField(val.permissions);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const groupType: undefined | GroupMiniGroupTypeField =
     val.group_type == void 0
@@ -7419,9 +7429,12 @@ export function serializeFileVersionRetention(val: any): SerializedData {
         ? void 0
         : serializeFileVersionMini(val.fileVersion),
     ['file']: val.file == void 0 ? void 0 : serializeFileMini(val.file),
-    ['applied_at']: val.appliedAt == void 0 ? void 0 : val.appliedAt,
+    ['applied_at']:
+      val.appliedAt == void 0 ? void 0 : serializeDateTime(val.appliedAt),
     ['disposition_at']:
-      val.dispositionAt == void 0 ? void 0 : val.dispositionAt,
+      val.dispositionAt == void 0
+        ? void 0
+        : serializeDateTime(val.dispositionAt),
     ['winning_retention_policy']:
       val.winningRetentionPolicy == void 0
         ? void 0
@@ -7442,10 +7455,12 @@ export function deserializeFileVersionRetention(
       : deserializeFileVersionMini(val.file_version);
   const file: undefined | FileMini =
     val.file == void 0 ? void 0 : deserializeFileMini(val.file);
-  const appliedAt: undefined | string =
-    val.applied_at == void 0 ? void 0 : val.applied_at;
-  const dispositionAt: undefined | string =
-    val.disposition_at == void 0 ? void 0 : val.disposition_at;
+  const appliedAt: undefined | DateTime =
+    val.applied_at == void 0 ? void 0 : deserializeDateTime(val.applied_at);
+  const dispositionAt: undefined | DateTime =
+    val.disposition_at == void 0
+      ? void 0
+      : deserializeDateTime(val.disposition_at);
   const winningRetentionPolicy: undefined | RetentionPolicyMini =
     val.winning_retention_policy == void 0
       ? void 0
@@ -8325,8 +8340,10 @@ export function serializeTermsOfService(val: any): SerializedData {
           ? void 0
           : serializeTermsOfServiceTosTypeField(val.tosType),
       ['text']: val.text == void 0 ? void 0 : val.text,
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     },
   };
 }
@@ -8344,10 +8361,10 @@ export function deserializeTermsOfService(val: any): TermsOfService {
       ? void 0
       : deserializeTermsOfServiceTosTypeField(val.tos_type);
   const text: undefined | string = val.text == void 0 ? void 0 : val.text;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const id: string = val.id;
   const type: TermsOfServiceBaseTypeField =
     deserializeTermsOfServiceBaseTypeField(val.type);
@@ -8581,7 +8598,9 @@ export function serializeUploadSession(val: any): SerializedData {
     ['type']:
       val.type == void 0 ? void 0 : serializeUploadSessionTypeField(val.type),
     ['session_expires_at']:
-      val.sessionExpiresAt == void 0 ? void 0 : val.sessionExpiresAt,
+      val.sessionExpiresAt == void 0
+        ? void 0
+        : serializeDateTime(val.sessionExpiresAt),
     ['part_size']: val.partSize == void 0 ? void 0 : val.partSize,
     ['total_parts']: val.totalParts == void 0 ? void 0 : val.totalParts,
     ['num_parts_processed']:
@@ -8596,8 +8615,10 @@ export function deserializeUploadSession(val: any): UploadSession {
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | UploadSessionTypeField =
     val.type == void 0 ? void 0 : deserializeUploadSessionTypeField(val.type);
-  const sessionExpiresAt: undefined | string =
-    val.session_expires_at == void 0 ? void 0 : val.session_expires_at;
+  const sessionExpiresAt: undefined | DateTime =
+    val.session_expires_at == void 0
+      ? void 0
+      : deserializeDateTime(val.session_expires_at);
   const partSize: undefined | number =
     val.part_size == void 0 ? void 0 : val.part_size;
   const totalParts: undefined | number =
@@ -8924,8 +8945,10 @@ export function serializeUser(val: any): SerializedData {
   return {
     ...base,
     ...{
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['language']: val.language == void 0 ? void 0 : val.language,
       ['timezone']: val.timezone == void 0 ? void 0 : val.timezone,
       ['space_amount']: val.spaceAmount == void 0 ? void 0 : val.spaceAmount,
@@ -8946,10 +8969,10 @@ export function serializeUser(val: any): SerializedData {
   };
 }
 export function deserializeUser(val: any): User {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
   const timezone: undefined | string =
@@ -9083,8 +9106,10 @@ export function serializeTrashWebLinkRestored(val: any): SerializedData {
     ['path_collection']: serializeTrashWebLinkRestoredPathCollectionField(
       val.pathCollection
     ),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
     ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
     ['created_by']:
@@ -9118,10 +9143,10 @@ export function deserializeTrashWebLinkRestored(
     val.description == void 0 ? void 0 : val.description;
   const pathCollection: TrashWebLinkRestoredPathCollectionField =
     deserializeTrashWebLinkRestoredPathCollectionField(val.path_collection);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
   const purgedAt: undefined | string =
@@ -9239,8 +9264,10 @@ export function serializeTrashFolderRestored(val: any): SerializedData {
         : serializeTrashFolderRestoredTypeField(val.type),
     ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
     ['name']: val.name == void 0 ? void 0 : val.name,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['size']: val.size == void 0 ? void 0 : val.size,
     ['path_collection']:
@@ -9254,9 +9281,13 @@ export function serializeTrashFolderRestored(val: any): SerializedData {
     ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
     ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['owned_by']:
       val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
     ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
@@ -9279,10 +9310,10 @@ export function deserializeTrashFolderRestored(val: any): TrashFolderRestored {
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
@@ -9298,10 +9329,14 @@ export function deserializeTrashFolderRestored(val: any): TrashFolderRestored {
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
   const purgedAt: undefined | string =
     val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const ownedBy: undefined | UserMini =
     val.owned_by == void 0 ? void 0 : deserializeUserMini(val.owned_by);
   const sharedLink: undefined | string =
@@ -9423,14 +9458,18 @@ export function serializeTrashFileRestored(val: any): SerializedData {
     ['path_collection']: serializeTrashFileRestoredPathCollectionField(
       val.pathCollection
     ),
-    ['created_at']: val.createdAt,
-    ['modified_at']: val.modifiedAt,
+    ['created_at']: serializeDateTime(val.createdAt),
+    ['modified_at']: serializeDateTime(val.modifiedAt),
     ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
     ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -9456,16 +9495,20 @@ export function deserializeTrashFileRestored(val: any): TrashFileRestored {
   const size: number = val.size;
   const pathCollection: TrashFileRestoredPathCollectionField =
     deserializeTrashFileRestoredPathCollectionField(val.path_collection);
-  const createdAt: string = val.created_at;
-  const modifiedAt: string = val.modified_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
+  const modifiedAt: DateTime = deserializeDateTime(val.modified_at);
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
   const purgedAt: undefined | string =
     val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
@@ -9521,14 +9564,18 @@ export function serializeTrashFileRestoredInput(val: any): SerializedData {
     ['path_collection']: serializeTrashFileRestoredPathCollectionField(
       val.pathCollection
     ),
-    ['created_at']: val.createdAt,
-    ['modified_at']: val.modifiedAt,
+    ['created_at']: serializeDateTime(val.createdAt),
+    ['modified_at']: serializeDateTime(val.modifiedAt),
     ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
     ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -9558,16 +9605,20 @@ export function deserializeTrashFileRestoredInput(
   const size: number = val.size;
   const pathCollection: TrashFileRestoredPathCollectionField =
     deserializeTrashFileRestoredPathCollectionField(val.path_collection);
-  const createdAt: string = val.created_at;
-  const modifiedAt: string = val.modified_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
+  const modifiedAt: DateTime = deserializeDateTime(val.modified_at);
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
   const purgedAt: undefined | string =
     val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
@@ -9743,10 +9794,14 @@ export function serializeTrashWebLink(val: any): SerializedData {
       val.pathCollection == void 0
         ? void 0
         : serializeTrashWebLinkPathCollectionField(val.pathCollection),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+    ['trashed_at']:
+      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+    ['purged_at']:
+      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
     ['modified_by']:
@@ -9777,14 +9832,14 @@ export function deserializeTrashWebLink(val: any): TrashWebLink {
     val.path_collection == void 0
       ? void 0
       : deserializeTrashWebLinkPathCollectionField(val.path_collection);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
@@ -9950,8 +10005,10 @@ export function serializeTrashFolder(val: any): SerializedData {
     ['type']: serializeTrashFolderTypeField(val.type),
     ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
     ['name']: val.name,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFolderPathCollectionField(
@@ -9959,12 +10016,18 @@ export function serializeTrashFolder(val: any): SerializedData {
     ),
     ['created_by']: serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['trashed_at']:
+      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+    ['purged_at']:
+      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['owned_by']: serializeUserMini(val.ownedBy),
     ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
     ['folder_upload_email']:
@@ -9980,24 +10043,28 @@ export function deserializeTrashFolder(val: any): TrashFolder {
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
   const name: string = val.name;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const description: string = val.description;
   const size: number = val.size;
   const pathCollection: TrashFolderPathCollectionField =
     deserializeTrashFolderPathCollectionField(val.path_collection);
   const createdBy: UserMini = deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const ownedBy: UserMini = deserializeUserMini(val.owned_by);
   const sharedLink: undefined | string =
     val.shared_link == void 0 ? void 0 : val.shared_link;
@@ -10039,8 +10106,10 @@ export function serializeTrashFolderInput(val: any): SerializedData {
       val.type == void 0 ? void 0 : serializeTrashFolderTypeField(val.type),
     ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
     ['name']: val.name,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFolderPathCollectionField(
@@ -10048,12 +10117,18 @@ export function serializeTrashFolderInput(val: any): SerializedData {
     ),
     ['created_by']: serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['trashed_at']:
+      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+    ['purged_at']:
+      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['owned_by']: serializeUserMini(val.ownedBy),
     ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
     ['folder_upload_email']:
@@ -10070,24 +10145,28 @@ export function deserializeTrashFolderInput(val: any): TrashFolderInput {
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
   const name: string = val.name;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const description: string = val.description;
   const size: number = val.size;
   const pathCollection: TrashFolderPathCollectionField =
     deserializeTrashFolderPathCollectionField(val.path_collection);
   const createdBy: UserMini = deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const ownedBy: UserMini = deserializeUserMini(val.owned_by);
   const sharedLink: undefined | string =
     val.shared_link == void 0 ? void 0 : val.shared_link;
@@ -10261,14 +10340,20 @@ export function serializeTrashFile(val: any): SerializedData {
     ['path_collection']: serializeTrashFilePathCollectionField(
       val.pathCollection
     ),
-    ['created_at']: val.createdAt,
-    ['modified_at']: val.modifiedAt,
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['created_at']: serializeDateTime(val.createdAt),
+    ['modified_at']: serializeDateTime(val.modifiedAt),
+    ['trashed_at']:
+      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+    ['purged_at']:
+      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -10293,16 +10378,20 @@ export function deserializeTrashFile(val: any): TrashFile {
   const size: number = val.size;
   const pathCollection: TrashFilePathCollectionField =
     deserializeTrashFilePathCollectionField(val.path_collection);
-  const createdAt: string = val.created_at;
-  const modifiedAt: string = val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
+  const modifiedAt: DateTime = deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
@@ -10356,14 +10445,20 @@ export function serializeTrashFileInput(val: any): SerializedData {
     ['path_collection']: serializeTrashFilePathCollectionField(
       val.pathCollection
     ),
-    ['created_at']: val.createdAt,
-    ['modified_at']: val.modifiedAt,
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['created_at']: serializeDateTime(val.createdAt),
+    ['modified_at']: serializeDateTime(val.modifiedAt),
+    ['trashed_at']:
+      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+    ['purged_at']:
+      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
     ['content_created_at']:
-      val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+      val.contentCreatedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
-      val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+      val.contentModifiedAt == void 0
+        ? void 0
+        : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -10389,16 +10484,20 @@ export function deserializeTrashFileInput(val: any): TrashFileInput {
   const size: number = val.size;
   const pathCollection: TrashFilePathCollectionField =
     deserializeTrashFilePathCollectionField(val.path_collection);
-  const createdAt: string = val.created_at;
-  const modifiedAt: string = val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
+  const modifiedAt: DateTime = deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
@@ -10461,8 +10560,10 @@ export function serializeTermsOfServiceUserStatus(val: any): SerializedData {
     ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
     ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
     ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeTermsOfServiceUserStatus(
@@ -10477,10 +10578,10 @@ export function deserializeTermsOfServiceUserStatus(
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
   const isAccepted: undefined | boolean =
     val.is_accepted == void 0 ? void 0 : val.is_accepted;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -10503,8 +10604,10 @@ export function serializeTermsOfServiceUserStatusInput(
     ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
     ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
     ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeTermsOfServiceUserStatusInput(
@@ -10521,10 +10624,10 @@ export function deserializeTermsOfServiceUserStatusInput(
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
   const isAccepted: undefined | boolean =
     val.is_accepted == void 0 ? void 0 : val.is_accepted;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -10620,9 +10723,12 @@ export function serializeTaskAssignment(val: any): SerializedData {
     ['assigned_to']:
       val.assignedTo == void 0 ? void 0 : serializeUserMini(val.assignedTo),
     ['message']: val.message == void 0 ? void 0 : val.message,
-    ['completed_at']: val.completedAt == void 0 ? void 0 : val.completedAt,
-    ['assigned_at']: val.assignedAt == void 0 ? void 0 : val.assignedAt,
-    ['reminded_at']: val.remindedAt == void 0 ? void 0 : val.remindedAt,
+    ['completed_at']:
+      val.completedAt == void 0 ? void 0 : serializeDateTime(val.completedAt),
+    ['assigned_at']:
+      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
+    ['reminded_at']:
+      val.remindedAt == void 0 ? void 0 : serializeDateTime(val.remindedAt),
     ['resolution_state']:
       val.resolutionState == void 0
         ? void 0
@@ -10641,12 +10747,12 @@ export function deserializeTaskAssignment(val: any): TaskAssignment {
     val.assigned_to == void 0 ? void 0 : deserializeUserMini(val.assigned_to);
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const completedAt: undefined | string =
-    val.completed_at == void 0 ? void 0 : val.completed_at;
-  const assignedAt: undefined | string =
-    val.assigned_at == void 0 ? void 0 : val.assigned_at;
-  const remindedAt: undefined | string =
-    val.reminded_at == void 0 ? void 0 : val.reminded_at;
+  const completedAt: undefined | DateTime =
+    val.completed_at == void 0 ? void 0 : deserializeDateTime(val.completed_at);
+  const assignedAt: undefined | DateTime =
+    val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  const remindedAt: undefined | DateTime =
+    val.reminded_at == void 0 ? void 0 : deserializeDateTime(val.reminded_at);
   const resolutionState: undefined | TaskAssignmentResolutionStateField =
     val.resolution_state == void 0
       ? void 0
@@ -10751,7 +10857,7 @@ export function serializeTask(val: any): SerializedData {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : serializeTaskTypeField(val.type),
     ['item']: val.item == void 0 ? void 0 : serializeFileMini(val.item),
-    ['due_at']: val.dueAt == void 0 ? void 0 : val.dueAt,
+    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
     ['action']:
       val.action == void 0 ? void 0 : serializeTaskActionField(val.action),
     ['message']: val.message == void 0 ? void 0 : val.message,
@@ -10762,7 +10868,8 @@ export function serializeTask(val: any): SerializedData {
     ['is_completed']: val.isCompleted == void 0 ? void 0 : val.isCompleted,
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['completion_rule']:
       val.completionRule == void 0
         ? void 0
@@ -10775,7 +10882,8 @@ export function deserializeTask(val: any): Task {
     val.type == void 0 ? void 0 : deserializeTaskTypeField(val.type);
   const item: undefined | FileMini =
     val.item == void 0 ? void 0 : deserializeFileMini(val.item);
-  const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
+  const dueAt: undefined | DateTime =
+    val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const action: undefined | TaskActionField =
     val.action == void 0 ? void 0 : deserializeTaskActionField(val.action);
   const message: undefined | string =
@@ -10788,8 +10896,8 @@ export function deserializeTask(val: any): Task {
     val.is_completed == void 0 ? void 0 : val.is_completed;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const completionRule: undefined | TaskCompletionRuleField =
     val.completion_rule == void 0
       ? void 0
@@ -10943,7 +11051,8 @@ export function serializeRetentionPolicyAssignment(val: any): SerializedData {
           }) as readonly any[]),
     ['assigned_by']:
       val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
-    ['assigned_at']: val.assignedAt == void 0 ? void 0 : val.assignedAt,
+    ['assigned_at']:
+      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
     ['start_date_field']:
       val.startDateField == void 0 ? void 0 : val.startDateField,
   };
@@ -10974,8 +11083,8 @@ export function deserializeRetentionPolicyAssignment(
       : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
-  const assignedAt: undefined | string =
-    val.assigned_at == void 0 ? void 0 : val.assigned_at;
+  const assignedAt: undefined | DateTime =
+    val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
   const startDateField: undefined | string =
     val.start_date_field == void 0 ? void 0 : val.start_date_field;
   return {
@@ -11016,7 +11125,8 @@ export function serializeRetentionPolicyAssignmentInput(
           }) as readonly any[]),
     ['assigned_by']:
       val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
-    ['assigned_at']: val.assignedAt == void 0 ? void 0 : val.assignedAt,
+    ['assigned_at']:
+      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
     ['start_date_field']:
       val.startDateField == void 0 ? void 0 : val.startDateField,
   };
@@ -11049,8 +11159,8 @@ export function deserializeRetentionPolicyAssignmentInput(
       : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
-  const assignedAt: undefined | string =
-    val.assigned_at == void 0 ? void 0 : val.assigned_at;
+  const assignedAt: undefined | DateTime =
+    val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
   const startDateField: undefined | string =
     val.start_date_field == void 0 ? void 0 : val.start_date_field;
   return {
@@ -11210,8 +11320,10 @@ export function serializeRetentionPolicy(val: any): SerializedData {
           : serializeRetentionPolicyStatusField(val.status),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['can_owner_extend_retention']:
         val.canOwnerExtendRetention == void 0
           ? void 0
@@ -11250,10 +11362,10 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
       : deserializeRetentionPolicyStatusField(val.status);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const canOwnerExtendRetention: undefined | boolean =
     val.can_owner_extend_retention == void 0
       ? void 0
@@ -11410,13 +11522,20 @@ export function serializeLegalHoldPolicy(val: any): SerializedData {
           : serializeLegalHoldPolicyAssignmentCountsField(val.assignmentCounts),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-      ['deleted_at']: val.deletedAt == void 0 ? void 0 : val.deletedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      ['deleted_at']:
+        val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
       ['filter_started_at']:
-        val.filterStartedAt == void 0 ? void 0 : val.filterStartedAt,
+        val.filterStartedAt == void 0
+          ? void 0
+          : serializeDateTime(val.filterStartedAt),
       ['filter_ended_at']:
-        val.filterEndedAt == void 0 ? void 0 : val.filterEndedAt,
+        val.filterEndedAt == void 0
+          ? void 0
+          : serializeDateTime(val.filterEndedAt),
       ['release_notes']: val.releaseNotes == void 0 ? void 0 : val.releaseNotes,
     },
   };
@@ -11436,16 +11555,20 @@ export function deserializeLegalHoldPolicy(val: any): LegalHoldPolicy {
       : deserializeLegalHoldPolicyAssignmentCountsField(val.assignment_counts);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  const deletedAt: undefined | string =
-    val.deleted_at == void 0 ? void 0 : val.deleted_at;
-  const filterStartedAt: undefined | string =
-    val.filter_started_at == void 0 ? void 0 : val.filter_started_at;
-  const filterEndedAt: undefined | string =
-    val.filter_ended_at == void 0 ? void 0 : val.filter_ended_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  const deletedAt: undefined | DateTime =
+    val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
+  const filterStartedAt: undefined | DateTime =
+    val.filter_started_at == void 0
+      ? void 0
+      : deserializeDateTime(val.filter_started_at);
+  const filterEndedAt: undefined | DateTime =
+    val.filter_ended_at == void 0
+      ? void 0
+      : deserializeDateTime(val.filter_ended_at);
   const releaseNotes: undefined | string =
     val.release_notes == void 0 ? void 0 : val.release_notes;
   const id: string = val.id;
@@ -11565,8 +11688,10 @@ export function serializeInvite(val: any): SerializedData {
     ['invited_by']:
       val.invitedBy == void 0 ? void 0 : serializeUserMini(val.invitedBy),
     ['status']: val.status == void 0 ? void 0 : val.status,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeInvite(val: any): Invite {
@@ -11583,10 +11708,10 @@ export function deserializeInvite(val: any): Invite {
   const invitedBy: undefined | UserMini =
     val.invited_by == void 0 ? void 0 : deserializeUserMini(val.invited_by);
   const status: undefined | string = val.status == void 0 ? void 0 : val.status;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -11611,8 +11736,10 @@ export function serializeInviteInput(val: any): SerializedData {
     ['invited_by']:
       val.invitedBy == void 0 ? void 0 : serializeUserMini(val.invitedBy),
     ['status']: val.status == void 0 ? void 0 : val.status,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeInviteInput(val: any): InviteInput {
@@ -11630,10 +11757,10 @@ export function deserializeInviteInput(val: any): InviteInput {
   const invitedBy: undefined | UserMini =
     val.invited_by == void 0 ? void 0 : deserializeUserMini(val.invited_by);
   const status: undefined | string = val.status == void 0 ? void 0 : val.status;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -11693,8 +11820,10 @@ export function serializeGroupMembership(val: any): SerializedData {
     ['group']: val.group == void 0 ? void 0 : serializeGroupMini(val.group),
     ['role']:
       val.role == void 0 ? void 0 : serializeGroupMembershipRoleField(val.role),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeGroupMembership(val: any): GroupMembership {
@@ -11707,10 +11836,10 @@ export function deserializeGroupMembership(val: any): GroupMembership {
     val.group == void 0 ? void 0 : deserializeGroupMini(val.group);
   const role: undefined | GroupMembershipRoleField =
     val.role == void 0 ? void 0 : deserializeGroupMembershipRoleField(val.role);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -11821,17 +11950,22 @@ export function serializeFileVersion(val: any): SerializedData {
     ...{
       ['name']: val.name == void 0 ? void 0 : val.name,
       ['size']: val.size == void 0 ? void 0 : val.size,
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['modified_by']:
         val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
-      ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
+      ['trashed_at']:
+        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
       ['trashed_by']:
         val.trashedBy == void 0 ? void 0 : serializeUserMini(val.trashedBy),
-      ['restored_at']: val.restoredAt == void 0 ? void 0 : val.restoredAt,
+      ['restored_at']:
+        val.restoredAt == void 0 ? void 0 : serializeDateTime(val.restoredAt),
       ['restored_by']:
         val.restoredBy == void 0 ? void 0 : serializeUserMini(val.restoredBy),
-      ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      ['purged_at']:
+        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
       ['uploader_display_name']:
         val.uploaderDisplayName == void 0 ? void 0 : val.uploaderDisplayName,
     },
@@ -11840,22 +11974,22 @@ export function serializeFileVersion(val: any): SerializedData {
 export function deserializeFileVersion(val: any): FileVersion {
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
   const trashedBy: undefined | UserMini =
     val.trashed_by == void 0 ? void 0 : deserializeUserMini(val.trashed_by);
-  const restoredAt: undefined | string =
-    val.restored_at == void 0 ? void 0 : val.restored_at;
+  const restoredAt: undefined | DateTime =
+    val.restored_at == void 0 ? void 0 : deserializeDateTime(val.restored_at);
   const restoredBy: undefined | UserMini =
     val.restored_by == void 0 ? void 0 : deserializeUserMini(val.restored_by);
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
   const uploaderDisplayName: undefined | string =
     val.uploader_display_name == void 0 ? void 0 : val.uploader_display_name;
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
@@ -11898,22 +12032,22 @@ export function deserializeFileVersionFull(val: any): FileVersionFull {
     val.version_number == void 0 ? void 0 : val.version_number;
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
   const trashedBy: undefined | UserMini =
     val.trashed_by == void 0 ? void 0 : deserializeUserMini(val.trashed_by);
-  const restoredAt: undefined | string =
-    val.restored_at == void 0 ? void 0 : val.restored_at;
+  const restoredAt: undefined | DateTime =
+    val.restored_at == void 0 ? void 0 : deserializeDateTime(val.restored_at);
   const restoredBy: undefined | UserMini =
     val.restored_by == void 0 ? void 0 : deserializeUserMini(val.restored_by);
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
   const uploaderDisplayName: undefined | string =
     val.uploader_display_name == void 0 ? void 0 : val.uploader_display_name;
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
@@ -12082,16 +12216,17 @@ export function serializeFileRequest(val: any): SerializedData {
       val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
     ['is_description_required']:
       val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['folder']: serializeFolderMini(val.folder),
     ['url']: val.url == void 0 ? void 0 : val.url,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-    ['created_at']: val.createdAt,
+    ['created_at']: serializeDateTime(val.createdAt),
     ['updated_by']:
       val.updatedBy == void 0 ? void 0 : serializeUserMini(val.updatedBy),
-    ['updated_at']: val.updatedAt,
+    ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }
 export function deserializeFileRequest(val: any): FileRequest {
@@ -12110,17 +12245,17 @@ export function deserializeFileRequest(val: any): FileRequest {
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const folder: FolderMini = deserializeFolderMini(val.folder);
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: string = val.created_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
   const updatedBy: undefined | UserMini =
     val.updated_by == void 0 ? void 0 : deserializeUserMini(val.updated_by);
-  const updatedAt: string = val.updated_at;
+  const updatedAt: DateTime = deserializeDateTime(val.updated_at);
   return {
     id: id,
     type: type,
@@ -12154,16 +12289,17 @@ export function serializeFileRequestInput(val: any): SerializedData {
       val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
     ['is_description_required']:
       val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['folder']: serializeFolderMini(val.folder),
     ['url']: val.url == void 0 ? void 0 : val.url,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-    ['created_at']: val.createdAt,
+    ['created_at']: serializeDateTime(val.createdAt),
     ['updated_by']:
       val.updatedBy == void 0 ? void 0 : serializeUserMini(val.updatedBy),
-    ['updated_at']: val.updatedAt,
+    ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }
 export function deserializeFileRequestInput(val: any): FileRequestInput {
@@ -12183,17 +12319,17 @@ export function deserializeFileRequestInput(val: any): FileRequestInput {
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const folder: FolderMini = deserializeFolderMini(val.folder);
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: string = val.created_at;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
   const updatedBy: undefined | UserMini =
     val.updated_by == void 0 ? void 0 : deserializeUserMini(val.updated_by);
-  const updatedAt: string = val.updated_at;
+  const updatedAt: DateTime = deserializeDateTime(val.updated_at);
   return {
     id: id,
     type: type,
@@ -12351,7 +12487,8 @@ export function serializeFileSharedLinkField(val: any): SerializedData {
     ['effective_permission']: serializeFileSharedLinkEffectivePermissionField(
       val.effectivePermission
     ),
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['is_password_enabled']: val.isPasswordEnabled,
     ['permissions']:
       val.permissions == void 0
@@ -12377,8 +12514,8 @@ export function deserializeFileSharedLinkField(val: any): FileSharedLinkField {
     deserializeFileSharedLinkEffectiveAccessField(val.effective_access);
   const effectivePermission: FileSharedLinkEffectivePermissionField =
     deserializeFileSharedLinkEffectivePermissionField(val.effective_permission);
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const isPasswordEnabled: boolean = val.is_password_enabled;
   const permissions: undefined | FileSharedLinkPermissionsField =
     val.permissions == void 0
@@ -12437,14 +12574,22 @@ export function serializeFile(val: any): SerializedData {
         val.pathCollection == void 0
           ? void 0
           : serializeFilePathCollectionField(val.pathCollection),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-      ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-      ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      ['trashed_at']:
+        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      ['purged_at']:
+        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
       ['content_created_at']:
-        val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+        val.contentCreatedAt == void 0
+          ? void 0
+          : serializeDateTime(val.contentCreatedAt),
       ['content_modified_at']:
-        val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+        val.contentModifiedAt == void 0
+          ? void 0
+          : serializeDateTime(val.contentModifiedAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
       ['modified_by']:
@@ -12472,18 +12617,22 @@ export function deserializeFile(val: any): File {
     val.path_collection == void 0
       ? void 0
       : deserializeFilePathCollectionField(val.path_collection);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
@@ -12648,8 +12797,10 @@ export function serializeFileFullLockField(val: any): SerializedData {
       val.type == void 0 ? void 0 : serializeFileFullLockTypeField(val.type),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['expired_at']: val.expiredAt == void 0 ? void 0 : val.expiredAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['expired_at']:
+      val.expiredAt == void 0 ? void 0 : serializeDateTime(val.expiredAt),
     ['is_download_prevented']:
       val.isDownloadPrevented == void 0 ? void 0 : val.isDownloadPrevented,
     ['app_type']:
@@ -12664,10 +12815,10 @@ export function deserializeFileFullLockField(val: any): FileFullLockField {
     val.type == void 0 ? void 0 : deserializeFileFullLockTypeField(val.type);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const expiredAt: undefined | string =
-    val.expired_at == void 0 ? void 0 : val.expired_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const expiredAt: undefined | DateTime =
+    val.expired_at == void 0 ? void 0 : deserializeDateTime(val.expired_at);
   const isDownloadPrevented: undefined | boolean =
     val.is_download_prevented == void 0 ? void 0 : val.is_download_prevented;
   const appType: undefined | FileFullLockAppTypeField =
@@ -13100,7 +13251,8 @@ export function serializeFileFull(val: any): SerializedData {
         val.metadata == void 0
           ? void 0
           : serializeFileFullMetadataField(val.metadata),
-      ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+      ['expires_at']:
+        val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
       ['representations']:
         val.representations == void 0
           ? void 0
@@ -13112,7 +13264,9 @@ export function serializeFileFull(val: any): SerializedData {
       ['uploader_display_name']:
         val.uploaderDisplayName == void 0 ? void 0 : val.uploaderDisplayName,
       ['disposition_at']:
-        val.dispositionAt == void 0 ? void 0 : val.dispositionAt,
+        val.dispositionAt == void 0
+          ? void 0
+          : serializeDateTime(val.dispositionAt),
       ['shared_link_permission_options']:
         val.sharedLinkPermissionOptions == void 0
           ? void 0
@@ -13177,8 +13331,8 @@ export function deserializeFileFull(val: any): FileFull {
     val.metadata == void 0
       ? void 0
       : deserializeFileFullMetadataField(val.metadata);
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const representations: undefined | FileFullRepresentationsField =
     val.representations == void 0
       ? void 0
@@ -13189,8 +13343,10 @@ export function deserializeFileFull(val: any): FileFull {
       : deserializeFileFullClassificationField(val.classification);
   const uploaderDisplayName: undefined | string =
     val.uploader_display_name == void 0 ? void 0 : val.uploader_display_name;
-  const dispositionAt: undefined | string =
-    val.disposition_at == void 0 ? void 0 : val.disposition_at;
+  const dispositionAt: undefined | DateTime =
+    val.disposition_at == void 0
+      ? void 0
+      : deserializeDateTime(val.disposition_at);
   const sharedLinkPermissionOptions:
     | undefined
     | readonly FileFullSharedLinkPermissionOptionsField[] =
@@ -13210,18 +13366,22 @@ export function deserializeFileFull(val: any): FileFull {
     val.path_collection == void 0
       ? void 0
       : deserializeFilePathCollectionField(val.path_collection);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
@@ -13492,8 +13652,10 @@ export function serializeComment(val: any): SerializedData {
       ['message']: val.message == void 0 ? void 0 : val.message,
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['item']:
         val.item == void 0 ? void 0 : serializeCommentItemField(val.item),
     },
@@ -13506,10 +13668,10 @@ export function deserializeComment(val: any): Comment {
     val.message == void 0 ? void 0 : val.message;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const item: undefined | CommentItemField =
     val.item == void 0 ? void 0 : deserializeCommentItemField(val.item);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
@@ -13548,10 +13710,10 @@ export function deserializeCommentFull(val: any): CommentFull {
     val.message == void 0 ? void 0 : val.message;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const item: undefined | CommentItemField =
     val.item == void 0 ? void 0 : deserializeCommentItemField(val.item);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
@@ -13746,8 +13908,10 @@ export function serializeCollaborationAllowlistExemptTarget(
             val.enterprise
           ),
     ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeCollaborationAllowlistExemptTarget(
@@ -13768,10 +13932,10 @@ export function deserializeCollaborationAllowlistExemptTarget(
         );
   const user: undefined | UserMini =
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     id: id,
     type: type,
@@ -13839,10 +14003,12 @@ export function serializeShieldInformationBarrierSegmentRestriction(
         val.shieldInformationBarrier == void 0
           ? void 0
           : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-      ['updated_at']: val.updatedAt == void 0 ? void 0 : val.updatedAt,
+      ['updated_at']:
+        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
       ['updated_by']:
         val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
     },
@@ -13855,12 +14021,12 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
     val.shield_information_barrier == void 0
       ? void 0
       : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const updatedAt: undefined | string =
-    val.updated_at == void 0 ? void 0 : val.updated_at;
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const updatedBy: undefined | UserBase =
     val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
   const shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField =
@@ -14034,10 +14200,12 @@ export function serializeShieldInformationBarrierSegmentMember(
           : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
               val.shieldInformationBarrierSegment
             ),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-      ['updated_at']: val.updatedAt == void 0 ? void 0 : val.updatedAt,
+      ['updated_at']:
+        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
       ['updated_by']:
         val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
     },
@@ -14058,12 +14226,12 @@ export function deserializeShieldInformationBarrierSegmentMember(
       : deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
           val.shield_information_barrier_segment
         );
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const updatedAt: undefined | string =
-    val.updated_at == void 0 ? void 0 : val.updated_at;
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const updatedBy: undefined | UserBase =
     val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
   const user: undefined | UserBase =
@@ -14157,10 +14325,12 @@ export function serializeShieldInformationBarrierSegment(
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-    ['updated_at']: val.updatedAt == void 0 ? void 0 : val.updatedAt,
+    ['updated_at']:
+      val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
     ['updated_by']:
       val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
   };
@@ -14180,12 +14350,12 @@ export function deserializeShieldInformationBarrierSegment(
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const updatedAt: undefined | string =
-    val.updated_at == void 0 ? void 0 : val.updated_at;
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const updatedBy: undefined | UserBase =
     val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
   return {
@@ -14303,13 +14473,16 @@ export function serializeShieldInformationBarrier(val: any): SerializedData {
       val.status == void 0
         ? void 0
         : serializeShieldInformationBarrierStatusField(val.status),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-    ['updated_at']: val.updatedAt == void 0 ? void 0 : val.updatedAt,
+    ['updated_at']:
+      val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
     ['updated_by']:
       val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
-    ['enabled_at']: val.enabledAt == void 0 ? void 0 : val.enabledAt,
+    ['enabled_at']:
+      val.enabledAt == void 0 ? void 0 : serializeDateTime(val.enabledAt),
     ['enabled_by']:
       val.enabledBy == void 0 ? void 0 : serializeUserBase(val.enabledBy),
   };
@@ -14330,16 +14503,16 @@ export function deserializeShieldInformationBarrier(
     val.status == void 0
       ? void 0
       : deserializeShieldInformationBarrierStatusField(val.status);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const updatedAt: undefined | string =
-    val.updated_at == void 0 ? void 0 : val.updated_at;
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const updatedBy: undefined | UserBase =
     val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
-  const enabledAt: undefined | string =
-    val.enabled_at == void 0 ? void 0 : val.enabled_at;
+  const enabledAt: undefined | DateTime =
+    val.enabled_at == void 0 ? void 0 : deserializeDateTime(val.enabled_at);
   const enabledBy: undefined | UserBase =
     val.enabled_by == void 0 ? void 0 : deserializeUserBase(val.enabled_by);
   return {
@@ -14409,7 +14582,8 @@ export function serializeFolderLock(val: any): SerializedData {
     ['type']: val.type == void 0 ? void 0 : val.type,
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['locked_operations']:
       val.lockedOperations == void 0
         ? void 0
@@ -14424,8 +14598,8 @@ export function deserializeFolderLock(val: any): FolderLock {
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const lockedOperations: undefined | FolderLockLockedOperationsField =
     val.locked_operations == void 0
       ? void 0
@@ -14474,17 +14648,19 @@ export function deserializeFolderLocks(val: any): FolderLocks {
 }
 export function serializeWatermarkWatermarkField(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeWatermarkWatermarkField(
   val: any
 ): WatermarkWatermarkField {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
     createdAt: createdAt,
     modifiedAt: modifiedAt,
@@ -14763,7 +14939,8 @@ export function serializeWebhook(val: any): SerializedData {
     ...{
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
       ['address']: val.address == void 0 ? void 0 : val.address,
       ['triggers']:
         val.triggers == void 0
@@ -14777,8 +14954,8 @@ export function serializeWebhook(val: any): SerializedData {
 export function deserializeWebhook(val: any): Webhook {
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
   const triggers: undefined | readonly WebhookTriggersField[] =
@@ -15025,7 +15202,8 @@ export function serializeWebLinkSharedLinkField(val: any): SerializedData {
       serializeWebLinkSharedLinkEffectivePermissionField(
         val.effectivePermission
       ),
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['is_password_enabled']: val.isPasswordEnabled,
     ['permissions']:
       val.permissions == void 0
@@ -15055,8 +15233,8 @@ export function deserializeWebLinkSharedLinkField(
     deserializeWebLinkSharedLinkEffectivePermissionField(
       val.effective_permission
     );
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const isPasswordEnabled: boolean = val.is_password_enabled;
   const permissions: undefined | WebLinkSharedLinkPermissionsField =
     val.permissions == void 0
@@ -15118,10 +15296,14 @@ export function serializeWebLink(val: any): SerializedData {
         val.pathCollection == void 0
           ? void 0
           : serializeWebLinkPathCollectionField(val.pathCollection),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
-      ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-      ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      ['trashed_at']:
+        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      ['purged_at']:
+        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
       ['modified_by']:
@@ -15148,14 +15330,14 @@ export function deserializeWebLink(val: any): WebLink {
     val.path_collection == void 0
       ? void 0
       : deserializeWebLinkPathCollectionField(val.path_collection);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
@@ -15456,7 +15638,8 @@ export function serializeFolderSharedLinkField(val: any): SerializedData {
     ['effective_permission']: serializeFolderSharedLinkEffectivePermissionField(
       val.effectivePermission
     ),
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['is_password_enabled']: val.isPasswordEnabled,
     ['permissions']:
       val.permissions == void 0
@@ -15486,8 +15669,8 @@ export function deserializeFolderSharedLinkField(
     deserializeFolderSharedLinkEffectivePermissionField(
       val.effective_permission
     );
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const isPasswordEnabled: boolean = val.is_password_enabled;
   const permissions: undefined | FolderSharedLinkPermissionsField =
     val.permissions == void 0
@@ -15589,8 +15772,10 @@ export function serializeFolder(val: any): SerializedData {
   return {
     ...base,
     ...{
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['description']: val.description == void 0 ? void 0 : val.description,
       ['size']: val.size == void 0 ? void 0 : val.size,
       ['path_collection']:
@@ -15601,12 +15786,18 @@ export function serializeFolder(val: any): SerializedData {
         val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
       ['modified_by']:
         val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
-      ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-      ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      ['trashed_at']:
+        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      ['purged_at']:
+        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
       ['content_created_at']:
-        val.contentCreatedAt == void 0 ? void 0 : val.contentCreatedAt,
+        val.contentCreatedAt == void 0
+          ? void 0
+          : serializeDateTime(val.contentCreatedAt),
       ['content_modified_at']:
-        val.contentModifiedAt == void 0 ? void 0 : val.contentModifiedAt,
+        val.contentModifiedAt == void 0
+          ? void 0
+          : serializeDateTime(val.contentModifiedAt),
       ['owned_by']:
         val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
       ['shared_link']:
@@ -15631,10 +15822,10 @@ export function serializeFolder(val: any): SerializedData {
   };
 }
 export function deserializeFolder(val: any): Folder {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
@@ -15646,14 +15837,18 @@ export function deserializeFolder(val: any): Folder {
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const ownedBy: undefined | UserMini =
     val.owned_by == void 0 ? void 0 : deserializeUserMini(val.owned_by);
   const sharedLink: undefined | FolderSharedLinkField =
@@ -16180,8 +16375,10 @@ export function deserializeEventAdditionalDetailsField(
 export function serializeEvent(val: any): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['recorded_at']: val.recordedAt == void 0 ? void 0 : val.recordedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['recorded_at']:
+      val.recordedAt == void 0 ? void 0 : serializeDateTime(val.recordedAt),
     ['event_id']: val.eventId == void 0 ? void 0 : val.eventId,
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
@@ -16202,10 +16399,10 @@ export function serializeEvent(val: any): SerializedData {
 }
 export function deserializeEvent(val: any): Event {
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const recordedAt: undefined | string =
-    val.recorded_at == void 0 ? void 0 : val.recorded_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const recordedAt: undefined | DateTime =
+    val.recorded_at == void 0 ? void 0 : deserializeDateTime(val.recorded_at);
   const eventId: undefined | string =
     val.event_id == void 0 ? void 0 : val.event_id;
   const createdBy: undefined | UserMini =
@@ -16319,8 +16516,10 @@ export function serializeLegalHoldPolicyAssignment(val: any): SerializedData {
           : serializeFileOrFolderOrWebLink(val.assignedTo),
       ['assigned_by']:
         val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
-      ['assigned_at']: val.assignedAt == void 0 ? void 0 : val.assignedAt,
-      ['deleted_at']: val.deletedAt == void 0 ? void 0 : val.deletedAt,
+      ['assigned_at']:
+        val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
+      ['deleted_at']:
+        val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
     },
   };
 }
@@ -16337,10 +16536,10 @@ export function deserializeLegalHoldPolicyAssignment(
       : deserializeFileOrFolderOrWebLink(val.assigned_to);
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
-  const assignedAt: undefined | string =
-    val.assigned_at == void 0 ? void 0 : val.assigned_at;
-  const deletedAt: undefined | string =
-    val.deleted_at == void 0 ? void 0 : val.deleted_at;
+  const assignedAt: undefined | DateTime =
+    val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  const deletedAt: undefined | DateTime =
+    val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | LegalHoldPolicyAssignmentBaseTypeField =
     val.type == void 0
@@ -16432,7 +16631,8 @@ export function serializeFileVersionLegalHold(val: any): SerializedData {
           ): any {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
-    ['deleted_at']: val.deletedAt == void 0 ? void 0 : val.deletedAt,
+    ['deleted_at']:
+      val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
   };
 }
 export function deserializeFileVersionLegalHold(
@@ -16461,8 +16661,8 @@ export function deserializeFileVersionLegalHold(
           return deserializeLegalHoldPolicyAssignment(itm);
         }) as readonly any[])
       : [];
-  const deletedAt: undefined | string =
-    val.deleted_at == void 0 ? void 0 : val.deleted_at;
+  const deletedAt: undefined | DateTime =
+    val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
   return {
     id: id,
     type: type,
@@ -16746,20 +16946,25 @@ export function serializeCollaboration(val: any): SerializedData {
     ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['status']:
       val.status == void 0
         ? void 0
         : serializeCollaborationStatusField(val.status),
     ['acknowledged_at']:
-      val.acknowledgedAt == void 0 ? void 0 : val.acknowledgedAt,
+      val.acknowledgedAt == void 0
+        ? void 0
+        : serializeDateTime(val.acknowledgedAt),
     ['created_by']:
       val.createdBy == void 0
         ? void 0
         : serializeUserCollaborations(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
         ? void 0
@@ -16783,24 +16988,26 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
     val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const status: undefined | CollaborationStatusField =
     val.status == void 0
       ? void 0
       : deserializeCollaborationStatusField(val.status);
-  const acknowledgedAt: undefined | string =
-    val.acknowledged_at == void 0 ? void 0 : val.acknowledged_at;
+  const acknowledgedAt: undefined | DateTime =
+    val.acknowledged_at == void 0
+      ? void 0
+      : deserializeDateTime(val.acknowledged_at);
   const createdBy: undefined | UserCollaborations =
     val.created_by == void 0
       ? void 0
       : deserializeUserCollaborations(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const acceptanceRequirementsStatus:
     | undefined
     | CollaborationAcceptanceRequirementsStatusField =
@@ -16840,20 +17047,25 @@ export function serializeCollaborationInput(val: any): SerializedData {
     ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
     ['role']:
       val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['status']:
       val.status == void 0
         ? void 0
         : serializeCollaborationStatusField(val.status),
     ['acknowledged_at']:
-      val.acknowledgedAt == void 0 ? void 0 : val.acknowledgedAt,
+      val.acknowledgedAt == void 0
+        ? void 0
+        : serializeDateTime(val.acknowledgedAt),
     ['created_by']:
       val.createdBy == void 0
         ? void 0
         : serializeUserCollaborations(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-    ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['modified_at']:
+      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
         ? void 0
@@ -16876,24 +17088,26 @@ export function deserializeCollaborationInput(val: any): CollaborationInput {
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
     val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const status: undefined | CollaborationStatusField =
     val.status == void 0
       ? void 0
       : deserializeCollaborationStatusField(val.status);
-  const acknowledgedAt: undefined | string =
-    val.acknowledged_at == void 0 ? void 0 : val.acknowledged_at;
+  const acknowledgedAt: undefined | DateTime =
+    val.acknowledged_at == void 0
+      ? void 0
+      : deserializeDateTime(val.acknowledged_at);
   const createdBy: undefined | UserCollaborations =
     val.created_by == void 0
       ? void 0
       : deserializeUserCollaborations(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const acceptanceRequirementsStatus:
     | undefined
     | CollaborationAcceptanceRequirementsStatusField =
@@ -17227,7 +17441,8 @@ export function serializeWebhookInvocation(val: any): SerializedData {
     ['webhook']: val.webhook == void 0 ? void 0 : serializeWebhook(val.webhook),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['trigger']:
       val.trigger == void 0
         ? void 0
@@ -17246,8 +17461,8 @@ export function deserializeWebhookInvocation(val: any): WebhookInvocation {
     val.webhook == void 0 ? void 0 : deserializeWebhook(val.webhook);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const trigger: undefined | WebhookInvocationTriggerField =
     val.trigger == void 0
       ? void 0
@@ -17592,7 +17807,8 @@ export function serializeSkillInvocation(val: any): SerializedData {
       val.status == void 0
         ? void 0
         : serializeSkillInvocationStatusField(val.status),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['trigger']: val.trigger == void 0 ? void 0 : val.trigger,
     ['enterprise']:
       val.enterprise == void 0
@@ -17619,8 +17835,8 @@ export function deserializeSkillInvocation(val: any): SkillInvocation {
     val.status == void 0
       ? void 0
       : deserializeSkillInvocationStatusField(val.status);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const trigger: undefined | string =
     val.trigger == void 0 ? void 0 : val.trigger;
   const enterprise: undefined | SkillInvocationEnterpriseField =
@@ -17961,10 +18177,10 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.classification == void 0
       ? void 0
       : deserializeFolderFullClassificationField(val.classification);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
@@ -17976,14 +18192,18 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
-  const trashedAt: undefined | string =
-    val.trashed_at == void 0 ? void 0 : val.trashed_at;
-  const purgedAt: undefined | string =
-    val.purged_at == void 0 ? void 0 : val.purged_at;
-  const contentCreatedAt: undefined | string =
-    val.content_created_at == void 0 ? void 0 : val.content_created_at;
-  const contentModifiedAt: undefined | string =
-    val.content_modified_at == void 0 ? void 0 : val.content_modified_at;
+  const trashedAt: undefined | DateTime =
+    val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  const purgedAt: undefined | DateTime =
+    val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
   const ownedBy: undefined | UserMini =
     val.owned_by == void 0 ? void 0 : deserializeUserMini(val.owned_by);
   const sharedLink: undefined | FolderSharedLinkField =
@@ -18386,7 +18606,8 @@ export function serializeRecentItem(val: any): SerializedData {
       val.interactionType == void 0
         ? void 0
         : serializeRecentItemInteractionTypeField(val.interactionType),
-    ['interacted_at']: val.interactedAt == void 0 ? void 0 : val.interactedAt,
+    ['interacted_at']:
+      val.interactedAt == void 0 ? void 0 : serializeDateTime(val.interactedAt),
     ['interaction_shared_link']:
       val.interactionSharedLink == void 0 ? void 0 : val.interactionSharedLink,
   };
@@ -18401,8 +18622,10 @@ export function deserializeRecentItem(val: any): RecentItem {
     val.interaction_type == void 0
       ? void 0
       : deserializeRecentItemInteractionTypeField(val.interaction_type);
-  const interactedAt: undefined | string =
-    val.interacted_at == void 0 ? void 0 : val.interacted_at;
+  const interactedAt: undefined | DateTime =
+    val.interacted_at == void 0
+      ? void 0
+      : deserializeDateTime(val.interacted_at);
   const interactionSharedLink: undefined | string =
     val.interaction_shared_link == void 0
       ? void 0
@@ -19012,7 +19235,8 @@ export function serializeWorkflowFlowsField(val: any): SerializedData {
         : (val.outcomes.map(function (item: WorkflowFlowsOutcomesField): any {
             return serializeWorkflowFlowsOutcomesField(item);
           }) as readonly any[]),
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['created_by']:
       val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
   };
@@ -19033,8 +19257,8 @@ export function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField {
           return deserializeWorkflowFlowsOutcomesField(itm);
         }) as readonly any[])
       : [];
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
   return {
@@ -19131,8 +19355,10 @@ export function serializeWorkflowFull(val: any): SerializedData {
   return {
     ...base,
     ...{
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
       ['modified_by']:
@@ -19141,10 +19367,10 @@ export function serializeWorkflowFull(val: any): SerializedData {
   };
 }
 export function deserializeWorkflowFull(val: any): WorkflowFull {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
   const modifiedBy: undefined | UserBase =
@@ -19237,7 +19463,8 @@ export function serializeZipDownload(val: any): SerializedData {
   return {
     ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
     ['status_url']: val.statusUrl == void 0 ? void 0 : val.statusUrl,
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['name_conflicts']:
       val.nameConflicts == void 0
         ? void 0
@@ -19257,8 +19484,8 @@ export function deserializeZipDownload(val: any): ZipDownload {
     val.download_url == void 0 ? void 0 : val.download_url;
   const statusUrl: undefined | string =
     val.status_url == void 0 ? void 0 : val.status_url;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const nameConflicts:
     | undefined
     | readonly (readonly ZipDownloadNameConflictsField[])[] =
@@ -19823,7 +20050,8 @@ export function deserializeKeywordSkillCardEntriesField(
 }
 export function serializeKeywordSkillCard(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeKeywordSkillCardTypeField(val.type),
     ['skill_card_type']: serializeKeywordSkillCardSkillCardTypeField(
       val.skillCardType
@@ -19842,8 +20070,8 @@ export function serializeKeywordSkillCard(val: any): SerializedData {
   };
 }
 export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: KeywordSkillCardTypeField = deserializeKeywordSkillCardTypeField(
     val.type
   );
@@ -19874,7 +20102,8 @@ export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
 }
 export function serializeKeywordSkillCardInput(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
         ? void 0
@@ -19899,8 +20128,8 @@ export function serializeKeywordSkillCardInput(val: any): SerializedData {
 export function deserializeKeywordSkillCardInput(
   val: any
 ): KeywordSkillCardInput {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | KeywordSkillCardTypeField =
     val.type == void 0
       ? void 0
@@ -20082,8 +20311,10 @@ export function serializeIntegrationMapping(val: any): SerializedData {
         val.modifiedBy == void 0
           ? void 0
           : serializeUserIntegrationMappings(val.modifiedBy),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
-      ['modified_at']: val.modifiedAt == void 0 ? void 0 : val.modifiedAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
     },
   };
 }
@@ -20107,10 +20338,10 @@ export function deserializeIntegrationMapping(val: any): IntegrationMapping {
     val.modified_by == void 0
       ? void 0
       : deserializeUserIntegrationMappings(val.modified_by);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const integrationType:
     | undefined
@@ -20655,7 +20886,8 @@ export function deserializeTimelineSkillCardEntriesField(
 }
 export function serializeTimelineSkillCard(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeTimelineSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTimelineSkillCardSkillCardTypeField(
       val.skillCardType
@@ -20675,8 +20907,8 @@ export function serializeTimelineSkillCard(val: any): SerializedData {
   };
 }
 export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: TimelineSkillCardTypeField =
     deserializeTimelineSkillCardTypeField(val.type);
   const skillCardType: TimelineSkillCardSkillCardTypeField =
@@ -20711,7 +20943,8 @@ export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
 }
 export function serializeTimelineSkillCardInput(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
         ? void 0
@@ -20737,8 +20970,8 @@ export function serializeTimelineSkillCardInput(val: any): SerializedData {
 export function deserializeTimelineSkillCardInput(
   val: any
 ): TimelineSkillCardInput {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | TimelineSkillCardTypeField =
     val.type == void 0
       ? void 0
@@ -20996,7 +21229,8 @@ export function deserializeTranscriptSkillCardEntriesField(
 }
 export function serializeTranscriptSkillCard(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeTranscriptSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTranscriptSkillCardSkillCardTypeField(
       val.skillCardType
@@ -21016,8 +21250,8 @@ export function serializeTranscriptSkillCard(val: any): SerializedData {
   };
 }
 export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: TranscriptSkillCardTypeField =
     deserializeTranscriptSkillCardTypeField(val.type);
   const skillCardType: TranscriptSkillCardSkillCardTypeField =
@@ -21052,7 +21286,8 @@ export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
 }
 export function serializeTranscriptSkillCardInput(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
         ? void 0
@@ -21078,8 +21313,8 @@ export function serializeTranscriptSkillCardInput(val: any): SerializedData {
 export function deserializeTranscriptSkillCardInput(
   val: any
 ): TranscriptSkillCardInput {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | TranscriptSkillCardTypeField =
     val.type == void 0
       ? void 0
@@ -21333,7 +21568,8 @@ export function deserializeStatusSkillCardInvocationFieldInput(
 }
 export function serializeStatusSkillCard(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeStatusSkillCardTypeField(val.type),
     ['skill_card_type']: serializeStatusSkillCardSkillCardTypeField(
       val.skillCardType
@@ -21348,8 +21584,8 @@ export function serializeStatusSkillCard(val: any): SerializedData {
   };
 }
 export function deserializeStatusSkillCard(val: any): StatusSkillCard {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: StatusSkillCardTypeField = deserializeStatusSkillCardTypeField(
     val.type
   );
@@ -21378,7 +21614,8 @@ export function deserializeStatusSkillCard(val: any): StatusSkillCard {
 }
 export function serializeStatusSkillCardInput(val: any): SerializedData {
   return {
-    ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0 ? void 0 : serializeStatusSkillCardTypeField(val.type),
     ['skillCardType']:
@@ -21397,8 +21634,8 @@ export function serializeStatusSkillCardInput(val: any): SerializedData {
 export function deserializeStatusSkillCardInput(
   val: any
 ): StatusSkillCardInput {
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | StatusSkillCardTypeField =
     val.type == void 0 ? void 0 : deserializeStatusSkillCardTypeField(val.type);
   const skillCardType: undefined | StatusSkillCardSkillCardTypeField =
@@ -21629,7 +21866,8 @@ export function serializeSignRequestPrefillTag(val: any): SerializedData {
     ['text_value']: val.textValue == void 0 ? void 0 : val.textValue,
     ['checkbox_value']:
       val.checkboxValue == void 0 ? void 0 : val.checkboxValue,
-    ['date_value']: val.dateValue == void 0 ? void 0 : val.dateValue,
+    ['date_value']:
+      val.dateValue == void 0 ? void 0 : serializeDate(val.dateValue),
   };
 }
 export function deserializeSignRequestPrefillTag(
@@ -21641,8 +21879,8 @@ export function deserializeSignRequestPrefillTag(
     val.text_value == void 0 ? void 0 : val.text_value;
   const checkboxValue: undefined | boolean =
     val.checkbox_value == void 0 ? void 0 : val.checkbox_value;
-  const dateValue: undefined | string =
-    val.date_value == void 0 ? void 0 : val.date_value;
+  const dateValue: undefined | Date =
+    val.date_value == void 0 ? void 0 : deserializeDate(val.date_value);
   return {
     documentTagId: documentTagId,
     textValue: textValue,
@@ -21791,8 +22029,8 @@ export function deserializeSignRequestSignerInput(
     val.text_value == void 0 ? void 0 : val.text_value;
   const checkboxValue: undefined | boolean =
     val.checkbox_value == void 0 ? void 0 : val.checkbox_value;
-  const dateValue: undefined | string =
-    val.date_value == void 0 ? void 0 : val.date_value;
+  const dateValue: undefined | Date =
+    val.date_value == void 0 ? void 0 : deserializeDate(val.date_value);
   return {
     type: type,
     contentType: contentType,
@@ -21836,7 +22074,8 @@ export function serializeSignRequestSignerSignerDecisionField(
       val.type == void 0
         ? void 0
         : serializeSignRequestSignerSignerDecisionTypeField(val.type),
-    ['finalized_at']: val.finalizedAt == void 0 ? void 0 : val.finalizedAt,
+    ['finalized_at']:
+      val.finalizedAt == void 0 ? void 0 : serializeDateTime(val.finalizedAt),
     ['additional_info']:
       val.additionalInfo == void 0 ? void 0 : val.additionalInfo,
   };
@@ -21848,8 +22087,8 @@ export function deserializeSignRequestSignerSignerDecisionField(
     val.type == void 0
       ? void 0
       : deserializeSignRequestSignerSignerDecisionTypeField(val.type);
-  const finalizedAt: undefined | string =
-    val.finalized_at == void 0 ? void 0 : val.finalized_at;
+  const finalizedAt: undefined | DateTime =
+    val.finalized_at == void 0 ? void 0 : deserializeDateTime(val.finalized_at);
   const additionalInfo: undefined | string =
     val.additional_info == void 0 ? void 0 : val.additional_info;
   return {
@@ -22173,7 +22412,9 @@ export function serializeSignRequest(val: any): SerializedData {
           ? void 0
           : serializeSignRequestSignFilesField(val.signFiles),
       ['auto_expire_at']:
-        val.autoExpireAt == void 0 ? void 0 : val.autoExpireAt,
+        val.autoExpireAt == void 0
+          ? void 0
+          : serializeDateTime(val.autoExpireAt),
       ['parent_folder']:
         val.parentFolder == void 0
           ? void 0
@@ -22215,8 +22456,10 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.sign_files == void 0
       ? void 0
       : deserializeSignRequestSignFilesField(val.sign_files);
-  const autoExpireAt: undefined | string =
-    val.auto_expire_at == void 0 ? void 0 : val.auto_expire_at;
+  const autoExpireAt: undefined | DateTime =
+    val.auto_expire_at == void 0
+      ? void 0
+      : deserializeDateTime(val.auto_expire_at);
   const parentFolder: undefined | FolderMini =
     val.parent_folder == void 0
       ? void 0
@@ -22676,8 +22919,8 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.text_value == void 0 ? void 0 : val.text_value;
   const checkboxValue: undefined | boolean =
     val.checkbox_value == void 0 ? void 0 : val.checkbox_value;
-  const dateValue: undefined | string =
-    val.date_value == void 0 ? void 0 : val.date_value;
+  const dateValue: undefined | Date =
+    val.date_value == void 0 ? void 0 : deserializeDate(val.date_value);
   return {
     type: type,
     contentType: contentType,
@@ -23241,10 +23484,12 @@ export function serializeShieldInformationBarrierReport(
         val.details == void 0
           ? void 0
           : serializeShieldInformationBarrierReportDetails(val.details),
-      ['created_at']: val.createdAt == void 0 ? void 0 : val.createdAt,
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
       ['created_by']:
         val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
-      ['updated_at']: val.updatedAt == void 0 ? void 0 : val.updatedAt,
+      ['updated_at']:
+        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
     },
   };
 }
@@ -23267,12 +23512,12 @@ export function deserializeShieldInformationBarrierReport(
     val.details == void 0
       ? void 0
       : deserializeShieldInformationBarrierReportDetails(val.details);
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
-  const updatedAt: undefined | string =
-    val.updated_at == void 0 ? void 0 : val.updated_at;
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ShieldInformationBarrierReportBaseTypeField =
     val.type == void 0
@@ -23516,10 +23761,10 @@ export function deserializeUserFull(val: any): UserFull {
       : val.is_platform_access_only;
   const externalAppUserId: undefined | string =
     val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
-  const createdAt: undefined | string =
-    val.created_at == void 0 ? void 0 : val.created_at;
-  const modifiedAt: undefined | string =
-    val.modified_at == void 0 ? void 0 : val.modified_at;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
   const timezone: undefined | string =
@@ -23738,15 +23983,17 @@ export function serializeMetadataFieldFilterDateRangeValue(
   val: any
 ): SerializedData {
   return {
-    ['lt']: val.lt == void 0 ? void 0 : val.lt,
-    ['gt']: val.gt == void 0 ? void 0 : val.gt,
+    ['lt']: val.lt == void 0 ? void 0 : serializeDateTime(val.lt),
+    ['gt']: val.gt == void 0 ? void 0 : serializeDateTime(val.gt),
   };
 }
 export function deserializeMetadataFieldFilterDateRangeValue(
   val: any
 ): MetadataFieldFilterDateRangeValue {
-  const lt: undefined | string = val.lt == void 0 ? void 0 : val.lt;
-  const gt: undefined | string = val.gt == void 0 ? void 0 : val.gt;
+  const lt: undefined | DateTime =
+    val.lt == void 0 ? void 0 : deserializeDateTime(val.lt);
+  const gt: undefined | DateTime =
+    val.gt == void 0 ? void 0 : deserializeDateTime(val.gt);
   return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRangeValue;
 }
 export function serializeMetadataFieldFilterDateRange(
