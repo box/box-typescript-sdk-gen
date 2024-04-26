@@ -4,8 +4,8 @@ import { serializeSkillCardsMetadata } from '../schemas.generated.js';
 import { deserializeSkillCardsMetadata } from '../schemas.generated.js';
 import { serializeCreateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
 import { deserializeCreateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
-import { serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
-import { deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
+import { serializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
+import { deserializeKeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
 import { serializeKeywordSkillCardTypeField } from '../schemas.generated.js';
 import { deserializeKeywordSkillCardTypeField } from '../schemas.generated.js';
 import { serializeKeywordSkillCardSkillCardTypeField } from '../schemas.generated.js';
@@ -32,7 +32,7 @@ import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { SkillCardsMetadata } from '../schemas.generated.js';
 import { CreateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
-import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas.generated.js';
+import { KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard } from '../schemas.generated.js';
 import { KeywordSkillCardTypeField } from '../schemas.generated.js';
 import { KeywordSkillCardSkillCardTypeField } from '../schemas.generated.js';
 import { KeywordSkillCardSkillCardTitleField } from '../schemas.generated.js';
@@ -81,7 +81,7 @@ test('test_skills_cards_CRUD', async function test_skills_cards_CRUD(): Promise<
           entries: [
             { text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField,
           ],
-        } satisfies KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
+        } satisfies KeywordSkillCardOrTimelineSkillCardOrTranscriptSkillCardOrStatusSkillCard,
       ],
     } satisfies CreateBoxSkillCardsOnFileRequestBody);
   if (!(skillCardsMetadata.cards!.length == 1)) {
