@@ -304,7 +304,8 @@ export class BoxJwtAuth implements Authentication {
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
     } satisfies PostOAuth2Revoke);
-    return await this.tokenStorage.clear();
+    await this.tokenStorage.clear();
+    return void 0;
   }
 }
 export function serializeJwtConfigAppSettingsAppAuth(val: any): SerializedData {
