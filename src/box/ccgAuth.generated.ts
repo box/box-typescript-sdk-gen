@@ -176,6 +176,7 @@ export class BoxCcgAuth implements Authentication {
       clientSecret: this.config.clientSecret,
       token: oldToken!.accessToken,
     } satisfies PostOAuth2Revoke);
-    return await this.tokenStorage.clear();
+    await this.tokenStorage.clear();
+    return void 0;
   }
 }
