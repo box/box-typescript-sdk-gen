@@ -118,7 +118,7 @@ export class StoragePoliciesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<StoragePolicies> {
-    const headers: any = new GetStoragePoliciesHeaders({
+    const headers: GetStoragePoliciesHeaders = new GetStoragePoliciesHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -154,10 +154,11 @@ export class StoragePoliciesManager {
     storagePolicyId: string,
     optionalsInput: GetStoragePolicyByIdOptionalsInput = {}
   ): Promise<StoragePolicy> {
-    const optionals: any = new GetStoragePolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetStoragePolicyByIdOptionals =
+      new GetStoragePolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {

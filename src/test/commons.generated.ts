@@ -153,16 +153,18 @@ export async function getOrCreateTermsOfServices(): Promise<TermsOfService> {
 export async function getOrCreateClassification(
   classificationTemplateInput: ClassificationTemplateInput
 ): Promise<ClassificationTemplateFieldsOptionsField> {
-  const classificationTemplate: any = new ClassificationTemplate({
-    id: classificationTemplateInput.id,
-    type: classificationTemplateInput.type,
-    scope: classificationTemplateInput.scope,
-    templateKey: classificationTemplateInput.templateKey,
-    displayName: classificationTemplateInput.displayName,
-    hidden: classificationTemplateInput.hidden,
-    copyInstanceOnItemCopy: classificationTemplateInput.copyInstanceOnItemCopy,
-    fields: classificationTemplateInput.fields,
-  });
+  const classificationTemplate: ClassificationTemplate =
+    new ClassificationTemplate({
+      id: classificationTemplateInput.id,
+      type: classificationTemplateInput.type,
+      scope: classificationTemplateInput.scope,
+      templateKey: classificationTemplateInput.templateKey,
+      displayName: classificationTemplateInput.displayName,
+      hidden: classificationTemplateInput.hidden,
+      copyInstanceOnItemCopy:
+        classificationTemplateInput.copyInstanceOnItemCopy,
+      fields: classificationTemplateInput.fields,
+    });
   const client: BoxClient = getDefaultClient();
   const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;
@@ -203,7 +205,7 @@ export async function getOrCreateShieldInformationBarrier(
   clientInput: BoxClientInput,
   enterpriseId: string
 ): Promise<ShieldInformationBarrier> {
-  const client: any = new BoxClient({
+  const client: BoxClient = new BoxClient({
     auth: clientInput.auth,
     networkSession: clientInput.networkSession,
   });

@@ -257,10 +257,11 @@ export class TermsOfServiceUserStatusesManager {
     queryParams: GetTermsOfServiceUserStatusesQueryParams,
     optionalsInput: GetTermsOfServiceUserStatusesOptionalsInput = {}
   ): Promise<TermsOfServiceUserStatuses> {
-    const optionals: any = new GetTermsOfServiceUserStatusesOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTermsOfServiceUserStatusesOptionals =
+      new GetTermsOfServiceUserStatusesOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -293,10 +294,11 @@ export class TermsOfServiceUserStatusesManager {
     requestBody: CreateTermsOfServiceStatusForUserRequestBody,
     optionalsInput: CreateTermsOfServiceStatusForUserOptionalsInput = {}
   ): Promise<TermsOfServiceUserStatus> {
-    const optionals: any = new CreateTermsOfServiceStatusForUserOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateTermsOfServiceStatusForUserOptionals =
+      new CreateTermsOfServiceStatusForUserOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -327,10 +329,11 @@ export class TermsOfServiceUserStatusesManager {
     requestBody: UpdateTermsOfServiceStatusForUserByIdRequestBody,
     optionalsInput: UpdateTermsOfServiceStatusForUserByIdOptionalsInput = {}
   ): Promise<TermsOfServiceUserStatus> {
-    const optionals: any = new UpdateTermsOfServiceStatusForUserByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateTermsOfServiceStatusForUserByIdOptionals =
+      new UpdateTermsOfServiceStatusForUserByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -363,7 +366,7 @@ export interface TermsOfServiceUserStatusesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField
 ): SerializedData {
   return val;
 }
@@ -384,7 +387,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFi
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosField
 ): SerializedData {
   return {
     ['type']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
@@ -407,7 +410,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -437,7 +440,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldI
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField
 ): SerializedData {
   return val;
 }
@@ -458,7 +461,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeF
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserField
 ): SerializedData {
   return {
     ['type']:
@@ -482,7 +485,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -512,7 +515,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBody(
-  val: any
+  val: CreateTermsOfServiceStatusForUserRequestBody
 ): SerializedData {
   return {
     ['tos']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
@@ -539,7 +542,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
   } satisfies CreateTermsOfServiceStatusForUserRequestBody;
 }
 export function serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-  val: any
+  val: UpdateTermsOfServiceStatusForUserByIdRequestBody
 ): SerializedData {
   return { ['is_accepted']: val.isAccepted };
 }

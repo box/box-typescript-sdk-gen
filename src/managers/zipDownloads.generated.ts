@@ -220,10 +220,11 @@ export class ZipDownloadsManager {
     requestBody: ZipDownloadRequest,
     optionalsInput: CreateZipDownloadOptionalsInput = {}
   ): Promise<ZipDownload> {
-    const optionals: any = new CreateZipDownloadOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateZipDownloadOptionals =
+      new CreateZipDownloadOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -251,10 +252,11 @@ export class ZipDownloadsManager {
     downloadUrl: string,
     optionalsInput: GetZipDownloadContentOptionalsInput = {}
   ): Promise<ByteStream> {
-    const optionals: any = new GetZipDownloadContentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetZipDownloadContentOptionals =
+      new GetZipDownloadContentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -274,10 +276,11 @@ export class ZipDownloadsManager {
     statusUrl: string,
     optionalsInput: GetZipDownloadStatusOptionalsInput = {}
   ): Promise<ZipDownloadStatus> {
-    const optionals: any = new GetZipDownloadStatusOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetZipDownloadStatusOptionals =
+      new GetZipDownloadStatusOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -297,7 +300,7 @@ export class ZipDownloadsManager {
     requestBody: ZipDownloadRequest,
     optionalsInput: DownloadZipOptionalsInput = {}
   ): Promise<ByteStream> {
-    const optionals: any = new DownloadZipOptionals({
+    const optionals: DownloadZipOptionals = new DownloadZipOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });

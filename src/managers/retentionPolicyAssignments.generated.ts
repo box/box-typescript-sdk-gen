@@ -419,11 +419,12 @@ export class RetentionPolicyAssignmentsManager {
     retentionPolicyId: string,
     optionalsInput: GetRetentionPolicyAssignmentsOptionalsInput = {}
   ): Promise<RetentionPolicyAssignments> {
-    const optionals: any = new GetRetentionPolicyAssignmentsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetRetentionPolicyAssignmentsOptionals =
+      new GetRetentionPolicyAssignmentsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -463,10 +464,11 @@ export class RetentionPolicyAssignmentsManager {
     requestBody: CreateRetentionPolicyAssignmentRequestBody,
     optionalsInput: CreateRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<RetentionPolicyAssignment> {
-    const optionals: any = new CreateRetentionPolicyAssignmentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateRetentionPolicyAssignmentOptionals =
+      new CreateRetentionPolicyAssignmentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -494,11 +496,12 @@ export class RetentionPolicyAssignmentsManager {
     retentionPolicyAssignmentId: string,
     optionalsInput: GetRetentionPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<RetentionPolicyAssignment> {
-    const optionals: any = new GetRetentionPolicyAssignmentByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetRetentionPolicyAssignmentByIdOptionals =
+      new GetRetentionPolicyAssignmentByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -534,10 +537,11 @@ export class RetentionPolicyAssignmentsManager {
     retentionPolicyAssignmentId: string,
     optionalsInput: DeleteRetentionPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteRetentionPolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteRetentionPolicyAssignmentByIdOptionals =
+      new DeleteRetentionPolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -564,11 +568,12 @@ export class RetentionPolicyAssignmentsManager {
     retentionPolicyAssignmentId: string,
     optionalsInput: GetFilesUnderRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<FilesUnderRetention> {
-    const optionals: any = new GetFilesUnderRetentionPolicyAssignmentOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFilesUnderRetentionPolicyAssignmentOptionals =
+      new GetFilesUnderRetentionPolicyAssignmentOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -604,7 +609,7 @@ export class RetentionPolicyAssignmentsManager {
     retentionPolicyAssignmentId: string,
     optionalsInput: GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<FilesUnderRetention> {
-    const optionals: any =
+    const optionals: GetFileVersionsUnderRetentionPolicyAssignmentOptionals =
       new GetFileVersionsUnderRetentionPolicyAssignmentOptionals({
         queryParams: optionalsInput.queryParams,
         headers: optionalsInput.headers,
@@ -647,7 +652,7 @@ export interface RetentionPolicyAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
-  val: any
+  val: GetRetentionPolicyAssignmentsQueryParamsTypeField
 ): SerializedData {
   return val;
 }
@@ -674,7 +679,7 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-  val: any
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
 ): SerializedData {
   return val;
 }
@@ -701,7 +706,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-  val: any
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToField
 ): SerializedData {
   return {
     ['type']:
@@ -725,7 +730,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-  val: any
+  val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
@@ -743,7 +748,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterField
   } satisfies CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBody(
-  val: any
+  val: CreateRetentionPolicyAssignmentRequestBody
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,
@@ -756,7 +761,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBody(
         ? void 0
         : (val.filterFields.map(function (
             item: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
-          ): any {
+          ): SerializedData {
             return serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
               item
             );
@@ -779,7 +784,9 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBody(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (itm: SerializedData): any {
+      ? (val.filter_fields.map(function (
+          itm: SerializedData
+        ): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
           return deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
             itm
           );

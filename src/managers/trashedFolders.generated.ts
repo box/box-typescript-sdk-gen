@@ -220,12 +220,13 @@ export class TrashedFoldersManager {
     folderId: string,
     optionalsInput: RestoreFolderFromTrashOptionalsInput = {}
   ): Promise<TrashFolderRestored> {
-    const optionals: any = new RestoreFolderFromTrashOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RestoreFolderFromTrashOptionals =
+      new RestoreFolderFromTrashOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -264,11 +265,12 @@ export class TrashedFoldersManager {
     folderId: string,
     optionalsInput: GetTrashedFolderByIdOptionalsInput = {}
   ): Promise<TrashFolder> {
-    const optionals: any = new GetTrashedFolderByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTrashedFolderByIdOptionals =
+      new GetTrashedFolderByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -305,10 +307,11 @@ export class TrashedFoldersManager {
     folderId: string,
     optionalsInput: DeleteTrashedFolderByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteTrashedFolderByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteTrashedFolderByIdOptionals =
+      new DeleteTrashedFolderByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -338,7 +341,7 @@ export interface TrashedFoldersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreFolderFromTrashRequestBodyParentField(
-  val: any
+  val: RestoreFolderFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -349,7 +352,7 @@ export function deserializeRestoreFolderFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFolderFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFolderFromTrashRequestBody(
-  val: any
+  val: RestoreFolderFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

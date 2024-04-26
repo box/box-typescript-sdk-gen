@@ -231,9 +231,10 @@ export class CollaborationAllowlistEntriesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistEntries> {
-    const headers: any = new GetCollaborationWhitelistEntriesHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetCollaborationWhitelistEntriesHeaders =
+      new GetCollaborationWhitelistEntriesHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -264,10 +265,11 @@ export class CollaborationAllowlistEntriesManager {
     requestBody: CreateCollaborationWhitelistEntryRequestBody,
     optionalsInput: CreateCollaborationWhitelistEntryOptionalsInput = {}
   ): Promise<CollaborationAllowlistEntry> {
-    const optionals: any = new CreateCollaborationWhitelistEntryOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateCollaborationWhitelistEntryOptionals =
+      new CreateCollaborationWhitelistEntryOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -297,10 +299,11 @@ export class CollaborationAllowlistEntriesManager {
     collaborationWhitelistEntryId: string,
     optionalsInput: GetCollaborationWhitelistEntryByIdOptionalsInput = {}
   ): Promise<CollaborationAllowlistEntry> {
-    const optionals: any = new GetCollaborationWhitelistEntryByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetCollaborationWhitelistEntryByIdOptionals =
+      new GetCollaborationWhitelistEntryByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -327,10 +330,11 @@ export class CollaborationAllowlistEntriesManager {
     collaborationWhitelistEntryId: string,
     optionalsInput: DeleteCollaborationWhitelistEntryByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteCollaborationWhitelistEntryByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteCollaborationWhitelistEntryByIdOptionals =
+      new DeleteCollaborationWhitelistEntryByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -359,7 +363,7 @@ export interface CollaborationAllowlistEntriesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-  val: any
+  val: CreateCollaborationWhitelistEntryRequestBodyDirectionField
 ): SerializedData {
   return val;
 }
@@ -386,7 +390,7 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
   });
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBody(
-  val: any
+  val: CreateCollaborationWhitelistEntryRequestBody
 ): SerializedData {
   return {
     ['domain']: val.domain,

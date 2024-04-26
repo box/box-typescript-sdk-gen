@@ -142,7 +142,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
   'enterprise' as DeleteMetadataTemplateScope,
-  template.templateKey
+  template.templateKey!
 );
 ```
 

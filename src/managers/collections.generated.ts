@@ -131,7 +131,7 @@ export class CollectionsManager {
     headersInput: GetCollectionsHeadersInput = new GetCollectionsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Collections> {
-    const headers: any = new GetCollectionsHeaders({
+    const headers: GetCollectionsHeaders = new GetCollectionsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -164,11 +164,12 @@ export class CollectionsManager {
     collectionId: string,
     optionalsInput: GetCollectionItemsOptionalsInput = {}
   ): Promise<Items> {
-    const optionals: any = new GetCollectionItemsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetCollectionItemsOptionals =
+      new GetCollectionItemsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;

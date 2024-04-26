@@ -398,7 +398,7 @@ export class FilesManager {
     fileId: string,
     optionalsInput: GetFileByIdOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new GetFileByIdOptionals({
+    const optionals: GetFileByIdOptionals = new GetFileByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -445,7 +445,7 @@ export class FilesManager {
     fileId: string,
     optionalsInput: UpdateFileByIdOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new UpdateFileByIdOptionals({
+    const optionals: UpdateFileByIdOptionals = new UpdateFileByIdOptionals({
       requestBody: optionalsInput.requestBody,
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
@@ -492,7 +492,7 @@ export class FilesManager {
     fileId: string,
     optionalsInput: DeleteFileByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileByIdOptionals({
+    const optionals: DeleteFileByIdOptionals = new DeleteFileByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -526,7 +526,7 @@ export class FilesManager {
     requestBody: CopyFileRequestBody,
     optionalsInput: CopyFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new CopyFileOptionals({
+    const optionals: CopyFileOptionals = new CopyFileOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -570,11 +570,12 @@ export class FilesManager {
     extension: GetFileThumbnailByIdExtension,
     optionalsInput: GetFileThumbnailByIdOptionalsInput = {}
   ): Promise<ByteStream> {
-    const optionals: any = new GetFileThumbnailByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileThumbnailByIdOptionals =
+      new GetFileThumbnailByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -615,7 +616,7 @@ export interface FilesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileByIdRequestBodyParentField(
-  val: any
+  val: UpdateFileByIdRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -626,7 +627,7 @@ export function deserializeUpdateFileByIdRequestBodyParentField(
   return { id: id } satisfies UpdateFileByIdRequestBodyParentField;
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateFileByIdRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -653,7 +654,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-  val: any
+  val: UpdateFileByIdRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -669,7 +670,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   } satisfies UpdateFileByIdRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkField(
-  val: any
+  val: UpdateFileByIdRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -718,7 +719,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkField(
   } satisfies UpdateFileByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateFileByIdRequestBodyLockAccessField(
-  val: any
+  val: UpdateFileByIdRequestBodyLockAccessField
 ): SerializedData {
   return val;
 }
@@ -739,7 +740,7 @@ export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   });
 }
 export function serializeUpdateFileByIdRequestBodyLockField(
-  val: any
+  val: UpdateFileByIdRequestBodyLockField
 ): SerializedData {
   return {
     ['access']:
@@ -770,7 +771,7 @@ export function deserializeUpdateFileByIdRequestBodyLockField(
   } satisfies UpdateFileByIdRequestBodyLockField;
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-  val: any
+  val: UpdateFileByIdRequestBodyPermissionsCanDownloadField
 ): SerializedData {
   return val;
 }
@@ -794,7 +795,7 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   });
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsField(
-  val: any
+  val: UpdateFileByIdRequestBodyPermissionsField
 ): SerializedData {
   return {
     ['can_download']:
@@ -821,7 +822,7 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsField(
   } satisfies UpdateFileByIdRequestBodyPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodyCollectionsField(
-  val: any
+  val: UpdateFileByIdRequestBodyCollectionsField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -838,7 +839,9 @@ export function deserializeUpdateFileByIdRequestBodyCollectionsField(
     type: type,
   } satisfies UpdateFileByIdRequestBodyCollectionsField;
 }
-export function serializeUpdateFileByIdRequestBody(val: any): SerializedData {
+export function serializeUpdateFileByIdRequestBody(
+  val: UpdateFileByIdRequestBody
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -867,13 +870,13 @@ export function serializeUpdateFileByIdRequestBody(val: any): SerializedData {
         ? void 0
         : (val.collections.map(function (
             item: UpdateFileByIdRequestBodyCollectionsField
-          ): any {
+          ): SerializedData {
             return serializeUpdateFileByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags.map(function (item: string): any {
+        : (val.tags.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
   };
@@ -910,18 +913,14 @@ export function deserializeUpdateFileByIdRequestBody(
     val.collections == void 0
       ? void 0
       : sdIsList(val.collections)
-      ? (val.collections.map(function (itm: SerializedData): any {
+      ? (val.collections.map(function (
+          itm: SerializedData
+        ): UpdateFileByIdRequestBodyCollectionsField {
           return deserializeUpdateFileByIdRequestBodyCollectionsField(itm);
         }) as readonly any[])
       : [];
   const tags: undefined | readonly string[] =
-    val.tags == void 0
-      ? void 0
-      : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
   return {
     name: name,
     description: description,
@@ -935,7 +934,7 @@ export function deserializeUpdateFileByIdRequestBody(
   } satisfies UpdateFileByIdRequestBody;
 }
 export function serializeCopyFileRequestBodyParentField(
-  val: any
+  val: CopyFileRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -945,7 +944,9 @@ export function deserializeCopyFileRequestBodyParentField(
   const id: string = val.id;
   return { id: id } satisfies CopyFileRequestBodyParentField;
 }
-export function serializeCopyFileRequestBody(val: any): SerializedData {
+export function serializeCopyFileRequestBody(
+  val: CopyFileRequestBody
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['version']: val.version == void 0 ? void 0 : val.version,
@@ -965,7 +966,7 @@ export function deserializeCopyFileRequestBody(val: any): CopyFileRequestBody {
   } satisfies CopyFileRequestBody;
 }
 export function serializeGetFileThumbnailByIdExtension(
-  val: any
+  val: GetFileThumbnailByIdExtension
 ): SerializedData {
   return val;
 }

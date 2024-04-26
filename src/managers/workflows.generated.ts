@@ -152,7 +152,7 @@ export class WorkflowsManager {
     queryParams: GetWorkflowsQueryParams,
     optionalsInput: GetWorkflowsOptionalsInput = {}
   ): Promise<Workflows> {
-    const optionals: any = new GetWorkflowsOptionals({
+    const optionals: GetWorkflowsOptionals = new GetWorkflowsOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -188,7 +188,7 @@ export class WorkflowsManager {
     requestBody: StartWorkflowRequestBody,
     optionalsInput: StartWorkflowOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new StartWorkflowOptionals({
+    const optionals: StartWorkflowOptionals = new StartWorkflowOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -223,7 +223,7 @@ export interface WorkflowsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeStartWorkflowRequestBodyTypeField(
-  val: any
+  val: StartWorkflowRequestBodyTypeField
 ): SerializedData {
   return val;
 }
@@ -243,7 +243,7 @@ export function deserializeStartWorkflowRequestBodyTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFlowField(
-  val: any
+  val: StartWorkflowRequestBodyFlowField
 ): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -258,7 +258,7 @@ export function deserializeStartWorkflowRequestBodyFlowField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFlowField;
 }
 export function serializeStartWorkflowRequestBodyFilesTypeField(
-  val: any
+  val: StartWorkflowRequestBodyFilesTypeField
 ): SerializedData {
   return val;
 }
@@ -279,7 +279,7 @@ export function deserializeStartWorkflowRequestBodyFilesTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFilesField(
-  val: any
+  val: StartWorkflowRequestBodyFilesField
 ): SerializedData {
   return {
     ['type']:
@@ -300,7 +300,7 @@ export function deserializeStartWorkflowRequestBodyFilesField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFilesField;
 }
 export function serializeStartWorkflowRequestBodyFolderTypeField(
-  val: any
+  val: StartWorkflowRequestBodyFolderTypeField
 ): SerializedData {
   return val;
 }
@@ -321,7 +321,7 @@ export function deserializeStartWorkflowRequestBodyFolderTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFolderField(
-  val: any
+  val: StartWorkflowRequestBodyFolderField
 ): SerializedData {
   return {
     ['type']:
@@ -341,7 +341,9 @@ export function deserializeStartWorkflowRequestBodyFolderField(
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
-export function serializeStartWorkflowRequestBody(val: any): SerializedData {
+export function serializeStartWorkflowRequestBody(
+  val: StartWorkflowRequestBody
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -350,14 +352,14 @@ export function serializeStartWorkflowRequestBody(val: any): SerializedData {
     ['flow']: serializeStartWorkflowRequestBodyFlowField(val.flow),
     ['files']: val.files.map(function (
       item: StartWorkflowRequestBodyFilesField
-    ): any {
+    ): SerializedData {
       return serializeStartWorkflowRequestBodyFilesField(item);
     }) as readonly any[],
     ['folder']: serializeStartWorkflowRequestBodyFolderField(val.folder),
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
-        : (val.outcomes.map(function (item: Outcome): any {
+        : (val.outcomes.map(function (item: Outcome): SerializedData {
             return serializeOutcome(item);
           }) as readonly any[]),
   };
@@ -374,7 +376,9 @@ export function deserializeStartWorkflowRequestBody(
   const files: readonly StartWorkflowRequestBodyFilesField[] = sdIsList(
     val.files
   )
-    ? (val.files.map(function (itm: SerializedData): any {
+    ? (val.files.map(function (
+        itm: SerializedData
+      ): StartWorkflowRequestBodyFilesField {
         return deserializeStartWorkflowRequestBodyFilesField(itm);
       }) as readonly any[])
     : [];
@@ -384,7 +388,7 @@ export function deserializeStartWorkflowRequestBody(
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
-      ? (val.outcomes.map(function (itm: SerializedData): any {
+      ? (val.outcomes.map(function (itm: SerializedData): Outcome {
           return deserializeOutcome(itm);
         }) as readonly any[])
       : [];

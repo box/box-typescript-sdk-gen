@@ -72,7 +72,7 @@ export class TrashedItemsManager {
     headersInput: GetTrashedItemsHeadersInput = new GetTrashedItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Items> {
-    const headers: any = new GetTrashedItemsHeaders({
+    const headers: GetTrashedItemsHeaders = new GetTrashedItemsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -114,7 +114,7 @@ export interface TrashedItemsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetTrashedItemsQueryParamsDirectionField(
-  val: any
+  val: GetTrashedItemsQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
@@ -138,7 +138,7 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   });
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
-  val: any
+  val: GetTrashedItemsQueryParamsSortField
 ): SerializedData {
   return val;
 }

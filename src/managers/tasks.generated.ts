@@ -289,7 +289,7 @@ export class TasksManager {
     fileId: string,
     optionalsInput: GetFileTasksOptionalsInput = {}
   ): Promise<Tasks> {
-    const optionals: any = new GetFileTasksOptionals({
+    const optionals: GetFileTasksOptionals = new GetFileTasksOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -320,7 +320,7 @@ export class TasksManager {
     requestBody: CreateTaskRequestBody,
     optionalsInput: CreateTaskOptionalsInput = {}
   ): Promise<Task> {
-    const optionals: any = new CreateTaskOptionals({
+    const optionals: CreateTaskOptionals = new CreateTaskOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -348,7 +348,7 @@ export class TasksManager {
     taskId: string,
     optionalsInput: GetTaskByIdOptionalsInput = {}
   ): Promise<Task> {
-    const optionals: any = new GetTaskByIdOptionals({
+    const optionals: GetTaskByIdOptionals = new GetTaskByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -378,7 +378,7 @@ export class TasksManager {
     taskId: string,
     optionalsInput: UpdateTaskByIdOptionalsInput = {}
   ): Promise<Task> {
-    const optionals: any = new UpdateTaskByIdOptionals({
+    const optionals: UpdateTaskByIdOptionals = new UpdateTaskByIdOptionals({
       requestBody: optionalsInput.requestBody,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -412,7 +412,7 @@ export class TasksManager {
     taskId: string,
     optionalsInput: DeleteTaskByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteTaskByIdOptionals({
+    const optionals: DeleteTaskByIdOptionals = new DeleteTaskByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -444,7 +444,7 @@ export interface TasksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskRequestBodyItemTypeField(
-  val: any
+  val: CreateTaskRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
@@ -464,7 +464,7 @@ export function deserializeCreateTaskRequestBodyItemTypeField(
   });
 }
 export function serializeCreateTaskRequestBodyItemField(
-  val: any
+  val: CreateTaskRequestBodyItemField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -485,7 +485,7 @@ export function deserializeCreateTaskRequestBodyItemField(
   return { id: id, type: type } satisfies CreateTaskRequestBodyItemField;
 }
 export function serializeCreateTaskRequestBodyActionField(
-  val: any
+  val: CreateTaskRequestBodyActionField
 ): SerializedData {
   return val;
 }
@@ -508,7 +508,7 @@ export function deserializeCreateTaskRequestBodyActionField(
   });
 }
 export function serializeCreateTaskRequestBodyCompletionRuleField(
-  val: any
+  val: CreateTaskRequestBodyCompletionRuleField
 ): SerializedData {
   return val;
 }
@@ -531,7 +531,9 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateTaskRequestBody(val: any): SerializedData {
+export function serializeCreateTaskRequestBody(
+  val: CreateTaskRequestBody
+): SerializedData {
   return {
     ['item']: serializeCreateTaskRequestBodyItemField(val.item),
     ['action']:
@@ -574,7 +576,7 @@ export function deserializeCreateTaskRequestBody(
   } satisfies CreateTaskRequestBody;
 }
 export function serializeUpdateTaskByIdRequestBodyActionField(
-  val: any
+  val: UpdateTaskByIdRequestBodyActionField
 ): SerializedData {
   return val;
 }
@@ -597,7 +599,7 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   });
 }
 export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
-  val: any
+  val: UpdateTaskByIdRequestBodyCompletionRuleField
 ): SerializedData {
   return val;
 }
@@ -620,7 +622,9 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateTaskByIdRequestBody(val: any): SerializedData {
+export function serializeUpdateTaskByIdRequestBody(
+  val: UpdateTaskByIdRequestBody
+): SerializedData {
   return {
     ['action']:
       val.action == void 0

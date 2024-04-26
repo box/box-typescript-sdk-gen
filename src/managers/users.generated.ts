@@ -399,7 +399,7 @@ export class UsersManager {
     headersInput: GetUsersHeadersInput = new GetUsersHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Users> {
-    const headers: any = new GetUsersHeaders({
+    const headers: GetUsersHeaders = new GetUsersHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -439,7 +439,7 @@ export class UsersManager {
     requestBody: CreateUserRequestBody,
     optionalsInput: CreateUserOptionalsInput = {}
   ): Promise<UserFull> {
-    const optionals: any = new CreateUserOptionals({
+    const optionals: CreateUserOptionals = new CreateUserOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -478,7 +478,7 @@ export class UsersManager {
     headersInput: GetUserMeHeadersInput = new GetUserMeHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<UserFull> {
-    const headers: any = new GetUserMeHeaders({
+    const headers: GetUserMeHeaders = new GetUserMeHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -509,7 +509,7 @@ export class UsersManager {
     userId: string,
     optionalsInput: GetUserByIdOptionalsInput = {}
   ): Promise<UserFull> {
-    const optionals: any = new GetUserByIdOptionals({
+    const optionals: GetUserByIdOptionals = new GetUserByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -549,7 +549,7 @@ export class UsersManager {
     userId: string,
     optionalsInput: UpdateUserByIdOptionalsInput = {}
   ): Promise<UserFull> {
-    const optionals: any = new UpdateUserByIdOptionals({
+    const optionals: UpdateUserByIdOptionals = new UpdateUserByIdOptionals({
       requestBody: optionalsInput.requestBody,
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
@@ -593,7 +593,7 @@ export class UsersManager {
     userId: string,
     optionalsInput: DeleteUserByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteUserByIdOptionals({
+    const optionals: DeleteUserByIdOptionals = new DeleteUserByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -634,7 +634,7 @@ export interface UsersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetUsersQueryParamsUserTypeField(
-  val: any
+  val: GetUsersQueryParamsUserTypeField
 ): SerializedData {
   return val;
 }
@@ -660,7 +660,7 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   });
 }
 export function serializeCreateUserRequestBodyRoleField(
-  val: any
+  val: CreateUserRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -683,7 +683,7 @@ export function deserializeCreateUserRequestBodyRoleField(
   });
 }
 export function serializeCreateUserRequestBodyStatusField(
-  val: any
+  val: CreateUserRequestBodyStatusField
 ): SerializedData {
   return val;
 }
@@ -711,7 +711,9 @@ export function deserializeCreateUserRequestBodyStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateUserRequestBody(val: any): SerializedData {
+export function serializeCreateUserRequestBody(
+  val: CreateUserRequestBody
+): SerializedData {
   return {
     ['name']: val.name,
     ['login']: val.login == void 0 ? void 0 : val.login,
@@ -731,7 +733,7 @@ export function serializeCreateUserRequestBody(val: any): SerializedData {
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes.map(function (item: TrackingCode): any {
+        : (val.trackingCodes.map(function (item: TrackingCode): SerializedData {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -785,7 +787,7 @@ export function deserializeCreateUserRequestBody(
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): any {
+      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
@@ -833,7 +835,7 @@ export function deserializeCreateUserRequestBody(
   } satisfies CreateUserRequestBody;
 }
 export function serializeUpdateUserByIdRequestBodyRoleField(
-  val: any
+  val: UpdateUserByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -856,7 +858,7 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyStatusField(
-  val: any
+  val: UpdateUserByIdRequestBodyStatusField
 ): SerializedData {
   return val;
 }
@@ -885,7 +887,7 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
-  val: any
+  val: UpdateUserByIdRequestBodyNotificationEmailField
 ): SerializedData {
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
@@ -897,7 +899,9 @@ export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
     email: email,
   } satisfies UpdateUserByIdRequestBodyNotificationEmailField;
 }
-export function serializeUpdateUserByIdRequestBody(val: any): SerializedData {
+export function serializeUpdateUserByIdRequestBody(
+  val: UpdateUserByIdRequestBody
+): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
     ['notify']: val.notify == void 0 ? void 0 : val.notify,
@@ -916,7 +920,7 @@ export function serializeUpdateUserByIdRequestBody(val: any): SerializedData {
     ['tracking_codes']:
       val.trackingCodes == void 0
         ? void 0
-        : (val.trackingCodes.map(function (item: TrackingCode): any {
+        : (val.trackingCodes.map(function (item: TrackingCode): SerializedData {
             return serializeTrackingCode(item);
           }) as readonly any[]),
     ['can_see_managed_users']:
@@ -979,7 +983,7 @@ export function deserializeUpdateUserByIdRequestBody(
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): any {
+      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];

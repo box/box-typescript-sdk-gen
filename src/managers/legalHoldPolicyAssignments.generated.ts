@@ -404,10 +404,11 @@ export class LegalHoldPolicyAssignmentsManager {
     queryParams: GetLegalHoldPolicyAssignmentsQueryParams,
     optionalsInput: GetLegalHoldPolicyAssignmentsOptionalsInput = {}
   ): Promise<LegalHoldPolicyAssignments> {
-    const optionals: any = new GetLegalHoldPolicyAssignmentsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetLegalHoldPolicyAssignmentsOptionals =
+      new GetLegalHoldPolicyAssignmentsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -446,10 +447,11 @@ export class LegalHoldPolicyAssignmentsManager {
     requestBody: CreateLegalHoldPolicyAssignmentRequestBody,
     optionalsInput: CreateLegalHoldPolicyAssignmentOptionalsInput = {}
   ): Promise<LegalHoldPolicyAssignment> {
-    const optionals: any = new CreateLegalHoldPolicyAssignmentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateLegalHoldPolicyAssignmentOptionals =
+      new CreateLegalHoldPolicyAssignmentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -477,10 +479,11 @@ export class LegalHoldPolicyAssignmentsManager {
     legalHoldPolicyAssignmentId: string,
     optionalsInput: GetLegalHoldPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<LegalHoldPolicyAssignment> {
-    const optionals: any = new GetLegalHoldPolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetLegalHoldPolicyAssignmentByIdOptionals =
+      new GetLegalHoldPolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -507,10 +510,11 @@ export class LegalHoldPolicyAssignmentsManager {
     legalHoldPolicyAssignmentId: string,
     optionalsInput: DeleteLegalHoldPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteLegalHoldPolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteLegalHoldPolicyAssignmentByIdOptionals =
+      new DeleteLegalHoldPolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -537,11 +541,12 @@ export class LegalHoldPolicyAssignmentsManager {
     legalHoldPolicyAssignmentId: string,
     optionalsInput: GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput = {}
   ): Promise<FileVersionLegalHolds> {
-    const optionals: any = new GetLegalHoldPolicyAssignmentFileOnHoldOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetLegalHoldPolicyAssignmentFileOnHoldOptionals =
+      new GetLegalHoldPolicyAssignmentFileOnHoldOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -580,7 +585,7 @@ export class LegalHoldPolicyAssignmentsManager {
     legalHoldPolicyAssignmentId: string,
     optionalsInput: GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionalsInput = {}
   ): Promise<FileVersionLegalHolds> {
-    const optionals: any =
+    const optionals: GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals =
       new GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals({
         queryParams: optionalsInput.queryParams,
         headers: optionalsInput.headers,
@@ -626,7 +631,7 @@ export interface LegalHoldPolicyAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
-  val: any
+  val: GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField
 ): SerializedData {
   return val;
 }
@@ -656,7 +661,7 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeF
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-  val: any
+  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField
 ): SerializedData {
   return val;
 }
@@ -686,7 +691,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-  val: any
+  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField
 ): SerializedData {
   return {
     ['type']:
@@ -710,7 +715,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateLegalHoldPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBody(
-  val: any
+  val: CreateLegalHoldPolicyAssignmentRequestBody
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,

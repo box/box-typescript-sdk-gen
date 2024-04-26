@@ -58,7 +58,7 @@ export async function getOrCreateStoragePolicyAssignment(
   policyId: string,
   userId: string
 ): Promise<StoragePolicyAssignment> {
-  const client: any = new BoxClient({
+  const client: BoxClient = new BoxClient({
     auth: clientInput.auth,
     networkSession: clientInput.networkSession,
   });

@@ -286,9 +286,10 @@ export class LegalHoldPoliciesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<LegalHoldPolicies> {
-    const headers: any = new GetLegalHoldPoliciesHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetLegalHoldPoliciesHeaders =
+      new GetLegalHoldPoliciesHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -323,10 +324,11 @@ export class LegalHoldPoliciesManager {
     requestBody: CreateLegalHoldPolicyRequestBody,
     optionalsInput: CreateLegalHoldPolicyOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const optionals: any = new CreateLegalHoldPolicyOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateLegalHoldPolicyOptionals =
+      new CreateLegalHoldPolicyOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -354,10 +356,11 @@ export class LegalHoldPoliciesManager {
     legalHoldPolicyId: string,
     optionalsInput: GetLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const optionals: any = new GetLegalHoldPolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetLegalHoldPolicyByIdOptionals =
+      new GetLegalHoldPolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -384,11 +387,12 @@ export class LegalHoldPoliciesManager {
     legalHoldPolicyId: string,
     optionalsInput: UpdateLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const optionals: any = new UpdateLegalHoldPolicyByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateLegalHoldPolicyByIdOptionals =
+      new UpdateLegalHoldPolicyByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -418,10 +422,11 @@ export class LegalHoldPoliciesManager {
     legalHoldPolicyId: string,
     optionalsInput: DeleteLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteLegalHoldPolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteLegalHoldPolicyByIdOptionals =
+      new DeleteLegalHoldPolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -450,7 +455,7 @@ export interface LegalHoldPoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateLegalHoldPolicyRequestBody(
-  val: any
+  val: CreateLegalHoldPolicyRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -491,7 +496,7 @@ export function deserializeCreateLegalHoldPolicyRequestBody(
   } satisfies CreateLegalHoldPolicyRequestBody;
 }
 export function serializeUpdateLegalHoldPolicyByIdRequestBody(
-  val: any
+  val: UpdateLegalHoldPolicyByIdRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,

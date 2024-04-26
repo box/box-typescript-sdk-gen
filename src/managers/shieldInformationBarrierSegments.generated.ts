@@ -330,10 +330,11 @@ export class ShieldInformationBarrierSegmentsManager {
     shieldInformationBarrierSegmentId: string,
     optionalsInput: GetShieldInformationBarrierSegmentByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegment> {
-    const optionals: any = new GetShieldInformationBarrierSegmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetShieldInformationBarrierSegmentByIdOptionals =
+      new GetShieldInformationBarrierSegmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -360,7 +361,7 @@ export class ShieldInformationBarrierSegmentsManager {
     shieldInformationBarrierSegmentId: string,
     optionalsInput: UpdateShieldInformationBarrierSegmentByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegment> {
-    const optionals: any =
+    const optionals: UpdateShieldInformationBarrierSegmentByIdOptionals =
       new UpdateShieldInformationBarrierSegmentByIdOptionals({
         requestBody: optionalsInput.requestBody,
         headers: optionalsInput.headers,
@@ -397,7 +398,7 @@ export class ShieldInformationBarrierSegmentsManager {
     shieldInformationBarrierSegmentId: string,
     optionalsInput: DeleteShieldInformationBarrierSegmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any =
+    const optionals: DeleteShieldInformationBarrierSegmentByIdOptionals =
       new DeleteShieldInformationBarrierSegmentByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -428,10 +429,11 @@ export class ShieldInformationBarrierSegmentsManager {
     queryParams: GetShieldInformationBarrierSegmentsQueryParams,
     optionalsInput: GetShieldInformationBarrierSegmentsOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegments> {
-    const optionals: any = new GetShieldInformationBarrierSegmentsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetShieldInformationBarrierSegmentsOptionals =
+      new GetShieldInformationBarrierSegmentsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -467,10 +469,11 @@ export class ShieldInformationBarrierSegmentsManager {
     requestBody: CreateShieldInformationBarrierSegmentRequestBody,
     optionalsInput: CreateShieldInformationBarrierSegmentOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegment> {
-    const optionals: any = new CreateShieldInformationBarrierSegmentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateShieldInformationBarrierSegmentOptionals =
+      new CreateShieldInformationBarrierSegmentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -502,7 +505,7 @@ export interface ShieldInformationBarrierSegmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
-  val: any
+  val: UpdateShieldInformationBarrierSegmentByIdRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -521,7 +524,7 @@ export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody;
 }
 export function serializeCreateShieldInformationBarrierSegmentRequestBody(
-  val: any
+  val: CreateShieldInformationBarrierSegmentRequestBody
 ): SerializedData {
   return {
     ['shield_information_barrier']: serializeShieldInformationBarrierBase(

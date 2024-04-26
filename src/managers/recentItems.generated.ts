@@ -65,7 +65,7 @@ export class RecentItemsManager {
     headersInput: GetRecentItemsHeadersInput = new GetRecentItemsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<RecentItems> {
-    const headers: any = new GetRecentItemsHeaders({
+    const headers: GetRecentItemsHeaders = new GetRecentItemsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {

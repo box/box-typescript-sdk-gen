@@ -335,7 +335,7 @@ export class CommentsManager {
     fileId: string,
     optionalsInput: GetFileCommentsOptionalsInput = {}
   ): Promise<Comments> {
-    const optionals: any = new GetFileCommentsOptionals({
+    const optionals: GetFileCommentsOptionals = new GetFileCommentsOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -378,7 +378,7 @@ export class CommentsManager {
     commentId: string,
     optionalsInput: GetCommentByIdOptionalsInput = {}
   ): Promise<CommentFull> {
-    const optionals: any = new GetCommentByIdOptionals({
+    const optionals: GetCommentByIdOptionals = new GetCommentByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -418,12 +418,13 @@ export class CommentsManager {
     commentId: string,
     optionalsInput: UpdateCommentByIdOptionalsInput = {}
   ): Promise<CommentFull> {
-    const optionals: any = new UpdateCommentByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateCommentByIdOptionals =
+      new UpdateCommentByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -462,10 +463,11 @@ export class CommentsManager {
     commentId: string,
     optionalsInput: DeleteCommentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteCommentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteCommentByIdOptionals =
+      new DeleteCommentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -492,7 +494,7 @@ export class CommentsManager {
     requestBody: CreateCommentRequestBody,
     optionalsInput: CreateCommentOptionalsInput = {}
   ): Promise<CommentFull> {
-    const optionals: any = new CreateCommentOptionals({
+    const optionals: CreateCommentOptionals = new CreateCommentOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -532,7 +534,7 @@ export interface CommentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCommentByIdRequestBody(
-  val: any
+  val: UpdateCommentByIdRequestBody
 ): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
@@ -544,7 +546,7 @@ export function deserializeUpdateCommentByIdRequestBody(
   return { message: message } satisfies UpdateCommentByIdRequestBody;
 }
 export function serializeCreateCommentRequestBodyItemTypeField(
-  val: any
+  val: CreateCommentRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
@@ -567,7 +569,7 @@ export function deserializeCreateCommentRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCommentRequestBodyItemField(
-  val: any
+  val: CreateCommentRequestBodyItemField
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -582,7 +584,9 @@ export function deserializeCreateCommentRequestBodyItemField(
     deserializeCreateCommentRequestBodyItemTypeField(val.type);
   return { id: id, type: type } satisfies CreateCommentRequestBodyItemField;
 }
-export function serializeCreateCommentRequestBody(val: any): SerializedData {
+export function serializeCreateCommentRequestBody(
+  val: CreateCommentRequestBody
+): SerializedData {
   return {
     ['message']: val.message,
     ['tagged_message']:

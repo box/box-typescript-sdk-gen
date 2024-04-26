@@ -52,21 +52,22 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export const client: any = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testMetadataTemplates', async function testMetadataTemplates(): Promise<any> {
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'testName',
-        displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'testName',
+          displayName: 'testName',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
     throw new Error('Assertion failed');
   }
@@ -82,7 +83,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(template.fields![0].displayName == 'testName')) {
     throw new Error('Assertion failed');
   }
-  const updatedTemplate: any =
+  const updatedTemplate: MetadataTemplate =
     await client.metadataTemplates.updateMetadataTemplate(
       'enterprise' as UpdateMetadataTemplateScope,
       templateKey,
@@ -103,12 +104,12 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(updatedTemplate.fields![1].displayName == 'newFieldName')) {
     throw new Error('Assertion failed');
   }
-  const getMetadataTemplate: any =
+  const getMetadataTemplate: MetadataTemplate =
     await client.metadataTemplates.getMetadataTemplateById(template.id);
   if (!(getMetadataTemplate.id == template.id)) {
     throw new Error('Assertion failed');
   }
-  const getMetadataTemplateSchema: any =
+  const getMetadataTemplateSchema: MetadataTemplate =
     await client.metadataTemplates.getMetadataTemplate(
       'enterprise' as GetMetadataTemplateScope,
       template.templateKey!
@@ -116,12 +117,12 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(getMetadataTemplateSchema.id == template.id)) {
     throw new Error('Assertion failed');
   }
-  const enterpriseMetadataTemplates: any =
+  const enterpriseMetadataTemplates: MetadataTemplates =
     await client.metadataTemplates.getEnterpriseMetadataTemplates();
   if (!(enterpriseMetadataTemplates.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const globalMetadataTemplates: any =
+  const globalMetadataTemplates: MetadataTemplates =
     await client.metadataTemplates.getGlobalMetadataTemplates();
   if (!(globalMetadataTemplates.entries!.length > 0)) {
     throw new Error('Assertion failed');
@@ -138,28 +139,29 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   }).rejects.toThrow();
 });
 test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplateByInstance(): Promise<any> {
-  const file: any = await uploadNewFile();
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'testName',
-        displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
-  const createdMetadataInstance: any =
+  const file: FileFull = await uploadNewFile();
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'testName',
+          displayName: 'testName',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
+  const createdMetadataInstance: MetadataFull =
     await client.fileMetadata.createFileMetadataById(
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
       { ['testName']: 'xyz' }
     );
-  const metadataTemplates: any =
+  const metadataTemplates: MetadataTemplates =
     await client.metadataTemplates.getMetadataTemplatesByInstanceId({
       metadataInstanceId: createdMetadataInstance.id!,
     } satisfies GetMetadataTemplatesByInstanceIdQueryParams);

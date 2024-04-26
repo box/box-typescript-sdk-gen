@@ -343,7 +343,7 @@ export class FileVersionsManager {
     fileId: string,
     optionalsInput: GetFileVersionsOptionalsInput = {}
   ): Promise<FileVersions> {
-    const optionals: any = new GetFileVersionsOptionals({
+    const optionals: GetFileVersionsOptionals = new GetFileVersionsOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -387,11 +387,12 @@ export class FileVersionsManager {
     fileVersionId: string,
     optionalsInput: GetFileVersionByIdOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const optionals: any = new GetFileVersionByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileVersionByIdOptionals =
+      new GetFileVersionByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -430,11 +431,12 @@ export class FileVersionsManager {
     fileVersionId: string,
     optionalsInput: UpdateFileVersionByIdOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const optionals: any = new UpdateFileVersionByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFileVersionByIdOptionals =
+      new UpdateFileVersionByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -467,10 +469,11 @@ export class FileVersionsManager {
     fileVersionId: string,
     optionalsInput: DeleteFileVersionByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileVersionByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFileVersionByIdOptionals =
+      new DeleteFileVersionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -502,12 +505,13 @@ export class FileVersionsManager {
     fileId: string,
     optionalsInput: PromoteFileVersionOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const optionals: any = new PromoteFileVersionOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: PromoteFileVersionOptionals =
+      new PromoteFileVersionOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -549,7 +553,7 @@ export interface FileVersionsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileVersionByIdRequestBody(
-  val: any
+  val: UpdateFileVersionByIdRequestBody
 ): SerializedData {
   return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
@@ -561,7 +565,7 @@ export function deserializeUpdateFileVersionByIdRequestBody(
   return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBody;
 }
 export function serializePromoteFileVersionRequestBodyTypeField(
-  val: any
+  val: PromoteFileVersionRequestBodyTypeField
 ): SerializedData {
   return val;
 }
@@ -582,7 +586,7 @@ export function deserializePromoteFileVersionRequestBodyTypeField(
   });
 }
 export function serializePromoteFileVersionRequestBody(
-  val: any
+  val: PromoteFileVersionRequestBody
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,

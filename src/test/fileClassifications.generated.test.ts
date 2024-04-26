@@ -48,16 +48,18 @@ export const client: BoxClient = getDefaultClient();
 export async function getOrCreateSecondClassification(
   classificationTemplateInput: ClassificationTemplateInput
 ): Promise<ClassificationTemplateFieldsOptionsField> {
-  const classificationTemplate: any = new ClassificationTemplate({
-    id: classificationTemplateInput.id,
-    type: classificationTemplateInput.type,
-    scope: classificationTemplateInput.scope,
-    templateKey: classificationTemplateInput.templateKey,
-    displayName: classificationTemplateInput.displayName,
-    hidden: classificationTemplateInput.hidden,
-    copyInstanceOnItemCopy: classificationTemplateInput.copyInstanceOnItemCopy,
-    fields: classificationTemplateInput.fields,
-  });
+  const classificationTemplate: ClassificationTemplate =
+    new ClassificationTemplate({
+      id: classificationTemplateInput.id,
+      type: classificationTemplateInput.type,
+      scope: classificationTemplateInput.scope,
+      templateKey: classificationTemplateInput.templateKey,
+      displayName: classificationTemplateInput.displayName,
+      hidden: classificationTemplateInput.hidden,
+      copyInstanceOnItemCopy:
+        classificationTemplateInput.copyInstanceOnItemCopy,
+      fields: classificationTemplateInput.fields,
+    });
   const classifications: readonly ClassificationTemplateFieldsOptionsField[] =
     classificationTemplate.fields[0].options;
   const currentNumberOfClassifications: number = classifications.length;

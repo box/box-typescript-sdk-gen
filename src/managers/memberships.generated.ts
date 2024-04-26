@@ -417,11 +417,12 @@ export class MembershipsManager {
     userId: string,
     optionalsInput: GetUserMembershipsOptionalsInput = {}
   ): Promise<GroupMemberships> {
-    const optionals: any = new GetUserMembershipsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetUserMembershipsOptionals =
+      new GetUserMembershipsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -457,11 +458,12 @@ export class MembershipsManager {
     groupId: string,
     optionalsInput: GetGroupMembershipsOptionalsInput = {}
   ): Promise<GroupMemberships> {
-    const optionals: any = new GetGroupMembershipsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetGroupMembershipsOptionals =
+      new GetGroupMembershipsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -497,11 +499,12 @@ export class MembershipsManager {
     requestBody: CreateGroupMembershipRequestBody,
     optionalsInput: CreateGroupMembershipOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const optionals: any = new CreateGroupMembershipOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateGroupMembershipOptionals =
+      new CreateGroupMembershipOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -538,11 +541,12 @@ export class MembershipsManager {
     groupMembershipId: string,
     optionalsInput: GetGroupMembershipByIdOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const optionals: any = new GetGroupMembershipByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetGroupMembershipByIdOptionals =
+      new GetGroupMembershipByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -578,12 +582,13 @@ export class MembershipsManager {
     groupMembershipId: string,
     optionalsInput: UpdateGroupMembershipByIdOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const optionals: any = new UpdateGroupMembershipByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateGroupMembershipByIdOptionals =
+      new UpdateGroupMembershipByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -622,10 +627,11 @@ export class MembershipsManager {
     groupMembershipId: string,
     optionalsInput: DeleteGroupMembershipByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteGroupMembershipByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteGroupMembershipByIdOptionals =
+      new DeleteGroupMembershipByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -654,7 +660,7 @@ export interface MembershipsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupMembershipRequestBodyUserField(
-  val: any
+  val: CreateGroupMembershipRequestBodyUserField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -665,7 +671,7 @@ export function deserializeCreateGroupMembershipRequestBodyUserField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyUserField;
 }
 export function serializeCreateGroupMembershipRequestBodyGroupField(
-  val: any
+  val: CreateGroupMembershipRequestBodyGroupField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -676,7 +682,7 @@ export function deserializeCreateGroupMembershipRequestBodyGroupField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyGroupField;
 }
 export function serializeCreateGroupMembershipRequestBodyRoleField(
-  val: any
+  val: CreateGroupMembershipRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -700,7 +706,7 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   });
 }
 export function serializeCreateGroupMembershipRequestBody(
-  val: any
+  val: CreateGroupMembershipRequestBody
 ): SerializedData {
   return {
     ['user']: serializeCreateGroupMembershipRequestBodyUserField(val.user),
@@ -742,7 +748,7 @@ export function deserializeCreateGroupMembershipRequestBody(
   } satisfies CreateGroupMembershipRequestBody;
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
-  val: any
+  val: UpdateGroupMembershipByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -766,7 +772,7 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(
-  val: any
+  val: UpdateGroupMembershipByIdRequestBody
 ): SerializedData {
   return {
     ['role']:

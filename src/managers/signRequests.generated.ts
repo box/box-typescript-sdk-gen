@@ -237,10 +237,11 @@ export class SignRequestsManager {
     signRequestId: string,
     optionalsInput: CancelSignRequestOptionalsInput = {}
   ): Promise<SignRequest> {
-    const optionals: any = new CancelSignRequestOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CancelSignRequestOptionals =
+      new CancelSignRequestOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -268,10 +269,11 @@ export class SignRequestsManager {
     signRequestId: string,
     optionalsInput: ResendSignRequestOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new ResendSignRequestOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: ResendSignRequestOptionals =
+      new ResendSignRequestOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -299,10 +301,11 @@ export class SignRequestsManager {
     signRequestId: string,
     optionalsInput: GetSignRequestByIdOptionalsInput = {}
   ): Promise<SignRequest> {
-    const optionals: any = new GetSignRequestByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetSignRequestByIdOptionals =
+      new GetSignRequestByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -330,7 +333,7 @@ export class SignRequestsManager {
     headersInput: GetSignRequestsHeadersInput = new GetSignRequestsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<SignRequests> {
-    const headers: any = new GetSignRequestsHeaders({
+    const headers: GetSignRequestsHeaders = new GetSignRequestsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -363,10 +366,11 @@ export class SignRequestsManager {
     requestBody: SignRequestCreateRequest,
     optionalsInput: CreateSignRequestOptionalsInput = {}
   ): Promise<SignRequest> {
-    const optionals: any = new CreateSignRequestOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateSignRequestOptionals =
+      new CreateSignRequestOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {

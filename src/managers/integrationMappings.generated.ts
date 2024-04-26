@@ -248,9 +248,10 @@ export class IntegrationMappingsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<IntegrationMappings> {
-    const headers: any = new GetSlackIntegrationMappingHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetSlackIntegrationMappingHeaders =
+      new GetSlackIntegrationMappingHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -288,10 +289,11 @@ export class IntegrationMappingsManager {
     requestBody: IntegrationMappingSlackCreateRequest,
     optionalsInput: CreateSlackIntegrationMappingOptionalsInput = {}
   ): Promise<IntegrationMapping> {
-    const optionals: any = new CreateSlackIntegrationMappingOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateSlackIntegrationMappingOptionals =
+      new CreateSlackIntegrationMappingOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -319,11 +321,12 @@ export class IntegrationMappingsManager {
     integrationMappingId: string,
     optionalsInput: UpdateSlackIntegrationMappingByIdOptionalsInput = {}
   ): Promise<IntegrationMapping> {
-    const optionals: any = new UpdateSlackIntegrationMappingByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateSlackIntegrationMappingByIdOptionals =
+      new UpdateSlackIntegrationMappingByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -355,10 +358,11 @@ export class IntegrationMappingsManager {
     integrationMappingId: string,
     optionalsInput: DeleteSlackIntegrationMappingByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteSlackIntegrationMappingByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteSlackIntegrationMappingByIdOptionals =
+      new DeleteSlackIntegrationMappingByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -387,7 +391,7 @@ export interface IntegrationMappingsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
-  val: any
+  val: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField
 ): SerializedData {
   return val;
 }
@@ -408,7 +412,7 @@ export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeF
   });
 }
 export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
-  val: any
+  val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField
 ): SerializedData {
   return val;
 }
@@ -429,7 +433,7 @@ export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField
   });
 }
 export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
-  val: any
+  val: UpdateSlackIntegrationMappingByIdRequestBody
 ): SerializedData {
   return {
     ['box_item']:

@@ -314,10 +314,11 @@ export class MetadataCascadePoliciesManager {
     queryParams: GetMetadataCascadePoliciesQueryParams,
     optionalsInput: GetMetadataCascadePoliciesOptionalsInput = {}
   ): Promise<MetadataCascadePolicies> {
-    const optionals: any = new GetMetadataCascadePoliciesOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetMetadataCascadePoliciesOptionals =
+      new GetMetadataCascadePoliciesOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -354,10 +355,11 @@ export class MetadataCascadePoliciesManager {
     requestBody: CreateMetadataCascadePolicyRequestBody,
     optionalsInput: CreateMetadataCascadePolicyOptionalsInput = {}
   ): Promise<MetadataCascadePolicy> {
-    const optionals: any = new CreateMetadataCascadePolicyOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateMetadataCascadePolicyOptionals =
+      new CreateMetadataCascadePolicyOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -385,10 +387,11 @@ export class MetadataCascadePoliciesManager {
     metadataCascadePolicyId: string,
     optionalsInput: GetMetadataCascadePolicyByIdOptionalsInput = {}
   ): Promise<MetadataCascadePolicy> {
-    const optionals: any = new GetMetadataCascadePolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetMetadataCascadePolicyByIdOptionals =
+      new GetMetadataCascadePolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -415,10 +418,11 @@ export class MetadataCascadePoliciesManager {
     metadataCascadePolicyId: string,
     optionalsInput: DeleteMetadataCascadePolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteMetadataCascadePolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteMetadataCascadePolicyByIdOptionals =
+      new DeleteMetadataCascadePolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -446,10 +450,11 @@ export class MetadataCascadePoliciesManager {
     requestBody: ApplyMetadataCascadePolicyRequestBody,
     optionalsInput: ApplyMetadataCascadePolicyOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new ApplyMetadataCascadePolicyOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: ApplyMetadataCascadePolicyOptionals =
+      new ApplyMetadataCascadePolicyOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -481,7 +486,7 @@ export interface MetadataCascadePoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
-  val: any
+  val: CreateMetadataCascadePolicyRequestBodyScopeField
 ): SerializedData {
   return val;
 }
@@ -505,7 +510,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   });
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
-  val: any
+  val: CreateMetadataCascadePolicyRequestBody
 ): SerializedData {
   return {
     ['folder_id']: val.folderId,
@@ -529,7 +534,7 @@ export function deserializeCreateMetadataCascadePolicyRequestBody(
   } satisfies CreateMetadataCascadePolicyRequestBody;
 }
 export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-  val: any
+  val: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField
 ): SerializedData {
   return val;
 }
@@ -553,7 +558,7 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   });
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(
-  val: any
+  val: ApplyMetadataCascadePolicyRequestBody
 ): SerializedData {
   return {
     ['conflict_resolution']:

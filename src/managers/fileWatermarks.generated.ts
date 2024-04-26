@@ -196,7 +196,7 @@ export class FileWatermarksManager {
     fileId: string,
     optionalsInput: GetFileWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const optionals: any = new GetFileWatermarkOptionals({
+    const optionals: GetFileWatermarkOptionals = new GetFileWatermarkOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -228,10 +228,11 @@ export class FileWatermarksManager {
     requestBody: UpdateFileWatermarkRequestBody,
     optionalsInput: UpdateFileWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const optionals: any = new UpdateFileWatermarkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFileWatermarkOptionals =
+      new UpdateFileWatermarkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -261,10 +262,11 @@ export class FileWatermarksManager {
     fileId: string,
     optionalsInput: DeleteFileWatermarkOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileWatermarkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFileWatermarkOptionals =
+      new DeleteFileWatermarkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -294,7 +296,7 @@ export interface FileWatermarksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-  val: any
+  val: UpdateFileWatermarkRequestBodyWatermarkImprintField
 ): SerializedData {
   return val;
 }
@@ -315,7 +317,7 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
   });
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkField(
-  val: any
+  val: UpdateFileWatermarkRequestBodyWatermarkField
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
@@ -333,7 +335,7 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkField(
   } satisfies UpdateFileWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
-  val: any
+  val: UpdateFileWatermarkRequestBodyWatermarkFieldInput
 ): SerializedData {
   return {
     ['imprint']:
@@ -360,7 +362,7 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
   } satisfies UpdateFileWatermarkRequestBodyWatermarkFieldInput;
 }
 export function serializeUpdateFileWatermarkRequestBody(
-  val: any
+  val: UpdateFileWatermarkRequestBody
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFileWatermarkRequestBodyWatermarkField(

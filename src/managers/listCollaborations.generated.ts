@@ -267,11 +267,12 @@ export class ListCollaborationsManager {
     fileId: string,
     optionalsInput: GetFileCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const optionals: any = new GetFileCollaborationsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileCollaborationsOptionals =
+      new GetFileCollaborationsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -310,11 +311,12 @@ export class ListCollaborationsManager {
     folderId: string,
     optionalsInput: GetFolderCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const optionals: any = new GetFolderCollaborationsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFolderCollaborationsOptionals =
+      new GetFolderCollaborationsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -351,10 +353,11 @@ export class ListCollaborationsManager {
     queryParams: GetCollaborationsQueryParams,
     optionalsInput: GetCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const optionals: any = new GetCollaborationsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetCollaborationsOptionals =
+      new GetCollaborationsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -391,11 +394,12 @@ export class ListCollaborationsManager {
     groupId: string,
     optionalsInput: GetGroupCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const optionals: any = new GetGroupCollaborationsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetGroupCollaborationsOptionals =
+      new GetGroupCollaborationsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -433,7 +437,7 @@ export interface ListCollaborationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetCollaborationsQueryParamsStatusField(
-  val: any
+  val: GetCollaborationsQueryParamsStatusField
 ): SerializedData {
   return val;
 }

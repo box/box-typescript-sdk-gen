@@ -221,12 +221,13 @@ export class TrashedFilesManager {
     fileId: string,
     optionalsInput: RestoreFileFromTrashOptionalsInput = {}
   ): Promise<TrashFileRestored> {
-    const optionals: any = new RestoreFileFromTrashOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RestoreFileFromTrashOptionals =
+      new RestoreFileFromTrashOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -265,11 +266,12 @@ export class TrashedFilesManager {
     fileId: string,
     optionalsInput: GetTrashedFileByIdOptionalsInput = {}
   ): Promise<TrashFile> {
-    const optionals: any = new GetTrashedFileByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTrashedFileByIdOptionals =
+      new GetTrashedFileByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -306,10 +308,11 @@ export class TrashedFilesManager {
     fileId: string,
     optionalsInput: DeleteTrashedFileByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteTrashedFileByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteTrashedFileByIdOptionals =
+      new DeleteTrashedFileByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -339,7 +342,7 @@ export interface TrashedFilesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreFileFromTrashRequestBodyParentField(
-  val: any
+  val: RestoreFileFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -350,7 +353,7 @@ export function deserializeRestoreFileFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFileFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFileFromTrashRequestBody(
-  val: any
+  val: RestoreFileFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

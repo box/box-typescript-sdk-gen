@@ -10,6 +10,8 @@ import { serializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.gene
 import { deserializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
 import { serializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
 import { deserializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
+import { serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField } from '../managers/webLinks.generated.js';
+import { deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdOptionalsInput } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdOptionals } from '../managers/webLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -19,8 +21,11 @@ import { CreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
 import { CreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
 import { UpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
+import { UpdateWebLinkByIdRequestBodySharedLinkAccessField } from '../managers/webLinks.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -28,15 +33,14 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export const client: any = getDefaultClient();
-test('test_create_get_delete_weblink', async function test_create_get_delete_weblink(): Promise<any> {
-  const url: any = 'https://www.box.com';
-  const parent: any = await client.folders.getFolderById('0');
-  const name: any = getUuid();
-  const description: any = 'Weblink description';
-  const sharedAccess: any = 'open';
-  const password: any = 'super-secret-password';
-  const weblink: any = await client.webLinks.createWebLink({
+export const client: BoxClient = getDefaultClient();
+test('test_createGetDeleteWeblink', async function test_createGetDeleteWeblink(): Promise<any> {
+  const url: string = 'https://www.box.com';
+  const parent: FolderFull = await client.folders.getFolderById('0');
+  const name: string = getUuid();
+  const description: string = 'Weblink description';
+  const password: string = 'super-secret-password';
+  const weblink: WebLink = await client.webLinks.createWebLink({
     url: url,
     parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
     name: name,
@@ -54,21 +58,21 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   if (!(weblink.description == description)) {
     throw new Error('Assertion failed');
   }
-  const weblinkById: any = await client.webLinks.getWebLinkById(weblink.id);
+  const weblinkById: WebLink = await client.webLinks.getWebLinkById(weblink.id);
   if (!(weblinkById.id == weblink.id)) {
     throw new Error('Assertion failed');
   }
   if (!(weblinkById.url == url)) {
     throw new Error('Assertion failed');
   }
-  const updatedName: any = getUuid();
-  const updatedWeblink: any = await client.webLinks.updateWebLinkById(
+  const updatedName: string = getUuid();
+  const updatedWeblink: WebLink = await client.webLinks.updateWebLinkById(
     weblink.id,
     {
       requestBody: {
         name: updatedName,
         sharedLink: {
-          access: sharedAccess,
+          access: 'open' as UpdateWebLinkByIdRequestBodySharedLinkAccessField,
           password: password,
         } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
       } satisfies UpdateWebLinkByIdRequestBody,
@@ -77,12 +81,14 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   if (!(updatedWeblink.name == updatedName)) {
     throw new Error('Assertion failed');
   }
-  if (!(updatedWeblink.sharedLink!.access! == sharedAccess)) {
+  if (!((toString(updatedWeblink.sharedLink!.access!) as string) == 'open')) {
     throw new Error('Assertion failed');
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
-  const deletedWeblink: any = await client.webLinks.getWebLinkById(weblink.id);
-  if (!(deletedWeblink.itemStatus! == 'trashed')) {
+  const deletedWeblink: WebLink = await client.webLinks.getWebLinkById(
+    weblink.id
+  );
+  if (!((toString(deletedWeblink.itemStatus!) as string) == 'trashed')) {
     throw new Error('Assertion failed');
   }
 });

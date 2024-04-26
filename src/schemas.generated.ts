@@ -4344,7 +4344,7 @@ export interface MetadataFilter {
   readonly filters?: MetadataFilterFiltersField;
 }
 export function serializePostOAuth2TokenGrantTypeField(
-  val: any
+  val: PostOAuth2TokenGrantTypeField
 ): SerializedData {
   return val;
 }
@@ -4376,7 +4376,7 @@ export function deserializePostOAuth2TokenGrantTypeField(
   });
 }
 export function serializePostOAuth2TokenSubjectTokenTypeField(
-  val: any
+  val: PostOAuth2TokenSubjectTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -4396,7 +4396,7 @@ export function deserializePostOAuth2TokenSubjectTokenTypeField(
   });
 }
 export function serializePostOAuth2TokenActorTokenTypeField(
-  val: any
+  val: PostOAuth2TokenActorTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -4416,7 +4416,7 @@ export function deserializePostOAuth2TokenActorTokenTypeField(
   });
 }
 export function serializePostOAuth2TokenBoxSubjectTypeField(
-  val: any
+  val: PostOAuth2TokenBoxSubjectTypeField
 ): SerializedData {
   return val;
 }
@@ -4438,7 +4438,7 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializePostOAuth2Token(val: any): SerializedData {
+export function serializePostOAuth2Token(val: PostOAuth2Token): SerializedData {
   return {
     ['grant_type']: serializePostOAuth2TokenGrantTypeField(val.grantType),
     ['client_id']: val.clientId == void 0 ? void 0 : val.clientId,
@@ -4521,7 +4521,7 @@ export function deserializePostOAuth2Token(val: any): PostOAuth2Token {
   } satisfies PostOAuth2Token;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-  val: any
+  val: PostOAuth2TokenRefreshAccessTokenGrantTypeField
 ): SerializedData {
   return val;
 }
@@ -4542,7 +4542,7 @@ export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   });
 }
 export function serializePostOAuth2TokenRefreshAccessToken(
-  val: any
+  val: PostOAuth2TokenRefreshAccessToken
 ): SerializedData {
   return {
     ['grant_type']: serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
@@ -4569,7 +4569,7 @@ export function deserializePostOAuth2TokenRefreshAccessToken(
   } satisfies PostOAuth2TokenRefreshAccessToken;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenInput(
-  val: any
+  val: PostOAuth2TokenRefreshAccessTokenInput
 ): SerializedData {
   return {
     ['grantType']:
@@ -4602,7 +4602,9 @@ export function deserializePostOAuth2TokenRefreshAccessTokenInput(
     refreshToken: refreshToken,
   } satisfies PostOAuth2TokenRefreshAccessTokenInput;
 }
-export function serializePostOAuth2Revoke(val: any): SerializedData {
+export function serializePostOAuth2Revoke(
+  val: PostOAuth2Revoke
+): SerializedData {
   return {
     ['client_id']: val.clientId == void 0 ? void 0 : val.clientId,
     ['client_secret']: val.clientSecret == void 0 ? void 0 : val.clientSecret,
@@ -4622,7 +4624,7 @@ export function deserializePostOAuth2Revoke(val: any): PostOAuth2Revoke {
   } satisfies PostOAuth2Revoke;
 }
 export function serializeZipDownloadRequestItemsTypeField(
-  val: any
+  val: ZipDownloadRequestItemsTypeField
 ): SerializedData {
   return val;
 }
@@ -4645,7 +4647,7 @@ export function deserializeZipDownloadRequestItemsTypeField(
   });
 }
 export function serializeZipDownloadRequestItemsField(
-  val: any
+  val: ZipDownloadRequestItemsField
 ): SerializedData {
   return {
     ['type']: serializeZipDownloadRequestItemsTypeField(val.type),
@@ -4660,11 +4662,13 @@ export function deserializeZipDownloadRequestItemsField(
   const id: string = val.id;
   return { type: type, id: id } satisfies ZipDownloadRequestItemsField;
 }
-export function serializeZipDownloadRequest(val: any): SerializedData {
+export function serializeZipDownloadRequest(
+  val: ZipDownloadRequest
+): SerializedData {
   return {
     ['items']: val.items.map(function (
       item: ZipDownloadRequestItemsField
-    ): any {
+    ): SerializedData {
       return serializeZipDownloadRequestItemsField(item);
     }) as readonly any[],
     ['download_file_name']:
@@ -4673,7 +4677,9 @@ export function serializeZipDownloadRequest(val: any): SerializedData {
 }
 export function deserializeZipDownloadRequest(val: any): ZipDownloadRequest {
   const items: readonly ZipDownloadRequestItemsField[] = sdIsList(val.items)
-    ? (val.items.map(function (itm: SerializedData): any {
+    ? (val.items.map(function (
+        itm: SerializedData
+      ): ZipDownloadRequestItemsField {
         return deserializeZipDownloadRequestItemsField(itm);
       }) as readonly any[])
     : [];
@@ -4685,7 +4691,7 @@ export function deserializeZipDownloadRequest(val: any): ZipDownloadRequest {
   } satisfies ZipDownloadRequest;
 }
 export function serializeMetadataQueryOrderByDirectionField(
-  val: any
+  val: MetadataQueryOrderByDirectionField
 ): SerializedData {
   return val;
 }
@@ -4707,7 +4713,9 @@ export function deserializeMetadataQueryOrderByDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeMetadataQueryOrderByField(val: any): SerializedData {
+export function serializeMetadataQueryOrderByField(
+  val: MetadataQueryOrderByField
+): SerializedData {
   return {
     ['field_key']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
     ['direction']:
@@ -4730,7 +4738,7 @@ export function deserializeMetadataQueryOrderByField(
     direction: direction,
   } satisfies MetadataQueryOrderByField;
 }
-export function serializeMetadataQuery(val: any): SerializedData {
+export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
   return {
     ['from']: val.from,
     ['query']: val.query == void 0 ? void 0 : val.query,
@@ -4739,7 +4747,9 @@ export function serializeMetadataQuery(val: any): SerializedData {
     ['order_by']:
       val.orderBy == void 0
         ? void 0
-        : (val.orderBy.map(function (item: MetadataQueryOrderByField): any {
+        : (val.orderBy.map(function (
+            item: MetadataQueryOrderByField
+          ): SerializedData {
             return serializeMetadataQueryOrderByField(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -4747,7 +4757,7 @@ export function serializeMetadataQuery(val: any): SerializedData {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: string): any {
+        : (val.fields.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
   };
@@ -4765,20 +4775,16 @@ export function deserializeMetadataQuery(val: any): MetadataQuery {
     val.order_by == void 0
       ? void 0
       : sdIsList(val.order_by)
-      ? (val.order_by.map(function (itm: SerializedData): any {
+      ? (val.order_by.map(function (
+          itm: SerializedData
+        ): MetadataQueryOrderByField {
           return deserializeMetadataQueryOrderByField(itm);
         }) as readonly any[])
       : [];
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   const marker: undefined | string = val.marker == void 0 ? void 0 : val.marker;
   const fields: undefined | readonly string[] =
-    val.fields == void 0
-      ? void 0
-      : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.fields == void 0 ? void 0 : sdIsList(val.fields) ? val.fields : [];
   return {
     from: from,
     query: query,
@@ -4791,7 +4797,7 @@ export function deserializeMetadataQuery(val: any): MetadataQuery {
   } satisfies MetadataQuery;
 }
 export function serializeFileRequestUpdateRequestStatusField(
-  val: any
+  val: FileRequestUpdateRequestStatusField
 ): SerializedData {
   return val;
 }
@@ -4813,7 +4819,9 @@ export function deserializeFileRequestUpdateRequestStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileRequestUpdateRequest(val: any): SerializedData {
+export function serializeFileRequestUpdateRequest(
+  val: FileRequestUpdateRequest
+): SerializedData {
   return {
     ['title']: val.title == void 0 ? void 0 : val.title,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -4857,7 +4865,7 @@ export function deserializeFileRequestUpdateRequest(
   } satisfies FileRequestUpdateRequest;
 }
 export function serializeFileRequestCopyRequestFolderTypeField(
-  val: any
+  val: FileRequestCopyRequestFolderTypeField
 ): SerializedData {
   return val;
 }
@@ -4877,7 +4885,7 @@ export function deserializeFileRequestCopyRequestFolderTypeField(
   });
 }
 export function serializeFileRequestCopyRequestFolderField(
-  val: any
+  val: FileRequestCopyRequestFolderField
 ): SerializedData {
   return {
     ['type']:
@@ -4897,7 +4905,9 @@ export function deserializeFileRequestCopyRequestFolderField(
   const id: string = val.id;
   return { type: type, id: id } satisfies FileRequestCopyRequestFolderField;
 }
-export function serializeFileRequestCopyRequest(val: any): SerializedData {
+export function serializeFileRequestCopyRequest(
+  val: FileRequestCopyRequest
+): SerializedData {
   const base: any = serializeFileRequestUpdateRequest(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -4939,7 +4949,9 @@ export function deserializeFileRequestCopyRequest(
     expiresAt: expiresAt,
   } satisfies FileRequestCopyRequest;
 }
-export function serializeClientErrorTypeField(val: any): SerializedData {
+export function serializeClientErrorTypeField(
+  val: ClientErrorTypeField
+): SerializedData {
   return val;
 }
 export function deserializeClientErrorTypeField(
@@ -4957,7 +4969,9 @@ export function deserializeClientErrorTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeClientErrorCodeField(val: any): SerializedData {
+export function serializeClientErrorCodeField(
+  val: ClientErrorCodeField
+): SerializedData {
   return val;
 }
 export function deserializeClientErrorCodeField(
@@ -5023,7 +5037,9 @@ export function deserializeClientErrorCodeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeClientErrorContextInfoField(val: any): SerializedData {
+export function serializeClientErrorContextInfoField(
+  val: ClientErrorContextInfoField
+): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeClientErrorContextInfoField(
@@ -5033,7 +5049,7 @@ export function deserializeClientErrorContextInfoField(
     val.message == void 0 ? void 0 : val.message;
   return { message: message } satisfies ClientErrorContextInfoField;
 }
-export function serializeClientError(val: any): SerializedData {
+export function serializeClientError(val: ClientError): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeClientErrorTypeField(val.type),
@@ -5075,7 +5091,7 @@ export function deserializeClientError(val: any): ClientError {
     requestId: requestId,
   } satisfies ClientError;
 }
-export function serializeOAuth2Error(val: any): SerializedData {
+export function serializeOAuth2Error(val: OAuth2Error): SerializedData {
   return {
     ['error']: val.error == void 0 ? void 0 : val.error,
     ['error_description']:
@@ -5091,7 +5107,9 @@ export function deserializeOAuth2Error(val: any): OAuth2Error {
     errorDescription: errorDescription,
   } satisfies OAuth2Error;
 }
-export function serializeClassificationTemplateField(val: any): SerializedData {
+export function serializeClassificationTemplateField(
+  val: ClassificationTemplateField
+): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateField(
@@ -5109,7 +5127,7 @@ export function deserializeClassificationTemplateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeClassification(val: any): SerializedData {
+export function serializeClassification(val: Classification): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
       val.boxSecurityClassificationKey == void 0
@@ -5158,7 +5176,7 @@ export function deserializeClassification(val: any): Classification {
   } satisfies Classification;
 }
 export function serializeClassificationTemplateTypeField(
-  val: any
+  val: ClassificationTemplateTypeField
 ): SerializedData {
   return val;
 }
@@ -5178,7 +5196,7 @@ export function deserializeClassificationTemplateTypeField(
   });
 }
 export function serializeClassificationTemplateTemplateKeyField(
-  val: any
+  val: ClassificationTemplateTemplateKeyField
 ): SerializedData {
   return val;
 }
@@ -5199,7 +5217,7 @@ export function deserializeClassificationTemplateTemplateKeyField(
   });
 }
 export function serializeClassificationTemplateDisplayNameField(
-  val: any
+  val: ClassificationTemplateDisplayNameField
 ): SerializedData {
   return val;
 }
@@ -5220,7 +5238,7 @@ export function deserializeClassificationTemplateDisplayNameField(
   });
 }
 export function serializeClassificationTemplateFieldsTypeField(
-  val: any
+  val: ClassificationTemplateFieldsTypeField
 ): SerializedData {
   return val;
 }
@@ -5240,7 +5258,7 @@ export function deserializeClassificationTemplateFieldsTypeField(
   });
 }
 export function serializeClassificationTemplateFieldsKeyField(
-  val: any
+  val: ClassificationTemplateFieldsKeyField
 ): SerializedData {
   return val;
 }
@@ -5260,7 +5278,7 @@ export function deserializeClassificationTemplateFieldsKeyField(
   });
 }
 export function serializeClassificationTemplateFieldsDisplayNameField(
-  val: any
+  val: ClassificationTemplateFieldsDisplayNameField
 ): SerializedData {
   return val;
 }
@@ -5281,7 +5299,7 @@ export function deserializeClassificationTemplateFieldsDisplayNameField(
   });
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
-  val: any
+  val: ClassificationTemplateFieldsOptionsStaticConfigClassificationField
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -5306,7 +5324,7 @@ export function deserializeClassificationTemplateFieldsOptionsStaticConfigClassi
   } satisfies ClassificationTemplateFieldsOptionsStaticConfigClassificationField;
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigField(
-  val: any
+  val: ClassificationTemplateFieldsOptionsStaticConfigField
 ): SerializedData {
   return {
     ['classification']:
@@ -5333,7 +5351,7 @@ export function deserializeClassificationTemplateFieldsOptionsStaticConfigField(
   } satisfies ClassificationTemplateFieldsOptionsStaticConfigField;
 }
 export function serializeClassificationTemplateFieldsOptionsField(
-  val: any
+  val: ClassificationTemplateFieldsOptionsField
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -5366,7 +5384,7 @@ export function deserializeClassificationTemplateFieldsOptionsField(
   } satisfies ClassificationTemplateFieldsOptionsField;
 }
 export function serializeClassificationTemplateFieldsField(
-  val: any
+  val: ClassificationTemplateFieldsField
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -5378,7 +5396,7 @@ export function serializeClassificationTemplateFieldsField(
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
       item: ClassificationTemplateFieldsOptionsField
-    ): any {
+    ): SerializedData {
       return serializeClassificationTemplateFieldsOptionsField(item);
     }) as readonly any[],
   };
@@ -5398,7 +5416,9 @@ export function deserializeClassificationTemplateFieldsField(
   const options: readonly ClassificationTemplateFieldsOptionsField[] = sdIsList(
     val.options
   )
-    ? (val.options.map(function (itm: SerializedData): any {
+    ? (val.options.map(function (
+        itm: SerializedData
+      ): ClassificationTemplateFieldsOptionsField {
         return deserializeClassificationTemplateFieldsOptionsField(itm);
       }) as readonly any[])
     : [];
@@ -5412,7 +5432,7 @@ export function deserializeClassificationTemplateFieldsField(
   } satisfies ClassificationTemplateFieldsField;
 }
 export function serializeClassificationTemplateFieldsFieldInput(
-  val: any
+  val: ClassificationTemplateFieldsFieldInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -5433,7 +5453,7 @@ export function serializeClassificationTemplateFieldsFieldInput(
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
       item: ClassificationTemplateFieldsOptionsField
-    ): any {
+    ): SerializedData {
       return serializeClassificationTemplateFieldsOptionsField(item);
     }) as readonly any[],
   };
@@ -5461,7 +5481,9 @@ export function deserializeClassificationTemplateFieldsFieldInput(
   const options: readonly ClassificationTemplateFieldsOptionsField[] = sdIsList(
     val.options
   )
-    ? (val.options.map(function (itm: SerializedData): any {
+    ? (val.options.map(function (
+        itm: SerializedData
+      ): ClassificationTemplateFieldsOptionsField {
         return deserializeClassificationTemplateFieldsOptionsField(itm);
       }) as readonly any[])
     : [];
@@ -5474,7 +5496,9 @@ export function deserializeClassificationTemplateFieldsFieldInput(
     options: options,
   } satisfies ClassificationTemplateFieldsFieldInput;
 }
-export function serializeClassificationTemplate(val: any): SerializedData {
+export function serializeClassificationTemplate(
+  val: ClassificationTemplate
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeClassificationTemplateTypeField(val.type),
@@ -5492,7 +5516,7 @@ export function serializeClassificationTemplate(val: any): SerializedData {
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: ClassificationTemplateFieldsField
-    ): any {
+    ): SerializedData {
       return serializeClassificationTemplateFieldsField(item);
     }) as readonly any[],
   };
@@ -5515,7 +5539,9 @@ export function deserializeClassificationTemplate(
   const fields: readonly ClassificationTemplateFieldsField[] = sdIsList(
     val.fields
   )
-    ? (val.fields.map(function (itm: SerializedData): any {
+    ? (val.fields.map(function (
+        itm: SerializedData
+      ): ClassificationTemplateFieldsField {
         return deserializeClassificationTemplateFieldsField(itm);
       }) as readonly any[])
     : [];
@@ -5530,7 +5556,9 @@ export function deserializeClassificationTemplate(
     fields: fields,
   } satisfies ClassificationTemplate;
 }
-export function serializeClassificationTemplateInput(val: any): SerializedData {
+export function serializeClassificationTemplateInput(
+  val: ClassificationTemplateInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -5553,7 +5581,7 @@ export function serializeClassificationTemplateInput(val: any): SerializedData {
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: ClassificationTemplateFieldsField
-    ): any {
+    ): SerializedData {
       return serializeClassificationTemplateFieldsField(item);
     }) as readonly any[],
   };
@@ -5582,7 +5610,9 @@ export function deserializeClassificationTemplateInput(
   const fields: readonly ClassificationTemplateFieldsField[] = sdIsList(
     val.fields
   )
-    ? (val.fields.map(function (itm: SerializedData): any {
+    ? (val.fields.map(function (
+        itm: SerializedData
+      ): ClassificationTemplateFieldsField {
         return deserializeClassificationTemplateFieldsField(itm);
       }) as readonly any[])
     : [];
@@ -5598,7 +5628,7 @@ export function deserializeClassificationTemplateInput(
   } satisfies ClassificationTemplateInput;
 }
 export function serializeCollaborationAllowlistEntryTypeField(
-  val: any
+  val: CollaborationAllowlistEntryTypeField
 ): SerializedData {
   return val;
 }
@@ -5618,7 +5648,7 @@ export function deserializeCollaborationAllowlistEntryTypeField(
   });
 }
 export function serializeCollaborationAllowlistEntryDirectionField(
-  val: any
+  val: CollaborationAllowlistEntryDirectionField
 ): SerializedData {
   return val;
 }
@@ -5645,7 +5675,7 @@ export function deserializeCollaborationAllowlistEntryDirectionField(
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
-  val: any
+  val: CollaborationAllowlistEntryEnterpriseTypeField
 ): SerializedData {
   return val;
 }
@@ -5666,7 +5696,7 @@ export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseField(
-  val: any
+  val: CollaborationAllowlistEntryEnterpriseField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -5692,7 +5722,9 @@ export function deserializeCollaborationAllowlistEntryEnterpriseField(
     name: name,
   } satisfies CollaborationAllowlistEntryEnterpriseField;
 }
-export function serializeCollaborationAllowlistEntry(val: any): SerializedData {
+export function serializeCollaborationAllowlistEntry(
+  val: CollaborationAllowlistEntry
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -5741,7 +5773,7 @@ export function deserializeCollaborationAllowlistEntry(
   } satisfies CollaborationAllowlistEntry;
 }
 export function serializeCollaborationAllowlistEntries(
-  val: any
+  val: CollaborationAllowlistEntries
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -5750,7 +5782,9 @@ export function serializeCollaborationAllowlistEntries(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: CollaborationAllowlistEntry): any {
+        : (val.entries.map(function (
+            item: CollaborationAllowlistEntry
+          ): SerializedData {
             return serializeCollaborationAllowlistEntry(item);
           }) as readonly any[]),
   };
@@ -5767,7 +5801,9 @@ export function deserializeCollaborationAllowlistEntries(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): CollaborationAllowlistEntry {
           return deserializeCollaborationAllowlistEntry(itm);
         }) as readonly any[])
       : [];
@@ -5778,7 +5814,9 @@ export function deserializeCollaborationAllowlistEntries(
     entries: entries,
   } satisfies CollaborationAllowlistEntries;
 }
-export function serializeCollectionTypeField(val: any): SerializedData {
+export function serializeCollectionTypeField(
+  val: CollectionTypeField
+): SerializedData {
   return val;
 }
 export function deserializeCollectionTypeField(val: any): CollectionTypeField {
@@ -5794,7 +5832,9 @@ export function deserializeCollectionTypeField(val: any): CollectionTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollectionNameField(val: any): SerializedData {
+export function serializeCollectionNameField(
+  val: CollectionNameField
+): SerializedData {
   return val;
 }
 export function deserializeCollectionNameField(val: any): CollectionNameField {
@@ -5811,7 +5851,7 @@ export function deserializeCollectionNameField(val: any): CollectionNameField {
   });
 }
 export function serializeCollectionCollectionTypeField(
-  val: any
+  val: CollectionCollectionTypeField
 ): SerializedData {
   return val;
 }
@@ -5830,7 +5870,7 @@ export function deserializeCollectionCollectionTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollection(val: any): SerializedData {
+export function serializeCollection(val: Collection): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -5861,7 +5901,7 @@ export function deserializeCollection(val: any): Collection {
   } satisfies Collection;
 }
 export function serializeCollectionsOrderDirectionField(
-  val: any
+  val: CollectionsOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -5883,7 +5923,9 @@ export function deserializeCollectionsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollectionsOrderField(val: any): SerializedData {
+export function serializeCollectionsOrderField(
+  val: CollectionsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -5902,7 +5944,7 @@ export function deserializeCollectionsOrderField(
       : deserializeCollectionsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies CollectionsOrderField;
 }
-export function serializeCollections(val: any): SerializedData {
+export function serializeCollections(val: Collections): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -5910,13 +5952,15 @@ export function serializeCollections(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CollectionsOrderField): any {
+        : (val.order.map(function (
+            item: CollectionsOrderField
+          ): SerializedData {
             return serializeCollectionsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Collection): any {
+        : (val.entries.map(function (item: Collection): SerializedData {
             return serializeCollection(item);
           }) as readonly any[]),
   };
@@ -5930,7 +5974,7 @@ export function deserializeCollections(val: any): Collections {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): CollectionsOrderField {
           return deserializeCollectionsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -5938,7 +5982,7 @@ export function deserializeCollections(val: any): Collections {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Collection {
           return deserializeCollection(itm);
         }) as readonly any[])
       : [];
@@ -5950,7 +5994,9 @@ export function deserializeCollections(val: any): Collections {
     entries: entries,
   } satisfies Collections;
 }
-export function serializeCommentBaseTypeField(val: any): SerializedData {
+export function serializeCommentBaseTypeField(
+  val: CommentBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeCommentBaseTypeField(
@@ -5968,7 +6014,7 @@ export function deserializeCommentBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCommentBase(val: any): SerializedData {
+export function serializeCommentBase(val: CommentBase): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -5981,7 +6027,9 @@ export function deserializeCommentBase(val: any): CommentBase {
     val.type == void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);
   return { id: id, type: type } satisfies CommentBase;
 }
-export function serializeEmailAliasTypeField(val: any): SerializedData {
+export function serializeEmailAliasTypeField(
+  val: EmailAliasTypeField
+): SerializedData {
   return val;
 }
 export function deserializeEmailAliasTypeField(val: any): EmailAliasTypeField {
@@ -5997,7 +6045,7 @@ export function deserializeEmailAliasTypeField(val: any): EmailAliasTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeEmailAlias(val: any): SerializedData {
+export function serializeEmailAlias(val: EmailAlias): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -6020,13 +6068,13 @@ export function deserializeEmailAlias(val: any): EmailAlias {
     isConfirmed: isConfirmed,
   } satisfies EmailAlias;
 }
-export function serializeEmailAliases(val: any): SerializedData {
+export function serializeEmailAliases(val: EmailAliases): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: EmailAlias): any {
+        : (val.entries.map(function (item: EmailAlias): SerializedData {
             return serializeEmailAlias(item);
           }) as readonly any[]),
   };
@@ -6038,13 +6086,15 @@ export function deserializeEmailAliases(val: any): EmailAliases {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): EmailAlias {
           return deserializeEmailAlias(itm);
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies EmailAliases;
 }
-export function serializeEnterpriseBaseTypeField(val: any): SerializedData {
+export function serializeEnterpriseBaseTypeField(
+  val: EnterpriseBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeEnterpriseBaseTypeField(
@@ -6062,7 +6112,7 @@ export function deserializeEnterpriseBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeEnterpriseBase(val: any): SerializedData {
+export function serializeEnterpriseBase(val: EnterpriseBase): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -6075,7 +6125,9 @@ export function deserializeEnterpriseBase(val: any): EnterpriseBase {
     val.type == void 0 ? void 0 : deserializeEnterpriseBaseTypeField(val.type);
   return { id: id, type: type } satisfies EnterpriseBase;
 }
-export function serializeFileBaseTypeField(val: any): SerializedData {
+export function serializeFileBaseTypeField(
+  val: FileBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFileBaseTypeField(val: any): FileBaseTypeField {
@@ -6091,7 +6143,7 @@ export function deserializeFileBaseTypeField(val: any): FileBaseTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileBase(val: any): SerializedData {
+export function serializeFileBase(val: FileBase): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -6104,7 +6156,7 @@ export function deserializeFileBase(val: any): FileBase {
   const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FileBase;
 }
-export function serializeFileBaseInput(val: any): SerializedData {
+export function serializeFileBaseInput(val: FileBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -6119,7 +6171,9 @@ export function deserializeFileBaseInput(val: any): FileBaseInput {
     val.type == void 0 ? void 0 : deserializeFileBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FileBaseInput;
 }
-export function serializeFileVersionBaseTypeField(val: any): SerializedData {
+export function serializeFileVersionBaseTypeField(
+  val: FileVersionBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFileVersionBaseTypeField(
@@ -6137,7 +6191,7 @@ export function deserializeFileVersionBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileVersionBase(val: any): SerializedData {
+export function serializeFileVersionBase(val: FileVersionBase): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeFileVersionBaseTypeField(val.type),
@@ -6150,7 +6204,9 @@ export function deserializeFileVersionBase(val: any): FileVersionBase {
   );
   return { id: id, type: type } satisfies FileVersionBase;
 }
-export function serializeFileVersionBaseInput(val: any): SerializedData {
+export function serializeFileVersionBaseInput(
+  val: FileVersionBaseInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -6165,7 +6221,7 @@ export function deserializeFileVersionBaseInput(
     val.type == void 0 ? void 0 : deserializeFileVersionBaseTypeField(val.type);
   return { id: id, type: type } satisfies FileVersionBaseInput;
 }
-export function serializeFileVersionMini(val: any): SerializedData {
+export function serializeFileVersionMini(val: FileVersionMini): SerializedData {
   const base: any = serializeFileVersionBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionMini"' });
@@ -6180,7 +6236,7 @@ export function deserializeFileVersionMini(val: any): FileVersionMini {
   );
   return { sha1: sha1, id: id, type: type } satisfies FileVersionMini;
 }
-export function serializeFileMini(val: any): SerializedData {
+export function serializeFileMini(val: FileMini): SerializedData {
   const base: any = serializeFileBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileMini"' });
@@ -6220,7 +6276,9 @@ export function deserializeFileMini(val: any): FileMini {
     type: type,
   } satisfies FileMini;
 }
-export function serializeFilesUnderRetention(val: any): SerializedData {
+export function serializeFilesUnderRetention(
+  val: FilesUnderRetention
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -6228,7 +6286,7 @@ export function serializeFilesUnderRetention(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileMini): any {
+        : (val.entries.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),
   };
@@ -6243,7 +6301,7 @@ export function deserializeFilesUnderRetention(val: any): FilesUnderRetention {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileMini {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -6254,7 +6312,7 @@ export function deserializeFilesUnderRetention(val: any): FilesUnderRetention {
     entries: entries,
   } satisfies FilesUnderRetention;
 }
-export function serializeFileConflict(val: any): SerializedData {
+export function serializeFileConflict(val: FileConflict): SerializedData {
   const base: any = serializeFileMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileConflict"' });
@@ -6284,13 +6342,13 @@ export function deserializeFileConflict(val: any): FileConflict {
   } satisfies FileConflict;
 }
 export function serializeConflictErrorContextInfoField(
-  val: any
+  val: ConflictErrorContextInfoField
 ): SerializedData {
   return {
     ['conflicts']:
       val.conflicts == void 0
         ? void 0
-        : (val.conflicts.map(function (item: FileConflict): any {
+        : (val.conflicts.map(function (item: FileConflict): SerializedData {
             return serializeFileConflict(item);
           }) as readonly any[]),
   };
@@ -6302,13 +6360,13 @@ export function deserializeConflictErrorContextInfoField(
     val.conflicts == void 0
       ? void 0
       : sdIsList(val.conflicts)
-      ? (val.conflicts.map(function (itm: SerializedData): any {
+      ? (val.conflicts.map(function (itm: SerializedData): FileConflict {
           return deserializeFileConflict(itm);
         }) as readonly any[])
       : [];
   return { conflicts: conflicts } satisfies ConflictErrorContextInfoField;
 }
-export function serializeConflictError(val: any): SerializedData {
+export function serializeConflictError(val: ConflictError): SerializedData {
   const base: any = serializeClientError(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "ConflictError"' });
@@ -6341,7 +6399,9 @@ export function deserializeConflictError(val: any): ConflictError {
     requestId: requestId,
   } satisfies ConflictError;
 }
-export function serializeFolderBaseTypeField(val: any): SerializedData {
+export function serializeFolderBaseTypeField(
+  val: FolderBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFolderBaseTypeField(val: any): FolderBaseTypeField {
@@ -6357,7 +6417,7 @@ export function deserializeFolderBaseTypeField(val: any): FolderBaseTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFolderBase(val: any): SerializedData {
+export function serializeFolderBase(val: FolderBase): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -6370,7 +6430,7 @@ export function deserializeFolderBase(val: any): FolderBase {
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FolderBase;
 }
-export function serializeFolderBaseInput(val: any): SerializedData {
+export function serializeFolderBaseInput(val: FolderBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -6385,7 +6445,7 @@ export function deserializeFolderBaseInput(val: any): FolderBaseInput {
     val.type == void 0 ? void 0 : deserializeFolderBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FolderBaseInput;
 }
-export function serializeFolderMini(val: any): SerializedData {
+export function serializeFolderMini(val: FolderMini): SerializedData {
   const base: any = serializeFolderBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FolderMini"' });
@@ -6438,7 +6498,9 @@ export function deserializeFileMiniOrFolderMini(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeFileOrFolderScopeScopeField(val: any): SerializedData {
+export function serializeFileOrFolderScopeScopeField(
+  val: FileOrFolderScopeScopeField
+): SerializedData {
   return val;
 }
 export function deserializeFileOrFolderScopeScopeField(
@@ -6489,7 +6551,9 @@ export function deserializeFileOrFolderScopeScopeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileOrFolderScope(val: any): SerializedData {
+export function serializeFileOrFolderScope(
+  val: FileOrFolderScope
+): SerializedData {
   return {
     ['scope']:
       val.scope == void 0
@@ -6508,7 +6572,9 @@ export function deserializeFileOrFolderScope(val: any): FileOrFolderScope {
     val.object == void 0 ? void 0 : deserializeFileMiniOrFolderMini(val.object);
   return { scope: scope, object: object } satisfies FileOrFolderScope;
 }
-export function serializeAccessTokenTokenTypeField(val: any): SerializedData {
+export function serializeAccessTokenTokenTypeField(
+  val: AccessTokenTokenTypeField
+): SerializedData {
   return val;
 }
 export function deserializeAccessTokenTokenTypeField(
@@ -6527,7 +6593,7 @@ export function deserializeAccessTokenTokenTypeField(
   });
 }
 export function serializeAccessTokenIssuedTokenTypeField(
-  val: any
+  val: AccessTokenIssuedTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -6546,7 +6612,7 @@ export function deserializeAccessTokenIssuedTokenTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeAccessToken(val: any): SerializedData {
+export function serializeAccessToken(val: AccessToken): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
     ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
@@ -6557,7 +6623,9 @@ export function serializeAccessToken(val: any): SerializedData {
     ['restricted_to']:
       val.restrictedTo == void 0
         ? void 0
-        : (val.restrictedTo.map(function (item: FileOrFolderScope): any {
+        : (val.restrictedTo.map(function (
+            item: FileOrFolderScope
+          ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
     ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
@@ -6580,7 +6648,9 @@ export function deserializeAccessToken(val: any): AccessToken {
     val.restricted_to == void 0
       ? void 0
       : sdIsList(val.restricted_to)
-      ? (val.restricted_to.map(function (itm: SerializedData): any {
+      ? (val.restricted_to.map(function (
+          itm: SerializedData
+        ): FileOrFolderScope {
           return deserializeFileOrFolderScope(itm);
         }) as readonly any[])
       : [];
@@ -6599,7 +6669,7 @@ export function deserializeAccessToken(val: any): AccessToken {
     issuedTokenType: issuedTokenType,
   } satisfies AccessToken;
 }
-export function serializeGenericSource(val: any): SerializedData {
+export function serializeGenericSource(val: GenericSource): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
       k,
@@ -6615,7 +6685,7 @@ export function deserializeGenericSource(val: any): GenericSource {
   return val;
 }
 export function serializeIntegrationMappingBaseIntegrationTypeField(
-  val: any
+  val: IntegrationMappingBaseIntegrationTypeField
 ): SerializedData {
   return val;
 }
@@ -6635,7 +6705,9 @@ export function deserializeIntegrationMappingBaseIntegrationTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeIntegrationMappingBase(val: any): SerializedData {
+export function serializeIntegrationMappingBase(
+  val: IntegrationMappingBase
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['integration_type']:
@@ -6664,7 +6736,7 @@ export function deserializeIntegrationMappingBase(
   } satisfies IntegrationMappingBase;
 }
 export function serializeIntegrationMappingMiniPartnerItemTypeField(
-  val: any
+  val: IntegrationMappingMiniPartnerItemTypeField
 ): SerializedData {
   return val;
 }
@@ -6685,7 +6757,7 @@ export function deserializeIntegrationMappingMiniPartnerItemTypeField(
   });
 }
 export function serializeIntegrationMappingMiniBoxItemTypeField(
-  val: any
+  val: IntegrationMappingMiniBoxItemTypeField
 ): SerializedData {
   return val;
 }
@@ -6705,7 +6777,9 @@ export function deserializeIntegrationMappingMiniBoxItemTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeIntegrationMappingMini(val: any): SerializedData {
+export function serializeIntegrationMappingMini(
+  val: IntegrationMappingMini
+): SerializedData {
   const base: any = serializeIntegrationMappingBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -6768,7 +6842,9 @@ export function deserializeIntegrationMappingMini(
     integrationType: integrationType,
   } satisfies IntegrationMappingMini;
 }
-export function serializeGroupBaseTypeField(val: any): SerializedData {
+export function serializeGroupBaseTypeField(
+  val: GroupBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
@@ -6784,7 +6860,7 @@ export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupBase(val: any): SerializedData {
+export function serializeGroupBase(val: GroupBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeGroupBaseTypeField(val.type) };
 }
 export function deserializeGroupBase(val: any): GroupBase {
@@ -6792,7 +6868,7 @@ export function deserializeGroupBase(val: any): GroupBase {
   const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return { id: id, type: type } satisfies GroupBase;
 }
-export function serializeGroupBaseInput(val: any): SerializedData {
+export function serializeGroupBaseInput(val: GroupBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -6805,7 +6881,9 @@ export function deserializeGroupBaseInput(val: any): GroupBaseInput {
     val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);
   return { id: id, type: type } satisfies GroupBaseInput;
 }
-export function serializeGroupMiniGroupTypeField(val: any): SerializedData {
+export function serializeGroupMiniGroupTypeField(
+  val: GroupMiniGroupTypeField
+): SerializedData {
   return val;
 }
 export function deserializeGroupMiniGroupTypeField(
@@ -6826,7 +6904,7 @@ export function deserializeGroupMiniGroupTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupMini(val: any): SerializedData {
+export function serializeGroupMini(val: GroupMini): SerializedData {
   const base: any = serializeGroupBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "GroupMini"' });
@@ -6857,7 +6935,7 @@ export function deserializeGroupMini(val: any): GroupMini {
     type: type,
   } satisfies GroupMini;
 }
-export function serializeGroup(val: any): SerializedData {
+export function serializeGroup(val: Group): SerializedData {
   const base: any = serializeGroupMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Group"' });
@@ -6894,7 +6972,7 @@ export function deserializeGroup(val: any): Group {
   } satisfies Group;
 }
 export function serializeGroupFullInvitabilityLevelField(
-  val: any
+  val: GroupFullInvitabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -6920,7 +6998,7 @@ export function deserializeGroupFullInvitabilityLevelField(
   });
 }
 export function serializeGroupFullMemberViewabilityLevelField(
-  val: any
+  val: GroupFullMemberViewabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -6945,7 +7023,9 @@ export function deserializeGroupFullMemberViewabilityLevelField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupFullPermissionsField(val: any): SerializedData {
+export function serializeGroupFullPermissionsField(
+  val: GroupFullPermissionsField
+): SerializedData {
   return {
     ['can_invite_as_collaborator']:
       val.canInviteAsCollaborator == void 0
@@ -6964,7 +7044,7 @@ export function deserializeGroupFullPermissionsField(
     canInviteAsCollaborator: canInviteAsCollaborator,
   } satisfies GroupFullPermissionsField;
 }
-export function serializeGroupFull(val: any): SerializedData {
+export function serializeGroupFull(val: GroupFull): SerializedData {
   const base: any = serializeGroup(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "GroupFull"' });
@@ -7046,7 +7126,9 @@ export function deserializeGroupFull(val: any): GroupFull {
     type: type,
   } satisfies GroupFull;
 }
-export function serializeGroupsOrderDirectionField(val: any): SerializedData {
+export function serializeGroupsOrderDirectionField(
+  val: GroupsOrderDirectionField
+): SerializedData {
   return val;
 }
 export function deserializeGroupsOrderDirectionField(
@@ -7067,7 +7149,9 @@ export function deserializeGroupsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupsOrderField(val: any): SerializedData {
+export function serializeGroupsOrderField(
+  val: GroupsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -7084,7 +7168,7 @@ export function deserializeGroupsOrderField(val: any): GroupsOrderField {
       : deserializeGroupsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies GroupsOrderField;
 }
-export function serializeGroups(val: any): SerializedData {
+export function serializeGroups(val: Groups): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -7092,13 +7176,13 @@ export function serializeGroups(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: GroupsOrderField): any {
+        : (val.order.map(function (item: GroupsOrderField): SerializedData {
             return serializeGroupsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: GroupFull): any {
+        : (val.entries.map(function (item: GroupFull): SerializedData {
             return serializeGroupFull(item);
           }) as readonly any[]),
   };
@@ -7112,7 +7196,7 @@ export function deserializeGroups(val: any): Groups {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): GroupsOrderField {
           return deserializeGroupsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -7120,7 +7204,7 @@ export function deserializeGroups(val: any): Groups {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): GroupFull {
           return deserializeGroupFull(itm);
         }) as readonly any[])
       : [];
@@ -7133,7 +7217,7 @@ export function deserializeGroups(val: any): Groups {
   } satisfies Groups;
 }
 export function serializeLegalHoldPolicyMiniTypeField(
-  val: any
+  val: LegalHoldPolicyMiniTypeField
 ): SerializedData {
   return val;
 }
@@ -7152,7 +7236,9 @@ export function deserializeLegalHoldPolicyMiniTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeLegalHoldPolicyMini(val: any): SerializedData {
+export function serializeLegalHoldPolicyMini(
+  val: LegalHoldPolicyMini
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeLegalHoldPolicyMiniTypeField(val.type),
@@ -7164,7 +7250,9 @@ export function deserializeLegalHoldPolicyMini(val: any): LegalHoldPolicyMini {
     deserializeLegalHoldPolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies LegalHoldPolicyMini;
 }
-export function serializeLegalHoldPolicyMiniInput(val: any): SerializedData {
+export function serializeLegalHoldPolicyMiniInput(
+  val: LegalHoldPolicyMiniInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -7184,7 +7272,7 @@ export function deserializeLegalHoldPolicyMiniInput(
   return { id: id, type: type } satisfies LegalHoldPolicyMiniInput;
 }
 export function serializeLegalHoldPolicyAssignmentBaseTypeField(
-  val: any
+  val: LegalHoldPolicyAssignmentBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -7205,7 +7293,7 @@ export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
   });
 }
 export function serializeLegalHoldPolicyAssignmentBase(
-  val: any
+  val: LegalHoldPolicyAssignmentBase
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -7225,7 +7313,7 @@ export function deserializeLegalHoldPolicyAssignmentBase(
       : deserializeLegalHoldPolicyAssignmentBaseTypeField(val.type);
   return { id: id, type: type } satisfies LegalHoldPolicyAssignmentBase;
 }
-export function serializeMetadataBase(val: any): SerializedData {
+export function serializeMetadataBase(val: MetadataBase): SerializedData {
   return {
     ['$parent']: val.parent == void 0 ? void 0 : val.parent,
     ['$template']: val.template == void 0 ? void 0 : val.template,
@@ -7248,18 +7336,18 @@ export function deserializeMetadataBase(val: any): MetadataBase {
     version: version,
   } satisfies MetadataBase;
 }
-export function serializeMetadata(val: any): SerializedData {
+export function serializeMetadata(val: Metadata): SerializedData {
   return serializeMetadataBase(val);
 }
 export function deserializeMetadata(val: any): Metadata {
   return deserializeMetadataBase(val);
 }
-export function serializeMetadatas(val: any): SerializedData {
+export function serializeMetadatas(val: Metadatas): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Metadata): any {
+        : (val.entries.map(function (item: Metadata): SerializedData {
             return serializeMetadata(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -7270,14 +7358,14 @@ export function deserializeMetadatas(val: any): Metadatas {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Metadata {
           return deserializeMetadata(itm);
         }) as readonly any[])
       : [];
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   return { entries: entries, limit: limit } satisfies Metadatas;
 }
-export function serializeMetadataFull(val: any): SerializedData {
+export function serializeMetadataFull(val: MetadataFull): SerializedData {
   const base: any = serializeMetadata(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "MetadataFull"' });
@@ -7327,7 +7415,7 @@ export function deserializeMetadataFull(val: any): MetadataFull {
   } satisfies MetadataFull;
 }
 export function serializeMetadataCascadePolicyTypeField(
-  val: any
+  val: MetadataCascadePolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -7347,7 +7435,7 @@ export function deserializeMetadataCascadePolicyTypeField(
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
-  val: any
+  val: MetadataCascadePolicyOwnerEnterpriseTypeField
 ): SerializedData {
   return val;
 }
@@ -7368,7 +7456,7 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseField(
-  val: any
+  val: MetadataCascadePolicyOwnerEnterpriseField
 ): SerializedData {
   return {
     ['type']:
@@ -7392,7 +7480,7 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseField(
   } satisfies MetadataCascadePolicyOwnerEnterpriseField;
 }
 export function serializeMetadataCascadePolicyParentTypeField(
-  val: any
+  val: MetadataCascadePolicyParentTypeField
 ): SerializedData {
   return val;
 }
@@ -7412,7 +7500,7 @@ export function deserializeMetadataCascadePolicyParentTypeField(
   });
 }
 export function serializeMetadataCascadePolicyParentField(
-  val: any
+  val: MetadataCascadePolicyParentField
 ): SerializedData {
   return {
     ['type']:
@@ -7432,7 +7520,9 @@ export function deserializeMetadataCascadePolicyParentField(
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies MetadataCascadePolicyParentField;
 }
-export function serializeMetadataCascadePolicy(val: any): SerializedData {
+export function serializeMetadataCascadePolicy(
+  val: MetadataCascadePolicy
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeMetadataCascadePolicyTypeField(val.type),
@@ -7478,7 +7568,9 @@ export function deserializeMetadataCascadePolicy(
     templateKey: templateKey,
   } satisfies MetadataCascadePolicy;
 }
-export function serializeMetadataCascadePolicyInput(val: any): SerializedData {
+export function serializeMetadataCascadePolicyInput(
+  val: MetadataCascadePolicyInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -7529,7 +7621,9 @@ export function deserializeMetadataCascadePolicyInput(
     templateKey: templateKey,
   } satisfies MetadataCascadePolicyInput;
 }
-export function serializeMetadataCascadePolicies(val: any): SerializedData {
+export function serializeMetadataCascadePolicies(
+  val: MetadataCascadePolicies
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -7537,7 +7631,9 @@ export function serializeMetadataCascadePolicies(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: MetadataCascadePolicy): any {
+        : (val.entries.map(function (
+            item: MetadataCascadePolicy
+          ): SerializedData {
             return serializeMetadataCascadePolicy(item);
           }) as readonly any[]),
   };
@@ -7554,7 +7650,7 @@ export function deserializeMetadataCascadePolicies(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): MetadataCascadePolicy {
           return deserializeMetadataCascadePolicy(itm);
         }) as readonly any[])
       : [];
@@ -7566,7 +7662,7 @@ export function deserializeMetadataCascadePolicies(
   } satisfies MetadataCascadePolicies;
 }
 export function serializeMetadataQueryIndexStatusField(
-  val: any
+  val: MetadataQueryIndexStatusField
 ): SerializedData {
   return val;
 }
@@ -7592,7 +7688,7 @@ export function deserializeMetadataQueryIndexStatusField(
   });
 }
 export function serializeMetadataQueryIndexFieldsSortDirectionField(
-  val: any
+  val: MetadataQueryIndexFieldsSortDirectionField
 ): SerializedData {
   return val;
 }
@@ -7616,7 +7712,7 @@ export function deserializeMetadataQueryIndexFieldsSortDirectionField(
   });
 }
 export function serializeMetadataQueryIndexFieldsField(
-  val: any
+  val: MetadataQueryIndexFieldsField
 ): SerializedData {
   return {
     ['key']: val.key == void 0 ? void 0 : val.key,
@@ -7643,7 +7739,9 @@ export function deserializeMetadataQueryIndexFieldsField(
     sortDirection: sortDirection,
   } satisfies MetadataQueryIndexFieldsField;
 }
-export function serializeMetadataQueryIndex(val: any): SerializedData {
+export function serializeMetadataQueryIndex(
+  val: MetadataQueryIndex
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type,
@@ -7651,7 +7749,9 @@ export function serializeMetadataQueryIndex(val: any): SerializedData {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: MetadataQueryIndexFieldsField): any {
+        : (val.fields.map(function (
+            item: MetadataQueryIndexFieldsField
+          ): SerializedData {
             return serializeMetadataQueryIndexFieldsField(item);
           }) as readonly any[]),
   };
@@ -7665,7 +7765,9 @@ export function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex {
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): MetadataQueryIndexFieldsField {
           return deserializeMetadataQueryIndexFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -7676,7 +7778,9 @@ export function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex {
     fields: fields,
   } satisfies MetadataQueryIndex;
 }
-export function serializeMetadataTemplateTypeField(val: any): SerializedData {
+export function serializeMetadataTemplateTypeField(
+  val: MetadataTemplateTypeField
+): SerializedData {
   return val;
 }
 export function deserializeMetadataTemplateTypeField(
@@ -7695,7 +7799,7 @@ export function deserializeMetadataTemplateTypeField(
   });
 }
 export function serializeMetadataTemplateFieldsTypeField(
-  val: any
+  val: MetadataTemplateFieldsTypeField
 ): SerializedData {
   return val;
 }
@@ -7730,7 +7834,7 @@ export function deserializeMetadataTemplateFieldsTypeField(
   });
 }
 export function serializeMetadataTemplateFieldsOptionsField(
-  val: any
+  val: MetadataTemplateFieldsOptionsField
 ): SerializedData {
   return { ['key']: val.key, ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -7741,7 +7845,9 @@ export function deserializeMetadataTemplateFieldsOptionsField(
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { key: key, id: id } satisfies MetadataTemplateFieldsOptionsField;
 }
-export function serializeMetadataTemplateFieldsField(val: any): SerializedData {
+export function serializeMetadataTemplateFieldsField(
+  val: MetadataTemplateFieldsField
+): SerializedData {
   return {
     ['type']: serializeMetadataTemplateFieldsTypeField(val.type),
     ['key']: val.key,
@@ -7753,7 +7859,7 @@ export function serializeMetadataTemplateFieldsField(val: any): SerializedData {
         ? void 0
         : (val.options.map(function (
             item: MetadataTemplateFieldsOptionsField
-          ): any {
+          ): SerializedData {
             return serializeMetadataTemplateFieldsOptionsField(item);
           }) as readonly any[]),
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -7774,7 +7880,9 @@ export function deserializeMetadataTemplateFieldsField(
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
-      ? (val.options.map(function (itm: SerializedData): any {
+      ? (val.options.map(function (
+          itm: SerializedData
+        ): MetadataTemplateFieldsOptionsField {
           return deserializeMetadataTemplateFieldsOptionsField(itm);
         }) as readonly any[])
       : [];
@@ -7789,7 +7897,9 @@ export function deserializeMetadataTemplateFieldsField(
     id: id,
   } satisfies MetadataTemplateFieldsField;
 }
-export function serializeMetadataTemplate(val: any): SerializedData {
+export function serializeMetadataTemplate(
+  val: MetadataTemplate
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeMetadataTemplateTypeField(val.type),
@@ -7800,7 +7910,9 @@ export function serializeMetadataTemplate(val: any): SerializedData {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: MetadataTemplateFieldsField): any {
+        : (val.fields.map(function (
+            item: MetadataTemplateFieldsField
+          ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
     ['copyInstanceOnItemCopy']:
@@ -7825,7 +7937,9 @@ export function deserializeMetadataTemplate(val: any): MetadataTemplate {
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): MetadataTemplateFieldsField {
           return deserializeMetadataTemplateFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -7842,7 +7956,9 @@ export function deserializeMetadataTemplate(val: any): MetadataTemplate {
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
   } satisfies MetadataTemplate;
 }
-export function serializeMetadataTemplateInput(val: any): SerializedData {
+export function serializeMetadataTemplateInput(
+  val: MetadataTemplateInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -7856,7 +7972,9 @@ export function serializeMetadataTemplateInput(val: any): SerializedData {
     ['fields']:
       val.fields == void 0
         ? void 0
-        : (val.fields.map(function (item: MetadataTemplateFieldsField): any {
+        : (val.fields.map(function (
+            item: MetadataTemplateFieldsField
+          ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
     ['copyInstanceOnItemCopy']:
@@ -7884,7 +8002,9 @@ export function deserializeMetadataTemplateInput(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): MetadataTemplateFieldsField {
           return deserializeMetadataTemplateFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -7901,7 +8021,9 @@ export function deserializeMetadataTemplateInput(
     copyInstanceOnItemCopy: copyInstanceOnItemCopy,
   } satisfies MetadataTemplateInput;
 }
-export function serializeMetadataTemplates(val: any): SerializedData {
+export function serializeMetadataTemplates(
+  val: MetadataTemplates
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -7909,7 +8031,7 @@ export function serializeMetadataTemplates(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: MetadataTemplate): any {
+        : (val.entries.map(function (item: MetadataTemplate): SerializedData {
             return serializeMetadataTemplate(item);
           }) as readonly any[]),
   };
@@ -7924,7 +8046,7 @@ export function deserializeMetadataTemplates(val: any): MetadataTemplates {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): MetadataTemplate {
           return deserializeMetadataTemplate(itm);
         }) as readonly any[])
       : [];
@@ -7935,7 +8057,7 @@ export function deserializeMetadataTemplates(val: any): MetadataTemplates {
     entries: entries,
   } satisfies MetadataTemplates;
 }
-export function serializeRealtimeServer(val: any): SerializedData {
+export function serializeRealtimeServer(val: RealtimeServer): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -7960,13 +8082,13 @@ export function deserializeRealtimeServer(val: any): RealtimeServer {
     retryTimeout: retryTimeout,
   } satisfies RealtimeServer;
 }
-export function serializeRealtimeServers(val: any): SerializedData {
+export function serializeRealtimeServers(val: RealtimeServers): SerializedData {
   return {
     ['chunk_size']: val.chunkSize == void 0 ? void 0 : val.chunkSize,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RealtimeServer): any {
+        : (val.entries.map(function (item: RealtimeServer): SerializedData {
             return serializeRealtimeServer(item);
           }) as readonly any[]),
   };
@@ -7978,14 +8100,14 @@ export function deserializeRealtimeServers(val: any): RealtimeServers {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): RealtimeServer {
           return deserializeRealtimeServer(itm);
         }) as readonly any[])
       : [];
   return { chunkSize: chunkSize, entries: entries } satisfies RealtimeServers;
 }
 export function serializeRetentionPolicyBaseTypeField(
-  val: any
+  val: RetentionPolicyBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8004,7 +8126,9 @@ export function deserializeRetentionPolicyBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeRetentionPolicyBase(val: any): SerializedData {
+export function serializeRetentionPolicyBase(
+  val: RetentionPolicyBase
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeRetentionPolicyBaseTypeField(val.type),
@@ -8016,7 +8140,9 @@ export function deserializeRetentionPolicyBase(val: any): RetentionPolicyBase {
     deserializeRetentionPolicyBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyBase;
 }
-export function serializeRetentionPolicyBaseInput(val: any): SerializedData {
+export function serializeRetentionPolicyBaseInput(
+  val: RetentionPolicyBaseInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -8036,7 +8162,7 @@ export function deserializeRetentionPolicyBaseInput(
   return { id: id, type: type } satisfies RetentionPolicyBaseInput;
 }
 export function serializeRetentionPolicyMiniDispositionActionField(
-  val: any
+  val: RetentionPolicyMiniDispositionActionField
 ): SerializedData {
   return val;
 }
@@ -8059,7 +8185,9 @@ export function deserializeRetentionPolicyMiniDispositionActionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeRetentionPolicyMini(val: any): SerializedData {
+export function serializeRetentionPolicyMini(
+  val: RetentionPolicyMini
+): SerializedData {
   const base: any = serializeRetentionPolicyBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -8106,7 +8234,7 @@ export function deserializeRetentionPolicyMini(val: any): RetentionPolicyMini {
   } satisfies RetentionPolicyMini;
 }
 export function serializeFileVersionRetentionTypeField(
-  val: any
+  val: FileVersionRetentionTypeField
 ): SerializedData {
   return val;
 }
@@ -8125,7 +8253,9 @@ export function deserializeFileVersionRetentionTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileVersionRetention(val: any): SerializedData {
+export function serializeFileVersionRetention(
+  val: FileVersionRetention
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -8183,7 +8313,9 @@ export function deserializeFileVersionRetention(
     winningRetentionPolicy: winningRetentionPolicy,
   } satisfies FileVersionRetention;
 }
-export function serializeFileVersionRetentions(val: any): SerializedData {
+export function serializeFileVersionRetentions(
+  val: FileVersionRetentions
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -8191,7 +8323,9 @@ export function serializeFileVersionRetentions(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersionRetention): any {
+        : (val.entries.map(function (
+            item: FileVersionRetention
+          ): SerializedData {
             return serializeFileVersionRetention(item);
           }) as readonly any[]),
   };
@@ -8208,7 +8342,7 @@ export function deserializeFileVersionRetentions(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileVersionRetention {
           return deserializeFileVersionRetention(itm);
         }) as readonly any[])
       : [];
@@ -8220,7 +8354,7 @@ export function deserializeFileVersionRetentions(
   } satisfies FileVersionRetentions;
 }
 export function serializeRetentionPolicyAssignmentBaseTypeField(
-  val: any
+  val: RetentionPolicyAssignmentBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8241,7 +8375,7 @@ export function deserializeRetentionPolicyAssignmentBaseTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentBase(
-  val: any
+  val: RetentionPolicyAssignmentBase
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -8257,7 +8391,7 @@ export function deserializeRetentionPolicyAssignmentBase(
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
 }
 export function serializeRetentionPolicyAssignmentBaseInput(
-  val: any
+  val: RetentionPolicyAssignmentBaseInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -8278,7 +8412,7 @@ export function deserializeRetentionPolicyAssignmentBaseInput(
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBaseInput;
 }
 export function serializeShieldInformationBarrierBaseTypeField(
-  val: any
+  val: ShieldInformationBarrierBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8298,7 +8432,7 @@ export function deserializeShieldInformationBarrierBaseTypeField(
   });
 }
 export function serializeShieldInformationBarrierBase(
-  val: any
+  val: ShieldInformationBarrierBase
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8319,7 +8453,7 @@ export function deserializeShieldInformationBarrierBase(
   return { id: id, type: type } satisfies ShieldInformationBarrierBase;
 }
 export function serializeShieldInformationBarrierReference(
-  val: any
+  val: ShieldInformationBarrierReference
 ): SerializedData {
   return {
     ['shield_information_barrier']:
@@ -8340,7 +8474,7 @@ export function deserializeShieldInformationBarrierReference(
   } satisfies ShieldInformationBarrierReference;
 }
 export function serializeShieldInformationBarrierReportBaseTypeField(
-  val: any
+  val: ShieldInformationBarrierReportBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8361,7 +8495,7 @@ export function deserializeShieldInformationBarrierReportBaseTypeField(
   });
 }
 export function serializeShieldInformationBarrierReportBase(
-  val: any
+  val: ShieldInformationBarrierReportBase
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8382,7 +8516,7 @@ export function deserializeShieldInformationBarrierReportBase(
   return { id: id, type: type } satisfies ShieldInformationBarrierReportBase;
 }
 export function serializeShieldInformationBarrierSegmentMemberBaseTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentMemberBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8403,7 +8537,7 @@ export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(
   });
 }
 export function serializeShieldInformationBarrierSegmentMemberBase(
-  val: any
+  val: ShieldInformationBarrierSegmentMemberBase
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8427,7 +8561,7 @@ export function deserializeShieldInformationBarrierSegmentMemberBase(
   } satisfies ShieldInformationBarrierSegmentMemberBase;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionBaseTypeField
 ): SerializedData {
   return val;
 }
@@ -8448,7 +8582,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeFie
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBase(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionBase
 ): SerializedData {
   return {
     ['type']:
@@ -8478,7 +8612,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBase(
   } satisfies ShieldInformationBarrierSegmentRestrictionBase;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField
 ): SerializedData {
   return val;
 }
@@ -8499,7 +8633,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldI
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8529,7 +8663,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldI
   } satisfies ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField
 ): SerializedData {
   return val;
 }
@@ -8550,7 +8684,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestric
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8580,7 +8714,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestric
   } satisfies ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMini(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictionMini
 ): SerializedData {
   const base: any =
     serializeShieldInformationBarrierSegmentRestrictionBase(val);
@@ -8631,7 +8765,9 @@ export function deserializeShieldInformationBarrierSegmentRestrictionMini(
     id: id,
   } satisfies ShieldInformationBarrierSegmentRestrictionMini;
 }
-export function serializeSessionTerminationMessage(val: any): SerializedData {
+export function serializeSessionTerminationMessage(
+  val: SessionTerminationMessage
+): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeSessionTerminationMessage(
@@ -8641,7 +8777,9 @@ export function deserializeSessionTerminationMessage(
     val.message == void 0 ? void 0 : val.message;
   return { message: message } satisfies SessionTerminationMessage;
 }
-export function serializeStoragePolicyMiniTypeField(val: any): SerializedData {
+export function serializeStoragePolicyMiniTypeField(
+  val: StoragePolicyMiniTypeField
+): SerializedData {
   return val;
 }
 export function deserializeStoragePolicyMiniTypeField(
@@ -8659,7 +8797,9 @@ export function deserializeStoragePolicyMiniTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeStoragePolicyMini(val: any): SerializedData {
+export function serializeStoragePolicyMini(
+  val: StoragePolicyMini
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeStoragePolicyMiniTypeField(val.type),
@@ -8671,7 +8811,9 @@ export function deserializeStoragePolicyMini(val: any): StoragePolicyMini {
     deserializeStoragePolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies StoragePolicyMini;
 }
-export function serializeStoragePolicyMiniInput(val: any): SerializedData {
+export function serializeStoragePolicyMiniInput(
+  val: StoragePolicyMiniInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -8691,7 +8833,7 @@ export function deserializeStoragePolicyMiniInput(
   return { id: id, type: type } satisfies StoragePolicyMiniInput;
 }
 export function serializeStoragePolicyAssignmentTypeField(
-  val: any
+  val: StoragePolicyAssignmentTypeField
 ): SerializedData {
   return val;
 }
@@ -8711,7 +8853,7 @@ export function deserializeStoragePolicyAssignmentTypeField(
   });
 }
 export function serializeStoragePolicyAssignmentAssignedToField(
-  val: any
+  val: StoragePolicyAssignmentAssignedToField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -8728,7 +8870,9 @@ export function deserializeStoragePolicyAssignmentAssignedToField(
     type: type,
   } satisfies StoragePolicyAssignmentAssignedToField;
 }
-export function serializeStoragePolicyAssignment(val: any): SerializedData {
+export function serializeStoragePolicyAssignment(
+  val: StoragePolicyAssignment
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeStoragePolicyAssignmentTypeField(val.type),
@@ -8764,7 +8908,7 @@ export function deserializeStoragePolicyAssignment(
   } satisfies StoragePolicyAssignment;
 }
 export function serializeStoragePolicyAssignmentInput(
-  val: any
+  val: StoragePolicyAssignmentInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -8805,7 +8949,9 @@ export function deserializeStoragePolicyAssignmentInput(
     assignedTo: assignedTo,
   } satisfies StoragePolicyAssignmentInput;
 }
-export function serializeStoragePolicyAssignments(val: any): SerializedData {
+export function serializeStoragePolicyAssignments(
+  val: StoragePolicyAssignments
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -8813,7 +8959,9 @@ export function serializeStoragePolicyAssignments(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: StoragePolicyAssignment): any {
+        : (val.entries.map(function (
+            item: StoragePolicyAssignment
+          ): SerializedData {
             return serializeStoragePolicyAssignment(item);
           }) as readonly any[]),
   };
@@ -8830,7 +8978,9 @@ export function deserializeStoragePolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): StoragePolicyAssignment {
           return deserializeStoragePolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -8841,7 +8991,7 @@ export function deserializeStoragePolicyAssignments(
     entries: entries,
   } satisfies StoragePolicyAssignments;
 }
-export function serializeStoragePolicy(val: any): SerializedData {
+export function serializeStoragePolicy(val: StoragePolicy): SerializedData {
   const base: any = serializeStoragePolicyMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "StoragePolicy"' });
@@ -8855,7 +9005,7 @@ export function deserializeStoragePolicy(val: any): StoragePolicy {
     deserializeStoragePolicyMiniTypeField(val.type);
   return { name: name, id: id, type: type } satisfies StoragePolicy;
 }
-export function serializeStoragePolicies(val: any): SerializedData {
+export function serializeStoragePolicies(val: StoragePolicies): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -8863,7 +9013,7 @@ export function serializeStoragePolicies(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: StoragePolicy): any {
+        : (val.entries.map(function (item: StoragePolicy): SerializedData {
             return serializeStoragePolicy(item);
           }) as readonly any[]),
   };
@@ -8878,7 +9028,7 @@ export function deserializeStoragePolicies(val: any): StoragePolicies {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): StoragePolicy {
           return deserializeStoragePolicy(itm);
         }) as readonly any[])
       : [];
@@ -8889,7 +9039,9 @@ export function deserializeStoragePolicies(val: any): StoragePolicies {
     entries: entries,
   } satisfies StoragePolicies;
 }
-export function serializeTermsOfServiceBaseTypeField(val: any): SerializedData {
+export function serializeTermsOfServiceBaseTypeField(
+  val: TermsOfServiceBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceBaseTypeField(
@@ -8907,7 +9059,9 @@ export function deserializeTermsOfServiceBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTermsOfServiceBase(val: any): SerializedData {
+export function serializeTermsOfServiceBase(
+  val: TermsOfServiceBase
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeTermsOfServiceBaseTypeField(val.type),
@@ -8919,7 +9073,9 @@ export function deserializeTermsOfServiceBase(val: any): TermsOfServiceBase {
     deserializeTermsOfServiceBaseTypeField(val.type);
   return { id: id, type: type } satisfies TermsOfServiceBase;
 }
-export function serializeTermsOfServiceBaseInput(val: any): SerializedData {
+export function serializeTermsOfServiceBaseInput(
+  val: TermsOfServiceBaseInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -8938,7 +9094,9 @@ export function deserializeTermsOfServiceBaseInput(
       : deserializeTermsOfServiceBaseTypeField(val.type);
   return { id: id, type: type } satisfies TermsOfServiceBaseInput;
 }
-export function serializeTermsOfServiceStatusField(val: any): SerializedData {
+export function serializeTermsOfServiceStatusField(
+  val: TermsOfServiceStatusField
+): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceStatusField(
@@ -8960,7 +9118,7 @@ export function deserializeTermsOfServiceStatusField(
   });
 }
 export function serializeTermsOfServiceEnterpriseTypeField(
-  val: any
+  val: TermsOfServiceEnterpriseTypeField
 ): SerializedData {
   return val;
 }
@@ -8980,7 +9138,7 @@ export function deserializeTermsOfServiceEnterpriseTypeField(
   });
 }
 export function serializeTermsOfServiceEnterpriseField(
-  val: any
+  val: TermsOfServiceEnterpriseField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -9006,7 +9164,9 @@ export function deserializeTermsOfServiceEnterpriseField(
     name: name,
   } satisfies TermsOfServiceEnterpriseField;
 }
-export function serializeTermsOfServiceTosTypeField(val: any): SerializedData {
+export function serializeTermsOfServiceTosTypeField(
+  val: TermsOfServiceTosTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceTosTypeField(
@@ -9027,7 +9187,7 @@ export function deserializeTermsOfServiceTosTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTermsOfService(val: any): SerializedData {
+export function serializeTermsOfService(val: TermsOfService): SerializedData {
   const base: any = serializeTermsOfServiceBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "TermsOfService"' });
@@ -9087,13 +9247,13 @@ export function deserializeTermsOfService(val: any): TermsOfService {
     type: type,
   } satisfies TermsOfService;
 }
-export function serializeTermsOfServices(val: any): SerializedData {
+export function serializeTermsOfServices(val: TermsOfServices): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TermsOfService): any {
+        : (val.entries.map(function (item: TermsOfService): SerializedData {
             return serializeTermsOfService(item);
           }) as readonly any[]),
   };
@@ -9105,13 +9265,13 @@ export function deserializeTermsOfServices(val: any): TermsOfServices {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): TermsOfService {
           return deserializeTermsOfService(itm);
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies TermsOfServices;
 }
-export function serializeUploadPartMini(val: any): SerializedData {
+export function serializeUploadPartMini(val: UploadPartMini): SerializedData {
   return {
     ['part_id']: val.partId == void 0 ? void 0 : val.partId,
     ['offset']: val.offset == void 0 ? void 0 : val.offset,
@@ -9129,7 +9289,7 @@ export function deserializeUploadPartMini(val: any): UploadPartMini {
     size: size,
   } satisfies UploadPartMini;
 }
-export function serializeUploadPart(val: any): SerializedData {
+export function serializeUploadPart(val: UploadPart): SerializedData {
   const base: any = serializeUploadPartMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UploadPart"' });
@@ -9150,7 +9310,7 @@ export function deserializeUploadPart(val: any): UploadPart {
   } satisfies UploadPart;
 }
 export function serializeUploadPartsOrderDirectionField(
-  val: any
+  val: UploadPartsOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -9172,7 +9332,9 @@ export function deserializeUploadPartsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUploadPartsOrderField(val: any): SerializedData {
+export function serializeUploadPartsOrderField(
+  val: UploadPartsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -9191,7 +9353,7 @@ export function deserializeUploadPartsOrderField(
       : deserializeUploadPartsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies UploadPartsOrderField;
 }
-export function serializeUploadParts(val: any): SerializedData {
+export function serializeUploadParts(val: UploadParts): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -9199,13 +9361,15 @@ export function serializeUploadParts(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: UploadPartsOrderField): any {
+        : (val.order.map(function (
+            item: UploadPartsOrderField
+          ): SerializedData {
             return serializeUploadPartsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: UploadPart): any {
+        : (val.entries.map(function (item: UploadPart): SerializedData {
             return serializeUploadPart(item);
           }) as readonly any[]),
   };
@@ -9219,7 +9383,7 @@ export function deserializeUploadParts(val: any): UploadParts {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): UploadPartsOrderField {
           return deserializeUploadPartsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -9227,7 +9391,7 @@ export function deserializeUploadParts(val: any): UploadParts {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): UploadPart {
           return deserializeUploadPart(itm);
         }) as readonly any[])
       : [];
@@ -9239,7 +9403,7 @@ export function deserializeUploadParts(val: any): UploadParts {
     entries: entries,
   } satisfies UploadParts;
 }
-export function serializeUploadedPart(val: any): SerializedData {
+export function serializeUploadedPart(val: UploadedPart): SerializedData {
   return {
     ['part']: val.part == void 0 ? void 0 : serializeUploadPart(val.part),
   };
@@ -9249,7 +9413,9 @@ export function deserializeUploadedPart(val: any): UploadedPart {
     val.part == void 0 ? void 0 : deserializeUploadPart(val.part);
   return { part: part } satisfies UploadedPart;
 }
-export function serializeUploadSessionTypeField(val: any): SerializedData {
+export function serializeUploadSessionTypeField(
+  val: UploadSessionTypeField
+): SerializedData {
   return val;
 }
 export function deserializeUploadSessionTypeField(
@@ -9268,7 +9434,7 @@ export function deserializeUploadSessionTypeField(
   });
 }
 export function serializeUploadSessionSessionEndpointsField(
-  val: any
+  val: UploadSessionSessionEndpointsField
 ): SerializedData {
   return {
     ['upload_part']: val.uploadPart == void 0 ? void 0 : val.uploadPart,
@@ -9300,7 +9466,7 @@ export function deserializeUploadSessionSessionEndpointsField(
     logEvent: logEvent,
   } satisfies UploadSessionSessionEndpointsField;
 }
-export function serializeUploadSession(val: any): SerializedData {
+export function serializeUploadSession(val: UploadSession): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -9347,7 +9513,7 @@ export function deserializeUploadSession(val: any): UploadSession {
     sessionEndpoints: sessionEndpoints,
   } satisfies UploadSession;
 }
-export function serializeUploadUrl(val: any): SerializedData {
+export function serializeUploadUrl(val: UploadUrl): SerializedData {
   return {
     ['upload_url']: val.uploadUrl == void 0 ? void 0 : val.uploadUrl,
     ['upload_token']: val.uploadToken == void 0 ? void 0 : val.uploadToken,
@@ -9360,7 +9526,9 @@ export function deserializeUploadUrl(val: any): UploadUrl {
     val.upload_token == void 0 ? void 0 : val.upload_token;
   return { uploadUrl: uploadUrl, uploadToken: uploadToken } satisfies UploadUrl;
 }
-export function serializeUserAvatarPicUrlsField(val: any): SerializedData {
+export function serializeUserAvatarPicUrlsField(
+  val: UserAvatarPicUrlsField
+): SerializedData {
   return {
     ['small']: val.small == void 0 ? void 0 : val.small,
     ['large']: val.large == void 0 ? void 0 : val.large,
@@ -9380,7 +9548,7 @@ export function deserializeUserAvatarPicUrlsField(
     preview: preview,
   } satisfies UserAvatarPicUrlsField;
 }
-export function serializeUserAvatar(val: any): SerializedData {
+export function serializeUserAvatar(val: UserAvatar): SerializedData {
   return {
     ['pic_urls']:
       val.picUrls == void 0
@@ -9395,7 +9563,9 @@ export function deserializeUserAvatar(val: any): UserAvatar {
       : deserializeUserAvatarPicUrlsField(val.pic_urls);
   return { picUrls: picUrls } satisfies UserAvatar;
 }
-export function serializeUserBaseTypeField(val: any): SerializedData {
+export function serializeUserBaseTypeField(
+  val: UserBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeUserBaseTypeField(val: any): UserBaseTypeField {
@@ -9411,7 +9581,7 @@ export function deserializeUserBaseTypeField(val: any): UserBaseTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUserBase(val: any): SerializedData {
+export function serializeUserBase(val: UserBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeUserBaseTypeField(val.type) };
 }
 export function deserializeUserBase(val: any): UserBase {
@@ -9419,7 +9589,7 @@ export function deserializeUserBase(val: any): UserBase {
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return { id: id, type: type } satisfies UserBase;
 }
-export function serializeUserBaseInput(val: any): SerializedData {
+export function serializeUserBaseInput(val: UserBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -9432,7 +9602,9 @@ export function deserializeUserBaseInput(val: any): UserBaseInput {
     val.type == void 0 ? void 0 : deserializeUserBaseTypeField(val.type);
   return { id: id, type: type } satisfies UserBaseInput;
 }
-export function serializeUserIntegrationMappings(val: any): SerializedData {
+export function serializeUserIntegrationMappings(
+  val: UserIntegrationMappings
+): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -9461,7 +9633,9 @@ export function deserializeUserIntegrationMappings(
     type: type,
   } satisfies UserIntegrationMappings;
 }
-export function serializeUserCollaborations(val: any): SerializedData {
+export function serializeUserCollaborations(
+  val: UserCollaborations
+): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -9515,7 +9689,7 @@ export function deserializeGroupMiniOrUserCollaborations(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeUserMini(val: any): SerializedData {
+export function serializeUserMini(val: UserMini): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UserMini"' });
@@ -9535,7 +9709,9 @@ export function deserializeUserMini(val: any): UserMini {
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return { name: name, login: login, id: id, type: type } satisfies UserMini;
 }
-export function serializeEventSourceItemTypeField(val: any): SerializedData {
+export function serializeEventSourceItemTypeField(
+  val: EventSourceItemTypeField
+): SerializedData {
   return val;
 }
 export function deserializeEventSourceItemTypeField(
@@ -9557,7 +9733,7 @@ export function deserializeEventSourceItemTypeField(
   });
 }
 export function serializeEventSourceClassificationField(
-  val: any
+  val: EventSourceClassificationField
 ): SerializedData {
   return { ['name']: val.name == void 0 ? void 0 : val.name };
 }
@@ -9567,7 +9743,7 @@ export function deserializeEventSourceClassificationField(
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return { name: name } satisfies EventSourceClassificationField;
 }
-export function serializeEventSource(val: any): SerializedData {
+export function serializeEventSource(val: EventSource): SerializedData {
   return {
     ['item_type']: serializeEventSourceItemTypeField(val.itemType),
     ['item_id']: val.itemId,
@@ -9603,7 +9779,7 @@ export function deserializeEventSource(val: any): EventSource {
     ownedBy: ownedBy,
   } satisfies EventSource;
 }
-export function serializeUserStatusField(val: any): SerializedData {
+export function serializeUserStatusField(val: UserStatusField): SerializedData {
   return val;
 }
 export function deserializeUserStatusField(val: any): UserStatusField {
@@ -9628,7 +9804,9 @@ export function deserializeUserStatusField(val: any): UserStatusField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUserNotificationEmailField(val: any): SerializedData {
+export function serializeUserNotificationEmailField(
+  val: UserNotificationEmailField
+): SerializedData {
   return {
     ['email']: val.email == void 0 ? void 0 : val.email,
     ['is_confirmed']: val.isConfirmed == void 0 ? void 0 : val.isConfirmed,
@@ -9645,7 +9823,7 @@ export function deserializeUserNotificationEmailField(
     isConfirmed: isConfirmed,
   } satisfies UserNotificationEmailField;
 }
-export function serializeUser(val: any): SerializedData {
+export function serializeUser(val: User): SerializedData {
   const base: any = serializeUserMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "User"' });
@@ -9729,7 +9907,7 @@ export function deserializeUser(val: any): User {
   } satisfies User;
 }
 export function serializeTrashWebLinkRestoredTypeField(
-  val: any
+  val: TrashWebLinkRestoredTypeField
 ): SerializedData {
   return val;
 }
@@ -9749,11 +9927,11 @@ export function deserializeTrashWebLinkRestoredTypeField(
   });
 }
 export function serializeTrashWebLinkRestoredPathCollectionField(
-  val: any
+  val: TrashWebLinkRestoredPathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -9763,7 +9941,7 @@ export function deserializeTrashWebLinkRestoredPathCollectionField(
 ): TrashWebLinkRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -9773,7 +9951,7 @@ export function deserializeTrashWebLinkRestoredPathCollectionField(
   } satisfies TrashWebLinkRestoredPathCollectionField;
 }
 export function serializeTrashWebLinkRestoredItemStatusField(
-  val: any
+  val: TrashWebLinkRestoredItemStatusField
 ): SerializedData {
   return val;
 }
@@ -9798,7 +9976,9 @@ export function deserializeTrashWebLinkRestoredItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashWebLinkRestored(val: any): SerializedData {
+export function serializeTrashWebLinkRestored(
+  val: TrashWebLinkRestored
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -9893,7 +10073,7 @@ export function deserializeTrashWebLinkRestored(
   } satisfies TrashWebLinkRestored;
 }
 export function serializeTrashFolderRestoredTypeField(
-  val: any
+  val: TrashFolderRestoredTypeField
 ): SerializedData {
   return val;
 }
@@ -9913,11 +10093,11 @@ export function deserializeTrashFolderRestoredTypeField(
   });
 }
 export function serializeTrashFolderRestoredPathCollectionField(
-  val: any
+  val: TrashFolderRestoredPathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -9927,7 +10107,7 @@ export function deserializeTrashFolderRestoredPathCollectionField(
 ): TrashFolderRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -9937,7 +10117,7 @@ export function deserializeTrashFolderRestoredPathCollectionField(
   } satisfies TrashFolderRestoredPathCollectionField;
 }
 export function serializeTrashFolderRestoredItemStatusField(
-  val: any
+  val: TrashFolderRestoredItemStatusField
 ): SerializedData {
   return val;
 }
@@ -9962,7 +10142,9 @@ export function deserializeTrashFolderRestoredItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashFolderRestored(val: any): SerializedData {
+export function serializeTrashFolderRestored(
+  val: TrashFolderRestored
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -10081,7 +10263,9 @@ export function deserializeTrashFolderRestored(val: any): TrashFolderRestored {
     itemStatus: itemStatus,
   } satisfies TrashFolderRestored;
 }
-export function serializeTrashFileRestoredTypeField(val: any): SerializedData {
+export function serializeTrashFileRestoredTypeField(
+  val: TrashFileRestoredTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTrashFileRestoredTypeField(
@@ -10100,11 +10284,11 @@ export function deserializeTrashFileRestoredTypeField(
   });
 }
 export function serializeTrashFileRestoredPathCollectionField(
-  val: any
+  val: TrashFileRestoredPathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -10114,7 +10298,7 @@ export function deserializeTrashFileRestoredPathCollectionField(
 ): TrashFileRestoredPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -10124,7 +10308,7 @@ export function deserializeTrashFileRestoredPathCollectionField(
   } satisfies TrashFileRestoredPathCollectionField;
 }
 export function serializeTrashFileRestoredItemStatusField(
-  val: any
+  val: TrashFileRestoredItemStatusField
 ): SerializedData {
   return val;
 }
@@ -10149,7 +10333,9 @@ export function deserializeTrashFileRestoredItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashFileRestored(val: any): SerializedData {
+export function serializeTrashFileRestored(
+  val: TrashFileRestored
+): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -10252,7 +10438,9 @@ export function deserializeTrashFileRestored(val: any): TrashFileRestored {
     itemStatus: itemStatus,
   } satisfies TrashFileRestored;
 }
-export function serializeTrashFileRestoredInput(val: any): SerializedData {
+export function serializeTrashFileRestoredInput(
+  val: TrashFileRestoredInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -10362,7 +10550,9 @@ export function deserializeTrashFileRestoredInput(
     itemStatus: itemStatus,
   } satisfies TrashFileRestoredInput;
 }
-export function serializeTrashWebLinkTypeField(val: any): SerializedData {
+export function serializeTrashWebLinkTypeField(
+  val: TrashWebLinkTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkTypeField(
@@ -10381,7 +10571,7 @@ export function deserializeTrashWebLinkTypeField(
   });
 }
 export function serializeTrashWebLinkPathCollectionEntriesTypeField(
-  val: any
+  val: TrashWebLinkPathCollectionEntriesTypeField
 ): SerializedData {
   return val;
 }
@@ -10402,7 +10592,7 @@ export function deserializeTrashWebLinkPathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashWebLinkPathCollectionEntriesField(
-  val: any
+  val: TrashWebLinkPathCollectionEntriesField
 ): SerializedData {
   return {
     ['type']:
@@ -10436,13 +10626,13 @@ export function deserializeTrashWebLinkPathCollectionEntriesField(
   } satisfies TrashWebLinkPathCollectionEntriesField;
 }
 export function serializeTrashWebLinkPathCollectionField(
-  val: any
+  val: TrashWebLinkPathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
       item: TrashWebLinkPathCollectionEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTrashWebLinkPathCollectionEntriesField(item);
     }) as readonly any[],
   };
@@ -10454,7 +10644,9 @@ export function deserializeTrashWebLinkPathCollectionField(
   const entries: readonly TrashWebLinkPathCollectionEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TrashWebLinkPathCollectionEntriesField {
         return deserializeTrashWebLinkPathCollectionEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -10463,7 +10655,9 @@ export function deserializeTrashWebLinkPathCollectionField(
     entries: entries,
   } satisfies TrashWebLinkPathCollectionField;
 }
-export function serializeTrashWebLinkItemStatusField(val: any): SerializedData {
+export function serializeTrashWebLinkItemStatusField(
+  val: TrashWebLinkItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkItemStatusField(
@@ -10487,7 +10681,7 @@ export function deserializeTrashWebLinkItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashWebLink(val: any): SerializedData {
+export function serializeTrashWebLink(val: TrashWebLink): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeTrashWebLinkTypeField(val.type),
@@ -10581,7 +10775,9 @@ export function deserializeTrashWebLink(val: any): TrashWebLink {
     itemStatus: itemStatus,
   } satisfies TrashWebLink;
 }
-export function serializeTrashFolderTypeField(val: any): SerializedData {
+export function serializeTrashFolderTypeField(
+  val: TrashFolderTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTrashFolderTypeField(
@@ -10600,7 +10796,7 @@ export function deserializeTrashFolderTypeField(
   });
 }
 export function serializeTrashFolderPathCollectionEntriesTypeField(
-  val: any
+  val: TrashFolderPathCollectionEntriesTypeField
 ): SerializedData {
   return val;
 }
@@ -10621,7 +10817,7 @@ export function deserializeTrashFolderPathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashFolderPathCollectionEntriesField(
-  val: any
+  val: TrashFolderPathCollectionEntriesField
 ): SerializedData {
   return {
     ['type']:
@@ -10655,13 +10851,13 @@ export function deserializeTrashFolderPathCollectionEntriesField(
   } satisfies TrashFolderPathCollectionEntriesField;
 }
 export function serializeTrashFolderPathCollectionField(
-  val: any
+  val: TrashFolderPathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
       item: TrashFolderPathCollectionEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTrashFolderPathCollectionEntriesField(item);
     }) as readonly any[],
   };
@@ -10673,7 +10869,9 @@ export function deserializeTrashFolderPathCollectionField(
   const entries: readonly TrashFolderPathCollectionEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TrashFolderPathCollectionEntriesField {
         return deserializeTrashFolderPathCollectionEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -10682,7 +10880,9 @@ export function deserializeTrashFolderPathCollectionField(
     entries: entries,
   } satisfies TrashFolderPathCollectionField;
 }
-export function serializeTrashFolderItemStatusField(val: any): SerializedData {
+export function serializeTrashFolderItemStatusField(
+  val: TrashFolderItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeTrashFolderItemStatusField(
@@ -10706,7 +10906,7 @@ export function deserializeTrashFolderItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashFolder(val: any): SerializedData {
+export function serializeTrashFolder(val: TrashFolder): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -10806,7 +11006,9 @@ export function deserializeTrashFolder(val: any): TrashFolder {
     itemStatus: itemStatus,
   } satisfies TrashFolder;
 }
-export function serializeTrashFolderInput(val: any): SerializedData {
+export function serializeTrashFolderInput(
+  val: TrashFolderInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -10908,7 +11110,9 @@ export function deserializeTrashFolderInput(val: any): TrashFolderInput {
     itemStatus: itemStatus,
   } satisfies TrashFolderInput;
 }
-export function serializeTrashFileTypeField(val: any): SerializedData {
+export function serializeTrashFileTypeField(
+  val: TrashFileTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTrashFileTypeField(val: any): TrashFileTypeField {
@@ -10925,7 +11129,7 @@ export function deserializeTrashFileTypeField(val: any): TrashFileTypeField {
   });
 }
 export function serializeTrashFilePathCollectionEntriesTypeField(
-  val: any
+  val: TrashFilePathCollectionEntriesTypeField
 ): SerializedData {
   return val;
 }
@@ -10946,7 +11150,7 @@ export function deserializeTrashFilePathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashFilePathCollectionEntriesField(
-  val: any
+  val: TrashFilePathCollectionEntriesField
 ): SerializedData {
   return {
     ['type']:
@@ -10980,13 +11184,13 @@ export function deserializeTrashFilePathCollectionEntriesField(
   } satisfies TrashFilePathCollectionEntriesField;
 }
 export function serializeTrashFilePathCollectionField(
-  val: any
+  val: TrashFilePathCollectionField
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
       item: TrashFilePathCollectionEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTrashFilePathCollectionEntriesField(item);
     }) as readonly any[],
   };
@@ -10998,7 +11202,9 @@ export function deserializeTrashFilePathCollectionField(
   const entries: readonly TrashFilePathCollectionEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TrashFilePathCollectionEntriesField {
         return deserializeTrashFilePathCollectionEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -11007,7 +11213,9 @@ export function deserializeTrashFilePathCollectionField(
     entries: entries,
   } satisfies TrashFilePathCollectionField;
 }
-export function serializeTrashFileItemStatusField(val: any): SerializedData {
+export function serializeTrashFileItemStatusField(
+  val: TrashFileItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeTrashFileItemStatusField(
@@ -11031,7 +11239,7 @@ export function deserializeTrashFileItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrashFile(val: any): SerializedData {
+export function serializeTrashFile(val: TrashFile): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -11135,7 +11343,7 @@ export function deserializeTrashFile(val: any): TrashFile {
     itemStatus: itemStatus,
   } satisfies TrashFile;
 }
-export function serializeTrashFileInput(val: any): SerializedData {
+export function serializeTrashFileInput(val: TrashFileInput): SerializedData {
   return {
     ['id']: val.id,
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
@@ -11242,7 +11450,7 @@ export function deserializeTrashFileInput(val: any): TrashFileInput {
   } satisfies TrashFileInput;
 }
 export function serializeTermsOfServiceUserStatusTypeField(
-  val: any
+  val: TermsOfServiceUserStatusTypeField
 ): SerializedData {
   return val;
 }
@@ -11261,7 +11469,9 @@ export function deserializeTermsOfServiceUserStatusTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTermsOfServiceUserStatus(val: any): SerializedData {
+export function serializeTermsOfServiceUserStatus(
+  val: TermsOfServiceUserStatus
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeTermsOfServiceUserStatusTypeField(val.type),
@@ -11301,7 +11511,7 @@ export function deserializeTermsOfServiceUserStatus(
   } satisfies TermsOfServiceUserStatus;
 }
 export function serializeTermsOfServiceUserStatusInput(
-  val: any
+  val: TermsOfServiceUserStatusInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -11346,13 +11556,17 @@ export function deserializeTermsOfServiceUserStatusInput(
     modifiedAt: modifiedAt,
   } satisfies TermsOfServiceUserStatusInput;
 }
-export function serializeTermsOfServiceUserStatuses(val: any): SerializedData {
+export function serializeTermsOfServiceUserStatuses(
+  val: TermsOfServiceUserStatuses
+): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TermsOfServiceUserStatus): any {
+        : (val.entries.map(function (
+            item: TermsOfServiceUserStatus
+          ): SerializedData {
             return serializeTermsOfServiceUserStatus(item);
           }) as readonly any[]),
   };
@@ -11366,7 +11580,9 @@ export function deserializeTermsOfServiceUserStatuses(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): TermsOfServiceUserStatus {
           return deserializeTermsOfServiceUserStatus(itm);
         }) as readonly any[])
       : [];
@@ -11375,7 +11591,9 @@ export function deserializeTermsOfServiceUserStatuses(
     entries: entries,
   } satisfies TermsOfServiceUserStatuses;
 }
-export function serializeTaskAssignmentTypeField(val: any): SerializedData {
+export function serializeTaskAssignmentTypeField(
+  val: TaskAssignmentTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTaskAssignmentTypeField(
@@ -11394,7 +11612,7 @@ export function deserializeTaskAssignmentTypeField(
   });
 }
 export function serializeTaskAssignmentResolutionStateField(
-  val: any
+  val: TaskAssignmentResolutionStateField
 ): SerializedData {
   return val;
 }
@@ -11422,7 +11640,7 @@ export function deserializeTaskAssignmentResolutionStateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTaskAssignment(val: any): SerializedData {
+export function serializeTaskAssignment(val: TaskAssignment): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -11480,13 +11698,13 @@ export function deserializeTaskAssignment(val: any): TaskAssignment {
     assignedBy: assignedBy,
   } satisfies TaskAssignment;
 }
-export function serializeTaskAssignments(val: any): SerializedData {
+export function serializeTaskAssignments(val: TaskAssignments): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: TaskAssignment): any {
+        : (val.entries.map(function (item: TaskAssignment): SerializedData {
             return serializeTaskAssignment(item);
           }) as readonly any[]),
   };
@@ -11498,13 +11716,13 @@ export function deserializeTaskAssignments(val: any): TaskAssignments {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): TaskAssignment {
           return deserializeTaskAssignment(itm);
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies TaskAssignments;
 }
-export function serializeTaskTypeField(val: any): SerializedData {
+export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
   return val;
 }
 export function deserializeTaskTypeField(val: any): TaskTypeField {
@@ -11520,7 +11738,7 @@ export function deserializeTaskTypeField(val: any): TaskTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTaskActionField(val: any): SerializedData {
+export function serializeTaskActionField(val: TaskActionField): SerializedData {
   return val;
 }
 export function deserializeTaskActionField(val: any): TaskActionField {
@@ -11539,7 +11757,9 @@ export function deserializeTaskActionField(val: any): TaskActionField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTaskCompletionRuleField(val: any): SerializedData {
+export function serializeTaskCompletionRuleField(
+  val: TaskCompletionRuleField
+): SerializedData {
   return val;
 }
 export function deserializeTaskCompletionRuleField(
@@ -11560,7 +11780,7 @@ export function deserializeTaskCompletionRuleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTask(val: any): SerializedData {
+export function serializeTask(val: Task): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : serializeTaskTypeField(val.type),
@@ -11624,13 +11844,13 @@ export function deserializeTask(val: any): Task {
     completionRule: completionRule,
   } satisfies Task;
 }
-export function serializeTasks(val: any): SerializedData {
+export function serializeTasks(val: Tasks): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Task): any {
+        : (val.entries.map(function (item: Task): SerializedData {
             return serializeTask(item);
           }) as readonly any[]),
   };
@@ -11642,14 +11862,14 @@ export function deserializeTasks(val: any): Tasks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Task {
           return deserializeTask(itm);
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies Tasks;
 }
 export function serializeRetentionPolicyAssignmentTypeField(
-  val: any
+  val: RetentionPolicyAssignmentTypeField
 ): SerializedData {
   return val;
 }
@@ -11669,7 +11889,7 @@ export function deserializeRetentionPolicyAssignmentTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToTypeField(
-  val: any
+  val: RetentionPolicyAssignmentAssignedToTypeField
 ): SerializedData {
   return val;
 }
@@ -11696,7 +11916,7 @@ export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToField(
-  val: any
+  val: RetentionPolicyAssignmentAssignedToField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -11720,7 +11940,7 @@ export function deserializeRetentionPolicyAssignmentAssignedToField(
   } satisfies RetentionPolicyAssignmentAssignedToField;
 }
 export function serializeRetentionPolicyAssignmentFilterFieldsField(
-  val: any
+  val: RetentionPolicyAssignmentFilterFieldsField
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
@@ -11737,7 +11957,9 @@ export function deserializeRetentionPolicyAssignmentFilterFieldsField(
     value: value,
   } satisfies RetentionPolicyAssignmentFilterFieldsField;
 }
-export function serializeRetentionPolicyAssignment(val: any): SerializedData {
+export function serializeRetentionPolicyAssignment(
+  val: RetentionPolicyAssignment
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeRetentionPolicyAssignmentTypeField(val.type),
@@ -11754,7 +11976,7 @@ export function serializeRetentionPolicyAssignment(val: any): SerializedData {
         ? void 0
         : (val.filterFields.map(function (
             item: RetentionPolicyAssignmentFilterFieldsField
-          ): any {
+          ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
     ['assigned_by']:
@@ -11785,7 +12007,9 @@ export function deserializeRetentionPolicyAssignment(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (itm: SerializedData): any {
+      ? (val.filter_fields.map(function (
+          itm: SerializedData
+        ): RetentionPolicyAssignmentFilterFieldsField {
           return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -11807,7 +12031,7 @@ export function deserializeRetentionPolicyAssignment(
   } satisfies RetentionPolicyAssignment;
 }
 export function serializeRetentionPolicyAssignmentInput(
-  val: any
+  val: RetentionPolicyAssignmentInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -11828,7 +12052,7 @@ export function serializeRetentionPolicyAssignmentInput(
         ? void 0
         : (val.filterFields.map(function (
             item: RetentionPolicyAssignmentFilterFieldsField
-          ): any {
+          ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
     ['assigned_by']:
@@ -11861,7 +12085,9 @@ export function deserializeRetentionPolicyAssignmentInput(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (itm: SerializedData): any {
+      ? (val.filter_fields.map(function (
+          itm: SerializedData
+        ): RetentionPolicyAssignmentFilterFieldsField {
           return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
         }) as readonly any[])
       : [];
@@ -11882,12 +12108,16 @@ export function deserializeRetentionPolicyAssignmentInput(
     startDateField: startDateField,
   } satisfies RetentionPolicyAssignmentInput;
 }
-export function serializeRetentionPolicyAssignments(val: any): SerializedData {
+export function serializeRetentionPolicyAssignments(
+  val: RetentionPolicyAssignments
+): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RetentionPolicyAssignment): any {
+        : (val.entries.map(function (
+            item: RetentionPolicyAssignment
+          ): SerializedData {
             return serializeRetentionPolicyAssignment(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -11901,7 +12131,9 @@ export function deserializeRetentionPolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): RetentionPolicyAssignment {
           return deserializeRetentionPolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -11915,7 +12147,7 @@ export function deserializeRetentionPolicyAssignments(
   } satisfies RetentionPolicyAssignments;
 }
 export function serializeRetentionPolicyPolicyTypeField(
-  val: any
+  val: RetentionPolicyPolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -11938,7 +12170,7 @@ export function deserializeRetentionPolicyPolicyTypeField(
   });
 }
 export function serializeRetentionPolicyRetentionTypeField(
-  val: any
+  val: RetentionPolicyRetentionTypeField
 ): SerializedData {
   return val;
 }
@@ -11960,7 +12192,9 @@ export function deserializeRetentionPolicyRetentionTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeRetentionPolicyStatusField(val: any): SerializedData {
+export function serializeRetentionPolicyStatusField(
+  val: RetentionPolicyStatusField
+): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyStatusField(
@@ -11982,7 +12216,7 @@ export function deserializeRetentionPolicyStatusField(
   });
 }
 export function serializeRetentionPolicyAssignmentCountsField(
-  val: any
+  val: RetentionPolicyAssignmentCountsField
 ): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
@@ -12005,7 +12239,7 @@ export function deserializeRetentionPolicyAssignmentCountsField(
     metadataTemplate: metadataTemplate,
   } satisfies RetentionPolicyAssignmentCountsField;
 }
-export function serializeRetentionPolicy(val: any): SerializedData {
+export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
   const base: any = serializeRetentionPolicyMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "RetentionPolicy"' });
@@ -12043,7 +12277,7 @@ export function serializeRetentionPolicy(val: any): SerializedData {
           ? void 0
           : (val.customNotificationRecipients.map(function (
               item: UserMini
-            ): any {
+            ): SerializedData {
               return serializeUserMini(item);
             }) as readonly any[]),
       ['assignment_counts']:
@@ -12086,7 +12320,7 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
       : sdIsList(val.custom_notification_recipients)
       ? (val.custom_notification_recipients.map(function (
           itm: SerializedData
-        ): any {
+        ): UserMini {
           return deserializeUserMini(itm);
         }) as readonly any[])
       : [];
@@ -12128,12 +12362,14 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
     type: type,
   } satisfies RetentionPolicy;
 }
-export function serializeRetentionPolicies(val: any): SerializedData {
+export function serializeRetentionPolicies(
+  val: RetentionPolicies
+): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RetentionPolicy): any {
+        : (val.entries.map(function (item: RetentionPolicy): SerializedData {
             return serializeRetentionPolicy(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -12145,7 +12381,7 @@ export function deserializeRetentionPolicies(val: any): RetentionPolicies {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): RetentionPolicy {
           return deserializeRetentionPolicy(itm);
         }) as readonly any[])
       : [];
@@ -12158,7 +12394,9 @@ export function deserializeRetentionPolicies(val: any): RetentionPolicies {
     nextMarker: nextMarker,
   } satisfies RetentionPolicies;
 }
-export function serializeLegalHoldPolicyStatusField(val: any): SerializedData {
+export function serializeLegalHoldPolicyStatusField(
+  val: LegalHoldPolicyStatusField
+): SerializedData {
   return val;
 }
 export function deserializeLegalHoldPolicyStatusField(
@@ -12186,7 +12424,7 @@ export function deserializeLegalHoldPolicyStatusField(
   });
 }
 export function serializeLegalHoldPolicyAssignmentCountsField(
-  val: any
+  val: LegalHoldPolicyAssignmentCountsField
 ): SerializedData {
   return {
     ['user']: val.user == void 0 ? void 0 : val.user,
@@ -12210,7 +12448,7 @@ export function deserializeLegalHoldPolicyAssignmentCountsField(
     fileVersion: fileVersion,
   } satisfies LegalHoldPolicyAssignmentCountsField;
 }
-export function serializeLegalHoldPolicy(val: any): SerializedData {
+export function serializeLegalHoldPolicy(val: LegalHoldPolicy): SerializedData {
   const base: any = serializeLegalHoldPolicyMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "LegalHoldPolicy"' });
@@ -12298,7 +12536,9 @@ export function deserializeLegalHoldPolicy(val: any): LegalHoldPolicy {
     type: type,
   } satisfies LegalHoldPolicy;
 }
-export function serializeLegalHoldPolicies(val: any): SerializedData {
+export function serializeLegalHoldPolicies(
+  val: LegalHoldPolicies
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -12306,7 +12546,7 @@ export function serializeLegalHoldPolicies(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: LegalHoldPolicy): any {
+        : (val.entries.map(function (item: LegalHoldPolicy): SerializedData {
             return serializeLegalHoldPolicy(item);
           }) as readonly any[]),
   };
@@ -12321,7 +12561,7 @@ export function deserializeLegalHoldPolicies(val: any): LegalHoldPolicies {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): LegalHoldPolicy {
           return deserializeLegalHoldPolicy(itm);
         }) as readonly any[])
       : [];
@@ -12332,7 +12572,7 @@ export function deserializeLegalHoldPolicies(val: any): LegalHoldPolicies {
     entries: entries,
   } satisfies LegalHoldPolicies;
 }
-export function serializeInviteTypeField(val: any): SerializedData {
+export function serializeInviteTypeField(val: InviteTypeField): SerializedData {
   return val;
 }
 export function deserializeInviteTypeField(val: any): InviteTypeField {
@@ -12348,7 +12588,9 @@ export function deserializeInviteTypeField(val: any): InviteTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeInviteInvitedToTypeField(val: any): SerializedData {
+export function serializeInviteInvitedToTypeField(
+  val: InviteInvitedToTypeField
+): SerializedData {
   return val;
 }
 export function deserializeInviteInvitedToTypeField(
@@ -12366,7 +12608,9 @@ export function deserializeInviteInvitedToTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeInviteInvitedToField(val: any): SerializedData {
+export function serializeInviteInvitedToField(
+  val: InviteInvitedToField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -12383,7 +12627,7 @@ export function deserializeInviteInvitedToField(
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return { id: id, type: type, name: name } satisfies InviteInvitedToField;
 }
-export function serializeInvite(val: any): SerializedData {
+export function serializeInvite(val: Invite): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeInviteTypeField(val.type),
@@ -12431,7 +12675,7 @@ export function deserializeInvite(val: any): Invite {
     modifiedAt: modifiedAt,
   } satisfies Invite;
 }
-export function serializeInviteInput(val: any): SerializedData {
+export function serializeInviteInput(val: InviteInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']: val.type == void 0 ? void 0 : serializeInviteTypeField(val.type),
@@ -12480,7 +12724,9 @@ export function deserializeInviteInput(val: any): InviteInput {
     modifiedAt: modifiedAt,
   } satisfies InviteInput;
 }
-export function serializeGroupMembershipTypeField(val: any): SerializedData {
+export function serializeGroupMembershipTypeField(
+  val: GroupMembershipTypeField
+): SerializedData {
   return val;
 }
 export function deserializeGroupMembershipTypeField(
@@ -12498,7 +12744,9 @@ export function deserializeGroupMembershipTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupMembershipRoleField(val: any): SerializedData {
+export function serializeGroupMembershipRoleField(
+  val: GroupMembershipRoleField
+): SerializedData {
   return val;
 }
 export function deserializeGroupMembershipRoleField(
@@ -12519,7 +12767,7 @@ export function deserializeGroupMembershipRoleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupMembership(val: any): SerializedData {
+export function serializeGroupMembership(val: GroupMembership): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -12559,7 +12807,7 @@ export function deserializeGroupMembership(val: any): GroupMembership {
   } satisfies GroupMembership;
 }
 export function serializeGroupMembershipsOrderDirectionField(
-  val: any
+  val: GroupMembershipsOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -12581,7 +12829,9 @@ export function deserializeGroupMembershipsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeGroupMembershipsOrderField(val: any): SerializedData {
+export function serializeGroupMembershipsOrderField(
+  val: GroupMembershipsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -12600,7 +12850,9 @@ export function deserializeGroupMembershipsOrderField(
       : deserializeGroupMembershipsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies GroupMembershipsOrderField;
 }
-export function serializeGroupMemberships(val: any): SerializedData {
+export function serializeGroupMemberships(
+  val: GroupMemberships
+): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -12608,13 +12860,15 @@ export function serializeGroupMemberships(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: GroupMembershipsOrderField): any {
+        : (val.order.map(function (
+            item: GroupMembershipsOrderField
+          ): SerializedData {
             return serializeGroupMembershipsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: GroupMembership): any {
+        : (val.entries.map(function (item: GroupMembership): SerializedData {
             return serializeGroupMembership(item);
           }) as readonly any[]),
   };
@@ -12628,7 +12882,9 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (
+          itm: SerializedData
+        ): GroupMembershipsOrderField {
           return deserializeGroupMembershipsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -12636,7 +12892,7 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): GroupMembership {
           return deserializeGroupMembership(itm);
         }) as readonly any[])
       : [];
@@ -12648,7 +12904,7 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
     entries: entries,
   } satisfies GroupMemberships;
 }
-export function serializeFileVersion(val: any): SerializedData {
+export function serializeFileVersion(val: FileVersion): SerializedData {
   const base: any = serializeFileVersionMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersion"' });
@@ -12722,7 +12978,7 @@ export function deserializeFileVersion(val: any): FileVersion {
     type: type,
   } satisfies FileVersion;
 }
-export function serializeFileVersionFull(val: any): SerializedData {
+export function serializeFileVersionFull(val: FileVersionFull): SerializedData {
   const base: any = serializeFileVersion(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionFull"' });
@@ -12782,7 +13038,7 @@ export function deserializeFileVersionFull(val: any): FileVersionFull {
   } satisfies FileVersionFull;
 }
 export function serializeFileVersionsOrderDirectionField(
-  val: any
+  val: FileVersionsOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -12804,7 +13060,9 @@ export function deserializeFileVersionsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileVersionsOrderField(val: any): SerializedData {
+export function serializeFileVersionsOrderField(
+  val: FileVersionsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -12823,7 +13081,7 @@ export function deserializeFileVersionsOrderField(
       : deserializeFileVersionsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies FileVersionsOrderField;
 }
-export function serializeFileVersions(val: any): SerializedData {
+export function serializeFileVersions(val: FileVersions): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -12831,13 +13089,15 @@ export function serializeFileVersions(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: FileVersionsOrderField): any {
+        : (val.order.map(function (
+            item: FileVersionsOrderField
+          ): SerializedData {
             return serializeFileVersionsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersionFull): any {
+        : (val.entries.map(function (item: FileVersionFull): SerializedData {
             return serializeFileVersionFull(item);
           }) as readonly any[]),
   };
@@ -12851,7 +13111,7 @@ export function deserializeFileVersions(val: any): FileVersions {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): FileVersionsOrderField {
           return deserializeFileVersionsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -12859,7 +13119,7 @@ export function deserializeFileVersions(val: any): FileVersions {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileVersionFull {
           return deserializeFileVersionFull(itm);
         }) as readonly any[])
       : [];
@@ -12871,7 +13131,9 @@ export function deserializeFileVersions(val: any): FileVersions {
     entries: entries,
   } satisfies FileVersions;
 }
-export function serializeFileRequestTypeField(val: any): SerializedData {
+export function serializeFileRequestTypeField(
+  val: FileRequestTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFileRequestTypeField(
@@ -12889,7 +13151,9 @@ export function deserializeFileRequestTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileRequestStatusField(val: any): SerializedData {
+export function serializeFileRequestStatusField(
+  val: FileRequestStatusField
+): SerializedData {
   return val;
 }
 export function deserializeFileRequestStatusField(
@@ -12910,7 +13174,7 @@ export function deserializeFileRequestStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileRequest(val: any): SerializedData {
+export function serializeFileRequest(val: FileRequest): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeFileRequestTypeField(val.type),
@@ -12982,7 +13246,9 @@ export function deserializeFileRequest(val: any): FileRequest {
     updatedAt: updatedAt,
   } satisfies FileRequest;
 }
-export function serializeFileRequestInput(val: any): SerializedData {
+export function serializeFileRequestInput(
+  val: FileRequestInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -13056,10 +13322,12 @@ export function deserializeFileRequestInput(val: any): FileRequestInput {
     updatedAt: updatedAt,
   } satisfies FileRequestInput;
 }
-export function serializeFilePathCollectionField(val: any): SerializedData {
+export function serializeFilePathCollectionField(
+  val: FilePathCollectionField
+): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -13069,7 +13337,7 @@ export function deserializeFilePathCollectionField(
 ): FilePathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -13078,7 +13346,9 @@ export function deserializeFilePathCollectionField(
     entries: entries,
   } satisfies FilePathCollectionField;
 }
-export function serializeFileSharedLinkAccessField(val: any): SerializedData {
+export function serializeFileSharedLinkAccessField(
+  val: FileSharedLinkAccessField
+): SerializedData {
   return val;
 }
 export function deserializeFileSharedLinkAccessField(
@@ -13103,7 +13373,7 @@ export function deserializeFileSharedLinkAccessField(
   });
 }
 export function serializeFileSharedLinkEffectiveAccessField(
-  val: any
+  val: FileSharedLinkEffectiveAccessField
 ): SerializedData {
   return val;
 }
@@ -13129,7 +13399,7 @@ export function deserializeFileSharedLinkEffectiveAccessField(
   });
 }
 export function serializeFileSharedLinkEffectivePermissionField(
-  val: any
+  val: FileSharedLinkEffectivePermissionField
 ): SerializedData {
   return val;
 }
@@ -13159,7 +13429,7 @@ export function deserializeFileSharedLinkEffectivePermissionField(
   });
 }
 export function serializeFileSharedLinkPermissionsField(
-  val: any
+  val: FileSharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -13179,7 +13449,9 @@ export function deserializeFileSharedLinkPermissionsField(
     canEdit: canEdit,
   } satisfies FileSharedLinkPermissionsField;
 }
-export function serializeFileSharedLinkField(val: any): SerializedData {
+export function serializeFileSharedLinkField(
+  val: FileSharedLinkField
+): SerializedData {
   return {
     ['url']: val.url,
     ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
@@ -13246,7 +13518,9 @@ export function deserializeFileSharedLinkField(val: any): FileSharedLinkField {
     previewCount: previewCount,
   } satisfies FileSharedLinkField;
 }
-export function serializeFileItemStatusField(val: any): SerializedData {
+export function serializeFileItemStatusField(
+  val: FileItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeFileItemStatusField(val: any): FileItemStatusField {
@@ -13268,7 +13542,7 @@ export function deserializeFileItemStatusField(val: any): FileItemStatusField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFile(val: any): SerializedData {
+export function serializeFile(val: File): SerializedData {
   const base: any = serializeFileMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "File"' });
@@ -13393,7 +13667,9 @@ export function deserializeFile(val: any): File {
     type: type,
   } satisfies File;
 }
-export function serializeFileFullPermissionsField(val: any): SerializedData {
+export function serializeFileFullPermissionsField(
+  val: FileFullPermissionsField
+): SerializedData {
   return {
     ['can_delete']: val.canDelete,
     ['can_download']: val.canDownload,
@@ -13453,7 +13729,9 @@ export function deserializeFileFullPermissionsField(
     canViewAnnotationsSelf: canViewAnnotationsSelf,
   } satisfies FileFullPermissionsField;
 }
-export function serializeFileFullLockTypeField(val: any): SerializedData {
+export function serializeFileFullLockTypeField(
+  val: FileFullLockTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFileFullLockTypeField(
@@ -13471,7 +13749,9 @@ export function deserializeFileFullLockTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileFullLockAppTypeField(val: any): SerializedData {
+export function serializeFileFullLockAppTypeField(
+  val: FileFullLockAppTypeField
+): SerializedData {
   return val;
 }
 export function deserializeFileFullLockAppTypeField(
@@ -13498,7 +13778,9 @@ export function deserializeFileFullLockAppTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileFullLockField(val: any): SerializedData {
+export function serializeFileFullLockField(
+  val: FileFullLockField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -13544,7 +13826,7 @@ export function deserializeFileFullLockField(val: any): FileFullLockField {
   } satisfies FileFullLockField;
 }
 export function serializeFileFullExpiringEmbedLinkTokenTypeField(
-  val: any
+  val: FileFullExpiringEmbedLinkTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -13565,7 +13847,7 @@ export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
   });
 }
 export function serializeFileFullExpiringEmbedLinkField(
-  val: any
+  val: FileFullExpiringEmbedLinkField
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -13577,7 +13859,9 @@ export function serializeFileFullExpiringEmbedLinkField(
     ['restricted_to']:
       val.restrictedTo == void 0
         ? void 0
-        : (val.restrictedTo.map(function (item: FileOrFolderScope): any {
+        : (val.restrictedTo.map(function (
+            item: FileOrFolderScope
+          ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -13598,7 +13882,9 @@ export function deserializeFileFullExpiringEmbedLinkField(
     val.restricted_to == void 0
       ? void 0
       : sdIsList(val.restricted_to)
-      ? (val.restricted_to.map(function (itm: SerializedData): any {
+      ? (val.restricted_to.map(function (
+          itm: SerializedData
+        ): FileOrFolderScope {
           return deserializeFileOrFolderScope(itm);
         }) as readonly any[])
       : [];
@@ -13611,7 +13897,9 @@ export function deserializeFileFullExpiringEmbedLinkField(
     url: url,
   } satisfies FileFullExpiringEmbedLinkField;
 }
-export function serializeFileFullWatermarkInfoField(val: any): SerializedData {
+export function serializeFileFullWatermarkInfoField(
+  val: FileFullWatermarkInfoField
+): SerializedData {
   return {
     ['is_watermarked']:
       val.isWatermarked == void 0 ? void 0 : val.isWatermarked,
@@ -13625,7 +13913,7 @@ export function deserializeFileFullWatermarkInfoField(
   return { isWatermarked: isWatermarked } satisfies FileFullWatermarkInfoField;
 }
 export function serializeFileFullAllowedInviteeRolesField(
-  val: any
+  val: FileFullAllowedInviteeRolesField
 ): SerializedData {
   return val;
 }
@@ -13662,7 +13950,9 @@ export function deserializeFileFullAllowedInviteeRolesField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileFullMetadataField(val: any): SerializedData {
+export function serializeFileFullMetadataField(
+  val: FileFullMetadataField
+): SerializedData {
   return { ...{}, ...val.extraData };
 }
 export function deserializeFileFullMetadataField(
@@ -13678,7 +13968,7 @@ export function deserializeFileFullMetadataField(
   return { extraData: extraData } satisfies FileFullMetadataField;
 }
 export function serializeFileFullRepresentationsEntriesContentField(
-  val: any
+  val: FileFullRepresentationsEntriesContentField
 ): SerializedData {
   return {
     ['url_template']: val.urlTemplate == void 0 ? void 0 : val.urlTemplate,
@@ -13694,7 +13984,7 @@ export function deserializeFileFullRepresentationsEntriesContentField(
   } satisfies FileFullRepresentationsEntriesContentField;
 }
 export function serializeFileFullRepresentationsEntriesInfoField(
-  val: any
+  val: FileFullRepresentationsEntriesInfoField
 ): SerializedData {
   return { ['url']: val.url == void 0 ? void 0 : val.url };
 }
@@ -13705,7 +13995,7 @@ export function deserializeFileFullRepresentationsEntriesInfoField(
   return { url: url } satisfies FileFullRepresentationsEntriesInfoField;
 }
 export function serializeFileFullRepresentationsEntriesPropertiesField(
-  val: any
+  val: FileFullRepresentationsEntriesPropertiesField
 ): SerializedData {
   return {
     ['dimensions']: val.dimensions == void 0 ? void 0 : val.dimensions,
@@ -13727,7 +14017,7 @@ export function deserializeFileFullRepresentationsEntriesPropertiesField(
   } satisfies FileFullRepresentationsEntriesPropertiesField;
 }
 export function serializeFileFullRepresentationsEntriesStatusStateField(
-  val: any
+  val: FileFullRepresentationsEntriesStatusStateField
 ): SerializedData {
   return val;
 }
@@ -13757,7 +14047,7 @@ export function deserializeFileFullRepresentationsEntriesStatusStateField(
   });
 }
 export function serializeFileFullRepresentationsEntriesStatusField(
-  val: any
+  val: FileFullRepresentationsEntriesStatusField
 ): SerializedData {
   return {
     ['state']:
@@ -13776,7 +14066,7 @@ export function deserializeFileFullRepresentationsEntriesStatusField(
   return { state: state } satisfies FileFullRepresentationsEntriesStatusField;
 }
 export function serializeFileFullRepresentationsEntriesField(
-  val: any
+  val: FileFullRepresentationsEntriesField
 ): SerializedData {
   return {
     ['content']:
@@ -13833,7 +14123,7 @@ export function deserializeFileFullRepresentationsEntriesField(
   } satisfies FileFullRepresentationsEntriesField;
 }
 export function serializeFileFullRepresentationsField(
-  val: any
+  val: FileFullRepresentationsField
 ): SerializedData {
   return {
     ['entries']:
@@ -13841,7 +14131,7 @@ export function serializeFileFullRepresentationsField(
         ? void 0
         : (val.entries.map(function (
             item: FileFullRepresentationsEntriesField
-          ): any {
+          ): SerializedData {
             return serializeFileFullRepresentationsEntriesField(item);
           }) as readonly any[]),
   };
@@ -13853,13 +14143,17 @@ export function deserializeFileFullRepresentationsField(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): FileFullRepresentationsEntriesField {
           return deserializeFileFullRepresentationsEntriesField(itm);
         }) as readonly any[])
       : [];
   return { entries: entries } satisfies FileFullRepresentationsField;
 }
-export function serializeFileFullClassificationField(val: any): SerializedData {
+export function serializeFileFullClassificationField(
+  val: FileFullClassificationField
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['definition']: val.definition == void 0 ? void 0 : val.definition,
@@ -13880,7 +14174,7 @@ export function deserializeFileFullClassificationField(
   } satisfies FileFullClassificationField;
 }
 export function serializeFileFullSharedLinkPermissionOptionsField(
-  val: any
+  val: FileFullSharedLinkPermissionOptionsField
 ): SerializedData {
   return val;
 }
@@ -13906,7 +14200,7 @@ export function deserializeFileFullSharedLinkPermissionOptionsField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileFull(val: any): SerializedData {
+export function serializeFileFull(val: FileFull): SerializedData {
   const base: any = serializeFile(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileFull"' });
@@ -13924,7 +14218,7 @@ export function serializeFileFull(val: any): SerializedData {
       ['tags']:
         val.tags == void 0
           ? void 0
-          : (val.tags.map(function (item: string): any {
+          : (val.tags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
       ['lock']:
@@ -13948,7 +14242,7 @@ export function serializeFileFull(val: any): SerializedData {
           ? void 0
           : (val.allowedInviteeRoles.map(function (
               item: FileFullAllowedInviteeRolesField
-            ): any {
+            ): SerializedData {
               return serializeFileFullAllowedInviteeRolesField(item);
             }) as readonly any[]),
       ['is_externally_owned']:
@@ -13980,7 +14274,7 @@ export function serializeFileFull(val: any): SerializedData {
           ? void 0
           : (val.sharedLinkPermissionOptions.map(function (
               item: FileFullSharedLinkPermissionOptionsField
-            ): any {
+            ): SerializedData {
               return serializeFileFullSharedLinkPermissionOptionsField(item);
             }) as readonly any[]),
     },
@@ -13996,13 +14290,7 @@ export function deserializeFileFull(val: any): FileFull {
       ? void 0
       : deserializeFileFullPermissionsField(val.permissions);
   const tags: undefined | readonly string[] =
-    val.tags == void 0
-      ? void 0
-      : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
   const lock: undefined | FileFullLockField =
     val.lock == void 0 ? void 0 : deserializeFileFullLockField(val.lock);
   const extension: undefined | string =
@@ -14027,7 +14315,9 @@ export function deserializeFileFull(val: any): FileFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : sdIsList(val.allowed_invitee_roles)
-      ? (val.allowed_invitee_roles.map(function (itm: SerializedData): any {
+      ? (val.allowed_invitee_roles.map(function (
+          itm: SerializedData
+        ): FileFullAllowedInviteeRolesField {
           return deserializeFileFullAllowedInviteeRolesField(itm);
         }) as readonly any[])
       : [];
@@ -14063,7 +14353,7 @@ export function deserializeFileFull(val: any): FileFull {
       : sdIsList(val.shared_link_permission_options)
       ? (val.shared_link_permission_options.map(function (
           itm: SerializedData
-        ): any {
+        ): FileFullSharedLinkPermissionOptionsField {
           return deserializeFileFullSharedLinkPermissionOptionsField(itm);
         }) as readonly any[])
       : [];
@@ -14162,13 +14452,13 @@ export function deserializeFileFull(val: any): FileFull {
     type: type,
   } satisfies FileFull;
 }
-export function serializeFiles(val: any): SerializedData {
+export function serializeFiles(val: Files): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileFull): any {
+        : (val.entries.map(function (item: FileFull): SerializedData {
             return serializeFileFull(item);
           }) as readonly any[]),
   };
@@ -14180,13 +14470,15 @@ export function deserializeFiles(val: any): Files {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileFull {
           return deserializeFileFull(itm);
         }) as readonly any[])
       : [];
   return { totalCount: totalCount, entries: entries } satisfies Files;
 }
-export function serializeDevicePinnerTypeField(val: any): SerializedData {
+export function serializeDevicePinnerTypeField(
+  val: DevicePinnerTypeField
+): SerializedData {
   return val;
 }
 export function deserializeDevicePinnerTypeField(
@@ -14204,7 +14496,7 @@ export function deserializeDevicePinnerTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeDevicePinner(val: any): SerializedData {
+export function serializeDevicePinner(val: DevicePinner): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -14229,7 +14521,9 @@ export function deserializeDevicePinner(val: any): DevicePinner {
     productName: productName,
   } satisfies DevicePinner;
 }
-export function serializeDevicePinnersOrderByField(val: any): SerializedData {
+export function serializeDevicePinnersOrderByField(
+  val: DevicePinnersOrderByField
+): SerializedData {
   return val;
 }
 export function deserializeDevicePinnersOrderByField(
@@ -14248,7 +14542,7 @@ export function deserializeDevicePinnersOrderByField(
   });
 }
 export function serializeDevicePinnersOrderDirectionField(
-  val: any
+  val: DevicePinnersOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -14270,7 +14564,9 @@ export function deserializeDevicePinnersOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeDevicePinnersOrderField(val: any): SerializedData {
+export function serializeDevicePinnersOrderField(
+  val: DevicePinnersOrderField
+): SerializedData {
   return {
     ['by']:
       val.by == void 0 ? void 0 : serializeDevicePinnersOrderByField(val.by),
@@ -14291,12 +14587,12 @@ export function deserializeDevicePinnersOrderField(
       : deserializeDevicePinnersOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies DevicePinnersOrderField;
 }
-export function serializeDevicePinners(val: any): SerializedData {
+export function serializeDevicePinners(val: DevicePinners): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: DevicePinner): any {
+        : (val.entries.map(function (item: DevicePinner): SerializedData {
             return serializeDevicePinner(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14304,7 +14600,9 @@ export function serializeDevicePinners(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: DevicePinnersOrderField): any {
+        : (val.order.map(function (
+            item: DevicePinnersOrderField
+          ): SerializedData {
             return serializeDevicePinnersOrderField(item);
           }) as readonly any[]),
   };
@@ -14314,7 +14612,7 @@ export function deserializeDevicePinners(val: any): DevicePinners {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): DevicePinner {
           return deserializeDevicePinner(itm);
         }) as readonly any[])
       : [];
@@ -14325,7 +14623,7 @@ export function deserializeDevicePinners(val: any): DevicePinners {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): DevicePinnersOrderField {
           return deserializeDevicePinnersOrderField(itm);
         }) as readonly any[])
       : [];
@@ -14336,7 +14634,9 @@ export function deserializeDevicePinners(val: any): DevicePinners {
     order: order,
   } satisfies DevicePinners;
 }
-export function serializeCommentItemField(val: any): SerializedData {
+export function serializeCommentItemField(
+  val: CommentItemField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -14347,7 +14647,7 @@ export function deserializeCommentItemField(val: any): CommentItemField {
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   return { id: id, type: type } satisfies CommentItemField;
 }
-export function serializeComment(val: any): SerializedData {
+export function serializeComment(val: Comment): SerializedData {
   const base: any = serializeCommentBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Comment"' });
@@ -14396,7 +14696,7 @@ export function deserializeComment(val: any): Comment {
     type: type,
   } satisfies Comment;
 }
-export function serializeCommentFull(val: any): SerializedData {
+export function serializeCommentFull(val: CommentFull): SerializedData {
   const base: any = serializeComment(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "CommentFull"' });
@@ -14439,7 +14739,9 @@ export function deserializeCommentFull(val: any): CommentFull {
     type: type,
   } satisfies CommentFull;
 }
-export function serializeCommentsOrderDirectionField(val: any): SerializedData {
+export function serializeCommentsOrderDirectionField(
+  val: CommentsOrderDirectionField
+): SerializedData {
   return val;
 }
 export function deserializeCommentsOrderDirectionField(
@@ -14460,7 +14762,9 @@ export function deserializeCommentsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCommentsOrderField(val: any): SerializedData {
+export function serializeCommentsOrderField(
+  val: CommentsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -14477,7 +14781,7 @@ export function deserializeCommentsOrderField(val: any): CommentsOrderField {
       : deserializeCommentsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies CommentsOrderField;
 }
-export function serializeComments(val: any): SerializedData {
+export function serializeComments(val: Comments): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14485,13 +14789,13 @@ export function serializeComments(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CommentsOrderField): any {
+        : (val.order.map(function (item: CommentsOrderField): SerializedData {
             return serializeCommentsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: CommentFull): any {
+        : (val.entries.map(function (item: CommentFull): SerializedData {
             return serializeCommentFull(item);
           }) as readonly any[]),
   };
@@ -14505,7 +14809,7 @@ export function deserializeComments(val: any): Comments {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): CommentsOrderField {
           return deserializeCommentsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -14513,7 +14817,7 @@ export function deserializeComments(val: any): Comments {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): CommentFull {
           return deserializeCommentFull(itm);
         }) as readonly any[])
       : [];
@@ -14526,7 +14830,7 @@ export function deserializeComments(val: any): Comments {
   } satisfies Comments;
 }
 export function serializeCollaborationAllowlistExemptTargetTypeField(
-  val: any
+  val: CollaborationAllowlistExemptTargetTypeField
 ): SerializedData {
   return val;
 }
@@ -14547,7 +14851,7 @@ export function deserializeCollaborationAllowlistExemptTargetTypeField(
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-  val: any
+  val: CollaborationAllowlistExemptTargetEnterpriseTypeField
 ): SerializedData {
   return val;
 }
@@ -14568,7 +14872,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: any
+  val: CollaborationAllowlistExemptTargetEnterpriseField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -14601,7 +14905,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
   } satisfies CollaborationAllowlistExemptTargetEnterpriseField;
 }
 export function serializeCollaborationAllowlistExemptTarget(
-  val: any
+  val: CollaborationAllowlistExemptTarget
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -14654,7 +14958,7 @@ export function deserializeCollaborationAllowlistExemptTarget(
   } satisfies CollaborationAllowlistExemptTarget;
 }
 export function serializeCollaborationAllowlistExemptTargets(
-  val: any
+  val: CollaborationAllowlistExemptTargets
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14665,7 +14969,7 @@ export function serializeCollaborationAllowlistExemptTargets(
         ? void 0
         : (val.entries.map(function (
             item: CollaborationAllowlistExemptTarget
-          ): any {
+          ): SerializedData {
             return serializeCollaborationAllowlistExemptTarget(item);
           }) as readonly any[]),
   };
@@ -14682,7 +14986,9 @@ export function deserializeCollaborationAllowlistExemptTargets(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): CollaborationAllowlistExemptTarget {
           return deserializeCollaborationAllowlistExemptTarget(itm);
         }) as readonly any[])
       : [];
@@ -14694,7 +15000,7 @@ export function deserializeCollaborationAllowlistExemptTargets(
   } satisfies CollaborationAllowlistExemptTargets;
 }
 export function serializeShieldInformationBarrierSegmentRestriction(
-  val: any
+  val: ShieldInformationBarrierSegmentRestriction
 ): SerializedData {
   const base: any =
     serializeShieldInformationBarrierSegmentRestrictionMini(val);
@@ -14767,7 +15073,7 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
   } satisfies ShieldInformationBarrierSegmentRestriction;
 }
 export function serializeShieldInformationBarrierSegmentRestrictions(
-  val: any
+  val: ShieldInformationBarrierSegmentRestrictions
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14777,7 +15083,7 @@ export function serializeShieldInformationBarrierSegmentRestrictions(
         ? void 0
         : (val.entries.map(function (
             item: ShieldInformationBarrierSegmentRestriction
-          ): any {
+          ): SerializedData {
             return serializeShieldInformationBarrierSegmentRestriction(item);
           }) as readonly any[]),
   };
@@ -14794,7 +15100,9 @@ export function deserializeShieldInformationBarrierSegmentRestrictions(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): ShieldInformationBarrierSegmentRestriction {
           return deserializeShieldInformationBarrierSegmentRestriction(itm);
         }) as readonly any[])
       : [];
@@ -14805,7 +15113,7 @@ export function deserializeShieldInformationBarrierSegmentRestrictions(
   } satisfies ShieldInformationBarrierSegmentRestrictions;
 }
 export function serializeShieldInformationBarrierSegmentMemberMini(
-  val: any
+  val: ShieldInformationBarrierSegmentMemberMini
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberBase(val);
   if (!sdIsMap(base)) {
@@ -14836,7 +15144,7 @@ export function deserializeShieldInformationBarrierSegmentMemberMini(
   } satisfies ShieldInformationBarrierSegmentMemberMini;
 }
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField
 ): SerializedData {
   return val;
 }
@@ -14857,7 +15165,7 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
   });
 }
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
-  val: any
+  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -14887,7 +15195,7 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
   } satisfies ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
 }
 export function serializeShieldInformationBarrierSegmentMember(
-  val: any
+  val: ShieldInformationBarrierSegmentMember
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberMini(val);
   if (!sdIsMap(base)) {
@@ -14962,7 +15270,7 @@ export function deserializeShieldInformationBarrierSegmentMember(
   } satisfies ShieldInformationBarrierSegmentMember;
 }
 export function serializeShieldInformationBarrierSegmentMembers(
-  val: any
+  val: ShieldInformationBarrierSegmentMembers
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -14972,7 +15280,7 @@ export function serializeShieldInformationBarrierSegmentMembers(
         ? void 0
         : (val.entries.map(function (
             item: ShieldInformationBarrierSegmentMember
-          ): any {
+          ): SerializedData {
             return serializeShieldInformationBarrierSegmentMember(item);
           }) as readonly any[]),
   };
@@ -14987,7 +15295,9 @@ export function deserializeShieldInformationBarrierSegmentMembers(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): ShieldInformationBarrierSegmentMember {
           return deserializeShieldInformationBarrierSegmentMember(itm);
         }) as readonly any[])
       : [];
@@ -14998,7 +15308,7 @@ export function deserializeShieldInformationBarrierSegmentMembers(
   } satisfies ShieldInformationBarrierSegmentMembers;
 }
 export function serializeShieldInformationBarrierSegmentTypeField(
-  val: any
+  val: ShieldInformationBarrierSegmentTypeField
 ): SerializedData {
   return val;
 }
@@ -15019,7 +15329,7 @@ export function deserializeShieldInformationBarrierSegmentTypeField(
   });
 }
 export function serializeShieldInformationBarrierSegment(
-  val: any
+  val: ShieldInformationBarrierSegment
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -15079,7 +15389,7 @@ export function deserializeShieldInformationBarrierSegment(
   } satisfies ShieldInformationBarrierSegment;
 }
 export function serializeShieldInformationBarrierSegments(
-  val: any
+  val: ShieldInformationBarrierSegments
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -15089,7 +15399,7 @@ export function serializeShieldInformationBarrierSegments(
         ? void 0
         : (val.entries.map(function (
             item: ShieldInformationBarrierSegment
-          ): any {
+          ): SerializedData {
             return serializeShieldInformationBarrierSegment(item);
           }) as readonly any[]),
   };
@@ -15104,7 +15414,9 @@ export function deserializeShieldInformationBarrierSegments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): ShieldInformationBarrierSegment {
           return deserializeShieldInformationBarrierSegment(itm);
         }) as readonly any[])
       : [];
@@ -15115,7 +15427,7 @@ export function deserializeShieldInformationBarrierSegments(
   } satisfies ShieldInformationBarrierSegments;
 }
 export function serializeShieldInformationBarrierTypeField(
-  val: any
+  val: ShieldInformationBarrierTypeField
 ): SerializedData {
   return val;
 }
@@ -15135,7 +15447,7 @@ export function deserializeShieldInformationBarrierTypeField(
   });
 }
 export function serializeShieldInformationBarrierStatusField(
-  val: any
+  val: ShieldInformationBarrierStatusField
 ): SerializedData {
   return val;
 }
@@ -15166,7 +15478,9 @@ export function deserializeShieldInformationBarrierStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeShieldInformationBarrier(val: any): SerializedData {
+export function serializeShieldInformationBarrier(
+  val: ShieldInformationBarrier
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -15236,14 +15550,18 @@ export function deserializeShieldInformationBarrier(
     enabledBy: enabledBy,
   } satisfies ShieldInformationBarrier;
 }
-export function serializeShieldInformationBarriers(val: any): SerializedData {
+export function serializeShieldInformationBarriers(
+  val: ShieldInformationBarriers
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: ShieldInformationBarrier): any {
+        : (val.entries.map(function (
+            item: ShieldInformationBarrier
+          ): SerializedData {
             return serializeShieldInformationBarrier(item);
           }) as readonly any[]),
   };
@@ -15258,7 +15576,9 @@ export function deserializeShieldInformationBarriers(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): ShieldInformationBarrier {
           return deserializeShieldInformationBarrier(itm);
         }) as readonly any[])
       : [];
@@ -15269,7 +15589,7 @@ export function deserializeShieldInformationBarriers(
   } satisfies ShieldInformationBarriers;
 }
 export function serializeFolderLockLockedOperationsField(
-  val: any
+  val: FolderLockLockedOperationsField
 ): SerializedData {
   return { ['move']: val.move, ['delete']: val.delete };
 }
@@ -15283,7 +15603,7 @@ export function deserializeFolderLockLockedOperationsField(
     delete: _delete,
   } satisfies FolderLockLockedOperationsField;
 }
-export function serializeFolderLock(val: any): SerializedData {
+export function serializeFolderLock(val: FolderLock): SerializedData {
   return {
     ['folder']: val.folder == void 0 ? void 0 : serializeFolderMini(val.folder),
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -15324,12 +15644,12 @@ export function deserializeFolderLock(val: any): FolderLock {
     lockType: lockType,
   } satisfies FolderLock;
 }
-export function serializeFolderLocks(val: any): SerializedData {
+export function serializeFolderLocks(val: FolderLocks): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FolderLock): any {
+        : (val.entries.map(function (item: FolderLock): SerializedData {
             return serializeFolderLock(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -15341,7 +15661,7 @@ export function deserializeFolderLocks(val: any): FolderLocks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FolderLock {
           return deserializeFolderLock(itm);
         }) as readonly any[])
       : [];
@@ -15354,7 +15674,9 @@ export function deserializeFolderLocks(val: any): FolderLocks {
     nextMarker: nextMarker,
   } satisfies FolderLocks;
 }
-export function serializeWatermarkWatermarkField(val: any): SerializedData {
+export function serializeWatermarkWatermarkField(
+  val: WatermarkWatermarkField
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -15374,7 +15696,7 @@ export function deserializeWatermarkWatermarkField(
     modifiedAt: modifiedAt,
   } satisfies WatermarkWatermarkField;
 }
-export function serializeWatermark(val: any): SerializedData {
+export function serializeWatermark(val: Watermark): SerializedData {
   return {
     ['watermark']:
       val.watermark == void 0
@@ -15389,7 +15711,9 @@ export function deserializeWatermark(val: any): Watermark {
       : deserializeWatermarkWatermarkField(val.watermark);
   return { watermark: watermark } satisfies Watermark;
 }
-export function serializeWebhookMiniTypeField(val: any): SerializedData {
+export function serializeWebhookMiniTypeField(
+  val: WebhookMiniTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWebhookMiniTypeField(
@@ -15407,7 +15731,9 @@ export function deserializeWebhookMiniTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebhookMiniTargetTypeField(val: any): SerializedData {
+export function serializeWebhookMiniTargetTypeField(
+  val: WebhookMiniTargetTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWebhookMiniTargetTypeField(
@@ -15428,7 +15754,9 @@ export function deserializeWebhookMiniTargetTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebhookMiniTargetField(val: any): SerializedData {
+export function serializeWebhookMiniTargetField(
+  val: WebhookMiniTargetField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -15447,7 +15775,7 @@ export function deserializeWebhookMiniTargetField(
       : deserializeWebhookMiniTargetTypeField(val.type);
   return { id: id, type: type } satisfies WebhookMiniTargetField;
 }
-export function serializeWebhookMini(val: any): SerializedData {
+export function serializeWebhookMini(val: WebhookMini): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -15468,7 +15796,7 @@ export function deserializeWebhookMini(val: any): WebhookMini {
       : deserializeWebhookMiniTargetField(val.target);
   return { id: id, type: type, target: target } satisfies WebhookMini;
 }
-export function serializeWebhooks(val: any): SerializedData {
+export function serializeWebhooks(val: Webhooks): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -15476,7 +15804,7 @@ export function serializeWebhooks(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: WebhookMini): any {
+        : (val.entries.map(function (item: WebhookMini): SerializedData {
             return serializeWebhookMini(item);
           }) as readonly any[]),
   };
@@ -15491,7 +15819,7 @@ export function deserializeWebhooks(val: any): Webhooks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): WebhookMini {
           return deserializeWebhookMini(itm);
         }) as readonly any[])
       : [];
@@ -15502,7 +15830,9 @@ export function deserializeWebhooks(val: any): Webhooks {
     entries: entries,
   } satisfies Webhooks;
 }
-export function serializeWebhookTriggersField(val: any): SerializedData {
+export function serializeWebhookTriggersField(
+  val: WebhookTriggersField
+): SerializedData {
   return val;
 }
 export function deserializeWebhookTriggersField(
@@ -15637,7 +15967,7 @@ export function deserializeWebhookTriggersField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebhook(val: any): SerializedData {
+export function serializeWebhook(val: Webhook): SerializedData {
   const base: any = serializeWebhookMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Webhook"' });
@@ -15653,7 +15983,9 @@ export function serializeWebhook(val: any): SerializedData {
       ['triggers']:
         val.triggers == void 0
           ? void 0
-          : (val.triggers.map(function (item: WebhookTriggersField): any {
+          : (val.triggers.map(function (
+              item: WebhookTriggersField
+            ): SerializedData {
               return serializeWebhookTriggersField(item);
             }) as readonly any[]),
     },
@@ -15670,7 +16002,7 @@ export function deserializeWebhook(val: any): Webhook {
     val.triggers == void 0
       ? void 0
       : sdIsList(val.triggers)
-      ? (val.triggers.map(function (itm: SerializedData): any {
+      ? (val.triggers.map(function (itm: SerializedData): WebhookTriggersField {
           return deserializeWebhookTriggersField(itm);
         }) as readonly any[])
       : [];
@@ -15691,7 +16023,9 @@ export function deserializeWebhook(val: any): Webhook {
     target: target,
   } satisfies Webhook;
 }
-export function serializeWebLinkBaseTypeField(val: any): SerializedData {
+export function serializeWebLinkBaseTypeField(
+  val: WebLinkBaseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWebLinkBaseTypeField(
@@ -15709,7 +16043,7 @@ export function deserializeWebLinkBaseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebLinkBase(val: any): SerializedData {
+export function serializeWebLinkBase(val: WebLinkBase): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeWebLinkBaseTypeField(val.type),
@@ -15722,7 +16056,9 @@ export function deserializeWebLinkBase(val: any): WebLinkBase {
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return { id: id, type: type, etag: etag } satisfies WebLinkBase;
 }
-export function serializeWebLinkBaseInput(val: any): SerializedData {
+export function serializeWebLinkBaseInput(
+  val: WebLinkBaseInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -15737,7 +16073,7 @@ export function deserializeWebLinkBaseInput(val: any): WebLinkBaseInput {
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return { id: id, type: type, etag: etag } satisfies WebLinkBaseInput;
 }
-export function serializeWebLinkMini(val: any): SerializedData {
+export function serializeWebLinkMini(val: WebLinkMini): SerializedData {
   const base: any = serializeWebLinkBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "WebLinkMini"' });
@@ -15768,10 +16104,12 @@ export function deserializeWebLinkMini(val: any): WebLinkMini {
     etag: etag,
   } satisfies WebLinkMini;
 }
-export function serializeWebLinkPathCollectionField(val: any): SerializedData {
+export function serializeWebLinkPathCollectionField(
+  val: WebLinkPathCollectionField
+): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -15781,7 +16119,7 @@ export function deserializeWebLinkPathCollectionField(
 ): WebLinkPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -15791,7 +16129,7 @@ export function deserializeWebLinkPathCollectionField(
   } satisfies WebLinkPathCollectionField;
 }
 export function serializeWebLinkSharedLinkAccessField(
-  val: any
+  val: WebLinkSharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -15817,7 +16155,7 @@ export function deserializeWebLinkSharedLinkAccessField(
   });
 }
 export function serializeWebLinkSharedLinkEffectiveAccessField(
-  val: any
+  val: WebLinkSharedLinkEffectiveAccessField
 ): SerializedData {
   return val;
 }
@@ -15843,7 +16181,7 @@ export function deserializeWebLinkSharedLinkEffectiveAccessField(
   });
 }
 export function serializeWebLinkSharedLinkEffectivePermissionField(
-  val: any
+  val: WebLinkSharedLinkEffectivePermissionField
 ): SerializedData {
   return val;
 }
@@ -15873,7 +16211,7 @@ export function deserializeWebLinkSharedLinkEffectivePermissionField(
   });
 }
 export function serializeWebLinkSharedLinkPermissionsField(
-  val: any
+  val: WebLinkSharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -15893,7 +16231,9 @@ export function deserializeWebLinkSharedLinkPermissionsField(
     canEdit: canEdit,
   } satisfies WebLinkSharedLinkPermissionsField;
 }
-export function serializeWebLinkSharedLinkField(val: any): SerializedData {
+export function serializeWebLinkSharedLinkField(
+  val: WebLinkSharedLinkField
+): SerializedData {
   return {
     ['url']: val.url,
     ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
@@ -15965,7 +16305,9 @@ export function deserializeWebLinkSharedLinkField(
     previewCount: previewCount,
   } satisfies WebLinkSharedLinkField;
 }
-export function serializeWebLinkItemStatusField(val: any): SerializedData {
+export function serializeWebLinkItemStatusField(
+  val: WebLinkItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeWebLinkItemStatusField(
@@ -15989,7 +16331,7 @@ export function deserializeWebLinkItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebLink(val: any): SerializedData {
+export function serializeWebLink(val: WebLink): SerializedData {
   const base: any = serializeWebLinkMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "WebLink"' });
@@ -16121,7 +16463,9 @@ export function deserializeFileFullOrFolderMiniOrWebLink(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeItemsOrderDirectionField(val: any): SerializedData {
+export function serializeItemsOrderDirectionField(
+  val: ItemsOrderDirectionField
+): SerializedData {
   return val;
 }
 export function deserializeItemsOrderDirectionField(
@@ -16142,7 +16486,7 @@ export function deserializeItemsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeItemsOrderField(val: any): SerializedData {
+export function serializeItemsOrderField(val: ItemsOrderField): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -16159,7 +16503,7 @@ export function deserializeItemsOrderField(val: any): ItemsOrderField {
       : deserializeItemsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies ItemsOrderField;
 }
-export function serializeItems(val: any): SerializedData {
+export function serializeItems(val: Items): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -16167,13 +16511,15 @@ export function serializeItems(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: ItemsOrderField): any {
+        : (val.order.map(function (item: ItemsOrderField): SerializedData {
             return serializeItemsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileFullOrFolderMiniOrWebLink): any {
+        : (val.entries.map(function (
+            item: FileFullOrFolderMiniOrWebLink
+          ): SerializedData {
             return serializeFileFullOrFolderMiniOrWebLink(item);
           }) as readonly any[]),
   };
@@ -16187,7 +16533,7 @@ export function deserializeItems(val: any): Items {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): ItemsOrderField {
           return deserializeItemsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -16195,7 +16541,9 @@ export function deserializeItems(val: any): Items {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): FileFullOrFolderMiniOrWebLink {
           return deserializeFileFullOrFolderMiniOrWebLink(itm);
         }) as readonly any[])
       : [];
@@ -16207,10 +16555,12 @@ export function deserializeItems(val: any): Items {
     entries: entries,
   } satisfies Items;
 }
-export function serializeFolderPathCollectionField(val: any): SerializedData {
+export function serializeFolderPathCollectionField(
+  val: FolderPathCollectionField
+): SerializedData {
   return {
     ['total_count']: val.totalCount,
-    ['entries']: val.entries.map(function (item: FolderMini): any {
+    ['entries']: val.entries.map(function (item: FolderMini): SerializedData {
       return serializeFolderMini(item);
     }) as readonly any[],
   };
@@ -16220,7 +16570,7 @@ export function deserializeFolderPathCollectionField(
 ): FolderPathCollectionField {
   const totalCount: number = val.total_count;
   const entries: readonly FolderMini[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
       }) as readonly any[])
     : [];
@@ -16229,7 +16579,9 @@ export function deserializeFolderPathCollectionField(
     entries: entries,
   } satisfies FolderPathCollectionField;
 }
-export function serializeFolderSharedLinkAccessField(val: any): SerializedData {
+export function serializeFolderSharedLinkAccessField(
+  val: FolderSharedLinkAccessField
+): SerializedData {
   return val;
 }
 export function deserializeFolderSharedLinkAccessField(
@@ -16254,7 +16606,7 @@ export function deserializeFolderSharedLinkAccessField(
   });
 }
 export function serializeFolderSharedLinkEffectiveAccessField(
-  val: any
+  val: FolderSharedLinkEffectiveAccessField
 ): SerializedData {
   return val;
 }
@@ -16280,7 +16632,7 @@ export function deserializeFolderSharedLinkEffectiveAccessField(
   });
 }
 export function serializeFolderSharedLinkEffectivePermissionField(
-  val: any
+  val: FolderSharedLinkEffectivePermissionField
 ): SerializedData {
   return val;
 }
@@ -16310,7 +16662,7 @@ export function deserializeFolderSharedLinkEffectivePermissionField(
   });
 }
 export function serializeFolderSharedLinkPermissionsField(
-  val: any
+  val: FolderSharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -16330,7 +16682,9 @@ export function deserializeFolderSharedLinkPermissionsField(
     canEdit: canEdit,
   } satisfies FolderSharedLinkPermissionsField;
 }
-export function serializeFolderSharedLinkField(val: any): SerializedData {
+export function serializeFolderSharedLinkField(
+  val: FolderSharedLinkField
+): SerializedData {
   return {
     ['url']: val.url,
     ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
@@ -16402,7 +16756,7 @@ export function deserializeFolderSharedLinkField(
   } satisfies FolderSharedLinkField;
 }
 export function serializeFolderFolderUploadEmailAccessField(
-  val: any
+  val: FolderFolderUploadEmailAccessField
 ): SerializedData {
   return val;
 }
@@ -16425,7 +16779,7 @@ export function deserializeFolderFolderUploadEmailAccessField(
   });
 }
 export function serializeFolderFolderUploadEmailField(
-  val: any
+  val: FolderFolderUploadEmailField
 ): SerializedData {
   return {
     ['access']:
@@ -16448,7 +16802,9 @@ export function deserializeFolderFolderUploadEmailField(
     email: email,
   } satisfies FolderFolderUploadEmailField;
 }
-export function serializeFolderItemStatusField(val: any): SerializedData {
+export function serializeFolderItemStatusField(
+  val: FolderItemStatusField
+): SerializedData {
   return val;
 }
 export function deserializeFolderItemStatusField(
@@ -16472,7 +16828,7 @@ export function deserializeFolderItemStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFolder(val: any): SerializedData {
+export function serializeFolder(val: Folder): SerializedData {
   const base: any = serializeFolderMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Folder"' });
@@ -16660,7 +17016,9 @@ export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   }
   return deserializeGenericSource(val);
 }
-export function serializeEventEventTypeField(val: any): SerializedData {
+export function serializeEventEventTypeField(
+  val: EventEventTypeField
+): SerializedData {
   return val;
 }
 export function deserializeEventEventTypeField(val: any): EventEventTypeField {
@@ -17072,7 +17430,9 @@ export function deserializeEventEventTypeField(val: any): EventEventTypeField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeEventAdditionalDetailsField(val: any): SerializedData {
+export function serializeEventAdditionalDetailsField(
+  val: EventAdditionalDetailsField
+): SerializedData {
   return {};
 }
 export function deserializeEventAdditionalDetailsField(
@@ -17080,7 +17440,7 @@ export function deserializeEventAdditionalDetailsField(
 ): EventAdditionalDetailsField {
   return {} satisfies EventAdditionalDetailsField;
 }
-export function serializeEvent(val: any): SerializedData {
+export function serializeEvent(val: Event): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
     ['created_at']:
@@ -17141,7 +17501,7 @@ export function deserializeEvent(val: any): Event {
     additionalDetails: additionalDetails,
   } satisfies Event;
 }
-export function serializeEvents(val: any): SerializedData {
+export function serializeEvents(val: Events): SerializedData {
   return {
     ['chunk_size']: val.chunkSize == void 0 ? void 0 : val.chunkSize,
     ['next_stream_position']:
@@ -17149,7 +17509,7 @@ export function serializeEvents(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Event): any {
+        : (val.entries.map(function (item: Event): SerializedData {
             return serializeEvent(item);
           }) as readonly any[]),
   };
@@ -17163,7 +17523,7 @@ export function deserializeEvents(val: any): Events {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Event {
           return deserializeEvent(itm);
         }) as readonly any[])
       : [];
@@ -17204,7 +17564,9 @@ export function deserializeFileOrFolderOrWebLink(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeLegalHoldPolicyAssignment(val: any): SerializedData {
+export function serializeLegalHoldPolicyAssignment(
+  val: LegalHoldPolicyAssignment
+): SerializedData {
   const base: any = serializeLegalHoldPolicyAssignmentBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -17263,7 +17625,9 @@ export function deserializeLegalHoldPolicyAssignment(
     type: type,
   } satisfies LegalHoldPolicyAssignment;
 }
-export function serializeLegalHoldPolicyAssignments(val: any): SerializedData {
+export function serializeLegalHoldPolicyAssignments(
+  val: LegalHoldPolicyAssignments
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -17271,7 +17635,9 @@ export function serializeLegalHoldPolicyAssignments(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: LegalHoldPolicyAssignment): any {
+        : (val.entries.map(function (
+            item: LegalHoldPolicyAssignment
+          ): SerializedData {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
   };
@@ -17288,7 +17654,9 @@ export function deserializeLegalHoldPolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): LegalHoldPolicyAssignment {
           return deserializeLegalHoldPolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -17300,7 +17668,7 @@ export function deserializeLegalHoldPolicyAssignments(
   } satisfies LegalHoldPolicyAssignments;
 }
 export function serializeFileVersionLegalHoldTypeField(
-  val: any
+  val: FileVersionLegalHoldTypeField
 ): SerializedData {
   return val;
 }
@@ -17319,7 +17687,9 @@ export function deserializeFileVersionLegalHoldTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFileVersionLegalHold(val: any): SerializedData {
+export function serializeFileVersionLegalHold(
+  val: FileVersionLegalHold
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -17336,7 +17706,7 @@ export function serializeFileVersionLegalHold(val: any): SerializedData {
         ? void 0
         : (val.legalHoldPolicyAssignments.map(function (
             item: LegalHoldPolicyAssignment
-          ): any {
+          ): SerializedData {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
     ['deleted_at']:
@@ -17365,7 +17735,7 @@ export function deserializeFileVersionLegalHold(
       : sdIsList(val.legal_hold_policy_assignments)
       ? (val.legal_hold_policy_assignments.map(function (
           itm: SerializedData
-        ): any {
+        ): LegalHoldPolicyAssignment {
           return deserializeLegalHoldPolicyAssignment(itm);
         }) as readonly any[])
       : [];
@@ -17380,7 +17750,9 @@ export function deserializeFileVersionLegalHold(
     deletedAt: deletedAt,
   } satisfies FileVersionLegalHold;
 }
-export function serializeFileVersionLegalHolds(val: any): SerializedData {
+export function serializeFileVersionLegalHolds(
+  val: FileVersionLegalHolds
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -17388,7 +17760,9 @@ export function serializeFileVersionLegalHolds(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileVersionLegalHold): any {
+        : (val.entries.map(function (
+            item: FileVersionLegalHold
+          ): SerializedData {
             return serializeFileVersionLegalHold(item);
           }) as readonly any[]),
   };
@@ -17405,7 +17779,7 @@ export function deserializeFileVersionLegalHolds(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileVersionLegalHold {
           return deserializeFileVersionLegalHold(itm);
         }) as readonly any[])
       : [];
@@ -17416,7 +17790,9 @@ export function deserializeFileVersionLegalHolds(
     entries: entries,
   } satisfies FileVersionLegalHolds;
 }
-export function serializeCollaborationTypeField(val: any): SerializedData {
+export function serializeCollaborationTypeField(
+  val: CollaborationTypeField
+): SerializedData {
   return val;
 }
 export function deserializeCollaborationTypeField(
@@ -17434,7 +17810,9 @@ export function deserializeCollaborationTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollaborationRoleField(val: any): SerializedData {
+export function serializeCollaborationRoleField(
+  val: CollaborationRoleField
+): SerializedData {
   return val;
 }
 export function deserializeCollaborationRoleField(
@@ -17473,7 +17851,9 @@ export function deserializeCollaborationRoleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollaborationStatusField(val: any): SerializedData {
+export function serializeCollaborationStatusField(
+  val: CollaborationStatusField
+): SerializedData {
   return val;
 }
 export function deserializeCollaborationStatusField(
@@ -17498,7 +17878,7 @@ export function deserializeCollaborationStatusField(
   });
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-  val: any
+  val: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField
 ): SerializedData {
   return {
     ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
@@ -17523,7 +17903,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusTermsOfServi
   } satisfies CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-  val: any
+  val: CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField
 ): SerializedData {
   return {
     ['enterprise_has_strong_password_required_for_external_users']:
@@ -17554,7 +17934,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusStrongPasswo
   } satisfies CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-  val: any
+  val: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField
 ): SerializedData {
   return {
     ['enterprise_has_two_factor_auth_enabled']:
@@ -17585,7 +17965,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAut
   } satisfies CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusField(
-  val: any
+  val: CollaborationAcceptanceRequirementsStatusField
 ): SerializedData {
   return {
     ['terms_of_service_requirement']:
@@ -17641,7 +18021,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(
     twoFactorAuthenticationRequirement: twoFactorAuthenticationRequirement,
   } satisfies CollaborationAcceptanceRequirementsStatusField;
 }
-export function serializeCollaboration(val: any): SerializedData {
+export function serializeCollaboration(val: Collaboration): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeCollaborationTypeField(val.type),
@@ -17741,7 +18121,9 @@ export function deserializeCollaboration(val: any): Collaboration {
     acceptanceRequirementsStatus: acceptanceRequirementsStatus,
   } satisfies Collaboration;
 }
-export function serializeCollaborationInput(val: any): SerializedData {
+export function serializeCollaborationInput(
+  val: CollaborationInput
+): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
@@ -17842,7 +18224,7 @@ export function deserializeCollaborationInput(val: any): CollaborationInput {
   } satisfies CollaborationInput;
 }
 export function serializeCollaborationsOrderDirectionField(
-  val: any
+  val: CollaborationsOrderDirectionField
 ): SerializedData {
   return val;
 }
@@ -17864,7 +18246,9 @@ export function deserializeCollaborationsOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCollaborationsOrderField(val: any): SerializedData {
+export function serializeCollaborationsOrderField(
+  val: CollaborationsOrderField
+): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -17883,7 +18267,7 @@ export function deserializeCollaborationsOrderField(
       : deserializeCollaborationsOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies CollaborationsOrderField;
 }
-export function serializeCollaborations(val: any): SerializedData {
+export function serializeCollaborations(val: Collaborations): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -17891,13 +18275,15 @@ export function serializeCollaborations(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: CollaborationsOrderField): any {
+        : (val.order.map(function (
+            item: CollaborationsOrderField
+          ): SerializedData {
             return serializeCollaborationsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Collaboration): any {
+        : (val.entries.map(function (item: Collaboration): SerializedData {
             return serializeCollaboration(item);
           }) as readonly any[]),
   };
@@ -17911,7 +18297,9 @@ export function deserializeCollaborations(val: any): Collaborations {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (
+          itm: SerializedData
+        ): CollaborationsOrderField {
           return deserializeCollaborationsOrderField(itm);
         }) as readonly any[])
       : [];
@@ -17919,7 +18307,7 @@ export function deserializeCollaborations(val: any): Collaborations {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Collaboration {
           return deserializeCollaboration(itm);
         }) as readonly any[])
       : [];
@@ -17952,12 +18340,14 @@ export function deserializeFileOrFolder(val: any): FileOrFolder {
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeMetadataQueryResults(val: any): SerializedData {
+export function serializeMetadataQueryResults(
+  val: MetadataQueryResults
+): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileOrFolder): any {
+        : (val.entries.map(function (item: FileOrFolder): SerializedData {
             return serializeFileOrFolder(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -17971,7 +18361,7 @@ export function deserializeMetadataQueryResults(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): FileOrFolder {
           return deserializeFileOrFolder(itm);
         }) as readonly any[])
       : [];
@@ -17984,7 +18374,9 @@ export function deserializeMetadataQueryResults(
     nextMarker: nextMarker,
   } satisfies MetadataQueryResults;
 }
-export function serializeWebhookInvocationTypeField(val: any): SerializedData {
+export function serializeWebhookInvocationTypeField(
+  val: WebhookInvocationTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWebhookInvocationTypeField(
@@ -18003,7 +18395,7 @@ export function deserializeWebhookInvocationTypeField(
   });
 }
 export function serializeWebhookInvocationTriggerField(
-  val: any
+  val: WebhookInvocationTriggerField
 ): SerializedData {
   return val;
 }
@@ -18139,7 +18531,9 @@ export function deserializeWebhookInvocationTriggerField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWebhookInvocation(val: any): SerializedData {
+export function serializeWebhookInvocation(
+  val: WebhookInvocation
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -18187,7 +18581,9 @@ export function deserializeWebhookInvocation(val: any): WebhookInvocation {
     source: source,
   } satisfies WebhookInvocation;
 }
-export function serializeSkillInvocationTypeField(val: any): SerializedData {
+export function serializeSkillInvocationTypeField(
+  val: SkillInvocationTypeField
+): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationTypeField(
@@ -18206,7 +18602,7 @@ export function deserializeSkillInvocationTypeField(
   });
 }
 export function serializeSkillInvocationSkillTypeField(
-  val: any
+  val: SkillInvocationSkillTypeField
 ): SerializedData {
   return val;
 }
@@ -18225,7 +18621,9 @@ export function deserializeSkillInvocationSkillTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSkillInvocationSkillField(val: any): SerializedData {
+export function serializeSkillInvocationSkillField(
+  val: SkillInvocationSkillField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -18255,7 +18653,7 @@ export function deserializeSkillInvocationSkillField(
   } satisfies SkillInvocationSkillField;
 }
 export function serializeSkillInvocationTokenReadTokenTypeField(
-  val: any
+  val: SkillInvocationTokenReadTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -18276,7 +18674,7 @@ export function deserializeSkillInvocationTokenReadTokenTypeField(
   });
 }
 export function serializeSkillInvocationTokenReadField(
-  val: any
+  val: SkillInvocationTokenReadField
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -18309,7 +18707,7 @@ export function deserializeSkillInvocationTokenReadField(
   } satisfies SkillInvocationTokenReadField;
 }
 export function serializeSkillInvocationTokenWriteTokenTypeField(
-  val: any
+  val: SkillInvocationTokenWriteTokenTypeField
 ): SerializedData {
   return val;
 }
@@ -18330,7 +18728,7 @@ export function deserializeSkillInvocationTokenWriteTokenTypeField(
   });
 }
 export function serializeSkillInvocationTokenWriteField(
-  val: any
+  val: SkillInvocationTokenWriteField
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -18362,7 +18760,9 @@ export function deserializeSkillInvocationTokenWriteField(
     restrictedTo: restrictedTo,
   } satisfies SkillInvocationTokenWriteField;
 }
-export function serializeSkillInvocationTokenField(val: any): SerializedData {
+export function serializeSkillInvocationTokenField(
+  val: SkillInvocationTokenField
+): SerializedData {
   return {
     ['read']:
       val.read == void 0
@@ -18388,7 +18788,7 @@ export function deserializeSkillInvocationTokenField(
   return { read: read, write: write } satisfies SkillInvocationTokenField;
 }
 export function serializeSkillInvocationStatusStateField(
-  val: any
+  val: SkillInvocationStatusStateField
 ): SerializedData {
   return val;
 }
@@ -18419,7 +18819,9 @@ export function deserializeSkillInvocationStatusStateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSkillInvocationStatusField(val: any): SerializedData {
+export function serializeSkillInvocationStatusField(
+  val: SkillInvocationStatusField
+): SerializedData {
   return {
     ['state']:
       val.state == void 0
@@ -18452,7 +18854,7 @@ export function deserializeSkillInvocationStatusField(
   } satisfies SkillInvocationStatusField;
 }
 export function serializeSkillInvocationEnterpriseTypeField(
-  val: any
+  val: SkillInvocationEnterpriseTypeField
 ): SerializedData {
   return val;
 }
@@ -18472,7 +18874,7 @@ export function deserializeSkillInvocationEnterpriseTypeField(
   });
 }
 export function serializeSkillInvocationEnterpriseField(
-  val: any
+  val: SkillInvocationEnterpriseField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -18498,7 +18900,7 @@ export function deserializeSkillInvocationEnterpriseField(
     name: name,
   } satisfies SkillInvocationEnterpriseField;
 }
-export function serializeSkillInvocation(val: any): SerializedData {
+export function serializeSkillInvocation(val: SkillInvocation): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeSkillInvocationTypeField(val.type),
@@ -18568,7 +18970,9 @@ export function deserializeSkillInvocation(val: any): SkillInvocation {
     event: event,
   } satisfies SkillInvocation;
 }
-export function serializeFolderFullSyncStateField(val: any): SerializedData {
+export function serializeFolderFullSyncStateField(
+  val: FolderFullSyncStateField
+): SerializedData {
   return val;
 }
 export function deserializeFolderFullSyncStateField(
@@ -18592,7 +18996,9 @@ export function deserializeFolderFullSyncStateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeFolderFullPermissionsField(val: any): SerializedData {
+export function serializeFolderFullPermissionsField(
+  val: FolderFullPermissionsField
+): SerializedData {
   return {
     ['can_delete']: val.canDelete,
     ['can_download']: val.canDownload,
@@ -18624,7 +19030,9 @@ export function deserializeFolderFullPermissionsField(
     canUpload: canUpload,
   } satisfies FolderFullPermissionsField;
 }
-export function serializeFolderFullMetadataField(val: any): SerializedData {
+export function serializeFolderFullMetadataField(
+  val: FolderFullMetadataField
+): SerializedData {
   return { ...{}, ...val.extraData };
 }
 export function deserializeFolderFullMetadataField(
@@ -18640,7 +19048,7 @@ export function deserializeFolderFullMetadataField(
   return { extraData: extraData } satisfies FolderFullMetadataField;
 }
 export function serializeFolderFullAllowedSharedLinkAccessLevelsField(
-  val: any
+  val: FolderFullAllowedSharedLinkAccessLevelsField
 ): SerializedData {
   return val;
 }
@@ -18667,7 +19075,7 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   });
 }
 export function serializeFolderFullAllowedInviteeRolesField(
-  val: any
+  val: FolderFullAllowedInviteeRolesField
 ): SerializedData {
   return val;
 }
@@ -18705,7 +19113,7 @@ export function deserializeFolderFullAllowedInviteeRolesField(
   });
 }
 export function serializeFolderFullWatermarkInfoField(
-  val: any
+  val: FolderFullWatermarkInfoField
 ): SerializedData {
   return {
     ['is_watermarked']:
@@ -18722,7 +19130,7 @@ export function deserializeFolderFullWatermarkInfoField(
   } satisfies FolderFullWatermarkInfoField;
 }
 export function serializeFolderFullClassificationField(
-  val: any
+  val: FolderFullClassificationField
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -18743,7 +19151,7 @@ export function deserializeFolderFullClassificationField(
     color: color,
   } satisfies FolderFullClassificationField;
 }
-export function serializeFolderFull(val: any): SerializedData {
+export function serializeFolderFull(val: FolderFull): SerializedData {
   const base: any = serializeFolder(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FolderFull"' });
@@ -18764,7 +19172,7 @@ export function serializeFolderFull(val: any): SerializedData {
       ['tags']:
         val.tags == void 0
           ? void 0
-          : (val.tags.map(function (item: string): any {
+          : (val.tags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
       ['can_non_owners_invite']:
@@ -18784,7 +19192,7 @@ export function serializeFolderFull(val: any): SerializedData {
           ? void 0
           : (val.allowedSharedLinkAccessLevels.map(function (
               item: FolderFullAllowedSharedLinkAccessLevelsField
-            ): any {
+            ): SerializedData {
               return serializeFolderFullAllowedSharedLinkAccessLevelsField(
                 item
               );
@@ -18794,7 +19202,7 @@ export function serializeFolderFull(val: any): SerializedData {
           ? void 0
           : (val.allowedInviteeRoles.map(function (
               item: FolderFullAllowedInviteeRolesField
-            ): any {
+            ): SerializedData {
               return serializeFolderFullAllowedInviteeRolesField(item);
             }) as readonly any[]),
       ['watermark_info']:
@@ -18828,13 +19236,7 @@ export function deserializeFolderFull(val: any): FolderFull {
       ? void 0
       : deserializeFolderFullPermissionsField(val.permissions);
   const tags: undefined | readonly string[] =
-    val.tags == void 0
-      ? void 0
-      : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
   const canNonOwnersInvite: undefined | boolean =
     val.can_non_owners_invite == void 0 ? void 0 : val.can_non_owners_invite;
   const isExternallyOwned: undefined | boolean =
@@ -18855,7 +19257,7 @@ export function deserializeFolderFull(val: any): FolderFull {
       : sdIsList(val.allowed_shared_link_access_levels)
       ? (val.allowed_shared_link_access_levels.map(function (
           itm: SerializedData
-        ): any {
+        ): FolderFullAllowedSharedLinkAccessLevelsField {
           return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
         }) as readonly any[])
       : [];
@@ -18865,7 +19267,9 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : sdIsList(val.allowed_invitee_roles)
-      ? (val.allowed_invitee_roles.map(function (itm: SerializedData): any {
+      ? (val.allowed_invitee_roles.map(function (
+          itm: SerializedData
+        ): FolderFullAllowedInviteeRolesField {
           return deserializeFolderFullAllowedInviteeRolesField(itm);
         }) as readonly any[])
       : [];
@@ -19011,7 +19415,9 @@ export function deserializeFileFullOrFolderFullOrWebLink(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeSearchResultWithSharedLink(val: any): SerializedData {
+export function serializeSearchResultWithSharedLink(
+  val: SearchResultWithSharedLink
+): SerializedData {
   return {
     ['accessible_via_shared_link']:
       val.accessibleViaSharedLink == void 0
@@ -19043,7 +19449,7 @@ export function deserializeSearchResultWithSharedLink(
   } satisfies SearchResultWithSharedLink;
 }
 export function serializeSearchResultsWithSharedLinksTypeField(
-  val: any
+  val: SearchResultsWithSharedLinksTypeField
 ): SerializedData {
   return val;
 }
@@ -19063,7 +19469,7 @@ export function deserializeSearchResultsWithSharedLinksTypeField(
   });
 }
 export function serializeSearchResultsWithSharedLinks(
-  val: any
+  val: SearchResultsWithSharedLinks
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -19073,7 +19479,9 @@ export function serializeSearchResultsWithSharedLinks(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
+        : (val.entries.map(function (
+            item: SearchResultWithSharedLink
+          ): SerializedData {
             return serializeSearchResultWithSharedLink(item);
           }) as readonly any[]),
   };
@@ -19091,7 +19499,9 @@ export function deserializeSearchResultsWithSharedLinks(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): SearchResultWithSharedLink {
           return deserializeSearchResultWithSharedLink(itm);
         }) as readonly any[])
       : [];
@@ -19104,7 +19514,7 @@ export function deserializeSearchResultsWithSharedLinks(
   } satisfies SearchResultsWithSharedLinks;
 }
 export function serializeSearchResultsWithSharedLinksInput(
-  val: any
+  val: SearchResultsWithSharedLinksInput
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -19117,7 +19527,9 @@ export function serializeSearchResultsWithSharedLinksInput(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SearchResultWithSharedLink): any {
+        : (val.entries.map(function (
+            item: SearchResultWithSharedLink
+          ): SerializedData {
             return serializeSearchResultWithSharedLink(item);
           }) as readonly any[]),
   };
@@ -19137,7 +19549,9 @@ export function deserializeSearchResultsWithSharedLinksInput(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): SearchResultWithSharedLink {
           return deserializeSearchResultWithSharedLink(itm);
         }) as readonly any[])
       : [];
@@ -19149,7 +19563,9 @@ export function deserializeSearchResultsWithSharedLinksInput(
     entries: entries,
   } satisfies SearchResultsWithSharedLinksInput;
 }
-export function serializeSearchResultsTypeField(val: any): SerializedData {
+export function serializeSearchResultsTypeField(
+  val: SearchResultsTypeField
+): SerializedData {
   return val;
 }
 export function deserializeSearchResultsTypeField(
@@ -19167,7 +19583,7 @@ export function deserializeSearchResultsTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSearchResults(val: any): SerializedData {
+export function serializeSearchResults(val: SearchResults): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -19176,7 +19592,9 @@ export function serializeSearchResults(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileFullOrFolderFullOrWebLink): any {
+        : (val.entries.map(function (
+            item: FileFullOrFolderFullOrWebLink
+          ): SerializedData {
             return serializeFileFullOrFolderFullOrWebLink(item);
           }) as readonly any[]),
   };
@@ -19193,7 +19611,9 @@ export function deserializeSearchResults(val: any): SearchResults {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): FileFullOrFolderFullOrWebLink {
           return deserializeFileFullOrFolderFullOrWebLink(itm);
         }) as readonly any[])
       : [];
@@ -19205,7 +19625,9 @@ export function deserializeSearchResults(val: any): SearchResults {
     entries: entries,
   } satisfies SearchResults;
 }
-export function serializeSearchResultsInput(val: any): SerializedData {
+export function serializeSearchResultsInput(
+  val: SearchResultsInput
+): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -19215,7 +19637,9 @@ export function serializeSearchResultsInput(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileFullOrFolderFullOrWebLink): any {
+        : (val.entries.map(function (
+            item: FileFullOrFolderFullOrWebLink
+          ): SerializedData {
             return serializeFileFullOrFolderFullOrWebLink(item);
           }) as readonly any[]),
   };
@@ -19231,7 +19655,9 @@ export function deserializeSearchResultsInput(val: any): SearchResultsInput {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): FileFullOrFolderFullOrWebLink {
           return deserializeFileFullOrFolderFullOrWebLink(itm);
         }) as readonly any[])
       : [];
@@ -19272,7 +19698,7 @@ export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function serializeRecentItemInteractionTypeField(
-  val: any
+  val: RecentItemInteractionTypeField
 ): SerializedData {
   return val;
 }
@@ -19303,7 +19729,7 @@ export function deserializeRecentItemInteractionTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeRecentItem(val: any): SerializedData {
+export function serializeRecentItem(val: RecentItem): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
     ['item']:
@@ -19346,7 +19772,7 @@ export function deserializeRecentItem(val: any): RecentItem {
     interactionSharedLink: interactionSharedLink,
   } satisfies RecentItem;
 }
-export function serializeRecentItems(val: any): SerializedData {
+export function serializeRecentItems(val: RecentItems): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -19354,7 +19780,7 @@ export function serializeRecentItems(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: RecentItem): any {
+        : (val.entries.map(function (item: RecentItem): SerializedData {
             return serializeRecentItem(item);
           }) as readonly any[]),
   };
@@ -19369,7 +19795,7 @@ export function deserializeRecentItems(val: any): RecentItems {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): RecentItem {
           return deserializeRecentItem(itm);
         }) as readonly any[])
       : [];
@@ -19380,7 +19806,9 @@ export function deserializeRecentItems(val: any): RecentItems {
     entries: entries,
   } satisfies RecentItems;
 }
-export function serializeWorkflowMiniTypeField(val: any): SerializedData {
+export function serializeWorkflowMiniTypeField(
+  val: WorkflowMiniTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWorkflowMiniTypeField(
@@ -19398,7 +19826,7 @@ export function deserializeWorkflowMiniTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeWorkflowMini(val: any): SerializedData {
+export function serializeWorkflowMini(val: WorkflowMini): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -19425,7 +19853,9 @@ export function deserializeWorkflowMini(val: any): WorkflowMini {
     isEnabled: isEnabled,
   } satisfies WorkflowMini;
 }
-export function serializeWorkflowFlowsTypeField(val: any): SerializedData {
+export function serializeWorkflowFlowsTypeField(
+  val: WorkflowFlowsTypeField
+): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTypeField(
@@ -19444,7 +19874,7 @@ export function deserializeWorkflowFlowsTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerTypeField(
-  val: any
+  val: WorkflowFlowsTriggerTypeField
 ): SerializedData {
   return val;
 }
@@ -19464,7 +19894,7 @@ export function deserializeWorkflowFlowsTriggerTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerTriggerTypeField(
-  val: any
+  val: WorkflowFlowsTriggerTriggerTypeField
 ): SerializedData {
   return val;
 }
@@ -19484,7 +19914,7 @@ export function deserializeWorkflowFlowsTriggerTriggerTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeTypeField(
-  val: any
+  val: WorkflowFlowsTriggerScopeTypeField
 ): SerializedData {
   return val;
 }
@@ -19504,7 +19934,7 @@ export function deserializeWorkflowFlowsTriggerScopeTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectTypeField(
-  val: any
+  val: WorkflowFlowsTriggerScopeObjectTypeField
 ): SerializedData {
   return val;
 }
@@ -19525,7 +19955,7 @@ export function deserializeWorkflowFlowsTriggerScopeObjectTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectField(
-  val: any
+  val: WorkflowFlowsTriggerScopeObjectField
 ): SerializedData {
   return {
     ['type']:
@@ -19546,7 +19976,7 @@ export function deserializeWorkflowFlowsTriggerScopeObjectField(
   return { type: type, id: id } satisfies WorkflowFlowsTriggerScopeObjectField;
 }
 export function serializeWorkflowFlowsTriggerScopeField(
-  val: any
+  val: WorkflowFlowsTriggerScopeField
 ): SerializedData {
   return {
     ['type']:
@@ -19578,7 +20008,9 @@ export function deserializeWorkflowFlowsTriggerScopeField(
     object: object,
   } satisfies WorkflowFlowsTriggerScopeField;
 }
-export function serializeWorkflowFlowsTriggerField(val: any): SerializedData {
+export function serializeWorkflowFlowsTriggerField(
+  val: WorkflowFlowsTriggerField
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -19591,7 +20023,9 @@ export function serializeWorkflowFlowsTriggerField(val: any): SerializedData {
     ['scope']:
       val.scope == void 0
         ? void 0
-        : (val.scope.map(function (item: WorkflowFlowsTriggerScopeField): any {
+        : (val.scope.map(function (
+            item: WorkflowFlowsTriggerScopeField
+          ): SerializedData {
             return serializeWorkflowFlowsTriggerScopeField(item);
           }) as readonly any[]),
   };
@@ -19611,7 +20045,9 @@ export function deserializeWorkflowFlowsTriggerField(
     val.scope == void 0
       ? void 0
       : sdIsList(val.scope)
-      ? (val.scope.map(function (itm: SerializedData): any {
+      ? (val.scope.map(function (
+          itm: SerializedData
+        ): WorkflowFlowsTriggerScopeField {
           return deserializeWorkflowFlowsTriggerScopeField(itm);
         }) as readonly any[])
       : [];
@@ -19622,7 +20058,7 @@ export function deserializeWorkflowFlowsTriggerField(
   } satisfies WorkflowFlowsTriggerField;
 }
 export function serializeWorkflowFlowsOutcomesTypeField(
-  val: any
+  val: WorkflowFlowsOutcomesTypeField
 ): SerializedData {
   return val;
 }
@@ -19642,7 +20078,7 @@ export function deserializeWorkflowFlowsOutcomesTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesActionTypeField(
-  val: any
+  val: WorkflowFlowsOutcomesActionTypeField
 ): SerializedData {
   return val;
 }
@@ -19728,7 +20164,7 @@ export function deserializeWorkflowFlowsOutcomesActionTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedTypeField(
-  val: any
+  val: WorkflowFlowsOutcomesIfRejectedTypeField
 ): SerializedData {
   return val;
 }
@@ -19749,7 +20185,7 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
-  val: any
+  val: WorkflowFlowsOutcomesIfRejectedActionTypeField
 ): SerializedData {
   return val;
 }
@@ -19836,7 +20272,7 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedField(
-  val: any
+  val: WorkflowFlowsOutcomesIfRejectedField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -19875,7 +20311,9 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedField(
     actionType: actionType,
   } satisfies WorkflowFlowsOutcomesIfRejectedField;
 }
-export function serializeWorkflowFlowsOutcomesField(val: any): SerializedData {
+export function serializeWorkflowFlowsOutcomesField(
+  val: WorkflowFlowsOutcomesField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -19892,7 +20330,7 @@ export function serializeWorkflowFlowsOutcomesField(val: any): SerializedData {
         ? void 0
         : (val.ifRejected.map(function (
             item: WorkflowFlowsOutcomesIfRejectedField
-          ): any {
+          ): SerializedData {
             return serializeWorkflowFlowsOutcomesIfRejectedField(item);
           }) as readonly any[]),
   };
@@ -19916,7 +20354,9 @@ export function deserializeWorkflowFlowsOutcomesField(
     val.if_rejected == void 0
       ? void 0
       : sdIsList(val.if_rejected)
-      ? (val.if_rejected.map(function (itm: SerializedData): any {
+      ? (val.if_rejected.map(function (
+          itm: SerializedData
+        ): WorkflowFlowsOutcomesIfRejectedField {
           return deserializeWorkflowFlowsOutcomesIfRejectedField(itm);
         }) as readonly any[])
       : [];
@@ -19928,7 +20368,9 @@ export function deserializeWorkflowFlowsOutcomesField(
     ifRejected: ifRejected,
   } satisfies WorkflowFlowsOutcomesField;
 }
-export function serializeWorkflowFlowsField(val: any): SerializedData {
+export function serializeWorkflowFlowsField(
+  val: WorkflowFlowsField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -19940,7 +20382,9 @@ export function serializeWorkflowFlowsField(val: any): SerializedData {
     ['outcomes']:
       val.outcomes == void 0
         ? void 0
-        : (val.outcomes.map(function (item: WorkflowFlowsOutcomesField): any {
+        : (val.outcomes.map(function (
+            item: WorkflowFlowsOutcomesField
+          ): SerializedData {
             return serializeWorkflowFlowsOutcomesField(item);
           }) as readonly any[]),
     ['created_at']:
@@ -19961,7 +20405,9 @@ export function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField {
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
-      ? (val.outcomes.map(function (itm: SerializedData): any {
+      ? (val.outcomes.map(function (
+          itm: SerializedData
+        ): WorkflowFlowsOutcomesField {
           return deserializeWorkflowFlowsOutcomesField(itm);
         }) as readonly any[])
       : [];
@@ -19978,7 +20424,7 @@ export function deserializeWorkflowFlowsField(val: any): WorkflowFlowsField {
     createdBy: createdBy,
   } satisfies WorkflowFlowsField;
 }
-export function serializeWorkflow(val: any): SerializedData {
+export function serializeWorkflow(val: Workflow): SerializedData {
   const base: any = serializeWorkflowMini(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Workflow"' });
@@ -19989,7 +20435,7 @@ export function serializeWorkflow(val: any): SerializedData {
       ['flows']:
         val.flows == void 0
           ? void 0
-          : (val.flows.map(function (item: WorkflowFlowsField): any {
+          : (val.flows.map(function (item: WorkflowFlowsField): SerializedData {
               return serializeWorkflowFlowsField(item);
             }) as readonly any[]),
     },
@@ -20000,7 +20446,7 @@ export function deserializeWorkflow(val: any): Workflow {
     val.flows == void 0
       ? void 0
       : sdIsList(val.flows)
-      ? (val.flows.map(function (itm: SerializedData): any {
+      ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
           return deserializeWorkflowFlowsField(itm);
         }) as readonly any[])
       : [];
@@ -20021,7 +20467,7 @@ export function deserializeWorkflow(val: any): Workflow {
     isEnabled: isEnabled,
   } satisfies Workflow;
 }
-export function serializeWorkflows(val: any): SerializedData {
+export function serializeWorkflows(val: Workflows): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -20029,7 +20475,7 @@ export function serializeWorkflows(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: Workflow): any {
+        : (val.entries.map(function (item: Workflow): SerializedData {
             return serializeWorkflow(item);
           }) as readonly any[]),
   };
@@ -20044,7 +20490,7 @@ export function deserializeWorkflows(val: any): Workflows {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): Workflow {
           return deserializeWorkflow(itm);
         }) as readonly any[])
       : [];
@@ -20055,7 +20501,7 @@ export function deserializeWorkflows(val: any): Workflows {
     entries: entries,
   } satisfies Workflows;
 }
-export function serializeWorkflowFull(val: any): SerializedData {
+export function serializeWorkflowFull(val: WorkflowFull): SerializedData {
   const base: any = serializeWorkflow(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "WorkflowFull"' });
@@ -20087,7 +20533,7 @@ export function deserializeWorkflowFull(val: any): WorkflowFull {
     val.flows == void 0
       ? void 0
       : sdIsList(val.flows)
-      ? (val.flows.map(function (itm: SerializedData): any {
+      ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
           return deserializeWorkflowFlowsField(itm);
         }) as readonly any[])
       : [];
@@ -20113,7 +20559,7 @@ export function deserializeWorkflowFull(val: any): WorkflowFull {
   } satisfies WorkflowFull;
 }
 export function serializeZipDownloadNameConflictsTypeField(
-  val: any
+  val: ZipDownloadNameConflictsTypeField
 ): SerializedData {
   return val;
 }
@@ -20136,7 +20582,7 @@ export function deserializeZipDownloadNameConflictsTypeField(
   });
 }
 export function serializeZipDownloadNameConflictsField(
-  val: any
+  val: ZipDownloadNameConflictsField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -20167,7 +20613,7 @@ export function deserializeZipDownloadNameConflictsField(
     downloadName: downloadName,
   } satisfies ZipDownloadNameConflictsField;
 }
-export function serializeZipDownload(val: any): SerializedData {
+export function serializeZipDownload(val: ZipDownload): SerializedData {
   return {
     ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
     ['status_url']: val.statusUrl == void 0 ? void 0 : val.statusUrl,
@@ -20178,10 +20624,10 @@ export function serializeZipDownload(val: any): SerializedData {
         ? void 0
         : (val.nameConflicts.map(function (
             item: readonly ZipDownloadNameConflictsField[]
-          ): any {
+          ): SerializedData {
             return item.map(function (
               item: ZipDownloadNameConflictsField
-            ): any {
+            ): SerializedData {
               return serializeZipDownloadNameConflictsField(item);
             }) as readonly any[];
           }) as readonly any[]),
@@ -20200,9 +20646,13 @@ export function deserializeZipDownload(val: any): ZipDownload {
     val.name_conflicts == void 0
       ? void 0
       : sdIsList(val.name_conflicts)
-      ? (val.name_conflicts.map(function (itm: SerializedData): any {
+      ? (val.name_conflicts.map(function (
+          itm: SerializedData
+        ): readonly ZipDownloadNameConflictsField[] {
           return sdIsList(itm)
-            ? (itm.map(function (itm: SerializedData): any {
+            ? (itm.map(function (
+                itm: SerializedData
+              ): ZipDownloadNameConflictsField {
                 return deserializeZipDownloadNameConflictsField(itm);
               }) as readonly any[])
             : [];
@@ -20215,7 +20665,9 @@ export function deserializeZipDownload(val: any): ZipDownload {
     nameConflicts: nameConflicts,
   } satisfies ZipDownload;
 }
-export function serializeZipDownloadStatusStateField(val: any): SerializedData {
+export function serializeZipDownloadStatusStateField(
+  val: ZipDownloadStatusStateField
+): SerializedData {
   return val;
 }
 export function deserializeZipDownloadStatusStateField(
@@ -20239,7 +20691,9 @@ export function deserializeZipDownloadStatusStateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeZipDownloadStatus(val: any): SerializedData {
+export function serializeZipDownloadStatus(
+  val: ZipDownloadStatus
+): SerializedData {
   return {
     ['total_file_count']:
       val.totalFileCount == void 0 ? void 0 : val.totalFileCount,
@@ -20277,7 +20731,7 @@ export function deserializeZipDownloadStatus(val: any): ZipDownloadStatus {
   } satisfies ZipDownloadStatus;
 }
 export function serializeCompletionRuleVariableTypeField(
-  val: any
+  val: CompletionRuleVariableTypeField
 ): SerializedData {
   return val;
 }
@@ -20297,7 +20751,7 @@ export function deserializeCompletionRuleVariableTypeField(
   });
 }
 export function serializeCompletionRuleVariableVariableTypeField(
-  val: any
+  val: CompletionRuleVariableVariableTypeField
 ): SerializedData {
   return val;
 }
@@ -20318,7 +20772,7 @@ export function deserializeCompletionRuleVariableVariableTypeField(
   });
 }
 export function serializeCompletionRuleVariableVariableValueField(
-  val: any
+  val: CompletionRuleVariableVariableValueField
 ): SerializedData {
   return val;
 }
@@ -20341,7 +20795,9 @@ export function deserializeCompletionRuleVariableVariableValueField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCompletionRuleVariable(val: any): SerializedData {
+export function serializeCompletionRuleVariable(
+  val: CompletionRuleVariable
+): SerializedData {
   return {
     ['type']: serializeCompletionRuleVariableTypeField(val.type),
     ['variable_type']: serializeCompletionRuleVariableVariableTypeField(
@@ -20367,7 +20823,9 @@ export function deserializeCompletionRuleVariable(
     variableValue: variableValue,
   } satisfies CompletionRuleVariable;
 }
-export function serializeCompletionRuleVariableInput(val: any): SerializedData {
+export function serializeCompletionRuleVariableInput(
+  val: CompletionRuleVariableInput
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -20402,7 +20860,7 @@ export function deserializeCompletionRuleVariableInput(
   } satisfies CompletionRuleVariableInput;
 }
 export function serializeCollaboratorVariableTypeField(
-  val: any
+  val: CollaboratorVariableTypeField
 ): SerializedData {
   return val;
 }
@@ -20422,7 +20880,7 @@ export function deserializeCollaboratorVariableTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableTypeField(
-  val: any
+  val: CollaboratorVariableVariableTypeField
 ): SerializedData {
   return val;
 }
@@ -20442,7 +20900,7 @@ export function deserializeCollaboratorVariableVariableTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableValueTypeField(
-  val: any
+  val: CollaboratorVariableVariableValueTypeField
 ): SerializedData {
   return val;
 }
@@ -20463,7 +20921,7 @@ export function deserializeCollaboratorVariableVariableValueTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableValueField(
-  val: any
+  val: CollaboratorVariableVariableValueField
 ): SerializedData {
   return {
     ['type']: serializeCollaboratorVariableVariableValueTypeField(val.type),
@@ -20482,7 +20940,7 @@ export function deserializeCollaboratorVariableVariableValueField(
   } satisfies CollaboratorVariableVariableValueField;
 }
 export function serializeCollaboratorVariableVariableValueFieldInput(
-  val: any
+  val: CollaboratorVariableVariableValueFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -20505,7 +20963,9 @@ export function deserializeCollaboratorVariableVariableValueFieldInput(
     id: id,
   } satisfies CollaboratorVariableVariableValueFieldInput;
 }
-export function serializeCollaboratorVariable(val: any): SerializedData {
+export function serializeCollaboratorVariable(
+  val: CollaboratorVariable
+): SerializedData {
   return {
     ['type']: serializeCollaboratorVariableTypeField(val.type),
     ['variable_type']: serializeCollaboratorVariableVariableTypeField(
@@ -20513,7 +20973,7 @@ export function serializeCollaboratorVariable(val: any): SerializedData {
     ),
     ['variable_value']: val.variableValue.map(function (
       item: CollaboratorVariableVariableValueField
-    ): any {
+    ): SerializedData {
       return serializeCollaboratorVariableVariableValueField(item);
     }) as readonly any[],
   };
@@ -20527,7 +20987,9 @@ export function deserializeCollaboratorVariable(
     deserializeCollaboratorVariableVariableTypeField(val.variable_type);
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
-      ? (val.variable_value.map(function (itm: SerializedData): any {
+      ? (val.variable_value.map(function (
+          itm: SerializedData
+        ): CollaboratorVariableVariableValueField {
           return deserializeCollaboratorVariableVariableValueField(itm);
         }) as readonly any[])
       : [];
@@ -20537,7 +20999,9 @@ export function deserializeCollaboratorVariable(
     variableValue: variableValue,
   } satisfies CollaboratorVariable;
 }
-export function serializeCollaboratorVariableInput(val: any): SerializedData {
+export function serializeCollaboratorVariableInput(
+  val: CollaboratorVariableInput
+): SerializedData {
   return {
     ['type']:
       val.type == void 0
@@ -20549,7 +21013,7 @@ export function serializeCollaboratorVariableInput(val: any): SerializedData {
         : serializeCollaboratorVariableVariableTypeField(val.variableType),
     ['variable_value']: val.variableValue.map(function (
       item: CollaboratorVariableVariableValueField
-    ): any {
+    ): SerializedData {
       return serializeCollaboratorVariableVariableValueField(item);
     }) as readonly any[],
   };
@@ -20567,7 +21031,9 @@ export function deserializeCollaboratorVariableInput(
       : deserializeCollaboratorVariableVariableTypeField(val.variableType);
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
-      ? (val.variable_value.map(function (itm: SerializedData): any {
+      ? (val.variable_value.map(function (
+          itm: SerializedData
+        ): CollaboratorVariableVariableValueField {
           return deserializeCollaboratorVariableVariableValueField(itm);
         }) as readonly any[])
       : [];
@@ -20577,7 +21043,9 @@ export function deserializeCollaboratorVariableInput(
     variableValue: variableValue,
   } satisfies CollaboratorVariableInput;
 }
-export function serializeKeywordSkillCardTypeField(val: any): SerializedData {
+export function serializeKeywordSkillCardTypeField(
+  val: KeywordSkillCardTypeField
+): SerializedData {
   return val;
 }
 export function deserializeKeywordSkillCardTypeField(
@@ -20596,7 +21064,7 @@ export function deserializeKeywordSkillCardTypeField(
   });
 }
 export function serializeKeywordSkillCardSkillCardTypeField(
-  val: any
+  val: KeywordSkillCardSkillCardTypeField
 ): SerializedData {
   return val;
 }
@@ -20616,7 +21084,7 @@ export function deserializeKeywordSkillCardSkillCardTypeField(
   });
 }
 export function serializeKeywordSkillCardSkillCardTitleField(
-  val: any
+  val: KeywordSkillCardSkillCardTitleField
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -20634,7 +21102,7 @@ export function deserializeKeywordSkillCardSkillCardTitleField(
   } satisfies KeywordSkillCardSkillCardTitleField;
 }
 export function serializeKeywordSkillCardSkillTypeField(
-  val: any
+  val: KeywordSkillCardSkillTypeField
 ): SerializedData {
   return val;
 }
@@ -20653,7 +21121,9 @@ export function deserializeKeywordSkillCardSkillTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeKeywordSkillCardSkillField(val: any): SerializedData {
+export function serializeKeywordSkillCardSkillField(
+  val: KeywordSkillCardSkillField
+): SerializedData {
   return {
     ['type']: serializeKeywordSkillCardSkillTypeField(val.type),
     ['id']: val.id,
@@ -20668,7 +21138,7 @@ export function deserializeKeywordSkillCardSkillField(
   return { type: type, id: id } satisfies KeywordSkillCardSkillField;
 }
 export function serializeKeywordSkillCardSkillFieldInput(
-  val: any
+  val: KeywordSkillCardSkillFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -20689,7 +21159,7 @@ export function deserializeKeywordSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies KeywordSkillCardSkillFieldInput;
 }
 export function serializeKeywordSkillCardInvocationTypeField(
-  val: any
+  val: KeywordSkillCardInvocationTypeField
 ): SerializedData {
   return val;
 }
@@ -20709,7 +21179,7 @@ export function deserializeKeywordSkillCardInvocationTypeField(
   });
 }
 export function serializeKeywordSkillCardInvocationField(
-  val: any
+  val: KeywordSkillCardInvocationField
 ): SerializedData {
   return {
     ['type']: serializeKeywordSkillCardInvocationTypeField(val.type),
@@ -20725,7 +21195,7 @@ export function deserializeKeywordSkillCardInvocationField(
   return { type: type, id: id } satisfies KeywordSkillCardInvocationField;
 }
 export function serializeKeywordSkillCardInvocationFieldInput(
-  val: any
+  val: KeywordSkillCardInvocationFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -20746,7 +21216,7 @@ export function deserializeKeywordSkillCardInvocationFieldInput(
   return { type: type, id: id } satisfies KeywordSkillCardInvocationFieldInput;
 }
 export function serializeKeywordSkillCardEntriesField(
-  val: any
+  val: KeywordSkillCardEntriesField
 ): SerializedData {
   return { ['text']: val.text == void 0 ? void 0 : val.text };
 }
@@ -20756,7 +21226,9 @@ export function deserializeKeywordSkillCardEntriesField(
   const text: undefined | string = val.text == void 0 ? void 0 : val.text;
   return { text: text } satisfies KeywordSkillCardEntriesField;
 }
-export function serializeKeywordSkillCard(val: any): SerializedData {
+export function serializeKeywordSkillCard(
+  val: KeywordSkillCard
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -20772,7 +21244,7 @@ export function serializeKeywordSkillCard(val: any): SerializedData {
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
     ['entries']: val.entries.map(function (
       item: KeywordSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeKeywordSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -20794,7 +21266,9 @@ export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
   const invocation: KeywordSkillCardInvocationField =
     deserializeKeywordSkillCardInvocationField(val.invocation);
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): KeywordSkillCardEntriesField {
         return deserializeKeywordSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -20808,7 +21282,9 @@ export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
     entries: entries,
   } satisfies KeywordSkillCard;
 }
-export function serializeKeywordSkillCardInput(val: any): SerializedData {
+export function serializeKeywordSkillCardInput(
+  val: KeywordSkillCardInput
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -20828,7 +21304,7 @@ export function serializeKeywordSkillCardInput(val: any): SerializedData {
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
     ['entries']: val.entries.map(function (
       item: KeywordSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeKeywordSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -20855,7 +21331,9 @@ export function deserializeKeywordSkillCardInput(
   const invocation: KeywordSkillCardInvocationField =
     deserializeKeywordSkillCardInvocationField(val.invocation);
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): KeywordSkillCardEntriesField {
         return deserializeKeywordSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -20870,7 +21348,7 @@ export function deserializeKeywordSkillCardInput(
   } satisfies KeywordSkillCardInput;
 }
 export function serializeIntegrationMappingSlackOptions(
-  val: any
+  val: IntegrationMappingSlackOptions
 ): SerializedData {
   return {
     ['is_access_management_disabled']:
@@ -20891,7 +21369,7 @@ export function deserializeIntegrationMappingSlackOptions(
   } satisfies IntegrationMappingSlackOptions;
 }
 export function serializeIntegrationMappingPartnerItemSlackTypeField(
-  val: any
+  val: IntegrationMappingPartnerItemSlackTypeField
 ): SerializedData {
   return val;
 }
@@ -20912,7 +21390,7 @@ export function deserializeIntegrationMappingPartnerItemSlackTypeField(
   });
 }
 export function serializeIntegrationMappingPartnerItemSlack(
-  val: any
+  val: IntegrationMappingPartnerItemSlack
 ): SerializedData {
   return {
     ['type']: serializeIntegrationMappingPartnerItemSlackTypeField(val.type),
@@ -20940,7 +21418,7 @@ export function deserializeIntegrationMappingPartnerItemSlack(
   } satisfies IntegrationMappingPartnerItemSlack;
 }
 export function serializeIntegrationMappingPartnerItemSlackInput(
-  val: any
+  val: IntegrationMappingPartnerItemSlackInput
 ): SerializedData {
   return {
     ['type']:
@@ -20972,7 +21450,9 @@ export function deserializeIntegrationMappingPartnerItemSlackInput(
     slackOrgId: slackOrgId,
   } satisfies IntegrationMappingPartnerItemSlackInput;
 }
-export function serializeIntegrationMappingTypeField(val: any): SerializedData {
+export function serializeIntegrationMappingTypeField(
+  val: IntegrationMappingTypeField
+): SerializedData {
   return val;
 }
 export function deserializeIntegrationMappingTypeField(
@@ -20990,7 +21470,9 @@ export function deserializeIntegrationMappingTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeIntegrationMapping(val: any): SerializedData {
+export function serializeIntegrationMapping(
+  val: IntegrationMapping
+): SerializedData {
   const base: any = serializeIntegrationMappingBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -21073,14 +21555,16 @@ export function deserializeIntegrationMapping(val: any): IntegrationMapping {
     integrationType: integrationType,
   } satisfies IntegrationMapping;
 }
-export function serializeIntegrationMappings(val: any): SerializedData {
+export function serializeIntegrationMappings(
+  val: IntegrationMappings
+): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: IntegrationMapping): any {
+        : (val.entries.map(function (item: IntegrationMapping): SerializedData {
             return serializeIntegrationMapping(item);
           }) as readonly any[]),
   };
@@ -21093,7 +21577,7 @@ export function deserializeIntegrationMappings(val: any): IntegrationMappings {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): IntegrationMapping {
           return deserializeIntegrationMapping(itm);
         }) as readonly any[])
       : [];
@@ -21104,7 +21588,7 @@ export function deserializeIntegrationMappings(val: any): IntegrationMappings {
   } satisfies IntegrationMappings;
 }
 export function serializeIntegrationMappingBoxItemSlackTypeField(
-  val: any
+  val: IntegrationMappingBoxItemSlackTypeField
 ): SerializedData {
   return val;
 }
@@ -21125,7 +21609,7 @@ export function deserializeIntegrationMappingBoxItemSlackTypeField(
   });
 }
 export function serializeIntegrationMappingBoxItemSlack(
-  val: any
+  val: IntegrationMappingBoxItemSlack
 ): SerializedData {
   return {
     ['type']: serializeIntegrationMappingBoxItemSlackTypeField(val.type),
@@ -21141,7 +21625,7 @@ export function deserializeIntegrationMappingBoxItemSlack(
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlack;
 }
 export function serializeIntegrationMappingBoxItemSlackInput(
-  val: any
+  val: IntegrationMappingBoxItemSlackInput
 ): SerializedData {
   return {
     ['type']:
@@ -21162,7 +21646,7 @@ export function deserializeIntegrationMappingBoxItemSlackInput(
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlackInput;
 }
 export function serializeIntegrationMappingSlackCreateRequest(
-  val: any
+  val: IntegrationMappingSlackCreateRequest
 ): SerializedData {
   return {
     ['partner_item']: serializeIntegrationMappingPartnerItemSlack(
@@ -21192,7 +21676,9 @@ export function deserializeIntegrationMappingSlackCreateRequest(
     options: options,
   } satisfies IntegrationMappingSlackCreateRequest;
 }
-export function serializeRoleVariableTypeField(val: any): SerializedData {
+export function serializeRoleVariableTypeField(
+  val: RoleVariableTypeField
+): SerializedData {
   return val;
 }
 export function deserializeRoleVariableTypeField(
@@ -21211,7 +21697,7 @@ export function deserializeRoleVariableTypeField(
   });
 }
 export function serializeRoleVariableVariableTypeField(
-  val: any
+  val: RoleVariableVariableTypeField
 ): SerializedData {
   return val;
 }
@@ -21231,7 +21717,7 @@ export function deserializeRoleVariableVariableTypeField(
   });
 }
 export function serializeRoleVariableVariableValueField(
-  val: any
+  val: RoleVariableVariableValueField
 ): SerializedData {
   return val;
 }
@@ -21268,7 +21754,7 @@ export function deserializeRoleVariableVariableValueField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeRoleVariable(val: any): SerializedData {
+export function serializeRoleVariable(val: RoleVariable): SerializedData {
   return {
     ['type']: serializeRoleVariableTypeField(val.type),
     ['variable_type']: serializeRoleVariableVariableTypeField(val.variableType),
@@ -21291,7 +21777,9 @@ export function deserializeRoleVariable(val: any): RoleVariable {
     variableValue: variableValue,
   } satisfies RoleVariable;
 }
-export function serializeRoleVariableInput(val: any): SerializedData {
+export function serializeRoleVariableInput(
+  val: RoleVariableInput
+): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeRoleVariableTypeField(val.type),
@@ -21319,7 +21807,7 @@ export function deserializeRoleVariableInput(val: any): RoleVariableInput {
     variableValue: variableValue,
   } satisfies RoleVariableInput;
 }
-export function serializeOutcome(val: any): SerializedData {
+export function serializeOutcome(val: Outcome): SerializedData {
   return {
     ['id']: val.id,
     ['collaborators']:
@@ -21370,7 +21858,9 @@ export function deserializeOutcome(val: any): Outcome {
     role: role,
   } satisfies Outcome;
 }
-export function serializeTimelineSkillCardTypeField(val: any): SerializedData {
+export function serializeTimelineSkillCardTypeField(
+  val: TimelineSkillCardTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTimelineSkillCardTypeField(
@@ -21389,7 +21879,7 @@ export function deserializeTimelineSkillCardTypeField(
   });
 }
 export function serializeTimelineSkillCardSkillCardTypeField(
-  val: any
+  val: TimelineSkillCardSkillCardTypeField
 ): SerializedData {
   return val;
 }
@@ -21409,7 +21899,7 @@ export function deserializeTimelineSkillCardSkillCardTypeField(
   });
 }
 export function serializeTimelineSkillCardSkillCardTitleField(
-  val: any
+  val: TimelineSkillCardSkillCardTitleField
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -21427,7 +21917,7 @@ export function deserializeTimelineSkillCardSkillCardTitleField(
   } satisfies TimelineSkillCardSkillCardTitleField;
 }
 export function serializeTimelineSkillCardSkillTypeField(
-  val: any
+  val: TimelineSkillCardSkillTypeField
 ): SerializedData {
   return val;
 }
@@ -21446,7 +21936,9 @@ export function deserializeTimelineSkillCardSkillTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTimelineSkillCardSkillField(val: any): SerializedData {
+export function serializeTimelineSkillCardSkillField(
+  val: TimelineSkillCardSkillField
+): SerializedData {
   return {
     ['type']: serializeTimelineSkillCardSkillTypeField(val.type),
     ['id']: val.id,
@@ -21461,7 +21953,7 @@ export function deserializeTimelineSkillCardSkillField(
   return { type: type, id: id } satisfies TimelineSkillCardSkillField;
 }
 export function serializeTimelineSkillCardSkillFieldInput(
-  val: any
+  val: TimelineSkillCardSkillFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -21482,7 +21974,7 @@ export function deserializeTimelineSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies TimelineSkillCardSkillFieldInput;
 }
 export function serializeTimelineSkillCardInvocationTypeField(
-  val: any
+  val: TimelineSkillCardInvocationTypeField
 ): SerializedData {
   return val;
 }
@@ -21502,7 +21994,7 @@ export function deserializeTimelineSkillCardInvocationTypeField(
   });
 }
 export function serializeTimelineSkillCardInvocationField(
-  val: any
+  val: TimelineSkillCardInvocationField
 ): SerializedData {
   return {
     ['type']: serializeTimelineSkillCardInvocationTypeField(val.type),
@@ -21518,7 +22010,7 @@ export function deserializeTimelineSkillCardInvocationField(
   return { type: type, id: id } satisfies TimelineSkillCardInvocationField;
 }
 export function serializeTimelineSkillCardInvocationFieldInput(
-  val: any
+  val: TimelineSkillCardInvocationFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -21539,7 +22031,7 @@ export function deserializeTimelineSkillCardInvocationFieldInput(
   return { type: type, id: id } satisfies TimelineSkillCardInvocationFieldInput;
 }
 export function serializeTimelineSkillCardEntriesAppearsField(
-  val: any
+  val: TimelineSkillCardEntriesAppearsField
 ): SerializedData {
   return {
     ['start']: val.start == void 0 ? void 0 : val.start,
@@ -21557,7 +22049,7 @@ export function deserializeTimelineSkillCardEntriesAppearsField(
   } satisfies TimelineSkillCardEntriesAppearsField;
 }
 export function serializeTimelineSkillCardEntriesField(
-  val: any
+  val: TimelineSkillCardEntriesField
 ): SerializedData {
   return {
     ['text']: val.text == void 0 ? void 0 : val.text,
@@ -21566,7 +22058,7 @@ export function serializeTimelineSkillCardEntriesField(
         ? void 0
         : (val.appears.map(function (
             item: TimelineSkillCardEntriesAppearsField
-          ): any {
+          ): SerializedData {
             return serializeTimelineSkillCardEntriesAppearsField(item);
           }) as readonly any[]),
     ['image_url']: val.imageUrl == void 0 ? void 0 : val.imageUrl,
@@ -21580,7 +22072,9 @@ export function deserializeTimelineSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : sdIsList(val.appears)
-      ? (val.appears.map(function (itm: SerializedData): any {
+      ? (val.appears.map(function (
+          itm: SerializedData
+        ): TimelineSkillCardEntriesAppearsField {
           return deserializeTimelineSkillCardEntriesAppearsField(itm);
         }) as readonly any[])
       : [];
@@ -21592,7 +22086,9 @@ export function deserializeTimelineSkillCardEntriesField(
     imageUrl: imageUrl,
   } satisfies TimelineSkillCardEntriesField;
 }
-export function serializeTimelineSkillCard(val: any): SerializedData {
+export function serializeTimelineSkillCard(
+  val: TimelineSkillCard
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -21609,7 +22105,7 @@ export function serializeTimelineSkillCard(val: any): SerializedData {
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
       item: TimelineSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTimelineSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -21634,7 +22130,9 @@ export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TimelineSkillCardEntriesField {
         return deserializeTimelineSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -21649,7 +22147,9 @@ export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
     entries: entries,
   } satisfies TimelineSkillCard;
 }
-export function serializeTimelineSkillCardInput(val: any): SerializedData {
+export function serializeTimelineSkillCardInput(
+  val: TimelineSkillCardInput
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -21670,7 +22170,7 @@ export function serializeTimelineSkillCardInput(val: any): SerializedData {
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
       item: TimelineSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTimelineSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -21701,7 +22201,9 @@ export function deserializeTimelineSkillCardInput(
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TimelineSkillCardEntriesField {
         return deserializeTimelineSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -21717,7 +22219,7 @@ export function deserializeTimelineSkillCardInput(
   } satisfies TimelineSkillCardInput;
 }
 export function serializeTranscriptSkillCardTypeField(
-  val: any
+  val: TranscriptSkillCardTypeField
 ): SerializedData {
   return val;
 }
@@ -21737,7 +22239,7 @@ export function deserializeTranscriptSkillCardTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillCardTypeField(
-  val: any
+  val: TranscriptSkillCardSkillCardTypeField
 ): SerializedData {
   return val;
 }
@@ -21757,7 +22259,7 @@ export function deserializeTranscriptSkillCardSkillCardTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillCardTitleField(
-  val: any
+  val: TranscriptSkillCardSkillCardTitleField
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -21775,7 +22277,7 @@ export function deserializeTranscriptSkillCardSkillCardTitleField(
   } satisfies TranscriptSkillCardSkillCardTitleField;
 }
 export function serializeTranscriptSkillCardSkillTypeField(
-  val: any
+  val: TranscriptSkillCardSkillTypeField
 ): SerializedData {
   return val;
 }
@@ -21795,7 +22297,7 @@ export function deserializeTranscriptSkillCardSkillTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillField(
-  val: any
+  val: TranscriptSkillCardSkillField
 ): SerializedData {
   return {
     ['type']: serializeTranscriptSkillCardSkillTypeField(val.type),
@@ -21811,7 +22313,7 @@ export function deserializeTranscriptSkillCardSkillField(
   return { type: type, id: id } satisfies TranscriptSkillCardSkillField;
 }
 export function serializeTranscriptSkillCardSkillFieldInput(
-  val: any
+  val: TranscriptSkillCardSkillFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -21832,7 +22334,7 @@ export function deserializeTranscriptSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies TranscriptSkillCardSkillFieldInput;
 }
 export function serializeTranscriptSkillCardInvocationTypeField(
-  val: any
+  val: TranscriptSkillCardInvocationTypeField
 ): SerializedData {
   return val;
 }
@@ -21853,7 +22355,7 @@ export function deserializeTranscriptSkillCardInvocationTypeField(
   });
 }
 export function serializeTranscriptSkillCardInvocationField(
-  val: any
+  val: TranscriptSkillCardInvocationField
 ): SerializedData {
   return {
     ['type']: serializeTranscriptSkillCardInvocationTypeField(val.type),
@@ -21869,7 +22371,7 @@ export function deserializeTranscriptSkillCardInvocationField(
   return { type: type, id: id } satisfies TranscriptSkillCardInvocationField;
 }
 export function serializeTranscriptSkillCardInvocationFieldInput(
-  val: any
+  val: TranscriptSkillCardInvocationFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -21893,7 +22395,7 @@ export function deserializeTranscriptSkillCardInvocationFieldInput(
   } satisfies TranscriptSkillCardInvocationFieldInput;
 }
 export function serializeTranscriptSkillCardEntriesAppearsField(
-  val: any
+  val: TranscriptSkillCardEntriesAppearsField
 ): SerializedData {
   return { ['start']: val.start == void 0 ? void 0 : val.start };
 }
@@ -21904,7 +22406,7 @@ export function deserializeTranscriptSkillCardEntriesAppearsField(
   return { start: start } satisfies TranscriptSkillCardEntriesAppearsField;
 }
 export function serializeTranscriptSkillCardEntriesField(
-  val: any
+  val: TranscriptSkillCardEntriesField
 ): SerializedData {
   return {
     ['text']: val.text == void 0 ? void 0 : val.text,
@@ -21913,7 +22415,7 @@ export function serializeTranscriptSkillCardEntriesField(
         ? void 0
         : (val.appears.map(function (
             item: TranscriptSkillCardEntriesAppearsField
-          ): any {
+          ): SerializedData {
             return serializeTranscriptSkillCardEntriesAppearsField(item);
           }) as readonly any[]),
   };
@@ -21926,7 +22428,9 @@ export function deserializeTranscriptSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : sdIsList(val.appears)
-      ? (val.appears.map(function (itm: SerializedData): any {
+      ? (val.appears.map(function (
+          itm: SerializedData
+        ): TranscriptSkillCardEntriesAppearsField {
           return deserializeTranscriptSkillCardEntriesAppearsField(itm);
         }) as readonly any[])
       : [];
@@ -21935,7 +22439,9 @@ export function deserializeTranscriptSkillCardEntriesField(
     appears: appears,
   } satisfies TranscriptSkillCardEntriesField;
 }
-export function serializeTranscriptSkillCard(val: any): SerializedData {
+export function serializeTranscriptSkillCard(
+  val: TranscriptSkillCard
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -21952,7 +22458,7 @@ export function serializeTranscriptSkillCard(val: any): SerializedData {
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
       item: TranscriptSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTranscriptSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -21977,7 +22483,9 @@ export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
   const entries: readonly TranscriptSkillCardEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TranscriptSkillCardEntriesField {
         return deserializeTranscriptSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -21992,7 +22500,9 @@ export function deserializeTranscriptSkillCard(val: any): TranscriptSkillCard {
     entries: entries,
   } satisfies TranscriptSkillCard;
 }
-export function serializeTranscriptSkillCardInput(val: any): SerializedData {
+export function serializeTranscriptSkillCardInput(
+  val: TranscriptSkillCardInput
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -22013,7 +22523,7 @@ export function serializeTranscriptSkillCardInput(val: any): SerializedData {
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
       item: TranscriptSkillCardEntriesField
-    ): any {
+    ): SerializedData {
       return serializeTranscriptSkillCardEntriesField(item);
     }) as readonly any[],
   };
@@ -22044,7 +22554,9 @@ export function deserializeTranscriptSkillCardInput(
   const entries: readonly TranscriptSkillCardEntriesField[] = sdIsList(
     val.entries
   )
-    ? (val.entries.map(function (itm: SerializedData): any {
+    ? (val.entries.map(function (
+        itm: SerializedData
+      ): TranscriptSkillCardEntriesField {
         return deserializeTranscriptSkillCardEntriesField(itm);
       }) as readonly any[])
     : [];
@@ -22059,7 +22571,9 @@ export function deserializeTranscriptSkillCardInput(
     entries: entries,
   } satisfies TranscriptSkillCardInput;
 }
-export function serializeStatusSkillCardTypeField(val: any): SerializedData {
+export function serializeStatusSkillCardTypeField(
+  val: StatusSkillCardTypeField
+): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardTypeField(
@@ -22078,7 +22592,7 @@ export function deserializeStatusSkillCardTypeField(
   });
 }
 export function serializeStatusSkillCardSkillCardTypeField(
-  val: any
+  val: StatusSkillCardSkillCardTypeField
 ): SerializedData {
   return val;
 }
@@ -22098,7 +22612,7 @@ export function deserializeStatusSkillCardSkillCardTypeField(
   });
 }
 export function serializeStatusSkillCardSkillCardTitleField(
-  val: any
+  val: StatusSkillCardSkillCardTitleField
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -22116,7 +22630,7 @@ export function deserializeStatusSkillCardSkillCardTitleField(
   } satisfies StatusSkillCardSkillCardTitleField;
 }
 export function serializeStatusSkillCardStatusCodeField(
-  val: any
+  val: StatusSkillCardStatusCodeField
 ): SerializedData {
   return val;
 }
@@ -22147,7 +22661,9 @@ export function deserializeStatusSkillCardStatusCodeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeStatusSkillCardStatusField(val: any): SerializedData {
+export function serializeStatusSkillCardStatusField(
+  val: StatusSkillCardStatusField
+): SerializedData {
   return {
     ['code']: serializeStatusSkillCardStatusCodeField(val.code),
     ['message']: val.message == void 0 ? void 0 : val.message,
@@ -22163,7 +22679,7 @@ export function deserializeStatusSkillCardStatusField(
   return { code: code, message: message } satisfies StatusSkillCardStatusField;
 }
 export function serializeStatusSkillCardSkillTypeField(
-  val: any
+  val: StatusSkillCardSkillTypeField
 ): SerializedData {
   return val;
 }
@@ -22182,7 +22698,9 @@ export function deserializeStatusSkillCardSkillTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeStatusSkillCardSkillField(val: any): SerializedData {
+export function serializeStatusSkillCardSkillField(
+  val: StatusSkillCardSkillField
+): SerializedData {
   return {
     ['type']: serializeStatusSkillCardSkillTypeField(val.type),
     ['id']: val.id,
@@ -22197,7 +22715,7 @@ export function deserializeStatusSkillCardSkillField(
   return { type: type, id: id } satisfies StatusSkillCardSkillField;
 }
 export function serializeStatusSkillCardSkillFieldInput(
-  val: any
+  val: StatusSkillCardSkillFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -22218,7 +22736,7 @@ export function deserializeStatusSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies StatusSkillCardSkillFieldInput;
 }
 export function serializeStatusSkillCardInvocationTypeField(
-  val: any
+  val: StatusSkillCardInvocationTypeField
 ): SerializedData {
   return val;
 }
@@ -22238,7 +22756,7 @@ export function deserializeStatusSkillCardInvocationTypeField(
   });
 }
 export function serializeStatusSkillCardInvocationField(
-  val: any
+  val: StatusSkillCardInvocationField
 ): SerializedData {
   return {
     ['type']: serializeStatusSkillCardInvocationTypeField(val.type),
@@ -22254,7 +22772,7 @@ export function deserializeStatusSkillCardInvocationField(
   return { type: type, id: id } satisfies StatusSkillCardInvocationField;
 }
 export function serializeStatusSkillCardInvocationFieldInput(
-  val: any
+  val: StatusSkillCardInvocationFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -22274,7 +22792,7 @@ export function deserializeStatusSkillCardInvocationFieldInput(
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardInvocationFieldInput;
 }
-export function serializeStatusSkillCard(val: any): SerializedData {
+export function serializeStatusSkillCard(val: StatusSkillCard): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -22320,7 +22838,9 @@ export function deserializeStatusSkillCard(val: any): StatusSkillCard {
     invocation: invocation,
   } satisfies StatusSkillCard;
 }
-export function serializeStatusSkillCardInput(val: any): SerializedData {
+export function serializeStatusSkillCardInput(
+  val: StatusSkillCardInput
+): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -22411,7 +22931,9 @@ export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardO
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function serializeSkillCardsMetadata(val: any): SerializedData {
+export function serializeSkillCardsMetadata(
+  val: SkillCardsMetadata
+): SerializedData {
   return {
     ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
     ['$id']: val.id == void 0 ? void 0 : val.id,
@@ -22426,7 +22948,7 @@ export function serializeSkillCardsMetadata(val: any): SerializedData {
         ? void 0
         : (val.cards.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
-          ): any {
+          ): SerializedData {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
               item
             );
@@ -22453,7 +22975,9 @@ export function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata {
     val.cards == void 0
       ? void 0
       : sdIsList(val.cards)
-      ? (val.cards.map(function (itm: SerializedData): any {
+      ? (val.cards.map(function (
+          itm: SerializedData
+        ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             itm
           );
@@ -22472,7 +22996,7 @@ export function deserializeSkillCardsMetadata(val: any): SkillCardsMetadata {
   } satisfies SkillCardsMetadata;
 }
 export function serializeSignRequestCreateSignerRoleField(
-  val: any
+  val: SignRequestCreateSignerRoleField
 ): SerializedData {
   return val;
 }
@@ -22497,7 +23021,9 @@ export function deserializeSignRequestCreateSignerRoleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSignRequestCreateSigner(val: any): SerializedData {
+export function serializeSignRequestCreateSigner(
+  val: SignRequestCreateSigner
+): SerializedData {
   return {
     ['email']: val.email == void 0 ? void 0 : val.email,
     ['role']:
@@ -22567,7 +23093,9 @@ export function deserializeSignRequestCreateSigner(
     signerGroupId: signerGroupId,
   } satisfies SignRequestCreateSigner;
 }
-export function serializeSignRequestPrefillTag(val: any): SerializedData {
+export function serializeSignRequestPrefillTag(
+  val: SignRequestPrefillTag
+): SerializedData {
   return {
     ['document_tag_id']:
       val.documentTagId == void 0 ? void 0 : val.documentTagId,
@@ -22597,7 +23125,7 @@ export function deserializeSignRequestPrefillTag(
   } satisfies SignRequestPrefillTag;
 }
 export function serializeSignRequestSignerInputTypeField(
-  val: any
+  val: SignRequestSignerInputTypeField
 ): SerializedData {
   return val;
 }
@@ -22632,7 +23160,7 @@ export function deserializeSignRequestSignerInputTypeField(
   });
 }
 export function serializeSignRequestSignerInputContentTypeField(
-  val: any
+  val: SignRequestSignerInputContentTypeField
 ): SerializedData {
   return val;
 }
@@ -22694,7 +23222,9 @@ export function deserializeSignRequestSignerInputContentTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSignRequestSignerInput(val: any): SerializedData {
+export function serializeSignRequestSignerInput(
+  val: SignRequestSignerInput
+): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -22751,7 +23281,7 @@ export function deserializeSignRequestSignerInput(
   } satisfies SignRequestSignerInput;
 }
 export function serializeSignRequestSignerSignerDecisionTypeField(
-  val: any
+  val: SignRequestSignerSignerDecisionTypeField
 ): SerializedData {
   return val;
 }
@@ -22775,7 +23305,7 @@ export function deserializeSignRequestSignerSignerDecisionTypeField(
   });
 }
 export function serializeSignRequestSignerSignerDecisionField(
-  val: any
+  val: SignRequestSignerSignerDecisionField
 ): SerializedData {
   return {
     ['type']:
@@ -22805,7 +23335,9 @@ export function deserializeSignRequestSignerSignerDecisionField(
     additionalInfo: additionalInfo,
   } satisfies SignRequestSignerSignerDecisionField;
 }
-export function serializeSignRequestSigner(val: any): SerializedData {
+export function serializeSignRequestSigner(
+  val: SignRequestSigner
+): SerializedData {
   const base: any = serializeSignRequestCreateSigner(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -22824,7 +23356,9 @@ export function serializeSignRequestSigner(val: any): SerializedData {
       ['inputs']:
         val.inputs == void 0
           ? void 0
-          : (val.inputs.map(function (item: SignRequestSignerInput): any {
+          : (val.inputs.map(function (
+              item: SignRequestSignerInput
+            ): SerializedData {
               return serializeSignRequestSignerInput(item);
             }) as readonly any[]),
       ['embed_url']: val.embedUrl == void 0 ? void 0 : val.embedUrl,
@@ -22844,7 +23378,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     val.inputs == void 0
       ? void 0
       : sdIsList(val.inputs)
-      ? (val.inputs.map(function (itm: SerializedData): any {
+      ? (val.inputs.map(function (itm: SerializedData): SignRequestSignerInput {
           return deserializeSignRequestSignerInput(itm);
         }) as readonly any[])
       : [];
@@ -22897,7 +23431,7 @@ export function deserializeSignRequestSigner(val: any): SignRequestSigner {
     signerGroupId: signerGroupId,
   } satisfies SignRequestSigner;
 }
-export function serializeSignRequestBase(val: any): SerializedData {
+export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
   return {
     ['is_document_preparation_needed']:
       val.isDocumentPreparationNeeded == void 0
@@ -22918,7 +23452,9 @@ export function serializeSignRequestBase(val: any): SerializedData {
     ['prefill_tags']:
       val.prefillTags == void 0
         ? void 0
-        : (val.prefillTags.map(function (item: SignRequestPrefillTag): any {
+        : (val.prefillTags.map(function (
+            item: SignRequestPrefillTag
+          ): SerializedData {
             return serializeSignRequestPrefillTag(item);
           }) as readonly any[]),
     ['days_valid']: val.daysValid == void 0 ? void 0 : val.daysValid,
@@ -22954,7 +23490,9 @@ export function deserializeSignRequestBase(val: any): SignRequestBase {
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (itm: SerializedData): any {
+      ? (val.prefill_tags.map(function (
+          itm: SerializedData
+        ): SignRequestPrefillTag {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -22984,7 +23522,9 @@ export function deserializeSignRequestBase(val: any): SignRequestBase {
     templateId: templateId,
   } satisfies SignRequestBase;
 }
-export function serializeSignRequestTypeField(val: any): SerializedData {
+export function serializeSignRequestTypeField(
+  val: SignRequestTypeField
+): SerializedData {
   return val;
 }
 export function deserializeSignRequestTypeField(
@@ -23002,7 +23542,9 @@ export function deserializeSignRequestTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSignRequestStatusField(val: any): SerializedData {
+export function serializeSignRequestStatusField(
+  val: SignRequestStatusField
+): SerializedData {
   return val;
 }
 export function deserializeSignRequestStatusField(
@@ -23053,12 +23595,14 @@ export function deserializeSignRequestStatusField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSignRequestSignFilesField(val: any): SerializedData {
+export function serializeSignRequestSignFilesField(
+  val: SignRequestSignFilesField
+): SerializedData {
   return {
     ['files']:
       val.files == void 0
         ? void 0
-        : (val.files.map(function (item: FileMini): any {
+        : (val.files.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),
     ['is_ready_for_download']:
@@ -23072,7 +23616,7 @@ export function deserializeSignRequestSignFilesField(
     val.files == void 0
       ? void 0
       : sdIsList(val.files)
-      ? (val.files.map(function (itm: SerializedData): any {
+      ? (val.files.map(function (itm: SerializedData): FileMini {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -23083,7 +23627,7 @@ export function deserializeSignRequestSignFilesField(
     isReadyForDownload: isReadyForDownload,
   } satisfies SignRequestSignFilesField;
 }
-export function serializeSignRequest(val: any): SerializedData {
+export function serializeSignRequest(val: SignRequest): SerializedData {
   const base: any = serializeSignRequestBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "SignRequest"' });
@@ -23096,13 +23640,15 @@ export function serializeSignRequest(val: any): SerializedData {
       ['source_files']:
         val.sourceFiles == void 0
           ? void 0
-          : (val.sourceFiles.map(function (item: FileBase): any {
+          : (val.sourceFiles.map(function (item: FileBase): SerializedData {
               return serializeFileBase(item);
             }) as readonly any[]),
       ['signers']:
         val.signers == void 0
           ? void 0
-          : (val.signers.map(function (item: SignRequestSigner): any {
+          : (val.signers.map(function (
+              item: SignRequestSigner
+            ): SerializedData {
               return serializeSignRequestSigner(item);
             }) as readonly any[]),
       ['signature_color']:
@@ -23137,7 +23683,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): any {
+      ? (val.source_files.map(function (itm: SerializedData): FileBase {
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
@@ -23145,7 +23691,7 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (itm: SerializedData): any {
+      ? (val.signers.map(function (itm: SerializedData): SignRequestSigner {
           return deserializeSignRequestSigner(itm);
         }) as readonly any[])
       : [];
@@ -23195,7 +23741,9 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (itm: SerializedData): any {
+      ? (val.prefill_tags.map(function (
+          itm: SerializedData
+        ): SignRequestPrefillTag {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -23236,14 +23784,14 @@ export function deserializeSignRequest(val: any): SignRequest {
     templateId: templateId,
   } satisfies SignRequest;
 }
-export function serializeSignRequests(val: any): SerializedData {
+export function serializeSignRequests(val: SignRequests): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SignRequest): any {
+        : (val.entries.map(function (item: SignRequest): SerializedData {
             return serializeSignRequest(item);
           }) as readonly any[]),
   };
@@ -23256,7 +23804,7 @@ export function deserializeSignRequests(val: any): SignRequests {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): SignRequest {
           return deserializeSignRequest(itm);
         }) as readonly any[])
       : [];
@@ -23267,7 +23815,7 @@ export function deserializeSignRequests(val: any): SignRequests {
   } satisfies SignRequests;
 }
 export function serializeSignRequestCreateRequestSignatureColorField(
-  val: any
+  val: SignRequestCreateRequestSignatureColorField
 ): SerializedData {
   return val;
 }
@@ -23293,7 +23841,9 @@ export function deserializeSignRequestCreateRequestSignatureColorField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeSignRequestCreateRequest(val: any): SerializedData {
+export function serializeSignRequestCreateRequest(
+  val: SignRequestCreateRequest
+): SerializedData {
   const base: any = serializeSignRequestBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -23306,7 +23856,7 @@ export function serializeSignRequestCreateRequest(val: any): SerializedData {
       ['source_files']:
         val.sourceFiles == void 0
           ? void 0
-          : (val.sourceFiles.map(function (item: FileBase): any {
+          : (val.sourceFiles.map(function (item: FileBase): SerializedData {
               return serializeFileBase(item);
             }) as readonly any[]),
       ['signature_color']:
@@ -23317,7 +23867,7 @@ export function serializeSignRequestCreateRequest(val: any): SerializedData {
             ),
       ['signers']: val.signers.map(function (
         item: SignRequestCreateSigner
-      ): any {
+      ): SerializedData {
         return serializeSignRequestCreateSigner(item);
       }) as readonly any[],
       ['parent_folder']:
@@ -23334,7 +23884,7 @@ export function deserializeSignRequestCreateRequest(
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): any {
+      ? (val.source_files.map(function (itm: SerializedData): FileBase {
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
@@ -23347,7 +23897,7 @@ export function deserializeSignRequestCreateRequest(
           val.signature_color
         );
   const signers: readonly SignRequestCreateSigner[] = sdIsList(val.signers)
-    ? (val.signers.map(function (itm: SerializedData): any {
+    ? (val.signers.map(function (itm: SerializedData): SignRequestCreateSigner {
         return deserializeSignRequestCreateSigner(itm);
       }) as readonly any[])
     : [];
@@ -23378,7 +23928,9 @@ export function deserializeSignRequestCreateRequest(
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (itm: SerializedData): any {
+      ? (val.prefill_tags.map(function (
+          itm: SerializedData
+        ): SignRequestPrefillTag {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
@@ -23413,7 +23965,7 @@ export function deserializeSignRequestCreateRequest(
   } satisfies SignRequestCreateRequest;
 }
 export function serializeTemplateSignerInputTypeField(
-  val: any
+  val: TemplateSignerInputTypeField
 ): SerializedData {
   return val;
 }
@@ -23451,7 +24003,7 @@ export function deserializeTemplateSignerInputTypeField(
   });
 }
 export function serializeTemplateSignerInputContentTypeField(
-  val: any
+  val: TemplateSignerInputContentTypeField
 ): SerializedData {
   return val;
 }
@@ -23513,7 +24065,7 @@ export function deserializeTemplateSignerInputContentTypeField(
   });
 }
 export function serializeTemplateSignerInputCoordinatesField(
-  val: any
+  val: TemplateSignerInputCoordinatesField
 ): SerializedData {
   return {
     ['x']: val.x == void 0 ? void 0 : val.x,
@@ -23528,7 +24080,7 @@ export function deserializeTemplateSignerInputCoordinatesField(
   return { x: x, y: y } satisfies TemplateSignerInputCoordinatesField;
 }
 export function serializeTemplateSignerInputDimensionsField(
-  val: any
+  val: TemplateSignerInputDimensionsField
 ): SerializedData {
   return {
     ['width']: val.width == void 0 ? void 0 : val.width,
@@ -23545,7 +24097,9 @@ export function deserializeTemplateSignerInputDimensionsField(
     height: height,
   } satisfies TemplateSignerInputDimensionsField;
 }
-export function serializeTemplateSignerInput(val: any): SerializedData {
+export function serializeTemplateSignerInput(
+  val: TemplateSignerInput
+): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
@@ -23569,7 +24123,7 @@ export function serializeTemplateSignerInput(val: any): SerializedData {
       ['dropdown_choices']:
         val.dropdownChoices == void 0
           ? void 0
-          : (val.dropdownChoices.map(function (item: string): any {
+          : (val.dropdownChoices.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
       ['group_id']: val.groupId == void 0 ? void 0 : val.groupId,
@@ -23604,9 +24158,7 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.dropdown_choices == void 0
       ? void 0
       : sdIsList(val.dropdown_choices)
-      ? (val.dropdown_choices.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
+      ? val.dropdown_choices
       : [];
   const groupId: undefined | string =
     val.group_id == void 0 ? void 0 : val.group_id;
@@ -23647,7 +24199,9 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     dateValue: dateValue,
   } satisfies TemplateSignerInput;
 }
-export function serializeTemplateSignerRoleField(val: any): SerializedData {
+export function serializeTemplateSignerRoleField(
+  val: TemplateSignerRoleField
+): SerializedData {
   return val;
 }
 export function deserializeTemplateSignerRoleField(
@@ -23671,12 +24225,12 @@ export function deserializeTemplateSignerRoleField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTemplateSigner(val: any): SerializedData {
+export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
   return {
     ['inputs']:
       val.inputs == void 0
         ? void 0
-        : (val.inputs.map(function (item: TemplateSignerInput): any {
+        : (val.inputs.map(function (item: TemplateSignerInput): SerializedData {
             return serializeTemplateSignerInput(item);
           }) as readonly any[]),
     ['email']: val.email == void 0 ? void 0 : val.email,
@@ -23693,7 +24247,7 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
     val.inputs == void 0
       ? void 0
       : sdIsList(val.inputs)
-      ? (val.inputs.map(function (itm: SerializedData): any {
+      ? (val.inputs.map(function (itm: SerializedData): TemplateSignerInput {
           return deserializeTemplateSignerInput(itm);
         }) as readonly any[])
       : [];
@@ -23714,7 +24268,9 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
     signerGroupId: signerGroupId,
   } satisfies TemplateSigner;
 }
-export function serializeSignTemplateTypeField(val: any): SerializedData {
+export function serializeSignTemplateTypeField(
+  val: SignTemplateTypeField
+): SerializedData {
   return val;
 }
 export function deserializeSignTemplateTypeField(
@@ -23733,7 +24289,7 @@ export function deserializeSignTemplateTypeField(
   });
 }
 export function serializeSignTemplateAdditionalInfoNonEditableField(
-  val: any
+  val: SignTemplateAdditionalInfoNonEditableField
 ): SerializedData {
   return val;
 }
@@ -23769,7 +24325,7 @@ export function deserializeSignTemplateAdditionalInfoNonEditableField(
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredSignersField(
-  val: any
+  val: SignTemplateAdditionalInfoRequiredSignersField
 ): SerializedData {
   return val;
 }
@@ -23790,7 +24346,7 @@ export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredField(
-  val: any
+  val: SignTemplateAdditionalInfoRequiredField
 ): SerializedData {
   return {
     ['signers']:
@@ -23798,10 +24354,10 @@ export function serializeSignTemplateAdditionalInfoRequiredField(
         ? void 0
         : (val.signers.map(function (
             item: readonly SignTemplateAdditionalInfoRequiredSignersField[]
-          ): any {
+          ): SerializedData {
             return item.map(function (
               item: SignTemplateAdditionalInfoRequiredSignersField
-            ): any {
+            ): SerializedData {
               return serializeSignTemplateAdditionalInfoRequiredSignersField(
                 item
               );
@@ -23818,9 +24374,13 @@ export function deserializeSignTemplateAdditionalInfoRequiredField(
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (itm: SerializedData): any {
+      ? (val.signers.map(function (
+          itm: SerializedData
+        ): readonly SignTemplateAdditionalInfoRequiredSignersField[] {
           return sdIsList(itm)
-            ? (itm.map(function (itm: SerializedData): any {
+            ? (itm.map(function (
+                itm: SerializedData
+              ): SignTemplateAdditionalInfoRequiredSignersField {
                 return deserializeSignTemplateAdditionalInfoRequiredSignersField(
                   itm
                 );
@@ -23831,7 +24391,7 @@ export function deserializeSignTemplateAdditionalInfoRequiredField(
   return { signers: signers } satisfies SignTemplateAdditionalInfoRequiredField;
 }
 export function serializeSignTemplateAdditionalInfoField(
-  val: any
+  val: SignTemplateAdditionalInfoField
 ): SerializedData {
   return {
     ['non_editable']:
@@ -23839,7 +24399,7 @@ export function serializeSignTemplateAdditionalInfoField(
         ? void 0
         : (val.nonEditable.map(function (
             item: SignTemplateAdditionalInfoNonEditableField
-          ): any {
+          ): SerializedData {
             return serializeSignTemplateAdditionalInfoNonEditableField(item);
           }) as readonly any[]),
     ['required']:
@@ -23857,7 +24417,9 @@ export function deserializeSignTemplateAdditionalInfoField(
     val.non_editable == void 0
       ? void 0
       : sdIsList(val.non_editable)
-      ? (val.non_editable.map(function (itm: SerializedData): any {
+      ? (val.non_editable.map(function (
+          itm: SerializedData
+        ): SignTemplateAdditionalInfoNonEditableField {
           return deserializeSignTemplateAdditionalInfoNonEditableField(itm);
         }) as readonly any[])
       : [];
@@ -23871,7 +24433,7 @@ export function deserializeSignTemplateAdditionalInfoField(
   } satisfies SignTemplateAdditionalInfoField;
 }
 export function serializeSignTemplateReadySignLinkField(
-  val: any
+  val: SignTemplateReadySignLinkField
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -23910,7 +24472,7 @@ export function deserializeSignTemplateReadySignLinkField(
   } satisfies SignTemplateReadySignLinkField;
 }
 export function serializeSignTemplateCustomBrandingField(
-  val: any
+  val: SignTemplateCustomBrandingField
 ): SerializedData {
   return {
     ['company_name']: val.companyName == void 0 ? void 0 : val.companyName,
@@ -23939,7 +24501,7 @@ export function deserializeSignTemplateCustomBrandingField(
     emailFooterText: emailFooterText,
   } satisfies SignTemplateCustomBrandingField;
 }
-export function serializeSignTemplate(val: any): SerializedData {
+export function serializeSignTemplate(val: SignTemplate): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeSignTemplateTypeField(val.type),
@@ -23955,7 +24517,7 @@ export function serializeSignTemplate(val: any): SerializedData {
     ['source_files']:
       val.sourceFiles == void 0
         ? void 0
-        : (val.sourceFiles.map(function (item: FileMini): any {
+        : (val.sourceFiles.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),
     ['are_fields_locked']:
@@ -23973,7 +24535,7 @@ export function serializeSignTemplate(val: any): SerializedData {
     ['signers']:
       val.signers == void 0
         ? void 0
-        : (val.signers.map(function (item: TemplateSigner): any {
+        : (val.signers.map(function (item: TemplateSigner): SerializedData {
             return serializeTemplateSigner(item);
           }) as readonly any[]),
     ['additional_info']:
@@ -24009,7 +24571,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): any {
+      ? (val.source_files.map(function (itm: SerializedData): FileMini {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
@@ -24029,7 +24591,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (itm: SerializedData): any {
+      ? (val.signers.map(function (itm: SerializedData): TemplateSigner {
           return deserializeTemplateSigner(itm);
         }) as readonly any[])
       : [];
@@ -24065,7 +24627,7 @@ export function deserializeSignTemplate(val: any): SignTemplate {
     customBranding: customBranding,
   } satisfies SignTemplate;
 }
-export function serializeSignTemplates(val: any): SerializedData {
+export function serializeSignTemplates(val: SignTemplates): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -24073,7 +24635,7 @@ export function serializeSignTemplates(val: any): SerializedData {
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: SignTemplate): any {
+        : (val.entries.map(function (item: SignTemplate): SerializedData {
             return serializeSignTemplate(item);
           }) as readonly any[]),
   };
@@ -24088,7 +24650,7 @@ export function deserializeSignTemplates(val: any): SignTemplates {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): SignTemplate {
           return deserializeSignTemplate(itm);
         }) as readonly any[])
       : [];
@@ -24100,7 +24662,7 @@ export function deserializeSignTemplates(val: any): SignTemplates {
   } satisfies SignTemplates;
 }
 export function serializeShieldInformationBarrierReportDetailsDetailsField(
-  val: any
+  val: ShieldInformationBarrierReportDetailsDetailsField
 ): SerializedData {
   return { ['folder_id']: val.folderId == void 0 ? void 0 : val.folderId };
 }
@@ -24114,7 +24676,7 @@ export function deserializeShieldInformationBarrierReportDetailsDetailsField(
   } satisfies ShieldInformationBarrierReportDetailsDetailsField;
 }
 export function serializeShieldInformationBarrierReportDetails(
-  val: any
+  val: ShieldInformationBarrierReportDetails
 ): SerializedData {
   return {
     ['details']:
@@ -24137,7 +24699,7 @@ export function deserializeShieldInformationBarrierReportDetails(
   return { details: details } satisfies ShieldInformationBarrierReportDetails;
 }
 export function serializeShieldInformationBarrierReportStatusField(
-  val: any
+  val: ShieldInformationBarrierReportStatusField
 ): SerializedData {
   return val;
 }
@@ -24167,7 +24729,7 @@ export function deserializeShieldInformationBarrierReportStatusField(
   });
 }
 export function serializeShieldInformationBarrierReport(
-  val: any
+  val: ShieldInformationBarrierReport
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierReportBase(val);
   if (!sdIsMap(base)) {
@@ -24243,7 +24805,7 @@ export function deserializeShieldInformationBarrierReport(
   } satisfies ShieldInformationBarrierReport;
 }
 export function serializeShieldInformationBarrierReports(
-  val: any
+  val: ShieldInformationBarrierReports
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -24253,7 +24815,7 @@ export function serializeShieldInformationBarrierReports(
         ? void 0
         : (val.entries.map(function (
             item: ShieldInformationBarrierReport
-          ): any {
+          ): SerializedData {
             return serializeShieldInformationBarrierReport(item);
           }) as readonly any[]),
   };
@@ -24268,7 +24830,9 @@ export function deserializeShieldInformationBarrierReports(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (
+          itm: SerializedData
+        ): ShieldInformationBarrierReport {
           return deserializeShieldInformationBarrierReport(itm);
         }) as readonly any[])
       : [];
@@ -24278,7 +24842,9 @@ export function deserializeShieldInformationBarrierReports(
     entries: entries,
   } satisfies ShieldInformationBarrierReports;
 }
-export function serializeTrackingCodeTypeField(val: any): SerializedData {
+export function serializeTrackingCodeTypeField(
+  val: TrackingCodeTypeField
+): SerializedData {
   return val;
 }
 export function deserializeTrackingCodeTypeField(
@@ -24296,7 +24862,7 @@ export function deserializeTrackingCodeTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeTrackingCode(val: any): SerializedData {
+export function serializeTrackingCode(val: TrackingCode): SerializedData {
   return {
     ['type']:
       val.type == void 0 ? void 0 : serializeTrackingCodeTypeField(val.type),
@@ -24311,7 +24877,9 @@ export function deserializeTrackingCode(val: any): TrackingCode {
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   return { type: type, name: name, value: value } satisfies TrackingCode;
 }
-export function serializeUserFullRoleField(val: any): SerializedData {
+export function serializeUserFullRoleField(
+  val: UserFullRoleField
+): SerializedData {
   return val;
 }
 export function deserializeUserFullRoleField(val: any): UserFullRoleField {
@@ -24333,7 +24901,9 @@ export function deserializeUserFullRoleField(val: any): UserFullRoleField {
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUserFullEnterpriseTypeField(val: any): SerializedData {
+export function serializeUserFullEnterpriseTypeField(
+  val: UserFullEnterpriseTypeField
+): SerializedData {
   return val;
 }
 export function deserializeUserFullEnterpriseTypeField(
@@ -24351,7 +24921,9 @@ export function deserializeUserFullEnterpriseTypeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUserFullEnterpriseField(val: any): SerializedData {
+export function serializeUserFullEnterpriseField(
+  val: UserFullEnterpriseField
+): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['type']:
@@ -24372,7 +24944,7 @@ export function deserializeUserFullEnterpriseField(
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return { id: id, type: type, name: name } satisfies UserFullEnterpriseField;
 }
-export function serializeUserFull(val: any): SerializedData {
+export function serializeUserFull(val: UserFull): SerializedData {
   const base: any = serializeUser(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UserFull"' });
@@ -24385,7 +24957,9 @@ export function serializeUserFull(val: any): SerializedData {
       ['tracking_codes']:
         val.trackingCodes == void 0
           ? void 0
-          : (val.trackingCodes.map(function (item: TrackingCode): any {
+          : (val.trackingCodes.map(function (
+              item: TrackingCode
+            ): SerializedData {
               return serializeTrackingCode(item);
             }) as readonly any[]),
       ['can_see_managed_users']:
@@ -24411,7 +24985,7 @@ export function serializeUserFull(val: any): SerializedData {
       ['my_tags']:
         val.myTags == void 0
           ? void 0
-          : (val.myTags.map(function (item: string): any {
+          : (val.myTags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
       ['hostname']: val.hostname == void 0 ? void 0 : val.hostname,
@@ -24429,7 +25003,7 @@ export function deserializeUserFull(val: any): UserFull {
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): any {
+      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
@@ -24454,13 +25028,7 @@ export function deserializeUserFull(val: any): UserFull {
       ? void 0
       : deserializeUserFullEnterpriseField(val.enterprise);
   const myTags: undefined | readonly string[] =
-    val.my_tags == void 0
-      ? void 0
-      : sdIsList(val.my_tags)
-      ? (val.my_tags.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.my_tags == void 0 ? void 0 : sdIsList(val.my_tags) ? val.my_tags : [];
   const hostname: undefined | string =
     val.hostname == void 0 ? void 0 : val.hostname;
   const isPlatformAccessOnly: undefined | boolean =
@@ -24532,7 +25100,9 @@ export function deserializeUserFull(val: any): UserFull {
     type: type,
   } satisfies UserFull;
 }
-export function serializeUsersOrderDirectionField(val: any): SerializedData {
+export function serializeUsersOrderDirectionField(
+  val: UsersOrderDirectionField
+): SerializedData {
   return val;
 }
 export function deserializeUsersOrderDirectionField(
@@ -24553,7 +25123,7 @@ export function deserializeUsersOrderDirectionField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUsersOrderField(val: any): SerializedData {
+export function serializeUsersOrderField(val: UsersOrderField): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
     ['direction']:
@@ -24570,7 +25140,7 @@ export function deserializeUsersOrderField(val: any): UsersOrderField {
       : deserializeUsersOrderDirectionField(val.direction);
   return { by: by, direction: direction } satisfies UsersOrderField;
 }
-export function serializeUsers(val: any): SerializedData {
+export function serializeUsers(val: Users): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -24578,13 +25148,13 @@ export function serializeUsers(val: any): SerializedData {
     ['order']:
       val.order == void 0
         ? void 0
-        : (val.order.map(function (item: UsersOrderField): any {
+        : (val.order.map(function (item: UsersOrderField): SerializedData {
             return serializeUsersOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: UserFull): any {
+        : (val.entries.map(function (item: UserFull): SerializedData {
             return serializeUserFull(item);
           }) as readonly any[]),
   };
@@ -24598,7 +25168,7 @@ export function deserializeUsers(val: any): Users {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): any {
+      ? (val.order.map(function (itm: SerializedData): UsersOrderField {
           return deserializeUsersOrderField(itm);
         }) as readonly any[])
       : [];
@@ -24606,7 +25176,7 @@ export function deserializeUsers(val: any): Users {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): any {
+      ? (val.entries.map(function (itm: SerializedData): UserFull {
           return deserializeUserFull(itm);
         }) as readonly any[])
       : [];
@@ -24618,7 +25188,9 @@ export function deserializeUsers(val: any): Users {
     entries: entries,
   } satisfies Users;
 }
-export function serializeMetadataFieldFilterString(val: any): SerializedData {
+export function serializeMetadataFieldFilterString(
+  val: MetadataFieldFilterString
+): SerializedData {
   return val;
 }
 export function deserializeMetadataFieldFilterString(
@@ -24626,7 +25198,9 @@ export function deserializeMetadataFieldFilterString(
 ): MetadataFieldFilterString {
   return val;
 }
-export function serializeMetadataFieldFilterFloat(val: any): SerializedData {
+export function serializeMetadataFieldFilterFloat(
+  val: MetadataFieldFilterFloat
+): SerializedData {
   return val;
 }
 export function deserializeMetadataFieldFilterFloat(
@@ -24635,13 +25209,13 @@ export function deserializeMetadataFieldFilterFloat(
   return val;
 }
 export function serializeMetadataFieldFilterMultiSelect(
-  val: any
+  val: MetadataFieldFilterMultiSelect
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
       k,
       (function (v: any): any {
-        return v.map(function (item: string): any {
+        return v.map(function (item: string): SerializedData {
           return item;
         }) as readonly any[];
       })(v),
@@ -24656,7 +25230,7 @@ export function deserializeMetadataFieldFilterMultiSelect(
   return val;
 }
 export function serializeMetadataFieldFilterFloatRangeValue(
-  val: any
+  val: MetadataFieldFilterFloatRangeValue
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : val.lt,
@@ -24671,7 +25245,7 @@ export function deserializeMetadataFieldFilterFloatRangeValue(
   return { lt: lt, gt: gt } satisfies MetadataFieldFilterFloatRangeValue;
 }
 export function serializeMetadataFieldFilterFloatRange(
-  val: any
+  val: MetadataFieldFilterFloatRange
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -24688,7 +25262,7 @@ export function deserializeMetadataFieldFilterFloatRange(
   return val;
 }
 export function serializeMetadataFieldFilterDateRangeValue(
-  val: any
+  val: MetadataFieldFilterDateRangeValue
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : serializeDateTime(val.lt),
@@ -24705,7 +25279,7 @@ export function deserializeMetadataFieldFilterDateRangeValue(
   return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRangeValue;
 }
 export function serializeMetadataFieldFilterDateRange(
-  val: any
+  val: MetadataFieldFilterDateRange
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -24721,7 +25295,9 @@ export function deserializeMetadataFieldFilterDateRange(
 ): MetadataFieldFilterDateRange {
   return val;
 }
-export function serializeMetadataFilterScopeField(val: any): SerializedData {
+export function serializeMetadataFilterScopeField(
+  val: MetadataFilterScopeField
+): SerializedData {
   return val;
 }
 export function deserializeMetadataFilterScopeField(
@@ -24817,7 +25393,7 @@ export function deserializeMetadataFilterFiltersField(
     message: "Can't deserialize MetadataFilterFiltersField",
   });
 }
-export function serializeMetadataFilter(val: any): SerializedData {
+export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
   return {
     ['scope']:
       val.scope == void 0

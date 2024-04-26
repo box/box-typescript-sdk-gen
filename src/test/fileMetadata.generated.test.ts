@@ -16,8 +16,6 @@ import { serializeUpdateFileMetadataByIdRequestBodyOpField } from '../managers/f
 import { deserializeUpdateFileMetadataByIdRequestBodyOpField } from '../managers/fileMetadata.generated.js';
 import { serializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
 import { deserializeDeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
-import { serializeMetadataTemplate } from '../schemas.generated.js';
-import { deserializeMetadataTemplate } from '../schemas.generated.js';
 import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
@@ -38,7 +36,6 @@ import { UpdateFileMetadataByIdScope } from '../managers/fileMetadata.generated.
 import { UpdateFileMetadataByIdRequestBody } from '../managers/fileMetadata.generated.js';
 import { UpdateFileMetadataByIdRequestBodyOpField } from '../managers/fileMetadata.generated.js';
 import { DeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.js';
-import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
@@ -57,19 +54,22 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export const client: any = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<any> {
-  const file: any = await uploadNewFile();
-  const fileMetadata: any = await client.fileMetadata.getFileMetadata(file.id);
+  const file: FileFull = await uploadNewFile();
+  const fileMetadata: Metadatas = await client.fileMetadata.getFileMetadata(
+    file.id
+  );
   if (!(fileMetadata.entries!.length == 0)) {
     throw new Error('Assertion failed');
   }
-  const createdMetadata: any = await client.fileMetadata.createFileMetadataById(
-    file.id,
-    'global' as CreateFileMetadataByIdScope,
-    'properties',
-    { ['abc']: 'xyz' }
-  );
+  const createdMetadata: MetadataFull =
+    await client.fileMetadata.createFileMetadataById(
+      file.id,
+      'global' as CreateFileMetadataByIdScope,
+      'properties',
+      { ['abc']: 'xyz' }
+    );
   if (!((toString(createdMetadata.template) as string) == 'properties')) {
     throw new Error('Assertion failed');
   }
@@ -79,16 +79,17 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
   if (!(createdMetadata.version == 0)) {
     throw new Error('Assertion failed');
   }
-  const receivedMetadata: any = await client.fileMetadata.getFileMetadataById(
-    file.id,
-    'global' as GetFileMetadataByIdScope,
-    'properties'
-  );
+  const receivedMetadata: MetadataFull =
+    await client.fileMetadata.getFileMetadataById(
+      file.id,
+      'global' as GetFileMetadataByIdScope,
+      'properties'
+    );
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
     throw new Error('Assertion failed');
   }
-  const newValue: any = 'bar';
-  const updatedMetadata: any = await client.fileMetadata.updateFileMetadataById(
+  const newValue: string = 'bar';
+  await client.fileMetadata.updateFileMetadataById(
     file.id,
     'global' as UpdateFileMetadataByIdScope,
     'properties',
@@ -100,7 +101,7 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
       } satisfies UpdateFileMetadataByIdRequestBody,
     ]
   );
-  const receivedUpdatedMetadata: any =
+  const receivedUpdatedMetadata: MetadataFull =
     await client.fileMetadata.getFileMetadataById(
       file.id,
       'global' as GetFileMetadataByIdScope,
@@ -124,9 +125,9 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
   await client.files.deleteFileById(file.id);
 });
 test('testEnterpriseFileMetadata', async function testEnterpriseFileMetadata(): Promise<any> {
-  const file: any = await uploadNewFile();
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
+  const file: FileFull = await uploadNewFile();
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  await client.metadataTemplates.createMetadataTemplate({
     scope: 'enterprise',
     displayName: templateKey,
     templateKey: templateKey,
@@ -177,18 +178,19 @@ test('testEnterpriseFileMetadata', async function testEnterpriseFileMetadata(): 
       } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     ],
   } satisfies CreateMetadataTemplateRequestBody);
-  const createdMetadata: any = await client.fileMetadata.createFileMetadataById(
-    file.id,
-    'enterprise' as CreateFileMetadataByIdScope,
-    templateKey,
-    {
-      ['name']: 'John',
-      ['age']: 23,
-      ['birthDate']: '2001-01-03T02:20:50.520Z',
-      ['countryCode']: 'US',
-      ['sports']: ['basketball', 'tennis'],
-    }
-  );
+  const createdMetadata: MetadataFull =
+    await client.fileMetadata.createFileMetadataById(
+      file.id,
+      'enterprise' as CreateFileMetadataByIdScope,
+      templateKey,
+      {
+        ['name']: 'John',
+        ['age']: 23,
+        ['birthDate']: '2001-01-03T02:20:50.520Z',
+        ['countryCode']: 'US',
+        ['sports']: ['basketball', 'tennis'],
+      }
+    );
   if (!((toString(createdMetadata.template) as string) == templateKey)) {
     throw new Error('Assertion failed');
   }
@@ -204,7 +206,7 @@ test('testEnterpriseFileMetadata', async function testEnterpriseFileMetadata(): 
   if (!(createdMetadata.extraData!.countryCode == 'US')) {
     throw new Error('Assertion failed');
   }
-  const sports: any = createdMetadata.extraData!.sports;
+  const sports: readonly string[] = createdMetadata.extraData!.sports;
   if (!(sports[0] == 'basketball')) {
     throw new Error('Assertion failed');
   }

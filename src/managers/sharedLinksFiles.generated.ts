@@ -331,14 +331,16 @@ export class SharedLinksFilesManager {
     headersInput: FindFileForSharedLinkHeadersInput,
     optionalsInput: FindFileForSharedLinkOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new FindFileForSharedLinkHeaders({
-      ifNoneMatch: headersInput.ifNoneMatch,
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
-    });
-    const optionals: any = new FindFileForSharedLinkOptionals({
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const headers: FindFileForSharedLinkHeaders =
+      new FindFileForSharedLinkHeaders({
+        ifNoneMatch: headersInput.ifNoneMatch,
+        boxapi: headersInput.boxapi,
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const optionals: FindFileForSharedLinkOptionals =
+      new FindFileForSharedLinkOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -378,10 +380,11 @@ export class SharedLinksFilesManager {
     queryParams: GetSharedLinkForFileQueryParams,
     optionalsInput: GetSharedLinkForFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new GetSharedLinkForFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetSharedLinkForFileOptionals =
+      new GetSharedLinkForFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -415,10 +418,11 @@ export class SharedLinksFilesManager {
     queryParams: AddShareLinkToFileQueryParams,
     optionalsInput: AddShareLinkToFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new AddShareLinkToFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddShareLinkToFileOptionals =
+      new AddShareLinkToFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -454,10 +458,11 @@ export class SharedLinksFilesManager {
     queryParams: UpdateSharedLinkOnFileQueryParams,
     optionalsInput: UpdateSharedLinkOnFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new UpdateSharedLinkOnFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateSharedLinkOnFileOptionals =
+      new UpdateSharedLinkOnFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -493,10 +498,11 @@ export class SharedLinksFilesManager {
     queryParams: RemoveSharedLinkFromFileQueryParams,
     optionalsInput: RemoveSharedLinkFromFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const optionals: any = new RemoveSharedLinkFromFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RemoveSharedLinkFromFileOptionals =
+      new RemoveSharedLinkFromFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -532,7 +538,7 @@ export interface SharedLinksFilesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToFileRequestBodySharedLinkAccessField(
-  val: any
+  val: AddShareLinkToFileRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -559,7 +565,7 @@ export function deserializeAddShareLinkToFileRequestBodySharedLinkAccessField(
   });
 }
 export function serializeAddShareLinkToFileRequestBodySharedLinkPermissionsField(
-  val: any
+  val: AddShareLinkToFileRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -583,7 +589,7 @@ export function deserializeAddShareLinkToFileRequestBodySharedLinkPermissionsFie
   } satisfies AddShareLinkToFileRequestBodySharedLinkPermissionsField;
 }
 export function serializeAddShareLinkToFileRequestBodySharedLinkField(
-  val: any
+  val: AddShareLinkToFileRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -636,7 +642,7 @@ export function deserializeAddShareLinkToFileRequestBodySharedLinkField(
   } satisfies AddShareLinkToFileRequestBodySharedLinkField;
 }
 export function serializeAddShareLinkToFileRequestBody(
-  val: any
+  val: AddShareLinkToFileRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -657,7 +663,7 @@ export function deserializeAddShareLinkToFileRequestBody(
   return { sharedLink: sharedLink } satisfies AddShareLinkToFileRequestBody;
 }
 export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateSharedLinkOnFileRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -684,7 +690,7 @@ export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessFiel
   });
 }
 export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField(
-  val: any
+  val: UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -708,7 +714,7 @@ export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkPermission
   } satisfies UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkField(
-  val: any
+  val: UpdateSharedLinkOnFileRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -763,7 +769,7 @@ export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkField(
   } satisfies UpdateSharedLinkOnFileRequestBodySharedLinkField;
 }
 export function serializeUpdateSharedLinkOnFileRequestBody(
-  val: any
+  val: UpdateSharedLinkOnFileRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -788,7 +794,7 @@ export function deserializeUpdateSharedLinkOnFileRequestBody(
   return { sharedLink: sharedLink } satisfies UpdateSharedLinkOnFileRequestBody;
 }
 export function serializeRemoveSharedLinkFromFileRequestBodySharedLinkField(
-  val: any
+  val: RemoveSharedLinkFromFileRequestBodySharedLinkField
 ): SerializedData {
   return {};
 }
@@ -798,7 +804,7 @@ export function deserializeRemoveSharedLinkFromFileRequestBodySharedLinkField(
   return {} satisfies RemoveSharedLinkFromFileRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromFileRequestBody(
-  val: any
+  val: RemoveSharedLinkFromFileRequestBody
 ): SerializedData {
   return {
     ['shared_link']:

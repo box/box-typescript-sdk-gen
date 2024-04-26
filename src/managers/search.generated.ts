@@ -159,10 +159,11 @@ export class SearchManager {
     requestBody: MetadataQuery,
     optionalsInput: SearchByMetadataQueryOptionalsInput = {}
   ): Promise<MetadataQueryResults> {
-    const optionals: any = new SearchByMetadataQueryOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: SearchByMetadataQueryOptionals =
+      new SearchByMetadataQueryOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -193,7 +194,7 @@ export class SearchManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
-    const headers: any = new SearchForContentHeaders({
+    const headers: SearchForContentHeaders = new SearchForContentHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -272,7 +273,7 @@ export interface SearchManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeSearchForContentQueryParamsScopeField(
-  val: any
+  val: SearchForContentQueryParamsScopeField
 ): SerializedData {
   return val;
 }
@@ -295,7 +296,7 @@ export function deserializeSearchForContentQueryParamsScopeField(
   });
 }
 export function serializeSearchForContentQueryParamsContentTypesField(
-  val: any
+  val: SearchForContentQueryParamsContentTypesField
 ): SerializedData {
   return val;
 }
@@ -328,7 +329,7 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
   });
 }
 export function serializeSearchForContentQueryParamsTypeField(
-  val: any
+  val: SearchForContentQueryParamsTypeField
 ): SerializedData {
   return val;
 }
@@ -354,7 +355,7 @@ export function deserializeSearchForContentQueryParamsTypeField(
   });
 }
 export function serializeSearchForContentQueryParamsTrashContentField(
-  val: any
+  val: SearchForContentQueryParamsTrashContentField
 ): SerializedData {
   return val;
 }
@@ -381,7 +382,7 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   });
 }
 export function serializeSearchForContentQueryParamsSortField(
-  val: any
+  val: SearchForContentQueryParamsSortField
 ): SerializedData {
   return val;
 }
@@ -404,7 +405,7 @@ export function deserializeSearchForContentQueryParamsSortField(
   });
 }
 export function serializeSearchForContentQueryParamsDirectionField(
-  val: any
+  val: SearchForContentQueryParamsDirectionField
 ): SerializedData {
   return val;
 }

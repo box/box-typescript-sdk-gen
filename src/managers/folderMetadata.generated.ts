@@ -290,10 +290,11 @@ export class FolderMetadataManager {
     folderId: string,
     optionalsInput: GetFolderMetadataOptionalsInput = {}
   ): Promise<Metadatas> {
-    const optionals: any = new GetFolderMetadataOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFolderMetadataOptionals =
+      new GetFolderMetadataOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -323,10 +324,11 @@ export class FolderMetadataManager {
     templateKey: string,
     optionalsInput: GetFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new GetFolderMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFolderMetadataByIdOptionals =
+      new GetFolderMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -360,10 +362,11 @@ export class FolderMetadataManager {
     requestBody: CreateFolderMetadataByIdRequestBody,
     optionalsInput: CreateFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new CreateFolderMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateFolderMetadataByIdOptionals =
+      new CreateFolderMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -399,10 +402,11 @@ export class FolderMetadataManager {
     requestBody: readonly UpdateFolderMetadataByIdRequestBody[],
     optionalsInput: UpdateFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new UpdateFolderMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFolderMetadataByIdOptionals =
+      new UpdateFolderMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -439,10 +443,11 @@ export class FolderMetadataManager {
     templateKey: string,
     optionalsInput: DeleteFolderMetadataByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFolderMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFolderMetadataByIdOptionals =
+      new DeleteFolderMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -474,7 +479,9 @@ export interface FolderMetadataManagerInput {
   readonly auth?: Authentication;
   readonly networkSession?: NetworkSession;
 }
-export function serializeGetFolderMetadataByIdScope(val: any): SerializedData {
+export function serializeGetFolderMetadataByIdScope(
+  val: GetFolderMetadataByIdScope
+): SerializedData {
   return val;
 }
 export function deserializeGetFolderMetadataByIdScope(
@@ -496,7 +503,7 @@ export function deserializeGetFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdScope(
-  val: any
+  val: CreateFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
@@ -519,7 +526,7 @@ export function deserializeCreateFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdRequestBody(
-  val: any
+  val: CreateFolderMetadataByIdRequestBody
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -538,7 +545,7 @@ export function deserializeCreateFolderMetadataByIdRequestBody(
   return val;
 }
 export function serializeUpdateFolderMetadataByIdScope(
-  val: any
+  val: UpdateFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }
@@ -561,7 +568,7 @@ export function deserializeUpdateFolderMetadataByIdScope(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
-  val: any
+  val: UpdateFolderMetadataByIdRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -597,7 +604,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBody(
-  val: any
+  val: UpdateFolderMetadataByIdRequestBody
 ): SerializedData {
   return {
     ['op']:
@@ -627,7 +634,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBody(
   } satisfies UpdateFolderMetadataByIdRequestBody;
 }
 export function serializeDeleteFolderMetadataByIdScope(
-  val: any
+  val: DeleteFolderMetadataByIdScope
 ): SerializedData {
   return val;
 }

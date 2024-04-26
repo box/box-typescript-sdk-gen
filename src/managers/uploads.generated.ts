@@ -236,11 +236,12 @@ export class UploadsManager {
     requestBody: UploadFileVersionRequestBody,
     optionalsInput: UploadFileVersionOptionalsInput = {}
   ): Promise<Files> {
-    const optionals: any = new UploadFileVersionOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UploadFileVersionOptionals =
+      new UploadFileVersionOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -298,7 +299,7 @@ export class UploadsManager {
     requestBody: UploadFileRequestBody,
     optionalsInput: UploadFileOptionalsInput = {}
   ): Promise<Files> {
-    const optionals: any = new UploadFileOptionals({
+    const optionals: UploadFileOptionals = new UploadFileOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -358,9 +359,10 @@ export class UploadsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<UploadUrl> {
-    const headers: any = new PreflightFileUploadCheckHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: PreflightFileUploadCheckHeaders =
+      new PreflightFileUploadCheckHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -388,7 +390,7 @@ export interface UploadsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUploadFileVersionRequestBodyAttributesField(
-  val: any
+  val: UploadFileVersionRequestBodyAttributesField
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -412,7 +414,7 @@ export function deserializeUploadFileVersionRequestBodyAttributesField(
   } satisfies UploadFileVersionRequestBodyAttributesField;
 }
 export function serializeUploadFileRequestBodyAttributesParentField(
-  val: any
+  val: UploadFileRequestBodyAttributesParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -423,7 +425,7 @@ export function deserializeUploadFileRequestBodyAttributesParentField(
   return { id: id } satisfies UploadFileRequestBodyAttributesParentField;
 }
 export function serializeUploadFileRequestBodyAttributesField(
-  val: any
+  val: UploadFileRequestBodyAttributesField
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -460,7 +462,7 @@ export function deserializeUploadFileRequestBodyAttributesField(
   } satisfies UploadFileRequestBodyAttributesField;
 }
 export function serializePreflightFileUploadCheckRequestBodyParentField(
-  val: any
+  val: PreflightFileUploadCheckRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -471,7 +473,7 @@ export function deserializePreflightFileUploadCheckRequestBodyParentField(
   return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
 }
 export function serializePreflightFileUploadCheckRequestBody(
-  val: any
+  val: PreflightFileUploadCheckRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

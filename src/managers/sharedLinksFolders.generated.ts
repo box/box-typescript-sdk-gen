@@ -336,14 +336,16 @@ export class SharedLinksFoldersManager {
     headersInput: FindFolderForSharedLinkHeadersInput,
     optionalsInput: FindFolderForSharedLinkOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new FindFolderForSharedLinkHeaders({
-      ifNoneMatch: headersInput.ifNoneMatch,
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
-    });
-    const optionals: any = new FindFolderForSharedLinkOptionals({
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const headers: FindFolderForSharedLinkHeaders =
+      new FindFolderForSharedLinkHeaders({
+        ifNoneMatch: headersInput.ifNoneMatch,
+        boxapi: headersInput.boxapi,
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const optionals: FindFolderForSharedLinkOptionals =
+      new FindFolderForSharedLinkOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -383,10 +385,11 @@ export class SharedLinksFoldersManager {
     queryParams: GetSharedLinkForFolderQueryParams,
     optionalsInput: GetSharedLinkForFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new GetSharedLinkForFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetSharedLinkForFolderOptionals =
+      new GetSharedLinkForFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -420,10 +423,11 @@ export class SharedLinksFoldersManager {
     queryParams: AddShareLinkToFolderQueryParams,
     optionalsInput: AddShareLinkToFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new AddShareLinkToFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddShareLinkToFolderOptionals =
+      new AddShareLinkToFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -459,10 +463,11 @@ export class SharedLinksFoldersManager {
     queryParams: UpdateSharedLinkOnFolderQueryParams,
     optionalsInput: UpdateSharedLinkOnFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new UpdateSharedLinkOnFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateSharedLinkOnFolderOptionals =
+      new UpdateSharedLinkOnFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -498,10 +503,11 @@ export class SharedLinksFoldersManager {
     queryParams: RemoveSharedLinkFromFolderQueryParams,
     optionalsInput: RemoveSharedLinkFromFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new RemoveSharedLinkFromFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RemoveSharedLinkFromFolderOptionals =
+      new RemoveSharedLinkFromFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -537,7 +543,7 @@ export interface SharedLinksFoldersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
-  val: any
+  val: AddShareLinkToFolderRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -564,7 +570,7 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   });
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
-  val: any
+  val: AddShareLinkToFolderRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -588,7 +594,7 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkPermissionsF
   } satisfies AddShareLinkToFolderRequestBodySharedLinkPermissionsField;
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkField(
-  val: any
+  val: AddShareLinkToFolderRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -643,7 +649,7 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkField(
   } satisfies AddShareLinkToFolderRequestBodySharedLinkField;
 }
 export function serializeAddShareLinkToFolderRequestBody(
-  val: any
+  val: AddShareLinkToFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -666,7 +672,7 @@ export function deserializeAddShareLinkToFolderRequestBody(
   return { sharedLink: sharedLink } satisfies AddShareLinkToFolderRequestBody;
 }
 export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -693,7 +699,7 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessFi
   });
 }
 export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
-  val: any
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -717,7 +723,7 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissi
   } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
-  val: any
+  val: UpdateSharedLinkOnFolderRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -772,7 +778,7 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
   } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkField;
 }
 export function serializeUpdateSharedLinkOnFolderRequestBody(
-  val: any
+  val: UpdateSharedLinkOnFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -799,7 +805,7 @@ export function deserializeUpdateSharedLinkOnFolderRequestBody(
   } satisfies UpdateSharedLinkOnFolderRequestBody;
 }
 export function serializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
-  val: any
+  val: RemoveSharedLinkFromFolderRequestBodySharedLinkField
 ): SerializedData {
   return {};
 }
@@ -809,7 +815,7 @@ export function deserializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
   return {} satisfies RemoveSharedLinkFromFolderRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromFolderRequestBody(
-  val: any
+  val: RemoveSharedLinkFromFolderRequestBody
 ): SerializedData {
   return {
     ['shared_link']:

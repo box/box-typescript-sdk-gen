@@ -220,12 +220,13 @@ export class TrashedWebLinksManager {
     webLinkId: string,
     optionalsInput: RestoreWeblinkFromTrashOptionalsInput = {}
   ): Promise<TrashWebLinkRestored> {
-    const optionals: any = new RestoreWeblinkFromTrashOptionals({
-      requestBody: optionalsInput.requestBody,
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RestoreWeblinkFromTrashOptionals =
+      new RestoreWeblinkFromTrashOptionals({
+        requestBody: optionalsInput.requestBody,
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
@@ -264,11 +265,12 @@ export class TrashedWebLinksManager {
     webLinkId: string,
     optionalsInput: GetTrashedWebLinkByIdOptionalsInput = {}
   ): Promise<TrashWebLink> {
-    const optionals: any = new GetTrashedWebLinkByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTrashedWebLinkByIdOptionals =
+      new GetTrashedWebLinkByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -305,10 +307,11 @@ export class TrashedWebLinksManager {
     webLinkId: string,
     optionalsInput: DeleteTrashedWebLinkByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteTrashedWebLinkByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteTrashedWebLinkByIdOptionals =
+      new DeleteTrashedWebLinkByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -338,7 +341,7 @@ export interface TrashedWebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
-  val: any
+  val: RestoreWeblinkFromTrashRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -349,7 +352,7 @@ export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
 export function serializeRestoreWeblinkFromTrashRequestBody(
-  val: any
+  val: RestoreWeblinkFromTrashRequestBody
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,

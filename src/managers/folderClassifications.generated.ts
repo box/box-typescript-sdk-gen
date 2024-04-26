@@ -277,10 +277,11 @@ export class FolderClassificationsManager {
     folderId: string,
     optionalsInput: GetClassificationOnFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new GetClassificationOnFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetClassificationOnFolderOptionals =
+      new GetClassificationOnFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -308,11 +309,12 @@ export class FolderClassificationsManager {
     folderId: string,
     optionalsInput: AddClassificationToFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new AddClassificationToFolderOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddClassificationToFolderOptionals =
+      new AddClassificationToFolderOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -344,10 +346,11 @@ export class FolderClassificationsManager {
     requestBody: readonly UpdateClassificationOnFolderRequestBody[],
     optionalsInput: UpdateClassificationOnFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new UpdateClassificationOnFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateClassificationOnFolderOptionals =
+      new UpdateClassificationOnFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -379,10 +382,11 @@ export class FolderClassificationsManager {
     folderId: string,
     optionalsInput: DeleteClassificationFromFolderOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteClassificationFromFolderOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteClassificationFromFolderOptionals =
+      new DeleteClassificationFromFolderOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -412,7 +416,7 @@ export interface FolderClassificationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationToFolderRequestBody(
-  val: any
+  val: AddClassificationToFolderRequestBody
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -433,7 +437,7 @@ export function deserializeAddClassificationToFolderRequestBody(
   } satisfies AddClassificationToFolderRequestBody;
 }
 export function serializeUpdateClassificationOnFolderRequestBodyOpField(
-  val: any
+  val: UpdateClassificationOnFolderRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -454,7 +458,7 @@ export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationOnFolderRequestBodyPathField(
-  val: any
+  val: UpdateClassificationOnFolderRequestBodyPathField
 ): SerializedData {
   return val;
 }
@@ -475,7 +479,7 @@ export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
   });
 }
 export function serializeUpdateClassificationOnFolderRequestBody(
-  val: any
+  val: UpdateClassificationOnFolderRequestBody
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationOnFolderRequestBodyOpField(val.op),
@@ -500,7 +504,7 @@ export function deserializeUpdateClassificationOnFolderRequestBody(
   } satisfies UpdateClassificationOnFolderRequestBody;
 }
 export function serializeUpdateClassificationOnFolderRequestBodyInput(
-  val: any
+  val: UpdateClassificationOnFolderRequestBodyInput
 ): SerializedData {
   return {
     ['op']:

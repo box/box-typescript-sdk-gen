@@ -231,10 +231,11 @@ export class ShieldInformationBarriersManager {
     shieldInformationBarrierId: string,
     optionalsInput: GetShieldInformationBarrierByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const optionals: any = new GetShieldInformationBarrierByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetShieldInformationBarrierByIdOptionals =
+      new GetShieldInformationBarrierByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -261,10 +262,11 @@ export class ShieldInformationBarriersManager {
     requestBody: UpdateShieldInformationBarrierStatusRequestBody,
     optionalsInput: UpdateShieldInformationBarrierStatusOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const optionals: any = new UpdateShieldInformationBarrierStatusOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateShieldInformationBarrierStatusOptionals =
+      new UpdateShieldInformationBarrierStatusOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -297,9 +299,10 @@ export class ShieldInformationBarriersManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<ShieldInformationBarriers> {
-    const headers: any = new GetShieldInformationBarriersHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetShieldInformationBarriersHeaders =
+      new GetShieldInformationBarriersHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -330,10 +333,11 @@ export class ShieldInformationBarriersManager {
     requestBody: CreateShieldInformationBarrierRequestBody,
     optionalsInput: CreateShieldInformationBarrierOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const optionals: any = new CreateShieldInformationBarrierOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateShieldInformationBarrierOptionals =
+      new CreateShieldInformationBarrierOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -363,7 +367,7 @@ export interface ShieldInformationBarriersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-  val: any
+  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField
 ): SerializedData {
   return val;
 }
@@ -387,7 +391,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
   });
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBody(
-  val: any
+  val: UpdateShieldInformationBarrierStatusRequestBody
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -411,7 +415,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   } satisfies UpdateShieldInformationBarrierStatusRequestBody;
 }
 export function serializeCreateShieldInformationBarrierRequestBody(
-  val: any
+  val: CreateShieldInformationBarrierRequestBody
 ): SerializedData {
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }

@@ -202,10 +202,11 @@ export class ShieldInformationBarrierReportsManager {
     queryParams: GetShieldInformationBarrierReportsQueryParams,
     optionalsInput: GetShieldInformationBarrierReportsOptionalsInput = {}
   ): Promise<ShieldInformationBarrierReports> {
-    const optionals: any = new GetShieldInformationBarrierReportsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetShieldInformationBarrierReportsOptionals =
+      new GetShieldInformationBarrierReportsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -241,10 +242,11 @@ export class ShieldInformationBarrierReportsManager {
     requestBody: ShieldInformationBarrierReference,
     optionalsInput: CreateShieldInformationBarrierReportOptionalsInput = {}
   ): Promise<ShieldInformationBarrierReport> {
-    const optionals: any = new CreateShieldInformationBarrierReportOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateShieldInformationBarrierReportOptionals =
+      new CreateShieldInformationBarrierReportOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -272,10 +274,11 @@ export class ShieldInformationBarrierReportsManager {
     shieldInformationBarrierReportId: string,
     optionalsInput: GetShieldInformationBarrierReportByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrierReport> {
-    const optionals: any = new GetShieldInformationBarrierReportByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetShieldInformationBarrierReportByIdOptionals =
+      new GetShieldInformationBarrierReportByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
