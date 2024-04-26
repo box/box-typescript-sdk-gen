@@ -4,6 +4,8 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeLegalHoldPolicy } from '../schemas.generated.js';
 import { deserializeLegalHoldPolicy } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { LegalHoldPolicies } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { LegalHoldPolicy } from '../schemas.generated.js';
@@ -18,6 +20,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -52,8 +55,8 @@ export interface GetLegalHoldPoliciesHeadersInput {
 export interface CreateLegalHoldPolicyRequestBody {
   readonly policyName: string;
   readonly description?: string;
-  readonly filterStartedAt?: string;
-  readonly filterEndedAt?: string;
+  readonly filterStartedAt?: DateTime;
+  readonly filterEndedAt?: DateTime;
   readonly isOngoing?: boolean;
 }
 export class CreateLegalHoldPolicyHeaders {
@@ -331,9 +334,13 @@ export function serializeCreateLegalHoldPolicyRequestBody(
     ['policy_name']: val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['filter_started_at']:
-      val.filterStartedAt == void 0 ? void 0 : val.filterStartedAt,
+      val.filterStartedAt == void 0
+        ? void 0
+        : serializeDateTime(val.filterStartedAt),
     ['filter_ended_at']:
-      val.filterEndedAt == void 0 ? void 0 : val.filterEndedAt,
+      val.filterEndedAt == void 0
+        ? void 0
+        : serializeDateTime(val.filterEndedAt),
     ['is_ongoing']: val.isOngoing == void 0 ? void 0 : val.isOngoing,
   };
 }
@@ -343,10 +350,14 @@ export function deserializeCreateLegalHoldPolicyRequestBody(
   const policyName: string = val.policy_name;
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
-  const filterStartedAt: undefined | string =
-    val.filter_started_at == void 0 ? void 0 : val.filter_started_at;
-  const filterEndedAt: undefined | string =
-    val.filter_ended_at == void 0 ? void 0 : val.filter_ended_at;
+  const filterStartedAt: undefined | DateTime =
+    val.filter_started_at == void 0
+      ? void 0
+      : deserializeDateTime(val.filter_started_at);
+  const filterEndedAt: undefined | DateTime =
+    val.filter_ended_at == void 0
+      ? void 0
+      : deserializeDateTime(val.filter_ended_at);
   const isOngoing: undefined | boolean =
     val.is_ongoing == void 0 ? void 0 : val.is_ongoing;
   return {

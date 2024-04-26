@@ -2,6 +2,8 @@ import { serializeCollaboration } from '../schemas.generated.js';
 import { deserializeCollaboration } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { Collaboration } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -15,6 +17,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -60,7 +63,7 @@ export type UpdateCollaborationByIdRequestBodyStatusField =
 export interface UpdateCollaborationByIdRequestBody {
   readonly role: UpdateCollaborationByIdRequestBodyRoleField;
   readonly status?: UpdateCollaborationByIdRequestBodyStatusField;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
   readonly canViewPath?: boolean;
 }
 export class UpdateCollaborationByIdHeaders {
@@ -128,7 +131,7 @@ export interface CreateCollaborationRequestBody {
   readonly role: CreateCollaborationRequestBodyRoleField;
   readonly isAccessOnly?: boolean;
   readonly canViewPath?: boolean;
-  readonly expiresAt?: string;
+  readonly expiresAt?: DateTime;
 }
 export interface CreateCollaborationQueryParams {
   readonly fields?: readonly string[];
@@ -396,7 +399,8 @@ export function serializeUpdateCollaborationByIdRequestBody(
       val.status == void 0
         ? void 0
         : serializeUpdateCollaborationByIdRequestBodyStatusField(val.status),
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
     ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
   };
 }
@@ -409,8 +413,8 @@ export function deserializeUpdateCollaborationByIdRequestBody(
     val.status == void 0
       ? void 0
       : deserializeUpdateCollaborationByIdRequestBodyStatusField(val.status);
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   const canViewPath: undefined | boolean =
     val.can_view_path == void 0 ? void 0 : val.can_view_path;
   return {
@@ -566,7 +570,8 @@ export function serializeCreateCollaborationRequestBody(
     ['role']: serializeCreateCollaborationRequestBodyRoleField(val.role),
     ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
     ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
-    ['expires_at']: val.expiresAt == void 0 ? void 0 : val.expiresAt,
+    ['expires_at']:
+      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
   };
 }
 export function deserializeCreateCollaborationRequestBody(
@@ -584,8 +589,8 @@ export function deserializeCreateCollaborationRequestBody(
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const canViewPath: undefined | boolean =
     val.can_view_path == void 0 ? void 0 : val.can_view_path;
-  const expiresAt: undefined | string =
-    val.expires_at == void 0 ? void 0 : val.expires_at;
+  const expiresAt: undefined | DateTime =
+    val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   return {
     item: item,
     accessibleBy: accessibleBy,
