@@ -159,11 +159,12 @@ export class GetEventsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetEventsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetEventsHeaders, 'extraHeaders'>>
+    fields: Omit<GetEventsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetEventsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetEventsHeadersInput {
@@ -178,11 +179,12 @@ export class GetEventsWithLongPollingHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'>
-      | Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
+    fields: Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'> &
+      Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetEventsWithLongPollingHeadersInput {
@@ -196,14 +198,18 @@ export class EventsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          EventsManager,
-          'networkSession' | 'getEvents' | 'getEventsWithLongPolling'
-        >
-      | Partial<Pick<EventsManager, 'networkSession'>>
+    fields: Omit<
+      EventsManager,
+      'networkSession' | 'getEvents' | 'getEventsWithLongPolling'
+    > &
+      Partial<Pick<EventsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getEvents(
     queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,

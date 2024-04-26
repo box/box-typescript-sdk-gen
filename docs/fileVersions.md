@@ -28,12 +28,8 @@ await client.fileVersions.getFileVersions(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileVersionsQueryParams`
-  - Query parameters of getFileVersions method
-- headersInput `GetFileVersionsHeadersInput`
-  - Headers of getFileVersions method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileVersionsOptionalsInput`
+  -
 
 ### Returns
 
@@ -67,12 +63,8 @@ await client.fileVersions.getFileVersionById(
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- queryParams `GetFileVersionByIdQueryParams`
-  - Query parameters of getFileVersionById method
-- headersInput `GetFileVersionByIdHeadersInput`
-  - Headers of getFileVersionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileVersionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -104,12 +96,8 @@ _Currently we don't have an example for calling `updateFileVersionById` in integ
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- requestBody `UpdateFileVersionByIdRequestBody`
-  - Request body of updateFileVersionById method
-- headersInput `UpdateFileVersionByIdHeadersInput`
-  - Headers of updateFileVersionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateFileVersionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -143,10 +131,8 @@ await client.fileVersions.deleteFileVersionById(
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - fileVersionId `string`
   - The ID of the file version Example: "1234"
-- headersInput `DeleteFileVersionByIdHeadersInput`
-  - Headers of deleteFileVersionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteFileVersionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -183,23 +169,19 @@ See the endpoint docs at
 
 ```ts
 await client.fileVersions.promoteFileVersion(file.id, {
-  id: fileVersions.entries![0].id,
-  type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
-} satisfies PromoteFileVersionRequestBody);
+  requestBody: {
+    id: fileVersions.entries![0].id,
+    type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
+  } satisfies PromoteFileVersionRequestBody,
+} satisfies PromoteFileVersionOptionalsInput);
 ```
 
 ### Arguments
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `PromoteFileVersionRequestBody`
-  - Request body of promoteFileVersion method
-- queryParams `PromoteFileVersionQueryParams`
-  - Query parameters of promoteFileVersion method
-- headersInput `PromoteFileVersionHeadersInput`
-  - Headers of promoteFileVersion method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `PromoteFileVersionOptionalsInput`
+  -
 
 ### Returns
 

@@ -28,6 +28,144 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateUserOptionals {
+  readonly queryParams: CreateUserQueryParams =
+    {} satisfies CreateUserQueryParams;
+  readonly headers: CreateUserHeaders = new CreateUserHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateUserOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateUserOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateUserOptionalsInput {
+  readonly queryParams?: CreateUserQueryParams;
+  readonly headers?: CreateUserHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetUserByIdOptionals {
+  readonly queryParams: GetUserByIdQueryParams =
+    {} satisfies GetUserByIdQueryParams;
+  readonly headers: GetUserByIdHeaders = new GetUserByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetUserByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetUserByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetUserByIdOptionalsInput {
+  readonly queryParams?: GetUserByIdQueryParams;
+  readonly headers?: GetUserByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateUserByIdOptionals {
+  readonly requestBody: UpdateUserByIdRequestBody =
+    {} satisfies UpdateUserByIdRequestBody;
+  readonly queryParams: UpdateUserByIdQueryParams =
+    {} satisfies UpdateUserByIdQueryParams;
+  readonly headers: UpdateUserByIdHeaders = new UpdateUserByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateUserByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateUserByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateUserByIdOptionalsInput {
+  readonly requestBody?: UpdateUserByIdRequestBody;
+  readonly queryParams?: UpdateUserByIdQueryParams;
+  readonly headers?: UpdateUserByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteUserByIdOptionals {
+  readonly queryParams: DeleteUserByIdQueryParams =
+    {} satisfies DeleteUserByIdQueryParams;
+  readonly headers: DeleteUserByIdHeaders = new DeleteUserByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteUserByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteUserByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteUserByIdOptionalsInput {
+  readonly queryParams?: DeleteUserByIdQueryParams;
+  readonly headers?: DeleteUserByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetUsersQueryParamsUserTypeField = 'all' | 'managed' | 'external';
 export interface GetUsersQueryParams {
   readonly filterTerm?: string;
@@ -44,11 +182,12 @@ export class GetUsersHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetUsersHeaders, 'extraHeaders'>
-      | Partial<Pick<GetUsersHeaders, 'extraHeaders'>>
+    fields: Omit<GetUsersHeaders, 'extraHeaders'> &
+      Partial<Pick<GetUsersHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetUsersHeadersInput {
@@ -92,11 +231,12 @@ export class CreateUserHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateUserHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateUserHeaders, 'extraHeaders'>>
+    fields: Omit<CreateUserHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateUserHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateUserHeadersInput {
@@ -114,11 +254,12 @@ export class GetUserMeHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetUserMeHeaders, 'extraHeaders'>
-      | Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>
+    fields: Omit<GetUserMeHeaders, 'extraHeaders'> &
+      Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetUserMeHeadersInput {
@@ -136,11 +277,12 @@ export class GetUserByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetUserByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetUserByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetUserByIdHeadersInput {
@@ -190,11 +332,12 @@ export class UpdateUserByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateUserByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateUserByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateUserByIdHeadersInput {
@@ -213,11 +356,12 @@ export class DeleteUserByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteUserByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteUserByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteUserByIdHeadersInput {
@@ -231,20 +375,24 @@ export class UsersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          UsersManager,
-          | 'networkSession'
-          | 'getUsers'
-          | 'createUser'
-          | 'getUserMe'
-          | 'getUserById'
-          | 'updateUserById'
-          | 'deleteUserById'
-        >
-      | Partial<Pick<UsersManager, 'networkSession'>>
+    fields: Omit<
+      UsersManager,
+      | 'networkSession'
+      | 'getUsers'
+      | 'createUser'
+      | 'getUserMe'
+      | 'getUserById'
+      | 'updateUserById'
+      | 'deleteUserById'
+    > &
+      Partial<Pick<UsersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getUsers(
     queryParams: GetUsersQueryParams = {} satisfies GetUsersQueryParams,
@@ -289,13 +437,16 @@ export class UsersManager {
   }
   async createUser(
     requestBody: CreateUserRequestBody,
-    queryParams: CreateUserQueryParams = {} satisfies CreateUserQueryParams,
-    headersInput: CreateUserHeadersInput = new CreateUserHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateUserOptionalsInput = {}
   ): Promise<UserFull> {
-    const headers: any = new CreateUserHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateUserOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -356,13 +507,16 @@ export class UsersManager {
   }
   async getUserById(
     userId: string,
-    queryParams: GetUserByIdQueryParams = {} satisfies GetUserByIdQueryParams,
-    headersInput: GetUserByIdHeadersInput = new GetUserByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetUserByIdOptionalsInput = {}
   ): Promise<UserFull> {
-    const headers: any = new GetUserByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetUserByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -393,14 +547,18 @@ export class UsersManager {
   }
   async updateUserById(
     userId: string,
-    requestBody: UpdateUserByIdRequestBody = {} satisfies UpdateUserByIdRequestBody,
-    queryParams: UpdateUserByIdQueryParams = {} satisfies UpdateUserByIdQueryParams,
-    headersInput: UpdateUserByIdHeadersInput = new UpdateUserByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateUserByIdOptionalsInput = {}
   ): Promise<UserFull> {
-    const headers: any = new UpdateUserByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateUserByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -433,13 +591,16 @@ export class UsersManager {
   }
   async deleteUserById(
     userId: string,
-    queryParams: DeleteUserByIdQueryParams = {} satisfies DeleteUserByIdQueryParams,
-    headersInput: DeleteUserByIdHeadersInput = new DeleteUserByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteUserByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteUserByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteUserByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

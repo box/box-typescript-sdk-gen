@@ -17,11 +17,18 @@ export class OAuthConfig {
   readonly clientSecret!: string;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
-    fields:
-      | Omit<OAuthConfig, 'tokenStorage'>
-      | Partial<Pick<OAuthConfig, 'tokenStorage'>>
+    fields: Omit<OAuthConfig, 'tokenStorage'> &
+      Partial<Pick<OAuthConfig, 'tokenStorage'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.clientId) {
+      this.clientId = fields.clientId;
+    }
+    if (fields.clientSecret) {
+      this.clientSecret = fields.clientSecret;
+    }
+    if (fields.tokenStorage) {
+      this.tokenStorage = fields.tokenStorage;
+    }
   }
 }
 export interface OAuthConfigInput {
@@ -52,7 +59,9 @@ export class BoxOAuth implements Authentication {
       | 'downscopeToken'
     >
   ) {
-    Object.assign(this, fields);
+    if (fields.config) {
+      this.config = fields.config;
+    }
     this.tokenStorage = this.config.tokenStorage;
   }
   getAuthorizeUrl(

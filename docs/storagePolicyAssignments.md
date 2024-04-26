@@ -29,10 +29,8 @@ await client.storagePolicyAssignments.getStoragePolicyAssignments({
 
 - queryParams `GetStoragePolicyAssignmentsQueryParams`
   - Query parameters of getStoragePolicyAssignments method
-- headersInput `GetStoragePolicyAssignmentsHeadersInput`
-  - Headers of getStoragePolicyAssignments method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetStoragePolicyAssignmentsOptionalsInput`
+  -
 
 ### Returns
 
@@ -68,10 +66,8 @@ await client.storagePolicyAssignments.createStoragePolicyAssignment({
 
 - requestBody `CreateStoragePolicyAssignmentRequestBody`
   - Request body of createStoragePolicyAssignment method
-- headersInput `CreateStoragePolicyAssignmentHeadersInput`
-  - Headers of createStoragePolicyAssignment method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateStoragePolicyAssignmentOptionalsInput`
+  -
 
 ### Returns
 
@@ -100,10 +96,8 @@ await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
 
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
-- headersInput `GetStoragePolicyAssignmentByIdHeadersInput`
-  - Headers of getStoragePolicyAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetStoragePolicyAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -140,10 +134,8 @@ await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
   - The ID of the storage policy assignment. Example: "932483"
 - requestBody `UpdateStoragePolicyAssignmentByIdRequestBody`
   - Request body of updateStoragePolicyAssignmentById method
-- headersInput `UpdateStoragePolicyAssignmentByIdHeadersInput`
-  - Headers of updateStoragePolicyAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateStoragePolicyAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -179,10 +171,8 @@ await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(
 
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
-- headersInput `DeleteStoragePolicyAssignmentByIdHeadersInput`
-  - Headers of deleteStoragePolicyAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteStoragePolicyAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 

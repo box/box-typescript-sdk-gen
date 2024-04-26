@@ -32,6 +32,8 @@ import { serializeUpdateTaskAssignmentByIdRequestBody } from '../managers/taskAs
 import { deserializeUpdateTaskAssignmentByIdRequestBody } from '../managers/taskAssignments.generated.js';
 import { serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField } from '../managers/taskAssignments.generated.js';
 import { deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField } from '../managers/taskAssignments.generated.js';
+import { UpdateTaskAssignmentByIdOptionalsInput } from '../managers/taskAssignments.generated.js';
+import { UpdateTaskAssignmentByIdOptionals } from '../managers/taskAssignments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
 import { DateTime } from '../internal/utils.js';
@@ -111,10 +113,12 @@ test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateG
   }
   const updatedTaskAssignment: TaskAssignment =
     await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
-      message: 'updated message',
-      resolutionState:
-        'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
-    } satisfies UpdateTaskAssignmentByIdRequestBody);
+      requestBody: {
+        message: 'updated message',
+        resolutionState:
+          'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
+      } satisfies UpdateTaskAssignmentByIdRequestBody,
+    } satisfies UpdateTaskAssignmentByIdOptionalsInput);
   if (!(updatedTaskAssignment.message == 'updated message')) {
     throw new Error('Assertion failed');
   }

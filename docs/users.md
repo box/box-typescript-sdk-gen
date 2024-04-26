@@ -67,12 +67,8 @@ await client.users.createUser({
 
 - requestBody `CreateUserRequestBody`
   - Request body of createUser method
-- queryParams `CreateUserQueryParams`
-  - Query parameters of createUser method
-- headersInput `CreateUserHeadersInput`
-  - Headers of createUser method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateUserOptionalsInput`
+  -
 
 ### Returns
 
@@ -148,12 +144,8 @@ await client.users.getUserById(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- queryParams `GetUserByIdQueryParams`
-  - Query parameters of getUserById method
-- headersInput `GetUserByIdHeadersInput`
-  - Headers of getUserById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetUserByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -181,22 +173,16 @@ See the endpoint docs at
 
 ```ts
 await client.users.updateUserById(user.id, {
-  name: updatedUserName,
-} satisfies UpdateUserByIdRequestBody);
+  requestBody: { name: updatedUserName } satisfies UpdateUserByIdRequestBody,
+} satisfies UpdateUserByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- requestBody `UpdateUserByIdRequestBody`
-  - Request body of updateUserById method
-- queryParams `UpdateUserByIdQueryParams`
-  - Query parameters of updateUserById method
-- headersInput `UpdateUserByIdHeadersInput`
-  - Headers of updateUserById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateUserByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -226,12 +212,8 @@ await client.users.deleteUserById(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- queryParams `DeleteUserByIdQueryParams`
-  - Query parameters of deleteUserById method
-- headersInput `DeleteUserByIdHeadersInput`
-  - Headers of deleteUserById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteUserByIdOptionalsInput`
+  -
 
 ### Returns
 

@@ -29,8 +29,10 @@ await this.createFileUploadSession(
     fileSize: fileSize,
     folderId: parentFolderId,
   } satisfies CreateFileUploadSessionRequestBody,
-  {} satisfies CreateFileUploadSessionHeadersInput,
-  cancellationToken
+  {
+    headers: new CreateFileUploadSessionHeaders({}),
+    cancellationToken: cancellationToken,
+  } satisfies CreateFileUploadSessionOptionalsInput
 );
 ```
 
@@ -38,10 +40,8 @@ await this.createFileUploadSession(
 
 - requestBody `CreateFileUploadSessionRequestBody`
   - Request body of createFileUploadSession method
-- headersInput `CreateFileUploadSessionHeadersInput`
-  - Headers of createFileUploadSession method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateFileUploadSessionOptionalsInput`
+  -
 
 ### Returns
 
@@ -66,10 +66,8 @@ _Currently we don't have an example for calling `createFileUploadSessionForExist
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - requestBody `CreateFileUploadSessionForExistingFileRequestBody`
   - Request body of createFileUploadSessionForExistingFile method
-- headersInput `CreateFileUploadSessionForExistingFileHeadersInput`
-  - Headers of createFileUploadSessionForExistingFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateFileUploadSessionForExistingFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -89,21 +87,18 @@ See the endpoint docs at
 <!-- sample get_files_upload_sessions_id -->
 
 ```ts
-await this.getFileUploadSessionById(
-  uploadSessionId,
-  {} satisfies GetFileUploadSessionByIdHeadersInput,
-  cancellationToken
-);
+await this.getFileUploadSessionById(uploadSessionId, {
+  headers: new GetFileUploadSessionByIdHeaders({}),
+  cancellationToken: cancellationToken,
+} satisfies GetFileUploadSessionByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headersInput `GetFileUploadSessionByIdHeadersInput`
-  - Headers of getFileUploadSessionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileUploadSessionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -141,8 +136,8 @@ await this.uploadFilePart(
   - Request body of uploadFilePart method
 - headersInput `UploadFilePartHeadersInput`
   - Headers of uploadFilePart method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UploadFilePartOptionalsInput`
+  -
 
 ### Returns
 
@@ -167,10 +162,8 @@ _Currently we don't have an example for calling `deleteFileUploadSessionById` in
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- headersInput `DeleteFileUploadSessionByIdHeadersInput`
-  - Headers of deleteFileUploadSessionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteFileUploadSessionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -192,24 +185,19 @@ See the endpoint docs at
 <!-- sample get_files_upload_sessions_id_parts -->
 
 ```ts
-await this.getFileUploadSessionParts(
-  uploadSessionId,
-  {} satisfies GetFileUploadSessionPartsQueryParams,
-  {} satisfies GetFileUploadSessionPartsHeadersInput,
-  cancellationToken
-);
+await this.getFileUploadSessionParts(uploadSessionId, {
+  queryParams: {} satisfies GetFileUploadSessionPartsQueryParams,
+  headers: new GetFileUploadSessionPartsHeaders({}),
+  cancellationToken: cancellationToken,
+} satisfies GetFileUploadSessionPartsOptionalsInput);
 ```
 
 ### Arguments
 
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
-- queryParams `GetFileUploadSessionPartsQueryParams`
-  - Query parameters of getFileUploadSessionParts method
-- headersInput `GetFileUploadSessionPartsHeadersInput`
-  - Headers of getFileUploadSessionParts method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileUploadSessionPartsOptionalsInput`
+  -
 
 ### Returns
 
@@ -234,7 +222,9 @@ await this.createFileUploadSessionCommit(
   uploadSessionId,
   { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
   { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
-  cancellationToken
+  {
+    cancellationToken: cancellationToken,
+  } satisfies CreateFileUploadSessionCommitOptionalsInput
 );
 ```
 
@@ -246,8 +236,8 @@ await this.createFileUploadSessionCommit(
   - Request body of createFileUploadSessionCommit method
 - headersInput `CreateFileUploadSessionCommitHeadersInput`
   - Headers of createFileUploadSessionCommit method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateFileUploadSessionCommitOptionalsInput`
+  -
 
 ### Returns
 

@@ -12,6 +12,8 @@ import { serializeShieldInformationBarrierSegments } from '../schemas.generated.
 import { deserializeShieldInformationBarrierSegments } from '../schemas.generated.js';
 import { serializeUpdateShieldInformationBarrierSegmentByIdRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { UpdateShieldInformationBarrierSegmentByIdOptionalsInput } from '../managers/shieldInformationBarrierSegments.generated.js';
+import { UpdateShieldInformationBarrierSegmentByIdOptionals } from '../managers/shieldInformationBarrierSegments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ShieldInformationBarrier } from '../schemas.generated.js';
 import { ShieldInformationBarrierSegment } from '../schemas.generated.js';
@@ -98,8 +100,10 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
     await client.shieldInformationBarrierSegments.updateShieldInformationBarrierSegmentById(
       segmentId,
       {
-        description: updatedSegmentDescription,
-      } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody
+        requestBody: {
+          description: updatedSegmentDescription,
+        } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody,
+      } satisfies UpdateShieldInformationBarrierSegmentByIdOptionalsInput
     );
   if (!(updatedSegment.description! == updatedSegmentDescription)) {
     throw new Error('Assertion failed');

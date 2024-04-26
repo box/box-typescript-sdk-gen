@@ -32,6 +32,8 @@ import { serializeFileVersionRetentions } from '../schemas.generated.js';
 import { deserializeFileVersionRetentions } from '../schemas.generated.js';
 import { serializeFileVersionRetention } from '../schemas.generated.js';
 import { deserializeFileVersionRetention } from '../schemas.generated.js';
+import { DeleteFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { DeleteFolderByIdOptionals } from '../managers/folders.generated.js';
 import { RetentionPolicy } from '../schemas.generated.js';
 import { CreateRetentionPolicyRequestBody } from '../managers/retentionPolicies.generated.js';
 import { CreateRetentionPolicyRequestBodyPolicyTypeField } from '../managers/retentionPolicies.generated.js';
@@ -145,8 +147,8 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
       retentionPolicy.id
     );
     await client.folders.deleteFolderById(folder.id, {
-      recursive: true,
-    } satisfies DeleteFolderByIdQueryParams);
+      queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
+    } satisfies DeleteFolderByIdOptionalsInput);
     return void 0;
   }
   const fileVersionRetention: FileVersionRetention =
@@ -160,7 +162,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
   }
   await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
   await client.folders.deleteFolderById(folder.id, {
-    recursive: true,
-  } satisfies DeleteFolderByIdQueryParams);
+    queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
+  } satisfies DeleteFolderByIdOptionalsInput);
 });
 export {};

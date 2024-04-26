@@ -24,6 +24,31 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetStoragePolicyByIdOptionals {
+  readonly headers: GetStoragePolicyByIdHeaders =
+    new GetStoragePolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetStoragePolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetStoragePolicyByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetStoragePolicyByIdOptionalsInput {
+  readonly headers?: GetStoragePolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetStoragePoliciesQueryParams {
   readonly fields?: readonly string[];
   readonly marker?: string;
@@ -34,11 +59,12 @@ export class GetStoragePoliciesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetStoragePoliciesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetStoragePoliciesHeaders, 'extraHeaders'>>
+    fields: Omit<GetStoragePoliciesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetStoragePoliciesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetStoragePoliciesHeadersInput {
@@ -53,11 +79,12 @@ export class GetStoragePolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetStoragePolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetStoragePolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetStoragePolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetStoragePolicyByIdHeadersInput {
@@ -71,14 +98,18 @@ export class StoragePoliciesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          StoragePoliciesManager,
-          'networkSession' | 'getStoragePolicies' | 'getStoragePolicyById'
-        >
-      | Partial<Pick<StoragePoliciesManager, 'networkSession'>>
+    fields: Omit<
+      StoragePoliciesManager,
+      'networkSession' | 'getStoragePolicies' | 'getStoragePolicyById'
+    > &
+      Partial<Pick<StoragePoliciesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getStoragePolicies(
     queryParams: GetStoragePoliciesQueryParams = {} satisfies GetStoragePoliciesQueryParams,
@@ -121,14 +152,14 @@ export class StoragePoliciesManager {
   }
   async getStoragePolicyById(
     storagePolicyId: string,
-    headersInput: GetStoragePolicyByIdHeadersInput = new GetStoragePolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetStoragePolicyByIdOptionalsInput = {}
   ): Promise<StoragePolicy> {
-    const headers: any = new GetStoragePolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetStoragePolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

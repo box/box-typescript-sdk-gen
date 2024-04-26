@@ -67,10 +67,8 @@ await client.webhooks.createWebhook({
 
 - requestBody `CreateWebhookRequestBody`
   - Request body of createWebhook method
-- headersInput `CreateWebhookHeadersInput`
-  - Headers of createWebhook method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateWebhookOptionalsInput`
+  -
 
 ### Returns
 
@@ -97,10 +95,8 @@ await client.webhooks.getWebhookById(webhook.id!);
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- headersInput `GetWebhookByIdHeadersInput`
-  - Headers of getWebhookById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetWebhookByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -121,20 +117,18 @@ See the endpoint docs at
 
 ```ts
 await client.webhooks.updateWebhookById(webhook.id!, {
-  address: 'https://example.com/updated-webhook',
-} satisfies UpdateWebhookByIdRequestBody);
+  requestBody: {
+    address: 'https://example.com/updated-webhook',
+  } satisfies UpdateWebhookByIdRequestBody,
+} satisfies UpdateWebhookByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- requestBody `UpdateWebhookByIdRequestBody`
-  - Request body of updateWebhookById method
-- headersInput `UpdateWebhookByIdHeadersInput`
-  - Headers of updateWebhookById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateWebhookByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -161,10 +155,8 @@ await client.webhooks.deleteWebhookById(webhook.id!);
 
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
-- headersInput `DeleteWebhookByIdHeadersInput`
-  - Headers of deleteWebhookById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteWebhookByIdOptionalsInput`
+  -
 
 ### Returns
 

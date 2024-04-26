@@ -34,6 +34,96 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateSlackIntegrationMappingOptionals {
+  readonly headers: CreateSlackIntegrationMappingHeaders =
+    new CreateSlackIntegrationMappingHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateSlackIntegrationMappingOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateSlackIntegrationMappingOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateSlackIntegrationMappingOptionalsInput {
+  readonly headers?: CreateSlackIntegrationMappingHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateSlackIntegrationMappingByIdOptionals {
+  readonly requestBody: UpdateSlackIntegrationMappingByIdRequestBody =
+    {} satisfies UpdateSlackIntegrationMappingByIdRequestBody;
+  readonly headers: UpdateSlackIntegrationMappingByIdHeaders =
+    new UpdateSlackIntegrationMappingByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateSlackIntegrationMappingByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateSlackIntegrationMappingByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateSlackIntegrationMappingByIdOptionalsInput {
+  readonly requestBody?: UpdateSlackIntegrationMappingByIdRequestBody;
+  readonly headers?: UpdateSlackIntegrationMappingByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteSlackIntegrationMappingByIdOptionals {
+  readonly headers: DeleteSlackIntegrationMappingByIdHeaders =
+    new DeleteSlackIntegrationMappingByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteSlackIntegrationMappingByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteSlackIntegrationMappingByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteSlackIntegrationMappingByIdOptionalsInput {
+  readonly headers?: DeleteSlackIntegrationMappingByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
   'channel';
 export type GetSlackIntegrationMappingQueryParamsBoxItemTypeField = 'folder';
@@ -51,11 +141,12 @@ export class GetSlackIntegrationMappingHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSlackIntegrationMappingHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>
+    fields: Omit<GetSlackIntegrationMappingHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSlackIntegrationMappingHeadersInput {
@@ -70,11 +161,12 @@ export class CreateSlackIntegrationMappingHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>
+    fields: Omit<CreateSlackIntegrationMappingHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateSlackIntegrationMappingHeadersInput {
@@ -93,11 +185,12 @@ export class UpdateSlackIntegrationMappingByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateSlackIntegrationMappingByIdHeadersInput {
@@ -112,11 +205,12 @@ export class DeleteSlackIntegrationMappingByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteSlackIntegrationMappingByIdHeadersInput {
@@ -130,18 +224,22 @@ export class IntegrationMappingsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          IntegrationMappingsManager,
-          | 'networkSession'
-          | 'getSlackIntegrationMapping'
-          | 'createSlackIntegrationMapping'
-          | 'updateSlackIntegrationMappingById'
-          | 'deleteSlackIntegrationMappingById'
-        >
-      | Partial<Pick<IntegrationMappingsManager, 'networkSession'>>
+    fields: Omit<
+      IntegrationMappingsManager,
+      | 'networkSession'
+      | 'getSlackIntegrationMapping'
+      | 'createSlackIntegrationMapping'
+      | 'updateSlackIntegrationMappingById'
+      | 'deleteSlackIntegrationMappingById'
+    > &
+      Partial<Pick<IntegrationMappingsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getSlackIntegrationMapping(
     queryParams: GetSlackIntegrationMappingQueryParams = {} satisfies GetSlackIntegrationMappingQueryParams,
@@ -188,14 +286,14 @@ export class IntegrationMappingsManager {
   }
   async createSlackIntegrationMapping(
     requestBody: IntegrationMappingSlackCreateRequest,
-    headersInput: CreateSlackIntegrationMappingHeadersInput = new CreateSlackIntegrationMappingHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateSlackIntegrationMappingOptionalsInput = {}
   ): Promise<IntegrationMapping> {
-    const headers: any = new CreateSlackIntegrationMappingHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateSlackIntegrationMappingOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -219,15 +317,16 @@ export class IntegrationMappingsManager {
   }
   async updateSlackIntegrationMappingById(
     integrationMappingId: string,
-    requestBody: UpdateSlackIntegrationMappingByIdRequestBody = {} satisfies UpdateSlackIntegrationMappingByIdRequestBody,
-    headersInput: UpdateSlackIntegrationMappingByIdHeadersInput = new UpdateSlackIntegrationMappingByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateSlackIntegrationMappingByIdOptionalsInput = {}
   ): Promise<IntegrationMapping> {
-    const headers: any = new UpdateSlackIntegrationMappingByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateSlackIntegrationMappingByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -254,14 +353,14 @@ export class IntegrationMappingsManager {
   }
   async deleteSlackIntegrationMappingById(
     integrationMappingId: string,
-    headersInput: DeleteSlackIntegrationMappingByIdHeadersInput = new DeleteSlackIntegrationMappingByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteSlackIntegrationMappingByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteSlackIntegrationMappingByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteSlackIntegrationMappingByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

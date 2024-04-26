@@ -26,14 +26,8 @@ await client.trashedFiles.restoreFileFromTrash(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- requestBody `RestoreFileFromTrashRequestBody`
-  - Request body of restoreFileFromTrash method
-- queryParams `RestoreFileFromTrashQueryParams`
-  - Query parameters of restoreFileFromTrash method
-- headersInput `RestoreFileFromTrashHeadersInput`
-  - Headers of restoreFileFromTrash method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RestoreFileFromTrashOptionalsInput`
+  -
 
 ### Returns
 
@@ -70,12 +64,8 @@ await client.trashedFiles.getTrashedFileById(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetTrashedFileByIdQueryParams`
-  - Query parameters of getTrashedFileById method
-- headersInput `GetTrashedFileByIdHeadersInput`
-  - Headers of getTrashedFileById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetTrashedFileByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -105,10 +95,8 @@ await client.trashedFiles.deleteTrashedFileById(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `DeleteTrashedFileByIdHeadersInput`
-  - Headers of deleteTrashedFileById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteTrashedFileByIdOptionalsInput`
+  -
 
 ### Returns
 

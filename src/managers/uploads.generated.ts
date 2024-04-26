@@ -31,6 +31,72 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class UploadFileVersionOptionals {
+  readonly queryParams: UploadFileVersionQueryParams =
+    {} satisfies UploadFileVersionQueryParams;
+  readonly headers: UploadFileVersionHeaders = new UploadFileVersionHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UploadFileVersionOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UploadFileVersionOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UploadFileVersionOptionalsInput {
+  readonly queryParams?: UploadFileVersionQueryParams;
+  readonly headers?: UploadFileVersionHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UploadFileOptionals {
+  readonly queryParams: UploadFileQueryParams =
+    {} satisfies UploadFileQueryParams;
+  readonly headers: UploadFileHeaders = new UploadFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UploadFileOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UploadFileOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UploadFileOptionalsInput {
+  readonly queryParams?: UploadFileQueryParams;
+  readonly headers?: UploadFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface UploadFileVersionRequestBodyAttributesField {
   readonly name: string;
   readonly contentModifiedAt?: DateTime;
@@ -51,11 +117,18 @@ export class UploadFileVersionHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UploadFileVersionHeaders, 'extraHeaders'>
-      | Partial<Pick<UploadFileVersionHeaders, 'extraHeaders'>>
+    fields: Omit<UploadFileVersionHeaders, 'extraHeaders'> &
+      Partial<Pick<UploadFileVersionHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.contentMd5) {
+      this.contentMd5 = fields.contentMd5;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UploadFileVersionHeadersInput {
@@ -91,11 +164,15 @@ export class UploadFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UploadFileHeaders, 'extraHeaders'>
-      | Partial<Pick<UploadFileHeaders, 'extraHeaders'>>
+    fields: Omit<UploadFileHeaders, 'extraHeaders'> &
+      Partial<Pick<UploadFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.contentMd5) {
+      this.contentMd5 = fields.contentMd5;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UploadFileHeadersInput {
@@ -119,11 +196,12 @@ export class PreflightFileUploadCheckHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'>
-      | Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
+    fields: Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'> &
+      Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface PreflightFileUploadCheckHeadersInput {
@@ -137,32 +215,35 @@ export class UploadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          UploadsManager,
-          | 'networkSession'
-          | 'uploadFileVersion'
-          | 'uploadFile'
-          | 'preflightFileUploadCheck'
-        >
-      | Partial<Pick<UploadsManager, 'networkSession'>>
+    fields: Omit<
+      UploadsManager,
+      | 'networkSession'
+      | 'uploadFileVersion'
+      | 'uploadFile'
+      | 'preflightFileUploadCheck'
+    > &
+      Partial<Pick<UploadsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async uploadFileVersion(
     fileId: string,
     requestBody: UploadFileVersionRequestBody,
-    queryParams: UploadFileVersionQueryParams = {} satisfies UploadFileVersionQueryParams,
-    headersInput: UploadFileVersionHeadersInput = new UploadFileVersionHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UploadFileVersionOptionalsInput = {}
   ): Promise<Files> {
-    const headers: any = new UploadFileVersionHeaders({
-      ifMatch: headersInput.ifMatch,
-      contentMd5: headersInput.contentMd5,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UploadFileVersionOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -215,14 +296,16 @@ export class UploadsManager {
   }
   async uploadFile(
     requestBody: UploadFileRequestBody,
-    queryParams: UploadFileQueryParams = {} satisfies UploadFileQueryParams,
-    headersInput: UploadFileHeadersInput = new UploadFileHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: UploadFileOptionalsInput = {}
   ): Promise<Files> {
-    const headers: any = new UploadFileHeaders({
-      contentMd5: headersInput.contentMd5,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UploadFileOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

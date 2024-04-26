@@ -31,16 +31,42 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class SearchByMetadataQueryOptionals {
+  readonly headers: SearchByMetadataQueryHeaders =
+    new SearchByMetadataQueryHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      SearchByMetadataQueryOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<SearchByMetadataQueryOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface SearchByMetadataQueryOptionalsInput {
+  readonly headers?: SearchByMetadataQueryHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class SearchByMetadataQueryHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<SearchByMetadataQueryHeaders, 'extraHeaders'>
-      | Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>
+    fields: Omit<SearchByMetadataQueryHeaders, 'extraHeaders'> &
+      Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface SearchByMetadataQueryHeadersInput {
@@ -97,11 +123,12 @@ export class SearchForContentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<SearchForContentHeaders, 'extraHeaders'>
-      | Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>
+    fields: Omit<SearchForContentHeaders, 'extraHeaders'> &
+      Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface SearchForContentHeadersInput {
@@ -115,25 +142,29 @@ export class SearchManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SearchManager,
-          'networkSession' | 'searchByMetadataQuery' | 'searchForContent'
-        >
-      | Partial<Pick<SearchManager, 'networkSession'>>
+    fields: Omit<
+      SearchManager,
+      'networkSession' | 'searchByMetadataQuery' | 'searchForContent'
+    > &
+      Partial<Pick<SearchManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async searchByMetadataQuery(
     requestBody: MetadataQuery,
-    headersInput: SearchByMetadataQueryHeadersInput = new SearchByMetadataQueryHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: SearchByMetadataQueryOptionalsInput = {}
   ): Promise<MetadataQueryResults> {
-    const headers: any = new SearchByMetadataQueryHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new SearchByMetadataQueryOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

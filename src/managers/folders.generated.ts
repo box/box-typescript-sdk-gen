@@ -28,6 +28,210 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFolderByIdOptionals {
+  readonly queryParams: GetFolderByIdQueryParams =
+    {} satisfies GetFolderByIdQueryParams;
+  readonly headers: GetFolderByIdHeaders = new GetFolderByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFolderByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFolderByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderByIdOptionalsInput {
+  readonly queryParams?: GetFolderByIdQueryParams;
+  readonly headers?: GetFolderByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFolderByIdOptionals {
+  readonly requestBody: UpdateFolderByIdRequestBody =
+    {} satisfies UpdateFolderByIdRequestBody;
+  readonly queryParams: UpdateFolderByIdQueryParams =
+    {} satisfies UpdateFolderByIdQueryParams;
+  readonly headers: UpdateFolderByIdHeaders = new UpdateFolderByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFolderByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateFolderByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFolderByIdOptionalsInput {
+  readonly requestBody?: UpdateFolderByIdRequestBody;
+  readonly queryParams?: UpdateFolderByIdQueryParams;
+  readonly headers?: UpdateFolderByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFolderByIdOptionals {
+  readonly queryParams: DeleteFolderByIdQueryParams =
+    {} satisfies DeleteFolderByIdQueryParams;
+  readonly headers: DeleteFolderByIdHeaders = new DeleteFolderByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFolderByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteFolderByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFolderByIdOptionalsInput {
+  readonly queryParams?: DeleteFolderByIdQueryParams;
+  readonly headers?: DeleteFolderByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFolderItemsOptionals {
+  readonly queryParams: GetFolderItemsQueryParams =
+    {} satisfies GetFolderItemsQueryParams;
+  readonly headers: GetFolderItemsHeaders = new GetFolderItemsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFolderItemsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFolderItemsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderItemsOptionalsInput {
+  readonly queryParams?: GetFolderItemsQueryParams;
+  readonly headers?: GetFolderItemsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFolderOptionals {
+  readonly queryParams: CreateFolderQueryParams =
+    {} satisfies CreateFolderQueryParams;
+  readonly headers: CreateFolderHeaders = new CreateFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFolderOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateFolderOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFolderOptionalsInput {
+  readonly queryParams?: CreateFolderQueryParams;
+  readonly headers?: CreateFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CopyFolderOptionals {
+  readonly queryParams: CopyFolderQueryParams =
+    {} satisfies CopyFolderQueryParams;
+  readonly headers: CopyFolderHeaders = new CopyFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CopyFolderOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CopyFolderOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CopyFolderOptionalsInput {
+  readonly queryParams?: CopyFolderQueryParams;
+  readonly headers?: CopyFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetFolderByIdQueryParamsSortField = 'id' | 'name' | 'date' | 'size';
 export type GetFolderByIdQueryParamsDirectionField = 'ASC' | 'DESC';
 export interface GetFolderByIdQueryParams {
@@ -44,11 +248,18 @@ export class GetFolderByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderByIdHeadersInput {
@@ -113,11 +324,15 @@ export class UpdateFolderByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFolderByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFolderByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFolderByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFolderByIdHeadersInput {
@@ -137,11 +352,15 @@ export class DeleteFolderByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFolderByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFolderByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFolderByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFolderByIdHeadersInput {
@@ -173,11 +392,15 @@ export class GetFolderItemsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderItemsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderItemsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderItemsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderItemsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderItemsHeadersInput {
@@ -215,11 +438,12 @@ export class CreateFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFolderHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFolderHeadersInput {
@@ -244,11 +468,12 @@ export class CopyFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CopyFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<CopyFolderHeaders, 'extraHeaders'>>
+    fields: Omit<CopyFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<CopyFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CopyFolderHeadersInput {
@@ -262,32 +487,37 @@ export class FoldersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FoldersManager,
-          | 'networkSession'
-          | 'getFolderById'
-          | 'updateFolderById'
-          | 'deleteFolderById'
-          | 'getFolderItems'
-          | 'createFolder'
-          | 'copyFolder'
-        >
-      | Partial<Pick<FoldersManager, 'networkSession'>>
+    fields: Omit<
+      FoldersManager,
+      | 'networkSession'
+      | 'getFolderById'
+      | 'updateFolderById'
+      | 'deleteFolderById'
+      | 'getFolderItems'
+      | 'createFolder'
+      | 'copyFolder'
+    > &
+      Partial<Pick<FoldersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFolderById(
     folderId: string,
-    queryParams: GetFolderByIdQueryParams = {} satisfies GetFolderByIdQueryParams,
-    headersInput: GetFolderByIdHeadersInput = new GetFolderByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderByIdOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new GetFolderByIdHeaders({
-      ifNoneMatch: headersInput.ifNoneMatch,
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -328,17 +558,18 @@ export class FoldersManager {
   }
   async updateFolderById(
     folderId: string,
-    requestBody: UpdateFolderByIdRequestBody = {} satisfies UpdateFolderByIdRequestBody,
-    queryParams: UpdateFolderByIdQueryParams = {} satisfies UpdateFolderByIdQueryParams,
-    headersInput: UpdateFolderByIdHeadersInput = new UpdateFolderByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFolderByIdOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new UpdateFolderByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFolderByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -374,16 +605,16 @@ export class FoldersManager {
   }
   async deleteFolderById(
     folderId: string,
-    queryParams: DeleteFolderByIdQueryParams = {} satisfies DeleteFolderByIdQueryParams,
-    headersInput: DeleteFolderByIdHeadersInput = new DeleteFolderByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFolderByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFolderByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFolderByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -415,14 +646,16 @@ export class FoldersManager {
   }
   async getFolderItems(
     folderId: string,
-    queryParams: GetFolderItemsQueryParams = {} satisfies GetFolderItemsQueryParams,
-    headersInput: GetFolderItemsHeadersInput = new GetFolderItemsHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderItemsOptionalsInput = {}
   ): Promise<Items> {
-    const headers: any = new GetFolderItemsHeaders({
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderItemsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -463,13 +696,16 @@ export class FoldersManager {
   }
   async createFolder(
     requestBody: CreateFolderRequestBody,
-    queryParams: CreateFolderQueryParams = {} satisfies CreateFolderQueryParams,
-    headersInput: CreateFolderHeadersInput = new CreateFolderHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new CreateFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFolderOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -499,13 +735,16 @@ export class FoldersManager {
   async copyFolder(
     folderId: string,
     requestBody: CopyFolderRequestBody,
-    queryParams: CopyFolderQueryParams = {} satisfies CopyFolderQueryParams,
-    headersInput: CopyFolderHeadersInput = new CopyFolderHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CopyFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new CopyFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CopyFolderOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

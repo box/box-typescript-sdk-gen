@@ -16,6 +16,8 @@ import { serializePromoteFileVersionRequestBody } from '../managers/fileVersions
 import { deserializePromoteFileVersionRequestBody } from '../managers/fileVersions.generated.js';
 import { serializePromoteFileVersionRequestBodyTypeField } from '../managers/fileVersions.generated.js';
 import { deserializePromoteFileVersionRequestBodyTypeField } from '../managers/fileVersions.generated.js';
+import { PromoteFileVersionOptionalsInput } from '../managers/fileVersions.generated.js';
+import { PromoteFileVersionOptionals } from '../managers/fileVersions.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -84,9 +86,11 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
     throw new Error('Assertion failed');
   }
   await client.fileVersions.promoteFileVersion(file.id, {
-    id: fileVersions.entries![0].id,
-    type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
-  } satisfies PromoteFileVersionRequestBody);
+    requestBody: {
+      id: fileVersions.entries![0].id,
+      type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
+    } satisfies PromoteFileVersionRequestBody,
+  } satisfies PromoteFileVersionOptionalsInput);
   const fileRestored: FileFull = await client.files.getFileById(file.id);
   if (!(fileRestored.name == oldName)) {
     throw new Error('Assertion failed');

@@ -25,6 +25,146 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetStoragePolicyAssignmentsOptionals {
+  readonly headers: GetStoragePolicyAssignmentsHeaders =
+    new GetStoragePolicyAssignmentsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetStoragePolicyAssignmentsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetStoragePolicyAssignmentsOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetStoragePolicyAssignmentsOptionalsInput {
+  readonly headers?: GetStoragePolicyAssignmentsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateStoragePolicyAssignmentOptionals {
+  readonly headers: CreateStoragePolicyAssignmentHeaders =
+    new CreateStoragePolicyAssignmentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateStoragePolicyAssignmentOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateStoragePolicyAssignmentOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateStoragePolicyAssignmentOptionalsInput {
+  readonly headers?: CreateStoragePolicyAssignmentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetStoragePolicyAssignmentByIdOptionals {
+  readonly headers: GetStoragePolicyAssignmentByIdHeaders =
+    new GetStoragePolicyAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetStoragePolicyAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetStoragePolicyAssignmentByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetStoragePolicyAssignmentByIdOptionalsInput {
+  readonly headers?: GetStoragePolicyAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateStoragePolicyAssignmentByIdOptionals {
+  readonly headers: UpdateStoragePolicyAssignmentByIdHeaders =
+    new UpdateStoragePolicyAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateStoragePolicyAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateStoragePolicyAssignmentByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateStoragePolicyAssignmentByIdOptionalsInput {
+  readonly headers?: UpdateStoragePolicyAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteStoragePolicyAssignmentByIdOptionals {
+  readonly headers: DeleteStoragePolicyAssignmentByIdHeaders =
+    new DeleteStoragePolicyAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteStoragePolicyAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteStoragePolicyAssignmentByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteStoragePolicyAssignmentByIdOptionalsInput {
+  readonly headers?: DeleteStoragePolicyAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField =
   | 'user'
   | 'enterprise';
@@ -38,11 +178,12 @@ export class GetStoragePolicyAssignmentsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>>
+    fields: Omit<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetStoragePolicyAssignmentsHeadersInput {
@@ -59,16 +200,20 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
     'storage_policy' as CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<CreateStoragePolicyAssignmentRequestBodyStoragePolicyField, 'type'>
-      | Partial<
-          Pick<
-            CreateStoragePolicyAssignmentRequestBodyStoragePolicyField,
-            'type'
-          >
-        >
+    fields: Omit<
+      CreateStoragePolicyAssignmentRequestBodyStoragePolicyField,
+      'type'
+    > &
+      Partial<
+        Pick<CreateStoragePolicyAssignmentRequestBodyStoragePolicyField, 'type'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
@@ -91,11 +236,12 @@ export class CreateStoragePolicyAssignmentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>>
+    fields: Omit<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateStoragePolicyAssignmentHeadersInput {
@@ -110,11 +256,12 @@ export class GetStoragePolicyAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetStoragePolicyAssignmentByIdHeadersInput {
@@ -131,19 +278,23 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
     'storage_policy' as UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
+      'type'
+    > &
+      Partial<
+        Pick<
           UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
           'type'
         >
-      | Partial<
-          Pick<
-            UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
-            'type'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
@@ -158,11 +309,12 @@ export class UpdateStoragePolicyAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateStoragePolicyAssignmentByIdHeadersInput {
@@ -177,11 +329,12 @@ export class DeleteStoragePolicyAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteStoragePolicyAssignmentByIdHeadersInput {
@@ -195,30 +348,34 @@ export class StoragePolicyAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          StoragePolicyAssignmentsManager,
-          | 'networkSession'
-          | 'getStoragePolicyAssignments'
-          | 'createStoragePolicyAssignment'
-          | 'getStoragePolicyAssignmentById'
-          | 'updateStoragePolicyAssignmentById'
-          | 'deleteStoragePolicyAssignmentById'
-        >
-      | Partial<Pick<StoragePolicyAssignmentsManager, 'networkSession'>>
+    fields: Omit<
+      StoragePolicyAssignmentsManager,
+      | 'networkSession'
+      | 'getStoragePolicyAssignments'
+      | 'createStoragePolicyAssignment'
+      | 'getStoragePolicyAssignmentById'
+      | 'updateStoragePolicyAssignmentById'
+      | 'deleteStoragePolicyAssignmentById'
+    > &
+      Partial<Pick<StoragePolicyAssignmentsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getStoragePolicyAssignments(
     queryParams: GetStoragePolicyAssignmentsQueryParams,
-    headersInput: GetStoragePolicyAssignmentsHeadersInput = new GetStoragePolicyAssignmentsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetStoragePolicyAssignmentsOptionalsInput = {}
   ): Promise<StoragePolicyAssignments> {
-    const headers: any = new GetStoragePolicyAssignmentsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetStoragePolicyAssignmentsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -248,14 +405,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async createStoragePolicyAssignment(
     requestBody: CreateStoragePolicyAssignmentRequestBody,
-    headersInput: CreateStoragePolicyAssignmentHeadersInput = new CreateStoragePolicyAssignmentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateStoragePolicyAssignmentOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const headers: any = new CreateStoragePolicyAssignmentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateStoragePolicyAssignmentOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -279,14 +436,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async getStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headersInput: GetStoragePolicyAssignmentByIdHeadersInput = new GetStoragePolicyAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const headers: any = new GetStoragePolicyAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetStoragePolicyAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -310,14 +467,14 @@ export class StoragePolicyAssignmentsManager {
   async updateStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
     requestBody: UpdateStoragePolicyAssignmentByIdRequestBody,
-    headersInput: UpdateStoragePolicyAssignmentByIdHeadersInput = new UpdateStoragePolicyAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const headers: any = new UpdateStoragePolicyAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateStoragePolicyAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -344,14 +501,14 @@ export class StoragePolicyAssignmentsManager {
   }
   async deleteStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
-    headersInput: DeleteStoragePolicyAssignmentByIdHeadersInput = new DeleteStoragePolicyAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteStoragePolicyAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteStoragePolicyAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

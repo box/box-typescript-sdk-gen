@@ -25,6 +25,123 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class FindFolderForSharedLinkOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<FindFolderForSharedLinkOptionals, 'cancellationToken'> &
+      Partial<Pick<FindFolderForSharedLinkOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface FindFolderForSharedLinkOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetSharedLinkForFolderOptionals {
+  readonly headers: GetSharedLinkForFolderHeaders =
+    new GetSharedLinkForFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetSharedLinkForFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetSharedLinkForFolderOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetSharedLinkForFolderOptionalsInput {
+  readonly headers?: GetSharedLinkForFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class AddShareLinkToFolderOptionals {
+  readonly headers: AddShareLinkToFolderHeaders =
+    new AddShareLinkToFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      AddShareLinkToFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<AddShareLinkToFolderOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddShareLinkToFolderOptionalsInput {
+  readonly headers?: AddShareLinkToFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateSharedLinkOnFolderOptionals {
+  readonly headers: UpdateSharedLinkOnFolderHeaders =
+    new UpdateSharedLinkOnFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateSharedLinkOnFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateSharedLinkOnFolderOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateSharedLinkOnFolderOptionalsInput {
+  readonly headers?: UpdateSharedLinkOnFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RemoveSharedLinkFromFolderOptionals {
+  readonly headers: RemoveSharedLinkFromFolderHeaders =
+    new RemoveSharedLinkFromFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      RemoveSharedLinkFromFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          RemoveSharedLinkFromFolderOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RemoveSharedLinkFromFolderOptionalsInput {
+  readonly headers?: RemoveSharedLinkFromFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface FindFolderForSharedLinkQueryParams {
   readonly fields?: readonly string[];
 }
@@ -35,11 +152,18 @@ export class FindFolderForSharedLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<FindFolderForSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<FindFolderForSharedLinkHeaders, 'extraHeaders'>>
+    fields: Omit<FindFolderForSharedLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<FindFolderForSharedLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface FindFolderForSharedLinkHeadersInput {
@@ -59,11 +183,12 @@ export class GetSharedLinkForFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSharedLinkForFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSharedLinkForFolderHeaders, 'extraHeaders'>>
+    fields: Omit<GetSharedLinkForFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSharedLinkForFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSharedLinkForFolderHeadersInput {
@@ -100,11 +225,12 @@ export class AddShareLinkToFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddShareLinkToFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<AddShareLinkToFolderHeaders, 'extraHeaders'>>
+    fields: Omit<AddShareLinkToFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<AddShareLinkToFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddShareLinkToFolderHeadersInput {
@@ -141,11 +267,12 @@ export class UpdateSharedLinkOnFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateSharedLinkOnFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateSharedLinkOnFolderHeadersInput {
@@ -167,11 +294,12 @@ export class RemoveSharedLinkFromFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'>>
+    fields: Omit<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<RemoveSharedLinkFromFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RemoveSharedLinkFromFolderHeadersInput {
@@ -185,30 +313,38 @@ export class SharedLinksFoldersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SharedLinksFoldersManager,
-          | 'networkSession'
-          | 'findFolderForSharedLink'
-          | 'getSharedLinkForFolder'
-          | 'addShareLinkToFolder'
-          | 'updateSharedLinkOnFolder'
-          | 'removeSharedLinkFromFolder'
-        >
-      | Partial<Pick<SharedLinksFoldersManager, 'networkSession'>>
+    fields: Omit<
+      SharedLinksFoldersManager,
+      | 'networkSession'
+      | 'findFolderForSharedLink'
+      | 'getSharedLinkForFolder'
+      | 'addShareLinkToFolder'
+      | 'updateSharedLinkOnFolder'
+      | 'removeSharedLinkFromFolder'
+    > &
+      Partial<Pick<SharedLinksFoldersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async findFolderForSharedLink(
     queryParams: FindFolderForSharedLinkQueryParams = {} satisfies FindFolderForSharedLinkQueryParams,
     headersInput: FindFolderForSharedLinkHeadersInput,
-    cancellationToken?: CancellationToken
+    optionalsInput: FindFolderForSharedLinkOptionalsInput = {}
   ): Promise<FolderFull> {
     const headers: any = new FindFolderForSharedLinkHeaders({
       ifNoneMatch: headersInput.ifNoneMatch,
       boxapi: headersInput.boxapi,
       extraHeaders: headersInput.extraHeaders,
     });
+    const optionals: any = new FindFolderForSharedLinkOptionals({
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -245,14 +381,14 @@ export class SharedLinksFoldersManager {
   async getSharedLinkForFolder(
     folderId: string,
     queryParams: GetSharedLinkForFolderQueryParams,
-    headersInput: GetSharedLinkForFolderHeadersInput = new GetSharedLinkForFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetSharedLinkForFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new GetSharedLinkForFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetSharedLinkForFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -282,14 +418,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: AddShareLinkToFolderRequestBody = {} satisfies AddShareLinkToFolderRequestBody,
     queryParams: AddShareLinkToFolderQueryParams,
-    headersInput: AddShareLinkToFolderHeadersInput = new AddShareLinkToFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddShareLinkToFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new AddShareLinkToFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddShareLinkToFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -321,14 +457,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: UpdateSharedLinkOnFolderRequestBody = {} satisfies UpdateSharedLinkOnFolderRequestBody,
     queryParams: UpdateSharedLinkOnFolderQueryParams,
-    headersInput: UpdateSharedLinkOnFolderHeadersInput = new UpdateSharedLinkOnFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateSharedLinkOnFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new UpdateSharedLinkOnFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateSharedLinkOnFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -360,14 +496,14 @@ export class SharedLinksFoldersManager {
     folderId: string,
     requestBody: RemoveSharedLinkFromFolderRequestBody = {} satisfies RemoveSharedLinkFromFolderRequestBody,
     queryParams: RemoveSharedLinkFromFolderQueryParams,
-    headersInput: RemoveSharedLinkFromFolderHeadersInput = new RemoveSharedLinkFromFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RemoveSharedLinkFromFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const headers: any = new RemoveSharedLinkFromFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RemoveSharedLinkFromFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });

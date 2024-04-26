@@ -27,10 +27,8 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headersInput `GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput`
-  - Headers of getShieldInformationBarrierSegmentRestrictionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -61,10 +59,8 @@ await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformation
 
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
-- headersInput `DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInput`
-  - Headers of deleteShieldInformationBarrierSegmentRestrictionById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -96,10 +92,8 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 
 - queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentRestrictions method
-- headersInput `GetShieldInformationBarrierSegmentRestrictionsHeadersInput`
-  - Headers of getShieldInformationBarrierSegmentRestrictions method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierSegmentRestrictionsOptionalsInput`
+  -
 
 ### Returns
 
@@ -140,10 +134,8 @@ await client.shieldInformationBarrierSegmentRestrictions.createShieldInformation
 
 - requestBodyInput `CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput`
   - Request body of createShieldInformationBarrierSegmentRestriction method
-- headersInput `CreateShieldInformationBarrierSegmentRestrictionHeadersInput`
-  - Headers of createShieldInformationBarrierSegmentRestriction method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateShieldInformationBarrierSegmentRestrictionOptionalsInput`
+  -
 
 ### Returns
 

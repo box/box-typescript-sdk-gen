@@ -25,10 +25,8 @@ await client.taskAssignments.getTaskAssignments(task.id!);
 
 - taskId `string`
   - The ID of the task. Example: "12345"
-- headersInput `GetTaskAssignmentsHeadersInput`
-  - Headers of getTaskAssignments method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetTaskAssignmentsOptionalsInput`
+  -
 
 ### Returns
 
@@ -67,10 +65,8 @@ await client.taskAssignments.createTaskAssignment({
 
 - requestBody `CreateTaskAssignmentRequestBody`
   - Request body of createTaskAssignment method
-- headersInput `CreateTaskAssignmentHeadersInput`
-  - Headers of createTaskAssignment method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateTaskAssignmentOptionalsInput`
+  -
 
 ### Returns
 
@@ -97,10 +93,8 @@ await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headersInput `GetTaskAssignmentByIdHeadersInput`
-  - Headers of getTaskAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetTaskAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -123,22 +117,20 @@ See the endpoint docs at
 
 ```ts
 await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
-  message: 'updated message',
-  resolutionState:
-    'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
-} satisfies UpdateTaskAssignmentByIdRequestBody);
+  requestBody: {
+    message: 'updated message',
+    resolutionState:
+      'approved' as UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
+  } satisfies UpdateTaskAssignmentByIdRequestBody,
+} satisfies UpdateTaskAssignmentByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- requestBody `UpdateTaskAssignmentByIdRequestBody`
-  - Request body of updateTaskAssignmentById method
-- headersInput `UpdateTaskAssignmentByIdHeadersInput`
-  - Headers of updateTaskAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateTaskAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -165,10 +157,8 @@ await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);
 
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
-- headersInput `DeleteTaskAssignmentByIdHeadersInput`
-  - Headers of deleteTaskAssignmentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteTaskAssignmentByIdOptionalsInput`
+  -
 
 ### Returns
 

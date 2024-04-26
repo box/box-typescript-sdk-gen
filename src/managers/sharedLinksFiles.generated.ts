@@ -25,6 +25,118 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class FindFileForSharedLinkOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<FindFileForSharedLinkOptionals, 'cancellationToken'> &
+      Partial<Pick<FindFileForSharedLinkOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface FindFileForSharedLinkOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetSharedLinkForFileOptionals {
+  readonly headers: GetSharedLinkForFileHeaders =
+    new GetSharedLinkForFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetSharedLinkForFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetSharedLinkForFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetSharedLinkForFileOptionalsInput {
+  readonly headers?: GetSharedLinkForFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class AddShareLinkToFileOptionals {
+  readonly headers: AddShareLinkToFileHeaders = new AddShareLinkToFileHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<AddShareLinkToFileOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<AddShareLinkToFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddShareLinkToFileOptionalsInput {
+  readonly headers?: AddShareLinkToFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateSharedLinkOnFileOptionals {
+  readonly headers: UpdateSharedLinkOnFileHeaders =
+    new UpdateSharedLinkOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateSharedLinkOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateSharedLinkOnFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateSharedLinkOnFileOptionalsInput {
+  readonly headers?: UpdateSharedLinkOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RemoveSharedLinkFromFileOptionals {
+  readonly headers: RemoveSharedLinkFromFileHeaders =
+    new RemoveSharedLinkFromFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      RemoveSharedLinkFromFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<RemoveSharedLinkFromFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RemoveSharedLinkFromFileOptionalsInput {
+  readonly headers?: RemoveSharedLinkFromFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface FindFileForSharedLinkQueryParams {
   readonly fields?: readonly string[];
 }
@@ -35,11 +147,18 @@ export class FindFileForSharedLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<FindFileForSharedLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<FindFileForSharedLinkHeaders, 'extraHeaders'>>
+    fields: Omit<FindFileForSharedLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<FindFileForSharedLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface FindFileForSharedLinkHeadersInput {
@@ -59,11 +178,12 @@ export class GetSharedLinkForFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSharedLinkForFileHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSharedLinkForFileHeaders, 'extraHeaders'>>
+    fields: Omit<GetSharedLinkForFileHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSharedLinkForFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSharedLinkForFileHeadersInput {
@@ -100,11 +220,12 @@ export class AddShareLinkToFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddShareLinkToFileHeaders, 'extraHeaders'>
-      | Partial<Pick<AddShareLinkToFileHeaders, 'extraHeaders'>>
+    fields: Omit<AddShareLinkToFileHeaders, 'extraHeaders'> &
+      Partial<Pick<AddShareLinkToFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddShareLinkToFileHeadersInput {
@@ -141,11 +262,12 @@ export class UpdateSharedLinkOnFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateSharedLinkOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateSharedLinkOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateSharedLinkOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateSharedLinkOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateSharedLinkOnFileHeadersInput {
@@ -167,11 +289,12 @@ export class RemoveSharedLinkFromFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RemoveSharedLinkFromFileHeaders, 'extraHeaders'>
-      | Partial<Pick<RemoveSharedLinkFromFileHeaders, 'extraHeaders'>>
+    fields: Omit<RemoveSharedLinkFromFileHeaders, 'extraHeaders'> &
+      Partial<Pick<RemoveSharedLinkFromFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RemoveSharedLinkFromFileHeadersInput {
@@ -185,30 +308,38 @@ export class SharedLinksFilesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SharedLinksFilesManager,
-          | 'networkSession'
-          | 'findFileForSharedLink'
-          | 'getSharedLinkForFile'
-          | 'addShareLinkToFile'
-          | 'updateSharedLinkOnFile'
-          | 'removeSharedLinkFromFile'
-        >
-      | Partial<Pick<SharedLinksFilesManager, 'networkSession'>>
+    fields: Omit<
+      SharedLinksFilesManager,
+      | 'networkSession'
+      | 'findFileForSharedLink'
+      | 'getSharedLinkForFile'
+      | 'addShareLinkToFile'
+      | 'updateSharedLinkOnFile'
+      | 'removeSharedLinkFromFile'
+    > &
+      Partial<Pick<SharedLinksFilesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async findFileForSharedLink(
     queryParams: FindFileForSharedLinkQueryParams = {} satisfies FindFileForSharedLinkQueryParams,
     headersInput: FindFileForSharedLinkHeadersInput,
-    cancellationToken?: CancellationToken
+    optionalsInput: FindFileForSharedLinkOptionalsInput = {}
   ): Promise<FileFull> {
     const headers: any = new FindFileForSharedLinkHeaders({
       ifNoneMatch: headersInput.ifNoneMatch,
       boxapi: headersInput.boxapi,
       extraHeaders: headersInput.extraHeaders,
     });
+    const optionals: any = new FindFileForSharedLinkOptionals({
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -245,14 +376,14 @@ export class SharedLinksFilesManager {
   async getSharedLinkForFile(
     fileId: string,
     queryParams: GetSharedLinkForFileQueryParams,
-    headersInput: GetSharedLinkForFileHeadersInput = new GetSharedLinkForFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetSharedLinkForFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new GetSharedLinkForFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetSharedLinkForFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -282,14 +413,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: AddShareLinkToFileRequestBody = {} satisfies AddShareLinkToFileRequestBody,
     queryParams: AddShareLinkToFileQueryParams,
-    headersInput: AddShareLinkToFileHeadersInput = new AddShareLinkToFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddShareLinkToFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new AddShareLinkToFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddShareLinkToFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -321,14 +452,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: UpdateSharedLinkOnFileRequestBody = {} satisfies UpdateSharedLinkOnFileRequestBody,
     queryParams: UpdateSharedLinkOnFileQueryParams,
-    headersInput: UpdateSharedLinkOnFileHeadersInput = new UpdateSharedLinkOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateSharedLinkOnFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new UpdateSharedLinkOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateSharedLinkOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });
@@ -360,14 +491,14 @@ export class SharedLinksFilesManager {
     fileId: string,
     requestBody: RemoveSharedLinkFromFileRequestBody = {} satisfies RemoveSharedLinkFromFileRequestBody,
     queryParams: RemoveSharedLinkFromFileQueryParams,
-    headersInput: RemoveSharedLinkFromFileHeadersInput = new RemoveSharedLinkFromFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RemoveSharedLinkFromFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new RemoveSharedLinkFromFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RemoveSharedLinkFromFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({ ['fields']: toString(queryParams.fields) as string });

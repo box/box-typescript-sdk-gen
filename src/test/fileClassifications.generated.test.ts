@@ -19,6 +19,8 @@ import { deserializeUpdateClassificationOnFileRequestBody } from '../managers/fi
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { ClassificationTemplateInput } from '../schemas.generated.js';
+import { AddClassificationToFileOptionalsInput } from '../managers/fileClassifications.generated.js';
+import { AddClassificationToFileOptionals } from '../managers/fileClassifications.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { AddClassificationRequestBody } from '../managers/classifications.generated.js';
@@ -89,8 +91,10 @@ test('testFileClassifications', async function testFileClassifications(): Promis
   }).rejects.toThrow();
   const createdFileClassification: Classification =
     await client.fileClassifications.addClassificationToFile(file.id, {
-      boxSecurityClassificationKey: classification.key,
-    } satisfies AddClassificationToFileRequestBody);
+      requestBody: {
+        boxSecurityClassificationKey: classification.key,
+      } satisfies AddClassificationToFileRequestBody,
+    } satisfies AddClassificationToFileOptionalsInput);
   if (
     !(
       createdFileClassification.boxSecurityClassificationKey ==

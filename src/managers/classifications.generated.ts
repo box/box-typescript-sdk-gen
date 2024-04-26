@@ -21,16 +21,89 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class AddClassificationOptionals {
+  readonly headers: AddClassificationHeaders = new AddClassificationHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<AddClassificationOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<AddClassificationOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddClassificationOptionalsInput {
+  readonly headers?: AddClassificationHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateClassificationOptionals {
+  readonly headers: UpdateClassificationHeaders =
+    new UpdateClassificationHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateClassificationOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateClassificationOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateClassificationOptionalsInput {
+  readonly headers?: UpdateClassificationHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateClassificationTemplateOptionals {
+  readonly headers: CreateClassificationTemplateHeaders =
+    new CreateClassificationTemplateHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateClassificationTemplateOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateClassificationTemplateOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateClassificationTemplateOptionalsInput {
+  readonly headers?: CreateClassificationTemplateHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetClassificationTemplateHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetClassificationTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<GetClassificationTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<GetClassificationTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<GetClassificationTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetClassificationTemplateHeadersInput {
@@ -61,11 +134,18 @@ export class AddClassificationRequestBody {
     'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField;
   readonly data!: AddClassificationRequestBodyDataField;
   constructor(
-    fields:
-      | Omit<AddClassificationRequestBody, 'op' | 'fieldKey'>
-      | Partial<Pick<AddClassificationRequestBody, 'op' | 'fieldKey'>>
+    fields: Omit<AddClassificationRequestBody, 'op' | 'fieldKey'> &
+      Partial<Pick<AddClassificationRequestBody, 'op' | 'fieldKey'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.op) {
+      this.op = fields.op;
+    }
+    if (fields.fieldKey) {
+      this.fieldKey = fields.fieldKey;
+    }
+    if (fields.data) {
+      this.data = fields.data;
+    }
   }
 }
 export interface AddClassificationRequestBodyInput {
@@ -78,11 +158,12 @@ export class AddClassificationHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddClassificationHeaders, 'extraHeaders'>
-      | Partial<Pick<AddClassificationHeaders, 'extraHeaders'>>
+    fields: Omit<AddClassificationHeaders, 'extraHeaders'> &
+      Partial<Pick<AddClassificationHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddClassificationHeadersInput {
@@ -114,11 +195,21 @@ export class UpdateClassificationRequestBody {
   readonly enumOptionKey!: string;
   readonly data!: UpdateClassificationRequestBodyDataField;
   constructor(
-    fields:
-      | Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'>
-      | Partial<Pick<UpdateClassificationRequestBody, 'op' | 'fieldKey'>>
+    fields: Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'> &
+      Partial<Pick<UpdateClassificationRequestBody, 'op' | 'fieldKey'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.op) {
+      this.op = fields.op;
+    }
+    if (fields.fieldKey) {
+      this.fieldKey = fields.fieldKey;
+    }
+    if (fields.enumOptionKey) {
+      this.enumOptionKey = fields.enumOptionKey;
+    }
+    if (fields.data) {
+      this.data = fields.data;
+    }
   }
 }
 export interface UpdateClassificationRequestBodyInput {
@@ -132,11 +223,12 @@ export class UpdateClassificationHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateClassificationHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateClassificationHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateClassificationHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateClassificationHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateClassificationHeadersInput {
@@ -177,19 +269,32 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
   readonly hidden?: boolean;
   readonly options!: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      CreateClassificationTemplateRequestBodyFieldsField,
+      'type' | 'key' | 'displayName'
+    > &
+      Partial<
+        Pick<
           CreateClassificationTemplateRequestBodyFieldsField,
           'type' | 'key' | 'displayName'
         >
-      | Partial<
-          Pick<
-            CreateClassificationTemplateRequestBodyFieldsField,
-            'type' | 'key' | 'displayName'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.key) {
+      this.key = fields.key;
+    }
+    if (fields.displayName) {
+      this.displayName = fields.displayName;
+    }
+    if (fields.hidden) {
+      this.hidden = fields.hidden;
+    }
+    if (fields.options) {
+      this.options = fields.options;
+    }
   }
 }
 export interface CreateClassificationTemplateRequestBodyFieldsFieldInput {
@@ -210,19 +315,35 @@ export class CreateClassificationTemplateRequestBody {
   readonly copyInstanceOnItemCopy?: boolean;
   readonly fields!: readonly CreateClassificationTemplateRequestBodyFieldsField[];
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      CreateClassificationTemplateRequestBody,
+      'scope' | 'templateKey' | 'displayName'
+    > &
+      Partial<
+        Pick<
           CreateClassificationTemplateRequestBody,
           'scope' | 'templateKey' | 'displayName'
         >
-      | Partial<
-          Pick<
-            CreateClassificationTemplateRequestBody,
-            'scope' | 'templateKey' | 'displayName'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.scope) {
+      this.scope = fields.scope;
+    }
+    if (fields.templateKey) {
+      this.templateKey = fields.templateKey;
+    }
+    if (fields.displayName) {
+      this.displayName = fields.displayName;
+    }
+    if (fields.hidden) {
+      this.hidden = fields.hidden;
+    }
+    if (fields.copyInstanceOnItemCopy) {
+      this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
+    }
+    if (fields.fields) {
+      this.fields = fields.fields;
+    }
   }
 }
 export interface CreateClassificationTemplateRequestBodyInput {
@@ -238,11 +359,12 @@ export class CreateClassificationTemplateHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateClassificationTemplateHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateClassificationTemplateHeaders, 'extraHeaders'>>
+    fields: Omit<CreateClassificationTemplateHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateClassificationTemplateHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateClassificationTemplateHeadersInput {
@@ -256,18 +378,22 @@ export class ClassificationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          ClassificationsManager,
-          | 'networkSession'
-          | 'getClassificationTemplate'
-          | 'addClassification'
-          | 'updateClassification'
-          | 'createClassificationTemplate'
-        >
-      | Partial<Pick<ClassificationsManager, 'networkSession'>>
+    fields: Omit<
+      ClassificationsManager,
+      | 'networkSession'
+      | 'getClassificationTemplate'
+      | 'addClassification'
+      | 'updateClassification'
+      | 'createClassificationTemplate'
+    > &
+      Partial<Pick<ClassificationsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getClassificationTemplate(
     headersInput: GetClassificationTemplateHeadersInput = new GetClassificationTemplateHeaders(
@@ -299,14 +425,14 @@ export class ClassificationsManager {
   }
   async addClassification(
     requestBody: readonly AddClassificationRequestBody[],
-    headersInput: AddClassificationHeadersInput = new AddClassificationHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddClassificationOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
-    const headers: any = new AddClassificationHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddClassificationOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -332,14 +458,14 @@ export class ClassificationsManager {
   }
   async updateClassification(
     requestBody: readonly UpdateClassificationRequestBody[],
-    headersInput: UpdateClassificationHeadersInput = new UpdateClassificationHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateClassificationOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
-    const headers: any = new UpdateClassificationHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateClassificationOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -365,10 +491,7 @@ export class ClassificationsManager {
   }
   async createClassificationTemplate(
     requestBodyInput: CreateClassificationTemplateRequestBodyInput,
-    headersInput: CreateClassificationTemplateHeadersInput = new CreateClassificationTemplateHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateClassificationTemplateOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
     const requestBody: any = new CreateClassificationTemplateRequestBody({
       scope: requestBodyInput.scope,
@@ -378,9 +501,12 @@ export class ClassificationsManager {
       copyInstanceOnItemCopy: requestBodyInput.copyInstanceOnItemCopy,
       fields: requestBodyInput.fields,
     });
-    const headers: any = new CreateClassificationTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateClassificationTemplateOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

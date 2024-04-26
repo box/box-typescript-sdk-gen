@@ -25,16 +25,136 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFolderMetadataOptionals {
+  readonly headers: GetFolderMetadataHeaders = new GetFolderMetadataHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderMetadataOptionalsInput {
+  readonly headers?: GetFolderMetadataHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFolderMetadataByIdOptionals {
+  readonly headers: GetFolderMetadataByIdHeaders =
+    new GetFolderMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFolderMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderMetadataByIdOptionalsInput {
+  readonly headers?: GetFolderMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFolderMetadataByIdOptionals {
+  readonly headers: CreateFolderMetadataByIdHeaders =
+    new CreateFolderMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFolderMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFolderMetadataByIdOptionalsInput {
+  readonly headers?: CreateFolderMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFolderMetadataByIdOptionals {
+  readonly headers: UpdateFolderMetadataByIdHeaders =
+    new UpdateFolderMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFolderMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFolderMetadataByIdOptionalsInput {
+  readonly headers?: UpdateFolderMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFolderMetadataByIdOptionals {
+  readonly headers: DeleteFolderMetadataByIdHeaders =
+    new DeleteFolderMetadataByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFolderMetadataByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFolderMetadataByIdOptionalsInput {
+  readonly headers?: DeleteFolderMetadataByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFolderMetadataHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderMetadataHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderMetadataHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderMetadataHeadersInput {
@@ -50,11 +170,12 @@ export class GetFolderMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderMetadataByIdHeadersInput {
@@ -73,11 +194,12 @@ export class CreateFolderMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFolderMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFolderMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFolderMetadataByIdHeadersInput {
@@ -106,11 +228,12 @@ export class UpdateFolderMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFolderMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFolderMetadataByIdHeadersInput {
@@ -126,11 +249,12 @@ export class DeleteFolderMetadataByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFolderMetadataByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFolderMetadataByIdHeadersInput {
@@ -144,30 +268,34 @@ export class FolderMetadataManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FolderMetadataManager,
-          | 'networkSession'
-          | 'getFolderMetadata'
-          | 'getFolderMetadataById'
-          | 'createFolderMetadataById'
-          | 'updateFolderMetadataById'
-          | 'deleteFolderMetadataById'
-        >
-      | Partial<Pick<FolderMetadataManager, 'networkSession'>>
+    fields: Omit<
+      FolderMetadataManager,
+      | 'networkSession'
+      | 'getFolderMetadata'
+      | 'getFolderMetadataById'
+      | 'createFolderMetadataById'
+      | 'updateFolderMetadataById'
+      | 'deleteFolderMetadataById'
+    > &
+      Partial<Pick<FolderMetadataManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFolderMetadata(
     folderId: string,
-    headersInput: GetFolderMetadataHeadersInput = new GetFolderMetadataHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderMetadataOptionalsInput = {}
   ): Promise<Metadatas> {
-    const headers: any = new GetFolderMetadataHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderMetadataOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -193,14 +321,14 @@ export class FolderMetadataManager {
     folderId: string,
     scope: GetFolderMetadataByIdScope,
     templateKey: string,
-    headersInput: GetFolderMetadataByIdHeadersInput = new GetFolderMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new GetFolderMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -230,14 +358,14 @@ export class FolderMetadataManager {
     scope: CreateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFolderMetadataByIdRequestBody,
-    headersInput: CreateFolderMetadataByIdHeadersInput = new CreateFolderMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new CreateFolderMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFolderMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -269,14 +397,14 @@ export class FolderMetadataManager {
     scope: UpdateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFolderMetadataByIdRequestBody[],
-    headersInput: UpdateFolderMetadataByIdHeadersInput = new UpdateFolderMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFolderMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const headers: any = new UpdateFolderMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFolderMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -309,14 +437,14 @@ export class FolderMetadataManager {
     folderId: string,
     scope: DeleteFolderMetadataByIdScope,
     templateKey: string,
-    headersInput: DeleteFolderMetadataByIdHeadersInput = new DeleteFolderMetadataByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFolderMetadataByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFolderMetadataByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFolderMetadataByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -14,6 +14,10 @@ import { serializeUpdateFolderByIdRequestBodyParentField } from '../managers/fol
 import { deserializeUpdateFolderByIdRequestBodyParentField } from '../managers/folders.generated.js';
 import { serializeItems } from '../schemas.generated.js';
 import { deserializeItems } from '../schemas.generated.js';
+import { GetFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { UpdateFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { GetFolderByIdOptionals } from '../managers/folders.generated.js';
+import { UpdateFolderByIdOptionals } from '../managers/folders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { GetFolderByIdQueryParams } from '../managers/folders.generated.js';
@@ -45,8 +49,10 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
 });
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0', {
-    fields: ['has_collaborations' as string, 'tags' as string],
-  } satisfies GetFolderByIdQueryParams);
+    queryParams: {
+      fields: ['has_collaborations' as string, 'tags' as string],
+    } satisfies GetFolderByIdQueryParams,
+  } satisfies GetFolderByIdOptionalsInput);
   if (!(rootFolder.id == '0')) {
     throw new Error('Assertion failed');
   }
@@ -85,9 +91,11 @@ test('test_update_folder', async function test_update_folder(): Promise<any> {
   const updatedFolder: FolderFull = await client.folders.updateFolderById(
     folderToUpdate.id,
     {
-      name: updatedName,
-      description: 'Updated description',
-    } satisfies UpdateFolderByIdRequestBody
+      requestBody: {
+        name: updatedName,
+        description: 'Updated description',
+      } satisfies UpdateFolderByIdRequestBody,
+    } satisfies UpdateFolderByIdOptionalsInput
   );
   if (!(updatedFolder.name == updatedName)) {
     throw new Error('Assertion failed');
@@ -118,11 +126,13 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
   const movedFolder: FolderFull = await client.folders.updateFolderById(
     copiedFolder.id,
     {
-      parent: {
-        id: folderOrigin.id,
-      } satisfies UpdateFolderByIdRequestBodyParentField,
-      name: movedFolderName,
-    } satisfies UpdateFolderByIdRequestBody
+      requestBody: {
+        parent: {
+          id: folderOrigin.id,
+        } satisfies UpdateFolderByIdRequestBodyParentField,
+        name: movedFolderName,
+      } satisfies UpdateFolderByIdRequestBody,
+    } satisfies UpdateFolderByIdOptionalsInput
   );
   if (!(movedFolder.parent!.id == folderOrigin.id)) {
     throw new Error('Assertion failed');
