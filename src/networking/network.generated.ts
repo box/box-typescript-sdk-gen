@@ -7,27 +7,48 @@ export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
   } = {};
-  readonly baseUrls!: BaseUrls;
+  readonly baseUrls: BaseUrls = {
+    baseUrl: '',
+    uploadUrl: '',
+    oauth2Url: '',
+  } satisfies BaseUrls;
   readonly interceptors: readonly Interceptor[] = [];
   readonly agent: Agent = createAgent(void 0);
   readonly agentOptions?: AgentOptions;
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      NetworkSession,
+      | 'additionalHeaders'
+      | 'baseUrls'
+      | 'interceptors'
+      | 'agent'
+      | 'withAdditionalHeaders'
+      | 'withCustomBaseUrls'
+      | 'withCustomAgentOptions'
+      | 'withInterceptors'
+    > &
+      Partial<
+        Pick<
           NetworkSession,
-          | 'additionalHeaders'
-          | 'interceptors'
-          | 'agent'
-          | 'withAdditionalHeaders'
-          | 'withCustomBaseUrls'
-          | 'withCustomAgentOptions'
-          | 'withInterceptors'
+          'additionalHeaders' | 'baseUrls' | 'interceptors' | 'agent'
         >
-      | Partial<
-          Pick<NetworkSession, 'additionalHeaders' | 'interceptors' | 'agent'>
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.additionalHeaders) {
+      this.additionalHeaders = fields.additionalHeaders;
+    }
+    if (fields.baseUrls) {
+      this.baseUrls = fields.baseUrls;
+    }
+    if (fields.interceptors) {
+      this.interceptors = fields.interceptors;
+    }
+    if (fields.agent) {
+      this.agent = fields.agent;
+    }
+    if (fields.agentOptions) {
+      this.agentOptions = fields.agentOptions;
+    }
   }
   withAdditionalHeaders(
     additionalHeaders: {
@@ -74,7 +95,7 @@ export interface NetworkSessionInput {
   readonly additionalHeaders?: {
     readonly [key: string]: string;
   };
-  readonly baseUrls: BaseUrls;
+  readonly baseUrls?: BaseUrls;
   readonly interceptors?: readonly Interceptor[];
   readonly agent?: Agent;
   readonly agentOptions?: AgentOptions;

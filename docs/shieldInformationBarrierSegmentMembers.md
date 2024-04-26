@@ -27,10 +27,8 @@ await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierS
 
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
-- headersInput `GetShieldInformationBarrierSegmentMemberByIdHeadersInput`
-  - Headers of getShieldInformationBarrierSegmentMemberById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierSegmentMemberByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -60,10 +58,8 @@ await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarri
 
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
-- headersInput `DeleteShieldInformationBarrierSegmentMemberByIdHeadersInput`
-  - Headers of deleteShieldInformationBarrierSegmentMemberById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteShieldInformationBarrierSegmentMemberByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -96,10 +92,8 @@ await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierS
 
 - queryParams `GetShieldInformationBarrierSegmentMembersQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentMembers method
-- headersInput `GetShieldInformationBarrierSegmentMembersHeadersInput`
-  - Headers of getShieldInformationBarrierSegmentMembers method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetShieldInformationBarrierSegmentMembersOptionalsInput`
+  -
 
 ### Returns
 
@@ -135,10 +129,8 @@ await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarri
 
 - requestBody `CreateShieldInformationBarrierSegmentMemberRequestBody`
   - Request body of createShieldInformationBarrierSegmentMember method
-- headersInput `CreateShieldInformationBarrierSegmentMemberHeadersInput`
-  - Headers of createShieldInformationBarrierSegmentMember method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateShieldInformationBarrierSegmentMemberOptionalsInput`
+  -
 
 ### Returns
 

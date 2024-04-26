@@ -18,20 +18,24 @@ export class BoxDeveloperTokenAuth implements Authentication {
   readonly config: DeveloperTokenConfig = {} satisfies DeveloperTokenConfig;
   readonly tokenStorage: TokenStorage;
   constructor(
-    fields:
-      | Omit<
-          BoxDeveloperTokenAuth,
-          | 'tokenStorage'
-          | 'config'
-          | 'retrieveToken'
-          | 'refreshToken'
-          | 'retrieveAuthorizationHeader'
-          | 'revokeToken'
-          | 'downscopeToken'
-        >
-      | Partial<Pick<BoxDeveloperTokenAuth, 'config'>>
+    fields: Omit<
+      BoxDeveloperTokenAuth,
+      | 'tokenStorage'
+      | 'config'
+      | 'retrieveToken'
+      | 'refreshToken'
+      | 'retrieveAuthorizationHeader'
+      | 'revokeToken'
+      | 'downscopeToken'
+    > &
+      Partial<Pick<BoxDeveloperTokenAuth, 'config'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.token) {
+      this.token = fields.token;
+    }
+    if (fields.config) {
+      this.config = fields.config;
+    }
     this.tokenStorage = new InMemoryTokenStorage({
       token: { accessToken: this.token } satisfies AccessToken,
     });

@@ -28,16 +28,101 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetShieldInformationBarrierByIdOptionals {
+  readonly headers: GetShieldInformationBarrierByIdHeaders =
+    new GetShieldInformationBarrierByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetShieldInformationBarrierByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetShieldInformationBarrierByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetShieldInformationBarrierByIdOptionalsInput {
+  readonly headers?: GetShieldInformationBarrierByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateShieldInformationBarrierStatusOptionals {
+  readonly headers: UpdateShieldInformationBarrierStatusHeaders =
+    new UpdateShieldInformationBarrierStatusHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateShieldInformationBarrierStatusOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateShieldInformationBarrierStatusOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateShieldInformationBarrierStatusOptionalsInput {
+  readonly headers?: UpdateShieldInformationBarrierStatusHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateShieldInformationBarrierOptionals {
+  readonly headers: CreateShieldInformationBarrierHeaders =
+    new CreateShieldInformationBarrierHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateShieldInformationBarrierOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateShieldInformationBarrierOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateShieldInformationBarrierOptionalsInput {
+  readonly headers?: CreateShieldInformationBarrierHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetShieldInformationBarrierByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetShieldInformationBarrierByIdHeadersInput {
@@ -59,13 +144,12 @@ export class UpdateShieldInformationBarrierStatusHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
-        >
+    fields: Omit<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateShieldInformationBarrierStatusHeadersInput {
@@ -84,11 +168,12 @@ export class GetShieldInformationBarriersHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetShieldInformationBarriersHeaders, 'extraHeaders'>
-      | Partial<Pick<GetShieldInformationBarriersHeaders, 'extraHeaders'>>
+    fields: Omit<GetShieldInformationBarriersHeaders, 'extraHeaders'> &
+      Partial<Pick<GetShieldInformationBarriersHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetShieldInformationBarriersHeadersInput {
@@ -106,11 +191,12 @@ export class CreateShieldInformationBarrierHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateShieldInformationBarrierHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateShieldInformationBarrierHeaders, 'extraHeaders'>>
+    fields: Omit<CreateShieldInformationBarrierHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateShieldInformationBarrierHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateShieldInformationBarrierHeadersInput {
@@ -124,29 +210,33 @@ export class ShieldInformationBarriersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          ShieldInformationBarriersManager,
-          | 'networkSession'
-          | 'getShieldInformationBarrierById'
-          | 'updateShieldInformationBarrierStatus'
-          | 'getShieldInformationBarriers'
-          | 'createShieldInformationBarrier'
-        >
-      | Partial<Pick<ShieldInformationBarriersManager, 'networkSession'>>
+    fields: Omit<
+      ShieldInformationBarriersManager,
+      | 'networkSession'
+      | 'getShieldInformationBarrierById'
+      | 'updateShieldInformationBarrierStatus'
+      | 'getShieldInformationBarriers'
+      | 'createShieldInformationBarrier'
+    > &
+      Partial<Pick<ShieldInformationBarriersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getShieldInformationBarrierById(
     shieldInformationBarrierId: string,
-    headersInput: GetShieldInformationBarrierByIdHeadersInput = new GetShieldInformationBarrierByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetShieldInformationBarrierByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const headers: any = new GetShieldInformationBarrierByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetShieldInformationBarrierByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -169,14 +259,14 @@ export class ShieldInformationBarriersManager {
   }
   async updateShieldInformationBarrierStatus(
     requestBody: UpdateShieldInformationBarrierStatusRequestBody,
-    headersInput: UpdateShieldInformationBarrierStatusHeadersInput = new UpdateShieldInformationBarrierStatusHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateShieldInformationBarrierStatusOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const headers: any = new UpdateShieldInformationBarrierStatusHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateShieldInformationBarrierStatusOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -238,14 +328,14 @@ export class ShieldInformationBarriersManager {
   }
   async createShieldInformationBarrier(
     requestBody: CreateShieldInformationBarrierRequestBody,
-    headersInput: CreateShieldInformationBarrierHeadersInput = new CreateShieldInformationBarrierHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateShieldInformationBarrierOptionalsInput = {}
   ): Promise<ShieldInformationBarrier> {
-    const headers: any = new CreateShieldInformationBarrierHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateShieldInformationBarrierOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

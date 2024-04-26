@@ -25,6 +25,160 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileByIdOptionals {
+  readonly queryParams: GetFileByIdQueryParams =
+    {} satisfies GetFileByIdQueryParams;
+  readonly headers: GetFileByIdHeaders = new GetFileByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileByIdOptionalsInput {
+  readonly queryParams?: GetFileByIdQueryParams;
+  readonly headers?: GetFileByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFileByIdOptionals {
+  readonly requestBody: UpdateFileByIdRequestBody =
+    {} satisfies UpdateFileByIdRequestBody;
+  readonly queryParams: UpdateFileByIdQueryParams =
+    {} satisfies UpdateFileByIdQueryParams;
+  readonly headers: UpdateFileByIdHeaders = new UpdateFileByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFileByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateFileByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFileByIdOptionalsInput {
+  readonly requestBody?: UpdateFileByIdRequestBody;
+  readonly queryParams?: UpdateFileByIdQueryParams;
+  readonly headers?: UpdateFileByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileByIdOptionals {
+  readonly headers: DeleteFileByIdHeaders = new DeleteFileByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileByIdOptionalsInput {
+  readonly headers?: DeleteFileByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CopyFileOptionals {
+  readonly queryParams: CopyFileQueryParams = {} satisfies CopyFileQueryParams;
+  readonly headers: CopyFileHeaders = new CopyFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CopyFileOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CopyFileOptionals, 'queryParams' | 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CopyFileOptionalsInput {
+  readonly queryParams?: CopyFileQueryParams;
+  readonly headers?: CopyFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileThumbnailByIdOptionals {
+  readonly queryParams: GetFileThumbnailByIdQueryParams =
+    {} satisfies GetFileThumbnailByIdQueryParams;
+  readonly headers: GetFileThumbnailByIdHeaders =
+    new GetFileThumbnailByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileThumbnailByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileThumbnailByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileThumbnailByIdOptionalsInput {
+  readonly queryParams?: GetFileThumbnailByIdQueryParams;
+  readonly headers?: GetFileThumbnailByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetFileByIdQueryParams {
   readonly fields?: readonly string[];
 }
@@ -36,11 +190,21 @@ export class GetFileByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.xRepHints) {
+      this.xRepHints = fields.xRepHints;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileByIdHeadersInput {
@@ -106,11 +270,15 @@ export class UpdateFileByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFileByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFileByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFileByIdHeadersInput {
@@ -127,11 +295,15 @@ export class DeleteFileByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileByIdHeadersInput {
@@ -158,11 +330,12 @@ export class CopyFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CopyFileHeaders, 'extraHeaders'>
-      | Partial<Pick<CopyFileHeaders, 'extraHeaders'>>
+    fields: Omit<CopyFileHeaders, 'extraHeaders'> &
+      Partial<Pick<CopyFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CopyFileHeadersInput {
@@ -184,11 +357,12 @@ export class GetFileThumbnailByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileThumbnailByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileThumbnailByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileThumbnailByIdHeadersInput {
@@ -202,32 +376,36 @@ export class FilesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FilesManager,
-          | 'networkSession'
-          | 'getFileById'
-          | 'updateFileById'
-          | 'deleteFileById'
-          | 'copyFile'
-          | 'getFileThumbnailById'
-        >
-      | Partial<Pick<FilesManager, 'networkSession'>>
+    fields: Omit<
+      FilesManager,
+      | 'networkSession'
+      | 'getFileById'
+      | 'updateFileById'
+      | 'deleteFileById'
+      | 'copyFile'
+      | 'getFileThumbnailById'
+    > &
+      Partial<Pick<FilesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileById(
     fileId: string,
-    queryParams: GetFileByIdQueryParams = {} satisfies GetFileByIdQueryParams,
-    headersInput: GetFileByIdHeadersInput = new GetFileByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileByIdOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new GetFileByIdHeaders({
-      ifNoneMatch: headersInput.ifNoneMatch,
-      boxapi: headersInput.boxapi,
-      xRepHints: headersInput.xRepHints,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -265,15 +443,18 @@ export class FilesManager {
   }
   async updateFileById(
     fileId: string,
-    requestBody: UpdateFileByIdRequestBody = {} satisfies UpdateFileByIdRequestBody,
-    queryParams: UpdateFileByIdQueryParams = {} satisfies UpdateFileByIdQueryParams,
-    headersInput: UpdateFileByIdHeadersInput = new UpdateFileByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFileByIdOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new UpdateFileByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFileByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -309,13 +490,14 @@ export class FilesManager {
   }
   async deleteFileById(
     fileId: string,
-    headersInput: DeleteFileByIdHeadersInput = new DeleteFileByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -342,13 +524,16 @@ export class FilesManager {
   async copyFile(
     fileId: string,
     requestBody: CopyFileRequestBody,
-    queryParams: CopyFileQueryParams = {} satisfies CopyFileQueryParams,
-    headersInput: CopyFileHeadersInput = new CopyFileHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CopyFileOptionalsInput = {}
   ): Promise<FileFull> {
-    const headers: any = new CopyFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CopyFileOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -383,15 +568,16 @@ export class FilesManager {
   async getFileThumbnailById(
     fileId: string,
     extension: GetFileThumbnailByIdExtension,
-    queryParams: GetFileThumbnailByIdQueryParams = {} satisfies GetFileThumbnailByIdQueryParams,
-    headersInput: GetFileThumbnailByIdHeadersInput = new GetFileThumbnailByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileThumbnailByIdOptionalsInput = {}
   ): Promise<ByteStream> {
-    const headers: any = new GetFileThumbnailByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileThumbnailByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

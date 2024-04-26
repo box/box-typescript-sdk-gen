@@ -28,24 +28,137 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetShieldInformationBarrierSegmentRestrictionByIdOptionals {
+  readonly headers: GetShieldInformationBarrierSegmentRestrictionByIdHeaders =
+    new GetShieldInformationBarrierSegmentRestrictionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetShieldInformationBarrierSegmentRestrictionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetShieldInformationBarrierSegmentRestrictionByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput {
+  readonly headers?: GetShieldInformationBarrierSegmentRestrictionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteShieldInformationBarrierSegmentRestrictionByIdOptionals {
+  readonly headers: DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders =
+    new DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteShieldInformationBarrierSegmentRestrictionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteShieldInformationBarrierSegmentRestrictionByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput {
+  readonly headers?: DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetShieldInformationBarrierSegmentRestrictionsOptionals {
+  readonly headers: GetShieldInformationBarrierSegmentRestrictionsHeaders =
+    new GetShieldInformationBarrierSegmentRestrictionsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetShieldInformationBarrierSegmentRestrictionsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetShieldInformationBarrierSegmentRestrictionsOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetShieldInformationBarrierSegmentRestrictionsOptionalsInput {
+  readonly headers?: GetShieldInformationBarrierSegmentRestrictionsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateShieldInformationBarrierSegmentRestrictionOptionals {
+  readonly headers: CreateShieldInformationBarrierSegmentRestrictionHeaders =
+    new CreateShieldInformationBarrierSegmentRestrictionHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateShieldInformationBarrierSegmentRestrictionOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateShieldInformationBarrierSegmentRestrictionOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateShieldInformationBarrierSegmentRestrictionOptionalsInput {
+  readonly headers?: CreateShieldInformationBarrierSegmentRestrictionHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetShieldInformationBarrierSegmentRestrictionByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      GetShieldInformationBarrierSegmentRestrictionByIdHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           GetShieldInformationBarrierSegmentRestrictionByIdHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            GetShieldInformationBarrierSegmentRestrictionByIdHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput {
@@ -60,19 +173,20 @@ export class DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInput {
@@ -92,19 +206,20 @@ export class GetShieldInformationBarrierSegmentRestrictionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      GetShieldInformationBarrierSegmentRestrictionsHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           GetShieldInformationBarrierSegmentRestrictionsHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            GetShieldInformationBarrierSegmentRestrictionsHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetShieldInformationBarrierSegmentRestrictionsHeadersInput {
@@ -135,19 +250,30 @@ export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
   readonly shieldInformationBarrierSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
   readonly restrictedSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      CreateShieldInformationBarrierSegmentRestrictionRequestBody,
+      'type'
+    > &
+      Partial<
+        Pick<
           CreateShieldInformationBarrierSegmentRestrictionRequestBody,
           'type'
         >
-      | Partial<
-          Pick<
-            CreateShieldInformationBarrierSegmentRestrictionRequestBody,
-            'type'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.shieldInformationBarrier) {
+      this.shieldInformationBarrier = fields.shieldInformationBarrier;
+    }
+    if (fields.shieldInformationBarrierSegment) {
+      this.shieldInformationBarrierSegment =
+        fields.shieldInformationBarrierSegment;
+    }
+    if (fields.restrictedSegment) {
+      this.restrictedSegment = fields.restrictedSegment;
+    }
   }
 }
 export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput {
@@ -161,19 +287,20 @@ export class CreateShieldInformationBarrierSegmentRestrictionHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      CreateShieldInformationBarrierSegmentRestrictionHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           CreateShieldInformationBarrierSegmentRestrictionHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            CreateShieldInformationBarrierSegmentRestrictionHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateShieldInformationBarrierSegmentRestrictionHeadersInput {
@@ -187,35 +314,39 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      ShieldInformationBarrierSegmentRestrictionsManager,
+      | 'networkSession'
+      | 'getShieldInformationBarrierSegmentRestrictionById'
+      | 'deleteShieldInformationBarrierSegmentRestrictionById'
+      | 'getShieldInformationBarrierSegmentRestrictions'
+      | 'createShieldInformationBarrierSegmentRestriction'
+    > &
+      Partial<
+        Pick<
           ShieldInformationBarrierSegmentRestrictionsManager,
-          | 'networkSession'
-          | 'getShieldInformationBarrierSegmentRestrictionById'
-          | 'deleteShieldInformationBarrierSegmentRestrictionById'
-          | 'getShieldInformationBarrierSegmentRestrictions'
-          | 'createShieldInformationBarrierSegmentRestriction'
+          'networkSession'
         >
-      | Partial<
-          Pick<
-            ShieldInformationBarrierSegmentRestrictionsManager,
-            'networkSession'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getShieldInformationBarrierSegmentRestrictionById(
     shieldInformationBarrierSegmentRestrictionId: string,
-    headersInput: GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput = new GetShieldInformationBarrierSegmentRestrictionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentRestriction> {
-    const headers: any =
-      new GetShieldInformationBarrierSegmentRestrictionByIdHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new GetShieldInformationBarrierSegmentRestrictionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -238,15 +369,15 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
   }
   async deleteShieldInformationBarrierSegmentRestrictionById(
     shieldInformationBarrierSegmentRestrictionId: string,
-    headersInput: DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInput = new DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any =
-      new DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new DeleteShieldInformationBarrierSegmentRestrictionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -269,15 +400,15 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
   }
   async getShieldInformationBarrierSegmentRestrictions(
     queryParams: GetShieldInformationBarrierSegmentRestrictionsQueryParams,
-    headersInput: GetShieldInformationBarrierSegmentRestrictionsHeadersInput = new GetShieldInformationBarrierSegmentRestrictionsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetShieldInformationBarrierSegmentRestrictionsOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentRestrictions> {
-    const headers: any =
-      new GetShieldInformationBarrierSegmentRestrictionsHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new GetShieldInformationBarrierSegmentRestrictionsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -311,10 +442,7 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
   }
   async createShieldInformationBarrierSegmentRestriction(
     requestBodyInput: CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput,
-    headersInput: CreateShieldInformationBarrierSegmentRestrictionHeadersInput = new CreateShieldInformationBarrierSegmentRestrictionHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateShieldInformationBarrierSegmentRestrictionOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentRestriction> {
     const requestBody: any =
       new CreateShieldInformationBarrierSegmentRestrictionRequestBody({
@@ -324,10 +452,13 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
           requestBodyInput.shieldInformationBarrierSegment,
         restrictedSegment: requestBodyInput.restrictedSegment,
       });
-    const headers: any =
-      new CreateShieldInformationBarrierSegmentRestrictionHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new CreateShieldInformationBarrierSegmentRestrictionOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

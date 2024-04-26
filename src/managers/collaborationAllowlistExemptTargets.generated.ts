@@ -24,6 +24,90 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateCollaborationWhitelistExemptTargetOptionals {
+  readonly headers: CreateCollaborationWhitelistExemptTargetHeaders =
+    new CreateCollaborationWhitelistExemptTargetHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateCollaborationWhitelistExemptTargetOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateCollaborationWhitelistExemptTargetOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateCollaborationWhitelistExemptTargetOptionalsInput {
+  readonly headers?: CreateCollaborationWhitelistExemptTargetHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetCollaborationWhitelistExemptTargetByIdOptionals {
+  readonly headers: GetCollaborationWhitelistExemptTargetByIdHeaders =
+    new GetCollaborationWhitelistExemptTargetByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetCollaborationWhitelistExemptTargetByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetCollaborationWhitelistExemptTargetByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCollaborationWhitelistExemptTargetByIdOptionalsInput {
+  readonly headers?: GetCollaborationWhitelistExemptTargetByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteCollaborationWhitelistExemptTargetByIdOptionals {
+  readonly headers: DeleteCollaborationWhitelistExemptTargetByIdHeaders =
+    new DeleteCollaborationWhitelistExemptTargetByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteCollaborationWhitelistExemptTargetByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteCollaborationWhitelistExemptTargetByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput {
+  readonly headers?: DeleteCollaborationWhitelistExemptTargetByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetCollaborationWhitelistExemptTargetsQueryParams {
   readonly marker?: string;
   readonly limit?: number;
@@ -33,13 +117,17 @@ export class GetCollaborationWhitelistExemptTargetsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationWhitelistExemptTargetsHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<GetCollaborationWhitelistExemptTargetsHeaders, 'extraHeaders'>
-        >
+    fields: Omit<
+      GetCollaborationWhitelistExemptTargetsHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<GetCollaborationWhitelistExemptTargetsHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationWhitelistExemptTargetsHeadersInput {
@@ -60,13 +148,17 @@ export class CreateCollaborationWhitelistExemptTargetHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateCollaborationWhitelistExemptTargetHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<CreateCollaborationWhitelistExemptTargetHeaders, 'extraHeaders'>
-        >
+    fields: Omit<
+      CreateCollaborationWhitelistExemptTargetHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<CreateCollaborationWhitelistExemptTargetHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateCollaborationWhitelistExemptTargetHeadersInput {
@@ -81,13 +173,17 @@ export class GetCollaborationWhitelistExemptTargetByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationWhitelistExemptTargetByIdHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<GetCollaborationWhitelistExemptTargetByIdHeaders, 'extraHeaders'>
-        >
+    fields: Omit<
+      GetCollaborationWhitelistExemptTargetByIdHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<GetCollaborationWhitelistExemptTargetByIdHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationWhitelistExemptTargetByIdHeadersInput {
@@ -102,19 +198,20 @@ export class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      DeleteCollaborationWhitelistExemptTargetByIdHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           DeleteCollaborationWhitelistExemptTargetByIdHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            DeleteCollaborationWhitelistExemptTargetByIdHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteCollaborationWhitelistExemptTargetByIdHeadersInput {
@@ -128,20 +225,24 @@ export class CollaborationAllowlistExemptTargetsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          CollaborationAllowlistExemptTargetsManager,
-          | 'networkSession'
-          | 'getCollaborationWhitelistExemptTargets'
-          | 'createCollaborationWhitelistExemptTarget'
-          | 'getCollaborationWhitelistExemptTargetById'
-          | 'deleteCollaborationWhitelistExemptTargetById'
-        >
-      | Partial<
-          Pick<CollaborationAllowlistExemptTargetsManager, 'networkSession'>
-        >
+    fields: Omit<
+      CollaborationAllowlistExemptTargetsManager,
+      | 'networkSession'
+      | 'getCollaborationWhitelistExemptTargets'
+      | 'createCollaborationWhitelistExemptTarget'
+      | 'getCollaborationWhitelistExemptTargetById'
+      | 'deleteCollaborationWhitelistExemptTargetById'
+    > &
+      Partial<
+        Pick<CollaborationAllowlistExemptTargetsManager, 'networkSession'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getCollaborationWhitelistExemptTargets(
     queryParams: GetCollaborationWhitelistExemptTargetsQueryParams = {} satisfies GetCollaborationWhitelistExemptTargetsQueryParams,
@@ -181,14 +282,15 @@ export class CollaborationAllowlistExemptTargetsManager {
   }
   async createCollaborationWhitelistExemptTarget(
     requestBody: CreateCollaborationWhitelistExemptTargetRequestBody,
-    headersInput: CreateCollaborationWhitelistExemptTargetHeadersInput = new CreateCollaborationWhitelistExemptTargetHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateCollaborationWhitelistExemptTargetOptionalsInput = {}
   ): Promise<CollaborationAllowlistExemptTarget> {
-    const headers: any = new CreateCollaborationWhitelistExemptTargetHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const optionals: any =
+      new CreateCollaborationWhitelistExemptTargetOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -214,14 +316,15 @@ export class CollaborationAllowlistExemptTargetsManager {
   }
   async getCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
-    headersInput: GetCollaborationWhitelistExemptTargetByIdHeadersInput = new GetCollaborationWhitelistExemptTargetByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
   ): Promise<CollaborationAllowlistExemptTarget> {
-    const headers: any = new GetCollaborationWhitelistExemptTargetByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const optionals: any =
+      new GetCollaborationWhitelistExemptTargetByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -244,15 +347,15 @@ export class CollaborationAllowlistExemptTargetsManager {
   }
   async deleteCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
-    headersInput: DeleteCollaborationWhitelistExemptTargetByIdHeadersInput = new DeleteCollaborationWhitelistExemptTargetByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any =
-      new DeleteCollaborationWhitelistExemptTargetByIdHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new DeleteCollaborationWhitelistExemptTargetByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

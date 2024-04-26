@@ -29,10 +29,8 @@ await client.webLinks.createWebLink({
 
 - requestBody `CreateWebLinkRequestBody`
   - Request body of createWebLink method
-- headersInput `CreateWebLinkHeadersInput`
-  - Headers of createWebLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateWebLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -59,10 +57,8 @@ await client.webLinks.getWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headersInput `GetWebLinkByIdHeadersInput`
-  - Headers of getWebLinkById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetWebLinkByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -83,24 +79,22 @@ See the endpoint docs at
 
 ```ts
 await client.webLinks.updateWebLinkById(weblink.id, {
-  name: updatedName,
-  sharedLink: {
-    access: sharedAccess,
-    password: password,
-  } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
-} satisfies UpdateWebLinkByIdRequestBody);
+  requestBody: {
+    name: updatedName,
+    sharedLink: {
+      access: sharedAccess,
+      password: password,
+    } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
+  } satisfies UpdateWebLinkByIdRequestBody,
+} satisfies UpdateWebLinkByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- requestBody `UpdateWebLinkByIdRequestBody`
-  - Request body of updateWebLinkById method
-- headersInput `UpdateWebLinkByIdHeadersInput`
-  - Headers of updateWebLinkById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateWebLinkByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -127,10 +121,8 @@ await client.webLinks.deleteWebLinkById(weblink.id);
 
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
-- headersInput `DeleteWebLinkByIdHeadersInput`
-  - Headers of deleteWebLinkById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteWebLinkByIdOptionalsInput`
+  -
 
 ### Returns
 

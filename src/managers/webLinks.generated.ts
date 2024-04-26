@@ -25,6 +25,96 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateWebLinkOptionals {
+  readonly headers: CreateWebLinkHeaders = new CreateWebLinkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateWebLinkOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateWebLinkOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateWebLinkOptionalsInput {
+  readonly headers?: CreateWebLinkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetWebLinkByIdOptionals {
+  readonly headers: GetWebLinkByIdHeaders = new GetWebLinkByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetWebLinkByIdOptionalsInput {
+  readonly headers?: GetWebLinkByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateWebLinkByIdOptionals {
+  readonly requestBody: UpdateWebLinkByIdRequestBody =
+    {} satisfies UpdateWebLinkByIdRequestBody;
+  readonly headers: UpdateWebLinkByIdHeaders = new UpdateWebLinkByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateWebLinkByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateWebLinkByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateWebLinkByIdOptionalsInput {
+  readonly requestBody?: UpdateWebLinkByIdRequestBody;
+  readonly headers?: UpdateWebLinkByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteWebLinkByIdOptionals {
+  readonly headers: DeleteWebLinkByIdHeaders = new DeleteWebLinkByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteWebLinkByIdOptionalsInput {
+  readonly headers?: DeleteWebLinkByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface CreateWebLinkRequestBodyParentField {
   readonly id: string;
 }
@@ -39,11 +129,12 @@ export class CreateWebLinkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateWebLinkHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>
+    fields: Omit<CreateWebLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateWebLinkHeadersInput {
@@ -59,11 +150,15 @@ export class GetWebLinkByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetWebLinkByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetWebLinkByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.boxapi) {
+      this.boxapi = fields.boxapi;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetWebLinkByIdHeadersInput {
@@ -99,11 +194,12 @@ export class UpdateWebLinkByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateWebLinkByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateWebLinkByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateWebLinkByIdHeadersInput {
@@ -118,11 +214,12 @@ export class DeleteWebLinkByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteWebLinkByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteWebLinkByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteWebLinkByIdHeadersInput {
@@ -136,27 +233,33 @@ export class WebLinksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          WebLinksManager,
-          | 'networkSession'
-          | 'createWebLink'
-          | 'getWebLinkById'
-          | 'updateWebLinkById'
-          | 'deleteWebLinkById'
-        >
-      | Partial<Pick<WebLinksManager, 'networkSession'>>
+    fields: Omit<
+      WebLinksManager,
+      | 'networkSession'
+      | 'createWebLink'
+      | 'getWebLinkById'
+      | 'updateWebLinkById'
+      | 'deleteWebLinkById'
+    > &
+      Partial<Pick<WebLinksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async createWebLink(
     requestBody: CreateWebLinkRequestBody,
-    headersInput: CreateWebLinkHeadersInput = new CreateWebLinkHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new CreateWebLinkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateWebLinkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -177,13 +280,14 @@ export class WebLinksManager {
   }
   async getWebLinkById(
     webLinkId: string,
-    headersInput: GetWebLinkByIdHeadersInput = new GetWebLinkByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetWebLinkByIdOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new GetWebLinkByIdHeaders({
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetWebLinkByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -209,15 +313,16 @@ export class WebLinksManager {
   }
   async updateWebLinkById(
     webLinkId: string,
-    requestBody: UpdateWebLinkByIdRequestBody = {} satisfies UpdateWebLinkByIdRequestBody,
-    headersInput: UpdateWebLinkByIdHeadersInput = new UpdateWebLinkByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateWebLinkByIdOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new UpdateWebLinkByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateWebLinkByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -242,14 +347,14 @@ export class WebLinksManager {
   }
   async deleteWebLinkById(
     webLinkId: string,
-    headersInput: DeleteWebLinkByIdHeadersInput = new DeleteWebLinkByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteWebLinkByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteWebLinkByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteWebLinkByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

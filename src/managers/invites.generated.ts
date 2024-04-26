@@ -21,6 +21,72 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateInviteOptionals {
+  readonly queryParams: CreateInviteQueryParams =
+    {} satisfies CreateInviteQueryParams;
+  readonly headers: CreateInviteHeaders = new CreateInviteHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateInviteOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateInviteOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateInviteOptionalsInput {
+  readonly queryParams?: CreateInviteQueryParams;
+  readonly headers?: CreateInviteHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetInviteByIdOptionals {
+  readonly queryParams: GetInviteByIdQueryParams =
+    {} satisfies GetInviteByIdQueryParams;
+  readonly headers: GetInviteByIdHeaders = new GetInviteByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetInviteByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetInviteByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetInviteByIdOptionalsInput {
+  readonly queryParams?: GetInviteByIdQueryParams;
+  readonly headers?: GetInviteByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface CreateInviteRequestBodyEnterpriseField {
   readonly id: string;
 }
@@ -39,11 +105,12 @@ export class CreateInviteHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateInviteHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateInviteHeaders, 'extraHeaders'>>
+    fields: Omit<CreateInviteHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateInviteHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateInviteHeadersInput {
@@ -61,11 +128,12 @@ export class GetInviteByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetInviteByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetInviteByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetInviteByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetInviteByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetInviteByIdHeadersInput {
@@ -79,24 +147,31 @@ export class InvitesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          InvitesManager,
-          'networkSession' | 'createInvite' | 'getInviteById'
-        >
-      | Partial<Pick<InvitesManager, 'networkSession'>>
+    fields: Omit<
+      InvitesManager,
+      'networkSession' | 'createInvite' | 'getInviteById'
+    > &
+      Partial<Pick<InvitesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async createInvite(
     requestBody: CreateInviteRequestBody,
-    queryParams: CreateInviteQueryParams = {} satisfies CreateInviteQueryParams,
-    headersInput: CreateInviteHeadersInput = new CreateInviteHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateInviteOptionalsInput = {}
   ): Promise<Invite> {
-    const headers: any = new CreateInviteHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateInviteOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -125,13 +200,16 @@ export class InvitesManager {
   }
   async getInviteById(
     inviteId: string,
-    queryParams: GetInviteByIdQueryParams = {} satisfies GetInviteByIdQueryParams,
-    headersInput: GetInviteByIdHeadersInput = new GetInviteByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetInviteByIdOptionalsInput = {}
   ): Promise<Invite> {
-    const headers: any = new GetInviteByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetInviteByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

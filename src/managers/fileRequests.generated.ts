@@ -27,16 +27,115 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileRequestByIdOptionals {
+  readonly headers: GetFileRequestByIdHeaders = new GetFileRequestByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFileRequestByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<GetFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileRequestByIdOptionalsInput {
+  readonly headers?: GetFileRequestByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFileRequestByIdOptionals {
+  readonly headers: UpdateFileRequestByIdHeaders =
+    new UpdateFileRequestByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFileRequestByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFileRequestByIdOptionalsInput {
+  readonly headers?: UpdateFileRequestByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileRequestByIdOptionals {
+  readonly headers: DeleteFileRequestByIdHeaders =
+    new DeleteFileRequestByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileRequestByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileRequestByIdOptionalsInput {
+  readonly headers?: DeleteFileRequestByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateFileRequestCopyOptionals {
+  readonly headers: CreateFileRequestCopyHeaders =
+    new CreateFileRequestCopyHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFileRequestCopyOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateFileRequestCopyOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileRequestCopyOptionalsInput {
+  readonly headers?: CreateFileRequestCopyHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFileRequestByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileRequestByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileRequestByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileRequestByIdHeadersInput {
@@ -52,11 +151,15 @@ export class UpdateFileRequestByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFileRequestByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFileRequestByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFileRequestByIdHeadersInput {
@@ -72,11 +175,12 @@ export class DeleteFileRequestByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileRequestByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileRequestByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileRequestByIdHeadersInput {
@@ -91,11 +195,12 @@ export class CreateFileRequestCopyHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateFileRequestCopyHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>
+    fields: Omit<CreateFileRequestCopyHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateFileRequestCopyHeadersInput {
@@ -109,29 +214,33 @@ export class FileRequestsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileRequestsManager,
-          | 'networkSession'
-          | 'getFileRequestById'
-          | 'updateFileRequestById'
-          | 'deleteFileRequestById'
-          | 'createFileRequestCopy'
-        >
-      | Partial<Pick<FileRequestsManager, 'networkSession'>>
+    fields: Omit<
+      FileRequestsManager,
+      | 'networkSession'
+      | 'getFileRequestById'
+      | 'updateFileRequestById'
+      | 'deleteFileRequestById'
+      | 'createFileRequestCopy'
+    > &
+      Partial<Pick<FileRequestsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileRequestById(
     fileRequestId: string,
-    headersInput: GetFileRequestByIdHeadersInput = new GetFileRequestByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileRequestByIdOptionalsInput = {}
   ): Promise<FileRequest> {
-    const headers: any = new GetFileRequestByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileRequestByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -155,15 +264,14 @@ export class FileRequestsManager {
   async updateFileRequestById(
     fileRequestId: string,
     requestBody: FileRequestUpdateRequest,
-    headersInput: UpdateFileRequestByIdHeadersInput = new UpdateFileRequestByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFileRequestByIdOptionalsInput = {}
   ): Promise<FileRequest> {
-    const headers: any = new UpdateFileRequestByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFileRequestByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -191,14 +299,14 @@ export class FileRequestsManager {
   }
   async deleteFileRequestById(
     fileRequestId: string,
-    headersInput: DeleteFileRequestByIdHeadersInput = new DeleteFileRequestByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileRequestByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileRequestByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileRequestByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -222,14 +330,14 @@ export class FileRequestsManager {
   async createFileRequestCopy(
     fileRequestId: string,
     requestBody: FileRequestCopyRequest,
-    headersInput: CreateFileRequestCopyHeadersInput = new CreateFileRequestCopyHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateFileRequestCopyOptionalsInput = {}
   ): Promise<FileRequest> {
-    const headers: any = new CreateFileRequestCopyHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateFileRequestCopyOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

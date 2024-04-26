@@ -19,6 +19,8 @@ import { deserializeUpdateClassificationOnFolderRequestBody } from '../managers/
 import { serializeClassificationTemplate } from '../schemas.generated.js';
 import { deserializeClassificationTemplate } from '../schemas.generated.js';
 import { ClassificationTemplateInput } from '../schemas.generated.js';
+import { AddClassificationToFolderOptionalsInput } from '../managers/folderClassifications.generated.js';
+import { AddClassificationToFolderOptionals } from '../managers/folderClassifications.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplateFieldsOptionsField } from '../schemas.generated.js';
 import { AddClassificationRequestBody } from '../managers/classifications.generated.js';
@@ -89,8 +91,10 @@ test('testFolderClassifications', async function testFolderClassifications(): Pr
   }).rejects.toThrow();
   const createdFolderClassification: Classification =
     await client.folderClassifications.addClassificationToFolder(folder.id, {
-      boxSecurityClassificationKey: classification.key,
-    } satisfies AddClassificationToFolderRequestBody);
+      requestBody: {
+        boxSecurityClassificationKey: classification.key,
+      } satisfies AddClassificationToFolderRequestBody,
+    } satisfies AddClassificationToFolderOptionalsInput);
   if (
     !(
       createdFolderClassification.boxSecurityClassificationKey ==

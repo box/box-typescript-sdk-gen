@@ -26,12 +26,8 @@ await client.listCollaborations.getFileCollaborations(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileCollaborationsQueryParams`
-  - Query parameters of getFileCollaborations method
-- headersInput `GetFileCollaborationsHeadersInput`
-  - Headers of getFileCollaborations method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileCollaborationsOptionalsInput`
+  -
 
 ### Returns
 
@@ -65,12 +61,8 @@ await client.listCollaborations.getFolderCollaborations(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
-- queryParams `GetFolderCollaborationsQueryParams`
-  - Query parameters of getFolderCollaborations method
-- headersInput `GetFolderCollaborationsHeadersInput`
-  - Headers of getFolderCollaborations method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFolderCollaborationsOptionalsInput`
+  -
 
 ### Returns
 
@@ -104,10 +96,8 @@ await client.listCollaborations.getCollaborations({
 
 - queryParams `GetCollaborationsQueryParams`
   - Query parameters of getCollaborations method
-- headersInput `GetCollaborationsHeadersInput`
-  - Headers of getCollaborations method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetCollaborationsOptionalsInput`
+  -
 
 ### Returns
 
@@ -141,12 +131,8 @@ await client.listCollaborations.getGroupCollaborations(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- queryParams `GetGroupCollaborationsQueryParams`
-  - Query parameters of getGroupCollaborations method
-- headersInput `GetGroupCollaborationsHeadersInput`
-  - Headers of getGroupCollaborations method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetGroupCollaborationsOptionalsInput`
+  -
 
 ### Returns
 

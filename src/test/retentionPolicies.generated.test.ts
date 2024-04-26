@@ -12,6 +12,8 @@ import { serializeRetentionPolicies } from '../schemas.generated.js';
 import { deserializeRetentionPolicies } from '../schemas.generated.js';
 import { serializeUpdateRetentionPolicyByIdRequestBody } from '../managers/retentionPolicies.generated.js';
 import { deserializeUpdateRetentionPolicyByIdRequestBody } from '../managers/retentionPolicies.generated.js';
+import { UpdateRetentionPolicyByIdOptionalsInput } from '../managers/retentionPolicies.generated.js';
+import { UpdateRetentionPolicyByIdOptionals } from '../managers/retentionPolicies.generated.js';
 import { RetentionPolicy } from '../schemas.generated.js';
 import { CreateRetentionPolicyRequestBody } from '../managers/retentionPolicies.generated.js';
 import { CreateRetentionPolicyRequestBodyPolicyTypeField } from '../managers/retentionPolicies.generated.js';
@@ -67,8 +69,10 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
     await client.retentionPolicies.updateRetentionPolicyById(
       retentionPolicy.id,
       {
-        policyName: updatedRetentionPolicyName,
-      } satisfies UpdateRetentionPolicyByIdRequestBody
+        requestBody: {
+          policyName: updatedRetentionPolicyName,
+        } satisfies UpdateRetentionPolicyByIdRequestBody,
+      } satisfies UpdateRetentionPolicyByIdOptionalsInput
     );
   if (!(updatedRetentionPolicy.policyName == updatedRetentionPolicyName)) {
     throw new Error('Assertion failed');

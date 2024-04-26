@@ -32,6 +32,90 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class AuthorizeUserOptionals {
+  readonly headers: AuthorizeUserHeaders = new AuthorizeUserHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<AuthorizeUserOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<AuthorizeUserOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AuthorizeUserOptionalsInput {
+  readonly headers?: AuthorizeUserHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RequestAccessTokenOptionals {
+  readonly headers: RequestAccessTokenHeaders = new RequestAccessTokenHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<RequestAccessTokenOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<RequestAccessTokenOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RequestAccessTokenOptionalsInput {
+  readonly headers?: RequestAccessTokenHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RefreshAccessTokenOptionals {
+  readonly headers: RefreshAccessTokenHeaders = new RefreshAccessTokenHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<RefreshAccessTokenOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<RefreshAccessTokenOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RefreshAccessTokenOptionalsInput {
+  readonly headers?: RefreshAccessTokenHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class RevokeAccessTokenOptionals {
+  readonly headers: RevokeAccessTokenHeaders = new RevokeAccessTokenHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RevokeAccessTokenOptionalsInput {
+  readonly headers?: RevokeAccessTokenHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type AuthorizeUserQueryParamsResponseTypeField = 'code';
 export interface AuthorizeUserQueryParams {
   readonly responseType: AuthorizeUserQueryParamsResponseTypeField;
@@ -45,11 +129,12 @@ export class AuthorizeUserHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AuthorizeUserHeaders, 'extraHeaders'>
-      | Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>
+    fields: Omit<AuthorizeUserHeaders, 'extraHeaders'> &
+      Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AuthorizeUserHeadersInput {
@@ -64,11 +149,12 @@ export class RequestAccessTokenHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RequestAccessTokenHeaders, 'extraHeaders'>
-      | Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>
+    fields: Omit<RequestAccessTokenHeaders, 'extraHeaders'> &
+      Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RequestAccessTokenHeadersInput {
@@ -83,11 +169,12 @@ export class RefreshAccessTokenHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RefreshAccessTokenHeaders, 'extraHeaders'>
-      | Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>
+    fields: Omit<RefreshAccessTokenHeaders, 'extraHeaders'> &
+      Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RefreshAccessTokenHeadersInput {
@@ -102,11 +189,12 @@ export class RevokeAccessTokenHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RevokeAccessTokenHeaders, 'extraHeaders'>
-      | Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>
+    fields: Omit<RevokeAccessTokenHeaders, 'extraHeaders'> &
+      Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RevokeAccessTokenHeadersInput {
@@ -120,27 +208,33 @@ export class AuthorizationManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          AuthorizationManager,
-          | 'networkSession'
-          | 'authorizeUser'
-          | 'requestAccessToken'
-          | 'refreshAccessToken'
-          | 'revokeAccessToken'
-        >
-      | Partial<Pick<AuthorizationManager, 'networkSession'>>
+    fields: Omit<
+      AuthorizationManager,
+      | 'networkSession'
+      | 'authorizeUser'
+      | 'requestAccessToken'
+      | 'refreshAccessToken'
+      | 'revokeAccessToken'
+    > &
+      Partial<Pick<AuthorizationManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async authorizeUser(
     queryParams: AuthorizeUserQueryParams,
-    headersInput: AuthorizeUserHeadersInput = new AuthorizeUserHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: AuthorizeUserOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new AuthorizeUserHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AuthorizeUserOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -169,14 +263,14 @@ export class AuthorizationManager {
   }
   async requestAccessToken(
     requestBody: PostOAuth2Token,
-    headersInput: RequestAccessTokenHeadersInput = new RequestAccessTokenHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RequestAccessTokenOptionalsInput = {}
   ): Promise<AccessToken> {
-    const headers: any = new RequestAccessTokenHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RequestAccessTokenOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -197,10 +291,7 @@ export class AuthorizationManager {
   }
   async refreshAccessToken(
     requestBodyInput: PostOAuth2TokenRefreshAccessTokenInput,
-    headersInput: RefreshAccessTokenHeadersInput = new RefreshAccessTokenHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RefreshAccessTokenOptionalsInput = {}
   ): Promise<AccessToken> {
     const requestBody: any = new PostOAuth2TokenRefreshAccessToken({
       grantType: requestBodyInput.grantType,
@@ -208,9 +299,12 @@ export class AuthorizationManager {
       clientSecret: requestBodyInput.clientSecret,
       refreshToken: requestBodyInput.refreshToken,
     });
-    const headers: any = new RefreshAccessTokenHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RefreshAccessTokenOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -231,14 +325,14 @@ export class AuthorizationManager {
   }
   async revokeAccessToken(
     requestBody: PostOAuth2Revoke,
-    headersInput: RevokeAccessTokenHeadersInput = new RevokeAccessTokenHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RevokeAccessTokenOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new RevokeAccessTokenHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RevokeAccessTokenOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

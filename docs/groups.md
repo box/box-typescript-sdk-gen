@@ -60,12 +60,8 @@ await client.groups.createGroup({
 
 - requestBody `CreateGroupRequestBody`
   - Request body of createGroup method
-- queryParams `CreateGroupQueryParams`
-  - Query parameters of createGroup method
-- headersInput `CreateGroupHeadersInput`
-  - Headers of createGroup method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateGroupOptionalsInput`
+  -
 
 ### Returns
 
@@ -94,12 +90,8 @@ await client.groups.getGroupById(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- queryParams `GetGroupByIdQueryParams`
-  - Query parameters of getGroupById method
-- headersInput `GetGroupByIdHeadersInput`
-  - Headers of getGroupById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetGroupByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -122,22 +114,16 @@ See the endpoint docs at
 
 ```ts
 await client.groups.updateGroupById(group.id, {
-  name: updatedGroupName,
-} satisfies UpdateGroupByIdRequestBody);
+  requestBody: { name: updatedGroupName } satisfies UpdateGroupByIdRequestBody,
+} satisfies UpdateGroupByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- requestBody `UpdateGroupByIdRequestBody`
-  - Request body of updateGroupById method
-- queryParams `UpdateGroupByIdQueryParams`
-  - Query parameters of updateGroupById method
-- headersInput `UpdateGroupByIdHeadersInput`
-  - Headers of updateGroupById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateGroupByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -165,10 +151,8 @@ await client.groups.deleteGroupById(group.id);
 
 - groupId `string`
   - The ID of the group. Example: "57645"
-- headersInput `DeleteGroupByIdHeadersInput`
-  - Headers of deleteGroupById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteGroupByIdOptionalsInput`
+  -
 
 ### Returns
 

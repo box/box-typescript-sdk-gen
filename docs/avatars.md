@@ -23,10 +23,8 @@ await client.avatars.getUserAvatar(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- headersInput `GetUserAvatarHeadersInput`
-  - Headers of getUserAvatar method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetUserAvatarOptionalsInput`
+  -
 
 ### Returns
 
@@ -63,10 +61,8 @@ await client.avatars.createUserAvatar(user.id, {
   - The ID of the user. Example: "12345"
 - requestBody `CreateUserAvatarRequestBody`
   - Request body of createUserAvatar method
-- headersInput `CreateUserAvatarHeadersInput`
-  - Headers of createUserAvatar method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateUserAvatarOptionalsInput`
+  -
 
 ### Returns
 
@@ -96,10 +92,8 @@ await client.avatars.deleteUserAvatar(user.id);
 
 - userId `string`
   - The ID of the user. Example: "12345"
-- headersInput `DeleteUserAvatarHeadersInput`
-  - Headers of deleteUserAvatar method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteUserAvatarOptionalsInput`
+  -
 
 ### Returns
 

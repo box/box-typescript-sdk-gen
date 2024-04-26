@@ -38,11 +38,12 @@ export class GetTrashedItemsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTrashedItemsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>
+    fields: Omit<GetTrashedItemsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTrashedItemsHeadersInput {
@@ -56,11 +57,15 @@ export class TrashedItemsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<TrashedItemsManager, 'networkSession' | 'getTrashedItems'>
-      | Partial<Pick<TrashedItemsManager, 'networkSession'>>
+    fields: Omit<TrashedItemsManager, 'networkSession' | 'getTrashedItems'> &
+      Partial<Pick<TrashedItemsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getTrashedItems(
     queryParams: GetTrashedItemsQueryParams = {} satisfies GetTrashedItemsQueryParams,

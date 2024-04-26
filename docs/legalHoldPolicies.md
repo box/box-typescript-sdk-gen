@@ -60,10 +60,8 @@ await client.legalHoldPolicies.createLegalHoldPolicy({
 
 - requestBody `CreateLegalHoldPolicyRequestBody`
   - Request body of createLegalHoldPolicy method
-- headersInput `CreateLegalHoldPolicyHeadersInput`
-  - Headers of createLegalHoldPolicy method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateLegalHoldPolicyOptionalsInput`
+  -
 
 ### Returns
 
@@ -90,10 +88,8 @@ await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- headersInput `GetLegalHoldPolicyByIdHeadersInput`
-  - Headers of getLegalHoldPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetLegalHoldPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -114,20 +110,18 @@ See the endpoint docs at
 
 ```ts
 await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
-  policyName: updatedLegalHoldPolicyName,
-} satisfies UpdateLegalHoldPolicyByIdRequestBody);
+  requestBody: {
+    policyName: updatedLegalHoldPolicyName,
+  } satisfies UpdateLegalHoldPolicyByIdRequestBody,
+} satisfies UpdateLegalHoldPolicyByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- requestBody `UpdateLegalHoldPolicyByIdRequestBody`
-  - Request body of updateLegalHoldPolicyById method
-- headersInput `UpdateLegalHoldPolicyByIdHeadersInput`
-  - Headers of updateLegalHoldPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateLegalHoldPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -157,10 +151,8 @@ await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
 
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy Example: "324432"
-- headersInput `DeleteLegalHoldPolicyByIdHeadersInput`
-  - Headers of deleteLegalHoldPolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteLegalHoldPolicyByIdOptionalsInput`
+  -
 
 ### Returns
 

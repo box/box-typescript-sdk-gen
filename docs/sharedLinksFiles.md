@@ -45,8 +45,8 @@ await userClient.sharedLinksFiles.findFileForSharedLink(
   - Query parameters of findFileForSharedLink method
 - headersInput `FindFileForSharedLinkHeadersInput`
   - Headers of findFileForSharedLink method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `FindFileForSharedLinkOptionalsInput`
+  -
 
 ### Returns
 
@@ -78,10 +78,8 @@ await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - queryParams `GetSharedLinkForFileQueryParams`
   - Query parameters of getSharedLinkForFile method
-- headersInput `GetSharedLinkForFileHeadersInput`
-  - Headers of getSharedLinkForFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetSharedLinkForFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -122,10 +120,8 @@ await client.sharedLinksFiles.addShareLinkToFile(
   - Request body of addShareLinkToFile method
 - queryParams `AddShareLinkToFileQueryParams`
   - Query parameters of addShareLinkToFile method
-- headersInput `AddShareLinkToFileHeadersInput`
-  - Headers of addShareLinkToFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `AddShareLinkToFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -166,10 +162,8 @@ await client.sharedLinksFiles.updateSharedLinkOnFile(
   - Request body of updateSharedLinkOnFile method
 - queryParams `UpdateSharedLinkOnFileQueryParams`
   - Query parameters of updateSharedLinkOnFile method
-- headersInput `UpdateSharedLinkOnFileHeadersInput`
-  - Headers of updateSharedLinkOnFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateSharedLinkOnFileOptionalsInput`
+  -
 
 ### Returns
 
@@ -197,10 +191,8 @@ _Currently we don't have an example for calling `removeSharedLinkFromFile` in in
   - Request body of removeSharedLinkFromFile method
 - queryParams `RemoveSharedLinkFromFileQueryParams`
   - Query parameters of removeSharedLinkFromFile method
-- headersInput `RemoveSharedLinkFromFileHeadersInput`
-  - Headers of removeSharedLinkFromFile method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RemoveSharedLinkFromFileOptionalsInput`
+  -
 
 ### Returns
 

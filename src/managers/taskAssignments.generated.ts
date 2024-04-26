@@ -25,16 +25,149 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetTaskAssignmentsOptionals {
+  readonly headers: GetTaskAssignmentsHeaders = new GetTaskAssignmentsHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetTaskAssignmentsOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<GetTaskAssignmentsOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetTaskAssignmentsOptionalsInput {
+  readonly headers?: GetTaskAssignmentsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateTaskAssignmentOptionals {
+  readonly headers: CreateTaskAssignmentHeaders =
+    new CreateTaskAssignmentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateTaskAssignmentOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateTaskAssignmentOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateTaskAssignmentOptionalsInput {
+  readonly headers?: CreateTaskAssignmentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetTaskAssignmentByIdOptionals {
+  readonly headers: GetTaskAssignmentByIdHeaders =
+    new GetTaskAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetTaskAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetTaskAssignmentByIdOptionalsInput {
+  readonly headers?: GetTaskAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateTaskAssignmentByIdOptionals {
+  readonly requestBody: UpdateTaskAssignmentByIdRequestBody =
+    {} satisfies UpdateTaskAssignmentByIdRequestBody;
+  readonly headers: UpdateTaskAssignmentByIdHeaders =
+    new UpdateTaskAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateTaskAssignmentByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateTaskAssignmentByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateTaskAssignmentByIdOptionalsInput {
+  readonly requestBody?: UpdateTaskAssignmentByIdRequestBody;
+  readonly headers?: UpdateTaskAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteTaskAssignmentByIdOptionals {
+  readonly headers: DeleteTaskAssignmentByIdHeaders =
+    new DeleteTaskAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteTaskAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteTaskAssignmentByIdOptionalsInput {
+  readonly headers?: DeleteTaskAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetTaskAssignmentsHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTaskAssignmentsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTaskAssignmentsHeaders, 'extraHeaders'>>
+    fields: Omit<GetTaskAssignmentsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTaskAssignmentsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTaskAssignmentsHeadersInput {
@@ -50,11 +183,15 @@ export class CreateTaskAssignmentRequestBodyTaskField {
   readonly type: CreateTaskAssignmentRequestBodyTaskTypeField =
     'task' as CreateTaskAssignmentRequestBodyTaskTypeField;
   constructor(
-    fields:
-      | Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'>
-      | Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>
+    fields: Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'> &
+      Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
@@ -74,11 +211,12 @@ export class CreateTaskAssignmentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateTaskAssignmentHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateTaskAssignmentHeaders, 'extraHeaders'>>
+    fields: Omit<CreateTaskAssignmentHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateTaskAssignmentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateTaskAssignmentHeadersInput {
@@ -93,11 +231,12 @@ export class GetTaskAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTaskAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTaskAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetTaskAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTaskAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTaskAssignmentByIdHeadersInput {
@@ -121,11 +260,12 @@ export class UpdateTaskAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateTaskAssignmentByIdHeadersInput {
@@ -140,11 +280,12 @@ export class DeleteTaskAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteTaskAssignmentByIdHeadersInput {
@@ -158,30 +299,34 @@ export class TaskAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          TaskAssignmentsManager,
-          | 'networkSession'
-          | 'getTaskAssignments'
-          | 'createTaskAssignment'
-          | 'getTaskAssignmentById'
-          | 'updateTaskAssignmentById'
-          | 'deleteTaskAssignmentById'
-        >
-      | Partial<Pick<TaskAssignmentsManager, 'networkSession'>>
+    fields: Omit<
+      TaskAssignmentsManager,
+      | 'networkSession'
+      | 'getTaskAssignments'
+      | 'createTaskAssignment'
+      | 'getTaskAssignmentById'
+      | 'updateTaskAssignmentById'
+      | 'deleteTaskAssignmentById'
+    > &
+      Partial<Pick<TaskAssignmentsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getTaskAssignments(
     taskId: string,
-    headersInput: GetTaskAssignmentsHeadersInput = new GetTaskAssignmentsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetTaskAssignmentsOptionalsInput = {}
   ): Promise<TaskAssignments> {
-    const headers: any = new GetTaskAssignmentsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetTaskAssignmentsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -205,14 +350,14 @@ export class TaskAssignmentsManager {
   }
   async createTaskAssignment(
     requestBody: CreateTaskAssignmentRequestBody,
-    headersInput: CreateTaskAssignmentHeadersInput = new CreateTaskAssignmentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateTaskAssignmentOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const headers: any = new CreateTaskAssignmentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateTaskAssignmentOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -236,14 +381,14 @@ export class TaskAssignmentsManager {
   }
   async getTaskAssignmentById(
     taskAssignmentId: string,
-    headersInput: GetTaskAssignmentByIdHeadersInput = new GetTaskAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetTaskAssignmentByIdOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const headers: any = new GetTaskAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetTaskAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -266,15 +411,16 @@ export class TaskAssignmentsManager {
   }
   async updateTaskAssignmentById(
     taskAssignmentId: string,
-    requestBody: UpdateTaskAssignmentByIdRequestBody = {} satisfies UpdateTaskAssignmentByIdRequestBody,
-    headersInput: UpdateTaskAssignmentByIdHeadersInput = new UpdateTaskAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateTaskAssignmentByIdOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const headers: any = new UpdateTaskAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateTaskAssignmentByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -299,14 +445,14 @@ export class TaskAssignmentsManager {
   }
   async deleteTaskAssignmentById(
     taskAssignmentId: string,
-    headersInput: DeleteTaskAssignmentByIdHeadersInput = new DeleteTaskAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteTaskAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteTaskAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteTaskAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

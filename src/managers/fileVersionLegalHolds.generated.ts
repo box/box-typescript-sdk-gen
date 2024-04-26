@@ -24,16 +24,70 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileVersionLegalHoldByIdOptionals {
+  readonly headers: GetFileVersionLegalHoldByIdHeaders =
+    new GetFileVersionLegalHoldByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionLegalHoldByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileVersionLegalHoldByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionLegalHoldByIdOptionalsInput {
+  readonly headers?: GetFileVersionLegalHoldByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileVersionLegalHoldsOptionals {
+  readonly headers: GetFileVersionLegalHoldsHeaders =
+    new GetFileVersionLegalHoldsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionLegalHoldsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetFileVersionLegalHoldsOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionLegalHoldsOptionalsInput {
+  readonly headers?: GetFileVersionLegalHoldsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFileVersionLegalHoldByIdHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionLegalHoldByIdHeadersInput {
@@ -53,11 +107,12 @@ export class GetFileVersionLegalHoldsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionLegalHoldsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionLegalHoldsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionLegalHoldsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionLegalHoldsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionLegalHoldsHeadersInput {
@@ -71,27 +126,31 @@ export class FileVersionLegalHoldsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileVersionLegalHoldsManager,
-          | 'networkSession'
-          | 'getFileVersionLegalHoldById'
-          | 'getFileVersionLegalHolds'
-        >
-      | Partial<Pick<FileVersionLegalHoldsManager, 'networkSession'>>
+    fields: Omit<
+      FileVersionLegalHoldsManager,
+      | 'networkSession'
+      | 'getFileVersionLegalHoldById'
+      | 'getFileVersionLegalHolds'
+    > &
+      Partial<Pick<FileVersionLegalHoldsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileVersionLegalHoldById(
     fileVersionLegalHoldId: string,
-    headersInput: GetFileVersionLegalHoldByIdHeadersInput = new GetFileVersionLegalHoldByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionLegalHoldByIdOptionalsInput = {}
   ): Promise<FileVersionLegalHold> {
-    const headers: any = new GetFileVersionLegalHoldByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileVersionLegalHoldByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -114,14 +173,14 @@ export class FileVersionLegalHoldsManager {
   }
   async getFileVersionLegalHolds(
     queryParams: GetFileVersionLegalHoldsQueryParams,
-    headersInput: GetFileVersionLegalHoldsHeadersInput = new GetFileVersionLegalHoldsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionLegalHoldsOptionalsInput = {}
   ): Promise<FileVersionLegalHolds> {
-    const headers: any = new GetFileVersionLegalHoldsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileVersionLegalHoldsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

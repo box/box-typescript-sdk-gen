@@ -29,10 +29,8 @@ await client.metadataCascadePolicies.getMetadataCascadePolicies({
 
 - queryParams `GetMetadataCascadePoliciesQueryParams`
   - Query parameters of getMetadataCascadePolicies method
-- headersInput `GetMetadataCascadePoliciesHeadersInput`
-  - Headers of getMetadataCascadePolicies method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetMetadataCascadePoliciesOptionalsInput`
+  -
 
 ### Returns
 
@@ -68,10 +66,8 @@ await client.metadataCascadePolicies.createMetadataCascadePolicy({
 
 - requestBody `CreateMetadataCascadePolicyRequestBody`
   - Request body of createMetadataCascadePolicy method
-- headersInput `CreateMetadataCascadePolicyHeadersInput`
-  - Headers of createMetadataCascadePolicy method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateMetadataCascadePolicyOptionalsInput`
+  -
 
 ### Returns
 
@@ -100,10 +96,8 @@ await client.metadataCascadePolicies.getMetadataCascadePolicyById(
 
 - metadataCascadePolicyId `string`
   - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
-- headersInput `GetMetadataCascadePolicyByIdHeadersInput`
-  - Headers of getMetadataCascadePolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetMetadataCascadePolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -132,10 +126,8 @@ await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
 
 - metadataCascadePolicyId `string`
   - The ID of the metadata cascade policy. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
-- headersInput `DeleteMetadataCascadePolicyByIdHeadersInput`
-  - Headers of deleteMetadataCascadePolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteMetadataCascadePolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -174,10 +166,8 @@ await client.metadataCascadePolicies.applyMetadataCascadePolicy(
   - The ID of the cascade policy to force-apply. Example: "6fd4ff89-8fc1-42cf-8b29-1890dedd26d7"
 - requestBody `ApplyMetadataCascadePolicyRequestBody`
   - Request body of applyMetadataCascadePolicy method
-- headersInput `ApplyMetadataCascadePolicyHeadersInput`
-  - Headers of applyMetadataCascadePolicy method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `ApplyMetadataCascadePolicyOptionalsInput`
+  -
 
 ### Returns
 

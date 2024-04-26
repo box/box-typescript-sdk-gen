@@ -25,10 +25,8 @@ await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headersInput `CancelSignRequestHeadersInput`
-  - Headers of cancelSignRequest method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CancelSignRequestOptionalsInput`
+  -
 
 ### Returns
 
@@ -51,10 +49,8 @@ _Currently we don't have an example for calling `resendSignRequest` in integrati
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headersInput `ResendSignRequestHeadersInput`
-  - Headers of resendSignRequest method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `ResendSignRequestOptionalsInput`
+  -
 
 ### Returns
 
@@ -82,10 +78,8 @@ await client.signRequests.getSignRequestById(createdSignRequest.id!);
 
 - signRequestId `string`
   - The ID of the sign request Example: "33243242"
-- headersInput `GetSignRequestByIdHeadersInput`
-  - Headers of getSignRequestById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetSignRequestByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -157,10 +151,8 @@ await client.signRequests.createSignRequest({
 
 - requestBody `SignRequestCreateRequest`
   - Request body of createSignRequest method
-- headersInput `CreateSignRequestHeadersInput`
-  - Headers of createSignRequest method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateSignRequestOptionalsInput`
+  -
 
 ### Returns
 

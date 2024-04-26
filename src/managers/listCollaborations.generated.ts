@@ -22,6 +22,127 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileCollaborationsOptionals {
+  readonly queryParams: GetFileCollaborationsQueryParams =
+    {} satisfies GetFileCollaborationsQueryParams;
+  readonly headers: GetFileCollaborationsHeaders =
+    new GetFileCollaborationsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileCollaborationsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileCollaborationsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileCollaborationsOptionalsInput {
+  readonly queryParams?: GetFileCollaborationsQueryParams;
+  readonly headers?: GetFileCollaborationsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFolderCollaborationsOptionals {
+  readonly queryParams: GetFolderCollaborationsQueryParams =
+    {} satisfies GetFolderCollaborationsQueryParams;
+  readonly headers: GetFolderCollaborationsHeaders =
+    new GetFolderCollaborationsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFolderCollaborationsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFolderCollaborationsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderCollaborationsOptionalsInput {
+  readonly queryParams?: GetFolderCollaborationsQueryParams;
+  readonly headers?: GetFolderCollaborationsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetCollaborationsOptionals {
+  readonly headers: GetCollaborationsHeaders = new GetCollaborationsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetCollaborationsOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetCollaborationsOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCollaborationsOptionalsInput {
+  readonly headers?: GetCollaborationsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetGroupCollaborationsOptionals {
+  readonly queryParams: GetGroupCollaborationsQueryParams =
+    {} satisfies GetGroupCollaborationsQueryParams;
+  readonly headers: GetGroupCollaborationsHeaders =
+    new GetGroupCollaborationsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetGroupCollaborationsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetGroupCollaborationsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetGroupCollaborationsOptionalsInput {
+  readonly queryParams?: GetGroupCollaborationsQueryParams;
+  readonly headers?: GetGroupCollaborationsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetFileCollaborationsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -32,11 +153,12 @@ export class GetFileCollaborationsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileCollaborationsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileCollaborationsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileCollaborationsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileCollaborationsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileCollaborationsHeadersInput {
@@ -54,11 +176,12 @@ export class GetFolderCollaborationsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderCollaborationsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderCollaborationsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderCollaborationsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderCollaborationsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderCollaborationsHeadersInput {
@@ -80,11 +203,12 @@ export class GetCollaborationsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollaborationsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollaborationsHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollaborationsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollaborationsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollaborationsHeadersInput {
@@ -103,11 +227,12 @@ export class GetGroupCollaborationsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGroupCollaborationsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGroupCollaborationsHeaders, 'extraHeaders'>>
+    fields: Omit<GetGroupCollaborationsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGroupCollaborationsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGroupCollaborationsHeadersInput {
@@ -121,30 +246,35 @@ export class ListCollaborationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          ListCollaborationsManager,
-          | 'networkSession'
-          | 'getFileCollaborations'
-          | 'getFolderCollaborations'
-          | 'getCollaborations'
-          | 'getGroupCollaborations'
-        >
-      | Partial<Pick<ListCollaborationsManager, 'networkSession'>>
+    fields: Omit<
+      ListCollaborationsManager,
+      | 'networkSession'
+      | 'getFileCollaborations'
+      | 'getFolderCollaborations'
+      | 'getCollaborations'
+      | 'getGroupCollaborations'
+    > &
+      Partial<Pick<ListCollaborationsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileCollaborations(
     fileId: string,
-    queryParams: GetFileCollaborationsQueryParams = {} satisfies GetFileCollaborationsQueryParams,
-    headersInput: GetFileCollaborationsHeadersInput = new GetFileCollaborationsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const headers: any = new GetFileCollaborationsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileCollaborationsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -178,15 +308,16 @@ export class ListCollaborationsManager {
   }
   async getFolderCollaborations(
     folderId: string,
-    queryParams: GetFolderCollaborationsQueryParams = {} satisfies GetFolderCollaborationsQueryParams,
-    headersInput: GetFolderCollaborationsHeadersInput = new GetFolderCollaborationsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const headers: any = new GetFolderCollaborationsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderCollaborationsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -218,14 +349,14 @@ export class ListCollaborationsManager {
   }
   async getCollaborations(
     queryParams: GetCollaborationsQueryParams,
-    headersInput: GetCollaborationsHeadersInput = new GetCollaborationsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const headers: any = new GetCollaborationsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetCollaborationsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -258,15 +389,16 @@ export class ListCollaborationsManager {
   }
   async getGroupCollaborations(
     groupId: string,
-    queryParams: GetGroupCollaborationsQueryParams = {} satisfies GetGroupCollaborationsQueryParams,
-    headersInput: GetGroupCollaborationsHeadersInput = new GetGroupCollaborationsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetGroupCollaborationsOptionalsInput = {}
   ): Promise<Collaborations> {
-    const headers: any = new GetGroupCollaborationsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetGroupCollaborationsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

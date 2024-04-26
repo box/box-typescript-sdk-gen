@@ -52,10 +52,8 @@ await client.storagePolicies.getStoragePolicyById(storagePolicy.id);
 
 - storagePolicyId `string`
   - The ID of the storage policy. Example: "34342"
-- headersInput `GetStoragePolicyByIdHeadersInput`
-  - Headers of getStoragePolicyById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetStoragePolicyByIdOptionalsInput`
+  -
 
 ### Returns
 
