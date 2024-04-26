@@ -27,6 +27,44 @@ export type Iterator<T = any> = AsyncIterator<T>;
 export type AgentOptions = any;
 export type Agent = any;
 
+// using wrappers for date/datetime because of inability to export built-in Date types
+class DateWrapper {
+  constructor(public readonly value: Date) {}
+}
+
+class DateTimeWrapper {
+  constructor(public readonly value: Date) {}
+}
+
+export { DateWrapper as Date, DateTimeWrapper as DateTime };
+
+export function dateFromString(value: string): DateWrapper {
+  return new DateWrapper(new Date(value));
+}
+
+export function dateToString(date: DateWrapper): string {
+  return date.value.toISOString().match(/^\d{4}-\d{2}-\d{2}/)![0];
+}
+
+export function dateTimeFromString(value: string): DateTimeWrapper {
+  return new DateTimeWrapper(new Date(value));
+}
+
+export function dateTimeToString(dateTime: DateTimeWrapper): string {
+  return (
+    dateTime.value
+      .toISOString()
+      .match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)![0] + '+00:00'
+  );
+}
+
+export {
+  dateToString as serializeDate,
+  dateFromString as deserializeDate,
+  dateTimeToString as serializeDateTime,
+  dateTimeFromString as deserializeDateTime,
+};
+
 // Function to convert a hexadecimal string to base64
 export function hexStrToBase64(hex: string) {
   const hexString = hex.toString(); // Ensure the input is a string

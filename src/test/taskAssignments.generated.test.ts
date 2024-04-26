@@ -1,5 +1,7 @@
 import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { serializeTask } from '../schemas.generated.js';
 import { deserializeTask } from '../schemas.generated.js';
 import { serializeCreateTaskRequestBody } from '../managers/tasks.generated.js';
@@ -32,6 +34,7 @@ import { serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField } from
 import { deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField } from '../managers/taskAssignments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas.generated.js';
+import { DateTime } from '../internal/utils.js';
 import { Task } from '../schemas.generated.js';
 import { CreateTaskRequestBody } from '../managers/tasks.generated.js';
 import { CreateTaskRequestBodyItemField } from '../managers/tasks.generated.js';
@@ -49,6 +52,7 @@ import { UpdateTaskAssignmentByIdRequestBody } from '../managers/taskAssignments
 import { UpdateTaskAssignmentByIdRequestBodyResolutionStateField } from '../managers/taskAssignments.generated.js';
 import { uploadNewFile } from './commons.generated.js';
 import { getDefaultClient } from './commons.generated.js';
+import { dateTimeFromString } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -61,7 +65,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testCreateUpdateGetDeleteTaskAssignment', async function testCreateUpdateGetDeleteTaskAssignment(): Promise<any> {
   const file: FileFull = await uploadNewFile();
-  const date: string = '2035-01-01T00:00:00Z';
+  const date: DateTime = dateTimeFromString('2035-01-01T00:00:00Z');
   const task: Task = await client.tasks.createTask({
     item: {
       type: 'file' as CreateTaskRequestBodyItemTypeField,

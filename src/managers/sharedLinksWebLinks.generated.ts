@@ -2,6 +2,8 @@ import { serializeWebLink } from '../schemas.generated.js';
 import { deserializeWebLink } from '../schemas.generated.js';
 import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { WebLink } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -15,6 +17,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -83,7 +86,7 @@ export interface AddShareLinkToWebLinkRequestBodySharedLinkField {
   readonly access?: AddShareLinkToWebLinkRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
 }
 export interface AddShareLinkToWebLinkRequestBody {
@@ -124,7 +127,7 @@ export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
   readonly access?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField;
   readonly password?: string;
   readonly vanityName?: string;
-  readonly unsharedAt?: string;
+  readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
 }
 export interface UpdateSharedLinkOnWebLinkRequestBody {
@@ -460,7 +463,8 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
         ? void 0
@@ -484,8 +488,8 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
     val.password == void 0 ? void 0 : val.password;
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
     | undefined
     | AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField =
@@ -590,7 +594,8 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
-    ['unshared_at']: val.unsharedAt == void 0 ? void 0 : val.unsharedAt,
+    ['unshared_at']:
+      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
         ? void 0
@@ -614,8 +619,8 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
     val.password == void 0 ? void 0 : val.password;
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
-  const unsharedAt: undefined | string =
-    val.unshared_at == void 0 ? void 0 : val.unshared_at;
+  const unsharedAt: undefined | DateTime =
+    val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
     | undefined
     | UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField =

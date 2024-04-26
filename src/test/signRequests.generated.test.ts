@@ -10,6 +10,8 @@ import { serializeSignRequestCreateSigner } from '../schemas.generated.js';
 import { deserializeSignRequestCreateSigner } from '../schemas.generated.js';
 import { serializeFolderMini } from '../schemas.generated.js';
 import { deserializeFolderMini } from '../schemas.generated.js';
+import { serializeSignRequestPrefillTag } from '../schemas.generated.js';
+import { deserializeSignRequestPrefillTag } from '../schemas.generated.js';
 import { serializeFileBase } from '../schemas.generated.js';
 import { deserializeFileBase } from '../schemas.generated.js';
 import { serializeSignRequests } from '../schemas.generated.js';
@@ -21,13 +23,17 @@ import { SignRequest } from '../schemas.generated.js';
 import { SignRequestCreateRequest } from '../schemas.generated.js';
 import { SignRequestCreateSigner } from '../schemas.generated.js';
 import { FolderMini } from '../schemas.generated.js';
+import { SignRequestPrefillTag } from '../schemas.generated.js';
 import { FileBase } from '../schemas.generated.js';
 import { SignRequests } from '../schemas.generated.js';
 import { DeleteFolderByIdQueryParams } from '../managers/folders.generated.js';
 import { getUuid } from '../internal/utils.js';
+import { dateFromString } from '../internal/utils.js';
+import { dateToString } from '../internal/utils.js';
 import { uploadNewFile } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
 import { getDefaultClient } from './commons.generated.js';
+import { Date } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -46,6 +52,12 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
     await client.signRequests.createSignRequest({
       signers: [{ email: signerEmail } satisfies SignRequestCreateSigner],
       parentFolder: new FolderMini({ id: destinationFolder.id }),
+      prefillTags: [
+        {
+          dateValue: dateFromString('2035-01-01'),
+          documentTagId: '0',
+        } satisfies SignRequestPrefillTag,
+      ],
       sourceFiles: [new FileBase({ id: fileToSign.id })],
     } satisfies SignRequestCreateRequest);
   if (!(createdSignRequest.signFiles!.files![0].name == fileToSign.name)) {
@@ -55,6 +67,14 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
     throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.parentFolder!.id == destinationFolder.id)) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      dateToString(createdSignRequest.prefillTags![0].dateValue!) ==
+      '2035-01-01'
+    )
+  ) {
     throw new Error('Assertion failed');
   }
   const newSignRequest: SignRequest =

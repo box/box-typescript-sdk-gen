@@ -4,6 +4,8 @@ import { serializeClientError } from '../schemas.generated.js';
 import { deserializeClientError } from '../schemas.generated.js';
 import { serializeTask } from '../schemas.generated.js';
 import { deserializeTask } from '../schemas.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { Tasks } from '../schemas.generated.js';
 import { ClientError } from '../schemas.generated.js';
 import { Task } from '../schemas.generated.js';
@@ -18,6 +20,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -57,7 +60,7 @@ export interface CreateTaskRequestBody {
   readonly item: CreateTaskRequestBodyItemField;
   readonly action?: CreateTaskRequestBodyActionField;
   readonly message?: string;
-  readonly dueAt?: string;
+  readonly dueAt?: DateTime;
   readonly completionRule?: CreateTaskRequestBodyCompletionRuleField;
 }
 export class CreateTaskHeaders {
@@ -105,7 +108,7 @@ export type UpdateTaskByIdRequestBodyCompletionRuleField =
 export interface UpdateTaskByIdRequestBody {
   readonly action?: UpdateTaskByIdRequestBodyActionField;
   readonly message?: string;
-  readonly dueAt?: string;
+  readonly dueAt?: DateTime;
   readonly completionRule?: UpdateTaskByIdRequestBodyCompletionRuleField;
 }
 export class UpdateTaskByIdHeaders {
@@ -407,7 +410,7 @@ export function serializeCreateTaskRequestBody(val: any): SerializedData {
         ? void 0
         : serializeCreateTaskRequestBodyActionField(val.action),
     ['message']: val.message == void 0 ? void 0 : val.message,
-    ['due_at']: val.dueAt == void 0 ? void 0 : val.dueAt,
+    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
     ['completion_rule']:
       val.completionRule == void 0
         ? void 0
@@ -425,7 +428,8 @@ export function deserializeCreateTaskRequestBody(
       : deserializeCreateTaskRequestBodyActionField(val.action);
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
+  const dueAt: undefined | DateTime =
+    val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const completionRule: undefined | CreateTaskRequestBodyCompletionRuleField =
     val.completion_rule == void 0
       ? void 0
@@ -494,7 +498,7 @@ export function serializeUpdateTaskByIdRequestBody(val: any): SerializedData {
         ? void 0
         : serializeUpdateTaskByIdRequestBodyActionField(val.action),
     ['message']: val.message == void 0 ? void 0 : val.message,
-    ['due_at']: val.dueAt == void 0 ? void 0 : val.dueAt,
+    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
     ['completion_rule']:
       val.completionRule == void 0
         ? void 0
@@ -512,7 +516,8 @@ export function deserializeUpdateTaskByIdRequestBody(
       : deserializeUpdateTaskByIdRequestBodyActionField(val.action);
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const dueAt: undefined | string = val.due_at == void 0 ? void 0 : val.due_at;
+  const dueAt: undefined | DateTime =
+    val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const completionRule:
     | undefined
     | UpdateTaskByIdRequestBodyCompletionRuleField =
