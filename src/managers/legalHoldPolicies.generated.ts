@@ -27,6 +27,118 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateLegalHoldPolicyOptionals {
+  readonly headers: CreateLegalHoldPolicyHeaders =
+    new CreateLegalHoldPolicyHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateLegalHoldPolicyOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateLegalHoldPolicyOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateLegalHoldPolicyOptionalsInput {
+  readonly headers?: CreateLegalHoldPolicyHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetLegalHoldPolicyByIdOptionals {
+  readonly headers: GetLegalHoldPolicyByIdHeaders =
+    new GetLegalHoldPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetLegalHoldPolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetLegalHoldPolicyByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetLegalHoldPolicyByIdOptionalsInput {
+  readonly headers?: GetLegalHoldPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateLegalHoldPolicyByIdOptionals {
+  readonly requestBody: UpdateLegalHoldPolicyByIdRequestBody =
+    {} satisfies UpdateLegalHoldPolicyByIdRequestBody;
+  readonly headers: UpdateLegalHoldPolicyByIdHeaders =
+    new UpdateLegalHoldPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateLegalHoldPolicyByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateLegalHoldPolicyByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateLegalHoldPolicyByIdOptionalsInput {
+  readonly requestBody?: UpdateLegalHoldPolicyByIdRequestBody;
+  readonly headers?: UpdateLegalHoldPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteLegalHoldPolicyByIdOptionals {
+  readonly headers: DeleteLegalHoldPolicyByIdHeaders =
+    new DeleteLegalHoldPolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteLegalHoldPolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteLegalHoldPolicyByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteLegalHoldPolicyByIdOptionalsInput {
+  readonly headers?: DeleteLegalHoldPolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetLegalHoldPoliciesQueryParams {
   readonly policyName?: string;
   readonly fields?: readonly string[];
@@ -38,11 +150,12 @@ export class GetLegalHoldPoliciesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetLegalHoldPoliciesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>
+    fields: Omit<GetLegalHoldPoliciesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetLegalHoldPoliciesHeadersInput {
@@ -64,11 +177,12 @@ export class CreateLegalHoldPolicyHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateLegalHoldPolicyHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>
+    fields: Omit<CreateLegalHoldPolicyHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateLegalHoldPolicyHeadersInput {
@@ -83,11 +197,12 @@ export class GetLegalHoldPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetLegalHoldPolicyByIdHeadersInput {
@@ -107,11 +222,12 @@ export class UpdateLegalHoldPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateLegalHoldPolicyByIdHeadersInput {
@@ -126,11 +242,12 @@ export class DeleteLegalHoldPolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteLegalHoldPolicyByIdHeadersInput {
@@ -144,19 +261,23 @@ export class LegalHoldPoliciesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          LegalHoldPoliciesManager,
-          | 'networkSession'
-          | 'getLegalHoldPolicies'
-          | 'createLegalHoldPolicy'
-          | 'getLegalHoldPolicyById'
-          | 'updateLegalHoldPolicyById'
-          | 'deleteLegalHoldPolicyById'
-        >
-      | Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>
+    fields: Omit<
+      LegalHoldPoliciesManager,
+      | 'networkSession'
+      | 'getLegalHoldPolicies'
+      | 'createLegalHoldPolicy'
+      | 'getLegalHoldPolicyById'
+      | 'updateLegalHoldPolicyById'
+      | 'deleteLegalHoldPolicyById'
+    > &
+      Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getLegalHoldPolicies(
     queryParams: GetLegalHoldPoliciesQueryParams = {} satisfies GetLegalHoldPoliciesQueryParams,
@@ -200,14 +321,14 @@ export class LegalHoldPoliciesManager {
   }
   async createLegalHoldPolicy(
     requestBody: CreateLegalHoldPolicyRequestBody,
-    headersInput: CreateLegalHoldPolicyHeadersInput = new CreateLegalHoldPolicyHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateLegalHoldPolicyOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const headers: any = new CreateLegalHoldPolicyHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateLegalHoldPolicyOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -231,14 +352,14 @@ export class LegalHoldPoliciesManager {
   }
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headersInput: GetLegalHoldPolicyByIdHeadersInput = new GetLegalHoldPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const headers: any = new GetLegalHoldPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetLegalHoldPolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -261,15 +382,16 @@ export class LegalHoldPoliciesManager {
   }
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    requestBody: UpdateLegalHoldPolicyByIdRequestBody = {} satisfies UpdateLegalHoldPolicyByIdRequestBody,
-    headersInput: UpdateLegalHoldPolicyByIdHeadersInput = new UpdateLegalHoldPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<LegalHoldPolicy> {
-    const headers: any = new UpdateLegalHoldPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateLegalHoldPolicyByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -294,14 +416,14 @@ export class LegalHoldPoliciesManager {
   }
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    headersInput: DeleteLegalHoldPolicyByIdHeadersInput = new DeleteLegalHoldPolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteLegalHoldPolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteLegalHoldPolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteLegalHoldPolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

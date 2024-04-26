@@ -18,6 +18,10 @@ import { serializeUpdateFolderByIdRequestBody } from '../managers/folders.genera
 import { deserializeUpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
 import { serializeUserFull } from '../schemas.generated.js';
 import { deserializeUserFull } from '../schemas.generated.js';
+import { UpdateFileByIdOptionalsInput } from '../managers/files.generated.js';
+import { UpdateFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { UpdateFileByIdOptionals } from '../managers/files.generated.js';
+import { UpdateFolderByIdOptionals } from '../managers/folders.generated.js';
 import { GetUserMeQueryParams } from '../managers/users.generated.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -125,8 +129,8 @@ test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promis
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
   });
   await downscopedClient.files.updateFileById(file.id, {
-    name: getUuid(),
-  } satisfies UpdateFileByIdRequestBody);
+    requestBody: { name: getUuid() } satisfies UpdateFileByIdRequestBody,
+  } satisfies UpdateFileByIdOptionalsInput);
   await expect(async () => {
     await downscopedClient.files.deleteFileById(file.id);
   }).rejects.toThrow();
@@ -226,8 +230,8 @@ test('test_ccg_auth_downscope', async function test_ccg_auth_downscope(): Promis
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
   });
   await downscopedClient.folders.updateFolderById(folder.id, {
-    name: getUuid(),
-  } satisfies UpdateFolderByIdRequestBody);
+    requestBody: { name: getUuid() } satisfies UpdateFolderByIdRequestBody,
+  } satisfies UpdateFolderByIdOptionalsInput);
   await expect(async () => {
     await downscopedClient.folders.deleteFolderById(folder.id);
   }).rejects.toThrow();
@@ -306,8 +310,8 @@ test('test_developer_token_auth_downscope', async function test_developer_token_
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
   });
   await downscopedClient.folders.updateFolderById(folder.id, {
-    name: getUuid(),
-  } satisfies UpdateFolderByIdRequestBody);
+    requestBody: { name: getUuid() } satisfies UpdateFolderByIdRequestBody,
+  } satisfies UpdateFolderByIdOptionalsInput);
   await expect(async () => {
     await downscopedClient.folders.deleteFolderById(folder.id);
   }).rejects.toThrow();
@@ -372,8 +376,8 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
     auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
   });
   await downscopedClient.files.updateFileById(file.id, {
-    name: getUuid(),
-  } satisfies UpdateFileByIdRequestBody);
+    requestBody: { name: getUuid() } satisfies UpdateFileByIdRequestBody,
+  } satisfies UpdateFileByIdOptionalsInput);
   await expect(async () => {
     await downscopedClient.files.deleteFileById(file.id);
   }).rejects.toThrow();

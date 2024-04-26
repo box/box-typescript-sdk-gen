@@ -37,12 +37,8 @@ await client.invites.createInvite({
 
 - requestBody `CreateInviteRequestBody`
   - Request body of createInvite method
-- queryParams `CreateInviteQueryParams`
-  - Query parameters of createInvite method
-- headersInput `CreateInviteHeadersInput`
-  - Headers of createInvite method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateInviteOptionalsInput`
+  -
 
 ### Returns
 
@@ -69,12 +65,8 @@ await client.invites.getInviteById(invitation.id);
 
 - inviteId `string`
   - The ID of an invite. Example: "213723"
-- queryParams `GetInviteByIdQueryParams`
-  - Query parameters of getInviteById method
-- headersInput `GetInviteByIdHeadersInput`
-  - Headers of getInviteById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetInviteByIdOptionalsInput`
+  -
 
 ### Returns
 

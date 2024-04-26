@@ -28,6 +28,198 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetRetentionPolicyAssignmentsOptionals {
+  readonly queryParams: GetRetentionPolicyAssignmentsQueryParams =
+    {} satisfies GetRetentionPolicyAssignmentsQueryParams;
+  readonly headers: GetRetentionPolicyAssignmentsHeaders =
+    new GetRetentionPolicyAssignmentsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetRetentionPolicyAssignmentsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetRetentionPolicyAssignmentsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetRetentionPolicyAssignmentsOptionalsInput {
+  readonly queryParams?: GetRetentionPolicyAssignmentsQueryParams;
+  readonly headers?: GetRetentionPolicyAssignmentsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateRetentionPolicyAssignmentOptionals {
+  readonly headers: CreateRetentionPolicyAssignmentHeaders =
+    new CreateRetentionPolicyAssignmentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateRetentionPolicyAssignmentOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateRetentionPolicyAssignmentOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateRetentionPolicyAssignmentOptionalsInput {
+  readonly headers?: CreateRetentionPolicyAssignmentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetRetentionPolicyAssignmentByIdOptionals {
+  readonly queryParams: GetRetentionPolicyAssignmentByIdQueryParams =
+    {} satisfies GetRetentionPolicyAssignmentByIdQueryParams;
+  readonly headers: GetRetentionPolicyAssignmentByIdHeaders =
+    new GetRetentionPolicyAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetRetentionPolicyAssignmentByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetRetentionPolicyAssignmentByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetRetentionPolicyAssignmentByIdOptionalsInput {
+  readonly queryParams?: GetRetentionPolicyAssignmentByIdQueryParams;
+  readonly headers?: GetRetentionPolicyAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteRetentionPolicyAssignmentByIdOptionals {
+  readonly headers: DeleteRetentionPolicyAssignmentByIdHeaders =
+    new DeleteRetentionPolicyAssignmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteRetentionPolicyAssignmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteRetentionPolicyAssignmentByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteRetentionPolicyAssignmentByIdOptionalsInput {
+  readonly headers?: DeleteRetentionPolicyAssignmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFilesUnderRetentionPolicyAssignmentOptionals {
+  readonly queryParams: GetFilesUnderRetentionPolicyAssignmentQueryParams =
+    {} satisfies GetFilesUnderRetentionPolicyAssignmentQueryParams;
+  readonly headers: GetFilesUnderRetentionPolicyAssignmentHeaders =
+    new GetFilesUnderRetentionPolicyAssignmentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFilesUnderRetentionPolicyAssignmentOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFilesUnderRetentionPolicyAssignmentOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFilesUnderRetentionPolicyAssignmentOptionalsInput {
+  readonly queryParams?: GetFilesUnderRetentionPolicyAssignmentQueryParams;
+  readonly headers?: GetFilesUnderRetentionPolicyAssignmentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileVersionsUnderRetentionPolicyAssignmentOptionals {
+  readonly queryParams: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams =
+    {} satisfies GetFileVersionsUnderRetentionPolicyAssignmentQueryParams;
+  readonly headers: GetFileVersionsUnderRetentionPolicyAssignmentHeaders =
+    new GetFileVersionsUnderRetentionPolicyAssignmentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionsUnderRetentionPolicyAssignmentOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileVersionsUnderRetentionPolicyAssignmentOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput {
+  readonly queryParams?: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams;
+  readonly headers?: GetFileVersionsUnderRetentionPolicyAssignmentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetRetentionPolicyAssignmentsQueryParamsTypeField =
   | 'folder'
   | 'enterprise'
@@ -43,11 +235,12 @@ export class GetRetentionPolicyAssignmentsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>>
+    fields: Omit<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetRetentionPolicyAssignmentsHeadersInput {
@@ -80,11 +273,12 @@ export class CreateRetentionPolicyAssignmentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>>
+    fields: Omit<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateRetentionPolicyAssignmentHeadersInput {
@@ -102,11 +296,12 @@ export class GetRetentionPolicyAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetRetentionPolicyAssignmentByIdHeadersInput {
@@ -121,13 +316,12 @@ export class DeleteRetentionPolicyAssignmentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>
-        >
+    fields: Omit<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteRetentionPolicyAssignmentByIdHeadersInput {
@@ -146,13 +340,17 @@ export class GetFilesUnderRetentionPolicyAssignmentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
-      | Partial<
-          Pick<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
-        >
+    fields: Omit<
+      GetFilesUnderRetentionPolicyAssignmentHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFilesUnderRetentionPolicyAssignmentHeadersInput {
@@ -171,19 +369,20 @@ export class GetFileVersionsUnderRetentionPolicyAssignmentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<
+    fields: Omit<
+      GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<
           GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
           'extraHeaders'
         >
-      | Partial<
-          Pick<
-            GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
-            'extraHeaders'
-          >
-        >
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput {
@@ -197,32 +396,37 @@ export class RetentionPolicyAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          RetentionPolicyAssignmentsManager,
-          | 'networkSession'
-          | 'getRetentionPolicyAssignments'
-          | 'createRetentionPolicyAssignment'
-          | 'getRetentionPolicyAssignmentById'
-          | 'deleteRetentionPolicyAssignmentById'
-          | 'getFilesUnderRetentionPolicyAssignment'
-          | 'getFileVersionsUnderRetentionPolicyAssignment'
-        >
-      | Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
+    fields: Omit<
+      RetentionPolicyAssignmentsManager,
+      | 'networkSession'
+      | 'getRetentionPolicyAssignments'
+      | 'createRetentionPolicyAssignment'
+      | 'getRetentionPolicyAssignmentById'
+      | 'deleteRetentionPolicyAssignmentById'
+      | 'getFilesUnderRetentionPolicyAssignment'
+      | 'getFileVersionsUnderRetentionPolicyAssignment'
+    > &
+      Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getRetentionPolicyAssignments(
     retentionPolicyId: string,
-    queryParams: GetRetentionPolicyAssignmentsQueryParams = {} satisfies GetRetentionPolicyAssignmentsQueryParams,
-    headersInput: GetRetentionPolicyAssignmentsHeadersInput = new GetRetentionPolicyAssignmentsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetRetentionPolicyAssignmentsOptionalsInput = {}
   ): Promise<RetentionPolicyAssignments> {
-    const headers: any = new GetRetentionPolicyAssignmentsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetRetentionPolicyAssignmentsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -257,14 +461,14 @@ export class RetentionPolicyAssignmentsManager {
   }
   async createRetentionPolicyAssignment(
     requestBody: CreateRetentionPolicyAssignmentRequestBody,
-    headersInput: CreateRetentionPolicyAssignmentHeadersInput = new CreateRetentionPolicyAssignmentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<RetentionPolicyAssignment> {
-    const headers: any = new CreateRetentionPolicyAssignmentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateRetentionPolicyAssignmentOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -288,15 +492,16 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    queryParams: GetRetentionPolicyAssignmentByIdQueryParams = {} satisfies GetRetentionPolicyAssignmentByIdQueryParams,
-    headersInput: GetRetentionPolicyAssignmentByIdHeadersInput = new GetRetentionPolicyAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetRetentionPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<RetentionPolicyAssignment> {
-    const headers: any = new GetRetentionPolicyAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetRetentionPolicyAssignmentByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -327,14 +532,14 @@ export class RetentionPolicyAssignmentsManager {
   }
   async deleteRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    headersInput: DeleteRetentionPolicyAssignmentByIdHeadersInput = new DeleteRetentionPolicyAssignmentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteRetentionPolicyAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteRetentionPolicyAssignmentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteRetentionPolicyAssignmentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -357,15 +562,16 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getFilesUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
-    queryParams: GetFilesUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFilesUnderRetentionPolicyAssignmentQueryParams,
-    headersInput: GetFilesUnderRetentionPolicyAssignmentHeadersInput = new GetFilesUnderRetentionPolicyAssignmentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFilesUnderRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<FilesUnderRetention> {
-    const headers: any = new GetFilesUnderRetentionPolicyAssignmentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFilesUnderRetentionPolicyAssignmentOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -396,16 +602,17 @@ export class RetentionPolicyAssignmentsManager {
   }
   async getFileVersionsUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
-    queryParams: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams = {} satisfies GetFileVersionsUnderRetentionPolicyAssignmentQueryParams,
-    headersInput: GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput = new GetFileVersionsUnderRetentionPolicyAssignmentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput = {}
   ): Promise<FilesUnderRetention> {
-    const headers: any =
-      new GetFileVersionsUnderRetentionPolicyAssignmentHeaders({
-        extraHeaders: headersInput.extraHeaders,
+    const optionals: any =
+      new GetFileVersionsUnderRetentionPolicyAssignmentOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
       });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

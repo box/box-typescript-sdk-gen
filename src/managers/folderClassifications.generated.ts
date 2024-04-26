@@ -22,16 +22,135 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetClassificationOnFolderOptionals {
+  readonly headers: GetClassificationOnFolderHeaders =
+    new GetClassificationOnFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetClassificationOnFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetClassificationOnFolderOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetClassificationOnFolderOptionalsInput {
+  readonly headers?: GetClassificationOnFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class AddClassificationToFolderOptionals {
+  readonly requestBody: AddClassificationToFolderRequestBody =
+    {} satisfies AddClassificationToFolderRequestBody;
+  readonly headers: AddClassificationToFolderHeaders =
+    new AddClassificationToFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      AddClassificationToFolderOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          AddClassificationToFolderOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddClassificationToFolderOptionalsInput {
+  readonly requestBody?: AddClassificationToFolderRequestBody;
+  readonly headers?: AddClassificationToFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateClassificationOnFolderOptionals {
+  readonly headers: UpdateClassificationOnFolderHeaders =
+    new UpdateClassificationOnFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateClassificationOnFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateClassificationOnFolderOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateClassificationOnFolderOptionalsInput {
+  readonly headers?: UpdateClassificationOnFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteClassificationFromFolderOptionals {
+  readonly headers: DeleteClassificationFromFolderHeaders =
+    new DeleteClassificationFromFolderHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteClassificationFromFolderOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteClassificationFromFolderOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteClassificationFromFolderOptionalsInput {
+  readonly headers?: DeleteClassificationFromFolderHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetClassificationOnFolderHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetClassificationOnFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<GetClassificationOnFolderHeaders, 'extraHeaders'>>
+    fields: Omit<GetClassificationOnFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<GetClassificationOnFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetClassificationOnFolderHeadersInput {
@@ -49,11 +168,12 @@ export class AddClassificationToFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddClassificationToFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<AddClassificationToFolderHeaders, 'extraHeaders'>>
+    fields: Omit<AddClassificationToFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<AddClassificationToFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddClassificationToFolderHeadersInput {
@@ -73,11 +193,18 @@ export class UpdateClassificationOnFolderRequestBody {
     '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField;
   readonly value!: string;
   constructor(
-    fields:
-      | Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>
-      | Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>
+    fields: Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'> &
+      Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.op) {
+      this.op = fields.op;
+    }
+    if (fields.path) {
+      this.path = fields.path;
+    }
+    if (fields.value) {
+      this.value = fields.value;
+    }
   }
 }
 export interface UpdateClassificationOnFolderRequestBodyInput {
@@ -90,11 +217,12 @@ export class UpdateClassificationOnFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateClassificationOnFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateClassificationOnFolderHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateClassificationOnFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateClassificationOnFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateClassificationOnFolderHeadersInput {
@@ -109,11 +237,12 @@ export class DeleteClassificationFromFolderHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteClassificationFromFolderHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteClassificationFromFolderHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteClassificationFromFolderHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteClassificationFromFolderHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteClassificationFromFolderHeadersInput {
@@ -127,29 +256,33 @@ export class FolderClassificationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FolderClassificationsManager,
-          | 'networkSession'
-          | 'getClassificationOnFolder'
-          | 'addClassificationToFolder'
-          | 'updateClassificationOnFolder'
-          | 'deleteClassificationFromFolder'
-        >
-      | Partial<Pick<FolderClassificationsManager, 'networkSession'>>
+    fields: Omit<
+      FolderClassificationsManager,
+      | 'networkSession'
+      | 'getClassificationOnFolder'
+      | 'addClassificationToFolder'
+      | 'updateClassificationOnFolder'
+      | 'deleteClassificationFromFolder'
+    > &
+      Partial<Pick<FolderClassificationsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getClassificationOnFolder(
     folderId: string,
-    headersInput: GetClassificationOnFolderHeadersInput = new GetClassificationOnFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetClassificationOnFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new GetClassificationOnFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetClassificationOnFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -173,15 +306,16 @@ export class FolderClassificationsManager {
   }
   async addClassificationToFolder(
     folderId: string,
-    requestBody: AddClassificationToFolderRequestBody = {} satisfies AddClassificationToFolderRequestBody,
-    headersInput: AddClassificationToFolderHeadersInput = new AddClassificationToFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddClassificationToFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new AddClassificationToFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddClassificationToFolderOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -208,14 +342,14 @@ export class FolderClassificationsManager {
   async updateClassificationOnFolder(
     folderId: string,
     requestBody: readonly UpdateClassificationOnFolderRequestBody[],
-    headersInput: UpdateClassificationOnFolderHeadersInput = new UpdateClassificationOnFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateClassificationOnFolderOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new UpdateClassificationOnFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateClassificationOnFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -243,14 +377,14 @@ export class FolderClassificationsManager {
   }
   async deleteClassificationFromFolder(
     folderId: string,
-    headersInput: DeleteClassificationFromFolderHeadersInput = new DeleteClassificationFromFolderHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteClassificationFromFolderOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteClassificationFromFolderHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteClassificationFromFolderOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

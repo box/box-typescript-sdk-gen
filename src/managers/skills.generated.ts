@@ -25,16 +25,154 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetBoxSkillCardsOnFileOptionals {
+  readonly headers: GetBoxSkillCardsOnFileHeaders =
+    new GetBoxSkillCardsOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetBoxSkillCardsOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetBoxSkillCardsOnFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetBoxSkillCardsOnFileOptionalsInput {
+  readonly headers?: GetBoxSkillCardsOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateBoxSkillCardsOnFileOptionals {
+  readonly headers: CreateBoxSkillCardsOnFileHeaders =
+    new CreateBoxSkillCardsOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateBoxSkillCardsOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateBoxSkillCardsOnFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateBoxSkillCardsOnFileOptionalsInput {
+  readonly headers?: CreateBoxSkillCardsOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateBoxSkillCardsOnFileOptionals {
+  readonly headers: UpdateBoxSkillCardsOnFileHeaders =
+    new UpdateBoxSkillCardsOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateBoxSkillCardsOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateBoxSkillCardsOnFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateBoxSkillCardsOnFileOptionalsInput {
+  readonly headers?: UpdateBoxSkillCardsOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteBoxSkillCardsFromFileOptionals {
+  readonly headers: DeleteBoxSkillCardsFromFileHeaders =
+    new DeleteBoxSkillCardsFromFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteBoxSkillCardsFromFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteBoxSkillCardsFromFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteBoxSkillCardsFromFileOptionalsInput {
+  readonly headers?: DeleteBoxSkillCardsFromFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateAllSkillCardsOnFileOptionals {
+  readonly headers: UpdateAllSkillCardsOnFileHeaders =
+    new UpdateAllSkillCardsOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateAllSkillCardsOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateAllSkillCardsOnFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateAllSkillCardsOnFileOptionalsInput {
+  readonly headers?: UpdateAllSkillCardsOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetBoxSkillCardsOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetBoxSkillCardsOnFileHeadersInput {
@@ -52,11 +190,12 @@ export class CreateBoxSkillCardsOnFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateBoxSkillCardsOnFileHeadersInput {
@@ -77,11 +216,12 @@ export class UpdateBoxSkillCardsOnFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateBoxSkillCardsOnFileHeadersInput {
@@ -96,11 +236,12 @@ export class DeleteBoxSkillCardsFromFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteBoxSkillCardsFromFileHeadersInput {
@@ -146,11 +287,12 @@ export class UpdateAllSkillCardsOnFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateAllSkillCardsOnFileHeadersInput {
@@ -164,30 +306,34 @@ export class SkillsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SkillsManager,
-          | 'networkSession'
-          | 'getBoxSkillCardsOnFile'
-          | 'createBoxSkillCardsOnFile'
-          | 'updateBoxSkillCardsOnFile'
-          | 'deleteBoxSkillCardsFromFile'
-          | 'updateAllSkillCardsOnFile'
-        >
-      | Partial<Pick<SkillsManager, 'networkSession'>>
+    fields: Omit<
+      SkillsManager,
+      | 'networkSession'
+      | 'getBoxSkillCardsOnFile'
+      | 'createBoxSkillCardsOnFile'
+      | 'updateBoxSkillCardsOnFile'
+      | 'deleteBoxSkillCardsFromFile'
+      | 'updateAllSkillCardsOnFile'
+    > &
+      Partial<Pick<SkillsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getBoxSkillCardsOnFile(
     fileId: string,
-    headersInput: GetBoxSkillCardsOnFileHeadersInput = new GetBoxSkillCardsOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetBoxSkillCardsOnFileOptionalsInput = {}
   ): Promise<SkillCardsMetadata> {
-    const headers: any = new GetBoxSkillCardsOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetBoxSkillCardsOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -212,14 +358,14 @@ export class SkillsManager {
   async createBoxSkillCardsOnFile(
     fileId: string,
     requestBody: CreateBoxSkillCardsOnFileRequestBody,
-    headersInput: CreateBoxSkillCardsOnFileHeadersInput = new CreateBoxSkillCardsOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateBoxSkillCardsOnFileOptionalsInput = {}
   ): Promise<SkillCardsMetadata> {
-    const headers: any = new CreateBoxSkillCardsOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateBoxSkillCardsOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -246,14 +392,14 @@ export class SkillsManager {
   async updateBoxSkillCardsOnFile(
     fileId: string,
     requestBody: readonly UpdateBoxSkillCardsOnFileRequestBody[],
-    headersInput: UpdateBoxSkillCardsOnFileHeadersInput = new UpdateBoxSkillCardsOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateBoxSkillCardsOnFileOptionalsInput = {}
   ): Promise<SkillCardsMetadata> {
-    const headers: any = new UpdateBoxSkillCardsOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateBoxSkillCardsOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -281,14 +427,14 @@ export class SkillsManager {
   }
   async deleteBoxSkillCardsFromFile(
     fileId: string,
-    headersInput: DeleteBoxSkillCardsFromFileHeadersInput = new DeleteBoxSkillCardsFromFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteBoxSkillCardsFromFileOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteBoxSkillCardsFromFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteBoxSkillCardsFromFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -313,14 +459,14 @@ export class SkillsManager {
   async updateAllSkillCardsOnFile(
     skillId: string,
     requestBody: UpdateAllSkillCardsOnFileRequestBody,
-    headersInput: UpdateAllSkillCardsOnFileHeadersInput = new UpdateAllSkillCardsOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateAllSkillCardsOnFileOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new UpdateAllSkillCardsOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateAllSkillCardsOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

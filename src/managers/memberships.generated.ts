@@ -25,6 +25,212 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetUserMembershipsOptionals {
+  readonly queryParams: GetUserMembershipsQueryParams =
+    {} satisfies GetUserMembershipsQueryParams;
+  readonly headers: GetUserMembershipsHeaders = new GetUserMembershipsHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetUserMembershipsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetUserMembershipsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetUserMembershipsOptionalsInput {
+  readonly queryParams?: GetUserMembershipsQueryParams;
+  readonly headers?: GetUserMembershipsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetGroupMembershipsOptionals {
+  readonly queryParams: GetGroupMembershipsQueryParams =
+    {} satisfies GetGroupMembershipsQueryParams;
+  readonly headers: GetGroupMembershipsHeaders = new GetGroupMembershipsHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetGroupMembershipsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetGroupMembershipsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetGroupMembershipsOptionalsInput {
+  readonly queryParams?: GetGroupMembershipsQueryParams;
+  readonly headers?: GetGroupMembershipsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateGroupMembershipOptionals {
+  readonly queryParams: CreateGroupMembershipQueryParams =
+    {} satisfies CreateGroupMembershipQueryParams;
+  readonly headers: CreateGroupMembershipHeaders =
+    new CreateGroupMembershipHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateGroupMembershipOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateGroupMembershipOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateGroupMembershipOptionalsInput {
+  readonly queryParams?: CreateGroupMembershipQueryParams;
+  readonly headers?: CreateGroupMembershipHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetGroupMembershipByIdOptionals {
+  readonly queryParams: GetGroupMembershipByIdQueryParams =
+    {} satisfies GetGroupMembershipByIdQueryParams;
+  readonly headers: GetGroupMembershipByIdHeaders =
+    new GetGroupMembershipByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetGroupMembershipByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetGroupMembershipByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetGroupMembershipByIdOptionalsInput {
+  readonly queryParams?: GetGroupMembershipByIdQueryParams;
+  readonly headers?: GetGroupMembershipByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateGroupMembershipByIdOptionals {
+  readonly requestBody: UpdateGroupMembershipByIdRequestBody =
+    {} satisfies UpdateGroupMembershipByIdRequestBody;
+  readonly queryParams: UpdateGroupMembershipByIdQueryParams =
+    {} satisfies UpdateGroupMembershipByIdQueryParams;
+  readonly headers: UpdateGroupMembershipByIdHeaders =
+    new UpdateGroupMembershipByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateGroupMembershipByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateGroupMembershipByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateGroupMembershipByIdOptionalsInput {
+  readonly requestBody?: UpdateGroupMembershipByIdRequestBody;
+  readonly queryParams?: UpdateGroupMembershipByIdQueryParams;
+  readonly headers?: UpdateGroupMembershipByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteGroupMembershipByIdOptionals {
+  readonly headers: DeleteGroupMembershipByIdHeaders =
+    new DeleteGroupMembershipByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteGroupMembershipByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteGroupMembershipByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteGroupMembershipByIdOptionalsInput {
+  readonly headers?: DeleteGroupMembershipByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetUserMembershipsQueryParams {
   readonly limit?: number;
   readonly offset?: number;
@@ -34,11 +240,12 @@ export class GetUserMembershipsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetUserMembershipsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetUserMembershipsHeaders, 'extraHeaders'>>
+    fields: Omit<GetUserMembershipsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetUserMembershipsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetUserMembershipsHeadersInput {
@@ -57,11 +264,12 @@ export class GetGroupMembershipsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGroupMembershipsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGroupMembershipsHeaders, 'extraHeaders'>>
+    fields: Omit<GetGroupMembershipsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGroupMembershipsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGroupMembershipsHeadersInput {
@@ -94,11 +302,12 @@ export class CreateGroupMembershipHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateGroupMembershipHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateGroupMembershipHeaders, 'extraHeaders'>>
+    fields: Omit<CreateGroupMembershipHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateGroupMembershipHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateGroupMembershipHeadersInput {
@@ -116,11 +325,12 @@ export class GetGroupMembershipByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetGroupMembershipByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetGroupMembershipByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetGroupMembershipByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetGroupMembershipByIdHeadersInput {
@@ -145,11 +355,12 @@ export class UpdateGroupMembershipByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateGroupMembershipByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateGroupMembershipByIdHeadersInput {
@@ -164,11 +375,12 @@ export class DeleteGroupMembershipByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteGroupMembershipByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteGroupMembershipByIdHeadersInput {
@@ -182,32 +394,37 @@ export class MembershipsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          MembershipsManager,
-          | 'networkSession'
-          | 'getUserMemberships'
-          | 'getGroupMemberships'
-          | 'createGroupMembership'
-          | 'getGroupMembershipById'
-          | 'updateGroupMembershipById'
-          | 'deleteGroupMembershipById'
-        >
-      | Partial<Pick<MembershipsManager, 'networkSession'>>
+    fields: Omit<
+      MembershipsManager,
+      | 'networkSession'
+      | 'getUserMemberships'
+      | 'getGroupMemberships'
+      | 'createGroupMembership'
+      | 'getGroupMembershipById'
+      | 'updateGroupMembershipById'
+      | 'deleteGroupMembershipById'
+    > &
+      Partial<Pick<MembershipsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getUserMemberships(
     userId: string,
-    queryParams: GetUserMembershipsQueryParams = {} satisfies GetUserMembershipsQueryParams,
-    headersInput: GetUserMembershipsHeadersInput = new GetUserMembershipsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetUserMembershipsOptionalsInput = {}
   ): Promise<GroupMemberships> {
-    const headers: any = new GetUserMembershipsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetUserMembershipsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -238,15 +455,16 @@ export class MembershipsManager {
   }
   async getGroupMemberships(
     groupId: string,
-    queryParams: GetGroupMembershipsQueryParams = {} satisfies GetGroupMembershipsQueryParams,
-    headersInput: GetGroupMembershipsHeadersInput = new GetGroupMembershipsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetGroupMembershipsOptionalsInput = {}
   ): Promise<GroupMemberships> {
-    const headers: any = new GetGroupMembershipsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetGroupMembershipsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -277,15 +495,16 @@ export class MembershipsManager {
   }
   async createGroupMembership(
     requestBody: CreateGroupMembershipRequestBody,
-    queryParams: CreateGroupMembershipQueryParams = {} satisfies CreateGroupMembershipQueryParams,
-    headersInput: CreateGroupMembershipHeadersInput = new CreateGroupMembershipHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateGroupMembershipOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const headers: any = new CreateGroupMembershipHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateGroupMembershipOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -317,15 +536,16 @@ export class MembershipsManager {
   }
   async getGroupMembershipById(
     groupMembershipId: string,
-    queryParams: GetGroupMembershipByIdQueryParams = {} satisfies GetGroupMembershipByIdQueryParams,
-    headersInput: GetGroupMembershipByIdHeadersInput = new GetGroupMembershipByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetGroupMembershipByIdOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const headers: any = new GetGroupMembershipByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetGroupMembershipByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -356,16 +576,18 @@ export class MembershipsManager {
   }
   async updateGroupMembershipById(
     groupMembershipId: string,
-    requestBody: UpdateGroupMembershipByIdRequestBody = {} satisfies UpdateGroupMembershipByIdRequestBody,
-    queryParams: UpdateGroupMembershipByIdQueryParams = {} satisfies UpdateGroupMembershipByIdQueryParams,
-    headersInput: UpdateGroupMembershipByIdHeadersInput = new UpdateGroupMembershipByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateGroupMembershipByIdOptionalsInput = {}
   ): Promise<GroupMembership> {
-    const headers: any = new UpdateGroupMembershipByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateGroupMembershipByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -398,14 +620,14 @@ export class MembershipsManager {
   }
   async deleteGroupMembershipById(
     groupMembershipId: string,
-    headersInput: DeleteGroupMembershipByIdHeadersInput = new DeleteGroupMembershipByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteGroupMembershipByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteGroupMembershipByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteGroupMembershipByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

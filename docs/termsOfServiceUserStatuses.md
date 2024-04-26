@@ -28,10 +28,8 @@ await client.termsOfServiceUserStatuses.getTermsOfServiceUserStatuses({
 
 - queryParams `GetTermsOfServiceUserStatusesQueryParams`
   - Query parameters of getTermsOfServiceUserStatuses method
-- headersInput `GetTermsOfServiceUserStatusesHeadersInput`
-  - Headers of getTermsOfServiceUserStatuses method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetTermsOfServiceUserStatusesOptionalsInput`
+  -
 
 ### Returns
 
@@ -64,10 +62,8 @@ await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
 
 - requestBody `CreateTermsOfServiceStatusForUserRequestBody`
   - Request body of createTermsOfServiceStatusForUser method
-- headersInput `CreateTermsOfServiceStatusForUserHeadersInput`
-  - Headers of createTermsOfServiceStatusForUser method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateTermsOfServiceStatusForUserOptionalsInput`
+  -
 
 ### Returns
 
@@ -101,10 +97,8 @@ await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(
   - The ID of the terms of service status. Example: "324234"
 - requestBody `UpdateTermsOfServiceStatusForUserByIdRequestBody`
   - Request body of updateTermsOfServiceStatusForUserById method
-- headersInput `UpdateTermsOfServiceStatusForUserByIdHeadersInput`
-  - Headers of updateTermsOfServiceStatusForUserById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateTermsOfServiceStatusForUserByIdOptionalsInput`
+  -
 
 ### Returns
 

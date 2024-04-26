@@ -22,16 +22,132 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetClassificationOnFileOptionals {
+  readonly headers: GetClassificationOnFileHeaders =
+    new GetClassificationOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetClassificationOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetClassificationOnFileOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetClassificationOnFileOptionalsInput {
+  readonly headers?: GetClassificationOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class AddClassificationToFileOptionals {
+  readonly requestBody: AddClassificationToFileRequestBody =
+    {} satisfies AddClassificationToFileRequestBody;
+  readonly headers: AddClassificationToFileHeaders =
+    new AddClassificationToFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      AddClassificationToFileOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          AddClassificationToFileOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface AddClassificationToFileOptionalsInput {
+  readonly requestBody?: AddClassificationToFileRequestBody;
+  readonly headers?: AddClassificationToFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateClassificationOnFileOptionals {
+  readonly headers: UpdateClassificationOnFileHeaders =
+    new UpdateClassificationOnFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateClassificationOnFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateClassificationOnFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateClassificationOnFileOptionalsInput {
+  readonly headers?: UpdateClassificationOnFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteClassificationFromFileOptionals {
+  readonly headers: DeleteClassificationFromFileHeaders =
+    new DeleteClassificationFromFileHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteClassificationFromFileOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteClassificationFromFileOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteClassificationFromFileOptionalsInput {
+  readonly headers?: DeleteClassificationFromFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetClassificationOnFileHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetClassificationOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<GetClassificationOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<GetClassificationOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<GetClassificationOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetClassificationOnFileHeadersInput {
@@ -49,11 +165,12 @@ export class AddClassificationToFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<AddClassificationToFileHeaders, 'extraHeaders'>
-      | Partial<Pick<AddClassificationToFileHeaders, 'extraHeaders'>>
+    fields: Omit<AddClassificationToFileHeaders, 'extraHeaders'> &
+      Partial<Pick<AddClassificationToFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface AddClassificationToFileHeadersInput {
@@ -73,11 +190,18 @@ export class UpdateClassificationOnFileRequestBody {
     '/Box__Security__Classification__Key' as UpdateClassificationOnFileRequestBodyPathField;
   readonly value!: string;
   constructor(
-    fields:
-      | Omit<UpdateClassificationOnFileRequestBody, 'op' | 'path'>
-      | Partial<Pick<UpdateClassificationOnFileRequestBody, 'op' | 'path'>>
+    fields: Omit<UpdateClassificationOnFileRequestBody, 'op' | 'path'> &
+      Partial<Pick<UpdateClassificationOnFileRequestBody, 'op' | 'path'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.op) {
+      this.op = fields.op;
+    }
+    if (fields.path) {
+      this.path = fields.path;
+    }
+    if (fields.value) {
+      this.value = fields.value;
+    }
   }
 }
 export interface UpdateClassificationOnFileRequestBodyInput {
@@ -90,11 +214,12 @@ export class UpdateClassificationOnFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateClassificationOnFileHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateClassificationOnFileHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateClassificationOnFileHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateClassificationOnFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateClassificationOnFileHeadersInput {
@@ -109,11 +234,12 @@ export class DeleteClassificationFromFileHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteClassificationFromFileHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteClassificationFromFileHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteClassificationFromFileHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteClassificationFromFileHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteClassificationFromFileHeadersInput {
@@ -127,29 +253,33 @@ export class FileClassificationsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileClassificationsManager,
-          | 'networkSession'
-          | 'getClassificationOnFile'
-          | 'addClassificationToFile'
-          | 'updateClassificationOnFile'
-          | 'deleteClassificationFromFile'
-        >
-      | Partial<Pick<FileClassificationsManager, 'networkSession'>>
+    fields: Omit<
+      FileClassificationsManager,
+      | 'networkSession'
+      | 'getClassificationOnFile'
+      | 'addClassificationToFile'
+      | 'updateClassificationOnFile'
+      | 'deleteClassificationFromFile'
+    > &
+      Partial<Pick<FileClassificationsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getClassificationOnFile(
     fileId: string,
-    headersInput: GetClassificationOnFileHeadersInput = new GetClassificationOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetClassificationOnFileOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new GetClassificationOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetClassificationOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -173,15 +303,16 @@ export class FileClassificationsManager {
   }
   async addClassificationToFile(
     fileId: string,
-    requestBody: AddClassificationToFileRequestBody = {} satisfies AddClassificationToFileRequestBody,
-    headersInput: AddClassificationToFileHeadersInput = new AddClassificationToFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: AddClassificationToFileOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new AddClassificationToFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new AddClassificationToFileOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -208,14 +339,14 @@ export class FileClassificationsManager {
   async updateClassificationOnFile(
     fileId: string,
     requestBody: readonly UpdateClassificationOnFileRequestBody[],
-    headersInput: UpdateClassificationOnFileHeadersInput = new UpdateClassificationOnFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateClassificationOnFileOptionalsInput = {}
   ): Promise<Classification> {
-    const headers: any = new UpdateClassificationOnFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateClassificationOnFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -243,14 +374,14 @@ export class FileClassificationsManager {
   }
   async deleteClassificationFromFile(
     fileId: string,
-    headersInput: DeleteClassificationFromFileHeadersInput = new DeleteClassificationFromFileHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteClassificationFromFileOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteClassificationFromFileHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteClassificationFromFileOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

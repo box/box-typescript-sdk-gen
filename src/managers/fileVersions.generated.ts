@@ -25,6 +25,174 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileVersionsOptionals {
+  readonly queryParams: GetFileVersionsQueryParams =
+    {} satisfies GetFileVersionsQueryParams;
+  readonly headers: GetFileVersionsHeaders = new GetFileVersionsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileVersionsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionsOptionalsInput {
+  readonly queryParams?: GetFileVersionsQueryParams;
+  readonly headers?: GetFileVersionsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileVersionByIdOptionals {
+  readonly queryParams: GetFileVersionByIdQueryParams =
+    {} satisfies GetFileVersionByIdQueryParams;
+  readonly headers: GetFileVersionByIdHeaders = new GetFileVersionByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileVersionByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionByIdOptionalsInput {
+  readonly queryParams?: GetFileVersionByIdQueryParams;
+  readonly headers?: GetFileVersionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFileVersionByIdOptionals {
+  readonly requestBody: UpdateFileVersionByIdRequestBody =
+    {} satisfies UpdateFileVersionByIdRequestBody;
+  readonly headers: UpdateFileVersionByIdHeaders =
+    new UpdateFileVersionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFileVersionByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateFileVersionByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFileVersionByIdOptionalsInput {
+  readonly requestBody?: UpdateFileVersionByIdRequestBody;
+  readonly headers?: UpdateFileVersionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileVersionByIdOptionals {
+  readonly headers: DeleteFileVersionByIdHeaders =
+    new DeleteFileVersionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileVersionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFileVersionByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileVersionByIdOptionalsInput {
+  readonly headers?: DeleteFileVersionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class PromoteFileVersionOptionals {
+  readonly requestBody: PromoteFileVersionRequestBody =
+    {} satisfies PromoteFileVersionRequestBody;
+  readonly queryParams: PromoteFileVersionQueryParams =
+    {} satisfies PromoteFileVersionQueryParams;
+  readonly headers: PromoteFileVersionHeaders = new PromoteFileVersionHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      PromoteFileVersionOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          PromoteFileVersionOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface PromoteFileVersionOptionalsInput {
+  readonly requestBody?: PromoteFileVersionRequestBody;
+  readonly queryParams?: PromoteFileVersionQueryParams;
+  readonly headers?: PromoteFileVersionHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetFileVersionsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -35,11 +203,12 @@ export class GetFileVersionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionsHeadersInput {
@@ -57,11 +226,12 @@ export class GetFileVersionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionByIdHeadersInput {
@@ -79,11 +249,12 @@ export class UpdateFileVersionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFileVersionByIdHeadersInput {
@@ -99,11 +270,15 @@ export class DeleteFileVersionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFileVersionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFileVersionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFileVersionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileVersionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFileVersionByIdHeadersInput {
@@ -127,11 +302,12 @@ export class PromoteFileVersionHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<PromoteFileVersionHeaders, 'extraHeaders'>
-      | Partial<Pick<PromoteFileVersionHeaders, 'extraHeaders'>>
+    fields: Omit<PromoteFileVersionHeaders, 'extraHeaders'> &
+      Partial<Pick<PromoteFileVersionHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface PromoteFileVersionHeadersInput {
@@ -145,29 +321,36 @@ export class FileVersionsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileVersionsManager,
-          | 'networkSession'
-          | 'getFileVersions'
-          | 'getFileVersionById'
-          | 'updateFileVersionById'
-          | 'deleteFileVersionById'
-          | 'promoteFileVersion'
-        >
-      | Partial<Pick<FileVersionsManager, 'networkSession'>>
+    fields: Omit<
+      FileVersionsManager,
+      | 'networkSession'
+      | 'getFileVersions'
+      | 'getFileVersionById'
+      | 'updateFileVersionById'
+      | 'deleteFileVersionById'
+      | 'promoteFileVersion'
+    > &
+      Partial<Pick<FileVersionsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileVersions(
     fileId: string,
-    queryParams: GetFileVersionsQueryParams = {} satisfies GetFileVersionsQueryParams,
-    headersInput: GetFileVersionsHeadersInput = new GetFileVersionsHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionsOptionalsInput = {}
   ): Promise<FileVersions> {
-    const headers: any = new GetFileVersionsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileVersionsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -202,15 +385,16 @@ export class FileVersionsManager {
   async getFileVersionById(
     fileId: string,
     fileVersionId: string,
-    queryParams: GetFileVersionByIdQueryParams = {} satisfies GetFileVersionByIdQueryParams,
-    headersInput: GetFileVersionByIdHeadersInput = new GetFileVersionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionByIdOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const headers: any = new GetFileVersionByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileVersionByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -244,15 +428,16 @@ export class FileVersionsManager {
   async updateFileVersionById(
     fileId: string,
     fileVersionId: string,
-    requestBody: UpdateFileVersionByIdRequestBody = {} satisfies UpdateFileVersionByIdRequestBody,
-    headersInput: UpdateFileVersionByIdHeadersInput = new UpdateFileVersionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFileVersionByIdOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const headers: any = new UpdateFileVersionByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFileVersionByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -280,15 +465,14 @@ export class FileVersionsManager {
   async deleteFileVersionById(
     fileId: string,
     fileVersionId: string,
-    headersInput: DeleteFileVersionByIdHeadersInput = new DeleteFileVersionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFileVersionByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFileVersionByIdHeaders({
-      ifMatch: headersInput.ifMatch,
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFileVersionByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -316,16 +500,18 @@ export class FileVersionsManager {
   }
   async promoteFileVersion(
     fileId: string,
-    requestBody: PromoteFileVersionRequestBody = {} satisfies PromoteFileVersionRequestBody,
-    queryParams: PromoteFileVersionQueryParams = {} satisfies PromoteFileVersionQueryParams,
-    headersInput: PromoteFileVersionHeadersInput = new PromoteFileVersionHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: PromoteFileVersionOptionalsInput = {}
   ): Promise<FileVersionFull> {
-    const headers: any = new PromoteFileVersionHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new PromoteFileVersionOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

@@ -51,17 +51,39 @@ export class JwtConfig {
   readonly algorithm?: JwtAlgorithm = 'RS256' as JwtAlgorithm;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
-    fields:
-      | Omit<
-          JwtConfig,
-          | 'algorithm'
-          | 'tokenStorage'
-          | 'fromConfigJsonString'
-          | 'fromConfigFile'
-        >
-      | Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>
+    fields: Omit<
+      JwtConfig,
+      'algorithm' | 'tokenStorage' | 'fromConfigJsonString' | 'fromConfigFile'
+    > &
+      Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.clientId) {
+      this.clientId = fields.clientId;
+    }
+    if (fields.clientSecret) {
+      this.clientSecret = fields.clientSecret;
+    }
+    if (fields.jwtKeyId) {
+      this.jwtKeyId = fields.jwtKeyId;
+    }
+    if (fields.privateKey) {
+      this.privateKey = fields.privateKey;
+    }
+    if (fields.privateKeyPassphrase) {
+      this.privateKeyPassphrase = fields.privateKeyPassphrase;
+    }
+    if (fields.enterpriseId) {
+      this.enterpriseId = fields.enterpriseId;
+    }
+    if (fields.userId) {
+      this.userId = fields.userId;
+    }
+    if (fields.algorithm) {
+      this.algorithm = fields.algorithm;
+    }
+    if (fields.tokenStorage) {
+      this.tokenStorage = fields.tokenStorage;
+    }
   }
   static fromConfigJsonString(
     configJsonString: string,
@@ -131,7 +153,9 @@ export class BoxJwtAuth implements Authentication {
       | 'revokeToken'
     >
   ) {
-    Object.assign(this, fields);
+    if (fields.config) {
+      this.config = fields.config;
+    }
     this.tokenStorage = this.config.tokenStorage;
     this.subjectId = !(this.config.enterpriseId == void 0)
       ? this.config.enterpriseId

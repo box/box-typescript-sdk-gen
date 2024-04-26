@@ -25,10 +25,8 @@ await client.fileMetadata.getFileMetadata(file.id);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- headersInput `GetFileMetadataHeadersInput`
-  - Headers of getFileMetadata method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileMetadataOptionalsInput`
+  -
 
 ### Returns
 
@@ -67,10 +65,8 @@ await client.fileMetadata.getFileMetadataById(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `GetFileMetadataByIdHeadersInput`
-  - Headers of getFileMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -120,10 +116,8 @@ await client.fileMetadata.createFileMetadataById(
   - The name of the metadata template Example: "properties"
 - requestBody `CreateFileMetadataByIdRequestBody`
   - Request body of createFileMetadataById method
-- headersInput `CreateFileMetadataByIdHeadersInput`
-  - Headers of createFileMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateFileMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -175,10 +169,8 @@ await client.fileMetadata.updateFileMetadataById(
   - The name of the metadata template Example: "properties"
 - requestBody `readonly UpdateFileMetadataByIdRequestBody[]`
   - Request body of updateFileMetadataById method
-- headersInput `UpdateFileMetadataByIdHeadersInput`
-  - Headers of updateFileMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateFileMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -214,10 +206,8 @@ await client.fileMetadata.deleteFileMetadataById(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `DeleteFileMetadataByIdHeadersInput`
-  - Headers of deleteFileMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteFileMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 

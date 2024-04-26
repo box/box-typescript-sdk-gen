@@ -8,6 +8,8 @@ import { serializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legal
 import { deserializeUpdateLegalHoldPolicyByIdRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { UpdateLegalHoldPolicyByIdOptionalsInput } from '../managers/legalHoldPolicies.generated.js';
+import { UpdateLegalHoldPolicyByIdOptionals } from '../managers/legalHoldPolicies.generated.js';
 import { LegalHoldPolicy } from '../schemas.generated.js';
 import { CreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
 import { LegalHoldPolicies } from '../schemas.generated.js';
@@ -57,8 +59,10 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
     await client.legalHoldPolicies.updateLegalHoldPolicyById(
       legalHoldPolicyId,
       {
-        policyName: updatedLegalHoldPolicyName,
-      } satisfies UpdateLegalHoldPolicyByIdRequestBody
+        requestBody: {
+          policyName: updatedLegalHoldPolicyName,
+        } satisfies UpdateLegalHoldPolicyByIdRequestBody,
+      } satisfies UpdateLegalHoldPolicyByIdOptionalsInput
     );
   if (!(updatedLegalHoldPolicy.policyName == updatedLegalHoldPolicyName)) {
     throw new Error('Assertion failed');

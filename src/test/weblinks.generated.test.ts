@@ -10,6 +10,8 @@ import { serializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.gene
 import { deserializeUpdateWebLinkByIdRequestBody } from '../managers/webLinks.generated.js';
 import { serializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
 import { deserializeUpdateWebLinkByIdRequestBodySharedLinkField } from '../managers/webLinks.generated.js';
+import { UpdateWebLinkByIdOptionalsInput } from '../managers/webLinks.generated.js';
+import { UpdateWebLinkByIdOptionals } from '../managers/webLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas.generated.js';
 import { WebLink } from '../schemas.generated.js';
@@ -63,12 +65,14 @@ test('test_create_get_delete_weblink', async function test_create_get_delete_web
   const updatedWeblink: any = await client.webLinks.updateWebLinkById(
     weblink.id,
     {
-      name: updatedName,
-      sharedLink: {
-        access: sharedAccess,
-        password: password,
-      } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
-    } satisfies UpdateWebLinkByIdRequestBody
+      requestBody: {
+        name: updatedName,
+        sharedLink: {
+          access: sharedAccess,
+          password: password,
+        } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
+      } satisfies UpdateWebLinkByIdRequestBody,
+    } satisfies UpdateWebLinkByIdOptionalsInput
   );
   if (!(updatedWeblink.name == updatedName)) {
     throw new Error('Assertion failed');

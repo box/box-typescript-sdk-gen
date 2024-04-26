@@ -26,10 +26,8 @@ _Currently we don't have an example for calling `authorizeUser` in integration t
 
 - queryParams `AuthorizeUserQueryParams`
   - Query parameters of authorizeUser method
-- headersInput `AuthorizeUserHeadersInput`
-  - Headers of authorizeUser method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `AuthorizeUserOptionalsInput`
+  -
 
 ### Returns
 
@@ -63,10 +61,8 @@ _Currently we don't have an example for calling `requestAccessToken` in integrat
 
 - requestBody `PostOAuth2Token`
   - Request body of requestAccessToken method
-- headersInput `RequestAccessTokenHeadersInput`
-  - Headers of requestAccessToken method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RequestAccessTokenOptionalsInput`
+  -
 
 ### Returns
 
@@ -91,10 +87,8 @@ _Currently we don't have an example for calling `refreshAccessToken` in integrat
 
 - requestBodyInput `PostOAuth2TokenRefreshAccessTokenInput`
   - Request body of refreshAccessToken method
-- headersInput `RefreshAccessTokenHeadersInput`
-  - Headers of refreshAccessToken method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RefreshAccessTokenOptionalsInput`
+  -
 
 ### Returns
 
@@ -120,10 +114,8 @@ _Currently we don't have an example for calling `revokeAccessToken` in integrati
 
 - requestBody `PostOAuth2Revoke`
   - Request body of revokeAccessToken method
-- headersInput `RevokeAccessTokenHeadersInput`
-  - Headers of revokeAccessToken method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `RevokeAccessTokenOptionalsInput`
+  -
 
 ### Returns
 

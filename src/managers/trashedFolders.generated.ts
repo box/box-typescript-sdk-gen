@@ -24,6 +24,105 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class RestoreFolderFromTrashOptionals {
+  readonly requestBody: RestoreFolderFromTrashRequestBody =
+    {} satisfies RestoreFolderFromTrashRequestBody;
+  readonly queryParams: RestoreFolderFromTrashQueryParams =
+    {} satisfies RestoreFolderFromTrashQueryParams;
+  readonly headers: RestoreFolderFromTrashHeaders =
+    new RestoreFolderFromTrashHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      RestoreFolderFromTrashOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          RestoreFolderFromTrashOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface RestoreFolderFromTrashOptionalsInput {
+  readonly requestBody?: RestoreFolderFromTrashRequestBody;
+  readonly queryParams?: RestoreFolderFromTrashQueryParams;
+  readonly headers?: RestoreFolderFromTrashHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetTrashedFolderByIdOptionals {
+  readonly queryParams: GetTrashedFolderByIdQueryParams =
+    {} satisfies GetTrashedFolderByIdQueryParams;
+  readonly headers: GetTrashedFolderByIdHeaders =
+    new GetTrashedFolderByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetTrashedFolderByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetTrashedFolderByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetTrashedFolderByIdOptionalsInput {
+  readonly queryParams?: GetTrashedFolderByIdQueryParams;
+  readonly headers?: GetTrashedFolderByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteTrashedFolderByIdOptionals {
+  readonly headers: DeleteTrashedFolderByIdHeaders =
+    new DeleteTrashedFolderByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteTrashedFolderByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteTrashedFolderByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteTrashedFolderByIdOptionalsInput {
+  readonly headers?: DeleteTrashedFolderByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface RestoreFolderFromTrashRequestBodyParentField {
   readonly id?: string;
 }
@@ -39,11 +138,12 @@ export class RestoreFolderFromTrashHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<RestoreFolderFromTrashHeaders, 'extraHeaders'>
-      | Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>
+    fields: Omit<RestoreFolderFromTrashHeaders, 'extraHeaders'> &
+      Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface RestoreFolderFromTrashHeadersInput {
@@ -61,11 +161,12 @@ export class GetTrashedFolderByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetTrashedFolderByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetTrashedFolderByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetTrashedFolderByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTrashedFolderByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetTrashedFolderByIdHeadersInput {
@@ -80,11 +181,12 @@ export class DeleteTrashedFolderByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteTrashedFolderByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteTrashedFolderByIdHeadersInput {
@@ -98,30 +200,36 @@ export class TrashedFoldersManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          TrashedFoldersManager,
-          | 'networkSession'
-          | 'restoreFolderFromTrash'
-          | 'getTrashedFolderById'
-          | 'deleteTrashedFolderById'
-        >
-      | Partial<Pick<TrashedFoldersManager, 'networkSession'>>
+    fields: Omit<
+      TrashedFoldersManager,
+      | 'networkSession'
+      | 'restoreFolderFromTrash'
+      | 'getTrashedFolderById'
+      | 'deleteTrashedFolderById'
+    > &
+      Partial<Pick<TrashedFoldersManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async restoreFolderFromTrash(
     folderId: string,
-    requestBody: RestoreFolderFromTrashRequestBody = {} satisfies RestoreFolderFromTrashRequestBody,
-    queryParams: RestoreFolderFromTrashQueryParams = {} satisfies RestoreFolderFromTrashQueryParams,
-    headersInput: RestoreFolderFromTrashHeadersInput = new RestoreFolderFromTrashHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: RestoreFolderFromTrashOptionalsInput = {}
   ): Promise<TrashFolderRestored> {
-    const headers: any = new RestoreFolderFromTrashHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new RestoreFolderFromTrashOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -154,15 +262,16 @@ export class TrashedFoldersManager {
   }
   async getTrashedFolderById(
     folderId: string,
-    queryParams: GetTrashedFolderByIdQueryParams = {} satisfies GetTrashedFolderByIdQueryParams,
-    headersInput: GetTrashedFolderByIdHeadersInput = new GetTrashedFolderByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetTrashedFolderByIdOptionalsInput = {}
   ): Promise<TrashFolder> {
-    const headers: any = new GetTrashedFolderByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetTrashedFolderByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -194,14 +303,14 @@ export class TrashedFoldersManager {
   }
   async deleteTrashedFolderById(
     folderId: string,
-    headersInput: DeleteTrashedFolderByIdHeadersInput = new DeleteTrashedFolderByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteTrashedFolderByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteTrashedFolderByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteTrashedFolderByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -22,16 +22,90 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFolderWatermarkOptionals {
+  readonly headers: GetFolderWatermarkHeaders = new GetFolderWatermarkHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetFolderWatermarkOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<GetFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFolderWatermarkOptionalsInput {
+  readonly headers?: GetFolderWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateFolderWatermarkOptionals {
+  readonly headers: UpdateFolderWatermarkHeaders =
+    new UpdateFolderWatermarkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateFolderWatermarkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateFolderWatermarkOptionalsInput {
+  readonly headers?: UpdateFolderWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFolderWatermarkOptionals {
+  readonly headers: DeleteFolderWatermarkHeaders =
+    new DeleteFolderWatermarkHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFolderWatermarkOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFolderWatermarkOptionalsInput {
+  readonly headers?: DeleteFolderWatermarkHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFolderWatermarkHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFolderWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFolderWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<GetFolderWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFolderWatermarkHeadersInput {
@@ -46,11 +120,12 @@ export class UpdateFolderWatermarkRequestBodyWatermarkField {
   readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField;
   constructor(
-    fields:
-      | Omit<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>
-      | Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>
+    fields: Omit<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'> &
+      Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.imprint) {
+      this.imprint = fields.imprint;
+    }
   }
 }
 export interface UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
@@ -64,11 +139,12 @@ export class UpdateFolderWatermarkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateFolderWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateFolderWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateFolderWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateFolderWatermarkHeadersInput {
@@ -83,11 +159,12 @@ export class DeleteFolderWatermarkHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteFolderWatermarkHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteFolderWatermarkHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteFolderWatermarkHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFolderWatermarkHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteFolderWatermarkHeadersInput {
@@ -101,28 +178,32 @@ export class FolderWatermarksManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FolderWatermarksManager,
-          | 'networkSession'
-          | 'getFolderWatermark'
-          | 'updateFolderWatermark'
-          | 'deleteFolderWatermark'
-        >
-      | Partial<Pick<FolderWatermarksManager, 'networkSession'>>
+    fields: Omit<
+      FolderWatermarksManager,
+      | 'networkSession'
+      | 'getFolderWatermark'
+      | 'updateFolderWatermark'
+      | 'deleteFolderWatermark'
+    > &
+      Partial<Pick<FolderWatermarksManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFolderWatermark(
     folderId: string,
-    headersInput: GetFolderWatermarkHeadersInput = new GetFolderWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFolderWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const headers: any = new GetFolderWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFolderWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -147,14 +228,14 @@ export class FolderWatermarksManager {
   async updateFolderWatermark(
     folderId: string,
     requestBody: UpdateFolderWatermarkRequestBody,
-    headersInput: UpdateFolderWatermarkHeadersInput = new UpdateFolderWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateFolderWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const headers: any = new UpdateFolderWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateFolderWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -180,14 +261,14 @@ export class FolderWatermarksManager {
   }
   async deleteFolderWatermark(
     folderId: string,
-    headersInput: DeleteFolderWatermarkHeadersInput = new DeleteFolderWatermarkHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteFolderWatermarkOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteFolderWatermarkHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteFolderWatermarkOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
