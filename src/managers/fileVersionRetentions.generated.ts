@@ -25,6 +25,34 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileVersionRetentionByIdOptionals {
+  readonly headers: GetFileVersionRetentionByIdHeaders =
+    new GetFileVersionRetentionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileVersionRetentionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileVersionRetentionByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileVersionRetentionByIdOptionalsInput {
+  readonly headers?: GetFileVersionRetentionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export type GetFileVersionRetentionsQueryParamsDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention';
@@ -43,11 +71,12 @@ export class GetFileVersionRetentionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionRetentionsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionRetentionsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionRetentionsHeadersInput {
@@ -62,11 +91,12 @@ export class GetFileVersionRetentionByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileVersionRetentionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileVersionRetentionByIdHeadersInput {
@@ -80,16 +110,20 @@ export class FileVersionRetentionsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          FileVersionRetentionsManager,
-          | 'networkSession'
-          | 'getFileVersionRetentions'
-          | 'getFileVersionRetentionById'
-        >
-      | Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>
+    fields: Omit<
+      FileVersionRetentionsManager,
+      | 'networkSession'
+      | 'getFileVersionRetentions'
+      | 'getFileVersionRetentionById'
+    > &
+      Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileVersionRetentions(
     queryParams: GetFileVersionRetentionsQueryParams = {} satisfies GetFileVersionRetentionsQueryParams,
@@ -135,14 +169,14 @@ export class FileVersionRetentionsManager {
   }
   async getFileVersionRetentionById(
     fileVersionRetentionId: string,
-    headersInput: GetFileVersionRetentionByIdHeadersInput = new GetFileVersionRetentionByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileVersionRetentionByIdOptionalsInput = {}
   ): Promise<FileVersionRetention> {
-    const headers: any = new GetFileVersionRetentionByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileVersionRetentionByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

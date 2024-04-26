@@ -31,11 +31,12 @@ export class GetRecentItemsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetRecentItemsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>
+    fields: Omit<GetRecentItemsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetRecentItemsHeadersInput {
@@ -49,11 +50,15 @@ export class RecentItemsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<RecentItemsManager, 'networkSession' | 'getRecentItems'>
-      | Partial<Pick<RecentItemsManager, 'networkSession'>>
+    fields: Omit<RecentItemsManager, 'networkSession' | 'getRecentItems'> &
+      Partial<Pick<RecentItemsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getRecentItems(
     queryParams: GetRecentItemsQueryParams = {} satisfies GetRecentItemsQueryParams,

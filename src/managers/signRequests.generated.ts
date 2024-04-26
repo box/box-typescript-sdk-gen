@@ -27,16 +27,97 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CancelSignRequestOptionals {
+  readonly headers: CancelSignRequestHeaders = new CancelSignRequestHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CancelSignRequestOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CancelSignRequestOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CancelSignRequestOptionalsInput {
+  readonly headers?: CancelSignRequestHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class ResendSignRequestOptionals {
+  readonly headers: ResendSignRequestHeaders = new ResendSignRequestHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<ResendSignRequestOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<ResendSignRequestOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface ResendSignRequestOptionalsInput {
+  readonly headers?: ResendSignRequestHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetSignRequestByIdOptionals {
+  readonly headers: GetSignRequestByIdHeaders = new GetSignRequestByIdHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetSignRequestByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<
+        Pick<GetSignRequestByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetSignRequestByIdOptionalsInput {
+  readonly headers?: GetSignRequestByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateSignRequestOptionals {
+  readonly headers: CreateSignRequestHeaders = new CreateSignRequestHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateSignRequestOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateSignRequestOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateSignRequestOptionalsInput {
+  readonly headers?: CreateSignRequestHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class CancelSignRequestHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CancelSignRequestHeaders, 'extraHeaders'>
-      | Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>
+    fields: Omit<CancelSignRequestHeaders, 'extraHeaders'> &
+      Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CancelSignRequestHeadersInput {
@@ -51,11 +132,12 @@ export class ResendSignRequestHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<ResendSignRequestHeaders, 'extraHeaders'>
-      | Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>
+    fields: Omit<ResendSignRequestHeaders, 'extraHeaders'> &
+      Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface ResendSignRequestHeadersInput {
@@ -70,11 +152,12 @@ export class GetSignRequestByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSignRequestByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetSignRequestByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSignRequestByIdHeadersInput {
@@ -93,11 +176,12 @@ export class GetSignRequestsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetSignRequestsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>
+    fields: Omit<GetSignRequestsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetSignRequestsHeadersInput {
@@ -112,11 +196,12 @@ export class CreateSignRequestHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateSignRequestHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>
+    fields: Omit<CreateSignRequestHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateSignRequestHeadersInput {
@@ -130,30 +215,34 @@ export class SignRequestsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SignRequestsManager,
-          | 'networkSession'
-          | 'cancelSignRequest'
-          | 'resendSignRequest'
-          | 'getSignRequestById'
-          | 'getSignRequests'
-          | 'createSignRequest'
-        >
-      | Partial<Pick<SignRequestsManager, 'networkSession'>>
+    fields: Omit<
+      SignRequestsManager,
+      | 'networkSession'
+      | 'cancelSignRequest'
+      | 'resendSignRequest'
+      | 'getSignRequestById'
+      | 'getSignRequests'
+      | 'createSignRequest'
+    > &
+      Partial<Pick<SignRequestsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async cancelSignRequest(
     signRequestId: string,
-    headersInput: CancelSignRequestHeadersInput = new CancelSignRequestHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CancelSignRequestOptionalsInput = {}
   ): Promise<SignRequest> {
-    const headers: any = new CancelSignRequestHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CancelSignRequestOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -177,14 +266,14 @@ export class SignRequestsManager {
   }
   async resendSignRequest(
     signRequestId: string,
-    headersInput: ResendSignRequestHeadersInput = new ResendSignRequestHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: ResendSignRequestOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new ResendSignRequestHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new ResendSignRequestOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -208,14 +297,14 @@ export class SignRequestsManager {
   }
   async getSignRequestById(
     signRequestId: string,
-    headersInput: GetSignRequestByIdHeadersInput = new GetSignRequestByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetSignRequestByIdOptionalsInput = {}
   ): Promise<SignRequest> {
-    const headers: any = new GetSignRequestByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetSignRequestByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -272,14 +361,14 @@ export class SignRequestsManager {
   }
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
-    headersInput: CreateSignRequestHeadersInput = new CreateSignRequestHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateSignRequestOptionalsInput = {}
   ): Promise<SignRequest> {
-    const headers: any = new CreateSignRequestHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateSignRequestOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

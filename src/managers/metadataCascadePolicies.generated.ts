@@ -28,6 +28,146 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetMetadataCascadePoliciesOptionals {
+  readonly headers: GetMetadataCascadePoliciesHeaders =
+    new GetMetadataCascadePoliciesHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetMetadataCascadePoliciesOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetMetadataCascadePoliciesOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetMetadataCascadePoliciesOptionalsInput {
+  readonly headers?: GetMetadataCascadePoliciesHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateMetadataCascadePolicyOptionals {
+  readonly headers: CreateMetadataCascadePolicyHeaders =
+    new CreateMetadataCascadePolicyHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateMetadataCascadePolicyOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateMetadataCascadePolicyOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateMetadataCascadePolicyOptionalsInput {
+  readonly headers?: CreateMetadataCascadePolicyHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetMetadataCascadePolicyByIdOptionals {
+  readonly headers: GetMetadataCascadePolicyByIdHeaders =
+    new GetMetadataCascadePolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetMetadataCascadePolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetMetadataCascadePolicyByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetMetadataCascadePolicyByIdOptionalsInput {
+  readonly headers?: GetMetadataCascadePolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteMetadataCascadePolicyByIdOptionals {
+  readonly headers: DeleteMetadataCascadePolicyByIdHeaders =
+    new DeleteMetadataCascadePolicyByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteMetadataCascadePolicyByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteMetadataCascadePolicyByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteMetadataCascadePolicyByIdOptionalsInput {
+  readonly headers?: DeleteMetadataCascadePolicyByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class ApplyMetadataCascadePolicyOptionals {
+  readonly headers: ApplyMetadataCascadePolicyHeaders =
+    new ApplyMetadataCascadePolicyHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      ApplyMetadataCascadePolicyOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          ApplyMetadataCascadePolicyOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface ApplyMetadataCascadePolicyOptionalsInput {
+  readonly headers?: ApplyMetadataCascadePolicyHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetMetadataCascadePoliciesQueryParams {
   readonly folderId: string;
   readonly ownerEnterpriseId?: string;
@@ -39,11 +179,12 @@ export class GetMetadataCascadePoliciesHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>>
+    fields: Omit<GetMetadataCascadePoliciesHeaders, 'extraHeaders'> &
+      Partial<Pick<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetMetadataCascadePoliciesHeadersInput {
@@ -66,11 +207,12 @@ export class CreateMetadataCascadePolicyHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>>
+    fields: Omit<CreateMetadataCascadePolicyHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateMetadataCascadePolicyHeadersInput {
@@ -85,11 +227,12 @@ export class GetMetadataCascadePolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetMetadataCascadePolicyByIdHeadersInput {
@@ -104,11 +247,12 @@ export class DeleteMetadataCascadePolicyByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteMetadataCascadePolicyByIdHeadersInput {
@@ -129,11 +273,12 @@ export class ApplyMetadataCascadePolicyHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>
-      | Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>
+    fields: Omit<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'> &
+      Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface ApplyMetadataCascadePolicyHeadersInput {
@@ -147,30 +292,34 @@ export class MetadataCascadePoliciesManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          MetadataCascadePoliciesManager,
-          | 'networkSession'
-          | 'getMetadataCascadePolicies'
-          | 'createMetadataCascadePolicy'
-          | 'getMetadataCascadePolicyById'
-          | 'deleteMetadataCascadePolicyById'
-          | 'applyMetadataCascadePolicy'
-        >
-      | Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>
+    fields: Omit<
+      MetadataCascadePoliciesManager,
+      | 'networkSession'
+      | 'getMetadataCascadePolicies'
+      | 'createMetadataCascadePolicy'
+      | 'getMetadataCascadePolicyById'
+      | 'deleteMetadataCascadePolicyById'
+      | 'applyMetadataCascadePolicy'
+    > &
+      Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getMetadataCascadePolicies(
     queryParams: GetMetadataCascadePoliciesQueryParams,
-    headersInput: GetMetadataCascadePoliciesHeadersInput = new GetMetadataCascadePoliciesHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetMetadataCascadePoliciesOptionalsInput = {}
   ): Promise<MetadataCascadePolicies> {
-    const headers: any = new GetMetadataCascadePoliciesHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetMetadataCascadePoliciesOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -203,14 +352,14 @@ export class MetadataCascadePoliciesManager {
   }
   async createMetadataCascadePolicy(
     requestBody: CreateMetadataCascadePolicyRequestBody,
-    headersInput: CreateMetadataCascadePolicyHeadersInput = new CreateMetadataCascadePolicyHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateMetadataCascadePolicyOptionalsInput = {}
   ): Promise<MetadataCascadePolicy> {
-    const headers: any = new CreateMetadataCascadePolicyHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateMetadataCascadePolicyOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -234,14 +383,14 @@ export class MetadataCascadePoliciesManager {
   }
   async getMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    headersInput: GetMetadataCascadePolicyByIdHeadersInput = new GetMetadataCascadePolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetMetadataCascadePolicyByIdOptionalsInput = {}
   ): Promise<MetadataCascadePolicy> {
-    const headers: any = new GetMetadataCascadePolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetMetadataCascadePolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -264,14 +413,14 @@ export class MetadataCascadePoliciesManager {
   }
   async deleteMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    headersInput: DeleteMetadataCascadePolicyByIdHeadersInput = new DeleteMetadataCascadePolicyByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteMetadataCascadePolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteMetadataCascadePolicyByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteMetadataCascadePolicyByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -295,14 +444,14 @@ export class MetadataCascadePoliciesManager {
   async applyMetadataCascadePolicy(
     metadataCascadePolicyId: string,
     requestBody: ApplyMetadataCascadePolicyRequestBody,
-    headersInput: ApplyMetadataCascadePolicyHeadersInput = new ApplyMetadataCascadePolicyHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: ApplyMetadataCascadePolicyOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new ApplyMetadataCascadePolicyHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new ApplyMetadataCascadePolicyOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

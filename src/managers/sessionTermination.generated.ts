@@ -20,6 +20,56 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class TerminateUsersSessionsOptionals {
+  readonly headers: TerminateUsersSessionsHeaders =
+    new TerminateUsersSessionsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      TerminateUsersSessionsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<TerminateUsersSessionsOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface TerminateUsersSessionsOptionalsInput {
+  readonly headers?: TerminateUsersSessionsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class TerminateGroupsSessionsOptionals {
+  readonly headers: TerminateGroupsSessionsHeaders =
+    new TerminateGroupsSessionsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      TerminateGroupsSessionsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<TerminateGroupsSessionsOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface TerminateGroupsSessionsOptionalsInput {
+  readonly headers?: TerminateGroupsSessionsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface TerminateUsersSessionsRequestBody {
   readonly userIds: readonly string[];
   readonly userLogins: readonly string[];
@@ -29,11 +79,12 @@ export class TerminateUsersSessionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<TerminateUsersSessionsHeaders, 'extraHeaders'>
-      | Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>
+    fields: Omit<TerminateUsersSessionsHeaders, 'extraHeaders'> &
+      Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface TerminateUsersSessionsHeadersInput {
@@ -51,11 +102,12 @@ export class TerminateGroupsSessionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<TerminateGroupsSessionsHeaders, 'extraHeaders'>
-      | Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>
+    fields: Omit<TerminateGroupsSessionsHeaders, 'extraHeaders'> &
+      Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface TerminateGroupsSessionsHeadersInput {
@@ -69,27 +121,29 @@ export class SessionTerminationManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          SessionTerminationManager,
-          | 'networkSession'
-          | 'terminateUsersSessions'
-          | 'terminateGroupsSessions'
-        >
-      | Partial<Pick<SessionTerminationManager, 'networkSession'>>
+    fields: Omit<
+      SessionTerminationManager,
+      'networkSession' | 'terminateUsersSessions' | 'terminateGroupsSessions'
+    > &
+      Partial<Pick<SessionTerminationManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async terminateUsersSessions(
     requestBody: TerminateUsersSessionsRequestBody,
-    headersInput: TerminateUsersSessionsHeadersInput = new TerminateUsersSessionsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: TerminateUsersSessionsOptionalsInput = {}
   ): Promise<SessionTerminationMessage> {
-    const headers: any = new TerminateUsersSessionsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new TerminateUsersSessionsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -113,14 +167,14 @@ export class SessionTerminationManager {
   }
   async terminateGroupsSessions(
     requestBody: TerminateGroupsSessionsRequestBody,
-    headersInput: TerminateGroupsSessionsHeadersInput = new TerminateGroupsSessionsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: TerminateGroupsSessionsOptionalsInput = {}
   ): Promise<SessionTerminationMessage> {
-    const headers: any = new TerminateGroupsSessionsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new TerminateGroupsSessionsOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

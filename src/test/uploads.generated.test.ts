@@ -8,7 +8,8 @@ import { serializeFileFull } from '../schemas.generated.js';
 import { deserializeFileFull } from '../schemas.generated.js';
 import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
-import { UploadFileHeadersInput } from '../managers/uploads.generated.js';
+import { UploadFileOptionalsInput } from '../managers/uploads.generated.js';
+import { UploadFileOptionals } from '../managers/uploads.generated.js';
 import { ByteStream } from '../internal/utils.js';
 import { Files } from '../schemas.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
@@ -80,9 +81,11 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
         } satisfies UploadFileRequestBodyAttributesField,
         file: fileByteStream,
       } satisfies UploadFileRequestBody,
-      {} satisfies UploadFileQueryParams,
-      {} satisfies UploadFileHeadersInput,
-      cancellationToken
+      {
+        queryParams: {} satisfies UploadFileQueryParams,
+        headers: new UploadFileHeaders({}),
+        cancellationToken: cancellationToken,
+      } satisfies UploadFileOptionalsInput
     );
   }).rejects.toThrow();
 });

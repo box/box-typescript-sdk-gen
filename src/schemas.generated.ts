@@ -48,11 +48,21 @@ export class PostOAuth2TokenRefreshAccessToken {
   readonly clientSecret!: string;
   readonly refreshToken!: string;
   constructor(
-    fields:
-      | Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'>
-      | Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>
+    fields: Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'> &
+      Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.grantType) {
+      this.grantType = fields.grantType;
+    }
+    if (fields.clientId) {
+      this.clientId = fields.clientId;
+    }
+    if (fields.clientSecret) {
+      this.clientSecret = fields.clientSecret;
+    }
+    if (fields.refreshToken) {
+      this.refreshToken = fields.refreshToken;
+    }
   }
 }
 export interface PostOAuth2TokenRefreshAccessTokenInput {
@@ -186,16 +196,32 @@ export class ClassificationTemplateFieldsField {
   readonly hidden?: boolean;
   readonly options!: readonly ClassificationTemplateFieldsOptionsField[];
   constructor(
-    fields:
-      | Omit<ClassificationTemplateFieldsField, 'type' | 'key' | 'displayName'>
-      | Partial<
-          Pick<
-            ClassificationTemplateFieldsField,
-            'type' | 'key' | 'displayName'
-          >
-        >
+    fields: Omit<
+      ClassificationTemplateFieldsField,
+      'type' | 'key' | 'displayName'
+    > &
+      Partial<
+        Pick<ClassificationTemplateFieldsField, 'type' | 'key' | 'displayName'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.key) {
+      this.key = fields.key;
+    }
+    if (fields.displayName) {
+      this.displayName = fields.displayName;
+    }
+    if (fields.hidden) {
+      this.hidden = fields.hidden;
+    }
+    if (fields.options) {
+      this.options = fields.options;
+    }
   }
 }
 export interface ClassificationTemplateFieldsFieldInput {
@@ -219,13 +245,38 @@ export class ClassificationTemplate {
   readonly copyInstanceOnItemCopy?: boolean;
   readonly fields!: readonly ClassificationTemplateFieldsField[];
   constructor(
-    fields:
-      | Omit<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
-      | Partial<
-          Pick<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
-        >
+    fields: Omit<
+      ClassificationTemplate,
+      'type' | 'templateKey' | 'displayName'
+    > &
+      Partial<
+        Pick<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
+      >
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.scope) {
+      this.scope = fields.scope;
+    }
+    if (fields.templateKey) {
+      this.templateKey = fields.templateKey;
+    }
+    if (fields.displayName) {
+      this.displayName = fields.displayName;
+    }
+    if (fields.hidden) {
+      this.hidden = fields.hidden;
+    }
+    if (fields.copyInstanceOnItemCopy) {
+      this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
+    }
+    if (fields.fields) {
+      this.fields = fields.fields;
+    }
   }
 }
 export interface ClassificationTemplateInput {
@@ -312,9 +363,17 @@ export class FileBase {
   readonly etag?: string;
   readonly type: FileBaseTypeField = 'file' as FileBaseTypeField;
   constructor(
-    fields: Omit<FileBase, 'type'> | Partial<Pick<FileBase, 'type'>>
+    fields: Omit<FileBase, 'type'> & Partial<Pick<FileBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface FileBaseInput {
@@ -328,11 +387,15 @@ export class FileVersionBase {
   readonly type: FileVersionBaseTypeField =
     'file_version' as FileVersionBaseTypeField;
   constructor(
-    fields:
-      | Omit<FileVersionBase, 'type'>
-      | Partial<Pick<FileVersionBase, 'type'>>
+    fields: Omit<FileVersionBase, 'type'> &
+      Partial<Pick<FileVersionBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface FileVersionBaseInput {
@@ -375,9 +438,17 @@ export class FolderBase {
   readonly etag?: string;
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
   constructor(
-    fields: Omit<FolderBase, 'type'> | Partial<Pick<FolderBase, 'type'>>
+    fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface FolderBaseInput {
@@ -389,7 +460,7 @@ export class FolderMini extends FolderBase {
   readonly sequenceId?: string;
   readonly name?: string;
   constructor(
-    fields: Omit<FolderMini, 'type'> | Partial<Pick<FolderMini, 'type'>>
+    fields: Omit<FolderMini, 'type'> & Partial<Pick<FolderMini, 'type'>>
   ) {
     super(fields);
   }
@@ -444,9 +515,14 @@ export class GroupBase {
   readonly id!: string;
   readonly type: GroupBaseTypeField = 'group' as GroupBaseTypeField;
   constructor(
-    fields: Omit<GroupBase, 'type'> | Partial<Pick<GroupBase, 'type'>>
+    fields: Omit<GroupBase, 'type'> & Partial<Pick<GroupBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface GroupBaseInput {
@@ -508,11 +584,15 @@ export class LegalHoldPolicyMini {
   readonly type: LegalHoldPolicyMiniTypeField =
     'legal_hold_policy' as LegalHoldPolicyMiniTypeField;
   constructor(
-    fields:
-      | Omit<LegalHoldPolicyMini, 'type'>
-      | Partial<Pick<LegalHoldPolicyMini, 'type'>>
+    fields: Omit<LegalHoldPolicyMini, 'type'> &
+      Partial<Pick<LegalHoldPolicyMini, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface LegalHoldPolicyMiniInput {
@@ -565,11 +645,27 @@ export class MetadataCascadePolicy {
   readonly scope?: string;
   readonly templateKey?: string;
   constructor(
-    fields:
-      | Omit<MetadataCascadePolicy, 'type'>
-      | Partial<Pick<MetadataCascadePolicy, 'type'>>
+    fields: Omit<MetadataCascadePolicy, 'type'> &
+      Partial<Pick<MetadataCascadePolicy, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.ownerEnterprise) {
+      this.ownerEnterprise = fields.ownerEnterprise;
+    }
+    if (fields.parent) {
+      this.parent = fields.parent;
+    }
+    if (fields.scope) {
+      this.scope = fields.scope;
+    }
+    if (fields.templateKey) {
+      this.templateKey = fields.templateKey;
+    }
   }
 }
 export interface MetadataCascadePolicyInput {
@@ -630,11 +726,33 @@ export class MetadataTemplate {
   readonly fields?: readonly MetadataTemplateFieldsField[];
   readonly copyInstanceOnItemCopy?: boolean;
   constructor(
-    fields:
-      | Omit<MetadataTemplate, 'type'>
-      | Partial<Pick<MetadataTemplate, 'type'>>
+    fields: Omit<MetadataTemplate, 'type'> &
+      Partial<Pick<MetadataTemplate, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.scope) {
+      this.scope = fields.scope;
+    }
+    if (fields.templateKey) {
+      this.templateKey = fields.templateKey;
+    }
+    if (fields.displayName) {
+      this.displayName = fields.displayName;
+    }
+    if (fields.hidden) {
+      this.hidden = fields.hidden;
+    }
+    if (fields.fields) {
+      this.fields = fields.fields;
+    }
+    if (fields.copyInstanceOnItemCopy) {
+      this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
+    }
   }
 }
 export interface MetadataTemplateInput {
@@ -670,11 +788,15 @@ export class RetentionPolicyBase {
   readonly type: RetentionPolicyBaseTypeField =
     'retention_policy' as RetentionPolicyBaseTypeField;
   constructor(
-    fields:
-      | Omit<RetentionPolicyBase, 'type'>
-      | Partial<Pick<RetentionPolicyBase, 'type'>>
+    fields: Omit<RetentionPolicyBase, 'type'> &
+      Partial<Pick<RetentionPolicyBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface RetentionPolicyBaseInput {
@@ -715,11 +837,15 @@ export class RetentionPolicyAssignmentBase {
   readonly type: RetentionPolicyAssignmentBaseTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentBaseTypeField;
   constructor(
-    fields:
-      | Omit<RetentionPolicyAssignmentBase, 'type'>
-      | Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>
+    fields: Omit<RetentionPolicyAssignmentBase, 'type'> &
+      Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface RetentionPolicyAssignmentBaseInput {
@@ -779,11 +905,15 @@ export class StoragePolicyMini {
   readonly type: StoragePolicyMiniTypeField =
     'storage_policy' as StoragePolicyMiniTypeField;
   constructor(
-    fields:
-      | Omit<StoragePolicyMini, 'type'>
-      | Partial<Pick<StoragePolicyMini, 'type'>>
+    fields: Omit<StoragePolicyMini, 'type'> &
+      Partial<Pick<StoragePolicyMini, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface StoragePolicyMiniInput {
@@ -802,11 +932,21 @@ export class StoragePolicyAssignment {
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
   constructor(
-    fields:
-      | Omit<StoragePolicyAssignment, 'type'>
-      | Partial<Pick<StoragePolicyAssignment, 'type'>>
+    fields: Omit<StoragePolicyAssignment, 'type'> &
+      Partial<Pick<StoragePolicyAssignment, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.storagePolicy) {
+      this.storagePolicy = fields.storagePolicy;
+    }
+    if (fields.assignedTo) {
+      this.assignedTo = fields.assignedTo;
+    }
   }
 }
 export interface StoragePolicyAssignmentInput {
@@ -839,11 +979,15 @@ export class TermsOfServiceBase {
   readonly type: TermsOfServiceBaseTypeField =
     'terms_of_service' as TermsOfServiceBaseTypeField;
   constructor(
-    fields:
-      | Omit<TermsOfServiceBase, 'type'>
-      | Partial<Pick<TermsOfServiceBase, 'type'>>
+    fields: Omit<TermsOfServiceBase, 'type'> &
+      Partial<Pick<TermsOfServiceBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface TermsOfServiceBaseInput {
@@ -931,9 +1075,14 @@ export class UserBase {
   readonly id!: string;
   readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
   constructor(
-    fields: Omit<UserBase, 'type'> | Partial<Pick<UserBase, 'type'>>
+    fields: Omit<UserBase, 'type'> & Partial<Pick<UserBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
   }
 }
 export interface UserBaseInput {
@@ -1093,11 +1242,75 @@ export class TrashFileRestored {
   readonly parent?: FolderMini;
   readonly itemStatus!: TrashFileRestoredItemStatusField;
   constructor(
-    fields:
-      | Omit<TrashFileRestored, 'type'>
-      | Partial<Pick<TrashFileRestored, 'type'>>
+    fields: Omit<TrashFileRestored, 'type'> &
+      Partial<Pick<TrashFileRestored, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.sequenceId) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name) {
+      this.name = fields.name;
+    }
+    if (fields.sha1) {
+      this.sha1 = fields.sha1;
+    }
+    if (fields.fileVersion) {
+      this.fileVersion = fields.fileVersion;
+    }
+    if (fields.description) {
+      this.description = fields.description;
+    }
+    if (fields.size) {
+      this.size = fields.size;
+    }
+    if (fields.pathCollection) {
+      this.pathCollection = fields.pathCollection;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.trashedAt) {
+      this.trashedAt = fields.trashedAt;
+    }
+    if (fields.purgedAt) {
+      this.purgedAt = fields.purgedAt;
+    }
+    if (fields.contentCreatedAt) {
+      this.contentCreatedAt = fields.contentCreatedAt;
+    }
+    if (fields.contentModifiedAt) {
+      this.contentModifiedAt = fields.contentModifiedAt;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.ownedBy) {
+      this.ownedBy = fields.ownedBy;
+    }
+    if (fields.sharedLink) {
+      this.sharedLink = fields.sharedLink;
+    }
+    if (fields.parent) {
+      this.parent = fields.parent;
+    }
+    if (fields.itemStatus) {
+      this.itemStatus = fields.itemStatus;
+    }
   }
 }
 export interface TrashFileRestoredInput {
@@ -1195,9 +1408,71 @@ export class TrashFolder {
   readonly parent?: FolderMini;
   readonly itemStatus!: TrashFolderItemStatusField;
   constructor(
-    fields: Omit<TrashFolder, 'type'> | Partial<Pick<TrashFolder, 'type'>>
+    fields: Omit<TrashFolder, 'type'> & Partial<Pick<TrashFolder, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.sequenceId) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name) {
+      this.name = fields.name;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.description) {
+      this.description = fields.description;
+    }
+    if (fields.size) {
+      this.size = fields.size;
+    }
+    if (fields.pathCollection) {
+      this.pathCollection = fields.pathCollection;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.trashedAt) {
+      this.trashedAt = fields.trashedAt;
+    }
+    if (fields.purgedAt) {
+      this.purgedAt = fields.purgedAt;
+    }
+    if (fields.contentCreatedAt) {
+      this.contentCreatedAt = fields.contentCreatedAt;
+    }
+    if (fields.contentModifiedAt) {
+      this.contentModifiedAt = fields.contentModifiedAt;
+    }
+    if (fields.ownedBy) {
+      this.ownedBy = fields.ownedBy;
+    }
+    if (fields.sharedLink) {
+      this.sharedLink = fields.sharedLink;
+    }
+    if (fields.folderUploadEmail) {
+      this.folderUploadEmail = fields.folderUploadEmail;
+    }
+    if (fields.parent) {
+      this.parent = fields.parent;
+    }
+    if (fields.itemStatus) {
+      this.itemStatus = fields.itemStatus;
+    }
   }
 }
 export interface TrashFolderInput {
@@ -1261,9 +1536,74 @@ export class TrashFile {
   readonly parent?: FolderMini;
   readonly itemStatus!: TrashFileItemStatusField;
   constructor(
-    fields: Omit<TrashFile, 'type'> | Partial<Pick<TrashFile, 'type'>>
+    fields: Omit<TrashFile, 'type'> & Partial<Pick<TrashFile, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.sequenceId) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name) {
+      this.name = fields.name;
+    }
+    if (fields.sha1) {
+      this.sha1 = fields.sha1;
+    }
+    if (fields.fileVersion) {
+      this.fileVersion = fields.fileVersion;
+    }
+    if (fields.description) {
+      this.description = fields.description;
+    }
+    if (fields.size) {
+      this.size = fields.size;
+    }
+    if (fields.pathCollection) {
+      this.pathCollection = fields.pathCollection;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.trashedAt) {
+      this.trashedAt = fields.trashedAt;
+    }
+    if (fields.purgedAt) {
+      this.purgedAt = fields.purgedAt;
+    }
+    if (fields.contentCreatedAt) {
+      this.contentCreatedAt = fields.contentCreatedAt;
+    }
+    if (fields.contentModifiedAt) {
+      this.contentModifiedAt = fields.contentModifiedAt;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.ownedBy) {
+      this.ownedBy = fields.ownedBy;
+    }
+    if (fields.sharedLink) {
+      this.sharedLink = fields.sharedLink;
+    }
+    if (fields.parent) {
+      this.parent = fields.parent;
+    }
+    if (fields.itemStatus) {
+      this.itemStatus = fields.itemStatus;
+    }
   }
 }
 export interface TrashFileInput {
@@ -1301,11 +1641,30 @@ export class TermsOfServiceUserStatus {
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
   constructor(
-    fields:
-      | Omit<TermsOfServiceUserStatus, 'type'>
-      | Partial<Pick<TermsOfServiceUserStatus, 'type'>>
+    fields: Omit<TermsOfServiceUserStatus, 'type'> &
+      Partial<Pick<TermsOfServiceUserStatus, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.tos) {
+      this.tos = fields.tos;
+    }
+    if (fields.user) {
+      this.user = fields.user;
+    }
+    if (fields.isAccepted) {
+      this.isAccepted = fields.isAccepted;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export interface TermsOfServiceUserStatusInput {
@@ -1387,11 +1746,33 @@ export class RetentionPolicyAssignment {
   readonly assignedAt?: DateTime;
   readonly startDateField?: string;
   constructor(
-    fields:
-      | Omit<RetentionPolicyAssignment, 'type'>
-      | Partial<Pick<RetentionPolicyAssignment, 'type'>>
+    fields: Omit<RetentionPolicyAssignment, 'type'> &
+      Partial<Pick<RetentionPolicyAssignment, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.retentionPolicy) {
+      this.retentionPolicy = fields.retentionPolicy;
+    }
+    if (fields.assignedTo) {
+      this.assignedTo = fields.assignedTo;
+    }
+    if (fields.filterFields) {
+      this.filterFields = fields.filterFields;
+    }
+    if (fields.assignedBy) {
+      this.assignedBy = fields.assignedBy;
+    }
+    if (fields.assignedAt) {
+      this.assignedAt = fields.assignedAt;
+    }
+    if (fields.startDateField) {
+      this.startDateField = fields.startDateField;
+    }
   }
 }
 export interface RetentionPolicyAssignmentInput {
@@ -1487,8 +1868,31 @@ export class Invite {
   readonly status?: string;
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
-  constructor(fields: Omit<Invite, 'type'> | Partial<Pick<Invite, 'type'>>) {
-    Object.assign(this, fields);
+  constructor(fields: Omit<Invite, 'type'> & Partial<Pick<Invite, 'type'>>) {
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.invitedTo) {
+      this.invitedTo = fields.invitedTo;
+    }
+    if (fields.actionableBy) {
+      this.actionableBy = fields.actionableBy;
+    }
+    if (fields.invitedBy) {
+      this.invitedBy = fields.invitedBy;
+    }
+    if (fields.status) {
+      this.status = fields.status;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export interface InviteInput {
@@ -1577,9 +1981,53 @@ export class FileRequest {
   readonly updatedBy?: UserMini;
   readonly updatedAt!: DateTime;
   constructor(
-    fields: Omit<FileRequest, 'type'> | Partial<Pick<FileRequest, 'type'>>
+    fields: Omit<FileRequest, 'type'> & Partial<Pick<FileRequest, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.title) {
+      this.title = fields.title;
+    }
+    if (fields.description) {
+      this.description = fields.description;
+    }
+    if (fields.status) {
+      this.status = fields.status;
+    }
+    if (fields.isEmailRequired) {
+      this.isEmailRequired = fields.isEmailRequired;
+    }
+    if (fields.isDescriptionRequired) {
+      this.isDescriptionRequired = fields.isDescriptionRequired;
+    }
+    if (fields.expiresAt) {
+      this.expiresAt = fields.expiresAt;
+    }
+    if (fields.folder) {
+      this.folder = fields.folder;
+    }
+    if (fields.url) {
+      this.url = fields.url;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.updatedBy) {
+      this.updatedBy = fields.updatedBy;
+    }
+    if (fields.updatedAt) {
+      this.updatedAt = fields.updatedAt;
+    }
   }
 }
 export interface FileRequestInput {
@@ -2018,9 +2466,17 @@ export class WebLinkBase {
   readonly type: WebLinkBaseTypeField = 'web_link' as WebLinkBaseTypeField;
   readonly etag?: string;
   constructor(
-    fields: Omit<WebLinkBase, 'type'> | Partial<Pick<WebLinkBase, 'type'>>
+    fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.etag) {
+      this.etag = fields.etag;
+    }
   }
 }
 export interface WebLinkBaseInput {
@@ -2392,9 +2848,50 @@ export class Collaboration {
   readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
   constructor(
-    fields: Omit<Collaboration, 'type'> | Partial<Pick<Collaboration, 'type'>>
+    fields: Omit<Collaboration, 'type'> & Partial<Pick<Collaboration, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.item) {
+      this.item = fields.item;
+    }
+    if (fields.accessibleBy) {
+      this.accessibleBy = fields.accessibleBy;
+    }
+    if (fields.inviteEmail) {
+      this.inviteEmail = fields.inviteEmail;
+    }
+    if (fields.role) {
+      this.role = fields.role;
+    }
+    if (fields.expiresAt) {
+      this.expiresAt = fields.expiresAt;
+    }
+    if (fields.isAccessOnly) {
+      this.isAccessOnly = fields.isAccessOnly;
+    }
+    if (fields.status) {
+      this.status = fields.status;
+    }
+    if (fields.acknowledgedAt) {
+      this.acknowledgedAt = fields.acknowledgedAt;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.acceptanceRequirementsStatus) {
+      this.acceptanceRequirementsStatus = fields.acceptanceRequirementsStatus;
+    }
   }
 }
 export interface CollaborationInput {
@@ -2613,11 +3110,24 @@ export class SearchResultsWithSharedLinks {
     'search_results_with_shared_links' as SearchResultsWithSharedLinksTypeField;
   readonly entries?: readonly SearchResultWithSharedLink[];
   constructor(
-    fields:
-      | Omit<SearchResultsWithSharedLinks, 'type'>
-      | Partial<Pick<SearchResultsWithSharedLinks, 'type'>>
+    fields: Omit<SearchResultsWithSharedLinks, 'type'> &
+      Partial<Pick<SearchResultsWithSharedLinks, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.totalCount) {
+      this.totalCount = fields.totalCount;
+    }
+    if (fields.limit) {
+      this.limit = fields.limit;
+    }
+    if (fields.offset) {
+      this.offset = fields.offset;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.entries) {
+      this.entries = fields.entries;
+    }
   }
 }
 export interface SearchResultsWithSharedLinksInput {
@@ -2636,9 +3146,23 @@ export class SearchResults {
     'search_results_items' as SearchResultsTypeField;
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
   constructor(
-    fields: Omit<SearchResults, 'type'> | Partial<Pick<SearchResults, 'type'>>
+    fields: Omit<SearchResults, 'type'> & Partial<Pick<SearchResults, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.totalCount) {
+      this.totalCount = fields.totalCount;
+    }
+    if (fields.limit) {
+      this.limit = fields.limit;
+    }
+    if (fields.offset) {
+      this.offset = fields.offset;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.entries) {
+      this.entries = fields.entries;
+    }
   }
 }
 export interface SearchResultsInput {
@@ -2819,11 +3343,18 @@ export class CompletionRuleVariable {
     'task_completion_rule' as CompletionRuleVariableVariableTypeField;
   readonly variableValue!: CompletionRuleVariableVariableValueField;
   constructor(
-    fields:
-      | Omit<CompletionRuleVariable, 'type' | 'variableType'>
-      | Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>
+    fields: Omit<CompletionRuleVariable, 'type' | 'variableType'> &
+      Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.variableType) {
+      this.variableType = fields.variableType;
+    }
+    if (fields.variableValue) {
+      this.variableValue = fields.variableValue;
+    }
   }
 }
 export interface CompletionRuleVariableInput {
@@ -2839,11 +3370,15 @@ export class CollaboratorVariableVariableValueField {
     'user' as CollaboratorVariableVariableValueTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<CollaboratorVariableVariableValueField, 'type'>
-      | Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>
+    fields: Omit<CollaboratorVariableVariableValueField, 'type'> &
+      Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface CollaboratorVariableVariableValueFieldInput {
@@ -2857,11 +3392,18 @@ export class CollaboratorVariable {
     'user_list' as CollaboratorVariableVariableTypeField;
   readonly variableValue!: readonly CollaboratorVariableVariableValueField[];
   constructor(
-    fields:
-      | Omit<CollaboratorVariable, 'type' | 'variableType'>
-      | Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>
+    fields: Omit<CollaboratorVariable, 'type' | 'variableType'> &
+      Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.variableType) {
+      this.variableType = fields.variableType;
+    }
+    if (fields.variableValue) {
+      this.variableValue = fields.variableValue;
+    }
   }
 }
 export interface CollaboratorVariableInput {
@@ -2881,11 +3423,15 @@ export class KeywordSkillCardSkillField {
     'service' as KeywordSkillCardSkillTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<KeywordSkillCardSkillField, 'type'>
-      | Partial<Pick<KeywordSkillCardSkillField, 'type'>>
+    fields: Omit<KeywordSkillCardSkillField, 'type'> &
+      Partial<Pick<KeywordSkillCardSkillField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface KeywordSkillCardSkillFieldInput {
@@ -2898,11 +3444,15 @@ export class KeywordSkillCardInvocationField {
     'skill_invocation' as KeywordSkillCardInvocationTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<KeywordSkillCardInvocationField, 'type'>
-      | Partial<Pick<KeywordSkillCardInvocationField, 'type'>>
+    fields: Omit<KeywordSkillCardInvocationField, 'type'> &
+      Partial<Pick<KeywordSkillCardInvocationField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface KeywordSkillCardInvocationFieldInput {
@@ -2923,11 +3473,30 @@ export class KeywordSkillCard {
   readonly invocation!: KeywordSkillCardInvocationField;
   readonly entries!: readonly KeywordSkillCardEntriesField[];
   constructor(
-    fields:
-      | Omit<KeywordSkillCard, 'type' | 'skillCardType'>
-      | Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>
+    fields: Omit<KeywordSkillCard, 'type' | 'skillCardType'> &
+      Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.skillCardType) {
+      this.skillCardType = fields.skillCardType;
+    }
+    if (fields.skillCardTitle) {
+      this.skillCardTitle = fields.skillCardTitle;
+    }
+    if (fields.skill) {
+      this.skill = fields.skill;
+    }
+    if (fields.invocation) {
+      this.invocation = fields.invocation;
+    }
+    if (fields.entries) {
+      this.entries = fields.entries;
+    }
   }
 }
 export interface KeywordSkillCardInput {
@@ -2950,11 +3519,21 @@ export class IntegrationMappingPartnerItemSlack {
   readonly slackWorkspaceId?: string;
   readonly slackOrgId?: string;
   constructor(
-    fields:
-      | Omit<IntegrationMappingPartnerItemSlack, 'type'>
-      | Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>
+    fields: Omit<IntegrationMappingPartnerItemSlack, 'type'> &
+      Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.slackWorkspaceId) {
+      this.slackWorkspaceId = fields.slackWorkspaceId;
+    }
+    if (fields.slackOrgId) {
+      this.slackOrgId = fields.slackOrgId;
+    }
   }
 }
 export interface IntegrationMappingPartnerItemSlackInput {
@@ -2978,11 +3557,42 @@ export class IntegrationMapping implements IntegrationMappingBase {
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
   constructor(
-    fields:
-      | Omit<IntegrationMapping, 'type'>
-      | Partial<Pick<IntegrationMapping, 'type'>>
+    fields: Omit<IntegrationMapping, 'type'> &
+      Partial<Pick<IntegrationMapping, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.integrationType) {
+      this.integrationType = fields.integrationType;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.partnerItem) {
+      this.partnerItem = fields.partnerItem;
+    }
+    if (fields.boxItem) {
+      this.boxItem = fields.boxItem;
+    }
+    if (fields.isManuallyCreated) {
+      this.isManuallyCreated = fields.isManuallyCreated;
+    }
+    if (fields.options) {
+      this.options = fields.options;
+    }
+    if (fields.createdBy) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export interface IntegrationMappings {
@@ -2996,11 +3606,15 @@ export class IntegrationMappingBoxItemSlack {
     'folder' as IntegrationMappingBoxItemSlackTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<IntegrationMappingBoxItemSlack, 'type'>
-      | Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>
+    fields: Omit<IntegrationMappingBoxItemSlack, 'type'> &
+      Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface IntegrationMappingBoxItemSlackInput {
@@ -3028,11 +3642,18 @@ export class RoleVariable {
     'collaborator_role' as RoleVariableVariableTypeField;
   readonly variableValue!: RoleVariableVariableValueField;
   constructor(
-    fields:
-      | Omit<RoleVariable, 'type' | 'variableType'>
-      | Partial<Pick<RoleVariable, 'type' | 'variableType'>>
+    fields: Omit<RoleVariable, 'type' | 'variableType'> &
+      Partial<Pick<RoleVariable, 'type' | 'variableType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.variableType) {
+      this.variableType = fields.variableType;
+    }
+    if (fields.variableValue) {
+      this.variableValue = fields.variableValue;
+    }
   }
 }
 export interface RoleVariableInput {
@@ -3060,11 +3681,15 @@ export class TimelineSkillCardSkillField {
     'service' as TimelineSkillCardSkillTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<TimelineSkillCardSkillField, 'type'>
-      | Partial<Pick<TimelineSkillCardSkillField, 'type'>>
+    fields: Omit<TimelineSkillCardSkillField, 'type'> &
+      Partial<Pick<TimelineSkillCardSkillField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface TimelineSkillCardSkillFieldInput {
@@ -3077,11 +3702,15 @@ export class TimelineSkillCardInvocationField {
     'skill_invocation' as TimelineSkillCardInvocationTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<TimelineSkillCardInvocationField, 'type'>
-      | Partial<Pick<TimelineSkillCardInvocationField, 'type'>>
+    fields: Omit<TimelineSkillCardInvocationField, 'type'> &
+      Partial<Pick<TimelineSkillCardInvocationField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface TimelineSkillCardInvocationFieldInput {
@@ -3109,11 +3738,33 @@ export class TimelineSkillCard {
   readonly duration?: number;
   readonly entries!: readonly TimelineSkillCardEntriesField[];
   constructor(
-    fields:
-      | Omit<TimelineSkillCard, 'type' | 'skillCardType'>
-      | Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>
+    fields: Omit<TimelineSkillCard, 'type' | 'skillCardType'> &
+      Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.skillCardType) {
+      this.skillCardType = fields.skillCardType;
+    }
+    if (fields.skillCardTitle) {
+      this.skillCardTitle = fields.skillCardTitle;
+    }
+    if (fields.skill) {
+      this.skill = fields.skill;
+    }
+    if (fields.invocation) {
+      this.invocation = fields.invocation;
+    }
+    if (fields.duration) {
+      this.duration = fields.duration;
+    }
+    if (fields.entries) {
+      this.entries = fields.entries;
+    }
   }
 }
 export interface TimelineSkillCardInput {
@@ -3138,11 +3789,15 @@ export class TranscriptSkillCardSkillField {
     'service' as TranscriptSkillCardSkillTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<TranscriptSkillCardSkillField, 'type'>
-      | Partial<Pick<TranscriptSkillCardSkillField, 'type'>>
+    fields: Omit<TranscriptSkillCardSkillField, 'type'> &
+      Partial<Pick<TranscriptSkillCardSkillField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface TranscriptSkillCardSkillFieldInput {
@@ -3155,11 +3810,15 @@ export class TranscriptSkillCardInvocationField {
     'skill_invocation' as TranscriptSkillCardInvocationTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<TranscriptSkillCardInvocationField, 'type'>
-      | Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>
+    fields: Omit<TranscriptSkillCardInvocationField, 'type'> &
+      Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface TranscriptSkillCardInvocationFieldInput {
@@ -3185,11 +3844,33 @@ export class TranscriptSkillCard {
   readonly duration?: number;
   readonly entries!: readonly TranscriptSkillCardEntriesField[];
   constructor(
-    fields:
-      | Omit<TranscriptSkillCard, 'type' | 'skillCardType'>
-      | Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>
+    fields: Omit<TranscriptSkillCard, 'type' | 'skillCardType'> &
+      Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.skillCardType) {
+      this.skillCardType = fields.skillCardType;
+    }
+    if (fields.skillCardTitle) {
+      this.skillCardTitle = fields.skillCardTitle;
+    }
+    if (fields.skill) {
+      this.skill = fields.skill;
+    }
+    if (fields.invocation) {
+      this.invocation = fields.invocation;
+    }
+    if (fields.duration) {
+      this.duration = fields.duration;
+    }
+    if (fields.entries) {
+      this.entries = fields.entries;
+    }
   }
 }
 export interface TranscriptSkillCardInput {
@@ -3224,11 +3905,15 @@ export class StatusSkillCardSkillField {
     'service' as StatusSkillCardSkillTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<StatusSkillCardSkillField, 'type'>
-      | Partial<Pick<StatusSkillCardSkillField, 'type'>>
+    fields: Omit<StatusSkillCardSkillField, 'type'> &
+      Partial<Pick<StatusSkillCardSkillField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface StatusSkillCardSkillFieldInput {
@@ -3241,11 +3926,15 @@ export class StatusSkillCardInvocationField {
     'skill_invocation' as StatusSkillCardInvocationTypeField;
   readonly id!: string;
   constructor(
-    fields:
-      | Omit<StatusSkillCardInvocationField, 'type'>
-      | Partial<Pick<StatusSkillCardInvocationField, 'type'>>
+    fields: Omit<StatusSkillCardInvocationField, 'type'> &
+      Partial<Pick<StatusSkillCardInvocationField, 'type'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.id) {
+      this.id = fields.id;
+    }
   }
 }
 export interface StatusSkillCardInvocationFieldInput {
@@ -3263,11 +3952,30 @@ export class StatusSkillCard {
   readonly skill!: StatusSkillCardSkillField;
   readonly invocation!: StatusSkillCardInvocationField;
   constructor(
-    fields:
-      | Omit<StatusSkillCard, 'type' | 'skillCardType'>
-      | Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>
+    fields: Omit<StatusSkillCard, 'type' | 'skillCardType'> &
+      Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.createdAt) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.skillCardType) {
+      this.skillCardType = fields.skillCardType;
+    }
+    if (fields.skillCardTitle) {
+      this.skillCardTitle = fields.skillCardTitle;
+    }
+    if (fields.status) {
+      this.status = fields.status;
+    }
+    if (fields.skill) {
+      this.skill = fields.skill;
+    }
+    if (fields.invocation) {
+      this.invocation = fields.invocation;
+    }
   }
 }
 export interface StatusSkillCardInput {

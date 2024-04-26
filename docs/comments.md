@@ -25,12 +25,8 @@ await client.comments.getFileComments(fileId);
 
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
-- queryParams `GetFileCommentsQueryParams`
-  - Query parameters of getFileComments method
-- headersInput `GetFileCommentsHeadersInput`
-  - Headers of getFileComments method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFileCommentsOptionalsInput`
+  -
 
 ### Returns
 
@@ -59,12 +55,8 @@ await client.comments.getCommentById(newComment.id!);
 
 - commentId `string`
   - The ID of the comment. Example: "12345"
-- queryParams `GetCommentByIdQueryParams`
-  - Query parameters of getCommentById method
-- headersInput `GetCommentByIdHeadersInput`
-  - Headers of getCommentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetCommentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -85,22 +77,16 @@ See the endpoint docs at
 
 ```ts
 await client.comments.updateCommentById(newReplyComment.id!, {
-  message: newMessage,
-} satisfies UpdateCommentByIdRequestBody);
+  requestBody: { message: newMessage } satisfies UpdateCommentByIdRequestBody,
+} satisfies UpdateCommentByIdOptionalsInput);
 ```
 
 ### Arguments
 
 - commentId `string`
   - The ID of the comment. Example: "12345"
-- requestBody `UpdateCommentByIdRequestBody`
-  - Request body of updateCommentById method
-- queryParams `UpdateCommentByIdQueryParams`
-  - Query parameters of updateCommentById method
-- headersInput `UpdateCommentByIdHeadersInput`
-  - Headers of updateCommentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateCommentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -127,10 +113,8 @@ await client.comments.deleteCommentById(newComment.id!);
 
 - commentId `string`
   - The ID of the comment. Example: "12345"
-- headersInput `DeleteCommentByIdHeadersInput`
-  - Headers of deleteCommentById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteCommentByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -164,12 +148,8 @@ await client.comments.createComment({
 
 - requestBody `CreateCommentRequestBody`
   - Request body of createComment method
-- queryParams `CreateCommentQueryParams`
-  - Query parameters of createComment method
-- headersInput `CreateCommentHeadersInput`
-  - Headers of createComment method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateCommentOptionalsInput`
+  -
 
 ### Returns
 

@@ -8,6 +8,12 @@ import { serializeTransferOwnedFolderRequestBody } from '../managers/transfer.ge
 import { deserializeTransferOwnedFolderRequestBody } from '../managers/transfer.generated.js';
 import { serializeTransferOwnedFolderRequestBodyOwnedByField } from '../managers/transfer.generated.js';
 import { deserializeTransferOwnedFolderRequestBodyOwnedByField } from '../managers/transfer.generated.js';
+import { TransferOwnedFolderOptionalsInput } from '../managers/transfer.generated.js';
+import { DeleteFolderByIdOptionalsInput } from '../managers/folders.generated.js';
+import { DeleteUserByIdOptionalsInput } from '../managers/users.generated.js';
+import { TransferOwnedFolderOptionals } from '../managers/transfer.generated.js';
+import { DeleteFolderByIdOptionals } from '../managers/folders.generated.js';
+import { DeleteUserByIdOptionals } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { UserFull } from '../schemas.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
@@ -42,17 +48,21 @@ test('testTransferUserContent', async function testTransferUserContent(): Promis
           id: currentUser.id,
         } satisfies TransferOwnedFolderRequestBodyOwnedByField,
       } satisfies TransferOwnedFolderRequestBody,
-      { notify: false } satisfies TransferOwnedFolderQueryParams
+      {
+        queryParams: { notify: false } satisfies TransferOwnedFolderQueryParams,
+      } satisfies TransferOwnedFolderOptionalsInput
     );
   if (!(transferedFolder.ownedBy!.id == currentUser.id)) {
     throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(transferedFolder.id, {
-    recursive: true,
-  } satisfies DeleteFolderByIdQueryParams);
+    queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
+  } satisfies DeleteFolderByIdOptionalsInput);
   await client.users.deleteUserById(newUser.id, {
-    notify: false,
-    force: true,
-  } satisfies DeleteUserByIdQueryParams);
+    queryParams: {
+      notify: false,
+      force: true,
+    } satisfies DeleteUserByIdQueryParams,
+  } satisfies DeleteUserByIdOptionalsInput);
 });
 export {};

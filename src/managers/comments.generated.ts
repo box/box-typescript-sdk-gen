@@ -25,6 +25,163 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetFileCommentsOptionals {
+  readonly queryParams: GetFileCommentsQueryParams =
+    {} satisfies GetFileCommentsQueryParams;
+  readonly headers: GetFileCommentsHeaders = new GetFileCommentsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileCommentsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileCommentsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileCommentsOptionalsInput {
+  readonly queryParams?: GetFileCommentsQueryParams;
+  readonly headers?: GetFileCommentsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetCommentByIdOptionals {
+  readonly queryParams: GetCommentByIdQueryParams =
+    {} satisfies GetCommentByIdQueryParams;
+  readonly headers: GetCommentByIdHeaders = new GetCommentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetCommentByIdOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetCommentByIdOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCommentByIdOptionalsInput {
+  readonly queryParams?: GetCommentByIdQueryParams;
+  readonly headers?: GetCommentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateCommentByIdOptionals {
+  readonly requestBody: UpdateCommentByIdRequestBody =
+    {} satisfies UpdateCommentByIdRequestBody;
+  readonly queryParams: UpdateCommentByIdQueryParams =
+    {} satisfies UpdateCommentByIdQueryParams;
+  readonly headers: UpdateCommentByIdHeaders = new UpdateCommentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateCommentByIdOptionals,
+      'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateCommentByIdOptionals,
+          'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.requestBody) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateCommentByIdOptionalsInput {
+  readonly requestBody?: UpdateCommentByIdRequestBody;
+  readonly queryParams?: UpdateCommentByIdQueryParams;
+  readonly headers?: UpdateCommentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteCommentByIdOptionals {
+  readonly headers: DeleteCommentByIdHeaders = new DeleteCommentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteCommentByIdOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteCommentByIdOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteCommentByIdOptionalsInput {
+  readonly headers?: DeleteCommentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateCommentOptionals {
+  readonly queryParams: CreateCommentQueryParams =
+    {} satisfies CreateCommentQueryParams;
+  readonly headers: CreateCommentHeaders = new CreateCommentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateCommentOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateCommentOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateCommentOptionalsInput {
+  readonly queryParams?: CreateCommentQueryParams;
+  readonly headers?: CreateCommentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetFileCommentsQueryParams {
   readonly fields?: readonly string[];
   readonly limit?: number;
@@ -35,11 +192,12 @@ export class GetFileCommentsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetFileCommentsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetFileCommentsHeaders, 'extraHeaders'>>
+    fields: Omit<GetFileCommentsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileCommentsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetFileCommentsHeadersInput {
@@ -57,11 +215,12 @@ export class GetCommentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCommentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCommentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<GetCommentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCommentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCommentByIdHeadersInput {
@@ -82,11 +241,12 @@ export class UpdateCommentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<UpdateCommentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<UpdateCommentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<UpdateCommentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateCommentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface UpdateCommentByIdHeadersInput {
@@ -101,11 +261,12 @@ export class DeleteCommentByIdHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteCommentByIdHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteCommentByIdHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteCommentByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteCommentByIdHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteCommentByIdHeadersInput {
@@ -133,11 +294,12 @@ export class CreateCommentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateCommentHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateCommentHeaders, 'extraHeaders'>>
+    fields: Omit<CreateCommentHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateCommentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateCommentHeadersInput {
@@ -151,29 +313,36 @@ export class CommentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          CommentsManager,
-          | 'networkSession'
-          | 'getFileComments'
-          | 'getCommentById'
-          | 'updateCommentById'
-          | 'deleteCommentById'
-          | 'createComment'
-        >
-      | Partial<Pick<CommentsManager, 'networkSession'>>
+    fields: Omit<
+      CommentsManager,
+      | 'networkSession'
+      | 'getFileComments'
+      | 'getCommentById'
+      | 'updateCommentById'
+      | 'deleteCommentById'
+      | 'createComment'
+    > &
+      Partial<Pick<CommentsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getFileComments(
     fileId: string,
-    queryParams: GetFileCommentsQueryParams = {} satisfies GetFileCommentsQueryParams,
-    headersInput: GetFileCommentsHeadersInput = new GetFileCommentsHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetFileCommentsOptionalsInput = {}
   ): Promise<Comments> {
-    const headers: any = new GetFileCommentsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetFileCommentsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -207,13 +376,16 @@ export class CommentsManager {
   }
   async getCommentById(
     commentId: string,
-    queryParams: GetCommentByIdQueryParams = {} satisfies GetCommentByIdQueryParams,
-    headersInput: GetCommentByIdHeadersInput = new GetCommentByIdHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCommentByIdOptionalsInput = {}
   ): Promise<CommentFull> {
-    const headers: any = new GetCommentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetCommentByIdOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -244,16 +416,18 @@ export class CommentsManager {
   }
   async updateCommentById(
     commentId: string,
-    requestBody: UpdateCommentByIdRequestBody = {} satisfies UpdateCommentByIdRequestBody,
-    queryParams: UpdateCommentByIdQueryParams = {} satisfies UpdateCommentByIdQueryParams,
-    headersInput: UpdateCommentByIdHeadersInput = new UpdateCommentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: UpdateCommentByIdOptionalsInput = {}
   ): Promise<CommentFull> {
-    const headers: any = new UpdateCommentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new UpdateCommentByIdOptionals({
+      requestBody: optionalsInput.requestBody,
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const requestBody: any = optionals.requestBody;
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -286,14 +460,14 @@ export class CommentsManager {
   }
   async deleteCommentById(
     commentId: string,
-    headersInput: DeleteCommentByIdHeadersInput = new DeleteCommentByIdHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteCommentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteCommentByIdHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteCommentByIdOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -316,13 +490,16 @@ export class CommentsManager {
   }
   async createComment(
     requestBody: CreateCommentRequestBody,
-    queryParams: CreateCommentQueryParams = {} satisfies CreateCommentQueryParams,
-    headersInput: CreateCommentHeadersInput = new CreateCommentHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateCommentOptionalsInput = {}
   ): Promise<CommentFull> {
-    const headers: any = new CreateCommentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateCommentOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({

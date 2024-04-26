@@ -26,10 +26,8 @@ await client.folderMetadata.getFolderMetadata(folder.id);
 
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
-- headersInput `GetFolderMetadataHeadersInput`
-  - Headers of getFolderMetadata method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFolderMetadataOptionalsInput`
+  -
 
 ### Returns
 
@@ -68,10 +66,8 @@ await client.folderMetadata.getFolderMetadataById(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `GetFolderMetadataByIdHeadersInput`
-  - Headers of getFolderMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetFolderMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -119,10 +115,8 @@ await client.folderMetadata.createFolderMetadataById(
   - The name of the metadata template Example: "properties"
 - requestBody `CreateFolderMetadataByIdRequestBody`
   - Request body of createFolderMetadataById method
-- headersInput `CreateFolderMetadataByIdHeadersInput`
-  - Headers of createFolderMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `CreateFolderMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -174,10 +168,8 @@ await client.folderMetadata.updateFolderMetadataById(
   - The name of the metadata template Example: "properties"
 - requestBody `readonly UpdateFolderMetadataByIdRequestBody[]`
   - Request body of updateFolderMetadataById method
-- headersInput `UpdateFolderMetadataByIdHeadersInput`
-  - Headers of updateFolderMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `UpdateFolderMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 
@@ -213,10 +205,8 @@ await client.folderMetadata.deleteFolderMetadataById(
   - The scope of the metadata template Example: "global"
 - templateKey `string`
   - The name of the metadata template Example: "properties"
-- headersInput `DeleteFolderMetadataByIdHeadersInput`
-  - Headers of deleteFolderMetadataById method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `DeleteFolderMetadataByIdOptionalsInput`
+  -
 
 ### Returns
 

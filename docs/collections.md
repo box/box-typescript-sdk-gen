@@ -56,12 +56,8 @@ await client.collections.getCollectionItems(favouriteCollection.id!);
 
 - collectionId `string`
   - The ID of the collection. Example: "926489"
-- queryParams `GetCollectionItemsQueryParams`
-  - Query parameters of getCollectionItems method
-- headersInput `GetCollectionItemsHeadersInput`
-  - Headers of getCollectionItems method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetCollectionItemsOptionalsInput`
+  -
 
 ### Returns
 

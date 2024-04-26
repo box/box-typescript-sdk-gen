@@ -22,16 +22,74 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetUserAvatarOptionals {
+  readonly headers: GetUserAvatarHeaders = new GetUserAvatarHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<GetUserAvatarOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<GetUserAvatarOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetUserAvatarOptionalsInput {
+  readonly headers?: GetUserAvatarHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateUserAvatarOptionals {
+  readonly headers: CreateUserAvatarHeaders = new CreateUserAvatarHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateUserAvatarOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateUserAvatarOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateUserAvatarOptionalsInput {
+  readonly headers?: CreateUserAvatarHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteUserAvatarOptionals {
+  readonly headers: DeleteUserAvatarHeaders = new DeleteUserAvatarHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DeleteUserAvatarOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DeleteUserAvatarOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteUserAvatarOptionalsInput {
+  readonly headers?: DeleteUserAvatarHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetUserAvatarHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetUserAvatarHeaders, 'extraHeaders'>
-      | Partial<Pick<GetUserAvatarHeaders, 'extraHeaders'>>
+    fields: Omit<GetUserAvatarHeaders, 'extraHeaders'> &
+      Partial<Pick<GetUserAvatarHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetUserAvatarHeadersInput {
@@ -51,11 +109,12 @@ export class CreateUserAvatarHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateUserAvatarHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateUserAvatarHeaders, 'extraHeaders'>>
+    fields: Omit<CreateUserAvatarHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateUserAvatarHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateUserAvatarHeadersInput {
@@ -70,11 +129,12 @@ export class DeleteUserAvatarHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DeleteUserAvatarHeaders, 'extraHeaders'>
-      | Partial<Pick<DeleteUserAvatarHeaders, 'extraHeaders'>>
+    fields: Omit<DeleteUserAvatarHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteUserAvatarHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DeleteUserAvatarHeadersInput {
@@ -88,26 +148,32 @@ export class AvatarsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          AvatarsManager,
-          | 'networkSession'
-          | 'getUserAvatar'
-          | 'createUserAvatar'
-          | 'deleteUserAvatar'
-        >
-      | Partial<Pick<AvatarsManager, 'networkSession'>>
+    fields: Omit<
+      AvatarsManager,
+      | 'networkSession'
+      | 'getUserAvatar'
+      | 'createUserAvatar'
+      | 'deleteUserAvatar'
+    > &
+      Partial<Pick<AvatarsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getUserAvatar(
     userId: string,
-    headersInput: GetUserAvatarHeadersInput = new GetUserAvatarHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetUserAvatarOptionalsInput = {}
   ): Promise<ByteStream> {
-    const headers: any = new GetUserAvatarHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetUserAvatarOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -132,14 +198,14 @@ export class AvatarsManager {
   async createUserAvatar(
     userId: string,
     requestBody: CreateUserAvatarRequestBody,
-    headersInput: CreateUserAvatarHeadersInput = new CreateUserAvatarHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateUserAvatarOptionalsInput = {}
   ): Promise<UserAvatar> {
-    const headers: any = new CreateUserAvatarHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateUserAvatarOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -172,14 +238,14 @@ export class AvatarsManager {
   }
   async deleteUserAvatar(
     userId: string,
-    headersInput: DeleteUserAvatarHeadersInput = new DeleteUserAvatarHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: DeleteUserAvatarOptionalsInput = {}
   ): Promise<undefined> {
-    const headers: any = new DeleteUserAvatarHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DeleteUserAvatarOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });

@@ -28,10 +28,8 @@ await adminClient.workflows.getWorkflows({
 
 - queryParams `GetWorkflowsQueryParams`
   - Query parameters of getWorkflows method
-- headersInput `GetWorkflowsHeadersInput`
-  - Headers of getWorkflows method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `GetWorkflowsOptionalsInput`
+  -
 
 ### Returns
 
@@ -79,10 +77,8 @@ await adminClient.workflows.startWorkflow(workflowToRun.id!, {
   - The ID of the workflow. Example: "12345"
 - requestBody `StartWorkflowRequestBody`
   - Request body of startWorkflow method
-- headersInput `StartWorkflowHeadersInput`
-  - Headers of startWorkflow method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `StartWorkflowOptionalsInput`
+  -
 
 ### Returns
 

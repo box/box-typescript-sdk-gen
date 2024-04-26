@@ -32,10 +32,8 @@ await client.search.searchByMetadataQuery({
 
 - requestBody `MetadataQuery`
   - Request body of searchByMetadataQuery method
-- headersInput `SearchByMetadataQueryHeadersInput`
-  - Headers of searchByMetadataQuery method
-- cancellationToken `undefined | CancellationToken`
-  - Token used for request cancellation.
+- optionalsInput `SearchByMetadataQueryOptionalsInput`
+  -
 
 ### Returns
 

@@ -27,16 +27,105 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateZipDownloadOptionals {
+  readonly headers: CreateZipDownloadHeaders = new CreateZipDownloadHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateZipDownloadOptionalsInput {
+  readonly headers?: CreateZipDownloadHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetZipDownloadContentOptionals {
+  readonly headers: GetZipDownloadContentHeaders =
+    new GetZipDownloadContentHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetZipDownloadContentOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetZipDownloadContentOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetZipDownloadContentOptionalsInput {
+  readonly headers?: GetZipDownloadContentHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetZipDownloadStatusOptionals {
+  readonly headers: GetZipDownloadStatusHeaders =
+    new GetZipDownloadStatusHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetZipDownloadStatusOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetZipDownloadStatusOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetZipDownloadStatusOptionalsInput {
+  readonly headers?: GetZipDownloadStatusHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DownloadZipOptionals {
+  readonly headers: DownloadZipHeaders = new DownloadZipHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<DownloadZipOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<DownloadZipOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DownloadZipOptionalsInput {
+  readonly headers?: DownloadZipHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class CreateZipDownloadHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<CreateZipDownloadHeaders, 'extraHeaders'>
-      | Partial<Pick<CreateZipDownloadHeaders, 'extraHeaders'>>
+    fields: Omit<CreateZipDownloadHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateZipDownloadHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface CreateZipDownloadHeadersInput {
@@ -51,11 +140,12 @@ export class GetZipDownloadContentHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetZipDownloadContentHeaders, 'extraHeaders'>
-      | Partial<Pick<GetZipDownloadContentHeaders, 'extraHeaders'>>
+    fields: Omit<GetZipDownloadContentHeaders, 'extraHeaders'> &
+      Partial<Pick<GetZipDownloadContentHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetZipDownloadContentHeadersInput {
@@ -70,11 +160,12 @@ export class GetZipDownloadStatusHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetZipDownloadStatusHeaders, 'extraHeaders'>
-      | Partial<Pick<GetZipDownloadStatusHeaders, 'extraHeaders'>>
+    fields: Omit<GetZipDownloadStatusHeaders, 'extraHeaders'> &
+      Partial<Pick<GetZipDownloadStatusHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetZipDownloadStatusHeadersInput {
@@ -89,11 +180,12 @@ export class DownloadZipHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<DownloadZipHeaders, 'extraHeaders'>
-      | Partial<Pick<DownloadZipHeaders, 'extraHeaders'>>
+    fields: Omit<DownloadZipHeaders, 'extraHeaders'> &
+      Partial<Pick<DownloadZipHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface DownloadZipHeadersInput {
@@ -107,29 +199,33 @@ export class ZipDownloadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          ZipDownloadsManager,
-          | 'networkSession'
-          | 'createZipDownload'
-          | 'getZipDownloadContent'
-          | 'getZipDownloadStatus'
-          | 'downloadZip'
-        >
-      | Partial<Pick<ZipDownloadsManager, 'networkSession'>>
+    fields: Omit<
+      ZipDownloadsManager,
+      | 'networkSession'
+      | 'createZipDownload'
+      | 'getZipDownloadContent'
+      | 'getZipDownloadStatus'
+      | 'downloadZip'
+    > &
+      Partial<Pick<ZipDownloadsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async createZipDownload(
     requestBody: ZipDownloadRequest,
-    headersInput: CreateZipDownloadHeadersInput = new CreateZipDownloadHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: CreateZipDownloadOptionalsInput = {}
   ): Promise<ZipDownload> {
-    const headers: any = new CreateZipDownloadHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new CreateZipDownloadOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -153,14 +249,14 @@ export class ZipDownloadsManager {
   }
   async getZipDownloadContent(
     downloadUrl: string,
-    headersInput: GetZipDownloadContentHeadersInput = new GetZipDownloadContentHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetZipDownloadContentOptionalsInput = {}
   ): Promise<ByteStream> {
-    const headers: any = new GetZipDownloadContentHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetZipDownloadContentOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -176,14 +272,14 @@ export class ZipDownloadsManager {
   }
   async getZipDownloadStatus(
     statusUrl: string,
-    headersInput: GetZipDownloadStatusHeadersInput = new GetZipDownloadStatusHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetZipDownloadStatusOptionalsInput = {}
   ): Promise<ZipDownloadStatus> {
-    const headers: any = new GetZipDownloadStatusHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetZipDownloadStatusOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -199,29 +295,32 @@ export class ZipDownloadsManager {
   }
   async downloadZip(
     requestBody: ZipDownloadRequest,
-    headersInput: DownloadZipHeadersInput = new DownloadZipHeaders({}),
-    cancellationToken?: CancellationToken
+    optionalsInput: DownloadZipOptionalsInput = {}
   ): Promise<ByteStream> {
-    const headers: any = new DownloadZipHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new DownloadZipOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const zipDownloadSession: ZipDownload = await this.createZipDownload(
       {
         items: requestBody.items,
         downloadFileName: requestBody.downloadFileName,
       } satisfies ZipDownloadRequest,
       {
-        extraHeaders: headers.extraHeaders,
-      } satisfies CreateZipDownloadHeadersInput,
-      cancellationToken
+        headers: new CreateZipDownloadHeaders({
+          extraHeaders: headers.extraHeaders,
+        }),
+        cancellationToken: cancellationToken,
+      } satisfies CreateZipDownloadOptionalsInput
     );
-    return await this.getZipDownloadContent(
-      zipDownloadSession.downloadUrl!,
-      {
+    return await this.getZipDownloadContent(zipDownloadSession.downloadUrl!, {
+      headers: new GetZipDownloadContentHeaders({
         extraHeaders: headers.extraHeaders,
-      } satisfies GetZipDownloadContentHeadersInput,
-      cancellationToken
-    );
+      }),
+      cancellationToken: cancellationToken,
+    } satisfies GetZipDownloadContentOptionalsInput);
   }
 }
 export interface ZipDownloadsManagerInput {

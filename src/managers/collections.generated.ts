@@ -24,6 +24,41 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetCollectionItemsOptionals {
+  readonly queryParams: GetCollectionItemsQueryParams =
+    {} satisfies GetCollectionItemsQueryParams;
+  readonly headers: GetCollectionItemsHeaders = new GetCollectionItemsHeaders(
+    {}
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetCollectionItemsOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetCollectionItemsOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetCollectionItemsOptionalsInput {
+  readonly queryParams?: GetCollectionItemsQueryParams;
+  readonly headers?: GetCollectionItemsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface GetCollectionsQueryParams {
   readonly fields?: readonly string[];
   readonly offset?: number;
@@ -34,11 +69,12 @@ export class GetCollectionsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollectionsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollectionsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollectionsHeadersInput {
@@ -58,11 +94,12 @@ export class GetCollectionItemsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields:
-      | Omit<GetCollectionItemsHeaders, 'extraHeaders'>
-      | Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>
+    fields: Omit<GetCollectionItemsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
   }
 }
 export interface GetCollectionItemsHeadersInput {
@@ -76,14 +113,18 @@ export class CollectionsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
-    fields:
-      | Omit<
-          CollectionsManager,
-          'networkSession' | 'getCollections' | 'getCollectionItems'
-        >
-      | Partial<Pick<CollectionsManager, 'networkSession'>>
+    fields: Omit<
+      CollectionsManager,
+      'networkSession' | 'getCollections' | 'getCollectionItems'
+    > &
+      Partial<Pick<CollectionsManager, 'networkSession'>>
   ) {
-    Object.assign(this, fields);
+    if (fields.auth) {
+      this.auth = fields.auth;
+    }
+    if (fields.networkSession) {
+      this.networkSession = fields.networkSession;
+    }
   }
   async getCollections(
     queryParams: GetCollectionsQueryParams = {} satisfies GetCollectionsQueryParams,
@@ -121,15 +162,16 @@ export class CollectionsManager {
   }
   async getCollectionItems(
     collectionId: string,
-    queryParams: GetCollectionItemsQueryParams = {} satisfies GetCollectionItemsQueryParams,
-    headersInput: GetCollectionItemsHeadersInput = new GetCollectionItemsHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
+    optionalsInput: GetCollectionItemsOptionalsInput = {}
   ): Promise<Items> {
-    const headers: any = new GetCollectionItemsHeaders({
-      extraHeaders: headersInput.extraHeaders,
+    const optionals: any = new GetCollectionItemsOptionals({
+      queryParams: optionalsInput.queryParams,
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
     });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
