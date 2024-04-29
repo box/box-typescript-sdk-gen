@@ -29,7 +29,7 @@ export interface BaseUrlsInput {
   readonly uploadUrl?: string;
   readonly oauth2Url?: string;
 }
-export function serializeBaseUrls(val: any): SerializedData {
+export function serializeBaseUrls(val: BaseUrls): SerializedData {
   return {
     ['base_url']: val.baseUrl,
     ['upload_url']: val.uploadUrl,
@@ -46,7 +46,7 @@ export function deserializeBaseUrls(val: any): BaseUrls {
     oauth2Url: oauth2Url,
   } satisfies BaseUrls;
 }
-export function serializeBaseUrlsInput(val: any): SerializedData {
+export function serializeBaseUrlsInput(val: BaseUrlsInput): SerializedData {
   return {
     ['baseUrl']: val.baseUrl == void 0 ? void 0 : val.baseUrl,
     ['uploadUrl']: val.uploadUrl == void 0 ? void 0 : val.uploadUrl,

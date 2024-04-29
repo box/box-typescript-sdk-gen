@@ -339,14 +339,16 @@ export class SharedLinksWebLinksManager {
     headersInput: FindWebLinkForSharedLinkHeadersInput,
     optionalsInput: FindWebLinkForSharedLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const headers: any = new FindWebLinkForSharedLinkHeaders({
-      ifNoneMatch: headersInput.ifNoneMatch,
-      boxapi: headersInput.boxapi,
-      extraHeaders: headersInput.extraHeaders,
-    });
-    const optionals: any = new FindWebLinkForSharedLinkOptionals({
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const headers: FindWebLinkForSharedLinkHeaders =
+      new FindWebLinkForSharedLinkHeaders({
+        ifNoneMatch: headersInput.ifNoneMatch,
+        boxapi: headersInput.boxapi,
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const optionals: FindWebLinkForSharedLinkOptionals =
+      new FindWebLinkForSharedLinkOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
       readonly [key: string]: string;
@@ -386,10 +388,11 @@ export class SharedLinksWebLinksManager {
     queryParams: GetSharedLinkForWebLinkQueryParams,
     optionalsInput: GetSharedLinkForWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new GetSharedLinkForWebLinkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetSharedLinkForWebLinkOptionals =
+      new GetSharedLinkForWebLinkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -423,10 +426,11 @@ export class SharedLinksWebLinksManager {
     queryParams: AddShareLinkToWebLinkQueryParams,
     optionalsInput: AddShareLinkToWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new AddShareLinkToWebLinkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddShareLinkToWebLinkOptionals =
+      new AddShareLinkToWebLinkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -462,10 +466,11 @@ export class SharedLinksWebLinksManager {
     queryParams: UpdateSharedLinkOnWebLinkQueryParams,
     optionalsInput: UpdateSharedLinkOnWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new UpdateSharedLinkOnWebLinkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateSharedLinkOnWebLinkOptionals =
+      new UpdateSharedLinkOnWebLinkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -501,10 +506,11 @@ export class SharedLinksWebLinksManager {
     queryParams: RemoveSharedLinkFromWebLinkQueryParams,
     optionalsInput: RemoveSharedLinkFromWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new RemoveSharedLinkFromWebLinkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RemoveSharedLinkFromWebLinkOptionals =
+      new RemoveSharedLinkFromWebLinkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -540,7 +546,7 @@ export interface SharedLinksWebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-  val: any
+  val: AddShareLinkToWebLinkRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -567,7 +573,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField
   });
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-  val: any
+  val: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -591,7 +597,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissions
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-  val: any
+  val: AddShareLinkToWebLinkRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -646,7 +652,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField;
 }
 export function serializeAddShareLinkToWebLinkRequestBody(
-  val: any
+  val: AddShareLinkToWebLinkRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -671,7 +677,7 @@ export function deserializeAddShareLinkToWebLinkRequestBody(
   return { sharedLink: sharedLink } satisfies AddShareLinkToWebLinkRequestBody;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -698,7 +704,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessF
   });
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-  val: any
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -722,7 +728,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermiss
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-  val: any
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -777,7 +783,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBody(
-  val: any
+  val: UpdateSharedLinkOnWebLinkRequestBody
 ): SerializedData {
   return {
     ['shared_link']:
@@ -804,7 +810,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBody(
   } satisfies UpdateSharedLinkOnWebLinkRequestBody;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-  val: any
+  val: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField
 ): SerializedData {
   return {};
 }
@@ -814,7 +820,7 @@ export function deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField
   return {} satisfies RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBody(
-  val: any
+  val: RemoveSharedLinkFromWebLinkRequestBody
 ): SerializedData {
   return {
     ['shared_link']:

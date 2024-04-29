@@ -50,7 +50,8 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
-  direction: direction,
+  direction:
+    'inbound' as CreateCollaborationWhitelistEntryRequestBodyDirectionField,
   domain: domain,
 } satisfies CreateCollaborationWhitelistEntryRequestBody);
 ```

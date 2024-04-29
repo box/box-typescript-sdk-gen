@@ -216,7 +216,7 @@ export class EventsManager {
     headersInput: GetEventsHeadersInput = new GetEventsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Events> {
-    const headers: any = new GetEventsHeaders({
+    const headers: GetEventsHeaders = new GetEventsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -262,9 +262,10 @@ export class EventsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<RealtimeServers> {
-    const headers: any = new GetEventsWithLongPollingHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetEventsWithLongPollingHeaders =
+      new GetEventsWithLongPollingHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -287,7 +288,7 @@ export interface EventsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetEventsQueryParamsStreamTypeField(
-  val: any
+  val: GetEventsQueryParamsStreamTypeField
 ): SerializedData {
   return val;
 }
@@ -319,7 +320,7 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   });
 }
 export function serializeGetEventsQueryParamsEventTypeField(
-  val: any
+  val: GetEventsQueryParamsEventTypeField
 ): SerializedData {
   return val;
 }

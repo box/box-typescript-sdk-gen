@@ -433,10 +433,11 @@ export class MetadataTemplatesManager {
     queryParams: GetMetadataTemplatesByInstanceIdQueryParams,
     optionalsInput: GetMetadataTemplatesByInstanceIdOptionalsInput = {}
   ): Promise<MetadataTemplates> {
-    const optionals: any = new GetMetadataTemplatesByInstanceIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetMetadataTemplatesByInstanceIdOptionals =
+      new GetMetadataTemplatesByInstanceIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -471,10 +472,11 @@ export class MetadataTemplatesManager {
     templateKey: string,
     optionalsInput: GetMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const optionals: any = new GetMetadataTemplateOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetMetadataTemplateOptionals =
+      new GetMetadataTemplateOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -506,10 +508,11 @@ export class MetadataTemplatesManager {
     requestBody: readonly UpdateMetadataTemplateRequestBody[],
     optionalsInput: UpdateMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const optionals: any = new UpdateMetadataTemplateOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateMetadataTemplateOptionals =
+      new UpdateMetadataTemplateOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -544,10 +547,11 @@ export class MetadataTemplatesManager {
     templateKey: string,
     optionalsInput: DeleteMetadataTemplateOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteMetadataTemplateOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteMetadataTemplateOptionals =
+      new DeleteMetadataTemplateOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -577,10 +581,11 @@ export class MetadataTemplatesManager {
     templateId: string,
     optionalsInput: GetMetadataTemplateByIdOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const optionals: any = new GetMetadataTemplateByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetMetadataTemplateByIdOptionals =
+      new GetMetadataTemplateByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -610,9 +615,10 @@ export class MetadataTemplatesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
-    const headers: any = new GetGlobalMetadataTemplatesHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetGlobalMetadataTemplatesHeaders =
+      new GetGlobalMetadataTemplatesHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -646,9 +652,10 @@ export class MetadataTemplatesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<MetadataTemplates> {
-    const headers: any = new GetEnterpriseMetadataTemplatesHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetEnterpriseMetadataTemplatesHeaders =
+      new GetEnterpriseMetadataTemplatesHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -679,10 +686,11 @@ export class MetadataTemplatesManager {
     requestBody: CreateMetadataTemplateRequestBody,
     optionalsInput: CreateMetadataTemplateOptionalsInput = {}
   ): Promise<MetadataTemplate> {
-    const optionals: any = new CreateMetadataTemplateOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateMetadataTemplateOptionals =
+      new CreateMetadataTemplateOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -711,7 +719,9 @@ export interface MetadataTemplatesManagerInput {
   readonly auth?: Authentication;
   readonly networkSession?: NetworkSession;
 }
-export function serializeGetMetadataTemplateScope(val: any): SerializedData {
+export function serializeGetMetadataTemplateScope(
+  val: GetMetadataTemplateScope
+): SerializedData {
   return val;
 }
 export function deserializeGetMetadataTemplateScope(
@@ -732,7 +742,9 @@ export function deserializeGetMetadataTemplateScope(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateMetadataTemplateScope(val: any): SerializedData {
+export function serializeUpdateMetadataTemplateScope(
+  val: UpdateMetadataTemplateScope
+): SerializedData {
   return val;
 }
 export function deserializeUpdateMetadataTemplateScope(
@@ -754,7 +766,7 @@ export function deserializeUpdateMetadataTemplateScope(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
-  val: any
+  val: UpdateMetadataTemplateRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -811,7 +823,7 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBody(
-  val: any
+  val: UpdateMetadataTemplateRequestBody
 ): SerializedData {
   return {
     ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
@@ -832,14 +844,14 @@ export function serializeUpdateMetadataTemplateRequestBody(
     ['fieldKeys']:
       val.fieldKeys == void 0
         ? void 0
-        : (val.fieldKeys.map(function (item: string): any {
+        : (val.fieldKeys.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
     ['enumOptionKey']: val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey,
     ['enumOptionKeys']:
       val.enumOptionKeys == void 0
         ? void 0
-        : (val.enumOptionKeys.map(function (item: string): any {
+        : (val.enumOptionKeys.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
     ['multiSelectOptionKey']:
@@ -847,7 +859,9 @@ export function serializeUpdateMetadataTemplateRequestBody(
     ['multiSelectOptionKeys']:
       val.multiSelectOptionKeys == void 0
         ? void 0
-        : (val.multiSelectOptionKeys.map(function (item: string): any {
+        : (val.multiSelectOptionKeys.map(function (
+            item: string
+          ): SerializedData {
             return item;
           }) as readonly any[]),
   };
@@ -868,9 +882,7 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.fieldKeys == void 0
       ? void 0
       : sdIsList(val.fieldKeys)
-      ? (val.fieldKeys.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
+      ? val.fieldKeys
       : [];
   const enumOptionKey: undefined | string =
     val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey;
@@ -878,9 +890,7 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.enumOptionKeys == void 0
       ? void 0
       : sdIsList(val.enumOptionKeys)
-      ? (val.enumOptionKeys.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
+      ? val.enumOptionKeys
       : [];
   const multiSelectOptionKey: undefined | string =
     val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey;
@@ -888,9 +898,7 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.multiSelectOptionKeys == void 0
       ? void 0
       : sdIsList(val.multiSelectOptionKeys)
-      ? (val.multiSelectOptionKeys.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
+      ? val.multiSelectOptionKeys
       : [];
   return {
     op: op,
@@ -903,7 +911,9 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     multiSelectOptionKeys: multiSelectOptionKeys,
   } satisfies UpdateMetadataTemplateRequestBody;
 }
-export function serializeDeleteMetadataTemplateScope(val: any): SerializedData {
+export function serializeDeleteMetadataTemplateScope(
+  val: DeleteMetadataTemplateScope
+): SerializedData {
   return val;
 }
 export function deserializeDeleteMetadataTemplateScope(
@@ -925,7 +935,7 @@ export function deserializeDeleteMetadataTemplateScope(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-  val: any
+  val: CreateMetadataTemplateRequestBodyFieldsTypeField
 ): SerializedData {
   return val;
 }
@@ -958,7 +968,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-  val: any
+  val: CreateMetadataTemplateRequestBodyFieldsOptionsField
 ): SerializedData {
   return { ['key']: val.key };
 }
@@ -971,7 +981,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField;
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsField(
-  val: any
+  val: CreateMetadataTemplateRequestBodyFieldsField
 ): SerializedData {
   return {
     ['type']: serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
@@ -986,7 +996,7 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsField(
         ? void 0
         : (val.options.map(function (
             item: CreateMetadataTemplateRequestBodyFieldsOptionsField
-          ): any {
+          ): SerializedData {
             return serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
               item
             );
@@ -1010,7 +1020,9 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
-      ? (val.options.map(function (itm: SerializedData): any {
+      ? (val.options.map(function (
+          itm: SerializedData
+        ): CreateMetadataTemplateRequestBodyFieldsOptionsField {
           return deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
             itm
           );
@@ -1026,7 +1038,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsField;
 }
 export function serializeCreateMetadataTemplateRequestBody(
-  val: any
+  val: CreateMetadataTemplateRequestBody
 ): SerializedData {
   return {
     ['scope']: val.scope,
@@ -1038,7 +1050,7 @@ export function serializeCreateMetadataTemplateRequestBody(
         ? void 0
         : (val.fields.map(function (
             item: CreateMetadataTemplateRequestBodyFieldsField
-          ): any {
+          ): SerializedData {
             return serializeCreateMetadataTemplateRequestBodyFieldsField(item);
           }) as readonly any[]),
     ['copyInstanceOnItemCopy']:
@@ -1062,7 +1074,9 @@ export function deserializeCreateMetadataTemplateRequestBody(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): CreateMetadataTemplateRequestBodyFieldsField {
           return deserializeCreateMetadataTemplateRequestBodyFieldsField(itm);
         }) as readonly any[])
       : [];

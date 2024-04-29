@@ -348,7 +348,7 @@ export class WebhooksManager {
     headersInput: GetWebhooksHeadersInput = new GetWebhooksHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Webhooks> {
-    const headers: any = new GetWebhooksHeaders({
+    const headers: GetWebhooksHeaders = new GetWebhooksHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -378,7 +378,7 @@ export class WebhooksManager {
     requestBody: CreateWebhookRequestBody,
     optionalsInput: CreateWebhookOptionalsInput = {}
   ): Promise<Webhook> {
-    const optionals: any = new CreateWebhookOptionals({
+    const optionals: CreateWebhookOptionals = new CreateWebhookOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -406,7 +406,7 @@ export class WebhooksManager {
     webhookId: string,
     optionalsInput: GetWebhookByIdOptionalsInput = {}
   ): Promise<Webhook> {
-    const optionals: any = new GetWebhookByIdOptionals({
+    const optionals: GetWebhookByIdOptionals = new GetWebhookByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -436,11 +436,12 @@ export class WebhooksManager {
     webhookId: string,
     optionalsInput: UpdateWebhookByIdOptionalsInput = {}
   ): Promise<Webhook> {
-    const optionals: any = new UpdateWebhookByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateWebhookByIdOptionals =
+      new UpdateWebhookByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -470,10 +471,11 @@ export class WebhooksManager {
     webhookId: string,
     optionalsInput: DeleteWebhookByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteWebhookByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteWebhookByIdOptionals =
+      new DeleteWebhookByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -502,7 +504,7 @@ export interface WebhooksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebhookRequestBodyTargetTypeField(
-  val: any
+  val: CreateWebhookRequestBodyTargetTypeField
 ): SerializedData {
   return val;
 }
@@ -526,7 +528,7 @@ export function deserializeCreateWebhookRequestBodyTargetTypeField(
   });
 }
 export function serializeCreateWebhookRequestBodyTargetField(
-  val: any
+  val: CreateWebhookRequestBodyTargetField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -547,7 +549,7 @@ export function deserializeCreateWebhookRequestBodyTargetField(
   return { id: id, type: type } satisfies CreateWebhookRequestBodyTargetField;
 }
 export function serializeCreateWebhookRequestBodyTriggersField(
-  val: any
+  val: CreateWebhookRequestBodyTriggersField
 ): SerializedData {
   return val;
 }
@@ -683,13 +685,15 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateWebhookRequestBody(val: any): SerializedData {
+export function serializeCreateWebhookRequestBody(
+  val: CreateWebhookRequestBody
+): SerializedData {
   return {
     ['target']: serializeCreateWebhookRequestBodyTargetField(val.target),
     ['address']: val.address,
     ['triggers']: val.triggers.map(function (
       item: CreateWebhookRequestBodyTriggersField
-    ): any {
+    ): SerializedData {
       return serializeCreateWebhookRequestBodyTriggersField(item);
     }) as readonly any[],
   };
@@ -703,7 +707,9 @@ export function deserializeCreateWebhookRequestBody(
   const triggers: readonly CreateWebhookRequestBodyTriggersField[] = sdIsList(
     val.triggers
   )
-    ? (val.triggers.map(function (itm: SerializedData): any {
+    ? (val.triggers.map(function (
+        itm: SerializedData
+      ): CreateWebhookRequestBodyTriggersField {
         return deserializeCreateWebhookRequestBodyTriggersField(itm);
       }) as readonly any[])
     : [];
@@ -714,7 +720,7 @@ export function deserializeCreateWebhookRequestBody(
   } satisfies CreateWebhookRequestBody;
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetTypeField(
-  val: any
+  val: UpdateWebhookByIdRequestBodyTargetTypeField
 ): SerializedData {
   return val;
 }
@@ -738,7 +744,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetField(
-  val: any
+  val: UpdateWebhookByIdRequestBodyTargetField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -762,7 +768,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetField(
   } satisfies UpdateWebhookByIdRequestBodyTargetField;
 }
 export function serializeUpdateWebhookByIdRequestBodyTriggersField(
-  val: any
+  val: UpdateWebhookByIdRequestBodyTriggersField
 ): SerializedData {
   return val;
 }
@@ -900,7 +906,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBody(
-  val: any
+  val: UpdateWebhookByIdRequestBody
 ): SerializedData {
   return {
     ['target']:
@@ -913,7 +919,7 @@ export function serializeUpdateWebhookByIdRequestBody(
         ? void 0
         : (val.triggers.map(function (
             item: UpdateWebhookByIdRequestBodyTriggersField
-          ): any {
+          ): SerializedData {
             return serializeUpdateWebhookByIdRequestBodyTriggersField(item);
           }) as readonly any[]),
   };
@@ -933,7 +939,9 @@ export function deserializeUpdateWebhookByIdRequestBody(
     val.triggers == void 0
       ? void 0
       : sdIsList(val.triggers)
-      ? (val.triggers.map(function (itm: SerializedData): any {
+      ? (val.triggers.map(function (
+          itm: SerializedData
+        ): UpdateWebhookByIdRequestBodyTriggersField {
           return deserializeUpdateWebhookByIdRequestBodyTriggersField(itm);
         }) as readonly any[])
       : [];

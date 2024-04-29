@@ -547,7 +547,7 @@ export class BoxClient {
     });
   }
   withCustomBaseUrls(baseUrlsInput: BaseUrlsInput): BoxClient {
-    const baseUrls: any = new BaseUrls({
+    const baseUrls: BaseUrls = new BaseUrls({
       baseUrl: baseUrlsInput.baseUrl,
       uploadUrl: baseUrlsInput.uploadUrl,
       oauth2Url: baseUrlsInput.oauth2Url,

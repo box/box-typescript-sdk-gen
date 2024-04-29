@@ -103,7 +103,7 @@ export class DownloadsManager {
     fileId: string,
     optionalsInput: DownloadFileOptionalsInput = {}
   ): Promise<ByteStream> {
-    const optionals: any = new DownloadFileOptionals({
+    const optionals: DownloadFileOptionals = new DownloadFileOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,

@@ -323,7 +323,7 @@ export class GroupsManager {
     headersInput: GetGroupsHeadersInput = new GetGroupsHeaders({}),
     cancellationToken?: CancellationToken
   ): Promise<Groups> {
-    const headers: any = new GetGroupsHeaders({
+    const headers: GetGroupsHeaders = new GetGroupsHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -357,7 +357,7 @@ export class GroupsManager {
     requestBody: CreateGroupRequestBody,
     optionalsInput: CreateGroupOptionalsInput = {}
   ): Promise<GroupFull> {
-    const optionals: any = new CreateGroupOptionals({
+    const optionals: CreateGroupOptionals = new CreateGroupOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -395,7 +395,7 @@ export class GroupsManager {
     groupId: string,
     optionalsInput: GetGroupByIdOptionalsInput = {}
   ): Promise<GroupFull> {
-    const optionals: any = new GetGroupByIdOptionals({
+    const optionals: GetGroupByIdOptionals = new GetGroupByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -435,7 +435,7 @@ export class GroupsManager {
     groupId: string,
     optionalsInput: UpdateGroupByIdOptionalsInput = {}
   ): Promise<GroupFull> {
-    const optionals: any = new UpdateGroupByIdOptionals({
+    const optionals: UpdateGroupByIdOptionals = new UpdateGroupByIdOptionals({
       requestBody: optionalsInput.requestBody,
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
@@ -479,7 +479,7 @@ export class GroupsManager {
     groupId: string,
     optionalsInput: DeleteGroupByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteGroupByIdOptionals({
+    const optionals: DeleteGroupByIdOptionals = new DeleteGroupByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -511,7 +511,7 @@ export interface GroupsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupRequestBodyInvitabilityLevelField(
-  val: any
+  val: CreateGroupRequestBodyInvitabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -538,7 +538,7 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
-  val: any
+  val: CreateGroupRequestBodyMemberViewabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -564,7 +564,9 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateGroupRequestBody(val: any): SerializedData {
+export function serializeCreateGroupRequestBody(
+  val: CreateGroupRequestBody
+): SerializedData {
   return {
     ['name']: val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
@@ -625,7 +627,7 @@ export function deserializeCreateGroupRequestBody(
   } satisfies CreateGroupRequestBody;
 }
 export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-  val: any
+  val: UpdateGroupByIdRequestBodyInvitabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -652,7 +654,7 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-  val: any
+  val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
 ): SerializedData {
   return val;
 }
@@ -678,7 +680,9 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeUpdateGroupByIdRequestBody(val: any): SerializedData {
+export function serializeUpdateGroupByIdRequestBody(
+  val: UpdateGroupByIdRequestBody
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,

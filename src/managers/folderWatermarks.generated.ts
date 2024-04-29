@@ -198,10 +198,11 @@ export class FolderWatermarksManager {
     folderId: string,
     optionalsInput: GetFolderWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const optionals: any = new GetFolderWatermarkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFolderWatermarkOptionals =
+      new GetFolderWatermarkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -230,10 +231,11 @@ export class FolderWatermarksManager {
     requestBody: UpdateFolderWatermarkRequestBody,
     optionalsInput: UpdateFolderWatermarkOptionalsInput = {}
   ): Promise<Watermark> {
-    const optionals: any = new UpdateFolderWatermarkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFolderWatermarkOptionals =
+      new UpdateFolderWatermarkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -263,10 +265,11 @@ export class FolderWatermarksManager {
     folderId: string,
     optionalsInput: DeleteFolderWatermarkOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFolderWatermarkOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFolderWatermarkOptionals =
+      new DeleteFolderWatermarkOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -296,7 +299,7 @@ export interface FolderWatermarksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-  val: any
+  val: UpdateFolderWatermarkRequestBodyWatermarkImprintField
 ): SerializedData {
   return val;
 }
@@ -317,7 +320,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField
   });
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(
-  val: any
+  val: UpdateFolderWatermarkRequestBodyWatermarkField
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
@@ -337,7 +340,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
   } satisfies UpdateFolderWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
-  val: any
+  val: UpdateFolderWatermarkRequestBodyWatermarkFieldInput
 ): SerializedData {
   return {
     ['imprint']:
@@ -364,7 +367,7 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
   } satisfies UpdateFolderWatermarkRequestBodyWatermarkFieldInput;
 }
 export function serializeUpdateFolderWatermarkRequestBody(
-  val: any
+  val: UpdateFolderWatermarkRequestBody
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFolderWatermarkRequestBodyWatermarkField(

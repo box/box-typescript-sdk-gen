@@ -187,10 +187,11 @@ export class EmailAliasesManager {
     userId: string,
     optionalsInput: GetUserEmailAliasesOptionalsInput = {}
   ): Promise<EmailAliases> {
-    const optionals: any = new GetUserEmailAliasesOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetUserEmailAliasesOptionals =
+      new GetUserEmailAliasesOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -219,10 +220,11 @@ export class EmailAliasesManager {
     requestBody: CreateUserEmailAliasRequestBody,
     optionalsInput: CreateUserEmailAliasOptionalsInput = {}
   ): Promise<EmailAlias> {
-    const optionals: any = new CreateUserEmailAliasOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateUserEmailAliasOptionals =
+      new CreateUserEmailAliasOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -253,10 +255,11 @@ export class EmailAliasesManager {
     emailAliasId: string,
     optionalsInput: DeleteUserEmailAliasByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteUserEmailAliasByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteUserEmailAliasByIdOptionals =
+      new DeleteUserEmailAliasByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -287,7 +290,7 @@ export interface EmailAliasesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateUserEmailAliasRequestBody(
-  val: any
+  val: CreateUserEmailAliasRequestBody
 ): SerializedData {
   return { ['email']: val.email };
 }

@@ -326,9 +326,10 @@ export class RetentionPoliciesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<RetentionPolicies> {
-    const headers: any = new GetRetentionPoliciesHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetRetentionPoliciesHeaders =
+      new GetRetentionPoliciesHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -365,10 +366,11 @@ export class RetentionPoliciesManager {
     requestBody: CreateRetentionPolicyRequestBody,
     optionalsInput: CreateRetentionPolicyOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const optionals: any = new CreateRetentionPolicyOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateRetentionPolicyOptionals =
+      new CreateRetentionPolicyOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -396,11 +398,12 @@ export class RetentionPoliciesManager {
     retentionPolicyId: string,
     optionalsInput: GetRetentionPolicyByIdOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const optionals: any = new GetRetentionPolicyByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetRetentionPolicyByIdOptionals =
+      new GetRetentionPolicyByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -436,11 +439,12 @@ export class RetentionPoliciesManager {
     retentionPolicyId: string,
     optionalsInput: UpdateRetentionPolicyByIdOptionalsInput = {}
   ): Promise<RetentionPolicy> {
-    const optionals: any = new UpdateRetentionPolicyByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateRetentionPolicyByIdOptionals =
+      new UpdateRetentionPolicyByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -470,10 +474,11 @@ export class RetentionPoliciesManager {
     retentionPolicyId: string,
     optionalsInput: DeleteRetentionPolicyByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteRetentionPolicyByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteRetentionPolicyByIdOptionals =
+      new DeleteRetentionPolicyByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -502,7 +507,7 @@ export interface RetentionPoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
-  val: any
+  val: GetRetentionPoliciesQueryParamsPolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -526,7 +531,7 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-  val: any
+  val: CreateRetentionPolicyRequestBodyPolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -550,7 +555,7 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
-  val: any
+  val: CreateRetentionPolicyRequestBodyDispositionActionField
 ): SerializedData {
   return val;
 }
@@ -574,7 +579,7 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-  val: any
+  val: CreateRetentionPolicyRequestBodyRetentionTypeField
 ): SerializedData {
   return val;
 }
@@ -598,7 +603,7 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBody(
-  val: any
+  val: CreateRetentionPolicyRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -627,7 +632,9 @@ export function serializeCreateRetentionPolicyRequestBody(
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
         ? void 0
-        : (val.customNotificationRecipients.map(function (item: UserMini): any {
+        : (val.customNotificationRecipients.map(function (
+            item: UserMini
+          ): SerializedData {
             return serializeUserMini(item);
           }) as readonly any[]),
   };
@@ -666,7 +673,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
       : sdIsList(val.custom_notification_recipients)
       ? (val.custom_notification_recipients.map(function (
           itm: SerializedData
-        ): any {
+        ): UserMini {
           return deserializeUserMini(itm);
         }) as readonly any[])
       : [];
@@ -683,7 +690,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
   } satisfies CreateRetentionPolicyRequestBody;
 }
 export function serializeUpdateRetentionPolicyByIdRequestBody(
-  val: any
+  val: UpdateRetentionPolicyByIdRequestBody
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
@@ -704,7 +711,9 @@ export function serializeUpdateRetentionPolicyByIdRequestBody(
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
         ? void 0
-        : (val.customNotificationRecipients.map(function (item: UserBase): any {
+        : (val.customNotificationRecipients.map(function (
+            item: UserBase
+          ): SerializedData {
             return serializeUserBase(item);
           }) as readonly any[]),
   };
@@ -735,7 +744,7 @@ export function deserializeUpdateRetentionPolicyByIdRequestBody(
       : sdIsList(val.custom_notification_recipients)
       ? (val.custom_notification_recipients.map(function (
           itm: SerializedData
-        ): any {
+        ): UserBase {
           return deserializeUserBase(itm);
         }) as readonly any[])
       : [];

@@ -321,10 +321,11 @@ export class TaskAssignmentsManager {
     taskId: string,
     optionalsInput: GetTaskAssignmentsOptionalsInput = {}
   ): Promise<TaskAssignments> {
-    const optionals: any = new GetTaskAssignmentsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTaskAssignmentsOptionals =
+      new GetTaskAssignmentsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -352,10 +353,11 @@ export class TaskAssignmentsManager {
     requestBody: CreateTaskAssignmentRequestBody,
     optionalsInput: CreateTaskAssignmentOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const optionals: any = new CreateTaskAssignmentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateTaskAssignmentOptionals =
+      new CreateTaskAssignmentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -383,10 +385,11 @@ export class TaskAssignmentsManager {
     taskAssignmentId: string,
     optionalsInput: GetTaskAssignmentByIdOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const optionals: any = new GetTaskAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetTaskAssignmentByIdOptionals =
+      new GetTaskAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -413,11 +416,12 @@ export class TaskAssignmentsManager {
     taskAssignmentId: string,
     optionalsInput: UpdateTaskAssignmentByIdOptionalsInput = {}
   ): Promise<TaskAssignment> {
-    const optionals: any = new UpdateTaskAssignmentByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateTaskAssignmentByIdOptionals =
+      new UpdateTaskAssignmentByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -447,10 +451,11 @@ export class TaskAssignmentsManager {
     taskAssignmentId: string,
     optionalsInput: DeleteTaskAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteTaskAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteTaskAssignmentByIdOptionals =
+      new DeleteTaskAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -479,7 +484,7 @@ export interface TaskAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
-  val: any
+  val: CreateTaskAssignmentRequestBodyTaskTypeField
 ): SerializedData {
   return val;
 }
@@ -500,7 +505,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   });
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
-  val: any
+  val: CreateTaskAssignmentRequestBodyTaskField
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -519,7 +524,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskField(
   } satisfies CreateTaskAssignmentRequestBodyTaskField;
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
-  val: any
+  val: CreateTaskAssignmentRequestBodyTaskFieldInput
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -543,7 +548,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
   } satisfies CreateTaskAssignmentRequestBodyTaskFieldInput;
 }
 export function serializeCreateTaskAssignmentRequestBodyAssignToField(
-  val: any
+  val: CreateTaskAssignmentRequestBodyAssignToField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -561,7 +566,7 @@ export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
   } satisfies CreateTaskAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateTaskAssignmentRequestBody(
-  val: any
+  val: CreateTaskAssignmentRequestBody
 ): SerializedData {
   return {
     ['task']: serializeCreateTaskAssignmentRequestBodyTaskField(val.task),
@@ -583,7 +588,7 @@ export function deserializeCreateTaskAssignmentRequestBody(
   } satisfies CreateTaskAssignmentRequestBody;
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-  val: any
+  val: UpdateTaskAssignmentByIdRequestBodyResolutionStateField
 ): SerializedData {
   return val;
 }
@@ -613,7 +618,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   });
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(
-  val: any
+  val: UpdateTaskAssignmentByIdRequestBody
 ): SerializedData {
   return {
     ['message']: val.message == void 0 ? void 0 : val.message,

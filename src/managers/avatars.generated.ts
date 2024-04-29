@@ -168,7 +168,7 @@ export class AvatarsManager {
     userId: string,
     optionalsInput: GetUserAvatarOptionalsInput = {}
   ): Promise<ByteStream> {
-    const optionals: any = new GetUserAvatarOptionals({
+    const optionals: GetUserAvatarOptionals = new GetUserAvatarOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -200,7 +200,7 @@ export class AvatarsManager {
     requestBody: CreateUserAvatarRequestBody,
     optionalsInput: CreateUserAvatarOptionalsInput = {}
   ): Promise<UserAvatar> {
-    const optionals: any = new CreateUserAvatarOptionals({
+    const optionals: CreateUserAvatarOptionals = new CreateUserAvatarOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -240,7 +240,7 @@ export class AvatarsManager {
     userId: string,
     optionalsInput: DeleteUserAvatarOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteUserAvatarOptionals({
+    const optionals: DeleteUserAvatarOptionals = new DeleteUserAvatarOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });

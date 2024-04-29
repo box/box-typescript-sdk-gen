@@ -105,11 +105,12 @@ export class TransferManager {
     requestBody: TransferOwnedFolderRequestBody,
     optionalsInput: TransferOwnedFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new TransferOwnedFolderOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: TransferOwnedFolderOptionals =
+      new TransferOwnedFolderOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -151,7 +152,7 @@ export interface TransferManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeTransferOwnedFolderRequestBodyOwnedByField(
-  val: any
+  val: TransferOwnedFolderRequestBodyOwnedByField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -162,7 +163,7 @@ export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
   return { id: id } satisfies TransferOwnedFolderRequestBodyOwnedByField;
 }
 export function serializeTransferOwnedFolderRequestBody(
-  val: any
+  val: TransferOwnedFolderRequestBody
 ): SerializedData {
   return {
     ['owned_by']: serializeTransferOwnedFolderRequestBodyOwnedByField(

@@ -251,9 +251,10 @@ export class CollaborationAllowlistExemptTargetsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<CollaborationAllowlistExemptTargets> {
-    const headers: any = new GetCollaborationWhitelistExemptTargetsHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetCollaborationWhitelistExemptTargetsHeaders =
+      new GetCollaborationWhitelistExemptTargetsHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -284,7 +285,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     requestBody: CreateCollaborationWhitelistExemptTargetRequestBody,
     optionalsInput: CreateCollaborationWhitelistExemptTargetOptionalsInput = {}
   ): Promise<CollaborationAllowlistExemptTarget> {
-    const optionals: any =
+    const optionals: CreateCollaborationWhitelistExemptTargetOptionals =
       new CreateCollaborationWhitelistExemptTargetOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -318,7 +319,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     collaborationWhitelistExemptTargetId: string,
     optionalsInput: GetCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
   ): Promise<CollaborationAllowlistExemptTarget> {
-    const optionals: any =
+    const optionals: GetCollaborationWhitelistExemptTargetByIdOptionals =
       new GetCollaborationWhitelistExemptTargetByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -349,7 +350,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     collaborationWhitelistExemptTargetId: string,
     optionalsInput: DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any =
+    const optionals: DeleteCollaborationWhitelistExemptTargetByIdOptionals =
       new DeleteCollaborationWhitelistExemptTargetByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -382,7 +383,7 @@ export interface CollaborationAllowlistExemptTargetsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-  val: any
+  val: CreateCollaborationWhitelistExemptTargetRequestBodyUserField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -395,7 +396,7 @@ export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUs
   } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField;
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBody(
-  val: any
+  val: CreateCollaborationWhitelistExemptTargetRequestBody
 ): SerializedData {
   return {
     ['user']:

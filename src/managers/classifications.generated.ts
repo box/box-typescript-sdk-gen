@@ -401,9 +401,10 @@ export class ClassificationsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<ClassificationTemplate> {
-    const headers: any = new GetClassificationTemplateHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetClassificationTemplateHeaders =
+      new GetClassificationTemplateHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
@@ -427,10 +428,11 @@ export class ClassificationsManager {
     requestBody: readonly AddClassificationRequestBody[],
     optionalsInput: AddClassificationOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
-    const optionals: any = new AddClassificationOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddClassificationOptionals =
+      new AddClassificationOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -460,10 +462,11 @@ export class ClassificationsManager {
     requestBody: readonly UpdateClassificationRequestBody[],
     optionalsInput: UpdateClassificationOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
-    const optionals: any = new UpdateClassificationOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateClassificationOptionals =
+      new UpdateClassificationOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -493,18 +496,20 @@ export class ClassificationsManager {
     requestBodyInput: CreateClassificationTemplateRequestBodyInput,
     optionalsInput: CreateClassificationTemplateOptionalsInput = {}
   ): Promise<ClassificationTemplate> {
-    const requestBody: any = new CreateClassificationTemplateRequestBody({
-      scope: requestBodyInput.scope,
-      templateKey: requestBodyInput.templateKey,
-      displayName: requestBodyInput.displayName,
-      hidden: requestBodyInput.hidden,
-      copyInstanceOnItemCopy: requestBodyInput.copyInstanceOnItemCopy,
-      fields: requestBodyInput.fields,
-    });
-    const optionals: any = new CreateClassificationTemplateOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const requestBody: CreateClassificationTemplateRequestBody =
+      new CreateClassificationTemplateRequestBody({
+        scope: requestBodyInput.scope,
+        templateKey: requestBodyInput.templateKey,
+        displayName: requestBodyInput.displayName,
+        hidden: requestBodyInput.hidden,
+        copyInstanceOnItemCopy: requestBodyInput.copyInstanceOnItemCopy,
+        fields: requestBodyInput.fields,
+      });
+    const optionals: CreateClassificationTemplateOptionals =
+      new CreateClassificationTemplateOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -534,7 +539,7 @@ export interface ClassificationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationRequestBodyOpField(
-  val: any
+  val: AddClassificationRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -554,7 +559,7 @@ export function deserializeAddClassificationRequestBodyOpField(
   });
 }
 export function serializeAddClassificationRequestBodyFieldKeyField(
-  val: any
+  val: AddClassificationRequestBodyFieldKeyField
 ): SerializedData {
   return val;
 }
@@ -575,7 +580,7 @@ export function deserializeAddClassificationRequestBodyFieldKeyField(
   });
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigClassificationField(
-  val: any
+  val: AddClassificationRequestBodyDataStaticConfigClassificationField
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -600,7 +605,7 @@ export function deserializeAddClassificationRequestBodyDataStaticConfigClassific
   } satisfies AddClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigField(
-  val: any
+  val: AddClassificationRequestBodyDataStaticConfigField
 ): SerializedData {
   return {
     ['classification']:
@@ -627,7 +632,7 @@ export function deserializeAddClassificationRequestBodyDataStaticConfigField(
   } satisfies AddClassificationRequestBodyDataStaticConfigField;
 }
 export function serializeAddClassificationRequestBodyDataField(
-  val: any
+  val: AddClassificationRequestBodyDataField
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -657,7 +662,7 @@ export function deserializeAddClassificationRequestBodyDataField(
   } satisfies AddClassificationRequestBodyDataField;
 }
 export function serializeAddClassificationRequestBody(
-  val: any
+  val: AddClassificationRequestBody
 ): SerializedData {
   return {
     ['op']: serializeAddClassificationRequestBodyOpField(val.op),
@@ -683,7 +688,7 @@ export function deserializeAddClassificationRequestBody(
   } satisfies AddClassificationRequestBody;
 }
 export function serializeAddClassificationRequestBodyInput(
-  val: any
+  val: AddClassificationRequestBodyInput
 ): SerializedData {
   return {
     ['op']:
@@ -717,7 +722,7 @@ export function deserializeAddClassificationRequestBodyInput(
   } satisfies AddClassificationRequestBodyInput;
 }
 export function serializeUpdateClassificationRequestBodyOpField(
-  val: any
+  val: UpdateClassificationRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -738,7 +743,7 @@ export function deserializeUpdateClassificationRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationRequestBodyFieldKeyField(
-  val: any
+  val: UpdateClassificationRequestBodyFieldKeyField
 ): SerializedData {
   return val;
 }
@@ -759,7 +764,7 @@ export function deserializeUpdateClassificationRequestBodyFieldKeyField(
   });
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
-  val: any
+  val: UpdateClassificationRequestBodyDataStaticConfigClassificationField
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -784,7 +789,7 @@ export function deserializeUpdateClassificationRequestBodyDataStaticConfigClassi
   } satisfies UpdateClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigField(
-  val: any
+  val: UpdateClassificationRequestBodyDataStaticConfigField
 ): SerializedData {
   return {
     ['classification']:
@@ -811,7 +816,7 @@ export function deserializeUpdateClassificationRequestBodyDataStaticConfigField(
   } satisfies UpdateClassificationRequestBodyDataStaticConfigField;
 }
 export function serializeUpdateClassificationRequestBodyDataField(
-  val: any
+  val: UpdateClassificationRequestBodyDataField
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -841,7 +846,7 @@ export function deserializeUpdateClassificationRequestBodyDataField(
   } satisfies UpdateClassificationRequestBodyDataField;
 }
 export function serializeUpdateClassificationRequestBody(
-  val: any
+  val: UpdateClassificationRequestBody
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationRequestBodyOpField(val.op),
@@ -870,7 +875,7 @@ export function deserializeUpdateClassificationRequestBody(
   } satisfies UpdateClassificationRequestBody;
 }
 export function serializeUpdateClassificationRequestBodyInput(
-  val: any
+  val: UpdateClassificationRequestBodyInput
 ): SerializedData {
   return {
     ['op']:
@@ -907,7 +912,7 @@ export function deserializeUpdateClassificationRequestBodyInput(
   } satisfies UpdateClassificationRequestBodyInput;
 }
 export function serializeCreateClassificationTemplateRequestBodyScopeField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyScopeField
 ): SerializedData {
   return val;
 }
@@ -928,7 +933,7 @@ export function deserializeCreateClassificationTemplateRequestBodyScopeField(
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyTemplateKeyField
 ): SerializedData {
   return val;
 }
@@ -949,7 +954,7 @@ export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyFie
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyDisplayNameField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyDisplayNameField
 ): SerializedData {
   return val;
 }
@@ -970,7 +975,7 @@ export function deserializeCreateClassificationTemplateRequestBodyDisplayNameFie
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsTypeField
 ): SerializedData {
   return val;
 }
@@ -991,7 +996,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsTypeFiel
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsKeyField
 ): SerializedData {
   return val;
 }
@@ -1012,7 +1017,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsDisplayNameField
 ): SerializedData {
   return val;
 }
@@ -1033,7 +1038,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayN
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -1058,7 +1063,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsS
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField
 ): SerializedData {
   return {
     ['classification']:
@@ -1085,7 +1090,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsS
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsOptionsField
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -1115,7 +1120,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsF
   } satisfies CreateClassificationTemplateRequestBodyFieldsOptionsField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsField(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsField
 ): SerializedData {
   return {
     ['type']: serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
@@ -1131,7 +1136,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsField(
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsOptionsField
-    ): any {
+    ): SerializedData {
       return serializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
         item
       );
@@ -1153,7 +1158,9 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsField(
     val.hidden == void 0 ? void 0 : val.hidden;
   const options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[] =
     sdIsList(val.options)
-      ? (val.options.map(function (itm: SerializedData): any {
+      ? (val.options.map(function (
+          itm: SerializedData
+        ): CreateClassificationTemplateRequestBodyFieldsOptionsField {
           return deserializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
             itm
           );
@@ -1168,7 +1175,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsField(
   } satisfies CreateClassificationTemplateRequestBodyFieldsField;
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsFieldInput(
-  val: any
+  val: CreateClassificationTemplateRequestBodyFieldsFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -1192,7 +1199,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsFieldInput
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsOptionsField
-    ): any {
+    ): SerializedData {
       return serializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
         item
       );
@@ -1228,7 +1235,9 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsFieldInp
     val.hidden == void 0 ? void 0 : val.hidden;
   const options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[] =
     sdIsList(val.options)
-      ? (val.options.map(function (itm: SerializedData): any {
+      ? (val.options.map(function (
+          itm: SerializedData
+        ): CreateClassificationTemplateRequestBodyFieldsOptionsField {
           return deserializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
             itm
           );
@@ -1243,7 +1252,7 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsFieldInp
   } satisfies CreateClassificationTemplateRequestBodyFieldsFieldInput;
 }
 export function serializeCreateClassificationTemplateRequestBody(
-  val: any
+  val: CreateClassificationTemplateRequestBody
 ): SerializedData {
   return {
     ['scope']: serializeCreateClassificationTemplateRequestBodyScopeField(
@@ -1264,7 +1273,7 @@ export function serializeCreateClassificationTemplateRequestBody(
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsField
-    ): any {
+    ): SerializedData {
       return serializeCreateClassificationTemplateRequestBodyFieldsField(item);
     }) as readonly any[],
   };
@@ -1288,7 +1297,9 @@ export function deserializeCreateClassificationTemplateRequestBody(
     val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
   const fields: readonly CreateClassificationTemplateRequestBodyFieldsField[] =
     sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): CreateClassificationTemplateRequestBodyFieldsField {
           return deserializeCreateClassificationTemplateRequestBodyFieldsField(
             itm
           );
@@ -1304,7 +1315,7 @@ export function deserializeCreateClassificationTemplateRequestBody(
   } satisfies CreateClassificationTemplateRequestBody;
 }
 export function serializeCreateClassificationTemplateRequestBodyInput(
-  val: any
+  val: CreateClassificationTemplateRequestBodyInput
 ): SerializedData {
   return {
     ['scope']:
@@ -1330,7 +1341,7 @@ export function serializeCreateClassificationTemplateRequestBodyInput(
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsField
-    ): any {
+    ): SerializedData {
       return serializeCreateClassificationTemplateRequestBodyFieldsField(item);
     }) as readonly any[],
   };
@@ -1364,7 +1375,9 @@ export function deserializeCreateClassificationTemplateRequestBodyInput(
     val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
   const fields: readonly CreateClassificationTemplateRequestBodyFieldsField[] =
     sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): any {
+      ? (val.fields.map(function (
+          itm: SerializedData
+        ): CreateClassificationTemplateRequestBodyFieldsField {
           return deserializeCreateClassificationTemplateRequestBodyFieldsField(
             itm
           );

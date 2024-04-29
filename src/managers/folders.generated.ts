@@ -510,7 +510,7 @@ export class FoldersManager {
     folderId: string,
     optionalsInput: GetFolderByIdOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new GetFolderByIdOptionals({
+    const optionals: GetFolderByIdOptionals = new GetFolderByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -560,7 +560,7 @@ export class FoldersManager {
     folderId: string,
     optionalsInput: UpdateFolderByIdOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new UpdateFolderByIdOptionals({
+    const optionals: UpdateFolderByIdOptionals = new UpdateFolderByIdOptionals({
       requestBody: optionalsInput.requestBody,
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
@@ -607,7 +607,7 @@ export class FoldersManager {
     folderId: string,
     optionalsInput: DeleteFolderByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFolderByIdOptionals({
+    const optionals: DeleteFolderByIdOptionals = new DeleteFolderByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -648,7 +648,7 @@ export class FoldersManager {
     folderId: string,
     optionalsInput: GetFolderItemsOptionalsInput = {}
   ): Promise<Items> {
-    const optionals: any = new GetFolderItemsOptionals({
+    const optionals: GetFolderItemsOptionals = new GetFolderItemsOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -698,7 +698,7 @@ export class FoldersManager {
     requestBody: CreateFolderRequestBody,
     optionalsInput: CreateFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new CreateFolderOptionals({
+    const optionals: CreateFolderOptionals = new CreateFolderOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -737,7 +737,7 @@ export class FoldersManager {
     requestBody: CopyFolderRequestBody,
     optionalsInput: CopyFolderOptionalsInput = {}
   ): Promise<FolderFull> {
-    const optionals: any = new CopyFolderOptionals({
+    const optionals: CopyFolderOptionals = new CopyFolderOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -782,7 +782,7 @@ export interface FoldersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFolderByIdQueryParamsSortField(
-  val: any
+  val: GetFolderByIdQueryParamsSortField
 ): SerializedData {
   return val;
 }
@@ -811,7 +811,7 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   });
 }
 export function serializeGetFolderByIdQueryParamsDirectionField(
-  val: any
+  val: GetFolderByIdQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
@@ -835,7 +835,7 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodySyncStateField(
-  val: any
+  val: UpdateFolderByIdRequestBodySyncStateField
 ): SerializedData {
   return val;
 }
@@ -862,7 +862,7 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodyParentField(
-  val: any
+  val: UpdateFolderByIdRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -873,7 +873,7 @@ export function deserializeUpdateFolderByIdRequestBodyParentField(
   return { id: id } satisfies UpdateFolderByIdRequestBodyParentField;
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateFolderByIdRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -900,7 +900,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-  val: any
+  val: UpdateFolderByIdRequestBodySharedLinkPermissionsField
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -916,7 +916,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField
   } satisfies UpdateFolderByIdRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkField(
-  val: any
+  val: UpdateFolderByIdRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -965,7 +965,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkField(
   } satisfies UpdateFolderByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-  val: any
+  val: UpdateFolderByIdRequestBodyFolderUploadEmailAccessField
 ): SerializedData {
   return val;
 }
@@ -989,7 +989,7 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   });
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-  val: any
+  val: UpdateFolderByIdRequestBodyFolderUploadEmailField
 ): SerializedData {
   return {
     ['access']:
@@ -1016,7 +1016,7 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
   } satisfies UpdateFolderByIdRequestBodyFolderUploadEmailField;
 }
 export function serializeUpdateFolderByIdRequestBodyCollectionsField(
-  val: any
+  val: UpdateFolderByIdRequestBodyCollectionsField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -1033,7 +1033,9 @@ export function deserializeUpdateFolderByIdRequestBodyCollectionsField(
     type: type,
   } satisfies UpdateFolderByIdRequestBodyCollectionsField;
 }
-export function serializeUpdateFolderByIdRequestBody(val: any): SerializedData {
+export function serializeUpdateFolderByIdRequestBody(
+  val: UpdateFolderByIdRequestBody
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['description']: val.description == void 0 ? void 0 : val.description,
@@ -1060,7 +1062,7 @@ export function serializeUpdateFolderByIdRequestBody(val: any): SerializedData {
     ['tags']:
       val.tags == void 0
         ? void 0
-        : (val.tags.map(function (item: string): any {
+        : (val.tags.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
     ['is_collaboration_restricted_to_enterprise']:
@@ -1072,7 +1074,7 @@ export function serializeUpdateFolderByIdRequestBody(val: any): SerializedData {
         ? void 0
         : (val.collections.map(function (
             item: UpdateFolderByIdRequestBodyCollectionsField
-          ): any {
+          ): SerializedData {
             return serializeUpdateFolderByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
     ['can_non_owners_view_collaborators']:
@@ -1110,13 +1112,7 @@ export function deserializeUpdateFolderByIdRequestBody(
           val.folder_upload_email
         );
   const tags: undefined | readonly string[] =
-    val.tags == void 0
-      ? void 0
-      : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): any {
-          return itm;
-        }) as readonly any[])
-      : [];
+    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
   const isCollaborationRestrictedToEnterprise: undefined | boolean =
     val.is_collaboration_restricted_to_enterprise == void 0
       ? void 0
@@ -1127,7 +1123,9 @@ export function deserializeUpdateFolderByIdRequestBody(
     val.collections == void 0
       ? void 0
       : sdIsList(val.collections)
-      ? (val.collections.map(function (itm: SerializedData): any {
+      ? (val.collections.map(function (
+          itm: SerializedData
+        ): UpdateFolderByIdRequestBodyCollectionsField {
           return deserializeUpdateFolderByIdRequestBodyCollectionsField(itm);
         }) as readonly any[])
       : [];
@@ -1151,7 +1149,7 @@ export function deserializeUpdateFolderByIdRequestBody(
   } satisfies UpdateFolderByIdRequestBody;
 }
 export function serializeGetFolderItemsQueryParamsSortField(
-  val: any
+  val: GetFolderItemsQueryParamsSortField
 ): SerializedData {
   return val;
 }
@@ -1180,7 +1178,7 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   });
 }
 export function serializeGetFolderItemsQueryParamsDirectionField(
-  val: any
+  val: GetFolderItemsQueryParamsDirectionField
 ): SerializedData {
   return val;
 }
@@ -1204,7 +1202,7 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   });
 }
 export function serializeCreateFolderRequestBodyParentField(
-  val: any
+  val: CreateFolderRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -1215,7 +1213,7 @@ export function deserializeCreateFolderRequestBodyParentField(
   return { id: id } satisfies CreateFolderRequestBodyParentField;
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-  val: any
+  val: CreateFolderRequestBodyFolderUploadEmailAccessField
 ): SerializedData {
   return val;
 }
@@ -1239,7 +1237,7 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   });
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailField(
-  val: any
+  val: CreateFolderRequestBodyFolderUploadEmailField
 ): SerializedData {
   return {
     ['access']:
@@ -1266,7 +1264,7 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailField(
   } satisfies CreateFolderRequestBodyFolderUploadEmailField;
 }
 export function serializeCreateFolderRequestBodySyncStateField(
-  val: any
+  val: CreateFolderRequestBodySyncStateField
 ): SerializedData {
   return val;
 }
@@ -1291,7 +1289,9 @@ export function deserializeCreateFolderRequestBodySyncStateField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateFolderRequestBody(val: any): SerializedData {
+export function serializeCreateFolderRequestBody(
+  val: CreateFolderRequestBody
+): SerializedData {
   return {
     ['name']: val.name,
     ['parent']: serializeCreateFolderRequestBodyParentField(val.parent),
@@ -1333,7 +1333,7 @@ export function deserializeCreateFolderRequestBody(
   } satisfies CreateFolderRequestBody;
 }
 export function serializeCopyFolderRequestBodyParentField(
-  val: any
+  val: CopyFolderRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -1343,7 +1343,9 @@ export function deserializeCopyFolderRequestBodyParentField(
   const id: string = val.id;
   return { id: id } satisfies CopyFolderRequestBodyParentField;
 }
-export function serializeCopyFolderRequestBody(val: any): SerializedData {
+export function serializeCopyFolderRequestBody(
+  val: CopyFolderRequestBody
+): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
     ['parent']: serializeCopyFolderRequestBodyParentField(val.parent),

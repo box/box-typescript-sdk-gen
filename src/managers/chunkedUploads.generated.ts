@@ -437,10 +437,11 @@ export class ChunkedUploadsManager {
     requestBody: CreateFileUploadSessionRequestBody,
     optionalsInput: CreateFileUploadSessionOptionalsInput = {}
   ): Promise<UploadSession> {
-    const optionals: any = new CreateFileUploadSessionOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateFileUploadSessionOptionals =
+      new CreateFileUploadSessionOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -469,10 +470,11 @@ export class ChunkedUploadsManager {
     requestBody: CreateFileUploadSessionForExistingFileRequestBody,
     optionalsInput: CreateFileUploadSessionForExistingFileOptionalsInput = {}
   ): Promise<UploadSession> {
-    const optionals: any = new CreateFileUploadSessionForExistingFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateFileUploadSessionForExistingFileOptionals =
+      new CreateFileUploadSessionForExistingFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -504,10 +506,11 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     optionalsInput: GetFileUploadSessionByIdOptionalsInput = {}
   ): Promise<UploadSession> {
-    const optionals: any = new GetFileUploadSessionByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileUploadSessionByIdOptionals =
+      new GetFileUploadSessionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -536,12 +539,12 @@ export class ChunkedUploadsManager {
     headersInput: UploadFilePartHeadersInput,
     optionalsInput: UploadFilePartOptionalsInput = {}
   ): Promise<UploadedPart> {
-    const headers: any = new UploadFilePartHeaders({
+    const headers: UploadFilePartHeaders = new UploadFilePartHeaders({
       digest: headersInput.digest,
       contentRange: headersInput.contentRange,
       extraHeaders: headersInput.extraHeaders,
     });
-    const optionals: any = new UploadFilePartOptionals({
+    const optionals: UploadFilePartOptionals = new UploadFilePartOptionals({
       cancellationToken: optionalsInput.cancellationToken,
     });
     const cancellationToken: any = optionals.cancellationToken;
@@ -577,10 +580,11 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     optionalsInput: DeleteFileUploadSessionByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileUploadSessionByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFileUploadSessionByIdOptionals =
+      new DeleteFileUploadSessionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -607,11 +611,12 @@ export class ChunkedUploadsManager {
     uploadSessionId: string,
     optionalsInput: GetFileUploadSessionPartsOptionalsInput = {}
   ): Promise<UploadParts> {
-    const optionals: any = new GetFileUploadSessionPartsOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileUploadSessionPartsOptionals =
+      new GetFileUploadSessionPartsOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -649,15 +654,17 @@ export class ChunkedUploadsManager {
     headersInput: CreateFileUploadSessionCommitHeadersInput,
     optionalsInput: CreateFileUploadSessionCommitOptionalsInput = {}
   ): Promise<Files> {
-    const headers: any = new CreateFileUploadSessionCommitHeaders({
-      digest: headersInput.digest,
-      ifMatch: headersInput.ifMatch,
-      ifNoneMatch: headersInput.ifNoneMatch,
-      extraHeaders: headersInput.extraHeaders,
-    });
-    const optionals: any = new CreateFileUploadSessionCommitOptionals({
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const headers: CreateFileUploadSessionCommitHeaders =
+      new CreateFileUploadSessionCommitHeaders({
+        digest: headersInput.digest,
+        ifMatch: headersInput.ifMatch,
+        ifNoneMatch: headersInput.ifNoneMatch,
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const optionals: CreateFileUploadSessionCommitOptionals =
+      new CreateFileUploadSessionCommitOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
       readonly [key: string]: string;
@@ -817,7 +824,7 @@ export interface ChunkedUploadsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateFileUploadSessionRequestBody(
-  val: any
+  val: CreateFileUploadSessionRequestBody
 ): SerializedData {
   return {
     ['folder_id']: val.folderId,
@@ -838,7 +845,7 @@ export function deserializeCreateFileUploadSessionRequestBody(
   } satisfies CreateFileUploadSessionRequestBody;
 }
 export function serializeCreateFileUploadSessionForExistingFileRequestBody(
-  val: any
+  val: CreateFileUploadSessionForExistingFileRequestBody
 ): SerializedData {
   return {
     ['file_size']: val.fileSize,
@@ -857,10 +864,10 @@ export function deserializeCreateFileUploadSessionForExistingFileRequestBody(
   } satisfies CreateFileUploadSessionForExistingFileRequestBody;
 }
 export function serializeCreateFileUploadSessionCommitRequestBody(
-  val: any
+  val: CreateFileUploadSessionCommitRequestBody
 ): SerializedData {
   return {
-    ['parts']: val.parts.map(function (item: UploadPart): any {
+    ['parts']: val.parts.map(function (item: UploadPart): SerializedData {
       return serializeUploadPart(item);
     }) as readonly any[],
   };
@@ -869,7 +876,7 @@ export function deserializeCreateFileUploadSessionCommitRequestBody(
   val: any
 ): CreateFileUploadSessionCommitRequestBody {
   const parts: readonly UploadPart[] = sdIsList(val.parts)
-    ? (val.parts.map(function (itm: SerializedData): any {
+    ? (val.parts.map(function (itm: SerializedData): UploadPart {
         return deserializeUploadPart(itm);
       }) as readonly any[])
     : [];

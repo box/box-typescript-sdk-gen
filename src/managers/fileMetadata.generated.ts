@@ -291,7 +291,7 @@ export class FileMetadataManager {
     fileId: string,
     optionalsInput: GetFileMetadataOptionalsInput = {}
   ): Promise<Metadatas> {
-    const optionals: any = new GetFileMetadataOptionals({
+    const optionals: GetFileMetadataOptionals = new GetFileMetadataOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -324,10 +324,11 @@ export class FileMetadataManager {
     templateKey: string,
     optionalsInput: GetFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new GetFileMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileMetadataByIdOptionals =
+      new GetFileMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -361,10 +362,11 @@ export class FileMetadataManager {
     requestBody: CreateFileMetadataByIdRequestBody,
     optionalsInput: CreateFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new CreateFileMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateFileMetadataByIdOptionals =
+      new CreateFileMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -400,10 +402,11 @@ export class FileMetadataManager {
     requestBody: readonly UpdateFileMetadataByIdRequestBody[],
     optionalsInput: UpdateFileMetadataByIdOptionalsInput = {}
   ): Promise<MetadataFull> {
-    const optionals: any = new UpdateFileMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFileMetadataByIdOptionals =
+      new UpdateFileMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -440,10 +443,11 @@ export class FileMetadataManager {
     templateKey: string,
     optionalsInput: DeleteFileMetadataByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileMetadataByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFileMetadataByIdOptionals =
+      new DeleteFileMetadataByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -475,7 +479,9 @@ export interface FileMetadataManagerInput {
   readonly auth?: Authentication;
   readonly networkSession?: NetworkSession;
 }
-export function serializeGetFileMetadataByIdScope(val: any): SerializedData {
+export function serializeGetFileMetadataByIdScope(
+  val: GetFileMetadataByIdScope
+): SerializedData {
   return val;
 }
 export function deserializeGetFileMetadataByIdScope(
@@ -496,7 +502,9 @@ export function deserializeGetFileMetadataByIdScope(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeCreateFileMetadataByIdScope(val: any): SerializedData {
+export function serializeCreateFileMetadataByIdScope(
+  val: CreateFileMetadataByIdScope
+): SerializedData {
   return val;
 }
 export function deserializeCreateFileMetadataByIdScope(
@@ -518,7 +526,7 @@ export function deserializeCreateFileMetadataByIdScope(
   });
 }
 export function serializeCreateFileMetadataByIdRequestBody(
-  val: any
+  val: CreateFileMetadataByIdRequestBody
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -536,7 +544,9 @@ export function deserializeCreateFileMetadataByIdRequestBody(
 ): CreateFileMetadataByIdRequestBody {
   return val;
 }
-export function serializeUpdateFileMetadataByIdScope(val: any): SerializedData {
+export function serializeUpdateFileMetadataByIdScope(
+  val: UpdateFileMetadataByIdScope
+): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdScope(
@@ -558,7 +568,7 @@ export function deserializeUpdateFileMetadataByIdScope(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBodyOpField(
-  val: any
+  val: UpdateFileMetadataByIdRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -594,7 +604,7 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBody(
-  val: any
+  val: UpdateFileMetadataByIdRequestBody
 ): SerializedData {
   return {
     ['op']:
@@ -623,7 +633,9 @@ export function deserializeUpdateFileMetadataByIdRequestBody(
     from: from,
   } satisfies UpdateFileMetadataByIdRequestBody;
 }
-export function serializeDeleteFileMetadataByIdScope(val: any): SerializedData {
+export function serializeDeleteFileMetadataByIdScope(
+  val: DeleteFileMetadataByIdScope
+): SerializedData {
   return val;
 }
 export function deserializeDeleteFileMetadataByIdScope(

@@ -138,10 +138,11 @@ export class SessionTerminationManager {
     requestBody: TerminateUsersSessionsRequestBody,
     optionalsInput: TerminateUsersSessionsOptionalsInput = {}
   ): Promise<SessionTerminationMessage> {
-    const optionals: any = new TerminateUsersSessionsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: TerminateUsersSessionsOptionals =
+      new TerminateUsersSessionsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -169,10 +170,11 @@ export class SessionTerminationManager {
     requestBody: TerminateGroupsSessionsRequestBody,
     optionalsInput: TerminateGroupsSessionsOptionalsInput = {}
   ): Promise<SessionTerminationMessage> {
-    const optionals: any = new TerminateGroupsSessionsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: TerminateGroupsSessionsOptionals =
+      new TerminateGroupsSessionsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -202,13 +204,15 @@ export interface SessionTerminationManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeTerminateUsersSessionsRequestBody(
-  val: any
+  val: TerminateUsersSessionsRequestBody
 ): SerializedData {
   return {
-    ['user_ids']: val.userIds.map(function (item: string): any {
+    ['user_ids']: val.userIds.map(function (item: string): SerializedData {
       return item;
     }) as readonly any[],
-    ['user_logins']: val.userLogins.map(function (item: string): any {
+    ['user_logins']: val.userLogins.map(function (
+      item: string
+    ): SerializedData {
       return item;
     }) as readonly any[],
   };
@@ -216,15 +220,9 @@ export function serializeTerminateUsersSessionsRequestBody(
 export function deserializeTerminateUsersSessionsRequestBody(
   val: any
 ): TerminateUsersSessionsRequestBody {
-  const userIds: readonly string[] = sdIsList(val.user_ids)
-    ? (val.user_ids.map(function (itm: SerializedData): any {
-        return itm;
-      }) as readonly any[])
-    : [];
+  const userIds: readonly string[] = sdIsList(val.user_ids) ? val.user_ids : [];
   const userLogins: readonly string[] = sdIsList(val.user_logins)
-    ? (val.user_logins.map(function (itm: SerializedData): any {
-        return itm;
-      }) as readonly any[])
+    ? val.user_logins
     : [];
   return {
     userIds: userIds,
@@ -232,10 +230,10 @@ export function deserializeTerminateUsersSessionsRequestBody(
   } satisfies TerminateUsersSessionsRequestBody;
 }
 export function serializeTerminateGroupsSessionsRequestBody(
-  val: any
+  val: TerminateGroupsSessionsRequestBody
 ): SerializedData {
   return {
-    ['group_ids']: val.groupIds.map(function (item: string): any {
+    ['group_ids']: val.groupIds.map(function (item: string): SerializedData {
       return item;
     }) as readonly any[],
   };
@@ -244,9 +242,7 @@ export function deserializeTerminateGroupsSessionsRequestBody(
   val: any
 ): TerminateGroupsSessionsRequestBody {
   const groupIds: readonly string[] = sdIsList(val.group_ids)
-    ? (val.group_ids.map(function (itm: SerializedData): any {
-        return itm;
-      }) as readonly any[])
+    ? val.group_ids
     : [];
   return { groupIds: groupIds } satisfies TerminateGroupsSessionsRequestBody;
 }

@@ -370,10 +370,11 @@ export class StoragePolicyAssignmentsManager {
     queryParams: GetStoragePolicyAssignmentsQueryParams,
     optionalsInput: GetStoragePolicyAssignmentsOptionalsInput = {}
   ): Promise<StoragePolicyAssignments> {
-    const optionals: any = new GetStoragePolicyAssignmentsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetStoragePolicyAssignmentsOptionals =
+      new GetStoragePolicyAssignmentsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {
@@ -407,10 +408,11 @@ export class StoragePolicyAssignmentsManager {
     requestBody: CreateStoragePolicyAssignmentRequestBody,
     optionalsInput: CreateStoragePolicyAssignmentOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const optionals: any = new CreateStoragePolicyAssignmentOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateStoragePolicyAssignmentOptionals =
+      new CreateStoragePolicyAssignmentOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -438,10 +440,11 @@ export class StoragePolicyAssignmentsManager {
     storagePolicyAssignmentId: string,
     optionalsInput: GetStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const optionals: any = new GetStoragePolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetStoragePolicyAssignmentByIdOptionals =
+      new GetStoragePolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -469,10 +472,11 @@ export class StoragePolicyAssignmentsManager {
     requestBody: UpdateStoragePolicyAssignmentByIdRequestBody,
     optionalsInput: UpdateStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<StoragePolicyAssignment> {
-    const optionals: any = new UpdateStoragePolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateStoragePolicyAssignmentByIdOptionals =
+      new UpdateStoragePolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -503,10 +507,11 @@ export class StoragePolicyAssignmentsManager {
     storagePolicyAssignmentId: string,
     optionalsInput: DeleteStoragePolicyAssignmentByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteStoragePolicyAssignmentByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteStoragePolicyAssignmentByIdOptionals =
+      new DeleteStoragePolicyAssignmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -535,7 +540,7 @@ export interface StoragePolicyAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
-  val: any
+  val: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField
 ): SerializedData {
   return val;
 }
@@ -559,7 +564,7 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForType
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -580,7 +585,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField
 ): SerializedData {
   return {
     ['type']:
@@ -604,7 +609,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -634,7 +639,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
   } satisfies CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField
 ): SerializedData {
   return val;
 }
@@ -658,7 +663,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTyp
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBodyAssignedToField
 ): SerializedData {
   return {
     ['type']:
@@ -682,7 +687,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToFie
   } satisfies CreateStoragePolicyAssignmentRequestBodyAssignedToField;
 }
 export function serializeCreateStoragePolicyAssignmentRequestBody(
-  val: any
+  val: CreateStoragePolicyAssignmentRequestBody
 ): SerializedData {
   return {
     ['storage_policy']:
@@ -712,7 +717,7 @@ export function deserializeCreateStoragePolicyAssignmentRequestBody(
   } satisfies CreateStoragePolicyAssignmentRequestBody;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
-  val: any
+  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField
 ): SerializedData {
   return val;
 }
@@ -733,7 +738,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   });
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
-  val: any
+  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField
 ): SerializedData {
   return {
     ['type']:
@@ -757,7 +762,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput(
-  val: any
+  val: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput
 ): SerializedData {
   return {
     ['type']:
@@ -787,7 +792,7 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
   } satisfies UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput;
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBody(
-  val: any
+  val: UpdateStoragePolicyAssignmentByIdRequestBody
 ): SerializedData {
   return {
     ['storage_policy']:

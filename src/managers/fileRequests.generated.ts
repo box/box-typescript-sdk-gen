@@ -235,10 +235,11 @@ export class FileRequestsManager {
     fileRequestId: string,
     optionalsInput: GetFileRequestByIdOptionalsInput = {}
   ): Promise<FileRequest> {
-    const optionals: any = new GetFileRequestByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileRequestByIdOptionals =
+      new GetFileRequestByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -266,10 +267,11 @@ export class FileRequestsManager {
     requestBody: FileRequestUpdateRequest,
     optionalsInput: UpdateFileRequestByIdOptionalsInput = {}
   ): Promise<FileRequest> {
-    const optionals: any = new UpdateFileRequestByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateFileRequestByIdOptionals =
+      new UpdateFileRequestByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -301,10 +303,11 @@ export class FileRequestsManager {
     fileRequestId: string,
     optionalsInput: DeleteFileRequestByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFileRequestByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFileRequestByIdOptionals =
+      new DeleteFileRequestByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -332,10 +335,11 @@ export class FileRequestsManager {
     requestBody: FileRequestCopyRequest,
     optionalsInput: CreateFileRequestCopyOptionalsInput = {}
   ): Promise<FileRequest> {
-    const optionals: any = new CreateFileRequestCopyOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateFileRequestCopyOptionals =
+      new CreateFileRequestCopyOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {

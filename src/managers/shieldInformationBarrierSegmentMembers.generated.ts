@@ -295,7 +295,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     shieldInformationBarrierSegmentMemberId: string,
     optionalsInput: GetShieldInformationBarrierSegmentMemberByIdOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentMember> {
-    const optionals: any =
+    const optionals: GetShieldInformationBarrierSegmentMemberByIdOptionals =
       new GetShieldInformationBarrierSegmentMemberByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -326,7 +326,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     shieldInformationBarrierSegmentMemberId: string,
     optionalsInput: DeleteShieldInformationBarrierSegmentMemberByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any =
+    const optionals: DeleteShieldInformationBarrierSegmentMemberByIdOptionals =
       new DeleteShieldInformationBarrierSegmentMemberByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -357,7 +357,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     queryParams: GetShieldInformationBarrierSegmentMembersQueryParams,
     optionalsInput: GetShieldInformationBarrierSegmentMembersOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentMembers> {
-    const optionals: any =
+    const optionals: GetShieldInformationBarrierSegmentMembersOptionals =
       new GetShieldInformationBarrierSegmentMembersOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -397,7 +397,7 @@ export class ShieldInformationBarrierSegmentMembersManager {
     requestBody: CreateShieldInformationBarrierSegmentMemberRequestBody,
     optionalsInput: CreateShieldInformationBarrierSegmentMemberOptionalsInput = {}
   ): Promise<ShieldInformationBarrierSegmentMember> {
-    const optionals: any =
+    const optionals: CreateShieldInformationBarrierSegmentMemberOptionals =
       new CreateShieldInformationBarrierSegmentMemberOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -433,7 +433,7 @@ export interface ShieldInformationBarrierSegmentMembersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
-  val: any
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField
 ): SerializedData {
   return val;
 }
@@ -454,7 +454,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
-  val: any
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField
 ): SerializedData {
   return val;
 }
@@ -475,7 +475,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(
-  val: any
+  val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -505,7 +505,7 @@ export function deserializeCreateShieldInformationBarrierSegmentMemberRequestBod
   } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField;
 }
 export function serializeCreateShieldInformationBarrierSegmentMemberRequestBody(
-  val: any
+  val: CreateShieldInformationBarrierSegmentMemberRequestBody
 ): SerializedData {
   return {
     ['type']:

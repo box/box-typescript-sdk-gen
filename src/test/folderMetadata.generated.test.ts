@@ -56,16 +56,15 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export const client: any = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Promise<any> {
-  const folder: any = await createNewFolder();
-  const folderMetadata: any = await client.folderMetadata.getFolderMetadata(
-    folder.id
-  );
+  const folder: FolderFull = await createNewFolder();
+  const folderMetadata: Metadatas =
+    await client.folderMetadata.getFolderMetadata(folder.id);
   if (!(folderMetadata.entries!.length == 0)) {
     throw new Error('Assertion failed');
   }
-  const createdMetadata: any =
+  const createdMetadata: MetadataFull =
     await client.folderMetadata.createFolderMetadataById(
       folder.id,
       'global' as CreateFolderMetadataByIdScope,
@@ -81,7 +80,7 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
   if (!(createdMetadata.version == 0)) {
     throw new Error('Assertion failed');
   }
-  const receivedMetadata: any =
+  const receivedMetadata: MetadataFull =
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScope,
@@ -90,21 +89,20 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
   if (!(receivedMetadata.extraData!.abc == 'xyz')) {
     throw new Error('Assertion failed');
   }
-  const newValue: any = 'bar';
-  const updatedMetadata: any =
-    await client.folderMetadata.updateFolderMetadataById(
-      folder.id,
-      'global' as UpdateFolderMetadataByIdScope,
-      'properties',
-      [
-        {
-          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
-          path: '/abc',
-          value: newValue,
-        } satisfies UpdateFolderMetadataByIdRequestBody,
-      ]
-    );
-  const receivedUpdatedMetadata: any =
+  const newValue: string = 'bar';
+  await client.folderMetadata.updateFolderMetadataById(
+    folder.id,
+    'global' as UpdateFolderMetadataByIdScope,
+    'properties',
+    [
+      {
+        op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+        path: '/abc',
+        value: newValue,
+      } satisfies UpdateFolderMetadataByIdRequestBody,
+    ]
+  );
+  const receivedUpdatedMetadata: MetadataFull =
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScope,
@@ -128,60 +126,61 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
   await client.folders.deleteFolderById(folder.id);
 });
 test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata(): Promise<any> {
-  const folder: any = await createNewFolder();
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'name',
-        displayName: 'name',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'age',
-        displayName: 'age',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'birthDate',
-        displayName: 'birthDate',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'countryCode',
-        displayName: 'countryCode',
-        options: [
-          {
-            key: 'US',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          {
-            key: 'CA',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        ],
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'sports',
-        displayName: 'sports',
-        options: [
-          {
-            key: 'basketball',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          {
-            key: 'football',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          {
-            key: 'tennis',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        ],
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
-  const createdMetadata: any =
+  const folder: FolderFull = await createNewFolder();
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'name',
+          displayName: 'name',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'age',
+          displayName: 'age',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'birthDate',
+          displayName: 'birthDate',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'countryCode',
+          displayName: 'countryCode',
+          options: [
+            {
+              key: 'US',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'CA',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'sports',
+          displayName: 'sports',
+          options: [
+            {
+              key: 'basketball',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'football',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'tennis',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
+  const createdMetadata: MetadataFull =
     await client.folderMetadata.createFolderMetadataById(
       folder.id,
       'enterprise' as CreateFolderMetadataByIdScope,
@@ -209,7 +208,7 @@ test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata
   if (!(createdMetadata.extraData!.countryCode == 'US')) {
     throw new Error('Assertion failed');
   }
-  const sports: any = createdMetadata.extraData!.sports;
+  const sports: readonly string[] = createdMetadata.extraData!.sports;
   if (!(sports[0] == 'basketball')) {
     throw new Error('Assertion failed');
   }

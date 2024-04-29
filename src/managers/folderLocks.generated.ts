@@ -186,7 +186,7 @@ export class FolderLocksManager {
     queryParams: GetFolderLocksQueryParams,
     optionalsInput: GetFolderLocksOptionalsInput = {}
   ): Promise<FolderLocks> {
-    const optionals: any = new GetFolderLocksOptionals({
+    const optionals: GetFolderLocksOptionals = new GetFolderLocksOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -221,7 +221,7 @@ export class FolderLocksManager {
     requestBody: CreateFolderLockRequestBody,
     optionalsInput: CreateFolderLockOptionalsInput = {}
   ): Promise<FolderLock> {
-    const optionals: any = new CreateFolderLockOptionals({
+    const optionals: CreateFolderLockOptionals = new CreateFolderLockOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -252,10 +252,11 @@ export class FolderLocksManager {
     folderLockId: string,
     optionalsInput: DeleteFolderLockByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteFolderLockByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteFolderLockByIdOptionals =
+      new DeleteFolderLockByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -284,7 +285,7 @@ export interface FolderLocksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateFolderLockRequestBodyLockedOperationsField(
-  val: any
+  val: CreateFolderLockRequestBodyLockedOperationsField
 ): SerializedData {
   return { ['move']: val.move, ['delete']: val.delete };
 }
@@ -299,7 +300,7 @@ export function deserializeCreateFolderLockRequestBodyLockedOperationsField(
   } satisfies CreateFolderLockRequestBodyLockedOperationsField;
 }
 export function serializeCreateFolderLockRequestBodyFolderField(
-  val: any
+  val: CreateFolderLockRequestBodyFolderField
 ): SerializedData {
   return { ['type']: val.type, ['id']: val.id };
 }
@@ -313,7 +314,9 @@ export function deserializeCreateFolderLockRequestBodyFolderField(
     id: id,
   } satisfies CreateFolderLockRequestBodyFolderField;
 }
-export function serializeCreateFolderLockRequestBody(val: any): SerializedData {
+export function serializeCreateFolderLockRequestBody(
+  val: CreateFolderLockRequestBody
+): SerializedData {
   return {
     ['locked_operations']:
       val.lockedOperations == void 0

@@ -118,7 +118,7 @@ export class SignTemplatesManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<SignTemplates> {
-    const headers: any = new GetSignTemplatesHeaders({
+    const headers: GetSignTemplatesHeaders = new GetSignTemplatesHeaders({
       extraHeaders: headersInput.extraHeaders,
     });
     const queryParamsMap: {
@@ -151,10 +151,11 @@ export class SignTemplatesManager {
     templateId: string,
     optionalsInput: GetSignTemplateByIdOptionalsInput = {}
   ): Promise<SignTemplate> {
-    const optionals: any = new GetSignTemplateByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetSignTemplateByIdOptionals =
+      new GetSignTemplateByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {

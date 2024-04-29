@@ -202,10 +202,11 @@ export class DevicePinnersManager {
     devicePinnerId: string,
     optionalsInput: GetDevicePinnerByIdOptionalsInput = {}
   ): Promise<DevicePinner> {
-    const optionals: any = new GetDevicePinnerByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetDevicePinnerByIdOptionals =
+      new GetDevicePinnerByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -232,10 +233,11 @@ export class DevicePinnersManager {
     devicePinnerId: string,
     optionalsInput: DeleteDevicePinnerByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteDevicePinnerByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteDevicePinnerByIdOptionals =
+      new DeleteDevicePinnerByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -262,11 +264,12 @@ export class DevicePinnersManager {
     enterpriseId: string,
     optionalsInput: GetEnterpriseDevicePinnersOptionalsInput = {}
   ): Promise<DevicePinners> {
-    const optionals: any = new GetEnterpriseDevicePinnersOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetEnterpriseDevicePinnersOptionals =
+      new GetEnterpriseDevicePinnersOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -305,7 +308,7 @@ export interface DevicePinnersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
-  val: any
+  val: GetEnterpriseDevicePinnersQueryParamsDirectionField
 ): SerializedData {
   return val;
 }

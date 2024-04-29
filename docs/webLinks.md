@@ -82,7 +82,7 @@ await client.webLinks.updateWebLinkById(weblink.id, {
   requestBody: {
     name: updatedName,
     sharedLink: {
-      access: sharedAccess,
+      access: 'open' as UpdateWebLinkByIdRequestBodySharedLinkAccessField,
       password: password,
     } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
   } satisfies UpdateWebLinkByIdRequestBody,

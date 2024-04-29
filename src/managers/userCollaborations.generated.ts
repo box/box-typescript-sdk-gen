@@ -304,11 +304,12 @@ export class UserCollaborationsManager {
     collaborationId: string,
     optionalsInput: GetCollaborationByIdOptionalsInput = {}
   ): Promise<Collaboration> {
-    const optionals: any = new GetCollaborationByIdOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetCollaborationByIdOptionals =
+      new GetCollaborationByIdOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -345,10 +346,11 @@ export class UserCollaborationsManager {
     requestBody: UpdateCollaborationByIdRequestBody,
     optionalsInput: UpdateCollaborationByIdOptionalsInput = {}
   ): Promise<Collaboration> {
-    const optionals: any = new UpdateCollaborationByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateCollaborationByIdOptionals =
+      new UpdateCollaborationByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -377,10 +379,11 @@ export class UserCollaborationsManager {
     collaborationId: string,
     optionalsInput: DeleteCollaborationByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteCollaborationByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteCollaborationByIdOptionals =
+      new DeleteCollaborationByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -407,11 +410,12 @@ export class UserCollaborationsManager {
     requestBody: CreateCollaborationRequestBody,
     optionalsInput: CreateCollaborationOptionalsInput = {}
   ): Promise<Collaboration> {
-    const optionals: any = new CreateCollaborationOptionals({
-      queryParams: optionalsInput.queryParams,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: CreateCollaborationOptionals =
+      new CreateCollaborationOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const queryParams: any = optionals.queryParams;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -451,7 +455,7 @@ export interface UserCollaborationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCollaborationByIdRequestBodyRoleField(
-  val: any
+  val: UpdateCollaborationByIdRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -493,7 +497,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBodyStatusField(
-  val: any
+  val: UpdateCollaborationByIdRequestBodyStatusField
 ): SerializedData {
   return val;
 }
@@ -520,7 +524,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBody(
-  val: any
+  val: UpdateCollaborationByIdRequestBody
 ): SerializedData {
   return {
     ['role']: serializeUpdateCollaborationByIdRequestBodyRoleField(val.role),
@@ -554,7 +558,7 @@ export function deserializeUpdateCollaborationByIdRequestBody(
   } satisfies UpdateCollaborationByIdRequestBody;
 }
 export function serializeCreateCollaborationRequestBodyItemTypeField(
-  val: any
+  val: CreateCollaborationRequestBodyItemTypeField
 ): SerializedData {
   return val;
 }
@@ -578,7 +582,7 @@ export function deserializeCreateCollaborationRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyItemField(
-  val: any
+  val: CreateCollaborationRequestBodyItemField
 ): SerializedData {
   return {
     ['type']:
@@ -602,7 +606,7 @@ export function deserializeCreateCollaborationRequestBodyItemField(
   } satisfies CreateCollaborationRequestBodyItemField;
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
-  val: any
+  val: CreateCollaborationRequestBodyAccessibleByTypeField
 ): SerializedData {
   return val;
 }
@@ -626,7 +630,7 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByField(
-  val: any
+  val: CreateCollaborationRequestBodyAccessibleByField
 ): SerializedData {
   return {
     ['type']: serializeCreateCollaborationRequestBodyAccessibleByTypeField(
@@ -650,7 +654,7 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByField(
   } satisfies CreateCollaborationRequestBodyAccessibleByField;
 }
 export function serializeCreateCollaborationRequestBodyRoleField(
-  val: any
+  val: CreateCollaborationRequestBodyRoleField
 ): SerializedData {
   return val;
 }
@@ -689,7 +693,7 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
   });
 }
 export function serializeCreateCollaborationRequestBody(
-  val: any
+  val: CreateCollaborationRequestBody
 ): SerializedData {
   return {
     ['item']: serializeCreateCollaborationRequestBodyItemField(val.item),

@@ -229,7 +229,7 @@ export class AuthorizationManager {
     queryParams: AuthorizeUserQueryParams,
     optionalsInput: AuthorizeUserOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new AuthorizeUserOptionals({
+    const optionals: AuthorizeUserOptionals = new AuthorizeUserOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -265,10 +265,11 @@ export class AuthorizationManager {
     requestBody: PostOAuth2Token,
     optionalsInput: RequestAccessTokenOptionalsInput = {}
   ): Promise<AccessToken> {
-    const optionals: any = new RequestAccessTokenOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RequestAccessTokenOptionals =
+      new RequestAccessTokenOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -293,16 +294,18 @@ export class AuthorizationManager {
     requestBodyInput: PostOAuth2TokenRefreshAccessTokenInput,
     optionalsInput: RefreshAccessTokenOptionalsInput = {}
   ): Promise<AccessToken> {
-    const requestBody: any = new PostOAuth2TokenRefreshAccessToken({
-      grantType: requestBodyInput.grantType,
-      clientId: requestBodyInput.clientId,
-      clientSecret: requestBodyInput.clientSecret,
-      refreshToken: requestBodyInput.refreshToken,
-    });
-    const optionals: any = new RefreshAccessTokenOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const requestBody: PostOAuth2TokenRefreshAccessToken =
+      new PostOAuth2TokenRefreshAccessToken({
+        grantType: requestBodyInput.grantType,
+        clientId: requestBodyInput.clientId,
+        clientSecret: requestBodyInput.clientSecret,
+        refreshToken: requestBodyInput.refreshToken,
+      });
+    const optionals: RefreshAccessTokenOptionals =
+      new RefreshAccessTokenOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -327,10 +330,11 @@ export class AuthorizationManager {
     requestBody: PostOAuth2Revoke,
     optionalsInput: RevokeAccessTokenOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new RevokeAccessTokenOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: RevokeAccessTokenOptionals =
+      new RevokeAccessTokenOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -357,7 +361,7 @@ export interface AuthorizationManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAuthorizeUserQueryParamsResponseTypeField(
-  val: any
+  val: AuthorizeUserQueryParamsResponseTypeField
 ): SerializedData {
   return val;
 }

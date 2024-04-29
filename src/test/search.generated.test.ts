@@ -67,55 +67,59 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export const client: any = getDefaultClient();
+export const client: BoxClient = getDefaultClient();
 test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQueryExecuteRead(): Promise<any> {
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'testName',
-        displayName: 'testName',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'testName',
+          displayName: 'testName',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
     throw new Error('Assertion failed');
   }
-  const files: any = await client.uploads.uploadFile({
+  const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBody);
-  const file: any = files.entries![0];
-  const metadata: any = await client.fileMetadata.createFileMetadataById(
-    file.id,
-    'enterprise' as CreateFileMetadataByIdScope,
-    templateKey,
-    { ['testName']: 1 }
-  );
+  const file: FileFull = files.entries![0];
+  const metadata: MetadataFull =
+    await client.fileMetadata.createFileMetadataById(
+      file.id,
+      'enterprise' as CreateFileMetadataByIdScope,
+      templateKey,
+      { ['testName']: 1 }
+    );
   if (!(metadata.template == templateKey)) {
     throw new Error('Assertion failed');
   }
   if (!(metadata.scope == template.scope)) {
     throw new Error('Assertion failed');
   }
-  const searchFrom: any = ''.concat(
+  const searchFrom: string = ''.concat(
     template.scope!,
     '.',
     template.templateKey
   ) as string;
-  const query: any = await client.search.searchByMetadataQuery({
-    ancestorFolderId: '0',
-    from: searchFrom,
-    query: 'testName >= :value',
-    queryParams: { ['value']: '0.0' },
-  } satisfies MetadataQuery);
+  const query: MetadataQueryResults = await client.search.searchByMetadataQuery(
+    {
+      ancestorFolderId: '0',
+      from: searchFrom,
+      query: 'testName >= :value',
+      queryParams: { ['value']: '0.0' },
+    } satisfies MetadataQuery
+  );
   if (!(query.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
@@ -126,26 +130,28 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   await client.files.deleteFileById(file.id);
 });
 test('testGetSearch', async function testGetSearch(): Promise<any> {
-  const keyword: any = 'test';
-  const search: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as string],
-    query: keyword,
-    trashContent:
-      'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
-  } satisfies SearchForContentQueryParams);
+  const keyword: string = 'test';
+  const search: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      query: keyword,
+      trashContent:
+        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
+    } satisfies SearchForContentQueryParams);
   if (!(search.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   if (!((toString(search.type) as string) == 'search_results_items')) {
     throw new Error('Assertion failed');
   }
-  const searchWithSharedLink: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as string],
-    query: keyword,
-    trashContent:
-      'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
-    includeRecentSharedLinks: true,
-  } satisfies SearchForContentQueryParams);
+  const searchWithSharedLink: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      query: keyword,
+      trashContent:
+        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
+      includeRecentSharedLinks: true,
+    } satisfies SearchForContentQueryParams);
   if (!(searchWithSharedLink.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
@@ -159,119 +165,124 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   }
 });
 test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
-  const templateKey: any = ''.concat('key', getUuid()) as string;
-  const template: any = await client.metadataTemplates.createMetadataTemplate({
-    scope: 'enterprise',
-    displayName: templateKey,
-    templateKey: templateKey,
-    fields: [
-      {
-        type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'floatField',
-        displayName: 'floatField',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'stringField',
-        displayName: 'stringField',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'dateField',
-        displayName: 'dateField',
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'enumField',
-        displayName: 'enumField',
-        options: [
-          {
-            key: 'enumValue1',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          {
-            key: 'enumValue2',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        ],
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-      {
-        type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-        key: 'multiSelectField',
-        displayName: 'multiSelectField',
-        options: [
-          {
-            key: 'multiSelectValue1',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          {
-            key: 'multiSelectValue2',
-          } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        ],
-      } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    ],
-  } satisfies CreateMetadataTemplateRequestBody);
-  const files: any = await client.uploads.uploadFile({
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'floatField',
+          displayName: 'floatField',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'stringField',
+          displayName: 'stringField',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'dateField',
+          displayName: 'dateField',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'enumField',
+          displayName: 'enumField',
+          options: [
+            {
+              key: 'enumValue1',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'enumValue2',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'multiSelectField',
+          displayName: 'multiSelectField',
+          options: [
+            {
+              key: 'multiSelectValue1',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'multiSelectValue2',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
+  const files: Files = await client.uploads.uploadFile({
     attributes: {
       name: getUuid(),
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: generateByteStream(10),
   } satisfies UploadFileRequestBody);
-  const file: any = files.entries![0];
-  const metadata: any = await client.fileMetadata.createFileMetadataById(
-    file.id,
-    'enterprise' as CreateFileMetadataByIdScope,
-    templateKey,
-    {
-      ['floatField']: 10,
-      ['stringField']: 'stringValue',
-      ['dateField']: '2035-01-02T00:00:00Z',
-      ['enumField']: 'enumValue2',
-      ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-    }
-  );
-  const stringQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as string],
-    mdfilters: [
+  const file: FileFull = files.entries![0];
+  const metadata: MetadataFull =
+    await client.fileMetadata.createFileMetadataById(
+      file.id,
+      'enterprise' as CreateFileMetadataByIdScope,
+      templateKey,
       {
-        filters: { ['stringField']: 'stringValue' },
-        scope: 'enterprise' as MetadataFilterScopeField,
-        templateKey: templateKey,
-      } satisfies MetadataFilter,
-    ],
-  } satisfies SearchForContentQueryParams);
+        ['floatField']: 10,
+        ['stringField']: 'stringValue',
+        ['dateField']: '2035-01-02T00:00:00Z',
+        ['enumField']: 'enumValue2',
+        ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+      }
+    );
+  const stringQuery: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      mdfilters: [
+        {
+          filters: { ['stringField']: 'stringValue' },
+          scope: 'enterprise' as MetadataFilterScopeField,
+          templateKey: templateKey,
+        } satisfies MetadataFilter,
+      ],
+    } satisfies SearchForContentQueryParams);
   if (!(stringQuery.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
-  const enumQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as string],
-    mdfilters: [
-      {
-        filters: { ['enumField']: 'enumValue2' },
-        scope: 'enterprise' as MetadataFilterScopeField,
-        templateKey: templateKey,
-      } satisfies MetadataFilter,
-    ],
-  } satisfies SearchForContentQueryParams);
+  const enumQuery: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      mdfilters: [
+        {
+          filters: { ['enumField']: 'enumValue2' },
+          scope: 'enterprise' as MetadataFilterScopeField,
+          templateKey: templateKey,
+        } satisfies MetadataFilter,
+      ],
+    } satisfies SearchForContentQueryParams);
   if (!(enumQuery.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
-  const multiSelectQuery: any = await client.search.searchForContent({
-    ancestorFolderIds: ['0' as string],
-    mdfilters: [
-      {
-        filters: {
-          ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-        },
-        scope: 'enterprise' as MetadataFilterScopeField,
-        templateKey: templateKey,
-      } satisfies MetadataFilter,
-    ],
-  } satisfies SearchForContentQueryParams);
+  const multiSelectQuery: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      mdfilters: [
+        {
+          filters: {
+            ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+          },
+          scope: 'enterprise' as MetadataFilterScopeField,
+          templateKey: templateKey,
+        } satisfies MetadataFilter,
+      ],
+    } satisfies SearchForContentQueryParams);
   if (!(multiSelectQuery.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey
+    template.templateKey!
   );
   await client.files.deleteFileById(file.id);
 });

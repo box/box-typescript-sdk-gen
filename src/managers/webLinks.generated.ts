@@ -254,7 +254,7 @@ export class WebLinksManager {
     requestBody: CreateWebLinkRequestBody,
     optionalsInput: CreateWebLinkOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new CreateWebLinkOptionals({
+    const optionals: CreateWebLinkOptionals = new CreateWebLinkOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -282,7 +282,7 @@ export class WebLinksManager {
     webLinkId: string,
     optionalsInput: GetWebLinkByIdOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new GetWebLinkByIdOptionals({
+    const optionals: GetWebLinkByIdOptionals = new GetWebLinkByIdOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
     });
@@ -315,11 +315,12 @@ export class WebLinksManager {
     webLinkId: string,
     optionalsInput: UpdateWebLinkByIdOptionalsInput = {}
   ): Promise<WebLink> {
-    const optionals: any = new UpdateWebLinkByIdOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateWebLinkByIdOptionals =
+      new UpdateWebLinkByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -349,10 +350,11 @@ export class WebLinksManager {
     webLinkId: string,
     optionalsInput: DeleteWebLinkByIdOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteWebLinkByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteWebLinkByIdOptionals =
+      new DeleteWebLinkByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -381,7 +383,7 @@ export interface WebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebLinkRequestBodyParentField(
-  val: any
+  val: CreateWebLinkRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -391,7 +393,9 @@ export function deserializeCreateWebLinkRequestBodyParentField(
   const id: string = val.id;
   return { id: id } satisfies CreateWebLinkRequestBodyParentField;
 }
-export function serializeCreateWebLinkRequestBody(val: any): SerializedData {
+export function serializeCreateWebLinkRequestBody(
+  val: CreateWebLinkRequestBody
+): SerializedData {
   return {
     ['url']: val.url,
     ['parent']: serializeCreateWebLinkRequestBodyParentField(val.parent),
@@ -416,7 +420,7 @@ export function deserializeCreateWebLinkRequestBody(
   } satisfies CreateWebLinkRequestBody;
 }
 export function serializeUpdateWebLinkByIdRequestBodyParentField(
-  val: any
+  val: UpdateWebLinkByIdRequestBodyParentField
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
@@ -427,7 +431,7 @@ export function deserializeUpdateWebLinkByIdRequestBodyParentField(
   return { id: id } satisfies UpdateWebLinkByIdRequestBodyParentField;
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: UpdateWebLinkByIdRequestBodySharedLinkAccessField
 ): SerializedData {
   return val;
 }
@@ -454,7 +458,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
-  val: any
+  val: UpdateWebLinkByIdRequestBodySharedLinkField
 ): SerializedData {
   return {
     ['access']:
@@ -492,7 +496,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
   } satisfies UpdateWebLinkByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateWebLinkByIdRequestBody(
-  val: any
+  val: UpdateWebLinkByIdRequestBody
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,

@@ -145,10 +145,11 @@ export class FileVersionLegalHoldsManager {
     fileVersionLegalHoldId: string,
     optionalsInput: GetFileVersionLegalHoldByIdOptionalsInput = {}
   ): Promise<FileVersionLegalHold> {
-    const optionals: any = new GetFileVersionLegalHoldByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileVersionLegalHoldByIdOptionals =
+      new GetFileVersionLegalHoldByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -175,10 +176,11 @@ export class FileVersionLegalHoldsManager {
     queryParams: GetFileVersionLegalHoldsQueryParams,
     optionalsInput: GetFileVersionLegalHoldsOptionalsInput = {}
   ): Promise<FileVersionLegalHolds> {
-    const optionals: any = new GetFileVersionLegalHoldsOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileVersionLegalHoldsOptionals =
+      new GetFileVersionLegalHoldsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const queryParamsMap: {

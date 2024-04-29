@@ -274,10 +274,11 @@ export class FileClassificationsManager {
     fileId: string,
     optionalsInput: GetClassificationOnFileOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new GetClassificationOnFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetClassificationOnFileOptionals =
+      new GetClassificationOnFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -305,11 +306,12 @@ export class FileClassificationsManager {
     fileId: string,
     optionalsInput: AddClassificationToFileOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new AddClassificationToFileOptionals({
-      requestBody: optionalsInput.requestBody,
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: AddClassificationToFileOptionals =
+      new AddClassificationToFileOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const requestBody: any = optionals.requestBody;
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
@@ -341,10 +343,11 @@ export class FileClassificationsManager {
     requestBody: readonly UpdateClassificationOnFileRequestBody[],
     optionalsInput: UpdateClassificationOnFileOptionalsInput = {}
   ): Promise<Classification> {
-    const optionals: any = new UpdateClassificationOnFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: UpdateClassificationOnFileOptionals =
+      new UpdateClassificationOnFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -376,10 +379,11 @@ export class FileClassificationsManager {
     fileId: string,
     optionalsInput: DeleteClassificationFromFileOptionalsInput = {}
   ): Promise<undefined> {
-    const optionals: any = new DeleteClassificationFromFileOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: DeleteClassificationFromFileOptionals =
+      new DeleteClassificationFromFileOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -409,7 +413,7 @@ export interface FileClassificationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationToFileRequestBody(
-  val: any
+  val: AddClassificationToFileRequestBody
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -430,7 +434,7 @@ export function deserializeAddClassificationToFileRequestBody(
   } satisfies AddClassificationToFileRequestBody;
 }
 export function serializeUpdateClassificationOnFileRequestBodyOpField(
-  val: any
+  val: UpdateClassificationOnFileRequestBodyOpField
 ): SerializedData {
   return val;
 }
@@ -451,7 +455,7 @@ export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationOnFileRequestBodyPathField(
-  val: any
+  val: UpdateClassificationOnFileRequestBodyPathField
 ): SerializedData {
   return val;
 }
@@ -472,7 +476,7 @@ export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   });
 }
 export function serializeUpdateClassificationOnFileRequestBody(
-  val: any
+  val: UpdateClassificationOnFileRequestBody
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationOnFileRequestBodyOpField(val.op),
@@ -495,7 +499,7 @@ export function deserializeUpdateClassificationOnFileRequestBody(
   } satisfies UpdateClassificationOnFileRequestBody;
 }
 export function serializeUpdateClassificationOnFileRequestBodyInput(
-  val: any
+  val: UpdateClassificationOnFileRequestBodyInput
 ): SerializedData {
   return {
     ['op']:

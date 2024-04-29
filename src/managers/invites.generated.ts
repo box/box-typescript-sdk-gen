@@ -164,7 +164,7 @@ export class InvitesManager {
     requestBody: CreateInviteRequestBody,
     optionalsInput: CreateInviteOptionalsInput = {}
   ): Promise<Invite> {
-    const optionals: any = new CreateInviteOptionals({
+    const optionals: CreateInviteOptionals = new CreateInviteOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -202,7 +202,7 @@ export class InvitesManager {
     inviteId: string,
     optionalsInput: GetInviteByIdOptionalsInput = {}
   ): Promise<Invite> {
-    const optionals: any = new GetInviteByIdOptionals({
+    const optionals: GetInviteByIdOptionals = new GetInviteByIdOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -244,7 +244,7 @@ export interface InvitesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateInviteRequestBodyEnterpriseField(
-  val: any
+  val: CreateInviteRequestBodyEnterpriseField
 ): SerializedData {
   return { ['id']: val.id };
 }
@@ -255,7 +255,7 @@ export function deserializeCreateInviteRequestBodyEnterpriseField(
   return { id: id } satisfies CreateInviteRequestBodyEnterpriseField;
 }
 export function serializeCreateInviteRequestBodyActionableByField(
-  val: any
+  val: CreateInviteRequestBodyActionableByField
 ): SerializedData {
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
@@ -265,7 +265,9 @@ export function deserializeCreateInviteRequestBodyActionableByField(
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return { login: login } satisfies CreateInviteRequestBodyActionableByField;
 }
-export function serializeCreateInviteRequestBody(val: any): SerializedData {
+export function serializeCreateInviteRequestBody(
+  val: CreateInviteRequestBody
+): SerializedData {
   return {
     ['enterprise']: serializeCreateInviteRequestBodyEnterpriseField(
       val.enterprise

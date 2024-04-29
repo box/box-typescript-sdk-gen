@@ -132,9 +132,10 @@ export class FileVersionRetentionsManager {
     ),
     cancellationToken?: CancellationToken
   ): Promise<FileVersionRetentions> {
-    const headers: any = new GetFileVersionRetentionsHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
+    const headers: GetFileVersionRetentionsHeaders =
+      new GetFileVersionRetentionsHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
     const queryParamsMap: {
       readonly [key: string]: string;
     } = prepareParams({
@@ -171,10 +172,11 @@ export class FileVersionRetentionsManager {
     fileVersionRetentionId: string,
     optionalsInput: GetFileVersionRetentionByIdOptionalsInput = {}
   ): Promise<FileVersionRetention> {
-    const optionals: any = new GetFileVersionRetentionByIdOptionals({
-      headers: optionalsInput.headers,
-      cancellationToken: optionalsInput.cancellationToken,
-    });
+    const optionals: GetFileVersionRetentionByIdOptionals =
+      new GetFileVersionRetentionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {
@@ -203,7 +205,7 @@ export interface FileVersionRetentionsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFileVersionRetentionsQueryParamsDispositionActionField(
-  val: any
+  val: GetFileVersionRetentionsQueryParamsDispositionActionField
 ): SerializedData {
   return val;
 }
