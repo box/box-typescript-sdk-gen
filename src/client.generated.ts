@@ -69,6 +69,7 @@ import { SignRequestsManager } from './managers/signRequests.generated.js';
 import { WorkflowsManager } from './managers/workflows.generated.js';
 import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
+import { AiManager } from './managers/ai.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BaseUrls } from './networking/baseUrls.generated.js';
@@ -154,6 +155,7 @@ export class BoxClient {
   readonly workflows: WorkflowsManager;
   readonly signTemplates: SignTemplatesManager;
   readonly integrationMappings: IntegrationMappingsManager;
+  readonly ai: AiManager;
   constructor(
     fields: Omit<
       BoxClient,
@@ -225,6 +227,7 @@ export class BoxClient {
       | 'workflows'
       | 'signTemplates'
       | 'integrationMappings'
+      | 'ai'
       | 'networkSession'
       | 'withAsUserHeader'
       | 'withSuppressedNotifications'
@@ -516,6 +519,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.integrationMappings = new IntegrationMappingsManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.ai = new AiManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });

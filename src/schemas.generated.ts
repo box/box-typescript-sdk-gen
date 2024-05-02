@@ -12,6 +12,53 @@ import { sdIsNumber } from './serialization/json.js';
 import { sdIsString } from './serialization/json.js';
 import { sdIsList } from './serialization/json.js';
 import { sdIsMap } from './serialization/json.js';
+export type AiAskModeField = 'multiple_item_qa' | 'single_item_qa';
+export type AiAskItemsTypeField = 'file';
+export class AiAskItemsField {
+  readonly id!: string;
+  readonly type: AiAskItemsTypeField = 'file' as AiAskItemsTypeField;
+  readonly content?: string;
+  constructor(
+    fields: Omit<AiAskItemsField, 'type'> &
+      Partial<Pick<AiAskItemsField, 'type'>>
+  ) {
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.content) {
+      this.content = fields.content;
+    }
+  }
+}
+export interface AiAskItemsFieldInput {
+  readonly id: string;
+  readonly type?: AiAskItemsTypeField;
+  readonly content?: string;
+}
+export interface AiAsk {
+  readonly mode: AiAskModeField;
+  readonly prompt: string;
+  readonly items: readonly AiAskItemsField[];
+}
+export type AiTextGenItemsTypeField = 'file';
+export interface AiTextGenItemsField {
+  readonly id?: string;
+  readonly type?: AiTextGenItemsTypeField;
+  readonly content?: string;
+}
+export interface AiTextGenDialogueHistoryField {
+  readonly prompt?: string;
+  readonly answer?: string;
+  readonly createdAt?: DateTime;
+}
+export interface AiTextGen {
+  readonly prompt: string;
+  readonly items: readonly AiTextGenItemsField[];
+  readonly dialogueHistory?: readonly AiTextGenDialogueHistoryField[];
+}
 export type PostOAuth2TokenGrantTypeField =
   | 'authorization_code'
   | 'refresh_token'
@@ -153,6 +200,11 @@ export interface ClientError {
 export interface OAuth2Error {
   readonly error?: string;
   readonly errorDescription?: string;
+}
+export interface AiResponse {
+  readonly answer: string;
+  readonly createdAt: DateTime;
+  readonly completionReason?: string;
 }
 export type ClassificationTemplateField = 'securityClassification-6VMVochwUWo';
 export interface Classification {
@@ -4343,6 +4395,202 @@ export interface MetadataFilter {
   readonly templateKey?: string;
   readonly filters?: MetadataFilterFiltersField;
 }
+export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
+  return val;
+}
+export function deserializeAiAskModeField(val: any): AiAskModeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "AiAskModeField"',
+    });
+  }
+  if (val == 'multiple_item_qa') {
+    return 'multiple_item_qa';
+  }
+  if (val == 'single_item_qa') {
+    return 'single_item_qa';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeAiAskItemsTypeField(
+  val: AiAskItemsTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeAiAskItemsTypeField(val: any): AiAskItemsTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "AiAskItemsTypeField"',
+    });
+  }
+  if (val == 'file') {
+    return 'file';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeAiAskItemsField(val: AiAskItemsField): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']: serializeAiAskItemsTypeField(val.type),
+    ['content']: val.content == void 0 ? void 0 : val.content,
+  };
+}
+export function deserializeAiAskItemsField(val: any): AiAskItemsField {
+  const id: string = val.id;
+  const type: AiAskItemsTypeField = deserializeAiAskItemsTypeField(val.type);
+  const content: undefined | string =
+    val.content == void 0 ? void 0 : val.content;
+  return { id: id, type: type, content: content } satisfies AiAskItemsField;
+}
+export function serializeAiAskItemsFieldInput(
+  val: AiAskItemsFieldInput
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeAiAskItemsTypeField(val.type),
+    ['content']: val.content == void 0 ? void 0 : val.content,
+  };
+}
+export function deserializeAiAskItemsFieldInput(
+  val: any
+): AiAskItemsFieldInput {
+  const id: string = val.id;
+  const type: undefined | AiAskItemsTypeField =
+    val.type == void 0 ? void 0 : deserializeAiAskItemsTypeField(val.type);
+  const content: undefined | string =
+    val.content == void 0 ? void 0 : val.content;
+  return {
+    id: id,
+    type: type,
+    content: content,
+  } satisfies AiAskItemsFieldInput;
+}
+export function serializeAiAsk(val: AiAsk): SerializedData {
+  return {
+    ['mode']: serializeAiAskModeField(val.mode),
+    ['prompt']: val.prompt,
+    ['items']: val.items.map(function (item: AiAskItemsField): SerializedData {
+      return serializeAiAskItemsField(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeAiAsk(val: any): AiAsk {
+  const mode: AiAskModeField = deserializeAiAskModeField(val.mode);
+  const prompt: string = val.prompt;
+  const items: readonly AiAskItemsField[] = sdIsList(val.items)
+    ? (val.items.map(function (itm: SerializedData): AiAskItemsField {
+        return deserializeAiAskItemsField(itm);
+      }) as readonly any[])
+    : [];
+  return { mode: mode, prompt: prompt, items: items } satisfies AiAsk;
+}
+export function serializeAiTextGenItemsTypeField(
+  val: AiTextGenItemsTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeAiTextGenItemsTypeField(
+  val: any
+): AiTextGenItemsTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "AiTextGenItemsTypeField"',
+    });
+  }
+  if (val == 'file') {
+    return 'file';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeAiTextGenItemsField(
+  val: AiTextGenItemsField
+): SerializedData {
+  return {
+    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeAiTextGenItemsTypeField(val.type),
+    ['content']: val.content == void 0 ? void 0 : val.content,
+  };
+}
+export function deserializeAiTextGenItemsField(val: any): AiTextGenItemsField {
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const type: undefined | AiTextGenItemsTypeField =
+    val.type == void 0 ? void 0 : deserializeAiTextGenItemsTypeField(val.type);
+  const content: undefined | string =
+    val.content == void 0 ? void 0 : val.content;
+  return { id: id, type: type, content: content } satisfies AiTextGenItemsField;
+}
+export function serializeAiTextGenDialogueHistoryField(
+  val: AiTextGenDialogueHistoryField
+): SerializedData {
+  return {
+    ['prompt']: val.prompt == void 0 ? void 0 : val.prompt,
+    ['answer']: val.answer == void 0 ? void 0 : val.answer,
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+  };
+}
+export function deserializeAiTextGenDialogueHistoryField(
+  val: any
+): AiTextGenDialogueHistoryField {
+  const prompt: undefined | string = val.prompt == void 0 ? void 0 : val.prompt;
+  const answer: undefined | string = val.answer == void 0 ? void 0 : val.answer;
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  return {
+    prompt: prompt,
+    answer: answer,
+    createdAt: createdAt,
+  } satisfies AiTextGenDialogueHistoryField;
+}
+export function serializeAiTextGen(val: AiTextGen): SerializedData {
+  return {
+    ['prompt']: val.prompt,
+    ['items']: val.items.map(function (
+      item: AiTextGenItemsField
+    ): SerializedData {
+      return serializeAiTextGenItemsField(item);
+    }) as readonly any[],
+    ['dialogue_history']:
+      val.dialogueHistory == void 0
+        ? void 0
+        : (val.dialogueHistory.map(function (
+            item: AiTextGenDialogueHistoryField
+          ): SerializedData {
+            return serializeAiTextGenDialogueHistoryField(item);
+          }) as readonly any[]),
+  };
+}
+export function deserializeAiTextGen(val: any): AiTextGen {
+  const prompt: string = val.prompt;
+  const items: readonly AiTextGenItemsField[] = sdIsList(val.items)
+    ? (val.items.map(function (itm: SerializedData): AiTextGenItemsField {
+        return deserializeAiTextGenItemsField(itm);
+      }) as readonly any[])
+    : [];
+  const dialogueHistory: undefined | readonly AiTextGenDialogueHistoryField[] =
+    val.dialogue_history == void 0
+      ? void 0
+      : sdIsList(val.dialogue_history)
+      ? (val.dialogue_history.map(function (
+          itm: SerializedData
+        ): AiTextGenDialogueHistoryField {
+          return deserializeAiTextGenDialogueHistoryField(itm);
+        }) as readonly any[])
+      : [];
+  return {
+    prompt: prompt,
+    items: items,
+    dialogueHistory: dialogueHistory,
+  } satisfies AiTextGen;
+}
 export function serializePostOAuth2TokenGrantTypeField(
   val: PostOAuth2TokenGrantTypeField
 ): SerializedData {
@@ -5106,6 +5354,25 @@ export function deserializeOAuth2Error(val: any): OAuth2Error {
     error: error,
     errorDescription: errorDescription,
   } satisfies OAuth2Error;
+}
+export function serializeAiResponse(val: AiResponse): SerializedData {
+  return {
+    ['answer']: val.answer,
+    ['created_at']: serializeDateTime(val.createdAt),
+    ['completion_reason']:
+      val.completionReason == void 0 ? void 0 : val.completionReason,
+  };
+}
+export function deserializeAiResponse(val: any): AiResponse {
+  const answer: string = val.answer;
+  const createdAt: DateTime = deserializeDateTime(val.created_at);
+  const completionReason: undefined | string =
+    val.completion_reason == void 0 ? void 0 : val.completion_reason;
+  return {
+    answer: answer,
+    createdAt: createdAt,
+    completionReason: completionReason,
+  } satisfies AiResponse;
 }
 export function serializeClassificationTemplateField(
   val: ClassificationTemplateField
