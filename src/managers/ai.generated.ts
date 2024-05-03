@@ -135,7 +135,7 @@ export class AiManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/v2/ai/ask') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/ai/ask') as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -163,10 +163,7 @@ export class AiManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/v2/ai/text_gen'
-      ) as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/ai/text_gen') as string,
       {
         method: 'POST',
         headers: headersMap,
