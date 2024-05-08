@@ -34,6 +34,10 @@ import { serializeMetadataFilter } from '../schemas.generated.js';
 import { deserializeMetadataFilter } from '../schemas.generated.js';
 import { serializeMetadataFilterScopeField } from '../schemas.generated.js';
 import { deserializeMetadataFilterScopeField } from '../schemas.generated.js';
+import { serializeMetadataFieldFilterDateRange } from '../schemas.generated.js';
+import { deserializeMetadataFieldFilterDateRange } from '../schemas.generated.js';
+import { serializeMetadataFieldFilterFloatRange } from '../schemas.generated.js';
+import { deserializeMetadataFieldFilterFloatRange } from '../schemas.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -57,7 +61,10 @@ import { MetadataFilter } from '../schemas.generated.js';
 import { MetadataFilterScopeField } from '../schemas.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
+import { dateTimeFromString } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { MetadataFieldFilterDateRange } from '../schemas.generated.js';
+import { MetadataFieldFilterFloatRange } from '../schemas.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -236,40 +243,22 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
         ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
       }
     );
-  const stringQuery: SearchResultsOrSearchResultsWithSharedLinks =
-    await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
-      mdfilters: [
-        {
-          filters: { ['stringField']: 'stringValue' },
-          scope: 'enterprise' as MetadataFilterScopeField,
-          templateKey: templateKey,
-        } satisfies MetadataFilter,
-      ],
-    } satisfies SearchForContentQueryParams);
-  if (!(stringQuery.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
-  const enumQuery: SearchResultsOrSearchResultsWithSharedLinks =
-    await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
-      mdfilters: [
-        {
-          filters: { ['enumField']: 'enumValue2' },
-          scope: 'enterprise' as MetadataFilterScopeField,
-          templateKey: templateKey,
-        } satisfies MetadataFilter,
-      ],
-    } satisfies SearchForContentQueryParams);
-  if (!(enumQuery.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
-  const multiSelectQuery: SearchResultsOrSearchResultsWithSharedLinks =
+  const query: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
       ancestorFolderIds: ['0' as string],
       mdfilters: [
         {
           filters: {
+            ['stringField']: 'stringValue',
+            ['dateField']: {
+              lt: dateTimeFromString('2035-01-01T00:00:00Z'),
+              gt: dateTimeFromString('2035-01-03T00:00:00Z'),
+            } satisfies MetadataFieldFilterDateRange,
+            ['floatField']: {
+              lt: 9.5,
+              gt: 10.5,
+            } satisfies MetadataFieldFilterFloatRange,
+            ['enumField']: 'enumValue2',
             ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
           },
           scope: 'enterprise' as MetadataFilterScopeField,
@@ -277,7 +266,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
         } satisfies MetadataFilter,
       ],
     } satisfies SearchForContentQueryParams);
-  if (!(multiSelectQuery.entries!.length >= 0)) {
+  if (!(query.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(

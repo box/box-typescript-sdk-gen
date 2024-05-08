@@ -59,6 +59,16 @@ await client.search.searchForContent({
   mdfilters: [
     {
       filters: {
+        ['stringField']: 'stringValue',
+        ['dateField']: {
+          lt: dateTimeFromString('2035-01-01T00:00:00Z'),
+          gt: dateTimeFromString('2035-01-03T00:00:00Z'),
+        } satisfies MetadataFieldFilterDateRange,
+        ['floatField']: {
+          lt: 9.5,
+          gt: 10.5,
+        } satisfies MetadataFieldFilterFloatRange,
+        ['enumField']: 'enumValue2',
         ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
       },
       scope: 'enterprise' as MetadataFilterScopeField,
