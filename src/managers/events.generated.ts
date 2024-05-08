@@ -81,6 +81,7 @@ export type GetEventsQueryParamsEventTypeField =
   | 'GROUP_EDITED'
   | 'GROUP_REMOVE_ITEM'
   | 'GROUP_REMOVE_USER'
+  | 'ITEM_EMAIL_SEND'
   | 'ITEM_MODIFY'
   | 'ITEM_OPEN'
   | 'ITEM_SHARED_UPDATE'
@@ -108,6 +109,7 @@ export type GetEventsQueryParamsEventTypeField =
   | 'RENAME'
   | 'RETENTION_POLICY_ASSIGNMENT_ADD'
   | 'SHARE'
+  | 'SHARED_LINK_SEND'
   | 'SHARE_EXPIRATION'
   | 'SHIELD_ALERT'
   | 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED'
@@ -470,6 +472,9 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   if (val == 'GROUP_REMOVE_USER') {
     return 'GROUP_REMOVE_USER';
   }
+  if (val == 'ITEM_EMAIL_SEND') {
+    return 'ITEM_EMAIL_SEND';
+  }
   if (val == 'ITEM_MODIFY') {
     return 'ITEM_MODIFY';
   }
@@ -550,6 +555,9 @@ export function deserializeGetEventsQueryParamsEventTypeField(
   }
   if (val == 'SHARE') {
     return 'SHARE';
+  }
+  if (val == 'SHARED_LINK_SEND') {
+    return 'SHARED_LINK_SEND';
   }
   if (val == 'SHARE_EXPIRATION') {
     return 'SHARE_EXPIRATION';
