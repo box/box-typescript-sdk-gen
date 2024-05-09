@@ -12,7 +12,26 @@ This operation is performed by calling function `createAiAsk`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-ai-ask/).
 
-_Currently we don't have an example for calling `createAiAsk` in integration tests_
+<!-- sample post_ai_ask -->
+
+```ts
+await client.ai.createAiAsk({
+  mode: 'multiple_item_qa' as AiAskModeField,
+  prompt: 'Which direction sun rises?',
+  items: [
+    new AiAskItemsField({
+      id: fileToAsk1.id,
+      type: 'file' as AiAskItemsTypeField,
+      content: 'Earth goes around the sun',
+    }),
+    new AiAskItemsField({
+      id: fileToAsk2.id,
+      type: 'file' as AiAskItemsTypeField,
+      content: 'Sun rises in the East in the morning',
+    }),
+  ],
+} satisfies AiAsk);
+```
 
 ### Arguments
 
@@ -36,7 +55,33 @@ This operation is performed by calling function `createAiTextGen`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-ai-text-gen/).
 
-_Currently we don't have an example for calling `createAiTextGen` in integration tests_
+<!-- sample post_ai_text_gen -->
+
+```ts
+await client.ai.createAiTextGen({
+  prompt: 'Parapharse the document.s',
+  items: [
+    {
+      id: fileToAsk.id,
+      type: 'file' as AiTextGenItemsTypeField,
+      content:
+        'The Earth goes around the sun. Sun rises in the East in the morning.',
+    } satisfies AiTextGenItemsField,
+  ],
+  dialogueHistory: [
+    {
+      prompt: 'What does the earth go around?',
+      answer: 'The sun',
+      createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
+    } satisfies AiTextGenDialogueHistoryField,
+    {
+      prompt: 'On Earth, where does the sun rise?',
+      answer: 'East',
+      createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
+    } satisfies AiTextGenDialogueHistoryField,
+  ],
+} satisfies AiTextGen);
+```
 
 ### Arguments
 
