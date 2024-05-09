@@ -2730,6 +2730,7 @@ export type EventEventTypeField =
   | 'ITEM_COPY'
   | 'ITEM_CREATE'
   | 'ITEM_DOWNLOAD'
+  | 'ITEM_EMAIL_SEND'
   | 'ITEM_MAKE_CURRENT_VERSION'
   | 'ITEM_MODIFY'
   | 'ITEM_MOVE'
@@ -2770,6 +2771,7 @@ export type EventEventTypeField =
   | 'RENAME'
   | 'RETENTION_POLICY_ASSIGNMENT_ADD'
   | 'SHARE'
+  | 'SHARED_LINK_SEND'
   | 'SHARE_EXPIRATION'
   | 'SHIELD_ALERT'
   | 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED'
@@ -4357,43 +4359,33 @@ export interface Users {
   readonly order?: readonly UsersOrderField[];
   readonly entries?: readonly UserFull[];
 }
-export type MetadataFieldFilterString = {
-  readonly [key: string]: string;
-};
-export type MetadataFieldFilterFloat = {
-  readonly [key: string]: number;
-};
-export type MetadataFieldFilterMultiSelect = {
-  readonly [key: string]: readonly string[];
-};
-export interface MetadataFieldFilterFloatRangeValue {
+export interface MetadataFieldFilterFloatRange {
   readonly lt?: number;
   readonly gt?: number;
 }
-export type MetadataFieldFilterFloatRange = {
-  readonly [key: string]: MetadataFieldFilterFloatRangeValue;
-};
-export interface MetadataFieldFilterDateRangeValue {
+export interface MetadataFieldFilterDateRange {
   readonly lt?: DateTime;
   readonly gt?: DateTime;
 }
-export type MetadataFieldFilterDateRange = {
-  readonly [key: string]: MetadataFieldFilterDateRangeValue;
-};
+export type MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString =
+
+    | MetadataFieldFilterDateRange
+    | MetadataFieldFilterFloatRange
+    | readonly string[]
+    | number
+    | string;
 export type MetadataFilterScopeField =
   | 'global'
   | 'enterprise'
   | 'enterprise_{enterprise_id}';
-export type MetadataFilterFiltersField =
-  | MetadataFieldFilterString
-  | MetadataFieldFilterFloat
-  | MetadataFieldFilterMultiSelect
-  | MetadataFieldFilterFloatRange
-  | MetadataFieldFilterDateRange;
 export interface MetadataFilter {
   readonly scope?: MetadataFilterScopeField;
   readonly templateKey?: string;
-  readonly filters?: MetadataFilterFiltersField;
+  readonly filters?: {
+    readonly [
+      key: string
+    ]: MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString;
+  };
 }
 export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
   return val;
@@ -17456,6 +17448,9 @@ export function deserializeEventEventTypeField(val: any): EventEventTypeField {
   if (val == 'ITEM_DOWNLOAD') {
     return 'ITEM_DOWNLOAD';
   }
+  if (val == 'ITEM_EMAIL_SEND') {
+    return 'ITEM_EMAIL_SEND';
+  }
   if (val == 'ITEM_MAKE_CURRENT_VERSION') {
     return 'ITEM_MAKE_CURRENT_VERSION';
   }
@@ -17575,6 +17570,9 @@ export function deserializeEventEventTypeField(val: any): EventEventTypeField {
   }
   if (val == 'SHARE') {
     return 'SHARE';
+  }
+  if (val == 'SHARED_LINK_SEND') {
+    return 'SHARED_LINK_SEND';
   }
   if (val == 'SHARE_EXPIRATION') {
     return 'SHARE_EXPIRATION';
@@ -25455,112 +25453,92 @@ export function deserializeUsers(val: any): Users {
     entries: entries,
   } satisfies Users;
 }
-export function serializeMetadataFieldFilterString(
-  val: MetadataFieldFilterString
-): SerializedData {
-  return val;
-}
-export function deserializeMetadataFieldFilterString(
-  val: any
-): MetadataFieldFilterString {
-  return val;
-}
-export function serializeMetadataFieldFilterFloat(
-  val: MetadataFieldFilterFloat
-): SerializedData {
-  return val;
-}
-export function deserializeMetadataFieldFilterFloat(
-  val: any
-): MetadataFieldFilterFloat {
-  return val;
-}
-export function serializeMetadataFieldFilterMultiSelect(
-  val: MetadataFieldFilterMultiSelect
-): SerializedData {
-  return Object.fromEntries(
-    Object.entries(val).map(([k, v]: [string, any]) => [
-      k,
-      (function (v: any): any {
-        return v.map(function (item: string): SerializedData {
-          return item;
-        }) as readonly any[];
-      })(v),
-    ])
-  ) as {
-    readonly [key: string]: any;
-  };
-}
-export function deserializeMetadataFieldFilterMultiSelect(
-  val: any
-): MetadataFieldFilterMultiSelect {
-  return val;
-}
-export function serializeMetadataFieldFilterFloatRangeValue(
-  val: MetadataFieldFilterFloatRangeValue
+export function serializeMetadataFieldFilterFloatRange(
+  val: MetadataFieldFilterFloatRange
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : val.lt,
     ['gt']: val.gt == void 0 ? void 0 : val.gt,
   };
 }
-export function deserializeMetadataFieldFilterFloatRangeValue(
-  val: any
-): MetadataFieldFilterFloatRangeValue {
-  const lt: undefined | number = val.lt == void 0 ? void 0 : val.lt;
-  const gt: undefined | number = val.gt == void 0 ? void 0 : val.gt;
-  return { lt: lt, gt: gt } satisfies MetadataFieldFilterFloatRangeValue;
-}
-export function serializeMetadataFieldFilterFloatRange(
-  val: MetadataFieldFilterFloatRange
-): SerializedData {
-  return Object.fromEntries(
-    Object.entries(val).map(([k, v]: [string, any]) => [
-      k,
-      serializeMetadataFieldFilterFloatRangeValue(v),
-    ])
-  ) as {
-    readonly [key: string]: any;
-  };
-}
 export function deserializeMetadataFieldFilterFloatRange(
   val: any
 ): MetadataFieldFilterFloatRange {
-  return val;
+  const lt: undefined | number = val.lt == void 0 ? void 0 : val.lt;
+  const gt: undefined | number = val.gt == void 0 ? void 0 : val.gt;
+  return { lt: lt, gt: gt } satisfies MetadataFieldFilterFloatRange;
 }
-export function serializeMetadataFieldFilterDateRangeValue(
-  val: MetadataFieldFilterDateRangeValue
+export function serializeMetadataFieldFilterDateRange(
+  val: MetadataFieldFilterDateRange
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : serializeDateTime(val.lt),
     ['gt']: val.gt == void 0 ? void 0 : serializeDateTime(val.gt),
   };
 }
-export function deserializeMetadataFieldFilterDateRangeValue(
+export function deserializeMetadataFieldFilterDateRange(
   val: any
-): MetadataFieldFilterDateRangeValue {
+): MetadataFieldFilterDateRange {
   const lt: undefined | DateTime =
     val.lt == void 0 ? void 0 : deserializeDateTime(val.lt);
   const gt: undefined | DateTime =
     val.gt == void 0 ? void 0 : deserializeDateTime(val.gt);
-  return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRangeValue;
+  return { lt: lt, gt: gt } satisfies MetadataFieldFilterDateRange;
 }
-export function serializeMetadataFieldFilterDateRange(
-  val: MetadataFieldFilterDateRange
-): SerializedData {
-  return Object.fromEntries(
-    Object.entries(val).map(([k, v]: [string, any]) => [
-      k,
-      serializeMetadataFieldFilterDateRangeValue(v),
-    ])
-  ) as {
-    readonly [key: string]: any;
-  };
-}
-export function deserializeMetadataFieldFilterDateRange(
+export function serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
   val: any
-): MetadataFieldFilterDateRange {
-  return val;
+): SerializedData {
+  if (sdIsString(val)) {
+    return val;
+  }
+  if (sdIsNumber(val)) {
+    return val;
+  }
+  if (sdIsList(val)) {
+    return val;
+  }
+  try {
+    return serializeMetadataFieldFilterDateRange(val);
+  } catch (error) {
+    void 0;
+  } finally {
+  }
+  try {
+    return serializeMetadataFieldFilterFloatRange(val);
+  } catch (error) {
+    void 0;
+  } finally {
+  }
+  throw new BoxSdkError({
+    message:
+      "Can't serialize MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString",
+  });
+}
+export function deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
+  val: any
+): MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString {
+  if (sdIsString(val)) {
+    return val;
+  }
+  if (sdIsNumber(val)) {
+    return val;
+  }
+  try {
+    return deserializeMetadataFieldFilterDateRange(val);
+  } catch (error) {
+    void 0;
+  } finally {
+  }
+  try {
+    return deserializeMetadataFieldFilterFloatRange(val);
+  } catch (error) {
+    void 0;
+  } finally {
+  }
+  throw new BoxSdkError({
+    message:
+      "Can't deserialize MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString",
+  });
 }
 export function serializeMetadataFilterScopeField(
   val: MetadataFilterScopeField
@@ -25588,78 +25566,6 @@ export function deserializeMetadataFilterScopeField(
     message: ''.concat('Invalid value: ', val) as string,
   });
 }
-export function serializeMetadataFilterFiltersField(val: any): SerializedData {
-  try {
-    return serializeMetadataFieldFilterString(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return serializeMetadataFieldFilterFloat(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return serializeMetadataFieldFilterMultiSelect(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return serializeMetadataFieldFilterFloatRange(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return serializeMetadataFieldFilterDateRange(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  throw new BoxSdkError({
-    message: "Can't serialize MetadataFilterFiltersField",
-  });
-}
-export function deserializeMetadataFilterFiltersField(
-  val: any
-): MetadataFilterFiltersField {
-  try {
-    return deserializeMetadataFieldFilterString(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return deserializeMetadataFieldFilterFloat(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return deserializeMetadataFieldFilterMultiSelect(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return deserializeMetadataFieldFilterFloatRange(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  try {
-    return deserializeMetadataFieldFilterDateRange(val);
-  } catch (error) {
-    void 0;
-  } finally {
-  }
-  throw new BoxSdkError({
-    message: "Can't deserialize MetadataFilterFiltersField",
-  });
-}
 export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
   return {
     ['scope']:
@@ -25670,7 +25576,16 @@ export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
     ['filters']:
       val.filters == void 0
         ? void 0
-        : serializeMetadataFilterFiltersField(val.filters),
+        : (Object.fromEntries(
+            Object.entries(val.filters).map(([k, v]: [string, any]) => [
+              k,
+              serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
+                v
+              ),
+            ])
+          ) as {
+            readonly [key: string]: any;
+          }),
   };
 }
 export function deserializeMetadataFilter(val: any): MetadataFilter {
@@ -25680,10 +25595,13 @@ export function deserializeMetadataFilter(val: any): MetadataFilter {
       : deserializeMetadataFilterScopeField(val.scope);
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
-  const filters: undefined | MetadataFilterFiltersField =
-    val.filters == void 0
-      ? void 0
-      : deserializeMetadataFilterFiltersField(val.filters);
+  const filters:
+    | undefined
+    | {
+        readonly [
+          key: string
+        ]: MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString;
+      } = val.filters == void 0 ? void 0 : val.filters;
   return {
     scope: scope,
     templateKey: templateKey,
