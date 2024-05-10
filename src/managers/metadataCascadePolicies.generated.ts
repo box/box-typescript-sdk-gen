@@ -491,7 +491,7 @@ export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
   return val;
 }
 export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
-  val: any
+  val: SerializedData
 ): CreateMetadataCascadePolicyRequestBodyScopeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -521,11 +521,46 @@ export function serializeCreateMetadataCascadePolicyRequestBody(
   };
 }
 export function deserializeCreateMetadataCascadePolicyRequestBody(
-  val: any
+  val: SerializedData
 ): CreateMetadataCascadePolicyRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateMetadataCascadePolicyRequestBody"',
+    });
+  }
+  if (val.folder_id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "folder_id" of type "CreateMetadataCascadePolicyRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.folder_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "folder_id" of type "CreateMetadataCascadePolicyRequestBody"',
+    });
+  }
   const folderId: string = val.folder_id;
+  if (val.scope == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "scope" of type "CreateMetadataCascadePolicyRequestBody" to be defined',
+    });
+  }
   const scope: CreateMetadataCascadePolicyRequestBodyScopeField =
     deserializeCreateMetadataCascadePolicyRequestBodyScopeField(val.scope);
+  if (val.templateKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "templateKey" of type "CreateMetadataCascadePolicyRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.templateKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "templateKey" of type "CreateMetadataCascadePolicyRequestBody"',
+    });
+  }
   const templateKey: string = val.templateKey;
   return {
     folderId: folderId,
@@ -539,7 +574,7 @@ export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolution
   return val;
 }
 export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-  val: any
+  val: SerializedData
 ): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -568,8 +603,19 @@ export function serializeApplyMetadataCascadePolicyRequestBody(
   };
 }
 export function deserializeApplyMetadataCascadePolicyRequestBody(
-  val: any
+  val: SerializedData
 ): ApplyMetadataCascadePolicyRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ApplyMetadataCascadePolicyRequestBody"',
+    });
+  }
+  if (val.conflict_resolution == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "conflict_resolution" of type "ApplyMetadataCascadePolicyRequestBody" to be defined',
+    });
+  }
   const conflictResolution: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
     deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
       val.conflict_resolution

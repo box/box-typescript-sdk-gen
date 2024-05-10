@@ -18,6 +18,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -346,8 +347,20 @@ export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): RestoreWeblinkFromTrashRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "RestoreWeblinkFromTrashRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RestoreWeblinkFromTrashRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
@@ -363,8 +376,19 @@ export function serializeRestoreWeblinkFromTrashRequestBody(
   };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBody(
-  val: any
+  val: SerializedData
 ): RestoreWeblinkFromTrashRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RestoreWeblinkFromTrashRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "RestoreWeblinkFromTrashRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const parent: undefined | RestoreWeblinkFromTrashRequestBodyParentField =
     val.parent == void 0

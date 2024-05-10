@@ -371,7 +371,7 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFiel
   return val;
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -397,12 +397,36 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyTosField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTermsOfServiceStatusForUserRequestBodyTosField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateTermsOfServiceStatusForUserRequestBodyTosField" to be defined',
+    });
+  }
   const type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTermsOfServiceStatusForUserRequestBodyTosField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTermsOfServiceStatusForUserRequestBodyTosField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -423,8 +447,14 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInp
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput"',
+    });
+  }
   const type:
     | undefined
     | CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
@@ -433,6 +463,18 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldI
       : deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
           val.type
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -445,7 +487,7 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeFie
   return val;
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -472,12 +514,36 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyUserField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTermsOfServiceStatusForUserRequestBodyUserField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateTermsOfServiceStatusForUserRequestBodyUserField" to be defined',
+    });
+  }
   const type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTermsOfServiceStatusForUserRequestBodyUserField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTermsOfServiceStatusForUserRequestBodyUserField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -498,8 +564,14 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldIn
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput"',
+    });
+  }
   const type:
     | undefined
     | CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
@@ -508,6 +580,18 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
       : deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
           val.type
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -528,12 +612,42 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBody(
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTermsOfServiceStatusForUserRequestBody"',
+    });
+  }
+  if (val.tos == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "tos" of type "CreateTermsOfServiceStatusForUserRequestBody" to be defined',
+    });
+  }
   const tos: CreateTermsOfServiceStatusForUserRequestBodyTosField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(val.tos);
+  if (val.user == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "user" of type "CreateTermsOfServiceStatusForUserRequestBody" to be defined',
+    });
+  }
   const user: CreateTermsOfServiceStatusForUserRequestBodyUserField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField(val.user);
+  if (val.is_accepted == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "is_accepted" of type "CreateTermsOfServiceStatusForUserRequestBody" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.is_accepted)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accepted" of type "CreateTermsOfServiceStatusForUserRequestBody"',
+    });
+  }
   const isAccepted: boolean = val.is_accepted;
   return {
     tos: tos,
@@ -547,8 +661,26 @@ export function serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
   return { ['is_accepted']: val.isAccepted };
 }
 export function deserializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateTermsOfServiceStatusForUserByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateTermsOfServiceStatusForUserByIdRequestBody"',
+    });
+  }
+  if (val.is_accepted == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "is_accepted" of type "UpdateTermsOfServiceStatusForUserByIdRequestBody" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.is_accepted)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accepted" of type "UpdateTermsOfServiceStatusForUserByIdRequestBody"',
+    });
+  }
   const isAccepted: boolean = val.is_accepted;
   return {
     isAccepted: isAccepted,

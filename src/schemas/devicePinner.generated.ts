@@ -22,7 +22,7 @@ export function serializeDevicePinnerTypeField(
   return val;
 }
 export function deserializeDevicePinnerTypeField(
-  val: any
+  val: SerializedData
 ): DevicePinnerTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -46,12 +46,25 @@ export function serializeDevicePinner(val: DevicePinner): SerializedData {
     ['product_name']: val.productName == void 0 ? void 0 : val.productName,
   };
 }
-export function deserializeDevicePinner(val: any): DevicePinner {
+export function deserializeDevicePinner(val: SerializedData): DevicePinner {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "DevicePinner"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "DevicePinner"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | DevicePinnerTypeField =
     val.type == void 0 ? void 0 : deserializeDevicePinnerTypeField(val.type);
   const ownedBy: undefined | UserMini =
     val.owned_by == void 0 ? void 0 : deserializeUserMini(val.owned_by);
+  if (!(val.product_name == void 0) && !sdIsString(val.product_name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "product_name" of type "DevicePinner"',
+    });
+  }
   const productName: undefined | string =
     val.product_name == void 0 ? void 0 : val.product_name;
   return {

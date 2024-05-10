@@ -50,7 +50,7 @@ export function serializeTrashWebLinkRestoredTypeField(
   return val;
 }
 export function deserializeTrashWebLinkRestoredTypeField(
-  val: any
+  val: SerializedData
 ): TrashWebLinkRestoredTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -75,9 +75,38 @@ export function serializeTrashWebLinkRestoredPathCollectionField(
   };
 }
 export function deserializeTrashWebLinkRestoredPathCollectionField(
-  val: any
+  val: SerializedData
 ): TrashWebLinkRestoredPathCollectionField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TrashWebLinkRestoredPathCollectionField"',
+    });
+  }
+  if (val.total_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "total_count" of type "TrashWebLinkRestoredPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "TrashWebLinkRestoredPathCollectionField"',
+    });
+  }
   const totalCount: number = val.total_count;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "TrashWebLinkRestoredPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "TrashWebLinkRestoredPathCollectionField"',
+    });
+  }
   const entries: readonly FolderMini[] = sdIsList(val.entries)
     ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
@@ -94,7 +123,7 @@ export function serializeTrashWebLinkRestoredItemStatusField(
   return val;
 }
 export function deserializeTrashWebLinkRestoredItemStatusField(
-  val: any
+  val: SerializedData
 ): TrashWebLinkRestoredItemStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -152,29 +181,102 @@ export function serializeTrashWebLinkRestored(
   };
 }
 export function deserializeTrashWebLinkRestored(
-  val: any
+  val: SerializedData
 ): TrashWebLinkRestored {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TrashWebLinkRestored"',
+    });
+  }
   const type: undefined | TrashWebLinkRestoredTypeField =
     val.type == void 0
       ? void 0
       : deserializeTrashWebLinkRestoredTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TrashWebLinkRestored"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (val.sequence_id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "sequence_id" of type "TrashWebLinkRestored" to be defined',
+    });
+  }
+  if (!sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "sequence_id" of type "TrashWebLinkRestored"',
+    });
+  }
   const sequenceId: string = val.sequence_id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "TrashWebLinkRestored"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "TrashWebLinkRestored"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "TrashWebLinkRestored"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
   const parent: undefined | FolderMini =
     val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "TrashWebLinkRestored"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (val.path_collection == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "path_collection" of type "TrashWebLinkRestored" to be defined',
+    });
+  }
   const pathCollection: TrashWebLinkRestoredPathCollectionField =
     deserializeTrashWebLinkRestoredPathCollectionField(val.path_collection);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "TrashWebLinkRestored"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "TrashWebLinkRestored"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "trashed_at" of type "TrashWebLinkRestored"',
+    });
+  }
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "purged_at" of type "TrashWebLinkRestored"',
+    });
+  }
   const purgedAt: undefined | string =
     val.purged_at == void 0 ? void 0 : val.purged_at;
   const createdBy: undefined | UserMini =
@@ -183,6 +285,12 @@ export function deserializeTrashWebLinkRestored(
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
   const ownedBy: undefined | UserMini =
     val.owned_by == void 0 ? void 0 : deserializeUserMini(val.owned_by);
+  if (!(val.shared_link == void 0) && !sdIsString(val.shared_link)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "shared_link" of type "TrashWebLinkRestored"',
+    });
+  }
   const sharedLink: undefined | string =
     val.shared_link == void 0 ? void 0 : val.shared_link;
   const itemStatus: undefined | TrashWebLinkRestoredItemStatusField =

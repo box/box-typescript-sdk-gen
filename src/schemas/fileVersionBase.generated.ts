@@ -33,7 +33,7 @@ export function serializeFileVersionBaseTypeField(
   return val;
 }
 export function deserializeFileVersionBaseTypeField(
-  val: any
+  val: SerializedData
 ): FileVersionBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -53,8 +53,28 @@ export function serializeFileVersionBase(val: FileVersionBase): SerializedData {
     ['type']: serializeFileVersionBaseTypeField(val.type),
   };
 }
-export function deserializeFileVersionBase(val: any): FileVersionBase {
+export function deserializeFileVersionBase(
+  val: SerializedData
+): FileVersionBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersionBase"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileVersionBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersionBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileVersionBase" to be defined',
+    });
+  }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
     val.type
   );
@@ -70,8 +90,23 @@ export function serializeFileVersionBaseInput(
   };
 }
 export function deserializeFileVersionBaseInput(
-  val: any
+  val: SerializedData
 ): FileVersionBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileVersionBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileVersionBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersionBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | FileVersionBaseTypeField =
     val.type == void 0 ? void 0 : deserializeFileVersionBaseTypeField(val.type);

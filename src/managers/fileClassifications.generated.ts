@@ -423,8 +423,22 @@ export function serializeAddClassificationToFileRequestBody(
   };
 }
 export function deserializeAddClassificationToFileRequestBody(
-  val: any
+  val: SerializedData
 ): AddClassificationToFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddClassificationToFileRequestBody"',
+    });
+  }
+  if (
+    !(val.Box__Security__Classification__Key == void 0) &&
+    !sdIsString(val.Box__Security__Classification__Key)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "Box__Security__Classification__Key" of type "AddClassificationToFileRequestBody"',
+    });
+  }
   const boxSecurityClassificationKey: undefined | string =
     val.Box__Security__Classification__Key == void 0
       ? void 0
@@ -439,7 +453,7 @@ export function serializeUpdateClassificationOnFileRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateClassificationOnFileRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -460,7 +474,7 @@ export function serializeUpdateClassificationOnFileRequestBodyPathField(
   return val;
 }
 export function deserializeUpdateClassificationOnFileRequestBodyPathField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFileRequestBodyPathField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -485,12 +499,41 @@ export function serializeUpdateClassificationOnFileRequestBody(
   };
 }
 export function deserializeUpdateClassificationOnFileRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateClassificationOnFileRequestBody"',
+    });
+  }
+  if (val.op == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "op" of type "UpdateClassificationOnFileRequestBody" to be defined',
+    });
+  }
   const op: UpdateClassificationOnFileRequestBodyOpField =
     deserializeUpdateClassificationOnFileRequestBodyOpField(val.op);
+  if (val.path == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "path" of type "UpdateClassificationOnFileRequestBody" to be defined',
+    });
+  }
   const path: UpdateClassificationOnFileRequestBodyPathField =
     deserializeUpdateClassificationOnFileRequestBodyPathField(val.path);
+  if (val.value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "value" of type "UpdateClassificationOnFileRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateClassificationOnFileRequestBody"',
+    });
+  }
   const value: string = val.value;
   return {
     op: op,
@@ -514,8 +557,14 @@ export function serializeUpdateClassificationOnFileRequestBodyInput(
   };
 }
 export function deserializeUpdateClassificationOnFileRequestBodyInput(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFileRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateClassificationOnFileRequestBodyInput"',
+    });
+  }
   const op: undefined | UpdateClassificationOnFileRequestBodyOpField =
     val.op == void 0
       ? void 0
@@ -524,6 +573,18 @@ export function deserializeUpdateClassificationOnFileRequestBodyInput(
     val.path == void 0
       ? void 0
       : deserializeUpdateClassificationOnFileRequestBodyPathField(val.path);
+  if (val.value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "value" of type "UpdateClassificationOnFileRequestBodyInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateClassificationOnFileRequestBodyInput"',
+    });
+  }
   const value: string = val.value;
   return {
     op: op,

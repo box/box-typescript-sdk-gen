@@ -7,6 +7,7 @@ import { deserializeRoleVariable } from './roleVariable.generated.js';
 import { CollaboratorVariable } from './collaboratorVariable.generated.js';
 import { CompletionRuleVariable } from './completionRuleVariable.generated.js';
 import { RoleVariable } from './roleVariable.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -44,7 +45,20 @@ export function serializeOutcome(val: Outcome): SerializedData {
     ['role']: val.role == void 0 ? void 0 : serializeRoleVariable(val.role),
   };
 }
-export function deserializeOutcome(val: any): Outcome {
+export function deserializeOutcome(val: SerializedData): Outcome {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Outcome"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "Outcome" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Outcome"',
+    });
+  }
   const id: string = val.id;
   const collaborators: undefined | CollaboratorVariable =
     val.collaborators == void 0

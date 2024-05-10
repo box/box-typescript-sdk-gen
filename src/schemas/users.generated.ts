@@ -27,7 +27,7 @@ export function serializeUsersOrderDirectionField(
   return val;
 }
 export function deserializeUsersOrderDirectionField(
-  val: any
+  val: SerializedData
 ): UsersOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -53,7 +53,17 @@ export function serializeUsersOrderField(val: UsersOrderField): SerializedData {
         : serializeUsersOrderDirectionField(val.direction),
   };
 }
-export function deserializeUsersOrderField(val: any): UsersOrderField {
+export function deserializeUsersOrderField(
+  val: SerializedData
+): UsersOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "UsersOrderField"' });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "UsersOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | UsersOrderDirectionField =
     val.direction == void 0
@@ -80,11 +90,34 @@ export function serializeUsers(val: Users): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeUsers(val: any): Users {
+export function deserializeUsers(val: SerializedData): Users {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Users"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "Users"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Users"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "Users"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "Users"',
+    });
+  }
   const order: undefined | readonly UsersOrderField[] =
     val.order == void 0
       ? void 0
@@ -93,6 +126,11 @@ export function deserializeUsers(val: any): Users {
           return deserializeUsersOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Users"',
+    });
+  }
   const entries: undefined | readonly UserFull[] =
     val.entries == void 0
       ? void 0

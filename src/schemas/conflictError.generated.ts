@@ -38,8 +38,19 @@ export function serializeConflictErrorContextInfoField(
   };
 }
 export function deserializeConflictErrorContextInfoField(
-  val: any
+  val: SerializedData
 ): ConflictErrorContextInfoField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ConflictErrorContextInfoField"',
+    });
+  }
+  if (!(val.conflicts == void 0) && !sdIsList(val.conflicts)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "conflicts" of type "ConflictErrorContextInfoField"',
+    });
+  }
   const conflicts: undefined | readonly FileConflict[] =
     val.conflicts == void 0
       ? void 0
@@ -57,20 +68,43 @@ export function serializeConflictError(val: ConflictError): SerializedData {
   }
   return { ...base, ...{} };
 }
-export function deserializeConflictError(val: any): ConflictError {
+export function deserializeConflictError(val: SerializedData): ConflictError {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "ConflictError"' });
+  }
   const type: undefined | ClientErrorTypeField =
     val.type == void 0 ? void 0 : deserializeClientErrorTypeField(val.type);
+  if (!(val.status == void 0) && !sdIsNumber(val.status)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "status" of type "ConflictError"',
+    });
+  }
   const status: undefined | number = val.status == void 0 ? void 0 : val.status;
   const code: undefined | ClientErrorCodeField =
     val.code == void 0 ? void 0 : deserializeClientErrorCodeField(val.code);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "ConflictError"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const contextInfo: undefined | ClientErrorContextInfoField =
     val.context_info == void 0
       ? void 0
       : deserializeClientErrorContextInfoField(val.context_info);
+  if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "help_url" of type "ConflictError"',
+    });
+  }
   const helpUrl: undefined | string =
     val.help_url == void 0 ? void 0 : val.help_url;
+  if (!(val.request_id == void 0) && !sdIsString(val.request_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "request_id" of type "ConflictError"',
+    });
+  }
   const requestId: undefined | string =
     val.request_id == void 0 ? void 0 : val.request_id;
   return {

@@ -1,6 +1,7 @@
 import { serializeFileVersionRetention } from './fileVersionRetention.generated.js';
 import { deserializeFileVersionRetention } from './fileVersionRetention.generated.js';
 import { FileVersionRetention } from './fileVersionRetention.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -32,13 +33,40 @@ export function serializeFileVersionRetentions(
   };
 }
 export function deserializeFileVersionRetentions(
-  val: any
+  val: SerializedData
 ): FileVersionRetentions {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileVersionRetentions"',
+    });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "FileVersionRetentions"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "FileVersionRetentions"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.prev_marker == void 0) && !sdIsString(val.prev_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "prev_marker" of type "FileVersionRetentions"',
+    });
+  }
   const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "FileVersionRetentions"',
+    });
+  }
   const entries: undefined | readonly FileVersionRetention[] =
     val.entries == void 0
       ? void 0

@@ -30,7 +30,7 @@ export function serializeEventSourceItemTypeField(
   return val;
 }
 export function deserializeEventSourceItemTypeField(
-  val: any
+  val: SerializedData
 ): EventSourceItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -53,8 +53,19 @@ export function serializeEventSourceClassificationField(
   return { ['name']: val.name == void 0 ? void 0 : val.name };
 }
 export function deserializeEventSourceClassificationField(
-  val: any
+  val: SerializedData
 ): EventSourceClassificationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "EventSourceClassificationField"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "EventSourceClassificationField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return { name: name } satisfies EventSourceClassificationField;
 }
@@ -72,10 +83,38 @@ export function serializeEventSource(val: EventSource): SerializedData {
       val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
   };
 }
-export function deserializeEventSource(val: any): EventSource {
+export function deserializeEventSource(val: SerializedData): EventSource {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "EventSource"' });
+  }
+  if (val.item_type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "item_type" of type "EventSource" to be defined',
+    });
+  }
   const itemType: EventSourceItemTypeField =
     deserializeEventSourceItemTypeField(val.item_type);
+  if (val.item_id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "item_id" of type "EventSource" to be defined',
+    });
+  }
+  if (!sdIsString(val.item_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "item_id" of type "EventSource"',
+    });
+  }
   const itemId: string = val.item_id;
+  if (val.item_name == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "item_name" of type "EventSource" to be defined',
+    });
+  }
+  if (!sdIsString(val.item_name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "item_name" of type "EventSource"',
+    });
+  }
   const itemName: string = val.item_name;
   const classification: undefined | EventSourceClassificationField =
     val.classification == void 0

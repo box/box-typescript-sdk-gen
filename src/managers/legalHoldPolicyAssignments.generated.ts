@@ -524,7 +524,7 @@ export function serializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeFie
   return val;
 }
 export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
-  val: any
+  val: SerializedData
 ): GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -554,7 +554,7 @@ export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeF
   return val;
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-  val: any
+  val: SerializedData
 ): CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -590,12 +590,36 @@ export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField
   };
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-  val: any
+  val: SerializedData
 ): CreateLegalHoldPolicyAssignmentRequestBodyAssignToField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateLegalHoldPolicyAssignmentRequestBodyAssignToField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateLegalHoldPolicyAssignmentRequestBodyAssignToField" to be defined',
+    });
+  }
   const type: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField =
     deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateLegalHoldPolicyAssignmentRequestBodyAssignToField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateLegalHoldPolicyAssignmentRequestBodyAssignToField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -614,9 +638,33 @@ export function serializeCreateLegalHoldPolicyAssignmentRequestBody(
   };
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateLegalHoldPolicyAssignmentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateLegalHoldPolicyAssignmentRequestBody"',
+    });
+  }
+  if (val.policy_id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "policy_id" of type "CreateLegalHoldPolicyAssignmentRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.policy_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_id" of type "CreateLegalHoldPolicyAssignmentRequestBody"',
+    });
+  }
   const policyId: string = val.policy_id;
+  if (val.assign_to == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "assign_to" of type "CreateLegalHoldPolicyAssignmentRequestBody" to be defined',
+    });
+  }
   const assignTo: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField =
     deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
       val.assign_to

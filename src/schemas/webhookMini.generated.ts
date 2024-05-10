@@ -23,7 +23,7 @@ export function serializeWebhookMiniTypeField(
   return val;
 }
 export function deserializeWebhookMiniTypeField(
-  val: any
+  val: SerializedData
 ): WebhookMiniTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -43,7 +43,7 @@ export function serializeWebhookMiniTargetTypeField(
   return val;
 }
 export function deserializeWebhookMiniTargetTypeField(
-  val: any
+  val: SerializedData
 ): WebhookMiniTargetTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -72,8 +72,18 @@ export function serializeWebhookMiniTargetField(
   };
 }
 export function deserializeWebhookMiniTargetField(
-  val: any
+  val: SerializedData
 ): WebhookMiniTargetField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebhookMiniTargetField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebhookMiniTargetField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | WebhookMiniTargetTypeField =
     val.type == void 0
@@ -92,7 +102,15 @@ export function serializeWebhookMini(val: WebhookMini): SerializedData {
         : serializeWebhookMiniTargetField(val.target),
   };
 }
-export function deserializeWebhookMini(val: any): WebhookMini {
+export function deserializeWebhookMini(val: SerializedData): WebhookMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "WebhookMini"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebhookMini"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | WebhookMiniTypeField =
     val.type == void 0 ? void 0 : deserializeWebhookMiniTypeField(val.type);

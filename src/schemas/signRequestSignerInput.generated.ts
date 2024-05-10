@@ -47,7 +47,7 @@ export function serializeSignRequestSignerInputTypeField(
   return val;
 }
 export function deserializeSignRequestSignerInputTypeField(
-  val: any
+  val: SerializedData
 ): SignRequestSignerInputTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -82,7 +82,7 @@ export function serializeSignRequestSignerInputContentTypeField(
   return val;
 }
 export function deserializeSignRequestSignerInputContentTypeField(
-  val: any
+  val: SerializedData
 ): SignRequestSignerInputContentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -165,8 +165,13 @@ export function serializeSignRequestSignerInput(
   };
 }
 export function deserializeSignRequestSignerInput(
-  val: any
+  val: SerializedData
 ): SignRequestSignerInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestSignerInput"',
+    });
+  }
   const type: undefined | SignRequestSignerInputTypeField =
     val.type == void 0
       ? void 0
@@ -175,15 +180,57 @@ export function deserializeSignRequestSignerInput(
     val.content_type == void 0
       ? void 0
       : deserializeSignRequestSignerInputContentTypeField(val.content_type);
+  if (val.page_index == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "page_index" of type "SignRequestSignerInput" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.page_index)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "page_index" of type "SignRequestSignerInput"',
+    });
+  }
   const pageIndex: number = val.page_index;
+  if (!(val.read_only == void 0) && !sdIsBoolean(val.read_only)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "read_only" of type "SignRequestSignerInput"',
+    });
+  }
   const readOnly: undefined | boolean =
     val.read_only == void 0 ? void 0 : val.read_only;
+  if (!(val.document_tag_id == void 0) && !sdIsString(val.document_tag_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "document_tag_id" of type "SignRequestSignerInput"',
+    });
+  }
   const documentTagId: undefined | string =
     val.document_tag_id == void 0 ? void 0 : val.document_tag_id;
+  if (!(val.text_value == void 0) && !sdIsString(val.text_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text_value" of type "SignRequestSignerInput"',
+    });
+  }
   const textValue: undefined | string =
     val.text_value == void 0 ? void 0 : val.text_value;
+  if (!(val.checkbox_value == void 0) && !sdIsBoolean(val.checkbox_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "checkbox_value" of type "SignRequestSignerInput"',
+    });
+  }
   const checkboxValue: undefined | boolean =
     val.checkbox_value == void 0 ? void 0 : val.checkbox_value;
+  if (!(val.date_value == void 0) && !sdIsString(val.date_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "date_value" of type "SignRequestSignerInput"',
+    });
+  }
   const dateValue: undefined | Date =
     val.date_value == void 0 ? void 0 : deserializeDate(val.date_value);
   return {

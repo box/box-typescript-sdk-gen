@@ -28,7 +28,7 @@ export function serializeZipDownloadNameConflictsTypeField(
   return val;
 }
 export function deserializeZipDownloadNameConflictsTypeField(
-  val: any
+  val: SerializedData
 ): ZipDownloadNameConflictsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -59,15 +59,38 @@ export function serializeZipDownloadNameConflictsField(
   };
 }
 export function deserializeZipDownloadNameConflictsField(
-  val: any
+  val: SerializedData
 ): ZipDownloadNameConflictsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ZipDownloadNameConflictsField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ZipDownloadNameConflictsField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ZipDownloadNameConflictsTypeField =
     val.type == void 0
       ? void 0
       : deserializeZipDownloadNameConflictsTypeField(val.type);
+  if (!(val.original_name == void 0) && !sdIsString(val.original_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "original_name" of type "ZipDownloadNameConflictsField"',
+    });
+  }
   const originalName: undefined | string =
     val.original_name == void 0 ? void 0 : val.original_name;
+  if (!(val.download_name == void 0) && !sdIsString(val.download_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "download_name" of type "ZipDownloadNameConflictsField"',
+    });
+  }
   const downloadName: undefined | string =
     val.download_name == void 0 ? void 0 : val.download_name;
   return {
@@ -97,13 +120,36 @@ export function serializeZipDownload(val: ZipDownload): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeZipDownload(val: any): ZipDownload {
+export function deserializeZipDownload(val: SerializedData): ZipDownload {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "ZipDownload"' });
+  }
+  if (!(val.download_url == void 0) && !sdIsString(val.download_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "download_url" of type "ZipDownload"',
+    });
+  }
   const downloadUrl: undefined | string =
     val.download_url == void 0 ? void 0 : val.download_url;
+  if (!(val.status_url == void 0) && !sdIsString(val.status_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "status_url" of type "ZipDownload"',
+    });
+  }
   const statusUrl: undefined | string =
     val.status_url == void 0 ? void 0 : val.status_url;
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "expires_at" of type "ZipDownload"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (!(val.name_conflicts == void 0) && !sdIsList(val.name_conflicts)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "name_conflicts" of type "ZipDownload"',
+    });
+  }
   const nameConflicts:
     | undefined
     | readonly (readonly ZipDownloadNameConflictsField[])[] =

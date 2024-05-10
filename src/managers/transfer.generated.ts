@@ -15,6 +15,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -157,8 +158,26 @@ export function serializeTransferOwnedFolderRequestBodyOwnedByField(
   return { ['id']: val.id };
 }
 export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
-  val: any
+  val: SerializedData
 ): TransferOwnedFolderRequestBodyOwnedByField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "TransferOwnedFolderRequestBodyOwnedByField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TransferOwnedFolderRequestBodyOwnedByField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TransferOwnedFolderRequestBodyOwnedByField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies TransferOwnedFolderRequestBodyOwnedByField;
 }
@@ -172,8 +191,19 @@ export function serializeTransferOwnedFolderRequestBody(
   };
 }
 export function deserializeTransferOwnedFolderRequestBody(
-  val: any
+  val: SerializedData
 ): TransferOwnedFolderRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TransferOwnedFolderRequestBody"',
+    });
+  }
+  if (val.owned_by == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "owned_by" of type "TransferOwnedFolderRequestBody" to be defined',
+    });
+  }
   const ownedBy: TransferOwnedFolderRequestBodyOwnedByField =
     deserializeTransferOwnedFolderRequestBodyOwnedByField(val.owned_by);
   return { ownedBy: ownedBy } satisfies TransferOwnedFolderRequestBody;

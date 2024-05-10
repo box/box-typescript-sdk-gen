@@ -25,6 +25,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { MultipartItem } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -401,9 +402,36 @@ export function serializeUploadFileVersionRequestBodyAttributesField(
   };
 }
 export function deserializeUploadFileVersionRequestBodyAttributesField(
-  val: any
+  val: SerializedData
 ): UploadFileVersionRequestBodyAttributesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UploadFileVersionRequestBodyAttributesField"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "UploadFileVersionRequestBodyAttributesField" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UploadFileVersionRequestBodyAttributesField"',
+    });
+  }
   const name: string = val.name;
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "UploadFileVersionRequestBodyAttributesField"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
@@ -419,8 +447,26 @@ export function serializeUploadFileRequestBodyAttributesParentField(
   return { ['id']: val.id };
 }
 export function deserializeUploadFileRequestBodyAttributesParentField(
-  val: any
+  val: SerializedData
 ): UploadFileRequestBodyAttributesParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UploadFileRequestBodyAttributesParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "UploadFileRequestBodyAttributesParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UploadFileRequestBodyAttributesParentField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies UploadFileRequestBodyAttributesParentField;
 }
@@ -441,15 +487,56 @@ export function serializeUploadFileRequestBodyAttributesField(
   };
 }
 export function deserializeUploadFileRequestBodyAttributesField(
-  val: any
+  val: SerializedData
 ): UploadFileRequestBodyAttributesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UploadFileRequestBodyAttributesField"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "UploadFileRequestBodyAttributesField" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UploadFileRequestBodyAttributesField"',
+    });
+  }
   const name: string = val.name;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parent" of type "UploadFileRequestBodyAttributesField" to be defined',
+    });
+  }
   const parent: UploadFileRequestBodyAttributesParentField =
     deserializeUploadFileRequestBodyAttributesParentField(val.parent);
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_created_at" of type "UploadFileRequestBodyAttributesField"',
+    });
+  }
   const contentCreatedAt: undefined | DateTime =
     val.content_created_at == void 0
       ? void 0
       : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "UploadFileRequestBodyAttributesField"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
@@ -467,8 +554,20 @@ export function serializePreflightFileUploadCheckRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializePreflightFileUploadCheckRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): PreflightFileUploadCheckRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "PreflightFileUploadCheckRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "PreflightFileUploadCheckRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
 }
@@ -485,9 +584,26 @@ export function serializePreflightFileUploadCheckRequestBody(
   };
 }
 export function deserializePreflightFileUploadCheckRequestBody(
-  val: any
+  val: SerializedData
 ): PreflightFileUploadCheckRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "PreflightFileUploadCheckRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "PreflightFileUploadCheckRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "size" of type "PreflightFileUploadCheckRequestBody"',
+    });
+  }
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
   const parent: undefined | PreflightFileUploadCheckRequestBodyParentField =
     val.parent == void 0

@@ -639,7 +639,7 @@ export function serializeGetUsersQueryParamsUserTypeField(
   return val;
 }
 export function deserializeGetUsersQueryParamsUserTypeField(
-  val: any
+  val: SerializedData
 ): GetUsersQueryParamsUserTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -665,7 +665,7 @@ export function serializeCreateUserRequestBodyRoleField(
   return val;
 }
 export function deserializeCreateUserRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): CreateUserRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -688,7 +688,7 @@ export function serializeCreateUserRequestBodyStatusField(
   return val;
 }
 export function deserializeCreateUserRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): CreateUserRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -760,10 +760,39 @@ export function serializeCreateUserRequestBody(
   };
 }
 export function deserializeCreateUserRequestBody(
-  val: any
+  val: SerializedData
 ): CreateUserRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateUserRequestBody"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "name" of type "CreateUserRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CreateUserRequestBody"',
+    });
+  }
   const name: string = val.name;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "login" of type "CreateUserRequestBody"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
+  if (
+    !(val.is_platform_access_only == void 0) &&
+    !sdIsBoolean(val.is_platform_access_only)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_platform_access_only" of type "CreateUserRequestBody"',
+    });
+  }
   const isPlatformAccessOnly: undefined | boolean =
     val.is_platform_access_only == void 0
       ? void 0
@@ -772,17 +801,57 @@ export function deserializeCreateUserRequestBody(
     val.role == void 0
       ? void 0
       : deserializeCreateUserRequestBodyRoleField(val.role);
+  if (!(val.language == void 0) && !sdIsString(val.language)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "language" of type "CreateUserRequestBody"',
+    });
+  }
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
+  if (!(val.is_sync_enabled == void 0) && !sdIsBoolean(val.is_sync_enabled)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_sync_enabled" of type "CreateUserRequestBody"',
+    });
+  }
   const isSyncEnabled: undefined | boolean =
     val.is_sync_enabled == void 0 ? void 0 : val.is_sync_enabled;
+  if (!(val.job_title == void 0) && !sdIsString(val.job_title)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "job_title" of type "CreateUserRequestBody"',
+    });
+  }
   const jobTitle: undefined | string =
     val.job_title == void 0 ? void 0 : val.job_title;
+  if (!(val.phone == void 0) && !sdIsString(val.phone)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "phone" of type "CreateUserRequestBody"',
+    });
+  }
   const phone: undefined | string = val.phone == void 0 ? void 0 : val.phone;
+  if (!(val.address == void 0) && !sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "address" of type "CreateUserRequestBody"',
+    });
+  }
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
+  if (!(val.space_amount == void 0) && !sdIsNumber(val.space_amount)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "space_amount" of type "CreateUserRequestBody"',
+    });
+  }
   const spaceAmount: undefined | number =
     val.space_amount == void 0 ? void 0 : val.space_amount;
+  if (!(val.tracking_codes == void 0) && !sdIsList(val.tracking_codes)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "tracking_codes" of type "CreateUserRequestBody"',
+    });
+  }
   const trackingCodes: undefined | readonly TrackingCode[] =
     val.tracking_codes == void 0
       ? void 0
@@ -791,18 +860,60 @@ export function deserializeCreateUserRequestBody(
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.can_see_managed_users == void 0) &&
+    !sdIsBoolean(val.can_see_managed_users)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_see_managed_users" of type "CreateUserRequestBody"',
+    });
+  }
   const canSeeManagedUsers: undefined | boolean =
     val.can_see_managed_users == void 0 ? void 0 : val.can_see_managed_users;
+  if (!(val.timezone == void 0) && !sdIsString(val.timezone)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "timezone" of type "CreateUserRequestBody"',
+    });
+  }
   const timezone: undefined | string =
     val.timezone == void 0 ? void 0 : val.timezone;
+  if (
+    !(val.is_external_collab_restricted == void 0) &&
+    !sdIsBoolean(val.is_external_collab_restricted)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_external_collab_restricted" of type "CreateUserRequestBody"',
+    });
+  }
   const isExternalCollabRestricted: undefined | boolean =
     val.is_external_collab_restricted == void 0
       ? void 0
       : val.is_external_collab_restricted;
+  if (
+    !(val.is_exempt_from_device_limits == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_device_limits)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_device_limits" of type "CreateUserRequestBody"',
+    });
+  }
   const isExemptFromDeviceLimits: undefined | boolean =
     val.is_exempt_from_device_limits == void 0
       ? void 0
       : val.is_exempt_from_device_limits;
+  if (
+    !(val.is_exempt_from_login_verification == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_login_verification)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_login_verification" of type "CreateUserRequestBody"',
+    });
+  }
   const isExemptFromLoginVerification: undefined | boolean =
     val.is_exempt_from_login_verification == void 0
       ? void 0
@@ -811,6 +922,15 @@ export function deserializeCreateUserRequestBody(
     val.status == void 0
       ? void 0
       : deserializeCreateUserRequestBodyStatusField(val.status);
+  if (
+    !(val.external_app_user_id == void 0) &&
+    !sdIsString(val.external_app_user_id)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_app_user_id" of type "CreateUserRequestBody"',
+    });
+  }
   const externalAppUserId: undefined | string =
     val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
   return {
@@ -840,7 +960,7 @@ export function serializeUpdateUserByIdRequestBodyRoleField(
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): UpdateUserByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -863,7 +983,7 @@ export function serializeUpdateUserByIdRequestBodyStatusField(
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): UpdateUserByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -892,8 +1012,20 @@ export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
 export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
-  val: any
+  val: SerializedData
 ): UpdateUserByIdRequestBodyNotificationEmailField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateUserByIdRequestBodyNotificationEmailField"',
+    });
+  }
+  if (!(val.email == void 0) && !sdIsString(val.email)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "email" of type "UpdateUserByIdRequestBodyNotificationEmailField"',
+    });
+  }
   const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   return {
     email: email,
@@ -958,27 +1090,92 @@ export function serializeUpdateUserByIdRequestBody(
   };
 }
 export function deserializeUpdateUserByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateUserByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateUserByIdRequestBody"',
+    });
+  }
+  if (!(val.enterprise == void 0) && !sdIsString(val.enterprise)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "enterprise" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const enterprise: undefined | string =
     val.enterprise == void 0 ? void 0 : val.enterprise;
+  if (!(val.notify == void 0) && !sdIsBoolean(val.notify)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "notify" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const notify: undefined | boolean =
     val.notify == void 0 ? void 0 : val.notify;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "login" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   const role: undefined | UpdateUserByIdRequestBodyRoleField =
     val.role == void 0
       ? void 0
       : deserializeUpdateUserByIdRequestBodyRoleField(val.role);
+  if (!(val.language == void 0) && !sdIsString(val.language)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "language" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
+  if (!(val.is_sync_enabled == void 0) && !sdIsBoolean(val.is_sync_enabled)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_sync_enabled" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const isSyncEnabled: undefined | boolean =
     val.is_sync_enabled == void 0 ? void 0 : val.is_sync_enabled;
+  if (!(val.job_title == void 0) && !sdIsString(val.job_title)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "job_title" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const jobTitle: undefined | string =
     val.job_title == void 0 ? void 0 : val.job_title;
+  if (!(val.phone == void 0) && !sdIsString(val.phone)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "phone" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const phone: undefined | string = val.phone == void 0 ? void 0 : val.phone;
+  if (!(val.address == void 0) && !sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "address" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
+  if (!(val.tracking_codes == void 0) && !sdIsList(val.tracking_codes)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "tracking_codes" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const trackingCodes: undefined | readonly TrackingCode[] =
     val.tracking_codes == void 0
       ? void 0
@@ -987,22 +1184,73 @@ export function deserializeUpdateUserByIdRequestBody(
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.can_see_managed_users == void 0) &&
+    !sdIsBoolean(val.can_see_managed_users)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_see_managed_users" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const canSeeManagedUsers: undefined | boolean =
     val.can_see_managed_users == void 0 ? void 0 : val.can_see_managed_users;
+  if (!(val.timezone == void 0) && !sdIsString(val.timezone)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "timezone" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const timezone: undefined | string =
     val.timezone == void 0 ? void 0 : val.timezone;
+  if (
+    !(val.is_external_collab_restricted == void 0) &&
+    !sdIsBoolean(val.is_external_collab_restricted)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_external_collab_restricted" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const isExternalCollabRestricted: undefined | boolean =
     val.is_external_collab_restricted == void 0
       ? void 0
       : val.is_external_collab_restricted;
+  if (
+    !(val.is_exempt_from_device_limits == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_device_limits)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_device_limits" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const isExemptFromDeviceLimits: undefined | boolean =
     val.is_exempt_from_device_limits == void 0
       ? void 0
       : val.is_exempt_from_device_limits;
+  if (
+    !(val.is_exempt_from_login_verification == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_login_verification)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_login_verification" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const isExemptFromLoginVerification: undefined | boolean =
     val.is_exempt_from_login_verification == void 0
       ? void 0
       : val.is_exempt_from_login_verification;
+  if (
+    !(val.is_password_reset_required == void 0) &&
+    !sdIsBoolean(val.is_password_reset_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_password_reset_required" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const isPasswordResetRequired: undefined | boolean =
     val.is_password_reset_required == void 0
       ? void 0
@@ -1011,6 +1259,12 @@ export function deserializeUpdateUserByIdRequestBody(
     val.status == void 0
       ? void 0
       : deserializeUpdateUserByIdRequestBodyStatusField(val.status);
+  if (!(val.space_amount == void 0) && !sdIsNumber(val.space_amount)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "space_amount" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const spaceAmount: undefined | number =
     val.space_amount == void 0 ? void 0 : val.space_amount;
   const notificationEmail:
@@ -1021,6 +1275,15 @@ export function deserializeUpdateUserByIdRequestBody(
       : deserializeUpdateUserByIdRequestBodyNotificationEmailField(
           val.notification_email
         );
+  if (
+    !(val.external_app_user_id == void 0) &&
+    !sdIsString(val.external_app_user_id)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_app_user_id" of type "UpdateUserByIdRequestBody"',
+    });
+  }
   const externalAppUserId: undefined | string =
     val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
   return {

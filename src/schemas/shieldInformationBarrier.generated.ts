@@ -40,7 +40,7 @@ export function serializeShieldInformationBarrierTypeField(
   return val;
 }
 export function deserializeShieldInformationBarrierTypeField(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -60,7 +60,7 @@ export function serializeShieldInformationBarrierStatusField(
   return val;
 }
 export function deserializeShieldInformationBarrierStatusField(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -118,8 +118,18 @@ export function serializeShieldInformationBarrier(
   };
 }
 export function deserializeShieldInformationBarrier(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrier {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrier"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "ShieldInformationBarrier"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ShieldInformationBarrierTypeField =
     val.type == void 0
@@ -133,14 +143,32 @@ export function deserializeShieldInformationBarrier(
     val.status == void 0
       ? void 0
       : deserializeShieldInformationBarrierStatusField(val.status);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "ShieldInformationBarrier"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
+  if (!(val.updated_at == void 0) && !sdIsString(val.updated_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "updated_at" of type "ShieldInformationBarrier"',
+    });
+  }
   const updatedAt: undefined | DateTime =
     val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
   const updatedBy: undefined | UserBase =
     val.updated_by == void 0 ? void 0 : deserializeUserBase(val.updated_by);
+  if (!(val.enabled_at == void 0) && !sdIsString(val.enabled_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "enabled_at" of type "ShieldInformationBarrier"',
+    });
+  }
   const enabledAt: undefined | DateTime =
     val.enabled_at == void 0 ? void 0 : deserializeDateTime(val.enabled_at);
   const enabledBy: undefined | UserBase =

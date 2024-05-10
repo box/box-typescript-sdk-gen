@@ -40,7 +40,7 @@ export function serializeTermsOfServiceStatusField(
   return val;
 }
 export function deserializeTermsOfServiceStatusField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -63,7 +63,7 @@ export function serializeTermsOfServiceEnterpriseTypeField(
   return val;
 }
 export function deserializeTermsOfServiceEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -90,13 +90,30 @@ export function serializeTermsOfServiceEnterpriseField(
   };
 }
 export function deserializeTermsOfServiceEnterpriseField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceEnterpriseField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TermsOfServiceEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | TermsOfServiceEnterpriseTypeField =
     val.type == void 0
       ? void 0
       : deserializeTermsOfServiceEnterpriseTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "TermsOfServiceEnterpriseField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return {
     id: id,
@@ -110,7 +127,7 @@ export function serializeTermsOfServiceTosTypeField(
   return val;
 }
 export function deserializeTermsOfServiceTosTypeField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceTosTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -155,7 +172,10 @@ export function serializeTermsOfService(val: TermsOfService): SerializedData {
     },
   };
 }
-export function deserializeTermsOfService(val: any): TermsOfService {
+export function deserializeTermsOfService(val: SerializedData): TermsOfService {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TermsOfService"' });
+  }
   const status: undefined | TermsOfServiceStatusField =
     val.status == void 0
       ? void 0
@@ -168,12 +188,42 @@ export function deserializeTermsOfService(val: any): TermsOfService {
     val.tos_type == void 0
       ? void 0
       : deserializeTermsOfServiceTosTypeField(val.tos_type);
+  if (!(val.text == void 0) && !sdIsString(val.text)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "text" of type "TermsOfService"',
+    });
+  }
   const text: undefined | string = val.text == void 0 ? void 0 : val.text;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "TermsOfService"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "TermsOfService"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "TermsOfService" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TermsOfService"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "TermsOfService" to be defined',
+    });
+  }
   const type: TermsOfServiceBaseTypeField =
     deserializeTermsOfServiceBaseTypeField(val.type);
   return {

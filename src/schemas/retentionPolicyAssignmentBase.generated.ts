@@ -34,7 +34,7 @@ export function serializeRetentionPolicyAssignmentBaseTypeField(
   return val;
 }
 export function deserializeRetentionPolicyAssignmentBaseTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -58,9 +58,32 @@ export function serializeRetentionPolicyAssignmentBase(
   };
 }
 export function deserializeRetentionPolicyAssignmentBase(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignmentBase"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "RetentionPolicyAssignmentBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RetentionPolicyAssignmentBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "RetentionPolicyAssignmentBase" to be defined',
+    });
+  }
   const type: RetentionPolicyAssignmentBaseTypeField =
     deserializeRetentionPolicyAssignmentBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
@@ -77,8 +100,25 @@ export function serializeRetentionPolicyAssignmentBaseInput(
   };
 }
 export function deserializeRetentionPolicyAssignmentBaseInput(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignmentBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "RetentionPolicyAssignmentBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RetentionPolicyAssignmentBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | RetentionPolicyAssignmentBaseTypeField =
     val.type == void 0

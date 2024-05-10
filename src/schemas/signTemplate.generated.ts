@@ -70,7 +70,7 @@ export function serializeSignTemplateTypeField(
   return val;
 }
 export function deserializeSignTemplateTypeField(
-  val: any
+  val: SerializedData
 ): SignTemplateTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -90,7 +90,7 @@ export function serializeSignTemplateAdditionalInfoNonEditableField(
   return val;
 }
 export function deserializeSignTemplateAdditionalInfoNonEditableField(
-  val: any
+  val: SerializedData
 ): SignTemplateAdditionalInfoNonEditableField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -126,7 +126,7 @@ export function serializeSignTemplateAdditionalInfoRequiredSignersField(
   return val;
 }
 export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
-  val: any
+  val: SerializedData
 ): SignTemplateAdditionalInfoRequiredSignersField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -162,8 +162,19 @@ export function serializeSignTemplateAdditionalInfoRequiredField(
   };
 }
 export function deserializeSignTemplateAdditionalInfoRequiredField(
-  val: any
+  val: SerializedData
 ): SignTemplateAdditionalInfoRequiredField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignTemplateAdditionalInfoRequiredField"',
+    });
+  }
+  if (!(val.signers == void 0) && !sdIsList(val.signers)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "signers" of type "SignTemplateAdditionalInfoRequiredField"',
+    });
+  }
   const signers:
     | undefined
     | readonly (readonly SignTemplateAdditionalInfoRequiredSignersField[])[] =
@@ -205,8 +216,19 @@ export function serializeSignTemplateAdditionalInfoField(
   };
 }
 export function deserializeSignTemplateAdditionalInfoField(
-  val: any
+  val: SerializedData
 ): SignTemplateAdditionalInfoField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignTemplateAdditionalInfoField"',
+    });
+  }
+  if (!(val.non_editable == void 0) && !sdIsList(val.non_editable)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "non_editable" of type "SignTemplateAdditionalInfoField"',
+    });
+  }
   const nonEditable:
     | undefined
     | readonly SignTemplateAdditionalInfoNonEditableField[] =
@@ -244,18 +266,62 @@ export function serializeSignTemplateReadySignLinkField(
   };
 }
 export function deserializeSignTemplateReadySignLinkField(
-  val: any
+  val: SerializedData
 ): SignTemplateReadySignLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignTemplateReadySignLinkField"',
+    });
+  }
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "url" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.instructions == void 0) && !sdIsString(val.instructions)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "instructions" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const instructions: undefined | string =
     val.instructions == void 0 ? void 0 : val.instructions;
+  if (!(val.folder_id == void 0) && !sdIsString(val.folder_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "folder_id" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const folderId: undefined | string =
     val.folder_id == void 0 ? void 0 : val.folder_id;
+  if (
+    !(val.is_notification_disabled == void 0) &&
+    !sdIsBoolean(val.is_notification_disabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_notification_disabled" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const isNotificationDisabled: undefined | boolean =
     val.is_notification_disabled == void 0
       ? void 0
       : val.is_notification_disabled;
+  if (!(val.is_active == void 0) && !sdIsBoolean(val.is_active)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_active" of type "SignTemplateReadySignLinkField"',
+    });
+  }
   const isActive: undefined | boolean =
     val.is_active == void 0 ? void 0 : val.is_active;
   return {
@@ -280,14 +346,46 @@ export function serializeSignTemplateCustomBrandingField(
   };
 }
 export function deserializeSignTemplateCustomBrandingField(
-  val: any
+  val: SerializedData
 ): SignTemplateCustomBrandingField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignTemplateCustomBrandingField"',
+    });
+  }
+  if (!(val.company_name == void 0) && !sdIsString(val.company_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "company_name" of type "SignTemplateCustomBrandingField"',
+    });
+  }
   const companyName: undefined | string =
     val.company_name == void 0 ? void 0 : val.company_name;
+  if (!(val.logo_uri == void 0) && !sdIsString(val.logo_uri)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "logo_uri" of type "SignTemplateCustomBrandingField"',
+    });
+  }
   const logoUri: undefined | string =
     val.logo_uri == void 0 ? void 0 : val.logo_uri;
+  if (!(val.branding_color == void 0) && !sdIsString(val.branding_color)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "branding_color" of type "SignTemplateCustomBrandingField"',
+    });
+  }
   const brandingColor: undefined | string =
     val.branding_color == void 0 ? void 0 : val.branding_color;
+  if (
+    !(val.email_footer_text == void 0) &&
+    !sdIsString(val.email_footer_text)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "email_footer_text" of type "SignTemplateCustomBrandingField"',
+    });
+  }
   const emailFooterText: undefined | string =
     val.email_footer_text == void 0 ? void 0 : val.email_footer_text;
   return {
@@ -348,21 +446,54 @@ export function serializeSignTemplate(val: SignTemplate): SerializedData {
         : serializeSignTemplateCustomBrandingField(val.customBranding),
   };
 }
-export function deserializeSignTemplate(val: any): SignTemplate {
+export function deserializeSignTemplate(val: SerializedData): SignTemplate {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "SignTemplate"' });
+  }
   const type: undefined | SignTemplateTypeField =
     val.type == void 0 ? void 0 : deserializeSignTemplateTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "SignTemplate"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "SignTemplate"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.email_subject == void 0) && !sdIsString(val.email_subject)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email_subject" of type "SignTemplate"',
+    });
+  }
   const emailSubject: undefined | string =
     val.email_subject == void 0 ? void 0 : val.email_subject;
+  if (!(val.email_message == void 0) && !sdIsString(val.email_message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email_message" of type "SignTemplate"',
+    });
+  }
   const emailMessage: undefined | string =
     val.email_message == void 0 ? void 0 : val.email_message;
+  if (!(val.days_valid == void 0) && !sdIsNumber(val.days_valid)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "days_valid" of type "SignTemplate"',
+    });
+  }
   const daysValid: undefined | number =
     val.days_valid == void 0 ? void 0 : val.days_valid;
   const parentFolder: undefined | FolderMini =
     val.parent_folder == void 0
       ? void 0
       : deserializeFolderMini(val.parent_folder);
+  if (!(val.source_files == void 0) && !sdIsList(val.source_files)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "source_files" of type "SignTemplate"',
+    });
+  }
   const sourceFiles: undefined | readonly FileMini[] =
     val.source_files == void 0
       ? void 0
@@ -371,18 +502,65 @@ export function deserializeSignTemplate(val: any): SignTemplate {
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.are_fields_locked == void 0) &&
+    !sdIsBoolean(val.are_fields_locked)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_fields_locked" of type "SignTemplate"',
+    });
+  }
   const areFieldsLocked: undefined | boolean =
     val.are_fields_locked == void 0 ? void 0 : val.are_fields_locked;
+  if (
+    !(val.are_options_locked == void 0) &&
+    !sdIsBoolean(val.are_options_locked)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_options_locked" of type "SignTemplate"',
+    });
+  }
   const areOptionsLocked: undefined | boolean =
     val.are_options_locked == void 0 ? void 0 : val.are_options_locked;
+  if (
+    !(val.are_recipients_locked == void 0) &&
+    !sdIsBoolean(val.are_recipients_locked)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_recipients_locked" of type "SignTemplate"',
+    });
+  }
   const areRecipientsLocked: undefined | boolean =
     val.are_recipients_locked == void 0 ? void 0 : val.are_recipients_locked;
+  if (
+    !(val.are_email_settings_locked == void 0) &&
+    !sdIsBoolean(val.are_email_settings_locked)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_email_settings_locked" of type "SignTemplate"',
+    });
+  }
   const areEmailSettingsLocked: undefined | boolean =
     val.are_email_settings_locked == void 0
       ? void 0
       : val.are_email_settings_locked;
+  if (!(val.are_files_locked == void 0) && !sdIsBoolean(val.are_files_locked)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_files_locked" of type "SignTemplate"',
+    });
+  }
   const areFilesLocked: undefined | boolean =
     val.are_files_locked == void 0 ? void 0 : val.are_files_locked;
+  if (!(val.signers == void 0) && !sdIsList(val.signers)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "signers" of type "SignTemplate"',
+    });
+  }
   const signers: undefined | readonly TemplateSigner[] =
     val.signers == void 0
       ? void 0

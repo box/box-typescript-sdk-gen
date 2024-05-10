@@ -31,7 +31,7 @@ export function serializeAiTextGenItemsTypeField(
   return val;
 }
 export function deserializeAiTextGenItemsTypeField(
-  val: any
+  val: SerializedData
 ): AiTextGenItemsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,10 +55,27 @@ export function serializeAiTextGenItemsField(
     ['content']: val.content == void 0 ? void 0 : val.content,
   };
 }
-export function deserializeAiTextGenItemsField(val: any): AiTextGenItemsField {
+export function deserializeAiTextGenItemsField(
+  val: SerializedData
+): AiTextGenItemsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiTextGenItemsField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "AiTextGenItemsField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | AiTextGenItemsTypeField =
     val.type == void 0 ? void 0 : deserializeAiTextGenItemsTypeField(val.type);
+  if (!(val.content == void 0) && !sdIsString(val.content)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "content" of type "AiTextGenItemsField"',
+    });
+  }
   const content: undefined | string =
     val.content == void 0 ? void 0 : val.content;
   return { id: id, type: type, content: content } satisfies AiTextGenItemsField;
@@ -74,10 +91,33 @@ export function serializeAiTextGenDialogueHistoryField(
   };
 }
 export function deserializeAiTextGenDialogueHistoryField(
-  val: any
+  val: SerializedData
 ): AiTextGenDialogueHistoryField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiTextGenDialogueHistoryField"',
+    });
+  }
+  if (!(val.prompt == void 0) && !sdIsString(val.prompt)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "prompt" of type "AiTextGenDialogueHistoryField"',
+    });
+  }
   const prompt: undefined | string = val.prompt == void 0 ? void 0 : val.prompt;
+  if (!(val.answer == void 0) && !sdIsString(val.answer)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "answer" of type "AiTextGenDialogueHistoryField"',
+    });
+  }
   const answer: undefined | string = val.answer == void 0 ? void 0 : val.answer;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "AiTextGenDialogueHistoryField"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   return {
@@ -104,13 +144,41 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeAiTextGen(val: any): AiTextGen {
+export function deserializeAiTextGen(val: SerializedData): AiTextGen {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "AiTextGen"' });
+  }
+  if (val.prompt == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "prompt" of type "AiTextGen" to be defined',
+    });
+  }
+  if (!sdIsString(val.prompt)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "prompt" of type "AiTextGen"',
+    });
+  }
   const prompt: string = val.prompt;
+  if (val.items == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "items" of type "AiTextGen" to be defined',
+    });
+  }
+  if (!sdIsList(val.items)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "items" of type "AiTextGen"',
+    });
+  }
   const items: readonly AiTextGenItemsField[] = sdIsList(val.items)
     ? (val.items.map(function (itm: SerializedData): AiTextGenItemsField {
         return deserializeAiTextGenItemsField(itm);
       }) as readonly any[])
     : [];
+  if (!(val.dialogue_history == void 0) && !sdIsList(val.dialogue_history)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "dialogue_history" of type "AiTextGen"',
+    });
+  }
   const dialogueHistory: undefined | readonly AiTextGenDialogueHistoryField[] =
     val.dialogue_history == void 0
       ? void 0

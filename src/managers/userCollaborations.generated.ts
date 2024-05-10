@@ -460,7 +460,7 @@ export function serializeUpdateCollaborationByIdRequestBodyRoleField(
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): UpdateCollaborationByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -502,7 +502,7 @@ export function serializeUpdateCollaborationByIdRequestBodyStatusField(
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): UpdateCollaborationByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -538,16 +538,39 @@ export function serializeUpdateCollaborationByIdRequestBody(
   };
 }
 export function deserializeUpdateCollaborationByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateCollaborationByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateCollaborationByIdRequestBody"',
+    });
+  }
+  if (val.role == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "role" of type "UpdateCollaborationByIdRequestBody" to be defined',
+    });
+  }
   const role: UpdateCollaborationByIdRequestBodyRoleField =
     deserializeUpdateCollaborationByIdRequestBodyRoleField(val.role);
   const status: undefined | UpdateCollaborationByIdRequestBodyStatusField =
     val.status == void 0
       ? void 0
       : deserializeUpdateCollaborationByIdRequestBodyStatusField(val.status);
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "expires_at" of type "UpdateCollaborationByIdRequestBody"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (!(val.can_view_path == void 0) && !sdIsBoolean(val.can_view_path)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_view_path" of type "UpdateCollaborationByIdRequestBody"',
+    });
+  }
   const canViewPath: undefined | boolean =
     val.can_view_path == void 0 ? void 0 : val.can_view_path;
   return {
@@ -563,7 +586,7 @@ export function serializeCreateCollaborationRequestBodyItemTypeField(
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyItemTypeField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBodyItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -593,12 +616,23 @@ export function serializeCreateCollaborationRequestBodyItemField(
   };
 }
 export function deserializeCreateCollaborationRequestBodyItemField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBodyItemField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateCollaborationRequestBodyItemField"',
+    });
+  }
   const type: undefined | CreateCollaborationRequestBodyItemTypeField =
     val.type == void 0
       ? void 0
       : deserializeCreateCollaborationRequestBodyItemTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateCollaborationRequestBodyItemField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
@@ -611,7 +645,7 @@ export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBodyAccessibleByTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -641,11 +675,35 @@ export function serializeCreateCollaborationRequestBodyAccessibleByField(
   };
 }
 export function deserializeCreateCollaborationRequestBodyAccessibleByField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBodyAccessibleByField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateCollaborationRequestBodyAccessibleByField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateCollaborationRequestBodyAccessibleByField" to be defined',
+    });
+  }
   const type: CreateCollaborationRequestBodyAccessibleByTypeField =
     deserializeCreateCollaborationRequestBodyAccessibleByTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateCollaborationRequestBodyAccessibleByField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "login" of type "CreateCollaborationRequestBodyAccessibleByField"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return {
     type: type,
@@ -659,7 +717,7 @@ export function serializeCreateCollaborationRequestBodyRoleField(
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -708,20 +766,61 @@ export function serializeCreateCollaborationRequestBody(
   };
 }
 export function deserializeCreateCollaborationRequestBody(
-  val: any
+  val: SerializedData
 ): CreateCollaborationRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateCollaborationRequestBody"',
+    });
+  }
+  if (val.item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "item" of type "CreateCollaborationRequestBody" to be defined',
+    });
+  }
   const item: CreateCollaborationRequestBodyItemField =
     deserializeCreateCollaborationRequestBodyItemField(val.item);
+  if (val.accessible_by == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "accessible_by" of type "CreateCollaborationRequestBody" to be defined',
+    });
+  }
   const accessibleBy: CreateCollaborationRequestBodyAccessibleByField =
     deserializeCreateCollaborationRequestBodyAccessibleByField(
       val.accessible_by
     );
+  if (val.role == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "role" of type "CreateCollaborationRequestBody" to be defined',
+    });
+  }
   const role: CreateCollaborationRequestBodyRoleField =
     deserializeCreateCollaborationRequestBodyRoleField(val.role);
+  if (!(val.is_access_only == void 0) && !sdIsBoolean(val.is_access_only)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_access_only" of type "CreateCollaborationRequestBody"',
+    });
+  }
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
+  if (!(val.can_view_path == void 0) && !sdIsBoolean(val.can_view_path)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_view_path" of type "CreateCollaborationRequestBody"',
+    });
+  }
   const canViewPath: undefined | boolean =
     val.can_view_path == void 0 ? void 0 : val.can_view_path;
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "expires_at" of type "CreateCollaborationRequestBody"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   return {

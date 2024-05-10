@@ -67,7 +67,7 @@ export function serializeTermsOfServiceUserStatusTypeField(
   return val;
 }
 export function deserializeTermsOfServiceUserStatusTypeField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceUserStatusTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -97,19 +97,59 @@ export function serializeTermsOfServiceUserStatus(
   };
 }
 export function deserializeTermsOfServiceUserStatus(
-  val: any
+  val: SerializedData
 ): TermsOfServiceUserStatus {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceUserStatus"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TermsOfServiceUserStatus" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TermsOfServiceUserStatus"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "TermsOfServiceUserStatus" to be defined',
+    });
+  }
   const type: TermsOfServiceUserStatusTypeField =
     deserializeTermsOfServiceUserStatusTypeField(val.type);
   const tos: undefined | TermsOfServiceBase =
     val.tos == void 0 ? void 0 : deserializeTermsOfServiceBase(val.tos);
   const user: undefined | UserMini =
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
+  if (!(val.is_accepted == void 0) && !sdIsBoolean(val.is_accepted)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accepted" of type "TermsOfServiceUserStatus"',
+    });
+  }
   const isAccepted: undefined | boolean =
     val.is_accepted == void 0 ? void 0 : val.is_accepted;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "TermsOfServiceUserStatus"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "TermsOfServiceUserStatus"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {
@@ -141,8 +181,25 @@ export function serializeTermsOfServiceUserStatusInput(
   };
 }
 export function deserializeTermsOfServiceUserStatusInput(
-  val: any
+  val: SerializedData
 ): TermsOfServiceUserStatusInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceUserStatusInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TermsOfServiceUserStatusInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TermsOfServiceUserStatusInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | TermsOfServiceUserStatusTypeField =
     val.type == void 0
@@ -152,10 +209,28 @@ export function deserializeTermsOfServiceUserStatusInput(
     val.tos == void 0 ? void 0 : deserializeTermsOfServiceBase(val.tos);
   const user: undefined | UserMini =
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
+  if (!(val.is_accepted == void 0) && !sdIsBoolean(val.is_accepted)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accepted" of type "TermsOfServiceUserStatusInput"',
+    });
+  }
   const isAccepted: undefined | boolean =
     val.is_accepted == void 0 ? void 0 : val.is_accepted;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "TermsOfServiceUserStatusInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "TermsOfServiceUserStatusInput"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {

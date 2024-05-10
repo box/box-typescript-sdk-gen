@@ -61,7 +61,7 @@ export function serializeCollaboratorVariableTypeField(
   return val;
 }
 export function deserializeCollaboratorVariableTypeField(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -81,7 +81,7 @@ export function serializeCollaboratorVariableVariableTypeField(
   return val;
 }
 export function deserializeCollaboratorVariableVariableTypeField(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -101,7 +101,7 @@ export function serializeCollaboratorVariableVariableValueTypeField(
   return val;
 }
 export function deserializeCollaboratorVariableVariableValueTypeField(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableVariableValueTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -125,10 +125,33 @@ export function serializeCollaboratorVariableVariableValueField(
   };
 }
 export function deserializeCollaboratorVariableVariableValueField(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableVariableValueField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaboratorVariableVariableValueField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CollaboratorVariableVariableValueField" to be defined',
+    });
+  }
   const type: CollaboratorVariableVariableValueTypeField =
     deserializeCollaboratorVariableVariableValueTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CollaboratorVariableVariableValueField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaboratorVariableVariableValueField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -147,12 +170,30 @@ export function serializeCollaboratorVariableVariableValueFieldInput(
   };
 }
 export function deserializeCollaboratorVariableVariableValueFieldInput(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableVariableValueFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaboratorVariableVariableValueFieldInput"',
+    });
+  }
   const type: undefined | CollaboratorVariableVariableValueTypeField =
     val.type == void 0
       ? void 0
       : deserializeCollaboratorVariableVariableValueTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CollaboratorVariableVariableValueFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaboratorVariableVariableValueFieldInput"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -175,12 +216,40 @@ export function serializeCollaboratorVariable(
   };
 }
 export function deserializeCollaboratorVariable(
-  val: any
+  val: SerializedData
 ): CollaboratorVariable {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaboratorVariable"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "CollaboratorVariable" to be defined',
+    });
+  }
   const type: CollaboratorVariableTypeField =
     deserializeCollaboratorVariableTypeField(val.type);
+  if (val.variable_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_type" of type "CollaboratorVariable" to be defined',
+    });
+  }
   const variableType: CollaboratorVariableVariableTypeField =
     deserializeCollaboratorVariableVariableTypeField(val.variable_type);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "CollaboratorVariable" to be defined',
+    });
+  }
+  if (!sdIsList(val.variable_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "variable_value" of type "CollaboratorVariable"',
+    });
+  }
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
       ? (val.variable_value.map(function (
@@ -215,8 +284,13 @@ export function serializeCollaboratorVariableInput(
   };
 }
 export function deserializeCollaboratorVariableInput(
-  val: any
+  val: SerializedData
 ): CollaboratorVariableInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaboratorVariableInput"',
+    });
+  }
   const type: undefined | CollaboratorVariableTypeField =
     val.type == void 0
       ? void 0
@@ -225,6 +299,18 @@ export function deserializeCollaboratorVariableInput(
     val.variableType == void 0
       ? void 0
       : deserializeCollaboratorVariableVariableTypeField(val.variableType);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "CollaboratorVariableInput" to be defined',
+    });
+  }
+  if (!sdIsList(val.variable_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "variable_value" of type "CollaboratorVariableInput"',
+    });
+  }
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
       ? (val.variable_value.map(function (

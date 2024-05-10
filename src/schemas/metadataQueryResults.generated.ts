@@ -1,6 +1,7 @@
 import { serializeFileOrFolder } from './fileOrFolder.generated.js';
 import { deserializeFileOrFolder } from './fileOrFolder.generated.js';
 import { FileOrFolder } from './fileOrFolder.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -28,8 +29,18 @@ export function serializeMetadataQueryResults(
   };
 }
 export function deserializeMetadataQueryResults(
-  val: any
+  val: SerializedData
 ): MetadataQueryResults {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataQueryResults"',
+    });
+  }
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "MetadataQueryResults"',
+    });
+  }
   const entries: undefined | readonly FileOrFolder[] =
     val.entries == void 0
       ? void 0
@@ -38,7 +49,18 @@ export function deserializeMetadataQueryResults(
           return deserializeFileOrFolder(itm);
         }) as readonly any[])
       : [];
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "MetadataQueryResults"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "MetadataQueryResults"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
   return {

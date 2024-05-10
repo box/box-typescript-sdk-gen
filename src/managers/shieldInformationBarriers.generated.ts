@@ -372,7 +372,7 @@ export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusFi
   return val;
 }
 export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -402,9 +402,33 @@ export function serializeUpdateShieldInformationBarrierStatusRequestBody(
   };
 }
 export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateShieldInformationBarrierStatusRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateShieldInformationBarrierStatusRequestBody"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "UpdateShieldInformationBarrierStatusRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateShieldInformationBarrierStatusRequestBody"',
+    });
+  }
   const id: string = val.id;
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "status" of type "UpdateShieldInformationBarrierStatusRequestBody" to be defined',
+    });
+  }
   const status: UpdateShieldInformationBarrierStatusRequestBodyStatusField =
     deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
       val.status
@@ -420,8 +444,20 @@ export function serializeCreateShieldInformationBarrierRequestBody(
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }
 export function deserializeCreateShieldInformationBarrierRequestBody(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierRequestBody"',
+    });
+  }
+  if (val.enterprise == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "enterprise" of type "CreateShieldInformationBarrierRequestBody" to be defined',
+    });
+  }
   const enterprise: EnterpriseBase = deserializeEnterpriseBase(val.enterprise);
   return {
     enterprise: enterprise,

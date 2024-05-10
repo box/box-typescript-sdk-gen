@@ -1,6 +1,7 @@
 import { serializeTermsOfServiceUserStatus } from './termsOfServiceUserStatus.generated.js';
 import { deserializeTermsOfServiceUserStatus } from './termsOfServiceUserStatus.generated.js';
 import { TermsOfServiceUserStatus } from './termsOfServiceUserStatus.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -28,10 +29,27 @@ export function serializeTermsOfServiceUserStatuses(
   };
 }
 export function deserializeTermsOfServiceUserStatuses(
-  val: any
+  val: SerializedData
 ): TermsOfServiceUserStatuses {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceUserStatuses"',
+    });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "TermsOfServiceUserStatuses"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "TermsOfServiceUserStatuses"',
+    });
+  }
   const entries: undefined | readonly TermsOfServiceUserStatus[] =
     val.entries == void 0
       ? void 0

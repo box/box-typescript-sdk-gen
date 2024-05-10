@@ -44,7 +44,7 @@ export function serializeShieldInformationBarrierReportStatusField(
   return val;
 }
 export function deserializeShieldInformationBarrierReportStatusField(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReportStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -104,8 +104,13 @@ export function serializeShieldInformationBarrierReport(
   };
 }
 export function deserializeShieldInformationBarrierReport(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReport {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReport"',
+    });
+  }
   const shieldInformationBarrier:
     | undefined
     | ShieldInformationBarrierReference =
@@ -122,12 +127,30 @@ export function deserializeShieldInformationBarrierReport(
     val.details == void 0
       ? void 0
       : deserializeShieldInformationBarrierReportDetails(val.details);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "ShieldInformationBarrierReport"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const createdBy: undefined | UserBase =
     val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
+  if (!(val.updated_at == void 0) && !sdIsString(val.updated_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "updated_at" of type "ShieldInformationBarrierReport"',
+    });
+  }
   const updatedAt: undefined | DateTime =
     val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ShieldInformationBarrierReport"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ShieldInformationBarrierReportBaseTypeField =
     val.type == void 0

@@ -17,7 +17,7 @@ export function serializeCommentBaseTypeField(
   return val;
 }
 export function deserializeCommentBaseTypeField(
-  val: any
+  val: SerializedData
 ): CommentBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -38,7 +38,15 @@ export function serializeCommentBase(val: CommentBase): SerializedData {
       val.type == void 0 ? void 0 : serializeCommentBaseTypeField(val.type),
   };
 }
-export function deserializeCommentBase(val: any): CommentBase {
+export function deserializeCommentBase(val: SerializedData): CommentBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "CommentBase"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "CommentBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CommentBaseTypeField =
     val.type == void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);

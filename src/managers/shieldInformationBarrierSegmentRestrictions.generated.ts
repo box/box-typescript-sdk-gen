@@ -493,7 +493,7 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -514,7 +514,7 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -543,8 +543,20 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type:
     | undefined
@@ -565,7 +577,7 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   return val;
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -594,8 +606,20 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type:
     | undefined
@@ -633,8 +657,20 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBody(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierSegmentRestrictionRequestBody"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBody" to be defined',
+    });
+  }
   const type: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField =
     deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField(
       val.type
@@ -643,10 +679,22 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
     val.shield_information_barrier == void 0
       ? void 0
       : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
+  if (val.shield_information_barrier_segment == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "shield_information_barrier_segment" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBody" to be defined',
+    });
+  }
   const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField =
     deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
       val.shield_information_barrier_segment
     );
+  if (val.restricted_segment == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "restricted_segment" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBody" to be defined',
+    });
+  }
   const restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField =
     deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(
       val.restricted_segment
@@ -683,8 +731,14 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyInput(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput"',
+    });
+  }
   const type:
     | undefined
     | CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField =
@@ -697,10 +751,22 @@ export function deserializeCreateShieldInformationBarrierSegmentRestrictionReque
     val.shield_information_barrier == void 0
       ? void 0
       : deserializeShieldInformationBarrierBase(val.shield_information_barrier);
+  if (val.shield_information_barrier_segment == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "shield_information_barrier_segment" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput" to be defined',
+    });
+  }
   const shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField =
     deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
       val.shield_information_barrier_segment
     );
+  if (val.restricted_segment == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "restricted_segment" of type "CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput" to be defined',
+    });
+  }
   const restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField =
     deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(
       val.restricted_segment

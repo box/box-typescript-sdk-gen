@@ -23,7 +23,7 @@ export function serializeZipDownloadStatusStateField(
   return val;
 }
 export function deserializeZipDownloadStatusStateField(
-  val: any
+  val: SerializedData
 ): ZipDownloadStatusStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -61,13 +61,53 @@ export function serializeZipDownloadStatus(
         : serializeZipDownloadStatusStateField(val.state),
   };
 }
-export function deserializeZipDownloadStatus(val: any): ZipDownloadStatus {
+export function deserializeZipDownloadStatus(
+  val: SerializedData
+): ZipDownloadStatus {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ZipDownloadStatus"',
+    });
+  }
+  if (!(val.total_file_count == void 0) && !sdIsNumber(val.total_file_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_file_count" of type "ZipDownloadStatus"',
+    });
+  }
   const totalFileCount: undefined | number =
     val.total_file_count == void 0 ? void 0 : val.total_file_count;
+  if (
+    !(val.downloaded_file_count == void 0) &&
+    !sdIsNumber(val.downloaded_file_count)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "downloaded_file_count" of type "ZipDownloadStatus"',
+    });
+  }
   const downloadedFileCount: undefined | number =
     val.downloaded_file_count == void 0 ? void 0 : val.downloaded_file_count;
+  if (
+    !(val.skipped_file_count == void 0) &&
+    !sdIsNumber(val.skipped_file_count)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "skipped_file_count" of type "ZipDownloadStatus"',
+    });
+  }
   const skippedFileCount: undefined | number =
     val.skipped_file_count == void 0 ? void 0 : val.skipped_file_count;
+  if (
+    !(val.skipped_folder_count == void 0) &&
+    !sdIsNumber(val.skipped_folder_count)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "skipped_folder_count" of type "ZipDownloadStatus"',
+    });
+  }
   const skippedFolderCount: undefined | number =
     val.skipped_folder_count == void 0 ? void 0 : val.skipped_folder_count;
   const state: undefined | ZipDownloadStatusStateField =

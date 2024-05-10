@@ -32,7 +32,7 @@ export function serializeFileOrFolderScopeScopeField(
   return val;
 }
 export function deserializeFileOrFolderScopeScopeField(
-  val: any
+  val: SerializedData
 ): FileOrFolderScopeScopeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -91,7 +91,14 @@ export function serializeFileOrFolderScope(
       val.object == void 0 ? void 0 : serializeFileMiniOrFolderMini(val.object),
   };
 }
-export function deserializeFileOrFolderScope(val: any): FileOrFolderScope {
+export function deserializeFileOrFolderScope(
+  val: SerializedData
+): FileOrFolderScope {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileOrFolderScope"',
+    });
+  }
   const scope: undefined | FileOrFolderScopeScopeField =
     val.scope == void 0
       ? void 0

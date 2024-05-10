@@ -51,7 +51,7 @@ export function serializeLegalHoldPolicyStatusField(
   return val;
 }
 export function deserializeLegalHoldPolicyStatusField(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -85,11 +85,40 @@ export function serializeLegalHoldPolicyAssignmentCountsField(
   };
 }
 export function deserializeLegalHoldPolicyAssignmentCountsField(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyAssignmentCountsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyAssignmentCountsField"',
+    });
+  }
+  if (!(val.user == void 0) && !sdIsNumber(val.user)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "user" of type "LegalHoldPolicyAssignmentCountsField"',
+    });
+  }
   const user: undefined | number = val.user == void 0 ? void 0 : val.user;
+  if (!(val.folder == void 0) && !sdIsNumber(val.folder)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "folder" of type "LegalHoldPolicyAssignmentCountsField"',
+    });
+  }
   const folder: undefined | number = val.folder == void 0 ? void 0 : val.folder;
+  if (!(val.file == void 0) && !sdIsNumber(val.file)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "file" of type "LegalHoldPolicyAssignmentCountsField"',
+    });
+  }
   const file: undefined | number = val.file == void 0 ? void 0 : val.file;
+  if (!(val.file_version == void 0) && !sdIsNumber(val.file_version)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "file_version" of type "LegalHoldPolicyAssignmentCountsField"',
+    });
+  }
   const fileVersion: undefined | number =
     val.file_version == void 0 ? void 0 : val.file_version;
   return {
@@ -137,9 +166,24 @@ export function serializeLegalHoldPolicy(val: LegalHoldPolicy): SerializedData {
     },
   };
 }
-export function deserializeLegalHoldPolicy(val: any): LegalHoldPolicy {
+export function deserializeLegalHoldPolicy(
+  val: SerializedData
+): LegalHoldPolicy {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "LegalHoldPolicy"' });
+  }
+  if (!(val.policy_name == void 0) && !sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "policy_name" of type "LegalHoldPolicy"',
+    });
+  }
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "LegalHoldPolicy"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const status: undefined | LegalHoldPolicyStatusField =
@@ -152,23 +196,73 @@ export function deserializeLegalHoldPolicy(val: any): LegalHoldPolicy {
       : deserializeLegalHoldPolicyAssignmentCountsField(val.assignment_counts);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "LegalHoldPolicy"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "LegalHoldPolicy"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.deleted_at == void 0) && !sdIsString(val.deleted_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "deleted_at" of type "LegalHoldPolicy"',
+    });
+  }
   const deletedAt: undefined | DateTime =
     val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
+  if (
+    !(val.filter_started_at == void 0) &&
+    !sdIsString(val.filter_started_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "filter_started_at" of type "LegalHoldPolicy"',
+    });
+  }
   const filterStartedAt: undefined | DateTime =
     val.filter_started_at == void 0
       ? void 0
       : deserializeDateTime(val.filter_started_at);
+  if (!(val.filter_ended_at == void 0) && !sdIsString(val.filter_ended_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "filter_ended_at" of type "LegalHoldPolicy"',
+    });
+  }
   const filterEndedAt: undefined | DateTime =
     val.filter_ended_at == void 0
       ? void 0
       : deserializeDateTime(val.filter_ended_at);
+  if (!(val.release_notes == void 0) && !sdIsString(val.release_notes)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "release_notes" of type "LegalHoldPolicy"',
+    });
+  }
   const releaseNotes: undefined | string =
     val.release_notes == void 0 ? void 0 : val.release_notes;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "LegalHoldPolicy" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "LegalHoldPolicy"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "LegalHoldPolicy" to be defined',
+    });
+  }
   const type: LegalHoldPolicyMiniTypeField =
     deserializeLegalHoldPolicyMiniTypeField(val.type);
   return {

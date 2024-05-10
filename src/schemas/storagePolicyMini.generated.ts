@@ -33,7 +33,7 @@ export function serializeStoragePolicyMiniTypeField(
   return val;
 }
 export function deserializeStoragePolicyMiniTypeField(
-  val: any
+  val: SerializedData
 ): StoragePolicyMiniTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,8 +55,30 @@ export function serializeStoragePolicyMini(
     ['type']: serializeStoragePolicyMiniTypeField(val.type),
   };
 }
-export function deserializeStoragePolicyMini(val: any): StoragePolicyMini {
+export function deserializeStoragePolicyMini(
+  val: SerializedData
+): StoragePolicyMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StoragePolicyMini"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "StoragePolicyMini" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "StoragePolicyMini"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "StoragePolicyMini" to be defined',
+    });
+  }
   const type: StoragePolicyMiniTypeField =
     deserializeStoragePolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies StoragePolicyMini;
@@ -73,8 +95,23 @@ export function serializeStoragePolicyMiniInput(
   };
 }
 export function deserializeStoragePolicyMiniInput(
-  val: any
+  val: SerializedData
 ): StoragePolicyMiniInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StoragePolicyMiniInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "StoragePolicyMiniInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "StoragePolicyMiniInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | StoragePolicyMiniTypeField =
     val.type == void 0

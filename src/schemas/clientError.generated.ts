@@ -43,7 +43,7 @@ export function serializeClientErrorTypeField(
   return val;
 }
 export function deserializeClientErrorTypeField(
-  val: any
+  val: SerializedData
 ): ClientErrorTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -63,7 +63,7 @@ export function serializeClientErrorCodeField(
   return val;
 }
 export function deserializeClientErrorCodeField(
-  val: any
+  val: SerializedData
 ): ClientErrorCodeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -131,8 +131,19 @@ export function serializeClientErrorContextInfoField(
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeClientErrorContextInfoField(
-  val: any
+  val: SerializedData
 ): ClientErrorContextInfoField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ClientErrorContextInfoField"',
+    });
+  }
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "ClientErrorContextInfoField"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   return { message: message } satisfies ClientErrorContextInfoField;
@@ -153,20 +164,43 @@ export function serializeClientError(val: ClientError): SerializedData {
     ['request_id']: val.requestId == void 0 ? void 0 : val.requestId,
   };
 }
-export function deserializeClientError(val: any): ClientError {
+export function deserializeClientError(val: SerializedData): ClientError {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "ClientError"' });
+  }
   const type: undefined | ClientErrorTypeField =
     val.type == void 0 ? void 0 : deserializeClientErrorTypeField(val.type);
+  if (!(val.status == void 0) && !sdIsNumber(val.status)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "status" of type "ClientError"',
+    });
+  }
   const status: undefined | number = val.status == void 0 ? void 0 : val.status;
   const code: undefined | ClientErrorCodeField =
     val.code == void 0 ? void 0 : deserializeClientErrorCodeField(val.code);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "ClientError"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const contextInfo: undefined | ClientErrorContextInfoField =
     val.context_info == void 0
       ? void 0
       : deserializeClientErrorContextInfoField(val.context_info);
+  if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "help_url" of type "ClientError"',
+    });
+  }
   const helpUrl: undefined | string =
     val.help_url == void 0 ? void 0 : val.help_url;
+  if (!(val.request_id == void 0) && !sdIsString(val.request_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "request_id" of type "ClientError"',
+    });
+  }
   const requestId: undefined | string =
     val.request_id == void 0 ? void 0 : val.request_id;
   return {

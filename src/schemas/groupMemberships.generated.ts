@@ -27,7 +27,7 @@ export function serializeGroupMembershipsOrderDirectionField(
   return val;
 }
 export function deserializeGroupMembershipsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): GroupMembershipsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -56,8 +56,18 @@ export function serializeGroupMembershipsOrderField(
   };
 }
 export function deserializeGroupMembershipsOrderField(
-  val: any
+  val: SerializedData
 ): GroupMembershipsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "GroupMembershipsOrderField"',
+    });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "GroupMembershipsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | GroupMembershipsOrderDirectionField =
     val.direction == void 0
@@ -88,11 +98,38 @@ export function serializeGroupMemberships(
           }) as readonly any[]),
   };
 }
-export function deserializeGroupMemberships(val: any): GroupMemberships {
+export function deserializeGroupMemberships(
+  val: SerializedData
+): GroupMemberships {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "GroupMemberships"',
+    });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "GroupMemberships"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "GroupMemberships"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "GroupMemberships"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "GroupMemberships"',
+    });
+  }
   const order: undefined | readonly GroupMembershipsOrderField[] =
     val.order == void 0
       ? void 0
@@ -103,6 +140,11 @@ export function deserializeGroupMemberships(val: any): GroupMemberships {
           return deserializeGroupMembershipsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "GroupMemberships"',
+    });
+  }
   const entries: undefined | readonly GroupMembership[] =
     val.entries == void 0
       ? void 0

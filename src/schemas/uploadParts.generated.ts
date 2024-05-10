@@ -27,7 +27,7 @@ export function serializeUploadPartsOrderDirectionField(
   return val;
 }
 export function deserializeUploadPartsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): UploadPartsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -56,8 +56,18 @@ export function serializeUploadPartsOrderField(
   };
 }
 export function deserializeUploadPartsOrderField(
-  val: any
+  val: SerializedData
 ): UploadPartsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UploadPartsOrderField"',
+    });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "UploadPartsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | UploadPartsOrderDirectionField =
     val.direction == void 0
@@ -86,11 +96,34 @@ export function serializeUploadParts(val: UploadParts): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeUploadParts(val: any): UploadParts {
+export function deserializeUploadParts(val: SerializedData): UploadParts {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "UploadParts"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "UploadParts"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "UploadParts"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "UploadParts"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "UploadParts"',
+    });
+  }
   const order: undefined | readonly UploadPartsOrderField[] =
     val.order == void 0
       ? void 0
@@ -99,6 +132,11 @@ export function deserializeUploadParts(val: any): UploadParts {
           return deserializeUploadPartsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "UploadParts"',
+    });
+  }
   const entries: undefined | readonly UploadPart[] =
     val.entries == void 0
       ? void 0

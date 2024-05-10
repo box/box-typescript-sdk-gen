@@ -74,7 +74,7 @@ export function serializeWebhookTriggersField(
   return val;
 }
 export function deserializeWebhookTriggersField(
-  val: any
+  val: SerializedData
 ): WebhookTriggersField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -229,13 +229,31 @@ export function serializeWebhook(val: Webhook): SerializedData {
     },
   };
 }
-export function deserializeWebhook(val: any): Webhook {
+export function deserializeWebhook(val: SerializedData): Webhook {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Webhook"' });
+  }
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Webhook"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.address == void 0) && !sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "address" of type "Webhook"',
+    });
+  }
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
+  if (!(val.triggers == void 0) && !sdIsList(val.triggers)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "triggers" of type "Webhook"',
+    });
+  }
   const triggers: undefined | readonly WebhookTriggersField[] =
     val.triggers == void 0
       ? void 0
@@ -244,6 +262,11 @@ export function deserializeWebhook(val: any): Webhook {
           return deserializeWebhookTriggersField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Webhook"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | WebhookMiniTypeField =
     val.type == void 0 ? void 0 : deserializeWebhookMiniTypeField(val.type);

@@ -513,8 +513,25 @@ export function serializeCreateBoxSkillCardsOnFileRequestBody(
   };
 }
 export function deserializeCreateBoxSkillCardsOnFileRequestBody(
-  val: any
+  val: SerializedData
 ): CreateBoxSkillCardsOnFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateBoxSkillCardsOnFileRequestBody"',
+    });
+  }
+  if (val.cards == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "cards" of type "CreateBoxSkillCardsOnFileRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.cards)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "cards" of type "CreateBoxSkillCardsOnFileRequestBody"',
+    });
+  }
   const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
     sdIsList(val.cards)
       ? (val.cards.map(function (
@@ -533,7 +550,7 @@ export function serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateBoxSkillCardsOnFileRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -566,12 +583,23 @@ export function serializeUpdateBoxSkillCardsOnFileRequestBody(
   };
 }
 export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateBoxSkillCardsOnFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateBoxSkillCardsOnFileRequestBody"',
+    });
+  }
   const op: undefined | UpdateBoxSkillCardsOnFileRequestBodyOpField =
     val.op == void 0
       ? void 0
       : deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(val.op);
+  if (!(val.path == void 0) && !sdIsString(val.path)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "path" of type "UpdateBoxSkillCardsOnFileRequestBody"',
+    });
+  }
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
   const value:
     | undefined
@@ -593,7 +621,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -637,8 +665,20 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyMetadataField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateAllSkillCardsOnFileRequestBodyMetadataField"',
+    });
+  }
+  if (!(val.cards == void 0) && !sdIsList(val.cards)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "cards" of type "UpdateAllSkillCardsOnFileRequestBodyMetadataField"',
+    });
+  }
   const cards:
     | undefined
     | readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
@@ -663,7 +703,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyFileTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -690,12 +730,24 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyFileField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateAllSkillCardsOnFileRequestBodyFileField"',
+    });
+  }
   const type: undefined | UpdateAllSkillCardsOnFileRequestBodyFileTypeField =
     val.type == void 0
       ? void 0
       : deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateAllSkillCardsOnFileRequestBodyFileField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
@@ -708,7 +760,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeFiel
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -737,8 +789,14 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateAllSkillCardsOnFileRequestBodyFileVersionField"',
+    });
+  }
   const type:
     | undefined
     | UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
@@ -747,6 +805,12 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
       : deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
           val.type
         );
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateAllSkillCardsOnFileRequestBodyFileVersionField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
@@ -762,9 +826,27 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBodyUsageField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateAllSkillCardsOnFileRequestBodyUsageField"',
+    });
+  }
+  if (!(val.unit == void 0) && !sdIsString(val.unit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unit" of type "UpdateAllSkillCardsOnFileRequestBodyUsageField"',
+    });
+  }
   const unit: undefined | string = val.unit == void 0 ? void 0 : val.unit;
+  if (!(val.value == void 0) && !sdIsNumber(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "value" of type "UpdateAllSkillCardsOnFileRequestBodyUsageField"',
+    });
+  }
   const value: undefined | number = val.value == void 0 ? void 0 : val.value;
   return {
     unit: unit,
@@ -795,12 +877,35 @@ export function serializeUpdateAllSkillCardsOnFileRequestBody(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateAllSkillCardsOnFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateAllSkillCardsOnFileRequestBody"',
+    });
+  }
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "status" of type "UpdateAllSkillCardsOnFileRequestBody" to be defined',
+    });
+  }
   const status: UpdateAllSkillCardsOnFileRequestBodyStatusField =
     deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(val.status);
+  if (val.metadata == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "metadata" of type "UpdateAllSkillCardsOnFileRequestBody" to be defined',
+    });
+  }
   const metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField =
     deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(val.metadata);
+  if (val.file == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "file" of type "UpdateAllSkillCardsOnFileRequestBody" to be defined',
+    });
+  }
   const file: UpdateAllSkillCardsOnFileRequestBodyFileField =
     deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(val.file);
   const fileVersion:

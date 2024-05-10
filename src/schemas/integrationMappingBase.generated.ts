@@ -17,7 +17,7 @@ export function serializeIntegrationMappingBaseIntegrationTypeField(
   return val;
 }
 export function deserializeIntegrationMappingBaseIntegrationTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingBaseIntegrationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -46,8 +46,18 @@ export function serializeIntegrationMappingBase(
   };
 }
 export function deserializeIntegrationMappingBase(
-  val: any
+  val: SerializedData
 ): IntegrationMappingBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingBase"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "IntegrationMappingBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const integrationType:
     | undefined

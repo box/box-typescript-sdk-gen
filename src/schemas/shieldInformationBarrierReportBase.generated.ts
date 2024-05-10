@@ -18,7 +18,7 @@ export function serializeShieldInformationBarrierReportBaseTypeField(
   return val;
 }
 export function deserializeShieldInformationBarrierReportBaseTypeField(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReportBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -45,8 +45,19 @@ export function serializeShieldInformationBarrierReportBase(
   };
 }
 export function deserializeShieldInformationBarrierReportBase(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReportBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReportBase"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ShieldInformationBarrierReportBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ShieldInformationBarrierReportBaseTypeField =
     val.type == void 0

@@ -63,7 +63,7 @@ export function serializeMetadataCascadePolicyTypeField(
   return val;
 }
 export function deserializeMetadataCascadePolicyTypeField(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -83,7 +83,7 @@ export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   return val;
 }
 export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyOwnerEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -110,12 +110,24 @@ export function serializeMetadataCascadePolicyOwnerEnterpriseField(
   };
 }
 export function deserializeMetadataCascadePolicyOwnerEnterpriseField(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyOwnerEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "MetadataCascadePolicyOwnerEnterpriseField"',
+    });
+  }
   const type: undefined | MetadataCascadePolicyOwnerEnterpriseTypeField =
     val.type == void 0
       ? void 0
       : deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "MetadataCascadePolicyOwnerEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
@@ -128,7 +140,7 @@ export function serializeMetadataCascadePolicyParentTypeField(
   return val;
 }
 export function deserializeMetadataCascadePolicyParentTypeField(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyParentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -154,12 +166,23 @@ export function serializeMetadataCascadePolicyParentField(
   };
 }
 export function deserializeMetadataCascadePolicyParentField(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataCascadePolicyParentField"',
+    });
+  }
   const type: undefined | MetadataCascadePolicyParentTypeField =
     val.type == void 0
       ? void 0
       : deserializeMetadataCascadePolicyParentTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "MetadataCascadePolicyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies MetadataCascadePolicyParentField;
 }
@@ -184,9 +207,29 @@ export function serializeMetadataCascadePolicy(
   };
 }
 export function deserializeMetadataCascadePolicy(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicy {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataCascadePolicy"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "MetadataCascadePolicy" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "MetadataCascadePolicy"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "MetadataCascadePolicy" to be defined',
+    });
+  }
   const type: MetadataCascadePolicyTypeField =
     deserializeMetadataCascadePolicyTypeField(val.type);
   const ownerEnterprise: undefined | MetadataCascadePolicyOwnerEnterpriseField =
@@ -199,7 +242,18 @@ export function deserializeMetadataCascadePolicy(
     val.parent == void 0
       ? void 0
       : deserializeMetadataCascadePolicyParentField(val.parent);
+  if (!(val.scope == void 0) && !sdIsString(val.scope)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "scope" of type "MetadataCascadePolicy"',
+    });
+  }
   const scope: undefined | string = val.scope == void 0 ? void 0 : val.scope;
+  if (!(val.templateKey == void 0) && !sdIsString(val.templateKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "templateKey" of type "MetadataCascadePolicy"',
+    });
+  }
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
   return {
@@ -235,8 +289,24 @@ export function serializeMetadataCascadePolicyInput(
   };
 }
 export function deserializeMetadataCascadePolicyInput(
-  val: any
+  val: SerializedData
 ): MetadataCascadePolicyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataCascadePolicyInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "MetadataCascadePolicyInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "MetadataCascadePolicyInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | MetadataCascadePolicyTypeField =
     val.type == void 0
@@ -252,7 +322,19 @@ export function deserializeMetadataCascadePolicyInput(
     val.parent == void 0
       ? void 0
       : deserializeMetadataCascadePolicyParentField(val.parent);
+  if (!(val.scope == void 0) && !sdIsString(val.scope)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "scope" of type "MetadataCascadePolicyInput"',
+    });
+  }
   const scope: undefined | string = val.scope == void 0 ? void 0 : val.scope;
+  if (!(val.templateKey == void 0) && !sdIsString(val.templateKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "templateKey" of type "MetadataCascadePolicyInput"',
+    });
+  }
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
   return {

@@ -1,6 +1,7 @@
 import { serializeIntegrationMapping } from './integrationMapping.generated.js';
 import { deserializeIntegrationMapping } from './integrationMapping.generated.js';
 import { IntegrationMapping } from './integrationMapping.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -27,10 +28,33 @@ export function serializeIntegrationMappings(
           }) as readonly any[]),
   };
 }
-export function deserializeIntegrationMappings(val: any): IntegrationMappings {
+export function deserializeIntegrationMappings(
+  val: SerializedData
+): IntegrationMappings {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappings"',
+    });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "IntegrationMappings"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "IntegrationMappings"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "IntegrationMappings"',
+    });
+  }
   const entries: undefined | readonly IntegrationMapping[] =
     val.entries == void 0
       ? void 0

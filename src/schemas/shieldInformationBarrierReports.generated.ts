@@ -1,6 +1,7 @@
 import { serializeShieldInformationBarrierReport } from './shieldInformationBarrierReport.generated.js';
 import { deserializeShieldInformationBarrierReport } from './shieldInformationBarrierReport.generated.js';
 import { ShieldInformationBarrierReport } from './shieldInformationBarrierReport.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -30,11 +31,34 @@ export function serializeShieldInformationBarrierReports(
   };
 }
 export function deserializeShieldInformationBarrierReports(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReports {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReports"',
+    });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "limit" of type "ShieldInformationBarrierReports"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "ShieldInformationBarrierReports"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "ShieldInformationBarrierReports"',
+    });
+  }
   const entries: undefined | readonly ShieldInformationBarrierReport[] =
     val.entries == void 0
       ? void 0

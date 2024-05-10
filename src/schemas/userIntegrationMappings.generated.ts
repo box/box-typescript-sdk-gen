@@ -37,11 +37,42 @@ export function serializeUserIntegrationMappings(
   };
 }
 export function deserializeUserIntegrationMappings(
-  val: any
+  val: SerializedData
 ): UserIntegrationMappings {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UserIntegrationMappings"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "UserIntegrationMappings"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "login" of type "UserIntegrationMappings"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "UserIntegrationMappings" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "UserIntegrationMappings"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "UserIntegrationMappings" to be defined',
+    });
+  }
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     name: name,

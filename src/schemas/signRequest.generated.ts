@@ -64,7 +64,7 @@ export function serializeSignRequestTypeField(
   return val;
 }
 export function deserializeSignRequestTypeField(
-  val: any
+  val: SerializedData
 ): SignRequestTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -84,7 +84,7 @@ export function serializeSignRequestStatusField(
   return val;
 }
 export function deserializeSignRequestStatusField(
-  val: any
+  val: SerializedData
 ): SignRequestStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -146,8 +146,19 @@ export function serializeSignRequestSignFilesField(
   };
 }
 export function deserializeSignRequestSignFilesField(
-  val: any
+  val: SerializedData
 ): SignRequestSignFilesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestSignFilesField"',
+    });
+  }
+  if (!(val.files == void 0) && !sdIsList(val.files)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "files" of type "SignRequestSignFilesField"',
+    });
+  }
   const files: undefined | readonly FileMini[] =
     val.files == void 0
       ? void 0
@@ -156,6 +167,15 @@ export function deserializeSignRequestSignFilesField(
           return deserializeFileMini(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.is_ready_for_download == void 0) &&
+    !sdIsBoolean(val.is_ready_for_download)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_ready_for_download" of type "SignRequestSignFilesField"',
+    });
+  }
   const isReadyForDownload: undefined | boolean =
     val.is_ready_for_download == void 0 ? void 0 : val.is_ready_for_download;
   return {
@@ -212,9 +232,17 @@ export function serializeSignRequest(val: SignRequest): SerializedData {
     },
   };
 }
-export function deserializeSignRequest(val: any): SignRequest {
+export function deserializeSignRequest(val: SerializedData): SignRequest {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "SignRequest"' });
+  }
   const type: undefined | SignRequestTypeField =
     val.type == void 0 ? void 0 : deserializeSignRequestTypeField(val.type);
+  if (!(val.source_files == void 0) && !sdIsList(val.source_files)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "source_files" of type "SignRequest"',
+    });
+  }
   const sourceFiles: undefined | readonly FileBase[] =
     val.source_files == void 0
       ? void 0
@@ -223,6 +251,11 @@ export function deserializeSignRequest(val: any): SignRequest {
           return deserializeFileBase(itm);
         }) as readonly any[])
       : [];
+  if (!(val.signers == void 0) && !sdIsList(val.signers)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "signers" of type "SignRequest"',
+    });
+  }
   const signers: undefined | readonly SignRequestSigner[] =
     val.signers == void 0
       ? void 0
@@ -231,9 +264,24 @@ export function deserializeSignRequest(val: any): SignRequest {
           return deserializeSignRequestSigner(itm);
         }) as readonly any[])
       : [];
+  if (!(val.signature_color == void 0) && !sdIsString(val.signature_color)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "signature_color" of type "SignRequest"',
+    });
+  }
   const signatureColor: undefined | string =
     val.signature_color == void 0 ? void 0 : val.signature_color;
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "SignRequest"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.prepare_url == void 0) && !sdIsString(val.prepare_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "prepare_url" of type "SignRequest"',
+    });
+  }
   const prepareUrl: undefined | string =
     val.prepare_url == void 0 ? void 0 : val.prepare_url;
   const signingLog: undefined | FileMini =
@@ -246,6 +294,11 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.sign_files == void 0
       ? void 0
       : deserializeSignRequestSignFilesField(val.sign_files);
+  if (!(val.auto_expire_at == void 0) && !sdIsString(val.auto_expire_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "auto_expire_at" of type "SignRequest"',
+    });
+  }
   const autoExpireAt: undefined | DateTime =
     val.auto_expire_at == void 0
       ? void 0
@@ -254,25 +307,86 @@ export function deserializeSignRequest(val: any): SignRequest {
     val.parent_folder == void 0
       ? void 0
       : deserializeFolderMini(val.parent_folder);
+  if (
+    !(val.is_document_preparation_needed == void 0) &&
+    !sdIsBoolean(val.is_document_preparation_needed)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_document_preparation_needed" of type "SignRequest"',
+    });
+  }
   const isDocumentPreparationNeeded: undefined | boolean =
     val.is_document_preparation_needed == void 0
       ? void 0
       : val.is_document_preparation_needed;
+  if (!(val.redirect_url == void 0) && !sdIsString(val.redirect_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "redirect_url" of type "SignRequest"',
+    });
+  }
   const redirectUrl: undefined | string =
     val.redirect_url == void 0 ? void 0 : val.redirect_url;
+  if (
+    !(val.declined_redirect_url == void 0) &&
+    !sdIsString(val.declined_redirect_url)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "declined_redirect_url" of type "SignRequest"',
+    });
+  }
   const declinedRedirectUrl: undefined | string =
     val.declined_redirect_url == void 0 ? void 0 : val.declined_redirect_url;
+  if (
+    !(val.are_text_signatures_enabled == void 0) &&
+    !sdIsBoolean(val.are_text_signatures_enabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_text_signatures_enabled" of type "SignRequest"',
+    });
+  }
   const areTextSignaturesEnabled: undefined | boolean =
     val.are_text_signatures_enabled == void 0
       ? void 0
       : val.are_text_signatures_enabled;
+  if (!(val.email_subject == void 0) && !sdIsString(val.email_subject)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email_subject" of type "SignRequest"',
+    });
+  }
   const emailSubject: undefined | string =
     val.email_subject == void 0 ? void 0 : val.email_subject;
+  if (!(val.email_message == void 0) && !sdIsString(val.email_message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email_message" of type "SignRequest"',
+    });
+  }
   const emailMessage: undefined | string =
     val.email_message == void 0 ? void 0 : val.email_message;
+  if (
+    !(val.are_reminders_enabled == void 0) &&
+    !sdIsBoolean(val.are_reminders_enabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_reminders_enabled" of type "SignRequest"',
+    });
+  }
   const areRemindersEnabled: undefined | boolean =
     val.are_reminders_enabled == void 0 ? void 0 : val.are_reminders_enabled;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "SignRequest"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.prefill_tags == void 0) && !sdIsList(val.prefill_tags)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "prefill_tags" of type "SignRequest"',
+    });
+  }
   const prefillTags: undefined | readonly SignRequestPrefillTag[] =
     val.prefill_tags == void 0
       ? void 0
@@ -283,14 +397,38 @@ export function deserializeSignRequest(val: any): SignRequest {
           return deserializeSignRequestPrefillTag(itm);
         }) as readonly any[])
       : [];
+  if (!(val.days_valid == void 0) && !sdIsNumber(val.days_valid)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "days_valid" of type "SignRequest"',
+    });
+  }
   const daysValid: undefined | number =
     val.days_valid == void 0 ? void 0 : val.days_valid;
+  if (!(val.external_id == void 0) && !sdIsString(val.external_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "external_id" of type "SignRequest"',
+    });
+  }
   const externalId: undefined | string =
     val.external_id == void 0 ? void 0 : val.external_id;
+  if (
+    !(val.is_phone_verification_required_to_view == void 0) &&
+    !sdIsBoolean(val.is_phone_verification_required_to_view)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_phone_verification_required_to_view" of type "SignRequest"',
+    });
+  }
   const isPhoneVerificationRequiredToView: undefined | boolean =
     val.is_phone_verification_required_to_view == void 0
       ? void 0
       : val.is_phone_verification_required_to_view;
+  if (!(val.template_id == void 0) && !sdIsString(val.template_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "template_id" of type "SignRequest"',
+    });
+  }
   const templateId: undefined | string =
     val.template_id == void 0 ? void 0 : val.template_id;
   return {

@@ -485,7 +485,7 @@ export function serializeGetFileMetadataByIdScope(
   return val;
 }
 export function deserializeGetFileMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): GetFileMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -508,7 +508,7 @@ export function serializeCreateFileMetadataByIdScope(
   return val;
 }
 export function deserializeCreateFileMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): CreateFileMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -540,9 +540,20 @@ export function serializeCreateFileMetadataByIdRequestBody(
   };
 }
 export function deserializeCreateFileMetadataByIdRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFileMetadataByIdRequestBody {
-  return val;
+  return sdIsMap(val)
+    ? (Object.fromEntries(
+        Object.entries(val).map(([k, v]: [string, any]) => [
+          k,
+          (function (v: any): any {
+            return v;
+          })(v),
+        ])
+      ) as {
+        readonly [key: string]: any;
+      })
+    : {};
 }
 export function serializeUpdateFileMetadataByIdScope(
   val: UpdateFileMetadataByIdScope
@@ -550,7 +561,7 @@ export function serializeUpdateFileMetadataByIdScope(
   return val;
 }
 export function deserializeUpdateFileMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): UpdateFileMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -573,7 +584,7 @@ export function serializeUpdateFileMetadataByIdRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateFileMetadataByIdRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -617,14 +628,37 @@ export function serializeUpdateFileMetadataByIdRequestBody(
   };
 }
 export function deserializeUpdateFileMetadataByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFileMetadataByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileMetadataByIdRequestBody"',
+    });
+  }
   const op: undefined | UpdateFileMetadataByIdRequestBodyOpField =
     val.op == void 0
       ? void 0
       : deserializeUpdateFileMetadataByIdRequestBodyOpField(val.op);
+  if (!(val.path == void 0) && !sdIsString(val.path)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "path" of type "UpdateFileMetadataByIdRequestBody"',
+    });
+  }
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
+  if (!(val.value == void 0) && !sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateFileMetadataByIdRequestBody"',
+    });
+  }
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
+  if (!(val.from == void 0) && !sdIsString(val.from)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "from" of type "UpdateFileMetadataByIdRequestBody"',
+    });
+  }
   const from: undefined | string = val.from == void 0 ? void 0 : val.from;
   return {
     op: op,
@@ -639,7 +673,7 @@ export function serializeDeleteFileMetadataByIdScope(
   return val;
 }
 export function deserializeDeleteFileMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): DeleteFileMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

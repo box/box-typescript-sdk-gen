@@ -22,7 +22,7 @@ export function serializeFileOrFolder(val: any): SerializedData {
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function deserializeFileOrFolder(val: any): FileOrFolder {
+export function deserializeFileOrFolder(val: SerializedData): FileOrFolder {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileOrFolder"' });
   }

@@ -33,7 +33,7 @@ export function serializeLegalHoldPolicyMiniTypeField(
   return val;
 }
 export function deserializeLegalHoldPolicyMiniTypeField(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyMiniTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,8 +55,30 @@ export function serializeLegalHoldPolicyMini(
     ['type']: serializeLegalHoldPolicyMiniTypeField(val.type),
   };
 }
-export function deserializeLegalHoldPolicyMini(val: any): LegalHoldPolicyMini {
+export function deserializeLegalHoldPolicyMini(
+  val: SerializedData
+): LegalHoldPolicyMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyMini"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "LegalHoldPolicyMini" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "LegalHoldPolicyMini"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "LegalHoldPolicyMini" to be defined',
+    });
+  }
   const type: LegalHoldPolicyMiniTypeField =
     deserializeLegalHoldPolicyMiniTypeField(val.type);
   return { id: id, type: type } satisfies LegalHoldPolicyMini;
@@ -73,8 +95,24 @@ export function serializeLegalHoldPolicyMiniInput(
   };
 }
 export function deserializeLegalHoldPolicyMiniInput(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyMiniInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyMiniInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "LegalHoldPolicyMiniInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "LegalHoldPolicyMiniInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | LegalHoldPolicyMiniTypeField =
     val.type == void 0

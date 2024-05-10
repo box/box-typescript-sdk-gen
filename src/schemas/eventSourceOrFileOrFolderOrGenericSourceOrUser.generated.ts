@@ -48,7 +48,7 @@ export function serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   return serializeGenericSource(val);
 }
 export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
-  val: any
+  val: SerializedData
 ): EventSourceOrFileOrFolderOrGenericSourceOrUser {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
