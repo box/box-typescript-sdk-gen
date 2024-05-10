@@ -97,11 +97,11 @@ await client.fileMetadata.createFileMetadataById(
   'enterprise' as CreateFileMetadataByIdScope,
   templateKey,
   {
-    ['floatField']: 10,
-    ['stringField']: 'stringValue',
-    ['dateField']: '2035-01-02T00:00:00Z',
-    ['enumField']: 'enumValue2',
-    ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+    ['name']: 'John',
+    ['age']: 23,
+    ['birthDate']: '2001-01-03T02:20:50.520Z',
+    ['countryCode']: 'US',
+    ['sports']: ['basketball', 'tennis'],
   }
 );
 ```

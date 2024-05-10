@@ -1,9 +1,9 @@
-import { serializeClassification } from '../schemas.generated.js';
-import { deserializeClassification } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { Classification } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeClassification } from '../schemas/classification.generated.js';
+import { deserializeClassification } from '../schemas/classification.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { Classification } from '../schemas/classification.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

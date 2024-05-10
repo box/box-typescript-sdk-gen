@@ -57,7 +57,7 @@ await client.tasks.createTask({
     id: file.id,
   } satisfies CreateTaskRequestBodyItemField,
   message: 'test message',
-  dueAt: dateTime,
+  dueAt: date,
   action: 'review' as CreateTaskRequestBodyActionField,
   completionRule: 'all_assignees' as CreateTaskRequestBodyCompletionRuleField,
 } satisfies CreateTaskRequestBody);

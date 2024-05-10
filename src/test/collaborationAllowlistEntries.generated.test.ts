@@ -1,14 +1,14 @@
-import { serializeCollaborationAllowlistEntries } from '../schemas.generated.js';
-import { deserializeCollaborationAllowlistEntries } from '../schemas.generated.js';
-import { serializeCollaborationAllowlistEntry } from '../schemas.generated.js';
-import { deserializeCollaborationAllowlistEntry } from '../schemas.generated.js';
+import { serializeCollaborationAllowlistEntries } from '../schemas/collaborationAllowlistEntries.generated.js';
+import { deserializeCollaborationAllowlistEntries } from '../schemas/collaborationAllowlistEntries.generated.js';
+import { serializeCollaborationAllowlistEntry } from '../schemas/collaborationAllowlistEntry.generated.js';
+import { deserializeCollaborationAllowlistEntry } from '../schemas/collaborationAllowlistEntry.generated.js';
 import { serializeCreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { deserializeCreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField } from '../managers/collaborationAllowlistEntries.generated.js';
 import { deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField } from '../managers/collaborationAllowlistEntries.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { CollaborationAllowlistEntries } from '../schemas.generated.js';
-import { CollaborationAllowlistEntry } from '../schemas.generated.js';
+import { CollaborationAllowlistEntries } from '../schemas/collaborationAllowlistEntries.generated.js';
+import { CollaborationAllowlistEntry } from '../schemas/collaborationAllowlistEntry.generated.js';
 import { CreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { CreateCollaborationWhitelistEntryRequestBodyDirectionField } from '../managers/collaborationAllowlistEntries.generated.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -22,7 +22,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
-test('collaborationAllowlistEntries', async function collaborationAllowlistEntries(): Promise<any> {
+test('testCollaborationAllowlistEntries', async function testCollaborationAllowlistEntries(): Promise<any> {
   const allowlist: CollaborationAllowlistEntries =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
   if (!(allowlist.entries!.length >= 0)) {

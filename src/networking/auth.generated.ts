@@ -1,4 +1,4 @@
-import { AccessToken } from '../schemas.generated.js';
+import { AccessToken } from '../schemas/accessToken.generated.js';
 import { NetworkSession } from './network.generated.js';
 export interface Authentication {
   retrieveToken(networkSession?: NetworkSession): Promise<AccessToken>;

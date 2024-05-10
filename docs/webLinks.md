@@ -18,10 +18,10 @@ See the endpoint docs at
 
 ```ts
 await client.webLinks.createWebLink({
-  url: url,
+  url: 'https://www.box.com',
   parent: { id: parent.id } satisfies CreateWebLinkRequestBodyParentField,
-  name: name,
-  description: description,
+  name: getUuid(),
+  description: 'Weblink description',
 } satisfies CreateWebLinkRequestBody);
 ```
 
@@ -114,7 +114,7 @@ See the endpoint docs at
 <!-- sample delete_web_links_id -->
 
 ```ts
-await client.webLinks.deleteWebLinkById(weblink.id);
+await client.webLinks.deleteWebLinkById(webLinkId);
 ```
 
 ### Arguments

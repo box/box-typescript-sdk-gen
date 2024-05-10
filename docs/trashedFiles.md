@@ -57,7 +57,7 @@ See the endpoint docs at
 <!-- sample get_files_id_trash -->
 
 ```ts
-await client.trashedFiles.getTrashedFileById(file.id);
+await client.trashedFiles.getTrashedFileById(uploadedFile.id);
 ```
 
 ### Arguments

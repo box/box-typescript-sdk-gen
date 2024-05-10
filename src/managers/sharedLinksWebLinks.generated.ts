@@ -1,11 +1,11 @@
-import { serializeWebLink } from '../schemas.generated.js';
-import { deserializeWebLink } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
+import { serializeWebLink } from '../schemas/webLink.generated.js';
+import { deserializeWebLink } from '../schemas/webLink.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
-import { WebLink } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { WebLink } from '../schemas/webLink.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

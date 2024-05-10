@@ -101,7 +101,13 @@ await client.folderMetadata.createFolderMetadataById(
   folder.id,
   'enterprise' as CreateFolderMetadataByIdScope,
   templateKey,
-  data
+  {
+    ['name']: 'John',
+    ['age']: 23,
+    ['birthDate']: '2001-01-03T02:20:50.520Z',
+    ['countryCode']: 'US',
+    ['sports']: ['basketball', 'tennis'],
+  }
 );
 ```
 

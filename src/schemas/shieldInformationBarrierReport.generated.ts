@@ -1,0 +1,146 @@
+import { serializeShieldInformationBarrierReportBaseTypeField } from './shieldInformationBarrierReportBase.generated.js';
+import { deserializeShieldInformationBarrierReportBaseTypeField } from './shieldInformationBarrierReportBase.generated.js';
+import { serializeShieldInformationBarrierReportBase } from './shieldInformationBarrierReportBase.generated.js';
+import { deserializeShieldInformationBarrierReportBase } from './shieldInformationBarrierReportBase.generated.js';
+import { serializeShieldInformationBarrierReference } from './shieldInformationBarrierReference.generated.js';
+import { deserializeShieldInformationBarrierReference } from './shieldInformationBarrierReference.generated.js';
+import { serializeShieldInformationBarrierReportDetails } from './shieldInformationBarrierReportDetails.generated.js';
+import { deserializeShieldInformationBarrierReportDetails } from './shieldInformationBarrierReportDetails.generated.js';
+import { serializeUserBase } from './userBase.generated.js';
+import { deserializeUserBase } from './userBase.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
+import { ShieldInformationBarrierReportBaseTypeField } from './shieldInformationBarrierReportBase.generated.js';
+import { ShieldInformationBarrierReportBase } from './shieldInformationBarrierReportBase.generated.js';
+import { ShieldInformationBarrierReference } from './shieldInformationBarrierReference.generated.js';
+import { ShieldInformationBarrierReportDetails } from './shieldInformationBarrierReportDetails.generated.js';
+import { UserBase } from './userBase.generated.js';
+import { DateTime } from '../internal/utils.js';
+import { BoxSdkError } from '../box/errors.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
+export type ShieldInformationBarrierReportStatusField =
+  | 'pending'
+  | 'error'
+  | 'done'
+  | 'cancelled';
+export type ShieldInformationBarrierReport =
+  ShieldInformationBarrierReportBase & {
+    readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
+    readonly status?: ShieldInformationBarrierReportStatusField;
+    readonly details?: ShieldInformationBarrierReportDetails;
+    readonly createdAt?: DateTime;
+    readonly createdBy?: UserBase;
+    readonly updatedAt?: DateTime;
+  };
+export function serializeShieldInformationBarrierReportStatusField(
+  val: ShieldInformationBarrierReportStatusField
+): SerializedData {
+  return val;
+}
+export function deserializeShieldInformationBarrierReportStatusField(
+  val: any
+): ShieldInformationBarrierReportStatusField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a string for "ShieldInformationBarrierReportStatusField"',
+    });
+  }
+  if (val == 'pending') {
+    return 'pending';
+  }
+  if (val == 'error') {
+    return 'error';
+  }
+  if (val == 'done') {
+    return 'done';
+  }
+  if (val == 'cancelled') {
+    return 'cancelled';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeShieldInformationBarrierReport(
+  val: ShieldInformationBarrierReport
+): SerializedData {
+  const base: any = serializeShieldInformationBarrierReportBase(val);
+  if (!sdIsMap(base)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReport"',
+    });
+  }
+  return {
+    ...base,
+    ...{
+      ['shield_information_barrier']:
+        val.shieldInformationBarrier == void 0
+          ? void 0
+          : serializeShieldInformationBarrierReference(
+              val.shieldInformationBarrier
+            ),
+      ['status']:
+        val.status == void 0
+          ? void 0
+          : serializeShieldInformationBarrierReportStatusField(val.status),
+      ['details']:
+        val.details == void 0
+          ? void 0
+          : serializeShieldInformationBarrierReportDetails(val.details),
+      ['created_at']:
+        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      ['created_by']:
+        val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+      ['updated_at']:
+        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
+    },
+  };
+}
+export function deserializeShieldInformationBarrierReport(
+  val: any
+): ShieldInformationBarrierReport {
+  const shieldInformationBarrier:
+    | undefined
+    | ShieldInformationBarrierReference =
+    val.shield_information_barrier == void 0
+      ? void 0
+      : deserializeShieldInformationBarrierReference(
+          val.shield_information_barrier
+        );
+  const status: undefined | ShieldInformationBarrierReportStatusField =
+    val.status == void 0
+      ? void 0
+      : deserializeShieldInformationBarrierReportStatusField(val.status);
+  const details: undefined | ShieldInformationBarrierReportDetails =
+    val.details == void 0
+      ? void 0
+      : deserializeShieldInformationBarrierReportDetails(val.details);
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const createdBy: undefined | UserBase =
+    val.created_by == void 0 ? void 0 : deserializeUserBase(val.created_by);
+  const updatedAt: undefined | DateTime =
+    val.updated_at == void 0 ? void 0 : deserializeDateTime(val.updated_at);
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const type: undefined | ShieldInformationBarrierReportBaseTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeShieldInformationBarrierReportBaseTypeField(val.type);
+  return {
+    shieldInformationBarrier: shieldInformationBarrier,
+    status: status,
+    details: details,
+    createdAt: createdAt,
+    createdBy: createdBy,
+    updatedAt: updatedAt,
+    id: id,
+    type: type,
+  } satisfies ShieldInformationBarrierReport;
+}

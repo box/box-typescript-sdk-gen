@@ -1,9 +1,9 @@
-import { serializeWatermark } from '../schemas.generated.js';
-import { deserializeWatermark } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { Watermark } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeWatermark } from '../schemas/watermark.generated.js';
+import { deserializeWatermark } from '../schemas/watermark.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { Watermark } from '../schemas/watermark.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

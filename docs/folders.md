@@ -28,7 +28,7 @@ See the endpoint docs at
 <!-- sample get_folders_id -->
 
 ```ts
-await client.folders.getFolderById('0');
+await client.folders.getFolderById(newFolder.id);
 ```
 
 ### Arguments
@@ -67,13 +67,8 @@ See the endpoint docs at
 <!-- sample put_folders_id -->
 
 ```ts
-await client.folders.updateFolderById(copiedFolder.id, {
-  requestBody: {
-    parent: {
-      id: folderOrigin.id,
-    } satisfies UpdateFolderByIdRequestBodyParentField,
-    name: movedFolderName,
-  } satisfies UpdateFolderByIdRequestBody,
+await downscopedClient.folders.updateFolderById(folder.id, {
+  requestBody: { name: getUuid() } satisfies UpdateFolderByIdRequestBody,
 } satisfies UpdateFolderByIdOptionalsInput);
 ```
 
@@ -112,7 +107,7 @@ See the endpoint docs at
 <!-- sample delete_folders_id -->
 
 ```ts
-await client.folders.deleteFolderById(folder1.id);
+await parentClient.folders.deleteFolderById(folder.id);
 ```
 
 ### Arguments
@@ -173,7 +168,7 @@ See the endpoint docs at
 <!-- sample post_folders -->
 
 ```ts
-await client.folders.createFolder({
+await parentClient.folders.createFolder({
   name: getUuid(),
   parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
 } satisfies CreateFolderRequestBody);

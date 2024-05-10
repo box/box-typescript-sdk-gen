@@ -1,7 +1,7 @@
-import { serializeRecentItems } from '../schemas.generated.js';
-import { deserializeRecentItems } from '../schemas.generated.js';
+import { serializeRecentItems } from '../schemas/recentItems.generated.js';
+import { deserializeRecentItems } from '../schemas/recentItems.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { RecentItems } from '../schemas.generated.js';
+import { RecentItems } from '../schemas/recentItems.generated.js';
 import { decodeBase64 } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';

@@ -1,9 +1,9 @@
-import { serializeUserFull } from '../schemas.generated.js';
-import { deserializeUserFull } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas/userFull.generated.js';
+import { deserializeUserFull } from '../schemas/userFull.generated.js';
 import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
-import { serializeFolderFull } from '../schemas.generated.js';
-import { deserializeFolderFull } from '../schemas.generated.js';
+import { serializeFolderFull } from '../schemas/folderFull.generated.js';
+import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
 import { serializeTransferOwnedFolderRequestBody } from '../managers/transfer.generated.js';
 import { deserializeTransferOwnedFolderRequestBody } from '../managers/transfer.generated.js';
 import { serializeTransferOwnedFolderRequestBodyOwnedByField } from '../managers/transfer.generated.js';
@@ -15,9 +15,9 @@ import { TransferOwnedFolderOptionals } from '../managers/transfer.generated.js'
 import { DeleteFolderByIdOptionals } from '../managers/folders.generated.js';
 import { DeleteUserByIdOptionals } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { UserFull } from '../schemas.generated.js';
+import { UserFull } from '../schemas/userFull.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
-import { FolderFull } from '../schemas.generated.js';
+import { FolderFull } from '../schemas/folderFull.generated.js';
 import { TransferOwnedFolderRequestBody } from '../managers/transfer.generated.js';
 import { TransferOwnedFolderRequestBodyOwnedByField } from '../managers/transfer.generated.js';
 import { TransferOwnedFolderQueryParams } from '../managers/transfer.generated.js';

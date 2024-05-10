@@ -1,9 +1,9 @@
-import { serializeCollaborations } from '../schemas.generated.js';
-import { deserializeCollaborations } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { Collaborations } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeCollaborations } from '../schemas/collaborations.generated.js';
+import { deserializeCollaborations } from '../schemas/collaborations.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { Collaborations } from '../schemas/collaborations.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
