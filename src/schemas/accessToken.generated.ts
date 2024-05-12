@@ -26,7 +26,7 @@ export function serializeAccessTokenTokenTypeField(
   return val;
 }
 export function deserializeAccessTokenTokenTypeField(
-  val: any
+  val: SerializedData
 ): AccessTokenTokenTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -46,7 +46,7 @@ export function serializeAccessTokenIssuedTokenTypeField(
   return val;
 }
 export function deserializeAccessTokenIssuedTokenTypeField(
-  val: any
+  val: SerializedData
 ): AccessTokenIssuedTokenTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -83,15 +83,33 @@ export function serializeAccessToken(val: AccessToken): SerializedData {
         : serializeAccessTokenIssuedTokenTypeField(val.issuedTokenType),
   };
 }
-export function deserializeAccessToken(val: any): AccessToken {
+export function deserializeAccessToken(val: SerializedData): AccessToken {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "AccessToken"' });
+  }
+  if (!(val.access_token == void 0) && !sdIsString(val.access_token)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "access_token" of type "AccessToken"',
+    });
+  }
   const accessToken: undefined | string =
     val.access_token == void 0 ? void 0 : val.access_token;
+  if (!(val.expires_in == void 0) && !sdIsNumber(val.expires_in)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "expires_in" of type "AccessToken"',
+    });
+  }
   const expiresIn: undefined | number =
     val.expires_in == void 0 ? void 0 : val.expires_in;
   const tokenType: undefined | AccessTokenTokenTypeField =
     val.token_type == void 0
       ? void 0
       : deserializeAccessTokenTokenTypeField(val.token_type);
+  if (!(val.restricted_to == void 0) && !sdIsList(val.restricted_to)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "restricted_to" of type "AccessToken"',
+    });
+  }
   const restrictedTo: undefined | readonly FileOrFolderScope[] =
     val.restricted_to == void 0
       ? void 0
@@ -102,6 +120,11 @@ export function deserializeAccessToken(val: any): AccessToken {
           return deserializeFileOrFolderScope(itm);
         }) as readonly any[])
       : [];
+  if (!(val.refresh_token == void 0) && !sdIsString(val.refresh_token)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "refresh_token" of type "AccessToken"',
+    });
+  }
   const refreshToken: undefined | string =
     val.refresh_token == void 0 ? void 0 : val.refresh_token;
   const issuedTokenType: undefined | AccessTokenIssuedTokenTypeField =

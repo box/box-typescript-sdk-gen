@@ -34,7 +34,7 @@ export function serializeFileVersionRetentionTypeField(
   return val;
 }
 export function deserializeFileVersionRetentionTypeField(
-  val: any
+  val: SerializedData
 ): FileVersionRetentionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -75,8 +75,18 @@ export function serializeFileVersionRetention(
   };
 }
 export function deserializeFileVersionRetention(
-  val: any
+  val: SerializedData
 ): FileVersionRetention {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileVersionRetention"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersionRetention"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | FileVersionRetentionTypeField =
     val.type == void 0
@@ -88,8 +98,20 @@ export function deserializeFileVersionRetention(
       : deserializeFileVersionMini(val.file_version);
   const file: undefined | FileMini =
     val.file == void 0 ? void 0 : deserializeFileMini(val.file);
+  if (!(val.applied_at == void 0) && !sdIsString(val.applied_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "applied_at" of type "FileVersionRetention"',
+    });
+  }
   const appliedAt: undefined | DateTime =
     val.applied_at == void 0 ? void 0 : deserializeDateTime(val.applied_at);
+  if (!(val.disposition_at == void 0) && !sdIsString(val.disposition_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "disposition_at" of type "FileVersionRetention"',
+    });
+  }
   const dispositionAt: undefined | DateTime =
     val.disposition_at == void 0
       ? void 0

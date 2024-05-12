@@ -43,7 +43,7 @@ export function serializeCompletionRuleVariableTypeField(
   return val;
 }
 export function deserializeCompletionRuleVariableTypeField(
-  val: any
+  val: SerializedData
 ): CompletionRuleVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -63,7 +63,7 @@ export function serializeCompletionRuleVariableVariableTypeField(
   return val;
 }
 export function deserializeCompletionRuleVariableVariableTypeField(
-  val: any
+  val: SerializedData
 ): CompletionRuleVariableVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -84,7 +84,7 @@ export function serializeCompletionRuleVariableVariableValueField(
   return val;
 }
 export function deserializeCompletionRuleVariableVariableValueField(
-  val: any
+  val: SerializedData
 ): CompletionRuleVariableVariableValueField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -116,12 +116,35 @@ export function serializeCompletionRuleVariable(
   };
 }
 export function deserializeCompletionRuleVariable(
-  val: any
+  val: SerializedData
 ): CompletionRuleVariable {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CompletionRuleVariable"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CompletionRuleVariable" to be defined',
+    });
+  }
   const type: CompletionRuleVariableTypeField =
     deserializeCompletionRuleVariableTypeField(val.type);
+  if (val.variable_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_type" of type "CompletionRuleVariable" to be defined',
+    });
+  }
   const variableType: CompletionRuleVariableVariableTypeField =
     deserializeCompletionRuleVariableVariableTypeField(val.variable_type);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "CompletionRuleVariable" to be defined',
+    });
+  }
   const variableValue: CompletionRuleVariableVariableValueField =
     deserializeCompletionRuleVariableVariableValueField(val.variable_value);
   return {
@@ -148,8 +171,13 @@ export function serializeCompletionRuleVariableInput(
   };
 }
 export function deserializeCompletionRuleVariableInput(
-  val: any
+  val: SerializedData
 ): CompletionRuleVariableInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CompletionRuleVariableInput"',
+    });
+  }
   const type: undefined | CompletionRuleVariableTypeField =
     val.type == void 0
       ? void 0
@@ -158,6 +186,12 @@ export function deserializeCompletionRuleVariableInput(
     val.variableType == void 0
       ? void 0
       : deserializeCompletionRuleVariableVariableTypeField(val.variableType);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "CompletionRuleVariableInput" to be defined',
+    });
+  }
   const variableValue: CompletionRuleVariableVariableValueField =
     deserializeCompletionRuleVariableVariableValueField(val.variable_value);
   return {

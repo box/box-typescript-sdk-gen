@@ -18,7 +18,7 @@ export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField
   return val;
 }
 export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierSegmentRestrictionBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -47,8 +47,14 @@ export function serializeShieldInformationBarrierSegmentRestrictionBase(
   };
 }
 export function deserializeShieldInformationBarrierSegmentRestrictionBase(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierSegmentRestrictionBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "ShieldInformationBarrierSegmentRestrictionBase"',
+    });
+  }
   const type:
     | undefined
     | ShieldInformationBarrierSegmentRestrictionBaseTypeField =
@@ -57,6 +63,12 @@ export function deserializeShieldInformationBarrierSegmentRestrictionBase(
       : deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
           val.type
         );
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ShieldInformationBarrierSegmentRestrictionBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,

@@ -364,7 +364,7 @@ export function serializeGetTermsOfServiceQueryParamsTosTypeField(
   return val;
 }
 export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
-  val: any
+  val: SerializedData
 ): GetTermsOfServiceQueryParamsTosTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -388,7 +388,7 @@ export function serializeCreateTermsOfServiceRequestBodyStatusField(
   return val;
 }
 export function deserializeCreateTermsOfServiceRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -412,7 +412,7 @@ export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
   return val;
 }
 export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceRequestBodyTosTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -443,14 +443,37 @@ export function serializeCreateTermsOfServiceRequestBody(
   };
 }
 export function deserializeCreateTermsOfServiceRequestBody(
-  val: any
+  val: SerializedData
 ): CreateTermsOfServiceRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateTermsOfServiceRequestBody"',
+    });
+  }
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "status" of type "CreateTermsOfServiceRequestBody" to be defined',
+    });
+  }
   const status: CreateTermsOfServiceRequestBodyStatusField =
     deserializeCreateTermsOfServiceRequestBodyStatusField(val.status);
   const tosType: undefined | CreateTermsOfServiceRequestBodyTosTypeField =
     val.tos_type == void 0
       ? void 0
       : deserializeCreateTermsOfServiceRequestBodyTosTypeField(val.tos_type);
+  if (val.text == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "text" of type "CreateTermsOfServiceRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.text)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text" of type "CreateTermsOfServiceRequestBody"',
+    });
+  }
   const text: string = val.text;
   return {
     status: status,
@@ -464,7 +487,7 @@ export function serializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   return val;
 }
 export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
-  val: any
+  val: SerializedData
 ): UpdateTermsOfServiceByIdRequestBodyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -493,10 +516,33 @@ export function serializeUpdateTermsOfServiceByIdRequestBody(
   };
 }
 export function deserializeUpdateTermsOfServiceByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateTermsOfServiceByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateTermsOfServiceByIdRequestBody"',
+    });
+  }
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "status" of type "UpdateTermsOfServiceByIdRequestBody" to be defined',
+    });
+  }
   const status: UpdateTermsOfServiceByIdRequestBodyStatusField =
     deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(val.status);
+  if (val.text == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "text" of type "UpdateTermsOfServiceByIdRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.text)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text" of type "UpdateTermsOfServiceByIdRequestBody"',
+    });
+  }
   const text: string = val.text;
   return {
     status: status,

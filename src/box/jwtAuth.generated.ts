@@ -318,10 +318,51 @@ export function serializeJwtConfigAppSettingsAppAuth(
   };
 }
 export function deserializeJwtConfigAppSettingsAppAuth(
-  val: any
+  val: SerializedData
 ): JwtConfigAppSettingsAppAuth {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "JwtConfigAppSettingsAppAuth"',
+    });
+  }
+  if (val.publicKeyID == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "publicKeyID" of type "JwtConfigAppSettingsAppAuth" to be defined',
+    });
+  }
+  if (!sdIsString(val.publicKeyID)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "publicKeyID" of type "JwtConfigAppSettingsAppAuth"',
+    });
+  }
   const publicKeyId: string = val.publicKeyID;
+  if (val.privateKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "privateKey" of type "JwtConfigAppSettingsAppAuth" to be defined',
+    });
+  }
+  if (!sdIsString(val.privateKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "privateKey" of type "JwtConfigAppSettingsAppAuth"',
+    });
+  }
   const privateKey: string = val.privateKey;
+  if (val.passphrase == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "passphrase" of type "JwtConfigAppSettingsAppAuth" to be defined',
+    });
+  }
+  if (!sdIsString(val.passphrase)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "passphrase" of type "JwtConfigAppSettingsAppAuth"',
+    });
+  }
   const passphrase: string = val.passphrase;
   return {
     publicKeyId: publicKeyId,
@@ -339,10 +380,44 @@ export function serializeJwtConfigAppSettings(
   };
 }
 export function deserializeJwtConfigAppSettings(
-  val: any
+  val: SerializedData
 ): JwtConfigAppSettings {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "JwtConfigAppSettings"',
+    });
+  }
+  if (val.clientID == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "clientID" of type "JwtConfigAppSettings" to be defined',
+    });
+  }
+  if (!sdIsString(val.clientID)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "clientID" of type "JwtConfigAppSettings"',
+    });
+  }
   const clientId: string = val.clientID;
+  if (val.clientSecret == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "clientSecret" of type "JwtConfigAppSettings" to be defined',
+    });
+  }
+  if (!sdIsString(val.clientSecret)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "clientSecret" of type "JwtConfigAppSettings"',
+    });
+  }
   const clientSecret: string = val.clientSecret;
+  if (val.appAuth == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "appAuth" of type "JwtConfigAppSettings" to be defined',
+    });
+  }
   const appAuth: JwtConfigAppSettingsAppAuth =
     deserializeJwtConfigAppSettingsAppAuth(val.appAuth);
   return {
@@ -358,10 +433,29 @@ export function serializeJwtConfigFile(val: JwtConfigFile): SerializedData {
     ['boxAppSettings']: serializeJwtConfigAppSettings(val.boxAppSettings),
   };
 }
-export function deserializeJwtConfigFile(val: any): JwtConfigFile {
+export function deserializeJwtConfigFile(val: SerializedData): JwtConfigFile {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "JwtConfigFile"' });
+  }
+  if (!(val.enterpriseID == void 0) && !sdIsString(val.enterpriseID)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "enterpriseID" of type "JwtConfigFile"',
+    });
+  }
   const enterpriseId: undefined | string =
     val.enterpriseID == void 0 ? void 0 : val.enterpriseID;
+  if (!(val.userID == void 0) && !sdIsString(val.userID)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "userID" of type "JwtConfigFile"',
+    });
+  }
   const userId: undefined | string = val.userID == void 0 ? void 0 : val.userID;
+  if (val.boxAppSettings == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "boxAppSettings" of type "JwtConfigFile" to be defined',
+    });
+  }
   const boxAppSettings: JwtConfigAppSettings = deserializeJwtConfigAppSettings(
     val.boxAppSettings
   );

@@ -77,7 +77,7 @@ export function serializeSkillInvocationTypeField(
   return val;
 }
 export function deserializeSkillInvocationTypeField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -97,7 +97,7 @@ export function serializeSkillInvocationSkillTypeField(
   return val;
 }
 export function deserializeSkillInvocationSkillTypeField(
-  val: any
+  val: SerializedData
 ): SkillInvocationSkillTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -125,14 +125,36 @@ export function serializeSkillInvocationSkillField(
   };
 }
 export function deserializeSkillInvocationSkillField(
-  val: any
+  val: SerializedData
 ): SkillInvocationSkillField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationSkillField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "SkillInvocationSkillField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | SkillInvocationSkillTypeField =
     val.type == void 0
       ? void 0
       : deserializeSkillInvocationSkillTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "SkillInvocationSkillField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.api_key == void 0) && !sdIsString(val.api_key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "api_key" of type "SkillInvocationSkillField"',
+    });
+  }
   const apiKey: undefined | string =
     val.api_key == void 0 ? void 0 : val.api_key;
   return {
@@ -148,7 +170,7 @@ export function serializeSkillInvocationTokenReadTokenTypeField(
   return val;
 }
 export function deserializeSkillInvocationTokenReadTokenTypeField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTokenReadTokenTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -177,16 +199,39 @@ export function serializeSkillInvocationTokenReadField(
   };
 }
 export function deserializeSkillInvocationTokenReadField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTokenReadField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationTokenReadField"',
+    });
+  }
+  if (!(val.access_token == void 0) && !sdIsString(val.access_token)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "access_token" of type "SkillInvocationTokenReadField"',
+    });
+  }
   const accessToken: undefined | string =
     val.access_token == void 0 ? void 0 : val.access_token;
+  if (!(val.expires_in == void 0) && !sdIsNumber(val.expires_in)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "expires_in" of type "SkillInvocationTokenReadField"',
+    });
+  }
   const expiresIn: undefined | number =
     val.expires_in == void 0 ? void 0 : val.expires_in;
   const tokenType: undefined | SkillInvocationTokenReadTokenTypeField =
     val.token_type == void 0
       ? void 0
       : deserializeSkillInvocationTokenReadTokenTypeField(val.token_type);
+  if (!(val.restricted_to == void 0) && !sdIsString(val.restricted_to)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "restricted_to" of type "SkillInvocationTokenReadField"',
+    });
+  }
   const restrictedTo: undefined | string =
     val.restricted_to == void 0 ? void 0 : val.restricted_to;
   return {
@@ -202,7 +247,7 @@ export function serializeSkillInvocationTokenWriteTokenTypeField(
   return val;
 }
 export function deserializeSkillInvocationTokenWriteTokenTypeField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTokenWriteTokenTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -231,16 +276,39 @@ export function serializeSkillInvocationTokenWriteField(
   };
 }
 export function deserializeSkillInvocationTokenWriteField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTokenWriteField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationTokenWriteField"',
+    });
+  }
+  if (!(val.access_token == void 0) && !sdIsString(val.access_token)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "access_token" of type "SkillInvocationTokenWriteField"',
+    });
+  }
   const accessToken: undefined | string =
     val.access_token == void 0 ? void 0 : val.access_token;
+  if (!(val.expires_in == void 0) && !sdIsNumber(val.expires_in)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "expires_in" of type "SkillInvocationTokenWriteField"',
+    });
+  }
   const expiresIn: undefined | number =
     val.expires_in == void 0 ? void 0 : val.expires_in;
   const tokenType: undefined | SkillInvocationTokenWriteTokenTypeField =
     val.token_type == void 0
       ? void 0
       : deserializeSkillInvocationTokenWriteTokenTypeField(val.token_type);
+  if (!(val.restricted_to == void 0) && !sdIsString(val.restricted_to)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "restricted_to" of type "SkillInvocationTokenWriteField"',
+    });
+  }
   const restrictedTo: undefined | string =
     val.restricted_to == void 0 ? void 0 : val.restricted_to;
   return {
@@ -265,8 +333,13 @@ export function serializeSkillInvocationTokenField(
   };
 }
 export function deserializeSkillInvocationTokenField(
-  val: any
+  val: SerializedData
 ): SkillInvocationTokenField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationTokenField"',
+    });
+  }
   const read: undefined | SkillInvocationTokenReadField =
     val.read == void 0
       ? void 0
@@ -283,7 +356,7 @@ export function serializeSkillInvocationStatusStateField(
   return val;
 }
 export function deserializeSkillInvocationStatusStateField(
-  val: any
+  val: SerializedData
 ): SkillInvocationStatusStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -324,16 +397,39 @@ export function serializeSkillInvocationStatusField(
   };
 }
 export function deserializeSkillInvocationStatusField(
-  val: any
+  val: SerializedData
 ): SkillInvocationStatusField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationStatusField"',
+    });
+  }
   const state: undefined | SkillInvocationStatusStateField =
     val.state == void 0
       ? void 0
       : deserializeSkillInvocationStatusStateField(val.state);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "SkillInvocationStatusField"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
+  if (!(val.error_code == void 0) && !sdIsString(val.error_code)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "error_code" of type "SkillInvocationStatusField"',
+    });
+  }
   const errorCode: undefined | string =
     val.error_code == void 0 ? void 0 : val.error_code;
+  if (!(val.additional_info == void 0) && !sdIsString(val.additional_info)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "additional_info" of type "SkillInvocationStatusField"',
+    });
+  }
   const additionalInfo: undefined | string =
     val.additional_info == void 0 ? void 0 : val.additional_info;
   return {
@@ -349,7 +445,7 @@ export function serializeSkillInvocationEnterpriseTypeField(
   return val;
 }
 export function deserializeSkillInvocationEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): SkillInvocationEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -376,13 +472,30 @@ export function serializeSkillInvocationEnterpriseField(
   };
 }
 export function deserializeSkillInvocationEnterpriseField(
-  val: any
+  val: SerializedData
 ): SkillInvocationEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SkillInvocationEnterpriseField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "SkillInvocationEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | SkillInvocationEnterpriseTypeField =
     val.type == void 0
       ? void 0
       : deserializeSkillInvocationEnterpriseTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "SkillInvocationEnterpriseField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return {
     id: id,
@@ -419,9 +532,19 @@ export function serializeSkillInvocation(val: SkillInvocation): SerializedData {
     ['event']: val.event == void 0 ? void 0 : serializeEvent(val.event),
   };
 }
-export function deserializeSkillInvocation(val: any): SkillInvocation {
+export function deserializeSkillInvocation(
+  val: SerializedData
+): SkillInvocation {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "SkillInvocation"' });
+  }
   const type: undefined | SkillInvocationTypeField =
     val.type == void 0 ? void 0 : deserializeSkillInvocationTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "SkillInvocation"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const skill: undefined | SkillInvocationSkillField =
     val.skill == void 0
@@ -435,8 +558,18 @@ export function deserializeSkillInvocation(val: any): SkillInvocation {
     val.status == void 0
       ? void 0
       : deserializeSkillInvocationStatusField(val.status);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "SkillInvocation"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.trigger == void 0) && !sdIsString(val.trigger)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trigger" of type "SkillInvocation"',
+    });
+  }
   const trigger: undefined | string =
     val.trigger == void 0 ? void 0 : val.trigger;
   const enterprise: undefined | SkillInvocationEnterpriseField =

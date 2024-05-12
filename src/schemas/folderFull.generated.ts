@@ -107,7 +107,7 @@ export function serializeFolderFullSyncStateField(
   return val;
 }
 export function deserializeFolderFullSyncStateField(
-  val: any
+  val: SerializedData
 ): FolderFullSyncStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -141,14 +141,97 @@ export function serializeFolderFullPermissionsField(
   };
 }
 export function deserializeFolderFullPermissionsField(
-  val: any
+  val: SerializedData
 ): FolderFullPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FolderFullPermissionsField"',
+    });
+  }
+  if (val.can_delete == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_delete" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_delete)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_delete" of type "FolderFullPermissionsField"',
+    });
+  }
   const canDelete: boolean = val.can_delete;
+  if (val.can_download == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_download" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "FolderFullPermissionsField"',
+    });
+  }
   const canDownload: boolean = val.can_download;
+  if (val.can_invite_collaborator == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_invite_collaborator" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_invite_collaborator)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_invite_collaborator" of type "FolderFullPermissionsField"',
+    });
+  }
   const canInviteCollaborator: boolean = val.can_invite_collaborator;
+  if (val.can_rename == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_rename" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_rename)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_rename" of type "FolderFullPermissionsField"',
+    });
+  }
   const canRename: boolean = val.can_rename;
+  if (val.can_set_share_access == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_set_share_access" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_set_share_access)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_set_share_access" of type "FolderFullPermissionsField"',
+    });
+  }
   const canSetShareAccess: boolean = val.can_set_share_access;
+  if (val.can_share == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_share" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_share)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_share" of type "FolderFullPermissionsField"',
+    });
+  }
   const canShare: boolean = val.can_share;
+  if (!(val.can_upload == void 0) && !sdIsBoolean(val.can_upload)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_upload" of type "FolderFullPermissionsField"',
+    });
+  }
   const canUpload: undefined | boolean =
     val.can_upload == void 0 ? void 0 : val.can_upload;
   return {
@@ -167,15 +250,49 @@ export function serializeFolderFullMetadataField(
   return { ...{}, ...val.extraData };
 }
 export function deserializeFolderFullMetadataField(
-  val: any
+  val: SerializedData
 ): FolderFullMetadataField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FolderFullMetadataField"',
+    });
+  }
+  if (!(val == void 0) && !sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting object for "extraData" of type "FolderFullMetadataField"',
+    });
+  }
   const extraData:
     | undefined
     | {
         readonly [key: string]: {
           readonly [key: string]: Metadata;
         };
-      } = val == void 0 ? void 0 : val;
+      } =
+    val == void 0
+      ? void 0
+      : sdIsMap(val)
+      ? (Object.fromEntries(
+          Object.entries(val).map(([k, v]: [string, any]) => [
+            k,
+            (function (v: any): any {
+              return sdIsMap(v)
+                ? (Object.fromEntries(
+                    Object.entries(v).map(([k, v]: [string, any]) => [
+                      k,
+                      deserializeMetadata(v),
+                    ])
+                  ) as {
+                    readonly [key: string]: any;
+                  })
+                : {};
+            })(v),
+          ])
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   return { extraData: extraData } satisfies FolderFullMetadataField;
 }
 export function serializeFolderFullAllowedSharedLinkAccessLevelsField(
@@ -184,7 +301,7 @@ export function serializeFolderFullAllowedSharedLinkAccessLevelsField(
   return val;
 }
 export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
-  val: any
+  val: SerializedData
 ): FolderFullAllowedSharedLinkAccessLevelsField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -211,7 +328,7 @@ export function serializeFolderFullAllowedInviteeRolesField(
   return val;
 }
 export function deserializeFolderFullAllowedInviteeRolesField(
-  val: any
+  val: SerializedData
 ): FolderFullAllowedInviteeRolesField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -252,8 +369,19 @@ export function serializeFolderFullWatermarkInfoField(
   };
 }
 export function deserializeFolderFullWatermarkInfoField(
-  val: any
+  val: SerializedData
 ): FolderFullWatermarkInfoField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FolderFullWatermarkInfoField"',
+    });
+  }
+  if (!(val.is_watermarked == void 0) && !sdIsBoolean(val.is_watermarked)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_watermarked" of type "FolderFullWatermarkInfoField"',
+    });
+  }
   const isWatermarked: undefined | boolean =
     val.is_watermarked == void 0 ? void 0 : val.is_watermarked;
   return {
@@ -270,11 +398,34 @@ export function serializeFolderFullClassificationField(
   };
 }
 export function deserializeFolderFullClassificationField(
-  val: any
+  val: SerializedData
 ): FolderFullClassificationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FolderFullClassificationField"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "FolderFullClassificationField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.definition == void 0) && !sdIsString(val.definition)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "definition" of type "FolderFullClassificationField"',
+    });
+  }
   const definition: undefined | string =
     val.definition == void 0 ? void 0 : val.definition;
+  if (!(val.color == void 0) && !sdIsString(val.color)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "color" of type "FolderFullClassificationField"',
+    });
+  }
   const color: undefined | string = val.color == void 0 ? void 0 : val.color;
   return {
     name: name,
@@ -355,31 +506,95 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
     },
   };
 }
-export function deserializeFolderFull(val: any): FolderFull {
+export function deserializeFolderFull(val: SerializedData): FolderFull {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FolderFull"' });
+  }
   const syncState: undefined | FolderFullSyncStateField =
     val.sync_state == void 0
       ? void 0
       : deserializeFolderFullSyncStateField(val.sync_state);
+  if (
+    !(val.has_collaborations == void 0) &&
+    !sdIsBoolean(val.has_collaborations)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "has_collaborations" of type "FolderFull"',
+    });
+  }
   const hasCollaborations: undefined | boolean =
     val.has_collaborations == void 0 ? void 0 : val.has_collaborations;
   const permissions: undefined | FolderFullPermissionsField =
     val.permissions == void 0
       ? void 0
       : deserializeFolderFullPermissionsField(val.permissions);
+  if (!(val.tags == void 0) && !sdIsList(val.tags)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "tags" of type "FolderFull"',
+    });
+  }
   const tags: undefined | readonly string[] =
-    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
+    val.tags == void 0
+      ? void 0
+      : sdIsList(val.tags)
+      ? (val.tags.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message: 'Expecting string for "FolderFull"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
+      : [];
+  if (
+    !(val.can_non_owners_invite == void 0) &&
+    !sdIsBoolean(val.can_non_owners_invite)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_non_owners_invite" of type "FolderFull"',
+    });
+  }
   const canNonOwnersInvite: undefined | boolean =
     val.can_non_owners_invite == void 0 ? void 0 : val.can_non_owners_invite;
+  if (
+    !(val.is_externally_owned == void 0) &&
+    !sdIsBoolean(val.is_externally_owned)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_externally_owned" of type "FolderFull"',
+    });
+  }
   const isExternallyOwned: undefined | boolean =
     val.is_externally_owned == void 0 ? void 0 : val.is_externally_owned;
   const metadata: undefined | FolderFullMetadataField =
     val.metadata == void 0
       ? void 0
       : deserializeFolderFullMetadataField(val.metadata);
+  if (
+    !(val.is_collaboration_restricted_to_enterprise == void 0) &&
+    !sdIsBoolean(val.is_collaboration_restricted_to_enterprise)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_collaboration_restricted_to_enterprise" of type "FolderFull"',
+    });
+  }
   const isCollaborationRestrictedToEnterprise: undefined | boolean =
     val.is_collaboration_restricted_to_enterprise == void 0
       ? void 0
       : val.is_collaboration_restricted_to_enterprise;
+  if (
+    !(val.allowed_shared_link_access_levels == void 0) &&
+    !sdIsList(val.allowed_shared_link_access_levels)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "allowed_shared_link_access_levels" of type "FolderFull"',
+    });
+  }
   const allowedSharedLinkAccessLevels:
     | undefined
     | readonly FolderFullAllowedSharedLinkAccessLevelsField[] =
@@ -392,6 +607,15 @@ export function deserializeFolderFull(val: any): FolderFull {
           return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.allowed_invitee_roles == void 0) &&
+    !sdIsList(val.allowed_invitee_roles)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "allowed_invitee_roles" of type "FolderFull"',
+    });
+  }
   const allowedInviteeRoles:
     | undefined
     | readonly FolderFullAllowedInviteeRolesField[] =
@@ -408,10 +632,28 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.watermark_info == void 0
       ? void 0
       : deserializeFolderFullWatermarkInfoField(val.watermark_info);
+  if (
+    !(val.is_accessible_via_shared_link == void 0) &&
+    !sdIsBoolean(val.is_accessible_via_shared_link)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accessible_via_shared_link" of type "FolderFull"',
+    });
+  }
   const isAccessibleViaSharedLink: undefined | boolean =
     val.is_accessible_via_shared_link == void 0
       ? void 0
       : val.is_accessible_via_shared_link;
+  if (
+    !(val.can_non_owners_view_collaborators == void 0) &&
+    !sdIsBoolean(val.can_non_owners_view_collaborators)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_non_owners_view_collaborators" of type "FolderFull"',
+    });
+  }
   const canNonOwnersViewCollaborators: undefined | boolean =
     val.can_non_owners_view_collaborators == void 0
       ? void 0
@@ -420,12 +662,32 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.classification == void 0
       ? void 0
       : deserializeFolderFullClassificationField(val.classification);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "FolderFull"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "FolderFull"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "FolderFull"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "FolderFull"',
+    });
+  }
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
   const pathCollection: undefined | FolderPathCollectionField =
     val.path_collection == void 0
@@ -435,14 +697,41 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "FolderFull"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "FolderFull"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "content_created_at" of type "FolderFull"',
+    });
+  }
   const contentCreatedAt: undefined | DateTime =
     val.content_created_at == void 0
       ? void 0
       : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "FolderFull"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
@@ -467,11 +756,41 @@ export function deserializeFolderFull(val: any): FolderFull {
     val.item_collection == void 0
       ? void 0
       : deserializeItems(val.item_collection);
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "FolderFull"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "FolderFull"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FolderFull" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FolderFull"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FolderFull"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FolderFull" to be defined',
+    });
+  }
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
   return {
     syncState: syncState,

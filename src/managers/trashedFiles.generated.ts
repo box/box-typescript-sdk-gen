@@ -18,6 +18,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -347,8 +348,20 @@ export function serializeRestoreFileFromTrashRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreFileFromTrashRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): RestoreFileFromTrashRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "RestoreFileFromTrashRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RestoreFileFromTrashRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies RestoreFileFromTrashRequestBodyParentField;
 }
@@ -364,8 +377,19 @@ export function serializeRestoreFileFromTrashRequestBody(
   };
 }
 export function deserializeRestoreFileFromTrashRequestBody(
-  val: any
+  val: SerializedData
 ): RestoreFileFromTrashRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RestoreFileFromTrashRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "RestoreFileFromTrashRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const parent: undefined | RestoreFileFromTrashRequestBodyParentField =
     val.parent == void 0

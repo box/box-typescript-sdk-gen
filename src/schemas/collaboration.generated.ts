@@ -134,7 +134,7 @@ export function serializeCollaborationTypeField(
   return val;
 }
 export function deserializeCollaborationTypeField(
-  val: any
+  val: SerializedData
 ): CollaborationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -154,7 +154,7 @@ export function serializeCollaborationRoleField(
   return val;
 }
 export function deserializeCollaborationRoleField(
-  val: any
+  val: SerializedData
 ): CollaborationRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -195,7 +195,7 @@ export function serializeCollaborationStatusField(
   return val;
 }
 export function deserializeCollaborationStatusField(
-  val: any
+  val: SerializedData
 ): CollaborationStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -227,8 +227,20 @@ export function serializeCollaborationAcceptanceRequirementsStatusTermsOfService
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-  val: any
+  val: SerializedData
 ): CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField"',
+    });
+  }
+  if (!(val.is_accepted == void 0) && !sdIsBoolean(val.is_accepted)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_accepted" of type "CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField"',
+    });
+  }
   const isAccepted: undefined | boolean =
     val.is_accepted == void 0 ? void 0 : val.is_accepted;
   const termsOfService: undefined | TermsOfServiceBase =
@@ -253,14 +265,40 @@ export function serializeCollaborationAcceptanceRequirementsStatusStrongPassword
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-  val: any
+  val: SerializedData
 ): CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField"',
+    });
+  }
+  if (
+    !(
+      val.enterprise_has_strong_password_required_for_external_users == void 0
+    ) &&
+    !sdIsBoolean(val.enterprise_has_strong_password_required_for_external_users)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "enterprise_has_strong_password_required_for_external_users" of type "CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField"',
+    });
+  }
   const enterpriseHasStrongPasswordRequiredForExternalUsers:
     | undefined
     | boolean =
     val.enterprise_has_strong_password_required_for_external_users == void 0
       ? void 0
       : val.enterprise_has_strong_password_required_for_external_users;
+  if (
+    !(val.user_has_strong_password == void 0) &&
+    !sdIsBoolean(val.user_has_strong_password)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "user_has_strong_password" of type "CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField"',
+    });
+  }
   const userHasStrongPassword: undefined | boolean =
     val.user_has_strong_password == void 0
       ? void 0
@@ -286,12 +324,36 @@ export function serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthe
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-  val: any
+  val: SerializedData
 ): CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField"',
+    });
+  }
+  if (
+    !(val.enterprise_has_two_factor_auth_enabled == void 0) &&
+    !sdIsBoolean(val.enterprise_has_two_factor_auth_enabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "enterprise_has_two_factor_auth_enabled" of type "CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField"',
+    });
+  }
   const enterpriseHasTwoFactorAuthEnabled: undefined | boolean =
     val.enterprise_has_two_factor_auth_enabled == void 0
       ? void 0
       : val.enterprise_has_two_factor_auth_enabled;
+  if (
+    !(val.user_has_two_factor_authentication_enabled == void 0) &&
+    !sdIsBoolean(val.user_has_two_factor_authentication_enabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "user_has_two_factor_authentication_enabled" of type "CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField"',
+    });
+  }
   const userHasTwoFactorAuthenticationEnabled: undefined | boolean =
     val.user_has_two_factor_authentication_enabled == void 0
       ? void 0
@@ -327,8 +389,14 @@ export function serializeCollaborationAcceptanceRequirementsStatusField(
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusField(
-  val: any
+  val: SerializedData
 ): CollaborationAcceptanceRequirementsStatusField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAcceptanceRequirementsStatusField"',
+    });
+  }
   const termsOfServiceRequirement:
     | undefined
     | CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField =
@@ -399,8 +467,26 @@ export function serializeCollaboration(val: Collaboration): SerializedData {
           ),
   };
 }
-export function deserializeCollaboration(val: any): Collaboration {
+export function deserializeCollaboration(val: SerializedData): Collaboration {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Collaboration"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "Collaboration" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Collaboration"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "Collaboration" to be defined',
+    });
+  }
   const type: CollaborationTypeField = deserializeCollaborationTypeField(
     val.type
   );
@@ -410,18 +496,38 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.accessible_by == void 0
       ? void 0
       : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
+  if (!(val.invite_email == void 0) && !sdIsString(val.invite_email)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "invite_email" of type "Collaboration"',
+    });
+  }
   const inviteEmail: undefined | string =
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
     val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "expires_at" of type "Collaboration"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (!(val.is_access_only == void 0) && !sdIsBoolean(val.is_access_only)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_access_only" of type "Collaboration"',
+    });
+  }
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const status: undefined | CollaborationStatusField =
     val.status == void 0
       ? void 0
       : deserializeCollaborationStatusField(val.status);
+  if (!(val.acknowledged_at == void 0) && !sdIsString(val.acknowledged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "acknowledged_at" of type "Collaboration"',
+    });
+  }
   const acknowledgedAt: undefined | DateTime =
     val.acknowledged_at == void 0
       ? void 0
@@ -430,8 +536,18 @@ export function deserializeCollaboration(val: any): Collaboration {
     val.created_by == void 0
       ? void 0
       : deserializeUserCollaborations(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Collaboration"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "Collaboration"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const acceptanceRequirementsStatus:
@@ -502,7 +618,24 @@ export function serializeCollaborationInput(
           ),
   };
 }
-export function deserializeCollaborationInput(val: any): CollaborationInput {
+export function deserializeCollaborationInput(
+  val: SerializedData
+): CollaborationInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaborationInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "CollaborationInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "CollaborationInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | CollaborationTypeField =
     val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
@@ -512,18 +645,41 @@ export function deserializeCollaborationInput(val: any): CollaborationInput {
     val.accessible_by == void 0
       ? void 0
       : deserializeGroupMiniOrUserCollaborations(val.accessible_by);
+  if (!(val.invite_email == void 0) && !sdIsString(val.invite_email)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "invite_email" of type "CollaborationInput"',
+    });
+  }
   const inviteEmail: undefined | string =
     val.invite_email == void 0 ? void 0 : val.invite_email;
   const role: undefined | CollaborationRoleField =
     val.role == void 0 ? void 0 : deserializeCollaborationRoleField(val.role);
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "expires_at" of type "CollaborationInput"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (!(val.is_access_only == void 0) && !sdIsBoolean(val.is_access_only)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_access_only" of type "CollaborationInput"',
+    });
+  }
   const isAccessOnly: undefined | boolean =
     val.is_access_only == void 0 ? void 0 : val.is_access_only;
   const status: undefined | CollaborationStatusField =
     val.status == void 0
       ? void 0
       : deserializeCollaborationStatusField(val.status);
+  if (!(val.acknowledged_at == void 0) && !sdIsString(val.acknowledged_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "acknowledged_at" of type "CollaborationInput"',
+    });
+  }
   const acknowledgedAt: undefined | DateTime =
     val.acknowledged_at == void 0
       ? void 0
@@ -532,8 +688,19 @@ export function deserializeCollaborationInput(val: any): CollaborationInput {
     val.created_by == void 0
       ? void 0
       : deserializeUserCollaborations(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "CollaborationInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "CollaborationInput"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const acceptanceRequirementsStatus:

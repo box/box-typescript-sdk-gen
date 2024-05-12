@@ -112,7 +112,7 @@ export function serializeKeywordSkillCardTypeField(
   return val;
 }
 export function deserializeKeywordSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -132,7 +132,7 @@ export function serializeKeywordSkillCardSkillCardTypeField(
   return val;
 }
 export function deserializeKeywordSkillCardSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -155,9 +155,32 @@ export function serializeKeywordSkillCardSkillCardTitleField(
   };
 }
 export function deserializeKeywordSkillCardSkillCardTitleField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardSkillCardTitleField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardSkillCardTitleField"',
+    });
+  }
+  if (!(val.code == void 0) && !sdIsString(val.code)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "code" of type "KeywordSkillCardSkillCardTitleField"',
+    });
+  }
   const code: undefined | string = val.code == void 0 ? void 0 : val.code;
+  if (val.message == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "message" of type "KeywordSkillCardSkillCardTitleField" to be defined',
+    });
+  }
+  if (!sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "KeywordSkillCardSkillCardTitleField"',
+    });
+  }
   const message: string = val.message;
   return {
     code: code,
@@ -170,7 +193,7 @@ export function serializeKeywordSkillCardSkillTypeField(
   return val;
 }
 export function deserializeKeywordSkillCardSkillTypeField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardSkillTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -193,10 +216,32 @@ export function serializeKeywordSkillCardSkillField(
   };
 }
 export function deserializeKeywordSkillCardSkillField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardSkillField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardSkillField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "KeywordSkillCardSkillField" to be defined',
+    });
+  }
   const type: KeywordSkillCardSkillTypeField =
     deserializeKeywordSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "KeywordSkillCardSkillField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "KeywordSkillCardSkillField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardSkillField;
 }
@@ -212,12 +257,29 @@ export function serializeKeywordSkillCardSkillFieldInput(
   };
 }
 export function deserializeKeywordSkillCardSkillFieldInput(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardSkillFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardSkillFieldInput"',
+    });
+  }
   const type: undefined | KeywordSkillCardSkillTypeField =
     val.type == void 0
       ? void 0
       : deserializeKeywordSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "KeywordSkillCardSkillFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "KeywordSkillCardSkillFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardSkillFieldInput;
 }
@@ -227,7 +289,7 @@ export function serializeKeywordSkillCardInvocationTypeField(
   return val;
 }
 export function deserializeKeywordSkillCardInvocationTypeField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -250,10 +312,33 @@ export function serializeKeywordSkillCardInvocationField(
   };
 }
 export function deserializeKeywordSkillCardInvocationField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardInvocationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardInvocationField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "KeywordSkillCardInvocationField" to be defined',
+    });
+  }
   const type: KeywordSkillCardInvocationTypeField =
     deserializeKeywordSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "KeywordSkillCardInvocationField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "KeywordSkillCardInvocationField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardInvocationField;
 }
@@ -269,12 +354,29 @@ export function serializeKeywordSkillCardInvocationFieldInput(
   };
 }
 export function deserializeKeywordSkillCardInvocationFieldInput(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardInvocationFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardInvocationFieldInput"',
+    });
+  }
   const type: undefined | KeywordSkillCardInvocationTypeField =
     val.type == void 0
       ? void 0
       : deserializeKeywordSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "KeywordSkillCardInvocationFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "KeywordSkillCardInvocationFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies KeywordSkillCardInvocationFieldInput;
 }
@@ -284,8 +386,19 @@ export function serializeKeywordSkillCardEntriesField(
   return { ['text']: val.text == void 0 ? void 0 : val.text };
 }
 export function deserializeKeywordSkillCardEntriesField(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardEntriesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardEntriesField"',
+    });
+  }
+  if (!(val.text == void 0) && !sdIsString(val.text)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text" of type "KeywordSkillCardEntriesField"',
+    });
+  }
   const text: undefined | string = val.text == void 0 ? void 0 : val.text;
   return { text: text } satisfies KeywordSkillCardEntriesField;
 }
@@ -312,22 +425,66 @@ export function serializeKeywordSkillCard(
     }) as readonly any[],
   };
 }
-export function deserializeKeywordSkillCard(val: any): KeywordSkillCard {
+export function deserializeKeywordSkillCard(
+  val: SerializedData
+): KeywordSkillCard {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCard"',
+    });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "KeywordSkillCard"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "KeywordSkillCard" to be defined',
+    });
+  }
   const type: KeywordSkillCardTypeField = deserializeKeywordSkillCardTypeField(
     val.type
   );
+  if (val.skill_card_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "skill_card_type" of type "KeywordSkillCard" to be defined',
+    });
+  }
   const skillCardType: KeywordSkillCardSkillCardTypeField =
     deserializeKeywordSkillCardSkillCardTypeField(val.skill_card_type);
   const skillCardTitle: undefined | KeywordSkillCardSkillCardTitleField =
     val.skill_card_title == void 0
       ? void 0
       : deserializeKeywordSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "skill" of type "KeywordSkillCard" to be defined',
+    });
+  }
   const skill: KeywordSkillCardSkillField =
     deserializeKeywordSkillCardSkillField(val.skill);
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "invocation" of type "KeywordSkillCard" to be defined',
+    });
+  }
   const invocation: KeywordSkillCardInvocationField =
     deserializeKeywordSkillCardInvocationField(val.invocation);
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "entries" of type "KeywordSkillCard" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "KeywordSkillCard"',
+    });
+  }
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
     ? (val.entries.map(function (
         itm: SerializedData
@@ -373,8 +530,19 @@ export function serializeKeywordSkillCardInput(
   };
 }
 export function deserializeKeywordSkillCardInput(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "KeywordSkillCardInput"',
+    });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "KeywordSkillCardInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | KeywordSkillCardTypeField =
@@ -389,10 +557,33 @@ export function deserializeKeywordSkillCardInput(
     val.skill_card_title == void 0
       ? void 0
       : deserializeKeywordSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "skill" of type "KeywordSkillCardInput" to be defined',
+    });
+  }
   const skill: KeywordSkillCardSkillField =
     deserializeKeywordSkillCardSkillField(val.skill);
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "invocation" of type "KeywordSkillCardInput" to be defined',
+    });
+  }
   const invocation: KeywordSkillCardInvocationField =
     deserializeKeywordSkillCardInvocationField(val.invocation);
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "KeywordSkillCardInput" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "KeywordSkillCardInput"',
+    });
+  }
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
     ? (val.entries.map(function (
         itm: SerializedData

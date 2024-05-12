@@ -50,7 +50,7 @@ export function serializeSearchResultsTypeField(
   return val;
 }
 export function deserializeSearchResultsTypeField(
-  val: any
+  val: SerializedData
 ): SearchResultsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -80,14 +80,42 @@ export function serializeSearchResults(val: SearchResults): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeSearchResults(val: any): SearchResults {
+export function deserializeSearchResults(val: SerializedData): SearchResults {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "SearchResults"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "SearchResults"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "SearchResults"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "SearchResults"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "SearchResults" to be defined',
+    });
+  }
   const type: SearchResultsTypeField = deserializeSearchResultsTypeField(
     val.type
   );
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "SearchResults"',
+    });
+  }
   const entries: undefined | readonly FileFullOrFolderFullOrWebLink[] =
     val.entries == void 0
       ? void 0
@@ -125,13 +153,41 @@ export function serializeSearchResultsInput(
           }) as readonly any[]),
   };
 }
-export function deserializeSearchResultsInput(val: any): SearchResultsInput {
+export function deserializeSearchResultsInput(
+  val: SerializedData
+): SearchResultsInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SearchResultsInput"',
+    });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "SearchResultsInput"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "SearchResultsInput"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "SearchResultsInput"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
   const type: undefined | SearchResultsTypeField =
     val.type == void 0 ? void 0 : deserializeSearchResultsTypeField(val.type);
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "SearchResultsInput"',
+    });
+  }
   const entries: undefined | readonly FileFullOrFolderFullOrWebLink[] =
     val.entries == void 0
       ? void 0

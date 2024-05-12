@@ -1,6 +1,7 @@
 import { serializeRetentionPolicyAssignment } from './retentionPolicyAssignment.generated.js';
 import { deserializeRetentionPolicyAssignment } from './retentionPolicyAssignment.generated.js';
 import { RetentionPolicyAssignment } from './retentionPolicyAssignment.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -30,8 +31,19 @@ export function serializeRetentionPolicyAssignments(
   };
 }
 export function deserializeRetentionPolicyAssignments(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignments {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignments"',
+    });
+  }
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "RetentionPolicyAssignments"',
+    });
+  }
   const entries: undefined | readonly RetentionPolicyAssignment[] =
     val.entries == void 0
       ? void 0
@@ -42,7 +54,19 @@ export function deserializeRetentionPolicyAssignments(
           return deserializeRetentionPolicyAssignment(itm);
         }) as readonly any[])
       : [];
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "limit" of type "RetentionPolicyAssignments"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "RetentionPolicyAssignments"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
   return {

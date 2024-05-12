@@ -1,3 +1,4 @@
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -19,8 +20,22 @@ export function serializeIntegrationMappingSlackOptions(
   };
 }
 export function deserializeIntegrationMappingSlackOptions(
-  val: any
+  val: SerializedData
 ): IntegrationMappingSlackOptions {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingSlackOptions"',
+    });
+  }
+  if (
+    !(val.is_access_management_disabled == void 0) &&
+    !sdIsBoolean(val.is_access_management_disabled)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_access_management_disabled" of type "IntegrationMappingSlackOptions"',
+    });
+  }
   const isAccessManagementDisabled: undefined | boolean =
     val.is_access_management_disabled == void 0
       ? void 0

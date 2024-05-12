@@ -33,7 +33,7 @@ export function serializeRetentionPolicyBaseTypeField(
   return val;
 }
 export function deserializeRetentionPolicyBaseTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,8 +55,30 @@ export function serializeRetentionPolicyBase(
     ['type']: serializeRetentionPolicyBaseTypeField(val.type),
   };
 }
-export function deserializeRetentionPolicyBase(val: any): RetentionPolicyBase {
+export function deserializeRetentionPolicyBase(
+  val: SerializedData
+): RetentionPolicyBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyBase"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "RetentionPolicyBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "RetentionPolicyBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "RetentionPolicyBase" to be defined',
+    });
+  }
   const type: RetentionPolicyBaseTypeField =
     deserializeRetentionPolicyBaseTypeField(val.type);
   return { id: id, type: type } satisfies RetentionPolicyBase;
@@ -73,8 +95,24 @@ export function serializeRetentionPolicyBaseInput(
   };
 }
 export function deserializeRetentionPolicyBaseInput(
-  val: any
+  val: SerializedData
 ): RetentionPolicyBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "RetentionPolicyBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "RetentionPolicyBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | RetentionPolicyBaseTypeField =
     val.type == void 0

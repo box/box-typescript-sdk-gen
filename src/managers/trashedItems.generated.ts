@@ -119,7 +119,7 @@ export function serializeGetTrashedItemsQueryParamsDirectionField(
   return val;
 }
 export function deserializeGetTrashedItemsQueryParamsDirectionField(
-  val: any
+  val: SerializedData
 ): GetTrashedItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -143,7 +143,7 @@ export function serializeGetTrashedItemsQueryParamsSortField(
   return val;
 }
 export function deserializeGetTrashedItemsQueryParamsSortField(
-  val: any
+  val: SerializedData
 ): GetTrashedItemsQueryParamsSortField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

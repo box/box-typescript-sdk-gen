@@ -28,7 +28,7 @@ export function serializeMetadataFilterScopeField(
   return val;
 }
 export function deserializeMetadataFilterScopeField(
-  val: any
+  val: SerializedData
 ): MetadataFilterScopeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -70,20 +70,47 @@ export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
           }),
   };
 }
-export function deserializeMetadataFilter(val: any): MetadataFilter {
+export function deserializeMetadataFilter(val: SerializedData): MetadataFilter {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "MetadataFilter"' });
+  }
   const scope: undefined | MetadataFilterScopeField =
     val.scope == void 0
       ? void 0
       : deserializeMetadataFilterScopeField(val.scope);
+  if (!(val.templateKey == void 0) && !sdIsString(val.templateKey)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "templateKey" of type "MetadataFilter"',
+    });
+  }
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
+  if (!(val.filters == void 0) && !sdIsMap(val.filters)) {
+    throw new BoxSdkError({
+      message: 'Expecting object for "filters" of type "MetadataFilter"',
+    });
+  }
   const filters:
     | undefined
     | {
         readonly [
           key: string
         ]: MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString;
-      } = val.filters == void 0 ? void 0 : val.filters;
+      } =
+    val.filters == void 0
+      ? void 0
+      : sdIsMap(val.filters)
+      ? (Object.fromEntries(
+          Object.entries(val.filters).map(([k, v]: [string, any]) => [
+            k,
+            deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
+              v
+            ),
+          ])
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   return {
     scope: scope,
     templateKey: templateKey,

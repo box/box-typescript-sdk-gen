@@ -24,7 +24,7 @@ export function serializeMetadataQueryIndexStatusField(
   return val;
 }
 export function deserializeMetadataQueryIndexStatusField(
-  val: any
+  val: SerializedData
 ): MetadataQueryIndexStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -50,7 +50,7 @@ export function serializeMetadataQueryIndexFieldsSortDirectionField(
   return val;
 }
 export function deserializeMetadataQueryIndexFieldsSortDirectionField(
-  val: any
+  val: SerializedData
 ): MetadataQueryIndexFieldsSortDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -82,8 +82,19 @@ export function serializeMetadataQueryIndexFieldsField(
   };
 }
 export function deserializeMetadataQueryIndexFieldsField(
-  val: any
+  val: SerializedData
 ): MetadataQueryIndexFieldsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataQueryIndexFieldsField"',
+    });
+  }
+  if (!(val.key == void 0) && !sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "MetadataQueryIndexFieldsField"',
+    });
+  }
   const key: undefined | string = val.key == void 0 ? void 0 : val.key;
   const sortDirection: undefined | MetadataQueryIndexFieldsSortDirectionField =
     val.sort_direction == void 0
@@ -113,11 +124,43 @@ export function serializeMetadataQueryIndex(
           }) as readonly any[]),
   };
 }
-export function deserializeMetadataQueryIndex(val: any): MetadataQueryIndex {
+export function deserializeMetadataQueryIndex(
+  val: SerializedData
+): MetadataQueryIndex {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "MetadataQueryIndex"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "MetadataQueryIndex"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "MetadataQueryIndex" to be defined',
+    });
+  }
+  if (!sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "type" of type "MetadataQueryIndex"',
+    });
+  }
   const type: string = val.type;
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "status" of type "MetadataQueryIndex" to be defined',
+    });
+  }
   const status: MetadataQueryIndexStatusField =
     deserializeMetadataQueryIndexStatusField(val.status);
+  if (!(val.fields == void 0) && !sdIsList(val.fields)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "fields" of type "MetadataQueryIndex"',
+    });
+  }
   const fields: undefined | readonly MetadataQueryIndexFieldsField[] =
     val.fields == void 0
       ? void 0

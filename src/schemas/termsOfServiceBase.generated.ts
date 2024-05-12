@@ -33,7 +33,7 @@ export function serializeTermsOfServiceBaseTypeField(
   return val;
 }
 export function deserializeTermsOfServiceBaseTypeField(
-  val: any
+  val: SerializedData
 ): TermsOfServiceBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,8 +55,30 @@ export function serializeTermsOfServiceBase(
     ['type']: serializeTermsOfServiceBaseTypeField(val.type),
   };
 }
-export function deserializeTermsOfServiceBase(val: any): TermsOfServiceBase {
+export function deserializeTermsOfServiceBase(
+  val: SerializedData
+): TermsOfServiceBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceBase"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "TermsOfServiceBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TermsOfServiceBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "TermsOfServiceBase" to be defined',
+    });
+  }
   const type: TermsOfServiceBaseTypeField =
     deserializeTermsOfServiceBaseTypeField(val.type);
   return { id: id, type: type } satisfies TermsOfServiceBase;
@@ -73,8 +95,23 @@ export function serializeTermsOfServiceBaseInput(
   };
 }
 export function deserializeTermsOfServiceBaseInput(
-  val: any
+  val: SerializedData
 ): TermsOfServiceBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TermsOfServiceBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "TermsOfServiceBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TermsOfServiceBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | TermsOfServiceBaseTypeField =
     val.type == void 0

@@ -27,7 +27,7 @@ export function serializeSearchResultsOrSearchResultsWithSharedLinks(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
-  val: any
+  val: SerializedData
 ): SearchResultsOrSearchResultsWithSharedLinks {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

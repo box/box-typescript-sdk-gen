@@ -366,7 +366,7 @@ export function serializeAuthorizeUserQueryParamsResponseTypeField(
   return val;
 }
 export function deserializeAuthorizeUserQueryParamsResponseTypeField(
-  val: any
+  val: SerializedData
 ): AuthorizeUserQueryParamsResponseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

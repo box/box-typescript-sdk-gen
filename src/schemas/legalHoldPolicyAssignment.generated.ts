@@ -61,8 +61,13 @@ export function serializeLegalHoldPolicyAssignment(
   };
 }
 export function deserializeLegalHoldPolicyAssignment(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyAssignment {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyAssignment"',
+    });
+  }
   const legalHoldPolicy: undefined | LegalHoldPolicyMini =
     val.legal_hold_policy == void 0
       ? void 0
@@ -73,10 +78,27 @@ export function deserializeLegalHoldPolicyAssignment(
       : deserializeFileOrFolderOrWebLink(val.assigned_to);
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
+  if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "assigned_at" of type "LegalHoldPolicyAssignment"',
+    });
+  }
   const assignedAt: undefined | DateTime =
     val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  if (!(val.deleted_at == void 0) && !sdIsString(val.deleted_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "deleted_at" of type "LegalHoldPolicyAssignment"',
+    });
+  }
   const deletedAt: undefined | DateTime =
     val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "LegalHoldPolicyAssignment"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | LegalHoldPolicyAssignmentBaseTypeField =
     val.type == void 0

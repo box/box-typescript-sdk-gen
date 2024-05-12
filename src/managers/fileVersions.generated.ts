@@ -558,8 +558,19 @@ export function serializeUpdateFileVersionByIdRequestBody(
   return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
 }
 export function deserializeUpdateFileVersionByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFileVersionByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileVersionByIdRequestBody"',
+    });
+  }
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "trashed_at" of type "UpdateFileVersionByIdRequestBody"',
+    });
+  }
   const trashedAt: undefined | string =
     val.trashed_at == void 0 ? void 0 : val.trashed_at;
   return { trashedAt: trashedAt } satisfies UpdateFileVersionByIdRequestBody;
@@ -570,7 +581,7 @@ export function serializePromoteFileVersionRequestBodyTypeField(
   return val;
 }
 export function deserializePromoteFileVersionRequestBodyTypeField(
-  val: any
+  val: SerializedData
 ): PromoteFileVersionRequestBodyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -597,8 +608,19 @@ export function serializePromoteFileVersionRequestBody(
   };
 }
 export function deserializePromoteFileVersionRequestBody(
-  val: any
+  val: SerializedData
 ): PromoteFileVersionRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "PromoteFileVersionRequestBody"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "PromoteFileVersionRequestBody"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | PromoteFileVersionRequestBodyTypeField =
     val.type == void 0

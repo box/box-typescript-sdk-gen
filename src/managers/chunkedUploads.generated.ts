@@ -40,6 +40,7 @@ import { readByteStream } from '../internal/utils.js';
 import { reduceIterator } from '../internal/utils.js';
 import { Hash } from '../internal/utils.js';
 import { bufferLength } from '../internal/utils.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -833,10 +834,51 @@ export function serializeCreateFileUploadSessionRequestBody(
   };
 }
 export function deserializeCreateFileUploadSessionRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFileUploadSessionRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFileUploadSessionRequestBody"',
+    });
+  }
+  if (val.folder_id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "folder_id" of type "CreateFileUploadSessionRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.folder_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "folder_id" of type "CreateFileUploadSessionRequestBody"',
+    });
+  }
   const folderId: string = val.folder_id;
+  if (val.file_size == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "file_size" of type "CreateFileUploadSessionRequestBody" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.file_size)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "file_size" of type "CreateFileUploadSessionRequestBody"',
+    });
+  }
   const fileSize: number = val.file_size;
+  if (val.file_name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "file_name" of type "CreateFileUploadSessionRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.file_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "file_name" of type "CreateFileUploadSessionRequestBody"',
+    });
+  }
   const fileName: string = val.file_name;
   return {
     folderId: folderId,
@@ -853,9 +895,33 @@ export function serializeCreateFileUploadSessionForExistingFileRequestBody(
   };
 }
 export function deserializeCreateFileUploadSessionForExistingFileRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFileUploadSessionForExistingFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateFileUploadSessionForExistingFileRequestBody"',
+    });
+  }
+  if (val.file_size == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "file_size" of type "CreateFileUploadSessionForExistingFileRequestBody" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.file_size)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "file_size" of type "CreateFileUploadSessionForExistingFileRequestBody"',
+    });
+  }
   const fileSize: number = val.file_size;
+  if (!(val.file_name == void 0) && !sdIsString(val.file_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "file_name" of type "CreateFileUploadSessionForExistingFileRequestBody"',
+    });
+  }
   const fileName: undefined | string =
     val.file_name == void 0 ? void 0 : val.file_name;
   return {
@@ -873,8 +939,25 @@ export function serializeCreateFileUploadSessionCommitRequestBody(
   };
 }
 export function deserializeCreateFileUploadSessionCommitRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFileUploadSessionCommitRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFileUploadSessionCommitRequestBody"',
+    });
+  }
+  if (val.parts == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parts" of type "CreateFileUploadSessionCommitRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.parts)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "parts" of type "CreateFileUploadSessionCommitRequestBody"',
+    });
+  }
   const parts: readonly UploadPart[] = sdIsList(val.parts)
     ? (val.parts.map(function (itm: SerializedData): UploadPart {
         return deserializeUploadPart(itm);

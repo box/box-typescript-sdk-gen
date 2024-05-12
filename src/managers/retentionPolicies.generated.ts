@@ -512,7 +512,7 @@ export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   return val;
 }
 export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
-  val: any
+  val: SerializedData
 ): GetRetentionPoliciesQueryParamsPolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -536,7 +536,7 @@ export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyRequestBodyPolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -560,7 +560,7 @@ export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyRequestBodyDispositionActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -584,7 +584,7 @@ export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyRequestBodyRetentionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -640,17 +640,58 @@ export function serializeCreateRetentionPolicyRequestBody(
   };
 }
 export function deserializeCreateRetentionPolicyRequestBody(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateRetentionPolicyRequestBody"',
+    });
+  }
+  if (val.policy_name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "policy_name" of type "CreateRetentionPolicyRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_name" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const policyName: string = val.policy_name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (val.policy_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "policy_type" of type "CreateRetentionPolicyRequestBody" to be defined',
+    });
+  }
   const policyType: CreateRetentionPolicyRequestBodyPolicyTypeField =
     deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(val.policy_type);
+  if (val.disposition_action == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "disposition_action" of type "CreateRetentionPolicyRequestBody" to be defined',
+    });
+  }
   const dispositionAction: CreateRetentionPolicyRequestBodyDispositionActionField =
     deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
       val.disposition_action
     );
+  if (!(val.retention_length == void 0) && !sdIsString(val.retention_length)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "retention_length" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const retentionLength: undefined | string =
     val.retention_length == void 0 ? void 0 : val.retention_length;
   const retentionType:
@@ -661,12 +702,39 @@ export function deserializeCreateRetentionPolicyRequestBody(
       : deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
           val.retention_type
         );
+  if (
+    !(val.can_owner_extend_retention == void 0) &&
+    !sdIsBoolean(val.can_owner_extend_retention)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_owner_extend_retention" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const canOwnerExtendRetention: undefined | boolean =
     val.can_owner_extend_retention == void 0
       ? void 0
       : val.can_owner_extend_retention;
+  if (
+    !(val.are_owners_notified == void 0) &&
+    !sdIsBoolean(val.are_owners_notified)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_owners_notified" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const areOwnersNotified: undefined | boolean =
     val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
+  if (
+    !(val.custom_notification_recipients == void 0) &&
+    !sdIsList(val.custom_notification_recipients)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "custom_notification_recipients" of type "CreateRetentionPolicyRequestBody"',
+    });
+  }
   const customNotificationRecipients: undefined | readonly UserMini[] =
     val.custom_notification_recipients == void 0
       ? void 0
@@ -719,25 +787,96 @@ export function serializeUpdateRetentionPolicyByIdRequestBody(
   };
 }
 export function deserializeUpdateRetentionPolicyByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateRetentionPolicyByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
+  if (!(val.policy_name == void 0) && !sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_name" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (
+    !(val.disposition_action == void 0) &&
+    !sdIsString(val.disposition_action)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "disposition_action" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const dispositionAction: undefined | string =
     val.disposition_action == void 0 ? void 0 : val.disposition_action;
+  if (!(val.retention_type == void 0) && !sdIsString(val.retention_type)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "retention_type" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const retentionType: undefined | string =
     val.retention_type == void 0 ? void 0 : val.retention_type;
+  if (!(val.retention_length == void 0) && !sdIsString(val.retention_length)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "retention_length" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const retentionLength: undefined | string =
     val.retention_length == void 0 ? void 0 : val.retention_length;
+  if (!(val.status == void 0) && !sdIsString(val.status)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "status" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const status: undefined | string = val.status == void 0 ? void 0 : val.status;
+  if (
+    !(val.can_owner_extend_retention == void 0) &&
+    !sdIsBoolean(val.can_owner_extend_retention)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_owner_extend_retention" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const canOwnerExtendRetention: undefined | boolean =
     val.can_owner_extend_retention == void 0
       ? void 0
       : val.can_owner_extend_retention;
+  if (
+    !(val.are_owners_notified == void 0) &&
+    !sdIsBoolean(val.are_owners_notified)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_owners_notified" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const areOwnersNotified: undefined | boolean =
     val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
+  if (
+    !(val.custom_notification_recipients == void 0) &&
+    !sdIsList(val.custom_notification_recipients)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "custom_notification_recipients" of type "UpdateRetentionPolicyByIdRequestBody"',
+    });
+  }
   const customNotificationRecipients: undefined | readonly UserBase[] =
     val.custom_notification_recipients == void 0
       ? void 0

@@ -665,8 +665,26 @@ export function serializeCreateGroupMembershipRequestBodyUserField(
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyUserField(
-  val: any
+  val: SerializedData
 ): CreateGroupMembershipRequestBodyUserField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateGroupMembershipRequestBodyUserField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateGroupMembershipRequestBodyUserField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateGroupMembershipRequestBodyUserField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CreateGroupMembershipRequestBodyUserField;
 }
@@ -676,8 +694,26 @@ export function serializeCreateGroupMembershipRequestBodyGroupField(
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyGroupField(
-  val: any
+  val: SerializedData
 ): CreateGroupMembershipRequestBodyGroupField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateGroupMembershipRequestBodyGroupField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateGroupMembershipRequestBodyGroupField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateGroupMembershipRequestBodyGroupField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CreateGroupMembershipRequestBodyGroupField;
 }
@@ -687,7 +723,7 @@ export function serializeCreateGroupMembershipRequestBodyRoleField(
   return val;
 }
 export function deserializeCreateGroupMembershipRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): CreateGroupMembershipRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -722,16 +758,42 @@ export function serializeCreateGroupMembershipRequestBody(
   };
 }
 export function deserializeCreateGroupMembershipRequestBody(
-  val: any
+  val: SerializedData
 ): CreateGroupMembershipRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateGroupMembershipRequestBody"',
+    });
+  }
+  if (val.user == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "user" of type "CreateGroupMembershipRequestBody" to be defined',
+    });
+  }
   const user: CreateGroupMembershipRequestBodyUserField =
     deserializeCreateGroupMembershipRequestBodyUserField(val.user);
+  if (val.group == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "group" of type "CreateGroupMembershipRequestBody" to be defined',
+    });
+  }
   const group: CreateGroupMembershipRequestBodyGroupField =
     deserializeCreateGroupMembershipRequestBodyGroupField(val.group);
   const role: undefined | CreateGroupMembershipRequestBodyRoleField =
     val.role == void 0
       ? void 0
       : deserializeCreateGroupMembershipRequestBodyRoleField(val.role);
+  if (
+    !(val.configurable_permissions == void 0) &&
+    !sdIsMap(val.configurable_permissions)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting object for "configurable_permissions" of type "CreateGroupMembershipRequestBody"',
+    });
+  }
   const configurablePermissions:
     | undefined
     | {
@@ -739,7 +801,26 @@ export function deserializeCreateGroupMembershipRequestBody(
       } =
     val.configurable_permissions == void 0
       ? void 0
-      : val.configurable_permissions;
+      : sdIsMap(val.configurable_permissions)
+      ? (Object.fromEntries(
+          Object.entries(val.configurable_permissions).map(
+            ([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                if (!sdIsBoolean(v)) {
+                  throw new BoxSdkError({
+                    message:
+                      'Expecting boolean for "CreateGroupMembershipRequestBody"',
+                  });
+                }
+                return v;
+              })(v),
+            ]
+          )
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   return {
     user: user,
     group: group,
@@ -753,7 +834,7 @@ export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
   return val;
 }
 export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
-  val: any
+  val: SerializedData
 ): UpdateGroupMembershipByIdRequestBodyRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -786,12 +867,26 @@ export function serializeUpdateGroupMembershipByIdRequestBody(
   };
 }
 export function deserializeUpdateGroupMembershipByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateGroupMembershipByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateGroupMembershipByIdRequestBody"',
+    });
+  }
   const role: undefined | UpdateGroupMembershipByIdRequestBodyRoleField =
     val.role == void 0
       ? void 0
       : deserializeUpdateGroupMembershipByIdRequestBodyRoleField(val.role);
+  if (
+    !(val.configurable_permissions == void 0) &&
+    !sdIsMap(val.configurable_permissions)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting object for "configurable_permissions" of type "UpdateGroupMembershipByIdRequestBody"',
+    });
+  }
   const configurablePermissions:
     | undefined
     | {
@@ -799,7 +894,26 @@ export function deserializeUpdateGroupMembershipByIdRequestBody(
       } =
     val.configurable_permissions == void 0
       ? void 0
-      : val.configurable_permissions;
+      : sdIsMap(val.configurable_permissions)
+      ? (Object.fromEntries(
+          Object.entries(val.configurable_permissions).map(
+            ([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                if (!sdIsBoolean(v)) {
+                  throw new BoxSdkError({
+                    message:
+                      'Expecting boolean for "UpdateGroupMembershipByIdRequestBody"',
+                  });
+                }
+                return v;
+              })(v),
+            ]
+          )
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   return {
     role: role,
     configurablePermissions: configurablePermissions,

@@ -426,8 +426,22 @@ export function serializeAddClassificationToFolderRequestBody(
   };
 }
 export function deserializeAddClassificationToFolderRequestBody(
-  val: any
+  val: SerializedData
 ): AddClassificationToFolderRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddClassificationToFolderRequestBody"',
+    });
+  }
+  if (
+    !(val.Box__Security__Classification__Key == void 0) &&
+    !sdIsString(val.Box__Security__Classification__Key)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "Box__Security__Classification__Key" of type "AddClassificationToFolderRequestBody"',
+    });
+  }
   const boxSecurityClassificationKey: undefined | string =
     val.Box__Security__Classification__Key == void 0
       ? void 0
@@ -442,7 +456,7 @@ export function serializeUpdateClassificationOnFolderRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFolderRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -463,7 +477,7 @@ export function serializeUpdateClassificationOnFolderRequestBodyPathField(
   return val;
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFolderRequestBodyPathField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -490,12 +504,41 @@ export function serializeUpdateClassificationOnFolderRequestBody(
   };
 }
 export function deserializeUpdateClassificationOnFolderRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFolderRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateClassificationOnFolderRequestBody"',
+    });
+  }
+  if (val.op == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "op" of type "UpdateClassificationOnFolderRequestBody" to be defined',
+    });
+  }
   const op: UpdateClassificationOnFolderRequestBodyOpField =
     deserializeUpdateClassificationOnFolderRequestBodyOpField(val.op);
+  if (val.path == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "path" of type "UpdateClassificationOnFolderRequestBody" to be defined',
+    });
+  }
   const path: UpdateClassificationOnFolderRequestBodyPathField =
     deserializeUpdateClassificationOnFolderRequestBodyPathField(val.path);
+  if (val.value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "value" of type "UpdateClassificationOnFolderRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateClassificationOnFolderRequestBody"',
+    });
+  }
   const value: string = val.value;
   return {
     op: op,
@@ -519,8 +562,14 @@ export function serializeUpdateClassificationOnFolderRequestBodyInput(
   };
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyInput(
-  val: any
+  val: SerializedData
 ): UpdateClassificationOnFolderRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateClassificationOnFolderRequestBodyInput"',
+    });
+  }
   const op: undefined | UpdateClassificationOnFolderRequestBodyOpField =
     val.op == void 0
       ? void 0
@@ -529,6 +578,18 @@ export function deserializeUpdateClassificationOnFolderRequestBodyInput(
     val.path == void 0
       ? void 0
       : deserializeUpdateClassificationOnFolderRequestBodyPathField(val.path);
+  if (val.value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "value" of type "UpdateClassificationOnFolderRequestBodyInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateClassificationOnFolderRequestBodyInput"',
+    });
+  }
   const value: string = val.value;
   return {
     op: op,

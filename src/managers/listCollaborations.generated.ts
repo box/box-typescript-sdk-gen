@@ -442,7 +442,7 @@ export function serializeGetCollaborationsQueryParamsStatusField(
   return val;
 }
 export function deserializeGetCollaborationsQueryParamsStatusField(
-  val: any
+  val: SerializedData
 ): GetCollaborationsQueryParamsStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

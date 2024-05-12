@@ -1,3 +1,4 @@
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -19,11 +20,34 @@ export function serializePostOAuth2Revoke(
     ['token']: val.token == void 0 ? void 0 : val.token,
   };
 }
-export function deserializePostOAuth2Revoke(val: any): PostOAuth2Revoke {
+export function deserializePostOAuth2Revoke(
+  val: SerializedData
+): PostOAuth2Revoke {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "PostOAuth2Revoke"',
+    });
+  }
+  if (!(val.client_id == void 0) && !sdIsString(val.client_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "client_id" of type "PostOAuth2Revoke"',
+    });
+  }
   const clientId: undefined | string =
     val.client_id == void 0 ? void 0 : val.client_id;
+  if (!(val.client_secret == void 0) && !sdIsString(val.client_secret)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "client_secret" of type "PostOAuth2Revoke"',
+    });
+  }
   const clientSecret: undefined | string =
     val.client_secret == void 0 ? void 0 : val.client_secret;
+  if (!(val.token == void 0) && !sdIsString(val.token)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "token" of type "PostOAuth2Revoke"',
+    });
+  }
   const token: undefined | string = val.token == void 0 ? void 0 : val.token;
   return {
     clientId: clientId,

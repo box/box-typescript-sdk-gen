@@ -12,6 +12,6 @@ export type Metadata = MetadataBase;
 export function serializeMetadata(val: Metadata): SerializedData {
   return serializeMetadataBase(val);
 }
-export function deserializeMetadata(val: any): Metadata {
+export function deserializeMetadata(val: SerializedData): Metadata {
   return deserializeMetadataBase(val);
 }

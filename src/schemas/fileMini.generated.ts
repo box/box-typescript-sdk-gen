@@ -42,17 +42,55 @@ export function serializeFileMini(val: FileMini): SerializedData {
     },
   };
 }
-export function deserializeFileMini(val: any): FileMini {
+export function deserializeFileMini(val: SerializedData): FileMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileMini"' });
+  }
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "FileMini"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "FileMini"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.sha1 == void 0) && !sdIsString(val.sha1)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sha1" of type "FileMini"',
+    });
+  }
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
   const fileVersion: undefined | FileVersionMini =
     val.file_version == void 0
       ? void 0
       : deserializeFileVersionMini(val.file_version);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileMini" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileMini"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FileMini"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileMini" to be defined',
+    });
+  }
   const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
   return {
     sequenceId: sequenceId,

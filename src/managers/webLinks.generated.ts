@@ -388,8 +388,25 @@ export function serializeCreateWebLinkRequestBodyParentField(
   return { ['id']: val.id };
 }
 export function deserializeCreateWebLinkRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): CreateWebLinkRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateWebLinkRequestBodyParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateWebLinkRequestBodyParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateWebLinkRequestBodyParentField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CreateWebLinkRequestBodyParentField;
 }
@@ -404,12 +421,45 @@ export function serializeCreateWebLinkRequestBody(
   };
 }
 export function deserializeCreateWebLinkRequestBody(
-  val: any
+  val: SerializedData
 ): CreateWebLinkRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateWebLinkRequestBody"',
+    });
+  }
+  if (val.url == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "url" of type "CreateWebLinkRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "CreateWebLinkRequestBody"',
+    });
+  }
   const url: string = val.url;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parent" of type "CreateWebLinkRequestBody" to be defined',
+    });
+  }
   const parent: CreateWebLinkRequestBodyParentField =
     deserializeCreateWebLinkRequestBodyParentField(val.parent);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CreateWebLinkRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateWebLinkRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   return {
@@ -425,8 +475,19 @@ export function serializeUpdateWebLinkByIdRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateWebLinkByIdRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): UpdateWebLinkByIdRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateWebLinkByIdRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateWebLinkByIdRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies UpdateWebLinkByIdRequestBodyParentField;
 }
@@ -436,7 +497,7 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   return val;
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -474,18 +535,42 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): UpdateWebLinkByIdRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateWebLinkByIdRequestBodySharedLinkField"',
+    });
+  }
   const access: undefined | UpdateWebLinkByIdRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
       : deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
           val.access
         );
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "UpdateWebLinkByIdRequestBodySharedLinkField"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "UpdateWebLinkByIdRequestBodySharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "UpdateWebLinkByIdRequestBodySharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   return {
@@ -513,14 +598,37 @@ export function serializeUpdateWebLinkByIdRequestBody(
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateWebLinkByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateWebLinkByIdRequestBody"',
+    });
+  }
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "url" of type "UpdateWebLinkByIdRequestBody"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
   const parent: undefined | UpdateWebLinkByIdRequestBodyParentField =
     val.parent == void 0
       ? void 0
       : deserializeUpdateWebLinkByIdRequestBodyParentField(val.parent);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateWebLinkByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateWebLinkByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const sharedLink: undefined | UpdateWebLinkByIdRequestBodySharedLinkField =

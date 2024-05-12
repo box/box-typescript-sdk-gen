@@ -20,6 +20,17 @@ export function serializeGenericSource(val: GenericSource): SerializedData {
     readonly [key: string]: any;
   };
 }
-export function deserializeGenericSource(val: any): GenericSource {
-  return val;
+export function deserializeGenericSource(val: SerializedData): GenericSource {
+  return sdIsMap(val)
+    ? (Object.fromEntries(
+        Object.entries(val).map(([k, v]: [string, any]) => [
+          k,
+          (function (v: any): any {
+            return v;
+          })(v),
+        ])
+      ) as {
+        readonly [key: string]: any;
+      })
+    : {};
 }

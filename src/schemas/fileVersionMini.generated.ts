@@ -25,9 +25,34 @@ export function serializeFileVersionMini(val: FileVersionMini): SerializedData {
   }
   return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
 }
-export function deserializeFileVersionMini(val: any): FileVersionMini {
+export function deserializeFileVersionMini(
+  val: SerializedData
+): FileVersionMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersionMini"' });
+  }
+  if (!(val.sha1 == void 0) && !sdIsString(val.sha1)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sha1" of type "FileVersionMini"',
+    });
+  }
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileVersionMini" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersionMini"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileVersionMini" to be defined',
+    });
+  }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
     val.type
   );

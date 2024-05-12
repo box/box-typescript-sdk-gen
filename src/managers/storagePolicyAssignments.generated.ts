@@ -545,7 +545,7 @@ export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeFi
   return val;
 }
 export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
-  val: any
+  val: SerializedData
 ): GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -569,7 +569,7 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTy
   return val;
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -596,12 +596,36 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFi
   };
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateStoragePolicyAssignmentRequestBodyStoragePolicyField" to be defined',
+    });
+  }
   const type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
     deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateStoragePolicyAssignmentRequestBodyStoragePolicyField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateStoragePolicyAssignmentRequestBodyStoragePolicyField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -622,8 +646,14 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFi
   };
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput"',
+    });
+  }
   const type:
     | undefined
     | CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
@@ -632,6 +662,18 @@ export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicy
       : deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
           val.type
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -644,7 +686,7 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeF
   return val;
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -674,12 +716,36 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField
   };
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyAssignedToField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateStoragePolicyAssignmentRequestBodyAssignedToField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateStoragePolicyAssignmentRequestBodyAssignedToField" to be defined',
+    });
+  }
   const type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
     deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateStoragePolicyAssignmentRequestBodyAssignedToField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateStoragePolicyAssignmentRequestBodyAssignedToField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -701,12 +767,29 @@ export function serializeCreateStoragePolicyAssignmentRequestBody(
   };
 }
 export function deserializeCreateStoragePolicyAssignmentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateStoragePolicyAssignmentRequestBody"',
+    });
+  }
+  if (val.storage_policy == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "storage_policy" of type "CreateStoragePolicyAssignmentRequestBody" to be defined',
+    });
+  }
   const storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField =
     deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
       val.storage_policy
     );
+  if (val.assigned_to == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "assigned_to" of type "CreateStoragePolicyAssignmentRequestBody" to be defined',
+    });
+  }
   const assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField =
     deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
       val.assigned_to
@@ -722,7 +805,7 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePoli
   return val;
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
-  val: any
+  val: SerializedData
 ): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -749,12 +832,36 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePoli
   };
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
-  val: any
+  val: SerializedData
 ): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField" to be defined',
+    });
+  }
   const type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
     deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
       val.type
     );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -775,8 +882,14 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePoli
   };
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput(
-  val: any
+  val: SerializedData
 ): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput"',
+    });
+  }
   const type:
     | undefined
     | UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
@@ -785,6 +898,18 @@ export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePo
       : deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
           val.type
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -802,8 +927,20 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBody(
   };
 }
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateStoragePolicyAssignmentByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateStoragePolicyAssignmentByIdRequestBody"',
+    });
+  }
+  if (val.storage_policy == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "storage_policy" of type "UpdateStoragePolicyAssignmentByIdRequestBody" to be defined',
+    });
+  }
   const storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField =
     deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(
       val.storage_policy

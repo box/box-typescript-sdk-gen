@@ -1,6 +1,7 @@
 import { serializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
 import { deserializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
 import { ShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -22,8 +23,13 @@ export function serializeShieldInformationBarrierReference(
   };
 }
 export function deserializeShieldInformationBarrierReference(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierReference {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierReference"',
+    });
+  }
   const shieldInformationBarrier: undefined | ShieldInformationBarrierBase =
     val.shield_information_barrier == void 0
       ? void 0

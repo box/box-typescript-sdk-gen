@@ -35,10 +35,22 @@ export function serializeShieldInformationBarrierSegmentMemberMini(
   };
 }
 export function deserializeShieldInformationBarrierSegmentMemberMini(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierSegmentMemberMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "ShieldInformationBarrierSegmentMemberMini"',
+    });
+  }
   const user: undefined | UserBase =
     val.user == void 0 ? void 0 : deserializeUserBase(val.user);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ShieldInformationBarrierSegmentMemberMini"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | ShieldInformationBarrierSegmentMemberBaseTypeField =
     val.type == void 0

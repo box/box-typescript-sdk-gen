@@ -549,7 +549,7 @@ export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   return val;
 }
 export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
-  val: any
+  val: SerializedData
 ): GetRetentionPolicyAssignmentsQueryParamsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -576,7 +576,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeF
   return val;
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -609,12 +609,30 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateRetentionPolicyAssignmentRequestBodyAssignToField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateRetentionPolicyAssignmentRequestBodyAssignToField" to be defined',
+    });
+  }
   const type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
     deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
       val.type
     );
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateRetentionPolicyAssignmentRequestBodyAssignToField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return {
     type: type,
@@ -630,9 +648,27 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsF
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField"',
+    });
+  }
+  if (!(val.field == void 0) && !sdIsString(val.field)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "field" of type "CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField"',
+    });
+  }
   const field: undefined | string = val.field == void 0 ? void 0 : val.field;
+  if (!(val.value == void 0) && !sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField"',
+    });
+  }
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   return {
     field: field,
@@ -663,13 +699,43 @@ export function serializeCreateRetentionPolicyAssignmentRequestBody(
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateRetentionPolicyAssignmentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateRetentionPolicyAssignmentRequestBody"',
+    });
+  }
+  if (val.policy_id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "policy_id" of type "CreateRetentionPolicyAssignmentRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.policy_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_id" of type "CreateRetentionPolicyAssignmentRequestBody"',
+    });
+  }
   const policyId: string = val.policy_id;
+  if (val.assign_to == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "assign_to" of type "CreateRetentionPolicyAssignmentRequestBody" to be defined',
+    });
+  }
   const assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField =
     deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
       val.assign_to
     );
+  if (!(val.filter_fields == void 0) && !sdIsList(val.filter_fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "filter_fields" of type "CreateRetentionPolicyAssignmentRequestBody"',
+    });
+  }
   const filterFields:
     | undefined
     | readonly CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField[] =
@@ -684,6 +750,12 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBody(
           );
         }) as readonly any[])
       : [];
+  if (!(val.start_date_field == void 0) && !sdIsString(val.start_date_field)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "start_date_field" of type "CreateRetentionPolicyAssignmentRequestBody"',
+    });
+  }
   const startDateField: undefined | string =
     val.start_date_field == void 0 ? void 0 : val.start_date_field;
   return {

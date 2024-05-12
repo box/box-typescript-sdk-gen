@@ -35,7 +35,7 @@ export function serializeCollaborationAllowlistEntryTypeField(
   return val;
 }
 export function deserializeCollaborationAllowlistEntryTypeField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistEntryTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,7 +55,7 @@ export function serializeCollaborationAllowlistEntryDirectionField(
   return val;
 }
 export function deserializeCollaborationAllowlistEntryDirectionField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistEntryDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -82,7 +82,7 @@ export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
   return val;
 }
 export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistEntryEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -110,13 +110,31 @@ export function serializeCollaborationAllowlistEntryEnterpriseField(
   };
 }
 export function deserializeCollaborationAllowlistEntryEnterpriseField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistEntryEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAllowlistEntryEnterpriseField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaborationAllowlistEntryEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CollaborationAllowlistEntryEnterpriseTypeField =
     val.type == void 0
       ? void 0
       : deserializeCollaborationAllowlistEntryEnterpriseTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "CollaborationAllowlistEntryEnterpriseField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return {
     id: id,
@@ -147,13 +165,30 @@ export function serializeCollaborationAllowlistEntry(
   };
 }
 export function deserializeCollaborationAllowlistEntry(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistEntry {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaborationAllowlistEntry"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaborationAllowlistEntry"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CollaborationAllowlistEntryTypeField =
     val.type == void 0
       ? void 0
       : deserializeCollaborationAllowlistEntryTypeField(val.type);
+  if (!(val.domain == void 0) && !sdIsString(val.domain)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "domain" of type "CollaborationAllowlistEntry"',
+    });
+  }
   const domain: undefined | string = val.domain == void 0 ? void 0 : val.domain;
   const direction: undefined | CollaborationAllowlistEntryDirectionField =
     val.direction == void 0
@@ -163,6 +198,12 @@ export function deserializeCollaborationAllowlistEntry(
     val.enterprise == void 0
       ? void 0
       : deserializeCollaborationAllowlistEntryEnterpriseField(val.enterprise);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "CollaborationAllowlistEntry"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   return {

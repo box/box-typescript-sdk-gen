@@ -1,3 +1,4 @@
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -23,10 +24,31 @@ export function serializeUserAvatarPicUrlsField(
   };
 }
 export function deserializeUserAvatarPicUrlsField(
-  val: any
+  val: SerializedData
 ): UserAvatarPicUrlsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UserAvatarPicUrlsField"',
+    });
+  }
+  if (!(val.small == void 0) && !sdIsString(val.small)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "small" of type "UserAvatarPicUrlsField"',
+    });
+  }
   const small: undefined | string = val.small == void 0 ? void 0 : val.small;
+  if (!(val.large == void 0) && !sdIsString(val.large)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "large" of type "UserAvatarPicUrlsField"',
+    });
+  }
   const large: undefined | string = val.large == void 0 ? void 0 : val.large;
+  if (!(val.preview == void 0) && !sdIsString(val.preview)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "preview" of type "UserAvatarPicUrlsField"',
+    });
+  }
   const preview: undefined | string =
     val.preview == void 0 ? void 0 : val.preview;
   return {
@@ -43,7 +65,10 @@ export function serializeUserAvatar(val: UserAvatar): SerializedData {
         : serializeUserAvatarPicUrlsField(val.picUrls),
   };
 }
-export function deserializeUserAvatar(val: any): UserAvatar {
+export function deserializeUserAvatar(val: SerializedData): UserAvatar {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "UserAvatar"' });
+  }
   const picUrls: undefined | UserAvatarPicUrlsField =
     val.pic_urls == void 0
       ? void 0

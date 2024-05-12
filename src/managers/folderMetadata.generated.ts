@@ -485,7 +485,7 @@ export function serializeGetFolderMetadataByIdScope(
   return val;
 }
 export function deserializeGetFolderMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): GetFolderMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -508,7 +508,7 @@ export function serializeCreateFolderMetadataByIdScope(
   return val;
 }
 export function deserializeCreateFolderMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): CreateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -540,9 +540,20 @@ export function serializeCreateFolderMetadataByIdRequestBody(
   };
 }
 export function deserializeCreateFolderMetadataByIdRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFolderMetadataByIdRequestBody {
-  return val;
+  return sdIsMap(val)
+    ? (Object.fromEntries(
+        Object.entries(val).map(([k, v]: [string, any]) => [
+          k,
+          (function (v: any): any {
+            return v;
+          })(v),
+        ])
+      ) as {
+        readonly [key: string]: any;
+      })
+    : {};
 }
 export function serializeUpdateFolderMetadataByIdScope(
   val: UpdateFolderMetadataByIdScope
@@ -550,7 +561,7 @@ export function serializeUpdateFolderMetadataByIdScope(
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): UpdateFolderMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -573,7 +584,7 @@ export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateFolderMetadataByIdRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -617,14 +628,37 @@ export function serializeUpdateFolderMetadataByIdRequestBody(
   };
 }
 export function deserializeUpdateFolderMetadataByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFolderMetadataByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFolderMetadataByIdRequestBody"',
+    });
+  }
   const op: undefined | UpdateFolderMetadataByIdRequestBodyOpField =
     val.op == void 0
       ? void 0
       : deserializeUpdateFolderMetadataByIdRequestBodyOpField(val.op);
+  if (!(val.path == void 0) && !sdIsString(val.path)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "path" of type "UpdateFolderMetadataByIdRequestBody"',
+    });
+  }
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
+  if (!(val.value == void 0) && !sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "UpdateFolderMetadataByIdRequestBody"',
+    });
+  }
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
+  if (!(val.from == void 0) && !sdIsString(val.from)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "from" of type "UpdateFolderMetadataByIdRequestBody"',
+    });
+  }
   const from: undefined | string = val.from == void 0 ? void 0 : val.from;
   return {
     op: op,
@@ -639,7 +673,7 @@ export function serializeDeleteFolderMetadataByIdScope(
   return val;
 }
 export function deserializeDeleteFolderMetadataByIdScope(
-  val: any
+  val: SerializedData
 ): DeleteFolderMetadataByIdScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

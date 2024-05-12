@@ -27,7 +27,7 @@ export function serializeCollectionsOrderDirectionField(
   return val;
 }
 export function deserializeCollectionsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): CollectionsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -56,8 +56,18 @@ export function serializeCollectionsOrderField(
   };
 }
 export function deserializeCollectionsOrderField(
-  val: any
+  val: SerializedData
 ): CollectionsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollectionsOrderField"',
+    });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "CollectionsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | CollectionsOrderDirectionField =
     val.direction == void 0
@@ -86,11 +96,34 @@ export function serializeCollections(val: Collections): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeCollections(val: any): Collections {
+export function deserializeCollections(val: SerializedData): Collections {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Collections"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "Collections"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Collections"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "Collections"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "Collections"',
+    });
+  }
   const order: undefined | readonly CollectionsOrderField[] =
     val.order == void 0
       ? void 0
@@ -99,6 +132,11 @@ export function deserializeCollections(val: any): Collections {
           return deserializeCollectionsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Collections"',
+    });
+  }
   const entries: undefined | readonly Collection[] =
     val.entries == void 0
       ? void 0

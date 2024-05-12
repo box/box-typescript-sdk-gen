@@ -35,7 +35,9 @@ export function serializeFolderBaseTypeField(
 ): SerializedData {
   return val;
 }
-export function deserializeFolderBaseTypeField(val: any): FolderBaseTypeField {
+export function deserializeFolderBaseTypeField(
+  val: SerializedData
+): FolderBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "FolderBaseTypeField"',
@@ -55,9 +57,32 @@ export function serializeFolderBase(val: FolderBase): SerializedData {
     ['type']: serializeFolderBaseTypeField(val.type),
   };
 }
-export function deserializeFolderBase(val: any): FolderBase {
+export function deserializeFolderBase(val: SerializedData): FolderBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FolderBase"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FolderBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FolderBase"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FolderBase"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FolderBase" to be defined',
+    });
+  }
   const type: FolderBaseTypeField = deserializeFolderBaseTypeField(val.type);
   return { id: id, etag: etag, type: type } satisfies FolderBase;
 }
@@ -69,8 +94,28 @@ export function serializeFolderBaseInput(val: FolderBaseInput): SerializedData {
       val.type == void 0 ? void 0 : serializeFolderBaseTypeField(val.type),
   };
 }
-export function deserializeFolderBaseInput(val: any): FolderBaseInput {
+export function deserializeFolderBaseInput(
+  val: SerializedData
+): FolderBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FolderBaseInput"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FolderBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FolderBaseInput"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FolderBaseInput"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: undefined | FolderBaseTypeField =
     val.type == void 0 ? void 0 : deserializeFolderBaseTypeField(val.type);

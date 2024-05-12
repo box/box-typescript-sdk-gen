@@ -278,7 +278,7 @@ export function serializeSearchForContentQueryParamsScopeField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsScopeField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsScopeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -301,7 +301,7 @@ export function serializeSearchForContentQueryParamsContentTypesField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsContentTypesField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsContentTypesField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -334,7 +334,7 @@ export function serializeSearchForContentQueryParamsTypeField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsTypeField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -360,7 +360,7 @@ export function serializeSearchForContentQueryParamsTrashContentField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsTrashContentField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsTrashContentField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -387,7 +387,7 @@ export function serializeSearchForContentQueryParamsSortField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsSortField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsSortField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -410,7 +410,7 @@ export function serializeSearchForContentQueryParamsDirectionField(
   return val;
 }
 export function deserializeSearchForContentQueryParamsDirectionField(
-  val: any
+  val: SerializedData
 ): SearchForContentQueryParamsDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

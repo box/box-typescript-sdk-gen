@@ -18,7 +18,7 @@ export function serializeLegalHoldPolicyAssignmentBaseTypeField(
   return val;
 }
 export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyAssignmentBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -45,8 +45,19 @@ export function serializeLegalHoldPolicyAssignmentBase(
   };
 }
 export function deserializeLegalHoldPolicyAssignmentBase(
-  val: any
+  val: SerializedData
 ): LegalHoldPolicyAssignmentBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "LegalHoldPolicyAssignmentBase"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "LegalHoldPolicyAssignmentBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | LegalHoldPolicyAssignmentBaseTypeField =
     val.type == void 0

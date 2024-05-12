@@ -1,6 +1,7 @@
 import { serializeShieldInformationBarrierSegmentMember } from './shieldInformationBarrierSegmentMember.generated.js';
 import { deserializeShieldInformationBarrierSegmentMember } from './shieldInformationBarrierSegmentMember.generated.js';
 import { ShieldInformationBarrierSegmentMember } from './shieldInformationBarrierSegmentMember.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -30,11 +31,34 @@ export function serializeShieldInformationBarrierSegmentMembers(
   };
 }
 export function deserializeShieldInformationBarrierSegmentMembers(
-  val: any
+  val: SerializedData
 ): ShieldInformationBarrierSegmentMembers {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ShieldInformationBarrierSegmentMembers"',
+    });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "limit" of type "ShieldInformationBarrierSegmentMembers"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "ShieldInformationBarrierSegmentMembers"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "ShieldInformationBarrierSegmentMembers"',
+    });
+  }
   const entries: undefined | readonly ShieldInformationBarrierSegmentMember[] =
     val.entries == void 0
       ? void 0

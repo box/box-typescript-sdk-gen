@@ -516,7 +516,7 @@ export function serializeCreateGroupRequestBodyInvitabilityLevelField(
   return val;
 }
 export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
-  val: any
+  val: SerializedData
 ): CreateGroupRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -543,7 +543,7 @@ export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
   return val;
 }
 export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
-  val: any
+  val: SerializedData
 ): CreateGroupRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -590,15 +590,52 @@ export function serializeCreateGroupRequestBody(
   };
 }
 export function deserializeCreateGroupRequestBody(
-  val: any
+  val: SerializedData
 ): CreateGroupRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateGroupRequestBody"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "CreateGroupRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CreateGroupRequestBody"',
+    });
+  }
   const name: string = val.name;
+  if (!(val.provenance == void 0) && !sdIsString(val.provenance)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "provenance" of type "CreateGroupRequestBody"',
+    });
+  }
   const provenance: undefined | string =
     val.provenance == void 0 ? void 0 : val.provenance;
+  if (
+    !(val.external_sync_identifier == void 0) &&
+    !sdIsString(val.external_sync_identifier)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_sync_identifier" of type "CreateGroupRequestBody"',
+    });
+  }
   const externalSyncIdentifier: undefined | string =
     val.external_sync_identifier == void 0
       ? void 0
       : val.external_sync_identifier;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateGroupRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const invitabilityLevel:
@@ -632,7 +669,7 @@ export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-  val: any
+  val: SerializedData
 ): UpdateGroupByIdRequestBodyInvitabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -659,7 +696,7 @@ export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-  val: any
+  val: SerializedData
 ): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -706,15 +743,47 @@ export function serializeUpdateGroupByIdRequestBody(
   };
 }
 export function deserializeUpdateGroupByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateGroupByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateGroupByIdRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateGroupByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.provenance == void 0) && !sdIsString(val.provenance)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "provenance" of type "UpdateGroupByIdRequestBody"',
+    });
+  }
   const provenance: undefined | string =
     val.provenance == void 0 ? void 0 : val.provenance;
+  if (
+    !(val.external_sync_identifier == void 0) &&
+    !sdIsString(val.external_sync_identifier)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_sync_identifier" of type "UpdateGroupByIdRequestBody"',
+    });
+  }
   const externalSyncIdentifier: undefined | string =
     val.external_sync_identifier == void 0
       ? void 0
       : val.external_sync_identifier;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateGroupByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const invitabilityLevel:

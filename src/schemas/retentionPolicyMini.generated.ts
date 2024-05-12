@@ -29,7 +29,7 @@ export function serializeRetentionPolicyMiniDispositionActionField(
   return val;
 }
 export function deserializeRetentionPolicyMiniDispositionActionField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyMiniDispositionActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -71,9 +71,28 @@ export function serializeRetentionPolicyMini(
     },
   };
 }
-export function deserializeRetentionPolicyMini(val: any): RetentionPolicyMini {
+export function deserializeRetentionPolicyMini(
+  val: SerializedData
+): RetentionPolicyMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyMini"',
+    });
+  }
+  if (!(val.policy_name == void 0) && !sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_name" of type "RetentionPolicyMini"',
+    });
+  }
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
+  if (!(val.retention_length == void 0) && !sdIsString(val.retention_length)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "retention_length" of type "RetentionPolicyMini"',
+    });
+  }
   const retentionLength: undefined | string =
     val.retention_length == void 0 ? void 0 : val.retention_length;
   const dispositionAction:
@@ -84,7 +103,22 @@ export function deserializeRetentionPolicyMini(val: any): RetentionPolicyMini {
       : deserializeRetentionPolicyMiniDispositionActionField(
           val.disposition_action
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "RetentionPolicyMini" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "RetentionPolicyMini"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "RetentionPolicyMini" to be defined',
+    });
+  }
   const type: RetentionPolicyBaseTypeField =
     deserializeRetentionPolicyBaseTypeField(val.type);
   return {

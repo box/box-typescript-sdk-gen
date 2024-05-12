@@ -20,7 +20,9 @@ export function serializeCollectionTypeField(
 ): SerializedData {
   return val;
 }
-export function deserializeCollectionTypeField(val: any): CollectionTypeField {
+export function deserializeCollectionTypeField(
+  val: SerializedData
+): CollectionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "CollectionTypeField"',
@@ -38,7 +40,9 @@ export function serializeCollectionNameField(
 ): SerializedData {
   return val;
 }
-export function deserializeCollectionNameField(val: any): CollectionNameField {
+export function deserializeCollectionNameField(
+  val: SerializedData
+): CollectionNameField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "CollectionNameField"',
@@ -57,7 +61,7 @@ export function serializeCollectionCollectionTypeField(
   return val;
 }
 export function deserializeCollectionCollectionTypeField(
-  val: any
+  val: SerializedData
 ): CollectionCollectionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -84,7 +88,15 @@ export function serializeCollection(val: Collection): SerializedData {
         : serializeCollectionCollectionTypeField(val.collectionType),
   };
 }
-export function deserializeCollection(val: any): Collection {
+export function deserializeCollection(val: SerializedData): Collection {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Collection"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Collection"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CollectionTypeField =
     val.type == void 0 ? void 0 : deserializeCollectionTypeField(val.type);

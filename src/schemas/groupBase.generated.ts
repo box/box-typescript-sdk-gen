@@ -30,7 +30,9 @@ export function serializeGroupBaseTypeField(
 ): SerializedData {
   return val;
 }
-export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
+export function deserializeGroupBaseTypeField(
+  val: SerializedData
+): GroupBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "GroupBaseTypeField"',
@@ -46,8 +48,26 @@ export function deserializeGroupBaseTypeField(val: any): GroupBaseTypeField {
 export function serializeGroupBase(val: GroupBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeGroupBaseTypeField(val.type) };
 }
-export function deserializeGroupBase(val: any): GroupBase {
+export function deserializeGroupBase(val: SerializedData): GroupBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupBase"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "GroupBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "GroupBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "GroupBase" to be defined',
+    });
+  }
   const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return { id: id, type: type } satisfies GroupBase;
 }
@@ -58,7 +78,20 @@ export function serializeGroupBaseInput(val: GroupBaseInput): SerializedData {
       val.type == void 0 ? void 0 : serializeGroupBaseTypeField(val.type),
   };
 }
-export function deserializeGroupBaseInput(val: any): GroupBaseInput {
+export function deserializeGroupBaseInput(val: SerializedData): GroupBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupBaseInput"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "GroupBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "GroupBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | GroupBaseTypeField =
     val.type == void 0 ? void 0 : deserializeGroupBaseTypeField(val.type);

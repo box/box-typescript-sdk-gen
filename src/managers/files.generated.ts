@@ -621,8 +621,19 @@ export function serializeUpdateFileByIdRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFileByIdRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileByIdRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateFileByIdRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies UpdateFileByIdRequestBodyParentField;
 }
@@ -632,7 +643,7 @@ export function serializeUpdateFileByIdRequestBodySharedLinkAccessField(
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -661,8 +672,20 @@ export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodySharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFileByIdRequestBodySharedLinkPermissionsField"',
+    });
+  }
+  if (!(val.can_download == void 0) && !sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "UpdateFileByIdRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
   return {
@@ -690,16 +713,39 @@ export function serializeUpdateFileByIdRequestBodySharedLinkField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileByIdRequestBodySharedLinkField"',
+    });
+  }
   const access: undefined | UpdateFileByIdRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodySharedLinkAccessField(val.access);
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "UpdateFileByIdRequestBodySharedLinkField"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "UpdateFileByIdRequestBodySharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "UpdateFileByIdRequestBodySharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
@@ -724,7 +770,7 @@ export function serializeUpdateFileByIdRequestBodyLockAccessField(
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyLockAccessField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyLockAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -754,14 +800,34 @@ export function serializeUpdateFileByIdRequestBodyLockField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodyLockField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyLockField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileByIdRequestBodyLockField"',
+    });
+  }
   const access: undefined | UpdateFileByIdRequestBodyLockAccessField =
     val.access == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyLockAccessField(val.access);
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "expires_at" of type "UpdateFileByIdRequestBodyLockField"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (
+    !(val.is_download_prevented == void 0) &&
+    !sdIsBoolean(val.is_download_prevented)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_download_prevented" of type "UpdateFileByIdRequestBodyLockField"',
+    });
+  }
   const isDownloadPrevented: undefined | boolean =
     val.is_download_prevented == void 0 ? void 0 : val.is_download_prevented;
   return {
@@ -776,7 +842,7 @@ export function serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyPermissionsCanDownloadField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -807,8 +873,14 @@ export function serializeUpdateFileByIdRequestBodyPermissionsField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodyPermissionsField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFileByIdRequestBodyPermissionsField"',
+    });
+  }
   const canDownload:
     | undefined
     | UpdateFileByIdRequestBodyPermissionsCanDownloadField =
@@ -830,9 +902,27 @@ export function serializeUpdateFileByIdRequestBodyCollectionsField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodyCollectionsField(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBodyCollectionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFileByIdRequestBodyCollectionsField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateFileByIdRequestBodyCollectionsField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "type" of type "UpdateFileByIdRequestBodyCollectionsField"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   return {
     id: id,
@@ -882,9 +972,26 @@ export function serializeUpdateFileByIdRequestBody(
   };
 }
 export function deserializeUpdateFileByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFileByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFileByIdRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateFileByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateFileByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const parent: undefined | UpdateFileByIdRequestBodyParentField =
@@ -899,6 +1006,12 @@ export function deserializeUpdateFileByIdRequestBody(
     val.lock == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyLockField(val.lock);
+  if (!(val.disposition_at == void 0) && !sdIsString(val.disposition_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "disposition_at" of type "UpdateFileByIdRequestBody"',
+    });
+  }
   const dispositionAt: undefined | DateTime =
     val.disposition_at == void 0
       ? void 0
@@ -907,6 +1020,12 @@ export function deserializeUpdateFileByIdRequestBody(
     val.permissions == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyPermissionsField(val.permissions);
+  if (!(val.collections == void 0) && !sdIsList(val.collections)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "collections" of type "UpdateFileByIdRequestBody"',
+    });
+  }
   const collections:
     | undefined
     | readonly UpdateFileByIdRequestBodyCollectionsField[] =
@@ -919,8 +1038,24 @@ export function deserializeUpdateFileByIdRequestBody(
           return deserializeUpdateFileByIdRequestBodyCollectionsField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.tags == void 0) && !sdIsList(val.tags)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "tags" of type "UpdateFileByIdRequestBody"',
+    });
+  }
   const tags: undefined | readonly string[] =
-    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
+    val.tags == void 0
+      ? void 0
+      : sdIsList(val.tags)
+      ? (val.tags.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message: 'Expecting string for "UpdateFileByIdRequestBody"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
+      : [];
   return {
     name: name,
     description: description,
@@ -939,8 +1074,25 @@ export function serializeCopyFileRequestBodyParentField(
   return { ['id']: val.id };
 }
 export function deserializeCopyFileRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): CopyFileRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CopyFileRequestBodyParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CopyFileRequestBodyParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CopyFileRequestBodyParentField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CopyFileRequestBodyParentField;
 }
@@ -953,10 +1105,32 @@ export function serializeCopyFileRequestBody(
     ['parent']: serializeCopyFileRequestBodyParentField(val.parent),
   };
 }
-export function deserializeCopyFileRequestBody(val: any): CopyFileRequestBody {
+export function deserializeCopyFileRequestBody(
+  val: SerializedData
+): CopyFileRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CopyFileRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CopyFileRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.version == void 0) && !sdIsString(val.version)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "version" of type "CopyFileRequestBody"',
+    });
+  }
   const version: undefined | string =
     val.version == void 0 ? void 0 : val.version;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "parent" of type "CopyFileRequestBody" to be defined',
+    });
+  }
   const parent: CopyFileRequestBodyParentField =
     deserializeCopyFileRequestBodyParentField(val.parent);
   return {
@@ -971,7 +1145,7 @@ export function serializeGetFileThumbnailByIdExtension(
   return val;
 }
 export function deserializeGetFileThumbnailByIdExtension(
-  val: any
+  val: SerializedData
 ): GetFileThumbnailByIdExtension {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

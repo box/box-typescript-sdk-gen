@@ -368,7 +368,7 @@ export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionFi
   return val;
 }
 export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-  val: any
+  val: SerializedData
 ): CreateCollaborationWhitelistEntryRequestBodyDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -401,9 +401,33 @@ export function serializeCreateCollaborationWhitelistEntryRequestBody(
   };
 }
 export function deserializeCreateCollaborationWhitelistEntryRequestBody(
-  val: any
+  val: SerializedData
 ): CreateCollaborationWhitelistEntryRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateCollaborationWhitelistEntryRequestBody"',
+    });
+  }
+  if (val.domain == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "domain" of type "CreateCollaborationWhitelistEntryRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.domain)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "domain" of type "CreateCollaborationWhitelistEntryRequestBody"',
+    });
+  }
   const domain: string = val.domain;
+  if (val.direction == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "direction" of type "CreateCollaborationWhitelistEntryRequestBody" to be defined',
+    });
+  }
   const direction: CreateCollaborationWhitelistEntryRequestBodyDirectionField =
     deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
       val.direction

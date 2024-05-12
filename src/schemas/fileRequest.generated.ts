@@ -106,7 +106,7 @@ export function serializeFileRequestTypeField(
   return val;
 }
 export function deserializeFileRequestTypeField(
-  val: any
+  val: SerializedData
 ): FileRequestTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -126,7 +126,7 @@ export function serializeFileRequestStatusField(
   return val;
 }
 export function deserializeFileRequestStatusField(
-  val: any
+  val: SerializedData
 ): FileRequestStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -170,32 +170,118 @@ export function serializeFileRequest(val: FileRequest): SerializedData {
     ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }
-export function deserializeFileRequest(val: any): FileRequest {
+export function deserializeFileRequest(val: SerializedData): FileRequest {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileRequest"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileRequest" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileRequest"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileRequest" to be defined',
+    });
+  }
   const type: FileRequestTypeField = deserializeFileRequestTypeField(val.type);
+  if (!(val.title == void 0) && !sdIsString(val.title)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "title" of type "FileRequest"',
+    });
+  }
   const title: undefined | string = val.title == void 0 ? void 0 : val.title;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "FileRequest"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const status: undefined | FileRequestStatusField =
     val.status == void 0
       ? void 0
       : deserializeFileRequestStatusField(val.status);
+  if (
+    !(val.is_email_required == void 0) &&
+    !sdIsBoolean(val.is_email_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_email_required" of type "FileRequest"',
+    });
+  }
   const isEmailRequired: undefined | boolean =
     val.is_email_required == void 0 ? void 0 : val.is_email_required;
+  if (
+    !(val.is_description_required == void 0) &&
+    !sdIsBoolean(val.is_description_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_description_required" of type "FileRequest"',
+    });
+  }
   const isDescriptionRequired: undefined | boolean =
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "expires_at" of type "FileRequest"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (val.folder == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "folder" of type "FileRequest" to be defined',
+    });
+  }
   const folder: FolderMini = deserializeFolderMini(val.folder);
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "FileRequest"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FileRequest"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (val.created_at == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "created_at" of type "FileRequest" to be defined',
+    });
+  }
+  if (!sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "FileRequest"',
+    });
+  }
   const createdAt: DateTime = deserializeDateTime(val.created_at);
   const updatedBy: undefined | UserMini =
     val.updated_by == void 0 ? void 0 : deserializeUserMini(val.updated_by);
+  if (val.updated_at == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "updated_at" of type "FileRequest" to be defined',
+    });
+  }
+  if (!sdIsString(val.updated_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "updated_at" of type "FileRequest"',
+    });
+  }
   const updatedAt: DateTime = deserializeDateTime(val.updated_at);
   return {
     id: id,
@@ -245,33 +331,120 @@ export function serializeFileRequestInput(
     ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }
-export function deserializeFileRequestInput(val: any): FileRequestInput {
+export function deserializeFileRequestInput(
+  val: SerializedData
+): FileRequestInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileRequestInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileRequestInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileRequestInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | FileRequestTypeField =
     val.type == void 0 ? void 0 : deserializeFileRequestTypeField(val.type);
+  if (!(val.title == void 0) && !sdIsString(val.title)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "title" of type "FileRequestInput"',
+    });
+  }
   const title: undefined | string = val.title == void 0 ? void 0 : val.title;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "FileRequestInput"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const status: undefined | FileRequestStatusField =
     val.status == void 0
       ? void 0
       : deserializeFileRequestStatusField(val.status);
+  if (
+    !(val.is_email_required == void 0) &&
+    !sdIsBoolean(val.is_email_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_email_required" of type "FileRequestInput"',
+    });
+  }
   const isEmailRequired: undefined | boolean =
     val.is_email_required == void 0 ? void 0 : val.is_email_required;
+  if (
+    !(val.is_description_required == void 0) &&
+    !sdIsBoolean(val.is_description_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_description_required" of type "FileRequestInput"',
+    });
+  }
   const isDescriptionRequired: undefined | boolean =
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "expires_at" of type "FileRequestInput"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
+  if (val.folder == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "folder" of type "FileRequestInput" to be defined',
+    });
+  }
   const folder: FolderMini = deserializeFolderMini(val.folder);
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "FileRequestInput"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FileRequestInput"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (val.created_at == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "created_at" of type "FileRequestInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "FileRequestInput"',
+    });
+  }
   const createdAt: DateTime = deserializeDateTime(val.created_at);
   const updatedBy: undefined | UserMini =
     val.updated_by == void 0 ? void 0 : deserializeUserMini(val.updated_by);
+  if (val.updated_at == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "updated_at" of type "FileRequestInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.updated_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "updated_at" of type "FileRequestInput"',
+    });
+  }
   const updatedAt: DateTime = deserializeDateTime(val.updated_at);
   return {
     id: id,

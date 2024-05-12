@@ -148,7 +148,7 @@ export function serializeTrashFolderTypeField(
   return val;
 }
 export function deserializeTrashFolderTypeField(
-  val: any
+  val: SerializedData
 ): TrashFolderTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -168,7 +168,7 @@ export function serializeTrashFolderPathCollectionEntriesTypeField(
   return val;
 }
 export function deserializeTrashFolderPathCollectionEntriesTypeField(
-  val: any
+  val: SerializedData
 ): TrashFolderPathCollectionEntriesTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -198,16 +198,45 @@ export function serializeTrashFolderPathCollectionEntriesField(
   };
 }
 export function deserializeTrashFolderPathCollectionEntriesField(
-  val: any
+  val: SerializedData
 ): TrashFolderPathCollectionEntriesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TrashFolderPathCollectionEntriesField"',
+    });
+  }
   const type: undefined | TrashFolderPathCollectionEntriesTypeField =
     val.type == void 0
       ? void 0
       : deserializeTrashFolderPathCollectionEntriesTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TrashFolderPathCollectionEntriesField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "sequence_id" of type "TrashFolderPathCollectionEntriesField"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "etag" of type "TrashFolderPathCollectionEntriesField"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "TrashFolderPathCollectionEntriesField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return {
     type: type,
@@ -230,9 +259,38 @@ export function serializeTrashFolderPathCollectionField(
   };
 }
 export function deserializeTrashFolderPathCollectionField(
-  val: any
+  val: SerializedData
 ): TrashFolderPathCollectionField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TrashFolderPathCollectionField"',
+    });
+  }
+  if (val.total_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "total_count" of type "TrashFolderPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "TrashFolderPathCollectionField"',
+    });
+  }
   const totalCount: number = val.total_count;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "TrashFolderPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "TrashFolderPathCollectionField"',
+    });
+  }
   const entries: readonly TrashFolderPathCollectionEntriesField[] = sdIsList(
     val.entries
   )
@@ -253,7 +311,7 @@ export function serializeTrashFolderItemStatusField(
   return val;
 }
 export function deserializeTrashFolderItemStatusField(
-  val: any
+  val: SerializedData
 ): TrashFolderItemStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -311,42 +369,178 @@ export function serializeTrashFolder(val: TrashFolder): SerializedData {
     ['item_status']: serializeTrashFolderItemStatusField(val.itemStatus),
   };
 }
-export function deserializeTrashFolder(val: any): TrashFolder {
+export function deserializeTrashFolder(val: SerializedData): TrashFolder {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TrashFolder"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "TrashFolder" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TrashFolder"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "TrashFolder"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "TrashFolder" to be defined',
+    });
+  }
   const type: TrashFolderTypeField = deserializeTrashFolderTypeField(val.type);
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "TrashFolder"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "name" of type "TrashFolder" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "TrashFolder"',
+    });
+  }
   const name: string = val.name;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "TrashFolder"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "TrashFolder"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (val.description == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "description" of type "TrashFolder" to be defined',
+    });
+  }
+  if (!sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "TrashFolder"',
+    });
+  }
   const description: string = val.description;
+  if (val.size == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "size" of type "TrashFolder" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "TrashFolder"',
+    });
+  }
   const size: number = val.size;
+  if (val.path_collection == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "path_collection" of type "TrashFolder" to be defined',
+    });
+  }
   const pathCollection: TrashFolderPathCollectionField =
     deserializeTrashFolderPathCollectionField(val.path_collection);
+  if (val.created_by == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "created_by" of type "TrashFolder" to be defined',
+    });
+  }
   const createdBy: UserMini = deserializeUserMini(val.created_by);
+  if (val.modified_by == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "modified_by" of type "TrashFolder" to be defined',
+    });
+  }
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "TrashFolder"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "TrashFolder"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_created_at" of type "TrashFolder"',
+    });
+  }
   const contentCreatedAt: undefined | DateTime =
     val.content_created_at == void 0
       ? void 0
       : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "TrashFolder"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
       : deserializeDateTime(val.content_modified_at);
+  if (val.owned_by == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "owned_by" of type "TrashFolder" to be defined',
+    });
+  }
   const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+  if (!(val.shared_link == void 0) && !sdIsString(val.shared_link)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "shared_link" of type "TrashFolder"',
+    });
+  }
   const sharedLink: undefined | string =
     val.shared_link == void 0 ? void 0 : val.shared_link;
+  if (
+    !(val.folder_upload_email == void 0) &&
+    !sdIsString(val.folder_upload_email)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "folder_upload_email" of type "TrashFolder"',
+    });
+  }
   const folderUploadEmail: undefined | string =
     val.folder_upload_email == void 0 ? void 0 : val.folder_upload_email;
   const parent: undefined | FolderMini =
     val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  if (val.item_status == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "item_status" of type "TrashFolder" to be defined',
+    });
+  }
   const itemStatus: TrashFolderItemStatusField =
     deserializeTrashFolderItemStatusField(val.item_status);
   return {
@@ -414,43 +608,182 @@ export function serializeTrashFolderInput(
     ['item_status']: serializeTrashFolderItemStatusField(val.itemStatus),
   };
 }
-export function deserializeTrashFolderInput(val: any): TrashFolderInput {
+export function deserializeTrashFolderInput(
+  val: SerializedData
+): TrashFolderInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TrashFolderInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "TrashFolderInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TrashFolderInput"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "TrashFolderInput"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   const type: undefined | TrashFolderTypeField =
     val.type == void 0 ? void 0 : deserializeTrashFolderTypeField(val.type);
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "TrashFolderInput"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "name" of type "TrashFolderInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "TrashFolderInput"',
+    });
+  }
   const name: string = val.name;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "TrashFolderInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "TrashFolderInput"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (val.description == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "description" of type "TrashFolderInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "TrashFolderInput"',
+    });
+  }
   const description: string = val.description;
+  if (val.size == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "size" of type "TrashFolderInput" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "TrashFolderInput"',
+    });
+  }
   const size: number = val.size;
+  if (val.path_collection == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "path_collection" of type "TrashFolderInput" to be defined',
+    });
+  }
   const pathCollection: TrashFolderPathCollectionField =
     deserializeTrashFolderPathCollectionField(val.path_collection);
+  if (val.created_by == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "created_by" of type "TrashFolderInput" to be defined',
+    });
+  }
   const createdBy: UserMini = deserializeUserMini(val.created_by);
+  if (val.modified_by == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "modified_by" of type "TrashFolderInput" to be defined',
+    });
+  }
   const modifiedBy: UserMini = deserializeUserMini(val.modified_by);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "TrashFolderInput"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "TrashFolderInput"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_created_at" of type "TrashFolderInput"',
+    });
+  }
   const contentCreatedAt: undefined | DateTime =
     val.content_created_at == void 0
       ? void 0
       : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "TrashFolderInput"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
       : deserializeDateTime(val.content_modified_at);
+  if (val.owned_by == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "owned_by" of type "TrashFolderInput" to be defined',
+    });
+  }
   const ownedBy: UserMini = deserializeUserMini(val.owned_by);
+  if (!(val.shared_link == void 0) && !sdIsString(val.shared_link)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "shared_link" of type "TrashFolderInput"',
+    });
+  }
   const sharedLink: undefined | string =
     val.shared_link == void 0 ? void 0 : val.shared_link;
+  if (
+    !(val.folder_upload_email == void 0) &&
+    !sdIsString(val.folder_upload_email)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "folder_upload_email" of type "TrashFolderInput"',
+    });
+  }
   const folderUploadEmail: undefined | string =
     val.folder_upload_email == void 0 ? void 0 : val.folder_upload_email;
   const parent: undefined | FolderMini =
     val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  if (val.item_status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "item_status" of type "TrashFolderInput" to be defined',
+    });
+  }
   const itemStatus: TrashFolderItemStatusField =
     deserializeTrashFolderItemStatusField(val.item_status);
   return {

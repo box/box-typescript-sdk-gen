@@ -43,17 +43,50 @@ export function serializeGroup(val: Group): SerializedData {
     },
   };
 }
-export function deserializeGroup(val: any): Group {
+export function deserializeGroup(val: SerializedData): Group {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Group"' });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Group"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "Group"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "Group"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const groupType: undefined | GroupMiniGroupTypeField =
     val.group_type == void 0
       ? void 0
       : deserializeGroupMiniGroupTypeField(val.group_type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "Group" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Group"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "Group" to be defined',
+    });
+  }
   const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return {
     createdAt: createdAt,

@@ -27,7 +27,7 @@ export function serializeDevicePinnersOrderByField(
   return val;
 }
 export function deserializeDevicePinnersOrderByField(
-  val: any
+  val: SerializedData
 ): DevicePinnersOrderByField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -47,7 +47,7 @@ export function serializeDevicePinnersOrderDirectionField(
   return val;
 }
 export function deserializeDevicePinnersOrderDirectionField(
-  val: any
+  val: SerializedData
 ): DevicePinnersOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -77,8 +77,13 @@ export function serializeDevicePinnersOrderField(
   };
 }
 export function deserializeDevicePinnersOrderField(
-  val: any
+  val: SerializedData
 ): DevicePinnersOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "DevicePinnersOrderField"',
+    });
+  }
   const by: undefined | DevicePinnersOrderByField =
     val.by == void 0 ? void 0 : deserializeDevicePinnersOrderByField(val.by);
   const direction: undefined | DevicePinnersOrderDirectionField =
@@ -107,7 +112,15 @@ export function serializeDevicePinners(val: DevicePinners): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeDevicePinners(val: any): DevicePinners {
+export function deserializeDevicePinners(val: SerializedData): DevicePinners {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "DevicePinners"' });
+  }
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "DevicePinners"',
+    });
+  }
   const entries: undefined | readonly DevicePinner[] =
     val.entries == void 0
       ? void 0
@@ -116,9 +129,24 @@ export function deserializeDevicePinners(val: any): DevicePinners {
           return deserializeDevicePinner(itm);
         }) as readonly any[])
       : [];
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "DevicePinners"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsNumber(val.next_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "next_marker" of type "DevicePinners"',
+    });
+  }
   const nextMarker: undefined | number =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "DevicePinners"',
+    });
+  }
   const order: undefined | readonly DevicePinnersOrderField[] =
     val.order == void 0
       ? void 0

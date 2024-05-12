@@ -18,6 +18,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -295,8 +296,25 @@ export function serializeCreateUserEmailAliasRequestBody(
   return { ['email']: val.email };
 }
 export function deserializeCreateUserEmailAliasRequestBody(
-  val: any
+  val: SerializedData
 ): CreateUserEmailAliasRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateUserEmailAliasRequestBody"',
+    });
+  }
+  if (val.email == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "email" of type "CreateUserEmailAliasRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.email)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "email" of type "CreateUserEmailAliasRequestBody"',
+    });
+  }
   const email: string = val.email;
   return { email: email } satisfies CreateUserEmailAliasRequestBody;
 }

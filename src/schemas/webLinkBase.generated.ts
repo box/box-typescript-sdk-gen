@@ -36,7 +36,7 @@ export function serializeWebLinkBaseTypeField(
   return val;
 }
 export function deserializeWebLinkBaseTypeField(
-  val: any
+  val: SerializedData
 ): WebLinkBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -57,9 +57,32 @@ export function serializeWebLinkBase(val: WebLinkBase): SerializedData {
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
   };
 }
-export function deserializeWebLinkBase(val: any): WebLinkBase {
+export function deserializeWebLinkBase(val: SerializedData): WebLinkBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "WebLinkBase"' });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "WebLinkBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebLinkBase"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "WebLinkBase" to be defined',
+    });
+  }
   const type: WebLinkBaseTypeField = deserializeWebLinkBaseTypeField(val.type);
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "WebLinkBase"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return { id: id, type: type, etag: etag } satisfies WebLinkBase;
 }
@@ -73,10 +96,32 @@ export function serializeWebLinkBaseInput(
     ['etag']: val.etag == void 0 ? void 0 : val.etag,
   };
 }
-export function deserializeWebLinkBaseInput(val: any): WebLinkBaseInput {
+export function deserializeWebLinkBaseInput(
+  val: SerializedData
+): WebLinkBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebLinkBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "WebLinkBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebLinkBaseInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | WebLinkBaseTypeField =
     val.type == void 0 ? void 0 : deserializeWebLinkBaseTypeField(val.type);
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "WebLinkBaseInput"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return { id: id, type: type, etag: etag } satisfies WebLinkBaseInput;
 }

@@ -509,7 +509,7 @@ export function serializeCreateWebhookRequestBodyTargetTypeField(
   return val;
 }
 export function deserializeCreateWebhookRequestBodyTargetTypeField(
-  val: any
+  val: SerializedData
 ): CreateWebhookRequestBodyTargetTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -539,8 +539,19 @@ export function serializeCreateWebhookRequestBodyTargetField(
   };
 }
 export function deserializeCreateWebhookRequestBodyTargetField(
-  val: any
+  val: SerializedData
 ): CreateWebhookRequestBodyTargetField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateWebhookRequestBodyTargetField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateWebhookRequestBodyTargetField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CreateWebhookRequestBodyTargetTypeField =
     val.type == void 0
@@ -554,7 +565,7 @@ export function serializeCreateWebhookRequestBodyTriggersField(
   return val;
 }
 export function deserializeCreateWebhookRequestBodyTriggersField(
-  val: any
+  val: SerializedData
 ): CreateWebhookRequestBodyTriggersField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -699,11 +710,46 @@ export function serializeCreateWebhookRequestBody(
   };
 }
 export function deserializeCreateWebhookRequestBody(
-  val: any
+  val: SerializedData
 ): CreateWebhookRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateWebhookRequestBody"',
+    });
+  }
+  if (val.target == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "target" of type "CreateWebhookRequestBody" to be defined',
+    });
+  }
   const target: CreateWebhookRequestBodyTargetField =
     deserializeCreateWebhookRequestBodyTargetField(val.target);
+  if (val.address == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "address" of type "CreateWebhookRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "address" of type "CreateWebhookRequestBody"',
+    });
+  }
   const address: string = val.address;
+  if (val.triggers == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "triggers" of type "CreateWebhookRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.triggers)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "triggers" of type "CreateWebhookRequestBody"',
+    });
+  }
   const triggers: readonly CreateWebhookRequestBodyTriggersField[] = sdIsList(
     val.triggers
   )
@@ -725,7 +771,7 @@ export function serializeUpdateWebhookByIdRequestBodyTargetTypeField(
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
-  val: any
+  val: SerializedData
 ): UpdateWebhookByIdRequestBodyTargetTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -755,8 +801,19 @@ export function serializeUpdateWebhookByIdRequestBodyTargetField(
   };
 }
 export function deserializeUpdateWebhookByIdRequestBodyTargetField(
-  val: any
+  val: SerializedData
 ): UpdateWebhookByIdRequestBodyTargetField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateWebhookByIdRequestBodyTargetField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateWebhookByIdRequestBodyTargetField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | UpdateWebhookByIdRequestBodyTargetTypeField =
     val.type == void 0
@@ -773,7 +830,7 @@ export function serializeUpdateWebhookByIdRequestBodyTriggersField(
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
-  val: any
+  val: SerializedData
 ): UpdateWebhookByIdRequestBodyTriggersField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -925,14 +982,31 @@ export function serializeUpdateWebhookByIdRequestBody(
   };
 }
 export function deserializeUpdateWebhookByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateWebhookByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateWebhookByIdRequestBody"',
+    });
+  }
   const target: undefined | UpdateWebhookByIdRequestBodyTargetField =
     val.target == void 0
       ? void 0
       : deserializeUpdateWebhookByIdRequestBodyTargetField(val.target);
+  if (!(val.address == void 0) && !sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "address" of type "UpdateWebhookByIdRequestBody"',
+    });
+  }
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
+  if (!(val.triggers == void 0) && !sdIsList(val.triggers)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "triggers" of type "UpdateWebhookByIdRequestBody"',
+    });
+  }
   const triggers:
     | undefined
     | readonly UpdateWebhookByIdRequestBodyTriggersField[] =

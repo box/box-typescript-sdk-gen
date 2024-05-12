@@ -1,3 +1,4 @@
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -14,8 +15,19 @@ export function serializeSessionTerminationMessage(
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeSessionTerminationMessage(
-  val: any
+  val: SerializedData
 ): SessionTerminationMessage {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SessionTerminationMessage"',
+    });
+  }
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "SessionTerminationMessage"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   return { message: message } satisfies SessionTerminationMessage;

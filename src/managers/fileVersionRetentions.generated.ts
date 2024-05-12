@@ -210,7 +210,7 @@ export function serializeGetFileVersionRetentionsQueryParamsDispositionActionFie
   return val;
 }
 export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionField(
-  val: any
+  val: SerializedData
 ): GetFileVersionRetentionsQueryParamsDispositionActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

@@ -37,7 +37,7 @@ export interface Task {
 export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
   return val;
 }
-export function deserializeTaskTypeField(val: any): TaskTypeField {
+export function deserializeTaskTypeField(val: SerializedData): TaskTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "TaskTypeField"',
@@ -53,7 +53,9 @@ export function deserializeTaskTypeField(val: any): TaskTypeField {
 export function serializeTaskActionField(val: TaskActionField): SerializedData {
   return val;
 }
-export function deserializeTaskActionField(val: any): TaskActionField {
+export function deserializeTaskActionField(
+  val: SerializedData
+): TaskActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "TaskActionField"',
@@ -75,7 +77,7 @@ export function serializeTaskCompletionRuleField(
   return val;
 }
 export function deserializeTaskCompletionRuleField(
-  val: any
+  val: SerializedData
 ): TaskCompletionRuleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -116,26 +118,54 @@ export function serializeTask(val: Task): SerializedData {
         : serializeTaskCompletionRuleField(val.completionRule),
   };
 }
-export function deserializeTask(val: any): Task {
+export function deserializeTask(val: SerializedData): Task {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Task"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Task"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | TaskTypeField =
     val.type == void 0 ? void 0 : deserializeTaskTypeField(val.type);
   const item: undefined | FileMini =
     val.item == void 0 ? void 0 : deserializeFileMini(val.item);
+  if (!(val.due_at == void 0) && !sdIsString(val.due_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "due_at" of type "Task"',
+    });
+  }
   const dueAt: undefined | DateTime =
     val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const action: undefined | TaskActionField =
     val.action == void 0 ? void 0 : deserializeTaskActionField(val.action);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "Task"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const taskAssignmentCollection: undefined | TaskAssignments =
     val.task_assignment_collection == void 0
       ? void 0
       : deserializeTaskAssignments(val.task_assignment_collection);
+  if (!(val.is_completed == void 0) && !sdIsBoolean(val.is_completed)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_completed" of type "Task"',
+    });
+  }
   const isCompleted: undefined | boolean =
     val.is_completed == void 0 ? void 0 : val.is_completed;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Task"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const completionRule: undefined | TaskCompletionRuleField =

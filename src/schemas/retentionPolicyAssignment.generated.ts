@@ -84,7 +84,7 @@ export function serializeRetentionPolicyAssignmentTypeField(
   return val;
 }
 export function deserializeRetentionPolicyAssignmentTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -104,7 +104,7 @@ export function serializeRetentionPolicyAssignmentAssignedToTypeField(
   return val;
 }
 export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentAssignedToTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -137,8 +137,19 @@ export function serializeRetentionPolicyAssignmentAssignedToField(
   };
 }
 export function deserializeRetentionPolicyAssignmentAssignedToField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentAssignedToField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignmentAssignedToField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RetentionPolicyAssignmentAssignedToField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | RetentionPolicyAssignmentAssignedToTypeField =
     val.type == void 0
@@ -158,9 +169,27 @@ export function serializeRetentionPolicyAssignmentFilterFieldsField(
   };
 }
 export function deserializeRetentionPolicyAssignmentFilterFieldsField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentFilterFieldsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "RetentionPolicyAssignmentFilterFieldsField"',
+    });
+  }
+  if (!(val.field == void 0) && !sdIsString(val.field)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "field" of type "RetentionPolicyAssignmentFilterFieldsField"',
+    });
+  }
   const field: undefined | string = val.field == void 0 ? void 0 : val.field;
+  if (!(val.value == void 0) && !sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "value" of type "RetentionPolicyAssignmentFilterFieldsField"',
+    });
+  }
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   return {
     field: field,
@@ -198,9 +227,31 @@ export function serializeRetentionPolicyAssignment(
   };
 }
 export function deserializeRetentionPolicyAssignment(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignment {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignment"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "RetentionPolicyAssignment" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "RetentionPolicyAssignment"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "RetentionPolicyAssignment" to be defined',
+    });
+  }
   const type: RetentionPolicyAssignmentTypeField =
     deserializeRetentionPolicyAssignmentTypeField(val.type);
   const retentionPolicy: undefined | RetentionPolicyMini =
@@ -211,6 +262,12 @@ export function deserializeRetentionPolicyAssignment(
     val.assigned_to == void 0
       ? void 0
       : deserializeRetentionPolicyAssignmentAssignedToField(val.assigned_to);
+  if (!(val.filter_fields == void 0) && !sdIsList(val.filter_fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "filter_fields" of type "RetentionPolicyAssignment"',
+    });
+  }
   const filterFields:
     | undefined
     | readonly RetentionPolicyAssignmentFilterFieldsField[] =
@@ -225,8 +282,20 @@ export function deserializeRetentionPolicyAssignment(
       : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
+  if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "assigned_at" of type "RetentionPolicyAssignment"',
+    });
+  }
   const assignedAt: undefined | DateTime =
     val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  if (!(val.start_date_field == void 0) && !sdIsString(val.start_date_field)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "start_date_field" of type "RetentionPolicyAssignment"',
+    });
+  }
   const startDateField: undefined | string =
     val.start_date_field == void 0 ? void 0 : val.start_date_field;
   return {
@@ -274,8 +343,25 @@ export function serializeRetentionPolicyAssignmentInput(
   };
 }
 export function deserializeRetentionPolicyAssignmentInput(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignmentInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "RetentionPolicyAssignmentInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "RetentionPolicyAssignmentInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | RetentionPolicyAssignmentTypeField =
     val.type == void 0
@@ -289,6 +375,12 @@ export function deserializeRetentionPolicyAssignmentInput(
     val.assigned_to == void 0
       ? void 0
       : deserializeRetentionPolicyAssignmentAssignedToField(val.assigned_to);
+  if (!(val.filter_fields == void 0) && !sdIsList(val.filter_fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "filter_fields" of type "RetentionPolicyAssignmentInput"',
+    });
+  }
   const filterFields:
     | undefined
     | readonly RetentionPolicyAssignmentFilterFieldsField[] =
@@ -303,8 +395,20 @@ export function deserializeRetentionPolicyAssignmentInput(
       : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
+  if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "assigned_at" of type "RetentionPolicyAssignmentInput"',
+    });
+  }
   const assignedAt: undefined | DateTime =
     val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  if (!(val.start_date_field == void 0) && !sdIsString(val.start_date_field)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "start_date_field" of type "RetentionPolicyAssignmentInput"',
+    });
+  }
   const startDateField: undefined | string =
     val.start_date_field == void 0 ? void 0 : val.start_date_field;
   return {

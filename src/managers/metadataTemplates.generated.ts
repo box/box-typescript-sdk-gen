@@ -725,7 +725,7 @@ export function serializeGetMetadataTemplateScope(
   return val;
 }
 export function deserializeGetMetadataTemplateScope(
-  val: any
+  val: SerializedData
 ): GetMetadataTemplateScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -748,7 +748,7 @@ export function serializeUpdateMetadataTemplateScope(
   return val;
 }
 export function deserializeUpdateMetadataTemplateScope(
-  val: any
+  val: SerializedData
 ): UpdateMetadataTemplateScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -771,7 +771,7 @@ export function serializeUpdateMetadataTemplateRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateMetadataTemplateRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateMetadataTemplateRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -867,38 +867,135 @@ export function serializeUpdateMetadataTemplateRequestBody(
   };
 }
 export function deserializeUpdateMetadataTemplateRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateMetadataTemplateRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateMetadataTemplateRequestBody"',
+    });
+  }
+  if (val.op == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "op" of type "UpdateMetadataTemplateRequestBody" to be defined',
+    });
+  }
   const op: UpdateMetadataTemplateRequestBodyOpField =
     deserializeUpdateMetadataTemplateRequestBodyOpField(val.op);
+  if (!(val.data == void 0) && !sdIsMap(val.data)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting object for "data" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const data:
     | undefined
     | {
         readonly [key: string]: any;
-      } = val.data == void 0 ? void 0 : val.data;
+      } =
+    val.data == void 0
+      ? void 0
+      : sdIsMap(val.data)
+      ? (Object.fromEntries(
+          Object.entries(val.data).map(([k, v]: [string, any]) => [
+            k,
+            (function (v: any): any {
+              return v;
+            })(v),
+          ])
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
+  if (!(val.fieldKey == void 0) && !sdIsString(val.fieldKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "fieldKey" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const fieldKey: undefined | string =
     val.fieldKey == void 0 ? void 0 : val.fieldKey;
+  if (!(val.fieldKeys == void 0) && !sdIsList(val.fieldKeys)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "fieldKeys" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const fieldKeys: undefined | readonly string[] =
     val.fieldKeys == void 0
       ? void 0
       : sdIsList(val.fieldKeys)
-      ? val.fieldKeys
+      ? (val.fieldKeys.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message:
+                'Expecting string for "UpdateMetadataTemplateRequestBody"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
       : [];
+  if (!(val.enumOptionKey == void 0) && !sdIsString(val.enumOptionKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "enumOptionKey" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const enumOptionKey: undefined | string =
     val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey;
+  if (!(val.enumOptionKeys == void 0) && !sdIsList(val.enumOptionKeys)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "enumOptionKeys" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const enumOptionKeys: undefined | readonly string[] =
     val.enumOptionKeys == void 0
       ? void 0
       : sdIsList(val.enumOptionKeys)
-      ? val.enumOptionKeys
+      ? (val.enumOptionKeys.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message:
+                'Expecting string for "UpdateMetadataTemplateRequestBody"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
       : [];
+  if (
+    !(val.multiSelectOptionKey == void 0) &&
+    !sdIsString(val.multiSelectOptionKey)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "multiSelectOptionKey" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const multiSelectOptionKey: undefined | string =
     val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey;
+  if (
+    !(val.multiSelectOptionKeys == void 0) &&
+    !sdIsList(val.multiSelectOptionKeys)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "multiSelectOptionKeys" of type "UpdateMetadataTemplateRequestBody"',
+    });
+  }
   const multiSelectOptionKeys: undefined | readonly string[] =
     val.multiSelectOptionKeys == void 0
       ? void 0
       : sdIsList(val.multiSelectOptionKeys)
-      ? val.multiSelectOptionKeys
+      ? (val.multiSelectOptionKeys.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message:
+                'Expecting string for "UpdateMetadataTemplateRequestBody"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
       : [];
   return {
     op: op,
@@ -917,7 +1014,7 @@ export function serializeDeleteMetadataTemplateScope(
   return val;
 }
 export function deserializeDeleteMetadataTemplateScope(
-  val: any
+  val: SerializedData
 ): DeleteMetadataTemplateScope {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -940,7 +1037,7 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   return val;
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-  val: any
+  val: SerializedData
 ): CreateMetadataTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -973,8 +1070,26 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   return { ['key']: val.key };
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-  val: any
+  val: SerializedData
 ): CreateMetadataTemplateRequestBodyFieldsOptionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateMetadataTemplateRequestBodyFieldsOptionsField"',
+    });
+  }
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "CreateMetadataTemplateRequestBodyFieldsOptionsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "CreateMetadataTemplateRequestBodyFieldsOptionsField"',
+    });
+  }
   const key: string = val.key;
   return {
     key: key,
@@ -1004,16 +1119,70 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsField(
   };
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
-  val: any
+  val: SerializedData
 ): CreateMetadataTemplateRequestBodyFieldsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateMetadataTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
   const type: CreateMetadataTemplateRequestBodyFieldsTypeField =
     deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(val.type);
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "CreateMetadataTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
   const key: string = val.key;
+  if (val.displayName == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "displayName" of type "CreateMetadataTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.displayName)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "displayName" of type "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
   const displayName: string = val.displayName;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (!(val.options == void 0) && !sdIsList(val.options)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "options" of type "CreateMetadataTemplateRequestBodyFieldsField"',
+    });
+  }
   const options:
     | undefined
     | readonly CreateMetadataTemplateRequestBodyFieldsOptionsField[] =
@@ -1060,14 +1229,61 @@ export function serializeCreateMetadataTemplateRequestBody(
   };
 }
 export function deserializeCreateMetadataTemplateRequestBody(
-  val: any
+  val: SerializedData
 ): CreateMetadataTemplateRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateMetadataTemplateRequestBody"',
+    });
+  }
+  if (val.scope == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "scope" of type "CreateMetadataTemplateRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.scope)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "scope" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const scope: string = val.scope;
+  if (!(val.templateKey == void 0) && !sdIsString(val.templateKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "templateKey" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const templateKey: undefined | string =
     val.templateKey == void 0 ? void 0 : val.templateKey;
+  if (val.displayName == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "displayName" of type "CreateMetadataTemplateRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.displayName)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "displayName" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const displayName: string = val.displayName;
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (!(val.fields == void 0) && !sdIsList(val.fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "fields" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const fields:
     | undefined
     | readonly CreateMetadataTemplateRequestBodyFieldsField[] =
@@ -1080,6 +1296,15 @@ export function deserializeCreateMetadataTemplateRequestBody(
           return deserializeCreateMetadataTemplateRequestBodyFieldsField(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.copyInstanceOnItemCopy == void 0) &&
+    !sdIsBoolean(val.copyInstanceOnItemCopy)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "copyInstanceOnItemCopy" of type "CreateMetadataTemplateRequestBody"',
+    });
+  }
   const copyInstanceOnItemCopy: undefined | boolean =
     val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
   return {

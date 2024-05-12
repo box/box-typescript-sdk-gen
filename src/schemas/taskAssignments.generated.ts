@@ -1,6 +1,7 @@
 import { serializeTaskAssignment } from './taskAssignment.generated.js';
 import { deserializeTaskAssignment } from './taskAssignment.generated.js';
 import { TaskAssignment } from './taskAssignment.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -23,9 +24,24 @@ export function serializeTaskAssignments(val: TaskAssignments): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeTaskAssignments(val: any): TaskAssignments {
+export function deserializeTaskAssignments(
+  val: SerializedData
+): TaskAssignments {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TaskAssignments"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "TaskAssignments"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "TaskAssignments"',
+    });
+  }
   const entries: undefined | readonly TaskAssignment[] =
     val.entries == void 0
       ? void 0

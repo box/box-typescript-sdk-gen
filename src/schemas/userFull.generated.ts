@@ -59,7 +59,9 @@ export function serializeUserFullRoleField(
 ): SerializedData {
   return val;
 }
-export function deserializeUserFullRoleField(val: any): UserFullRoleField {
+export function deserializeUserFullRoleField(
+  val: SerializedData
+): UserFullRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "UserFullRoleField"',
@@ -84,7 +86,7 @@ export function serializeUserFullEnterpriseTypeField(
   return val;
 }
 export function deserializeUserFullEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): UserFullEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -111,13 +113,28 @@ export function serializeUserFullEnterpriseField(
   };
 }
 export function deserializeUserFullEnterpriseField(
-  val: any
+  val: SerializedData
 ): UserFullEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UserFullEnterpriseField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "UserFullEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | UserFullEnterpriseTypeField =
     val.type == void 0
       ? void 0
       : deserializeUserFullEnterpriseTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "UserFullEnterpriseField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return { id: id, type: type, name: name } satisfies UserFullEnterpriseField;
 }
@@ -173,9 +190,17 @@ export function serializeUserFull(val: UserFull): SerializedData {
     },
   };
 }
-export function deserializeUserFull(val: any): UserFull {
+export function deserializeUserFull(val: SerializedData): UserFull {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "UserFull"' });
+  }
   const role: undefined | UserFullRoleField =
     val.role == void 0 ? void 0 : deserializeUserFullRoleField(val.role);
+  if (!(val.tracking_codes == void 0) && !sdIsList(val.tracking_codes)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "tracking_codes" of type "UserFull"',
+    });
+  }
   const trackingCodes: undefined | readonly TrackingCode[] =
     val.tracking_codes == void 0
       ? void 0
@@ -184,18 +209,59 @@ export function deserializeUserFull(val: any): UserFull {
           return deserializeTrackingCode(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.can_see_managed_users == void 0) &&
+    !sdIsBoolean(val.can_see_managed_users)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_see_managed_users" of type "UserFull"',
+    });
+  }
   const canSeeManagedUsers: undefined | boolean =
     val.can_see_managed_users == void 0 ? void 0 : val.can_see_managed_users;
+  if (!(val.is_sync_enabled == void 0) && !sdIsBoolean(val.is_sync_enabled)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_sync_enabled" of type "UserFull"',
+    });
+  }
   const isSyncEnabled: undefined | boolean =
     val.is_sync_enabled == void 0 ? void 0 : val.is_sync_enabled;
+  if (
+    !(val.is_external_collab_restricted == void 0) &&
+    !sdIsBoolean(val.is_external_collab_restricted)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_external_collab_restricted" of type "UserFull"',
+    });
+  }
   const isExternalCollabRestricted: undefined | boolean =
     val.is_external_collab_restricted == void 0
       ? void 0
       : val.is_external_collab_restricted;
+  if (
+    !(val.is_exempt_from_device_limits == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_device_limits)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_device_limits" of type "UserFull"',
+    });
+  }
   const isExemptFromDeviceLimits: undefined | boolean =
     val.is_exempt_from_device_limits == void 0
       ? void 0
       : val.is_exempt_from_device_limits;
+  if (
+    !(val.is_exempt_from_login_verification == void 0) &&
+    !sdIsBoolean(val.is_exempt_from_login_verification)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_exempt_from_login_verification" of type "UserFull"',
+    });
+  }
   const isExemptFromLoginVerification: undefined | boolean =
     val.is_exempt_from_login_verification == void 0
       ? void 0
@@ -204,46 +270,164 @@ export function deserializeUserFull(val: any): UserFull {
     val.enterprise == void 0
       ? void 0
       : deserializeUserFullEnterpriseField(val.enterprise);
+  if (!(val.my_tags == void 0) && !sdIsList(val.my_tags)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "my_tags" of type "UserFull"',
+    });
+  }
   const myTags: undefined | readonly string[] =
-    val.my_tags == void 0 ? void 0 : sdIsList(val.my_tags) ? val.my_tags : [];
+    val.my_tags == void 0
+      ? void 0
+      : sdIsList(val.my_tags)
+      ? (val.my_tags.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message: 'Expecting string for "UserFull"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
+      : [];
+  if (!(val.hostname == void 0) && !sdIsString(val.hostname)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "hostname" of type "UserFull"',
+    });
+  }
   const hostname: undefined | string =
     val.hostname == void 0 ? void 0 : val.hostname;
+  if (
+    !(val.is_platform_access_only == void 0) &&
+    !sdIsBoolean(val.is_platform_access_only)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_platform_access_only" of type "UserFull"',
+    });
+  }
   const isPlatformAccessOnly: undefined | boolean =
     val.is_platform_access_only == void 0
       ? void 0
       : val.is_platform_access_only;
+  if (
+    !(val.external_app_user_id == void 0) &&
+    !sdIsString(val.external_app_user_id)
+  ) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "external_app_user_id" of type "UserFull"',
+    });
+  }
   const externalAppUserId: undefined | string =
     val.external_app_user_id == void 0 ? void 0 : val.external_app_user_id;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "UserFull"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "UserFull"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.language == void 0) && !sdIsString(val.language)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "language" of type "UserFull"',
+    });
+  }
   const language: undefined | string =
     val.language == void 0 ? void 0 : val.language;
+  if (!(val.timezone == void 0) && !sdIsString(val.timezone)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "timezone" of type "UserFull"',
+    });
+  }
   const timezone: undefined | string =
     val.timezone == void 0 ? void 0 : val.timezone;
+  if (!(val.space_amount == void 0) && !sdIsNumber(val.space_amount)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "space_amount" of type "UserFull"',
+    });
+  }
   const spaceAmount: undefined | number =
     val.space_amount == void 0 ? void 0 : val.space_amount;
+  if (!(val.space_used == void 0) && !sdIsNumber(val.space_used)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "space_used" of type "UserFull"',
+    });
+  }
   const spaceUsed: undefined | number =
     val.space_used == void 0 ? void 0 : val.space_used;
+  if (!(val.max_upload_size == void 0) && !sdIsNumber(val.max_upload_size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "max_upload_size" of type "UserFull"',
+    });
+  }
   const maxUploadSize: undefined | number =
     val.max_upload_size == void 0 ? void 0 : val.max_upload_size;
   const status: undefined | UserStatusField =
     val.status == void 0 ? void 0 : deserializeUserStatusField(val.status);
+  if (!(val.job_title == void 0) && !sdIsString(val.job_title)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "job_title" of type "UserFull"',
+    });
+  }
   const jobTitle: undefined | string =
     val.job_title == void 0 ? void 0 : val.job_title;
+  if (!(val.phone == void 0) && !sdIsString(val.phone)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "phone" of type "UserFull"',
+    });
+  }
   const phone: undefined | string = val.phone == void 0 ? void 0 : val.phone;
+  if (!(val.address == void 0) && !sdIsString(val.address)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "address" of type "UserFull"',
+    });
+  }
   const address: undefined | string =
     val.address == void 0 ? void 0 : val.address;
+  if (!(val.avatar_url == void 0) && !sdIsString(val.avatar_url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "avatar_url" of type "UserFull"',
+    });
+  }
   const avatarUrl: undefined | string =
     val.avatar_url == void 0 ? void 0 : val.avatar_url;
   const notificationEmail: undefined | UserNotificationEmailField =
     val.notification_email == void 0
       ? void 0
       : deserializeUserNotificationEmailField(val.notification_email);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "UserFull"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "login" of type "UserFull"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "UserFull" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "UserFull"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "UserFull" to be defined',
+    });
+  }
   const type: UserBaseTypeField = deserializeUserBaseTypeField(val.type);
   return {
     role: role,

@@ -18,7 +18,7 @@ export function serializeTrackingCodeTypeField(
   return val;
 }
 export function deserializeTrackingCodeTypeField(
-  val: any
+  val: SerializedData
 ): TrackingCodeTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -40,10 +40,23 @@ export function serializeTrackingCode(val: TrackingCode): SerializedData {
     ['value']: val.value == void 0 ? void 0 : val.value,
   };
 }
-export function deserializeTrackingCode(val: any): TrackingCode {
+export function deserializeTrackingCode(val: SerializedData): TrackingCode {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TrackingCode"' });
+  }
   const type: undefined | TrackingCodeTypeField =
     val.type == void 0 ? void 0 : deserializeTrackingCodeTypeField(val.type);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "TrackingCode"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.value == void 0) && !sdIsString(val.value)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "value" of type "TrackingCode"',
+    });
+  }
   const value: undefined | string = val.value == void 0 ? void 0 : val.value;
   return { type: type, name: name, value: value } satisfies TrackingCode;
 }

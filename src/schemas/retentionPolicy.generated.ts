@@ -54,7 +54,7 @@ export function serializeRetentionPolicyPolicyTypeField(
   return val;
 }
 export function deserializeRetentionPolicyPolicyTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyPolicyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -77,7 +77,7 @@ export function serializeRetentionPolicyRetentionTypeField(
   return val;
 }
 export function deserializeRetentionPolicyRetentionTypeField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyRetentionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -100,7 +100,7 @@ export function serializeRetentionPolicyStatusField(
   return val;
 }
 export function deserializeRetentionPolicyStatusField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -128,11 +128,37 @@ export function serializeRetentionPolicyAssignmentCountsField(
   };
 }
 export function deserializeRetentionPolicyAssignmentCountsField(
-  val: any
+  val: SerializedData
 ): RetentionPolicyAssignmentCountsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RetentionPolicyAssignmentCountsField"',
+    });
+  }
+  if (!(val.enterprise == void 0) && !sdIsNumber(val.enterprise)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "enterprise" of type "RetentionPolicyAssignmentCountsField"',
+    });
+  }
   const enterprise: undefined | number =
     val.enterprise == void 0 ? void 0 : val.enterprise;
+  if (!(val.folder == void 0) && !sdIsNumber(val.folder)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "folder" of type "RetentionPolicyAssignmentCountsField"',
+    });
+  }
   const folder: undefined | number = val.folder == void 0 ? void 0 : val.folder;
+  if (
+    !(val.metadata_template == void 0) &&
+    !sdIsNumber(val.metadata_template)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "metadata_template" of type "RetentionPolicyAssignmentCountsField"',
+    });
+  }
   const metadataTemplate: undefined | number =
     val.metadata_template == void 0 ? void 0 : val.metadata_template;
   return {
@@ -189,7 +215,17 @@ export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
     },
   };
 }
-export function deserializeRetentionPolicy(val: any): RetentionPolicy {
+export function deserializeRetentionPolicy(
+  val: SerializedData
+): RetentionPolicy {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "RetentionPolicy"' });
+  }
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "RetentionPolicy"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const policyType: undefined | RetentionPolicyPolicyTypeField =
@@ -206,16 +242,53 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
       : deserializeRetentionPolicyStatusField(val.status);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "RetentionPolicy"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "RetentionPolicy"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (
+    !(val.can_owner_extend_retention == void 0) &&
+    !sdIsBoolean(val.can_owner_extend_retention)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_owner_extend_retention" of type "RetentionPolicy"',
+    });
+  }
   const canOwnerExtendRetention: undefined | boolean =
     val.can_owner_extend_retention == void 0
       ? void 0
       : val.can_owner_extend_retention;
+  if (
+    !(val.are_owners_notified == void 0) &&
+    !sdIsBoolean(val.are_owners_notified)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "are_owners_notified" of type "RetentionPolicy"',
+    });
+  }
   const areOwnersNotified: undefined | boolean =
     val.are_owners_notified == void 0 ? void 0 : val.are_owners_notified;
+  if (
+    !(val.custom_notification_recipients == void 0) &&
+    !sdIsList(val.custom_notification_recipients)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "custom_notification_recipients" of type "RetentionPolicy"',
+    });
+  }
   const customNotificationRecipients: undefined | readonly UserMini[] =
     val.custom_notification_recipients == void 0
       ? void 0
@@ -230,8 +303,19 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
     val.assignment_counts == void 0
       ? void 0
       : deserializeRetentionPolicyAssignmentCountsField(val.assignment_counts);
+  if (!(val.policy_name == void 0) && !sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "policy_name" of type "RetentionPolicy"',
+    });
+  }
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
+  if (!(val.retention_length == void 0) && !sdIsString(val.retention_length)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "retention_length" of type "RetentionPolicy"',
+    });
+  }
   const retentionLength: undefined | string =
     val.retention_length == void 0 ? void 0 : val.retention_length;
   const dispositionAction:
@@ -242,7 +326,22 @@ export function deserializeRetentionPolicy(val: any): RetentionPolicy {
       : deserializeRetentionPolicyMiniDispositionActionField(
           val.disposition_action
         );
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "RetentionPolicy" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "RetentionPolicy"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "RetentionPolicy" to be defined',
+    });
+  }
   const type: RetentionPolicyBaseTypeField =
     deserializeRetentionPolicyBaseTypeField(val.type);
   return {

@@ -313,7 +313,7 @@ export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   return val;
 }
 export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
-  val: any
+  val: SerializedData
 ): GetEnterpriseDevicePinnersQueryParamsDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
