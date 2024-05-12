@@ -5,7 +5,6 @@
 - [Get legal hold policy assignment](#get-legal-hold-policy-assignment)
 - [Unassign legal hold policy](#unassign-legal-hold-policy)
 - [List current file versions for legal hold policy assignment](#list-current-file-versions-for-legal-hold-policy-assignment)
-- [List previous file versions for legal hold policy assignment](#list-previous-file-versions-for-legal-hold-policy-assignment)
 
 ## List legal hold policy assignments
 
@@ -173,44 +172,4 @@ _Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFil
 This function returns a value of type `FileVersionLegalHolds`.
 
 Returns the list of current file versions held under legal hold for a
-specific legal hold policy assignment.
-
-## List previous file versions for legal hold policy assignment
-
-Get a list of previous file versions for a legal hold
-assignment.
-
-In some cases you may only need the latest file versions instead. In these
-cases, use the `GET  /legal_hold_policy_assignments/:id/files_on_hold` API
-instead to return any current (latest) versions of a file for this legal hold
-policy assignment.
-
-Due to ongoing re-architecture efforts this API might not return all files
-held for this policy ID. Instead, this API will only return past file versions
-held in the newly developed architecture. The `GET /file_version_legal_holds`
-API can be used to fetch current and past versions of files held within the
-legacy architecture.
-
-The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
-find a list of policy assignments for a given policy ID.
-
-This operation is performed by calling function `getLegalHoldPolicyAssignmentFileVersionOnHold`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id-file-versions-on-hold/).
-
-_Currently we don't have an example for calling `getLegalHoldPolicyAssignmentFileVersionOnHold` in integration tests_
-
-### Arguments
-
-- legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment Example: "753465"
-- optionalsInput `GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionalsInput`
-  -
-
-### Returns
-
-This function returns a value of type `FileVersionLegalHolds`.
-
-Returns the list of previous file versions held under legal hold for a
 specific legal hold policy assignment.

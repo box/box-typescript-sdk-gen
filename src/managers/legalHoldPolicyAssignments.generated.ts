@@ -174,40 +174,6 @@ export interface GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput {
   readonly headers?: GetLegalHoldPolicyAssignmentFileOnHoldHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals {
-  readonly queryParams: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParams =
-    {} satisfies GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParams;
-  readonly headers: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders =
-    new GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders({});
-  readonly cancellationToken?: CancellationToken = void 0;
-  constructor(
-    fields: Omit<
-      GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals,
-      'queryParams' | 'headers' | 'cancellationToken'
-    > &
-      Partial<
-        Pick<
-          GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals,
-          'queryParams' | 'headers' | 'cancellationToken'
-        >
-      >
-  ) {
-    if (fields.queryParams) {
-      this.queryParams = fields.queryParams;
-    }
-    if (fields.headers) {
-      this.headers = fields.headers;
-    }
-    if (fields.cancellationToken) {
-      this.cancellationToken = fields.cancellationToken;
-    }
-  }
-}
-export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionalsInput {
-  readonly queryParams?: GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParams;
-  readonly headers?: GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders;
-  readonly cancellationToken?: undefined | CancellationToken;
-}
 export type GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField =
   | 'file'
   | 'file_version'
@@ -344,39 +310,6 @@ export interface GetLegalHoldPolicyAssignmentFileOnHoldHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldQueryParams {
-  readonly marker?: string;
-  readonly limit?: number;
-  readonly fields?: readonly string[];
-}
-export class GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<
-      GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders,
-      'extraHeaders'
-    > &
-      Partial<
-        Pick<
-          GetLegalHoldPolicyAssignmentFileVersionOnHoldHeaders,
-          'extraHeaders'
-        >
-      >
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface GetLegalHoldPolicyAssignmentFileVersionOnHoldHeadersInput {
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
 export class LegalHoldPolicyAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -389,7 +322,6 @@ export class LegalHoldPolicyAssignmentsManager {
       | 'getLegalHoldPolicyAssignmentById'
       | 'deleteLegalHoldPolicyAssignmentById'
       | 'getLegalHoldPolicyAssignmentFileOnHold'
-      | 'getLegalHoldPolicyAssignmentFileVersionOnHold'
     > &
       Partial<Pick<LegalHoldPolicyAssignmentsManager, 'networkSession'>>
   ) {
@@ -568,50 +500,6 @@ export class LegalHoldPolicyAssignmentsManager {
         '/legal_hold_policy_assignments/',
         toString(legalHoldPolicyAssignmentId) as string,
         '/files_on_hold'
-      ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeFileVersionLegalHolds(response.data);
-  }
-  async getLegalHoldPolicyAssignmentFileVersionOnHold(
-    legalHoldPolicyAssignmentId: string,
-    optionalsInput: GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionalsInput = {}
-  ): Promise<FileVersionLegalHolds> {
-    const optionals: GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals =
-      new GetLegalHoldPolicyAssignmentFileVersionOnHoldOptionals({
-        queryParams: optionalsInput.queryParams,
-        headers: optionalsInput.headers,
-        cancellationToken: optionalsInput.cancellationToken,
-      });
-    const queryParams: any = optionals.queryParams;
-    const headers: any = optionals.headers;
-    const cancellationToken: any = optionals.cancellationToken;
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['marker']: toString(queryParams.marker) as string,
-      ['limit']: toString(queryParams.limit) as string,
-      ['fields']: queryParams.fields
-        ? queryParams.fields.map(toString).join(',')
-        : undefined,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments/',
-        toString(legalHoldPolicyAssignmentId) as string,
-        '/file_versions_on_hold'
       ) as string,
       {
         method: 'GET',

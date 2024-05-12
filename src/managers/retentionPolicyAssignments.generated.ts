@@ -186,40 +186,6 @@ export interface GetFilesUnderRetentionPolicyAssignmentOptionalsInput {
   readonly headers?: GetFilesUnderRetentionPolicyAssignmentHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class GetFileVersionsUnderRetentionPolicyAssignmentOptionals {
-  readonly queryParams: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams =
-    {} satisfies GetFileVersionsUnderRetentionPolicyAssignmentQueryParams;
-  readonly headers: GetFileVersionsUnderRetentionPolicyAssignmentHeaders =
-    new GetFileVersionsUnderRetentionPolicyAssignmentHeaders({});
-  readonly cancellationToken?: CancellationToken = void 0;
-  constructor(
-    fields: Omit<
-      GetFileVersionsUnderRetentionPolicyAssignmentOptionals,
-      'queryParams' | 'headers' | 'cancellationToken'
-    > &
-      Partial<
-        Pick<
-          GetFileVersionsUnderRetentionPolicyAssignmentOptionals,
-          'queryParams' | 'headers' | 'cancellationToken'
-        >
-      >
-  ) {
-    if (fields.queryParams) {
-      this.queryParams = fields.queryParams;
-    }
-    if (fields.headers) {
-      this.headers = fields.headers;
-    }
-    if (fields.cancellationToken) {
-      this.cancellationToken = fields.cancellationToken;
-    }
-  }
-}
-export interface GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput {
-  readonly queryParams?: GetFileVersionsUnderRetentionPolicyAssignmentQueryParams;
-  readonly headers?: GetFileVersionsUnderRetentionPolicyAssignmentHeaders;
-  readonly cancellationToken?: undefined | CancellationToken;
-}
 export type GetRetentionPolicyAssignmentsQueryParamsTypeField =
   | 'folder'
   | 'enterprise'
@@ -360,38 +326,6 @@ export interface GetFilesUnderRetentionPolicyAssignmentHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface GetFileVersionsUnderRetentionPolicyAssignmentQueryParams {
-  readonly marker?: string;
-  readonly limit?: number;
-}
-export class GetFileVersionsUnderRetentionPolicyAssignmentHeaders {
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<
-      GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
-      'extraHeaders'
-    > &
-      Partial<
-        Pick<
-          GetFileVersionsUnderRetentionPolicyAssignmentHeaders,
-          'extraHeaders'
-        >
-      >
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface GetFileVersionsUnderRetentionPolicyAssignmentHeadersInput {
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
 export class RetentionPolicyAssignmentsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -404,7 +338,6 @@ export class RetentionPolicyAssignmentsManager {
       | 'getRetentionPolicyAssignmentById'
       | 'deleteRetentionPolicyAssignmentById'
       | 'getFilesUnderRetentionPolicyAssignment'
-      | 'getFileVersionsUnderRetentionPolicyAssignment'
     > &
       Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
   ) {
@@ -592,47 +525,6 @@ export class RetentionPolicyAssignmentsManager {
         '/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string,
         '/files_under_retention'
-      ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
-    return deserializeFilesUnderRetention(response.data);
-  }
-  async getFileVersionsUnderRetentionPolicyAssignment(
-    retentionPolicyAssignmentId: string,
-    optionalsInput: GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput = {}
-  ): Promise<FilesUnderRetention> {
-    const optionals: GetFileVersionsUnderRetentionPolicyAssignmentOptionals =
-      new GetFileVersionsUnderRetentionPolicyAssignmentOptionals({
-        queryParams: optionalsInput.queryParams,
-        headers: optionalsInput.headers,
-        cancellationToken: optionalsInput.cancellationToken,
-      });
-    const queryParams: any = optionals.queryParams;
-    const headers: any = optionals.headers;
-    const cancellationToken: any = optionals.cancellationToken;
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['marker']: toString(queryParams.marker) as string,
-      ['limit']: toString(queryParams.limit) as string,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string,
-        '/file_versions_under_retention'
       ) as string,
       {
         method: 'GET',

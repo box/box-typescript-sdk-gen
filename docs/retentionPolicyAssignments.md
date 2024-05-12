@@ -5,7 +5,6 @@
 - [Get retention policy assignment](#get-retention-policy-assignment)
 - [Remove retention policy assignment](#remove-retention-policy-assignment)
 - [Get files under retention](#get-files-under-retention)
-- [Get file versions under retention](#get-file-versions-under-retention)
 
 ## List retention policy assignments
 
@@ -165,29 +164,3 @@ This function returns a value of type `FilesUnderRetention`.
 
 Returns a list of files under retention that are associated with the
 specified retention policy assignment.
-
-## Get file versions under retention
-
-Returns a list of file versions under retention for a retention policy
-assignment.
-
-This operation is performed by calling function `getFileVersionsUnderRetentionPolicyAssignment`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-file-versions-under-retention/).
-
-_Currently we don't have an example for calling `getFileVersionsUnderRetentionPolicyAssignment` in integration tests_
-
-### Arguments
-
-- retentionPolicyAssignmentId `string`
-  - The ID of the retention policy assignment. Example: "1233123"
-- optionalsInput `GetFileVersionsUnderRetentionPolicyAssignmentOptionalsInput`
-  -
-
-### Returns
-
-This function returns a value of type `FilesUnderRetention`.
-
-Returns a list of file versions under retention that are associated with
-the specified retention policy assignment.
